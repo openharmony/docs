@@ -194,7 +194,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | description                    | String  | 标识应用的描述信息                                                                     | stage模型新增   |
 | minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号                                                                | NA          |
 | distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知                                                              | stage模型新增   |
-| bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：普通应用<br/>- atomicService：元服务 <br/>- shared：应用间共享库 | NA   |
+| bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：应用<br/>- atomicService：元服务 <br/>- shared：应用间共享库 | NA   |
 | compileSdkVersion              | String  | 标识编译该应用时使用的sdk版本                                                              | 仅限API10及以后的应用   |
 | compileSdkType                 | String  | 标识编译该应用时使用的sdk类别                                                              | 仅限API10及以后的应用   |
 | labels                         | HashMap\<String, String> | 标识多语言应用程序AppJson的标签。 | NA          |

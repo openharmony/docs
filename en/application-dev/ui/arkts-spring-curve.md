@@ -74,83 +74,58 @@ struct Motion {
   private iCurve: ICurve | undefined = undefined
 
   build() {
-    Row() {
+    Column() {
+      Circle()
+        .translate({ y: this.dRotate })
+        .animation({ curve: this.iCurve, iterations: -1 })
+        .foregroundColor('#317AF7')
+        .width(30)
+        .height(30)
+
       Column() {
         Text(this.title)
           .fontColor(Color.Black)
-          .fontSize(16)
+          .fontSize(10).height(30)
         Text(this.subTitle)
           .fontColor(0xcccccc)
-          .fontSize(12)
+          .fontSize(10).width(50)
       }
-      .width(200)
-      .alignItems(HorizontalAlign.Start)
-      .justifyContent(FlexAlign.Center)
+      .borderWidth({ top: 1 })
+      .borderColor(0xf5f5f5)
+      .width(80)
+      .alignItems(HorizontalAlign.Center)
       .height(100)
 
-      Stack({ alignContent: Alignment.Top }) {
-        // Circle
-        Column()
-          .width(100)
-          .height(100)
-          .border({
-            width: 10,
-            color: 0xf56c6c,
-            radius: 50
-          })
-          .backgroundColor(Color.White)
-
-        // Mask layer
-        Column() {
-          Row()
-            .width(100)
-            .height(100)
-            .border({
-              width: 10,
-              color: 0x909399,
-              radius: 50
-            })
-            .backgroundColor(0xf56c6c)
-        }
-        .width(100)
-        .height(50)
-        .clip(true)
-        .rotate({ angle: this.dRotate, centerX: 50, centerY: 50 })
-        .animation({ curve: this.iCurve, iterations: -1 })
-      }
-      .width(100)
-      .height(100)
     }
     .height(110)
-    .borderWidth({ bottom: 1 })
-    .borderColor(0xf5f5f5)
     .margin({ bottom: 5 })
-    .alignItems(VerticalAlign.Top)
+    .alignItems(HorizontalAlign.Center)
   }
 }
+
 @Entry
 @Component
-export struct SpringDemo {
+export struct SpringCurve {
   @State dRotate: number = 0;
   private springs: Spring[] = [
-    new Spring('springMotion()', '(springMotion (1, 0.25): \n\nCycle: 2; damping: 0.25)', curves.springMotion (1, 0.25)),
-    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\nDefault responsive spring curve', curves.responsiveSpringMotion(1, 0.25)),
-    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\nInitial velocity: 100; quality: 1; stiffness: 228; damping: 30)', curves.interpolatingSpring(10, 1, 228, 30)),
-    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\nInitial velocity: 100; quality: 1; stiffness: 228; damping: 30)', curves.springCurve(10, 1, 228, 30))
+    new Spring('springMotion', 'Cycle: 2, damping: 0.25', curves.springMotion(1, 0.25)),
+    new Spring('responsive' + '\n' + 'SpringMotion', 'Default responsive spring curve', curves.responsiveSpringMotion(1, 0.25)),
+    new Spring('interpolating' + '\n' + 'Initial velocity: 100; quality: 1; stiffness: 228; damping: 30', curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('springCurve', 'Initial velocity: 100; quality: 1; stiffness: 228; damping: 30', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {
-    Column() {
+    Row() {
       ForEach(this.springs, (item: Spring) => {
         Motion({ title: item.title, subTitle: item.subTitle, iCurve: item.iCurve, dRotate: this.dRotate })
       })
     }
-    .justifyContent(FlexAlign.Center)
+    .justifyContent(FlexAlign.Center).alignItems(VerticalAlign.Bottom)
     .width('100%')
     .height(437)
     .margin({ top: 20 })
     .onClick(() => {
-      this.dRotate = 360;
+      this.dRotate = -50;
     })
   }
 }

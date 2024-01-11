@@ -494,7 +494,7 @@ registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elem
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName、moduleName三项）。          |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName）。          |
 | discTech         |  number[]   | 是   | 前台分发模式支持的技术类型，每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（支持[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义), 技术类型定义中的其他技术类型不属于NFC读卡轮询的Tag技术类型）并关闭卡模拟；当数组长度为0时，同时关闭读卡轮询和卡模拟。 |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 前台读卡监听回调函数。 |
 
@@ -516,7 +516,7 @@ unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-el
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName、moduleName三项）。          |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName两项）。          |
 
 **示例：**
 
@@ -576,6 +576,129 @@ export default class MainAbility extends UIAbility {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
             console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+        }
+    }
+
+  // override other lifecycle functions
+}
+```
+
+## tag.on<sup>11+</sup>
+
+on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+
+应用的页面处于前台时可以通过该接口设置NFC的读卡器模式，通过discTech设置支持的Tag技术类型，通过Callback方式获取到Tag的[TagInfo](#taginfo)信息。需要与取消读卡器模式的[tag.off](#tagoff11)成对使用，如果已通过on进行设置，需要在页面退出前台或页面销毁时调用[tag.off](#tagoff11)
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| type    | string  | 是   | 要注册的回调类型。 |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 应用程序的element名称，必须至少包含bundleName、abilityName两项。          |
+| discTech         |  number[]   | 是   | 读卡器模式支持的技术类型，每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（支持[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义), 技术类型定义中的其他技术类型不属于NFC读卡轮询的Tag技术类型）并关闭卡模拟；当数组长度为0时，同时关闭读卡轮询和卡模拟。 |
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 读卡器模式监听回调函数，返回读到的Tag信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100202  | element状态无效. |
+
+**示例：**
+
+示例请参见[tag.off](#tagoff11)接口的示例。
+
+## tag.off<sup>11+</sup>
+
+off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), callback?: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+
+退出NFC读卡器模式。如果已通过[tag.on](#tagon11)设置NFC的读卡器模式，需要在页面退出前台或页面销毁时调用off进行取消。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| type    | string  | 是   | 要注销的回调类型。 |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 应用程序的element名称，必须至少包含bundleName、abilityName两项。          |
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 否   | 前台读卡监听回调函数，返回读到的tag信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100203  | 调用了on之后，才能调用off. |
+
+**示例：**
+
+```js
+import Want from '@ohos.app.ability.Want';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import tag from '@ohos.nfc.tag';
+import { BusinessError } from '@ohos.base';
+import bundleManager from '@ohos.bundle.bundleManager';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let elementName : bundleManager.ElementName;
+
+function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
+    if (err as BusinessError) {
+        if (!err) {
+            console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
+        } else {
+            console.error("offCallback err: " + (err as BusinessError).message);
+            return;
+        }
+    }
+  // other Operations of taginfo
+}
+
+export default class MainAbility extends UIAbility {
+    OnCreate(want : Want, launchParam : AbilityConstant.LaunchParam) {
+        console.log("OnCreate");
+        elementName = {
+            bundleName: want.bundleName as string,
+            abilityName: want.abilityName as string,
+            moduleName: want.moduleName as string
+        }
+    }
+
+    onForeground() {
+        console.log("on start");
+        try {
+            tag.on('readerMode', elementName, discTech, readerModeCb);
+        } catch (e) {
+            console.error("tag.on error: " + (e as BusinessError).message);
+        }
+    }
+
+    onBackground() {
+        console.log("onBackground");
+        try {
+            tag.off('readerMode', elementName, readerModeCb);
+        } catch (e) {
+            console.error("tag.off error: " + (e as BusinessError).message);
+        }
+    }
+
+    onWindowStageDestroy() {
+        console.log("onWindowStageDestroy");
+        try {
+            tag.off('readerMode', elementName, readerModeCb);
+        } catch (e) {
+            console.error("tag.off error: " + (e as BusinessError).message);
         }
     }
 

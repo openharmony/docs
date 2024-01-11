@@ -14,7 +14,7 @@ import print from '@ohos.print';
 
 ## PrintTask
 
-Implements event listener APIs for print tasks.
+Implements event listeners for print tasks.
 
 ### on
 
@@ -29,7 +29,7 @@ Registers a listener for the print task blocking event. This API uses a callback
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -62,7 +62,7 @@ Registers a listener for the print task success event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -95,7 +95,7 @@ Registers a listener for the print task failure event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -128,7 +128,7 @@ Registers a listener for the print task cancel event. This API uses a callback t
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -161,7 +161,7 @@ Unregisters the listener for the print task blocking event. This API uses a call
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Example**
@@ -194,7 +194,7 @@ Unregisters the listener for the print task success event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Example**
@@ -227,7 +227,7 @@ Unregisters the listener for the print task failure event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Example**
@@ -260,7 +260,7 @@ Unregisters the listener for the print task cancel event. This API uses a callba
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task. |
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Example**
@@ -278,6 +278,99 @@ print.print(file).then((printTask: print.PrintTask) => {
 }).catch((error: BusinessError) => {
     console.log('print err ' + JSON.stringify(error));
 })
+```
+
+## PrintDocumentAdapter<sup>11+</sup>
+
+Provides information about the document to print. This API must be implemented by a third-party application.
+
+### onStartLayoutWrite
+
+onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
+
+Updates the file to be printed. This API uses **writeResultCallback** as the callback.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+| oldAttrs | PrintAttributes | Yes| Old print attributes.|
+| newAttrs | PrintAttributes | Yes| New print attributes.|
+| fd | number | Yes| File descriptor.|
+| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | Yes| Callback used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
+    onStartLayoutWrite(jobId: string, oldAttrs: print.PrintAttributes, newAttrs: print.PrintAttributes, fd: number,
+        writeResultCallback: (jobId: string, writeResult: print.PrintFileCreationState) => void) {
+        writeResultCallback(jobId, print.PrintFileCreationState.PRINT_FILE_CREATED);
+    };
+    onJobStateChanged(jobId: string, state: print.PrintDocumentAdapterState) {
+        if (state == print.PrintDocumentAdapterState.PREVIEW_DESTROY) {
+            console.log('PREVIEW_DESTROY');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_SUCCEED) {
+            console.log('PRINT_TASK_SUCCEED');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_FAIL) {
+            console.log('PRINT_TASK_FAIL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_CANCEL) {
+            console.log('PRINT_TASK_CANCEL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_BLOCK) {
+            console.log('PRINT_TASK_BLOCK');
+        }
+    }
+}
+```
+
+### onJobStateChanged
+
+onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
+
+Registers a listener for print job state changes.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+| state | PrintDocumentAdapterState | Yes| New state of the print job.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
+    onStartLayoutWrite(jobId: string, oldAttrs: print.PrintAttributes, newAttrs: print.PrintAttributes, fd: number,
+        writeResultCallback: (jobId: string, writeResult: print.PrintFileCreationState) => void) {
+        writeResultCallback(jobId, print.PrintFileCreationState.PRINT_FILE_CREATED);
+    };
+    onJobStateChanged(jobId: string, state: print.PrintDocumentAdapterState) {
+        if (state == print.PrintDocumentAdapterState.PREVIEW_DESTROY) {
+            console.log('PREVIEW_DESTROY');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_SUCCEED) {
+            console.log('PRINT_TASK_SUCCEED');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_FAIL) {
+            console.log('PRINT_TASK_FAIL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_CANCEL) {
+            console.log('PRINT_TASK_CANCEL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_BLOCK) {
+            console.log('PRINT_TASK_BLOCK');
+        }
+    }
+}
 ```
 
 ## print
@@ -358,6 +451,159 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
+## print<sup>11+</sup>
+
+print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;PrintTask&gt;): void
+
+Prints files. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| context | Context | Yes| UIAbility context used to start printing.|
+| callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+// Pass in the URIs of the files.
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the file IDs.
+//let file = ['fd://1', 'fd://2'];
+let context = getContext(this);
+print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
+    if (err) {
+        console.log('print err ' + JSON.stringify(err));
+    } else {
+        printTask.on('succeed', () => {
+            console.log('print state is succeed');
+        })
+        // ...
+    }
+})
+```
+
+## print<sup>11+</sup>
+
+print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
+
+Prints files. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| context | Context | Yes| UIAbility context used to start printing.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;PrintTask&gt; | Print result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+// Pass in the URIs of the files.
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the file IDs.
+//let file = ['fd://1', 'fd://2'];
+let context = getContext(this);
+print.print(file, context).then((printTask: print.PrintTask) => {
+    printTask.on('succeed', () => {
+        console.log('print state is succeed');
+    })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+## print<sup>11+</sup>
+
+print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: PrintAttributes, context: Context): Promise&lt;PrintTask&gt;
+
+Prints a file. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobName | string | Yes| Name of the file to print.|
+| printAdapter | PrintDocumentAdapter | Yes| Feature implemented by a third-party application.|
+| printAttributes | PrintAttributes | Yes| Print attributes.|
+| context | Context | Yes| UIAbility context used to start printing.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;PrintTask&gt; | Print result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobName : string = "jobName";
+let printAdapter : print.PrintDocumentAdapter | null = null;
+let printAttributes : print.PrintAttributes = {
+    copyNumber: 1,
+    pageRange: {
+        startPage: 0,
+        endPage: 5,
+        pages: []
+    },
+    pageSize: print.PrintPageType.PAGE_ISO_A3,
+    directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
+    colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
+    duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+}
+let context = getContext();
+
+print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
+    printTask.on('succeed', () => {
+        console.log('print state is succeed');
+    })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+## PrintAttributes<sup>11+</sup>
+
+Defines the print attributes.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Attributes**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| copyNumber | number | No| Copy of the file list.|
+| pageRange | PrinterRange | No| Range of pages to print.|
+| pageSize | PrintPageSize \| PrintPageType | No| Page size of the files to print.|
+| directionMode | PrintDirectionMode | No| Print direction mode.|
+| colorMode | PrintColorMode | No| Color mode of the files to print.|
+| duplexMode | PrintDuplexMode | No| Duplex mode of the files to print.|
+
 ## PrintMargin
 
 Defines the page margins for printing.
@@ -374,11 +620,9 @@ Defines the page margins for printing.
 | left | number | No| Left margin of the page.|
 | right | number | No| Right margin of the page.|
 
-## PrinterRange
+## PrinterRange<sup>11+</sup>
 
 Defines the print range.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Print.PrintFramework
 
@@ -418,11 +662,9 @@ Defines the resolution for printing.
 | horizontalDpi | number | Yes| Horizontal DPI.|
 | verticalDpi | number | Yes| Vertical DPI.|
 
-## PrintPageSize
+## PrintPageSize<sup>11+</sup>
 
 Defines the size of the printed page.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Print.PrintFramework
 
@@ -450,6 +692,7 @@ Defines the printer capabilities.
 | pageSize | Array&lt;PrintPageSize&gt; | Yes| List of page sizes supported by the printer.|
 | resolution | Array&lt;PrintResolution&gt; | No| List of resolutions supported by the printer.|
 | minMargin | PrintMargin | No| Minimum margin of the printer.|
+| options<sup>11+</sup> | Object | No| Printer options. The value is a JSON object string.|
 
 ## PrinterInfo
 
@@ -485,6 +728,7 @@ Defines a print job.
 | jobId | string | Yes| ID of the print job.|
 | printerId | string | Yes| ID of the printer used for printing.|
 | jobState | PrintJobState | Yes| State of the print job.|
+| jobSubstate<sup>11+</sup> | PrintJobSubState | Yes| Substate of the print job.|
 | copyNumber | number | Yes| Copy of the file list.|
 | pageRange | PrinterRange | Yes| Print range.|
 | isSequential | boolean | Yes| Whether to enable sequential printing.|
@@ -495,6 +739,88 @@ Defines a print job.
 | margin | PrintMargin | No| Current page margin.|
 | preview | PreviewAttribute | No| Preview settings.|
 | options | Object | No| Printer options. The value is a JSON object string.|
+
+## PrintDirectionMode<sup>11+</sup>
+
+Enumerates the print direction modes.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| DIRECTION_MODE_AUTO | 0 | Automatic.|
+| DIRECTION_MODE_PORTRAIT | 1 | Portrait mode.|
+| DIRECTION_MODE_LANDSCAPE | 2 | Landscape mode.|
+
+## PrintColorMode<sup>11+</sup>
+
+Enumerates the color modes.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| COLOR_MODE_MONOCHROME | 0 | Black and white.|
+| COLOR_MODE_COLOR | 1 | Color.|
+
+## PrintDuplexMode<sup>11+</sup>
+
+Enumerates the duplex modes.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| DUPLEX_MODE_NONE | 0 | Simplex (single-sided).|
+| DUPLEX_MODE_LONG_EDGE | 1 | Duplex (double-sided) with flipping on long edge.|
+| DUPLEX_MODE_SHORT_EDGE | 2 | Duplex (double-sided) with flipping on short edge.|
+
+## PrintPageType<sup>11+</sup>
+
+Enumerates the print page types.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PAGE_ISO_A3 | 0 | A3.|
+| PAGE_ISO_A4 | 1 | A4.|
+| PAGE_ISO_A5 | 2 | A5.|
+| PAGE_JIS_B5 | 3 | B5.|
+| PAGE_ISO_C5 | 4 | C5.|
+| PAGE_ISO_DL | 5 | DL.|
+| PAGE_LETTER | 6 | Letter.|
+| PAGE_LEGAL | 7 | Legal.|
+| PAGE_PHOTO_4X6 | 8 | 4 x 6 photo paper.|
+| PAGE_PHOTO_5X7 | 9 | 5 x 7 photo paper.|
+| PAGE_INT_DL_ENVELOPE | 10 | International envelope DL.|
+| PAGE_B_TABLOID | 11 | B Tabloid.|
+
+## PrintDocumentAdapterState<sup>11+</sup>
+
+Enumerates the print job states.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PREVIEW_DESTROY | 0 | The preview fails.|
+| PRINT_TASK_SUCCEED | 1 | The print job is successful.|
+| PRINT_TASK_FAIL | 2 | The print job failed.|
+| PRINT_TASK_CANCEL | 3 | The print job is canceled.|
+| PRINT_TASK_BLOCK | 4 | The print job is blocked.|
+
+## PrintFileCreationState<sup>11+</sup>
+
+Enumerates the print file creation status.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PRINT_FILE_CREATED | 0 | The print file is created successfully.|
+| PRINT_FILE_CREATION_FAILED | 1 | The print file fails to be created.|
+| PRINT_FILE_CREATED_UNRENDERED | 2 | The print file is successfully created but not rendered.|
 
 ## PrinterState
 
@@ -556,6 +882,16 @@ Enumerates the print job substates.
 | PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | The printer is low on toner.|
 | PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | The printer is extremely low on ink.|
 | PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | The print certificate is incorrect.|
+| PRINT_JOB_BLOCK_ACCOUNT_ERROR<sup>11+</sup> | 18 | There is an error with the printer account.|
+| PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR<sup>11+</sup> | 19 | There is an error with the printer permission.|
+| PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR<sup>11+</sup> | 20 | There is an error with the color print permission.|
+| PRINT_JOB_BLOCK_NETWORK_ERROR<sup>11+</sup> | 21 | The printer is not connected to the network.|
+| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR<sup>11+</sup> | 22 | The printer could not be connected to the server.|
+| PRINT_JOB_BLOCK_LARGE_FILE_ERROR<sup>11+</sup> | 23 | An error occurs when a large file is printed.|
+| PRINT_JOB_BLOCK_FILE_PARSING_ERROR<sup>11+</sup> | 24 | There is an error with file parsing.|
+| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION<sup>11+</sup> | 25 | The file conversion is slow.|
+| PRINT_JOB_RUNNING_UPLOADING_FILES<sup>11+</sup> | 26 | The file is being uploaded.|
+| PRINT_JOB_RUNNING_CONVERTING_FILES<sup>11+</sup> | 27 | The file is being converted.|
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | An unknown print error occurs.|
 
 ## PrintErrorCode
@@ -1027,6 +1363,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1080,6 +1417,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1196,6 +1534,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1246,6 +1585,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1902,7 +2242,10 @@ print.updateExtensionInfo(info).then((data : void) => {
 })
 ```
 
-## queryAllPrintJobs
+## queryAllPrintJobs<sup>(deprecated)</sup>
+
+> This API is supported since API version 10 and deprecated since API version 11.
+> You are advised to use [queryPrintJobList](#queryprintjoblist11) instead.
 
 queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1934,7 +2277,10 @@ print.queryAllPrintJobs((err: BusinessError, data : void) => {
 })
 ```
 
-## queryAllPrintJobs
+## queryAllPrintJobs<sup>(deprecated)</sup>
+
+> This API is supported since API version 10 and deprecated since API version 11.
+> You are advised to use [queryPrintJobList](#queryprintjoblist11-1) instead.
 
 queryAllPrintJobs(): Promise&lt;void&gt;
 
@@ -1961,5 +2307,240 @@ print.queryAllPrintJobs().then((data : void) => {
     console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
+})
+```
+
+## queryPrintJobList<sup>11+</sup>
+
+queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
+
+Queries all print jobs. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
+    if (err) {
+        console.log('queryPrintJobList failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
+    }
+})
+```
+
+## queryPrintJobList<sup>11+</sup>
+
+queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
+
+Queries all print jobs. This API uses a promise used to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;Array&lt;PrintJob&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
+    console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
+}).catch((error: BusinessError) => {
+    console.log('queryPrintJobList failed, error : ' + JSON.stringify(error));
+})
+```
+
+## queryPrintJobById<sup>11+</sup>
+
+queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
+
+Queries a print job by ID. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+| callback | AsyncCallback&lt;PrintJob&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '1';
+print.queryPrintJobById(jobId, (err: BusinessError, printJob : PrintJob) => {
+    if (err) {
+        console.log('queryPrintJobById failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('queryPrintJobById success, data : ' + JSON.stringify(printJob));
+    }
+})
+```
+
+## queryPrintJobById<sup>11+</sup>
+
+queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
+
+Queries a print job by ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;PrintJob&gt; | Promise used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '1';
+print.queryPrintJobById(jobId).then((printJob : PrintJob) => {
+    console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
+}).catch((error: BusinessError) => {
+    console.log('queryPrintJobById error : ' + JSON.stringify(error));
+})
+```
+
+## startGettingPrintFile<sup>11+</sup>
+
+startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: number, onFileStateChanged: Callback&lt;PrintFileCreationState&gt;): void
+
+Starts to obtain the print file. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+| printAttributes | PrintAttributes | Yes| Print attributes.|
+| fd | number | Yes| File descriptor.|
+| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | Yes| Callback for updating the file state.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string= '1';
+class MyPrintAttributes implements print.PrintAttributes {
+    copyNumber?: number;
+    pageRange?: print.PrinterRange;
+    pageSize?: print.PrintPageSize | print.PrintPageType;
+    directionMode?: print.PrintDirectionMode;
+    colorMode?: print.PrintColorMode;
+    duplexMode?: print.PrintDuplexMode;
+}
+
+class MyPrinterRange implements print.PrinterRange {
+    startPage?: number;
+    endPage?: number;
+    pages?: Array<number>;
+}
+
+class MyPrintPageSize implements print.PrintPageSize {
+    id: string = '0';
+    name: string = '0';
+    width: number = 210;
+    height: number = 297;
+}
+
+let printAttributes = new MyPrintAttributes();
+printAttributes.copyNumber = 2;
+printAttributes.pageRange = new MyPrinterRange();
+printAttributes.pageRange.startPage = 0;
+printAttributes.pageRange.endPage = 5;
+printAttributes.pageRange.pages = [1, 3];
+printAttributes.pageSize = print.PrintPageType.PAGE_ISO_A3;
+printAttributes.directionMode = print.PrintDirectionMode.DIRECTION_MODE_AUTO;
+printAttributes.colorMode = print.PrintColorMode.COLOR_MODE_MONOCHROME;
+printAttributes.duplexMode = print.PrintDuplexMode.DUPLEX_MODE_NONE;
+
+let fd : number = 1;
+print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileCreationState) => {
+    console.log('onFileStateChanged success, data : ' + JSON.stringify(state));
+})
+```
+
+## notifyPrintService<sup>11+</sup>
+
+notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started'): Promise&lt;void&gt;
+
+Notifies the print service of the print spooler shutdown information. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | Yes| Spooler shutdown information.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '1';
+print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
+    console.log('queryPrintJobById data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('queryPrintJobById error : ' + JSON.stringify(error));
 })
 ```

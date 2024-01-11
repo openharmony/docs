@@ -20,6 +20,8 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
 注册监听应用组件开机自启动状态变化。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -29,24 +31,31 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | type | string | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | 是    | 监听应用组件开机自启动状态变化的回调对象。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('===> onAutoStartupOn data: ' + JSON.stringify(data));
-  },
-  onAutoStartupOff(data) {
-    console.info('===> onAutoStartupOff data: ' + JSON.stringify(data));
-  }
-}
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback);
+  AutoStartupManager.on('systemAutoStartup', {
+    onAutoStartupOn(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    },
+    onAutoStartupOff(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    }
+  });
 } catch (err) {
-  console.info('====> autostartupmanager on throw err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
 }
 ```
 
@@ -55,6 +64,8 @@ try {
 off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
 注销监听应用组件开机自启动状态变化。
+
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -65,24 +76,31 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | type | string              | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('===> onAutoStartupOn data: ' + JSON.stringify(data));
-  },
-  onAutoStartupOff(data) {
-    console.info('===> onAutoStartupOff data: ' + JSON.stringify(data));
-  }
-}
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
 try {
-  AutoStartupManager.off('systemAutoStartup', autoStartupCallback);
+  AutoStartupManager.off('systemAutoStartup', {
+    onAutoStartupOn(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    },
+    onAutoStartupOff(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    }
+  });
 } catch (err) {
-  console.info('====> autostartupmanager off throw err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
 }
 ```
 
@@ -91,6 +109,8 @@ try {
 setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 设置应用组件开机自启动。使用callback异步回调。
+
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -101,10 +121,20 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 | info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是    | 要设置的开机自启动应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是 | 回调函数。当设置应用组件开机自启动成功，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.setApplicationAutoStartup({
@@ -124,6 +154,8 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 设置应用组件开机自启动。使用Promise异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -138,18 +170,29 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | ------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { BusinessError } from '@ohos.base';
 
 try {
   AutoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data) => {
+  }).then((data: void) => {
     console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
   });
 } catch (err) {
@@ -163,6 +206,8 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 取消应用组件开机自启动。使用callback异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -172,10 +217,20 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 | info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)   | 是 | 要取消的开机自启动应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是    | 回调函数。当取消应用组件开机自启动成功，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.cancelApplicationAutoStartup({
@@ -195,6 +250,8 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 取消应用组件开机自启动。使用Promise异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -209,18 +266,29 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | ------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { BusinessError } from '@ohos.base';
 
 try {
   AutoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data) => {
+  }).then((data: void) => {
     console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
   });
 } catch (err) {
@@ -234,6 +302,8 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 查询自启动应用组件信息。使用callback异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
@@ -242,10 +312,18 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>\> | 是    | 回调函数。当查询自启动应用组件信息成功，err为undefined，data为获取到的Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>；否则为错误对象。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
@@ -262,6 +340,8 @@ try {
 
 查询自启动应用组件信息。使用Promise异步回调。
 
+**需要权限**：ohos.permission.MANAGE_APP_BOOT
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -270,15 +350,25 @@ try {
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>\> | Promise对象，返回自启动应用组件信息。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications().then((data) => {
-    console.info('====> queryAllAutoStartupApplications OK');
-  }).catch((err) => {
+  AutoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
+    console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
+  }).catch((err: BusinessError) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
   });
 } catch (err) {

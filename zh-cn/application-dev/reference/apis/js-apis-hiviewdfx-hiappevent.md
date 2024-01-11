@@ -51,7 +51,7 @@ try {
     let id: number = hiAppEvent.addProcessor(processor);
     hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
 } catch (error) {
-    hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+    hilog.error(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
 }
 ```
 
@@ -119,15 +119,15 @@ try {
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
 } catch (error) {
-    hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+    hilog.error(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
 }
 ```
 
 ## hiAppEvent.write
 
-write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;): void
+write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-应用事件打点方法，将事件写入到当天的事件文件中，可接收[AppEventInfo](#appeventinfo)类型的事件对象，使用callback方式作为异步回调。
+应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用callback方式作为异步回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -178,9 +178,9 @@ hiAppEvent.write({
 
 ## hiAppEvent.write
 
-write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
+write(info: AppEventInfo): Promise&lt;void&gt;
 
-应用事件打点方法，将事件写入到当天的事件文件中，可接收[AppEventInfo](#appeventinfo)类型的事件对象，使用Promise方式作为异步回调。
+应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用Promise方式作为异步回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -247,7 +247,7 @@ hiAppEvent.write({
 
 ## hiAppEvent.configure
 
-configure(config: [ConfigOption](configoption)): void
+configure(config: ConfigOption): void
 
 应用事件打点配置方法，可用于配置打点开关、目录存储配额大小等功能。
 
@@ -292,7 +292,7 @@ hiAppEvent.configure(config2);
 | 名称       | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 打点功能开关，默认值为false。true：关闭打点功能，false：不关闭打点功能。 |
-| maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。 |
+| maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。<br>配额值字符串规格如下：<br>- 配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成。<br>- 配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 |
 
 ## hiAppEvent.setUserId<sup>11+</sup>
 
@@ -323,7 +323,7 @@ import hilog from '@ohos.hilog';
 try {
   hiAppEvent.setUserId('key', 'value');
 } catch (error) {
-  hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUserId event, code=${error.code}`);
 }
 ```
 
@@ -361,9 +361,9 @@ import hilog from '@ohos.hilog';
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
-  hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
+  hilog.info(0x0000, 'hiAppEvent', `getUserId event was successful, userId=${value}`);
 } catch (error) {
-  hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserId event, code=${error.code}`);
 }
 ```
 
@@ -380,7 +380,7 @@ setUserProperty(name: string, value: string): void
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | name      | string                    | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。  |
-| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户ID。  |
+| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户属性。  |
 
 **错误码：**
 
@@ -396,7 +396,7 @@ import hilog from '@ohos.hilog';
 try {
   hiAppEvent.setUserProperty('key', 'value');
 } catch (error) {
-  hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
 }
 ```
 
@@ -442,7 +442,7 @@ try {
 
 ## hiAppEvent.addWatcher
 
-addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpackageholder)
+addWatcher(watcher: Watcher): AppEventPackageHolder
 
 添加应用事件观察者方法，可用于订阅应用事件。
 
@@ -546,7 +546,7 @@ hiAppEvent.addWatcher({
 
 ## hiAppEvent.removeWatcher
 
-removeWatcher(watcher: [Watcher](#watcher)): void
+removeWatcher(watcher: Watcher): void
 
 移除应用事件观察者方法，可用于取消订阅应用事件。
 
@@ -674,7 +674,7 @@ holder2.setSize(1000);
 
 ### takeNext
 
-takeNext(): [AppEventPackage](#appeventpackage)
+takeNext(): AppEventPackage
 
 根据设置的数据大小阈值来取出订阅事件数据，当订阅事件数据全部被取出时返回null作为标识。
 

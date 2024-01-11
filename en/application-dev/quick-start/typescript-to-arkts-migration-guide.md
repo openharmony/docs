@@ -191,8 +191,8 @@ given below, and the full list of restrictions is outlined in [Recipes](#recipes
 
 ```typescript
 // Unary `+` is defined only for numbers, but not for strings:
-console.log(+42) // OK
-console.log(+'42') // Compile-time error
+let t = +42; // OK
+let s = +'42'; // Compile-time error
 ```
 
 Loading language operators with extra semantics complicates the language
@@ -257,14 +257,17 @@ Currently, TypeScript supports structural typing, and ArkTS does not.
 
 It is debatable whether structural typing helps to produce code that
 is clearer and more understandable, and both *pro* and *contra* arguments can
-be found. Moreover, structural typing does not harm program performance (at
-least in some cases). Why does ArkTS not support it then?
+be found. Why not just support it then?
 
 The answer is that supporting structural typing is a major feature that needs
 a lot of considerations and careful implementation in language specification,
-compiler, and runtime. As safe and efficient implementation requires taking
-other aspects (static typing and restrictions on changing object layout) into
-account, the support to this feature is postponed. The ArkTS team is ready to reconsider based on real-world scenarios and feedback. More cases and suggested workarounds can be found in [Recipes](#recipes).
+compiler, and runtime. More importantly, in case if ArkTS, which enforces static
+typing (see above), runtime support for structural typing implies performance
+overhead. So since functionally correct and performant implementation requires
+taking that many aspects into account, the support to this feature is postponed.
+
+The ArkTS team is ready to reconsider based on real-world scenarios and feedback.
+More cases and suggested workarounds can be found in [Recipes](#recipes).
 
 ## Recipes
 
@@ -275,7 +278,7 @@ account, the support to this feature is postponed. The ArkTS team is ready to re
 **Severity: error**
 
 ArkTS does not support objects with name properties that are numbers or
-strings. Use classes to access data by property names. Use arrays to access
+strings. Exceptions are string type enumeration constants and string literal. Use classes to access data by property names. Use arrays to access
 data by numeric indices.
 
 **TypeScript**
@@ -305,6 +308,17 @@ z.set('name', '1')
 z.set(2, '2')
 console.log(z.get('name'))
 console.log(z.get(2))
+
+enum Test {
+  A = 'aaa',
+  B = 'bbb'
+}
+
+let obj: Record<string, number> = {
+  [Test.A]: 1,   // string type enumeration constants
+  [Test.B]: 2,   // string type enumeration constants
+  ['value']: 3   // string literal
+}
 ```
 
 **See also**
@@ -398,12 +412,12 @@ ArkTS does not support `var`. Use `let` instead.
 ```typescript
 function f(shouldInitialize: boolean) {
   if (shouldInitialize) {
-     var x = 10
+     var x = 'b'
   }
   return x
 }
 
-console.log(f(true))  // 10
+console.log(f(true))  // b
 console.log(f(false)) // undefined
 
 let upper_let = 0
@@ -419,16 +433,16 @@ scoped_let = 5 // Compile-time error
 **ArkTS**
 
 ```typescript
-function f(shouldInitialize: boolean): Object {
-  let x: Object = new Object()
+function f(shouldInitialize: boolean): string {
+  let x: string = 'a';
   if (shouldInitialize) {
-    x = 10
+    x = 'b';
   }
-  return x
+  return x;
 }
 
-console.log(f(true))  // 10
-console.log(f(false)) // {}
+console.log(f(true));  // b
+console.log(f(false)); // a
 
 let upper_let = 0
 let scoped_var = 0
@@ -689,7 +703,7 @@ class C {
   n: number = 0
 
   m(c: this) {
-    console.log(c)
+    // ...
   }
 }
 ```
@@ -705,7 +719,7 @@ class C {
   n: number = 0
 
   m(c: C) {
-    console.log(c)
+    // ...
   }
 }
 ```
@@ -850,10 +864,10 @@ is not supported. An exception is all typed arrays from the standard library
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: string = ''
+  y: string = ''
 }
-let p: Point = {x: 1, y: 2}
+let p: Point = {x: '1', y: '2'}
 console.log(p['x'])
 
 class Person {
@@ -874,10 +888,10 @@ let person: Person = {
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: string = ''
+  y: string = ''
 }
-let p: Point = {x: 1, y: 2}
+let p: Point = {x: '1', y: '2'}
 console.log(p.x)
 
 class Person {
@@ -895,12 +909,12 @@ class Person {
   }
 }
 
-let person = new Person('John', 30, '***@example.com', '18*********')
-console.log(person['name'])     // Compile-time error
-console.log(person.unknownProperty) // Compile-time error
+let person = new Person('John', 30, '***@example.com', '18*********');
+console.log(person['name']);     // Compile-time error
+console.log(person.unknownProperty); // Compile-time error
 
-let arr = new Int32Array(1)
-console.log(arr[0])
+let arr = new Int32Array(1);
+arr[0];
 ```
 
 ### Recipe: Structural Typing Is Not Supported
@@ -945,7 +959,7 @@ console.log('Assign Y to X')
 x = y
 
 function foo(x: X) {
-  console.log(x.n, x.s)
+  console.log(x.n + x.s)
 }
 
 // X and Y are equivalent because their public API is equivalent. Therefore, the second call is allowed.
@@ -1010,7 +1024,7 @@ console.log('Assign Y to X')
 x = y // ok, both are of the same type
 
 function foo(c: Z): void {
-  console.log(c.n, c.s)
+  console.log(c.n + c.s)
 }
 
 // X and Y implement the same interface. Therefore both calls are allowed.
@@ -1059,26 +1073,6 @@ function greet<T>(): T {
   return 'Hello' as T
 }
 let z = greet<string>()
-```
-
-### Recipe: RegExp Literals Are Not Supported
-
-**Rule:** `arkts-no-regexp-literals`
-
-**Severity: error**
-
-Currently, ArkTS does not support regular expression literals. Use library calls with string literals instead.
-
-**TypeScript**
-
-```typescript
-let regex: RegExp = /bc*d/
-```
-
-**ArkTS**
-
-```typescript
-let regex: RegExp = new RegExp('bc*d')
 ```
 
 ### Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
@@ -1836,8 +1830,7 @@ of course allowed.
 
 ```typescript
 for (let i = 0, j = 0; i < 10; ++i, j += 2) {
-  console.log(i)
-  console.log(j)
+  // ...
 }
 
 let x = 0
@@ -1848,8 +1841,7 @@ x = (++x, x++) // 1
 
 ```typescript
 for (let i = 0, j = 0; i < 10; ++i, j += 2) {
-  console.log(i)
-  console.log(j)
+  // ...
 }
 
 // Use the explicit execution order instead of the comma operator.
@@ -1948,7 +1940,7 @@ cannot change at runtime. For arrays, use the regular `for` loop for iteration.
 **TypeScript**
 
 ```typescript
-let a: number[] = [1.0, 2.0, 3.0]
+let a: string[] = ['1.0', '2.0', '3.0']
 for (let i in a) {
   console.log(a[i])
 }
@@ -1957,7 +1949,7 @@ for (let i in a) {
 **ArkTS**
 
 ```typescript
-let a: number[] = [1.0, 2.0, 3.0]
+let a: string[] = ['1.0', '2.0', '3.0']
 for (let i = 0; i < a.length; ++i) {
   console.log(a[i])
 }
@@ -2005,16 +1997,16 @@ ArkTS does not support the `with` statement. Use other language idioms to achiev
 
 ```typescript
 with (Math) { // Compile-time error, but JavaScript code can still be emitted.
-  let r: number = 42
-  console.log('Area: ', PI * r * r)
+  let r: number = 42;
+  let area: number = PI * r * r;
 }
 ```
 
 **ArkTS**
 
 ```typescript
-let r: number = 42
-console.log('Area: ', (Math.PI * r * r))
+let r: number = 42;
+let area: number = Math.PI * r * r;
 ```
 
 ### Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
@@ -2058,22 +2050,22 @@ a compile-time error occurs. If this is the case, specify the return type explic
 // Compile-time error when noImplicitAny is enabled.
 function f(x: number) {
   if (x <= 0) {
-    return x
+    return x;
   }
-  return g(x)
+  return g(x);
 }
 
 // Compile-time error when noImplicitAny is enabled.
 function g(x: number) {
-  return f(x - 1)
+  return f(x - 1);
 }
 
 function doOperation(x: number, y: number) {
-  return x + y
+  return x + y;
 }
 
-console.log(f(10))
-console.log(doOperation(2, 3))
+f(10);
+doOperation(2, 3);
 ```
 
 **ArkTS**
@@ -2082,23 +2074,23 @@ console.log(doOperation(2, 3))
 // An explicit return type is required.
 function f(x: number): number {
   if (x <= 0) {
-    return x
+    return x;
   }
-  return g(x)
+  return g(x);
 }
 
 // Return type may be omitted. It is inferred from f's explicit type.
 function g(x: number): number {
-  return f(x - 1)
+  return f(x - 1);
 }
 
 // In this case, the return type will be inferred.
 function doOperation(x: number, y: number) {
-  return x + y
+  return x + y;
 }
 
-console.log(f(10))
-console.log(doOperation(2, 3))
+f(10);
+doOperation(2, 3);
 ```
 
 ### Recipe: Destructuring Parameter Declarations Are Not Supported
@@ -2113,10 +2105,10 @@ ArkTS requires parameters to be passed directly to the function, and local names
 
 ```typescript
 function drawText({ text = '', location: [x, y] = [0, 0], bold = false }) {
-  console.log(text)
-  console.log(x)
-  console.log(y)
-  console.log(bold)
+  text;
+  x;
+  y;
+  bold;
 }
 
 drawText({ text: 'Hello, world!', location: [100, 50], bold: true })
@@ -2126,16 +2118,16 @@ drawText({ text: 'Hello, world!', location: [100, 50], bold: true })
 
 ```typescript
 function drawText(text: String, location: number[], bold: boolean) {
-  let x = location[0]
-  let y = location[1]
-  console.log(text)
-  console.log(x)
-  console.log(y)
-  console.log(bold)
+  let x = location[0];
+  let y = location[1];
+  text;
+  x;
+  y;
+  bold;
 }
 
 function main() {
-  drawText('Hello, world!', [100, 50], true)
+  drawText('Hello, world!', [100, 50], true);
 }
 ```
 
@@ -2153,7 +2145,7 @@ ArkTS does not support nested functions. Use lambdas instead.
 function addNum(a: number, b: number): void {
 
     // Nested function
-  function logToConsole(message: String): void {
+  function logToConsole(message: string): void {
     console.log(message)
   }
 
@@ -2190,36 +2182,36 @@ ArkTS does not support the usage of `this` inside stand-alone functions and insi
 **TypeScript**
 
 ```typescript
-function foo(i: number) {
+function foo(i: string) {
     this.count = i // Compile-time error only when noImplicitThis is enabled.
 }
 
 class A {
-  count: number = 1
+  count: string = 'a'
   m = foo
 }
 
-let a = new A()
-console.log(a.count) // Prints "1".
-a.m(2)
-console.log(a.count) // Prints "2".
+let a = new A();
+console.log(a.count); // Prints "a".
+a.m(b);
+console.log(a.count); // Prints "b".
 ```
 
 **ArkTS**
 
 ```typescript
 class A {
-  count: number = 1
-  m(i: number): void {
-    this.count = i
+  count: string = 'a'
+  m(i: string): void {
+    this.count = i;
   }
 }
 
 function main(): void {
-  let a = new A()
-    console.log(a.count)  // Prints "1".
-  a.m(2)
-    console.log(a.count)  // Prints "2".
+  let a = new A();
+  console.log(a.count);  // Prints "a".
+  a.m('b');
+  console.log(a.count);  // Prints "b".
 }
 ```
 
@@ -2358,29 +2350,29 @@ are also supported.
 
 ```typescript
 function foo(x: number, y: number, z: number) {
-  console.log(x, y, z)
+  // ...
 }
 
-let args: [number, number, number] = [0, 1, 2]
-foo(...args)
+let args: [number, number, number] = [0, 1, 2];
+foo(...args);
 ```
 
 **ArkTS**
 
 ```typescript
 function log_numbers(x: number, y: number, z: number) {
-  console.log(x, y, z)
+  // ...
 }
 
-let numbers: number[] = [1, 2, 3]
-log_numbers(numbers[0], numbers[1], numbers[2])
+let numbers: number[] = [1, 2, 3];
+log_numbers(numbers[0], numbers[1], numbers[2]);
 ```
 
 **TypeScript**
 
 ```typescript
-let point2d = { x: 1, y: 2 }
-let point3d = { ...point2d, z: 3 }
+let point2d = { x: 1, y: 2 };
+let point3d = { ...point2d, z: 3 };
 ```
 
 **ArkTS**
@@ -2393,21 +2385,20 @@ class Point2D {
 class Point3D {
   x: number = 0; y: number = 0; z: number = 0
   constructor(p2d: Point2D, z: number) {
-    this.x = p2d.x
-    this.y = p2d.y
-    this.z = z
+    this.x = p2d.x;
+    this.y = p2d.y;
+    this.z = z;
   }
 }
 
-let p3d = new Point3D({ x: 1, y: 2 } as Point2D, 3)
-console.log(p3d.x, p3d.y, p3d.z)
+let p3d = new Point3D({ x: 1, y: 2 } as Point2D, 3);
 
 class DerivedFromArray extends Uint16Array {};
 
-let arr1 = [1, 2, 3]
-let arr2 = new Uint16Array([4, 5, 6])
-let arr3 = new DerivedFromArray([7, 8, 9])
-let arr4 = [...arr1, 10, ...arr2, 11, ...arr3]
+let arr1 = [1, 2, 3];
+let arr2 = new Uint16Array([4, 5, 6]);
+let arr3 = new DerivedFromArray([7, 8, 9]);
+let arr4 = [...arr1, 10, ...arr2, 11, ...arr3];
 ```
 
 ### Recipe: Interface Cannot Extend Interfaces with the Same Method
@@ -2771,35 +2762,6 @@ namespace A {
 A.init()
 ```
 
-### Recipe: Importing a Module for Side-Effects Only Is Not Supported
-
-**Rule:** `arkts-no-side-effects-imports`
-
-**Severity: error**
-
-ArkTS does not support global variables like `window` to avoid
-side-effects during module importing. All variables marked as export can be
-accessed through the `*` syntax.
-
-**TypeScript**
-
-```typescript
-// === module at "path/to/module.ts"
-export const EXAMPLE_VALUE = 42
-
-// Set a global variable.
-window.MY_GLOBAL_VAR = 'Hello, world!'
-
-// ==== using this module:
-import 'path/to/module'
-```
-
-**ArkTS**
-
-```typescript
-import * as ns from 'path/to/module'
-```
-
 ### Recipe: `import default as ...` Is Not Supported
 
 **Rule:** `arkts-no-import-default-as`
@@ -2950,7 +2912,7 @@ declare namespace N {
 
 // Consuming code:
 import * as m from 'module'
-console.log('N.foo called: ', N.foo(42))
+console.log('N.foo called: ' + N.foo(42))
 ```
 
 **See also**
@@ -3070,7 +3032,7 @@ C.prototype = {
   }
 }
 
-C.prototype.q = function(r: number) {
+C.prototype.q = function(r: string) {
   return this.p == r
 }
 ```
@@ -3079,11 +3041,11 @@ C.prototype.q = function(r: number) {
 
 ```typescript
 class C {
-  p: number = 0
+  p: string = ''
   m() {
     console.log(this.p)
   }
-  q(r: number) {
+  q(r: string) {
     return this.p == r
   }
 }
@@ -3097,7 +3059,7 @@ Recipe: new.target Is Not Supported
 
 **Rule:** `arkts-no-globalthis`
 
-**Severity: error**
+**Severity: warning**
 
 ArkTS does not support both global scope and `globalThis` because untyped
 objects with dynamically changed layout are not supported.
@@ -3154,13 +3116,28 @@ this rule and their layout cannot be changed at runtime.
 
 Recipe: `globalThis` Is Not Supported
 
-### Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
+### Recipe: `Function.apply` and `Function.call` Are Not Supported
 
-**Rule:** `arkts-no-func-apply-bind-call`
+**Rule:** `arkts-no-func-apply-call`
 
 **Severity: error**
 
-ArkTS does not support `Function.apply`, `Function.bind`, or `Function.call`. These APIs are needed in the standard
+ArkTS does not support `Function.apply` or `Function.call`. These APIs are needed in the standard
+library to explicitly set the parameter `this` for the called function.
+In ArkTS, the semantics of `this` is restricted to the conventional OOP
+style, and the usage of `this` in stand-alone functions is prohibited.
+
+**See also**
+
+* Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
+
+### Recipe:`Function.bind` Is Not Supported
+
+**Rule:** `arkts-no-func-bind`
+
+**Severity: warning**
+
+ArkTS does not support `Function.bind`. These APIs are needed in the standard
 library to explicitly set the parameter `this` for the called function.
 In ArkTS, the semantics of `this` is restricted to the conventional OOP
 style, and the usage of `this` in stand-alone functions is prohibited.
@@ -3430,20 +3407,11 @@ export class C {
 import { C } from 'lib1'
 ```
 
-### Recipe: Only ArkUI Decorators Are Allowed
-
-**Rule:** `arkts-no-decorators-except-arkui`
-
-**Severity: warning**
-
-Currently, only ArkUI decorators are allowed in ArkTS.
-Any other decorator will cause a compile-time error.
-
 ### Recipe: Classes Cannot Be Used as Objects
 
 **Rule:** `arkts-no-classes-as-obj`
 
-**Severity: error**
+**Severity: warning**
 
 ArkTS does not support using classes as objects (assigning them to variables,
 etc.). This is because in ArkTS, a `class` declaration introduces a new type,

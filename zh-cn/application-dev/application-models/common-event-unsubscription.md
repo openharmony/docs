@@ -21,6 +21,9 @@
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。

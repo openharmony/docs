@@ -53,14 +53,14 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 | 接口名                                     | 描述                                         |
 | ------------------------------------------ | -------------------------------------------- |
 | setUserId(name: string, value: string): void | 设置用户ID，数据处理者上报事件时可携带用户ID。 |
-| getUserId(name: string): void               | 获取已设置的用户ID。                           |
+| getUserId(name: string): string               | 获取已设置的用户ID。                           |
 
 **用户属性接口功能介绍：**
 
 | 接口名                                           | 描述                                             |
 | ------------------------------------------------ | ------------------------------------------------ |
 | setUserProperty(name: string, value: string): void | 设置用户属性，数据处理者上报事件时可携带用户属性。 |
-| getUserProperty(name: string): void               | 获取已设置的用户属性。                            |
+| getUserProperty(name: string): string               | 获取已设置的用户属性。                            |
 
 ## 事件订阅开发步骤
 
@@ -240,23 +240,23 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
             // 开发者可以获取到崩溃事件发生的时间戳
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params.time}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // 开发者可以获取到崩溃事件发生的崩溃类型
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params.crash_type}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['crash_type']}`);
             // 开发者可以获取到崩溃应用的前后台状态
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params.foreground}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
             // 开发者可以获取到崩溃应用的版本信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params.bundle_version}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // 开发者可以获取到崩溃应用的包名
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params.bundle_name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
             // 开发者可以获取到崩溃应用的进程id
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params.pid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params.uid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params.uuid}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
             // 开发者可以获取到崩溃事件发生的异常类型、异常原因和异常调用栈
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params.exception)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // 开发者可以获取到崩溃事件发生时日志信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params.hilog.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
           }
         }
       }
@@ -268,11 +268,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
    ```ts
     Button("appCrash").onClick(()=>{
       // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
-      let obj = {
-        'name': 'crash',
-      }
-      obj = null
-      hilog.info(0x0000, 'testTag', `HiAppEvent obj.name: ${obj.name}`)
+      let result: object = JSON.parse("");
     })
    ```
 
@@ -294,7 +290,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
    HiAppEvent eventInfo.params.pid=2027
    HiAppEvent eventInfo.params.uid=20010043
    HiAppEvent eventInfo.params.uuid=...
-   HiAppEvent eventInfo.params.exception={"message":"Cannot read property name of null","name":"TypeError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:47:44)"}
+   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON\\n","name":"SyntaxError\\n","stack":"\\n    at anonymous (entry/src/main/ets/pages/Index.ets:60:34)\\n"}
    HiAppEvent eventInfo.params.hilog.size=100
    ```
 
@@ -307,7 +303,6 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为毫秒。 |
-| freeze_type | string | 卡死类型。当前支持AppFreeze一种卡死类型。 |
 | foreground | boolean | 应用是否处于前台状态。 |
 | bundle_version | string | 应用版本。 |
 | bundle_name | string | 应用名称。 |
@@ -387,35 +382,33 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
             // 开发者可以获取到卡死事件发生的时间戳
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params.time}`);
-            // 开发者可以获取到卡死事件发生的卡死类型
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.freeze_type=${eventInfo.params.freeze_type}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // 开发者可以获取到卡死应用的前后台状态
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params.foreground}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
             // 开发者可以获取到卡死应用的版本信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params.bundle_version}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // 开发者可以获取到卡死应用的包名
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params.bundle_name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
             // 开发者可以获取到卡死应用的进程名称
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params.process_name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params['process_name']}`);
             // 开发者可以获取到卡死应用的进程id
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params.pid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params.uid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params.uuid}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
             // 开发者可以获取到卡死事件发生的异常类型、异常原因
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params.exception)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // 开发者可以获取到卡死事件发生时日志信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params.hilog.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
             // 开发者可以获取到卡死事件发生时主线程未处理消息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params.event_handler.length}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params.event_handler_size_3s}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params.event_handler_size_6s}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params['event_handler'].length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params['event_handler_size_3s']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params['event_handler_size_6s']}`);
             // 开发者可以获取到卡死事件发生时同步binder调用信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params.peer_binder.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params['peer_binder'].length}`);
             // 开发者可以获取到卡死事件发生时全量线程调用栈
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params.threads.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params['threads'].length}`);
             // 开发者可以获取到卡死事件发生时内存信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params.memory)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
           }
         }
       }
@@ -444,7 +437,6 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
    HiAppEvent eventInfo.name=APP_FREEZE
    HiAppEvent eventInfo.eventType=1
    HiAppEvent eventInfo.params.time=1702553728887
-   HiAppEvent eventInfo.params.freeze_type=AppFreeze
    HiAppEvent eventInfo.params.foreground=true
    HiAppEvent eventInfo.params.bundle_version=1.0.0
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication

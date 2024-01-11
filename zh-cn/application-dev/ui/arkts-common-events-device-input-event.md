@@ -63,16 +63,22 @@ onHover(event: (isHover?: boolean) => void)
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200).height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => { // 使用onHover接口监听鼠标是否悬浮在Button组件上
-          if(isHover){
-            this.isHovered = isHover;
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
@@ -101,10 +107,10 @@ onMouse(event: (event?: MouseEvent) => void)
 ```
 
 
-鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
+鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
 
 
-开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
+开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md#eventtarget8对象说明)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md#sourcetype枚举说明)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
 
 
 >**说明：**
@@ -118,28 +124,34 @@ onMouse(event: (event?: MouseEvent) => void)
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
   @State buttonText: string = '';
   @State columnText: string = '';
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200)
         .height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => {
-          if(isHover){
-            this.isHovered = isHover
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
-       .onMouse((event?: MouseEvent) => {    // 设置Button的onMouse回调
-          if(event){
+        .onMouse((event?: MouseEvent) => { // 设置Button的onMouse回调
+          if (event) {
             this.buttonText = 'Button onMouse:\n' + '' +
-            'button = ' + event.button + '\n' +
-            'action = ' + event.action + '\n' +
-            'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-            'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')';
           }
         })
       Divider()
@@ -152,8 +164,8 @@ struct MouseExample {
     .justifyContent(FlexAlign.Center)
     .borderWidth(2)
     .borderColor(Color.Red)
-    .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the column.
-      if(event){
+    .onMouse((event?: MouseEvent) => { // Set the onMouse callback for the column.
+      if (event) {
         this.columnText = 'Column onMouse:\n' + '' +
           'button = ' + event.button + '\n' +
           'action = ' + event.action + '\n' +

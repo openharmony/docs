@@ -19,6 +19,50 @@ import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+
+function getImageReceiver(width: number, height: number, format: number, capacity: number): image.ImageReceiver {
+  //获取ImageReceiver
+  let imageReceiver: image.ImageReceiver = image.createImageReceiver(width, height, format, capacity);
+  return imageReceiver;
+}
+
+async function savePicture(buffer: ArrayBuffer, img: image.Image) {
+  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let testFileName = 'testFile' + Date.now() + '.jpg';
+  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
+  const fd = await photoAsset.open('rw');
+  fs.write(fd, buffer);
+  await photoAsset.close(fd);
+  img.release(); 
+}
+
+function setImageArrivalCb(receiver: image.ImageReceiver) {
+//设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
+  receiver.on('imageArrival', (): void => {
+    receiver.readNextImage((errCode: BusinessError, imageObj: image.Image): void => {
+      if (errCode || imageObj === undefined) {
+        return;
+      }
+      imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+        if (errCode || component === undefined) {
+          return;
+        }
+        let buffer: ArrayBuffer;
+        if (component.byteBuffer) {
+          buffer = component.byteBuffer;
+        } else {
+          return;
+        }
+        savePicture(buffer, imageObj);
+      });
+    });
+  });
+}
 
 async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
@@ -62,7 +106,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.info(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   })
 
   // 打开相机
@@ -99,11 +143,13 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
   // 监听预览输出错误信息
   previewOutput.on('error', (error: BusinessError) => {
-    console.info(`Preview output error code: ${error.code}`);
+    console.error(`Preview output error code: ${error.code}`);
   });
 
   // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
-  let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
+  let imageReceiver: image.ImageReceiver = getImageReceiver(1920, 1080, 4, 8);
+  //调用上面的回调函数来保存图片
+  setImageArrivalCb(imageReceiver);
   // 获取照片显示SurfaceId
   let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // 创建拍照输出流
@@ -130,7 +176,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
   // 监听session错误信息
   captureSession.on('error', (error: BusinessError) => {
-    console.info(`Capture session error code: ${error.code}`);
+    console.error(`Capture session error code: ${error.code}`);
   });
 
   // 开始配置会话
@@ -248,7 +294,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // 使用当前拍照设置进行拍照
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
-      console.error('Failed to capture the photo ${err.message}');
+      console.error(`Failed to capture the photo ${err.message}`);
       return;
     }
     console.info('Callback invoked to indicate the photo capture request success.');

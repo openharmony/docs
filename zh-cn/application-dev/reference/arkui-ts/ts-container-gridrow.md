@@ -23,10 +23,10 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。|
 |columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。|
 |breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
-|direction|[GridRowDirection](#gridrowdirection枚举类型)|   否  |栅格布局排列方向。|
+|direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。|
 
 ## GutterOption
 
@@ -78,7 +78,7 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
-| reference  | [BreakpointsReference](#breakpointsreference枚举类型) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
+| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
@@ -88,20 +88,20 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
   breakpoints: {value: ["320vp", "600vp", "840vp", "1080vp"]}
 ```
 
-## BreakpointsReference枚举类型
+## BreakpointsReference枚举说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 枚举名 | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
 | ComponentSize | 以容器为参照。 |
 
-## GridRowDirection枚举类型
+## GridRowDirection枚举说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 枚举名 | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
 | RowReverse | 栅格元素按照逆序行方向排列。 |
@@ -153,7 +153,7 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 | 参数名   | 参数类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---------------------------------------- |
-|breakpoints| string |是|取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
+|breakpoints| string |否|取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
 
 ## 示例
 

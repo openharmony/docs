@@ -4,7 +4,7 @@
 在卡片上通常需要展示本地图片或从网络上下载的图片，获取本地图片和网络图片需要通过FormExtensionAbility来实现，如下示例代码介绍了如何在卡片上显示本地图片和网络图片。
 
 
-1. 下载网络图片需要使用到网络能力，需要申请ohos.permission.INTERNET权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 下载网络图片需要使用到网络能力，需要申请ohos.permission.INTERNET权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
 2. 在EntryFormAbility中的onAddForm生命周期回调中实现本地文件的刷新。
 
@@ -13,15 +13,8 @@
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
-   import hilog from '@ohos.hilog';
-   import request from '@ohos.request';
    import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = 'WgtImgUpdateEntryFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
      // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
@@ -38,7 +31,7 @@
          };
        } catch (e) {
          console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-       };
+       }
    
        class FormDataClass {
          text: string = 'Image: Bear';
@@ -64,12 +57,10 @@
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
    import hilog from '@ohos.hilog';
    import request from '@ohos.request';
-   import type Want from '@ohos.app.ability.Want';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -99,7 +90,7 @@
              fileInfo[fileName] = file.fd;
            } catch (e) {
              console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-           };
+           }
    
            class FormDataClass {
              text: string = 'Image: Bear' + fileName;
@@ -132,7 +123,7 @@
    }
    ```
 
-4. 在卡片页面通过Image组件展示EntryFormAbility传递过来的卡片内容。
+4. 在卡片页面通过backgroundImage属性展示EntryFormAbility传递过来的卡片内容。
 
    ```ts
    let storageWidgetImageUpdate = new LocalStorage();

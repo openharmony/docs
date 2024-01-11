@@ -37,10 +37,10 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | 是   | 表示截取图像区域的左边界，单位为像素，该参数应为整数。 |
-| top    | number | 是   | 表示截取图像区域的上边界，单位为像素，该参数应为整数。 |
-| width  | number | 是   | 表示截取图像区域的宽度，单位为像素，该参数应为整数。 |
-| height | number | 是   | 表示截取图像区域的高度，单位为像素，该参数应为整数。 |
+| left   | number | 是   | 表示截取图像区域的左边界，单位为px，该参数应为整数。 |
+| top    | number | 是   | 表示截取图像区域的上边界，单位为px，该参数应为整数。 |
+| width  | number | 是   | 表示截取图像区域的宽度，单位为px，该参数应为整数。 |
+| height | number | 是   | 表示截取图像区域的高度，单位为px，该参数应为整数。 |
 
 
 ## Size
@@ -51,8 +51,8 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | 是   | 表示截取图像的宽度，单位为像素，该参数应为整数。 |
-| height | number | 是   | 表示截取图像的高度，单位为像素，该参数应为整数。 |
+| width  | number | 是   | 表示截取图像的宽度，单位为px，该参数应为整数。 |
+| height | number | 是   | 表示截取图像的高度，单位为px，该参数应为整数。 |
 
 ## screenshot.save
 
@@ -70,6 +70,14 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | 是   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------- |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -158,13 +166,6 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 | 类型                          | 说明                                            |
 | ----------------------------- | ----------------------------------------------- |
 | Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象。返回一个PixelMap对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)
-
-|错误码值           |说明                       |
-|------------------|---------------------------|
-|1400001           | Invalid display or screen |
 
 **示例：**
 

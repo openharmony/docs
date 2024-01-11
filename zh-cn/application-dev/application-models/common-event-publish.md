@@ -28,6 +28,9 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
@@ -36,10 +39,10 @@
    // 发布公共事件
    commonEventManager.publish('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
      if (err) {
-       Logger.error(TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
+       console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
      } else {
        ...
-       Logger.info(TAG, `Publish success`);
+       console.info(`Publish success`);
      }
    });
    ```
@@ -54,6 +57,9 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
@@ -72,10 +78,10 @@
    // 发布公共事件
    commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
      if (err) {
-       Logger.error(TAG, 'PublishCallBack err = ' + JSON.stringify(err));
+       console.error('PublishCallBack err = ' + JSON.stringify(err));
      } else {
        ...
-       Logger.info(TAG, 'Publish success');
+       console.info('Publish success');
      }
    });
    ```

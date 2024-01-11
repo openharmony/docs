@@ -34,6 +34,7 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
+    - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -136,6 +137,7 @@
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [ViewData](js-apis-inner-application-viewData.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
+      - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -247,6 +249,14 @@
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
+  - [getContext](js-apis-getContext.md)
+  - [postCardAction](js-apis-postCardAction.md)
+  - arkui
+    - [BuilderNode](js-apis-arkui-builderNode.md)
+    - [FrameNode](js-apis-arkui-frameNode.md)
+    - [Graphics](js-apis-arkui-graphics.md)
+    - [NodeController](js-apis-arkui-nodeController.md)
+    - [RenderNode](js-apis-arkui-renderNode.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
@@ -255,6 +265,7 @@
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
+  - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
@@ -304,6 +315,7 @@
 - 数据管理
   - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
   - [@ohos.data.cloudExtension (端云共享Extension)](js-apis-data-cloudExtension.md)
+  - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
@@ -361,6 +373,7 @@
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
   - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
+  - [@ohos.net.vpnExtension (VPN增强管理)](js-apis-net-vpnExtension.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
@@ -477,7 +490,7 @@
   - [@ohos.vibrator (振动)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-  
+
 - 帐号管理
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)

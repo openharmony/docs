@@ -34,7 +34,7 @@
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
 | 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
 | 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
-| 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
+| 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
 
@@ -322,7 +322,7 @@ struct Index {
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
 
-如果点击界面上的“1”、“2”、“3”，将所有变量的本地取值都变为“7”。
+如果点击界面上的“1”六下，“2”五下、“3”四下，将所有变量的本地取值都变为“7”。
 
 
 
@@ -436,9 +436,9 @@ struct ReaderComp {
 
   build() {
     Row() {
-      Text(this.book.title).fontColor('#e6000000')
-      Text(` has ${this.book.pages} pages!`).fontColor('#e6000000')
-      Text(` ${this.book.readIt ? "I have read" : 'I have not read it'}`).fontColor('#e6000000')
+      Text(` ${this.book ? this.book.title : "Book is undefined"}`).fontColor('#e6000000')
+      Text(` has ${this.book ? this.book.pages : "Book is undefined"} pages!`).fontColor('#e6000000')
+      Text(` ${this.book ? this.book.readIt ? "I have read" : 'I have not read it' : "Book is undefined"}`).fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -499,7 +499,11 @@ struct Library {
         .margin(12)
         .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          this.allBooks.shift();
+          if (this.allBooks.length > 0){
+            this.allBooks.shift();
+          } else {
+            console.log("length <= 0")
+          }
         })
       Button("Mark read for everyone")
         .width(312)
@@ -666,7 +670,30 @@ struct Parent {
           .onClick(() => {
             this.votes.a.title = "wwwww"
           })
-        Child({ vote: this.votes })
+        Text(this.votes.name)
+          .fontSize(16)
+          .margin(12)
+          .width(312)
+          .height(40)
+          .backgroundColor('#ededed')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+          .fontColor('#e6000000')
+          .onClick(() => {
+            this.votes.name = 'Bye'
+          })
+        Text(this.votes.a.title)
+          .fontSize(16)
+          .margin(12)
+          .width(312)
+          .height(40)
+          .backgroundColor('#ededed')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.votes.a.title = "openHarmony"
+          })
+        Child1({ vote1: this.votes.a })
       }
 
     }
@@ -674,41 +701,6 @@ struct Parent {
   }
 }
 
-@Component
-struct Child {
-  @Prop vote: ClassB = new ClassB('', new ClassA(''));
-
-  build() {
-    Column() {
-
-      Text(this.vote.name)
-        .fontSize(16)
-        .margin(12)
-        .width(312)
-        .height(40)
-        .backgroundColor('#ededed')
-        .borderRadius(20)
-        .textAlign(TextAlign.Center)
-        .fontColor('#e6000000')
-        .onClick(() => {
-          this.vote.name = 'Bye'
-        })
-      Text(this.vote.a.title)
-        .fontSize(16)
-        .margin(12)
-        .width(312)
-        .height(40)
-        .backgroundColor('#ededed')
-        .borderRadius(20)
-        .textAlign(TextAlign.Center)
-        .onClick(() => {
-          this.vote.a.title = "openHarmony"
-        })
-      Child1({ vote1: this.vote.a })
-
-    }
-  }
-}
 
 @Component
 struct Child1 {
@@ -736,7 +728,7 @@ struct Child1 {
 
 ### 装饰Map类型变量
 
-\@Prop支持Map类型，在下面的示例中，value类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+\@Prop支持Map类型，在下面的示例中，value类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
@@ -789,7 +781,7 @@ struct MapSample2 {
 
 ### 装饰Set类型变量
 
-\@Prop支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+\@Prop支持Set类型，在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component

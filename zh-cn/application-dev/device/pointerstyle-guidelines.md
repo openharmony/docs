@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-鼠标光标控制提供对鼠标光标显示隐藏、光标样式查询设置的能力。使用场景例如：用户在全屏观看视频时，开发者可以控制鼠标光标的显示隐藏；当用户执行取色时，开发者可以将鼠标光标样式切换为取色器样式。
+鼠标光标控制提供对鼠标光标显示和隐藏、光标样式查询和设置的能力。使用场景例如：用户在全屏观看视频时，开发者可以控制鼠标光标的显示隐藏；当用户执行取色时，开发者可以将鼠标光标样式切换为取色器样式。
 
 ## 导入模块
 
@@ -14,12 +14,12 @@ import pointer from '@ohos.multimodalInput.pointer';
 
 鼠标光标控制常用接口如下表所示，接口详细介绍请参见[ohos.multimodalInput.pointer文档](../reference/apis/js-apis-pointer.md)
 
-| 实例名  | 接口名                                                       | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| pointer | function isPointerVisible(callback: AsyncCallback\<boolean>): void; | 获取鼠标指针显示或隐藏状态。                                 |
-| pointer | function setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void; | 设置鼠标指针显示或隐藏状态，该接口会影响全局鼠标光标的显示状态。 |
-| pointer | function setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void; | 设置鼠标光标样式，该接口会影响指定窗口鼠标光标样式。         |
-| pointer | function getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void; | 查询鼠标光标样式。                                           |
+| 接口名称                                                       | 描述                                                         |
+| ------------------------------------------ | ------------------------------------------------------- |
+| isPointerVisible(callback: AsyncCallback\<boolean>): void | 获取鼠标指针显示或隐藏状态。                                 |
+| setPointerVisible(visible: boolean, callback: AsyncCallback\<void>): void | 设置鼠标指针显示或隐藏状态，该接口会影响全局鼠标光标的显示状态。 |
+| setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback\<void>): void | 设置鼠标光标样式，该接口会影响指定窗口鼠标光标样式。         |
+| getPointerStyle(windowId: number, callback: AsyncCallback\<PointerStyle>): void | 查询鼠标光标样式。                                           |
 
 ## 设置鼠标光标隐藏
 
@@ -66,7 +66,7 @@ try {
 
 ## 设置鼠标光标样式
 
-当开发者设计取色器特性时，可以将鼠标光标样式切换为取色器样式，完成取色后，设置鼠标光标样式为默认样式，该接口设置和查询当前应用内指定窗口的光标样式，总共可设置43种光标样式，具体参考[光标样式](../reference/apis/js-apis-pointer.md#pointerstyle9)。
+当开发者设计取色器特性时，可以将鼠标光标样式切换为取色器样式，完成取色后，设置鼠标光标样式为默认样式，该接口设置和查询当前应用内指定窗口的光标样式，总共可设置43种光标样式，具体参考[光标样式](../reference/apis/js-apis-pointer.md#pointerstyle)。
 
 ### 开发步骤
 

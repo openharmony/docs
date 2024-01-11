@@ -1291,7 +1291,7 @@ start(uri: string): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1350,7 +1350,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1401,7 +1401,7 @@ stop(uri: string): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1445,7 +1445,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1493,7 +1493,7 @@ cleanCache(uri: string): void;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileUri from file.fileUri;
+  import fileUri from '@ohos.file.fileuri';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1547,11 +1547,12 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
 
   let uris: Array<string> = ["file://uri"];
-  fileSync.getFileSyncState(uris).then(function(syncStates: Array<FileSyncState>){
-    console.info("get file sync state successfully");
+  cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
+    for(var i = 0, len = syncStates.length; i < len; i++){
+        console.info("get file sync state successfully" + syncStates[i]);
+    }
   }).catch((err: BusinessError) => {
 	  console.info("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -1594,14 +1595,15 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
 
   let uris: Array<string> = ["file://uri"];
-  fileSync.getFileSyncState(uris, function(err: BusinessError) => {
+  cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
     if (err) {
       console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("get file sync state successfully:"+ date);
+      for(var i = 0, len = syncStates.length; i < len; i++){
+        console.info("get file sync state successfully" + syncStates[i]);
+    }
     }
   });
   ```

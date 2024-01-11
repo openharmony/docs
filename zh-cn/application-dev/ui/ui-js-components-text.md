@@ -33,7 +33,7 @@ text是文本组件，用于呈现一段文本信息。具体用法请参考[tex
 
 - 添加文本样式
 
-  设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在垂直方向的对齐方式。 
+  设置color、font-size、allow-scale、word-spacing、text-align属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在水平方向的对齐方式。 
 
   ```html
   <!-- xxx.hml -->
@@ -41,7 +41,7 @@ text是文本组件，用于呈现一段文本信息。具体用法请参考[tex
     <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
       This is a passage
     </text>
-    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
+    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;text-align: center">
       This is a passage
     </text>
   </div> 
@@ -50,6 +50,7 @@ text是文本组件，用于呈现一段文本信息。具体用法请参考[tex
   ```css
   /* xxx.css */
   .container {
+    display: flex;
     width: 100%;
     height: 100%;
     flex-direction: column;
@@ -134,7 +135,7 @@ text是文本组件，用于呈现一段文本信息。具体用法请参考[tex
 
   ​    ![zh-cn_image_0000001163656706](figures/zh-cn_image_0000001163656706.png)
 
-- 设置文本折行
+- 设置文本断行
 
   设置word-break属性对文本内容做断行处理，word-break枚举值请参考text自有样式。
 

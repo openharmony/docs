@@ -1,5 +1,7 @@
 # @ohos.multimedia.camera (相机管理)
 
+本模块为开发者提供一套简单且易于理解的相机服务接口，开发者通过调用接口可以开发相机应用。应用通过访问和操作相机硬件，实现基础操作，如预览、拍照和录像；还可以通过接口组合完成更多操作，如控制闪光灯和曝光时间、对焦或调焦等。
+
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -12,7 +14,7 @@ import camera from '@ohos.multimedia.camera';
 
 ## camera.getCameraManager
 
-getCameraManager(context: BaseContext): CameraManager
+getCameraManager(context: Context): CameraManager
 
 获取相机管理器实例，同步返回结果。
 
@@ -22,7 +24,7 @@ getCameraManager(context: BaseContext): CameraManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [BaseContext](js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
+| context  | [Context](js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -126,10 +128,10 @@ function getModeManager(context: common.BaseContext): camera.ModeManager | undef
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| format   | [CameraFormat](#cameraformat) | 是  | 输出格式。      |
-| size     | [Size](#size)                 | 是  | 分辨率。       |
+| 名称      | 类型                           | 必填 | 只读 | 说明         |
+| -------- | ----------------------------- |---- | ---- | ------------- |
+| format   | [CameraFormat](#cameraformat) | 是  |  是  | 输出格式。      |
+| size     | [Size](#size)                 | 是  |  是  | 分辨率。       |
 
 ## FrameRateRange
 
@@ -137,10 +139,10 @@ function getModeManager(context: common.BaseContext): camera.ModeManager | undef
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| min      | number                        | 是  | 最小帧率。      |
-| max      | number                        | 是  | 最大帧率。      |
+| 名称      | 类型                           | 必填 | 只读 | 说明         |
+| -------- | ----------------------------- |---- | ---- | ------------- |
+| min      | number                        | 是  |  是  | 最小帧率。      |
+| max      | number                        | 是  |  是  | 最大帧率。      |
 
 ## VideoProfile
 
@@ -148,9 +150,9 @@ function getModeManager(context: common.BaseContext): camera.ModeManager | undef
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                       | 类型                                      | 必填 | 说明        |
-| ------------------------- | ----------------------------------------- | --- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  | 帧率范围，fps(frames per second)。 |
+| 名称                       | 类型                                      | 必填 | 只读 | 说明        |
+| ------------------------- | ----------------------------------------- | --- | ---- |----------- |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  是  | 帧率范围，fps(frames per second)。 |
 
 ## CameraOutputCapability
 
@@ -158,12 +160,12 @@ function getModeManager(context: common.BaseContext): camera.ModeManager | undef
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                           | 类型                                               | 必填 | 说明                |
-| ----------------------------- | -------------------------------------------------- | --- |------------------- |
-| previewProfiles               | Array\<[Profile](#profile)\>                        | 是  | 支持的预览配置信息。    |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        | 是  | 支持的拍照配置信息。    |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | 是  | 支持的录像配置信息。    |
-| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | 支持的metadata流类型信息。|
+| 名称                           | 类型                                               | 必填 | 只读 | 说明                |
+| ----------------------------- | -------------------------------------------------- | --- | ---- | ------------------- |
+| previewProfiles               | Array\<[Profile](#profile)\>                        | 是  |  是  | 支持的预览配置信息。    |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        | 是  |  是  | 支持的拍照配置信息。    |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | 是  |  是  | 支持的录像配置信息。    |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  |  是  | 支持的metadata流类型信息。|
 
 ## CameraErrorCode
 
@@ -282,7 +284,7 @@ function getSupportedCameras(cameraManager: camera.CameraManager): Array<camera.
 
 ### getSupportedOutputCapability
 
-getSupportedOutputCapability(camera:CameraDevice): CameraOutputCapability
+getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
 
 查询相机设备在模式下支持的输出能力，同步返回结果。
 
@@ -292,7 +294,7 @@ getSupportedOutputCapability(camera:CameraDevice): CameraOutputCapability
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| cameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 getSupportedCameras 接口获取       |
+| cameraDevice | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取       |
 
 **返回值：**
 
@@ -477,7 +479,7 @@ function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: cam
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The createCameraInput call failed. error code: ${err.code}`);
+    console.error(`The createCameraInput call failed. error code: ${err.code}`);
   }
   return cameraInput;
 }
@@ -525,7 +527,7 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The createPreviewOutput call failed. error code: ${err.code}`);
+    console.error(`The createPreviewOutput call failed. error code: ${err.code}`);
   }
   return previewOutput;
 }
@@ -573,7 +575,7 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The createPhotoOutput call failed. error code: ${err.code}`);
+    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
   }
   return photoOutput;
 }
@@ -592,7 +594,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | 参数名     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
 | profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息，通过getSupportedOutputCapability接口获取。 |
-| surfaceId| string          | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的surfaceId。|
+| surfaceId| string          | 是   | 从[AVRecorder](js-apis-media.md#avrecorder9)获取的surfaceId。|
 
 **返回值：**
 
@@ -621,7 +623,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The createPhotoOutput call failed. error code: ${err.code}`);
+    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
   }
   return videoOutput;
 }
@@ -629,7 +631,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 ### createMetadataOutput
 
-createMetadataOutput(metadataObjectTypes:Array\<MetadataObjectType\>): MetadataOutput
+createMetadataOutput(metadataObjectTypes: Array\<MetadataObjectType\>): MetadataOutput
 
 创建metadata流输出对象，同步返回结果。
 
@@ -668,7 +670,7 @@ function createMetadataOutput(cameraManager: camera.CameraManager, cameraOutputC
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`createMetadataOutput error. error code: ${err.code}`);
+    console.error(`createMetadataOutput error. error code: ${err.code}`);
   }
 }
 ```
@@ -707,7 +709,7 @@ function createCaptureSession(cameraManager: camera.CameraManager): camera.Captu
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`createCaptureSession error. error code: ${err.code}`);
+    console.error(`createCaptureSession error. error code: ${err.code}`);
   }
   return captureSession;
 }
@@ -735,8 +737,8 @@ import { BusinessError } from '@ohos.base';
 
 function registerCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.info(`status: ${cameraStatusInfo.status}`);
   });
 }
 ```
@@ -789,7 +791,7 @@ import { BusinessError } from '@ohos.base';
 function registerCameraMute(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraMute', (err: BusinessError, curMuted: boolean) => {
     let isMuted: boolean = curMuted;
-    console.log(`cameraMute status: ${isMuted}`);
+    console.info(`cameraMute status: ${isMuted}`);
   })
 }
 ```
@@ -868,7 +870,7 @@ function isPreLaunchSupported(context: common.BaseContext): boolean {
   let isSupported: boolean = false;
   if (cameras && cameras.length >= 1) {
     isSupported = cameraManager.isPrelaunchSupported(cameras[0]);
-    console.log(`PreLaunch supported states: ${isSupported}`);
+    console.info(`PreLaunch supported states: ${isSupported}`);
     return isSupported;
   }
   return isSupported;
@@ -878,6 +880,8 @@ function isPreLaunchSupported(context: common.BaseContext): boolean {
 ### setPrelaunchConfig
 
 setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
+
+设置预热启动的配置参数。
 
 在调用setPrelaunchConfig接口前，需要先检查设备是否支持预热启动，使用[isPrelaunchSupported](#isprelaunchsupported)判断指定cameraDevice是否支持预热启动。
 
@@ -1201,18 +1205,18 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
-| 名称           | 类型                                | 必填 | 说明        |
-| -------------- | --------------------------------- | ---- | ---------- |
-| cameraId       | string                            | 是   | CameraDevice对象|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。    |
-| cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。    |
-| connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
-| hostDeviceName | string                            | 是   | 远端设备名称，**系统接口：** 此接口为系统接口。 |
-| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型，**系统接口：** 此接口为系统接口。 |
+| 名称           | 类型                                | 必填 | 只读 | 说明        |
+| -------------- | --------------------------------- | ---- | ---- |---------- |
+| cameraId       | string                            | 是   | 是   | CameraDevice对象。|
+| cameraPosition | [CameraPosition](#cameraposition) | 是   | 是   | 相机位置。    |
+| cameraType     | [CameraType](#cameratype)         | 是   | 是   | 相机类型。    |
+| connectionType | [ConnectionType](#connectiontype) | 是   | 是   | 相机连接类型。 |
+| hostDeviceName | string                            | 是   | 是   | 远端设备名称，**系统接口：** 此接口为系统接口。 |
+| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 是   | 远端相机设备类型，**系统接口：** 此接口为系统接口。 |
 
 ## Size
 
-枚举，输出能力查询。
+输出能力查询。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1223,7 +1227,7 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
 
 ## Point
 
-枚举，点坐标用于对焦、曝光配置。
+点坐标用于对焦、曝光配置。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1245,6 +1249,8 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 
 ## CameraInput
+
+相机设备输入对象。
 
 会话中[CaptureSession](#capturesession)使用的相机信息。
 
@@ -1280,10 +1286,10 @@ import { BusinessError } from '@ohos.base';
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to open the camera. ${err.code}`);
+      console.error(`Failed to open the camera, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback returned with camera opened.');
+    console.info('Callback returned with camera opened.');
   });
 }
 ```
@@ -1319,9 +1325,9 @@ import { BusinessError } from '@ohos.base';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
-    console.log('Promise returned with camera opened.');
+    console.info('Promise returned with camera opened.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to open the camera. ${err.code}`);
+    console.error(`Failed to open the camera, error code: ${err.code}.`);
   });
 }
 ```
@@ -1356,10 +1362,10 @@ import { BusinessError } from '@ohos.base';
 function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to close the cameras. ${err.code}`);
+      console.error(`Failed to close the cameras, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback returned with camera closed.');
+    console.info('Callback returned with camera closed.');
   });
 }
 ```
@@ -1393,16 +1399,16 @@ import { BusinessError } from '@ohos.base';
 
 function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close().then(() => {
-    console.log('Promise returned with camera closed.');
+    console.info('Promise returned with camera closed.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to close the cameras. ${err.code}`);
+    console.error(`Failed to close the cameras, error code: ${err.code}.`);
   });
 }
 ```
 
 ### on('error')
 
-on(type: 'error', camera:CameraDevice, callback: ErrorCallback): void
+on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 
 监听CameraInput的错误事件，通过注册回调函数获取结果。
 
@@ -1423,14 +1429,14 @@ import { BusinessError } from '@ohos.base';
 
 function registerCameraInputError(cameraInput: camera.CameraInput, cameraDevice: camera.CameraDevice): void {
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.log(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   });
 }
 ```
 
 ### off('error')
 
-off(type: 'error', camera:CameraDevice, callback?: ErrorCallback): void
+off(type: 'error', camera: CameraDevice, callback?: ErrorCallback): void
 
 注销监听CameraInput的错误事件。
 
@@ -1488,7 +1494,7 @@ function unregisterCameraInputError(cameraInput: camera.CameraInput, cameraDevic
 | -------------------------- | ---- | ------------ |
 | FOCUS_MODE_MANUAL          | 0    | 手动对焦。通过手动修改相机焦距来改变对焦位置，不支持对焦点设置。     |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。不支持对焦点设置。 |
-| FOCUS_MODE_AUTO            | 2    | 自动对焦。支持对焦点设置，可以使用[setFocusPoint](#setfocuspoint)设置对焦点，根据对焦点执行一次自动对焦。对焦动作完成后（无论对焦成功或是对焦失败），都进入对焦锁定。应用层需要再次调用CONTINUOUS_AUTO后才能再次进入连续自动对焦。    |
+| FOCUS_MODE_AUTO            | 2    | 自动对焦。支持对焦点设置，可以使用[setFocusPoint](#setfocuspoint)设置对焦点，根据对焦点执行一次自动对焦。    |
 | FOCUS_MODE_LOCKED          | 3    | 对焦锁定。不支持对焦点设置。     |
 
 ## FocusState
@@ -1528,12 +1534,6 @@ beginConfig(): void
 开始配置会话。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -1593,7 +1593,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
       console.error(`The commitConfig call failed. error code: ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the commit config success.');
+    console.info('Callback invoked to indicate the commit config success.');
   });
 }
 ```
@@ -1608,7 +1608,7 @@ commitConfig(): Promise\<void\>
 
 **返回值：**
 
-| 类型            | 说明                      |
+| 类型            | 说明                     |
 | -------------- | ------------------------ |
 | Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
@@ -1628,7 +1628,7 @@ import { BusinessError } from '@ohos.base';
 
 function commitConfig(captureSession: camera.CaptureSession): void {
   captureSession.commitConfig().then(() => {
-    console.log('Promise returned to indicate the commit config success.');
+    console.info('Promise returned to indicate the commit config success.');
   }).catch((err: BusinessError) => {
     // 失败返回错误码error.code并处理
     console.error(`The commitConfig call failed. error code: ${err.code}`);
@@ -1650,22 +1650,15 @@ addInput(cameraInput: CameraInput): void
 | ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
 
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect        |
-| 7400102                |  Operation not allow.                                  |
-
-**示例：**
+| 错误码ID   | 错误信息                                          |
+|---------|-----------------------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect |
+| 7400102 | Operation not allow                           |
+**示例：** 
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -1676,7 +1669,7 @@ function addInput(captureSession: camera.CaptureSession, cameraInput: camera.Cam
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The addInput call failed. error code: ${err.code}`);
+    console.error(`The addInput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1694,12 +1687,6 @@ removeInput(cameraInput: CameraInput): void
 | 参数名        | 类型                          | 必填 | 说明                      |
 | ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | 是   | 需要移除的CameraInput实例。 |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -1721,7 +1708,7 @@ function removeInput(captureSession: camera.CaptureSession, cameraInput: camera.
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The removeInput call failed. error code: ${err.code}`);
+    console.error(`The removeInput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1739,12 +1726,6 @@ addOutput(cameraOutput: CameraOutput): void
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
 | cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -1766,7 +1747,7 @@ function addOutput(captureSession: camera.CaptureSession, cameraOutput: camera.C
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The addOutput call failed. error code: ${err.code}`);
+    console.error(`The addOutput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1784,12 +1765,6 @@ removeOutput(cameraOutput: CameraOutput): void
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
 | cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -1811,7 +1786,7 @@ function removeOutput(captureSession: camera.CaptureSession, previewOutput: came
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.log(`The removeOutput call failed. error code: ${err.code}`);
+    console.error(`The removeOutput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1847,10 +1822,10 @@ import { BusinessError } from '@ohos.base';
 function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the session ${err.code}`);
+      console.error(`Failed to start the session, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate the session start success.');
+    console.info('Callback invoked to indicate the session start success.');
   });
 }
 ```
@@ -1867,7 +1842,7 @@ start\(\): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise\<void\> | 使用Promise的方式获取结果。 |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -1885,9 +1860,9 @@ import { BusinessError } from '@ohos.base';
 
 function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start().then(() => {
-    console.log('Promise returned to indicate the session start success.');
+    console.info('Promise returned to indicate the session start success.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to start the session ${err.code}`);
+    console.error(`Failed to start the session, error code: ${err.code}.`);
   });
 }
 ```
@@ -1922,10 +1897,10 @@ import { BusinessError } from '@ohos.base';
 function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the session ${err.code}`);
+      console.error(`Failed to stop the session, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate the session stop success.');
+    console.info('Callback invoked to indicate the session stop success.');
   });
 }
 ```
@@ -1959,9 +1934,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop().then(() => {
-    console.log('Promise returned to indicate the session stop success.');
+    console.info('Promise returned to indicate the session stop success.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to stop the session ${err.code}`);
+    console.error(`Failed to stop the session, error code: ${err.code}.`);
   });
 }
 ```
@@ -1996,10 +1971,10 @@ import { BusinessError } from '@ohos.base';
 function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the CaptureSession instance ${err.code}`);
+      console.error(`Failed to release the CaptureSession instance, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
+    console.info('Callback invoked to indicate that the CaptureSession instance is released successfully.');
   });
 }
 ```
@@ -2033,9 +2008,9 @@ import { BusinessError } from '@ohos.base';
 
 function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release().then(() => {
-    console.log('Promise returned to indicate that the CaptureSession instance is released successfully.');
+    console.info('Promise returned to indicate that the CaptureSession instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to release the CaptureSession instance ${err.code}`);
+    console.error(`Failed to release the CaptureSession instance, error code: ${err.code}.`);
   });
 }
 ```
@@ -2044,7 +2019,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
 
 hasFlash(): boolean
 
-检测是否有闪光灯，通过注册回调函数获取结果。
+检测是否有闪光灯。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2052,7 +2027,7 @@ hasFlash(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示设备支持闪光灯。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| boolean    | 返回true表示设备支持闪光灯，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -2098,7 +2073,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| boolean    | 返回true表示支持该闪光灯模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -2144,12 +2119,6 @@ setFlashMode(flashMode: FlashMode): void
 | 参数名       | 类型                     | 必填 | 说明                  |
 | --------- | ----------------------- | ---- | --------------------- |
 | flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。       |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -2315,12 +2284,6 @@ setExposureMode(aeMode: ExposureMode): void
 | -------- | -------------------------------| ---- | ----------------------- |
 | aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                |
 
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
@@ -2401,12 +2364,6 @@ setMeteringPoint(point: Point): void
 | 参数名           | 类型                            | 必填 | 说明                 |
 | ------------- | -------------------------------| ---- | ------------------- |
 | exposurePoint | [Point](#point)                | 是   | 曝光点，x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。             |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -2544,8 +2501,8 @@ getExposureValue(): number
 import { BusinessError } from '@ohos.base';
 
 function getExposureValue(captureSession: camera.CaptureSession): number {
-  const invalid_value: number = -1;
-  let exposureValue: number = invalid_value;
+  const invalidValue: number = -1;
+  let exposureValue: number = invalidValue;
   try {
     exposureValue = captureSession.getExposureValue();
   } catch (error) {
@@ -2575,7 +2532,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| boolean    | 返回true表示支持该焦距模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -2618,12 +2575,6 @@ setFocusMode(afMode: FocusMode): void
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
 | afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。       |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -2704,13 +2655,7 @@ setFocusPoint(point: Point): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| Point1    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Point    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
 
 **错误码：**
 
@@ -2805,8 +2750,8 @@ getFocalLength(): number
 import { BusinessError } from '@ohos.base';
 
 function getFocalLength(captureSession: camera.CaptureSession): number {
-  const invalid_value: number = -1;
-  let focalLength: number = invalid_value;
+  const invalidValue: number = -1;
+  let focalLength: number = invalidValue;
   try {
     focalLength = captureSession.getFocalLength();
   } catch (error) {
@@ -2862,7 +2807,7 @@ function getZoomRatioRange(captureSession: camera.CaptureSession): Array<number>
 
 setZoomRatio(zoomRatio: number): void
 
-设置变焦比，变焦精度最高为小数点后两位，超过变焦精度的变焦值系统无法响应。
+设置变焦比，变焦精度最高为小数点后两位，如果设置超过支持的精度范围，则只保留精度范围内数值。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2870,13 +2815,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填 | 说明                 |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | 是   | 可变焦距比，通过getZoomRatioRange获取支持的变焦范围，如果设置超过支持范围的值，自动匹配到就近临界点。 |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| zoomRatio | number               | 是   | 可变焦距比，通过getZoomRatioRange获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
 
 **错误码：**
 
@@ -2934,8 +2873,8 @@ getZoomRatio(): number
 import { BusinessError } from '@ohos.base';
 
 function getZoomRatio(captureSession: camera.CaptureSession): number {
-  const invalid_value: number = -1;
-  let zoomRatio: number = invalid_value;
+  const invalidValue: number = -1;
+  let zoomRatio: number = invalidValue;
   try {
     zoomRatio = captureSession.getZoomRatio();
   } catch (error) {
@@ -2965,7 +2904,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回视频防抖模式是否支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| boolean    | 返回视频防抖模式是否支持，true表示支持，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -3046,12 +2985,6 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 | 参数名      | 类型                                              | 必填 | 说明                    |
 | -------- | ------------------------------------------------- | ---- | --------------------- |
 | mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
@@ -3332,14 +3265,14 @@ getBeauty(type: BeautyType): number
 
 ```ts
 function getBeauty(portraitSession: camera.PortraitSession): number {
-  const invalid_value: number = -1;
+  const invalidValue: number = -1;
   let beautyTypes = portraitSession.getSupportedBeautyTypes();
   if (beautyTypes === undefined || beautyTypes.length <= 0) {
-    return invalid_value;
+    return invalidValue;
   }
   let beautyLevels: Array<number> = portraitSession.getSupportedBeautyRange(beautyTypes[0]);
   if (beautyLevels === undefined || beautyLevels.length <= 0) {
-    return invalid_value;
+    return invalidValue;
   }
   portraitSession.setBeauty(beautyTypes[0], beautyLevels[0]);
   let beautyLevel: number = portraitSession.getBeauty(beautyTypes[0]);
@@ -3369,7 +3302,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerFocusStateChange(captureSession: camera.CaptureSession): void {
   captureSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.log(`Focus state: ${focusState}`);
+    console.info(`Focus state: ${focusState}`);
   });
 }
 ```
@@ -3387,7 +3320,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。|
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
 
 **示例：**
 
@@ -3419,7 +3352,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerCaptureSessionError(captureSession: camera.CaptureSession): void {
   captureSession.on('error', (error: BusinessError) => {
-    console.log(`Capture session error code: ${error.code}`);
+    console.error(`Capture session error code: ${error.code}`);
   });
 }
 ```
@@ -3437,7 +3370,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选       |
+| callback | ErrorCallback| 否   | 回调函数，可选，有表明匹配on接口callback。       |
 
 **示例：**
 
@@ -3550,16 +3483,64 @@ getPortraitEffect(): PortraitEffect
 **示例：**
 
 ```ts
-function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): Array<camera.PortraitEffect> {
-  let portraitEffects: Array<camera.PortraitEffect> = portraitSession.getSupportedPortraitEffects();
-  return portraitEffects;
+function getPortraitEffect(portraitSession: camera.PortraitSession): camera.PortraitEffect {
+  let portraitEffect: camera.PortraitEffect = portraitSession.getPortraitEffect();
+  return portraitEffect;
 }
 ```
 
 ## CameraOutput
 
 会话中[CaptureSession](#capturesession)使用的输出信息，output的基类。
+### release
 
+release(callback: AsyncCallback\<void\>): void
+
+释放输出资源，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                 |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+CameraOutput是父类，无示例代码，可参考子类[PreviewOutput](#previewoutput)。
+
+### release
+
+release(): Promise\<void\>
+
+释放输出资源，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+CameraOutput是父类，无示例代码，可参考子类[PreviewOutput](#previewoutput)。
 ## PreviewOutput
 
 预览输出类。继承[CameraOutput](#cameraoutput)
@@ -3594,10 +3575,10 @@ import { BusinessError } from '@ohos.base';
 function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the previewOutput. ${err.code}`);
+      console.error(`Failed to start the previewOutput, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback returned with previewOutput started.');
+    console.info('Callback returned with previewOutput started.');
   });
 }
 ```
@@ -3631,9 +3612,9 @@ import { BusinessError } from '@ohos.base';
 
 function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start().then(() => {
-    console.log('Promise returned with previewOutput started.');
+    console.info('Promise returned with previewOutput started.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to previewOutput start '+ err.code);
+    console.error(`Failed to previewOutput start, error code: ${err.code}.`);
   });
 }
 ```
@@ -3663,7 +3644,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
       console.error(`Failed to stop the previewOutput. ${err.code}`);
       return;
     }
-    console.log('Callback returned with previewOutput stopped.');
+    console.info('Callback returned with previewOutput stopped.');
   })
 }
 ```
@@ -3689,9 +3670,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.stop().then(() => {
-    console.log('Callback returned with previewOutput stopped.');
+    console.info('Returned with previewOutput stopped.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to previewOutput stop '+ err.code);
+    console.error(`Failed to previewOutput stop, error code: ${err.code}.`);
   });
 }
 ```
@@ -3726,10 +3707,10 @@ import { BusinessError } from '@ohos.base';
 function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+      console.error(`Failed to release the PreviewOutput instance, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
   });
 }
 ```
@@ -3763,9 +3744,9 @@ import { BusinessError } from '@ohos.base';
 
 function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release().then(() => {
-    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to previewOutput release '+ err.code);
+    console.error(`Failed to previewOutput release, error code: ${err.code}.`);
   });
 }
 ```
@@ -3790,7 +3771,7 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 ```ts
 function registerPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
   previewOutput.on('frameStart', () => {
-    console.log('Preview frame started');
+    console.info('Preview frame started');
   });
 }
 ```
@@ -3808,7 +3789,7 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                     |
 | -------- | -------------------- | ---- | --------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                     |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                     |
 
 **示例：**
 
@@ -3838,7 +3819,7 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 ```ts
 function registerPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
   previewOutput.on('frameEnd', () => {
-    console.log('Preview frame ended');
+    console.info('Preview frame ended');
   });
 }
 ```
@@ -3856,7 +3837,7 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                |
 
 **示例：**
 
@@ -3888,7 +3869,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerPreviewOutputError(previewOutput: camera.PreviewOutput): void {
   previewOutput.on('error', (previewOutputError: BusinessError) => {
-    console.log(`Preview output error code: ${previewOutputError.code}`);
+    console.error(`Preview output error code: ${previewOutputError.code}`);
   })
 }
 ```
@@ -3906,7 +3887,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。|
-| callback | ErrorCallback | 否   | 回调函数，可选  |
+| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。  |
 
 **示例：**
 
@@ -4005,12 +3986,12 @@ async function preview(context: common.BaseContext, cameraInfo: camera.CameraDev
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 必填  | 说明              |
-| -------- | ------------------------------- | ---- | -----------------|
-| quality  | [QualityLevel](#qualitylevel)   | 否   | 图片质量。         |
-| rotation | [ImageRotation](#imagerotation) | 否   | 图片旋转角度。      |
-| location | [Location](#location)           | 否   | 图片地理位置信息。   |
-| mirror   | boolean                         | 否   |镜像使能开关(默认关)。 |
+| 名称      | 类型                            | 必填  | 说明                                                                   |
+| -------- | ------------------------------- | ---- |----------------------------------------------------------------------|
+| quality  | [QualityLevel](#qualitylevel)   | 否   | 图片质量(默认低)。                                                           |
+| rotation | [ImageRotation](#imagerotation) | 否   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
+| location | [Location](#location)           | 否   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
+| mirror   | boolean                         | 否   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](#ismirrorsupported)进行判断是否支持。 |
 
 ## PhotoOutput
 
@@ -4047,10 +4028,10 @@ import { BusinessError } from '@ohos.base';
 function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to capture the photo ${err.code}`);
+      console.error(`Failed to capture the photo, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate the photo capture request success.');
+    console.info('Callback invoked to indicate the photo capture request success.');
   });
 }
 ```
@@ -4085,9 +4066,9 @@ import { BusinessError } from '@ohos.base';
 
 function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture().then(() => {
-    console.log('Promise returned to indicate that photo capture request success.');
+    console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to photoOutput capture '+ err.code);
+    console.error(`Failed to photoOutput capture, error code: ${err.code}.`);
   });
 }
 ```
@@ -4126,7 +4107,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   let captureLocation: camera.Location = {
     latitude: 0,
     longitude: 0,
-    altitude: 0,
+    altitude: 0
   }
   let settings: camera.PhotoCaptureSetting = {
     quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
@@ -4136,10 +4117,10 @@ function capture(photoOutput: camera.PhotoOutput): void {
   }
   photoOutput.capture(settings, (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to capture the photo ${err.code}`);
+      console.error(`Failed to capture the photo, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate the photo capture request success.');
+    console.info('Callback invoked to indicate the photo capture request success.');
   });
 }
 ```
@@ -4192,9 +4173,9 @@ function capture(photoOutput: camera.PhotoOutput): void {
     mirror: false
   }
   photoOutput.capture(settings).then(() => {
-    console.log('Promise returned to indicate that photo capture request success.');
+    console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to photoOutput capture '+ err.code);
+    console.error(`Failed to photoOutput capture, error code: ${err.code}.`);
   });
 }
 ```
@@ -4211,7 +4192,7 @@ isMirrorSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回是否支持镜像拍照。 |
+| boolean | 返回是否支持镜像拍照，true表示支持，false表示不支持。 |
 
 **示例：**
 
@@ -4252,10 +4233,10 @@ import { BusinessError } from '@ohos.base';
 function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
   photoOutput.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+      console.error(`Failed to release the PreviewOutput instance, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
   });
 }
 ```
@@ -4289,9 +4270,9 @@ import { BusinessError } from '@ohos.base';
 
 function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
   photoOutput.release().then(() => {
-    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to photoOutput release '+ err.code);
+    console.error(`Failed to photoOutput release, error code: ${err.code}.`);
   });
 }
 ```
@@ -4318,7 +4299,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('captureStart', (err: BusinessError, captureId: number) => {
-    console.log(`photo capture stated, captureId : ${captureId}`);
+    console.info(`photo capture started, captureId : ${captureId}`);
   });
 }
 ```
@@ -4336,7 +4317,7 @@ off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听 |
-| callback | AsyncCallback\<number\> | 否   | 可选。            |
+| callback | AsyncCallback\<number\> | 否   | 回调函数，可选，有表明匹配on接口callback。            |
 
 **示例：**
 
@@ -4368,8 +4349,8 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputFrameShutter(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('frameShutter', (err: BusinessError, frameShutterInfo: camera.FrameShutterInfo) => {
-    console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
-    console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
+    console.info(`CaptureId for frame : ${frameShutterInfo.captureId}`);
+    console.info(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
   });
 }
 ```
@@ -4387,7 +4368,7 @@ off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，可选。             |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，可选，有表明匹配on接口callback。             |
 
 **示例：**
 
@@ -4419,8 +4400,8 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo) => {
-    console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
-    console.log(`frameCount : ${captureEndInfo.frameCount}`);
+    console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
+    console.info(`frameCount : ${captureEndInfo.frameCount}`);
   });
 }
 ```
@@ -4438,7 +4419,7 @@ off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 | 参数名     | 类型           | 必填 | 说明                                       |
 | -------- | --------------- | ---- | ---------------------------------------- |
 | type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，可选。                  |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，可选，有表明匹配on接口callback。                  |
 
 **示例：**
 
@@ -4470,7 +4451,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputError(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('error', (error: BusinessError) => {
-    console.log(`Photo output error code: ${error.code}`);
+    console.error(`Photo output error code: ${error.code}`);
   });
 }
 ```
@@ -4488,7 +4469,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选           |
+| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。           |
 
 **示例：**
 
@@ -4596,7 +4577,7 @@ async function enableQuickThumbnail(context: common.BaseContext, photoProfile: c
   captureSession.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   if (!isSupported) {
-    console.log('Quick Thumbnail is not supported to be turned on.');
+    console.info('Quick Thumbnail is not supported to be turned on.');
     return;
   }
   try {
@@ -4650,7 +4631,7 @@ async function registerQuickThumbnail(context: common.BaseContext, photoProfile:
   captureSession.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   if (!isSupported) {
-    console.log('Quick Thumbnail is not supported to be turned on.');
+    console.info('Quick Thumbnail is not supported to be turned on.');
     return;
   }
   try {
@@ -4686,7 +4667,7 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 可选。 |
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有表明匹配on接口callback。 |
 
 **示例：**
 
@@ -4753,10 +4734,10 @@ import { BusinessError } from '@ohos.base';
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the video output ${err.code}`);
+      console.error(`Failed to start the video output, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate the video output start success.');
+    console.info('Callback invoked to indicate the video output start success.');
   });
 }
 ```
@@ -4791,9 +4772,9 @@ import { BusinessError } from '@ohos.base';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start().then(() => {
-    console.log('Promise returned to indicate that start method execution success.');
+    console.info('Promise returned to indicate that start method execution success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to videoOutput start '+ err.code);
+    console.error(`Failed to videoOutput start, error code: ${err.code}.`);
   });
 }
 ```
@@ -4820,10 +4801,10 @@ import { BusinessError } from '@ohos.base';
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the video output ${err.code}`);
+      console.error(`Failed to stop the video output, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate the video output stop success.');
+    console.info('Callback invoked to indicate the video output stop success.');
   });
 }
 ```
@@ -4849,9 +4830,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop().then(() => {
-    console.log('Promise returned to indicate that stop method execution success.');
+    console.info('Promise returned to indicate that stop method execution success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to videoOutput stop '+ err.code);
+    console.error(`Failed to videoOutput stop, error code: ${err.code}.`);
   });
 }
 ```
@@ -4886,10 +4867,10 @@ import { BusinessError } from '@ohos.base';
 function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+      console.error(`Failed to release the PreviewOutput instance, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback invoked to indicate that the videoOutput instance is released successfully.');
+    console.info('Callback invoked to indicate that the videoOutput instance is released successfully.');
   });
 }
 ```
@@ -4923,9 +4904,9 @@ import { BusinessError } from '@ohos.base';
 
 function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.release().then(() => {
-    console.log('Promise returned to indicate that the videoOutput instance is released successfully.');
+    console.info('Promise returned to indicate that the videoOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to videoOutput release '+ err.code);
+    console.error(`Failed to videoOutput release, error code: ${err.code}.`);
   });
 }
 ```
@@ -4950,7 +4931,7 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 ```ts
 function registerVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
   videoOutput.on('frameStart', () => {
-    console.log('Video frame started');
+    console.info('Video frame started');
   });
 }
 ```
@@ -4968,7 +4949,7 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                     |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                     |
 
 **示例：**
 
@@ -4999,7 +4980,7 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 ```ts
 function registerVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
   videoOutput.on('frameEnd', () => {
-    console.log('Video frame ended');
+    console.info('Video frame ended');
   });
 }
 ```
@@ -5017,7 +4998,7 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听 。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选                      |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                      |
 
 **示例：**
 
@@ -5049,7 +5030,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerVideoOutputError(videoOutput: camera.VideoOutput): void {
   videoOutput.on('error', (error: BusinessError) => {
-    console.log(`Video output error code: ${error.code}`);
+    console.error(`Video output error code: ${error.code}`);
   });
 }
 ```
@@ -5067,7 +5048,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型       | 必填 | 说明                                    |
 | -------- | ----------- | ---- | -------------------------------------- |
 | type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选               |
+| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。               |
 
 **示例：**
 
@@ -5112,10 +5093,10 @@ import { BusinessError } from '@ohos.base';
 function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start metadataOutput. ${err.code}`);
+      console.error(`Failed to start metadataOutput, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback returned with metadataOutput started.');
+    console.info('Callback returned with metadataOutput started.');
   });
 }
 ```
@@ -5150,9 +5131,9 @@ import { BusinessError } from '@ohos.base';
 
 function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
-    console.log('Callback returned with metadataOutput started.');
+    console.info('Callback returned with metadataOutput started.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to metadataOutput start '+ err.code);
+    console.error(`Failed to metadataOutput start, error code: ${err.code}.`);
   });
 }
 ```
@@ -5179,10 +5160,10 @@ import { BusinessError } from '@ohos.base';
 function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the metadataOutput. ${err.code}`);
+      console.error(`Failed to stop the metadataOutput, error code: ${err.code}.`);
       return;
     }
-    console.log('Callback returned with metadataOutput stopped.');
+    console.info('Callback returned with metadataOutput stopped.');
   })
 }
 ```
@@ -5208,9 +5189,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stopped.');
+    console.info('Callback returned with metadataOutput stopped.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to metadataOutput stop '+ err.code);
+    console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
   });
 }
 ```
@@ -5237,7 +5218,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-    console.log(`metadata output metadataObjectsAvailable`);
+    console.info('metadata output metadataObjectsAvailable');
   });
 }
 ```
@@ -5255,7 +5236,7 @@ off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataO
 | 参数名      | 类型         | 必填 | 说明                                  |
 | -------- | -------------- | ---- | ------------------------------------ |
 | type     | string         | 是   | 监听事件，固定为'metadataObjectsAvailable'，metadataOutput创建成功后可监听。 |
-| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，可选。 |
+| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，可选，有表明匹配on接口callback。 |
 
 **示例：**
 
@@ -5287,7 +5268,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerMetadataOutputError(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.on('error', (metadataOutputError: BusinessError) => {
-    console.log(`Metadata output error code: ${metadataOutputError.code}`);
+    console.error(`Metadata output error code: ${metadataOutputError.code}`);
   });
 }
 ```
@@ -5305,7 +5286,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选           |
+| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。           |
 
 **示例：**
 
@@ -5344,8 +5325,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 必填  | 说明              |
-| -------- | ------------------------------- | ---- | -----------------|
-| type  | [MetadataObjectType](#metadataobjecttype)   | 否   | metadata 类型，目前只有人脸识别。 |
-| timestamp | number | 否   | 当前时间戳（毫秒）。 |
-| boundingBox | [Rect](#rect)           | 否   | metadata 区域框 |
+| 名称      | 类型                            | 必填  | 只读 |说明              |
+| -------- | ------------------------------- | ---- | ---- |-----------------|
+| type  | [MetadataObjectType](#metadataobjecttype)   | 否   |  是  |metadata 类型，目前只有人脸识别。 |
+| timestamp | number | 否   |  是  | 当前时间戳（毫秒）。 |
+| boundingBox | [Rect](#rect)           | 否   |  是  | metadata 区域框。 |

@@ -159,7 +159,7 @@ sum.cpp源码
 
 | 参数   | 类型 |备注|
 |--------|------|------|
-|OHOS_STL|c++_shared/c++_static|默认是c++_shared，用来控制是动态链接libc++_shared.so还是静态链接libc++_static.a，对于同一个应用中的全部native库需要采用同一种链接方式，这个是由c++运行时中一些全局状态导致的|
+|OHOS_STL|c++_shared/c++_static|默认是c++_shared，用来控制是动态链接libc++_shared.so还是静态链接libc++_static.a。 <br>1. 在一个应用工程中，如果只有一个共享库，建议采用静态链接方式，让链接器精简使用的C++运行时代码，降低包大小。<br>2. 如果有多个库，或依赖带二进制中间件的har包，建议采用动态链接方式；这种情况下采用静态链接会导致不同库中定义多个函数或对象的副本，会破坏C++的单一定义规则（One Definition Rule），出现不可预知问题。|
 |OHOS_ARCH|armeabi-v7a/arm64-v8a/x86_64|设置native需要支持的ABI，当前支持三种ABI|
 |OHOS_PLATFORM|OHOS|平台选择，当前只支持OpenHarmony平台|
 |CMAKE_TOOLCHAIN_FILE|工具链文件|就是ohos.toolchain.cmake文件，里面根据上面参数指定了对应平台的交叉编译参数|

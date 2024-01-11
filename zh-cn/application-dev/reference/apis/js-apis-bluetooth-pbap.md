@@ -15,7 +15,7 @@ import pbap from '@ohos.bluetooth.pbap';
 ```
 
 
-## pbap.createPbapServerProfile<a name="createPbapServerProfile"></a>
+## pbap.createPbapServerProfile
 
 createPbapServerProfile(): PbapServerProfile
 
@@ -47,7 +47,7 @@ try {
 使用PbapServerProfile方法之前需要创建该类的实例进行操作，通过createPbapServerProfile()方法构造此实例。
 
 
-### disconnect<a name="PbapServerProfile-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-### setShareType<a name="PbapServerProfile-setShareType"></a>
+### setShareType
 
 setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -105,7 +105,7 @@ setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| type | [ShareType](#ShareType) | 是    | 表示共享类型的枚举值。 |
+| type | [ShareType](#sharetype) | 是    | 表示共享类型的枚举值。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -134,7 +134,7 @@ try {
 ```
 
 
-### setShareType<a name="PbapServerProfile-setShareType"></a>
+### setShareType
 
 setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 
@@ -151,7 +151,7 @@ setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| type | [ShareType](#ShareType) | 是    | 表示共享类型的枚举值。 |
+| type | [ShareType](#sharetype) | 是    | 表示共享类型的枚举值。 |
 
 **返回值：**
 
@@ -184,7 +184,7 @@ try {
 }
 ```
 
-### getShareType<a name="PbapServerProfile-getShareType"></a>
+### getShareType
 
 getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 
@@ -201,7 +201,7 @@ getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| callback | AsyncCallback&lt;[ShareType](#ShareType)&gt; | 是    | 回调函数。当获取成功，err为undefined，否则为错误对象。   |
+| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | 是    | 回调函数。当获取成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
 
@@ -228,7 +228,7 @@ try {
 }
 ```
 
-### getShareType<a name="PbapServerProfile-getShareType"></a>
+### getShareType
 
 getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
@@ -250,7 +250,7 @@ getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
 | 类型                                              | 说明                |
 | ------------------------------------------------- | ------------------- |
-| Promise&lt;[ShareType](#ShareType)&gt; | 以Promise的形式返回结果。如果成功，err为undefined的，否则为错误对象。 |
+| Promise&lt;[ShareType](#sharetype)&gt; | 以Promise的形式返回结果。如果成功，err为undefined的，否则为错误对象。 |
 
 **错误码**：
 
@@ -277,7 +277,7 @@ try {
 }
 ```
 
-### setPhoneBookAccessAuthorization<a name="PbapServerProfile-setPhoneBookAccessAuthorization"></a>
+### setPhoneBookAccessAuthorization
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization, callback: AsyncCallback&lt;void&gt;): void
 
@@ -323,7 +323,7 @@ try {
 ```
 
 
-### setPhoneBookAccessAuthorization<a name="PbapServerProfile-setPhoneBookAccessAuthorization"></a>
+### setPhoneBookAccessAuthorization
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
@@ -373,7 +373,7 @@ try {
 }
 ```
 
-### getPhoneBookAccessAuthorization<a name="PbapServerProfile-getPhoneBookAccessAuthorization"></a>
+### getPhoneBookAccessAuthorization
 
 getPhoneBookAccessAuthorization(deviceId: string, callback: AsyncCallback&lt;AccessAuthorization&gt;): void
 
@@ -417,7 +417,7 @@ try {
 }
 ```
 
-### getPhoneBookAccessAuthorization<a name="PbapServerProfile-getPhoneBookAccessAuthorization"></a>
+### getPhoneBookAccessAuthorization
 
 getPhoneBookAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
@@ -466,7 +466,7 @@ try {
 }
 ```
 
-## ShareType<a name="ShareType"></a>
+## ShareType
 
 枚举，共享类型。
 

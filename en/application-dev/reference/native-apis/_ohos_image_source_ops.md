@@ -5,15 +5,11 @@
 
 The **OhosImageSourceOps** struct defines the image source options. It is used in [OH_ImageSource_Create](image.md#oh_imagesource_create) and [OH_ImageSource_CreateIncremental](image.md#oh_imagesource_createincremental).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

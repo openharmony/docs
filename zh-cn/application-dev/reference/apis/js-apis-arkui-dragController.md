@@ -5,9 +5,9 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> 从API version 11开始，可以通过使用UIContext中的[getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
-
 
 ## 导入模块
 
@@ -27,7 +27,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** 不支持全局builder。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -249,11 +249,13 @@ startDrag(): Promise&lt;void&gt;
 
 启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **错误码：**
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | If some internal handling failed |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 ```ts
@@ -271,7 +273,7 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态。|
@@ -292,7 +294,7 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态， 不设置取消所有监听。|
@@ -482,16 +484,66 @@ animate(options: AnimationOptions, handler: () => void): void
 
 **示例：**
 
+1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+
+let uiContext: UIContext;
+let localStorage: LocalStorage = new LocalStorage('uiContext');
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = localStorage;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      windowStage.getMainWindow((err, data) =>
+      {
+        if (err.code) {
+          hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
+          return;
+        }
+        let windowClass: window.Window = data;
+        uiContext = windowClass.getUIContext();
+        this.storage.setOrCreate<UIContext>('uiContext', uiContext);
+      })
+    });
+  }
+  ```
+2.在Index.ets中通过LocalStorage.getShared()获取UI上下文，进而获取DragController对象实施后续操作。
   ```ts
 
 import UDC from '@ohos.data.unifiedDataChannel';
+import hilog from '@ohos.hilog';
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
+import { UIContext } from '@ohos.arkui.UIContext';
 
-@Entry
+
+let storages = LocalStorage.getShared();
+
+@Entry(storages)
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
@@ -518,7 +570,8 @@ struct DragControllerPage {
     Column() {
       Button('拖拽至此处').onDragEnter(() => {
           try {
-            let previewObj: dragController.DragPreview = dragController.getDragPreview();
+            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
             let foregroundColor: ResourceColor = Color.Green;
 
             let previewAnimation: dragController.AnimationOptions = {
@@ -528,9 +581,9 @@ struct DragControllerPage {
               previewObj.setForegroundColor(foregroundColor);
             });
           } catch (error) {
-              let msg = (error as BusinessError).message;
+            let msg = (error as BusinessError).message;
             let code = (error as BusinessError).code;
-            console.error(`show error code is ${code}, message is ${msg}`);
+            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
           }
       })
       .onDrop(() => {
@@ -541,7 +594,6 @@ struct DragControllerPage {
           if (event.type == TouchType.Down) {
             let text = new UDC.Text()
             let unifiedData = new UDC.UnifiedData(text)
-            console.log("one drag Down");
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
@@ -555,18 +607,15 @@ struct DragControllerPage {
               dragController.executeDrag(() => {
                 this.DraggingBuilder()
               }, dragInfo, (err , eve) => {
-            console.log(`ljx ${JSON.stringify(err)}`)
+                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
                 if (eve && eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    console.log('success');
+                    hilog.info(0x0000, 'success', '');
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    console.log('failed');
+                    hilog.info(0x0000, 'failed', '');
                   }
                 }
             })
-
-
-
           }
         }
       }).margin({top:100})
@@ -575,3 +624,4 @@ struct DragControllerPage {
     .height('100%')
   }
 }
+

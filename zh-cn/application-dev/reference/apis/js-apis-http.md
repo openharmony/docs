@@ -12,7 +12,7 @@
 ```ts
 import http from '@ohos.net.http';
 ```
-dataSendProgress
+
 ## 完整示例
 
 ```ts
@@ -311,7 +311,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### request()
+### request
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -410,7 +410,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### destroy()
+### destroy
 
 destroy(): void
 
@@ -724,7 +724,7 @@ let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
 ```
 
-### on("headersReceive")<sup>8+</sup>()
+### on("headersReceive")<sup>8+</sup>
 
 on(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -751,7 +751,7 @@ httpRequest.on("headersReceive", (header: Object) => {
 httpRequest.off("headersReceive");
 ```
 
-### off("headersReceive")<sup>8+</sup>()
+### off("headersReceive")<sup>8+</sup>
 
 off(type: "headersReceive", callback?: Callback\<Object\>): void
 
@@ -781,7 +781,7 @@ httpRequest.on("headersReceive", (header: Object) => {
 httpRequest.off("headersReceive");
 ```
 
-### once("headersReceive")<sup>8+</sup>()
+### once("headersReceive")<sup>8+</sup>
 
 once(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -807,7 +807,7 @@ httpRequest.once("headersReceive", (header: Object) => {
 });
 ```
 
-### on("dataReceive")<sup>10+</sup>()
+### on("dataReceive")<sup>10+</sup>
 
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
@@ -837,7 +837,7 @@ httpRequest.on("dataReceive", (data: ArrayBuffer) => {
 httpRequest.off("dataReceive");
 ```
 
-### off("dataReceive")<sup>10+</sup>()
+### off("dataReceive")<sup>10+</sup>
 
 off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
@@ -1086,7 +1086,7 @@ httpRequest.off("dataSendProgress");
 | resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | resumeTo<sup>11+</sup> | number | 否 | 用于设置上传或下载结束位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书 |
-| dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用https协议的服务器进行DNS解析。<br />-参数必须以以下格式进行URL编码："https://host:port/path"。 |
+| dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用https协议的服务器进行DNS解析。<br />-参数必须以以下格式进行URL编码："https:// host:port/path"。 |
 | dnsServers<sup>11+</sup> | Array<string> | 否 | 设置指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。<br />-服务器必须是IPV4或者IPV6地址。 |
 | maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制，默认值为5*1024*1024，以字节为单位。最大值为100*1024*1024，以字节为单位。  |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |

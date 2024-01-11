@@ -1050,7 +1050,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     // equal callback
     let equalCallback = (err: BusinessError, data: boolean) => {
@@ -1140,7 +1140,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
@@ -1344,17 +1344,17 @@ try {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name               | Value            | Description                                                                    |
-| ------------------- | -------------- |------------------------------------------------------------------------|
-| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                                      |
-| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.                                    |
-| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                               |
-| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                              |
-| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                       |
-| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.     |
-| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.       |
-| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.             |
-| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.   |
+| Name               | Value            | Description                                                                     |
+| ------------------- | -------------- |-------------------------------------------------------------------------|
+| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                                       |
+| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.                                     |
+| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                                |
+| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                               |
+| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                        |
+| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.      |
+| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.        |
+| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.              |
+| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.    |
 | REPLACE_BUNDLE      | 9 | The **bundleName** attribute in the current Want can be replaced by the **bundleName** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.|
 
 
@@ -1383,4 +1383,4 @@ try {
 | want           | Want                            | Yes  | An existing triggered Want.    |
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | Yes  | Final data collected by the common event. |
-| extraInfo      | {[key: string]: any}            | No  | Extra information.              |
+| extraInfo      | Record\<string, Object>            | No  | Extra information.              |

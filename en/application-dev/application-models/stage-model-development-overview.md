@@ -15,10 +15,10 @@ The following figure illustrates the stage model.
   
   - UIAbility is a type of application component that provides the UI for user interaction. For example, with UIAbility, the Gallery application can display images in the liquid layout. After a user selects an image, it uses a new UI to display the image details. The user can touch the **Back** button to return to the liquid layout. The lifecycle of the UIAbility component contains the **Create**, **Destroy**, **Foreground**, and **Background** states. Display-related states are exposed through WindowStage events.
   
-  - ExtensionAbility is used for specific scenarios. You cannot derive directly from ExtensionAbility. Instead, use the derived classes of ExtensionAbility for your scenarios, such as FormExtensionAbility for widget scenarios, InputMethodExtensionAbility for input method scenarios, and WorkSchedulerExtensionAbility for deferred task scenarios. For example, to enable a user to create an application widget on the home screen, you must derive a class from FormExtensionAbility, implement callbacks, and configure the capability in the configuration file. The derived class instances are created by applications and their lifecycles are managed by the system. In the stage model, you must use the derived classes of ExtensionAbility to develop custom services based on your service scenarios.
+  - ExtensionAbility is used for specific scenarios. You cannot derive directly from ExtensionAbility. Instead, use the derived classes of ExtensionAbility for your scenarios, such as FormExtensionAbility for widget scenarios, InputMethodExtensionAbility for input method scenarios, and WorkSchedulerExtensionAbility for deferred task scenarios. For example, to enable a user to create an application widget on the home screen, you must derive a class from FormExtensionAbility, implement callbacks, and configure the capability in the configuration file. The derived class instances are created by applications and their lifecycles are managed by the system. In the stage model, you must use the derived classes of ExtensionAbility to develop custom services of third-party applications based on your service scenarios.
 - [WindowStage](../windowmanager/application-window-stage.md)
 
-  Each UIAbility class instance is bound to a WindowStage class instance, which functions as the window manager in the application process. The WindowStage class instance contains a main window. That is, UIAbility holds a main window through WindowStage, and this window provides a rendering area for ArkUI.
+  Each UIAbility instance is bound to a WindowStage instance, which functions as the window manager in the application process. The WindowStage class instance contains a main window. That is, a UIAbility instance holds a main window through WindowStage, and this window provides a rendering area for ArkUI.
 
 - [Context](application-context-stage.md)
 
@@ -26,7 +26,7 @@ The following figure illustrates the stage model.
 
 - [AbilityStage](abilitystage.md)
 
-  Each HAP of the Entry or Feature type has an AbilityStage class instance during the runtime. When the code in the HAP is loaded to the process for the first time, the system creates an AbilityStage class instance. Each UIAbility class defined in the HAP is associated with this class instance after instantiation. Through this class instance, you can obtain the runtime information of the UIAbility instances in the HAP.
+  Each HAP of the Entry or Feature type has an AbilityStage class instance during the runtime. When the code in the HAP is loaded to the process for the first time, the system creates an AbilityStage class instance.
 
 
 ## How to Develop

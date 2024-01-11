@@ -37,13 +37,15 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-  console.log('Succeeded in creating pixelmap.');
-}).catch((error : BusinessError) => {
-  console.error('Failed to create pixelmap.');
-})
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
+        console.log('Succeeded in creating pixelmap.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create pixelmap.');
+    })
+}
 ```
 
 ## image.createPixelMap<sup>8+</sup>
@@ -66,15 +68,18 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
-    if(error) {
-        console.error('Failed to create pixelmap.');
-    } else {
-        console.log('Succeeded in creating pixelmap.');
-    }
-})
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
+        if(error) {
+            console.error('Failed to create pixelmap.');
+            return;
+        } else {
+            console.log('Succeeded in creating pixelmap.');
+        }
+    })
+}
 ```
 
 ## image.createPixelMapFromParcel<sup>11+</sup>
@@ -132,6 +137,7 @@ class MySequence implements rpc.Parcelable {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
             console.error('createPixelMapFromParcel error: '+ e);
+            return false;
         }
       return true;
     }
@@ -171,7 +177,11 @@ async function Demo() {
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过[createPixelMap](#imagecreatepixelmap8)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
-从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。
+
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。  
+
+在调用PixelMap的方法前，需要先通过[image.createPixelMap](#imagecreatepixelmap8)构建一个PixelMap对象。
+
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -204,12 +214,14 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-    console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
-}).catch((error : BusinessError) => {
-    console.error('Failed to read image pixel data.');  //不符合条件则进入
-})
+async function Demo() {
+    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+        console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
+    }).catch((error : BusinessError) => {
+        console.error('Failed to read image pixel data.');  //不符合条件则进入
+    })
+}
 ```
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -231,14 +243,17 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
-    if(err) {
-        console.error('Failed to read image pixel data.');  //不符合条件则进入
-    } else {
-        console.log('Succeeded in reading image pixel data.');  //符合条件则进入
-    }
-})
+async function Demo() {
+    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
+        if(err) {
+            console.error('Failed to read image pixel data.');  //不符合条件则进入
+            return;
+        } else {
+            console.log('Succeeded in reading image pixel data.');  //符合条件则进入
+        }
+    })
+}
 ```
 
 ### readPixels<sup>7+</sup>
@@ -265,17 +280,19 @@ readPixels(area: PositionArea): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const area : image.PositionArea = {
-    pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    pixelMap.readPixels(area).then(() => {
+        console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
+    }).catch((error : BusinessError) => {
+        console.error('Failed to read the image data in the area.'); //不符合条件则进入
+    })
 }
-pixelMap.readPixels(area).then(() => {
-    console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
-}).catch((error : BusinessError) => {
-    console.error('Failed to read the image data in the area.'); //不符合条件则进入
-})
 ```
 
 ### readPixels<sup>7+</sup>
@@ -297,25 +314,22 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    if(pixelMap == undefined){
-        console.error('createPixelMap failed.');
-    } else {
-        const area : image.PositionArea = { pixels: new ArrayBuffer(8),
-            offset: 0,
-            stride: 8,
-            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
-        pixelMap.readPixels(area, (err : BusinessError) => {
-            if (err != undefined) {
-	        console.error('Failed to read pixelmap from the specified area.');
-	    } else {
-	        console.info('Succeeded to read pixelmap from the specified area.');
-	    }
-        })
-    }
-})
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    pixelMap.readPixels(area, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error('Failed to read pixelmap from the specified area.');
+            return;
+        } else {
+            console.info('Succeeded to read pixelmap from the specified area.');
+        }
+    })
+}
 ```
 
 ### writePixels<sup>7+</sup>
@@ -342,31 +356,23 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts)
-    .then( (pixelMap : image.PixelMap)  => {
-        if (pixelMap == undefined) {
-            console.error('createPixelMap failed.');
-            return;
-        }
-        const area : image.PositionArea = { pixels: new ArrayBuffer(8),
-            offset: 0,
-            stride: 8,
-            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-        }
-        let bufferArr : Uint8Array = new Uint8Array(area.pixels);
-        for (let i = 0; i < bufferArr.length; i++) {
-            bufferArr[i] = i + 1;
-        }
-        pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }).catch((error : BusinessError) => {
-            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-        })
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writePixels(area).then(() => {
+        console.info('Succeeded to write pixelmap into the specified area.');
     }).catch((error : BusinessError) => {
-        console.error('error: ' + error);
+        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
     })
+}
 ```
 
 ### writePixels<sup>7+</sup>
@@ -388,22 +394,25 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const area : image.PositionArea = { pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-}
-let bufferArr : Uint8Array = new Uint8Array(area.pixels);
-for (let i = 0; i < bufferArr.length; i++) {
-    bufferArr[i] = i + 1;
-}
-pixelMap.writePixels(area, (error : BusinessError) => {
-    if (error != undefined) {
-        console.error('Failed to write pixelmap into the specified area.');
-    } else {
-        console.info('Succeeded to write pixelmap into the specified area.');
+async function Demo() {
+    const area : image.PositionArea = { pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
     }
-})
+    pixelMap.writePixels(area, (error : BusinessError) => {
+        if (error != undefined) {
+            console.error('Failed to write pixelmap into the specified area.');
+            return;
+        } else {
+            console.info('Succeeded to write pixelmap into the specified area.');
+        }
+    })
+}
 ```
 
 ### writeBufferToPixels<sup>7+</sup>
@@ -430,16 +439,18 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
-for (let i = 0; i < bufferArr.length; i++) {
-    bufferArr[i] = i + 1;
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writeBufferToPixels(color).then(() => {
+        console.log("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error : BusinessError) => {
+        console.error("Failed to write data from a buffer to a PixelMap.");
+    })
 }
-pixelMap.writeBufferToPixels(color).then(() => {
-    console.log("Succeeded in writing data from a buffer to a PixelMap.");
-}).catch((error : BusinessError) => {
-    console.error("Failed to write data from a buffer to a PixelMap.");
-})
 ```
 
 ### writeBufferToPixels<sup>7+</sup>
@@ -461,19 +472,21 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
-for (let i = 0; i < bufferArr.length; i++) {
-    bufferArr[i] = i + 1;
-}
-pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
-    if (err != undefined) {
-        console.error("Failed to write data from a buffer to a PixelMap.");
-        return;
-    } else {
-	console.log("Succeeded in writing data from a buffer to a PixelMap.");
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
     }
-});
+    pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to write data from a buffer to a PixelMap.");
+            return;
+        } else {
+            console.log("Succeeded in writing data from a buffer to a PixelMap.");
+        }
+    })
+}
 ```
 
 ### getImageInfo<sup>7+</sup>
@@ -493,12 +506,7 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```ts
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
-image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-    if (pixelMap == undefined) {
-        console.error("Failed to obtain the image pixel map information.");
-    }
+async function Demo() {
     pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
@@ -507,7 +515,7 @@ image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
             console.log("Succeeded in obtaining the image pixel map information.");
         }
     })
-})
+}
 ```
 
 ### getImageInfo<sup>7+</sup>
@@ -528,21 +536,17 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    if (pixelMap == undefined) {
-        console.error("Failed to obtain the image pixel map information.");
-    }
+async function Demo() {
     pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
+            return;
         }
         if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
             console.log("Succeeded in obtaining the image pixel map information.");
         }
     })
-})
+}
 ```
 
 ### getBytesNumberPerRow<sup>7+</sup>
@@ -562,16 +566,7 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    if (err != undefined) {
-        console.error('Failed to create pixelmap.');
-    } else {
-        let rowCount : number = pixelMap.getBytesNumberPerRow();
-    }
-})
+let rowCount : number = pixelMap.getBytesNumberPerRow();
 ```
 
 ### getPixelBytesNumber<sup>7+</sup>
@@ -633,15 +628,17 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-let rate = 0.5;
-pixelMap.opacity(rate, (err : BusinessError) => {
-	if (err) {
-        console.error("Failed to set opacity.");
-        return;
-    } else {
-        console.log("Succeeded in setting opacity.");
-	}
-})
+async function Demo() {
+    let rate : number = 0.5;
+    pixelMap.opacity(rate, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to set opacity.");
+            return;
+        } else {
+            console.log("Succeeded in setting opacity.");
+        }
+    })
+}
 ```
 
 ### opacity<sup>9+</sup>
@@ -667,8 +664,14 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.opacity(0.5);
+    let rate : number = 0.5;
+    await pixelMap.opacity(rate).then(() => {
+        console.log('Sucessed in setting opacity.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to set opacity.');
+    })
 }
 ```
 
@@ -689,9 +692,14 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.createAlphaPixelmap();
-}   
+    await pixelMap.createAlphaPixelmap().then((alphaPixelMap : image.PixelMap) => {
+        console.log('Succeeded in creating alpha pixelmap.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create alpha pixelmap.');
+    })
+}
 ```
 
 ### createAlphaPixelmap<sup>9+</sup>
@@ -712,13 +720,16 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
-    if (alphaPixelMap == undefined) {
-        console.error('Failed to obtain new pixel map.');
-    } else {
-        console.info('Succeed in obtaining new pixel map.');
-    }
-})
+async function Demo() {
+    pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
+        if (alphaPixelMap == undefined) {
+            console.error('Failed to obtain new pixel map.');
+            return;
+        } else {
+            console.info('Succeed in obtaining new pixel map.');
+        }
+    })
+}
 ```
 
 ### scale<sup>9+</sup>
@@ -740,8 +751,18 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.scale(2.0, 1.0);
+    let scaleX : number = 2.0;
+    let scaleY : number = 1.0;
+    pixelMap.scale(scaleX, scaleY, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to scale pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in scaling pixelmap.");
+        }
+    })
 }
 ```
 
@@ -769,8 +790,15 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.scale(2.0, 1.0);
+    let scaleX : number = 2.0;
+    let scaleY : number = 1.0;
+    await pixelMap.scale(scaleX, scaleY).then(() => {
+        console.log('Sucessed in scaling pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to scale pixelmap.');
+    })
 }
 ```
 
@@ -793,8 +821,18 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.translate(3.0, 1.0);
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    pixelMap.translate(translateX, translateY, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to translate pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in translating pixelmap.");
+        }
+    })
 }
 ```
 
@@ -822,8 +860,15 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.translate(3.0, 1.0);
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    await pixelMap.translate(translateX, translateY).then(() => {
+        console.log('Sucessed in translating pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to translate pixelmap.');
+    })
 }
 ```
 
@@ -846,15 +891,17 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-let angle = 90.0;
-pixelMap.rotate(angle, (err : BusinessError) => {
-    if (err != undefined) {
-        console.error("Failed to set rotation.");
-        return;
-    } else {
-        console.log("Succeeded in setting rotation.");
-    }
-})
+async function Demo() {
+    let angle : number = 90.0;
+    pixelMap.rotate(angle, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to rotate pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in rotating pixelmap.");
+        }
+    })
+}
 ```
 
 ### rotate<sup>9+</sup>
@@ -880,8 +927,14 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.rotate(90.0);
+    let angle : number = 90.0;
+    await pixelMap.rotate(angle).then(() => {
+        console.log('Sucessed in rotating pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to rotate pixelmap.');
+    })
 }
 ```
 
@@ -904,8 +957,18 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.flip(false, true);
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    pixelMap.flip(horizontal, vertical, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to flip pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in flipping pixelmap.");
+        }
+    })
 }
 ```
 
@@ -933,8 +996,15 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.flip(false, true);
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    await pixelMap.flip(horizontal, vertical).then(() => {
+        console.log('Sucessed in flipping pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to flip pixelmap.');
+    })
 }
 ```
 
@@ -956,8 +1026,17 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    pixelMap.crop(region, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to crop pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in cropping pixelmap.");
+        }
+    })
 }
 ```
 
@@ -984,8 +1063,14 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await pixelMap.crop(region).then(() => {
+        console.log('Sucessed in cropping pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to crop pixelmap.');
+    });
 }
 ```
 
@@ -1009,16 +1094,15 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980101| If the image data abnormal              |
-| 62980103| If the image data unsupport              |
-| 62980115| If the image parameter invalid             |
+| 62980101| The image data is abnormal.            |
+| 62980103| The image data is not supported.             |
+| 62980115| Invalid image parameter.            |
 
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
-    let csm : Object = pixelMap.getColorSpace();
+    let csm = pixelMap.getColorSpace();
 }
 ```
 
@@ -1042,8 +1126,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid        |
-| 62980115| If the image parameter invalid             |
+| 62980111| The image source data is incomplete.        |
+| 62980115| Invalid image parameter.             |
 
 **示例：**
 
@@ -1077,10 +1161,10 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | If the input parameter is not valid parameter. |
-| 62980104| If the internal object initialized failed |
-| 62980108| If the color space converted failed       |
-| 62980115| If the image parameter invalid            |
+| 401 | The parameter check failed. |
+| 62980104| Failed to initialize the internal object. |
+| 62980108| Failed to convert the color space.       |
+| 62980115| Invalid image parameter.            |
 
 **示例：**
 
@@ -1094,6 +1178,7 @@ async function Demo() {
     pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
         if (err) {
             console.error('Failed to apply color space for pixelmap object.');
+            return;
         } else {
             console.log('Succeeded in applying color space for pixelmap object.');
         }
@@ -1127,10 +1212,10 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | If the input parameter is not valid parameter. |
-| 62980104| If the internal object initialized failed |
-| 62980108| If the color space converted failed       |
-| 62980115| If the image parameter invalid            |
+| 401 | The parameter check failed. |
+| 62980104| Failed to initialize the internal object. |
+| 62980108| Failed to convert the color space.       |
+| 62980115| Invalid image parameter.            |
 
 **示例：**
 
@@ -1169,8 +1254,8 @@ marshalling(sequence: rpc.MessageSequence): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | If the input parameter invalid              |
-| 62980097 | If the ipc error              |
+| 62980115 | Invalid image parameter.              |
+| 62980097 | IPC error.             |
 
 **示例：**
 
@@ -1256,9 +1341,9 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | If the input parameter invalid              |
-| 62980097 | If the ipc error              |
-| 62980096 | If fail to create async work         |
+| 62980115 | Invalid image parameter.              |
+| 62980097 | IPC error.              |
+| 62980096 | The operation failed.         |
 
 **示例：**
 
@@ -1335,11 +1420,13 @@ release():Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
-pixelMap.release().then(() => {
-    console.log('Succeeded in releasing pixelmap object.');
-}).catch((error : BusinessError) => {
-    console.error('Failed to release pixelmap object.');
-})
+async function Demo() {
+    pixelMap.release().then(() => {
+        console.log('Succeeded in releasing pixelmap object.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to release pixelmap object.');
+    })
+}
 ```
 
 ### release<sup>7+</sup>
@@ -1360,13 +1447,16 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
-pixelMap.release((err : BusinessError) => {
-    if (err != undefined) {
-        console.error('Failed to release pixelmap object.');
-    } else {
-        console.log('Succeeded in releasing pixelmap object.');
-    }
-})
+async function Demo() {
+    pixelMap.release((err : BusinessError) => {
+        if (err != undefined) {
+            console.error('Failed to release pixelmap object.');
+            return;
+        } else {
+            console.log('Succeeded in releasing pixelmap object.');
+        }
+    })
+}
 ```
 
 ## image.createImageSource
@@ -1767,13 +1857,18 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | The parameter check failed.              |
-| 62980111| If the image source data incomplete.             |
-| 62980113| If the image format unknown.             |
-| 62980116| If the image decode failed.              |
-| 62980118| If the image plugin create failed.            |
-| 62980122| If the image decode head abnormal.             |
-| 62980123| If the image unsupport exif.             |
-| 62980135| If the exif value is invalid.             |
+| 62980096| The operation failed.             |
+| 62980103| The image data is not supported.            |
+| 62980110| The image source data is incorrect.            |
+| 62980111| The image source data is incomplete.             |
+| 62980112| The image format does not match.             |
+| 62980113| Unknown image format.             |
+| 62980115| Invalid image parameter.             |
+| 62980116| Failed to decode the image.              |
+| 62980118| Failed to create the image plugin.           |
+| 62980122| The image decoding header is abnormal.           |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980135| The EXIF value is invalid.            |
 
 **示例：**
 
@@ -1919,17 +2014,10 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | The parameter check failed.              |
-| 62980110| If the image source data error.       |
-| 62980111| If the image source data incomplete.  |
-| 62980113| If the image format unknown.             |
-| 62980116| If the image decode failed.              |
-| 62980118| If the image plugin create failed.       |
-| 62980123| If the image unsupport exif.             |
-| 62980130| If the image source file is abnormal.    |
-| 62980132| If the image source buffer size is abnormal.            |
-| 62980135| If the exif value is invalid.             |
-| 62980146| If the exif failed to be written to the file.        |
-| 62980147| If the file fails to be read.            |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.    |
+| 62980135| The EXIF value is invalid.             |
+| 62980146| The EXIF data failed to be written to the file.        |
 
 **示例：**
 
@@ -2208,23 +2296,23 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980099 | If the shared memory data abnormal |
-| 62980101 | If the image data abnormal |
-| 62980103| If the image data unsupport             |
-| 62980106 | If the image too large |
-| 62980109 | If the image crop failed |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980112 | If the image format mismatch |
-| 62980113 | If the image format unknown |
-| 62980115 | If the image invalid parameter |
-| 62980116 | If the image decode failed |
-| 62980118| If the image plugin create failed             |
-| 62980122 | If the image decode head abnormal |
-| 62980137 | If the media invalid operation |
-| 62980173 | If the DMA memory not exist |
-| 62980174 | If the DMA memory data abnormal |
+| 62980096| The operation failed.              |
+| 62980099 | The shared memory data is abnormal. |
+| 62980101 | The image data is abnormal. |
+| 62980103| The image data is not supported.             |
+| 62980106 | The image is too large. |
+| 62980109 | Failed to crop the image. |
+| 62980110| The image source data is incorrect.             |
+| 62980111| The image source data is incomplete.           |
+| 62980112 | The image format does not match. |
+| 62980113 | Unknown image format. |
+| 62980115 | Invalid image parameter. |
+| 62980116 | Failed to decode the image. |
+| 62980118| Failed to create the image plugin.             |
+| 62980122 | The image decoding header is abnormal. |
+| 62980137 | Invalid media operation. |
+| 62980173 | The DMA memory does not exist. |
+| 62980174 | The DMA memory data is abnormal. |
 
 **示例：**
 
@@ -2265,23 +2353,23 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed             |
-| 62980099 | If the shared memory data abnormal  |
-| 62980101 | If the image data abnormal          |
-| 62980103 | If the image data unsupport         |
-| 62980106 | If the image too large              |
-| 62980109 | If the image crop failed            |
-| 62980110 | If the image source data error      |
-| 62980111 | If the image source data incomplete |
-| 62980112 | If the image format mismatch        |
-| 62980113 | If the image format unknown         |
-| 62980115 | If the image invalid parameter      |
-| 62980116 | If the image decode failed          |
-| 62980118 | If the image plugin create failed   |
-| 62980122 | If the image decode head abnormal   |
-| 62980137 | If the media invalid operation      |
-| 62980173 | If the DMA memory not exist         |
-| 62980174 | If the DMA memory data abnormal     |
+| 62980096 | The operation failed.             |
+| 62980099 | The shared memory data is abnormal.  |
+| 62980101 | The image data is abnormal.          |
+| 62980103 | The image data is not supported.         |
+| 62980106 | The image is too large.              |
+| 62980109 | Failed to crop the image.            |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.       |
+| 62980113 | Unknown image format.        |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.         |
+| 62980118 | Failed to create the image plugin.   |
+| 62980122 | The image decoding header is abnormal.   |
+| 62980137 | Invalid media operation.     |
+| 62980173 | The DMA memory does not exist.        |
+| 62980174 | The DMA memory data is abnormal.    |
 
 **示例：**
 
@@ -2317,23 +2405,23 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed             |
-| 62980099 | If the shared memory data abnormal  |
-| 62980101 | If the image data abnormal          |
-| 62980103 | If the image data unsupport         |
-| 62980106 | If the image too large              |
-| 62980109 | If the image crop failed            |
-| 62980110 | If the image source data error      |
-| 62980111 | If the image source data incomplete |
-| 62980112 | If the image format mismatch        |
-| 62980113 | If the image format unknown         |
-| 62980115 | If the image invalid parameter      |
-| 62980116 | If the image decode failed          |
-| 62980118 | If the image plugin create failed   |
-| 62980122 | If the image decode head abnormal   |
-| 62980137 | If the media invalid operation      |
-| 62980173 | If the DMA memory not exist         |
-| 62980174 | If the DMA memory data abnormal     |
+| 62980096 | The operation failed.            |
+| 62980099 | The shared memory data is abnormal.  |
+| 62980101 | The image data is abnormal.         |
+| 62980103 | The image data is not supported.        |
+| 62980106 | The image is too large.              |
+| 62980109 | Failed to crop the image.           |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.        |
+| 62980113 | Unknown image format.         |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.         |
+| 62980118 | Failed to create the image plugin.  |
+| 62980122 | The image decoding header is abnormal.   |
+| 62980137 | Invalid media operation.      |
+| 62980173 | The DMA memory does not exist.         |
+| 62980174 | The DMA memory data is abnormal.     |
 
 **示例：**
 
@@ -2376,17 +2464,17 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980112 | If the image format mismatch |
-| 62980113| If the image format unknown |
-| 62980115 | If the image invalid parameter |
-| 62980116| If the image decode failed |
-| 62980118| If the image plugin create failed |
-| 62980122| If the image decode head abnormal |
-| 62980137 | If the media invalid operation |
-| 62980149 | If the media invalid parameter |
+| 62980096| The operation failed.              |
+| 62980110| The image source data is incorrect.             |
+| 62980111| The image source data is incomplete.            |
+| 62980112 | The image format does not match. |
+| 62980113| Unknown image format. |
+| 62980115 | Invalid image parameter. |
+| 62980116| Failed to decode the image. |
+| 62980118| Failed to create the image plugin. |
+| 62980122| The image decoding header is abnormal. |
+| 62980137 | Invalid media operation. |
+| 62980149 | Invalid media parameter. |
 
 **示例：**
 
@@ -2421,17 +2509,17 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed             |
-| 62980110 | If the image source data error      |
-| 62980111 | If the image source data incomplete |
-| 62980112 | If the image format mismatch        |
-| 62980113 | If the image format unknown         |
-| 62980115 | If the image invalid parameter      |
-| 62980116 | If the image decode failed          |
-| 62980118 | If the image plugin create failed   |
-| 62980122 | If the image decode head abnormal   |
-| 62980137 | If the media invalid operation      |
-| 62980149 | If the media invalid parameter      |
+| 62980096 | The operation failed.             |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.        |
+| 62980113 | Unknown image format.         |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.          |
+| 62980118 | Failed to create the image plugin.  |
+| 62980122 | The image decoding header is abnormal.   |
+| 62980137 | Invalid media operation.      |
+| 62980149 | Invalid media parameter.      |
 
 **示例：**
 
@@ -2464,16 +2552,16 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error |
-| 62980111| If the image source data incomplete |
-| 62980112 | If the image format mismatch |
-| 62980113| If the image format unknown |
-| 62980115 | If the image invalid parameter |
-| 62980116| If the image decode failed |
-| 62980118| If the image plugin create failed |
-| 62980122| If the image decode head abnormal |
-| 62980137 | If the media invalid operation |
+| 62980096| The operation failed.              |
+| 62980110| The image source data is incorrect. |
+| 62980111| The image source data is incomplete. |
+| 62980112| The image format does not match. |
+| 62980113| Unknown image format. |
+| 62980115| Invalid image parameter. |
+| 62980116| Failed to decode the image. |
+| 62980118| Failed to create the image plugin. |
+| 62980122| The image decoding header is abnormal. |
+| 62980137| Invalid media operation. |
 
 **示例：**
 
@@ -2508,16 +2596,16 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed             |
-| 62980110 | If the image source data error      |
-| 62980111 | If the image source data incomplete |
-| 62980112 | If the image format mismatch        |
-| 62980113 | If the image format unknown         |
-| 62980115 | If the image invalid parameter      |
-| 62980116 | If the image decode failed          |
-| 62980118 | If the image plugin create failed   |
-| 62980122 | If the image decode head abnormal   |
-| 62980137 | If the media invalid operation      |
+| 62980096 | The operation failed.             |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.        |
+| 62980113 | Unknown image format.         |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.          |
+| 62980118 | Failed to create the image plugin.   |
+| 62980122 | The image decoding header is abnormal.  |
+| 62980137 | Invalid media operation.      |
 
 **示例：**
 
@@ -2983,9 +3071,8 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
+| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -2993,6 +3080,14 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 | 类型                             | 说明                                    |
 | -------------------------------- | --------------------------------------- |
 | [ImageReceiver](#imagereceiver9) | 如果操作成功，则返回ImageReceiver实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401| The parameter check failed.            |
 
 **示例：**
 
@@ -3020,8 +3115,9 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| size    | [Size](#size)  | 是   | 图像的默认大小。       |
-| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
+| width    | number | 是   | 图像的默认宽度。       |
+| height   | number | 是   | 图像的默认高度。       |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -3304,6 +3400,15 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 | 类型                           | 说明                                    |
 | ------------------------------ | --------------------------------------- |
 | [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401| The parameter check failed.            |
 
 **示例：**
 
@@ -3716,7 +3821,7 @@ img.release().then(() =>{
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | 是   | 是   | 像素。                                                       |
 | offset | number             | 是   | 是   | 偏移量。                                                     |
-| stride | number             | 是   | 是   | 像素间距，stride >= region.size.width*4。                   |
+| stride | number             | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
 | region | [Region](#region7) | 是   | 是   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo

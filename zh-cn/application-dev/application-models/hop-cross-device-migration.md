@@ -29,9 +29,9 @@
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
-1. 在源端，通过`UIAbility`的[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调，开发者可以保存待接续的业务数据。例如，在浏览器应用中完成跨端迁移，开发者需要使用[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调保存页面URL等业务内容，而系统将自动保存页面状态，如当前浏览进度。
+1. 在源端，通过`UIAbility`的[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调，开发者可以保存待接续的业务数据。例如，在浏览器应用中完成跨端迁移，开发者需要使用[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调保存页面URL等业务内容，而系统将自动保存页面状态，如当前浏览进度。
 2. 分布式框架提供了跨设备应用界面、页面栈以及业务数据的保存和恢复机制，它负责将数据从源端发送到对端。 
-3. 在对端，同一`UIAbility`可以通过[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)接口来恢复业务数据。
+3. 在对端，同一`UIAbility`可以通过[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)（冷启动）和[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)（热启动）接口来恢复业务数据。
 
 
 ## 约束限制
@@ -61,13 +61,13 @@
    >
    > 根据需要配置应用启动模式类型，配置详情请参照[UIAbility组件启动模式](uiability-launch-type.md)。
 
-2. 在源端`UIAbility`中实现[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调。
+2. 在源端`UIAbility`中实现[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调。
 
-   当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调在源端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
+   当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-   - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与源端应用版本号做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
-   - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调的返回值决定是否支持此次迁移。
+   - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与源端应用版本号做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
+   - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移。
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -102,9 +102,9 @@
    ```
 
 3. 源端设备`UIAbility`实例在冷启动和热启动情况下分别会调用不同的接口来恢复数据和加载UI。  
-   在对端设备的`UIAbility`中，需要实现[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)接口来恢复迁移数据。
+   在对端设备的`UIAbility`中，需要实现[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口来恢复迁移数据。
 
-   通过在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调中检查`launchReason`，可以判断此次启动是否有迁移触发。开发者可以从`want`中获取之前保存的迁移数据，并在数据恢复后调用`restoreWindowStage()`来触发页面恢复，包括页面栈信息。
+   通过在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中检查`launchReason`，可以判断此次启动是否有迁移触发。开发者可以从`want`中获取之前保存的迁移数据，并在数据恢复后调用`restoreWindowStage()`来触发页面恢复，包括页面栈信息。
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -115,12 +115,12 @@
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   export default class EntryAbility extends UIAbility {
+   export default class MigrationAbility extends UIAbility {
      storage : LocalStorage = new LocalStorage();
    
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-       if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
          // 将上述的保存的数据取出恢复
          let continueInput = '';
          if (want.parameters !== undefined) {
@@ -217,6 +217,7 @@ struct Page_MigrationAbilityFirst {
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
+import promptAction from '@ohos.promptAction';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -234,9 +235,6 @@ struct Page_MigrationAbilityFirst {
       // 点击该按钮时，将应用设置为可迁移状态
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-        promptAction.showToast({
-          message: $r('app.string.Success')
-        });
       });
     })
   }
@@ -245,7 +243,7 @@ struct Page_MigrationAbilityFirst {
 
 ### **保证迁移连续性**
 
-由于迁移加载时，对端拉起的应用可能执行过自己的迁移状态设置命令（例如，冷启动时对端在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)中设置了 **INACTIVE** ；热启动时对端已打开了不可迁移的页面，迁移状态为 **INACTIVE** 等情况）。为了保证迁移过后的应用依然具有可以迁移回源端的能力，应在 [`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)的迁移调用判断中，将迁移状态设置为 **ACTIVE** 。
+由于迁移加载时，对端拉起的应用可能执行过自己的迁移状态设置命令（例如，冷启动时对端在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)中设置了 **INACTIVE** ；热启动时对端已打开了不可迁移的页面，迁移状态为 **INACTIVE** 等情况）。为了保证迁移过后的应用依然具有可以迁移回源端的能力，应在 [`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)的迁移调用判断中，将迁移状态设置为 **ACTIVE** 。
 
 ```ts
 // MigrationAbility.ets
@@ -266,7 +264,7 @@ export default class MigrationAbility extends UIAbility {
       hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
     });
   }
-
+  
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
@@ -351,42 +349,51 @@ export default class MigrationAbility extends UIAbility {
   > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
   >
   > 如果涉及分布式对象和分布式文件迁移时应注意：
-  > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
-  > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
+  > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+  > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 ### 使用wantParam迁移数据
 
 在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import distributedObject from '@ohos.data.distributedDataObject';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   // 源端保存
-  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
     const continueInput = '迁移的数据';
-    wantParam['data'] = continueInput;
+    wantParam.data = continueInput;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
   // 对端恢复
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // 将上述的保存的数据取出恢复
       let continueInput = '';
-      if (want.parameters != undefined) {
+      if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
       }
     }
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // get user data from want params
       let continueInput = '';
-      if (want.parameters != undefined) {
+      if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
     }
   }
@@ -477,6 +484,15 @@ import hilog from '@ohos.hilog';
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
+// 示例数据结构
+class SourceObject {
+  notesTitle?: string;
+
+  constructor(notesTitle: string) {
+    this.notesTitle = notesTitle;
+  }
+}
+
 export default class EntryAbility extends UIAbility {
   d_object?: distributedObject.DataObject;
   // ...
@@ -549,7 +565,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 ​		DevEco的自动签名模板默认签名权限为normal级。而本应用设计到ohos.permission.MANAGE_MISSIONS权限为system_core级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为system_core级别，然后签名。
 
-​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
+​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal"改为"apl":"system_core"。
 
 1. 点击file->Project Structure。  
    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)

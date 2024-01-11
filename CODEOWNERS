@@ -147,7 +147,7 @@ zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @shuaytao 
 zh-cn/application-dev/reference/apis/js-apis-display.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
+zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183 @wyl @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-emitter.md @jayleehw @huipeizi @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-errorManager.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen

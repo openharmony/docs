@@ -5,13 +5,11 @@
 
 The **OhosImageSize** struct defines the image size.
 
-**Since**
+**System capability**: SystemCapability.Multimedia.Image
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

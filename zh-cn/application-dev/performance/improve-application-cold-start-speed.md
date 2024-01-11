@@ -24,13 +24,13 @@
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntrance": "./ets/entryability/EntryAbility.ts",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startWindowIcon",  // 在这里修改启动页图标，建议不要超过256像素x256像素
+        "startWindowIcon": "$media:startIcon", // 在这里修改启动页图标，建议不要超过256像素x256像素
         "startWindowBackground": "$color:start_window_background",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -112,7 +112,7 @@ export default class EntryAbility extends UIAbility {
 
 ### 避免在AbilityStage生命周期回调接口进行耗时操作
 
-在应用启动流程中，系统会执行Ability的生命周期回调函数。因此，不建议在这些回调函数中执行耗时过长的操作，耗时操作建议通过异步任务延迟处理或者放到其他线程执行。
+在应用启动流程中，系统会执行AbilityStage的生命周期回调函数。因此，不建议在这些回调函数中执行耗时过长的操作，耗时操作建议通过异步任务延迟处理或者放到其他线程执行。
 
 在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[AbilityStage组件容器](../application-models/abilitystage.md)
 
@@ -123,16 +123,15 @@ const LARGE_NUMBER = 10000000;
 const DELAYED_TIME = 1000;
 
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    // 应用的HAP在首次加载的时，为该Module初始化操作
+  onCreate(): void {
     // 耗时操作
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
   }
 
-  onAcceptWant(want: Want) {
+  onAcceptWant(want: Want): string {
     // 仅specified模式下触发
-    return "MyAbilityStage";
+    return 'MyAbilityStage';
   }
 
   computeTask(): void {
@@ -183,6 +182,41 @@ export default class EntryAbility extends UIAbility {
     // 耗时操作
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
+  }
+
+  onDestroy(): void {
+    logger.info('Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    logger.info('Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        logger.error('Failed to load the content. Cause: ' + JSON.stringify(err) ?? '');
+        return;
+      }
+      logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data) ?? '');
+    });
+
+    // 耗时操作
+    // this.computeTask();
+    this.computeTaskAsync(); // 异步任务
+  }
+
+  onWindowStageDestroy(): void {
+    logger.info('Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    logger.info('Ability onForeground');
+    // 耗时操作
+    // this.computeTask();
+    this.computeTaskAsync(); // 异步任务
+  }
+
+  onBackground(): void {
+    logger.info('Ability onBackground');
   }
 
   computeTask(): void {

@@ -6,10 +6,20 @@
 >
 >  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 属性
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| foregroundBlurStyle | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br/>options?:[ForegroundBlurStyleOptions](#foregroundblurstyleoptions10对象说明) | 为当前组件提供内容模糊能力。<br/>value: 内容模糊样式。模糊样式由模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数组成。<br/>options: 可选参数，内容模糊选项。 |
+## foregroundBlurStyle
+
+foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
+
+为当前组件提供内容模糊能力。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 是   | 内容模糊样式。模糊样式由模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数组成。 |
+| options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。                                     |
 
 ## ForegroundBlurStyleOptions对象说明
 
@@ -21,8 +31,6 @@
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
 
 ## 示例
-
-### 示例1
 
 ```ts
 // xxx.ets

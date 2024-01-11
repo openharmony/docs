@@ -43,33 +43,33 @@ ListItem(value?: string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
-| editable<sup>(deprecated)</sup>  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃。<br/>默认值：false |
+| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
+| editable<sup>(deprecated)</sup>  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃不再使用，无替代接口。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
 | selected<sup>10+</sup> | boolean | 设置当前ListItem选中状态。该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)前使用才能生效选中态样式。<br/>默认值：false|
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>end?:CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>- start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。<br/> - 滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。 |
+| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>end?:[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>- start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。<br/> - 滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。 |
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
-从API version9开始废弃，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
-| 名称 | 描述 |
-| -------- | -------- |
-| None | 无吸顶效果。 |
-| Normal | 当前item吸顶。 |
-| Opacity | 当前item吸顶显示透明度变化效果。 |
+从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| None |  0  | 无吸顶效果。 |
+| Normal |  1  | 当前item吸顶。 |
+| Opacity |  2  | 当前item吸顶显示透明度变化效果。 |
 
 ## EditMode<sup>(deprecated)</sup>枚举说明
-从API version9开始废弃。
-| 名称     | 描述        |
-| ------ | --------- |
-| None   | 编辑操作不限制。    |
-| Deletable | 可删除。 |
-| Movable | 可移动。 |
+从API version9开始废弃不再使用，无替代接口。
+| 名称     | 枚举值 | 描述        |
+| ------ | ------ | --------- |
+| None   |  0  | 编辑操作不限制。    |
+| Deletable |  1  | 可删除。 |
+| Movable |  2  | 可移动。 |
 
 ## SwipeEdgeEffect<sup>9+</sup>枚举说明
-| 名称 | 描述 |
-| -------- | -------- |
-| Spring | ListItem划动距离超过划出组件大小后可以继续划动。如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，松手后按照弹簧阻尼曲线回弹。 |
-| None | ListItem划动距离不能超过划出组件大小。如果设置了删除区域，ListItem划动距离不能超过删除阈值，并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
+| 名称     | 枚举值 | 描述        |
+| ------ | ------ | --------- |
+|   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
+|   None   |    1    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
 
 ## SwipeActionItem<sup>10+</sup>对象说明
 List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选项或向左滑动时，item右边的长距离滑动删除选项。
@@ -81,7 +81,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。|
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
-| builder |  CustomBuilder | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
 | onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 |
 ## ListItemOptions<sup>10+</sup>对象说明
 
@@ -93,22 +93,22 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 | 名称                         | 参数类型                 | 必填 | 描述                                                         |
 | ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void | 否   | 当列表项向右或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位 |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void | 否   | 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位 |
 
 ## ListItemStyle<sup>10+</sup>枚举说明
 
-| 名称 | 描述               |
-| ---- | ------------------ |
-| NONE | 无样式。           |
-| CARD | 显示默认卡片样式。 |
+| 名称 | 枚举值  | 描述               |
+| ---- | ---- | ------------------ |
+| NONE | 0 | 无样式。           |
+| CARD | 1 | 显示默认卡片样式。 |
 
 ## SwipeActionState<sup>11+</sup>枚举说明
 
-| 名称      | 描述                                                         |
-| --------- | ------------------------------------------------------------ |
-| COLLAPSED | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
-| EXPANDED  | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
-| ACTIONING | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明**:<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
+| 名称      | 枚举值     | 描述                                                         |
+| --------- | --------- | ------------------------------------------------------------ |
+| COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
+| EXPANDED  | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明**:<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
 
 ## 事件
 
@@ -246,7 +246,7 @@ struct ListItemExample3 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // 浅蓝色的List
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })

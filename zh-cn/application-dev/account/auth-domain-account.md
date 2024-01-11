@@ -12,11 +12,11 @@ import account_osAccount from '@ohos.account.osAccount';
 
 ## 使用密码认证域帐号
 
-用户可以使用密码认证域帐号。开发者可以使用[auth](../reference/apis/js-apis-osAccount.md#auth10)接口完成此操作。此外使用该接口，应用还需要申请[ohos.permission.ACCESS_USER_AUTH_INTERNAL](../security/accesstoken-guidelines.md)权限。
+用户可以使用密码认证域帐号。开发者可以使用[auth](../reference/apis/js-apis-osAccount.md#auth10)接口完成此操作。此外使用该接口，应用还需要申请ohos.permission.ACCESS_USER_AUTH_INTERNAL权限。
 
 具体开发实例如下：
 
-1. 申请权限：ohos.permission.ACCESS_USER_AUTH_INTERNAL。申请流程请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+1. 申请权限：ohos.permission.ACCESS_USER_AUTH_INTERNAL。申请流程请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 2. 获取用户输入，包括域帐号信息和域帐号密码。
 

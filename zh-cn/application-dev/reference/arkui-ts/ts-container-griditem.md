@@ -14,7 +14,7 @@
 
 ## 接口
 
-### GridItem<sup>11+</sup>
+### GridItem
 
 GridItem(value?: GridItemOptions)
 
@@ -22,14 +22,7 @@ GridItem(value?: GridItemOptions)
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有GridItemStyle枚举类型的style参数。 |
-
-### GridItem<sup>(deprecated)</sup>
-
-GridItem()
-
-从API version 11开始, 该接口不再维护，推荐使用GridItem<sup>11+</sup>。
-
+| value<sup>11+</sup>  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
 ## 属性
 
@@ -41,7 +34,7 @@ GridItem()
 | columnEnd | number | 指定当前元素终点列号。 |
 | forceRebuild<sup>(deprecated)</sup> | boolean | 设置在触发组件build时是否重新创建此节点。<br/>从API version9开始废弃。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。<br/>默认值：true |
-| selected<sup>10+</sup> | boolean | 设置当前GridItem选中状态。该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles)前使用才能生效选中态样式。<br/>默认值：false|
+| selected<sup>10+</sup> | boolean | 设置当前GridItem选中状态。该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。<br/>默认值：false|
 
 >  **说明：**
 >
@@ -71,10 +64,10 @@ GridItem()
 
 ## GridItemStyle<sup>11+</sup>枚举说明
 
-| 名称  | 描述                     |
-| ----- | ------------------------ |
-| NONE  | 无样式。                 |
-| PLAIN | 显示Hover、Press态样式。 |
+| 名称  |枚举值| 描述                     |
+| ----- |----| ------------------------ |
+| NONE  |  0 | 无样式。                 |
+| PLAIN |  1 | 显示Hover、Press态样式。 |
 
 > **说明：**
 >

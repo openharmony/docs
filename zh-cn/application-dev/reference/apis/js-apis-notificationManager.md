@@ -1311,10 +1311,6 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型                  | 必填 | 说明                     |
@@ -1356,10 +1352,6 @@ isNotificationEnabled(): Promise\<boolean\>
 获取通知使能状态（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -2459,18 +2451,15 @@ import Base from '@ohos.base';
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 let notificationKey: notificationSubscribe.NotificationKey = {
     id: 11,
     label: ""
 };
-
-let filter = {
+let filter: notificationManager.NotificationFilter = {
     bundle: bundleOption,
-    key: notificationKey,
+    notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-
 let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
     if (err) {
         console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
@@ -2478,7 +2467,6 @@ let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: noti
         console.info("getActiveNotificationByFilter success");
     }
 }
-
 notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
 ```
 
@@ -2524,18 +2512,15 @@ import Base from '@ohos.base';
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 let notificationKey: notificationSubscribe.NotificationKey = {
     id: 11,
     label: ""
 };
-
-let filter = {
+let filter: notificationManager.NotificationFilter = {
     bundle: bundleOption,
-    key: notificationKey,
+    notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-
 notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -4835,17 +4820,16 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 ```ts
 import Base from '@ohos.base';
-import notificationManager from '@ohos.notificationManager';
 
 // 包信息
 let bundle: notificationManager.BundleOption = {
-  bundle: "bundleName1",
+    bundle: "bundleName1",
 };
 // 通知ID
 let notificationId = 1;
 // 按钮信息
 let buttonOptions: notificationManager.ButtonOptions = {
-  buttonName: "buttonName1",
+    buttonName: "buttonName1",
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
   console.info("triggerSystemLiveView success");

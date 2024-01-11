@@ -16,13 +16,16 @@
 
 ## 开发步骤
 
-1. 需要申请`ohos.permission.COMMONEVENT_STICKY`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 需要申请`ohos.permission.COMMONEVENT_STICKY`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
 2. 导入模块。
 
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 3. 调用[`removeStickyCommonEvent()`](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。

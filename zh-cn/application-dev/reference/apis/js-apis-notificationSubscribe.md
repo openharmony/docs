@@ -179,7 +179,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 ```
 
 
-## notificationSubscribe.subscribeSelf<sup>10+</sup>
+## notificationSubscribe.subscribeSelf<sup>11+</sup>
 
 subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 

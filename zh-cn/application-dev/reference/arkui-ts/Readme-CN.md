@@ -75,8 +75,10 @@
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
   - [CalendarPicker](ts-basic-components-calendarpicker.md)
+  - [Component3D](ts-basic-components-component3d.md)
   - [Checkbox](ts-basic-components-checkbox.md)
   - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
+  - [ContainerSpan](ts-basic-components-containerspan.md)
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)
@@ -110,6 +112,8 @@
   - [Span](ts-basic-components-span.md)
   - [Stepper](ts-basic-components-stepper.md)
   - [StepperItem](ts-basic-components-stepperitem.md)
+  - [SymbolSpan](ts-basic-components-symbolSpan.md)
+  - [SymbolGlyph](ts-basic-components-symbolGlyph.md)
   - [Text](ts-basic-components-text.md)
   - [TextArea](ts-basic-components-textarea.md)
   - [TextClock](ts-basic-components-textclock.md)
@@ -204,6 +208,7 @@
 - 动画
   - [属性动画（animation）](ts-animatorproperty.md)
   - [显式动画（animateTo）](ts-explicit-animation.md)
+  - [关键帧动画（keyframeAnimateTo）](ts-keyframeAnimateTo.md)
   - 转场动画
     - [页面间转场（pageTransition）](ts-page-transition-animation.md)
     - [组件内转场（transition）](ts-transition-animation-component.md)

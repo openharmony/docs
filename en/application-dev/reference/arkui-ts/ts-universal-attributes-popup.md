@@ -8,13 +8,20 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 >  
 > - The visibility of the popup is returned through the **onStateChange** event callback. There is no strong mapping between the visibility and the creation or destruction of the component.
 
+## bindPopup
 
-## APIs
+bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
+Binds a popup to the component.
 
-| Name       | Type                                    | Description                                      |
-| --------- | ---------------------------------------- | ---------------------------------------- |
-| bindPopup | show: boolean,<br>popup: [PopupOptions](#popupoptions) \| [CustomPopupOptions](#custompopupoptions8)<sup>8+</sup> | Binds a popup to the component.<br>**show**: whether to show the popup. The default value is **false**, indicating that the popup is hidden. As the popup can be displayed only after building of all pages is completed, **show** cannot be set to **true** during page building. Otherwise, the display position and shape of the popup will be incorrect.<br>**popup**: parameters of the popup.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| show   | boolean                                                      | Yes  | Whether to show the popup. The default value is **false**, indicating that the popup is hidden. As the popup can be displayed only after building of all pages is completed, **show** cannot be set to **true** during page building. Otherwise, the display position and shape of the popup will be incorrect.|
+| popup  | [PopupOptions](#popupoptions) \| [CustomPopupOptions](#custompopupoptions8)<sup>8+</sup> | Yes  | Parameters of the popup.                                          |
 
 ## PopupOptions
 
@@ -33,10 +40,14 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | placement<sup>10+</sup>               | [Placement](ts-appendix-enums.md#placement8)                 | No  | Position of the popup relative to the target. The default value is **Placement.Bottom**.<br>If both **placementOnTop** and **placement** are set, the latter prevails.|
 | offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
 | enableArrow<sup>10+</sup>             | boolean                                                      | No  | Whether to display the arrow.<br>Default value: **true**                         |
-| popupColor<sup>11+</sup>              | [Color](ts-appendix-enums.md#color) \| string \| number \| [Resource](ts-types.md#resource) | No  | Color of the popup.<br>Default value: **'#4d4d4d'**                      |
+| popupColor<sup>11+</sup>              | [Color](ts-appendix-enums.md#color) \|string\|number \| [Resource](ts-types.md#resource) | No  | Color of the popup.<br>Default value: [TRANSPARENT](ts-appendix-enums.md#color) plus [COMPONENT_ULTRA_THICK](ts-appendix-enums.md#blurstyle9)|
 | autoCancel<sup>11+</sup>              | boolean                                                      | No  | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**           |
-| width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | No  | Width of the popup.                                                  |
+| width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | No  | Width of the popup.<br>**NOTE**<br>When **showInSubWindow** is set to **true**, the maximum height of the popup is the height of the device screen. When **showInSubWindow** is set to **false**, the maximum height is the height of the application window. Allowable height = Maximum height – Status bar height (0 if there is no status bar) – Dock height (0 if there is no dock) – 40 VP – 40 VP.|
 | arrowPointPosition<sup>11+</sup>      | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | No  | Position of the popup arrow relative to its parent component. Available positions are **Start**, **Center**, and **End**, in both vertical and horizontal directions. All these positions are within the parent component area.|
+| arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Arrow thickness.<br>Default value: **16.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
+| arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Arrow height.<br>Default value: **8.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
+| radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Rounded corner radius of the popup.<br>Default value: **20.0_vp**                         |
+| shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)    | No  | Popup shadow.<br>Default value: **ShadowStyle.OUTER_DEFAULT_MD**     |
 
 ## PopupMessageOptions<sup>10+</sup>
 
@@ -50,9 +61,9 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                      | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Popup builder.<br>**NOTE**<br>The **popup** attribute is a universal attribute. A custom popup does not support display of another popup. The **position** attribute cannot be used for the first-layer container in the builder. If the **position** attribute is used, the popup will not be displayed. If a custom component is used in the builder, the **aboutToAppear** and **aboutToDisappear** lifecycle callbacks of the custom component are irrelevant to the visibility of the popup. As such, the lifecycle of the custom component cannot be used to determine whether the popup is displayed or not.                             |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | No   | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
-| popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the popup.<br>Default value: **'#4d4d4d'**|
+| popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the popup.<br>The default value varies by API version.<br>API version 10: **'#4d4d4d'**<br>API version 11 and later: [TRANSPARENT](ts-appendix-enums.md#color) plus [COMPONENT_ULTRA_THICK]. (ts-appendix-enums.md#blurstyle9)|
 | enableArrow                  | boolean                                  | No   | Whether to display an arrow.<br>Since API version 9, if the position set for the popup is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left**, but the popup height (80 vp) is less than the sum of the arrow width (32 vp) and diameter of popup rounded corner (48 vp), the arrow will not be displayed.<br>Default value: **true**|
-| autoCancel                   | boolean                                  | No   | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**           |
+| autoCancel                   | boolean                                  | No   | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**<br>**NOTE**<br>To enable the popup to disappear upon a click on it, place a layout component in the builder, place the [\<Popup>](ohos-arkui-advanced-popup.md#popup) component in the layout component, and modify the value of the **bindPopup** variable (show: boolean) in the **onClick** event of the layout component.|
 | onStateChange                | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.                |
 | arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length) | No   | Offset of the popup arrow relative to the popup. When the arrow is at the top or bottom of the popup: The value **0** indicates that the arrow is located on the leftmost, and any other value indicates the distance from the arrow to the leftmost; the arrow is centered by default. When the arrow is on the left or right side of the popup: The value indicates the distance from the arrow to the top; the arrow is centered by default. When the popup is displayed on either edge of the screen, it will automatically deviate leftward or rightward to stay within the safe area. When the value is 0, the arrow always points to the bound component.|
 | showInSubWindow<sup>9+</sup> | boolean                                  | No   | Whether to show the popup in the subwindow. The default value is **false**.                   |
@@ -60,9 +71,14 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | mask<sup>10+</sup>           | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No   | Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | No   | Space between the popup and the target.                          |
 | offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
-| width<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | No| Width of the popup.|
+| width<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | No| Width of the popup.<br>**NOTE**<br>When **showInSubWindow** is set to **true**, the maximum height of the popup is the height of the device screen. When **showInSubWindow** is set to **false**, the maximum height is the height of the application window. Allowable height = Maximum height – Status bar height (0 if there is no status bar) – Dock height (0 if there is no dock) – 40 VP – 40 VP.|
 | arrowPointPosition<sup>11+</sup> | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | No| Position of the popup arrow relative to its parent component. Available positions are **Start**, **Center**, and **End**, in both vertical and horizontal directions. All these positions are within the parent component area.|
+| arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Arrow thickness.<br>Default value: **16.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
+| arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Arrow height.<br>Default value: **8.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
+| radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Rounded corner radius of the popup.<br>Default value: **20.0_vp**                         |
+| shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)    | No  | Popup shadow.<br>Default value: **ShadowStyle.OUTER_DEFAULT_MD**     |
 
+## 
 
 ## Example
 
@@ -296,7 +312,6 @@ struct PopupExample {
         text: 'This is the message',
         fontSize: 15,
         fontColor: Color.Black,
-        fontWeight: FontWeight.Normal,
       } as PopupTextOptions,
       showClose: false,
       onClose: () => {
@@ -381,3 +396,35 @@ struct PopupExample {
 ```
 
 ![](figures/popup_6.png)
+
+### Example 7
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State customPopup: boolean = false
+
+  build() {
+    Column() {
+      Button("popup")
+        .onClick(()=>{
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          message: "this is a popup",
+          popupColor: Color.Pink,
+          arrowHeight: 20,
+          arrowWidth: 20,
+          radius: 20,
+          shadow: ShadowStyle.OUTER_DEFAULT_XS
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![](figures/popup_8.png)

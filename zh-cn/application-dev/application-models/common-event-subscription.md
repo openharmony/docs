@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-动态订阅是指当应用在运行状态时对某个公共事件进行订阅，在运行期间如果有订阅的事件发布那么订阅了这个事件的应用将会收到该事件及其传递的参数。例如，某应用希望在其运行期间收到电量过低的事件，并根据该事件降低其运行功耗，那么该应用便可动态订阅电量过低事件，收到该事件后关闭一些非必要的任务来降低功耗。订阅部分系统公共事件需要先[申请权限](../security/accesstoken-guidelines.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../reference/apis/js-apis-commonEventManager.md#support)。
+动态订阅是指当应用在运行状态时对某个公共事件进行订阅，在运行期间如果有订阅的事件发布那么订阅了这个事件的应用将会收到该事件及其传递的参数。例如，某应用希望在其运行期间收到电量过低的事件，并根据该事件降低其运行功耗，那么该应用便可动态订阅电量过低事件，收到该事件后关闭一些非必要的任务来降低功耗。订阅部分系统公共事件需要先[申请权限](../security/AccessToken/determine-application-mode.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../reference/apis/js-apis-commonEventManager.md#support)。
 
 
 ## 接口说明
@@ -25,15 +25,18 @@
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo)文档介绍。
    
    ```ts
    // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-   private subscriber: commonEventManager.CommonEventSubscriber | null = null;
+   let subscriber: commonEventManager.CommonEventSubscriber | null = null;
    // 订阅者信息
-   private subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
        events: ['usual.event.SCREEN_OFF'], // 订阅灭屏公共事件
    };
    ```
@@ -42,14 +45,13 @@
    
    ```ts
    // 创建订阅者回调
-   commonEventManager.createSubscriber(this.subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
+   commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
-       Logger.error(TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     Logger.info(TAG, 'Succeeded in creating subscriber.');
-     this.subscriber = data;
-     
+     console.info('Succeeded in creating subscriber.');
+     subscriber = data;
      // 订阅公共事件回调
      ...
    })
@@ -60,18 +62,13 @@
    ```ts
    // 订阅公共事件回调
    if (this.subscriber !== null) {
-     commonEventManager.subscribe(this.subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+     commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
-         Logger.error(TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
-       promptAction.showToast({
-         message: JSON.stringify(data)
-       });
-       Logger.info(TAG, `Receive CommonEventData = ` + JSON.stringify(data));
      })
-    ...
    } else {
-     Logger.error(TAG, `Need create subscriber`);
+     console.error(`Need create subscriber`);
    }
    ```

@@ -25,8 +25,8 @@ ArkTS通过声明引入变量、常量、函数和类型。
 以关键字`let`开头的声明引入变量，该变量在程序执行期间可以具有不同的值。
 
 ```typescript
-let hi: string = 'hello'
-hi = 'hello, world'
+let hi: string = 'hello';
+hi = 'hello, world';
 ```
 
 #### 常量声明
@@ -34,7 +34,7 @@ hi = 'hello, world'
 以关键字`const`开头的声明引入只读常量，该常量只能被赋值一次。
 
 ```typescript
-const hello: string = 'hello'
+const hello: string = 'hello';
 ```
 
 对常量重新赋值会造成编译时错误。
@@ -48,8 +48,8 @@ const hello: string = 'hello'
 以下示例中，两条声明语句都是有效的，两个变量都是`string`类型：
 
 ```typescript
-let hi1: string = 'hello'
-let hi2 = 'hello, world'
+let hi1: string = 'hello';
+let hi2 = 'hello, world';
 ```
 
 ### 类型
@@ -77,16 +77,16 @@ ArkTS提供`number`和`Number`类型，任何整数和浮点数都可以被赋�
 示例：
 
 ```typescript
-let n1 = 3.14
-let n2 = 3.141592
-let n3 = .5
-let n4 = 1e10
+let n1 = 3.14;
+let n2 = 3.141592;
+let n3 = .5;
+let n4 = 1e10;
 
 function factorial(n: number): number {
   if (n <= 1) {
-    return 1
+    return 1;
   }
-  return n * factorial(n - 1)
+  return n * factorial(n - 1);
 }
 ```
 
@@ -97,12 +97,12 @@ function factorial(n: number): number {
 通常在条件语句中使用`boolean`类型的变量：
 
 ```typescript
-let isDone: boolean = false
+let isDone: boolean = false;
 
 // ...
 
 if (isDone) {
-  console.log ('Done!')
+  console.log ('Done!');
 }
 ```
 
@@ -113,10 +113,10 @@ if (isDone) {
 字符串字面量由单引号（'）或双引号（'）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
 
 ```typescript
-let s1 = 'Hello, world!\n'
-let s2 = 'this is a string'
-let a = 'Success'
-let s3 = `The result is ${a}`
+let s1 = 'Hello, world!\n';
+let s2 = 'this is a string';
+let a = 'Success';
+let s3 = `The result is ${a}`;
 ```
 
 #### `Void`类型
@@ -143,7 +143,7 @@ let instance: Class <void>
 以下示例将创建包含三个元素的数组：
 
 ```typescript
-let names: string[] = ['Alice', 'Bob', 'Carol']
+let names: string[] = ['Alice', 'Bob', 'Carol'];
 ```
 
 #### `Enum`类型
@@ -153,14 +153,14 @@ let names: string[] = ['Alice', 'Bob', 'Carol']
 
 ```typescript
 enum ColorSet { Red, Green, Blue }
-let c: ColorSet = ColorSet.Red
+let c: ColorSet = ColorSet.Red;
 ```
 
 常量表达式可以用于显式设置枚举常量的值。
 
 ```typescript
 enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
-let c: ColorSet = ColorSet.Black
+let c: ColorSet = ColorSet.Black;
 ```
 
 #### `Union`类型
@@ -180,9 +180,9 @@ class Frog {
 type Animal = Cat | Dog | Frog | number
 // Cat、Dog、Frog是一些类型（类或接口）
 
-let animal: Animal = new Cat()
-animal = new Frog()
-animal = 42
+let animal: Animal = new Cat();
+animal = new Frog();
+animal = 42;
 // 可以将类型为联合类型的变量赋值为任何组成类型的有效值
 ```
 
@@ -196,15 +196,15 @@ class Frog { sleep () {}; leap () {} }
 
 type Animal = Cat | Dog | Frog | number
 
-let animal: Animal = new Cat()
+let animal: Animal = new Frog();
 if (animal instanceof Frog) {
-  let frog: Frog = animal as Frog// animal在这里是Frog类型
-  animal.leap()
-  frog.leap()
+  let frog: Frog = animal as Frog; // animal在这里是Frog类型
+  animal.leap();
+  frog.leap();
   // 结果：青蛙跳了两次
 }
 
-animal.sleep () // 任何动物都可以睡觉
+animal.sleep (); // 任何动物都可以睡觉
 ```
 
 #### `Aliases`类型
@@ -212,10 +212,10 @@ animal.sleep () // 任何动物都可以睡觉
 `Aliases`类型为匿名类型（数组、函数、对象字面量或联合类型）提供名称，或为已有类型提供替代名称。
 
 ```typescript
-type Matrix = number[][]
-type Handler = (s: string, no: number) => string
-type Predicate <T> = (x: T) => Boolean
-type NullableObject = Object | null
+type Matrix = number[][];
+type Handler = (s: string, no: number) => string;
+type Predicate <T> = (x: T) => Boolean;
+type NullableObject = Object | null;
 ```
 
 ### 运算符
@@ -295,14 +295,14 @@ if (condition1) {
 条件表达式可以是任何类型。但是对于`boolean`以外的类型，会进行隐式类型转换：
 
 ```typescript
-let s1 = 'Hello'
+let s1 = 'Hello';
 if (s1) {
-  console.log(s1) // 打印“Hello”
+  console.log(s1); // 打印“Hello”
 }
 
-let s2 = 'World'
+let s2 = 'World';
 if (s2.length != 0) {
-  console.log(s2) // 打印“World”
+  console.log(s2); // 打印“World”
 }
 ```
 
@@ -357,8 +357,8 @@ condition ? expression1 : expression2
 示例：
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false
-let message = isValid ? 'Valid' : 'Failed'
+let isValid = Math.random() > 0.5 ? true : false;
+let message = isValid ? 'Valid' : 'Failed';
 ```
 
 #### `For`语句
@@ -384,9 +384,9 @@ for ([init]; [condition]; [update]) {
 示例：
 
 ```typescript
-let sum = 0
+let sum = 0;
 for (let i = 0; i < 10; i += 2) {
-  sum += i
+  sum += i;
 }
 ```
 
@@ -423,11 +423,11 @@ while (condition) {
 示例：
 
 ```typescript
-let n = 0
-let x = 0
+let n = 0;
+let x = 0;
 while (n < 3) {
-  n++
-  x += n
+  n++;
+  x += n;
 }
 ```
 
@@ -446,9 +446,9 @@ do {
 示例：
 
 ```typescript
-let i = 0
+let i = 0;
 do {
-  i += 1
+  i += 1;
 } while (i < 10)
 ```
 
@@ -459,7 +459,7 @@ do {
 示例：
 
 ```typescript
-let x = 0
+let x = 0;
 while (true) {
   x++;
   if (x > 5) {
@@ -490,12 +490,12 @@ label: while (true) {
 示例：
 
 ```typescript
-let sum = 0
+let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
     continue
   }
-  sum += x
+  sum += x;
 }
 ```
 
@@ -523,16 +523,16 @@ try {
 class ZeroDivisor extends Error {}
 
 function divide (a: number, b: number): number{
-  if (b == 0) throw new ZeroDivisor()
-  return a / b
+  if (b == 0) throw new ZeroDivisor();
+  return a / b;
 }
 
 function process (a: number, b: number) {
   try {
-    let res = divide(a, b)
-    console.log(res)
+    let res = divide(a, b);
+    console.log('result: ' + res);
   } catch (x) {
-    console.log('some error')
+    console.log('some error');
   }
 }
 ```
@@ -541,21 +541,21 @@ function process (a: number, b: number) {
 
 ```typescript
 function processData(s: string) {
-  let error: Error | null = null
+  let error: Error | null = null;
 
   try {
-    console.log('Data processed: ', s)
+    console.log('Data processed: ' + s);
     // ...
     // 可能发生异常的语句
     // ...
   } catch (e) {
-    error = e as Error
+    error = e as Error;
     // ...
     // 异常处理
     // ...
   } finally {
     if (error != null) {
-      console.log(`Error caught: input='${s}', message='${error.message}'`)
+      console.log(`Error caught: input='${s}', message='${error.message}'`);
     }
   }
 }
@@ -571,8 +571,8 @@ function processData(s: string) {
 
 ```typescript
 function add(x: string, y: string): string {
-  let z: string = `${x} ${y}`
-  return z
+  let z: string = `${x} ${y}`;
+  return z;
 }
 ```
 
@@ -585,9 +585,9 @@ function add(x: string, y: string): string {
 ```typescript
 function hello(name?: string) {
   if (name == undefined) {
-    console.log('Hello!')
+    console.log('Hello!');
   } else {
-    console.log('Hello, ${name}!')
+    console.log('Hello, ${name}!');
   }
 }
 ```
@@ -596,10 +596,10 @@ function hello(name?: string) {
 
 ```typescript
 function multiply(n: number, coeff: number = 2): number {
-  return n * coeff
+  return n * coeff;
 }
-multiply(2)  // 返回2*2
-multiply(2, 3) // 返回2*3
+multiply(2);  // 返回2*2
+multiply(2, 3); // 返回2*3
 ```
 
 ### Rest参数
@@ -608,10 +608,10 @@ multiply(2, 3) // 返回2*3
 
 ```typescript
 function sum(...numbers: number[]): number {
-  let res = 0
+  let res = 0;
   for (let n of numbers)
-    res += n
-  return res
+    res += n;
+  return res;
 }
 
 sum() // 返回0
@@ -624,10 +624,10 @@ sum(1, 2, 3) // 返回6
 
 ```typescript
 // 显式指定返回类型
-function foo(): string { return 'foo' }
+function foo(): string { return 'foo'; }
 
 // 推断返回类型为string
-function goo() { return 'goo' }
+function goo() { return 'goo'; }
 ```
 
 不需要返回值的函数的返回类型可以显式指定为`void`或省略标注。这类函数不需要返回语句。
@@ -635,8 +635,8 @@ function goo() { return 'goo' }
 以下示例中两种函数声明方式都是有效的：
 
 ```typescript
-function hi1() { console.log('hi') }
-function hi2(): void { console.log('hi') }
+function hi1() { console.log('hi'); }
+function hi2(): void { console.log('hi'); }
 ```
 
 ### 函数的作用域
@@ -653,16 +653,16 @@ function hi2(): void { console.log('hi') }
 
 ```typescript
 function join(x: string, y: string): string {
-  let z: string = `${x} ${y}`
-  return z
+  let z: string = `${x} ${y}`;
+  return z;
 }
 ```
 
 则此函数的调用需要包含两个`string`类型的参数：
 
 ```typescript
-let x = join('hello', 'world')
-console.log(x)
+let x = join('hello', 'world');
+console.log(x);
 ```
 
 ### 函数类型
@@ -673,10 +673,10 @@ console.log(x)
 type trigFunc = (x: number) => number // 这是一个函数类型
 
 function do_action(f: trigFunc) {
-   f(3.141592653589) // 调用函数
+   f(3.141592653589); // 调用函数
 }
 
-do_action(Math.sin) // 将函数作为参数传入
+do_action(Math.sin); // 将函数作为参数传入
 ```
 
 ### 箭头函数或Lambda函数
@@ -685,7 +685,7 @@ do_action(Math.sin) // 将函数作为参数传入
 
 ```typescript
 let sum = (x: number, y: number): number => {
-  return x + y
+  return x + y;
 }
 ```
 
@@ -694,7 +694,7 @@ let sum = (x: number, y: number): number => {
 表达式可以指定为箭头函数，使表达更简短，因此以下两种表达方式是等价的：
 
 ```typescript
-let sum1 = (x: number, y: number) => { return x + y }
+let sum1 = (x: number, y: number) => { return x + y; }
 let sum2 = (x: number, y: number) => x + y
 ```
 
@@ -706,13 +706,13 @@ let sum2 = (x: number, y: number) => x + y
 
 ```typescript
 function f(): () => number {
-  let count = 0
-  return (): number => { count++; return count }
+  let count = 0;
+  return (): number => { count++; return count; }
 }
 
-let z = f()
-console.log(z()) // 输出：1
-console.log(z()) // 输出：2
+let z = f();
+z(); // 返回：1
+z(); // 返回：2
 ```
 
 在以上示例中，箭头函数闭包捕获`count`变量。
@@ -725,11 +725,11 @@ console.log(z()) // 输出：2
 function foo(): void;            /* 第一个函数定义 */
 function foo(x: string): void;   /* 第二个函数定义 */
 function foo(x?: string): void { /* 函数实现 */
-  console.log(x)
+  console.log(x);
 }
 
-foo()     //  OK，使用第一个定义
-foo('aa') // OK，使用第二个定义
+foo();     //  OK，使用第一个定义
+foo('aa'); // OK，使用第二个定义
 ```
 
 不允许重载函数有相同的名字以及参数列表，否则将会编译报错。
@@ -745,11 +745,11 @@ class Person {
   name: string = ''
   surname: string = ''
   constructor (n: string, sn: string) {
-    this.name = n
-    this.surname = sn
+    this.name = n;
+    this.surname = sn;
   }
   fullName(): string {
-    return this.name + ' ' + this.surname
+    return this.name + ' ' + this.surname;
   }
 }
 ```
@@ -757,8 +757,8 @@ class Person {
 定义类后，可以使用关键字`new`创建实例：
 
 ```typescript
-let p = new Person('John', 'Smith')
-console.log(p.fullName())
+let p = new Person('John', 'Smith');
+console.log(p.fullName());
 ```
 
 或者，可以使用对象字面量创建实例：
@@ -768,7 +768,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p: Point = {x: 42, y: 42}
+let p: Point = {x: 42, y: 42};
 ```
 
 ### 字段
@@ -788,19 +788,19 @@ class Person {
   name: string = ''
   age: number = 0
   constructor(n: string, a: number) {
-    this.name = n
-    this.age = a
+    this.name = n;
+    this.age = a;
   }
 
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 
-let p1 = new Person('Alice', 25)
-console.log(p1.name)
-let p2 = new Person('Bob', 28)
-console.log(p2.getName())
+let p1 = new Person('Alice', 25);
+console.log(p1.name);
+let p2 = new Person('Bob', 28);
+console.log(p2.getName());
 ```
 
 #### 静态字段
@@ -814,12 +814,12 @@ class Person {
   static numberOfPersons = 0
   constructor() {
      // ...
-     Person.numberOfPersons++
+     Person.numberOfPersons++;
      // ...
   }
 }
 
-console.log(Person.numberOfPersons)
+Person.numberOfPersons;
 ```
 
 #### 字段初始化
@@ -834,19 +834,19 @@ class Person {
   name: string // undefined
   
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
   
   getName(): string {
     // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
     // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值。
-    return this.name
+    return this.name;
   }
 }
 
-let jack = new Person()
+let jack = new Person();
 // 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
-console.log(jack.getName().length); // 运行时异常：name is undefined
+jack.getName().length; // 运行时异常：name is undefined
 ```
 
 在ArkTS中，应该这样写代码。
@@ -856,48 +856,48 @@ class Person {
   name: string = ''
   
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
   
   // 类型为'string'，不可能为"null"或者"undefined"
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
   
 
-let jack = new Person()
+let jack = new Person();
 // 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
-console.log(jack.getName().length); // 0, 没有运行时异常
+jack.getName().length; // 0, 没有运行时异常
 ```
 
 接下来的代码展示了如果`name`的值可以是`undefined`，那么应该如何写代码。
 
 ```typescript
 class Person {
-  name ?: string // 可能为`undefined`
+  name?: string // 可能为`undefined`
 
   setName(n:string): void {
-    this.name = n
+    this.name = n;
   }
 
   // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
   getNameWrong(): string {
-    return this.name
+    return this.name;
   }
 
   getName(): string | undefined { // 返回类型匹配name的类型
-    return this.name
+    return this.name;
   }
 }
 
-let jack = new Person()
+let jack = new Person();
 // 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
 
 // 编译时错误：编译器认为下一行代码有可能会访问undefined的属性，报错
-console.log(jack.getName().length);  // 编译失败
+jack.getName().length;  // 编译失败
 
-console.log(jack.getName()?.length); // 编译成功，没有运行时错误
+jack.getName()?.length; // 编译成功，没有运行时错误
 ```
 
 #### getter和setter
@@ -910,18 +910,18 @@ setter和getter可用于提供对对象属性的受控访问。
 class Person {
   name: string = ''
   private _age: number = 0
-  get age(): number { return this._age }
+  get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
-      throw Error('Invalid age argument')
+      throw Error('Invalid age argument');
     }
-    this._age = x
+    this._age = x;
   }
 }
 
-let p = new Person()
-console.log (p.age) // 将打印输出0
-p.age = -42 // 设置无效age值会抛出错误
+let p = new Person();
+p.age; // 输出0
+p.age = -42; // 设置无效age值会抛出错误
 ```
 
 在类中可以定义getter或者setter。
@@ -952,8 +952,8 @@ class RectangleSize {
 必须通过类的实例调用实例方法：
 
 ```typescript
-let square = new RectangleSize(10, 10)
-console.log(square.calculateArea()) // 输出：100
+let square = new RectangleSize(10, 10);
+square.calculateArea(); // 输出：100
 ```
 
 #### 静态方法
@@ -969,10 +969,10 @@ console.log(square.calculateArea()) // 输出：100
 ```typescript
 class Cl {
   static staticMethod(): string {
-    return 'this is a static method.'
+    return 'this is a static method.';
   }
 }
-console.log(Cl.staticMethod())
+console.log(Cl.staticMethod());
 ```
 
 #### 继承
@@ -996,13 +996,13 @@ class Person {
   name: string = ''
   private _age = 0
   get age(): number {
-    return this._age
+    return this._age;
   }
 }
 class Employee extends Person {
   salary: number = 0
   calculateTaxes(): number {
-    return this.salary * 0.42
+    return this.salary * 0.42;
   }
 }
 ```
@@ -1016,7 +1016,7 @@ interface DateInterface {
 class MyDate implements DateInterface {
   now(): string {
     // 在此实现
-    return 'now is now'
+    return 'now is now';
   }
 }
 ```
@@ -1031,8 +1031,8 @@ class RectangleSize {
   protected width: number = 0
 
   constructor (h: number, w: number) {
-    this.height = h
-    this.width = w
+    this.height = h;
+    this.width = w;
   }
 
   draw() {
@@ -1042,12 +1042,12 @@ class RectangleSize {
 class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
-    super(h, w) // 父类构造函数的调用
-    this.color = c
+    super(h, w); // 父类构造函数的调用
+    this.color = c;
   }
 
   override draw() {
-    super.draw() // 父类方法的调用
+    super.draw(); // 父类方法的调用
     // super.height -可在此处使用
     /* 填充矩形 */
   }
@@ -1063,13 +1063,13 @@ class RectangleSize {
   // ...
   area(): number {
     // 实现
-    return 0
+    return 0;
   }
 }
 class Square extends RectangleSize {
   private side: number = 0
   override area(): number {
-    return this.side * this.side
+    return this.side * this.side;
   }
 }
 ```
@@ -1083,12 +1083,12 @@ class C {
   foo(): void;            /* 第一个签名 */
   foo(x: string): void;   /* 第二个签名 */
   foo(x?: string): void { /* 实现签名 */
-    console.log(x)
+    console.log(x);
   }
 }
-let c = new C()
-c.foo()     // OK，使用第一个签名
-c.foo('aa') // OK，使用第二个签名
+let c = new C();
+c.foo();     // OK，使用第一个签名
+c.foo('aa'); // OK，使用第二个签名
 ```
 
 如果两个重载签名的名称和参数列表均相同，则为错误。
@@ -1112,7 +1112,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p = new Point()
+let p = new Point();
 ```
 
 在这种情况下，默认构造函数使用字段类型的默认值来初始化实例中的字段。
@@ -1129,7 +1129,7 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   constructor(side: number) {
-    super(side, side)
+    super(side, side);
   }
 }
 ```
@@ -1145,11 +1145,11 @@ class C {
   constructor()             /* 第一个签名 */
   constructor(x: string)    /* 第二个签名 */
   constructor(x?: string) { /* 实现签名 */
-    console.log(x)
+    console.log(x);
   }
 }
-let c1 = new C()      // OK，使用第一个签名
-let c2 = new C('abc') // OK，使用第二个签名
+let c1 = new C();      // OK，使用第一个签名
+let c2 = new C('abc'); // OK，使用第二个签名
 ```
 
 如果两个重载签名的名称和参数列表均相同，则为错误。
@@ -1173,12 +1173,12 @@ class C {
   public x: string = ''
   private y: string = ''
   set_y (new_y: string) {
-    this.y = new_y // OK，因为y在类本身中可以访问
+    this.y = new_y; // OK，因为y在类本身中可以访问
   }
 }
-let c = new C()
-c.x = 'a' // OK，该字段是公有的
-c.y = 'b' // 编译时错误：'y'不可见
+let c = new C();
+c.x = 'a'; // OK，该字段是公有的
+c.y = 'b'; // 编译时错误：'y'不可见
 ```
 
 #### Protected（受保护）
@@ -1192,8 +1192,8 @@ class Base {
 }
 class Derived extends Base {
   foo() {
-    this.x = 'a' // OK，访问受保护成员
-    this.y = 'b' // 编译时错误，'y'不可见，因为它是私有的
+    this.x = 'a'; // OK，访问受保护成员
+    this.y = 'b'; // 编译时错误，'y'不可见，因为它是私有的
   }
 }
 ```
@@ -1210,7 +1210,7 @@ class C {
   s: string = ''
 }
 
-let c: C = {n: 42, s: 'foo'}
+let c: C = {n: 42, s: 'foo'};
 ```
 
 ArkTS是静态类型语言，如上述示例所示，对象字面量只能在可以推导出该字面量类型的上下文中使用。其他正确的例子：
@@ -1225,11 +1225,11 @@ function foo(c: C) {}
 
 let c: C
 
-c = {n: 42, s: 'foo'}  // 使用变量的类型
-foo({n: 42, s: 'foo'}) // 使用参数的类型
+c = {n: 42, s: 'foo'};  // 使用变量的类型
+foo({n: 42, s: 'foo'}); // 使用参数的类型
 
 function bar(): C {
-  return {n: 42, s: 'foo'} // 使用返回类型
+  return {n: 42, s: 'foo'}; // 使用返回类型
 }
 ```
 
@@ -1240,7 +1240,7 @@ class C {
   n: number = 0
   s: string = ''
 }
-let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}]
+let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
 
 #### `Record`类型的对象字面量
@@ -1253,7 +1253,7 @@ let map: Record<string, number> = {
   'Mary': 21,
 }
 
-console.log(map['John']) // prints 25
+map['John']; // 25
 ```
 
 类型`K`可以是字符串类型或数值类型，而`V`可以是任何类型。
@@ -1303,11 +1303,11 @@ class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
-    console.log('someMethod called')
+    console.log('someMethod called');
   }
   calculateAreaSize(): number {
-    this.someMethod() // 调用另一个方法并返回结果
-    return this.width * this.height
+    this.someMethod(); // 调用另一个方法并返回结果
+    return this.width * this.height;
   }
 }
 ```
@@ -1350,8 +1350,8 @@ interface Style {
 
 class StyledRectangle implements Style {
   private _color: string = ''
-  get color(): string { return this._color }
-  set color(x: string) { this._color = x }
+  get color(): string { return this._color; }
+  set color(x: string) { this._color = x; }
 }
 ```
 
@@ -1390,15 +1390,15 @@ class CustomStack<Element> {
 要使用类型CustomStack，必须为每个类型参数指定类型实参：
 
 ```typescript
-let s = new CustomStack<string>()
-s.push('hello')
+let s = new CustomStack<string>();
+s.push('hello');
 ```
 
 编译器在使用泛型类型和函数时会确保类型安全。参见以下示例：
 
 ```typescript
-let s = new CustomStack<string>()
-s.push(55) // 将会产生编译时错误
+let s = new CustomStack<string>();
+s.push(55); // 将会产生编译时错误
 ```
 
 ### 泛型约束
@@ -1411,7 +1411,7 @@ interface Hashable {
 }
 class HasMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
-    let h = k.hash()
+    let h = k.hash();
     // ...其他代码...
   }
 }
@@ -1425,16 +1425,16 @@ class HasMap<Key extends Hashable, Value> {
 
 ```typescript
 function last(x: number[]): number {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
-console.log(last([1, 2, 3])) // 输出：3
+last([1, 2, 3]); // 3
 ```
 
 如果需要为任何数组定义相同的函数，使用类型参数将该函数定义为泛型：
 
 ```typescript
 function last<T>(x: T[]): T {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
 ```
 
@@ -1444,12 +1444,12 @@ function last<T>(x: T[]): T {
 
 ```typescript
 // 显式设置的类型实参
-console.log(last<string>(['aa', 'bb']))
-console.log(last<number>([1, 2, 3]))
+last<string>(['aa', 'bb']);
+last<number>([1, 2, 3]);
 
 // 隐式设置的类型实参
 // 编译器根据调用参数的类型来确定类型实参
-console.log(last([1, 2, 3]))
+last([1, 2, 3]);
 ```
 
 ### 泛型默认值
@@ -1467,9 +1467,9 @@ class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 function foo<T = number>(): T {
   // ...
 }
-foo()
+foo();
 // 此函数在语义上等价于下面的调用
-foo<number>()
+foo<number>();
 ```
 
 ## 空安全
@@ -1479,17 +1479,17 @@ foo<number>()
 在下面的示例中，所有行都会导致编译时错误：
 
 ```typescript
-let x: number = null    // 编译时错误
-let y: string = null    // 编译时错误
-let z: number[] = null  // 编译时错误
+let x: number = null;    // 编译时错误
+let y: string = null;    // 编译时错误
+let z: number[] = null;  // 编译时错误
 ```
 
 可以为空值的变量定义为联合类型`T | null`。
 
 ```typescript
-let x: number | null = null
-x = 1    // ok
-x = null // ok
+let x: number | null = null;
+x = 1;    // ok
+x = null; // ok
 if (x != null) { /* do something */ }
 ```
 
@@ -1500,10 +1500,10 @@ if (x != null) { /* do something */ }
 应用于空值时，运算符将抛出错误。否则，值的类型将从`T | null`更改为`T`：
 
 ```typescript
-let x: number | null = 1
+let x: number | null = 1;
 let y: number
-y = x + 1  // 编译时错误：无法对可空值作加法
-y = x! + 1 // ok
+y = x + 1;  // 编译时错误：无法对可空值作加法
+y = x! + 1; // ok
 ```
 
 ### 空值合并运算符
@@ -1519,7 +1519,7 @@ class Person {
   // ...
   nick: string | null = null
   getNick(): string {
-    return this.nick ?? ''
+    return this.nick ?? '';
   }
 }
 ```
@@ -1534,16 +1534,16 @@ class Person {
   spouse?: Person
 
   setSpouse(spouse: Person): void {
-    this.spouse = spouse
+    this.spouse = spouse;
   }
 
   getSpouseNick(): string | null | undefined {
-    return this.spouse?.nick
+    return this.spouse?.nick;
   }
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 ```
@@ -1557,16 +1557,16 @@ class Person {
 ```typescript
 class Person {
   nick: string | null = null
-  spouse ?: Person
+  spouse?: Person
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 
-let p: Person = new Person('Alice')
-console.log(p.spouse?.nick) // 打印undefined
+let p: Person = new Person('Alice');
+console.log(p.spouse?.nick); // 打印undefined
 ```
 
 ## 模块
@@ -1590,13 +1590,13 @@ export class Point {
   x: number = 0
   y: number = 0
   constructor(x: number, y: number) {
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
 }
-export let Origin = new Point(0, 0)
+export let Origin = new Point(0, 0);
 export function Distance(p1: Point, p2: Point): number {
-  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
+  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
 }
 ```
 
@@ -1648,7 +1648,7 @@ X // 编译时错误：'X'不可见
 
 ```typescript
 function main() {
-  console.log('this is the program entry')
+  console.log('this is the program entry');
 }
 ```
 

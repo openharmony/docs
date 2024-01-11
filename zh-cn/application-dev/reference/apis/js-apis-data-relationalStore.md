@@ -814,7 +814,7 @@ class EntryAbility extends UIAbility {
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | schedule | [Progress](#progress10)                           | 是   | 表示端云同步过程。                                           |
 | code     | [ProgressCode](#progresscode10)                   | 是   | 表示端云同步过程的状态。                                     |
-| details  | [table: string] : [TableDetails](#tabledetails10) | 是   | 表示端云同步各表的统计信息。<br>键表示表名，值表示该表的端云同步过程统计信息。 |
+| details  | Record<string, [TableDetails](#tabledetails10)> | 是   | 表示端云同步各表的统计信息。<br>键表示表名，值表示该表的端云同步过程统计信息。 |
 
 ## RdbPredicates
 

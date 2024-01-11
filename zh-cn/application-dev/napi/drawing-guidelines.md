@@ -97,6 +97,25 @@ libnative_drawing.so
     ```
     若要改变XComponent的宽，值需为64的倍数，例如640px。
 2. 在 Native C++层获取NativeXComponent。建议使用单例模式保存XComponent。此步骤需要在napi_init的过程中处理。
+
+    创建一个PluginManger单例类，用于管理NativeXComponent。
+    ```c++
+    class PluginManager {
+    public:
+        ~PluginManager();
+
+        static PluginManager *GetInstance();
+
+        void SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent);
+        SampleBitMap *GetRender(std::string &id);
+        void Export(napi_env env, napi_value exports);
+    private:
+
+        std::unordered_map<std::string, OH_NativeXComponent *> nativeXComponentMap_;
+        std::unordered_map<std::string, SampleBitMap *> pluginRenderMap_;
+    };
+    ```
+    SampleBitMap类会在后面的绘制2D图形步骤中创建。
     ```c++
     void PluginManager::Export(napi_env env, napi_value exports) {
         if ((env == nullptr) || (exports == nullptr)) {
@@ -198,7 +217,7 @@ libnative_drawing.so
         // ...
     }
     ```
-    可以将不需要的callback定义为空指针，但一定要初始化。
+    XComponent的所有Callback必须初始化，可以将不需要的Callback定义为空指针。
     ```c++
     // OH_NativeXComponent_Callback是个struct
     OH_NativeXComponent_Callback callback;
@@ -221,24 +240,47 @@ libnative_drawing.so
 
 1. **创建Bitmap实例**。使用drawing_bitmap.h的``OH_Drawing_BitmapCreate``接口创建一个Bitmap实例cBitmap并使用``OH_Drawing_BitmapBuild``指定其长宽大小和像素格式。
 
+    创建一个SampleBitMap类，并声明接下来需要的私有成员变量。
+    ```c++
+    class SampleBitMap {
+    public:
+        // member functions
+    private:
+        OH_NativeXComponent_Callback renderCallback_;
+
+        uint64_t width_ = 0;
+        uint64_t height_ = 0;
+        OH_Drawing_Bitmap *cBitmap_ = nullptr;
+        OH_Drawing_Canvas *cCanvas_ = nullptr;
+        OH_Drawing_Path *cPath_ = nullptr;
+        OH_Drawing_Brush *cBrush_ = nullptr;
+        OH_Drawing_Pen *cPen_ = nullptr;
+        OHNativeWindow *nativeWindow_ = nullptr;
+        uint32_t *mappedAddr_ = nullptr;
+        BufferHandle *bufferHandle_ = nullptr;
+        struct NativeWindowBuffer *buffer_ = nullptr;
+        int fenceFd_ = 0;
+    };
+    ```
+
     ```c++
     // 创建一个bitmap对象
-    OH_Drawing_Bitmap* cBitmap = OH_Drawing_BitmapCreate();
+    cBitmap_ = OH_Drawing_BitmapCreate();
     // 定义bitmap的像素格式
     OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
     // 构造对应格式的bitmap，width的值必须为 bufferHandle->stride / 4
-    OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
+    OH_Drawing_BitmapBuild(cBitmap_, width_, height_, &cFormat);
     ```
 
 2. **创建画布实例**。使用drawing_canvas.h的 ``OH_Drawing_CanvasCreate`` 接口创建一个画布实例cCanvas，并使用 ``OH_Drawing_CanvasBind`` 接口将cBitmap实例绑定到cCanvas上，后续在画布上绘制的内容会输出到绑定的cBitmap实例中。
 
     ```c++
     // 创建一个canvas对象
-    OH_Drawing_Canvas* cCanvas = OH_Drawing_CanvasCreate();
+    cCanvas_ = OH_Drawing_CanvasCreate();
     // 将画布与bitmap绑定，画布画的内容会输出到绑定的bitmap内存中
-    OH_Drawing_CanvasBind(cCanvas, cBitmap);
+    OH_Drawing_CanvasBind(cCanvas_, cBitmap_);
     // 使用白色清除画布内容
-    OH_Drawing_CanvasClear(cCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+    OH_Drawing_CanvasClear(cCanvas_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
     ```
 
 3. **构造Path形状**。使用drawing_path.h提供的接口完成一个五角星形状的构造cPath。
@@ -257,43 +299,43 @@ libnative_drawing.so
     float eY = bY;
 
     // 创建一个path对象，然后使用接口连接成一个五角星形状
-    OH_Drawing_Path* cPath = OH_Drawing_PathCreate();
+    cPath_ = OH_Drawing_PathCreate();
     // 指定path的起始位置
-    OH_Drawing_PathMoveTo(cPath, aX, aY);
+    OH_Drawing_PathMoveTo(cPath_, aX, aY);
     // 用直线连接到目标点
-    OH_Drawing_PathLineTo(cPath, bX, bY);
-    OH_Drawing_PathLineTo(cPath, cX, cY);
-    OH_Drawing_PathLineTo(cPath, dX, dY);
-    OH_Drawing_PathLineTo(cPath, eX, eY);
+    OH_Drawing_PathLineTo(cPath_, bX, bY);
+    OH_Drawing_PathLineTo(cPath_, cX, cY);
+    OH_Drawing_PathLineTo(cPath_, dX, dY);
+    OH_Drawing_PathLineTo(cPath_, eX, eY);
     // 闭合形状，path绘制完毕
-    OH_Drawing_PathClose(cPath);
+    OH_Drawing_PathClose(cPath_);
     ```
 
 4. **设置画笔和画刷样式**。使用drawing_pen.h的``OH_Drawing_PenCreate``接口创建一个画笔实例cPen, 并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用drawing_brush.h的``OH_Drawing_BrushCreate``接口创建一个画刷实例cBrush，并设置填充颜色， 画刷用于形状内部的填充。使用drawing_canvas.h的``OH_Drawing_CanvasAttachPen``和``OH_Drawing_CanvasAttachBrush``接口将画笔画刷的实例设置到画布实例中。
 
     ```c++
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
-    OH_Drawing_Pen* cPen = OH_Drawing_PenCreate();
-    OH_Drawing_PenSetAntiAlias(cPen, true);
-    OH_Drawing_PenSetColor(cPen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
-    OH_Drawing_PenSetWidth(cPen, 10.0);
-    OH_Drawing_PenSetJoin(cPen, LINE_ROUND_JOIN);
+    cPen_ = OH_Drawing_PenCreate();
+    OH_Drawing_PenSetAntiAlias(cPen_, true);
+    OH_Drawing_PenSetColor(cPen_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+    OH_Drawing_PenSetWidth(cPen_, 10.0);
+    OH_Drawing_PenSetJoin(cPen_, LINE_ROUND_JOIN);
     // 将Pen画笔设置到canvas中
-    OH_Drawing_CanvasAttachPen(cCanvas, cPen);
+    OH_Drawing_CanvasAttachPen(cCanvas_, cPen_);
 
     // 创建一个画刷Brush对象，Brush对象用于形状的填充
-    OH_Drawing_Brush* cBrush = OH_Drawing_BrushCreate();
-    OH_Drawing_BrushSetColor(cBrush, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
+    cBrush_ = OH_Drawing_BrushCreate();
+    OH_Drawing_BrushSetColor(cBrush_, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
 
     // 将Brush画刷设置到canvas中
-    OH_Drawing_CanvasAttachBrush(cCanvas, cBrush);
+    OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
     ```
 
 5. **绘制Path形状**。使用drawing_canvas.h的``OH_Drawing_CanvasDrawPath``接口将五角星绘制到画布上。
 
     ```c++
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
-    OH_Drawing_CanvasDrawPath(cCanvas, cPath);
+    OH_Drawing_CanvasDrawPath(cCanvas_, cPath_);
     ```
 
 ### 文本绘制开发步骤
@@ -303,14 +345,14 @@ libnative_drawing.so
 
     ```c++
     // 创建bitmap
-    OH_Drawing_Bitmap* cBitmap = OH_Drawing_BitmapCreate();
+    cBitmap_ = OH_Drawing_BitmapCreate();
     OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
     // width的值必须为bufferHandle->stride / 4
-    OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
+    OH_Drawing_BitmapBuild(cBitmap_, width_, height_, &cFormat);
     // 创建canvas
-    OH_Drawing_Canvas* cCanvas = OH_Drawing_CanvasCreate();
-    OH_Drawing_CanvasBind(cCanvas, cBitmap);
-    OH_Drawing_CanvasClear(cCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+    cCanvas_ = OH_Drawing_CanvasCreate();
+    OH_Drawing_CanvasBind(cCanvas_, cBitmap_);
+    OH_Drawing_CanvasClear(cCanvas_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
     ```
   
 2. **设置排版风格**。
@@ -358,7 +400,7 @@ libnative_drawing.so
     // 设置文本在画布上绘制的起始位置
     double position[2] = {width_ / 5.0, height_ / 2.0};
     // 将文本绘制到画布上
-    OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
+    OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
     ```
 ### 绘制内容送显
 
@@ -455,7 +497,7 @@ libnative_drawing.so
       drawText(): void;
     };
     ```
-    在Drawing相关文件中添加初始化函数以及代码。
+    在SampleBitMap类中添加初始化函数以及代码。
     ```c++
     void SampleBitMap::Export(napi_env env, napi_value exports) {
         if ((env == nullptr) || (exports == nullptr)) {

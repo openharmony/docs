@@ -447,7 +447,7 @@ struct AbilityContextTest {
 
 [ServiceAbility组件配置-后台模式类型](../application-models/serviceability-configuration.md)
 
-[长时任务权限](../security/permission-list.md#ohospermissionkeep_background_running)
+[长时任务权限](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)
 
 
 ## FA卡片如何进行数据交互(API 9)
@@ -457,3 +457,7 @@ struct AbilityContextTest {
 **参考链接**
 
 [服务卡片开发指导](../application-models/widget-development-fa.md)
+
+## 系统是否支持在桌面上创建应用的快捷入口，直接打开指定页面？(API 10)
+
+当前不支持

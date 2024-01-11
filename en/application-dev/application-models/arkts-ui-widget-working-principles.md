@@ -11,7 +11,7 @@
 
 - Widget provider: an application that provides the widget content to display and controls how widget components are laid out and how they interact with users.
 
-- Widget Manager: a resident agent that manages widgets in the system. It provides the [formProvider](../reference/apis/js-apis-app-form-formProvider.md) and [formHost](../reference/apis/js-apis-app-form-formHost.md) APIs as well as the APIs for widget management, usage, and periodic updates.
+- Widget Manager: a resident agent that manages widgets in the system. It provides the [formProvider](../reference/apis/js-apis-app-form-formProvider.md) and [formHost](../reference/apis/js-apis-app-form-formHost.md) APIs as well as the APIs for widget management, usage, and periodic updates. 
 
 - Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host.
 
@@ -19,7 +19,8 @@
 
   ![WidgetRender](figures/WidgetRender.png)
 
-Unlike JS widgets, ArkTS widgets support logic code execution. The widget page code **widgets.abc** is executed by the widget rendering service, which is managed by the Widget Manager. Each widget component of a widget host corresponds to a rendering instance in the widget rendering service. Rendering instances of a widget provider run in the same ArkTS virtual machine operating environment, and rendering instances of different widget providers run in different ArkTS virtual machine operating environments. In this way, the resources and state data are isolated between widgets of different widget providers. During development, pay attention to the use of the [globalThis](uiability-data-sync-with-ui.md#using-globalthis-for-data-synchronization) object. Use one **globalThis** object for widgets from the same widget provider, and different **globalThis** objects for widgets from different widget providers.
+Compared with dynamic widgets, static widgets have the same overall running framework and rendering process. The main difference is that after the widget rendering service renders the widget content, the widget host uses the last frame of rendered data as a static image, and the widget rendering instance releases all running resources of the widget to save memory. As such, frequent updating of static widgets causes continuous creation and destruction of resources, resulting in increased power consumption.<br>
+Unlike JS widgets, ArkTS widgets support logic code execution. The widget page code **widgets.abc** is executed by the widget rendering service, which is managed by the Widget Manager. Each widget component of a widget host corresponds to a rendering instance in the widget rendering service. Rendering instances of a widget provider run in the same ArkTS virtual machine operating environment, and rendering instances of different widget providers run in different ArkTS virtual machine operating environments. In this way, the resources and state data are isolated between widgets of different widget providers. During development, pay attention to the use of the **globalThis** object. Use one **globalThis** object for widgets from the same widget provider, and different **globalThis** objects for widgets from different widget providers.
 
 
 ## Advantages of ArkTS Widgets
@@ -39,12 +40,13 @@ As a quick entry to applications, ArkTS widgets outperform JS widgets in the fol
   - Custom drawing: ArkTS widgets allow you to draw graphics with the [\<Canvas>](../reference/arkui-ts/ts-components-canvas-canvas.md) component to present information more vividly.
   - Logic code execution: The capability to run logic code in widgets means that service logic can be self-closed in widgets, expanding the use cases of widgets.
 
-
 ## Constraints on ArkTS Widgets
 
 Compared with JS widgets, ArkTS widgets provide more capabilities, but they are also more prone to malicious behavior. To account for the impact on the widget host – typically the home screen, ArkTS widgets are subject to the following restrictions:
 
-- The .so file cannot be loaded.
+- When importing modules, you can import only the modules marked with "supported in ArkTS widgets."
+
+- Shared packages cannot be imported.
 
 - The native programming language cannot be used for development.
 
@@ -53,8 +55,6 @@ Compared with JS widgets, ArkTS widgets provide more capabilities, but they are 
 - The event processing of the widget is independent of that of the widget host. To prevent gesture conflicts, avoid using swipers in the widget when the widget host supports left and right swipes.
 
 In addition, ArkTS widgets do not support the following features:
-
-- Importing modules
 
 - Instant preview
 

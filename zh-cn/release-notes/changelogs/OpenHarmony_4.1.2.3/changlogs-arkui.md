@@ -88,10 +88,40 @@ struct ClipExample1 {
 
 若之前使用了wrap并且设置了constraintSize并未对Flex容器大小约束成功，API version 11及以上版本会正常生效，应用若不想要该约束则将constraintSize移除或调整约束数值。
 
-## cl.arkui.3 Scroll组件中currentOffset接口的返回值由any变更为OffsetResult
+## cl.arkui.3 Scroll组件currentOffset接口变更
+
+**访问级别**
+
+公开接口。
+
+**变更原因**
+
+currentOffset接口的返回值为any，不利于代码开发时的自动提示。
 
 **变更影响**
 
-API version 10前 ，currentOffset接口的返回值为any，不利于在IDE中开发代码时自动提示。
+该变更为非兼容性变更，Scroll组件中currentOffset接口的返回值由any变更为OffsetResult。
 
-API version 11及以后，currentOffset接口的返回值为OffsetResult。
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.2.3开始。
+
+**变更的接口/组件**
+
+API version 10前 ，currentOffset接口的返回值为any：
+```
+currentOffset();
+```
+
+API version 11及以后，currentOffset接口的返回值为OffsetResult：
+```
+currentOffset() : OffsetResult;
+```
+
+**适配指导**
+
+不涉及

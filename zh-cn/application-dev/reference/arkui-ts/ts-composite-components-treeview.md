@@ -107,7 +107,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | -------- | -------- | -------- | -------- |
 | parentNodeId | number | 否 | 父亲节点。 | 
 | currentNodeId | number | 否 | 当前孩子节点。 | 
-| isFolder | boolean | 否 | 是否是目录。 | 
+| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 | 
 | icon | ResourceStr | 否 | 图标。 | 
 | selectedIcon | ResourceStr | 否 | 选中图标。 | 
 | editIcon | ResourceStr | 否 | 编辑图标。 | 
