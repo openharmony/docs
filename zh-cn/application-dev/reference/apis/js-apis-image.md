@@ -94,7 +94,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 参数名                 | 类型                                                  | 必填 | 说明                                     |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
 
 **返回值：**
 
@@ -1086,7 +1086,7 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 | 类型                                | 说明             |
 | ----------------------------------- | ---------------- |
-| [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
+| [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
 
 **错误码：**
 
@@ -1118,7 +1118,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 参数名     | 类型                                | 必填 | 说明            |
 | ---------- | ----------------------------------- | ---- | --------------- |
-| colorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+| colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
 
 **错误码：**
 
@@ -1152,7 +1152,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
 
 **错误码：**
@@ -1198,7 +1198,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
 
 **返回值：**
 
@@ -1246,7 +1246,7 @@ marshalling(sequence: rpc.MessageSequence): void
 
 | 参数名                 | 类型                                                  | 必填 | 说明                                     |
 | ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)  | 是   | 新创建的MessageSequence。                 |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)  | 是   | 新创建的MessageSequence。                 |
 
 **错误码：**
 
@@ -1327,7 +1327,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 参数名                 | 类型                                                  | 必填 | 说明                                     |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
 
 **返回值：**
 
@@ -3931,7 +3931,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
