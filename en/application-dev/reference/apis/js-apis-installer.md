@@ -22,11 +22,11 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -34,7 +34,7 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<BundleInstaller> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -56,18 +56,18 @@ try {
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(): Promise\<BundleInstaller>;
+getBundleInstaller(): Promise\<BundleInstaller>
 
 Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Return value**
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Promise used to return the **BundleInstaller** object obtained.|
+| Promise\<BundleInstaller> | Promise used to return the **BundleInstaller** object obtained.|
 
 **Example**
 
@@ -86,11 +86,11 @@ try {
 ```
 
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 Installs a bundle. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INSTALL_BUNDLE
 
@@ -102,7 +102,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
 | installParam           | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                                    |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -149,7 +149,7 @@ try {
 
 ## BundleInstaller.install
 
-install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>;
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>
 
 Installs a bundle. This API uses a promise to return the result.
 
@@ -216,11 +216,11 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 Uninstalls a bundle. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INSTALL_BUNDLE
 
@@ -232,7 +232,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
 | installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the uninstall.                      |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -273,7 +273,7 @@ try {
 ```
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 Uninstalls a bundle. This API uses a promise to return the result.
 
@@ -334,11 +334,11 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 Rolls back a bundle to the initial installation state. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INSTALL_BUNDLE
 
@@ -350,7 +350,7 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
 | installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the recovery.                      |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -390,7 +390,7 @@ try {
 ```
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 Rolls back a bundle to the initial installation state. This API uses a promise to return the result.
 
@@ -453,7 +453,7 @@ Defines the hash parameters for bundle installation and uninstall.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -466,7 +466,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |

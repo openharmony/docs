@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager)
 
-The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, Extension abilities, and more.
+The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, ExtensionAbilities, and more.
 
 > **NOTE**
 >
@@ -213,7 +213,7 @@ Enumerates the bundle types.
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>;
+getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses a promise to return the result.
 
@@ -250,7 +250,7 @@ try {
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void;
+getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses an asynchronous callback to return the result.
 
@@ -285,7 +285,7 @@ try {
 
 ### bundleManager.getBundleInfo
 
-getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void;
+getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
 Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API uses an asynchronous callback to return the result.
 
@@ -362,7 +362,7 @@ try {
 
 ### bundleManager.getBundleInfo
 
-getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void;
+getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 Obtains the bundle information based on the given bundle name and bundle flags. This API uses an asynchronous callback to return the result.
 
@@ -415,7 +415,7 @@ try {
 
 ### bundleManager.getBundleInfo
 
-getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: number): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>;
+getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: number): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
 
 Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API uses a promise to return the result.
 
@@ -492,7 +492,7 @@ try {
 
 ### bundleManager.getApplicationInfo
 
-getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>): void;
+getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>): void
 
 Obtains the application information based on the given bundle name, application flags, and user ID. This API uses an asynchronous callback to return the result.
 
@@ -547,7 +547,7 @@ try {
 
 ### bundleManager.getApplicationInfo
 
-getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), callback: AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>): void;
+getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), callback: AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>): void
 
 Obtains the application information based on the given bundle name and application flags. This API uses an asynchronous callback to return the result.
 
@@ -599,7 +599,7 @@ try {
 
 ### bundleManager.getApplicationInfo
 
-getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId?: number): Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>;
+getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId?: number): Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>
 
 Obtains the application information based on the given bundle name, application flags, and user ID. This API uses a promise to return the result.
 
@@ -657,7 +657,7 @@ try {
 
 ### bundleManager.getAllBundleInfo
 
-getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void;
+getAllBundleInfo(bundleFlags: [number](#bundleflag), userId: number, callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void
 
 Obtains the information about all bundles based on the given bundle flags and user ID. This API uses an asynchronous callback to return the result.
 
@@ -706,7 +706,7 @@ try {
 
 ### bundleManager.getAllBundleInfo
 
-getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void;
+getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void
 
 Obtains the information about all bundles based on the given bundle flags. This API uses an asynchronous callback to return the result.
 
@@ -745,7 +745,7 @@ try {
 
 ### bundleManager.getAllBundleInfo
 
-getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>;
+getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>
 
 Obtains the information about all bundles based on the given bundle flags and user ID. This API uses a promise to return the result.
 
@@ -796,7 +796,7 @@ try {
 
 ### bundleManager.getAllApplicationInfo
 
-getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void;
+getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void
 
 Obtains the information about all applications based on the given application flags and user ID. This API uses an asynchronous callback to return the result.
 
@@ -845,7 +845,7 @@ try {
 
 ### bundleManager.getAllApplicationInfo
 
-getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void;
+getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void
 
 Obtains the information about all applications based on the given application flags. This API uses an asynchronous callback to return the result.
 
@@ -884,7 +884,7 @@ try {
 
 ### bundleManager.getAllApplicationInfo
 
-getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>;
+getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>
 
 Obtains the information about all applications based on the given application flags and user ID. This API uses a promise to return the result.
 
@@ -936,7 +936,7 @@ try {
 
 ### bundleManager.queryAbilityInfo
 
-queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: number, callback: AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>): void;
+queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: number, callback: AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>): void
 
 Obtains an array of ability information based on the given want, ability flags, and user ID. This API uses an asynchronous callback to return the result.
 
@@ -994,7 +994,7 @@ try {
 
 ### bundleManager.queryAbilityInfo
 
-queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>): void;
+queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>): void
 
 Obtains an array of ability information based on the given want and ability flags. This API uses an asynchronous callback to return the result.
 
@@ -1049,7 +1049,7 @@ try {
 
 ### bundleManager.queryAbilityInfo
 
-queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>;
+queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>
 
 Obtains the ability information based on the given want, ability flags, and user ID. This API uses a promise to return the result.
 
@@ -1130,7 +1130,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfo
 
-queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId: number, callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void;
+queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId: number, callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void
 
 Obtains the Extension ability information based on the given want, Extension ability type, Extension ability flags, and user ID. This API uses an asynchronous callback to return the result.
 
@@ -1189,7 +1189,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfo
 
-queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void;
+queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void
 
 Obtains the Extension ability information based on the given want, Extension ability type, and Extension ability flags. This API uses an asynchronous callback to return the result.
 
@@ -1245,7 +1245,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfo
 
-queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>;
+queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>
 
 Obtains the Extension ability information based on the given want, Extension ability type, Extension ability flags, and user ID. This API uses a promise to return the result.
 
@@ -1329,7 +1329,7 @@ try {
 
 ### bundleManager.getBundleNameByUid
 
-getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void;
+getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
 Obtains the bundle name based on the given UID. This API uses an asynchronous callback to return the result.
 
@@ -1375,7 +1375,7 @@ try {
 
 ### bundleManager.getBundleNameByUid
 
-getBundleNameByUid(uid: number): Promise\<string>;
+getBundleNameByUid(uid: number): Promise\<string>
 
 Obtains the bundle name based on the given UID. This API uses a promise to return the result.
 
@@ -1424,7 +1424,7 @@ try {
 
 ### bundleManager.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void;
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
 
 Obtains the bundle information based on the given HAP file path and bundle flags. This API uses an asynchronous callback to return the result.
 
@@ -1473,7 +1473,7 @@ try {
 
 ### bundleManager.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>;
+getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
 
 Obtains the bundle information based on the given HAP file path and bundle flags. This API uses a promise to return the result.
 
@@ -1525,7 +1525,7 @@ try {
 
 ### bundleManager.cleanBundleCacheFiles
 
-cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void;
+cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
 Clears the cache files based on the given bundle name. This API uses an asynchronous callback to return the result.
 
@@ -1573,7 +1573,7 @@ try {
 
 ### bundleManager.cleanBundleCacheFiles
 
-cleanBundleCacheFiles(bundleName: string): Promise\<void>;
+cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 Clears the cache files based on the given bundle name. This API uses a promise to return the result.
 
@@ -1624,7 +1624,7 @@ try {
 
 ### bundleManager.setApplicationEnabled
 
-setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void;
+setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables an application. This API uses an asynchronous callback to return the result.
 
@@ -1672,7 +1672,7 @@ try {
 
 ### bundleManager.setApplicationEnabled
 
-setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>;
+setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>
 
 Enables or disables an application. This API uses a promise to return the result.
 
@@ -1723,7 +1723,7 @@ try {
 
 ### bundleManager.setAbilityEnabled
 
-setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean, callback: AsyncCallback\<void>): void;
+setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables an ability. This API uses an asynchronous callback to return the result.
 
@@ -1785,7 +1785,7 @@ try {
 
 ### bundleManager.setAbilityEnabled
 
-setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): Promise\<void>;
+setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): Promise\<void>
 
 Enables or disables an ability. This API uses a promise to return the result.
 
@@ -1850,7 +1850,7 @@ try {
 
 ### bundleManager.isApplicationEnabled
 
-isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): void;
+isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): void
 
 Checks whether an application is enabled. This API uses an asynchronous callback to return the result.
 
@@ -1895,7 +1895,7 @@ try {
 
 ### bundleManager.isApplicationEnabled
 
-isApplicationEnabled(bundleName: string): Promise\<boolean>;
+isApplicationEnabled(bundleName: string): Promise\<boolean>
 
 Checks whether an application is enabled. This API uses a promise to return the result.
 
@@ -1943,7 +1943,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), callback: AsyncCallback\<boolean>): void;
+isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), callback: AsyncCallback\<boolean>): void
 
 Checks whether an ability is enabled. This API uses an asynchronous callback to return the result.
 
@@ -2002,7 +2002,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Promise\<boolean>;
+isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Promise\<boolean>
 
 Checks whether an ability is enabled. This API uses a promise to return the result.
 
@@ -2064,7 +2064,7 @@ try {
 
 ### bundleManager.getLaunchWantForBundle
 
-getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallback\<Want>): void;
+getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallback\<Want>): void
 
 Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
 
@@ -2115,7 +2115,7 @@ try {
 
 ### bundleManager.getLaunchWantForBundle
 
-getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 Obtains the Want used to launch the bundle based on the given bundle name. This API uses an asynchronous callback to return the result.
 
@@ -2163,7 +2163,7 @@ try {
 
 ### bundleManager.getLaunchWantForBundle
 
-getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
+getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 
 Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API uses a promise to return the result.
 
@@ -2217,7 +2217,7 @@ try {
 
 ### bundleManager.getProfileByAbility
 
-getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
+getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
 Obtains the JSON strings of the configuration file based on the given module ame, ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
@@ -2268,7 +2268,7 @@ try {
 
 ### bundleManager.getProfileByAbility
 
-getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
+getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
 Obtains the JSON strings of the configuration file based on the given module ame, ability name, and metadata name. This API uses a promise to return the result.
 
@@ -2338,7 +2338,7 @@ try {
 
 ### bundleManager.getProfileByExtensionAbility
 
-getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
 Obtains the JSON strings of the configuration file based on the given module ame, Extension ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
@@ -2388,7 +2388,7 @@ try {
 
 ### bundleManager.getProfileByExtensionAbility
 
-getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
 Obtains the JSON strings of the configuration file based on the given module ame, Extension ability name, and metadata name. This API uses a promise to return the result.
 
@@ -2451,7 +2451,7 @@ try {
 
 ### bundleManager.getPermissionDef
 
-getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)>): void;
+getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef.md)>): void
 
 Obtains the details of a permission in the form of a **PermissionDef** struct. This API uses an asynchronous callback to return the result.
 
@@ -2497,7 +2497,7 @@ try {
 
 ### bundleManager.getPermissionDef
 
-getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundleManager-permissionDef.md)>;
+getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundleManager-permissionDef.md)>
 
 Obtains the details of a permission in the form of a **PermissionDef** struct. This API uses a promise to return the result.
 
@@ -2546,7 +2546,7 @@ try {
 
 ### bundleManager.getAbilityLabel
 
-getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<string>): void;
+getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<string>): void
 
 Obtains the ability label based on the given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
 
@@ -2601,7 +2601,7 @@ try {
 
 ### bundleManager.getAbilityLabel
 
-getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>;
+getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>
 
 Obtains the ability label based on the given bundle name, module name, and ability name. This API uses a promise to return the result.
 
@@ -2659,7 +2659,7 @@ try {
 
 ### bundleManager.getApplicationInfoSync
 
-getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)
 
 Synchronously obtains the application information based on the given bundle name, application flags, and user ID.
 
@@ -2712,7 +2712,7 @@ try {
 
 ### bundleManager.getApplicationInfoSync
 
-getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)
 
 Synchronously obtains the application information based on the given bundle name and application flags.
 
@@ -2762,7 +2762,7 @@ try {
 
 ### bundleManager.getBundleInfoSync
 
-getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md)
 
 Synchronously obtains the bundle information based on the given bundle name, bundle flags, and user ID.
 
@@ -2815,7 +2815,7 @@ try {
 
 ### bundleManager.getBundleInfoSync
 
-getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md)
 
 Synchronously obtains the bundle information based on the given bundle name and bundle flags.
 
