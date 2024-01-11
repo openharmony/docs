@@ -301,7 +301,7 @@ let element: ElementName;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
       bundleName: want.bundleName,
       abilityName: want.abilityName,
@@ -314,7 +314,7 @@ export default class EntryAbility extends UIAbility {
     hceService.on('hceCmd', apduCallback);
   }
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
     hceService.stop(element)
   }
   // other life cycle method...
