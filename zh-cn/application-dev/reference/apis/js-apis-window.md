@@ -1615,14 +1615,19 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let promise = window.getTopWindow(this.context);
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    });
+  }
+}
 ```
 
 ## Window
