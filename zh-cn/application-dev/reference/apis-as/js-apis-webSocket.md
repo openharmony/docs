@@ -4,8 +4,7 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
-使用WebSocket建立服务器与客户端的双向连接，需要先通过<span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span>方法创建<span name="WebSocket">[WebSocket](#websocket)</span>对象，然后通过<span name="connect">[connect](#connected)</span>方法连接到服务器。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过<span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span>方法创建<span name="WebSocket">[WebSocket](#websocket)</span>对象，
 当连接成功后，客户端会收到<span name="open">[open](#onopen)</span>事件的回调，之后客户端就可以通过<span name="sended">[send](#send)</span>方法与服务器进行通信。
 当服务器发信息给客户端时，客户端会收到<span name="message">[message](#onmessage)</span>事件的回调。当客户端不要此连接时，可以通过调用<span name="closed">[close](#close)</span>方法主动断开连接，之后客户端会收到<span name="closes">[close](#onclose)</span>事件的回调。
 
@@ -97,148 +96,6 @@ let ws: webSocket = webSocket.createWebSocket();
 ## <span name="websocket">WebSocket<sup>6+</sup></span>
 
 在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
-
-### <span name="connected">connect<sup>6+</sup></span>
-
-connect(url: string, callback: AsyncCallback\<boolean\>): void
-
-根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
-
-> **说明：**
-> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                         |
-| -------- | ------------------------ | ---- | ---------------------------- |
-| url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
-
-let ws = webSocket.createWebSocket();
-let url = "ws://";
-ws.connect(url, (err: BusinessError, value: boolean) => {
-  if (!err) {
-    console.log("connect success");
-  } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
-  }
-});
-```
-
-### connect<sup>6+</sup>
-
-connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
-
-根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
-
-> **说明：**
-> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                                                    |
-| -------- | ------------------------ | ---- | ------------------------------------------------------- |
-| url      | string                   | 是   | 建立WebSocket连接的URL地址。                            |
-| options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                              |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
-
-let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
-}
-let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
-  if (!err) {
-    console.log("connect success");
-  } else {
-    console.log("connect fail, err:" + JSON.stringify(err))
-  }
-});
-```
-
-### connect<sup>6+</sup>
-
-connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
-
-根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
-
-> **说明：**
-> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名  | 类型                    | 必填 | 说明                                                    |
-| ------- | ----------------------- | ---- | ------------------------------------------------------- |
-| url     | string                  | 是   | 建立WebSocket连接的URL地址。                            |
-| options | WebSocketRequestOptions | 否   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
-
-**返回值：**
-
-| 类型               | 说明                              |
-| :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回建立连接的结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-
-let ws = webSocket.createWebSocket();
-let url = "ws://"
-let promise = ws.connect(url);
-promise.then((value: boolean) => {
-  console.log("connect success")
-}).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
-});
-```
 
 ### <span name="send">send<sup>6+</sup></span>
 
@@ -494,43 +351,6 @@ ws.on('open', (err: BusinessError, value: Object) => {
 });
 ```
 
-### off('open')<sup>6+</sup>
-
-off(type: 'open', callback?: AsyncCallback\<Object\>): void
-
-取消订阅WebSocket的打开事件，使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                          |
-| -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
-| callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
-
-let ws = webSocket.createWebSocket();
-class OutValue {
-  status: number = 0
-  message: string = ""
-}
-let callback1 = (err: BusinessError, value: Object) => {
- console.log("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message));
-}
-ws.on('open', callback1);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
-ws.off('open', callback1);
-```
-
 ### <span name="onmessage">on('message')<sup>6+</sup></spam>
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
@@ -561,34 +381,6 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 });
 ```
 
-### off('message')<sup>6+</sup>
-
-off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
-
-取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
-
-> **说明：**
-> AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                                                | 必填 | 说明                                         |
-| -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
-| type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
-| callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-
-let ws = webSocket.createWebSocket();
-ws.off('message');
-```
-
 ### <span name="onclose">on('close')<sup>6+</sup></span>
 
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
@@ -614,33 +406,6 @@ let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
-```
-
-### off('close')<sup>6+</sup>
-
-off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
-
-取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                                            | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback\<CloseResult\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-
-let ws = webSocket.createWebSocket();
-ws.off('close');
 ```
 
 ### <span name="onerror">on('error')<sup>6+</sup></span>
@@ -670,32 +435,6 @@ ws.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>6+</sup>
-
-off(type: 'error', callback?: ErrorCallback): void
-
-取消订阅WebSocket的Error事件，使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型          | 必填 | 说明                            |
-| -------- | ------------- | ---- | ------------------------------- |
-| type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                      |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-let ws = webSocket.createWebSocket();
-ws.off('error');
-```
-
 ### on('dataEnd')<sup>11+</sup>
 
 on(type: 'dataEnd', callback: Callback\<void\>): void
@@ -721,56 +460,6 @@ ws.on('dataEnd', () => {
   console.log("on dataEnd")
 });
 ```
-
-### off('dataEnd')<sup>11+</sup>
-
-off(type: 'dataEnd', callback?: Callback\<void\>): void
-
-取消订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   |        类型       | 必填 |                说明                    |
-| -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。|
-| callback | Callback\<void\> | 否   | 回调函数。                             |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-let ws = webSocket.createWebSocket();
-ws.off('dataEnd');
-```
-
-## WebSocketRequestOptions
-
-建立WebSocket连接时，可选参数的类型和说明。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
-| caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
-| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
-
-## ClientCert<sup>11+</sup>
-
-客户端证书类型。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书秘钥的路径。 |
-| keyPassword | string | 否   | 证书秘钥的密码。 |
 
 ## WebSocketCloseOptions
 
