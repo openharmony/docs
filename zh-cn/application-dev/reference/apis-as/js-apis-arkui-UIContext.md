@@ -794,7 +794,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 | 类型                                       | 说明                        |
 | ---------------------------------------- | ------------------------- |
-| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
+| [ComponentObserver](../apis/js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：**
 
