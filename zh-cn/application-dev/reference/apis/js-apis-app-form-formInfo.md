@@ -14,7 +14,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 ## FormInfo
 
-卡片信息
+卡片配置信息。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -163,7 +163,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 ## RunningFormInfo<sup>10+</sup>
 
-卡片使用方信息
+已添加的卡片信息，包括使用中的以及未使用的卡片。
 
 **系统能力**：SystemCapability.Ability.Form
 
