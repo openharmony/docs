@@ -244,6 +244,7 @@ stopHCE(): boolean
 **示例：**
 
 示例请参见[on](#on8)接口的示例。
+
 ### stop<sup>9+</sup>
 
 stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname)): void
