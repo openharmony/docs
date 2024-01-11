@@ -26,7 +26,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](../apis/js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -3709,7 +3709,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 
 提交编辑数据以及编辑后的图片或视频，该方法使用callback形式来返回结果。
 
-通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri。
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](js-apis-file-fileuri.md)。
 
 **注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
 
@@ -3774,7 +3774,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 提交编辑数据以及编辑后的图片或视频，该方法使用promise形式来返回结果。
 
-通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri。
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](js-apis-file-fileuri.md)。
 
 **注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
 
@@ -5957,7 +5957,7 @@ title参数规格为：
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## FormInfo<sup>11+</sup>
 
