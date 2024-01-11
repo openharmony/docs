@@ -30,9 +30,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
 | position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position8) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> This parameter cannot be set in percentage. If it is set to an invalid value, the default value **(0,0)** will be used.|
-| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
 | style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
 
 ### Badge
@@ -55,11 +55,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name| Description|
-| -------- | -------- |
-| RightTop | The badge is displayed in the upper right corner of the parent component.|
-| Right | The badge is vertically centered on the right of the parent component.|
-| Left | The badge is vertically centered on the left of the parent component.|
+| Name| Value| Description|
+| -------- | -------- |-------- |
+| RightTop | 0 | The badge is displayed in the upper right corner of the parent component.|
+| Right | 1 | The badge is vertically centered on the right of the parent component.|
+| Left | 2 | The badge is vertically centered on the left of the parent component.|
 
 ## BadgeStyle
 
@@ -90,7 +90,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 @Entry
 @Component
 struct BadgeExample {
-  @Builder TabBuilder(index: number) {
+  @Builder tabBuilder(index: number) {
     Column() {
       if (index === 2) {
         Badge({
@@ -139,13 +139,13 @@ struct BadgeExample {
       Text('dotsBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
       Tabs() {
         TabContent()
-          .tabBar(this.TabBuilder(0))
+          .tabBar(this.tabBuilder(0))
         TabContent()
-          .tabBar(this.TabBuilder(1))
+          .tabBar(this.tabBuilder(1))
         TabContent()
-          .tabBar(this.TabBuilder(2))
+          .tabBar(this.tabBuilder(2))
         TabContent()
-          .tabBar(this.TabBuilder(3))
+          .tabBar(this.tabBuilder(3))
       }
       .width(360)
       .height(56)

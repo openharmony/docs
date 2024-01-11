@@ -35,11 +35,11 @@
      console.info('before ImageReceiver check');
      let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
-       console.info('ImageReceiver is ok');
+       console.info('createImageReceiver success');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
-       console.info('ImageReceiver is not ok');
+       console.error('createImageReceiver failed');
      }
      return ImageReceiverSurfaceId;
    }
@@ -146,15 +146,18 @@
      receiver.on('imageArrival', () => {
        receiver.readNextImage((err: BusinessError, nextImage: image.Image) => {
          if (err || nextImage === undefined) {
+           console.error('readNextImage failed');
            return;
          }
          nextImage.getComponent(image.ComponentType.JPEG, (err: BusinessError, imgComponent: image.Component) => {
            if (err || imgComponent === undefined) {
+             console.error('getComponent failed');
              return;
            }
            if (imgComponent.byteBuffer as ArrayBuffer) {
              // do something...
            } else {
+             console.error('byteBuffer is null');
              return;
            }
          })

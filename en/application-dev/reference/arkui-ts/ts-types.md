@@ -241,7 +241,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../quick-start/arkts-builder.md#builder).|
+| CustomBuilder | () =&gt; any | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../quick-start/arkts-builder.md).|
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -343,7 +343,7 @@ The **TabsAnimationEvent** type is used to describe the animation information of
 | ------------- | ---------------------- | ---------------------------------------- |
 | currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
 | targetOffset | number | Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
-| velocity | number | Hands-off velocity at the beginning of the animation. Unit: vp/s<br>Default value: **0**|
+| velocity | number | Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -379,10 +379,10 @@ The **KeyboardAvoidMode** type is used to define the avoidance mode for the virt
 
 The **TouchPoint** type is used to define the coordinates of the touch point.
 
-| Name  | Description      |
-| ------ | ---------- |
-| X | X coordinate of the touch point.|
-| Y | Y coordinate of the touch point.|
+| Name  | Type| Description      |
+| ------ | ----------------------| ---------- |
+| X | [Dimension](#dimension10) | X coordinate of the touch point.|
+| Y | [Dimension](#dimension10) | Y coordinate of the touch point.|
 
 ## TabContentAnimatedTransition<sup>11+</sup>
 

@@ -135,6 +135,22 @@ let sessionId: string = distributedObject.genSessionId();
 | -------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 多设备协同的唯一标识。 |
 
+## BindInfo<sup>11+</sup>
+
+数据库的绑定信息。当前版本只支持关系型数据库。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+  | 名称       | 类型                                                                 | 必填 | 说明                                 |
+  | ---------- | -------------------------------------------------------------------- | ---- | ------------------------------------ |
+  | storeName  | string                                                               | 是   | 待绑定资产在所属的数据库中的库名。   |
+  | tableName  | string                                                               | 是   | 待绑定资产在所属的数据库中的表名。   |
+  | primaryKey | [CommonType.ValuesBucket](./js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
+  | field      | string                                                               | 是   | 待绑定资产在所属的数据库中的列名。   |
+  | assetName  | string                                                               | 是   | 待绑定资产在所属的数据库中的资产名。 |
+
 ## DataObject
 
 表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributedobjectcreate9)获取DataObject对象。
@@ -538,6 +554,158 @@ g_object.revokeSave().then((result: distributedObject.RevokeSaveSuccessResponse)
     console.info("revokeSave failed, error code = " + err.code);
     console.info("revokeSave failed, error message = " + err.message);
 });
+```
+
+### bindAssetStore<sup>11+</sup>
+
+bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void
+
+绑定分布式对象中的单个资产与其对应的数据库信息，当前版本只支持分布式对象中的资产与关系型数据库的绑定。使用callback方式异步回调。
+
+当分布式对象中包含的资产和关系型数据库中包含的资产指向同一个实体资产文件，即两个资产的Uri相同时，就会存在冲突，我们把这种资产称为融合资产。如果需要分布式数据管理进行融合资产的冲突解决，需要先进行资产的绑定。当应用退出session后，绑定关系随之消失。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+  | 参数名   | 类型                      | 必填 | 说明                                                                               |
+  | -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                    | 是   | 待绑定的融合资产在分布式对象中的键值。                                             |
+  | bindInfo | [BindInfo](#bindinfo11)   | 是   | 待绑定的融合资产在数据库中的信息，包含库名、表名、主键、列名及在数据库中的资产名。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 绑定数据库的回调。                                                                 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type window from '@ohos.window';
+import distributedObject from '@ohos.data.distributedDataObject';
+import commonType from '@ohos.data.commonType';
+import type { BusinessError } from '@ohos.base';
+
+class Note {
+  title: string | undefined
+  text: string | undefined
+  attachment: commonType.Asset | undefined
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
+    }
+    let note: Note = new Note('test', 'test', attachment);
+    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    g_object.setSessionId('123456');
+
+    const bindInfo: distributedObject.BindInfo = {
+      storeName: 'notepad',
+      tableName: 'note_t',
+      primaryKey: {
+        'uuid': '00000000-0000-0000-0000-000000000000'
+      },
+      field: 'attachment',
+      assetName: attachment.name
+    }
+
+    g_object.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
+      if (err) {
+        console.error('bindAssetStore failed.');
+      }
+      console.info('bindAssetStore success.');
+    });
+  }
+}
+```
+
+### bindAssetStore<sup>11+</sup>
+
+bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
+
+绑定分布式对象中的单个资产与其对应的数据库信息，当前版本只支持分布式对象中的资产与关系型数据库的绑定。使用Promise方式作为异步回调。
+
+当分布式对象中包含的资产和关系型数据库中包含的资产指向同一个实体资产文件，即两个资产的Uri相同时，就会存在冲突，我们把这种资产称为融合资产。如果需要分布式数据管理进行融合资产的冲突解决，需要先进行资产的绑定。当应用退出session后，绑定关系随之消失。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+  | 参数名   | 类型                    | 必填 | 说明                                                                               |
+  | -------- | ----------------------- | ---- | ---------------------------------------------------------------------------------- |
+  | assetKey | string                  | 是   | 待绑定的融合资产在分布式对象中的键值。                                             |
+  | bindInfo | [BindInfo](#bindinfo11) | 是   | 待绑定的融合资产在数据库中的信息，包含库名、表名、主键、列名及在数据库中的资产名。 |
+
+**返回值：**
+
+  | 类型                | 说明          |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例:**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type window from '@ohos.window';
+import distributedObject from '@ohos.data.distributedDataObject';
+import commonType from '@ohos.data.commonType';
+import type { BusinessError } from '@ohos.base';
+
+class Note {
+  title: string | undefined
+  text: string | undefined
+  attachment: commonType.Asset | undefined
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
+    }
+    let note: Note = new Note('test', 'test', attachment);
+    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    g_object.setSessionId('123456');
+
+    const bindInfo: distributedObject.BindInfo = {
+      storeName: 'notepad',
+      tableName: 'note_t',
+      primaryKey: {
+        'uuid': '00000000-0000-0000-0000-000000000000'
+      },
+      field: 'attachment',
+      assetName: attachment.name
+    }
+
+    g_object.bindAssetStore("attachment", bindInfo).then(() => {
+      console.info('bindAssetStore success.');
+    }).catch((err: BusinessError) => {
+      console.error("bindAssetStore failed, error code = " + err.code);
+    });
+  }
+}
 ```
 
 ## distributedObject.createDistributedObject<sup>(deprecated)</sup>

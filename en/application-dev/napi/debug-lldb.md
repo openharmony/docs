@@ -42,23 +42,23 @@ The following lists some functions supported by LLDB. For more functions and rel
 - Attaching to a process
 
 
-## Use Scenarios
+## When to Use
 
-- Local Debugging
-  - Linux x86_64 local debugging
+- Local debugging
+  - Local debugging in the Linux x86_64 environment
 
      LLDB supports debugging of C and C++ applications in the Linux x86_64 environment.
-  - macOS local debugging on the macOS desktop
+  - Local debugging on the macOS desktop
 
      LLDB supports debugging of C and C++ applications on the macOS desktop (including macOS x86_64 and M1).
 
-- Remote Debugging
+- Remote debugging
   - Remote debugging based on DevEco Studio
 
-     LLDB supports remote debugging of native C++ applications by connecting to OpenHarmony devices or emulators on the Windows and macOS desktops based on DevEco Studio.
+     LLDB supports remote debugging of native C++ applications by connecting to OpenHarmony devices or emulators from the Windows and macOS desktops based on DevEco Studio.
   - Remote debugging through direct connection
 
-     LLDB supports remote debugging of C and C++ applications by directly connecting to OpenHarmony devices in Windows, macOS desktop, and Linux x86_64 environment.
+     LLDB supports remote debugging of C and C++ applications by directly connecting to OpenHarmony devices from Windows, macOS desktop, and Linux x86_64 environment.
 
 
 ## Local Debugging
@@ -158,6 +158,7 @@ The following lists some functions supported by LLDB. For more functions and rel
       ```
 
   > **NOTE**
+  >
   > You can also perform step 4 in prior to step 3.
 
 
@@ -170,13 +171,14 @@ The following lists some functions supported by LLDB. For more functions and rel
 
 **Procedure**
 
-The following walks you through on how to remotely debug an executable file named **a.out** by connecting to an ARM-based OpenHarmony device (for example, RK3568 development board) on the Windows platform.
+The following walks you through on how to remotely debug an executable file named **a.out** by connecting to an Arm-based OpenHarmony device (for example, RK3568 development board) from the Windows platform.
 
 > **NOTE**
+>
 > In the command below, **/data/local/tmp** indicates the specified directory on the device.
-> 
+>
 > **8080** is the listening port, which can be customized.
-> 
+>
 > You must have the execute permission on the **lldb-server** and **a.out** files of the device.
 
 1. Open CLI 1 and push **lldb-server** and **a.out** to the device. (**a.out** is generated when you compile **hello.cpp** using the Clang compiler.)
@@ -233,6 +235,6 @@ The following walks you through on how to remotely debug an executable file name
 
 10. Exit debugging.
 
-   ```lldb
-   (lldb) quit
-   ```
+    ```lldb
+    (lldb) quit
+    ```

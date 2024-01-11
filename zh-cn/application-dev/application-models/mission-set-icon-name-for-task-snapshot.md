@@ -22,8 +22,12 @@
 
 ```ts
 import common from '@ohos.app.ability.common';
+import Logger from '../utils/Logger';
 import { BusinessError } from '@ohos.base';
 
+const TAG: string = 'EntryAbility';
+
+...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
 ... // 获取pixelMap
@@ -50,7 +54,11 @@ context.setMissionIcon(pixelMap, (err: BusinessError) => {
 ```ts
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
+import Logger from '../utils/Logger';
 
+const TAG: string = 'EntryAbility';
+
+...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 // 设置任务快照的名称
 context.setMissionLabel('test').then(() => {

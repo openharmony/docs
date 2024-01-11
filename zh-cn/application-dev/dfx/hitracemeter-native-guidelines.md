@@ -22,9 +22,9 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | 否   | 要跟踪的数值变量名称。 |
-| taskId | number | 否   | 用来表示关联的ID,如果有多个name相同的任务是并行执行的，则每次调用startTrace的taskId不同。 |
-| count  | number | 否   | 变量的值。  |
+| name   | string | 是   | 要跟踪的数值变量名称。 |
+| taskId | number | 是   | 用来表示关联的ID,如果有多个name相同的任务是并行执行的，则每次调用startTrace的taskId不同。 |
+| count  | number | 是   | 变量的值。  |
 
 ## 开发示例
 

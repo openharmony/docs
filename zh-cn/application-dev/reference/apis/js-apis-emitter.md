@@ -56,7 +56,7 @@ on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                   |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| event    | string                              | 是   | 持续订阅的事件。                       |
+| event    | string                              | 是   | 持续订阅的事件，不支持空字符串。                       |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
 
 **示例：**
@@ -108,7 +108,7 @@ once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                   |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| event    | string                              | 是   | 单次订阅的事件。                       |
+| event    | string                              | 是   | 单次订阅的事件，不支持空字符串。                       |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
 
 **示例：**
@@ -153,7 +153,7 @@ off(eventId: string): void
 
 | 参数名  | 类型   | 必填 | 说明     |
 | ------- | ------ | ---- | -------- |
-| eventId | string | 是   | 事件ID。 |
+| eventId | string | 是   | 事件ID，不支持空字符串。 |
 
 **示例：**
 
@@ -199,7 +199,7 @@ off(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                       |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| eventId  | string                              | 是   | 事件ID。                   |
+| eventId  | string                              | 是   | 事件ID，不支持空字符串。                   |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 取消该事件的回调处理函数。 |
 
 **示例：**
@@ -257,7 +257,7 @@ emit(eventId: string, data?: [EventData](#eventdata)): void
 
 | 参数名  | 类型                    | 必填 | 说明             |
 | ------- | ----------------------- | ---- | ---------------- |
-| eventId | string                  | 是   | 发送的事件ID。   |
+| eventId | string                  | 是   | 发送的事件ID，不支持空字符串。   |
 | data    | [EventData](#eventdata) | 否   | 事件携带的数据。 |
 
 **示例：**
@@ -285,7 +285,7 @@ emit(eventId: string, options: [Options](#options11), data?: [EventData](#eventd
 
 | 参数名  | 类型                    | 必填 | 说明             |
 | ------- | ----------------------- | ---- | ---------------- |
-| eventId | string                  | 是   | 发送的事件ID。   |
+| eventId | string                  | 是   | 发送的事件ID，不支持空字符串。   |
 | options | [Options](#options11)   | 是   | 事件优先级。     |
 | data    | [EventData](#eventdata) | 否   | 事件携带的数据。 |
 
@@ -318,7 +318,7 @@ getListenerCount(eventId: number|string): number
 
 | 参数名  | 类型           | 必填 | 说明     |
 | ------- | -------------- | ---- | -------- |
-| eventId | number\|string | 是   | 事件ID。 |
+| eventId | number\|string | 是   | 事件ID，string类型的eventId不支持空字符串。 |
 
 **示例：**
 
@@ -358,7 +358,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。<br> 其中字符串长度最大为10240字节。 |
+| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 

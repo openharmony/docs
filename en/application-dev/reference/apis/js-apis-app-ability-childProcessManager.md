@@ -67,10 +67,13 @@ export default class DemoProcess extends ChildProcess {
     console.log("DemoProcess OnStart() called");
   }
 }
+```
 
+```ts
 // Call childProcessManager.startChildProcess to start the child process.
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 import DemoProcess from '../process/DemoProcess';
+import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // Call any API of the DemoProcess class to prevent the code from being directly optimized by the compiler because it is not being referenced.
@@ -81,7 +84,7 @@ try {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${err.code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
 }
 ```
 
@@ -122,10 +125,13 @@ export default class DemoProcess extends ChildProcess {
     console.log("DemoProcess OnStart() called");
   }
 }
+```
 
+```ts
 // Call childProcessManager.startChildProcess to start the child process.
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 import DemoProcess from '../process/DemoProcess';
+import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // Call any API of the DemoProcess class to prevent the code from being directly optimized by the compiler because it is not being referenced.
@@ -137,6 +143,6 @@ try {
     }
   });
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${err.code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
 }
 ```

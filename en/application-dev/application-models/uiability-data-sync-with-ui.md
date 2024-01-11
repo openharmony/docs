@@ -16,27 +16,35 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 1. Call [eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 
    ```ts
+   import hilog from '@ohos.hilog';
+   import Logger from '../utils/Logger';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
-
-   const TAG: string = '[Example].[Entry].[EntryAbility]';
-
+   import type window from '@ohos.window';
+   import type { Context } from '@ohos.abilityAccessCtrl';
+   import Want from '@ohos.app.ability.Want'
+   
+   const TAG: string = '[EventAbility]';
+   
    export default class EntryAbility extends UIAbility {
-     func1(data: string) {
-       // Trigger the event to complete the service operation.
-       console.info(TAG, '1. ' + JSON.stringify(data));
-     }
-
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       // Obtain the context of the UIAbility instance.
+       let context = this.context;
        // Obtain an eventHub object.
        let eventhub = this.context.eventHub;
        // Subscribe to the event.
-       eventhub.on('event1', this.func1);
+       eventhub.on('event1', this.eventFunc);
        eventhub.on('event1', (data: string) => {
          // Trigger the event to complete the service operation.
-         console.info(TAG, '2. ' + JSON.stringify(data));
        });
+       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+     }
+       
+       // ...
+       
+     eventFunc(argOne: Context, argTwo: Context): void {
+       Logger.info(TAG, '1. ' + `${argOne}, ${argTwo}`);
+       return;
      }
    }
    ```
@@ -45,13 +53,16 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
    ```ts
    import common from '@ohos.app.ability.common';
-
+   import promptAction from '@ohos.promptAction'
+   import Want from '@ohos.app.ability.Want';
+   
    @Entry
    @Component
-   struct Index {
+   struct Page_EventHub {
+   
      private context = getContext(this) as common.UIAbilityContext;
-
-     eventHubFunc() {
+   
+     eventHubFunc() : void {
        // Trigger the event without parameters.
        this.context.eventHub.emit('event1');
        // Trigger the event with one parameter.
@@ -60,17 +71,53 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
        this.context.eventHub.emit('event1', 2, 'test');
        // You can design the parameters based on your service requirements.
      }
-
-     // UI page display.
+   
      build() {
-       Button ('Button')
-         .onClick(() => {
-           this.eventHubFunc();
-         })
-       Button ('Close')
-         .onClick(() => {
-           this.context.eventHub.off('event1');
-         })
+       Row() {
+         Column() {
+           Text($r('app.string.Page_UIAbilityFourth'))
+             .fontSize(40)
+             .fontWeight(FontWeight.Bold)
+   
+           Button(){
+             Text($r('app.string.EventHubFuncA'))
+               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+               .fontSize($r('sys.float.ohos_id_text_size_button1'))
+               .fontWeight(FontWeight.Bold)
+           }
+           .width(300)
+           .height(40)
+           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+             .onClick(() => {
+               this.eventHubFunc();
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncA')
+               });
+             })
+             .margin(3)
+   
+           Button(){
+             Text($r('app.string.EventHubFuncB'))
+               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+               .fontSize($r('sys.float.ohos_id_text_size_button1'))
+               .fontWeight(FontWeight.Bold)
+           }
+           .width(300)
+           .height(40)
+           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+             .onClick(() => {
+               this.context.eventHub.off('event1');
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncB')
+               });
+             })
+             .margin(3)
+         }
+         .width('100%')
+       }
+       .height('100%')
      }
    }
    ```
@@ -79,13 +126,10 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
    ```json
    [Example].[Entry].[EntryAbility] 1. []
-   [Example].[Entry].[EntryAbility] 2. []
    [Example].[Entry].[EntryAbility] 1. [1]
-   [Example].[Entry].[EntryAbility] 2. [1]
    [Example].[Entry].[EntryAbility] 1. [2,"test"]
-   [Example].[Entry].[EntryAbility] 2. [2,"test"]
    ```
-
+   
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts

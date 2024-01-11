@@ -1,12 +1,14 @@
-# Web
+# ArkWeb
 
-- [Web组件概述](web-component-overview.md)
+- [ArkWeb简介](web-component-overview.md)
 - [使用Web组件加载页面](web-page-loading-with-web-components.md)
 - 设置基本属性和事件
   - [设置深色模式](web-set-dark-mode.md)
   - [上传文件](web-file-upload.md)
   - [在新窗口中打开页面](web-open-in-new-window.md)
   - [管理位置权限](web-geolocation-permission.md)
+  - [使用隐私模式](web-incognito-mode.md)
+  - [Web组件嵌套滚动](web-nested-scrolling.md)
 - 在应用中使用前端页面JavaScript
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
@@ -15,3 +17,6 @@
 - [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
 - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+- [使用Web组件打印前端页面](web-print.md)
+- [Web组件的下载能力](web-download.md)
+- [使用预连接和预加载能力加速web页面的访问](web-predictor.md)

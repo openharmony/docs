@@ -1453,7 +1453,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 
 ### auth<sup>9+</sup>
 
-auth(name: string, owner: string, authType: string, options: {[key: string]: Object}, callback: AuthCallback): void
+auth(name: string, owner: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
 对应用帐号进行鉴权以获取授权令牌。使用callback异步回调。
 
@@ -1466,7 +1466,7 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 | name     | string                | 是    | 应用帐号的名称。     |
 | owner    | string                | 是    | 应用帐号所有者的包名。  |
 | authType | string                | 是    | 鉴权类型。           |
-| options  | {[key: string]: Object}  | 是    | 鉴权所需的可选项。       |
+| options  | Record<string, Object>  | 是    | 鉴权所需的可选项。       |
 | callback | [AuthCallback](#authcallback9) | 是    | 回调对象，返回鉴权结果。 |
 
 **错误码：**
@@ -4742,7 +4742,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key: string]: string} | 否    | 自定义数据，默认为空。 |
+| customData   | Record<string, Object> | 否    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4754,7 +4754,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | ------- | ------ | ---- | ---------- |
 | requiredLabels   | Array&lt;string&gt; | 否    | 所需的标签，默认为空。 |
 | authType   | string | 否    | 鉴权类型，默认为空。 |
-| parameters   | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
+| parameters   | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择帐号的选项。
@@ -4777,7 +4777,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------- | ---------------------- | ----- | -------------- |
 | credentialType | string                 | 否    | 凭据类型，默认为空。      |
 | credential     | string                 | 否    | 凭据取值，默认为空。      |
-| parameters     | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
+| parameters     | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4788,8 +4788,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型                    | 必填  | 说明           |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key: string]: Object} | 否    | 属性对象，默认为空。      |
-| parameters | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
+| properties | Record<string, Object> | 否    | 属性对象，默认为空。      |
+| parameters | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
 
 ## Constants<sup>8+</sup>
 
@@ -5085,7 +5085,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 
 ### auth<sup>9+</sup>
 
-auth(name: string, authType: string, options: {[key:string]: Object}, callback: AuthCallback): void
+auth(name: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
 对应用帐号进行鉴权以获取授权令牌，并使用callback异步回调返回结果。
 
@@ -5098,7 +5098,7 @@ auth(name: string, authType: string, options: {[key:string]: Object}, callback: 
 | name             | string                | 是    | 应用帐号的名称。        |
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权类型。       |
-| options          | {[key: string]: Object}  | 是    | 鉴权所需要的可选项。      |
+| options          | Record<string, Object>  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
 ### authenticate<sup>(deprecated)</sup>

@@ -6,7 +6,7 @@ With the **Worker** module, you can provide a multithreading environment for an 
 
 The **Context** object of the worker thread is different from that of the main thread. The worker thread does not support UI operations.
 
-For details about the precautions for using **Worker**, see [Precautions for Worker](../../arkts-utils/taskpool-vs-worker.md#precautions-for-worker).
+For details about the precautions for using **Worker**, see [Precautions for Worker](../../arkts-utils/worker-introduction.md#precautions-for-worker).
 
 > **NOTE**
 >
@@ -2346,22 +2346,18 @@ class MyModel {
     }
 }
 workerPort.onmessage = (d: MessageEvents): void => {
-    console.log("worker.ts onmessage");
-    let data: string = d.data;
-    let func1 = () => {
-        console.log("post message is function");
-    }
-    let obj1 = {
-        "index": 2,
-        "name1": "zhangshan",
-        setName() {
-            this.index = 3;
-        }
-    }
-    let obj2 = new MyModel();
-    // workerPort.postMessage(func1); A serialization error occurs when passing func1.
-    // workerPort.postMessage(obj1); A serialization error occurs when passing obj1.
-    workerPort.postMessage(obj2);     // No serialization error occurs when passing obj2.
+  console.log("worker.ts onmessage");
+  let data: string = d.data;
+  let func1 = () => {
+    console.log("post message is function");
+  }
+  // workerPort.postMessage(func1); A serialization error occurs when passing func1.
+  // let obj1: obj | null = null;
+  // if (obj1) {
+  //   workerPort.postMessage(obj1 as obj);  // A serialization error occurs when passing obj1.
+  // }
+  let obj2 = new MyModel();
+  workerPort.postMessage(obj2);     // No serialization error occurs when passing obj2.
 }
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror");

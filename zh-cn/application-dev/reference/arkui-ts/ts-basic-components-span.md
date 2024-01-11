@@ -1,12 +1,12 @@
 # Span
 
-作为Text组件的子组件，用于显示行内文本的组件。
+作为[Text](ts-basic-components-text.md)、[ContainerSpan](ts-basic-components-containerspan.md)组件的子组件，用于显示行内文本的组件。
 
 >  **说明：**
 >
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该组件从API Version 10开始支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的属性。支持继承的属性仅包括：fontColor、fontSize、fontStyle、fontWeight、decoration、letterSpacing、textCase、fontfamily。
+>  该组件从API Version 10开始支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的属性。支持继承的属性仅包括：fontColor、fontSize、fontStyle、fontWeight、decoration、letterSpacing、textCase、fontfamily、textShadow。
 
 
 ## 子组件
@@ -38,6 +38,7 @@ Span(value: string | Resource)
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。|
 | textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
+| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明)                                                                                           | 设置背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**说明：**<br/>作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。 |
 
 
 ## 事件
@@ -148,3 +149,23 @@ struct TextSpanExample {
 }
 ```
 ![TextshadowExample](figures/text_span_textshadow.png)
+
+### 示例3
+``` ts
+// xxx.ets
+@Component
+@Entry
+struct Index {
+  build() {
+    Column() {
+      Text() {
+        Span('   Hello World !   ')
+          .fontSize('20fp')
+          .textBackgroundStyle({color: "#7F007DFF", radius: "5vp"})
+          .fontColor(Color.White)
+      }
+    }.width('100%').margin({bottom: '5vp'}).alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![TextBackgroundStyleExample](figures/span_textbackgroundstyle.png)

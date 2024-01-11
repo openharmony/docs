@@ -1,6 +1,6 @@
 # @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -213,7 +213,7 @@ let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+    let options: dataPreferences.Options = { name: 'myStore' };
     dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -350,7 +350,7 @@ class EntryAbility extends UIAbility {
 
 getPreferencesSync(context: Context, options: Options): Preferences
 
-Obtains the **Preferences** instance. This API is a synchronous interface.
+Obtains a **Preferences** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1191,20 +1191,20 @@ Represents the configuration options of a **Preferences** instance.
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from the AppGallery.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br>**Model restriction**: This attribute can be used only in the stage model.|
+| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from the AppGallery.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.|
 
 ## Preferences
 
 Provides APIs for obtaining and modifying the stored data.
 
-Before calling any method of **Preferences**, you must obtain a **Preferences** instance by using [dataPreferences.getPreferences](#datapreferencesgetpreferences).
+Before calling any API of **Preferences**, you must obtain a **Preferences** instance by using [dataPreferences.getPreferences](#datapreferencesgetpreferences).
 
 
 ### get
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API uses an asynchronous callback to return the result. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value of a key from this **Preferences** instance. This API uses an asynchronous callback to return the result. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1213,7 +1213,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
 | callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1239,7 +1239,7 @@ try {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API uses a promise to return the result. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value of a key from this **Preferences** instance. This API uses a promise to return the result. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1248,7 +1248,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
 
 **Return value**
 
@@ -1277,7 +1277,7 @@ try {
 
 getSync(key: string, defValue: ValueType): ValueType
 
-Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API returns the result synchronously. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value of a key from this **Preferences** instance. This API returns the result synchronously. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1286,7 +1286,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
 
 **Return value**
 
@@ -1311,7 +1311,7 @@ try {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-Obtains all KV pairs from the cached **Preferences** instance. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1353,7 +1353,7 @@ try {
 
 getAll(): Promise&lt;Object&gt;
 
-Obtains all KV pairs from the cached **Preferences** instance. This API uses a promise to return the result.
+Obtains all KV pairs from this **Preferences** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1393,7 +1393,7 @@ try {
 
 getAllSync(): Object
 
-Obtains all KV pairs from the cached **Preferences** instance. This API returns the result synchronously.
+Obtains all KV pairs from this **Preferences** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1429,7 +1429,7 @@ try {
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Writes data to the cached **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1438,7 +1438,7 @@ Writes data to the cached **Preferences** instance. This API uses an asynchronou
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
@@ -1464,7 +1464,7 @@ try {
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Writes data to the cached **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1473,7 +1473,7 @@ Writes data to the cached **Preferences** instance. This API uses a promise to r
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
 
 **Return value**
 
@@ -1503,7 +1503,7 @@ try {
 
 putSync(key: string, value: ValueType): void
 
-Writes data to the cached **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1512,7 +1512,7 @@ Writes data to the cached **Preferences** instance. This API returns the result 
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
 
 **Example**
 
@@ -1531,7 +1531,7 @@ try {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API uses an asynchronous callback to return the result.
+Checks whether this **Preferences** instance contains the KV pair of the given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1569,7 +1569,7 @@ try {
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API uses a promise to return the result.
+Checks whether this **Preferences** instance contains the KV pair of the given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1611,7 +1611,7 @@ try {
 
 hasSync(key: string): boolean
 
-Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API returns the result synchronously.
+Checks whether this **Preferences** instance contains the KV pair of the given key. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1649,7 +1649,7 @@ try {
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the KV pair from the cached **Preferences** instance based on the specified key. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1683,7 +1683,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1721,7 +1721,7 @@ try {
 
 deleteSync(key: string): void
 
-Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1748,7 +1748,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Flushes the data in the cached **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
+Flushes the data in this **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1781,7 +1781,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-Flushes the data in the cached **Preferences** instance to the persistent file. This API uses a promise to return the result.
+Flushes the data in this **Preferences** instance to the persistent file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1813,7 +1813,7 @@ try {
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-Clears all data in the cached **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1846,7 +1846,7 @@ try {
 
 clear(): Promise&lt;void&gt;
 
-Clears all data in the cached **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1878,7 +1878,7 @@ try {
 
 clearSync(): void
 
-Clears all data in the cached **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1907,21 +1907,22 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is **change**, which indicates data changes. |
-| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return the data change.  |
+| type     | string   | Yes  | Event type. The value **change** indicates data changes.|
+| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return data changes.    |
 
 **Example**
 
 ```ts
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
     dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('change', observer);
         preferences.put('startup', 'manual', (err: BusinessError) => {
             if (err) {
             console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -1960,7 +1961,7 @@ This API can be used with [removePreferencesFromCache](#datapreferencesremovepre
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return data changes between processes.                        |
+| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return inter-process data changes.                        |
 
 **Error codes**
 
@@ -1973,6 +1974,9 @@ For details about the error codes, see [User Preference Error Codes](../errorcod
 **Example 1**
 
 ```ts
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
     let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
     dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
@@ -1980,9 +1984,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('multiProcessChange', observer);
         preferences.put('startup', 'manual', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2008,46 +2010,47 @@ try {
 **Example 2**
 
 ```ts
+let options: dataPreferences.Options = { name: 'myStore' };
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+    try {
+        dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            preferences = null;
+            console.info("Succeeded in removing preferences.");
+        })
+    } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error("Failed to remove preferences. code =" + code + ", message =" + message);
+    }
+
+    try {
+        dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+            if (err) {
+                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            preferences = val;
+            console.info("Succeeded in getting preferences.");
+        })
+    } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error("Failed to get preferences. code =" + code + ", message =" + message);
+    }
+}
 try {
-    let options: dataPreferences.Options = { name: 'myStore' };
     dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
         preferences = val;
-        preferences.on('multiProcessChange', (key: string) => {
-            console.info("The key " + key + " changed.");
-            try {
-                dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-                    if (err) {
-                        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                        return;
-                    }
-                    preferences = null;
-                    console.info("Succeeded in removing preferences.");
-                })
-            } catch (err) {
-                let code = (err as BusinessError).code;
-                let message = (err as BusinessError).message;
-                console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-            }
-
-            try {
-                dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-                    if (err) {
-                        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-                        return;
-                    }
-                    preferences = val;
-                    console.info("Succeeded in getting preferences.");
-                })
-            } catch (err) {
-                let code = (err as BusinessError).code;
-                let message = (err as BusinessError).message;
-                console.error("Failed to get preferences. code =" + code + ", message =" + message);
-            }
-        });
+        preferences.on('multiProcessChange', observer);
         preferences.put('startup', 'manual', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2085,22 +2088,22 @@ Unsubscribes from data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. The value is **change**, which indicates data changes. |
+| type     | string   | Yes  | Event type. The value **change** indicates data changes.                    |
 | callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.|
 
 **Example**
 
 ```ts
-
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
     dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('change', observer);
         preferences.put('startup', 'auto', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2115,9 +2118,7 @@ try {
                 }
                 console.info("Successfully flushed data.");
             })
-            preferences.off('change', (key: string) => {
-                console.info("The key " + key + " changed.");
-            });
+            preferences.off('change', observer);
         })
     })
 } catch (err) {
@@ -2140,11 +2141,14 @@ Unsubscribes from inter-process data changes.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for the data change events will be unregistered.|
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.|
 
 **Example**
 
 ```ts
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
     let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
     dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
@@ -2152,9 +2156,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('multiProcessChange', observer);
         preferences.put('startup', 'auto', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2169,9 +2171,7 @@ try {
                 }
                 console.info("Successfully flushed data.");
             })
-            preferences.off('multiProcessChange', (key: string) => {
-                console.info("The key " + key + " changed.");
-            });
+            preferences.off('multiProcessChange', observer);
         })
     })
 } catch (err) {
@@ -2190,7 +2190,7 @@ Enumerates the value types.
 | --------------- | --------------------------------- |
 | number          | The value is a number.               |
 | string          | The value is a string.             |
-| boolean         | The value is true or false.           |
+| boolean         | The value is true or false.             |
 | Array\<number>  | The value is an array of numbers.     |
 | Array\<boolean> | The value is a Boolean array.     |
 | Array\<string>  | The value is an array of strings.   |

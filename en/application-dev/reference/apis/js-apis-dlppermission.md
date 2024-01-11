@@ -2782,7 +2782,7 @@ Sets sandbox application configuration. This API uses a promise to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| configInfo | string | Yes| Sandbox application configuration to set. |
+| configInfo | string | Yes| Sandbox application configuration.|
 
 **Return value**
 
@@ -2885,7 +2885,7 @@ import { BusinessError } from '@ohos.base';
 try {
   dlpPermission.getSandboxAppConfig().then((res) => {
     console.info('res', JSON.stringify(res));
-  }); // Obtain sandbox application configuration.
+  }); // Obtain the sandbox application configuration.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }

@@ -1,13 +1,13 @@
 # Building an NDK Project with the DevEco Studio Template
 
 
-The NDK uses CMake and Ninja to compile C/C++ code of applications. The figure below shows the compilation process.
+The NDK uses CMake and Ninja to build C/C++ code of applications. The figure below shows the build process.
 
 
 ![Snipaste_2023-11-03_14-41-18](figures/Snipaste_2023-11-03_14-41-18.png)
 
 
-The core compilation process is as follows:
+The core build process is as follows:
 
 
 1. The build settings in the CMake configuration script and **externalNativeOptions** in **build-profile.json5** are compared with the settings in the native cache to generate CMake commands, and execute them.
@@ -70,8 +70,8 @@ The following table describes the **externalNativeOptions** parameter.
 
 | Configuration Item| Type| Description| 
 | -------- | -------- | -------- |
-| path | string | Path to the CMake build script, that is, the** CMakeLists.txt** file.| 
-| abiFilters | array | Local ABI. Available options are as follows:<br>- armeabi-v7a<br>- arm64-v8a<br>- x86_64<br>If this parameter is not set, all abiFilters are used during compilation.| 
+| path | string | Path to the CMake build script, that is, the **CMakeLists.txt** file.| 
+| abiFilters | array | Local ABI. Available options are as follows:<br>- armeabi-v7a<br>- arm64-v8a<br>- x86_64<br>If this parameter is not set, all **abiFilters** options are used during compilation.| 
 | arguments | string | CMake compilation parameters.| 
 | cppFlags | string | C++ compiler parameters.| 
 

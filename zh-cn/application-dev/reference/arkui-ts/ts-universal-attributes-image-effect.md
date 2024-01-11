@@ -324,8 +324,8 @@ useShadowBatching(value: boolean)
 | 名称           | 描述                                                              |
 | ---------------| ------                                                            |
 | NORMAL         | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。                  |
-| SOURCE_IN      | r = s * da,以上层图像的透明度作为权重，将其与下层图像的颜色值进行混合。|
-| DESTINATION_IN | r = d * sa,以下层图像的透明度作为权重，将其与上层图像的颜色值进行混合。|
+| SOURCE_IN      |r = d * sa,以下层图像的透明度作为权重，将其与上层图像的颜色值进行混合。|
+| DESTINATION_IN |r = s * da,以上层图像的透明度作为权重，将其与下层图像的颜色值进行混合。|
 
 ## LinearGradientBlurOptions<sup>10+</sup>对象说明
 
@@ -543,9 +543,9 @@ struct LightUpExample {
         selected: this.selectedDate
       })
         .lunar(this.isLunar)
-        .onChange((value: DatePickerResult) => {
-          this.selectedDate.setFullYear(value.year as number, value.month, value.day)
-          console.info('select current date is: ' + JSON.stringify(value))
+        .onDateChange((value: Date) => {
+          this.selectedDate = value
+          console.info('select current date is: ' + value.toString())
         })
         .lightUpEffect(0.6)
 

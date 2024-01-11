@@ -673,7 +673,7 @@ tabIndex用于设置自定义TAB键走焦顺序，默认值为0。使用“TAB/S
 ![zh-cn_image_0000001511421364](figures/zh-cn_image_0000001511421364.gif)
 
 
-默认的走焦顺序从第一个获焦组件一路走到最后一个获焦组件，会经历Button1-&gt;Button4-&gt;Button5-&gt;Button7-&gt;左箭头-&gt;右箭头-&gt;ButtonOK。这种走焦队列比较完整，遍历了大部分的组件。但缺点是从第一个走到最后一个所经历的路径较长。
+默认的走焦顺序从第一个获焦组件一路走到最后一个获焦组件，会经历Button1-&gt;Button2-&gt;Button3-&gt;Button4-&gt;Button5-&gt;Button6-&gt;Button7-&gt;左箭头-&gt;右箭头-&gt;ButtonCancel-&gt;ButtonOK。这种走焦队列比较完整，遍历了大部分的组件。但缺点是从第一个走到最后一个所经历的路径较长。
 
 
 如果想实现快速的从第一个走到最后一个，又不想牺牲太多的遍历完整性，就可以使用tabIndex通用属性。
@@ -1008,13 +1008,17 @@ struct RequestFocusExample {
     Column({ space:20 }){
       Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
         .focusable(false)
       Button("id: " + this.idList[1] + " default")
         .width(400).height(70).fontColor(Color.White)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[2] + " focusOnTouch(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[3] + " focusOnTouch(true)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
     }.width('100%').margin({ top:20 })
   }
 }

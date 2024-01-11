@@ -31,9 +31,9 @@
      }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
-         console.log('prepare success');
+         console.info('prepare success');
        } else {
-         console.log('prepare failed and error is ' + err.message);
+         console.error('prepare failed and error is ' + err.message);
        }
      });
      let videoSurfaceId = await avRecorder.getInputSurface();
@@ -103,7 +103,7 @@
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
      videoOutput.start(async (err: BusinessError) => {
        if (err) {
-         console.error('Failed to start the video output ${err.message}');
+         console.error(`Failed to start the video output ${err.message}`);
          return;
        }
        console.info('Callback invoked to indicate the video output start success.');
@@ -131,7 +131,7 @@
      }
      videoOutput.stop((err: BusinessError) => {
        if (err) {
-         console.error('Failed to stop the video output ${err.message}');
+         console.error(`Failed to stop the video output ${err.message}`);
          return;
        }
        console.info('Callback invoked to indicate the video output stop success.');
@@ -169,7 +169,7 @@
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {
     videoOutput.on('error', (error: BusinessError) => {
-      console.info(`Video output error code: ${error.code}`);
+      console.error(`Video output error code: ${error.code}`);
     });
   }
   ```

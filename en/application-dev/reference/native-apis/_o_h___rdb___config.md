@@ -28,3 +28,4 @@ Defines the RDB store configuration.
 | [moduleName](_r_d_b.md#modulename) | Module name. |
 | [isEncrypt](_r_d_b.md#isencrypt) | Whether to encrypt the RDB store.|
 | [securityLevel](_r_d_b.md#securitylevel) | Security level of the RDB store.|
+| [area](_r_d_b.md#area)<sup>11+</sup> | Security area level. For details, see [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea).|

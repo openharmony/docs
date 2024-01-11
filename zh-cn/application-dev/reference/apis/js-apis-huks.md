@@ -904,10 +904,6 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
         },
         {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-        },
-        {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
             value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
         },
@@ -1049,10 +1045,6 @@ async function generateKey(alias: string): Promise<void> {
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        },
-        {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
         },
         {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,

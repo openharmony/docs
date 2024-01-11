@@ -270,7 +270,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid)
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| isVaild | 输出参数。指向布尔实例的指针，如果解码器实例有效，则为true，如果编码器实例无效，则为false。 | 
+| isVaild | 输出参数。指向布尔实例的指针，如果解码器实例有效，则为true，如果解码器实例无效，则为false。 | 
 
 **返回：**
 

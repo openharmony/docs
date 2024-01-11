@@ -42,7 +42,7 @@ Text可通过以下两种方式来创建：
 
 - 创建Span。
 
-  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容内容时，Span内容覆盖Text内容。
+  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容时，Span内容覆盖Text内容。
 
 
   ```ts

@@ -4,6 +4,11 @@
 开发者需要重写app.js/app.ets中的生命周期回调函数，开发者通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见前述章节，创建PageAbility示例如下：
 
 ```ts
+import featureAbility from '@ohos.ability.featureAbility';
+import Logger from '../utils/Logger';
+
+const TAG: string = 'MainAbility';
+
 class MainAbility {
   onCreate() {
     // 获取context并调用相关方法
@@ -97,6 +102,10 @@ FA模型中，可以通过featureAbility的getContext接口获取应用上下文
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
+import promptAction from '@ohos.promptAction';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 ```
 ```ts
 (async (): Promise<void> => {

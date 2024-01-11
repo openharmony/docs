@@ -6,16 +6,75 @@ Focus control attributes set whether a component is focusable and how it partici
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## focusable
 
-## Attributes
+focusable(value: boolean)
 
-| Name              | Type| Description                                  |
-| -------------------- | -------- | ---------------------------------------- |
-| focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
-| tabIndex<sup>9+<sup> | number   | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
-| defaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
-| groupDefaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the parent container. This attribute takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains focus for the first time.<br>|
-| focusOnTouch<sup>9+<sup> | boolean | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
+Whether the current component is focusable.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
+
+## tabIndex<sup>9+</sup>
+
+tabIndex(index: number)
+
+Tab order of the component in sequential focus navigation with the **Tab** key.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| index  | number | Yes  | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
+
+## defaultFocus<sup>9+</sup>
+
+defaultFocus(value: boolean)
+
+Specifies whether to set the component as the default focus of the container.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to set the component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
+
+## groupDefaultFocus<sup>9+</sup>
+
+groupDefaultFocus(value: boolean)
+
+Whether to set the component as the default focus of the container.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This attribute takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains focus for the first time.|
+
+## focusOnTouch<sup>9+</sup>
+
+focusOnTouch(value: boolean)
+
+Whether the component is focusable on touch.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
 
 ## focusControl<sup>9+</sup>
 
@@ -268,7 +327,6 @@ struct RequestFocusExample {
 Diagrams:
 
 Press the **Tab** key to activate the focus state.
-
 Below shows how the UI behaves when you request focus for a component that does not exist.
 
 ![requestFocus1](figures/requestFocus1.png)

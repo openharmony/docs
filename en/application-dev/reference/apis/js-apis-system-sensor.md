@@ -467,7 +467,7 @@ If this API is called multiple times for the same application, the last call tak
 
 | Name | Type                                                        | Mandatory| Description                                            |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions) | Yes  | Type of data to return.|
+| options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions6) | Yes  | Type of data to return.|
 
 **Example**
 
@@ -520,9 +520,9 @@ If this API is called multiple times for the same application, the last call tak
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                                          |
-| ------- | ------------------------------------------------------- | ---- | ---------------------------------------------- |
-| options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions) | Yes  | Type of data to return.|
+| Name | Type                                                    | Mandatory| Description                                          |
+| ------- | -------------------------------------------------------- | ---- | ---------------------------------------------- |
+| options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions6) | Yes  | Type of data to return.|
 
 **Example**
 
@@ -573,7 +573,7 @@ Defines the type of data to return for a subscription to the acceleration sensor
 
 | Name    | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                          | Yes  | Execution frequency of the callback for returning the acceleration sensor data. The default value is **normal**. The options are as follows: - **game**: called at an interval of 20 ms, which is applicable to gaming scenarios. - **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios. - **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| interval | string                                          | Yes  | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>**game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>**ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>**normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
 | success  | [AccelerometerResponse](#accelerometerresponse) | Yes  | Called when the acceleration sensor data changes.                          |
 | fail     | Function                                        | No  | Callback upon an API call failure.                                    |
 
@@ -764,11 +764,11 @@ Defines the type of data to return for a subscription to the device orientation 
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
-| Name    | Type                                                   | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                                  | Yes  | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | [DeviceOrientationResponse](#deviceorientationresponse) | Yes  | Called when the device orientation sensor data changes.                  |
-| fail     | Function                                                | No  | Callback upon an API call failure.                                    |
+| Name    | Type                                                    | Mandatory| Description                                                        |
+| -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                                   | Yes  | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| success  | [DeviceOrientationResponse](#deviceorientationresponse6) | Yes  | Called when the device orientation sensor data changes.                  |
+| fail     | Function                                                 | No  | Callback upon an API call failure.                                    |
 
 ## DeviceOrientationResponse<sup>6+</sup> 
 
@@ -790,11 +790,11 @@ Defines the type of data to return for a subscription to the gyroscope sensor da
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
-| Name    | Type                                   | Mandatory| Description                                                        |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                  | Yes  | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
-| success  | [GyroscopeResponse](#gyroscoperesponse) | Yes  | Called when the gyroscope sensor data changes.                          |
-| fail     | Function                                | No  | Callback upon an API call failure.                                    |
+| Name    | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                   | Yes  | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>**game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>**ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>**normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| success  | [GyroscopeResponse](#gyroscoperesponse6) | Yes  | Called when the gyroscope sensor data changes.                          |
+| fail     | Function                                 | No  | Callback upon an API call failure.                                    |
 
 ## GyroscopeResponse<sup>6+</sup> 
 

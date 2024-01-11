@@ -3,15 +3,11 @@
 
 ## Overview
 
-The **image_pixel_map_mdk.h** file declares the APIs that can lock, access, and unlock a pixel map. Need link **libpixelmapndk.z.so**
+The **image_pixel_map_mdk.h** file declares the APIs used to lock, access, and unlock a pixel map.
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary
@@ -21,8 +17,8 @@ The **image_pixel_map_mdk.h** file declares the APIs that can lock, access, and 
 
 | Name| Description| 
 | -------- | -------- |
-| [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | Defines the pixel map information.| 
-| [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | Defines the options for creating a pixel map.| 
+| [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | Defines the information about a pixel map.| 
+| [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | Defines the options used for creating a pixel map.| 
 
 
 ### Types
@@ -30,7 +26,7 @@ The **image_pixel_map_mdk.h** file declares the APIs that can lock, access, and 
 | Name| Description| 
 | -------- | -------- |
 | [NativePixelMap](image.md#nativepixelmap) | Defines the data type name of the pixel map at the native layer.| 
-| [OhosPixelMapInfos](image.md#ohospixelmapinfos) | Defines the pixel map information.| 
+| [OhosPixelMapInfos](image.md#ohospixelmapinfos) | Defines the information about a pixel map.| 
 
 
 ### Enums
@@ -63,4 +59,5 @@ The **image_pixel_map_mdk.h** file declares the APIs that can lock, access, and 
 | [OH_PixelMap_GetImageInfo](image.md#oh_pixelmap_getimageinfo) (const [NativePixelMap](image.md#nativepixelmap) \*native, [OhosPixelMapInfos](_ohos_pixel_map_infos.md) \*info) | Obtains the image information of a **NativePixelMap** object.| 
 | [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native, void \*\*addr) | Obtains the memory address of a **NativePixelMap** object and locks the memory.| 
 | [OH_PixelMap_UnAccessPixels](image.md#oh_pixelmap_unaccesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native) | Unlocks the memory of a **NativePixelMap** object. This function is used with [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) in pairs.| 
+
 <!--no_check-->

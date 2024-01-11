@@ -160,6 +160,7 @@
         - [Background Services](application-models/background-services.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-stage.md)
+        - [Using EventHub for Intra-Thread Communication](application-models/itc-with-eventHub.md)
       - Mission Management
         - [Mission Management Scenarios](application-models/mission-management-overview.md)
         - [Mission and Launch Type](application-models/mission-management-launch-type.md)
@@ -397,13 +398,17 @@
         - [Single I/O Task Development](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
         - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
+        - [Worker Introduction](arkts-utils/worker-introduction.md)
         - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
         - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
         - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
         - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
       - Appendix
         - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
+        - [Serialization Types Supported by TaskPool and Worker](arkts-utils/serialization-support-types.md)
         - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
+        - [Precautions for Multithread Safe](arkts-utils/multi-thread-safety.md)
     - Container
       - [Container Overview](arkts-utils/container-overview.md)
       - [Linear Containers](arkts-utils/linear-container.md)
@@ -522,6 +527,7 @@
         - [PixelMap Data Processing (Native)](media/image-pixelmap-operation-native.md)
         - [Pixel Map Operation](media/image-pixelmap-operation.md)
       - [Image Encoding (ArkTS)](media/image-encoding.md)
+      - [Image Encoding (Native)](media/image-encoding-native.md)
       - [Image Tool](media/image-tool.md)
   - Security
     - Access Control
@@ -749,6 +755,7 @@
     - Packing and Unpacking Tools
       - [Packing Tool](tools/packing-tool.md)
       - [Unpacking Tool](tools/unpacking-tool.md)
+    - [App Check Tool](tools/app-check-tool.md)
     - [Common Event Manager](tools/cem-tool.md)
     - [Advanced Notification Manager](tools/anm-tool.md)
     - [restool](tools/restool.md)
@@ -2014,6 +2021,7 @@
     - [ArkUI Routing/Navigation Development (ArkTS)](faqs/faqs-arkui-route-nav.md)
     - [ArkUI Animation/Interaction Event Development (ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
   - [ArkUI Development (JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS Common Library Development](faqs/faqs-arkts-utils.md)
   - [Web Development](faqs/faqs-arkui-web.md)
   - [Bundle Management Development](faqs/faqs-bundle-management.md)
   - [Resource Manager Development](faqs/faqs-globalization.md)

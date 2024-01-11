@@ -8,12 +8,7 @@
 
 ## linearGradient
 
-linearGradient(value: {
-    angle?: number | string;
-    direction?: GradientDirection;
-    colors: Array<any>;
-    repeating?: boolean;
-  })
+linearGradient(value: {angle?: number | string; direction?: GradientDirection; colors: Array\<any>; repeating?: boolean;})
 
 线性渐变。
 
@@ -29,14 +24,7 @@ linearGradient(value: {
 
 ## sweepGradient
 
-sweepGradient(value: {
-    center: Array<any>;
-    start?: number | string;
-    end?: number | string;
-    rotation?: number | string;
-    colors: Array<any>;
-    repeating?: boolean;
-  })
+sweepGradient(value: {center: Arra\<any>; start?: number | string; end?: number | string; rotation?: number | string; colors: Array\<any>; repeating?: boolean;})
 
 角度渐变。
 
@@ -52,7 +40,7 @@ sweepGradient(value: {
 
 ## radialGradient
 
-radialGradient(value: { center: Array<any>; radius: number | string; colors: Array<any>; repeating?: boolean })
+radialGradient(value: { center: Array\<any>; radius: number | string; colors: Array\<any>; repeating?: boolean })
 
 径向渐变。
 

@@ -1,36 +1,38 @@
 # 文件
 
-- [文件管理概述](file-management-overview.md)
-- 应用文件
-  - [应用文件概述](app-file-overview.md)
-  - [应用沙箱目录](app-sandbox-directory.md)
-  - 应用文件访问与管理
-    - [应用文件访问](app-file-access.md)
-    - [应用文件上传下载](app-file-upload-download.md)
-    - [应用及文件系统空间统计](app-fs-space-statistics.md)
-  - [向应用沙箱推送文件](send-file-to-app-sandbox.md)
-  - [应用文件分享](share-app-file.md)
-  - 应用数据备份恢复
-    - [应用数据备份恢复概述](app-file-backup-overview.md)
-    - [应用接入数据备份恢复](app-file-backup-extension.md)
-    - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
-  - [文件授权访问](app-file-authorization.md)
-- 用户文件
-  - [用户文件概述](user-file-overview.md)
-  - [用户文件uri介绍](user-file-uri-intro.md)
-  - 选择与保存用户文件（FilePicker）
-    - [选择用户文件](select-user-file.md)
-    - [保存用户文件](save-user-file.md)
-  - 相册管理（photoAccessHelper）
-    - [相册管理模块开发概述](photoAccessHelper-overview.md)
-    - [媒体资源使用指导](photoAccessHelper-resource-guidelines.md)
-    - [用户相册资源使用指导](photoAccessHelper-userAlbum-guidelines.md)
-    - [系统相册资源使用指导](photoAccessHelper-systemAlbum-guidelines.md)
-    - [媒体资源变更通知相关指导](photoAccessHelper-notify-guidelines.md)
-  - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
-  - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
-- 分布式文件系统
-  - [分布式文件系统概述](distributed-fs-overview.md)
-  - [设置分布式文件数据等级](set-security-label.md)
-  - [跨设备文件访问](file-access-across-devices.md)
-  - [跨设备文件拷贝](file-copy-across-devices.md)
+- Core File Kit（文件基础服务）
+  - [Core File Kit简介](core-file-kit-intro.md)
+  - 应用文件
+    - [应用文件概述](app-file-overview.md)
+    - [应用沙箱目录](app-sandbox-directory.md)
+    - 应用文件访问与管理
+      - [应用文件访问](app-file-access.md)
+      - [应用文件上传下载](app-file-upload-download.md)
+      - [应用及文件系统空间统计](app-fs-space-statistics.md)
+    - [向应用沙箱推送文件](send-file-to-app-sandbox.md)
+    - [应用文件分享](share-app-file.md)
+    - 应用数据备份恢复
+      - [应用数据备份恢复概述](app-file-backup-overview.md)
+      - [应用接入数据备份恢复](app-file-backup-extension.md)
+      - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
+    - [文件授权访问](app-file-authorization.md)
+  - 用户文件
+    - [用户文件概述](user-file-overview.md)
+    - [用户文件uri介绍](user-file-uri-intro.md)
+    - 选择与保存用户文件（FilePicker）
+      - [选择用户文件](select-user-file.md)
+      - [保存用户文件](save-user-file.md)
+    - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
+    - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
+  - 分布式文件系统
+    - [分布式文件系统概述](distributed-fs-overview.md)
+    - [设置分布式文件数据等级](set-security-label.md)
+    - [跨设备文件访问](file-access-across-devices.md)
+    - [跨设备文件拷贝](file-copy-across-devices.md)
+- Media Library Kit（媒体文件管理服务）
+  - [Media Library Kit 简介](photoAccessHelper-overview.md)
+  - [开发准备](photoAccessHelper-preparation.md)
+  - [媒体资源使用指导](photoAccessHelper-resource-guidelines.md)
+  - [用户相册资源使用指导](photoAccessHelper-userAlbum-guidelines.md)
+  - [系统相册资源使用指导](photoAccessHelper-systemAlbum-guidelines.md)
+  - [媒体资源变更通知相关指导](photoAccessHelper-notify-guidelines.md)

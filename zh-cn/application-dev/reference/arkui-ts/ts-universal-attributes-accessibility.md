@@ -20,7 +20,7 @@ accessibilityGroup(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 无障碍组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
 
-## accessibilityText
+## accessibilityText<sup>11+</sup>
 
 accessibilityText(value: string)
 
@@ -62,6 +62,20 @@ accessibilityLevel(value: string)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | string | 是   | 无障碍重要性，用于控制某个组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：根据组件不同会转换为“yes”或者“no”。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**说明：**<br/>以下组件当accessibilityLevel设置成"auto"时，当前组件可被无障碍辅助服务所识别：Checkbox, CheckboxGroup, Gauge, Marquee, MenuItem, MenuItemGroup, Menu, Navigation,  DatePicker, Progress, Radio, Rating, ScrollBar, Select, Slider, Stepper, Text, TextClock, TextPicker, TextTimer, TimePicker, Toggle, Web. |
 
+## accessibilityVirtualNode
+
+accessibilityVirtualNode(builder: CustomBuilder)
+
+无障碍虚拟节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是   | 无障碍虚拟子节点，使开发者可以对自绘制组件传入一个自定义的CustomBuilder，该CustomBuilder中的组件在后端仅做布局不做显示，辅助应用获取无障碍节点信息时会返回CustomBuilder中的节点信息。 |
+
 ## 示例
 
 ```ts
@@ -69,6 +83,17 @@ accessibilityLevel(value: string)
 @Entry
 @Component
 struct Index {
+
+  @Builder customAccessibilityNode() {
+    Column() {
+      Text(`virtual node`)
+        .fontSize(10)
+        .backgroundColor(Color.Red)
+        .width(10)
+        .height(10)
+        .align(Alignment.Center)
+    }
+  }
 
   build() {
     Row() {
@@ -85,6 +110,7 @@ struct Index {
       .accessibilityLevel("yes")
       .accessibilityText("分组")
       .accessibilityDescription("Column组件可以被选中，播报的内容是“分组”")
+      .accessibilityVirtualNode(this.customAccessibilityNode)
     }
     .height('100%')
   }

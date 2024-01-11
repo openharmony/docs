@@ -12,9 +12,9 @@ The **appManager** module implements application management. You can use the API
 import appManager from '@ohos.application.appManager';
 ```
 
-## appManager.isRunningInStabilityTest<sup>8+</sup>
+## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this application is undergoing a stability test. This API uses an asynchronous callback to return the result.
 
@@ -24,7 +24,7 @@ Checks whether this application is undergoing a stability test. This API uses an
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Example**
     
@@ -41,9 +41,9 @@ Checks whether this application is undergoing a stability test. This API uses an
   ```
 
 
-## appManager.isRunningInStabilityTest<sup>8+</sup>
+## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 Checks whether this application is undergoing a stability test. This API uses a promise to return the result.
 
@@ -53,7 +53,7 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Example**
     
@@ -69,7 +69,7 @@ Checks whether this application is undergoing a stability test. This API uses a 
   ```
 
 
-## appManager.isRamConstrainedDevice
+## appManager.isRamConstrainedDevice<sup>7+<sup>
 
 isRamConstrainedDevice(): Promise\<boolean>
 
@@ -81,7 +81,7 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Example**
     
@@ -96,7 +96,7 @@ Checks whether this application is running on a RAM constrained device. This API
   });
   ```
 
-## appManager.isRamConstrainedDevice
+## appManager.isRamConstrainedDevice<sup>7+<sup>
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
@@ -108,7 +108,7 @@ Checks whether this application is running on a RAM constrained device. This API
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Example**
     
@@ -124,7 +124,7 @@ Checks whether this application is running on a RAM constrained device. This API
   });
   ```
 
-## appManager.getAppMemorySize
+## appManager.getAppMemorySize<sup>7+<sup>
 
 getAppMemorySize(): Promise\<number>
 
@@ -151,7 +151,7 @@ Obtains the memory size of this application. This API uses a promise to return t
   });
   ```
 
-## appManager.getAppMemorySize
+## appManager.getAppMemorySize<sup>7+<sup>
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
@@ -194,7 +194,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Promise used to return the process information.|
+| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Promise used to return the information about the running processes.|
 
 **Example**
     
@@ -225,7 +225,7 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Yes| Obtains information about the running processes. This API uses a promise to return the result.|
+| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Yes| Callback used to return the information about the running processes.|
 
 **Example**
     
@@ -241,7 +241,7 @@ Obtains information about the running processes. This API uses an asynchronous c
   });
   ```
 
-## appManager.registerApplicationStateObserver<sup>8+</sup>
+## appManager.registerApplicationStateObserver
 
 registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
@@ -251,13 +251,19 @@ Registers an observer to listen for the state changes of all applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | Yes| Numeric code of the observer.|
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| number | Digital code of the observer.|
 
 **Example**
     
@@ -284,7 +290,7 @@ Registers an observer to listen for the state changes of all applications.
   console.log('-------- observerCode: ---------', observerCode);
   ```
 
-## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+## appManager.unregisterApplicationStateObserver
 
 unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -294,7 +300,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -319,7 +325,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
   appManager.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
   ```
 
-## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+## appManager.unregisterApplicationStateObserver
 
 unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
@@ -329,7 +335,7 @@ Deregisters the application state observer. This API uses a promise to return th
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -341,7 +347,7 @@ Deregisters the application state observer. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
     
@@ -360,17 +366,17 @@ Deregisters the application state observer. This API uses a promise to return th
   });
   ```
 
-## appManager.getForegroundApplications<sup>8+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-Obtains information about the applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
+Obtains information about the applications that are running in the foreground. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -392,17 +398,17 @@ Obtains information about the applications that are running in the foreground. T
   });
   ```
 
-## appManager.getForegroundApplications<sup>8+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-Obtains information about the applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
+Obtains information about the applications that are running in the foreground. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Return value**
 
@@ -425,7 +431,7 @@ Obtains information about the applications that are running in the foreground. T
   });
   ```
 
-## appManager.killProcessWithAccount<sup>8+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
@@ -439,7 +445,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -447,6 +453,12 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -466,7 +478,7 @@ appManager.killProcessWithAccount(bundleName, accountId)
 ```
 
 
-## appManager.killProcessWithAccount<sup>8+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -478,7 +490,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -488,7 +500,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the process is killed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -508,7 +520,7 @@ function killProcessWithAccountCallback(err: BusinessError, data: void) {
 appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
 
-## appManager.killProcessesByBundleName<sup>8+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
@@ -518,14 +530,14 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the process is killed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
     
@@ -544,7 +556,7 @@ import { BusinessError } from '@ohos.base';
   appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
   ```
 
-## appManager.killProcessesByBundleName<sup>8+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string): Promise\<void>
 
@@ -554,7 +566,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -566,7 +578,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -584,7 +596,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
     });
   ```
 
-## appManager.clearUpApplicationData<sup>8+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
@@ -594,14 +606,14 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the application data is cleared, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
     
@@ -620,7 +632,7 @@ Clears application data by bundle name. This API uses an asynchronous callback t
   appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
   ```
 
-## appManager.clearUpApplicationData<sup>8+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string): Promise\<void>
 
@@ -630,7 +642,7 @@ Clears application data by bundle name. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -642,7 +654,7 @@ Clears application data by bundle name. This API uses a promise to return the re
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
     

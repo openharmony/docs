@@ -117,7 +117,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
        Row() {
          Column() {
            ...
-           Button(){
+           Button()
    		...
              .onClick(() => {
                let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
@@ -141,7 +141,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    
            ...
    
-           Button(){
+           Button()
    		...
              .onClick(() => {
                let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;

@@ -62,7 +62,7 @@ dragPreview(value: CustomBuilder | DragItemInfo)
 
 dragPreviewOptions(value: DragPreviewOptions)
 
-设置拖拽过程中背板图处理模式。
+设置拖拽过程中背板图处理模式，仅在onDragStart拖拽方式有效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ dragPreviewOptions(value: DragPreviewOptions)
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO |
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：空 |
 
 ## DragPreviewOptions<sup>11+</sup>
 

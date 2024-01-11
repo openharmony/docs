@@ -124,7 +124,41 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 2. 在form.ts中，实现卡片生命周期接口
    
   ```ts
-  class LifeCycle {
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
+const DATA_STORAGE_PATH: string = 'form_store';
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
+  // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
+  let formInfo: Record<string, string | number | boolean> = {
+    formName: 'formName',
+    tempFlag: 'tempFlag',
+    updateCount: 0
+  };
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // put form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
+  }
+};
+
+let deleteFormInfo = async (formId: string, context) => {
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // del form info
+    await storage.delete(formId);
+    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+  }
+}
+
+class LifeCycle {
     onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
     onCastToNormal: (formId: string) => void = (formId) => {
     };
@@ -320,6 +354,9 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 
 ```ts
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
 const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
@@ -417,6 +454,9 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
 
 
 ```ts
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
 onUpdate(formId: string) {
   // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
   hilog.info(domain, TAG, 'FormAbility onUpdate');

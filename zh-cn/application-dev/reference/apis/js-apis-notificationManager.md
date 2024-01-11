@@ -2451,18 +2451,15 @@ import Base from '@ohos.base';
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 let notificationKey: notificationSubscribe.NotificationKey = {
     id: 11,
     label: ""
 };
-
-let filter = {
+let filter: notificationManager.NotificationFilter = {
     bundle: bundleOption,
-    key: notificationKey,
+    notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-
 let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
     if (err) {
         console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
@@ -2470,7 +2467,6 @@ let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: noti
         console.info("getActiveNotificationByFilter success");
     }
 }
-
 notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
 ```
 
@@ -2516,18 +2512,15 @@ import Base from '@ohos.base';
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 let notificationKey: notificationSubscribe.NotificationKey = {
     id: 11,
     label: ""
 };
-
-let filter = {
+let filter: notificationManager.NotificationFilter = {
     bundle: bundleOption,
-    key: notificationKey,
+    notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-
 notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -4827,7 +4820,6 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 ```ts
 import Base from '@ohos.base';
-import notificationManager from '@ohos.notificationManager';
 
 // 包信息
 let bundle: notificationManager.BundleOption = {

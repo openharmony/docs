@@ -69,39 +69,52 @@ The [universal events](ts-universal-events-click.md) are supported.
 
 ```ts
 import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+
+enum ItemState {
+  ENABLE = 1,
+  DISABLE = 2,
+  ACTIVATE = 3
+}
+
 @Entry
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions()
-    aboutToAppear() {
-    this.toolbarList.push({ text: 'Cut Super Long Text',
+  aboutToAppear() {
+    this.toolbarList.push({
+      content:'Cut Super Long Text',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: 'Copy',
+    this.toolbarList.push({
+      content: 'Copy',
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state:2
+      state:ItemState.DISABLE
     })
-    this.toolbarList.push({ text: 'Paste',
+    this.toolbarList.push({
+      content: 'Paste',
       icon: $r('sys.media.ohos_ic_public_paste'),
       action: () => {
       },
-      state:3
+      state:ItemState.ACTIVATE
     })
-    this.toolbarList.push({ text: 'Select All',
+    this.toolbarList.push({
+      content:'Select All',
       icon: $r('sys.media.ohos_ic_public_select_all'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: 'Share',
+    this.toolbarList.push({
+      content: 'Share',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: 'Share',
+    this.toolbarList.push({
+      content: 'Share',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
@@ -126,8 +139,8 @@ struct Index {
         }.margin({bottom: 300})
         Column() {
           ToolBar({
-            currentIndex: 2,
-            hwToolBarList: this.toolbarList,
+            activateIndex: 2,
+            toolBarList: this.toolbarList,
           })
         }
       }.align(Alignment.Bottom)

@@ -277,3 +277,211 @@ API 11及以后，弹窗类组件背板显示为模糊材质。
 **适配指导**
 
 默认背板效果变更，不涉及适配。
+
+## cl.Arkui.9 Dialog组件内容区Text默认分词方式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前Dialog组件内容的默认分词方式不符合UX规范，因此依照UX规范对分词方式做出变更。
+
+**变更影响**
+
+该变更为兼容性变更，改变了Dialog内容区Text默认分词方式，提升了组件的默认显示效果。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+API 11前，默认Dialog的内容区分词方式为BREAK_WORD。
+
+API 11及以后，默认Dialog的内容区分词方式为BREAK_ALL。
+
+关于BREAK_WORD和BREAK_ALL的区别，详见[WordBreak](../../../application-dev/reference/arkui-ts/ts-appendix-enums.md#wordbreak11)
+
+**适配指导**
+
+默认分词方式变更，不涉及适配。
+## cl.arkui.10 Image组件autoResize interpolation属性默认行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+应用侧需要设置autoResize为false、 interpolation设置为LOW来解决图片锯齿问题
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Image组件的autoResize默认值为true， interpolation为None。
+
+变更后，Image组件的autoResize默认值为false， interpolation为LOW，该修改会提升图片显示效果，但是image组件在大图显示成小组件时，默认内存会上涨，需要应用根据实际情况进行内存优化。
+说明：该修改不影响大桌面效果。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件有：Image。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.11  opacity属性非法值设置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+opacity属性设置小于0的非法值需要按照完全透明来处理。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，opacity属性设置小于0的非法值时效果完全不透明。
+
+变更后，opacity属性设置小于0的非法值时效果完全透明。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的属性：opacity。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.Arkui.12 ListItem、GridItem的selectable属性异常值处理逻辑变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户对于ListItem和GridItem组件selectable属性设置异常值时，使用默认值。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用false值处理。
+
+变更后，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用默认值true处理。
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+涉及到ListItem和GridItem组件的selectable属性。
+
+API 11前，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用false值处理。
+
+API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用默认值true处理。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.13  Text组件fontSize属性非法值设置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+"5abc"这类数字拼接字符串被定义为非法值，不可以解析使用数字部分处理为5fp字号。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，fontSize属性设置"5abc"非法值时显示字号为5fp。
+
+变更后，fontSize属性设置"5abc"非法值时显示默认字号16fp。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件和接口：Text组件fontSize属性。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.14  点击事件规格变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+点击手势需响应在手指落下时，组件热区范围内的所有点击事件。去掉之前点击过程中手指移动不能超过20px的临时规格。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，点击过程中手指移动不能超过20px，若手指移动超过20px，则点击手势识别失败。
+
+变更后，点击手势识别器在手指落下时收集响应热区并缓存，若手指移动/抬起过程中超出缓存热区，则点击手势识别失败。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+点击手势：TapGesture
+
+**适配指导**
+
+默认行为变更，不涉及适配。

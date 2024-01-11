@@ -1,4 +1,4 @@
-# 案例应用
+# 一多开发实例（短信）
 
 
 本章从系统预置的应用中，选择短信应用作为典型的案例，从页面开发和工程结构的角度，介绍"一多"的具体实践。系统的产品形态在不断丰富中，当前主要有默认设备和平板两种产品形态，本章的具体实践也将围绕这两种产品形态展开。
@@ -27,7 +27,7 @@
 
 - 设置页面：消息设置页面，如是否展示送达报告等。
 
-  
+
 ```
 /Mms/
  ├── doc                                        # 资料
@@ -68,17 +68,17 @@
 
 ### 页面结构
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) |
 
 会话详情页面在默认设备和平板上的样式如上图所示，会话详情页面可以划分为三个部分：
 
-  | 页面组成 | 介绍 | 
-| -------- | -------- |
-| 顶部标题栏 | ![zh-cn_image_0000001335699774](figures/zh-cn_image_0000001335699774.jpg) | 
-| 信息列表 | ![zh-cn_image_0000001386060209](figures/zh-cn_image_0000001386060209.jpg) | 
-| 底部输入栏 | ![zh-cn_image_0000001386179873](figures/zh-cn_image_0000001386179873.jpg) | 
+| 页面组成  | 介绍                                       |
+| ----- | ---------------------------------------- |
+| 顶部标题栏 | ![zh-cn_image_0000001335699774](figures/zh-cn_image_0000001335699774.jpg) |
+| 信息列表  | ![zh-cn_image_0000001386060209](figures/zh-cn_image_0000001386060209.jpg) |
+| 底部输入栏 | ![zh-cn_image_0000001386179873](figures/zh-cn_image_0000001386179873.jpg) |
 
 接下来我们详细介绍各部分的实现。
 
@@ -88,9 +88,9 @@
 
 ### 顶部标题栏
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![zh-cn_image_0000001335539986](figures/zh-cn_image_0000001335539986.jpg) | ![top_title_tablet](figures/top_title_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![zh-cn_image_0000001335539986](figures/zh-cn_image_0000001335539986.jpg) | ![top_title_tablet](figures/top_title_tablet.png) |
 
 顶部标题栏是一个简单的行布局，包含返回图标、联系人头像、联系人姓名和号码、拨号图标、设置图标共5个元素。其中，联系人姓名和号码以列布局的形式放在一起。
 
@@ -105,9 +105,9 @@
 
 可以查看[Flex组件](../../reference/arkui-ts/ts-container-flex.md)及[Text组件](../../reference/arkui-ts/ts-basic-components-text.md)了解这两个组件各个属性的含义及详细用法。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![contact_details_default](figures/contact_details_default.png) | ![contact_details_tablet](figures/contact_details_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![contact_details_default](figures/contact_details_default.png) | ![contact_details_tablet](figures/contact_details_tablet.png) |
 
 
 ```ts
@@ -125,9 +125,9 @@
 
 接下来我们通过width属性和height属性设置四个图标的宽高（详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)），并将它们与联系人姓名和电话以及Blank组件一起放到Flex父容器中。为了便于查看效果，对顶部标题栏设置了淡蓝色的背景色。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![top_title_blank_default](figures/top_title_blank_default.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![top_title_blank_default](figures/top_title_blank_default.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) |
 
 
 ```ts
@@ -163,9 +163,9 @@
 
 当前标题栏中子组件的布局同预期还有些差异，接下来通过margin属性，设置各个元素的左右间距（详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)）。如下图所示，最终顶部工具栏在默认设备和平板上都可以达到预期显示效果。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![top_title_done_default](figures/top_title_done_default.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![top_title_done_default](figures/top_title_done_default.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) |
 
 
 ```ts
@@ -211,9 +211,9 @@
 
 为了便于查看的效果，我们同样给底部输入栏设置了淡蓝色到背景色。注意这里有一个特殊的地方，我们给TextArea设置了flexGrow(1)属性。flexGrow属性仅在父组件是Flex组件时生效，表示Flex容器的剩余空间分配给此属性所在的组件的比例，flexGrow(1)表示父容器的剩余空间全部分配给此组件，详见[Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![bottom_input_default](figures/bottom_input_default.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![bottom_input_default](figures/bottom_input_default.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) |
 
 
 ```ts
@@ -252,17 +252,17 @@
 
 - 如何在默认设备和平板上自适应布局。
 
-  | 默认设备 | 平板 | 
-  | -------- | -------- |
-  | ![zh-cn_image_0000001386060209](figures/zh-cn_image_0000001386060209.jpg) | ![message_list_tablet_default](figures/message_list_tablet_default.png) | 
+  | 默认设备                                     | 平板                                       |
+  | ---------------------------------------- | ---------------------------------------- |
+  | ![zh-cn_image_0000001386060209](figures/zh-cn_image_0000001386060209.jpg) | ![message_list_tablet_default](figures/message_list_tablet_default.png) |
 
 **消息气泡**
 
 先做一个最简单的消息气泡，通过borderRadius属性可以设置边框的圆角半径（详见[边框设置](../../reference/arkui-ts/ts-universal-attributes-border.md)）。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![message_bubble_basic_default](figures/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![message_bubble_basic_default](figures/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) |
 
 
 ```ts
@@ -292,9 +292,9 @@ struct MessageBubble {
 
 [Stack组件](../../reference/arkui-ts/ts-container-stack.md)是一个堆叠容器，其子组件按照轴方向依次堆叠，后一个子组件覆盖前一个子组件。通过其alignContent接口，可以设置子组件在容器内的对齐方式，如alignContent: Alignment.TopStart代表子组件从左上角对齐。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![message_bubble_radius_default](figures/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![message_bubble_radius_default](figures/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) |
 
 
 ```ts
@@ -329,9 +329,9 @@ struct MessageBubble {
 
 接下来我们在消息气泡下方加上时间显示，如下图所示，一个消息气泡自定义组件就基本完成了。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![message_bubble_recv_default](figures/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![message_bubble_recv_default](figures/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) |
 
 
 ```ts
@@ -377,9 +377,9 @@ struct MessageBubble {
 
 发送出的消息和接收到的消息的消息气泡结构基本一致，可以通过增加一个标志位，让两种消息共用MessageBubble这个自定义组件，代码如下所示。将这个标志位设置true，可以查看接收消息的效果。
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![message_bubble_send_default](figures/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![message_bubble_send_default](figures/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) |
 
 
 ```ts
@@ -464,15 +464,15 @@ const globalMessageList:any[] = [
 
 栅格中仅包含我们自定义的消息气泡组件，该组件在各断点上的参数配置如下。
 
-  | 断点 | 窗口宽度(vp) | 栅格总列数 | 消息气泡占用的列数 | 接收场景偏移的列数 | 发送场景偏移的列数 | 
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| sm | [320,&nbsp;600) | 12 | 12 | 0 | 0 | 
-| md | [600,&nbsp;840) | 12 | 8 | 0 | 4 | 
-| lg | [840,&nbsp;+∞) | 12 | 8 | 0 | 4 | 
+| 断点   | 窗口宽度(vp)        | 栅格总列数 | 消息气泡占用的列数 | 接收场景偏移的列数 | 发送场景偏移的列数 |
+| ---- | --------------- | ----- | --------- | --------- | --------- |
+| sm   | [320,&nbsp;600) | 12    | 12        | 0         | 0         |
+| md   | [600,&nbsp;840) | 12    | 8         | 0         | 4         |
+| lg   | [840,&nbsp;+∞)  | 12    | 8         | 0         | 4         |
 
-  | 默认设备 | 平板 | 
-| -------- | -------- |
-| ![message_list_default](figures/message_list_default.png) | ![message_list_tablet](figures/message_list_tablet.png) | 
+| 默认设备                                     | 平板                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| ![message_list_default](figures/message_list_default.png) | ![message_list_tablet](figures/message_list_tablet.png) |
 
 
 ```ts
@@ -527,11 +527,11 @@ struct Conversation {
 
 - 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../quick-start/arkts-rendering-control-foreach.md)，显示整个消息列表。
 
-  | 默认设备 | 平板 | 
-  | -------- | -------- |
-  | ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
+  | 默认设备                                     | 平板                                       |
+  | ---------------------------------------- | ---------------------------------------- |
+  | ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) |
 
-  
+
 ```ts
 @Entry
  @Component

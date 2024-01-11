@@ -874,7 +874,7 @@ let listener = inspector.createComponentObserver('COMPONENT_ID');
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo>): void
 
 监听NavDestination组件的状态变化。
 
@@ -885,7 +885,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -899,7 +899,7 @@ observer.on('navDestinationUpdate', (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo>): void
 
 取消监听NavDestination组件的状态变化。
 
@@ -910,7 +910,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -922,7 +922,7 @@ observer.off('navDestinationUpdate');
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback<NavDestinationInfo>): void
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo>): void
 
 监听NavDestination组件的状态变化。
 
@@ -934,7 +934,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -948,7 +948,7 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback<NavDestinationInfo>): void
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo>): void
 
 取消监听NavDestination组件的状态变化。
 
@@ -960,7 +960,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -2315,7 +2315,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/>**说明：** 不支持全局builder。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -2323,8 +2323,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 
@@ -2405,8 +2405,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 
@@ -2490,7 +2490,7 @@ struct DragControllerPage {
 
 ### createDragAction
 
-createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
@@ -2509,24 +2509,89 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 | 类型                                                   | 说明               |
 | ------------------------------------------------------ | ------------------ |
-| [DragAction](js-apis-arkui-dragController.md#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
+| [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
+1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
 
+let uiContext: UIContext;
+let localStorage: LocalStorage = new LocalStorage('uiContext');
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = localStorage;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      windowStage.getMainWindow((err, data) =>
+      {
+        if (err.code) {
+          console.log('Failed to abtain the main window. Cause:' + err.message);
+          return;
+        }
+        let windowClass: window.Window = data;
+        uiContext = windowClass.getUIContext();
+        this.storage.setOrCreate<UIContext>('uiContext', uiContext);
+        // 获取UIContext实例
+      })
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+2.通过LocalStorage.getShared()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import UDC from '@ohos.data.unifiedDataChannel';
+import { UIContext, DragController } from '@ohos.arkui.UIContext'
 
-@Entry
+let storages = LocalStorage.getShared();
+
+@Entry(storages)
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
@@ -2566,26 +2631,27 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.customBuilders.splice(0, this.customBuilders.length)
-                this.dragAction.off('statusChange')
+              let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
+              if(!this.dragAction){
+                console.log("listener dragAction is null");
+                return
               }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
+              this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+                if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                  console.log("drag has start");
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                  console.log("drag has end");
+                  if (!this.dragAction) {
+                    return
+                  }
+                  this.customBuilders.splice(0, this.customBuilders.length)
+                  this.dragAction.off('statusChange')
+                }
+              })
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.log("start drag Error:" + err.message);
+              })
             } catch(err) {
               console.log("create dragAction Error:" + err.message);
             }
@@ -2792,3 +2858,4 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+

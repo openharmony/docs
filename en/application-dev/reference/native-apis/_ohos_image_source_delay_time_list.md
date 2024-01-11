@@ -5,15 +5,11 @@
 
 The **OhosImageSourceDelayTimeList** struct defines the delay time list of an image source. The delay time list is obtained by calling [OH_ImageSource_GetDelayTime](image.md#oh_imagesource_getdelaytime).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

@@ -31,7 +31,6 @@ import audio from '@ohos.multimedia.audio';
 ```ts
 import audio from '@ohos.multimedia.audio';
 
-const localNetworkId = audio.LOCAL_NETWORK_ID;
 const defaultVolumeGroupId = audio.DEFAULT_VOLUME_GROUP_ID;
 const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
 ```
@@ -631,27 +630,27 @@ async function createTonePlayerBefore(){
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-| 名称                                      |  值    | 说明                              |
-| ------------------------------------------| ------ |---------------------------------|
-| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。                           |
+| 名称                                      |  值    | 说明                                                                                                                                          |
+| ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
+| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。                                                                                                                                       |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                             |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                           | 
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                           |
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                             |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                           |
-| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                          |
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。                             |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。                             |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。                            |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。   |
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。                          |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                           |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                           |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                             |
-| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。              |
-| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。      |
-| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波。<br/>此接口为系统接口。              |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                                                                                                                                         |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                                                                                                                                       | 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                                                                                                                                       |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                                                                                                                                         |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                                                                                                                                       |
+| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                                                                          |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。                                                                                                                                         |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。                                                                                                                                         |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。                                                                                                                                        |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。                                                                                                               |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。                                                                                                                                      |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                                                                                                                                       |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                                                                                                                                       |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                                                                                                                                         |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。                                                                                                                          |
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。                                                                                                                  |
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。                                                                                                            |
 
 
 ## InterruptRequestType<sup>9+</sup>
@@ -766,7 +765,7 @@ async function createTonePlayerBefore(){
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。js接口暂不支持低时延音频渲染器。 |
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 |
 
 ## InterruptResult<sup>9+</sup>
 
@@ -825,7 +824,7 @@ async function createTonePlayerBefore(){
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
 | volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。  |
 | updateUi   | boolean                             | 是   | 在UI中显示音量变化，true为显示，false为不显示。             |
-| volumeGroupId | number                           | 是   | 音量组id。可用于getGroupManager入参。<br/>此接口为系统接口。 |
+| volumeGroupId | number                           | 是   | 音量组id，可用于getGroupManager入参。<br/>此接口为系统接口。 |
 | networkId  | string                              | 是   | 网络id。<br/>此接口为系统接口。                       |
 
 ## MicStateChangeEvent<sup>9+</sup>
@@ -929,7 +928,7 @@ async function createTonePlayerBefore(){
 | 名称          | 类型                      | 必填 | 说明             |
 | :------------ | :------------------------ | :--- | :--------------- |
 | source        | [SourceType](#sourcetype) | 是   | 音源类型。       |
-| capturerFlags | number                    | 是   | 音频采集器标志。 |
+| capturerFlags | number                    | 是   | 音频采集器标志。<br>0代表普通音频采集器，1代表低时延音频采集器。ArkTS接口暂不支持低时延音频采集器。 |
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
@@ -2577,9 +2576,9 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| groupId    | number                                    | 是   | 音量组id。     |
+| 参数名     | 类型                                                         | 必填 | 说明                                                        |
+| ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
+| groupId    | number                                    | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。                          |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
@@ -2608,9 +2607,9 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明              |
-| ---------- | ---------------------------------------- | ---- | ---------------- |
-| groupId    | number                                   | 是   | 音量组id。     |
+| 参数名     | 类型                                      | 必填 | 说明                               |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -2641,9 +2640,9 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明              |
-| ---------- | ---------------------------------------- | ---- | ---------------- |
-| groupId    | number                                   | 是   | 音量组id。     |
+| 参数名     | 类型                                      | 必填 | 说明                               |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -3959,11 +3958,9 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, A
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4006,11 +4003,9 @@ async function getCurrentAudioRendererInfoArray(){
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4054,11 +4049,9 @@ try {
     for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
       let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
       console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
       console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
       console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
       console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-      console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
       for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4104,10 +4097,8 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, A
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
         console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4149,10 +4140,8 @@ async function getCurrentAudioCapturerInfoArray(){
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
         console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4195,10 +4184,8 @@ try {
   if (audioCapturerChangeInfoArray != null) {
     for (let i = 0; i < audioCapturerChangeInfoArray.length; i++) {
       console.info(`StreamId for ${i} is: ${audioCapturerChangeInfoArray[i].streamId}`);
-      console.info(`ClientUid for ${i} is: ${audioCapturerChangeInfoArray[i].clientUid}`);
       console.info(`Source for ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.source}`);
       console.info(`Flag  ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-      console.info(`State for ${i} is: ${audioCapturerChangeInfoArray[i].capturerState}`);
       for (let j = 0; j < audioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4248,11 +4235,9 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: aud
     let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
     console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
     console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-    console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
     for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4326,10 +4311,8 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4980,6 +4963,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 设置通信设备激活状态，使用callback方式异步返回结果。
 
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -5009,6 +4994,8 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
 设置通信设备激活状态，使用Promise方式异步返回结果。
+
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -5791,17 +5778,14 @@ import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
-let resultFlag = false;
 
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfoArray[i].clientUid}`);
     console.info(`Content for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.content}`);
     console.info(`Stream for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags}`);
-    console.info(`State for ${i} is: ${AudioRendererChangeInfoArray[i].rendererState}`);
     let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
@@ -5812,10 +5796,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
       console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
       console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-    if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
-      resultFlag = true;
-      console.info(`ResultFlag for ${i} is: ${resultFlag}`);
     }
   }
 });
@@ -5851,15 +5831,12 @@ import audio from '@ohos.multimedia.audio';
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
 
-let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StrId for  ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`CUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Src for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
     let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
@@ -5870,10 +5847,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
       console.info(`SR: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
       console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-    if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
-      resultFlag = true;
-      console.info(`ResultFlag for element ${i} is: ${resultFlag}`);
     }
   }
 });
@@ -9361,7 +9334,6 @@ let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerC
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
 console.info(`Info capturerFlags: ${info.capturerInfo.capturerFlags}`);
-console.info(`Info capturerState: ${info.capturerState}`);
 console.info(`Info muted: ${info.muted}`);
 console.info(`Info type: ${info.deviceDescriptors[0].deviceType}`);
 console.info(`Info role: ${info.deviceDescriptors[0].deviceRole}`);

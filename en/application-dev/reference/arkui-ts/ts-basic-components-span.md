@@ -1,6 +1,6 @@
 # Span
 
-As a child of the **\<Text>** and **\<RichEditor>** components, the **\<Span>** component is used to display inline text.
+As a child of the [\<Text>](ts-basic-components-text.md) and [\<ContainerSpan>](ts-basic-components-containerspan.md) components, the \<Span> component is used to display inline text.
 
 >  **NOTE**
 >
@@ -29,7 +29,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-In addition to the [universal text style](ts-universal-attributes-text-style.md) attributes, the following attributes are supported.
+Only the [universal text attributes](ts-universal-attributes-text-style.md) are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
@@ -38,11 +38,12 @@ In addition to the [universal text style](ts-universal-attributes-text-style.md)
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
 | textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
+| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle)                                                                                           | Background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} <br>**NOTE**<br>This attribute prioritizes the value separately set for the component. If it is not set, the component can inherit the settings from its parent [\<ContainerSpan>](ts-basic-components-containerspan.md).|
 
 
 ## Events
 
-Among all the universal events, only the [click event](ts-universal-attributes-click.md) is supported.
+Among all the universal events, only the [click event](ts-universal-events-click.md) is supported.
 
 >  **NOTE**
 >
@@ -148,3 +149,23 @@ struct TextSpanExample {
 }
 ```
 ![TextshadowExample](figures/text_span_textshadow.png)
+
+### Example 3
+``` ts
+// xxx.ets
+@Component
+@Entry
+struct Index {
+  build() {
+    Column() {
+      Text() {
+        Span('   Hello World !   ')
+          .fontSize('20fp')
+          .textBackgroundStyle({color: "#7F007DFF", radius: "5vp"})
+          .fontColor(Color.White)
+      }
+    }.width('100%').margin({bottom: '5vp'}).alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![TextBackgroundStyleExample](figures/span_textbackgroundstyle.png)

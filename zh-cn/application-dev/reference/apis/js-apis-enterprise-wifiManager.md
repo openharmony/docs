@@ -412,7 +412,7 @@ try {
 
 ## wifiManager.setWifiDisabled<sup>11+</sup>
 
-setWifiDisabled(admin: Want, isDisabled: boolean): void
+setWifiDisabled(admin: Want, disabled: boolean): void
 
 指定设备管理应用设置禁用wifi策略。
 
@@ -427,7 +427,7 @@ setWifiDisabled(admin: Want, isDisabled: boolean): void
 | 参数名     | 类型                                | 必填 | 说明                                      |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
 | admin      | [Want](js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
-| isDisabled | boolean                             | 是   | true表示禁用wifi，false表示解除wifi禁用。 |
+| disabled   | boolean                             | 是   | true表示禁用wifi，false表示解除wifi禁用。 |
 
 **错误码：**
 

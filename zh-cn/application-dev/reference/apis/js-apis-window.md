@@ -27,7 +27,7 @@ import window from '@ohos.window';
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。                                                                              |
+| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。                               |
 | TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
 | TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
 | TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                           |
@@ -297,9 +297,9 @@ import window from '@ohos.window';
 
 | 名称 | 类型 | 可读 | 可写 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0。 |
-| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0。 |
-| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0。 |
+| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 ## WindowEventType<sup>10+</sup>
 
@@ -340,6 +340,19 @@ import window from '@ohos.window';
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
+
+##  TitleButtonRect<sup>11+</sup>
+
+标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 可读 | 可写 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| right  | number | 是   | 是   | 矩形区域的右边界，单位为vp，该参数为整数。 |
+| top    | number | 是   | 是   | 矩形区域的上边界，单位为vp，该参数为整数。 |
+| width  | number | 是   | 是   | 矩形区域的宽度，单位为vp，该参数为整数。   |
+| height | number | 是   | 是   | 矩形区域的高度，单位为vp，该参数为整数。   |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -520,7 +533,7 @@ import { BusinessError } from '@ohos.base';
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       window.getLastWindow(this.context, (err: BusinessError, data) => {
@@ -578,7 +591,7 @@ import { BusinessError } from '@ohos.base';
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       let promise = window.getLastWindow(this.context);
@@ -1656,14 +1669,25 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage){
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getTopWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if(errCode){
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return ;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch(error){
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    }
+  }
+}
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1695,14 +1719,19 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let promise = window.getTopWindow(this.context);
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    });
+  }
+}
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -3124,7 +3153,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = window.findWindow("test");
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3192,7 +3221,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = window.findWindow("test");
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3255,7 +3284,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3338,7 +3367,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
     try {
       if (!windowClass) {
@@ -3425,7 +3454,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3623,7 +3652,7 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                | 必填 | 说明                                        |
 | -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数。                    |
+| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。     |
 
 **示例：**
 
@@ -3651,7 +3680,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态输入法窗口软键盘高度变化的监听。                               |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态输入法窗口软键盘高度变化的监听。                               |
 
 **示例：**
 
@@ -4013,6 +4042,76 @@ try {
   windowClass.off('windowStatusChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowTitleButtonRectChange')<sup>11+</sup>
+
+on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
+
+开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowTitleButtonRectChange')<sup>11+</sup>
+
+off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
+
+关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowTitleButtonRectChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5463,41 +5562,7 @@ try {
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-(context: window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
-    };
-    toWindow.translate(obj); // 设置动画过程中的属性转换
-    console.info('toWindow translate end');
-  }
-  );
-  console.info('complete transition end');
-};
-windowClass.hideWithAnimation((err: BusinessError, data) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
-});
+let controller = windowClass.getTransitionController(); // 获取属性转换控制器
 ```
 
 ### setBlur<sup>9+</sup>
@@ -5514,7 +5579,7 @@ setBlur(radius: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- |--------------------------------------------------|
-| radius | number | 是   | 表示窗口模糊的半径值。该参数为浮点数，取值范围为[0, +∞)，取值为0.0时表示关闭窗口模糊。 |
+| radius | number | 是   | 表示窗口模糊的半径值。该参数为浮点数，单位为px，取值范围为[0, +∞)，取值为0.0时表示关闭窗口模糊。 |
 
 **错误码：**
 
@@ -5550,7 +5615,7 @@ setBackdropBlur(radius: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                    |
 | ------ | ------ | ---- |-------------------------------------------------------|
-| radius | number | 是   | 表示窗口背景模糊的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0表示关闭窗口背景模糊。 |
+| radius | number | 是   | 表示窗口背景模糊的半径值。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0表示关闭窗口背景模糊。 |
 
 **错误码：**
 
@@ -5622,7 +5687,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 | 参数名  | 类型   | 必填 | 说明                                                          |
 | ------- | ------ | ---- |-------------------------------------------------------------|
-| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
 | color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量。该参数为浮点数，单位为px。                              |
 | offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量。该参数为浮点数，单位为px。                              |
@@ -5661,7 +5726,7 @@ setCornerRadius(cornerRadius: number): void
 
 | 参数名      | 类型    | 必填 | 说明                                                 |
 | ----------- | ------- | ---- |----------------------------------------------------|
-| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
+| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
 
 **错误码：**
 
@@ -6802,6 +6867,169 @@ try {
   windowClass.keepKeyboardOnFocus(true);
 } catch (exception) {
   console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  setWindowDecorVisible<sup>11+</sup>
+
+setWindowDecorVisible(isVisible: boolean): void
+
+主窗口设置标题栏是否可见。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isVisible | boolean | 是   | 设置标题栏是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 获取应用主窗口。
+      let mainWindow: window.Window = window.findWindow("test");
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        let isVisible = false;
+        // 调用setWindowDecorVisible接口
+        try {
+            mainWindow.setWindowDecorVisible(isVisible);
+        } catch (exception) {
+            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+        }
+      })
+    });
+  }
+};
+```
+
+###  setWindowDecorHeight<sup>11+</sup>
+
+setWindowDecorHeight(height: number): void
+
+设置窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let height: number = 50;
+let windowClass: window.Window = window.findWindow("test");
+try {
+  windowClass.setWindowDecorHeight(height);
+} catch (exception) {
+  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getWindowDecorHeight<sup>11+</sup>
+
+getWindowDecorHeight(): number
+
+获取窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let height = windowClass.getWindowDecorHeight();
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getTitleButtonRect<sup>11+</sup>
+
+getTitleButtonRect(): TitleButtonRect
+
+获取标题栏上的最小化、最大化、关闭按钮矩形区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [TitleButtonRect](#titlebuttonrect11) | 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let titleButtonArea = windowClass.getTitleButtonRect();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
+} catch (exception) {
+  console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -9800,33 +10028,60 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context : window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: ()=> {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForShownCallFunc_: Function = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
+    this.animationForShownCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForShown = (context : window.TransitionContext)=> {
+      this.animationForShownCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.showWithAnimation(()=>{
+      console.info('Show with animation success');
+    })
   }
-  );
-  console.info('complete transition end');
-};
+}
 ```
 
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
+try {
+  animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // 动画时长
+      tempo: 0.5, // 播放速率
+      curve: Curve.EaseInOut, // 动画曲线
+      delay: 0, // 动画延迟
+      iterations: 1, // 播放次数
+      playMode: PlayMode.Normal, // 动画模式
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // 设置动画过程中的属性转换
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
+```
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void
@@ -9846,9 +10101,9 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context: window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
+let controller = windowClass.getTransitionController();
+controller.animationForHidden = (context : window.TransitionContext) => {
+  let toWindow = context.toWindow;
   animateTo({
     duration: 1000, // 动画时长
     tempo: 0.5, // 播放速率
@@ -9860,10 +10115,10 @@ let windowClass: window.Window | undefined = undefined;
       context.completeTransition(true)
     }
   }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
+    let obj : window.TranslateOptions = {
+      x : 100.0,
+      y : 0.0,
+      z : 0.0
     };
     toWindow.translate(obj);
     console.info('toWindow translate end');

@@ -115,12 +115,12 @@
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   export default class EntryAbility extends UIAbility {
+   export default class MigrationAbility extends UIAbility {
      storage : LocalStorage = new LocalStorage();
    
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-       if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
          // 将上述的保存的数据取出恢复
          let continueInput = '';
          if (want.parameters !== undefined) {
@@ -217,6 +217,7 @@ struct Page_MigrationAbilityFirst {
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
+import promptAction from '@ohos.promptAction';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -263,7 +264,7 @@ export default class MigrationAbility extends UIAbility {
       hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
     });
   }
-
+  
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
@@ -356,34 +357,43 @@ export default class MigrationAbility extends UIAbility {
 在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import distributedObject from '@ohos.data.distributedDataObject';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   // 源端保存
-  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
     const continueInput = '迁移的数据';
-    wantParam['data'] = continueInput;
+    wantParam.data = continueInput;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
   // 对端恢复
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // 将上述的保存的数据取出恢复
       let continueInput = '';
-      if (want.parameters != undefined) {
+      if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
       }
     }
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // get user data from want params
       let continueInput = '';
-      if (want.parameters != undefined) {
+      if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
     }
   }
@@ -474,6 +484,15 @@ import hilog from '@ohos.hilog';
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
+// 示例数据结构
+class SourceObject {
+  notesTitle?: string;
+
+  constructor(notesTitle: string) {
+    this.notesTitle = notesTitle;
+  }
+}
+
 export default class EntryAbility extends UIAbility {
   d_object?: distributedObject.DataObject;
   // ...
@@ -546,7 +565,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 ​		DevEco的自动签名模板默认签名权限为normal级。而本应用设计到ohos.permission.MANAGE_MISSIONS权限为system_core级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为system_core级别，然后签名。
 
-​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
+​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal"改为"apl":"system_core"。
 
 1. 点击file->Project Structure。  
    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
