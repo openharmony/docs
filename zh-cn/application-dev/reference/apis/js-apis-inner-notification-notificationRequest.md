@@ -17,7 +17,7 @@
 | slotType<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype)    |   否  | 否  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
 | notificationSlotType<sup>11+</sup> | [SlotType](js-apis-notificationManager.md#slottype) |   否  | 否  | 通道类型。                        |
 | isOngoing                     | boolean                                                  |   否  | 否  | 是否进行时通知。                                                              |
-| isUnremovable                 | boolean                                                  |   否  | 否  | 是否可移除（应用于长时间通知任务上，比如地图、音乐播放；点击通知下方删除按钮无法删除，左滑点击单个删除按钮可删除）。            |
+| isUnremovable                 | boolean                                                  |   否  | 否  | 预留，暂不支持。  |
 | deliveryTime                  | number                                                   |   否  | 否  | 通知发送时间。                                                               |
 | tapDismissed                  | boolean                                                  |   否  | 否  | 通知是否自动清除。                                                             |
 | autoDeletedTime               | number                                                   |   否  | 否  | 自动清除的时间。                                                              |
