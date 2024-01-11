@@ -461,7 +461,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
+| data | [rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
@@ -548,13 +548,13 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
+| data | [rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)&gt; | Promise形式返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -943,7 +943,7 @@ on(method: string, callback: CalleeCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 与客户端约定的通知消息字符串。 |
-| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
+| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**
 
@@ -1082,4 +1082,4 @@ off(method: string): void
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)) | 是 | 否 | [rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |
