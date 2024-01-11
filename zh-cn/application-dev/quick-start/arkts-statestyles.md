@@ -6,7 +6,7 @@
 
 ## 概述
 
-stateStyles是属性方法，可以根据UI内部状态来设置样式，类似于css伪类，但语法不同。ArkUI提供以下四种状态：
+stateStyles是属性方法，可以根据UI内部状态来设置样式，类似于css伪类，但语法不同。ArkUI提供以下五种状态：
 
 - focused：获焦态。
 
@@ -24,7 +24,7 @@ stateStyles是属性方法，可以根据UI内部状态来设置样式，类似�
 
 ### 基础场景
 
-下面的示例展示了stateStyles最基本的使用场景。Button处于第一个组件，默认获焦，生效focused指定的粉色样式。按压时显示为pressed态指定的黑色。如果在Button前再放一个组件，使其不处于获焦态，就会生效normal态的黄色。
+下面的示例展示了stateStyles最基本的使用场景。Button1处于第一个组件，Button2处于第二个组件。按压时显示为pressed态指定的黑色。使用Tab键走焦，先是Button1获焦并显示为focus态指定的粉色。当Button2获焦的时候，Button2显示为focus态指定的粉色，Button1失焦显示normal态指定的红色。
 
 
 ```ts
@@ -33,7 +33,7 @@ stateStyles是属性方法，可以根据UI内部状态来设置样式，类似�
 struct StateStylesSample {
   build() {
     Column() {
-      Button('Click me')
+      Button('Button1')
         .stateStyles({
           focused: {
             .backgroundColor(Color.Pink)
@@ -42,7 +42,20 @@ struct StateStylesSample {
             .backgroundColor(Color.Black)
           },
           normal: {
-            .backgroundColor(Color.Yellow)
+            .backgroundColor(Color.Red)
+          }
+        })
+        .margin(20)
+      Button('Button2')
+        .stateStyles({
+          focused: {
+            .backgroundColor(Color.Pink)
+          },
+          pressed: {
+            .backgroundColor(Color.Black)
+          },
+          normal: {
+            .backgroundColor(Color.Red)
           }
         })
     }.margin('30%')
@@ -125,7 +138,7 @@ struct CompWithInlineStateStyles {
 }
 ```
 
-Button默认获焦显示红色，点击事件触发后，获焦态变为粉色。
+Button默认normal态显示绿色，第一次按下Tab键让Button获焦显示为focus态的红色，点击事件触发后，再次按下Tab键让Button获焦，focus态变为粉色。
 
   **图3** 点击改变获焦态样式  
 

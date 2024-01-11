@@ -7,6 +7,8 @@
 >  - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 >  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
+>
+>  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 
 
 ## 导入模块
@@ -19,6 +21,8 @@ import Intl from '@ohos.intl';
 
 
 ### 属性
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -41,6 +45,8 @@ constructor()
 
 创建区域对象
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -57,6 +63,8 @@ constructor()
 constructor(locale: string, options?: LocaleOptions)
 
 创建区域对象
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -81,6 +89,8 @@ toString(): string
 
 获取区域对象的字符串表示
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -102,6 +112,8 @@ toString(): string
 maximize(): Locale
 
 最大化区域信息，若缺少脚本与地区信息，则补齐。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -133,6 +145,8 @@ minimize(): Locale
 
 最小化区域信息，若包含脚本与地区信息，则去除。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -162,6 +176,7 @@ minimize(): Locale
 表示区域初始化选项。
 
 从API9开始，LocaleOptions中的属性改为可选。
+从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -176,12 +191,13 @@ minimize(): Locale
 
 ## DateTimeFormat
 
-
 ### constructor<sup>8+</sup>
 
 constructor()
 
 创建时间日期格式化对象。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -197,6 +213,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 创建时间日期格式化对象。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -226,6 +244,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 format(date: Date): string
 
 格式化时间日期字符串。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -260,6 +280,8 @@ formatRange(startDate: Date, endDate: Date): string
 
 格式化时间日期段字符串。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -291,6 +313,8 @@ resolvedOptions(): DateTimeOptions
 
 获取DateTimeFormat对象的格式化选项。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -314,6 +338,7 @@ resolvedOptions(): DateTimeOptions
 表示时间日期格式化选项。
 
 从API9开始，DateTimeOptions中的属性改为可选。
+从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

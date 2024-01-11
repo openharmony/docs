@@ -7,6 +7,9 @@
 >  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 >  - I18N模块包含国际化能力增强接口（未在ECMA 402中定义），包括区域管理、电话号码处理、日历等，国际化基础能力请参考[Intl模块](js-apis-intl.md)。
+>
+>  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
+
 
 
 ## 导入模块
@@ -214,6 +217,8 @@ static isSuggested(language: string, region?: string): boolean
 static getSystemLanguage(): string
 
 获取系统语言。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -429,6 +434,8 @@ static setSystemLocale(locale: string): void
 static is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -854,9 +861,9 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   let text1: string = "如有疑问，请联系158****2312";
-  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
   let text2: string = "我们2023年12月1日一起吃饭吧。";
-  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result[0].type = "date", result[0].begin = 2, result[0].end = 12
+  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -3158,7 +3165,7 @@ getFirstPreferredLanguage(): string
 
 ### unitConvert<sup>(deprecated)</sup>
 
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
@@ -3188,7 +3195,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 ### isDigit<sup>(deprecated)</sup>
 
-static isDigit(char: string): boolean
+isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
@@ -3211,7 +3218,7 @@ static isDigit(char: string): boolean
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-static isSpaceChar(char: string): boolean
+isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
@@ -3234,7 +3241,7 @@ static isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-static isWhitespace(char: string): boolean
+isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
@@ -3257,7 +3264,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-static isRTL(char: string): boolean
+isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
@@ -3280,7 +3287,7 @@ static isRTL(char: string): boolean
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-static isIdeograph(char: string): boolean
+isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
@@ -3303,7 +3310,7 @@ static isIdeograph(char: string): boolean
 
 ### isLetter<sup>(deprecated)</sup>
 
-static isLetter(char: string): boolean
+isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
@@ -3326,7 +3333,7 @@ static isLetter(char: string): boolean
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-static isLowerCase(char: string): boolean
+isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
@@ -3349,7 +3356,7 @@ static isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-static isUpperCase(char: string): boolean
+isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
@@ -3372,7 +3379,7 @@ static isUpperCase(char: string): boolean
 
 ### getType<sup>(deprecated)</sup>
 
-static getType(char: string): string
+getType(char: string): string
 
 获取输入字符串的一般类别值。
 

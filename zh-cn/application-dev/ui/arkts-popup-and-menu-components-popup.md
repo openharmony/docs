@@ -123,36 +123,3 @@ struct Index {
 
 ![zh-cn_other_0000001500900234](figures/zh-cn_other_0000001500900234.jpeg)
 
-
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State customPopup: boolean = false
-  // popup构造器定义弹框内容
-  @Builder popupBuilder() {
-    Row({ space: 2 }) {
-      Image('/images/shengWhite.png').width(30).objectFit(ImageFit.Contain)
-      Column(){
-        Text('控制人生').fontSize(14).fontWeight(900).fontColor(Color.White).width('100%')
-        Text('想要跟唱时，数千万歌曲任你选择，人声随心调整。').fontSize(12).fontColor('#ffeeeeee').width('100%')
-      }
-    }.width(230).height(80).padding(5)
-  }
-  build() {
-    Row() {
-      Text('我要K歌')
-      Image('/images/sheng.png').width(35).objectFit(ImageFit.Contain)
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup(this.customPopup, {
-          builder: this.popupBuilder,
-        })
-    }
-    .margin(20)
-    .height('100%')
-  }
-}
-```

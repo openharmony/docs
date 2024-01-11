@@ -21,18 +21,23 @@
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-let applicationContext = this.context.getApplicationContext();
-try {
-  applicationContext.setAutoStartup({
-    bundleName: 'com.example.autostartupapp',
-    moduleName: 'entry',
-    abilityName: 'EntryAbility',
-    abilityTypeName: 'ServiceExtension'
-  }, (err, data) => {
-    console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-  });
-} catch (err) {
-  console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.setAutoStartup({
+        bundleName: 'com.example.autostartupapp',
+        moduleName: 'entry',
+        abilityName: 'EntryAbility',
+        abilityTypeName: 'ServiceExtension'
+      }, (err, data) => {
+        console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+      });
+    } catch (err) {
+      console.info('===> autostartupmanager setAutoStartup throw err: ' + JSON.stringify(err));
+    }
+  }
 }
 ```

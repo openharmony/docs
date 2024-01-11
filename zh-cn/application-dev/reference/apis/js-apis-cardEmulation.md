@@ -100,6 +100,24 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | ------- | ------------------------------------ |
 | boolean | true: 是默认支付应用，&nbsp;false: 不是默认支付应用。 |
 
+## getPaymentServices<sup>11+</sup>
+
+getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
+
+获取所有支付服务。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.NFC.CardEmulation
+
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
+
+**返回值：**
+
+| **类型**  | **说明**                               |
+| ------- | ------------------------------------ |
+| [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付服务。 |
+
 ## HceService<sup>8+</sup>
 
 提供HCE卡模拟的实现，主要包括接收对端读卡设备的APDU数据，并响应APDU数据到对端读卡设备。使用HCE相关接口前，必须先判断设备是否支持HCE卡模拟能力。暂不支持使用，仅做接口声明。

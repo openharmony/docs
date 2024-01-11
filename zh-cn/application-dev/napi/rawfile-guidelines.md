@@ -17,6 +17,7 @@
 | int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence) | 指定rawfile内偏移量。                    |
 | long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile) | 获取rawfile偏移量。                      |
 | int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | 读取rawfile文件内容。                    |
+| int64_t OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile) | 获取rawfile文件剩余长度。                    |
 | void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | 释放rawfile文件相关资源。                |
 | void OH_ResourceManager_CloseRawDir(RawDir *rawDir)          | 释放rawfile目录相关资源。                |
 | bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | 获取rawfile的fd。                        |
@@ -78,32 +79,38 @@
     long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, mediaData.get(), rawFileSize);
     ```
 
-9. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
+9. 根据RawFile实例，使用OH_ResourceManager_GetRawFileRemainingLength接口读取rawfile文件的剩余长度。
+
+    ```c++
+    int64_t rawFileRemainingSize = OH_ResourceManager_GetRawFileRemainingLength(rawFile);
+    ```
+
+10. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
 
     ```c++
     OH_ResourceManager_CloseRawFile(rawFile);
     ```
 
-10. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
+11. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
 
     ```c++
     OH_ResourceManager_CloseRawDir(rawDir);
     ```
 
-11. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
+12. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
 
     ```c++
     RawFileDescriptor descriptor;
     bool result = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
     ```
 
-12. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
+13. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
 
     ```c++
     OH_ResourceManager_ReleaseRawFileDescriptor(descriptor);
     ```
 
-13. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
+14. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
 
     ```c++
     OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
@@ -111,7 +118,7 @@
 
 ## 开发步骤
 
-   以Js侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
+   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
 
 **1. 创建工程**
 
@@ -121,7 +128,7 @@
 
 创建完成后，IDE会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
 
-1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加资源的librawfile.z.so以及日志依赖libhilog_ndk.z.so
+1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加资源的librawfile.z.so以及日志依赖libhilog_ndk.z.so。
 
     ```c++
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so librawfile.z.so)
@@ -262,8 +269,17 @@
         // 获取rawfile大小并申请内存
         long len = OH_ResourceManager_GetRawFileSize(rawFile);
         std::unique_ptr<uint8_t[]> data= std::make_unique<uint8_t[]>(len);
-        // 读取rawfile
+
+        // 一次性读取rawfile全部内容
         int res = OH_ResourceManager_ReadRawFile(rawFile, data.get(), len);
+
+        // 多次部分读取rawfile, 每次读取100 Byte。获取全部内容
+        // long offset = 0;
+        // while (OH_ResourceManager_GetRawFileRemainingLength(rawFile) > 0) {
+        //     OH_ResourceManager_ReadRawFile(rawFile, data.get() + offset, 100);
+        //     offset += 100;
+        // }
+
         // 关闭打开的指针对象
         OH_ResourceManager_CloseRawFile(rawFile);
         OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
@@ -348,9 +364,11 @@
 
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so";
 
-2. 获取当前js的resourceManager对象;
+2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法，该方法仅支持系统应用使用。<br>Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
     
-3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。示例如下:
+3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。
+  
+   获取本应用包资源resourceManager对象的示例如下:
 
     ```js
     import hilog from '@ohos.hilog';
@@ -359,7 +377,7 @@
     @Component
     struct Index {
         @State message: string = 'Hello World'
-        private resmgr = getContext().resourceManager;  // 获取js的资源对象
+        private resmgr = getContext().resourceManager;  // 获取本应用的资源对象
         build() {
             Row() {
             Column() {

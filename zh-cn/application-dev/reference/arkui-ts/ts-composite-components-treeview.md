@@ -107,7 +107,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | -------- | -------- | -------- | -------- |
 | parentNodeId | number | 否 | 父亲节点。 | 
 | currentNodeId | number | 否 | 当前孩子节点。 | 
-| isFolder | boolean | 否 | 是否是目录。 | 
+| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 | 
 | icon | ResourceStr | 否 | 图标。 | 
 | selectedIcon | ResourceStr | 否 | 选中图标。 | 
 | editIcon | ResourceStr | 否 | 编辑图标。 | 
@@ -260,36 +260,9 @@ struct TreeViewDemo {
   }
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    Column(){
       TreeView({ treeController: this.treeController })
-      Row() {
-        Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
-        Column() {
-          Row() {
-            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
-            Button('Add', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(90)
-              .onClick((event: ClickEvent) => {
-                this.treeController.addNode();
-              })
-            Button('Modify', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(90)
-              .onClick((event: ClickEvent) => {
-                this.treeController.modifyNode();
-              })
-            Button('Remove', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(120)
-              .onClick((event: ClickEvent) => {
-                this.treeController.removeNode();
-              })
-          }
-        }.height('100%').width('70%').alignItems(HorizontalAlign.Start)
-      }
     }
-    .focusable(true)
-    .showControlButton(false)
-    .showSideBar(true)
   }
 }
 ```

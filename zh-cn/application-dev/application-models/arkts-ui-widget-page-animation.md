@@ -3,7 +3,6 @@
 
 ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../reference/arkui-ts/ts-explicit-animation.md)、[属性动画](../reference/arkui-ts/ts-animatorproperty.md)、[组件内转场](../reference/arkui-ts/ts-transition-animation-component.md)能力。需要注意的是，ArkTS卡片使用动画效果时具有以下限制：
 
-
 **表1** 动效参数限制
 
 | 名称 | 参数说明 | 限制描述 |

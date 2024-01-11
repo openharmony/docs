@@ -39,7 +39,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 | multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | 是 | \@Prop | 多条件筛选列表。 | 
 | additionFilters | [FilterParams](#filterparams) | 否 | \@Prop | 附加快捷筛选项。 | 
 | filterType | [FilterType](#filtertype) | 否 | \@Prop | 筛选器的样式类型。 | 
-| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;)&nbsp;=&gt;&nbsp;void | 是 | \@Prop | 用户点击后的回调事件。回调函数的参数为选中的筛选项结果列表。 | 
+| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;)&nbsp;=&gt;&nbsp;void | 是 | - | 用户点击后的回调事件。回调函数的参数为选中的筛选项结果列表。 | 
 | container | ()=&gt;void | 否 | \@BuilderParam | 筛选结果展示区域自定义内容，通过尾随闭包形式传入。 | 
 
 
@@ -53,10 +53,10 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterType
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| MULTI_LINE_FILTER | 多行可折叠类型筛选器。 | 
-| LIST_FILTER | 多行列表类型筛选器。 | 
+| 名称 | 值 | 说明 | 
+| -------- | -------- | -------- |
+| MULTI_LINE_FILTER | 0 | 多行可折叠类型筛选器。 | 
+| LIST_FILTER | 1 | 多行列表类型筛选器。 | 
 
 
 ## FilterResult
@@ -97,7 +97,7 @@ struct Index {
         }
       }){
         List({ initialIndex: 0 }) {
-          ForEach(this.arr, (item, index: number) => {
+          ForEach(this.arr, (item:string, index: number) => {
             ListItem() {
               Text(item.toString())
                 .width("100%")

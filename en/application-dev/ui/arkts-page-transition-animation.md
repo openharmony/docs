@@ -154,7 +154,7 @@ You can disable the transition animation of a page by setting the page transitio
 
 ## Example
 
-In the following example, page transition animations are defined using [router.pushUrl](../reference/apis/js-apis-router.md) for all the page transition scenarios.
+In the following example, page transition animations are defined using [router.pushUrl](../reference/apis/js-apis-router.md#routerpushurl9) for all the page transition scenarios.
 
 ```ts
 // PageTransitionSrc1

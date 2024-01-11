@@ -259,7 +259,7 @@ networkManager.getMac(wantTemp, 'eth0', (err, result) => {
 
 ## networkManager.getMac
 
-getMac(admin: Want, networkInterface: string): Promise\<string>;
+getMac(admin: Want, networkInterface: string): Promise\<string>
 
 Obtains the device MAC address based on the network port through the specified device administrator application. This API uses a promise to return the result.
 
@@ -579,7 +579,6 @@ Sets the global network proxy through the specified device administrator applica
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | httpProxy    | [connection.HttpProxy](js-apis-net-connection.md#httpproxy10)     | Yes   | Global HTTP proxy to set.                 |
-| isDisabled    | boolean     | Yes   | Network port status to set. The value **true** means to disable the network port, and **false** means to enable the network port.                 |
 
 **Return value**
 

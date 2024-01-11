@@ -34,14 +34,13 @@ OpenHarmony中提供的接口，部分是仅供OEM厂商使用的system api，�
 
 ## 权限说明
 
-默认情况下，应用只能访问有限的系统资源。但某些情况下，应用为了扩展功能的诉求，需要访问额外的系统或其他应用的数据（包括用户个人数据）、功能。具体可参考[访问控制开发概述](../../security/accesstoken-overview.md)。
+默认情况下，应用只能访问有限的系统资源。但某些情况下，应用为了扩展功能的诉求，需要访问额外的系统或其他应用的数据（包括用户个人数据）、功能。具体可参考[访问控制开发概述](../../security/AccessToken/app-permission-mgmt-overview.md)。
 
-当调用接口访问这些资源时，需要申请对应的权限。申请方式可参考[访问控制开发指导](../../security/accesstoken-guidelines.md)。
+当调用接口访问这些资源时，需要申请对应的权限。申请方式可参考[访问控制开发指导](../../security/AccessToken/determine-application-mode.md)。
 
 - 如果应用需要具备某个权限才能调用该接口，会在具体的接口描述中说明：**需要权限**：ohos.permission.xxxx
 - 如果应用不需要任何权限即可调用该接口，则不做特殊说明。
 
-如果需要判断应用是否可以申请某权限，可参考[权限申请使用的工作流程](../../security/accesstoken-overview.md#权限申请使用的工作流程)。
 
 ## 系统能力说明
 

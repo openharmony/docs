@@ -470,10 +470,12 @@ try {
 
 枚举，共享类型。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
-| SHARE_NAME_AND_PHONE_NUMBER | 0    | 共享名字和号码信息。 |
-| SHARE_ALL | 1    | 共享所有信息。  |
-| SHARE_NOTHING  | 2    | 不共享。   |
+| SHARE_NAME_AND_PHONE_NUMBER | 0    | 共享名字和号码信息。<br/>此接口为系统接口。 |
+| SHARE_ALL | 1    | 共享所有信息。<br/>此接口为系统接口。  |
+| SHARE_NOTHING  | 2    | 不共享。<br/>此接口为系统接口。   |

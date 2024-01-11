@@ -12,9 +12,9 @@ geometryTransition用于组件内隐式共享元素转场，在组件显示切�
 | ------------------ | -------- | ------------------------------------------------------------ |
 | geometryTransition | id:&nbsp;string | 设置geometryTransition的id，用于设置绑定关系，id置为空字符串""可清除绑定关系避免参与共享行为，id动态修改可重新建立绑定关系。同一个id只能有两个组件绑定且分别是in/out组件。 |
 
-**说明：**
-
-geometryTransition必须配合animateTo使用才有动画效果，动效时长、曲线跟随animateTo中的配置，不支持.animation隐式动画。
+> **说明：**
+>
+> [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线跟随[animateTo]((ts-explicit-animation.md))中的配置，不支持[animation](ts-animatorproperty.md)隐式动画。
 
 ## 示例
 

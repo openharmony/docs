@@ -23,7 +23,7 @@
    calendar.set(2021, 2, 27, 16, 0, 0); //The day before daylight saving time start
    let time1 = calendar.getTimeInMillis();
    calendar.set(2021, 2, 28, 16, 0, 0); //The day daylight saving time start
-   let time1 = calendar.getTimeInMillis();
+   let time2 = calendar.getTimeInMillis();
    let hours = (time2 - time1)/(3600*1000) //The hours between the same wall clock time before and after DST. Should be 23
    ```
 

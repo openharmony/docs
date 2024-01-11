@@ -1,6 +1,7 @@
 # 卡片数据交互说明
 
-ArkTS卡片框架提供了updateForm()接口和requestForm()接口主动触发卡片的页面刷新，通过[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)确认需要刷新的卡片数据。
+ArkTS卡片框架提供了[updateForm()](../reference/apis/js-apis-app-form-formProvider.md#updateform)接口和requestForm()接口主动触发卡片的页面刷新，通过[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)确认需要刷新的卡片数据。
+
 ![WidgetLocalStorageProp](figures/WidgetLocalStorageProp.png)
 
 

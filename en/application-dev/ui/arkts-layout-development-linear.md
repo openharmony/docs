@@ -257,7 +257,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562940585](figures/en-us_image_0000001562940585.png)
 
-- **justifyContent(FlexAlign.Spacebetween)**: The elements are evenly distributed vertically. The space between any two adjacent elements is the same. The first element is aligned with the start edge, the last element is aligned with the end edge, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
+- **justifyContent(FlexAlign.SpaceBetween)**: The elements are evenly distributed vertically. The space between any two adjacent elements is the same. The first element is aligned with the start edge, the last element is aligned with the end edge, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
 
   ```ts
   Column({}) {
@@ -366,7 +366,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562940601](figures/en-us_image_0000001562940601.png)
 
-- **justifyContent(FlexAlign.Spacebetween)**: The elements are evenly distributed horizontally. The space between any two adjacent elements is the same. The first element is aligned with the start edge, the last element is aligned with the end edge, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
+- **justifyContent(FlexAlign.SpaceBetween)**: The elements are evenly distributed horizontally. The space between any two adjacent elements is the same. The first element is aligned with the start edge, the last element is aligned with the end edge, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
 
   ```ts
   Row({}) {

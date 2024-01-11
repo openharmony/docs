@@ -615,10 +615,6 @@ async function generateKeyThenattestKey(alias: string) {
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
         },
         {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-        },
-        {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
             value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
         },
@@ -760,10 +756,6 @@ async function generateKey(alias: string) {
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        },
-        {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
         },
         {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -912,10 +904,6 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
         },
         {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-        },
-        {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
             value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
         },
@@ -1057,10 +1045,6 @@ async function generateKey(alias: string): Promise<void> {
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        },
-        {
-            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
         },
         {
             tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -2256,20 +2240,12 @@ import huks from '@ohos.security.huks';
  * 以及huks.finishSession操作中的任一阶段发生错误时，
  * 都需要调用huks.abortSession来终止密钥的使用。
  *
- * 以下以RSA1024密钥的callback功能使用为例
+ * 以下以RSA2048密钥的callback功能使用为例
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
     huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
-function stringToUint8Array(str: string) {
-    let arr: number[] = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    let tmpUint8Array = new Uint8Array(arr);
-    return tmpUint8Array;
 }
 let keyAlias = "HuksDemoRSA";
 let properties: HuksProperties[] = []
@@ -2278,14 +2254,14 @@ let options: huks.HuksOptions = {
     inData: new Uint8Array(0)
 };
 let handle: number = 0;
-async function generateKey() {
+async function huksAbort() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_RSA
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -2304,74 +2280,30 @@ async function generateKey() {
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
     try {
-        await huks.generateKeyItem(keyAlias, options, (error, data) => {
+        huks.generateKeyItem(keyAlias, options, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
                 console.info(`callback: generateKeyItem success`);
+                huks.initSession(keyAlias, options, (error, data) => { // 以initSession阶段进行abortSession为例
+                    if (error) {
+                        console.error(`callback: initSession failed`);
+                    } else {
+                        console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
+                        handle = data.handle;
+                        huks.abortSession(handle, options, (error, data) => {
+                            if (error) {
+                                console.error(`callback: abortSession failed`);
+                            } else {
+                                console.info(`callback: abortSession success`);
+                            }
+                        });
+                    }
+                });
             }
         });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid`);
-    }
-}
-async function huksInit() {
-    console.log('enter huksInit');
-    try {
-        huks.initSession(keyAlias, options, (error, data) => {
-            if (error) {
-                console.error(`callback: initSession failed`);
-            } else {
-                console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-            }
-        });
-    } catch (error) {
-        console.error(`callback: initSession input arg invalid`);
-    }
-}
-async function huksUpdate() {
-    console.log('enter huksUpdate');
-    options.inData = stringToUint8Array("huksHmacTest");
-    try {
-        huks.updateSession(handle, options, (error, data) => {
-            if (error) {
-                console.error(`callback: updateSession failed`);
-            } else {
-                console.info(`callback: updateSession success, data = ${JSON.stringify(data)}`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: updateSession input arg invalid`);
-    }
-}
-async function huksFinish() {
-    console.log('enter huksFinish');
-    options.inData = new Uint8Array(0);
-    try {
-        huks.finishSession(handle, options, (error, data) => {
-            if (error) {
-                console.error(`callback: finishSession failed`);
-            } else {
-                console.info(`callback: finishSession success, data = ${JSON.stringify(data)}`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: finishSession input arg invalid`);
-    }
-}
-async function huksAbort() {
-    console.log('enter huksAbort');
-    try {
-        huks.abortSession(handle, options, (error, data) => {
-            if (error) {
-                console.error(`callback: abortSession failed`);
-            } else {
-                console.info(`callback: abortSession success`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: abortSession input arg invalid`);
+        console.error(`callback: huksAbort failed`);
     }
 }
 ```
@@ -2421,7 +2353,7 @@ import { BusinessError } from '@ohos.base';
  * 以及huks.finishSession操作中的任一阶段发生错误时，
  * 都需要调用huks.abortSession来终止密钥的使用。
  *
- * 以下以RSA1024密钥的callback功能使用为例
+ * 以下以RSA2048密钥的promise功能使用为例
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -2454,7 +2386,7 @@ async function generateKey() {
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -2547,6 +2479,12 @@ async function huksAbort() {
     } catch (error) {
         console.error(`promise: abortSession input arg invalid`);
     }
+}
+
+async function testAbort() {
+    await generateKey();
+    await huksInit(); // 以initSession阶段进行abortSession为例
+    await huksAbort();
 }
 ```
 
@@ -2731,7 +2669,7 @@ async function huksAbort() {
 
 | 名称                                          | 值   | 说明                           |
 | --------------------------------------------  | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | 表示通过本地直接管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | 表示通过本地直接管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | 表示通过HUKS service管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | 表示主密钥派生的密钥存储于huks中，由HUKS进行托管。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 | HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | 表示主密钥派生的密钥直接导出给业务方，HUKS不对其进行托管服务。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
@@ -3677,7 +3615,7 @@ import { BusinessError } from '@ohos.base';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
- * 以下以RSA1024密钥的callback操作使用为例
+ * 以下以RSA2048密钥的callback操作使用为例
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3699,7 +3637,7 @@ async function generateKey() {
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -3758,8 +3696,8 @@ function huksFinish() {
 async function huksAbort() {
     new Promise<huks.HuksResult>((resolve, reject) => {
         huks.abort(handle, options, (err, data) => {
-            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+            console.log(`huksAbort data ${JSON.stringify(data)}`);
+            console.log(`huksAbort err ${JSON.stringify(err)}`);
         });
     });
 }
@@ -3798,7 +3736,7 @@ import { BusinessError } from '@ohos.base';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
- * 以下以RSA1024密钥的promise操作使用为例
+ * 以下以RSA2048密钥的promise操作使用为例
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3830,7 +3768,7 @@ async function generateKey() {
     };
     properties[1] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
     };
     properties[2] = {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,

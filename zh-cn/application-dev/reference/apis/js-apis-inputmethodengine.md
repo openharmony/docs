@@ -110,7 +110,7 @@ getInputMethodEngine(): InputMethodEngine
 
 | 类型                                      | 说明               |
 | ----------------------------------------- | ------------------ |
-| [InputMethodEngine](#inputmethodengine-1) | 输入法应用客户端。 |
+| [InputMethodEngine](#inputmethodengine) | 输入法应用客户端。 |
 
 **示例：**
 
@@ -495,6 +495,8 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 **示例：**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+
 try {
   inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
     console.log('InputMethodAbility setSubtype.');
@@ -1943,10 +1945,10 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力**: SystemCapability.MiscServices.InputMethodFramework
 
-| 名称  | 值   | 说明           |
-| ----- | ---- | -------------- |
-| BASIC | 0    | 基础访问模式。 |
-| FULL  | 3    | 完全访问模式。 |
+| 名称  | 值   | 说明                                         |
+| ----- | ---- | -------------------------------------------- |
+| BASIC | 0    | 基础访问模式，基础打字模式，会限制网络访问。 |
+| FULL  | 1    | 完全访问模式，不做限制，可以访问网络。       |
 
 ## ExtendAction<sup>10+</sup>
 

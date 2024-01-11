@@ -15,8 +15,8 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 开发者通过引入<[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)>和<[native_audiorenderer.h](../reference/native-apis/native__audiorenderer_8h.md)>头文件，使用音频播放相关API。
 
 ```cpp
-#include "ohaudio/native_audiorenderer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 ```
 
 ## 音频流构造器
@@ -59,11 +59,16 @@ OH_AudioStreamBuilder_Destroy(builder);
     创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
     ```c++
-    OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
-    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
-    OH_AudioStreamBuilder_SetSampleFormat(builder, format);
-    OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
-    OH_AudioStreamBuilder_SetRendererInfo(builder, usage);
+    //设置音频采样率
+    OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
+    //设置音频声道
+    OH_AudioStreamBuilder_SetChannelCount(builder, 2);
+    //设置音频采样格式
+    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)0);
+    //设置音频流的编码类型
+    OH_AudioStreamBuilder_SetEncodingType(builder, (OH_AudioStream_EncodingType)0);
+    //设置输出音频流的工作场景
+    OH_AudioStreamBuilder_SetRendererInfo(builder, (OH_AudioStream_Usage)1);
     ```
 
     注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../reference/native-apis/_o_h_audio.md#oh_audiorenderer_callbacks) 。
@@ -72,6 +77,9 @@ OH_AudioStreamBuilder_Destroy(builder);
 3. 设置回调函数
 
     ```c++
+    //具体实现请参考录制播放实例
+    OH_AudioRenderer_Callbacks callbacks;
+    //设置输出音频流的回调
     OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     ```
 
@@ -101,119 +109,6 @@ OH_AudioStreamBuilder_Destroy(builder);
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
     ```
-## 完整示例
-
-```cpp
-#include <iostream>
-#include <cstdint>
-#include <cstdio>
-#include <cstring>
-#include <thread>
-#include <chrono>
-#include <ctime>
-#include "ohaudio/native_audiorenderer.h"
-#include "ohaudio/native_audiostreambuilder.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-namespace AudioTestConstants {
-constexpr int32_t WAIT_INTERVAL = 1000;
-} // namespace AudioTestConstants
-
-// 确保该目录下有对应的资源可以播放
-std::string g_filePath = "/data/data/oh_test_audio.pcm";
-FILE *g_file = nullptr;
-bool g_readEnd = false;
-// 音频采样率
-int32_t g_samplingRate = 48000;
-// 音频声道数
-int32_t g_channelCount = 2;
-// 音频场景：0代表正常场景，1代表低时延场景
-int32_t g_latencyMode = 0;
-// 音频采样格式
-int32_t g_sampleFormat = 1;
-
-// 回调函数, 播放的音频数据要通过回调接口写入
-static int32_t AudioRendererOnWriteData(OH_AudioRenderer *capturer, void *userData, void *buffer, int32_t bufferLen) {
-    size_t readCount = fread(buffer, bufferLen, 1, g_file);
-    if (!readCount) {
-        if (ferror(g_file)) {
-            printf("Error reading myfile");
-        } else if (feof(g_file)) {
-            printf("EOF found");
-            g_readEnd = true;
-        }
-    }
-    return 0;
-}
-
-void PlayerTest() {
-    OH_AudioStream_Result ret;
-
-    // 1. 创建构造器
-    OH_AudioStreamBuilder *builder;
-    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
-    ret = OH_AudioStreamBuilder_Create(&builder, type);
-
-    // 2. 设置音频流所需要的参数
-    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
-    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
-    OH_AudioStreamBuilder_SetLatencyMode(builder, (OH_AudioStream_LatencyMode)g_latencyMode);
-    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
-
-    // 设置回调函数, 播放的音频数据要通过回调接口写入
-    OH_AudioRenderer_Callbacks callbacks;
-    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
-    ret = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
-
-    // 3. 构造播放音频流
-    OH_AudioRenderer *audioRenderer;
-    ret = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
-
-    // 4. 开始播放
-    ret = OH_AudioRenderer_Start(audioRenderer);
-
-    int timer = 0;
-    while (!g_readEnd) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(AudioTestConstants::WAIT_INTERVAL));
-        int64_t frames;
-        OH_AudioRenderer_GetFramesWritten(audioRenderer, &frames);
-        printf("Wait for the audio to finish playing.(..%d s) frames:%ld\n", ++timer, frames);
-        int64_t framePosition;
-        int64_t timestamp;
-        OH_AudioRenderer_GetTimestamp(audioRenderer, CLOCK_MONOTONIC, &framePosition, &timestamp);
-        printf("framePosition %ld timestamp:%ld\n", framePosition, timestamp);
-    }
-    // 5. 停止播放
-    ret = OH_AudioRenderer_Stop(audioRenderer);
-    
-    // 释放播放实例
-    ret = OH_AudioRenderer_Release(audioRenderer);
-
-    // 6. 释放构造器
-    ret = OH_AudioStreamBuilder_Destroy(builder);
-}
-
-int main() {
-    // 播放前需要先打开文件
-    g_file = fopen(g_filePath.c_str(), "rb");
-    if (g_file == nullptr) {
-        printf("OHAudioRendererTest: Unable to open file \n");
-        return 0;
-    }
-    // 开始播放
-    PlayerTest();
-    // 播放完成后关闭文件资源
-    fclose(g_file);
-    g_file = nullptr;
-    return 0;
-}
-
-#ifdef __cplusplus
-}
-#endif
-```
 
 ## 设置低时延模式
 
@@ -227,3 +122,9 @@ int main() {
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```
+
+## 相关实例
+
+针对音频通话开发，有以下相关实例可供参考：
+
+- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)

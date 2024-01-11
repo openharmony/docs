@@ -10,11 +10,11 @@ OpenHarmony目前仅支持对部分EXIF信息的查看和修改，具体支持�
 
 ## 开发步骤
 
-EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../reference/apis/js-apis-image.md#getimageproperty7)。
+EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../reference/apis/js-apis-image.md#getimageproperty11)。
 
 1. 获取图片，创建图片源ImageSource。
 
-```ts
+   ```ts
    // 导入相关模块包
    import image from '@ohos.multimedia.image';
 
@@ -25,21 +25,24 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
 
 2. 读取、编辑EXIF信息。
 
-```ts
-   import {BusinessError} from '@ohos.base';
-   // 读取EXIF信息，BitsPerSample为每个像素比特数
-   imageSource.getImageProperty('BitsPerSample', (error : BusinessError, data : string) => {
-     if (error) {
-       console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
-     } else {
-       console.info('Succeeded in getting the value of the specified attribute key of the image ' + data);
-     }
-   })
-   
-   // 编辑EXIF信息
-   imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     imageSource.getImageProperty("ImageWidth").then((width : string) => {
-        console.info('The new imageWidth is ' + width);
-     })
-   })
-   ```
+    ```ts
+    import {BusinessError} from '@ohos.base';
+    // 读取EXIF信息，BitsPerSample为每个像素比特数
+    let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+    imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to get the value of the specified attribute key of the image.');
+    })
+
+    // 编辑EXIF信息
+    imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+        imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+            console.info('The new imageWidth is ' + width);
+        }).catch((error : BusinessError) => {
+            console.error('Failed to get the Image Width.');
+        })
+    }).catch((error : BusinessError) => {
+        console.error('Failed to modify the Image Width');
+    })
+    ```

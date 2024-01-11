@@ -1,10 +1,10 @@
-# 使用人像模式拍照(ArkTS)
+# 使用人像模式拍照(仅对系统应用开放)(ArkTS)
 
 ## 开发流程
 
-人像模式依赖于模式化管理器，在获取到模式化管理的能力后，开始创建拍照流
+人像模式依赖于模式化管理器，在获取到模式化管理的能力后，开始创建拍照流。
 
-模式化管理是对于cameraManager功能的增强与扩充，主要用于一些高级功能的管理，开发流程如下
+模式化管理是对于cameraManager功能的增强与扩充，主要用于一些高级功能的管理，开发流程如下：
 
 ![portraitgraphing Development Process](figures/portrait-capture-development-process.png)
 

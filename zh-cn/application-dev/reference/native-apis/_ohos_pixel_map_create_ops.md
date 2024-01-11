@@ -3,15 +3,13 @@
 
 ## 概述
 
-用于定义创建 pixel map 设置选项的相关信息。
+用于定义创建PixelMap设置选项的相关信息。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Image
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -38,7 +36,7 @@
 uint32_t OhosPixelMapCreateOps::alphaType
 ```
 
-**描述：**
+**描述**
 
 图片的alpha类型，取值范围如下表所示：
 
@@ -56,7 +54,7 @@ uint32_t OhosPixelMapCreateOps::alphaType
 uint32_t OhosPixelMapCreateOps::editable
 ```
 
-**描述：**
+**描述**
 
 图片的编辑类型，true为图像像素可编辑，false为不可编辑。
 
@@ -67,7 +65,7 @@ uint32_t OhosPixelMapCreateOps::editable
 uint32_t OhosPixelMapCreateOps::height
 ```
 
-**描述：**
+**描述**
 
 图片的高, 用pixels表示
 
@@ -78,7 +76,7 @@ uint32_t OhosPixelMapCreateOps::height
 int32_t OhosPixelMapCreateOps::pixelFormat
 ```
 
-**描述：**
+**描述**
 
 图片的格式，取值范围如下表所示：
 
@@ -100,7 +98,7 @@ int32_t OhosPixelMapCreateOps::pixelFormat
 uint32_t OhosPixelMapCreateOps::scaleMode
 ```
 
-**描述：**
+**描述**
 
 图片的缩放类型，取值范围如下表所示：
 
@@ -115,6 +113,6 @@ uint32_t OhosPixelMapCreateOps::scaleMode
 uint32_t OhosPixelMapCreateOps::width
 ```
 
-**描述：**
+**描述**
 
 图片的宽, 用pixels表示

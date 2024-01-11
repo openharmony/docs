@@ -89,7 +89,7 @@ libnative_drawing.so
               XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
               .onLoad((xComponentContext) => {
                   this.xComponentContext = xComponentContext as XComponentContext;
-              }).width('640px') // Multiples of 64
+              }).width('640px') //Multiple of 64
           }.height('88%')
         }
       }
@@ -152,7 +152,6 @@ libnative_drawing.so
         }
         std::string id(idStr);
         auto render = SampleBitMap::GetInstance(id);
-        OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
         render->SetNativeWindow(nativeWindow);
 
         uint64_t width;
@@ -168,7 +167,23 @@ libnative_drawing.so
     {
         // Obtain an OHNativeWindow instance.
         OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-        // ...
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            DRAWING_LOGE("OnSurfaceChangedCB: Unable to get XComponent id");
+            return;
+        }
+        std::string id(idStr);
+        auto render = SampleBitMap::GetInstance(id);
+
+        uint64_t width;
+        uint64_t height;
+        int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+        if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
+            render->SetHeight(height);
+            render->SetWidth(width);
+            DRAWING_LOGI("Surface Changed : xComponent width = %{public}llu, height = %{public}llu", width, height);
+        }
     }
     void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
     {

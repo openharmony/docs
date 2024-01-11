@@ -53,7 +53,7 @@ You can use either of the following methods to listen for the audio interruption
 
 - If you [use the AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), call [on('audioInterrupt')](../reference/apis/js-apis-audio.md#onaudiointerrupt9) of the AudioRenderer to listen for the event.
 
-  To deliver an optimal user experience, the application needs to perform processing based on the event content. The following uses the AudioRenderer as an example to describe the recommended application processing. (The recommended processing is similar if the AVPlayer is used to develop audio playback.) You can customize the code to implement your own audio playback functionality or application processing based on service requirements.
+To deliver an optimal user experience, the application needs to perform processing based on the event content. The following uses the AudioRenderer as an example to describe the recommended application processing. (The recommended processing is similar if the AVPlayer is used to develop audio playback.) You can customize the code to implement your own audio playback functionality or application processing based on service requirements.
   
 ```ts
 import audio from '@ohos.multimedia.audio'; // Import the audio module.

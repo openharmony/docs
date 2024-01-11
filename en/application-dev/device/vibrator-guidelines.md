@@ -51,7 +51,7 @@ The custom vibration configuration file is in JSON format. An example file is as
     "Channels": [
         {
             "Parameters": {
-                "Index": 1
+                "Index": 0
             },
             "Pattern": [
                 {
@@ -59,19 +59,41 @@ The custom vibration configuration file is in JSON format. An example file is as
                         "Type": "transient",
                         "StartTime": 0,
                         "Parameters": {
-                            "Intensity": 100,
-                            "Frequency": 31
+                            "Frequency": 31,
+                            "Intensity": 100
                         }
                     }
                 },
                 {
                     "Event": {
                         "Type": "continuous",
-                        "StartTime": 100,
+                        "StartTime": 40,
                         "Duration": 54,
                         "Parameters": {
+                            "Frequency": 30,
                             "Intensity": 38,
-                            "Frequency": 30
+                            "Curve": [
+                                {
+                                    "Time": 0,
+                                    "Frequency": 0,
+                                    "Intensity": 0
+                                },
+                                {
+                                    "Time": 1,
+                                    "Frequency": 15,
+                                    "Intensity": 0.5
+                                },
+                                {
+                                    "Time": 40,
+                                    "Frequency": -8,
+                                    "Intensity": 1.0
+                                },
+                                {
+                                    "Time": 54,
+                                    "Frequency": 0,
+                                    "Intensity": 0
+                                }
+                            ]
                         }
                     }
                 }
@@ -83,25 +105,23 @@ The custom vibration configuration file is in JSON format. An example file is as
 
 This JSON file contains two attributes: **MetaData** and **Channels**.
 - **MetaData** contains information about the file header. You can add the following attributes under **MetaData**:
-  - **Version**: version number of the file format, which is forward compatible. Currently, only version 1.0 is supported. This parameter is mandatory.
-  - **ChannelNumber**: number of channels for vibration. Currently, only one channel is supported, and the value is fixed at **1**. This parameter is mandatory.
-  - **Create**: time when the file was created. This parameter is optional.
-  - **Description**: additional information such as the vibration effect and creation information. This parameter is optional.
+  - **Version**: mandatory; version number of the file format, which is forward compatible. Currently, only version 1.0 is supported.
+  - **ChannelNumber**: mandatory; number of channels for vibration. A maximum of two channels are supported.
+  - **Create**: optional; time when the file was created.
+  - **Description**: optional; additional information such as the vibration effect and creation information.
 - **Channels** provides information about the vibration channel. It is a JSON array that holds information about each channel. It contains two attributes: **Parameters** and **Pattern**.
-  - **Parameters** provides parameters related to the channel. Under it, **Index** indicates the channel ID. The value is fixed at **1** for a single channel. This parameter is mandatory.
-  - **Pattern** indicates the vibration sequence. It is a JSON array. Under it, **Event** indicates a vibration event, which can be either of the following types:
-    - **transient**: short vibration
-    - **continuous**: long vibration
-
-The table below describes the parameters under **Event**.
-
-| Parameter| Description| Value or Value Range|
-| --- | ------------------------ | ---|
-| Type | Type of the vibration event. This parameter is mandatory.| **transient** or **continuous**|
-| StartTime | Start time of the vibration. This parameter is mandatory.| [0, 1800 000], in ms, without overlapping|
-| Duration | Duration of the vibration. This parameter is valid only when **Type** is **continuous**.| (10, 1600), in ms|
-| Intensity | Intensity of the vibration. This parameter is mandatory.| [0, 100], a relative value that does not represent the actual vibration intensity.|
-| Frequency | Frequency of the vibration. This parameter is mandatory.| [0, 100], a relative value that does not represent the actual vibration frequency.|
+  - **Parameters** provides parameters related to the channel. Among them, **Index** indicates the channel ID and is mandatory. The value **0** indicates both channels, **1** indicates the left channel, and **2** indicates the right channel.
+  - **Pattern** indicates the vibration sequence.It is a JSON array that holds the vibration events. Under it, **Event** indicates a vibration event, which contains the following attributes:
+    - **Type**: mandatory; type of the vibration event, which can be **transient** or **continuous**.
+    - **StartTime**: mandatory; vibration start time. The value range is [0, 1800000], in ms.
+- **Duration**: vibration duration. This parameter is valid and mandatory only when **Type** is set to **continuous**. The value range is [0, 5000], in ms.
+    - **Parameters**: mandatory; parameters related to the vibration event. You can set the following parameters:
+       - **Intensity**: mandatory; vibration intensity. The value range is [0, 100].
+       - **Frequency**: mandatory; vibration frequency. The value range is [0, 100].
+       - **Curve**: optional; vibration curve. This parameter is valid only when **Type** is set to **continuous**. It is a JSON array that holds 4 to 16 adjustment points. Each adjustment point must contain the following attributes:
+         * **Time**: offset relative to the event start time. The value ranges from 0 to the vibration duration.
+         * **Intensity**: gain relative to the vibration intensity. The value range is [0, 1]. This value multiplied by the vibration intensity is the adjusted intensity at the corresponding time point.
+         * **Frequency**: change relative to the vibration frequency. The value range is [-100, 100]. This value plus the vibration frequency is the adjusted frequency at the corresponding time point.
 
 The following requirements must be met:
 
@@ -227,28 +247,28 @@ The following requirements must be met:
 - Method 1: Stop vibration in the specified mode. This method is invalid for custom vibration.
 
    - Stop fixed-duration vibration.
-   
-     ```ts
-     import vibrator from '@ohos.vibrator';
-     import { BusinessError } from '@ohos.base';
-     
-     try {
-       // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
-         if (error) {
-           console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-           return;
-         }
-         console.info('Succeed in stopping vibration');
-       })
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-     }
-     ```
+
+      ```ts
+      import vibrator from '@ohos.vibrator';
+      import { BusinessError } from '@ohos.base';
+      
+      try {
+        // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+        vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+          if (error) {
+            console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+            return;
+          }
+          console.info('Succeed in stopping vibration');
+        })
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+      }
+      ```
 
    - Stop preset vibration.
-   
+
      ```ts
      import vibrator from '@ohos.vibrator';
      import { BusinessError } from '@ohos.base';
@@ -267,24 +287,25 @@ The following requirements must be met:
        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
      }
      ```
-   
+
 - Method 2: Stop vibration in all modes, including custom vibration.
 
-   ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
-   
-   try {
-     // Stop vibration in all modes.
-     vibrator.stopVibration((error: BusinessError) => {
-       if (error) {
-         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
-       }
-       console.info('Succeed in stopping vibration');
-     })
-   } catch (error) {
-     let e: BusinessError = error as BusinessError;
-     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-   }
-   ```
+  ```ts
+  import vibrator from '@ohos.vibrator';
+  import { BusinessError } from '@ohos.base';
+  
+  try {
+    // Stop vibration in all modes.
+    vibrator.stopVibration((error: BusinessError) => {
+      if (error) {
+        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+        return;
+      }
+      console.info('Succeed in stopping vibration');
+    })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  }
+  ```
+

@@ -17,7 +17,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [data_asset.h](data__asset_8h.md) | 提供资产类型数据结构。 |
+| [data_asset.h](data__asset_8h.md) | 提供资产类型数据结构。<br/>引用文件: <database/data/data_asset.h><br/>库: libnative_rdb_ndk.z.so<br/> |
 
 
 ### 类型定义
@@ -173,11 +173,11 @@ int OH_Data_Asset_DestroyMultiple (Data_Asset ** assets, uint32_t count )
 
 **返回：**
 
-返回操作是否成功，成功时返回RDB_OK，出错时返回对应的错误码。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回操作是否成功，成功时返回RDB_OK，出错时返回对应的错误码。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
-[Data_Asset](#data_asset), [OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode).
+[Data_Asset](#data_asset), [OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1).
 
 
 ### OH_Data_Asset_DestroyOne()
@@ -200,11 +200,11 @@ int OH_Data_Asset_DestroyOne (Data_Asset * asset)
 
 **返回：**
 
-返回操作是否成功，成功时返回RDB_OK，出错时返回对应的错误码。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回操作是否成功，成功时返回RDB_OK，出错时返回对应的错误码。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
-[Data_Asset](#data_asset), [OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode).
+[Data_Asset](#data_asset), [OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1).
 
 
 ### OH_Data_Asset_GetCreateTime()
@@ -228,7 +228,7 @@ int OH_Data_Asset_GetCreateTime (Data_Asset * asset, int64_t * createTime )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -256,7 +256,7 @@ int OH_Data_Asset_GetModifyTime (Data_Asset * asset, int64_t * modifyTime )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -285,7 +285,7 @@ int OH_Data_Asset_GetName (Data_Asset * asset, char * name, size_t * length )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -314,7 +314,7 @@ int OH_Data_Asset_GetPath (Data_Asset * asset, char * path, size_t * length )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -342,7 +342,7 @@ int OH_Data_Asset_GetSize (Data_Asset * asset, size_t * size )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -370,7 +370,7 @@ int OH_Data_Asset_GetStatus (Data_Asset * asset, Data_AssetStatus * status )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -399,7 +399,7 @@ int OH_Data_Asset_GetUri (Data_Asset * asset, char * uri, size_t * length )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -427,7 +427,7 @@ int OH_Data_Asset_SetCreateTime (Data_Asset * asset, int64_t createTime )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -455,7 +455,7 @@ int OH_Data_Asset_SetModifyTime (Data_Asset * asset, int64_t modifyTime )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -483,7 +483,7 @@ int OH_Data_Asset_SetName (Data_Asset * asset, const char * name )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -511,7 +511,7 @@ int OH_Data_Asset_SetPath (Data_Asset * asset, const char * path )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -539,7 +539,7 @@ int OH_Data_Asset_SetSize (Data_Asset * asset, size_t size )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -567,7 +567,7 @@ int OH_Data_Asset_SetStatus (Data_Asset * asset, Data_AssetStatus status )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 
@@ -595,7 +595,7 @@ int OH_Data_Asset_SetUri (Data_Asset * asset, const char * uri )
 
 **返回：**
 
-返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode)。
+返回特定的错误码值。详细信息可以查看[OH_Rdb_ErrCode](_r_d_b.md#oh_rdb_errcode-1)。
 
 **参见：**
 

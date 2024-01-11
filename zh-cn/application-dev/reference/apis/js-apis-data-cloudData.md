@@ -9,7 +9,7 @@
 该模块提供以下端云协同相关的常用功能：
 
 - [Config](#config)：提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
-- [sharing<sup>11+</sup>](#sharing)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
+- [sharing<sup>11+</sup>](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
 
 > **说明：** 
 >
@@ -50,24 +50,17 @@ import cloudData from '@ohos.data.cloudData';
 **样例：**
 
 ```ts
-let ExtraData = {
+//token:用于校验应用信息
+//accountId:用户打开的云帐号ID
+//bundleName:应用包名
+//containerName:云上数据库名称
+//containerName:云上数据库表名
+
+interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: {
-    "header": {
-      "token": "bbbbbb" //用于校验应用信息
-    },
-    "data": {
-      "accountId": "aaa", //用户打开的云帐号ID
-      "bundleName": "com.bbb.xxx", //应用名
-      "containerName": "alias", //云上数据库名称
-      "recordTypes": [ //云上数据库表名
-        "xxx",
-        "yyy",
-        "zzz",
-      ]
-    }
-  }
+  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
 }
+
 ```
 
 ## Config
@@ -400,7 +393,7 @@ try {
 
  **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
-通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，使用callback异步回调。
+通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，使用callback异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -440,7 +433,7 @@ try {
 
 static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallback&lt;void&gt;):void
 
-通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，可通过userId指定用户ID，使用callback异步回调。
+通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，可通过userId指定用户ID，使用callback异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -480,7 +473,7 @@ try {
 
 **static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
-通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，可通过userId指定用户ID，使用Promise异步回调。
+通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，可通过userId指定用户ID，使用Promise异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -728,32 +721,31 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import relaitonalStore from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
-let predicates = new relaitonalStore.RdbPredicates('test_table');
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
   if (!resultSet.goToFirstRow()) {
-     console.error(`row error`);
-     return;
+    console.error(`row error`);
+    return;
   }
-  const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
+  const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
   console.info(`sharing resource: ${res}`);
   sharingResource = res;
 }).catch((err: BusinessError) => {
@@ -785,19 +777,18 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -841,19 +832,18 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -901,19 +891,18 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants).then((result) => {
@@ -943,19 +932,18 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 **示例：**
 
 ```ts
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants, ((err, result) => {
@@ -994,19 +982,18 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants).then((result) => {
@@ -1036,19 +1023,18 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 **示例：**
 
 ```ts
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants, ((err, result) => {
@@ -1148,19 +1134,18 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: false,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 
@@ -1191,19 +1176,18 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 **示例：**
 
 ```ts
-let privilege = {
-  writable: false,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 
@@ -1394,7 +1378,6 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 **示例：**
 
 ```ts
-
 let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
   if (err) {

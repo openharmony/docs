@@ -18,7 +18,7 @@ import bundleManager from '@ohos.enterprise.bundleManager';
 
 ## bundleManager.addAllowedInstallBundles
 
-addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that can be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -66,7 +66,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.addAllowedInstallBundles
 
-addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that can be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -115,7 +115,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.addAllowedInstallBundles
 
-addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Adds the applications that can be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -131,7 +131,7 @@ Adds the applications that can be installed by the current or specified user thr
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| userId     | number                             | No   |User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications can be installed by the specified user.<br> - If **userId** is not passed in, the applications can be installed by the current user.|
+| userId     | number                             | No   |User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications can be installed by the specified user.<br>- If **userId** is not passed in, the applications can be installed by the current user.|
 
 **Return value**
 
@@ -168,7 +168,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.removeAllowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the applications that can be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -216,7 +216,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.removeAllowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the applications that can be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -265,7 +265,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.removeAllowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Removes the applications that can be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -281,7 +281,7 @@ Removes the applications that can be installed by the current or specified user 
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array\&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications can be installed by the specified user.<br> - If **userId** is not passed in, the applications can be installed by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications can be installed by the specified user.<br>- If **userId** is not passed in, the applications can be installed by the current user. |
 
 **Return value**
 
@@ -318,7 +318,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.getAllowedInstallBundles
 
-getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the applications that can be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -364,7 +364,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, (err, result) => {
 
 ## bundleManager.getAllowedInstallBundles
 
-getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the applications that can be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -411,7 +411,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100, (err, result) => {
 
 ## bundleManager.getAllowedInstallBundles
 
-getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the applications that can be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -426,7 +426,7 @@ Obtains the applications that can be installed by the current or specified user 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications can be installed by the specified user.<br> - If **userId** is not passed in, the applications can be installed by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications can be installed by the specified user.<br>- If **userId** is not passed in, the applications can be installed by the current user. |
 
 **Return value**
 
@@ -462,7 +462,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
 
 ## bundleManager.addDisallowedInstallBundles
 
-addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that cannot be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -510,7 +510,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.addDisallowedInstallBundles
 
-addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that cannot be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -559,7 +559,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.addDisallowedInstallBundles
 
-addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Adds the applications that cannot be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -612,7 +612,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the applications that cannot be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -660,7 +660,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the applications that cannot be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -709,7 +709,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Removes the applications that cannot be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -762,7 +762,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.getDisallowedInstallBundles
 
-getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the applications that cannot be installed by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -808,7 +808,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, (err, result) => {
 
 ## bundleManager.getDisallowedInstallBundles
 
-getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the applications that cannot be installed by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -855,7 +855,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
 
 ## bundleManager.getDisallowedInstallBundles
 
-getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the applications that cannot be installed by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -1389,6 +1389,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1436,6 +1437,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', 100, (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1483,6 +1485,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', true, (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1531,6 +1534,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', 100, true, (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1627,11 +1631,12 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 
 bundleManager.install(wantTemp, hapFilePaths, (err) => {
   if (err) {
     console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in installing bundles');
 });
@@ -1676,7 +1681,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 let installParam: bundleManager.InstallParam = {
   userId: 100,
   installFlag: 1,
@@ -1685,6 +1690,7 @@ let installParam: bundleManager.InstallParam = {
 bundleManager.install(wantTemp, hapFilePaths, installParam, (err) => {
   if (err) {
     console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in installing bundles');
 });
@@ -1735,7 +1741,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 
 bundleManager.install(wantTemp, hapFilePaths).then(() => {
   console.info('Succeeded in installing bundles');
@@ -1755,5 +1761,4 @@ Defines the parameters specified for installing applications.
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
 | userId                         | number                         | No                       | User ID, which must be greater than or equal to 0. The default value is the user ID of the caller. |
-| installFlag                    | number                         | No                       | Installation flag.<br>- **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0** |
-
+| installFlag                    | number                         | No                       | Installation flag.<br>- **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0**|

@@ -13,7 +13,7 @@ import print from '@ohos.print';
 
 ## PrintTask
 
-打印任务完成后的事件监听回调接口类
+打印任务完成后的事件监听回调接口类。
 
 ### on
 
@@ -281,7 +281,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 ## PrintDocumentAdapter<sup>11+</sup>
 
-第三方应用程序实现此接口来渲染要打印的文件
+第三方应用程序实现此接口来渲染要打印的文件。
 
 ### onStartLayoutWrite
 
@@ -589,7 +589,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintAttributes<sup>11+</sup>
 
-定义打印参数的接口
+定义打印参数的接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -605,7 +605,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintMargin
 
-定义打印页边距的接口
+定义打印页边距的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -621,7 +621,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrinterRange<sup>11+</sup>
 
-定义打印范围的接口
+定义打印范围的接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -634,7 +634,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PreviewAttribute
 
-定义打印预览属性的接口
+定义打印预览属性的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -648,7 +648,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintResolution
 
-定义打印分辨率的接口
+定义打印分辨率的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -663,7 +663,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintPageSize<sup>11+</sup>
 
-定义打印页面尺寸的接口
+定义打印页面尺寸的接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -677,7 +677,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrinterCapability
 
-定义打印能力的接口
+定义打印能力的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -695,7 +695,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrinterInfo
 
-定义打印信息的接口
+定义打印信息的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -714,7 +714,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintJob
 
-定义打印任务的接口
+定义打印任务的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -741,7 +741,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintDirectionMode<sup>11+</sup>
 
-打印纸张方向的枚举
+打印纸张方向的枚举。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -753,7 +753,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintColorMode<sup>11+</sup>
 
-打印色彩模式的枚举
+打印色彩模式的枚举。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -764,7 +764,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintDuplexMode<sup>11+</sup>
 
-打印单双面模式的枚举
+打印单双面模式的枚举。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -776,7 +776,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintPageType<sup>11+</sup>
 
-打印纸张类型的枚举
+打印纸张类型的枚举。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -785,7 +785,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PAGE_ISO_A3 | 0 | 表示A3 |
 | PAGE_ISO_A4 | 1 | 表示A4 |
 | PAGE_ISO_A5 | 2 | 表示A5 |
-| PAGE_JIS_B5 | 3 | 表示B5 |
+| PAGE_ISO_B5 | 3 | 表示B5 |
 | PAGE_ISO_C5 | 4 | 表示C5 |
 | PAGE_ISO_DL | 5 | 表示DL |
 | PAGE_LETTER | 6 | 表示Letter |
@@ -797,7 +797,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintDocumentAdapterState<sup>11+</sup>
 
-打印任务状态的枚举
+打印任务状态的枚举。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -811,7 +811,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintFileCreationState<sup>11+</sup>
 
-打印文件创建状态的枚举
+打印文件创建状态的枚举。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -823,7 +823,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrinterState
 
-打印机状态的枚举
+打印机状态的枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -840,7 +840,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintJobState
 
-打印任务状态的枚举
+打印任务状态的枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -856,7 +856,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintJobSubState
 
-打印任务子状态的枚举
+打印任务子状态的枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -895,7 +895,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrintErrorCode
 
-打印错误代码的枚举
+打印错误代码的枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -916,7 +916,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 
 ## PrinterExtensionInfo
 
-定义打印扩展信息的接口
+定义打印扩展信息的接口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2537,8 +2537,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-let type : string = 'spooler_closed_for_started';
-print.notifyPrintService(jobId, type).then((data : void) => {
+print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
     console.log('queryPrintJobById data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('queryPrintJobById error : ' + JSON.stringify(error));

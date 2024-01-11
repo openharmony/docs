@@ -14,7 +14,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ### 属性
 
-**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称      | 类型                                       | 可读   | 可写   | 说明           |
 | ------- | ---------------------------------------- | ---- | ---- | ------------ |
@@ -28,16 +28,18 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ### 属性
 
-| 名称      | 类型                                                         | 可读 | 可写 | 说明                                                         |
-| --------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型，当前版本暂不支持。 |
-| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否   | 发生事件的目标组件。                                         |
-| timeStamp | number                                                       | 是   | 否   | 事件时间戳。                                                 |
+| 名称      | 类型                                                         | 可读                                                                           | 可写                                 | 说明                                                         |
+| --------- | ------------------------------------------------------------ |------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。当前版本暂不支持。 |
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是                                                                            | 否                                  | 发生事件的目标组件。                                         |
+| timeStamp | number                                                       | 是                                                                            | 否                                  | 事件时间戳。                                                 |
 
 
 ## AccessibilityElement<sup>10+</sup>
 
 [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **示例：**
 
@@ -51,6 +53,8 @@ let accessibilityElement: AccessibilityElement;
 
 [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)二级模块
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
 **示例：**
 
 ```ts
@@ -63,6 +67,8 @@ let elementAttributeValues: ElementAttributeValues;
 
 [FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)二级模块，表示查询下一焦点元素的方向。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
 **示例：**
 
 ```ts
@@ -73,9 +79,11 @@ let focusDirection: FocusDirection;
 
 ## ElementAttributeKeys<sup>10+</sup>
 
-| 名称      | 类型                                       | 可读   | 可写   | 说明                                                 |
-| ------- | ---------------------------------------- | ---- | ---- |----------------------------------------------------|
-| ElementAttributeKeys | [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 是    | 否    | 表示ElementAttributeKeys是ElementAttributeValues的key。 |
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称      | 类型                                                                                                                | 可读   | 可写   | 说明                                                 |
+| ------- |-------------------------------------------------------------------------------------------------------------------| ---- | ---- |----------------------------------------------------|
+| ElementAttributeKeys | keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 是    | 否    | 表示ElementAttributeValues的key。 |
 
 
 **示例：**
@@ -90,6 +98,8 @@ let elementAttributeKeys: ElementAttributeKeys;
 
 [FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)二级模块，表示查询焦点元素的类型。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
 **示例：**
 
 ```ts
@@ -102,6 +112,8 @@ let focusType: FocusType;
 
 [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)二级模块，表示窗口的类型。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
 **示例：**
 
 ```ts
@@ -113,6 +125,8 @@ let windowType: WindowType;
 ## Rect<sup>10+</sup>
 
 [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)二级模块，表示矩形区域。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **示例：**
 
@@ -172,7 +186,7 @@ let rect: Rect;
 
 ## PageUpdateType
 
-页面刷新类型；当前版本暂不支持。
+页面刷新类型。当前版本暂不支持。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -198,7 +212,7 @@ onConnect(): void;
 
 用户启用AccessibilityExtensionAbility时，系统服务完成连接后，回调此接口，可以该方法中执行初始化业务逻辑操作。该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **示例：**
 
@@ -218,7 +232,7 @@ onDisconnect(): void;
 
 用户停用AccessibilityExtensionAbility时，系统服务完成断开连接后，回调此接口，可以该方法中执行资源回收退出业务逻辑操作。该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **示例：**
 
@@ -238,7 +252,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -267,7 +281,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 在物理按键按下时回调此方法，可以在该方法中根据业务判断是否对事件进行拦截。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 

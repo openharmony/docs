@@ -105,9 +105,9 @@ export class WindowManager {
       }
 
       let winWidth = this.getMainWindowWidth();
-      AppStorage.SetOrCreate<number>('mainWinWidth', winWidth)
+      AppStorage.setOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
-      AppStorage.SetOrCreate<number>('mainWinHeight', winHeight)
+      AppStorage.setOrCreate<number>('mainWinHeight', winHeight)
       let context:UIAbility = new UIAbility()
       context.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
@@ -121,10 +121,10 @@ export class WindowManager {
   }
 
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
-    if (mediaQueryResult.matches == AppStorage.Get<boolean>('isLandscape')) {
+    if (mediaQueryResult.matches == AppStorage.get<boolean>('isLandscape')) {
       return
     }
-    AppStorage.SetOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
+    AppStorage.setOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
     this.loadDisplayInfo()
   }
 
@@ -140,8 +140,8 @@ export class WindowManager {
 
   private loadDisplayInfo() {
     this.displayInfo = display.getDefaultDisplaySync()
-    AppStorage.SetOrCreate<number>('displayWidth', this.getDisplayWidth())
-    AppStorage.SetOrCreate<number>('displayHeight', this.getDisplayHeight())
+    AppStorage.setOrCreate<number>('displayWidth', this.getDisplayWidth())
+    AppStorage.setOrCreate<number>('displayHeight', this.getDisplayHeight())
   }
 
   /**

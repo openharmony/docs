@@ -505,11 +505,11 @@ class EntryAbility extends UIAbility {
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## SecurityLevel
 
-数据库的安全级别枚举。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。
 
 > **说明：**
 >
@@ -575,7 +575,7 @@ class EntryAbility extends UIAbility {
 | ------- | -------------------- |
 | null<sup>10+</sup>    | 表示值类型为空。   |
 | number  | 表示值类型为数字。   |
-| string  | 表示值类型为字符。   |
+| string  | 表示值类型为字符串。  |
 | boolean | 表示值类型为布尔值。 |
 | Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
@@ -649,7 +649,7 @@ class EntryAbility extends UIAbility {
 
 ## Field<sup>11+</sup>
 
-用于谓词查询条件的特殊字段。
+用于谓词查询条件的特殊字段。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -739,7 +739,7 @@ class EntryAbility extends UIAbility {
 
 ## ConflictResolution<sup>10+</sup>
 
-插入和修改接口的冲突解决方式。
+插入和修改接口的冲突解决方式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -887,13 +887,6 @@ try {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
-
-if(store != undefined) {
-  // 设置数据库版本
-  (store as relationalStore.RdbStore).version = 3;
-  // 获取数据库版本
-  console.info(`RdbStore version is ${(store as relationalStore.RdbStore).version}`);
-}
 ```
 
 ### inAllDevices
@@ -944,8 +937,9 @@ equalTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值为"Lisa"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi");
+predicates.equalTo("NAME", "Lisa");
 ```
 
 
@@ -974,8 +968,9 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值不为"Lisa"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notEqualTo("NAME", "lisi");
+predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
@@ -998,7 +993,7 @@ beginWrap(): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -1024,7 +1019,7 @@ endWrap(): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -1049,6 +1044,7 @@ or(): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值为"Lisa"或"Rose"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -1072,6 +1068,7 @@ and(): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值为"Lisa"且"SALARY"列中值为"200.5"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -1102,6 +1099,7 @@ contains(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中包含"os"的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -1130,8 +1128,9 @@ beginsWith(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中以"Li"开头的字段，如"Lisa"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.beginsWith("NAME", "os");
+predicates.beginsWith("NAME", "Li");
 ```
 
 ### endsWith
@@ -1158,6 +1157,7 @@ endsWith(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中以"se"结尾的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -1240,6 +1240,7 @@ like(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值类似于"os"的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1268,6 +1269,7 @@ glob(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中类型为string且值为"?h*g"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -1297,6 +1299,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中大于等于10且小于等于50的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -1326,6 +1329,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中小于10或大于50的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -1354,6 +1358,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中大于18的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -1382,6 +1387,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中小于20的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -1410,6 +1416,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中大于等于18的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -1438,6 +1445,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中小于等于20的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1623,7 +1631,7 @@ indexedBy(field: string): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.indexedBy("SALARY_INDEX");
+predicates.indexedBy("SALARY");
 ```
 
 ### in
@@ -1650,6 +1658,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中在[18，20]中的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1678,6 +1687,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中不在["Lisa", "Rose"]中的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -3426,7 +3436,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], call
 ```ts
 let PRIKey = [1, 4, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
     if (err) {
       console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -3473,7 +3483,7 @@ import { BusinessError } from "@ohos.base";
 
 let PRIKey = [1, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey)
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey)
     .then((modifyTime: relationalStore.ModifyTime) => {
       let size = modifyTime.size;
     })
@@ -3507,35 +3517,24 @@ beginTransaction():void
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### commit
@@ -3558,29 +3557,20 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### rollBack
@@ -3603,36 +3593,27 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
-};
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  try {
-    store.beginTransaction()
-    const valueBucket: ValuesBucket = {
-      key1: value1,
-      key2: value2,
-      key3: value3,
-      key4: value4,
-    };
-    await store.insert("test", valueBucket);
-    store.commit();
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Transaction failed, code is ${code},message is ${message}`);
-    store.rollBack();
-  }
-})
+
+try {
+  store.beginTransaction()
+  const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
+    key4: value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Transaction failed, code is ${code},message is ${message}`);
+  store.rollBack();
+}
 ```
 
 ### backup
@@ -5634,6 +5615,35 @@ if(resultSet != undefined) {
 }
 ```
 
+### getRow<sup>11+</sup>
+
+getRow(): ValuesBucket
+
+获取当前行。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| [ValuesBucket](#valuesbucket) | 返回指定行的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  const row = (resultSet as relationalStore.ResultSet).getRow();
+}
+```
 
 ### isColumnNull
 

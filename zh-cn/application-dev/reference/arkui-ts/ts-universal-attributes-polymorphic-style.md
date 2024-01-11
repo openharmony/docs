@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  从API Version 11开始支持另一种写法[attributeModifier](./ts-universal-attributes-attribute-modifier.md)，可根据开发者需要动态设置属性。
 
 
 ## 属性
@@ -17,17 +19,34 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称 | 类型 | 必填 | 描述 |
+| 状态名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | normal | ()=&gt;void | 否 | 组件无状态时的样式。 |
 | pressed | ()=&gt;void | 否 | 组件按下状态的样式。 |
 | disabled | ()=&gt;void | 否 | 组件禁用状态的样式。 |
 | focused | ()=&gt;void | 否 | 组件获焦状态的样式。 |
 | clicked | ()=&gt;void | 否 | 组件点击状态的样式。 |
-| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。<br/>**说明：**<br/>支持选中态的组件：ListItem、GridItem、CheckBox、CheckBoxGroup、Radio、Toggle、MenuItem。 |
+| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。<br/> |
 
+**selected选中状态说明**
+
+- 当前多态样式的选中状态样式依赖组件选中属性值，可以使用[onClick](ts-universal-events-click.md)修改属性值，或使用属性自带[$$](../../quick-start/arkts-two-way-sync.md)双向绑定功能。
+
+- 当前支持selected的组件及其参数/属性值：
+
+  | 组件                                                         | 支持的参数/属性 | 起始API版本 |
+  | ------------------------------------------------------------ | --------------- | ----------- |
+  | [Checkbox](ts-basic-components-checkbox.md) | select          | 10          |
+  | [CheckboxGroup](ts-basic-components-checkboxgroup.md) | selectAll       | 10          |
+  | [Radio](ts-basic-components-radio.md)  | checked         | 10          |
+  | [Toggle](ts-basic-components-toggle.md) | isOn            | 10          |
+  | [ListItem](ts-container-listitem.md) | selected         | 10          |
+  | [GridItem](ts-container-griditem.md) | selected         | 10          |
+  | [MenuItem](ts-basic-components-menuitem.md) | selected         | 10          |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -124,3 +143,64 @@ struct StyleExample {
 ```
 
 ![zh-cn_image_0000001188742468](figures/zh-cn_image_0000001188742468.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+@Observed
+struct Index {
+  @State value: boolean = false
+
+  @Styles
+  normalStyles(): void{
+    .backgroundColor("#E5E5E1")
+  }
+
+  @Styles
+  selectStyles(): void{
+    .backgroundColor("#ED6F21")
+    .borderWidth(2)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
+        Text('Radio1')
+        Radio({ value: 'Radio1', group: 'radioGroup1' })
+          .checked(this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value
+          })
+          .stateStyles({
+            normal: this.normalStyles,
+            selected: this.selectStyles,
+          })
+      }
+
+      Column() {
+        Text('Radio2')
+        Radio({ value: 'Radio2', group: 'radioGroup2' })
+          .checked($$this.value)
+          .height(50)
+          .width(50)
+          .borderWidth(0)
+          .borderRadius(30)
+          .onClick(() => {
+            this.value = !this.value
+          })
+          .stateStyles({
+            normal: this.normalStyles,
+            selected: this.selectStyles,
+          })
+      }
+    }.padding({ top: 30 })
+  }
+}
+```

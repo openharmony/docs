@@ -10,7 +10,7 @@ Currently, OpenHarmony allows you to view and modify part of EXIF data. For deta
 
 ## How to Develop
 
-Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used to read and edit EXIF data.
+Read [Image](../reference/apis/js-apis-image.md#getimageproperty11) for APIs used to read and edit EXIF data.
 
 1. Obtain the image and create an **ImageSource** object.
 
@@ -26,20 +26,23 @@ Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used
 2. Read and edit EXIF data.
 
    ```ts
-      import {BusinessError} from '@ohos.base';
-      // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
-      imageSource.getImageProperty('BitsPerSample', (error : BusinessError, data : string) => {
-        if (error) {
-          console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
-        } else {
-          console.info('Succeeded in getting the value of the specified attribute key of the image ' + data);
-        }
-      })
-      
+     import {BusinessError} from '@ohos.base';
+     // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
+     let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+     imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
+         console.log('Succeeded in getting the value of the specified attribute key of the image.');
+     }).catch((error : BusinessError) => {
+         console.error('Failed to get the value of the specified attribute key of the image.');
+     })
+   
       // Edit the EXIF data.
-      imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-        imageSource.getImageProperty("ImageWidth").then((width : string) => {
+     imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+       imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
            console.info('The new imageWidth is ' + width);
-        })
-      })
+       }).catch((error : BusinessError) => {
+           console.error('Failed to get the Image Width.');
+       })
+     }).catch((error : BusinessError) => {
+       console.error('Failed to modify the Image Width');
+     })
    ```

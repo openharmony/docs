@@ -23,7 +23,7 @@ The **OhosPixelMapInfos** struct defines the information about a pixel map.
 | -------- | -------- |
 | [width](#width) | Image width, in pixels.| 
 | [height](#height) | Image height, in pixels.| 
-| [rowSize](#rowsize) | Number of bytes per row.| 
+| [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(64-fold byte count per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x byte count per pixel.| 
 | [pixelFormat](#pixelformat) | Pixel format.| 
 
 

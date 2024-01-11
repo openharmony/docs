@@ -27,12 +27,12 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_brush.h](drawing__brush_8h.md)                      | 文件中定义了与画刷相关的功能函数。<br>引用文件：<native_drawing/drawing_brush.h> <br>库：libnative_drawing.so                       |
 | [drawing_canvas.h](drawing__canvas_8h.md)                    | 文件中定义了与画布相关的功能函数。<br>引用文件：<native_drawing/drawing_canvas.h> <br>库：libnative_drawing.so                          |
 | [drawing_color.h](drawing__color_8h.md)                      | 文件中定义了与颜色相关的功能函数。<br>引用文件：<native_drawing/drawing_color.h> <br>库：libnative_drawing.so                           |
-| [drawing_font_collection.h](drawing__font__collection_8h.md) | 定义绘制模块中与fontCollection相关的函数。<br>引用文件：<native_drawing/drawing_font_collection.h>  <br>库：libnative_drawing.so                  |
+| [drawing_font_collection.h](drawing__font__collection_8h.md) | 定义绘制模块中与字体集合相关的函数。<br>引用文件：<native_drawing/drawing_font_collection.h>  <br>库：libnative_drawing.so                  |
 | [drawing_path.h](drawing__path_8h.md)                        | 文件中定义了与自定义路径相关的功能函数。<br>引用文件：<native_drawing/drawing_path.h> <br>库：libnative_drawing.so                     |
 | [drawing_pen.h](drawing__pen_8h.md)                          | 文件中定义了与画笔相关的功能函数。<br>引用文件：<native_drawing/drawing_pen.h> <br>库：libnative_drawing.so                           |
-| [drawing_text_declaration.h](drawing__text__declaration_8h.md) | 提供2d drawing文本相关的数据结构声明。<br>引用文件：<native_drawing/drawing_text_declaration.h> <br>库：libnative_drawing.so                       |
+| [drawing_text_declaration.h](drawing__text__declaration_8h.md) | 提供2D绘制文本相关的数据结构声明。<br>引用文件：<native_drawing/drawing_text_declaration.h> <br>库：libnative_drawing.so                       |
 | [drawing_text_typography.h](drawing__text__typography_8h.md) | 定义绘制模块中排版相关的函数。<br>引用文件：<native_drawing/drawing_text_typography.h> <br>库：libnative_drawing.so                               |
-| [drawing_types.h](drawing__types_8h.md)                      | 文件中定义了用于绘制2d图形的数据类型，包括画布、画笔、画刷、位图和路径。<br>引用文件：<native_drawing/drawing_types.h> <br>库：libnative_drawing.so |
+| [drawing_types.h](drawing__types_8h.md)                      | 文件中定义了用于绘制2D图形的数据类型，包括画布、画笔、画刷、位图和路径。<br>引用文件：<native_drawing/drawing_types.h> <br>库：libnative_drawing.so |
 
 
 ### 结构体
@@ -2443,6 +2443,10 @@ double OH_Drawing_TypographyGetIdeographicBaseline (OH_Drawing_Typography * )
 9
 
 ### OH_Drawing_TypographyGetLongestLine()
+
+```
+double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
+```
 
 **描述:**
 

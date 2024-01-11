@@ -34,24 +34,24 @@
   
 - 增强了卡片的能力，使卡片更加万能。
   - 新增了动效的能力：ArkTS卡片开放了[属性动画](../reference/arkui-ts/ts-animatorproperty.md)和[显式动画](../reference/arkui-ts/ts-explicit-animation.md)的能力，使卡片的交互更加友好。
-  - 新增了自定义绘制的能力：ArkTS卡片开放了[Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md)画布组件，卡片可以使用自定义绘制的能力构建更多样的显示和交互效果。
+  - 新增了自定义绘制的能力：ArkTS卡片开放了[Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md)画布组件的能力，卡片可以使用自定义绘制的能力构建更多样的显示和交互效果。
   - 允许卡片中运行逻辑代码：开放逻辑代码运行后很多业务逻辑可以在卡片内部自闭环，拓宽了卡片的业务适用场景。
 
 ## ArkTS卡片的约束
 
 ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使用卡片进行恶意行为的风险。由于ArkTS卡片显示在使用方应用中，使用方应用一般为桌面应用，为确保桌面的使用体验以及功耗相关考虑，对ArkTS卡片的能力做了以下约束：
 
-- 不支持加载so。
+- 当导入模块时，仅支持导入标识“支持在ArkTS卡片中使用”的模块。
+
+- 不支持导入共享包。
 
 - 不支持使用native语言开发。
 
-- 仅支持声明式范式的[部分](arkts-ui-widget-page-overview.md)组件、事件、动效、数据管理、状态管理和API能力。
+- 仅支持[声明式范式](../reference/arkui-ts/ts-components-summary.md)的部分组件、事件、动效、数据管理、状态管理和API能力。
 
 - 卡片的事件处理和使用方的事件处理是独立的，建议在使用方支持左右滑动的场景下卡片内容不要使用左右滑动功能的组件，以防手势冲突影响交互体验。
 
 除此之外，当前ArkTS卡片还存在如下约束：
-
-- 暂不支持导入模块。
 
 - 暂不支持极速预览。
 

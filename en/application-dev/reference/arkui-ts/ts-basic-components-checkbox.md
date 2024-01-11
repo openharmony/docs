@@ -23,7 +23,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name | Type| Mandatory | Description|
 | --------| --------| ------ | -------- |
 | name    | string | No| Name of the check box.|
-| group   | string | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>If not used with the **\<CheckboxGroup>** component, this parameter is invalid.|
+| group   | string | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [CheckboxGroup](ts-basic-components-checkboxgroup.md) component.|
 
 ## Attributes
 

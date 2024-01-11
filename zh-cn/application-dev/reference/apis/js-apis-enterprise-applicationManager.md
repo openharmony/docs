@@ -460,3 +460,158 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+## applicationManager.addAutoStartApps<sup>11+</sup>
+
+addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
+
+以同步方法指定设备管理应用添加开机自启动应用名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| autoStartApps | Array\<[Want](js-apis-app-ability-want.md)> | 是    | 开机自启动应用。数组长度上限长度为10。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.addAutoStartApps(wantTemp, autoStartApps);
+  console.info(`Succeeded in adding auto start applications`);
+} catch(err) {
+  console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.removeAutoStartApps<sup>11+</sup>
+
+removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
+
+以同步方法指定设备管理应用删除开机自启动应用名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| autoStartApps | Array\<[Want](js-apis-app-ability-want.md)> | 是    | 开机自启动应用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
+  console.info(`Succeeded in removing auto start applications`);
+} catch(err) {
+  console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.getAutoStartApps<sup>11+</sup>
+
+getAutoStartApps(admin: Want): Array\<Want>
+
+以同步方法指定设备管理应用查询开机自启动应用名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Array\<[Want](js-apis-app-ability-want.md)> | 应用自启动名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp);
+  console.info(`Succeeded in adding auto start apps: ${res}`);
+} catch(err) {
+  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
+}
+```

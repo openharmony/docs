@@ -22,13 +22,13 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
+权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
 > 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo(@ohos.bundle.distributedBundleManager)](js-apis-distributedBundleManager.md)替代。
 
-getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
+getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void
 
 以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用callback形式返回结果。
 
@@ -89,7 +89,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 > 从API version 9开始不再维护，建议使用[getRemoteAbilityInfo(@ohos.bundle.distributedBundleManager)](js-apis-distributedBundleManager.md)替代。
 
-getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
+getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void
 
 以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用callback形式返回结果。
 

@@ -43,7 +43,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: S
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md) | 是 | - | 提示弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。 | 
 | imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
 | imageSize | [SizeOptions](ts-types.md#sizeoptions) | 是 | - | 自定义图片尺寸。 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 提示弹出框标题。 | 
@@ -68,12 +68,12 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | 是 | 选择弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 选择弹出框控制器。 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 选择弹出框标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
-| confirm | [ButtonOptions](#buttonoptions) | 否 | 确认按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
+| confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 | 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
 
 ## ConfirmDialog
@@ -90,7 +90,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | 是 | - | 确认弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 确认弹出框控制器。 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 确认弹出框标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 确认弹出框内容。 | 
 | checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 | 
@@ -113,7 +113,7 @@ AlertDialog({controller: CustomDialogController, content?: ResourceStr, primaryB
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | 是 | 确认弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。 | 
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。 | 
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。 | 
@@ -123,11 +123,17 @@ AlertDialog({controller: CustomDialogController, content?: ResourceStr, primaryB
 
 LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
+进度加载类弹出框，操作正在执行时的提示信息。
+
+**装饰器类型：**\@CustomDialog
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | 是 | 加载弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 加载弹出框内容。 | 
 
 
@@ -159,6 +165,7 @@ struct Index {
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('app.media.icon'),
+      imageSize: { width: 100, height: 100 },
       title: '文本标题',
       content: '文本文本文本文本文本文本文本文本文本',
       isChecked: this.isChecked,
@@ -212,57 +219,57 @@ import { SelectDialog } from '@ohos.arkui.advanced.Dialog'
 @Component
 struct Index {
   radioIndex = 0;
-dialogControllerList: CustomDialogController = new CustomDialogController({
-  builder: SelectDialog({
-    title: '文本标题',
+  dialogControllerList: CustomDialogController = new CustomDialogController({
+    builder: SelectDialog({
+      title: '文本标题',
       selectedIndex: this.radioIndex,
-    confirm: {
-      value: '取消',
-      action: () => {},
-    },
-    radioContent: [
-      {
-      title: '文本文本文本文本文本',
-      action: () => {
-        this.radioIndex = 0
-      }
-    },
-      {
-      title: '文本文本文本文本',
-      action: () => {
-        this.radioIndex = 1
-      }
-    },
-      {
-      title: '文本文本文本文本',
-      action: () => {
-        this.radioIndex = 2
-      }
-    },
-    ]
-  }),
-  customStyle: true,
-  alignment: DialogAlignment.Bottom,
-  autoCancel: false
-})
+      confirm: {
+        value: '取消',
+        action: () => {},
+      },
+      radioContent: [
+        {
+          title: '文本文本文本文本文本',
+          action: () => {
+            this.radioIndex = 0
+          }
+        },
+        {
+          title: '文本文本文本文本',
+          action: () => {
+            this.radioIndex = 1
+          }
+        },
+        {
+          title: '文本文本文本文本',
+          action: () => {
+            this.radioIndex = 2
+          }
+        },
+      ]
+    }),
+    customStyle: true,
+    alignment: DialogAlignment.Bottom,
+    autoCancel: false
+  })
 
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button("纯列表弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerList.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
@@ -277,28 +284,28 @@ import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
 @Component
 struct Index {
   isChecked = false;
-dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
-  builder: ConfirmDialog({
-    title: '文本标题',
-    content: '文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本',
-    isChecked: this.isChecked,
-    checkTips: '禁止后不再提示',
-    primaryButton: {
-      value: '禁止',
-      action: () => {},
-    },
-    secondaryButton: {
-      value: '允许',
-      action: () => {
-        this.isChecked = false
-        console.info('Callback when the second button is clicked')
-      }
-    },
-  }),
-  autoCancel: true,
-  customStyle: true,
-  alignment: DialogAlignment.Bottom
-})
+  dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
+    builder: ConfirmDialog({
+      title: '文本标题',
+      content: '文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本',
+      isChecked: this.isChecked,
+      checkTips: '禁止后不再提示',
+      primaryButton: {
+        value: '禁止',
+        action: () => {},
+      },
+      secondaryButton: {
+        value: '允许',
+        action: () => {
+          this.isChecked = false
+          console.info('Callback when the second button is clicked')
+        }
+      },
+    }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   build() {
     Row() {
@@ -310,13 +317,13 @@ dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
             .onClick(() => {
               this.dialogControllerCheckBox.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
@@ -330,25 +337,25 @@ import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
 @Entry
 @Component
 struct Index {
-dialogControllerConfirm: CustomDialogController = new CustomDialogController({
-  builder: AlertDialog({
-    content: '文本文本文本文本文本',
-    primaryButton: {
-      value: '取消',
-      action: () => {},
-    },
-    secondaryButton: {
-      value: '确认',
-      fontColor: $r('sys.color.ohos_id_color_warning'),
-      action: () => {
-        console.info('Callback when the second button is clicked')
-      }
-    },
-  }),
-  autoCancel: true,
-  customStyle: true,
-  alignment: DialogAlignment.Bottom
-})
+  dialogControllerConfirm: CustomDialogController = new CustomDialogController({
+    builder: AlertDialog({
+      content: '文本文本文本文本文本',
+      primaryButton: {
+        value: '取消',
+        action: () => {},
+      },
+      secondaryButton: {
+        value: '确认',
+        fontColor: $r('sys.color.ohos_id_color_warning'),
+        action: () => {
+          console.info('Callback when the second button is clicked')
+        }
+      },
+    }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   build() {
     Row() {
@@ -360,13 +367,13 @@ dialogControllerConfirm: CustomDialogController = new CustomDialogController({
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
@@ -380,32 +387,32 @@ import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
 @Entry
 @Component
 struct Index {
-dialogControllerProgress: CustomDialogController = new CustomDialogController({
-  builder: LoadingDialog({
-    content: '文本文本文本文本文本...',
-  }),
-  autoCancel: true,
-  customStyle: true,
-  alignment: DialogAlignment.Bottom
-})
+  dialogControllerProgress: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: '文本文本文本文本文本...',
+    }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button("进度条弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerProgress.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 

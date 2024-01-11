@@ -1,6 +1,6 @@
 # AbilityStateData
 
-定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 
@@ -32,19 +32,19 @@ import appManager from '@ohos.application.appManager';
 
 | 值   | 状态                       | 说明                   |
 | ---- | -------------------------- | ---------------------- |
-| 0    | ABILITY_STATE_CREATE       | Ability正在创建中      |
-| 1    | ABILITY_STATE_READY        | Ability已创建完成      |
-| 2    | ABILITY_STATE_FOREGROUND   | Ability处于前台        |
-| 3    | ABILITY_STATE_FOCUS        | Ability已经获焦        |
-| 4    | ABILITY_STATE_BACKGROUND   | Ability处于后台        |
-| 5    | ABILITY_STATE_TERMINATED   | Ability已经销毁        |
-| 8    | ABILITY_STATE_CONNECTED    | 后台服务已被客户端连接 |
-| 9    | ABILITY_STATE_DISCONNECTED | 后台服务客户端断开连接 |
+| 0    | ABILITY_STATE_CREATE       | Ability正在创建中。      |
+| 1    | ABILITY_STATE_READY        | Ability已创建完成。      |
+| 2    | ABILITY_STATE_FOREGROUND   | Ability处于前台。        |
+| 3    | ABILITY_STATE_FOCUS        | Ability已经获焦。        |
+| 4    | ABILITY_STATE_BACKGROUND   | Ability处于后台。        |
+| 5    | ABILITY_STATE_TERMINATED   | Ability已经销毁。        |
+| 8    | ABILITY_STATE_CONNECTED    | 后台服务已被客户端连接。 |
+| 9    | ABILITY_STATE_DISCONNECTED | 后台服务客户端断开连接。 |
 
 #### Ability类型
 
 | 值   | 状态    | 说明                  |
 | ---- | ------- | --------------------- |
-| 0    | UNKNOWN | 未知类型              |
-| 1    | PAGE    | UI界面类型的Ability   |
-| 2    | SERVICE | 后台服务类型的Ability |
+| 0    | UNKNOWN | 未知类型。              |
+| 1    | PAGE    | UI界面类型的Ability。   |
+| 2    | SERVICE | 后台服务类型的Ability。 |

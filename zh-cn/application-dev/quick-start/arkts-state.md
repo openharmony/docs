@@ -29,7 +29,7 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>类型必须被指定。<br/>不支持any。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
@@ -89,7 +89,7 @@
 
     ```ts
     // class类型
-     @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new ClassA('World'));
     ```
 
     对\@State装饰变量的赋值。
@@ -103,14 +103,14 @@
 
     ```ts
     // class属性的赋值
-    this.title.value = 'Hi'
+    this.title.value = 'Hi';
     ```
 
     嵌套属性的赋值观察不到。
 
     ```ts
     // 嵌套的属性赋值观察不到
-    this.title.name.value = 'ArkUI'
+    this.title.name.value = 'ArkUI';
     ```
 - 当装饰的对象是array时，可以观察到数组本身的赋值和添加、删除、更新数组的变化。例子如下。
   声明Model类。
@@ -127,37 +127,43 @@
   \@State装饰的对象为Model类型数组时。
 
   ```ts
-  @State title: Model[] = [new Model(11), new Model(1)]
+  // 数组类型
+  @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   数组自身的赋值可以观察到。
 
   ```ts
-  this.title = [new Model(2)]
+  // 数组赋值
+  this.title = [new Model(2)];
   ```
 
   数组项的赋值可以观察到。
 
   ```ts
-  this.title[0] = new Model(2)
+  // 数组项赋值
+  this.title[0] = new Model(2);
   ```
 
   删除数组项可以观察到。
 
   ```ts
-  this.title.pop()
+  // 数组项更改
+  this.title.pop();
   ```
 
   新增数组项可以观察到。
 
   ```ts
-  this.title.push(new Model(12))
+  // 数组项更改
+  this.title.push(new Model(12));
   ```
 
   数组项中属性的赋值观察不到。
 
   ```ts
-  this.title[0].value = 6
+  // 嵌套的属性赋值观察不到
+  this.title[0].value = 6;
   ```
 
 - 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
@@ -199,6 +205,10 @@
     }
   }
   ```
+
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 ### 框架行为
 
@@ -315,6 +325,85 @@ struct MyComponent {
    MyComponent(obj)
    ```
 
+
+### 装饰Map类型变量
+
+\@State支持Map类型，在下面的示例中，message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct MapSample {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() =>{
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        })
+        Button('set new one').onClick(() =>{
+          this.message.set(4, "d")
+        })
+        Button('clear').onClick(() =>{
+          this.message.clear()
+        })
+        Button('replace the first one').onClick(() =>{
+          this.message.set(0, "aa")
+        })
+        Button('delete the first one').onClick(() =>{
+          this.message.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@State支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct SetSample {
+  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Divider()
+        })
+        Button('init set').onClick(() =>{
+          this.message = new Set([0, 1, 2 ,3,4 ])
+        })
+        Button('set new one').onClick(() =>{
+          this.message.add(5)
+        })
+        Button('clear').onClick(() =>{
+          this.message.clear()
+        })
+        Button('delete the first one').onClick(() =>{
+          this.message.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## State支持联合类型实例
 
 @State支持联合类型和undefined和null，在下面的示例中，count类型为number | undefined，点击Button改变count的属性或者类型，视图会随之刷新。
@@ -347,3 +436,196 @@ struct MyComponent {
 }
 
 ```
+
+
+## 常见问题
+
+### 使用箭头函数改变状态变量未生效
+
+箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器@State代理的状态变量。
+
+反例：
+
+```ts
+
+export default class PlayDetailViewModel {
+  coverUrl: string = '#00ff00'
+
+  changeCoverUrl= ()=> {
+    this.coverUrl = '#00F5FF'
+  }
+
+}
+```
+
+```ts
+import PlayDetailViewModel from './PlayDetailViewModel'
+
+@Entry
+@Component
+struct PlayDetailPage {
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+
+  build() {
+    Stack() {
+      Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
+      Row() {
+        Button('点击改变颜色')
+          .onClick(() => {
+            this.vm.changeCoverUrl()
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .alignContent(Alignment.Top)
+  }
+}
+```
+
+所以要将当前this.vm传入，调用代理状态变量的属性赋值。
+
+正例：
+
+```ts
+
+export default class PlayDetailViewModel {
+  coverUrl: string = '#00ff00'
+
+  changeCoverUrl= (model:PlayDetailViewModel)=> {
+    model.coverUrl = '#00F5FF'
+  }
+
+}
+```
+
+```ts
+import PlayDetailViewModel from './PlayDetailViewModel'
+
+@Entry
+@Component
+struct PlayDetailPage {
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+
+  build() {
+    Stack() {
+      Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
+      Row() {
+        Button('点击改变颜色')
+          .onClick(() => {
+            let self = this.vm
+            this.vm.changeCoverUrl(self)
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .alignContent(Alignment.Top)
+  }
+}
+```
+
+### 状态变量的修改放在构造函数内未生效
+
+在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者把状态变量的修改放在构造函数里时，此修改不会经过代理（因为是直接对数据源中的值进行修改），即使修改成功执行，也无法观测UI的刷新。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model
+
+  constructor() {
+    this.model = new Model(()=>{
+      this.isSuccess = true
+      console.log(`this.isSuccess: ${this.isSuccess}`)
+    })
+  }
+  query() {
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: ()=>void
+
+  constructor(cb: ()=>void) {
+    this.callback = cb
+  }
+  query(){
+      this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在构造函数内，界面开始时显示“failed”，点击后日志打印“this.isSuccess: true”说明修改成功，但界面依旧显示“failed”，未实现刷新。
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model = new Model(() => {
+  })
+
+  query() {
+    this.model = new Model(() => {
+      this.isSuccess = true
+    })
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: () => void
+
+  constructor(cb: () => void) {
+    this.callback = cb
+  }
+
+  query() {
+    this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在类的普通方法中，界面开始时显示“failed”，点击后显示“success”。

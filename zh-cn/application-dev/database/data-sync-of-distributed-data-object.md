@@ -90,6 +90,13 @@
 
 - 在设备A上创建持久化对象并同步后持久化到设备B后，A设备的APP退出，设备B打开APP，创建持久化对象，加入同一个Session，数据可以恢复到A设备退出前的数据。
 
+### 资产同步机制
+
+在分布式对象中，可以使用[资产类型](../reference/apis/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式对象跨设备同步时，该文件会和数据一起同步到其他设备上。当前只支持资产类型，不支持[资产类型数组](../reference/apis/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
+
+### 融合资产冲突解决机制
+
+当分布式对象中包含的资产和关系型数据库中包含的资产指向同一个实体资产文件，即两个资产的Uri相同时，就会存在冲突，我们把这种资产称为融合资产。若想解决融合资产的冲突，需要先进行资产的绑定。当应用退出session后，绑定关系随之消失。
 
 ## 约束限制
 
@@ -107,10 +114,9 @@
 
 - 考虑到性能和用户体验，最多不超过3个设备进行数据协同。
 
-- 如对复杂类型的数据进行修改，仅支持修改根属性，暂不支持下级属性修改。
+- 如对复杂类型的数据进行修改，仅支持修改根属性，暂不支持下级属性修改。[资产同步机制](#资产同步机制)中，资产类型的数据支持下一级属性修改。
 
 - 支持JS接口间的互通，与其他语言不互通。
-
 
 ## 接口说明
 
@@ -130,9 +136,12 @@
 | off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
+| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | 绑定融合资产。 |
 
 
 ## 开发步骤
+
+### 跨设备数据同步
 
 以一次分布式数据对象同步为例，说明开发步骤。
 
@@ -144,8 +153,8 @@
 
 2. 请求权限。
 
-   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
-   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
+   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 3. 创建并得到一个分布式数据对象实例。
 
@@ -343,6 +352,97 @@
     ```ts
     localObject.setSessionId(() => {
       console.info('leave all session.');
+    });
+    ```
+
+### 跨设备资产同步
+
+分布式对象中加入资产类型属性，可以触发资产同步机制，将资产类型属性所描述的文件同步到其他设备。持有资产文件的设备为发起端，得到资产文件的设备为接收端。
+
+1. 导入`@ohos.data.distributedDataObject`和`@ohos.data.commonType`模块。
+
+   ```ts
+   import distributedDataObject from '@ohos.data.distributedDataObject';
+   import commonType from '@ohos.data.commonType';
+   ```
+
+2. 请求权限。
+
+   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
+
+3. 发起端创建包含资产的分布式对象并加入组网。
+
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import type window from '@ohos.window';
+    import distributedDataObject from '@ohos.data.distributedDataObject';
+    import commonType from '@ohos.data.commonType';
+    import type { BusinessError } from '@ohos.base';
+
+    class Note {
+      title: string | undefined
+      text: string | undefined
+      attachment: commonType.Asset | undefined
+
+      constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+        this.title = title;
+        this.text = text;
+        this.attachment = attachment;
+      }
+    }
+
+    class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage) {
+        let attachment: commonType.Asset = {
+          name: 'test_img.jpg',
+          uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+          path: '/dir/test_img.jpg',
+          createTime: '2024-01-02 10:00:00',
+          modifyTime: '2024-01-02 10:00:00',
+          size: '5',
+          status: commonType.AssetStatus.ASSET_NORMAL
+        }
+        // 创建一个自定义笔记类型，其中包含一张图片资产
+        let note: Note = new Note('test', "test", attachment);
+        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+        localObject.setSessionId('123456');
+      }
+    }
+    ```
+
+4. 接收端创建分布式对象并加入组网
+
+    ```ts
+    let note: Note = new Note(undefined, undefined, undefined);
+    let receiverObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+    receiverObject.on('change', (sessionId: string, fields: Array<string>) => {
+      if (fields.includes('attachment')) {
+        // 接收端监听到资产类型属性的数据变更时，代表其所描述的资产文件同步完成
+        console.info('attachment synchronization completed');
+      }
+    });
+    receiverObject.setSessionId('123456');
+    ```
+
+5. 若资产为融合资产，可以创建绑定信息，绑定融合资产，以解决融合资产的冲突。
+
+    ```ts
+    const bindInfo: distributedDataObject.BindInfo = {
+      storeName: 'notepad',
+      tableName: 'note_t',
+      primaryKey: {
+        'uuid': '00000000-0000-0000-0000-000000000000'
+      },
+      field: 'attachment',
+      assetName: attachment.name
+    }
+
+    localObject.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
+      if (err) {
+        console.error('bindAssetStore failed.');
+      }
+      console.info('bindAssetStore success.');
     });
     ```
 

@@ -8,7 +8,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 
 下图展示了AudioCapturer的状态变化，在创建实例后，调用对应的方法可以进入指定的状态实现对应的行为。需要注意的是在确定的状态执行不合适的方法可能导致AudioCapturer发生错误，建议开发者在调用状态转换的方法前进行状态检查，避免程序运行产生预期以外的结果。
 
-**图1** AudioCapturer状态变化示意图  
+**图1** AudioCapturer状态变化示意图
 ![AudioCapturer status change](figures/audiocapturer-status-change.png)
 
 使用on('stateChange')方法可以监听AudioCapturer的状态变化，每个状态对应值与说明见[AudioState](../reference/apis/js-apis-audio.md#audiostate8)。
@@ -50,6 +50,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 2. 调用start()方法进入running状态，开始录制音频。
      
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
@@ -78,6 +80,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 4. 调用stop()方法停止录制。
      
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -90,6 +94,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 5. 调用release()方法销毁实例，释放资源。
      
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
@@ -160,7 +166,7 @@ async function start() {
       return;
     }
     await (audioCapturer as audio.AudioCapturer).start(); // 启动采集
-    const path = context.filesDir + '/test.wav'; // 采集到的音频文件存储路径
+    const filePath = context.filesDir + '/test.wav'; // 采集到的音频文件存储路径
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // 如果文件不存在则创建文件
     let fd = file.fd;
     let numBuffersToCapture = 150; // 循环写入150次

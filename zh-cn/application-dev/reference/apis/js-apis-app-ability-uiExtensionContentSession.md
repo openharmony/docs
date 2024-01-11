@@ -15,7 +15,7 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 
 ## UIExtensionContentSession.sendData
 
-sendData(data: { [key: string]: Object }): void
+sendData(data: Record\<string, Object>): void
 
 发送数据给UIExtensionComponent控件。
 
@@ -27,7 +27,7 @@ sendData(data: { [key: string]: Object }): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| data | {[key:&nbsp;string]:&nbsp;Object} | 是 | 发送给UIExtensionComponent控件的数据参数。 |
+| data | Record\<string,&nbsp;Object> | 是 | 发送给UIExtensionComponent控件的数据参数。 |
 
 **错误码：**
 
@@ -39,7 +39,7 @@ sendData(data: { [key: string]: Object }): void
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
-setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): void
+setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 设置从UIExtensionComponent控件接收数据的回调方法。
 
@@ -51,7 +51,7 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | (data: { [key: string]: Object }) => void | 是 | 接收数据的回调方法。 |
+| callback | (data: Record\<string, Object>) => void | 是 | 接收数据的回调方法。 |
 
 **错误码：**
 
@@ -525,7 +525,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 | isPrivacyMode | boolean                   | 是 | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。  |
 | callback      | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                              |
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void;
@@ -541,7 +541,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback<void> | 是 | 回调函数，返回接口调用是否成功。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，返回接口调用是否成功。 |
 
 **错误码：**
 
@@ -555,7 +555,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>;
@@ -576,7 +576,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象无返回值。 |
+| Promise\<void> | Promise对象无返回值。 |
 
 **错误码：**
 
@@ -594,7 +594,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -634,7 +634,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -673,7 +673,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionAbility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Ability可以从onCreate生命周期获取到初始Ability的caller信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -684,7 +684,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 

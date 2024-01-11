@@ -105,8 +105,6 @@ struct ModalTransitionExample {
   @State  @Watch("isShow2Change") isShow2:boolean = false
   @State isScale1:number = 1;
   @State isScale2:number = 1;
-  @State flag: boolean = true
-  @State show: string = 'show'
 
   isShow1Change() {
     this.isShow ? this.isScale1 = 0.95 : this.isScale1 = 1

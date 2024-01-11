@@ -17,19 +17,20 @@ import common from '@ohos.app.ability.common';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称          | 类型     | 只读   | 必填   | 说明      |
-| ----------- | ------ | ---- | ---- | ------- |
-| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | 否    | 是    | 资源管理对象。   |
-| applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。 |
-| cacheDir | string | 否    | 是    | 缓存目录。 |
-| tempDir | string | 否    | 是    | 临时目录。 |
-| filesDir | string | 否    | 是    | 文件目录。 |
-| databaseDir | string | 否    | 是    | 数据库目录。 |
-| preferencesDir | string | 否    | 是    | preferences目录。 |
-| bundleCodeDir | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
-| distributedFilesDir | string | 是    | 是    | 分布式文件目录。 |
-| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。 |
+| 名称                  | 类型     | 只读   | 必填   | 说明                                                               |
+|---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
+| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | 否    | 是    | 资源管理对象。                                                          |
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。                                                       |
+| cacheDir            | string | 否    | 是    | 缓存目录。                                                            |
+| tempDir             | string | 否    | 是    | 临时目录。                                                            |
+| resourceDir<sup>11+</sup> | string | 否    | 是    | 资源目录。                                                            |
+| filesDir            | string | 否    | 是    | 文件目录。                                                            |
+| databaseDir         | string | 否    | 是    | 数据库目录。                                                           |
+| preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
+| bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
+| distributedFilesDir | string | 是    | 是    | 分布式文件目录。                                                         |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
 ## Context.createBundleContext
 
@@ -281,6 +282,47 @@ export default class EntryAbility extends UIAbility {
         console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
       }
     });
+  }
+}
+```
+## Context.createModuleResourceManager<sup>11+</sup>
+
+createModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+为指定Moudle创建资源管理对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| bundleName | string | 是    | Bundle名称。 |
+| moduleName | string | 是    | 模块名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| resmgr.ResourceManager | 资源管理对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import resourceManager from '@ohos.resourceManager';
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let ModuleResourceManager: resourceManager.ResourceManager;
+    try {
+      ModuleResourceManager = this.context.createModuleResourceManager('com.example.test', 'entry');
+    } catch (error) {
+      console.error('createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
   }
 }
 ```

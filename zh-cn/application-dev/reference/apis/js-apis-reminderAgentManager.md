@@ -198,6 +198,12 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 获取当前应用设置的所有有效（未过期）的代理提醒。使用callback异步回调。
 
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
@@ -255,6 +261,12 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
+
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -389,17 +401,17 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
 **示例**：
 
 ```ts
-import notification from '@ohos.notificationManager'
+import notificationManager from '@ohos.notificationManager'
 import { BusinessError } from '@ohos.base';
 
-let mySlot: notification.NotificationSlot = {
-  type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot: notificationManager.NotificationSlot = {
+  notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 }
 
 reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError) => {
@@ -424,7 +436,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | 是 | notification\.slot实例，仅支持设置其type属性。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 
 **返回值**：
 
@@ -435,11 +447,11 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 **示例**：
 
 ```ts
-import notification from '@ohos.notificationManager'
+import notificationManager from '@ohos.notificationManager'
 import { BusinessError } from '@ohos.base';
 
-let mySlot: notification.NotificationSlot = {
-  type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot: notificationManager.NotificationSlot = {
+  notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgentManager.addNotificationSlot(mySlot).then(() => {
   console.log("addNotificationSlot promise");

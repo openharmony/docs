@@ -27,14 +27,7 @@ struct ComponentDemo {
     Row() {
       Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
-        .selectedColor(0xed6f21)
-        .size({ width: 50, height: 50 })
-
-      Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-        .select(false)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
-        .selectedColor(0x39a2db)
+        .shape(CheckBoxShape.CIRCLE)
         .size({ width: 50, height: 50 })
     }
     .width('100%')
@@ -50,7 +43,7 @@ struct ComponentDemo {
 
 ## 打造组件定制化动效
 
-部分组件支持通过[属性动画](arkts-attribute-animation-overview.md)和[转场动画](arkts-transition-overview.md)自定义组件子Item的动效，实现定制化动画效果。例如，[Scorll](../reference/arkui-ts/ts-container-scroll.md)组件中可对各个子组件在滑动时的动画效果进行定制。
+部分组件支持通过[属性动画](arkts-attribute-animation-overview.md)和[转场动画](arkts-transition-overview.md)自定义组件子Item的动效，实现定制化动画效果。例如，[Scroll](../reference/arkui-ts/ts-container-scroll.md)组件中可对各个子组件在滑动时的动画效果进行定制。
 
 - 在滑动或者点击操作时通过改变各个Scroll子组件的仿射属性来实现各种效果。
 
@@ -58,7 +51,7 @@ struct ComponentDemo {
 
 - 在滑动回调onScrollStop或手势结束回调中对滑动的最终位置进行微调。
 
-定制Scroll组件子组件滑动动效示例代码和效果如下。
+定制Scroll组件滑动动效示例代码和效果如下。
 
 
 ```ts
@@ -203,26 +196,18 @@ export class TaskData {
 
 export const taskDataArr: Array<TaskData> =
   [
-    new TaskData(0xFA8072, 0, 'music'),
-    new TaskData(0xF4A460, 1, 'mall'),
-    new TaskData(0xFFFACD, 2, 'photos'),
-    new TaskData(0x98FB98, 3, 'setting'),
-    new TaskData(0x7FFFD4, 4, 'call'),
-    new TaskData(0x87CEFA, 5, 'music'),
-    new TaskData(0x7B68EE, 6, 'mall'),
-    new TaskData(0x909399, 7, 'photos'),
-    new TaskData(0x888888, 8, 'setting'),
-    new TaskData(0xFFC0CB, 9, 'call'),
-    new TaskData(0xFFC0CB, 10, 'music'),
-    new TaskData(0x888888, 11, 'mall'),
-    new TaskData(0x909399, 12, 'photos'),
-    new TaskData(0x7B68EE, 13, 'setting'),
-    new TaskData(0x87CEFA, 14, 'call'),
-    new TaskData(0x7FFFD4, 15, 'music'),
-    new TaskData(0x98FB98, 16, 'mall'),
-    new TaskData(0xFFFACD, 17, 'photos'),
-    new TaskData(0xF4A460, 18, 'setting'),
-    new TaskData(0xFA8072, 19, 'call'),
+    new TaskData('#317AF7', 0, 'music'),
+    new TaskData('#D94838', 1, 'mall'),
+    new TaskData('#DB6B42 ', 2, 'photos'),
+    new TaskData('#5BA854', 3, 'setting'),
+    new TaskData('#317AF7', 4, 'call'),
+    new TaskData('#D94838', 5, 'music'),
+    new TaskData('#DB6B42', 6, 'mall'),
+    new TaskData('#5BA854', 7, 'photos'),
+    new TaskData('#D94838', 8, 'setting'),
+    new TaskData('#DB6B42', 9, 'call'),
+    new TaskData('#5BA854', 10, 'music')
+
   ];
 
 @Entry

@@ -54,6 +54,45 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 
 ## hardwareManager.pauseDistributedHardware
 
+pauseDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback&lt;void&gt;): void;
+
+暂停被控端分布式硬件业务。使用callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
+
+**系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
+
+**参数：**
+
+| 参数名       | 类型                                      | 必填   | 说明        |
+| --------- | --------------------------------------- | ---- | --------- |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是    | 硬件描述信息。 |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
+
+**示例：**
+
+  ```ts
+  import hardwareManager from '@ohos.distributedHardware.hardwareManager';
+  import { BusinessError } from '@ohos.base';
+  
+  try {
+    let description: hardwareManager.HardwareDescriptor = {
+      type: 1,
+      srcNetworkId: '1111'
+    };
+    hardwareManager.pauseDistributedHardware(description, (error:BusinessError) => {
+      if (error.code) {
+        console.error('pauseDistributedHardware failed, cause: ' + JSON.stringify(error));
+      }
+      console.log('pause distributed hardware successfully');
+    })
+  } catch (error) {
+    console.error('pause distributed hardware failed: ' + JSON.stringify(error))
+  }
+  ```
+
+## hardwareManager.pauseDistributedHardware
+
 pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 暂停被控端分布式硬件业务。使用promise异步回调。
@@ -101,6 +140,45 @@ pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
   } catch (error) {
     console.error('pause distributed hardware failed:' + error);
   }
+  ```
+
+## hardwareManager.resumeDistributedHardware
+
+resumeDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback&lt;void&gt;): void;
+
+恢复被控端分布式硬件业务。使用callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
+
+**系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
+
+**参数：**
+
+| 参数名      | 类型                                      | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
+| callback    | AsyncCallback&lt;void&gt;                 | 是   | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
+
+**示例：**
+
+  ```ts
+import hardwareManager from '@ohos.distributedHardware.hardwareManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let description: hardwareManager.HardwareDescriptor = {
+    type: 1,
+    srcNetworkId: '1111'
+  };
+  hardwareManager.resumeDistributedHardware(description, (error:BusinessError) => {
+    if (error.code) {
+      console.error('resumeDistributedHardware failed, cause: ' + JSON.stringify(error));
+    }
+    console.log('resume distributed hardware successfully');
+  })
+} catch (error) {
+  console.error('resume distributed hardware failed: ' + JSON.stringify(error));
+}
   ```
 
 ## hardwareManager.resumeDistributedHardware
@@ -154,6 +232,45 @@ resumeDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
   }
 
 
+  ```
+
+## hardwareManager.stopDistributedHardware
+
+stopDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback&lt;void&gt;): void;
+
+停止被控端分布式硬件业务。使用callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
+
+**系统能力**：SystemCapability.DistributedHardware.hardwareManager
+
+**参数：**
+ 
+| 参数名      | 类型                                      | 必填 | 说明                                                         |
+| ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
+| callback    | AsyncCallback&lt;void&gt;                 | 是   | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
+
+**示例：**
+
+  ```ts
+import hardwareManager from '@ohos.distributedHardware.hardwareManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let description: hardwareManager.HardwareDescriptor = {
+    type: 1,
+    srcNetworkId: '1111'
+  };
+  hardwareManager.stopDistributedHardware(description, (error:BusinessError) => {
+    if (error.code) {
+      console.error('stopDistributedHardware failed, cause: ' + JSON.stringify(error));
+    }
+    console.log('stop distributed hardware successfully');
+  })
+} catch (error) {
+  console.error('stop distributed hardware failed: ' + JSON.stringify(error));
+}
   ```
 
 ## hardwareManager.stopDistributedHardware

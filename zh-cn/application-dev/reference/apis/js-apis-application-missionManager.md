@@ -26,7 +26,7 @@ registerMissionListener(listener: MissionListener): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -68,7 +68,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -103,13 +103,13 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 
-反注册任务状态监听器，以promise方式返回执行结果。
+反注册任务状态监听器。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -121,7 +121,7 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
 
 **示例：**
 
@@ -150,13 +150,13 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 
 getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
-获取单个任务信息，以异步回调的方式返回任务信息。
+获取单个任务信息。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -164,7 +164,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
+  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt; | 是 | 回调函数，返回任务信息。 |
 
 **示例：**
 
@@ -173,19 +173,19 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   import { BusinessError } from '@ohos.base';
 
   let allMissions=missionManager.getMissionInfos('',10).catch((err: BusinessError) => {
-    console.log('${err}');});
+    console.log(`${err}`);});
   missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
     if (error.code) {
-      console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
       return;
     }
 
-    console.log('mission.missionId = ${mission.missionId}');
-    console.log('mission.runningState = ${mission.runningState}');
-    console.log('mission.lockedState = ${mission.lockedState}');
-    console.log('mission.timestamp = ${mission.timestamp}');
-    console.log('mission.label = ${mission.label}');
-    console.log('mission.iconPath = ${mission.iconPath}');
+    console.log(`mission.missionId = ${mission.missionId}`);
+    console.log(`mission.runningState = ${mission.runningState}`);
+    console.log(`mission.lockedState = ${mission.lockedState}`);
+    console.log(`mission.timestamp = ${mission.timestamp}`);
+    console.log(`mission.label = ${mission.label}`);
+    console.log(`mission.iconPath = ${mission.iconPath}`);
   });
   ```
 
@@ -194,13 +194,13 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
-获取单个任务信息，以promise方式返回任务信息。
+获取单个任务信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -213,7 +213,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt; | 任务信息。 |
+  | Promise&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt; | Promise对象，返回任务信息。 |
 
 **示例：**
 
@@ -221,9 +221,16 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let mission = missionManager.getMissionInfo('', 10).catch((error: BusinessError) => {
-      console.error('getMissionInfo fail, error: ${error}');
-  });
+  let testMissionId = 1;
+try {
+    missionManager.getMissionInfo('', testMissionId).then((data) => {
+        console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`getMissionInfo failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`getMissionInfo failed. Cause: ${error.message}`);
+}
   ```
 
 
@@ -231,13 +238,13 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
-获取所有任务信息，以回调函数的方式返回任务信息数组。
+获取所有任务信息。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -245,7 +252,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
+  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt;&gt; | 是 | 回调函数，返回任务信息数组。 |
 
 **示例：**
 
@@ -267,13 +274,13 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
-获取所有任务信息，以promise的方式返回任务信息数组。
+获取所有任务信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -286,7 +293,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt;&gt; | 任务信息数组。 |
+  | Promise&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo.md)&gt;&gt; | Promise对象，返回任务信息数组。 |
 
 **示例：**
 
@@ -294,9 +301,15 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let allMissions = missionManager.getMissionInfos('', 10).catch((error: BusinessError) => {
-      console.error('getMissionInfos fail, error: ${error}');
-  });
+  try {
+    missionManager.getMissionInfos('', 10).then((data) => {
+        console.info(`getMissionInfos successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`getMissionInfos failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`getMissionInfos failed. Cause: ${error.message}`);
+}
   ```
 
 
@@ -304,13 +317,13 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
-获取任务快照，以回调函数的方式返回快照内容。
+获取任务快照。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -318,30 +331,25 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 回调函数，返回任务快照信息。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
-    }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
-    let id = missions[0].missionId;
-
-    missionManager.getMissionSnapShot('', id, (error, snapshot) => {
-      if (error.code) {
-          console.error(`getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}`);
-          return;
-      }
-      console.log(`bundleName = ${snapshot.ability.bundleName}`);
+  let testMissionId = 2;
+try {
+    missionManager.getMissionSnapShot('', testMissionId, (err, data) => {
+        if (err) {
+            console.error(`getMissionSnapShot failed: ${err.message}`);
+        } else {
+            console.info(`getMissionSnapShot successfully: ${JSON.stringify(data)}`);
+        }
     });
-  });
+} catch (err) {
+    console.error(`getMissionSnapShot failed: ${err.message}`);
+}
   ```
 
 
@@ -349,13 +357,13 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
-获取任务快照，以promise的方式返回快照内容。
+获取任务快照。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -368,7 +376,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 任务快照信息。 |
+  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | Promise对象，返回任务快照信息。 |
 
 **示例：**
 
@@ -376,58 +384,54 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let id: number = -1;
-  missionManager.getMissionInfos('',10).then((res) => {
-    let allMissions = res;
-    console.log(`size = ${allMissions.length}`);
-    console.log(`missions = ${JSON.stringify(allMissions)}`);
-    id = allMissions[0].missionId;
-  }).catch((error: BusinessError) => {
-    console.error(`getMissionInfos fail, error: ${error}`);
-  });
-
-  let snapshot = missionManager.getMissionSnapShot('', id).catch((error: BusinessError) => {
-    console.error(`getMissionSnapShot fail, error: ${error}`);
-  });
+  let testMissionId = 2;
+try {
+    missionManager.getMissionSnapShot('', testMissionId).then((data) => {
+        console.info(`getMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
+}
   ```
 
 ## missionManager.lockMission
 
 lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-锁定指定任务id的任务，以回调函数的方式返回。
+锁定指定任务id的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当锁定指定任务id的任务成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
-    }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
-    let id = missions[0].missionId;
-
-    missionManager.lockMission(id).then(() => {
-  	  console.log('lockMission is called ');
+  let testMissionId = 2;
+try {
+    missionManager.lockMission(testMissionId, (err, data) => {
+        if (err) {
+            console.error(`lockMission failed: ${err.message}`);
+        } else {
+            console.info(`lockMission successfully: ${JSON.stringify(data)}`);
+        }
     });
-  });
+} catch (err) {
+    console.error(`lockMission failed: ${err.message}`);
+}
   ```
 
 
@@ -435,13 +439,13 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 lockMission(missionId: number): Promise&lt;void&gt;
 
-锁定指定任务id的任务，以promise方式返回。
+锁定指定任务id的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -453,7 +457,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
 
 **示例：**
 
@@ -461,19 +465,16 @@ lockMission(missionId: number): Promise&lt;void&gt;
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let id: number = -1;
-  missionManager.getMissionInfos('',10).then((res) => {
-    let allMissions = res;
-    console.log(`size = ${allMissions.length}`);
-    console.log(`missions = ${JSON.stringify(allMissions)}`);
-    id = allMissions[0].missionId;
-  }).catch((error: BusinessError) => {
-      console.error(`getMissionInfos fail, error: ${error}`);
-  });
-
-  missionManager.lockMission(id).catch((error: BusinessError) => {
-      console.error(`lockMission fail, error: ${error}`);
-  });
+  let testMissionId = 2;
+try {
+    missionManager.lockMission(testMissionId).then((data) => {
+        console.info(`lockMission successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`lockMission failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`lockMission failed. Cause: ${error.message}`);
+}
   ```
 
 
@@ -481,39 +482,38 @@ lockMission(missionId: number): Promise&lt;void&gt;
 
 unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-解锁指定任务id的任务，以回调函数的方式返回。
+解锁指定任务id的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 任务ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当解锁指定任务id的任务成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
-    }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
-    let id = missions[0].missionId;
-
-    missionManager.unlockMission(id).then(() => {
-  	  console.log('unlockMission is called ');
+  let testMissionId = 2;
+try {
+    missionManager.unlockMission(testMissionId, (err, data) => {
+        if (err) {
+            console.error(`unlockMission failed: ${err.message}`);
+        } else {
+            console.info(`unlockMission successfully: ${JSON.stringify(data)}`);
+        }
     });
-  });
+} catch (err) {
+    console.error(`unlockMission failed: ${err.message}`);
+}
   ```
 
 
@@ -521,13 +521,13 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 unlockMission(missionId: number): Promise&lt;void&gt;
 
-解锁指定任务id的任务，以promise的方式返回。
+解锁指定任务id的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -539,7 +539,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
 
 **示例：**
 
@@ -547,22 +547,16 @@ unlockMission(missionId: number): Promise&lt;void&gt;
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let id: number = -1;
-  missionManager.getMissionInfos('',10).then((res) => {
-    let allMissions = res;
-    console.log(`size = ${allMissions.length}`);
-    console.log(`missions = ${JSON.stringify(allMissions)}`);
-    id = allMissions[0].missionId;
-  }).catch((error: BusinessError) => {
-      console.error(`getMissionInfos fail, error: ${error}`);
-  });
-
-  missionManager.lockMission(id).catch((error: BusinessError) => {
-      console.error(`lockMission fail, error: ${error}`);
-  });
-  missionManager.unlockMission(id).catch((error: BusinessError) => {
-      console.error(`unlockMission fail, error: ${error}`);
-  });
+  let testMissionId = 2;
+try {
+    missionManager.unlockMission(testMissionId).then((data) => {
+        console.info(`unlockMission successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`unlockMission failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`unlockMission failed. Cause: ${error.message}`);
+}
   ```
 
 
@@ -570,39 +564,38 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 
 clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
+清理指定任务id的任务，无论该任务是否被锁定。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当清理指定任务id的任务成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
-    }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
-    let id = missions[0].missionId;
-
-    missionManager.clearMission(id).then(() => {
-  	  console.log('clearMission is called ');
+  let testMissionId = 2;
+try {
+    missionManager.clearMission(testMissionId, (err, data) => {
+        if (err) {
+            console.error(`clearMission failed: ${err.message}`);
+        } else {
+            console.info(`clearMission successfully: ${JSON.stringify(data)}`);
+        }
     });
-  });
+} catch (err) {
+    console.error(`clearMission failed: ${err.message}`);
+}
   ```
 
 
@@ -610,13 +603,13 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 clearMission(missionId: number): Promise&lt;void&gt;
 
-清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
+清理指定任务id的任务，无论该任务是否被锁定。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -628,7 +621,7 @@ clearMission(missionId: number): Promise&lt;void&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
 
 **示例：**
 
@@ -636,19 +629,16 @@ clearMission(missionId: number): Promise&lt;void&gt;
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let id: number = -1;
-  missionManager.getMissionInfos('',10).then((res) => {
-    let allMissions = res;
-    console.log(`size = ${allMissions.length}`);
-    console.log(`missions = ${JSON.stringify(allMissions)}`);
-    id = allMissions[0].missionId;
-  }).catch((error: BusinessError) => {
-      console.error(`getMissionInfos fail, error: ${error}`);
-  });
-
-  missionManager.clearMission(id).catch((error: BusinessError) => {
-    console.error(`clearMission fail, error: ${error}`);
-  });
+  let testMissionId = 2;
+try {
+    missionManager.clearMission(testMissionId).then((data) => {
+        console.info(`clearMission successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`clearMission failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`clearMission failed. Cause: ${error.message}`);
+}
   ```
 
 
@@ -656,28 +646,36 @@ clearMission(missionId: number): Promise&lt;void&gt;
 
 clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
-清理所有未锁定的任务，以回调函数的方式返回。
+清理所有未锁定的任务，使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当清理所有未锁定的任务成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager'
 
-  missionManager.clearAllMissions().then(() => {
-    console.log('clearAllMissions is called ');
-  });
+  try {
+    missionManager.clearAllMissions(err => {
+        if (err) {
+            console.error('clearAllMissions failed: ${err.message}');
+        } else {
+            console.info('clearAllMissions successfully.');
+        }
+    });
+} catch (err) {
+    console.error('clearAllMissions failed: ${err.message}');
+}
   ```
 
 
@@ -685,19 +683,19 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 clearAllMissions(): Promise&lt;void&gt;
 
-清理所有未锁定的任务，以promise的方式返回。
+清理所有未锁定的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
 
 **示例：**
 
@@ -705,9 +703,15 @@ clearAllMissions(): Promise&lt;void&gt;
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  missionManager.clearAllMissions().catch((error: BusinessError) => {
-      console.error('clearAllMissions fail, error: ${error}');
-  });
+  try {
+    missionManager.clearAllMissions().then((data) => {
+        console.info(`clearAllMissions successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+        console.error(`clearAllMissions failed: ${err.message}`);
+    });
+} catch (err) {
+    console.error(`clearAllMissions failed: ${err.message}`);
+}
   ```
 
 
@@ -715,39 +719,38 @@ clearAllMissions(): Promise&lt;void&gt;
 
 moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
-把指定任务id的任务切到前台，以回调函数的方式返回。
+把指定任务id的任务切到前台。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当把指定任务id的任务切到前台成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
-    }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
-    let id = missions[0].missionId;
-
-    missionManager.moveMissionToFront(id).then(() => {
-  	  console.log('moveMissionToFront is called ');
+  let testMissionId = 2;
+try {
+    missionManager.moveMissionToFront(testMissionId, (err, data) => {
+        if (err) {
+            console.error(`moveMissionToFront failed: ${err.message}`);
+        } else {
+            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
+        }
     });
-  });
+} catch (err) {
+    console.error(`moveMissionToFront failed: ${err.message}`);
+}
   ```
 
 
@@ -755,13 +758,13 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
+把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -769,26 +772,25 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当把指定任务id的任务切到前台成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
-    }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
-    let id = missions[0].missionId;
-
-    missionManager.moveMissionToFront(id,{windowMode : 101}).then(() => {
-  	  console.log('moveMissionToFront is called ');
+  let testMissionId = 2;
+try {
+    missionManager.moveMissionToFront(testMissionId, {windowMode : 101}, (err, data) => {
+        if (err) {
+            console.error(`moveMissionToFront failed: ${err.message}`);
+        } else {
+            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
+        }
     });
-  });
+} catch (err) {
+    console.error(`moveMissionToFront failed: ${err.message}`);
+}
   ```
 
 
@@ -796,13 +798,13 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
-把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
+把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等。使用Promise异步回调。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -815,7 +817,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;void&gt; | promise方式返回执行结果。 | 
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 | 
 
 **示例：**
 
@@ -823,17 +825,14 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   import missionManager from '@ohos.application.missionManager';
   import { BusinessError } from '@ohos.base';
 
-  let id: number = -1;
-  missionManager.getMissionInfos('',10).then((res) => {
-    let allMissions = res;
-    console.log(`size = ${allMissions.length}`);
-    console.log(`missions = ${JSON.stringify(allMissions)}`);
-    id = allMissions[0].missionId;
-  }).catch((error: BusinessError) => {
-      console.error(`getMissionInfos fail, error: ${error}`);
-  });
-
-  missionManager.moveMissionToFront(id).catch((error: BusinessError) => {
-    console.error(`moveMissionToFront fail, error: ${error}`);
-  });
+  let testMissionId = 2;
+try {
+    missionManager.moveMissionToFront(testMissionId).then((data) => {
+        console.info(`moveMissionToFront successfully. Data: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+        console.error(`moveMissionToFront failed. Cause: ${error.message}`);
+    });
+} catch (error) {
+    console.error(`moveMissionToFront failed. Cause: ${error.message}`);
+}
   ```

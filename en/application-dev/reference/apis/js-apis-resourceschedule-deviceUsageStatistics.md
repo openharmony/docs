@@ -1,27 +1,11 @@
 # @ohos.resourceschedule.usageStatistics (Device Usage Statistics)
 
-This module provides APIs for collecting statistics on device usage.
-
-System applications can call these APIs to implement the following features:
-
-- Query the usage duration in different time segments, events (foreground, background, start and end of continuous tasks), and the number of notifications, on a per application basis.
-- Query statistics about system events (sleep, wakeup, unlock, and screen lock).
-- Query the bundle group information of applications, including the invoking application itself.
-- Query the idle status of applications, including the invoking application itself.
-- Set the bundle group for other applications.
-- Register and deregister the callback for application group changes.
-
-Third-party applications can call these APIs to implement the following features:
-
-- Query the idle status of the invoking application itself.
-- Query the bundle group information of the invoking application itself.
-- Query the events of the invoking application itself.
+The **usageStatistics** module provides APIs for collecting statistics on device usage. For example, you can use the APIs to query whether an application is commonly used and an application's priority group, usage duration, system events (hibernation, wakeup, unlocking, and screen locking), application events (foreground, background, and start and end of continuous tasks), and the number of notifications.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-
 
 ## Modules to Import
 
@@ -33,7 +17,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the application specified by **bundleName** is in the idle state. This API uses an asynchronous callback to return the result. A third-party application can only check the idle status of itself.
+Checks whether an application is commonly used (with the value of **GroupType** being less than or equal to 30). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -46,7 +30,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 | Name       | Type                          | Mandatory  | Description                                      |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | Yes   | Bundle name of the application.                          |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the specified **bundleName** is valid, the idle state of the application is returned; otherwise, **null** is returned.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.<br>If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned.|
 
 **Error codes**
 
@@ -77,7 +61,7 @@ usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
-Checks whether the application specified by **bundleName** is in the idle state. This API uses a promise to return the result. A third-party application can only check the idle status of itself.
+Checks whether an application is commonly used (with the value of **GroupType** being less than or equal to 30). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -95,7 +79,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the specified **bundleName** is valid, the idle state of the application is returned; otherwise, **null** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned.|
 
 **Error codes**
 
@@ -124,7 +108,7 @@ usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
 
 isIdleStateSync(bundleName: string): boolean
 
-Checks whether the application specified by **bundleName** is in the idle state. This API returns the result synchronously. A third-party application can only check the idle status of itself.
+Checks whether an application is commonly used (with the value of **GroupType** being less than or equal to 30). This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -142,7 +126,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| boolean | Returns **true** if the application is in the idle state; returns **false** otherwise, on the prerequisite that the specified **bundleName** is valid.|
+| boolean | If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned.|
 
 **Error codes**
 
@@ -165,7 +149,7 @@ let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
 
 queryAppGroup(): Promise&lt;number&gt;
 
-Queries the group of this application. This API uses a promise to return the result.
+Queries the priority group of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -175,7 +159,7 @@ Queries the group of this application. This API uses a promise to return the res
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the group.|
+| Promise&lt;number&gt; | Promise used to return the priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -207,7 +191,7 @@ usageStatistics.queryAppGroup().then((res: number) => {
 
 queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
-Queries the group of this application. This API uses an asynchronous callback to return the result.
+Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -217,7 +201,7 @@ Queries the group of this application. This API uses an asynchronous callback to
 
 | Name     | Type                   | Mandatory  | Description                        |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the group.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -249,9 +233,9 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
 
-queryAppGroupSync(): number;
+queryAppGroupSync(): number
 
-Queries the group of this application. This API returns the result synchronously.
+Queries the priority group of this application. This API returns the result synchronously.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -261,7 +245,7 @@ Queries the group of this application. This API returns the result synchronously
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| number | Group of the application.|
+| number | Priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -283,11 +267,111 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 let priorityGroup: number = usageStatistics.queryAppGroupSync();
 ```
 
+## usageStatistics.queryAppGroup
+
+queryAppGroup(bundleName : string): Promise&lt;number&gt;
+
+Queries the priority group of the application specified by **bundleName**. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type    | Mandatory  | Description                                      |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| bundleName | string | Yes   | Bundle name of the application.|
+
+**Return value**
+
+| Type             | Description                         |
+| --------------- | --------------------------- |
+| Promise&lt;number&gt; | Promise used to return the priority group. A smaller value indicates a higher priority.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                      |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**Example**
+
+```javascript
+// Promise mode when bundleName is specified
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.ohos.camera";
+usageStatistics.queryAppGroup(bundleName).then((res: number) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryAppGroup
+
+queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
+
+Queries the priority group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                   | Mandatory  | Description                                      |
+| ---------- | --------------------- | ---- | ---------------------------------------- |
+| bundleName | string                | Yes   | Bundle name of the application.|
+| callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group. A smaller value indicates a higher priority.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                      |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.ohos.camera";
+usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+  }
+});
+```
+
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
 
 queryAppGroupSync(bundleName: string): number
 
-Queries the group of the application specified by **bundleName**. This API returns the result synchronously.
+Queries the priority group of the application specified by **bundleName**. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -305,7 +389,7 @@ Queries the group of the application specified by **bundleName**. This API retur
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| number | Group of the application.|
+| number | Priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -325,6 +409,109 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 ```ts
 let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
+```
+
+## usageStatistics.setAppGroup
+
+setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
+
+Sets a new group for the application specified by **bundleName**. This API uses a promise to return the result. It can be called only by the current application.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type       | Mandatory  | Description  |
+| ---------- | --------- | ---- | ---- |
+| bundleName | string    | Yes   | Bundle name of the application.|
+| newGroup   | [GroupType](#grouptype) | Yes   | Type of the new group. |
+
+**Return value**
+
+| Type           | Description                       |
+| ------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                         |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.deviceUsageStatistics";
+let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+
+usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
+  console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.setAppGroup
+
+setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
+
+Sets a new group for the application specified by **bundleName**. This API uses an asynchronous callback to return the result. It can be called only by the current application.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                 | Mandatory  | Description                       |
+| ---------- | ------------------- | ---- | ------------------------- |
+| bundleName | string              | Yes   | Bundle name of the application.                   |
+| newGroup   | [GroupType](#grouptype)           | Yes   | Type of the new group.                     |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                         |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.deviceUsageStatistics";
+let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+
+usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
+  }
+});
 ```
 
 ## usageStatistics.queryBundleStatsInfos
@@ -739,9 +926,209 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usa
 });
 ```
 
+## usageStatistics.queryDeviceEventStats
+
+queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
+
+Queries statistics about system events (hibernation, wakeup, unlocking, and locking) that occur between the specified start time and end time. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
+
+**Return value**
+
+| Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the statistics about system events.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                         |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
+  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
+  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryDeviceEventStats
+
+queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
+
+Queries statistics about system events (hibernation, wakeup, unlocking, and locking) that occur between the specified start time and end time. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                         |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.           |
+| 10000007   | Failed to get the system time.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
+  }
+});
+```
+
+## usageStatistics.queryNotificationEventStats
+
+queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
+
+Queries the number of notifications from all applications based on the specified start time and end time. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
+
+**Return value**
+
+| Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the number of notifications.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                         |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryNotificationEventStats
+
+queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
+
+Queries the number of notifications from all applications based on the specified start time and end time. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the number of notifications.|
+
+**Error codes**
+
+For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
+
+| ID       | Error Message                         |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
+  }
+});
+```
+
 ## usageStatistics.queryModuleUsageRecords
 
 queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
+
+Queries the usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses a promise to return the result.
 
 Queries FA usage records. This API uses a promise to return a maximum of 1000 FA usage records sorted by time (most recent first).
 
@@ -755,7 +1142,7 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return a maximum of 1000 FA usage records.|
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. A maximum of 1000 usage records can be returned.|
 
 **Error codes**
 
@@ -791,7 +1178,7 @@ usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapMo
 
 queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-Queries FA usage records. This API uses an asynchronous callback to return a maximum of 1000 FA usage records sorted by time (most recent first).
+Queries the usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -803,7 +1190,7 @@ Queries FA usage records. This API uses an asynchronous callback to return a max
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return a maximum of **maxNum** FA usage records.|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. A maximum of 1000 usage records can be returned.|
 
 **Error codes**
 
@@ -840,7 +1227,7 @@ usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageSta
 
 queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-Queries the number of FA usage records specified by **maxNum**. This API uses a promise to return the records sorted by time (most recent first).
+Queries a given number of usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -852,13 +1239,13 @@ Queries the number of FA usage records specified by **maxNum**. This API uses a 
 
 | Name   | Type    | Mandatory  | Description                                |
 | ------ | ------ | ---- | ---------------------------------- |
-| maxNum | number | Yes   | Maximum number of returned records. The maximum and default value is **1000**.|
+| maxNum | number | Yes   | Number of usage records, in the range [1, 1000].|
 
 **Return value**
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return a maximum of **maxNum** FA usage records.|
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. The usage records returned does not exceed the value of **maxNum**.|
 
 **Error codes**
 
@@ -893,7 +1280,7 @@ usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.H
 
 queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-Queries the number of FA usage records. This API uses an asynchronous callback to return the records sorted by time (most recent first).
+Queries a given number of usage records of unused HAP files for each application in the FA model. If the HAP file contains FA widgets, the usage records also contain the widget information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -905,8 +1292,8 @@ Queries the number of FA usage records. This API uses an asynchronous callback t
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | Yes   | Maximum number of returned records. The maximum value is **1000**.|
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return a maximum of **maxNum** FA usage records.|
+| maxNum   | number                                   | Yes   |  Number of usage records, in the range [1, 1000].|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. The usage records returned does not exceed the value of **maxNum**.|
 
 **Error codes**
 
@@ -935,209 +1322,6 @@ usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<us
       console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
       console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
     }
-  }
-});
-```
-
-## usageStatistics.queryAppGroup
-
-queryAppGroup(bundleName : string): Promise&lt;number&gt;
-
-Queries the group of the application specified by **bundleName**. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name       | Type    | Mandatory  | Description                                      |
-| ---------- | ------ | ---- | ---------------------------------------- |
-| bundleName | string | Yes   | Bundle name of the application.|
-
-**Return value**
-
-| Type             | Description                         |
-| --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the group.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      |
-| 10000006   | Failed to get the application information.       |
-| 10100002   | Failed to get the application group information. |
-
-**Example**
-
-```javascript
-// Promise mode when bundleName is specified
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.ohos.camera";
-usageStatistics.queryAppGroup(bundleName).then((res: number) => {
-  console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.queryAppGroup
-
-queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
-
-Queries the group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name       | Type                   | Mandatory  | Description                                      |
-| ---------- | --------------------- | ---- | ---------------------------------------- |
-| bundleName | string                | Yes   | Bundle name of the application.|
-| callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the group.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      |
-| 10000006   | Failed to get the application information.       |
-| 10100002   | Failed to get the application group information. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.ohos.camera";
-usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-  }
-});
-```
-
-## usageStatistics.setAppGroup
-
-setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
-
-Sets a new group for the application specified by **bundleName**. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name       | Type       | Mandatory  | Description  |
-| ---------- | --------- | ---- | ---- |
-| bundleName | string    | Yes   | Bundle name of the application.|
-| newGroup   | [GroupType](#grouptype) | Yes   | Type of the new group. |
-
-**Return value**
-
-| Type           | Description                       |
-| ------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10100001   | Repeated operation on the application group. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.example.deviceUsageStatistics";
-let newGroup = usageStatistics.GroupType.DAILY_GROUP;
-
-usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
-  console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.setAppGroup
-
-setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
-
-Sets a new group for the application specified by **bundleName**. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name       | Type                 | Mandatory  | Description                       |
-| ---------- | ------------------- | ---- | ------------------------- |
-| bundleName | string              | Yes   | Bundle name of the application.                   |
-| newGroup   | [GroupType](#grouptype)           | Yes   | Type of the new group.                     |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10100001   | Repeated operation on the application group. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.example.deviceUsageStatistics";
-let newGroup = usageStatistics.GroupType.DAILY_GROUP;
-
-usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
   }
 });
 ```
@@ -1339,207 +1523,9 @@ usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
 });
 ```
 
-## usageStatistics.queryDeviceEventStats
-
-queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
-
-Queries statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds.|
-| end   | number | Yes   | End time, in milliseconds.|
-
-**Return value**
-
-| Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the statistics about system events.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10000007   | Failed to get the system time.     |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
-  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
-  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.queryDeviceEventStats
-
-queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
-
-Queries statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name     | Type                                      | Mandatory  | Description                                      |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
-| end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events.| 
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.           |
-| 10000007   | Failed to get the system time.     |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
-  }
-});
-```
-
-## usageStatistics.queryNotificationEventStats
-
-queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
-
-Queries the number of notifications from all applications based on the specified start time and end time. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds.|
-| end   | number | Yes   | End time, in milliseconds.|
-
-**Return value**
-
-| Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the number of notifications.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10000007   | Failed to get the system time.     |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.queryNotificationEventStats
-
-queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
-
-Queries the number of notifications from all applications based on the specified start time and end time. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name     | Type                                      | Mandatory  | Description                                      |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
-| end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the number of notifications.|
-
-**Error codes**
-
-For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
-
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10000007   | Failed to get the system time.     |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
-  }
-});
-```
-
 ## HapModuleInfo
 
-Provides the information about the FA usage.
+Defines the information about the usage record in the FA model.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1547,8 +1533,8 @@ Provides the information about the FA usage.
 
 | Name                 | Type                                      | Mandatory  | Description                           |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
-| deviceId             | string                                   | No   | ID of the device to which the FA belongs.                |
-| bundleName           | string                                   | Yes   | Name of the bundle to which the FA belongs.            |
+| deviceId             | string                                   | No   | Device ID.                |
+| bundleName           | string                                   | Yes   | Bundle name.            |
 | moduleName           | string                                   | Yes   | Name of the module to which the FA belongs.                 |
 | abilityName          | string                                   | No   | **MainAbility** name of the FA.             |
 | appLabelId           | number                                   | No   | Application label ID of the FA.                |
@@ -1563,7 +1549,7 @@ Provides the information about the FA usage.
 
 ## HapFormInfo
 
-Provides the FA widget usage information.
+Defines the information about the usage record of FA widgets.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1590,8 +1576,8 @@ Provides the application group changes returned through a callback.
 | appOldGroup | number | Yes  | Application group before the change.|
 | appNewGroup | number | Yes  | Application group after the change.|
 | userId           | number | Yes  | User ID.          |
-| changeReason     | number | Yes  | Reason for the group change.    |
-| bundleName       | string | Yes  | Bundle name of the application.        |
+| changeReason     | number | Yes  | Reason for the group change.<br>- 256 (default): A record is initially created.<br>- 512: An exception occurs when the priority group is calculated.<br>- 768: The usage duration changes.<br>- 1024: Another application forcibly sets a priority group for the current application.|
+| bundleName       | string | Yes  | Bundle name.        |
 
 ## BundleStatsInfo
 
@@ -1639,9 +1625,9 @@ Provides the usage duration information of an application.
 
 **System API**: This is a system API.
 
-|Name                          | Type                                      | Mandatory  | Description            |
-| ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string] | [BundleStatsInfo](#bundlestatsinfo) | Yes   | Usage duration information by application.|
+|Name                          | Description                                      |
+| ------------------------------ | ---------------------------------------- |
+| Record<string, [BundleStatsInfo](#bundlestatsinfo)> | Usage duration information by application.|
 
 ## DeviceEventStats
 

@@ -1440,6 +1440,10 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 订阅卡片卸载事件。使用callback异步回调。
 
+> **说明：**
+> 
+> 卡片卸载与卡片移除不同。当应用卸载时，对应的卡片会自动卸载。
+
 **系统能力**：SystemCapability.Ability.Form
 
 **参数：**
@@ -1471,6 +1475,10 @@ formHost.on('formUninstall', (formId: string) => {
 off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 取消订阅卡片卸载事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 卡片卸载与卡片移除不同。当应用卸载时，对应的卡片会自动卸载。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -1909,7 +1917,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
+acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>>): void
 
 请求卡片提供方数据。使用callback异步回调。
 
@@ -1924,7 +1932,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| callback | AsyncCallback<{[key: string]: Object} | 是   | 以callback方式返回接口运行结果及分享数据。 |
+| callback | AsyncCallback\<Record\<string, Object> | 是   | 以callback方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -1960,7 +1968,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>
+acquireFormData(formId: string): Promise\<Record\<string, Object>>
 
 请求卡片提供方数据。使用Promise异步回调。
 
@@ -1980,7 +1988,7 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据。 |
+| Promise\<Record\<string, Object>>| 以Promise方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -2250,11 +2258,11 @@ try {
   let formIds: string[] = [ '12400633174999288' ];
   formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
     if (err) {
-        conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2306,10 +2314,154 @@ try {
   formHost.clearRouterProxy(formIds).then(() => {
     console.log('formHost clear rourter proxy success');
   }).catch((err: Base.BusinessError) => {
-    conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+    console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+## setFormsRecyclable<sup>11+</sup>
+
+setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+设置卡片可回收。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;;      | 是   | 卡片标识数组。                                               |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当设置卡片可回收成功时，error为undefined；否则抛出异常。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.setFormsRecyclable(formIds, (err: Base.BusinessError) => {
+    if (err) {
+        console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## setFormsRecyclable<sup>11+</sup>
+
+setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
+
+设置卡片可回收。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明           |
+| ------- | ------------------- | ---- | -------------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识数组。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.setFormsRecyclable(formIds).then(() => {
+    console.log('setFormsRecyclable success');
+  }).catch((err: Base.BusinessError) => {
+    console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+## recoverForms<sup>11+</sup>
+
+recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+恢复卡片。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;;      | 是   | 卡片标识数组。                                               |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当恢复卡片成功时，error为undefined；否则抛出异常。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.recoverForms(formIds, (err: Base.BusinessError) => {
+    if (err) {
+        console.error(`recoverForms error, code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 

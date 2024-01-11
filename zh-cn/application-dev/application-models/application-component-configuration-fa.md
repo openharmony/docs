@@ -37,18 +37,37 @@ PageAbility的图标和标签配置请参见[PageAbility组件配置](pageabilit
 
 ```json
 {
-  "abilities": [
-    {
-      "icon": "$media:icon",
-      "label": "$string:MainAbility_label",
-      "skills": [
-        {
-          "entities": ["entity.system.home"],
-          "actions": ["action.system.home"]
-        }
-      ]
-    }
-  ]
+  ...
+  "module": {
+    ...
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      ...
+    ]
+    ...
+  }
 }
 ```
 #### 入口图标和标签管控规则

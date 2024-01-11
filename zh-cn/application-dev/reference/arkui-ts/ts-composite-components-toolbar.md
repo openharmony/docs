@@ -23,7 +23,7 @@ import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
 ## 属性
 支持[通用属性](ts-universal-attributes-size.md)
 
-## 接口
+## ToolBar
 
 Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
 
@@ -33,18 +33,14 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | 工具栏列表。 | 
-| activateIndex | number | 否 | 激活态的子项。<br/>默认值：-1。 | 
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | 筛选器的样式类型。 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  | 
+| -------- | -------- | -------- |-------------|---------------------|
+| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              | 
+| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 | 
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 筛选器的样式类型。           | 
 
 
 ## ToolBarOptions
-
-继承自Array&lt;ToolBarOption&gt;
-
-**ToolBarOption：**
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
@@ -56,11 +52,11 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ## ItemState
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| ENABLE | 工具栏子项为正常可点击状态。 | 
-| DISABLE | 工具栏子项为不可点击状态。 | 
-| ACTIVATE | 工具栏子项为激活状态，可点击。 | 
+| 名称 | 值 | 说明 | 
+| -------- | -------- | -------- |
+| ENABLE | 1 | 工具栏子项为正常可点击状态。 | 
+| DISABLE | 2 | 工具栏子项为不可点击状态。 | 
+| ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 | 
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -69,39 +65,52 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ```ts
 import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+
+enum ItemState {
+  ENABLE = 1,
+  DISABLE = 2,
+  ACTIVATE = 3
+}
+
 @Entry
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions()
-    aboutToAppear() {
-    this.toolbarList.push({ text: '剪贴我是超超超超超超超超超长样式',
+  aboutToAppear() {
+    this.toolbarList.push({
+      content: '剪贴我是超超超超超超超超超长样式',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: '拷贝',
+    this.toolbarList.push({
+      content: '拷贝',
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state:2
+      state:ItemState.DISABLE
     })
-    this.toolbarList.push({ text: '粘贴',
+    this.toolbarList.push({
+      content: '粘贴',
       icon: $r('sys.media.ohos_ic_public_paste'),
       action: () => {
       },
-      state:3
+      state:ItemState.ACTIVATE
     })
-    this.toolbarList.push({ text: '全选',
+    this.toolbarList.push({
+      content: '全选',
       icon: $r('sys.media.ohos_ic_public_select_all'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: '分享',
+    this.toolbarList.push({
+      content: '分享',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: '分享',
+    this.toolbarList.push({
+      content: '分享',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
@@ -110,24 +119,10 @@ struct Index {
   build() {
     Row() {
       Stack() {
-        Column(){
-          Button("修改减少item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.pop()
-            })
-          Button("修改增加item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.push(this.toolbarList[1])
-            })
-        }.margin({bottom: 300})
         Column() {
           ToolBar({
-            currentIndex: 2,
-            hwToolBarList: this.toolbarList,
+            activateIndex: 2,
+            toolBarList: this.toolbarList,
           })
         }
       }.align(Alignment.Bottom)
