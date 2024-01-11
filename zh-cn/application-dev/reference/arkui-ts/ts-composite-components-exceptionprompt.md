@@ -22,8 +22,6 @@ import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced
 
 ## 属性
 
-
-
 不支持[通用属性](ts-universal-attributes-size.md)
 
 ## ExceptionPrompt
