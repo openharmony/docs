@@ -729,7 +729,7 @@ struct Index {
       Column() {
         RichEditor(this.options)
           .onReady(() => {
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("012345",
               {
                 style:
                 {
@@ -751,7 +751,7 @@ struct Index {
                   size: ["57px", "57px"]
                 }
               })
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("56789",
               {
                 style:
                 {
