@@ -28,7 +28,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 > This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundleManager)](js-apis-distributedBundleManager.md) instead.
 
-getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
+getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void
 
 Obtains information about the remote ability that matches the given element name. This API uses an asynchronous callback to return the result.
 
@@ -89,7 +89,7 @@ This is a system API.
 
 > This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundleManager)](js-apis-distributedBundleManager.md) instead.
 
-getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
+getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void
 
 Obtains information about remote abilities that match the given element names. This API uses an asynchronous callback to return the result.
 
