@@ -6,8 +6,6 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
-
 > **说明：**
 >
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -365,7 +363,7 @@ ThreadWorker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
+| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **返回值：**
@@ -389,17 +387,13 @@ ThreadWorker构造函数。
 import worker from '@ohos.worker';
 
 // worker线程创建
-// FA模型-目录同级（entry模块下，workers目录与pages目录同级）
-const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
-// FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
-const workerFAModel02 = new worker.ThreadWorker("../workers/worker.ts");
 
-// Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
-const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
-const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
+// 目录同级（entry模块下，workers目录与pages目录同级）
+const workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker"});
+// 目录不同级（entry模块下，workers目录是pages目录的子目录）
+const workerInstance = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
 
-// 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
+// 理解scriptURL的"entry/ets/workers/worker.ts"：
 // entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
 // scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
 ```
@@ -407,20 +401,6 @@ const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/work
 同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
 
 (1) 目录同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Stage模型:
 
 ```json
   "buildOption": {
@@ -433,20 +413,6 @@ Stage模型:
 ```
 
 (2) 目录不同级
-
-FA模型:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Stage模型:
 
 ```json
   "buildOption": {
@@ -688,3 +654,10 @@ workerInstance.onmessageerror= () => {
     console.log("onmessageerror");
 }
 ```
+## 其他说明
+
+### 序列化支持类型
+
+序列化支持类型包括：除Symbol之外的基础类型、Date、String、RegExp、Array、Map、Set、Object（仅限简单对象，比如通过"{}"或者"new Object"创建，普通对象仅支持传递属性，不支持传递其原型及方法）、ArrayBuffer、TypedArray。
+
+特例：传递通过自定义class创建出来的object时，不会发生序列化错误，但是自定义class的属性（如Function）无法通过序列化传递。
