@@ -10111,7 +10111,7 @@ export class AnimationConfig {
     }
     this.animationForHiddenCallFunc_ = callback;
     let controller: window.TransitionController = windowClass.getTransitionController();
-    controller.animationForHIdden = (context : window.TransitionContext)=> {
+    controller.animationForHidden = (context : window.TransitionContext)=> {
       this.animationForHiddenCallFunc_(context);
     };
     windowClass.hideWithAnimation(()=>{
