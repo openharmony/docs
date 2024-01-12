@@ -1,5 +1,5 @@
-# ArkTS (方舟编程语言)
-- [ArkTS简介](../arkts-utils/arkts-commonlibrary-overview.md)
+# ArkTS Kit(方舟编程语言)
+- [ArkTS Kit简介](../arkts-utils/arkts-commonlibrary-overview.md)
 - 并发
   - [并发概述](../arkts-utils/concurrency-overview.md)
   - 使用异步并发能力进行开发
