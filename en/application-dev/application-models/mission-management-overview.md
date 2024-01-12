@@ -8,7 +8,7 @@ Before getting started with the development of mission management, be familiar w
 
 - MissionRecord: minimum unit for mission management. One MissionRecord has only one AbilityRecord. In other words, a UIAbility component instance corresponds to a mission.
 
-- MissionList: a list of missions started from the home screen. It records the startup relationship between missions. In a MissionList, an above mission is started by the mission under it, and the mission at the bottom is started by the home screen.
+- MissionList: a list of missions started from the home screen. It records the startup relationship between missions. In a MissionList, a mission is started by the mission above it, and the mission at the bottom is started by the home screen.
 
 - MissionListManager: system mission management module that maintains all the MissionLists and is consistent with the list in **Recents**.
   
