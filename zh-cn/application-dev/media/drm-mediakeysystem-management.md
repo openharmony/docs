@@ -200,18 +200,3 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
       }
       ```
 
-    - 通过注册固定的sessionLost回调函数获取监听会话丢失事件，MediaKeySystem创建成功时即可监听，不需要监听的时候使用off进行注销监听。
-
-      ```ts
-      function onRegisterSessionLost(mediaKeysystem: drm.MediaKeysystem): void {
-        mediaKeysystem.on('sessionLost', (extra, data) => {
-          console.log('sessionLost' + 'extra:' + extra + ' data:' +data);
-        });
-      }
-      ```
-
-      ```ts
-      function unRegisterSessionLost(mediaKeysystem: drm.MediaKeysystem): void {
-        mediaKeysystem.off('sessionLost');
-      }
-      ```
