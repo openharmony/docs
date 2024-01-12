@@ -1,6 +1,6 @@
-# ArkWeb
+# ArkWeb Kit（方舟Web）
 
-- [ArkWeb简介](../web/web-component-overview.md)
+- [ArkWeb Kit简介](../web/web-component-overview.md)
 - [使用Web组件加载页面](../web/web-page-loading-with-web-components.md)
 - 设置基本属性和事件
   - [设置深色模式](../web/web-set-dark-mode.md)
