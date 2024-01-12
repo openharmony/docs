@@ -1,4 +1,4 @@
-## ArkData
+## ArkData (方舟数据管理)
 
 - [ArkData简介](../database/data-mgmt-overview.md)
 - 标准化数据定义

@@ -36,3 +36,6 @@
 - Sensor Service Kit
   - [@ohos.sensor(传感器)](js-apis-sensor.md)
   - [@ohos.vibrator(马达振动)](js-apis-vibrator.md)
+- 基础能力
+  - [Console (控制台)](js-apis-logs.md)
+  - [Timer (定时器)](js-apis-timer.md)
