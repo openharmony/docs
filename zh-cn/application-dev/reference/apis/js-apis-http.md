@@ -1145,6 +1145,7 @@ HTTP 请求方法。
 | ENTITY_TOO_LARGE  | 413  | 由于请求的实体过大，服务器无法处理，因此拒绝请求。           |
 | REQ_TOO_LONG      | 414  | 请求的URI过长（URI通常为网址），服务器无法处理。             |
 | UNSUPPORTED_TYPE  | 415  | 服务器无法处理请求的格式。                                   |
+| RANGE_NOT_SATISFIABLE | 416  | 请求范围不符合要求。                                  |
 | INTERNAL_ERROR    | 500  | 服务器内部错误，无法完成请求。                               |
 | NOT_IMPLEMENTED   | 501  | 服务器不支持请求的功能，无法完成请求。                       |
 | BAD_GATEWAY       | 502  | 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求。 |
