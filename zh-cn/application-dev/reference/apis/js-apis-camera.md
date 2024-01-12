@@ -623,7 +623,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
+    console.error(`The createVideoOutput call failed. error code: ${err.code}`);
   }
   return videoOutput;
 }
@@ -2655,7 +2655,7 @@ setFocusPoint(point: Point): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| Point    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
+| point    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
 
 **错误码：**
 
@@ -4164,7 +4164,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   let captureLocation: camera.Location = {
     latitude: 0,
     longitude: 0,
-    altitude: 0,
+    altitude: 0
   }
   let settings: camera.PhotoCaptureSetting = {
     quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
