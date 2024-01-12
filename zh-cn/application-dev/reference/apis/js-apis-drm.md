@@ -123,7 +123,7 @@ import drm from '@ohos.multimedia.drm';
 | CONTENT_PROTECTION_LEVEL_SW_CRYPTO   | 1    | 软件安全级别     |
 | CONTENT_PROTECTION_LEVEL_HW_CRYPTO    | 2    | 硬件安全级别       |
 | CONTENT_PROTECTION_LEVEL_ENHANCED_HW  | 3    | 硬件增强级别     |
-| CONTENT_PROTECTION_LEVEL_MAX  | 4    | 最大安全级别     |
+| CONTENT_PROTECTION_LEVEL_MAX  | 4    | 最高安全级别     |
 
 ## ProvisionRequest
 
@@ -458,7 +458,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | 返回数组类型的配置属性值。                   |
+| Uint8Array          | 返回数组类型的配置属性值。                   |
 
 **错误码：**
 
