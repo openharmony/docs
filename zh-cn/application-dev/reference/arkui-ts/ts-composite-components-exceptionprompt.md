@@ -80,10 +80,10 @@ import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced
 @Component
 struct Index {
   @State options: PromptOptions = {
-    icon: '',
-    tip: '',
+    icon: $r('sys.media.ohos_ic_public_fail'),
+    tip: '异常提示',
     marginType: MarginType.DEFAULT_MARGIN,
-    actionText: '',
+    actionText: '设置网络',
     marginTop: 80,
     isShown:true
   }
@@ -104,7 +104,7 @@ struct Index {
 }
 ```
 
-![ExceptionPrompt1](figures/ExceptionPrompt1.gif)
+![ExceptionPrompt1](figures/ExceptionPrompt1.png)
 
 ### 示例2
 
@@ -206,40 +206,9 @@ struct Index1 {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Row() {
-          Image($r('app.media.ic_public_back'))
-            .width('40')
-            .margin({ left: 10 })
-            .height(50)
-            .padding(8)
-            .fillColor('#000')
-            .onClick(() => {
-            })
-          Text('标题').fontSize(22)
-            .fontWeight(700)
-        }
-
-        Image($r('app.media.ic_public_cancel'))
-          .width(50)
-          .height(50)
-          .padding(8)
-          .margin({ right: 10 })
-          .objectFit(ImageFit.Cover)
-          .fillColor('#7e8877')
-          .onClick(() => {
-          })
-      }.position({ x: 0, y: 0 })
-      .zIndex(9999)
-
-      Image($r('app.media.map'))
-        .margin({ top: 50 })
-        .height(this.MAP_HEIGHT)
-        .width('100%')
-        .objectFit(ImageFit.Cover)
       Button('Click Me')
-        .width('100%')
-        .margin({top:20})
+        .width('30%')
+        .margin({top:420})
         .zIndex(999)
         .onClick(()=>{
           if (this.dialogController != undefined) {
