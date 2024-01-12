@@ -66,7 +66,7 @@
      }
      // 监听cameraInput错误信息
      cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-       console.info(`Camera input error code: ${error.code}`);
+       console.error(`Camera input error code: ${error.code}`);
      });
      // 打开相机
      await cameraInput.open();
