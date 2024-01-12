@@ -1,6 +1,6 @@
 # MissionSnapshot
 
-The **MissionSnapshot** module defines the snapshot of a mission. The snapshot can be obtained through [getMissionSnapShot](js-apis-app-ability-missionManager.md#missionmanagergetmissionsnapshot).
+The **MissionSnapshot** module defines the snapshot of a mission. The snapshot can be obtained through [missionManager.getMissionSnapShot](js-apis-app-ability-missionManager.md#missionmanagergetmissionsnapshot).
 
 > **NOTE**
 > 
@@ -18,7 +18,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | Yes| Yes| Ability information of the mission.|
-| snapshot | [image.PixelMap](js-apis-image.md) | Yes| Yes| Snapshot of the mission.|
+| snapshot | [PixelMap](js-apis-image.md#pixelmap7) | Yes| Yes| Snapshot of the mission.|
 
 ## How to Use
 

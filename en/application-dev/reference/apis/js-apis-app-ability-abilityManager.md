@@ -62,6 +62,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
 const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.

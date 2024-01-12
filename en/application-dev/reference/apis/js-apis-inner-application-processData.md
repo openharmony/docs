@@ -1,6 +1,6 @@
 # ProcessData
 
-The **ProcessData** module defines process data. If a lifecycle change listener is registered by calling [registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8), the **onProcessCreated** callback in [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) is invoked when the lifecycle of an application or ability changes.
+The **ProcessData** module defines process data. If a lifecycle change listener is registered by calling [registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver), the **onProcessCreated** callback in [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) is invoked when the lifecycle of an application or ability changes.
 
 > **NOTE**
 > 
