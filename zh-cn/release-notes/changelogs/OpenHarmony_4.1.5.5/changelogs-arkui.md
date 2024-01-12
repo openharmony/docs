@@ -258,6 +258,8 @@ API 11及以后，默认Dialog的内容区对齐方式在无标题且内容只�
 
 该变更为兼容性变更。在统一渲染模式下，弹窗类组件背板的默认视觉效果变更为模糊材质。
 
+如果开发者需要更换模糊材质及背景色，可以通过添加backgroundColor及backgroundBlurStyle参数修改。
+
 **API Level**
 
 11
@@ -276,7 +278,38 @@ API 11及以后，弹窗类组件背板显示为模糊材质。
 
 **适配指导**
 
-默认背板效果变更，不涉及适配。
+去除模糊材质示例代码：
+```ts
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+      Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show({
+            message:"alertDialog",
+          })
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+将
+```ts
+AlertDialog.show({
+  message:"alertDialog",
+})
+```
+替换为
+```ts
+AlertDialog.show({
+  message:"alertDialog",
+  backgroundColor:Color.White,
+  backgroundBlurStyle:BlurStyle.NONE
+})
+```
+即手动设置背景色与背景模糊材质枚举值。
 
 ## cl.Arkui.9 Dialog组件内容区Text默认分词方式变更
 
