@@ -40,7 +40,7 @@ function histogramStatistic(pixelBuffer: ArrayBuffer): void {
   group.addTask(imageProcessing, buffer2);
   group.addTask(imageProcessing, buffer3);
 
-  taskpool.execute(group, taskpool.Priority.HIGH).then((ret: ArrayBuffer[]) => {
+  taskpool.execute(group, taskpool.Priority.HIGH).then((ret: Object) => {
     // 步骤3: 结果数组汇总处理
   })
 }
