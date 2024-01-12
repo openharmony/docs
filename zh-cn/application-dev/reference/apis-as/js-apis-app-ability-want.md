@@ -27,7 +27,7 @@ import Want from '@ohos.app.ability.Want';
 | uri | string | 否 | 表示携带的数据，一般配合type使用，指明待处理的数据类型。如果在Want中指定了uri，则Want将匹配指定的Uri信息，包括`scheme`、`schemeSpecificPart`、`authority`和`path`信息。 |
 | type | string | 否 | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如：'text/xml' 、 'image/*'等，MIME定义请参见https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。 |
 | parameters   | Record\<string, Object> | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br />- ohos.aafwk.callerPid：表示拉起方的pid。<br />- ohos.aafwk.param.callerBundleName：表示拉起方的Bundle Name。<br />- ohos.aafwk.param.callerToken：表示拉起方的token。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。<br />- ability.params.backToOtherMissionStack：表示是否支持跨任务链返回。 |
-| [flags](../apis/js-apis-ability-wantConstant.md#wantconstantflags) | number | 否 | 表示处理Want的方式。默认传数字。<br />例如通过wantConstant.Flags.FLAG_ABILITY_CONTINUATION表示是否以设备间迁移方式启动Ability。 |
+| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | 否 | 表示处理Want的方式。默认传数字。<br />例如通过wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION表示启动Ability时授权对URI读取操作。 |
 
 **示例：**
 
@@ -190,46 +190,6 @@ import Want from '@ohos.app.ability.Want';
         });
       ```
     - parameter参数用法：
-
-      * 以ability.params.backToOtherMissionStack为例，ServiceExtension在拉起UIAbility的时候，可以支持跨任务链返回。
-
-      ```ts
-        // (1) UIAbility1启动一个ServiceExtension
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
-
-        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication1',
-          abilityName: 'ServiceExtensionAbility',
-        };
-        context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-        });
-      ```
-
-      ```ts
-        // (2) 该ServiceExtension去启动另一个UIAbility2，并在启动的时候携带参数ability.params.backToOtherMissionStack为true
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
-
-        let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication2',
-          abilityName: 'MainAbility',
-          parameters: {
-            "ability.params.backToOtherMissionStack": true,
-          },
-        };
-
-        context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-        });
-      ```
-
-      > 说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。
 
       * parameter携带开发者自定义参数，由UIAbilityA传递给UIAbilityB，并在UIAbilityB中进行获取。
 
