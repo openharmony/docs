@@ -58,15 +58,15 @@ import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
 try {
-let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-    console.info("Request suspension delay will time out.");
-})
-let id = delayInfo.requestId;
-let time = delayInfo.actualDelayTime;
-console.info("The requestId is: " + id);
-console.info("The actualDelayTime is: " + time);
+    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+        console.info("Request suspension delay will time out.");
+    })
+    let id = delayInfo.requestId;
+    let time = delayInfo.actualDelayTime;
+    console.info("The requestId is: " + id);
+    console.info("The actualDelayTime is: " + time);
 } catch (error) {
-console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+    console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 
@@ -242,6 +242,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
@@ -331,6 +333,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
@@ -406,6 +410,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
@@ -466,6 +472,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
