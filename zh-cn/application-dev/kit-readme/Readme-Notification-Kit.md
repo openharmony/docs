@@ -1,4 +1,4 @@
-# Notification Kit
+# Notification Kit（用户通知服务）
 
 - [Notification Kit简介](../../application-dev/notification/notification-overview.md)
 - [请求通知授权](../../application-dev/notification/notification-enable.md)
