@@ -1,7 +1,7 @@
 # @ohos.arkui.advanced.GridObjectSortComponent（网格对象的编辑排序）
 
 
-GridObjectSortComponent是用于网格对象的编辑排序组件。
+网格对象的编辑排序是用于网格对象的编辑、拖动排序、新增和删除。
 
 
 >  **说明：**
@@ -31,8 +31,6 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**组件能力**：编辑、拖动排序、新增、删除
-
 
 **参数**：
 
@@ -40,7 +38,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
 | -------- | -------------------------------- | ---------- | ---- | ------------ |
 | options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | 是   | 组件配置信息。 |
-| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的元数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
+| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
 | onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>) | - | 否 | 保存编辑排序的回调函数，返回编辑后的数据。 |
 | onCancel | () => void | - | 否 | 取消保存数据的回调。 |
 | build | () => void | - | 是 | 构建函数。 |
@@ -50,12 +48,12 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字，默认：GridObjectSortComponentType.text。 |
-| imageSize      | number \| Resource         | 否   | 图片的尺寸，默认：56。                                  |
-| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题，默认：频道。                    |
-| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题，默认：长按拖动排序。     |
-| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题，默认：点击添加。                   |
-| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示，默认：编辑。                    |
+| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text。 |
+| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸。<br />默认值：56。                          |
+| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认：频道。            |
+| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认：长按拖动排序。 |
+| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认：点击添加。            |
+| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认：编辑。             |
 
 
 ## GridObjectSortComponentType 
@@ -80,8 +78,9 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 不支持[通用事件](https://gitee.com/epro123/docs/blob/e9117a947a1c1649cb8fbd77e99eb3c0944f40f4/zh-cn/application-dev/reference/arkui-ts/ts-universal-events-click.md)。
 
-## 示例1
-### 示例1：文本形态
+## 示例
+
+### 示例1
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
@@ -182,7 +181,7 @@ struct Index {
 
 ![GridObjectSortComponent1](figures/GridObjectSortComponent1.gif)
 
-### 示例2：图文形态
+### 示例2
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
