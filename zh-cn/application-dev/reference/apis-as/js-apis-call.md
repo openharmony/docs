@@ -1,6 +1,6 @@
 # @ohos.telephony.call (拨打电话)
 
-该模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。
+该模块提供跳转到拨号界面，并显示待拨出号码的功能。
 
 如需订阅通话状态请使用[`observer.on('callStateChange')`](../apis/js-apis-observer.md#observeroncallstatechange)。
 
