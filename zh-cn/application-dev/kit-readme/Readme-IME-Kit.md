@@ -1,4 +1,4 @@
-## IME Kit
+## IME Kit（输入法开发服务）
 
 - [IME Kit简介](../inputmethod/ime-kit-intro.md)
 - [实现一个输入法应用](../inputmethod/inputmethod_application_guide.md)
