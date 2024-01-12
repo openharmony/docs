@@ -58,7 +58,6 @@ huks Handle结构体。
 | ---------- | ------------------------------- | ---- | ---------------- |
 | outData    | Uint8Array                      | 否   | 表示输出数据。   |
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
-| certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
 
 ## huks.generateKeyItem<sup>9+</sup>
@@ -371,7 +370,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 ```ts
 import huks from '@ohos.security.huks';
-/* 以导入AES128密钥为例 */
+/* 以导入AES256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
@@ -393,11 +392,11 @@ let properties: HuksProperties[] = [
   },
   {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
   },
   {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
   },
   {
     tag: huks.HuksTag.HUKS_TAG_PADDING,
@@ -465,11 +464,11 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 ```ts
 import huks from '@ohos.security.huks';
 import { BusinessError } from '@ohos.base';
-/* 以导入AES128为例 */
+/* 以导入AES256为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
-    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+    huks.HuksCipherMode
 }
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
@@ -488,11 +487,11 @@ let properties: HuksProperties[] = [
   },
   {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
   },
   {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT 
   },
   {
     tag: huks.HuksTag.HUKS_TAG_PADDING,
@@ -1324,28 +1323,6 @@ async function testAbort() {
 | 名称                      | 值   | 说明                  |
 | ------------------------- | ---- | --------------------- |
 | HUKS_ALG_AES              | 20   | 表示使用AES算法。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-
-## HuksSecureSignType<sup>9+</sup>
-
-表示生成或导入密钥时，指定该密钥的签名类型。
-
-**系统能力**：SystemCapability.Security.Huks.Extension
-
-| 名称                           | 值   | 说明                                                         |
-| ------------------------------ | ---- | ------------------------------------------------------------ |
-| HUKS_SECURE_SIGN_WITH_AUTHINFO | 1    | 表示签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。 |
-
-## HuksAuthStorageLevel<sup>11+</sup>
-
-表示生成或导入密钥时，指定该密钥的存储安全等级。
-
-**系统能力**：SystemCapability.Security.Huks.Extension
-
-| 名称                           | 值   | 说明                                                         |
-| ------------------------------ | ---- | ------------------------------------------------------------ |
-| HUKS_AUTH_STORAGE_LEVEL_DE | 0    | 表示密钥仅在开机后可访问。 |
-| HUKS_AUTH_STORAGE_LEVEL_CE | 1    | 表示密钥仅在首次解锁后可访问。 |
-| HUKS_AUTH_STORAGE_LEVEL_ECE | 2    | 表示密钥仅在解锁状态时可访问。 |
 
 ## HuksTagType
 
