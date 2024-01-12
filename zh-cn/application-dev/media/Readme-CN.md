@@ -50,13 +50,16 @@
     - [分布式媒体会话概述](distributed-avsession-overview.md)
     - [使用分布式媒体会话(ArkTS)](using-distributed-avsession.md)
 - AVCodec Kit（音视频编解码服务）
-  - [获取支持的编解码能力(C/C++)](obtain-supported-codecs.md)
-  - [音频编码(C/C++)](audio-encoding.md)
-  - [音频解码(C/C++)](audio-decoding.md)
-  - [视频编码(C/C++)](video-encoding.md)
-  - [视频解码(C/C++)](video-decoding.md)
-  - [音视频封装(C/C++)](audio-video-muxer.md)
-  - [音视频解封装(C/C++)](audio-video-demuxer.md)
+  - [AVCodec Kit简介](avcodec-kit-intro.md)
+  - 音视频编解码
+    - [获取支持的编解码能力(C/C++)](obtain-supported-codecs.md)
+    - [音频编码(C/C++)](audio-encoding.md)
+    - [音频解码(C/C++)](audio-decoding.md)
+    - [视频编码(C/C++)](video-encoding.md)
+    - [视频解码(C/C++)](video-decoding.md)
+  - 文件解析封装
+    - [音视频封装(C/C++)](audio-video-muxer.md)
+    - [音视频解封装(C/C++)](audio-video-demuxer.md)
 - Camera Kit（相机服务）
   - [Camera Kit简介](camera-overview.md)
   - [开发准备](camera-preparation.md)
