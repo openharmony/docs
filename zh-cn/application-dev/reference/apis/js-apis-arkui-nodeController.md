@@ -114,9 +114,9 @@ function buttonBuilder(params: Params) {
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
-  private buttonNode: BuilderNode<Params[]> | null = null;
-  private wrapBuilder = new WrappedBuilder<Params[]>(buttonBuilder);
-
+  private buttonNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
+  
   makeNode(uiContext: UIContext): FrameNode {
     if (this.rootNode == null) {
       this.rootNode = new FrameNode(uiContext);

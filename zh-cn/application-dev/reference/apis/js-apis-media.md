@@ -447,7 +447,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | maxStreams | number | 是   | soundPool实例的最大播放的流数 |
 | audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息 |
-| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md#SoundPool)> | 是   | 回调函数。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | 是   | 回调函数。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
 
 **错误码：**
 
@@ -498,7 +498,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
 
 **错误码：**
 
@@ -1993,7 +1993,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，权限获取以及接口使用详见[相机管理](js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2059,7 +2059,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，权限获取以及接口使用详见[相机管理](js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 

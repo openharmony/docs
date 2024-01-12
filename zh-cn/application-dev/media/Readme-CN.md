@@ -55,10 +55,10 @@
   - [音频解码(C/C++)](audio-decoding.md)
   - [视频编码(C/C++)](video-encoding.md)
   - [视频解码(C/C++)](video-decoding.md)
-  - [音视频封装(C/C++)](audio-video-encapsulation.md)
-  - [音视频解封装(C/C++)](audio-video-decapsulation.md)
+  - [音视频封装(C/C++)](audio-video-muxer.md)
+  - [音视频解封装(C/C++)](audio-video-demuxer.md)
 - Camera Kit（相机服务）
-  - [相机开发概述](camera-overview.md)
+  - [Camera Kit简介](camera-overview.md)
   - [开发准备](camera-preparation.md)
   - 相机开发指导(ArkTS)
     - [设备输入(ArkTS)](camera-device-input.md)

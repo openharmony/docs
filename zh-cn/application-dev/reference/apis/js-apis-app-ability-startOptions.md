@@ -20,7 +20,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |
+| displayId | number | 否 | 屏幕ID模式。默认是0，表示当前屏幕。 |
 | withAnimation<sup>11+</sup> | boolean | 否 | Ability是否具有动画效果。 |
 | windowLeft<sup>11+</sup> | number | 否 | 窗口左边的位置。 |
 | windowTop<sup>11+</sup> | number | 否 | 窗口顶部的位置。 |
@@ -30,31 +30,39 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
   import StartOptions from '@ohos.app.ability.StartOptions';
   import { BusinessError } from '@ohos.base';
 
-  try {
-    missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error) {
-          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-          return;
-      }
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
-      let id = missions[0].missionId;
+  export default class EntryAbility extends UIAbility {
 
-      let startOptions: StartOptions = {
-          windowMode : 101,
-          displayId: 0
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
       };
-      missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log('moveMissionToFront is called');
-      });
-    });
-  } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message}`);
+      let options: StartOptions = {
+        windowMode: 0
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // 处理入参错误异常
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
   }
   ```

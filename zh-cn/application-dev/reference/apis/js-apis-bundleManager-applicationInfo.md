@@ -12,12 +12,12 @@
 | 名称                       | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | 是   | 否   | 应用程序的名称。                                                 |
-| description                | string                                                       | 是   | 否   | 标识应用的描述信息，使用示例："description": $string: mainability_description"。                                                 |
+| description                | string                                                       | 是   | 否   | 标识应用的描述信息，使用示例："description": $string: mainability_description"。关于description的详细信息可参见descriptionResource字段说明。                                                 |
 | descriptionId              | number                                                       | 是   | 否   | 标识应用的描述信息的资源id。                                               |
 | enabled                    | boolean                                                      | 是   | 否   | 判断应用程序是否可以使用，默认为true。                           |
-| label                      | string                                                       | 是   | 否   | 标识应用的名称，使用示例："label": "$string: mainability_description"。|
+| label                      | string                                                       | 是   | 否   | 标识应用的名称，使用示例："label": "$string: mainability_description"。关于label的详细信息可参见labelResource字段说明。|
 | labelId                    | number                                                       | 是   | 否   | 标识应用名称的资源id。                                               |
-| icon                       | string                                                       | 是   | 否   | 应用程序的图标，使用示例："icon": "$media:icon"。                                                 |
+| icon                       | string                                                       | 是   | 否   | 应用程序的图标，使用示例："icon": "$media:icon"。关于icon的详细信息可参见iconResource字段说明。                                                 |
 | iconId                     | number                                                       | 是   | 否   | 应用程序图标的资源id。                                               |
 | process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                   |
 | permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_PERMISSION获取。 |
@@ -36,7 +36,6 @@
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（元服务）。                                |
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。        |
-| applicationReservedFlag<sup>11+</sup>       | number                      | 是   | 否   | 应用程序的保留信息标志，按位存储应用程序的各类信息，可以通过[ApplicationReservedFlag](js-apis-bundleManager.md#applicationreservedflag11)来获取相应的信息。        |
 
 ## ModuleMetadata<sup>10+</sup>
 
