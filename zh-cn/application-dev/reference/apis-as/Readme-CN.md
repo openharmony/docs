@@ -33,6 +33,6 @@
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
 - Test Kit
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
-  - Sensor Service Kit
+- Sensor Service Kit
   - [@ohos.sensor(传感器)](js-apis-sensor.md)
   - [@ohos.vibrator(马达振动)](js-apis-vibrator.md)
