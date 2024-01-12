@@ -58,27 +58,6 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
     connectTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
-    caPath: '/path/to/cacert.pem', // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
-    clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性
-      certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性
-      keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
-      certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
-      keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
-    },
-    multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
-      {
-        name: "Part1", // 数据名，自API 11开始支持该属性
-        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
-        data: 'Example data', // 可选，数据内容，自API 11开始支持该属性
-        remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性
-      }, {
-        name: "Part2", // 数据名，自API 11开始支持该属性
-        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
-        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
-        remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
-      }
-    ]
   },
   (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
@@ -426,79 +405,6 @@ let httpRequest = http.createHttp();
 httpRequest.destroy();
 ```
 
-### requestInStream<sup>10+</sup>
-
-requestInStream(url: string, callback: AsyncCallback\<number\>): void
-
-根据URL地址，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                                           | 必填 | 说明                                            |
-| -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
-| url      | string                                         | 是   | 发起网络请求的URL地址。                         |
-| callback | AsyncCallback\<number\>       | 是   | 回调函数。                                      |
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
-> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：curl错误码
-
-**示例：**
-
-```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
-
-let httpRequest = http.createHttp();
-httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
-  if (!err) {
-    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
-  } else {
-    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
-  }
-})
-```
-
 ### on("headersReceive")<sup>8+</sup>
 
 on(type: "headersReceive", callback: Callback\<Object\>): void
@@ -575,7 +481,6 @@ httpRequest.off("headersReceive");
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
-| resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 
 ## RequestMethod
 
@@ -822,4 +727,3 @@ http协议版本。
 | :-------- | :----------- |
 | HTTP1_1   |  协议http1.1  |
 | HTTP2     |  协议http2    |
-| HTTP3<sup>11+</sup> | 协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />-仅对https的URL生效，http则会请求失败。 |
