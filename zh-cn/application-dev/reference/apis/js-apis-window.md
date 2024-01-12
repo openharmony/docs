@@ -10101,29 +10101,57 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let controller = windowClass.getTransitionController();
-controller.animationForHidden = (context : window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForHiddenCallFunc_: Function = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
+    this.animationForHiddenCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForHidden = (context : window.TransitionContext)=> {
+      this.animationForHiddenCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.hideWithAnimation(()=>{
+      console.info('hide with animation success');
+    })
   }
-  )
-  console.info('complete transition end');
-};
+}
+```
+
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
+try {
+  animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // 动画时长
+      tempo: 0.5, // 播放速率
+      curve: Curve.EaseInOut, // 动画曲线
+      delay: 0, // 动画延迟
+      iterations: 1, // 播放次数
+      playMode: PlayMode.Normal, // 动画模式
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // 设置动画过程中的属性转换
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
 ```
