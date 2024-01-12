@@ -108,6 +108,8 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlia
 **描述**
 获取密钥证书链。
 
+**需要权限：** ohos.permission.ATTEST_KEY
+
 **起始版本：** 9
 
 **参数:**
