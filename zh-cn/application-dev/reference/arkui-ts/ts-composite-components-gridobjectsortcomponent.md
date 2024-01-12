@@ -80,109 +80,6 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ## 示例
 
-### 示例1
-
-```ts
-import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
-@Entry
-@Component
-struct Index {
-  @State dataList: GridObjectSortComponentItem[] = [
-    {
-      id: 0,
-      text: '科技',
-      selected: true,
-      order: 3
-    },
-    {
-      id: 1,
-      text: '教育',
-      selected: true,
-      order: 9
-    },
-    {
-      id: 2,
-      text: '影视',
-      selected: false,
-      order: 1
-    },
-    {
-      id: 3,
-      text: '动漫',
-      selected: true,
-      order: 4
-    },
-    {
-      id: 4,
-      text: '美食',
-      selected: false,
-      order: 5
-    },
-    {
-      id: 5,
-      text: '读书',
-      selected: true,
-      order: 6
-    },
-    {
-      id: 6,
-      text: '国漫',
-      selected: true,
-      order: 7
-    },
-    {
-      id: 7,
-      text: '鬼畜',
-      selected: true,
-      order: 8
-    },
-    {
-      id: 8,
-      text: '军事',
-      selected: false,
-      order: 9
-    },
-    {
-      id: 9,
-      text: '明星',
-      selected: true,
-      order: 10
-    }
-  ]
-
-  @State option: GridObjectSortComponentOptions = {
-    type: GridObjectSortComponentType.TEXT,
-    imageSize: 56,
-    normalTitle: '频道',
-    editTitle: '编辑',
-    showAreaTitle: '长按拖动排序',
-    addAreaTitle: '点击添加'
-  }
-
-  build() {
-    Column() {
-      GridObjectSortComponent({
-      		options: this.option, 
-      		dataList: this.dataList, 
-      		onSave: (
-      		    select: Array<GridObjectSortComponentItem>,
-      		    unselect: Array<GridObjectSortComponentItem>
-      		) => {
-                // save ToDo
-            },
-         	onCancel: () =>{
-         		// cancel ToDo
-         	}
-        })
-    }
-  }
-}
-```
-
-![GridObjectSortComponent1](figures/GridObjectSortComponent1.gif)
-
-### 示例2
-
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
 @Entry
@@ -283,4 +180,4 @@ struct Index {
 }
 ```
 
-![GridObjectSortComponent2](figures/GridObjectSortComponent2.gif)
+![GridObjectSortComponent](figures/GridObjectSortComponent.gif)
