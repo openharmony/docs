@@ -145,4 +145,4 @@ struct Index {
   }
 }
 ```
-![SymbolSpan](figures/symbolSpan.png)
+![SymbolSpan](figures/symbolSpan.gif)

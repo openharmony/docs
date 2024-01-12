@@ -127,4 +127,4 @@ struct Index {
   }
 }
 ```
-![symbol](figures/symbolGlyph.png)
+![symbol](figures/symbolGlyph.gif)
