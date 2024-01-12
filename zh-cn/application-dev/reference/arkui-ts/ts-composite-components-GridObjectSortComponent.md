@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.GridObjectSortComponent（网格对象的编辑排序组件）
+# @ohos.arkui.advanced.GridObjectSortComponent（网格对象的编辑排序）
 
 
 GridObjectSortComponent是用于网格对象的编辑排序组件。
@@ -18,8 +18,6 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 ##  子组件
 
 无
-
-
 
 ## 属性
 
@@ -41,58 +39,52 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 | 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
 | -------- | -------------------------------- | ---------- | ---- | ------------ |
-| options  | GridObjectSortComponentOptions | @Prop      | 是   | 组件配置信息 |
-| dataList | Array<GridObjectSortComponentItem> | -     | 是   | 传入的元数据，最大长度为50，数据长度超过50，只会取前50的数据 |
+| options  | [GridObjectSortComponentOptions](gridobjectsortcomponentoptions) | @Prop      | 是   | 组件配置信息。 |
+| dataList | Array<[GridObjectSortComponentItem](gridobjectsortcomponentItem)> | -     | 是   | 传入的元数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
+| onSave | (select: Array<[GridObjectSortComponentItem](gridobjectsortcomponentItem)>, unselect: Array<[GridObjectSortComponentItem](gridobjectsortcomponentItem)>) | - | 否 | 保存编辑排序的回调函数，返回编辑后的数据。 |
+| onCancel | () => void | - | 否 | 取消保存数据的回调。 |
+| build | () => void | - | 是 | 构建函数。 |
 
 
 ##  GridObjectSortComponentOptions
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
-| type           | GridObjectSortComponentType | 否   | 组件展示形态：文字\|图片+文字，默认：GridObjectSortComponentType.text |
-| imageSize      | number \| Resource         | 否   | 图片的尺寸，默认：56                                   |
-| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题，默认：频道                     |
-| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题，默认：长按拖动排序      |
-| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题，默认：点击添加                    |
-| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示，默认：编辑                     |
+| type           | [GridObjectSortComponentType](gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字，默认：GridObjectSortComponentType.text。 |
+| imageSize      | number \| Resource         | 否   | 图片的尺寸，默认：56。                                  |
+| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题，默认：频道。                    |
+| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题，默认：长按拖动排序。     |
+| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题，默认：点击添加。                   |
+| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示，默认：编辑。                    |
 
 
 ## GridObjectSortComponentType 
 
-| 名称     | 类型   | 值           | 说明         |
-| -------- | ------ | ------------ | ------------ |
-| IMAGE_TE | string | 'image_text' | 图片文字类型 |
-| TEXT     | string | 'text'       | 文字类型     |
+| 名称     | 类型   | 值           | 说明           |
+| -------- | ------ | ------------ | -------------- |
+| IMAGE_TE | string | 'image_text' | 图片文字类型。 |
+| TEXT     | string | 'text'       | 文字类型。     |
 
 
 ## GridObjectSortComponentItem
 
-| 名称     | 类型             | 必填 | 说明                                                         |
-| -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| id       | string \| number | 是   | 数据id序号，不可重复                                         |
-| text     | [ResourceStr](ts-types.md#resourcestr)      | 是   | 显示文本信息                                                 |
-| selected | boolean          | 是   | 是否已经被添加，添加：true，未添加：false                    |
-| url      | [ResourceStr](ts-types.md#resourcestr)      | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
-| order    | number           | 是   | 顺序序号                                                     |
+| 名称     | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| id       | string \| number                       | 是   | 数据id序号，不可重复。                                       |
+| text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。                                               |
+| selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。                  |
+| url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |
+| order    | number                                 | 是   | 顺序序号。                                                   |
 
 ##  事件
-| 名称                                                         | 功能描述                                 |
-| :----------------------------------------------------------- | ---------------------------------------- |
-| onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) =>  void | 保存编辑排序的回调函数，返回编辑后的数据 |
-| onCancel: () => void                                         | 取消保存数据时的回调                     |
+
+不支持[通用事件](https://gitee.com/epro123/docs/blob/e9117a947a1c1649cb8fbd77e99eb3c0944f40f4/zh-cn/application-dev/reference/arkui-ts/ts-universal-events-click.md)。
 
 ## 示例1
 ### 示例1：文本形态
 
 ```ts
-import { 
-	GridObjectSortComponent, 
-	GridObjectSortComponentItem, 
-	GridObjectSortComponentOptions, 
-	GridObjectSortComponentType
-} from '@ohos.arkui.advanced.GridObjectSortComponent'
-
-
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
 @Entry
 @Component
 struct Index {
@@ -193,14 +185,7 @@ struct Index {
 ### 示例2：图文形态
 
 ```ts
-import { 
-	GridObjectSortComponent, 
-	GridObjectSortComponentItem, 
-	GridObjectSortComponentOptions, 
-	GridObjectSortComponentType
-} from '@ohos.arkui.advanced.GridObjectSortComponent'
-
-
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
 @Entry
 @Component
 struct Index {
