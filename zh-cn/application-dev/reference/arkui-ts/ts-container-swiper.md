@@ -132,7 +132,7 @@ finishAnimation(callback?: () => void): void
 
 >**说明：** 
 >
->按压导航点时，导航点会放大至1.3倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
+>按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
 
 ## DigitIndicator<sup>10+</sup>
 
