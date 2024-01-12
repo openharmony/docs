@@ -3424,11 +3424,15 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3455,11 +3459,15 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
 });
 ```
 
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3482,6 +3490,47 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 ```ts
 audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
   console.info('Promise returned to indicate that the microphone is muted.');
+});
+```
+
+### setMicMute<sup>11+</sup>
+
+setMicMute(mute: boolean): Promise&lt;void&gt;
+
+设置麦克风静音状态，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Input parameter value error.                |
+
+**示例：**
+
+```ts
+audioVolumeGroupManager.setMicMute(true).then(() => {
+  console.info('Promise returned to indicate that the mic is muted.');
 });
 ```
 
