@@ -24,7 +24,7 @@
 
    ```ts
    function isMediaKeySystemSupported(uuid: string, mimeType: string, level: SecurityLevel): boolean {
-     let isSupported = drm.isMediaKeySystemSupported(uuid，mimeType，level);
+     let isSupported = drm.isMediaKeySystemSupported(uuid, mimeType, level);
      return isSupported;
    }
    ```
