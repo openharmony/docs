@@ -140,7 +140,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听视频输出错误信息
   videoOutput.on('error', (error: BusinessError) => {
-    console.info(`Preview output error code: ${error.code}`);
+    console.error(`Preview output error code: ${error.code}`);
   });
 
   //创建会话
@@ -156,7 +156,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听session错误信息
   captureSession.on('error', (error: BusinessError) => {
-    console.info(`Capture session error code: ${error.code}`);
+    console.error(`Capture session error code: ${error.code}`);
   });
 
   // 开始配置会话
@@ -181,7 +181,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.info(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   });
 
   // 打开相机
