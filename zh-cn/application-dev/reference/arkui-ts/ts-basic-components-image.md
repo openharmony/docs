@@ -104,7 +104,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| slice<sup>11+</sup>  | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。|
+| slice  | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。|
 
 ## 事件
 
