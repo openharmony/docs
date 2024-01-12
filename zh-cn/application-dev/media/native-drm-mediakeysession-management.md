@@ -4,7 +4,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 ## 开发步骤
 
-详细的API说明请参考[DRM API参考](../reference/native-apis/_o_h___drm.md)。
+详细的API说明请参考[DRM API参考]。
 
 1. 导入NDK接口，接口中提供了DRM相关的属性和方法，导入方法如下。
 
