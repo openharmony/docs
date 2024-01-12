@@ -39,3 +39,5 @@
 - 基础能力
   - [Console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
+- Accessibility Kit
+  - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
