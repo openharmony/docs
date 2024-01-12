@@ -233,7 +233,7 @@ uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert,
 
 证书链校验接口。
 
-**系统能力：** SystemCapability.Communication.Netstack
+**系统能力：** SystemCapability.Communication.NetStack
 
 **起始版本：** 11
 
