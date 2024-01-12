@@ -23,8 +23,8 @@
    > 如果查询为false，说明该设备不支持对应的DRM方案。
 
    ```ts
-   function isMediaKeySystemSupported(uuid: string, mimeType: string, level: SecurityLevel): boolean {
-     let isSupported = drm.isMediaKeySystemSupported(uuid, mimeType, level);
+   function isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean {
+     let isSupported = drm.isMediaKeySystemSupported(name, mimeType, level);
      return isSupported;
    }
    ```
@@ -42,15 +42,15 @@
    }
    ```
 
-4. 通过drm的createMediaKeySystem(uuid: string)方法，创建MediaKeySystem实例，同步返回结果，创建失败，不可继续后续操作。
+4. 通过drm的createMediaKeySystem(name: string)方法，创建MediaKeySystem实例，同步返回结果，创建失败，不可继续后续操作。
 
    > **说明：**
    >
    > 如果如果创建失败则返回undefined，说明该设备不支持DRM能力。
 
    ```ts
-   function createMediaKeySystem(uuid: string): MediaKeySystem {
-     let mediaKeySystem = drm.createMediaKeySystem(uuid);
+   function createMediaKeySystem(name: string): MediaKeySystem {
+     let mediaKeySystem = drm.createMediaKeySystem(name);
      if (mediaKeySystem === undefined) {
        return undefined;
      }
