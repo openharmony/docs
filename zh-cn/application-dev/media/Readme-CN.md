@@ -50,13 +50,16 @@
     - [分布式媒体会话概述](distributed-avsession-overview.md)
     - [使用分布式媒体会话(ArkTS)](using-distributed-avsession.md)
 - AVCodec Kit（音视频编解码服务）
-  - [获取支持的编解码能力(C/C++)](obtain-supported-codecs.md)
-  - [音频编码(C/C++)](audio-encoding.md)
-  - [音频解码(C/C++)](audio-decoding.md)
-  - [视频编码(C/C++)](video-encoding.md)
-  - [视频解码(C/C++)](video-decoding.md)
-  - [音视频封装(C/C++)](audio-video-encapsulation.md)
-  - [音视频解封装(C/C++)](audio-video-decapsulation.md)
+  - [AVCodec Kit简介](avcodec-kit-intro.md)
+  - 音视频编解码
+    - [获取支持的编解码能力(C/C++)](obtain-supported-codecs.md)
+    - [音频编码(C/C++)](audio-encoding.md)
+    - [音频解码(C/C++)](audio-decoding.md)
+    - [视频编码(C/C++)](video-encoding.md)
+    - [视频解码(C/C++)](video-decoding.md)
+  - 文件解析封装
+    - [音视频封装(C/C++)](audio-video-encapsulation.md)
+    - [音视频解封装(C/C++)](audio-video-decapsulation.md)
 - Camera Kit（相机服务）
   - [Camera Kit简介](camera-overview.md)
   - [开发准备](camera-preparation.md)
@@ -86,6 +89,15 @@
     - [拍照实现方案(C/C++)](native-camera-shooting-case.md)
     - [录像实现方案(C/C++)](native-camera-recording-case.md)
     - [录像流二次处理的实现方案(C/C++)](native-camera-recording-case-imageReceiver.md)
+- DRM Kit（数字版权保护服务）
+  - [DRM Kit 简介](drm-overview.md)
+  - 数字版权保护开发指导(ArkTS)
+    - [插件管理(ArkTS)](drm-plugin-management.md)
+    - [系统管理(ArkTS)](drm-mediakeysystem-management.md)
+    - [会话管理(ArkTS)](drm-mediakeysession-management.md)
+  - 数字版权保护开发指导(C/C++)
+    - [系统管理(C/C++)](native-drm-mediakeysystem-management.md)
+    - [会话管理(C/C++)](native-drm-mediakeysession-management.md)
 - Image Kit（图片处理服务）
   - [Image Kit简介](image-overview.md)
   - [图片解码(ArkTS)](image-decoding.md)
