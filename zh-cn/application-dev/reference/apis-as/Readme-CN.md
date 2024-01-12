@@ -19,3 +19,6 @@
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
 - Test Kit
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
+- 基础能力
+  - [Console (控制台)](js-apis-logs.md)
+  - [Timer (定时器)](js-apis-timer.md)
