@@ -188,7 +188,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 ## 属性
 
-通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](ts-universal-attributes-menu.md#bindmenu)、[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)、[blur](ts-universal-attributes-image-effect.md#blur)、[border](ts-universal-attributes-border.md#border)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](ts-universal-attributes-size.md#constraintsize)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusable](ts-universal-attributes-focus.md#focusable)、[tabIndex](ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority)、[draggable](ts-universal-attributes-drag-drop.md#draggable)、[enabled](ts-universal-attributes-enable.md#enabled)、[flexBasis](ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md)、[gridOffset](ts-universal-attributes-grid.md)、[gridSpan](ts-universal-attributes-grid.md)、[useSizeType](ts-universal-attributes-grid.md)、[height](ts-universal-attributes-size.md#height)、[touchable](ts-universal-attributes-click.md)、[margin](ts-universal-attributes-size.md#margin)、[markAnchor](ts-universal-attributes-location.md#markanchor)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[offset](ts-universal-attributes-location.md#offset)、[width](ts-universal-attributes-size.md#width)、[zIndex](ts-universal-attributes-z-order.md#zindex)、[visibility](ts-universal-attributes-visibility.md#visibility)、[scale](ts-universal-attributes-transformation.md#scale)、[translate](ts-universal-attributes-transformation.md#translate)、[responseRegion](ts-universal-attributes-touch-target.md#responseregion)、[size](ts-universal-attributes-size.md#size)、[stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](ts-universal-attributes-opacity.md#opacity)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](ts-transition-animation-shared-elements.md)、[transition](ts-transition-animation-component.md)。
+通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](ts-universal-attributes-menu.md#bindmenu)、[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](ts-universal-attributes-size.md#constraintsize)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusable](ts-universal-attributes-focus.md#focusable)、[tabIndex](ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](ts-universal-attributes-enable.md#enabled)、[flexBasis](ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md)、[gridOffset](ts-universal-attributes-grid.md)、[gridSpan](ts-universal-attributes-grid.md)、[useSizeType](ts-universal-attributes-grid.md)、[height](ts-universal-attributes-size.md#height)、[touchable](ts-universal-attributes-click.md)、[margin](ts-universal-attributes-size.md#margin)、[markAnchor](ts-universal-attributes-location.md#markanchor)、[offset](ts-universal-attributes-location.md#offset)、[width](ts-universal-attributes-size.md#width)、[zIndex](ts-universal-attributes-z-order.md#zindex)、[visibility](ts-universal-attributes-visibility.md#visibility)、[scale](ts-universal-attributes-transformation.md#scale)、[translate](ts-universal-attributes-transformation.md#translate)、[responseRegion](ts-universal-attributes-touch-target.md#responseregion)、[size](ts-universal-attributes-size.md#size)、[stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](ts-universal-attributes-opacity.md#opacity)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](ts-transition-animation-shared-elements.md)、[transition](ts-transition-animation-component.md)。
 
 ### domStorageAccess
 
@@ -909,7 +909,7 @@ initialScale(percent: number)
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                          |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。 |
 
 **示例：**
 
@@ -3275,35 +3275,41 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
         .onClick(() => {
           if (this.result) {
             this.result.copyImage()
+            this.result.closeContextMenu()
           }
         })
         Button('copy')
         .onClick(() => {
           if (this.result) {
             this.result.copy()
+            this.result.closeContextMenu()
           }
         })
         Button('paste')
         .onClick(() => {
           if (this.result) {
             this.result.paste()
+            this.result.closeContextMenu()
           }
         })
         Button('cut')
         .onClick(() => {
           if (this.result) {
             this.result.cut()
+            this.result.closeContextMenu()
           }
         })
         Button('selectAll')
         .onClick(() => {
           if (this.result) {
             this.result.selectAll()
+            this.result.closeContextMenu()
           }
         })
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
             if (event) {
+              this.result = event.result
               console.info("x coord = " + event.param.x())
               console.info("link url = " + event.param.getLinkUrl())
             }
