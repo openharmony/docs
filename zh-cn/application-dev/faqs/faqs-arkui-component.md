@@ -770,7 +770,11 @@ struct SideBarContainerExample {
 **解决措施**
 
 Canvas组件最终的显示内容分两种，一种是组件通用属性的绘制内容，比如背景色，boarder等这类组件属性方法设置的渲染属性，这类属性是可以通过状态变量驱动更新的。
-另一种是通过CanvasRenderContext2d绘制接口由应用自行绘制的内容。该类命令时绘制接口不响应状态变量，该类接口内置表脏功能，只要调用就会在下一帧刷新绘制内容，不需要开发者显示刷新。
+另一种是通过CanvasRenderingContext2D绘制接口由应用自行绘制的内容。该类命令时绘制接口不响应状态变量，该类接口内置表脏功能，只要调用就会在下一帧刷新绘制内容，不需要开发者显式刷新。
+
+**参考链接**
+
+[CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md)
 
 ## 怎么解决列表组件List在不设置高度的情况下，会出现滑动不到底的问题
 
