@@ -53,74 +53,78 @@ SymbolGlyph(value: Resource)
 @Entry
 @Component
 struct Index {
+  @State scaleplay:boolean = false
+  @State hieraplay:boolean = false
   build() {
-      Column() {
-        Row() {
-          Column(){
-            Text("细")
-            SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontWeight(FontWeight.Lighter)
-              .fontSize(96)
-          }
-          Column(){
-            Text("标准")
-            SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontWeight(FontWeight.Normal)
-              .fontSize(96)
-          }
-          Column(){
-            Text("粗")
-            SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontWeight(FontWeight.Bold)
-              .fontSize(96)
-          }
+    Column() {
+      Row() {
+        Column(){
+          Text("细")
+          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+            .fontWeight(FontWeight.Lighter)
+            .fontSize(96)
         }
+        Column(){
+          Text("标准")
+          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+            .fontWeight(FontWeight.Normal)
+            .fontSize(96)
+        }
+        Column(){
+          Text("粗")
+          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+            .fontWeight(FontWeight.Bold)
+            .fontSize(96)
+        }
+      }
 
-        Row() {
-          Column(){
-            Text("统一")
-            SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontSize(96)
-              .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
-          }
-          Column(){
-            Text("多色")
-            SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontSize(96)
-              .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
-          }
-          Column(){
-            Text("不同透明度")
-            SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontSize(96)
-              .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
-          }
+      Row() {
+        Column(){
+          Text("统一")
+          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+            .fontSize(96)
+            .renderingStrategy(SymbolRenderingStrategy.SINGLE)
+            .fontColor([Color.Blue,Color.Grey,Color.Green])
         }
-        Row() {
-          Column(){
-            Text("无动效")
-            SymbolGlyph($r('sys.symbol.ohos_wifi'))
-              .fontSize(96)
-              .effectStrategy(SymbolEffectStrategy.NONE)
-          }
-          Column(){
-            Text("整体缩放动效")
-            SymbolGlyph($r('sys.symbol.ohos_wifi'))
-              .fontSize(96)
-              .effectStrategy(SymbolEffectStrategy.SCALE)
-          }
-          Column(){
-            Text("层级动效")
-            SymbolGlyph($r('sys.symbol.ohos_wifi'))
-              .fontSize(96)
-              .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
-          }
+        Column(){
+          Text("多色")
+          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+            .fontSize(96)
+            .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
+            .fontColor([Color.Blue,Color.Grey,Color.Green])
+        }
+        Column(){
+          Text("不同透明度")
+          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+            .fontSize(96)
+            .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
+            .fontColor([Color.Blue,Color.Grey,Color.Green])
+        }
+      }
+      Row() {
+        Column(){
+          Text("无动效")
+          SymbolGlyph($r('sys.symbol.ohos_wifi'))
+            .fontSize(96)
+            .effectStrategy(SymbolEffectStrategy.NONE)
+        }
+        Column(){
+          Text("整体缩放动效")
+          SymbolGlyph($r('sys.symbol.ohos_wifi'))
+            .fontSize(96)
+            .effectStrategy(this.scaleplay ? 1 : 0)
+          Button(this.scaleplay? '关闭':'播放').onClick(()=>{this.scaleplay = !this.scaleplay})
+        }
+        Column(){
+          Text("层级动效")
+          SymbolGlyph($r('sys.symbol.ohos_wifi'))
+            .fontSize(96)
+            .effectStrategy(this.hieraplay ? 2 : 0)
+          Button(this.hieraplay? '关闭':'播放').onClick(()=>{this.hieraplay = !this.hieraplay})
         }
       }
     }
+  }
 }
 ```
 ![symbol](figures/symbolGlyph.png)

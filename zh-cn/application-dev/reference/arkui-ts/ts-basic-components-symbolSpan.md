@@ -53,6 +53,8 @@ SymbolSpan(value: Resource)
 @Entry
 @Component
 struct Index {
+  @State scaleplay:boolean = false
+  @State hieraplay:boolean = false
   build() {
     Column() {
       Row() {
@@ -125,16 +127,18 @@ struct Index {
           Text(){
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(SymbolEffectStrategy.SCALE)
+              .effectStrategy(this.scaleplay ? 1 : 0)
           }
+          Button(this.scaleplay? '关闭':'播放').onClick(()=>{this.scaleplay = !this.scaleplay})
         }
         Column(){
           Text("层级动效")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+              .effectStrategy(this.hieraplay ? 2 : 0)
           }
+          Button(this.hieraplay? '关闭':'播放').onClick(()=>{this.hieraplay = !this.hieraplay})
         }
       }
     }
