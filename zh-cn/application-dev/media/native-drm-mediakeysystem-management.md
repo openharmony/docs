@@ -24,7 +24,7 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
 3. 调用MediaKeySession类中的OH_MediaKeySystem_GetMediaKeySystemName方法获取设备支持的MediaKeySystem名称。
 
    ```c++
-    const uint8_t MAX_NAME_LEN = 16；
+    const uint8_t MAX_NAME_LEN = 16;
     const char *uuid = "com.wiseplay.drm";
     unsigned char name[][MAX_NAME_LEN];
     uint8_t nameLen = 0;
