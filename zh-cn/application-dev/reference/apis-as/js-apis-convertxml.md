@@ -72,53 +72,6 @@ try {
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}
 ```
 
-### convert<sup>(deprecated)</sup>
-
-convert(xml: string, options?: ConvertOptions) : Object
-
-转换xml文本为JavaScript对象。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[convertToJSObject<sup>9+</sup>](#converttojsobject9)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名  | 类型                              | 必填 | 说明            |
-| ------- | --------------------------------- | ---- | --------------- |
-| xml     | string                            | 是   | 传入的xml文本。 |
-| options | [ConvertOptions](#convertoptions) | 否   | 转换选项 , 默认值是ConvertOptions对象 , 由其中各个属性的默认值组成。  |
-
-**返回值：**
-
-| 类型   | 说明                         |
-| ------ | ---------------------------- |
-| Object | 处理后返回的JavaScript对象。 |
-
-**示例：**
-
-```ts
-let xml =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '    <title>Happy</title>' +
-    '    <todo>Work</todo>' +
-    '    <todo>Play</todo>' +
-    '</note>';
-let conv = new convertxml.ConvertXML();
-let options: convertxml.ConvertOptions = {trim : false, declarationKey:"_declaration",
-  instructionKey : "_instruction", attributesKey : "_attributes",
-  textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
-  commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
-  nameKey : "_name", elementsKey : "_elements"}
-let result = JSON.stringify(conv.convert(xml, options));
-console.log(result);
-// 输出(宽泛型)
-// {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}
-```
-
 ## ConvertOptions
 
 转换选项。
