@@ -103,7 +103,7 @@ The application file paths obtained by the preceding contexts are different.
   ```ts
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction'
+  import promptAction from '@ohos.promptAction';
   
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -115,7 +115,7 @@ The application file paths obtained by the preceding contexts are different.
   
     build() {
       ...
-      Button(){
+      Button()
         .onClick(() => {
           let applicationContext = this.context.getApplicationContext();
           let cacheDir = applicationContext.cacheDir;
@@ -134,7 +134,6 @@ The application file paths obtained by the preceding contexts are different.
             });
           }
         })
-      }
     }
   }
   ```
@@ -156,7 +155,7 @@ The application file paths obtained by the preceding contexts are different.
   ```ts
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction'
+  import promptAction from '@ohos.promptAction';
   
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -168,7 +167,7 @@ The application file paths obtained by the preceding contexts are different.
   
     build() {
       ...
-      Button(){
+      Button()
         .onClick(() => {
           let cacheDir = this.context.cacheDir;
           let tempDir = this.context.tempDir;
@@ -186,7 +185,6 @@ The application file paths obtained by the preceding contexts are different.
             });
           }
         })
-      }
     }
   }
   ```
@@ -235,11 +233,7 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import contextConstant from '@ohos.app.ability.contextConstant';
 import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction'
-
-const TAG: string = '[Page_Context]';
-const DOMAIN_NUMBER: number = 0xFF00;
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
@@ -249,7 +243,7 @@ struct Page_Context {
 
   build() {
     ...
-    Button(){
+    Button()
       .onClick(() => {
         // Before storing common information, switch the encryption level to EL1.
         if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
@@ -260,11 +254,10 @@ struct Page_Context {
         }
         // Store common information.
       })
-    }
     
     ...
 
-    Button(){
+    Button()
       .onClick(() => {
         // Before storing sensitive information, switch the encryption level to EL2.
         if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
@@ -275,7 +268,6 @@ struct Page_Context {
         }
         // Store sensitive information.
       })
-    }
     
     ...
   }
@@ -292,20 +284,35 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   >
   > To obtain the context of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system-basic-applications).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#applying-for-permissions-for-system-basic-applications).
   >
   > - This is a system API and cannot be called by third-party applications.
   
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
   
   ```ts
-  let bundleName2 = 'com.samples.stagemodelabilityinteraction';
-  let bundleContext = this.context.createBundleContext(bundleName2);
-  let label2 = bundleContext.applicationInfo.label;
-  if (bundleContext && label2 !== null) {
-    promptAction.showToast({
-      message: ('Context obtained.')
-    });
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_ContextAbility {
+    private context = getContext(this) as common.UIAbilityContext;
+    build() {
+      Button()
+        .onClick(() => {
+          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
+          let bundleContext: Context = this.context.createBundleContext(bundleName2);
+          let label2: string = bundleContext.applicationInfo.label;
+          if (bundleContext && label2 !== null) {
+            promptAction.showToast({
+              message: ('Context obtained.')
+            });
+          }
+        })
+    }
   }
   ```
   
@@ -314,30 +321,60 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   >
   > To obtain the context of a specified module of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system-basic-applications).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#applying-for-permissions-for-system-basic-applications).
   >
   > - This is a system API and cannot be called by third-party applications.
   
   ```ts
-  let bundleName2 : string = 'com.samples.stagemodelabilityinteraction';
-  let moduleName2 : string  = 'entry';
-  let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
-  if (moduleContext !== null) {
-    promptAction.showToast({
-      message: ('Context obtained.')
-    });
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_ContextAbility {
+    private context = getContext(this) as common.UIAbilityContext;
+    build() {
+      Button()
+        .onClick(() => {
+          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
+          let moduleName2: string  = 'entry';
+          let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
+          if (moduleContext !== null) {
+            promptAction.showToast({
+              message: ('Context obtained.')
+            });
+          }
+        })
+    }
   }
   ```
   
 - Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
   
   ```ts
-  let moduleName2 = 'entry';
-  let moduleContext = this.context.createModuleContext(moduleName2);
-  if (moduleContext !== null) {
-    promptAction.showToast({
-      message: ('Context obtained.')
-    });
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_ContextAbility {
+    private context = getContext(this) as common.UIAbilityContext;
+    build() {
+      Button()
+        .onClick(() => {
+          let moduleName2: string = 'entry';
+          let moduleContext: Context = this.context.createModuleContext(moduleName2);
+          if (moduleContext !== null) {
+            promptAction.showToast({
+              message: ('Context obtained.')
+            });
+          }
+        })
+    }
   }
   ```
 
@@ -424,5 +461,4 @@ export default class LifecycleAbility extends UIAbility {
   }
 };
 ```
-
  <!--no_check--> 

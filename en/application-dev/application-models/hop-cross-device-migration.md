@@ -110,46 +110,46 @@ Cross-device migration supports the following features:
 3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use. For the UIAbility on the target device, implement [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data.
    
    The **launchReason** parameter in the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
-   
+
    ```ts
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-      import hilog from '@ohos.hilog';
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import type Want from '@ohos.app.ability.Want';
-      
-      const TAG: string = '[MigrationAbility]';
-      const DOMAIN_NUMBER: number = 0xFF00;
-      
-      export default class EntryAbility extends UIAbility {
-        storage : LocalStorage = new LocalStorage();
-      
-        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-          if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-            // Obtain the data saved.
-            let continueInput = '';
-            if (want.parameters !== undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
-            }
-            // Display the data on the current page.
-            this.context.restoreWindowStage(this.storage);
-          }
-        }
-      
-        onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-           hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-           if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-             // Obtain the user data from the want parameter.
-             let continueInput = '';
-             if (want.parameters !== undefined) {
-               continueInput = JSON.stringify(want.parameters.data);
-               hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
-             }
-             this.context.restoreWindowStage(this.storage);
-           }
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import type Want from '@ohos.app.ability.Want';
+   
+   const TAG: string = '[MigrationAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   export default class MigrationAbility extends UIAbility {
+     storage : LocalStorage = new LocalStorage();
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+         // Obtain the data saved.
+         let continueInput = '';
+         if (want.parameters !== undefined) {
+           continueInput = JSON.stringify(want.parameters.data);
+           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
          }
+         // Display the data on the current page.
+         this.context.restoreWindowStage(this.storage);
+       }
+     }
+   
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // Obtain the user data from the want parameter.
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+          }
+          this.context.restoreWindowStage(this.storage);
+        }
       }
+   }
    ```
 
 ## Configuring Optional Migration Features
@@ -220,6 +220,7 @@ Set the migration state in the event of a component.
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
+import promptAction from '@ohos.promptAction';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -243,7 +244,7 @@ struct Page_MigrationAbilityFirst {
 }
 ```
 
-**Ensuring Migration Continuity**
+### Ensuring Migration Continuity
 
 During UI page loading, the application on the target device may have executed the command to set its own migration state (for example, set the state to **INACTIVE** in [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) during cold start or to **INACTIVE** during hot start since the application has opened a page that cannot be migrated). To ensure a migration back to the source device, you must set the migration state to **ACTIVE** in [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant).
 
@@ -266,7 +267,7 @@ export default class MigrationAbility extends UIAbility {
       hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
     });
   }
-
+  
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // Set the migration state to ACTIVE when the launch is caused by migration. This setting copes with hot start.
@@ -359,34 +360,43 @@ Three data migration modes are provided. You can select them as required.
 If the size of the data to migrate is less than 100 KB, you can add fields to **wantParam** for data migration. An example is as follows:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import distributedObject from '@ohos.data.distributedDataObject';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   // Save the data on the source device.
-  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
     // Save the data to migrate in the custom field (for example, data) of wantParam.
     const continueInput = 'Data to migrate';
-    wantParam['data'] = continueInput;
+    wantParam.data = continueInput;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
   // Restore the data on the target device.
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // Obtain the data saved.
       let continueInput = '';
-      if (want.parameters != undefined) {
+      if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
       }
     }
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // Obtain the user data from the want parameter.
       let continueInput = '';
-      if (want.parameters != undefined) {
+      if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
     }
   }
@@ -477,6 +487,15 @@ import hilog from '@ohos.hilog';
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
+// Sample data structure
+class SourceObject {
+  notesTitle?: string;
+
+  constructor(notesTitle: string) {
+    this.notesTitle = notesTitle;
+  }
+}
+
 export default class EntryAbility extends UIAbility {
   d_object?: distributedObject.DataObject;
   // ...
@@ -550,7 +569,7 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
 2. Complete the signature, build, and installation.
 
-   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. Specifically, change **"apl":"normal_core"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
+   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
 
    1. Choose **File > Project Structure**.
 

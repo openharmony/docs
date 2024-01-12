@@ -126,7 +126,41 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
 2. Implement the widget lifecycle callbacks in **form.ts**.
    
   ```ts
-  class LifeCycle {
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
+const DATA_STORAGE_PATH: string = 'form_store';
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
+  // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
+  let formInfo: Record<string, string | number | boolean> = {
+    formName: 'formName',
+    tempFlag: 'tempFlag',
+    updateCount: 0
+  };
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // Put the widget information.
+    await storage.put(formId, JSON.stringify(formInfo));
+    hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
+  }
+};
+
+let deleteFormInfo = async (formId: string, context) => {
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // Delete the widget information.
+    await storage.delete(formId);
+    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+  }
+}
+
+class LifeCycle {
     onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
     onCastToNormal: (formId: string) => void = (formId) => {
     };
@@ -323,6 +357,9 @@ A widget provider is usually started when it is needed to provide information ab
 
 
 ```ts
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
 const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
@@ -420,6 +457,9 @@ When an application initiates a scheduled or periodic update, the application ob
 
 
 ```ts
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
+
 onUpdate(formId: string) {
   // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
   hilog.info(domain, TAG, 'FormAbility onUpdate');

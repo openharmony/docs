@@ -58,7 +58,7 @@ You can subscribe to system environment variable changes in the following ways:
    
      // Page display.
      build() {
-       ...
+       //...
      }
    }
    ```
@@ -81,7 +81,7 @@ You can subscribe to system environment variable changes in the following ways:
    
      // Page display.
      build() {
-       ...
+       //...
      }
    }
    ```
@@ -111,7 +111,7 @@ export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
     systemLanguage = this.context.config.language; // Obtain the system language in use when the AbilityStage instance is loaded for the first time.
     console.info(`systemLanguage is ${systemLanguage} `);
-    ...
+    //...
   }
 
   onConfigurationUpdate(newConfig: Configuration): void {

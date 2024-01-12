@@ -12,6 +12,9 @@ To develop the Emitter mode, perform the following steps:
    ```ts
    import emitter from '@ohos.events.emitter';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ThreadModel';
    ```
    ```ts
    // Define an event with eventId 1.
