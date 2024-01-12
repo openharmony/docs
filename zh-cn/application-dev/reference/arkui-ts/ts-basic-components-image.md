@@ -175,7 +175,7 @@ type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
 | -------------------- | ------ | ------------------------- |
 | componentWidth       | number | 组件的宽。<br/>单位：像素 |
 | componentHeight      | number | 组件的高。<br/>单位：像素 |
-| message<sup>9+</sup> | string | 报错信息。                |
+| message | string | 报错信息。                |
 
 ## 示例
 
