@@ -27,11 +27,45 @@
 涉及到左键菜单（bindMenu）、右键菜单（bindContextMenu）、下拉选项菜单（Select）、导航组件工具栏的更多悬浮菜单（Navigation）等菜单背板的默认视觉效果：
 
 - 变更前：菜单背板显示为白色
-- 变更后：菜单背板显示为模糊材质
+- 变更后：菜单背板默认显示为模糊材质
+
+bindMenu与bindContextMenu可支持开发者自定义模糊材质及背景色。
 
 **适配指导**
 
-无需适配。
+去除模糊材质示例代码：
+```ts
+@Entry
+@Component
+struct Index {
+  @Builder
+  MenuBuilder() {
+    MenuItem({ content: "item1" })
+    MenuItem({ content: "item2" })
+  }
+
+  build() {
+    Navigation() {
+      Column({ space: 12 }) {
+        Text("自定义菜单")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#FFF')
+          .bindMenu(this.MenuBuilder())
+      }
+    }
+  }
+}
+```
+将
+```ts
+.bindMenu(this.MenuBuilder())
+```
+替换为
+```ts
+.bindMenu(this.MenuBuilder(), { backgroundColor: Color.White, backgroundBlurStyle: BlurStyle.NONE })
+```
+即手动设置背景色与背景模糊材质枚举值。
 
 
 
