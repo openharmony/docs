@@ -99,14 +99,14 @@ onWindowReady(window: window.Window): void
 ```ts
 import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 import window from '@ohos.window';
+import {BusinessError} from '@ohos.base';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window: window.Window) {
-    window.loadContent('WindowExtAbility/pages/index1').then(() => {
-      window.getProperties().then((pro: window.WindowProperties) => {
-        console.log('WindowExtension pro: ${JSON.stringify(pro)}');
-      });
-      window.show();
+    window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
+      let pro = window.getWindowProperties();
+      console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+      window.showWindow();
     });
   }
 }
