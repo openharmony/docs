@@ -68,7 +68,7 @@ async function cameraModeCase(baseContext: common.BaseContext, surfaceId: string
     return;
   }
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.info(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   });
 
   // 打开相机
@@ -105,7 +105,7 @@ async function cameraModeCase(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听预览输出错误信息
   previewOutput.on('error', (error: BusinessError) => {
-    console.info(`Preview output error code: ${error.code}`);
+    console.error(`Preview output error code: ${error.code}`);
   });
   // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
   let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
@@ -135,7 +135,7 @@ async function cameraModeCase(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听portraitSession错误信息
   portraitSession.on('error', (error: BusinessError) => {
-    console.info(`Capture session error code: ${error.code}`);
+    console.error(`Capture session error code: ${error.code}`);
   });
 
   // 开始配置会话
@@ -287,7 +287,7 @@ async function cameraModeCase(baseContext: common.BaseContext, surfaceId: string
   // 使用当前拍照设置进行拍照
   photoOutput.capture(captureSettings, async (err: BusinessError) => {
     if (err) {
-      console.error('Failed to capture the photo ${err.message}');
+      console.error(`Failed to capture the photo ${err.message}`);
       return;
     }
     console.info('Callback invoked to indicate the photo capture request success.');
