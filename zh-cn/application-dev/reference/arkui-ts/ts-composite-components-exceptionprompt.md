@@ -37,7 +37,7 @@ ExceptionPrompt({ options: PromptOptions })
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| options | [PromptOptions](#PromptOptions) | 否 | \@Prop | 指定当前异常提示的配置信息。 |
+| options | [PromptOptions](#promptoptions) | 否 | \@Prop | 指定当前异常提示的配置信息。 |
 | onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
 | onActionTextClick | ()=>void | 否 | - | 点击右侧图标按钮的回调函数。 |
 | build | ()=>void | 是 | - | 构建函数。 |
@@ -52,7 +52,7 @@ PromptOptions定义options的类型。
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的异常图标式样。 |
 | tip | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的文字提示内容。<br />支持默认内置四种状态文字资源如下：<br />1.无网络状态：显示网络未连接：引用ohos_network_not_connected。<br />2.网络差状态：显示网络连接不稳定，请点击重试：引用ohos_network_connected_unstable。<br />3.连不上服务器状态：显示无法连接到服务器，请点击重试：引用ohos_unstable_connect_server。<br />4.有网但是获取不到内容状态：显示无法获取位置，请点击重试：引用ohos_custom_network_tips_left。 |
-| marginType | [MarginType](#MarginType) | 是 | 指定当前异常提示的边距样式 。 |
+| marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
 | marginTop | [Dimension](ts-types.md#Dimension) | 是 | 指定当前异常提示的距离顶部的位置。 |
 | isShown | boolean | 否 | 指定当前异常提示的显隐状态。 |
