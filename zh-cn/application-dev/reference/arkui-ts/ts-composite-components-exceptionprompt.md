@@ -37,7 +37,7 @@ ExceptionPrompt({ options: PromptOptions })
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| options | [PromptOptions](#promptoptions) | 否 | \@Prop | 指定当前异常提示的配置信息。 |
+| options | [PromptOptions](#promptoptions) | 是 | \@Prop | 指定当前异常提示的配置信息。 |
 | onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
 | onActionTextClick | ()=>void | 否 | - | 点击右侧图标按钮的回调函数。 |
 | build | ()=>void | 是 | - | 构建函数。 |
@@ -66,7 +66,7 @@ MarginType定义marginType的类型。
 | 名称 | 说明 |
 | -------- | -------- |
 | DEFAULT_MARGIN | 默认边距：<br />边距1：引用ohos_id_card_margin_start。<br />边距2：引用ohos_id_card_margin_end。 |
-| FIT_MARGIN | 可适配边距： 边距1：引用ohos_id_max_padding_start，边距2：引用ohos_id_max_padding_end。 |
+| FIT_MARGIN | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
