@@ -41,3 +41,15 @@
   - [Timer (定时器)](js-apis-timer.md)
 - Accessibility Kit
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
+- Network Kit
+  - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+  - [@ohos.net.http (数据请求)](js-apis-http.md)
+  - [@ohos.net.mdns (MDNS管理)](js-apis-net-mdns.md)
+  - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
+- Connectivity Kit
+  - [@ohos.bluetooth.access(蓝牙access模块)](js-apis-bluetooth-access.md)
+  - [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
+- Telephony Kit
+  - [@ohos.telephony.call (拨打电话)](js-apis-call.md)
+- Contacts Kit
+  - [@ohos.contact (联系人)](js-apis-contact.md)
