@@ -1,4 +1,4 @@
-# ServiceAbility Component Configuration
+# ServiceAbility Configuration
 
 
 Similar to a PageAbility, a ServiceAbility is configured in **abilities** under **module** of the **config.json** file. The difference between a ServiceAbility and PageAbility lies in the **type** and **backgroundModes** fields.

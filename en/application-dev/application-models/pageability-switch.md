@@ -25,9 +25,8 @@ The PageAbility component in the FA model corresponds to the UIAbility component
    ![pageability-switch](figures/pageability-switch.png)
 
 3. Adjust the migrated code, since the methods of loading pages are different.
-   
-- In the FA model, page loading is configured by setting page information in **config.json**.
-   
+
+   - In the FA model, page loading is configured by setting page information in **config.json**.
    - In the stage model, page loading is triggered through **windowStage.loadContent** in the **onWindowStageCreate** callback.
 
    The following uses the task of displaying the **pages/Index** page after the ability is started as an example. 
@@ -36,6 +35,7 @@ The PageAbility component in the FA model corresponds to the UIAbility component
    
    
       ```json
+      "pages" : [
           "pages/Index"
       ]
       ```
@@ -44,7 +44,8 @@ The PageAbility component in the FA model corresponds to the UIAbility component
    
    
       ```ts
-       import Window from '@ohos.window'
+       import Window from '@ohos.window';
+       import UIAbility from '@ohos.app.ability.UIAbility';
    
        export default class EntryAbility extends UIAbility {
          onWindowStageCreate(windowStage: Window.WindowStage) {

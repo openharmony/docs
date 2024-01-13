@@ -12,16 +12,18 @@ A PageAbility starts a UIAbility in the same way as it starts another PageAbilit
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
-const TAG: string = '[EntryAbility]';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PageInterflowFaAndStage';
 
 let want: Want = {
   bundleName: 'ohos.samples.etsclock',
   abilityName: 'MainAbility'
 };
 featureAbility.startAbility({ want }).then((code) => {
-  console.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
+  Logger.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
 }).catch((error: BusinessError) => {
-  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -37,16 +39,18 @@ A PageAbility starts a UIAbility through **startAbilityForResult()** in the same
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
-const TAG: string = '[EntryAbility]';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PageInterflowFaAndStage';
 
 let want: Want = {
   bundleName: 'ohos.samples.etsclock',
   abilityName: 'MainAbility'
 };
 featureAbility.startAbilityForResult({ want }).then((result) => {
-  console.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
+  Logger.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
 }).catch((error: BusinessError) => {
-  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -60,16 +64,18 @@ A ServiceAbility or DataAbility starts a UIAbility in the same way as it starts 
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
-const TAG: string = '[ServiceAbility]';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
 
 let want: Want = {
   bundleName: 'ohos.samples.etsclock',
   abilityName: 'MainAbility'
 };
 particleAbility.startAbility({ want }).then(() => {
-  console.info(TAG, 'StartUIAbility Start Ability successfully.');
+  hilog.info(TAG, 'StartUIAbility Start Ability successfully.');
 }).catch((error: BusinessError) => {
-  console.error(TAG, 'StartUIAbility Ability failed: ' + JSON.stringify(error));
+  hilog.error(TAG, 'StartUIAbility Ability failed: ' + JSON.stringify(error));
 });
-console.info(TAG, 'StartUIAbility ServiceAbility onStart');
+hilog.info(TAG, 'StartUIAbility ServiceAbility onStart');
 ```
