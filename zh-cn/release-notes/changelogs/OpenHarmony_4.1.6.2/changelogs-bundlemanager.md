@@ -14,6 +14,10 @@
 
 该变更为兼容性变更。在设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为true的情况下，打包输出的未签名的包会略微变大。
 
+**API Level**
+
+11
+
 **变更发生版本**
 
 从OpenHarmony SDK 4.1.6.2版本开始。
