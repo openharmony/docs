@@ -490,7 +490,7 @@ enum NetStack_CertType NetStack_CertBlob::type
 ### code [1/3]
 
 ```
-uint32_t OH_NetStack_WebsocketClient_CloseResult::code
+uint32_t WebSocket_CloseResult::code
 ```
 
 **描述**
@@ -501,7 +501,7 @@ uint32_t OH_NetStack_WebsocketClient_CloseResult::code
 ### code [2/3]
 
 ```
-uint32_t OH_NetStack_WebsocketClient_CloseOption::code
+uint32_t WebSocket_CloseOption::code
 ```
 
 **描述**
@@ -512,7 +512,7 @@ uint32_t OH_NetStack_WebsocketClient_CloseOption::code
 ### code [3/3]
 
 ```
-uint32_t OH_NetStack_WebsocketClient_OpenResult::code
+uint32_t WebSocket_OpenResult::code
 ```
 
 **描述**
@@ -523,7 +523,7 @@ websocket客户端连接成功码。
 ### errorCode
 
 ```
-uint32_t OH_NetStack_WebsocketClient_ErrorResult::errorCode
+uint32_t WebSocket_ErrorResult::errorCode
 ```
 
 **描述**
@@ -534,7 +534,7 @@ uint32_t OH_NetStack_WebsocketClient_ErrorResult::errorCode
 ### errorMessage
 
 ```
-const char* OH_NetStack_WebsocketClient_ErrorResult::errorMessage
+const char* WebSocket_ErrorResult::errorMessage
 ```
 
 **描述**
@@ -542,10 +542,10 @@ const char* OH_NetStack_WebsocketClient_ErrorResult::errorMessage
 错误的消息。
 
 
-### FieldName
+### fieldName
 
 ```
-const char* OH_NetStack_WebsocketClient_Slist::FieldName
+const char* WebSocket_Header::fieldName
 ```
 
 **描述**
@@ -553,10 +553,10 @@ const char* OH_NetStack_WebsocketClient_Slist::FieldName
 header头的字段名。
 
 
-### FieldValue
+### fieldValue
 
 ```
-const char* OH_NetStack_WebsocketClient_Slist::FieldValue
+const char* WebSocket_Header::fieldValue
 ```
 
 **描述**
@@ -567,7 +567,7 @@ header头的字段内容。
 ### next
 
 ```
-struct OH_NetStack_WebsocketClient_Slist* OH_NetStack_WebsocketClient_Slist::next
+struct WebSocket_Header* WebSocket_Header::next
 ```
 
 **描述**
@@ -578,7 +578,7 @@ header头链表的next指针。
 ### onClose
 
 ```
-OH_NetStack_WebsocketClient_OnCloseCallback OH_NetStack_WebsocketClient::onClose
+WebSocket_OnCloseCallback WebSocket::onClose
 ```
 
 **描述**
@@ -589,7 +589,7 @@ OH_NetStack_WebsocketClient_OnCloseCallback OH_NetStack_WebsocketClient::onClose
 ### onError
 
 ```
-OH_NetStack_WebsocketClient_OnErrorCallback OH_NetStack_WebsocketClient::onError
+WebSocket_OnErrorCallback WebSocket::onError
 ```
 
 **描述**
@@ -600,7 +600,7 @@ OH_NetStack_WebsocketClient_OnErrorCallback OH_NetStack_WebsocketClient::onError
 ### onMessage
 
 ```
-OH_NetStack_WebsocketClient_OnMessageCallback OH_NetStack_WebsocketClient::onMessage
+WebSocket_OnMessageCallback WebSocket::onMessage
 ```
 
 **描述**
@@ -611,7 +611,7 @@ OH_NetStack_WebsocketClient_OnMessageCallback OH_NetStack_WebsocketClient::onMes
 ### onOpen
 
 ```
-OH_NetStack_WebsocketClient_OnOpenCallback OH_NetStack_WebsocketClient::onOpen
+WebSocket_OnOpenCallback WebSocket::onOpen
 ```
 
 **描述**
@@ -622,7 +622,7 @@ OH_NetStack_WebsocketClient_OnOpenCallback OH_NetStack_WebsocketClient::onOpen
 ### reason [1/3]
 
 ```
-const char* OH_NetStack_WebsocketClient_CloseResult::reason
+const char* WebSocket_CloseResult::reason
 ```
 
 **描述**
@@ -633,7 +633,7 @@ const char* OH_NetStack_WebsocketClient_CloseResult::reason
 ### reason [2/3]
 
 ```
-const char* OH_NetStack_WebsocketClient_CloseOption::reason
+const char* WebSocket_CloseOption::reason
 ```
 
 **描述**
@@ -644,7 +644,7 @@ const char* OH_NetStack_WebsocketClient_CloseOption::reason
 ### reason [3/3]
 
 ```
-const char* OH_NetStack_WebsocketClient_OpenResult::reason
+const char* WebSocket_OpenResult::reason
 ```
 
 **描述**
@@ -652,10 +652,10 @@ const char* OH_NetStack_WebsocketClient_OpenResult::reason
 websocket客户端连接原因。
 
 
-### RequestOptions
+### requestOptions
 
 ```
-OH_NetStack_WebsocketClient_RequestOptions OH_NetStack_WebsocketClient::RequestOptions
+WebSocket_RequestOptions WebSocket::requestOptions
 ```
 
 **描述**
