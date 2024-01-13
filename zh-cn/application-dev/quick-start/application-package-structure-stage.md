@@ -28,7 +28,7 @@
 不同类型的Module编译后会生成对应的HAP、HSP、HAR等文件，开发态视图与编译态视图的对照关系如下：
 
 **图2** 开发态与编译态的工程结构视图 
-![app-view](figures/app-view.png)
+
 
 Module编译前后文件的对应关系如下：
 - **ets目录**：ArkTS源码编译生成.abc文件。
