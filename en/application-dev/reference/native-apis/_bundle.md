@@ -26,9 +26,12 @@ The bundle module provides APIs for querying application information.
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | Defines the application information.|
 
+
+
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
 | [OH_NativeBundle_GetCurrentApplicationInfo](native__interface__bundle.md#oh_nativebundle_getcurrentapplicationinfo) | Obtains the information about the current application.|
-
+| [OH_NativeBundle_GetAppId](native__interface__bundle.md#oh_nativebundle_getappid) | Obtains the appId information about the current application.|
+| [OH_NativeBundle_GetAppIdentifier](native__interface__bundle.md#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
