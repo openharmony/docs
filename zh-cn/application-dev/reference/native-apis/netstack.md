@@ -490,174 +490,142 @@ enum NetStack_CertType NetStack_CertBlob::type
 ### code [1/3]
 
 ```
-uint32_t OH_NetStack_WebsocketClient_CloseResult::code
+uint32_t WebSocket_CloseResult::code
 ```
-
 **描述**
-
 关闭的错误码。
 
 
 ### code [2/3]
 
 ```
-uint32_t OH_NetStack_WebsocketClient_CloseOption::code
+uint32_t WebSocket_CloseOption::code
 ```
-
 **描述**
-
 关闭的错误码。
 
 
 ### code [3/3]
 
 ```
-uint32_t OH_NetStack_WebsocketClient_OpenResult::code
+uint32_t WebSocket_OpenResult::code
 ```
-
 **描述**
-
 websocket客户端连接成功码。
 
 
 ### errorCode
 
 ```
-uint32_t OH_NetStack_WebsocketClient_ErrorResult::errorCode
+uint32_t WebSocket_ErrorResult::errorCode
 ```
-
 **描述**
-
 错误码。
 
 
 ### errorMessage
 
 ```
-const char* OH_NetStack_WebsocketClient_ErrorResult::errorMessage
+const char* WebSocket_ErrorResult::errorMessage
 ```
-
 **描述**
-
 错误的消息。
 
 
-### FieldName
+### fieldName
 
 ```
-const char* OH_NetStack_WebsocketClient_Slist::FieldName
+const char* WebSocket_Header::fieldName
 ```
-
 **描述**
-
 header头的字段名。
 
 
-### FieldValue
+### fieldValue
 
 ```
-const char* OH_NetStack_WebsocketClient_Slist::FieldValue
+const char* WebSocket_Header::fieldValue
 ```
-
 **描述**
-
 header头的字段内容。
 
 
 ### next
 
 ```
-struct OH_NetStack_WebsocketClient_Slist* OH_NetStack_WebsocketClient_Slist::next
+struct WebSocket_Header* WebSocket_Header::next
 ```
-
 **描述**
-
 header头链表的next指针。
 
 
 ### onClose
 
 ```
-OH_NetStack_WebsocketClient_OnCloseCallback OH_NetStack_WebsocketClient::onClose
+WebSocket_OnCloseCallback WebSocket::onClose
 ```
-
 **描述**
-
 客户端接收关闭消息的回调指针。
 
 
 ### onError
 
 ```
-OH_NetStack_WebsocketClient_OnErrorCallback OH_NetStack_WebsocketClient::onError
+WebSocket_OnErrorCallback WebSocket::onError
 ```
-
 **描述**
-
 客户端接收错误消息的回调指针。
 
 
 ### onMessage
 
 ```
-OH_NetStack_WebsocketClient_OnMessageCallback OH_NetStack_WebsocketClient::onMessage
+WebSocket_OnMessageCallback WebSocket::onMessage
 ```
-
 **描述**
-
-客户端接收消息的回调指针。
+客户端接收消息的回调指针
 
 
 ### onOpen
 
 ```
-OH_NetStack_WebsocketClient_OnOpenCallback OH_NetStack_WebsocketClient::onOpen
+WebSocket_OnOpenCallback WebSocket::onOpen
 ```
-
 **描述**
-
 客户端接收连接消息的回调指针。
 
 
 ### reason [1/3]
 
 ```
-const char* OH_NetStack_WebsocketClient_CloseResult::reason
+const char* WebSocket_CloseResult::reason
 ```
-
 **描述**
-
 关闭的错误原因。
 
 
 ### reason [2/3]
 
 ```
-const char* OH_NetStack_WebsocketClient_CloseOption::reason
+const char* WebSocket_CloseOption::reason
 ```
-
 **描述**
-
 关闭的错误原因。
 
 
 ### reason [3/3]
 
 ```
-const char* OH_NetStack_WebsocketClient_OpenResult::reason
+const char* WebSocket_OpenResult::reason
 ```
-
 **描述**
-
 websocket客户端连接原因。
 
 
-### RequestOptions
+### requestOptions
 
 ```
-OH_NetStack_WebsocketClient_RequestOptions OH_NetStack_WebsocketClient::RequestOptions
+WebSocket_RequestOptions WebSocket::requestOptions
 ```
-
 **描述**
-
 客户端建立连接请求内容。
