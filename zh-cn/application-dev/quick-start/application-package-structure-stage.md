@@ -5,7 +5,8 @@
 ## 开发态包结构
 在DevEco Studio上[创建一个项目工程](start-with-ets-stage.md#创建arkts工程)，并尝试创建多个不同类型的Module。根据实际工程中的目录对照本章节进行学习，可以有助于理解开发态的应用程序结构。
 
-**图1** 项目工程结构示意图（以实际为准） 
+**图1** 项目工程结构示意图（以实际为准）
+
 ![project](figures/project.png)
 
 工程结构主要包含的文件类型及用途如下：
@@ -28,7 +29,7 @@
 不同类型的Module编译后会生成对应的HAP、HSP、HAR等文件，开发态视图与编译态视图的对照关系如下：
 
 **图2** 开发态与编译态的工程结构视图 
-
+![app-view](figures/app-view.png)
 
 Module编译前后文件的对应关系如下：
 - **ets目录**：ArkTS源码编译生成.abc文件。
@@ -44,14 +45,15 @@ Module编译前后文件的对应关系如下：
 
 > 说明：
 > 
-> App Pack是发布上架到应用市场的基本单元，但是不能在设备上直接安装和运行。在应用签名、云端分发、端侧安装时，都是以HAP为单位进行签名、分发和安装的。
+> - App Pack是发布上架到应用市场的基本单元，但是不能在设备上直接安装和运行。
+> - 在应用签名、云端分发、端侧安装时，都是以HAP为单位进行签名、分发和安装的。
 
 **图3** 编译发布与上架部署流程图
 ![hap-release](figures/hap-release.png)
 
-## 不同类型的包的对比
+## 选择合适的包类型
 
-为了便于开发者根据场景选择适合的Module进行开发，将HAP、HAR、HSP三者的功能和使用场景总结对比如下：
+HAP、HAR、HSP三者的功能和使用场景总结对比如下：
 
 | Module类型 | 包类型 | 说明 | 
 | -------- | -------- | -------- | 
@@ -59,11 +61,12 @@ Module编译前后文件的对应关系如下：
 | Static Library | HAR | 静态共享包，编译态复用。<br/> - 支持应用内共享，也可以发布后供其他应用使用。<br/> &ensp; - 作为二方库，发布到[OHPM](https://ohpm.openharmony.cn/)私仓，供公司内部其他应用使用。<br/> &ensp; - 作为三方库，发布到[OHPM](https://ohpm.openharmony.cn/)中心仓，供其他应用使用。<br/> - 多包引用相同的HAR时，会导致App包膨大。 | 
 | Shared Library | HSP| 动态共享包，运行时复用。<br/> - 当前仅支持应用内共享。<br/> - 当多包同时引用同一个共享包时，采用HSP替代HAR，可以避免HAR造成的多包间代码和资源的重复拷贝，从而减小应用包大小。 | 
 
-HAP、HSP、HAR支持的规格对比如下，“√”表示是，“×”表示否。
+HAP、HSP、HAR支持的规格对比如下，其中“√”表示是，“×”表示否。
+开发者需要根据实际场景所需的能力，选择相应类型的包进行开发。在后面的章节中还会针对如何使用HAP、HAR、HSP包分别展开详细介绍。
 
 | 规格| HAP | HAR | HSP |
-| -------- | -------- |-------- |-------- |
-| 支持在配置文件中声明[UIAbility](./module-configuration-file.md#abilities标签)组件与[ExtensionAbility](./module-configuration-file.md#extensionabilities标签)组件|√  |× |× |
+| -------- | ---------- |----------- |----------- |
+| 支持在配置文件中声明[UIAbility](./module-configuration-file.md#abilities标签)组件与[ExtensionAbility](./module-configuration-file.md#extensionabilities标签)组件  |  √  |  ×   |  ×   |
 | 支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面| √  |× |√ |
 | 支持包含资源文件与.so文件 | √  |√ |√|
 | 支持依赖其他HAR文件 | √ |√  |√  |
