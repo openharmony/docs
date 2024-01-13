@@ -12,10 +12,10 @@
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
       - 应用程序包开发
-        - [HAP](hap-package.md)
-        - [HAR](har-package.md)
-        - [HSP](in-app-hsp.md)
-      - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
+        - [HAP](quick-start/hap-package.md)
+        - [HAR](quick-start/har-package.md)
+        - [HSP](quick-start/in-app-hsp.md)
+      - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
