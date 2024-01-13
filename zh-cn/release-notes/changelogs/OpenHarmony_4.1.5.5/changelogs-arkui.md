@@ -518,3 +518,37 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 **适配指导**
 
 默认行为变更，不涉及适配。
+
+## cl.arkui.15  menuItem默认高度规格变更
+
+**访问级别**
+
+其他
+
+**变更原因**
+
+UX默认规格变更
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前，menuItem只传入图标高度为24vp，menuItem传入为空时高度为0。
+
+变更后，menuItem只传入图标高度为48vp，menuItem传入为空时高度也为48vp。
+
+**API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件：MenuItem、Menu、MenuItemGroup。
+
+**适配指导**
+
+默认高度规格变更，如果与应用UX高度规格不符，可以自定义设置menuItem的height。
