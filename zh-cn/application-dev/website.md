@@ -447,7 +447,7 @@
   - 媒体
     - [媒体应用开发概述](media/media-application-overview.md)
     - 音视频
-      - [音视频概述](media/av-overview.md)
+      - [音视频概述](./media/av-overview.md)
       - [AVPlayer和AVRecorder](media/avplayer-avrecorder-overview.md)
       - 音频播放
         - [音频播放开发概述](media/audio-playback-overview.md)
@@ -2133,3 +2133,5 @@
   - [SDK使用常见问题](faqs/faqs-sdk.md)
   - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
   - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
+
+<!--no_check-->
