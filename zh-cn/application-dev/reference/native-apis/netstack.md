@@ -492,7 +492,9 @@ enum NetStack_CertType NetStack_CertBlob::type
 ```
 uint32_t WebSocket_CloseResult::code
 ```
+
 **描述**
+
 关闭的错误码。
 
 
@@ -501,7 +503,9 @@ uint32_t WebSocket_CloseResult::code
 ```
 uint32_t WebSocket_CloseOption::code
 ```
+
 **描述**
+
 关闭的错误码。
 
 
@@ -510,7 +514,9 @@ uint32_t WebSocket_CloseOption::code
 ```
 uint32_t WebSocket_OpenResult::code
 ```
+
 **描述**
+
 websocket客户端连接成功码。
 
 
@@ -519,7 +525,9 @@ websocket客户端连接成功码。
 ```
 uint32_t WebSocket_ErrorResult::errorCode
 ```
+
 **描述**
+
 错误码。
 
 
@@ -528,7 +536,9 @@ uint32_t WebSocket_ErrorResult::errorCode
 ```
 const char* WebSocket_ErrorResult::errorMessage
 ```
+
 **描述**
+
 错误的消息。
 
 
@@ -537,7 +547,9 @@ const char* WebSocket_ErrorResult::errorMessage
 ```
 const char* WebSocket_Header::fieldName
 ```
+
 **描述**
+
 header头的字段名。
 
 
@@ -546,7 +558,9 @@ header头的字段名。
 ```
 const char* WebSocket_Header::fieldValue
 ```
+
 **描述**
+
 header头的字段内容。
 
 
@@ -555,7 +569,9 @@ header头的字段内容。
 ```
 struct WebSocket_Header* WebSocket_Header::next
 ```
+
 **描述**
+
 header头链表的next指针。
 
 
@@ -564,7 +580,9 @@ header头链表的next指针。
 ```
 WebSocket_OnCloseCallback WebSocket::onClose
 ```
+
 **描述**
+
 客户端接收关闭消息的回调指针。
 
 
@@ -573,7 +591,9 @@ WebSocket_OnCloseCallback WebSocket::onClose
 ```
 WebSocket_OnErrorCallback WebSocket::onError
 ```
+
 **描述**
+
 客户端接收错误消息的回调指针。
 
 
@@ -582,8 +602,10 @@ WebSocket_OnErrorCallback WebSocket::onError
 ```
 WebSocket_OnMessageCallback WebSocket::onMessage
 ```
+
 **描述**
-客户端接收消息的回调指针
+
+客户端接收消息的回调指针。
 
 
 ### onOpen
@@ -591,7 +613,9 @@ WebSocket_OnMessageCallback WebSocket::onMessage
 ```
 WebSocket_OnOpenCallback WebSocket::onOpen
 ```
+
 **描述**
+
 客户端接收连接消息的回调指针。
 
 
@@ -600,7 +624,9 @@ WebSocket_OnOpenCallback WebSocket::onOpen
 ```
 const char* WebSocket_CloseResult::reason
 ```
+
 **描述**
+
 关闭的错误原因。
 
 
@@ -609,7 +635,9 @@ const char* WebSocket_CloseResult::reason
 ```
 const char* WebSocket_CloseOption::reason
 ```
+
 **描述**
+
 关闭的错误原因。
 
 
@@ -618,7 +646,9 @@ const char* WebSocket_CloseOption::reason
 ```
 const char* WebSocket_OpenResult::reason
 ```
+
 **描述**
+
 websocket客户端连接原因。
 
 
@@ -627,5 +657,7 @@ websocket客户端连接原因。
 ```
 WebSocket_RequestOptions WebSocket::requestOptions
 ```
+
 **描述**
+
 客户端建立连接请求内容。
