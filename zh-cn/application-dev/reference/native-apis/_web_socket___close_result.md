@@ -1,4 +1,4 @@
-# OH_NetStack_WebsocketClient_CloseResult
+# WebSocket_CloseResult
 
 
 ## 概述
