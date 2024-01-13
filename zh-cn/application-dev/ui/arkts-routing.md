@@ -262,7 +262,7 @@ struct Home {
 
 >**说明：**
 >
->当使用router.back()方法返回到指定页面时，该页面会被重新压入栈顶，而原栈顶页面（包括）到指定页面（不包括）之间的所有页面栈都将被销毁。
+>当使用router.back()方法返回到指定页面时，原栈顶页面（包括）到指定页面（不包括）之间的所有页面栈都将从栈中弹出并销毁。
 >
 > 另外，如果使用router.back()方法返回到原来的页面，原页面不会被重复创建，因此使用\@State声明的变量不会重复声明，也不会触发页面的aboutToAppear()生命周期回调。如果需要在原页面中使用返回页面传递的自定义参数，可以在需要的位置进行参数解析。例如，在onPageShow()生命周期回调中进行参数解析。
 
@@ -376,7 +376,7 @@ function onBackClick() {
 
 ## 命名路由
 
-在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute)来实现。
+在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10)来实现。
 
   **图4** 命名路由跳转  
 
