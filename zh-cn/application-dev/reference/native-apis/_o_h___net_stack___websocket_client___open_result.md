@@ -1,4 +1,4 @@
-# OH_NetStack_WebsocketClient_OpenResult
+# WebSocket_OpenResult
 
 
 ## 概述
