@@ -108,28 +108,28 @@ export class WaterFlowDataSource implements IDataSource {
   // 通知控制器数据增加
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
+      listener.onDataAdd(index)
     })
   }
 
   // 通知控制器数据变化
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
+      listener.onDataChange(index)
     })
   }
 
   // 通知控制器数据删除
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDeleted(index)
+      listener.onDataDelete(index)
     })
   }
 
   // 通知控制器数据位置变化
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMoved(from, to)
+      listener.onDataMove(from, to)
     })
   }
 
