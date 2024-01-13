@@ -28,8 +28,8 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 | 权限名                         | 说明                                       | 授权方式   |
 | ------------------------------ | ------------------------------------------ | ---------- |
-| ohos.permission.READ_IMAGEVIDEO     | 允许应用读取用户外部存储中的图片和视频媒体文件信息。 | user_grant |
-| ohos.permission.WRITE_IMAGEVIDEO    | 允许应用读写用户外部存储中的图片和视频媒体文件信息。 | user_grant |
+| ohos.permission.READ_IMAGEVIDEO     | 允许应用读取媒体库的图片和视频媒体文件信息。 | user_grant |
+| ohos.permission.WRITE_IMAGEVIDEO    | 允许应用读写媒体库的图片和视频媒体文件信息。 | user_grant |
 
 以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
