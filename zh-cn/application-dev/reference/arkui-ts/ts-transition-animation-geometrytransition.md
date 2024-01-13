@@ -14,7 +14,7 @@ geometryTransition用于组件内隐式共享元素转场，在组件显示切�
 
 > **说明：**
 >
-> [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线跟随[animateTo]((ts-explicit-animation.md))中的配置，不支持[animation](ts-animatorproperty.md)隐式动画。
+> [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线跟随[animateTo](ts-explicit-animation.md)中的配置，不支持[animation](ts-animatorproperty.md)隐式动画。
 
 ## 示例
 
