@@ -7,7 +7,11 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 应用程序包可以只包含一个基础的entry包，也可以包含一个基础的entry包和多个功能性的feature包。
 
-## 场景描述
+## 使用场景
+
+- 单HAP场景：
+
+- 多HAP场景：
 
 方便开发者模块化的管理应用，好的应用一般都是模块化管理，模块之间属于松耦合关系。多HAP方便了开发者将业务划分成多个模块，每个模块放到独立的HAP中。例如支付类应用，有统一的主界面，主界面管理“扫一扫”、“收付款”、“消息”、“理财”等各个模块。其中主界面管理其他模块的逻辑在Entry包中实现，而“扫一扫”、“收付款”、“消息”和“理财”等模块在不同的Feature包中实现。可以同时开发多个Feature包，能够实现Feature包单独的开发测试，最终由Entry包统一集成Feature包的特性。
 
@@ -15,40 +19,37 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 约束限制
 
-- App Pack包不能直接安装到设备上，只是上架应用市场的单元。
+- 不支持导出接口和ArkUI组件，给其他模块使用。
 
-- App Pack包打包时会对每个HAP在json文件中的配置进行校验，确保bundleName、versionCode等标签取值相同，详见[App打包时的HAP合法性校验](../tools/packing-tool.md#app打包指令)。
+- 多HAP场景下，App Pack包中同一设备类型的所有HAP中必须有且只有一个Entry类型的HAP，Feature类型的HAP可以有一个或者多个，也可以没有。
 
-- App Pack包中同一设备类型的所有HAP中必须有且只有一个Entry类型的HAP，Feature类型的HAP可以有一个或者多个，也可以没有。
+- 多HAP场景下，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、versionName、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，同一设备类型的所有HAP对应的moduleName标签必须唯一，工程内的HAP包打包生成App包时，会对上述参数配置进行校验。
 
-- App Pack包中的每个HAP必须配置moduleName标签，同一设备类型的所有HAP对应的moduleName标签必须唯一。
-
-- 同一应用的所有HAP签名证书要保持一致。上架应用市场是以App Pack的形式上架，并对其进行了签名。应用市场分发时会将所有HAP从App Pack中拆分出来，同时对其中的所有HAP进行重签名，这样保证了所有HAP签名证书的一致性。在调试阶段，开发者通过命令行或IDE将HAP安装到设备上时要保证所有HAP签名证书一致，否则会出现安装失败的问题。
+- 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack的形式上架，并对其进行了签名。应用市场分发时会将所有HAP从App Pack中拆分出来，同时对其中的所有HAP进行重签名，这样保证了所有HAP签名证书的一致性。在调试阶段，开发者通过命令行或IDE将HAP安装到设备上时要保证所有HAP签名证书一致，否则会出现安装失败的问题。
 
 ## 创建
 
 1. 创建工程（详情参见[构建第一个ArkTS应用](start-with-ets-stage.md)。
 2. 若想新建一个HAP，请在工程目录上点击鼠标右键，选择New > Module，如下图所示。
 
-<div align="center">
+
 
 ![create-new-module](figures/create-new-module.png)
 
 **图1** 新建模块流程
 
-</div>
 
 3. 在弹出的对话框中选择Empty Ability，点击Next。
    
 4. 进入模块配置界面，可以给新建的模块命名，配置完成之后，点击Next。
 
-<div align="center">
+
 
 ![module-config](figures/module-config.png)
 
 **图2** 模块配置
 
-</div>
+
 
 5. 进入Ability配置界面，给Ability命名之后，点击Finish即可创建一个新的HAP。
 
@@ -56,13 +57,13 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 多HAP的开发调试与发布部署流程如下图所示。
 
-<div align="center">
+
 
 ![hap-release](figures/hap-release.png)
 
 **图3** 多HAP的开发调试与发布部署流程
 
-</div>
+
 
 通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/customized-multi-targets-and-products-0000001430013853-V3?catalogVersion=V3)。
 
