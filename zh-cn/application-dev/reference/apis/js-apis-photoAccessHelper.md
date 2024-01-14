@@ -1987,9 +1987,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-
-```
+该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)、[MediaAssetsChangeRequest](#mediaassetschangerequest11)和[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的接口。
 
 ### release
 
@@ -3624,7 +3622,7 @@ async function example() {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let editdata = await photoAsset.requestEditData();
+    let editdata: string = await photoAsset.requestEditData();
     console.info('Editdata is ' + editdata);
   } catch (err) {
     console.error('requestEditDataPromiseDemo failed with error: ' + err);
@@ -3666,7 +3664,25 @@ getEditData(): Promise&lt;MediaAssetEditData&gt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  try {
+    console.info('getEditDataDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let assetEditData: photoAccessHelper.MediaAssetEditData = await photoAsset.getEditData();
+    let data: string = assetEditData.data;
+    console.info('edit data is ' + data);
+  } catch (err) {
+    console.error('getEditDataDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### requestSource<sup>11+</sup>
@@ -5881,7 +5897,7 @@ constructor(compatibleFormat: string, formatVersion: string)
 **示例：**
 
 ```ts
-
+let assetEditData: photoAccessHelper.MediaAssetEditData = new photoAccessHelper.MediaAssetEditData('system', '1.0');
 ```
 
 ## MediaAssetChangeRequest<sup>11+</sup>
@@ -5916,7 +5932,19 @@ constructor(asset: PhotoAsset)
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('MediaAssetChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+}
 ```
 
 ### createImageAssetRequest<sup>11+</sup>
@@ -5955,7 +5983,18 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('createImageAssetRequestDemo');
+  try {
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('createImageAssetRequest successfully');
+  } catch (err) {
+    console.error('createImageAssetRequest failed with error: ' + err);
+  }
+}
 ```
 
 ### createVideoAssetRequest<sup>11+</sup>
@@ -5994,7 +6033,18 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('createVideoAssetRequestDemo');
+  try {
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('createVideoAssetRequest successfully');
+  } catch (err) {
+    console.error('createVideoAssetRequest failed with error: ' + err);
+  }
+}
 ```
 
 ### createAssetRequest<sup>11+</sup>
@@ -6040,7 +6090,20 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, testFileName);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('createAssetRequest successfully');
+  } catch (err) {
+    console.error('createAssetRequest failed with error: ' + err);
+  }
+}
 ```
 
 ### createAssetRequest<sup>11+</sup>
@@ -6078,7 +6141,24 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let options: photoAccessHelper.CreateOptions = {
+      title: 'testPhoto'
+    }
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension, options);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('createAssetRequest successfully');
+  } catch (err) {
+    console.error('createAssetRequest failed with error: ' + err);
+  }
+}
 ```
 
 ### deleteAssets<sup>11+</sup>
@@ -6117,7 +6197,23 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('deleteAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+    await phAccessHelper.deleteAssets(context, photoAssetList);
+  } catch (err) {
+    console.error('deleteAssets failed with error: ' + err);
+  }
+}
 ```
 
 ### deleteAssets<sup>11+</sup>
@@ -6157,7 +6253,23 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('deleteAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getFirstObject();
+    await phAccessHelper.deleteAssets(context, [asset.uri]);
+  } catch (err) {
+    console.error('deleteAssets failed with error: ' + err);
+  }
+}
 ```
 
 ### getAsset<sup>11+</sup>
@@ -6188,7 +6300,19 @@ getAsset(): PhotoAsset
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('getAssetDemo');
+  try {
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    let asset: photoAccessHelper.PhotoAsset = assetChangeRequest.getAsset();
+    console.info('create asset successfully with uri = ' + asset.uri);
+  } catch (err) {
+    console.error('getAssetDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### setFavorite<sup>11+</sup>
@@ -6220,7 +6344,26 @@ setFavorite(favoriteState: boolean): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+async function example() {
+  console.info('setFavoriteDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setFavorite(true);
+  phAccessHelper.applyChanges().then(() => {
+    console.info('apply setFavorite successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setFavorite failed with error:' + err);
+  });
+}
 ```
 
 ### setHidden<sup>11+</sup>
@@ -6252,7 +6395,26 @@ setHidden(hiddenState: boolean): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+async function example() {
+  console.info('setHiddenDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setHidden(true);
+  phAccessHelper.applyChanges().then(() => {
+    console.info('apply setHidden successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setHidden failed with error:' + err);
+  });
+}
 ```
 
 ### setUserComment<sup>11+</sup>
@@ -6284,7 +6446,27 @@ setUserComment(userComment: string): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+async function example() {
+  console.info('setUserCommentDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  let userComment: string = 'test_set_user_comment';
+  assetChangeRequest.setUserComment(userComment);
+  phAccessHelper.applyChanges().then(() => {
+    console.info('apply setUserComment successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setUserComment failed with error:' + err);
+  });
+}
 ```
 
 ### setTitle<sup>11+</sup>
@@ -6318,7 +6500,27 @@ title参数规格为：
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+async function example() {
+  console.info('setTitleDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  let newTitle: string = 'newTitle';
+  assetChangeRequest.setTitle(newTitle);
+  phAccessHelper.applyChanges().then(() => {
+    console.info('apply setTitle successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setTitle failed with error:' + err);
+  });
+}
 ```
 
 ### setEditData<sup>11+</sup>
@@ -6350,7 +6552,31 @@ setEditData(editData: MediaAssetEditData): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
+async function example() {
+  console.info('setEditDataDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+
+  let assetEditData: photoAccessHelper.MediaAssetEditData = new photoAccessHelper.MediaAssetEditData('system', '1.0');
+  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+  assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+  assetEditData.data = '123456';
+  assetChangeRequest.setEditData(assetEditData);
+  phAccessHelper.applyChanges().then(() => {
+    console.info('apply setEditData successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setEditData failed with error:' + err);
+  });
+}
 ```
 
 ### getWriteCacheHandler<sup>11+</sup>
@@ -7209,6 +7435,8 @@ title参数规格为：
 ## MediaChangeRequest<sup>11+</sup>
 
 媒体变更请求，资产变更请求和相册变更请求的父类型。
+
+**注意**：媒体变更请求需要在调用[applyChanges](#applychanges11)后才会提交生效。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
