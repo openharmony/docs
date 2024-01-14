@@ -1213,7 +1213,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1281,7 +1281,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1479,7 +1479,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1543,7 +1543,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -2019,7 +2019,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **示例：**
 
-该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)、[MediaAssetsChangeRequest](#mediaassetschangerequest11)和[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的接口。
+该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)、[MediaAssetsChangeRequest](#mediaassetschangerequest11)和[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的接口示例。
 
 ### release
 
@@ -5704,7 +5704,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11-2)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5771,7 +5771,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11-2)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5985,7 +5985,7 @@ async function example() {
 | ------------ | ------ | ---- | ---- | ------- |
 | compatibleFormat | string | 是    | 是    | 编辑数据的格式。    |
 | formatVersion | string | 是    | 是   | 编辑数据格式的版本。    |
-| data | string | 是    | 是   | 编辑数据。    |
+| data | string | 是    | 是   | 编辑数据的内容。    |
 
 ### constructor<sup>11+</sup>
 
@@ -6385,7 +6385,7 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let asset: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getFirstObject();
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [asset.uri]);
     console.info('deleteAssets successfully');
   } catch (err) {
@@ -6788,7 +6788,7 @@ async function example() {
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
     let extension: string = 'jpg';
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension, options);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
     // 需要确保fileUri对应的资源存在
     let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
@@ -6835,7 +6835,7 @@ async function example() {
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
     let extension: string = 'jpg';
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension, options);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
     let buffer: ArrayBuffer = new ArrayBuffer(2048);
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, buffer);
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -7155,7 +7155,7 @@ async function example() {
 
 ### deleteAlbums<sup>11+</sup>
 
-static deleteAlbums(context: Context, albums: Array<Album>): Promise&lt;void&gt;
+static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 删除相册，使用Promise方式返回结果。
 
