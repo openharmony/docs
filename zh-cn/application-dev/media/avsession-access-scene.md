@@ -118,7 +118,6 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
     });
    }
 ```
-
 ### 歌词
 
 对于长音频来说，播控中心提供了歌词的展示页面，对于应用来说，接入也比较简单，只需要把歌词内容设置给系统。播控中心会解析歌词内容，并根据播放进度进行同步的刷新。
@@ -146,26 +145,9 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
   }
 ```
 
-### 历史歌单
-
-历史歌单（播放列表）的接入，需要应用先接入意图框架支持MUSIC_PLAYBACK的能力（注册后台模式的PlayMusicList意图），并实现相应的意图调用接口，具体参考意图框架。
-注册后台模式的PlayMusicList意图后，当系统启动历史歌单播放时，应用同样会在意图调用接口中获取到歌单的启动参数。
-
-音乐类应用在播放内容时，可以通过setAVMetadata接口进行歌单的设置，歌单由这几个信息组成：
-
-- avQueueName: 歌单的名称
-- avQueueId: 歌单的唯一标识
-- avQueueImage: 歌单的图片资源
-
-当应用向系统设置歌单后，用户在播控中心界面操作后，可以针对歌单进行播放控制，系统会将歌单的唯一标识传回应用。
-
-歌单启动播放后，应用内仍然通过AVSession的控制命令
-
-需要注意的是：
-1. 应用接入历史歌单，就相当于接入了系统后台冷启动播放。
-2. 若应用只注册后台模式的PlayMusicList意图，但没有通过setAVMetadata设置歌单内容，请务必支持没有歌单唯一标识的PlayMusicList意图后台播放，系统后台冷启动会启动空歌单Id的歌单意图播放，由应用来决定播放内容。
-3. 若应用注册后台模式的PlayMusicList意图，且通过setAVMetadata设置歌单内容，系统后台冷启动会启动对应歌单播放。
-
+### 媒体资源金标
+对于长音频，播控中心提供了媒体资源金标的展示，媒体资源金标又可称为应用媒体音频音源的标识，目前暂时只支持展示AudioVivid标识。
+对于应用来说，接入只需要在AVMetadata中通知系统，当前播放音频的音源标识，播控就会同步展示。
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
 
@@ -175,20 +157,18 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
     let type: AVSessionManager.AVSessionType = 'audio';
     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // 把歌单信息设置给AVSession
+    // 把媒体音源信息设置给AVSession
     let metadata: AVSessionManager.AVMetadata = {
-      // 下面内容均由应用指定
-      assetId: '0', 
-      avQueueName: 'myQueue',
-      avQueueId: 'myQueue123',
-      avQueueImage: "PIXELMAP_OBJECT",
+      assetId: '0',
+      // 标识该媒体音源是AudioVivid
+      displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
     };
     session.setAVMetadata(metadata).then(() => {
       console.info(`SetAVMetadata successfully`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
-    // 上报播放状态，参考播放状态
+
   }
 ```
 
@@ -433,7 +413,7 @@ async function unregisterSessionListener() {
     // 应用注册循环模式的控制监听
     session.on('setLoopMode', (mode) => {
       console.info(`on setLoopMode ${mode}`);
-      // 应用收到收藏命令后，切换对应的循环模式
+      // 应用收到设置循环模式后，切换对应的循环模式
     });
 
   }
