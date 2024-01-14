@@ -558,7 +558,7 @@ async function example() {
 }
 ```
 
-### createAlbum
+### createAlbum<sup>(deprecated)</sup>
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
@@ -569,6 +569,10 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[createAlbumRequest](#createalbumrequest11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -612,7 +616,7 @@ async function example() {
 }
 ```
 
-### createAlbum
+### createAlbum<sup>(deprecated)</sup>
 
 createAlbum(name: string): Promise&lt;Album&gt;
 
@@ -623,6 +627,10 @@ createAlbum(name: string): Promise&lt;Album&gt;
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[createAlbumRequest](#createalbumrequest11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -671,13 +679,17 @@ async function example() {
 }
 ```
 
-### deleteAlbums
+### deleteAlbums<sup>(deprecated)</sup>
 
 deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除相册，使用callback方式返回结果。
 
 删除相册前需先确保相册存在，只能删除用户相册。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAlbums](#deletealbums11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -731,13 +743,17 @@ async function example() {
 }
 ```
 
-### deleteAlbums
+### deleteAlbums<sup>(deprecated)</sup>
 
 deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 删除相册，使用Promise方式返回结果。
 
 删除相册前需先确保相册存在，只能删除用户相册。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAlbums](#deletealbums11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1189,11 +1205,15 @@ async function getHiddenAlbumsView() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除媒体文件，删除的文件进入到回收站，使用callback方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1253,11 +1273,15 @@ async function example() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1447,11 +1471,15 @@ async function example() {
 }
 ```
 
-### createDeleteRequest
+### createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 创建一个弹出框来删除照片，删除的文件进入到回收站，使用callback方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1507,11 +1535,15 @@ async function example() {
 }
 ```
 
-### createDeleteRequest
+### createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 创建一个弹出框来删除照片，删除的文件进入到回收站，使用Promise方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -2297,11 +2329,15 @@ async function example() {
 }
 ```
 
-### open
+### open<sup>(deprecated)</sup>
 
 open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。
 
 **注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2348,11 +2384,15 @@ async function example() {
 }
 ```
 
-### open
+### open<sup>(deprecated)</sup>
 
 open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。
 
 **注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2407,11 +2447,15 @@ async function example() {
 }
 ```
 
-### getReadOnlyFd
+### getReadOnlyFd<sup>(deprecated)</sup>
 
 getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 以只读方式打开当前文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。
 
 **注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2460,11 +2504,15 @@ async function example() {
 }
 ```
 
-### getReadOnlyFd
+### getReadOnlyFd<sup>(deprecated)</sup>
 
 getReadOnlyFd(): Promise&lt;number&gt;
 
 以只读方式打开当前文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。
 
 **注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2516,11 +2564,15 @@ async function example() {
 }
 ```
 
-### close
+### close<sup>(deprecated)</sup>
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2571,11 +2623,15 @@ async function example() {
 }
 ```
 
-### close
+### close<sup>(deprecated)</sup>
 
 close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2792,11 +2848,15 @@ async function example() {
 }
 ```
 
-### setFavorite
+### setFavorite<sup>(deprecated)</sup>
 
 setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setFavorite](#setfavorite11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2847,11 +2907,15 @@ async function example() {
 }
 ```
 
-### setFavorite
+### setFavorite<sup>(deprecated)</sup>
 
 setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setFavorite](#setfavorite11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2906,13 +2970,17 @@ async function example() {
 }
 ```
 
-### setHidden
+### setHidden<sup>(deprecated)</sup>
 
 setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 将文件设置为隐私文件，使用callback方式返回异步结果。
 
 隐私文件存在隐私相册中，用户通过隐私相册去获取隐私文件后可以通过设置hiddenState为false来从隐私相册中移除。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setHidden](#sethidden11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2963,13 +3031,17 @@ async function example() {
 }
 ```
 
-### setHidden
+### setHidden<sup>(deprecated)</sup>
 
 setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 将文件设置为隐私文件，使用promise方式返回异步结果。
 
 隐私文件存在隐私相册中，用户通过隐私相册去获取隐私文件后可以通过设置hiddenState为false来从隐私相册中移除。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setHidden](#sethidden11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -3154,11 +3226,15 @@ async function example() {
 }
 ```
 
-### setUserComment
+### setUserComment<sup>(deprecated)</sup>
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
 修改图片或者视频的备注信息，该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setUserComment](#setusercomment11)替代。
 
 **注意**：此接口只可修改图片或者视频的备注信息。
 
@@ -3215,11 +3291,15 @@ async function example() {
 }
 ```
 
-### setUserComment
+### setUserComment<sup>(deprecated)</sup>
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 修改图片或者视频的备注信息，该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setUserComment](#setusercomment11)替代。
 
 **注意**：此接口只可修改图片或者视频的备注信息。
 
@@ -5226,11 +5306,15 @@ async function example() {
 }
 ```
 
-### addAssets
+### addAssets<sup>(deprecated)</sup>
 
 addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[addAssets](#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5284,11 +5368,15 @@ async function example() {
 }
 ```
 
-### addAssets
+### addAssets<sup>(deprecated)</sup>
 
 addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[addAssets](#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5346,11 +5434,15 @@ async function example() {
 }
 ```
 
-### removeAssets
+### removeAssets<sup>(deprecated)</sup>
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[removeAssets](#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5404,11 +5496,15 @@ async function example() {
 }
 ```
 
-### removeAssets
+### removeAssets<sup>(deprecated)</sup>
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[removeAssets](#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5466,11 +5562,15 @@ async function example() {
 }
 ```
 
-### recoverAssets
+### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[recoverAssets](#recoverassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -5527,11 +5627,15 @@ async function example() {
 }
 ```
 
-### recoverAssets
+### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[recoverAssets](#recoverassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -5592,11 +5696,15 @@ async function example() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5655,11 +5763,15 @@ async function example() {
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5722,11 +5834,15 @@ async function example() {
 }
 ```
 
-### setCoverUri
+### setCoverUri<sup>(deprecated)</sup>
 
 setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置相册封面，该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[setCoverUri](#setcoveruri11)替代。
 
 **注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
 
@@ -5785,11 +5901,15 @@ async function example() {
 }
 ```
 
-### setCoverUri
+### setCoverUri<sup>(deprecated)</sup>
 
 setCoverUri(uri: string): Promise&lt;void&gt;
 
 设置相册封面，该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[setCoverUri](#setcoveruri11)替代。
 
 **注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
 
