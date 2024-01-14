@@ -14,7 +14,7 @@ The apps developed using the SDK of API version 9 or later must have the **ohos.
 
 **References**
 
-[ohos.permission.LOCATION](../security/permission-list.md#ohospermissionlocation)
+[ohos.permission.LOCATION](../security/AccessToken/permissions-for-all.md#ohospermissionlocation)
 
 
 ## What can I do to prevent the app from crashing when it is started again after the user denies the permission requested? (API version 9)
@@ -35,7 +35,7 @@ The apps developed using the SDK of API version 9 or later must have the **ohos.
 
 **References**
 
-[Access Control (Permission) Overview](../security/accesstoken-overview.md)
+[Application Permission Management Overview](../security/AccessToken/access-token-overview.md)
 
 ## What are the differences between extensionabilities and requestpermissions in the module.json5 file? (API version 9)
 
