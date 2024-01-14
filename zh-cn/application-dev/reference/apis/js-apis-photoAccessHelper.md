@@ -5990,9 +5990,9 @@ async function example() {
     let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
     await phAccessHelper.applyChanges(assetChangeRequest);
-    console.info('createImageAssetRequest successfully');
+    console.info('apply createImageAssetRequest successfully');
   } catch (err) {
-    console.error('createImageAssetRequest failed with error: ' + err);
+    console.error('createImageAssetRequestDemo failed with error: ' + err);
   }
 }
 ```
@@ -6040,9 +6040,9 @@ async function example() {
     let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4';
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, fileUri);
     await phAccessHelper.applyChanges(assetChangeRequest);
-    console.info('createVideoAssetRequest successfully');
+    console.info('apply createVideoAssetRequest successfully');
   } catch (err) {
-    console.error('createVideoAssetRequest failed with error: ' + err);
+    console.error('createVideoAssetRequestDemo failed with error: ' + err);
   }
 }
 ```
@@ -6099,9 +6099,9 @@ async function example() {
     let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
     await phAccessHelper.applyChanges(assetChangeRequest);
-    console.info('createAssetRequest successfully');
+    console.info('apply createAssetRequest successfully');
   } catch (err) {
-    console.error('createAssetRequest failed with error: ' + err);
+    console.error('createAssetRequestDemo failed with error: ' + err);
   }
 }
 ```
@@ -6121,7 +6121,7 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 | context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如：{title: 'testPhoto'}。              |
 
 **返回值：**
 
@@ -6154,9 +6154,9 @@ async function example() {
     let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
     await phAccessHelper.applyChanges(assetChangeRequest);
-    console.info('createAssetRequest successfully');
+    console.info('apply createAssetRequest successfully');
   } catch (err) {
-    console.error('createAssetRequest failed with error: ' + err);
+    console.error('createAssetRequestDemo failed with error: ' + err);
   }
 }
 ```
@@ -6209,9 +6209,10 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-    await phAccessHelper.deleteAssets(context, photoAssetList);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, photoAssetList);
+    console.info('deleteAssets successfully');
   } catch (err) {
-    console.error('deleteAssets failed with error: ' + err);
+    console.error('deleteAssetsDemo failed with error: ' + err);
   }
 }
 ```
@@ -6265,9 +6266,10 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getFirstObject();
-    await phAccessHelper.deleteAssets(context, [asset.uri]);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [asset.uri]);
+    console.info('deleteAssets successfully');
   } catch (err) {
-    console.error('deleteAssets failed with error: ' + err);
+    console.error('deleteAssetsDemo failed with error: ' + err);
   }
 }
 ```
@@ -6625,7 +6627,7 @@ async function example() {
     await fs.close(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
-    console.error('getWriteCacheHandler failed with error: ' + err);
+    console.error('getWriteCacheHandlerDemo failed with error: ' + err);
   }
 }
 ```
@@ -6673,7 +6675,7 @@ async function example() {
     await phAccessHelper.applyChanges(assetChangeRequest);
     console.info('addResourceByFileUri successfully');
   } catch (err) {
-    console.error('addResourceByFileUri failed with error: ' + err);
+    console.error('addResourceByFileUriDemo failed with error: ' + err);
   }
 }
 ```
@@ -6719,7 +6721,7 @@ async function example() {
     await phAccessHelper.applyChanges(assetChangeRequest);
     console.info('addResourceByArrayBuffer successfully');
   } catch (err) {
-    console.error('addResourceByArrayBuffer failed with error: ' + err);
+    console.error('addResourceByArrayBufferDemo failed with error: ' + err);
   }
 }
 ```
@@ -6961,7 +6963,19 @@ constructor(album: Album)
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('MediaAlbumChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+  let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+}
 ```
 
 ### createAlbumRequest<sup>11+</sup>
@@ -7006,7 +7020,17 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('createAlbumRequestDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('apply createAlbumRequest successfully');
+  } catch (err) {
+    console.error('createAlbumRequestDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### deleteAlbums<sup>11+</sup>
@@ -7050,7 +7074,24 @@ static deleteAlbums(context: Context, albums: Array<Album>): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('deleteAlbumsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbums(context, [album]);
+    console.info('deleteAlbums successfully');
+  } catch (err) {
+    console.error('deleteAlbumsDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### getAlbum<sup>11+</sup>
@@ -7148,7 +7189,18 @@ setAlbumName(name: string): void
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('getAlbumDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
+    console.info('create album successfully with uri = ' + album.uri);
+  } catch (err) {
+    console.error('getAlbumDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### addAssets<sup>11+</sup>
@@ -7178,7 +7230,27 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('addAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    albumChangeRequest.addAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('addAssets successfully');
+  } catch (err) {
+    console.error('addAssetsDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### removeAssets<sup>11+</sup>
@@ -7208,7 +7280,29 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('removeAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.removeAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('removeAssets successfully');
+  } catch (err) {
+    console.error('removeAssetsDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### moveAssets<sup>11+</sup>
@@ -7242,7 +7336,34 @@ moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('moveAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    if (albumFetchResult.isAfterLast()) {
+      console.error('lack of album to be moved into');
+      return;
+    }
+    let nextAlbum: photoAccessHelper.Album = await albumFetchResult.getNextObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.moveAssets([asset], nextAlbum);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('moveAssets successfully');
+  } catch (err) {
+    console.error('moveAssetsDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### recoverAssets<sup>11+</sup>
@@ -7275,7 +7396,29 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('recoverAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.recoverAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('recoverAssets successfully');
+  } catch (err) {
+    console.error('recoverAssetsDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### deleteAssets<sup>11+</sup>
@@ -7310,7 +7453,29 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('deleteAssetsPermanentlyDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.deleteAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('succeed to deleteAssets permanently');
+  } catch (err) {
+    console.error('deleteAssetsPermanentlyDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### placeBefore<sup>11+</sup>
@@ -7342,7 +7507,24 @@ placeBefore(album: Album): void;
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('placeBeforeDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let firstAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (albumFetchResult.isAfterLast()) {
+      console.error('lack of album to place before');
+      return;
+    }
+    let secondAlbum: photoAccessHelper.Album = await albumFetchResult.getNextObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(secondAlbum);
+    albumChangeRequest.placeBefore(firstAlbum);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('placeBefore successfully');
+  } catch (err) {
+    console.error('placeBeforeDemo failed with error: ' + err);
+  }
+}
 ```
 
 ## MemberType
