@@ -7242,7 +7242,18 @@ getAlbum(): Album
 **示例：**
 
 ```ts
-
+async function example() {
+  console.info('getAlbumDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
+    console.info('create album successfully with uri = ' + album.albumUri);
+  } catch (err) {
+    console.error('getAlbumDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### setCoverUri<sup>11+</sup>
@@ -7274,7 +7285,29 @@ setCoverUri(coverUri: string): void
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
+async function example() {
+  console.info('setCoverUriDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.setCoverUri(asset.uri);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('setCoverUri successfully');
+  } catch (err) {
+    console.error('setCoverUriDemo failed with error: ' + err);
+  }
+}
 ```
 
 ### setAlbumName<sup>11+</sup>
@@ -7310,15 +7343,17 @@ setAlbumName(name: string): void
 
 ```ts
 async function example() {
-  console.info('getAlbumDemo');
+  console.info('setAlbumNameDemo');
   try {
-    let albumName: string = 'newAlbumName' + new Date().getTime();
-    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    let newAlbumName: string = 'newAlbumName' + new Date().getTime();
+    albumChangeRequest.setAlbumName(newAlbumName);
     await phAccessHelper.applyChanges(albumChangeRequest);
-    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
-    console.info('create album successfully with uri = ' + album.uri);
+    console.info('setAlbumName successfully');
   } catch (err) {
-    console.error('getAlbumDemo failed with error: ' + err);
+    console.error('setAlbumNameDemo failed with error: ' + err);
   }
 }
 ```
@@ -7978,3 +8013,16 @@ title参数规格为：
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
 | isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。 |
+
+## SourceMode<sup>11+</sup>
+
+枚举，图片或视频资源的读取类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| ORIGINAL_MODE |  0 |  读取源文件。 |
+| EDITED_MODE |  1 |  读取编辑后的文件。|
