@@ -1,33 +1,28 @@
 # ArkUI子系统ChangeLog
 
-OpenHarmony 4.0.6.1 版本相较于OpenHarmony 之前的版本，navigation兼容性变更如下。
+OpenHarmony 4.0.6.1 版本相较于OpenHarmony 之前的版本，Navigation、NavDestination 组件默认行为变更如下。
 
-## Navigation容器组件忽略安全区
+## Navigation、NavDestination组件默认扩展到非安全区
 
-Navigation配置忽略安全区后，在满足安全区可拓展的条件下背景色可扩展到非安全区。
+满足安全区可拓展的条件下，Navigation、NavDestination组件默认扩展到非安全区
 
 **访问级别**
 
 公开接口
 
-**变更原因**
-
-该变更为兼容性变更。组件收到忽略安全区配置项后，忽略安全区配置项同时设置给内部封装的容器组件，包括主页容器组件NavBar，NavDestination切换容器组件，NavDestination容器组件。Navigation与NavDestination容器大小撑满整个屏幕，背景色延伸到状态栏和导航栏。
-
-
 **变更影响**
 
-变更前：Navigation容器组件未配置忽略安全区，Navigation容器组件未被撑大
+变更前：Navigation、NavDestination组件默认不会扩展到非安全区
 
-变更后：Navigation容器组件默认配置忽略安全区，Navigation容器组件被撑大。Navigation与NavDestination默认配置.expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])。
+变更后：Navigation与NavDestination组件默认扩展到非安全区。组件大小撑满整个屏幕，背景色延伸到顶部状态栏和底部导航栏。
 
 **API Level**
 
-10
+11
 
 **变更发生版本**
 
-从OpenHarmony SDK 4.0.6.1开始。
+OpenHarmony SDK 4.0.6.1
 
 **变更的接口/组件**
 
