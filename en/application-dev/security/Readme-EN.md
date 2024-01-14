@@ -1,35 +1,14 @@
 # Security
 
-
-- Access Control
-  - [Access Control (Permission) Overview](accesstoken-overview.md)
-  - [Applying for Permissions](accesstoken-guidelines.md)
-  - [Verifying API Access Permissions](permission-verify-guidelines.md)
-  - [Application Permission List](permission-list.md)
-  - [Application Permission Group List](permission-group-list.md)
-- Security Component
-  - [Security Component Overview](security-component-manager-overview.md)
-  - [Security Component Development](security-component-manager-guidelines.md)
-- DLP
-  - [DLP Overview](dlp-overview.md)
-  - [DLP Development](dlp-guidelines.md)
-- User Authentication
-  - [User Authentication Overview](userauth-overview.md)
-  - [User Authentication Development](userauth-guidelines.md)
-- HUKS
-  - [HUKS Overview](huks-overview.md)
-  - [HUKS Development (ArkTS)](huks-guidelines.md)
-  - [HUKS Development (Native)](native-huks-guidelines.md)
-  - [HUKS Cipher Algorithm Specifications](huks-appendix.md)
-- Crypto Framework
-  - [Crypto Framework Overview](cryptoFramework-overview.md)
-  - [Crypto Framework Development](cryptoFramework-guidelines.md)
-- Certificate
-  - [Certificate Overview](cert-overview.md)
-  - [Certificate Development](cert-guidelines.md)
-- Certificate Management
-  - [Certificate Management Development](certManager-guidelines.md)
+- [Access Control](AccessToken/Readme-EN.md)
+- [DLP](DataLossPreventionKit/Readme-EN.md)
+- [User Authentication](UserAuthenticationKit/Readme-EN.md)
+- [HUKS](UniversalKeystoreKit/Readme-EN.md)
+- [Crypto Framework](CryptoArchitectureKit/Readme-EN.md)
+- [Certificate](DeviceCertificateKit/Readme-EN.md)
 - hapsigner
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
-  - [HarmonyAppProvision Configuration File](app-provision-structure.md)
+  - [HarmonyAppProvision File](app-provision-structure.md)
+
+<!--no_check-->
