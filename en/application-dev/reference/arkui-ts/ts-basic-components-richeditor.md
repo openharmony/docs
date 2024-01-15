@@ -20,9 +20,9 @@ RichEditor(value: RichEditorOptions)
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | [RichEditorOptions](#richeditoroptions)  | Yes| Options for initializing the component.|
+| Name  | Type                                   | Mandatory  | Description       |
+| ----- | --------------------------------------- | ---- | ----------- |
+| value | [RichEditorOptions](#richeditoroptions) | Yes   | Options for initializing the component.|
 
 
 ## Attributes
@@ -32,125 +32,124 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 >  **NOTE**
 >
 >  The default value of the **clip** attribute is **true**.
->
 >  The **align** attribute supports only the start, center, and end options.
 
-| Name                     | Type                                                    | Description                                                        |
-| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
-| bindSelectionMenu | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br>options?: [SelectionMenuOptions](#selectionmenuoptions11)<br>} | Custom context menu on text selection.<br> Default value: {<br>  spanType: RichEditorSpanType.TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>}|
-| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
-| enableDataDetector<sup>11+</sup> |boolean| Whether to enable text recognition.<br>Default value: **false**<br>**NOTE**<br>The recognized entity is in the following style settings:<br>fontColor: Color.Blue<br>decoration: {<br>type: TextDecorationType.Underline,<br>color: Color.Blue<br>}<br>For this API to work, the target device must provide the text recognition capability.<br>When **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities are recognized by default.<br>When **copyOptions** is set to **CopyOptions.None**, this API does not take effect.<br>This API does not work for the node text of **addBuilderSpan**.|
-| dataDetectorConfig<sup>11+</sup> |{<br>types: [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br>onDetectResultUpdate: (callback:(result: string) =&gt; void)<br>} | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} <br>**NOTE**<br>This API must be used together with **enableDataDetector**. It takes effect only when **enableDataDetector** is set to **true**.<br>**types**: types of entities that can be recognized from text. Values **null** and **[]** indicate that all types of entities can be recognized.<br> **onDetectResultUpdate**: callback invoked when text recognition succeeds.<br>**result**: text recognition result, in JSON format.|
+| Name                              | Type                                    | Description                                      |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| customKeyboard                   | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
+| bindSelectionMenu                | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br>options?: [SelectionMenuOptions](#selectionmenuoptions11)<br>} | Custom context menu on text selection.<br> Default value: {<br>  spanType: RichEditorSpanType.TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>} |
+| copyOptions                      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed.|
+| enableDataDetector<sup>11+</sup> | boolean                                  | Whether to enable text recognition.<br>Default value: **false**<br>**NOTE**<br>The recognized entity is in the following style settings:<br>fontColor: Color.Blue<br>decoration: {<br>type: TextDecorationType.Underline,<br>color: Color.Blue<br>}<br>For this API to work, the target device must provide the text recognition capability.<br>When **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities are recognized by default.<br>When **copyOptions** is set to **CopyOptions.None**, this API does not take effect.<br>This API does not work for the node text of **addBuilderSpan**.|
+| dataDetectorConfig<sup>11+</sup> | {<br>types: [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br>onDetectResultUpdate: (callback:(result: string) =&gt; void)<br>} | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} <br>**NOTE**<br>This API must be used together with **enableDataDetector**. It takes effect only when **enableDataDetector** is set to **true**.<br>**types**: types of entities that can be recognized from text. Values **null** and **[]** indicate that all types of entities can be recognized.<br> **onDetectResultUpdate**: callback invoked when text recognition succeeds.<br>**result**: text recognition result, in JSON format.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                        | Description                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onReady(callback: () =&gt; void)              | Triggered when initialization of the component is completed.                          |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onReady(callback: () =&gt; void) | Triggered when initialization of the component is completed.                       |
 | onSelect(callback: (value: [RichEditorSelection](#richeditorselection)) =&gt; void) | Triggered when content is selected.<br>If a mouse device is used for selection, this event is triggered when the mouse button is released. If a finger is used for selection, this event is triggered when the finger is released.<br>- **value**: information about all selected spans.|
 | aboutToIMEInput(callback: (value: [RichEditorInsertValue](#richeditorinsertvalue)) =&gt; boolean) | Triggered when content is about to be entered in the input method.<br>- **value**: content to be entered in the input method.|
 | onIMEInputComplete(callback: (value: [RichEditorTextSpanResult](#richeditortextspanresult)) =&gt; void) | Triggered when text input in the input method is complete.<br>- **value**: text span information after text input is completed.|
 | aboutToDelete(callback: (value: [RichEditorDeleteValue](#richeditordeletevalue)) =&gt; boolean) | Triggered when content is about to be deleted in the input method.<br>- **value**: information about the text span where the content to be deleted is located.|
-| onDeleteComplete(callback: () =&gt; void)     | Triggered when deletion in the input method is completed.                                |
+| onDeleteComplete(callback: () =&gt; void) | Triggered when deletion in the input method is completed.                          |
 | onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | Triggered when the paste is about to be completed.<br>**NOTE**<br>The default system paste and drag behaviors are available for text only.<br>You can use this API to overwrite the default system behaviors so that both images and text can be pasted.|
 
 ## RichEditorInsertValue
 
 Describes the text to be inserted.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| insertOffset | number  | Yes| Offset of the text to be inserted.|
-| insertValue | string  | Yes| Content of the text to be inserted.|
+| Name          | Type    | Mandatory  | Description        |
+| ------------ | ------ | ---- | ---------- |
+| insertOffset | number | Yes   | Offset of the text to be inserted.|
+| insertValue  | string | Yes   | Content of the text to be inserted.  |
 
 
 ## RichEditorDeleteValue
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| offset | number  | Yes| Offset of the text to be deleted.|
-| direction | [RichEditorDeleteDirection](#richeditordeletedirection)  | Yes| Direction of the delete operation.|
-| length | number | Yes| Length of the content to be deleted.|
-| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | Yes| Information about the text or image spans to be deleted.|
+| Name                   | Type                                      | Mandatory  | Description                 |
+| --------------------- | ---------------------------------------- | ---- | ------------------- |
+| offset                | number                                   | Yes   | Offset of the text to be deleted.         |
+| direction             | [RichEditorDeleteDirection](#richeditordeletedirection) | Yes   | Direction of the delete operation.           |
+| length                | number                                   | Yes   | Length of the content to be deleted.            |
+| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | Yes   | Information about the text or image spans to be deleted.|
 
 
 ## RichEditorDeleteDirection
 
 Enumerates the directions of the delete operation.
 
-| Name   | Description                         |
-| -------- | ------------------------------ |
-| BACKWARD      | Backward. |
-| FORWARD   | Forward.     |
+| Name      | Description   |
+| -------- | ----- |
+| BACKWARD | Backward.|
+| FORWARD  | Forward.|
 
 
 ## RichEditorTextSpanResult
 
 Provides the text span information.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| spanPosition | [RichEditorSpanPosition](#richeditorspanposition)  | Yes| Span position.|
-| value | string | Yes| Text span content.|
-| textStyle | [RichEditorTextStyleResult](#richeditortextstyleresult) | Yes| Text span style.|
-| offsetInSpan | [number, number] | Yes| Start and end positions of the valid content in the text span.|
-| valueResource<sup>11+</sup> | [Resource](ts-types.md#resource) | No| Content of the **\<SymbolSpan>** component.|
-| SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | No| Style of the **\<SymbolSpan>** component.|
+| Name                           | Type                                      | Mandatory  | Description                    |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
+| spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | Yes   | Span position.               |
+| value                         | string                                   | Yes   | Text span content.             |
+| textStyle                     | [RichEditorTextStyleResult](#richeditortextstyleresult) | Yes   | Text span style.           |
+| offsetInSpan                  | [number, number]                         | Yes   | Start and end positions of the valid content in the text span.|
+| valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | No   | Content of the **\<SymbolSpan>** component.       |
+| SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | No   | Style of the **\<SymbolSpan>** component.     |
 
 
 ## RichEditorSpanPosition
 
 Provides the span position information.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| spanIndex | number  | Yes| Span index.|
-| spanRange | [number, number]  | Yes| Start and end positions of the span content in the **\<RichEditor>** component.|
+| Name       | Type              | Mandatory  | Description                         |
+| --------- | ---------------- | ---- | --------------------------- |
+| spanIndex | number           | Yes   | Span index.                   |
+| spanRange | [number, number] | Yes   | Start and end positions of the span content in the **\<RichEditor>** component.|
 
 ## RichEditorSpanType
 
 Provides the span type information.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| TEXT | number  | Yes| Text span.|
-| IMAGE | number  | Yes| Image span.|
-| MIXED | number  | Yes| Mixed span, which contains both text and imagery.|
+| Name   | Type    | Mandatory  | Description          |
+| ----- | ------ | ---- | ------------ |
+| TEXT  | number | Yes   | Text span.  |
+| IMAGE | number | Yes   | Image span.  |
+| MIXED | number | Yes   | Mixed span, which contains both text and imagery.|
 
 ## RichEditorTextStyleResult
 
 Provides the text span style information returned by the backend.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | Yes| Font color.|
-| fontSize |  number   | Yes| Font size.|
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes| Font style.|
-| fontWeight |  number | Yes| Font weight.|
-| fontFamily  |  string | Yes| Font family.|
-| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Yes| Style and color of the text decorative line.|
+| Name        | Type                                      | Mandatory  | Description          |
+| ---------- | ---------------------------------------- | ---- | ------------ |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor) | Yes   | Font color.       |
+| fontSize   | number                                   | Yes   | Font size.       |
+| fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes   | Font style.       |
+| fontWeight | number                                   | Yes   | Font weight.       |
+| fontFamily | string                                   | Yes   | Font family.       |
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Yes   | Style and color of the text decorative line.|
 
 ## RichEditorImageSpanResult
 
 Provides the image span style information returned by the backend.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| size | [number, number] | Yes| Width and height of the image.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes| Scale mode of the image.|
+| Name           | Type                                      | Mandatory  | Description       |
+| ------------- | ---------------------------------------- | ---- | --------- |
+| size          | [number, number]                         | Yes   | Width and height of the image.|
+| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes   | Vertical alignment mode of the image.|
+| objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | Yes   | Scale mode of the image.  |
 
 
 ## RichEditorOptions
 
 Defines the options for initializing the **\<RichEditor>** component.
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| controller | [RichEditorController](#richeditorcontroller)  | Yes| Controller for the **\<RichEditor>** component.|
+| Name        | Type                                      | Mandatory  | Description     |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| controller | [RichEditorController](#richeditorcontroller) | Yes   | Controller for the **\<RichEditor>** component.|
 
 
 ## RichEditorController
@@ -171,8 +170,8 @@ Obtains the current cursor position.
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type    | Description       |
+| ------ | --------- |
 | number | Cursor position.|
 
 ### setCaretOffset
@@ -183,14 +182,14 @@ Sets the cursor position.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| offset | number | Yes| Offset of the cursor. If the value is out of the text range, the setting fails.|
+| Name   | Type  | Mandatory  | Description                |
+| ------ | ------ | ---- | -------------------- |
+| offset | number | Yes   | Offset of the cursor. If the value is out of the text range, the setting fails.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type     | Description       |
+| ------- | --------- |
 | boolean | Whether the cursor position is set successfully.|
 
 ### addTextSpan
@@ -201,15 +200,15 @@ Adds a text span.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value  | string   | Yes  | Text content.|
-| options  | [RichEditorTextSpanOptions](#richeditortextspanoptions)   | No  | Text options.|
+| Name    | Type                                    | Mandatory  | Description |
+| ------- | ---------------------------------------- | ---- | ----- |
+| value   | string                                   | Yes   | Text content.|
+| options | [RichEditorTextSpanOptions](#richeditortextspanoptions) | No   | Text options.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type    | Description                  |
+| ------ | -------------------- |
 | number | Position of the added text span.|
 
 ### addImageSpan
@@ -220,15 +219,15 @@ Adds an image span.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value  | [PixelMap](../apis/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr) | Yes  | Image content.|
-| options  | [RichEditorImageSpanOptions](#richeditorimagespanoptions)   | No  | Image options.|
+| Name    | Type                                    | Mandatory  | Description |
+| ------- | ---------------------------------------- | ---- | ----- |
+| value   | [PixelMap](../apis/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr) | Yes   | Image content.|
+| options | [RichEditorImageSpanOptions](#richeditorimagespanoptions) | No   | Image options.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type    | Description                  |
+| ------ | -------------------- |
 | number | Position of the added image span.|
 
 ### addBuilderSpan<sup>11+</sup>
@@ -241,25 +240,26 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - You can use [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) to set the index of the builder in the **\<RichEditor>** component (with one character as the unit).
 > - The builder span is not focusable or draggable. It supports some universal attributes and can take up space in the layout or be deleted as an image span. Its length equals a character.
 > - The builder span does not allow for custom menus set through [bindSelectionMenu](#attributes).
-> - The information about the builder span cannot be obtained through [getSpans](#getspans), [getSelection](#getselection11), [onSelect](#events), or [aboutToDelete](#events).
+> - The information about the builder span cannot be obtained through [getSpans](#getspans), [getSelection](#getselection11), [onSelect](#events), or [aboutToDelete](#event).
 > - The builder span cannot be updated using [updateSpanStyle](#updatespanstyle) or [updateParagraphStyle](#updateparagraphstyle11).
 > - Copying or pasting the builder span does not take effect.
 > - The layout constraints of the builder span are passed in from the **\<RichEditor>** component. If the size of the outermost component in the builder span is not set, the size of the **\<RichEditor>** is used as the value of **maxSize**.
 > - The gesture event mechanism of the builder span is the same as the universal gesture event mechanism. If transparent transmission is not set in the builder, only the child components in the builder respond.
 
-The following universal attributes are supported: [size](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#attributes), [margin](ts-universal-attributes-size.md#attributes), [aspectRatio](ts-universal-attributes-layout-constraints.md#attributes), [borderStyle](ts-universal-attributes-border.md#attributes), [borderWidth](ts-universal-attributes-border.md#attributes), [borderColor](ts-universal-attributes-border.md#attributes), [borderRadius](ts-universal-attributes-border.md#attributes), [backgroundColor](ts-universal-attributes-attribute-modifier.md#attributes), [backgroundBlurStyle](ts-universal-attributes-background.md#attributes), [opacity](ts-universal-attributes-opacity.md#attributes), [blur](ts-universal-attributes-image-effect.md#attributes), [backdropBlur](ts-universal-attributes-image-effect.md#attributes), [shadow](ts-universal-attributes-image-effect.md#attributes), [grayscale](ts-universal-attributes-image-effect.md#attributes), [brightness](ts-universal-attributes-image-effect.md#attributes), [saturate](ts-universal-attributes-image-effect.md#attributes), [contrast](ts-universal-attributes-image-effect.md#attributes), [invert](ts-universal-attributes-image-effect.md#attributes), [sepia](ts-universal-attributes-image-effect.md#attributes), [hueRotate](ts-universal-attributes-image-effect.md#attributes), [colorBlend](ts-universal-attributes-image-effect.md#attributes), [sphericalEffect](ts-universal-attributes-image-effect.md#attributes), [lightUpEffect](ts-universal-attributes-image-effect.md#attributes), [pixelStretchEffect](ts-universal-attributes-image-effect.md#attributes), [linearGradientBlur](ts-universal-attributes-image-effect.md#attributes), [clip](ts-universal-attributes-sharp-clipping.md#attributes), [mask](ts-universal-attributes-sharp-clipping.md#attributes), [foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#attributes), [accessibilityGroup](ts-universal-attributes-accessibility.md), [accessibilityText](ts-universal-attributes-accessibility.md), [accessibilityDescription](ts-universal-attributes-accessibility.md), and [accessibilityLevel](ts-universal-attributes-accessibility.md).
+The following universal attributes are supported: [size](ts-universal-attributes-size.md#size), [padding](ts-universal-attributes-size.md#padding), [margin](ts-universal-attributes-size.md#margin), [aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio), [borderStyle](ts-universal-attributes-border.md#borderstyle), [borderWidth](ts-universal-attributes-border.md#borderwidth), [borderColor](ts-universal-attributes-border.md#bordercolor), [borderRadius](ts-universal-attributes-border.md#borderradius), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9), [opacity](ts-universal-attributes-opacity.md), [blur](ts-universal-attributes-image-effect.md#blur), [backdropBlur](ts-universal-attributes-image-effect.md#backdropblur), [shadow](ts-universal-attributes-image-effect.md#shadow), [grayscale](ts-universal-attributes-image-effect.md#grayscale), [brightness](ts-universal-attributes-image-effect.md#brightness), [saturate](ts-universal-attributes-image-effect.md#saturate),
+[contrast](ts-universal-attributes-image-effect.md#contrast), [invert](ts-universal-attributes-image-effect.md#invert), [sepia](ts-universal-attributes-image-effect.md#sepia), [hueRotate](ts-universal-attributes-image-effect.md#huerotate), [colorBlend](ts-universal-attributes-image-effect.md#colorblend8), [sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect10), [lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect10), [pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect10), [linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur10), [clip](ts-universal-attributes-sharp-clipping.md#clip), [mask](ts-universal-attributes-sharp-clipping.md#mask), [foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle), [accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup), [accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext11), [accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription), [accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value  | [CustomBuilder](ts-types.md#custombuilder8)  | Yes  | Custom component.|
-| options  | [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)   | No  | Builder options.|
+| Name    | Type                                    | Mandatory  | Description      |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| value   | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Custom component.    |
+| options | [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) | No   | Builder options.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type    | Description                    |
+| ------ | ---------------------- |
 | number | Position of the added builder span.|
 
 ### addSymbolSpan<sup>11+</sup>
@@ -270,15 +270,15 @@ Adds a symbol span to the **\<Richeditor>** component.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value  | [Resource](ts-types.md#resource)   | Yes  | Content of the symbol span.|
-| options  | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11)   | No  | Options of the symbol span.|
+| Name    | Type                                    | Mandatory  | Description |
+| ------- | ---------------------------------------- | ---- | ----- |
+| value   | [Resource](ts-types.md#resource)         | Yes   | Content of the symbol span.|
+| options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | No   | Options of the symbol span.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type    | Description                   |
+| ------ | --------------------- |
 | number | Position of the added symbol span.|
 
 ### getTypingStyle<sup>11+</sup>
@@ -289,8 +289,8 @@ Obtains the preset typing style.
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
 | [RichEditorTextStyle](#richeditortextstyle) | Preset typing style.|
 
 ### setTypingStyle<sup>11+</sup>
@@ -301,9 +301,9 @@ Sets the typing style.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value  | [RichEditorTextStyle](#richeditortextstyle) | Yes| Typing style to set.|
+| Name  | Type                                    | Mandatory  | Description |
+| ----- | ---------------------------------------- | ---- | ----- |
+| value | [RichEditorTextStyle](#richeditortextstyle) | Yes   | Typing style to set.|
 
 ### updateSpanStyle
 
@@ -317,7 +317,7 @@ Calling this API will not close the custom context menu on selection by default.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | Yes| Text or image span style options.|
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | Yes| Text or image span style options.|
 
 ### updateParagraphStyle<sup>11+</sup>
 
@@ -327,9 +327,9 @@ Updates the paragraph style.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | Yes| Information about the paragraph style.|
+| Name   | Type                                      | Mandatory  | Description        |
+| ----- | ---------------------------------------- | ---- | ---------- |
+| value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | Yes   | Information about the paragraph style.|
 
 ### getSpans
 
@@ -339,14 +339,14 @@ Obtains span information.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description        |
-| ------ | ----------------------------------- | ---- | ---------------- |
-| value  | [RichEditorRange](#richeditorrange) | No  | Range of the target span.|
+| Name  | Type                               | Mandatory  | Description       |
+| ----- | ----------------------------------- | ---- | ----------- |
+| value | [RichEditorRange](#richeditorrange) | No   | Range of the target span.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type                                      | Description          |
+| ---------------------------------------- | ------------ |
 | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | Text and image span information.|
 
 ### deleteSpans
@@ -357,9 +357,9 @@ Deletes the text and image spans in a specified range.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorRange](#richeditorrange) | No| Range of the target spans. If this parameter is left empty, all text and image spans will be deleted.|
+| Name  | Type                               | Mandatory  | Description               |
+| ----- | ----------------------------------- | ---- | ------------------- |
+| value | [RichEditorRange](#richeditorrange) | No   | Range of the target spans. If this parameter is left empty, all text and image spans will be deleted.|
 
 ### getParagraphs<sup>11+</sup>
 
@@ -369,14 +369,14 @@ Obtains the specified paragraphs.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorRange](#richeditorrange) | No| Range of the paragraphs to obtain.|
+| Name  | Type                               | Mandatory  | Description      |
+| ----- | ----------------------------------- | ---- | ---------- |
+| value | [RichEditorRange](#richeditorrange) | No   | Range of the paragraphs to obtain.|
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type                                      | Description      |
+| ---------------------------------------- | -------- |
 | Array\<[RichEditorParagraphResult](#richeditorparagraphresult11)> | Information about the selected paragraphs.|
 
 ### closeSelectionMenu
@@ -405,10 +405,10 @@ If this API is called when the text box is not focused, the selected effect is n
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description        |
-| ------ | ----------------------------------- | ---- | ---------------- |
-| selectionStart  | number | Yes  | Start position of the text selection.|
-| selectionEnd  | number | Yes  | End position of the text selection.|
+| Name           | Type  | Mandatory  | Description   |
+| -------------- | ------ | ---- | ------- |
+| selectionStart | number | Yes   | Start position of the text selection.|
+| selectionEnd   | number | Yes   | End position of the text selection.|
 
 ### getSelection<sup>11+</sup>
 
@@ -420,189 +420,204 @@ Obtains the current text selection.
 
 **Return value**
 
-| Type                     | Description              |
-| ----------------------- | ---------------- |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | Provides information about the selected content.|
 
 ## RichEditorSelection
 
 Provides information about the selected content.
 
-| Name     | Type                                                        | Mandatory| Description      |
-| --------- | ------------------------------------------------------------ | ---- | ---------- |
-| selection | [number, number]                                             | Yes  | Range of the selected.|
-| spans     | Array<[RichEditorTextSpanResult](#richeditortextspanresult)\| [RichEditorImageSpanResult](#richeditorimagespanresult)> | Yes  | Span information.  |
+| Name       | Type                                      | Mandatory  | Description     |
+| --------- | ---------------------------------------- | ---- | ------- |
+| selection | [number, number]                         | Yes   | Range of the selected.  |
+| spans     | Array<[RichEditorTextSpanResult](#richeditortextspanresult)\| [RichEditorImageSpanResult](#richeditorimagespanresult)> | Yes   | Span information.|
 
 
 ## RichEditorUpdateTextSpanStyleOptions
 
 Defines the text span style options.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the text span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the text span whose style needs to be updated. If this parameter is left empty or set to a value beyond the text range, it indicates the end of the text span.|
-| textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes| Text style.|
+| Name       | Type                                      | Mandatory  | Description                             |
+| --------- | ---------------------------------------- | ---- | ------------------------------- |
+| start     | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end       | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, the end of the span will be used as the end position.|
+| textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes   | Text style.                          |
 
+>  **NOTE**
+>
+>  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and the end of the span as **end**.
 
 ## RichEditorUpdateImageSpanStyleOptions
 
 Defines the image span style options.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the image span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the image span whose style needs to be updated. If this parameter is left empty or set to a value beyond the text range, it indicates the end of the image span.|
-| imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes| Image style.|
+| Name        | Type                                      | Mandatory  | Description                             |
+| ---------- | ---------------------------------------- | ---- | ------------------------------- |
+| start      | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end        | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, the end of the span will be used as the end position.|
+| imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes   | Image style.                          |
+
+>  **NOTE**
+>
+>  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and the end of the span as **end**.
 
 ## RichEditorUpdateSymbolSpanStyleOptions<sup>11+</sup>
 
 Defines the symbol span style options.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the symbol span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the symbol span whose style needs to be updated. If this parameter is left empty or set to a value beyond the text range, it indicates the end of the text span.|
-| symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | Yes| Style of the symbol span.|
+| Name         | Type                                      | Mandatory  | Description                             |
+| ----------- | ---------------------------------------- | ---- | ------------------------------- |
+| start       | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end         | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, the end of the span will be used as the end position.|
+| symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | Yes   | Style of the symbol span.                          |
+
+>  **NOTE**
+>
+>  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and the end of the span as **end**.
 
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
 Describes the paragraph style options.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position of the paragraph whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the paragraph whose style needs to be updated. If this parameter is left empty or set to a negative value or any value beyond the text range, it indicates the end of the paragraph.|
-| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | Yes| Paragraph style.|
+| Name   | Type                                      | Mandatory  | Description                                |
+| ----- | ---------------------------------------- | ---- | ---------------------------------- |
+| start | number                                   | No   | Start position of the paragraph whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used.    |
+| end   | number                                   | No   | End position of the paragraph whose style needs to be updated. If this parameter is left empty or set to a negative value or any value beyond the range, the end of the paragraph will be used as the end position.|
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | Yes   | Paragraph style.                             |
+
+>  **NOTE**
+>
+>  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and the end of the span as **end**.
 
 ## RichEditorParagraphStyle<sup>11+</sup>
 
 Describes the paragraph style.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | No| Horizontal alignment mode of the text.|
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | No| Indent of the paragraph. This parameter cannot be set in percentage.|
+| Name           | Type                                      | Mandatory  | Description                |
+| ------------- | ---------------------------------------- | ---- | ------------------ |
+| textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | No   | Horizontal alignment mode of the text. |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | No   | Indent of the paragraph. This parameter cannot be set in percentage.|
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
 Describes the leading margin placeholder.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes| Image content.|
-| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | Yes| Image size. This parameter cannot be set in percentage.|
+| Name      | Type                                      | Mandatory  | Description            |
+| -------- | ---------------------------------------- | ---- | -------------- |
+| pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes   | Image content.         |
+| size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | Yes   | Image size. This parameter cannot be set in percentage.|
 
 ## RichEditorParagraphResult<sup>11+</sup>
 
 Describes the returned paragraph information.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | Yes| Paragraph style.|
-| range | \[number, number\] | Yes| Range of the paragraph.|
+| Name   | Type                                      | Mandatory  | Description     |
+| ----- | ---------------------------------------- | ---- | ------- |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | Yes   | Paragraph style.  |
+| range | \[number, number\]                       | Yes   | Range of the paragraph.|
 
 ## RichEditorTextSpanOptions
 
 Describes the options for adding a text span.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | No  | Position of the text span to be added. If this parameter is left empty, the text span will be added to the end of all text strings.|
-| style  | [RichEditorTextStyle](#richeditortextstyle)   | No  | Style of the text span to be added. If this parameter is left empty, the default text style will be used.|
-| paragraphStyle<sup>11+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)   | No  | Paragraph style.|
-| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No  | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.|
+| Name                          | Type                                      | Mandatory  | Description                        |
+| ---------------------------- | ---------------------------------------- | ---- | -------------------------- |
+| offset                       | number                                   | No   | Position of the text span to be added. If this parameter is left empty, the span will be added to the end of all text strings.<br>If the value is less than 0, the span will be placed at the beginning of the text strings. If the value is greater than the text string length, the span is placed at the end of the text strings.|
+| style                        | [RichEditorTextStyle](#richeditortextstyle) | No   | Style of the text span to be added. If this parameter is left empty, the default text style will be used.    |
+| paragraphStyle<sup>11+</sup> | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | No   | Paragraph style.                     |
+| gesture<sup>11+</sup>        | [RichEditorGesture](#richeditorgesture11) | No   | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.     |
 
 ## RichEditorTextStyle
 
 Provides the text style information.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br> Default value: **Color.Black**|
-| fontSize | [Length](ts-types.md#length) | No| Font size. If **Length** is of the number type, the unit fp is used. The default value is **16**. The value cannot be a percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style.<br>Default value: **FontStyle.Normal**|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No| Font family. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.<br>Default font: **'HarmonyOS Sans'**|
-| decoration  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No| Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Yes| Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
+| Name                      | Type                                      | Mandatory  | Description                                      |
+| ------------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
+| fontColor                | [ResourceColor](ts-types.md#resourcecolor) | No   | Font color.<br> Default value: **Color.Black**             |
+| fontSize                 | [Length](ts-types.md#length)             | No   | Font size. If **Length** is of the number type, the unit fp is used. The default value is **16**. The value cannot be a percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fontStyle                | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.<br>Default value: **FontStyle.Normal**         |
+| fontWeight               | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+| fontFamily               | [ResourceStr](ts-types.md#resourcestr) \| number \| string | No   | Font family. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.<br>Default font: **'HarmonyOS Sans'**|
+| decoration               | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | No   | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>}|
+| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Yes   | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
 
 
 ## RichEditorImageSpanOptions
 
 Defines the options for adding an image span.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | No  | Position of the image span to be added. If this parameter is left empty, the image span will be added to the end of all text strings.|
-| imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | No  | Image style. If this parameter is left empty, the default image style will be used.|
-| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No  | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.|
+| Name                   | Type                                      | Mandatory  | Description                        |
+| --------------------- | ---------------------------------------- | ---- | -------------------------- |
+| offset                | number                                   | No   | Position of the image span to be added. If this parameter is left empty, the span will be added to the end of all text strings.<br>If the value is less than 0, the span will be placed at the beginning of the text strings. If the value is greater than the text string length, the span is placed at the end of the text strings.|
+| imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | No   | Image style. If this parameter is left empty, the default image style will be used.    |
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No   | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.     |
 
 ## RichEditorImageSpanStyle
 
 Provides the image span style information.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| size  | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)]  | No| Width and height of the image.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
-| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | No| Scale mode of the image.<br> Default value: **ImageFit.Cover**|
-| layoutStyle<sup>11+</sup>  |{<br>margin ?: [Dimension](ts-types.md#dimension10) \| [Margin](ts-types.md#margin),<br> borderRadius ?: [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)<br>}| No| Image layout style.<br>|
+| Name                       | Type                                      | Mandatory  | Description                                      |
+| ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No   | Width and height of the image.                                |
+| verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
+| objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | No   | Scale mode of the image.<br> Default value: **ImageFit.Cover**        |
+| layoutStyle<sup>11+</sup> | {<br>margin ?: [Dimension](ts-types.md#dimension10) \| [Margin](ts-types.md#margin),<br> borderRadius ?: [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)<br>} | No   | Image layout style.<br>                            |
 
 ## RichEditorSymbolSpanOptions<sup>11+</sup>
 
 Describes the options for adding a symbol span.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | No  | Position of the symbol span to be added. If this parameter is left empty, the text span will be added to the end of all text strings.|
-| style  | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11)   | No  | Style of the symbol span to be added. If this parameter is left empty, the default text style will be used.|
+| Name    | Type                                      | Mandatory  | Description                        |
+| ------ | ---------------------------------------- | ---- | -------------------------- |
+| offset | number                                   | No   | Position of the symbol span to be added. If this parameter is left empty, the span will be added to the end of all text strings.<br>If the value is less than 0, the span will be placed at the beginning of the text strings. If the value is greater than the text string length, the span is placed at the end of the text strings.|
+| style  | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | No   | Style of the symbol span to be added. If this parameter is left empty, the default text style will be used.    |
 
 ## RichEditorSymbolSpanStyle<sup>11+</sup>
 
-Provides the symbol style information.
+Provides the symbol span style information.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | No| Color of the symbol span.<br> Default value: **Color.Black**|
-| fontSize | number \| string \| [Resource](ts-types.md#resource) | No| Size of the symbol span.<br>Default value: system default value|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
-| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| No| Rendering strategy.<br>Default value: **SymbolRenderingStrategy.SINGLE**|
-| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| No| Symbol effect strategy.<br>Default value: **SymbolEffectStrategy.NONE** |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | No| Colors of the **\<SymbolGlyph>** component.<br>Default value: depending on the rendering strategy. |
+| fontSize | number \| string \| [Resource](../arkui-ts/ts-types.md#resource) | No| Size of the **\<SymbolGlyph>** component.<br>Default value: system default value|
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight of the **\<SymbolGlyph>** component.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| No| Rendering strategy of the **\<SymbolGlyph>** component.<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_trash_circle**, **ohos_folder_badge_plus**, and **ohos_lungs** support the **MULTIPLE_COLOR** modes.|
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| No| Symbol effect of the **\<SymbolGlyph>** component.<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.|
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
 Defines the options for adding an image span.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | No  | Position of the builder span to be added. If this parameter is left empty, the builder span will be added to the end of all text strings.rings.|
+| Name    | Type    | Mandatory  | Description                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| offset | number | No   | Position of the builder span to be added. If this parameter is left empty, the builder span will be added to the end of all text strings.rings.|
 
 ## RichEditorRange
 
 Provides the span range information.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | No| Start position. If this parameter is left empty or set to a negative value, the value **0** will be used.|
-| end | number | No| End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the text range, it indicates the very end.|
+| Name   | Type    | Mandatory  | Description                    |
+| ----- | ------ | ---- | ---------------------- |
+| start | number | No   | Start position. If this parameter is left empty or set to a negative value, the value **0** will be used. |
+| end   | number | No   | End position. If this parameter is left empty or set to a value beyond the range, the very end will be used as the end position.|
 
 ## SelectionMenuOptions<sup>11+</sup>
 
-Provides the span range information.
+Provides the selection range information.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| onAppear | ?(() => void) | No| Callback invoked when the custom context menu on selection is displayed.|
-| onDisappear | ?(() => void) | No| Callback invoked when the custom context menu on selection is closed.|
+| Name         | Type           | Mandatory  | Description           |
+| ----------- | ------------- | ---- | ------------- |
+| onAppear    | ?(() => void) | No   | Callback invoked when the custom context menu on selection is displayed.|
+| onDisappear | ?(() => void) | No   | Callback invoked when the custom context menu on selection is closed.|
 
 ## PasteEvent<sup>11+</sup>
 
 Defines the custom paste event.
 
-| Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| preventDefault | ?(() => void) | No| Custom paste event.<br> When set, it will overwrite the system paste event.|
+| Name            | Type           | Mandatory  | Description                           |
+| -------------- | ------------- | ---- | ----------------------------- |
+| preventDefault | ?(() => void) | No   | Custom paste event.<br> When set, it will overwrite the system paste event.|
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -616,8 +631,8 @@ Called when a click is complete.
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Description                           |
-| ----- | ------ | ---- | ---------------------------------------- |
+| Name  | Type                                    | Mandatory  | Description     |
+| ----- | ---------------------------------------- | ---- | ------- |
 | event | [ClickEvent](ts-universal-events-click.md#clickevent) | No   | Click event.|
 
 ### onLongPress<sup>11+</sup>
@@ -628,8 +643,8 @@ Called when a long press is complete.
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Description                           |
-| ----- | ------ | ---- | ---------------------------------------- |
+| Name  | Type                                    | Mandatory  | Description     |
+| ----- | ---------------------------------------- | ---- | ------- |
 | event | [GestureEvent](ts-gesture-settings.md#gestureevent) | No   | Long press event.|
 
 ## Example
@@ -714,7 +729,7 @@ struct Index {
       Column() {
         RichEditor(this.options)
           .onReady(() => {
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("012345",
               {
                 style:
                 {
@@ -736,7 +751,7 @@ struct Index {
                   size: ["57px", "57px"]
                 }
               })
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("56789",
               {
                 style:
                 {

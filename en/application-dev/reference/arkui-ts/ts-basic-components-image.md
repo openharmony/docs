@@ -1,6 +1,6 @@
 # Image
 
-The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, BMP, SVG, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
 
 > **NOTE**
 >
@@ -31,7 +31,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where **[base64 data]** is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../apis/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **\<Image>** component.|
+| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../apis/js-apis-file-fileuri.md#constructor10) **file://\<bundleName>/\<sandboxPath>**, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.<br>- To display an SVG image that does not have the native size, you must set the width and height for the **\<Image>** component. |
 
 ## Attributes
 
@@ -54,9 +54,9 @@ For details about how to use the attributes, see [Setting Attributes](../../ui/a
 | colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.|
 | draggable<sup>9+</sup> | boolean                                                 | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**<br>**NOTE**<br>The default value is **false** in API version 9 and **true** in API version 10.|
 | enableAnalyzer<sup>11+</sup> | boolean                                                 | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect.<br>Default value: **false**<br>**NOTE**<br> This feature depends on device capabilities.<br> Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../apis/js-apis-image.md#pixelmap7) in [RGBA_8888](../apis/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example](#enabling-ai-analyzer-for-pixel-maps)<br> The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.<br> Analysis is performed based on the complete original image. If the **clip**, **margin**, **borderRadius**, **position**, or **objectFit** attribute is set, the image is not displayed completely. If **renderMode** is used to apply a mask, analysis is still performed based on the complete original image.<br> The **copyOption** attribute does not affect the AI analyzer.|
-| analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | Type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported.<br>**NOTE**<br> The type of the AI analyzer cannot be dynamically modified.|
+| analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | Type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported.<br>**NOTE**<br> The type of the AI analyzer cannot be dynamically modified.<br>**System API**:<br> This is a system API.|
 | edgeAntialiasing<sup>11+</sup> | number                                                 | Edge antialiasing of the image. This attribute applies only to an SVG image.<br>Value range: $[0.333, 1.333]$. The value is valid up to three decimal places.<br>Default value: **$0$**<br>**System API**:<br> This is a system API.|
-|resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | Resizable image options.<br> **NOTE**<br> 1. Resizing is effective for drag previews and placeholder images.<br>2. When [ResizableOptions](#resizableoptions11) is set to a valid value, the **objectfit** setting does not take effect.<br>3. When the sum of the values of **top** and **bottom** is greater than the original image height or the sum of the values of **left** and **right** is greater than the original image width, the ResizableOptions](#resizableoptions11) setting does not take effect.<br>|
+|resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | Resizable image options.<br> **NOTE**<br> 1. Resizing is effective for drag previews and placeholder images.<br>2. When [ResizableOptions](#resizableoptions11) is set to a valid value, the **objectRepeat ** setting does not take effect.<br>3. When the sum of the values of **top** and **bottom** is greater than the original image height or the sum of the values of **left** and **right** is greater than the original image width, the ResizableOptions](#resizableoptions11) setting does not take effect.<br>|
 
 >  **NOTE**
 >
@@ -89,6 +89,10 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 Describes the type of the AI analyzer.
 
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Description          |
 | -------- | -------------- |
 | SUBJECT | Object recognition.|
@@ -100,7 +104,7 @@ Defines the resizable image options.
 
 | Name              | Type  | Description                     |
 | -------------------- | ------ | ------------------------- |
-| slice<sup>11+</sup>  | [EdgeWidths](ts-types.md#edgewidths9) | Edge widths in different directions of a component.<br>**NOTE**<br>This parameter takes effect only when values of **bottom** and **right** are both greater than 0.|
+| slice  | [EdgeWidths](ts-types.md#edgewidths9) | Edge widths in different directions of a component.<br>**NOTE**<br>This parameter takes effect only when values of **bottom** and **right** are both greater than 0.|
 
 ## Events
 
@@ -171,7 +175,7 @@ Describes the return object that triggers the callback for when an error occurs 
 | -------------------- | ------ | ------------------------- |
 | componentWidth       | number | Width of the component.<br>Unit: pixel|
 | componentHeight      | number | Height of the component.<br>Unit: pixel|
-| message<sup>9+</sup> | string | Error information.               |
+| message | string | Error information.               |
 
 ## Example
 
@@ -238,68 +242,33 @@ struct ImageExample2 {
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-}
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
-  @State widthValue: number = 0;
-  @State heightValue: number = 0;
-  private on: Resource = $r('app.media.image_on');
-  private off: Resource = $r('app.media.image_off');
-  private on2off: Resource = $r('app.media.image_on2off');
-  private off2on: Resource = $r('app.media.image_off2on');
-  @State src: Resource = this.on;
+  private imageOne: Resource = $r('app.media.earth');
+  private imageTwo: Resource = $r('app.media.star');
+  private imageThree: Resource = $r('app.media.moveStar');
+  @State src: Resource = this.imageOne
+  @State src2: Resource = this.imageThree
+  build(){
+    Column(){
+      // Add a click event so that a specific image is loaded upon clicking.
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          this.src = this.imageTwo
+        })
 
-  build() {
-    Column() {
-      Row({ space: 20 }) {
-        Column() {
-          Image($r('app.media.img_example1'))
-            .alt($r('app.media.ic_public_picture'))
-            .sourceSize({
-              width: 900,
-              height: 900
-            })
-            .objectFit(ImageFit.Cover)
-            .height(180).width(180)
-            // Obtain the size of an image after the image loading is complete.
-            .onComplete(msg => {
-              if(msg){
-                this.widthValue = msg.width
-                this.heightValue = msg.height
-              }
-            })
-            .onError(() => {
-              console.log('load image fail')
-            })
-            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
-              align: Alignment.Bottom,
-              offset: { x: 0, y: 20 }
-            })
-        }
-        // Add a click event so that a specific image is loaded upon clicking.
-        Image(this.src)
-          .width(120).height(120)
-          .onClick(() => {
-            if (this.src == this.on || this.src == this.off2on) {
-              this.src = this.on2off
-            } else {
-              this.src = this.off2on
-            }
-          })
-          .onFinish(() => {
-            if (this.src == this.off2on) {
-              this.src = this.on
-            } else {
-              this.src = this.off
-            }
-          })
-      }
-    }.width('100%')
+      // When the image to be loaded is in SVG format:
+      Image(this.src2)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          // Load another image when the SVG image has finished its animation.
+          this.src2 = this.imageOne
+        })
+    }.width('100%').height('100%')
   }
 }
 ```
@@ -313,9 +282,6 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct ImageExample4 {
-  private config: ImageAnalyzerConfig = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  }
   @State imagePixelMap: image.PixelMap | undefined = undefined
 
   async aboutToAppear() {
@@ -326,7 +292,6 @@ struct ImageExample4 {
     Column() {
       Image(this.imagePixelMap)
         .enableAnalyzer(true)
-        .analyzerConfig(this.config)
         .width(200)
         .height(200)
     }
@@ -337,7 +302,7 @@ struct ImageExample4 {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer)
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     })
@@ -346,4 +311,3 @@ struct ImageExample4 {
   }
 }
 ```
-<!--no_check-->

@@ -56,6 +56,7 @@ struct Index {
         content: 'Loading',
         isLoading: true })
       SwipeRefresher({
+        content: '',
         isLoading: true })
       SwipeRefresher({
         content: 'Loading',
