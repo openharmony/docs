@@ -10,7 +10,7 @@ The HTTP request function is mainly implemented by the HTTP module.
 
 To use related APIs, you must declare the **ohos.permission.INTERNET** permission.
 
-For details about how to apply for permissions, see [Access Control Development](../security/accesstoken-guidelines.md).
+For details about how to apply for permissions, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 The following table provides only a simple description of the related APIs. For details, see [API Reference](../reference/apis/js-apis-http.md).
 
@@ -18,7 +18,7 @@ The following table provides only a simple description of the related APIs. For 
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
-| requestInStream()<sup>10+</sup>                  | Initiates an HTTP network request to a given URL and returns a streaming response.|
+| requestInStream()<sup>10+</sup>           | Initiates an HTTP network request to a given URL and returns a streaming response.|
 | destroy()                                 | Destroys an HTTP request.                     |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
 | off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
