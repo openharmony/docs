@@ -79,13 +79,13 @@
         console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
-    console.info('bindDevice success');
-    remoteObject = data.remote;
+      console.info('bindDevice success');
+      remoteObject = data.remote;
   });
 } catch (error) {
-  let errCode = (error as BusinessError).code;
-  let message = (error as BusinessError).message;
-  console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+    let errCode = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
 }
 if (!remoteObject) {
   console.error('Bind device failed');
