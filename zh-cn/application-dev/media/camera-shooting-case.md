@@ -25,9 +25,9 @@ import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
 let context = getContext(this);
 
 async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let testFileName = 'testFile' + Date.now() + '.jpg';
-  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  let photoAccessHelper: PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: PhotoAsset = await photoAccessHelper.createAsset(testFileName);
   //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
   const fd = await photoAsset.open('rw');
   fs.write(fd, buffer);
@@ -165,7 +165,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
 
     //调用上面的回调函数来保存图片
-  setPhoptoOutputCb(photoOutput);
+  setPhotoOutputCb(photoOutput);
 
   //创建会话
   let photoSession: camera.PhotoSession | undefined = undefined;
