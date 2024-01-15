@@ -50,12 +50,15 @@
         - 自定义组件
           - [创建自定义组件](quick-start/arkts-create-custom-components.md)
           - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
         - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
+        - [wrapBuilder：封装全局@Builder](quick-start/arkts-wrapBuilder.md)
         - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
         - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
         - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
         - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
+        - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
       - 状态管理
         - [状态管理概述](quick-start/arkts-state-management-overview.md)
         - 管理组件拥有的状态
@@ -74,9 +77,12 @@
           - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+          - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
+        - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 渲染控制
+        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -1081,6 +1087,7 @@
       - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
       - [@ohos.uiAppearance (用户界面外观)](reference/apis/js-apis-uiappearance.md)
+      - [getContext](reference/apis/js-apis-getContext.md)
     - 图形图像
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1129,6 +1136,7 @@
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - 数据管理
       - [@ohos.data.cloudData (端云协同)](reference/apis/js-apis-data-cloudData.md)
+      - [@ohos.data.commonType (数据通用类型)](reference/apis/js-apis-data-commonType.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
       - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis/js-apis-data-dataSharePredicates.md)
@@ -1183,6 +1191,7 @@
       - [@ohos.net.statistics (流量管理)](reference/apis/js-apis-net-statistics.md)
       - [@ohos.net.vpn (VPN管理)](reference/apis/js-apis-net-vpn.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
+      - [@ohos.net.networkSecurity (Network Security)](reference/apis/js-apis-networkSecurity.md)
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
       - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis/js-apis-bluetooth-a2dp.md)
@@ -1195,6 +1204,9 @@
       - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](reference/apis/js-apis-bluetooth-hid.md)
       - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](reference/apis/js-apis-bluetooth-pan.md)
       - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis/js-apis-bluetooth-socket.md)
+      - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](reference/apis/js-apis-bluetooth-pbap.md)
+      - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](reference/apis/js-apis-bluetooth-map.md)
+      - [@ohos.bluetooth.wearDetection(蓝牙佩戴检测模块)(推荐)](reference/apis/js-apis-bluetooth-wearDetection.md)
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
@@ -2106,7 +2118,7 @@
         - [libc中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [libc中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
         - [Native api中支持的Vulkan接口列表](reference/native-lib/third_party_vulkan/vulkan-symbol.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)

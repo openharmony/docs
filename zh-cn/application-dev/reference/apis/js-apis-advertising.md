@@ -5,7 +5,6 @@
 
 
 > **说明：**
-
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -18,7 +17,7 @@ import advertising from '@ohos.advertising';
 
 ## constructor
 
-constructor(context?: common.Context);
+constructor(context: common.Context);
 
 构造函数。
 
@@ -46,9 +45,9 @@ function createConstructor(context: common.Context): void {
 ```
 
 
-## advertising.loadAd
+## loadAd
 
-loadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, listener: advertising.AdLoadListener): void
+loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener): void
 
 请求单广告位广告。
 
@@ -60,9 +59,9 @@ loadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, l
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParam | advertising.[AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
-| adOptions | advertising.[AdOptions](#adoptions) | 是 | 广告配置。 | 
-| listener | advertising.[AdLoadListener](#adloadlistener) | 是 | 请求广告回调监听。 | 
+| adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
+| adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
+| listener | [AdLoadListener](#adloadlistener) | 是 | 请求广告回调监听。 | 
 
 **错误码：**
 
@@ -115,9 +114,9 @@ function requestAd(context: common.Context): void {
 ```
 
 
-## advertising.loadAdWithMultiSlots
+## loadAdWithMultiSlots
 
-loadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions, listener: advertising.MultiSlotsAdLoadListener): void
+loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener: MultiSlotsAdLoadListener): void
 
 请求多广告位广告。
 
@@ -129,9 +128,9 @@ loadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: adverti
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParams | advertising.[AdRequestParams](#adrequestparams)[] | 是 | 广告请求参数。 | 
-| adOptions | advertising.[AdOptions](#adoptions) | 是 | 广告配置。 | 
-| listener | advertising.[MultiSlotsAdLoadListener](#multislotsadloadlistener) | 是 | 请求广告回调监听。 | 
+| adParams | [AdRequestParams](#adrequestparams)[] | 是 | 广告请求参数。 | 
+| adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
+| listener | [MultiSlotsAdLoadListener](#multislotsadloadlistener) | 是 | 请求广告回调监听。 | 
 
 **错误码：**
 
@@ -192,9 +191,9 @@ function requestMultiAd(context: common.Context): void {
 ```
 
 
-## advertising.showAd
+## showAd
 
-showAd(ad: advertising.Advertisement, options: advertising.AdDisplayOptions, context?: common.UIAbilityContext): void
+showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityContext): void
 
 展示全屏广告。
 

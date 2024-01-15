@@ -525,7 +525,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 | isPrivacyMode | boolean                   | 是 | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。  |
 | callback      | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                              |
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void;
@@ -541,7 +541,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback<void> | 是 | 回调函数，返回接口调用是否成功。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，返回接口调用是否成功。 |
 
 **错误码：**
 
@@ -555,7 +555,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>;
@@ -576,7 +576,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象无返回值。 |
+| Promise\<void> | Promise对象无返回值。 |
 
 **错误码：**
 

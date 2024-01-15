@@ -26,7 +26,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## 使用说明
 
-通过appManager的[getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)来获取。
+通过appManager的[getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)来获取。
 
 **示例：**
 

@@ -60,8 +60,9 @@
     }
   }
   ```
+  **图1** 示例效果图
 
-  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+  ![builderparam-demo1](figures/builderparam-demo1.png)
 
 
 - 需注意this指向正确。
@@ -106,8 +107,9 @@
     }
   }
   ```
+ **图2** 示例效果图
 
-  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
+ ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## 使用场景
@@ -163,8 +165,9 @@ struct Parent {
   }
 }
 ```
+**图3** 示例效果图
 
-![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+![builderparam-demo3](figures/builderparam-demo3.png)
 
 
 ### 尾随闭包初始化组件
@@ -227,5 +230,6 @@ struct CustomContainerUser {
   }
 }
 ```
+**图4** 示例效果图
 
-![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)
+![builderparam-demo4](figures/builderparam-demo4.png)

@@ -27,7 +27,7 @@ import window from '@ohos.window';
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。                                                                              |
+| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。                               |
 | TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
 | TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                         |
 | TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                           |
@@ -297,9 +297,9 @@ import window from '@ohos.window';
 
 | 名称 | 类型 | 可读 | 可写 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0。 |
-| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0。 |
-| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0。 |
+| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 ## WindowEventType<sup>10+</sup>
 
@@ -1571,16 +1571,27 @@ getTopWindow(): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+iimport { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage){
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getTopWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if(errCode){
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return ;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch(error){
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    }
+  }
+}
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1607,14 +1618,25 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage){
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getTopWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if(errCode){
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return ;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch(error){
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    }
+  }
+}
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1646,14 +1668,19 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let promise = window.getTopWindow(this.context);
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    });
+  }
+}
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -3574,7 +3601,7 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 | 参数名   | 类型                | 必填 | 说明                                        |
 | -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数。                    |
+| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。     |
 
 **示例：**
 
@@ -3602,7 +3629,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态输入法窗口软键盘高度变化的监听。                               |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数，单位为px。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态输入法窗口软键盘高度变化的监听。                               |
 
 **示例：**
 
@@ -5414,41 +5441,7 @@ try {
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-(context: window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
-    };
-    toWindow.translate(obj); // 设置动画过程中的属性转换
-    console.info('toWindow translate end');
-  }
-  );
-  console.info('complete transition end');
-};
-windowClass.hideWithAnimation((err: BusinessError, data) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
-});
+let controller = windowClass.getTransitionController(); // 获取属性转换控制器
 ```
 
 ### setBlur<sup>9+</sup>
@@ -5465,7 +5458,7 @@ setBlur(radius: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- |--------------------------------------------------|
-| radius | number | 是   | 表示窗口模糊的半径值。该参数为浮点数，取值范围为[0, +∞)，取值为0.0时表示关闭窗口模糊。 |
+| radius | number | 是   | 表示窗口模糊的半径值。该参数为浮点数，单位为px，取值范围为[0, +∞)，取值为0.0时表示关闭窗口模糊。 |
 
 **错误码：**
 
@@ -5501,7 +5494,7 @@ setBackdropBlur(radius: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                    |
 | ------ | ------ | ---- |-------------------------------------------------------|
-| radius | number | 是   | 表示窗口背景模糊的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0表示关闭窗口背景模糊。 |
+| radius | number | 是   | 表示窗口背景模糊的半径值。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0表示关闭窗口背景模糊。 |
 
 **错误码：**
 
@@ -5573,7 +5566,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 | 参数名  | 类型   | 必填 | 说明                                                          |
 | ------- | ------ | ---- |-------------------------------------------------------------|
-| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
 | color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量。该参数为浮点数，单位为px。                              |
 | offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量。该参数为浮点数，单位为px。                              |
@@ -5612,7 +5605,7 @@ setCornerRadius(cornerRadius: number): void
 
 | 参数名      | 类型    | 必填 | 说明                                                 |
 | ----------- | ------- | ---- |----------------------------------------------------|
-| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
+| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
 
 **错误码：**
 
@@ -6269,43 +6262,6 @@ promise.then(() => {
   console.info('Succeeded in minimizing the window.');
 }).catch((err: BusinessError) => {
   console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
-});
-```
-
-### recover<sup>11+</sup>
-
-recover(): Promise&lt;void&gt;
-
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300001 | Repeated operation. |
-| 1300002 | This window state is abnormal. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.recover();
-promise.then(() => {
-  console.info('Succeeded in recovering the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to recover the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -9751,31 +9707,59 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context : window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: ()=> {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForShownCallFunc_: Function = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
+    this.animationForShownCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForShown = (context : window.TransitionContext)=> {
+      this.animationForShownCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.showWithAnimation(()=>{
+      console.info('Show with animation success');
+    })
   }
-  );
-  console.info('complete transition end');
-};
+}
+```
+
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
+try {
+  animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // 动画时长
+      tempo: 0.5, // 播放速率
+      curve: Curve.EaseInOut, // 动画曲线
+      delay: 0, // 动画延迟
+      iterations: 1, // 播放次数
+      playMode: PlayMode.Normal, // 动画模式
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // 设置动画过程中的属性转换
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -9797,29 +9781,57 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context: window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForHiddenCallFunc_: Function = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
+    this.animationForHiddenCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForHidden = (context : window.TransitionContext)=> {
+      this.animationForHiddenCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.hideWithAnimation(()=>{
+      console.info('hide with animation success');
+    })
   }
-  )
-  console.info('complete transition end');
-};
+}
+```
+
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
+try {
+  animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // 动画时长
+      tempo: 0.5, // 播放速率
+      curve: Curve.EaseInOut, // 动画曲线
+      delay: 0, // 动画延迟
+      iterations: 1, // 播放次数
+      playMode: PlayMode.Normal, // 动画模式
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // 设置动画过程中的属性转换
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
 ```

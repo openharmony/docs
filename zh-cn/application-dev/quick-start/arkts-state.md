@@ -29,7 +29,7 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>类型必须被指定。<br/>不支持any。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
@@ -328,7 +328,11 @@ struct MyComponent {
 
 ### 装饰Map类型变量
 
-\@State支持Map类型，在下面的示例中，message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
+> **说明：**
+>
+> 从API version 11开始，\@State支持Map类型。
+
+在下面的示例中，message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Entry
@@ -369,7 +373,11 @@ struct MapSample {
 
 ### 装饰Set类型变量
 
-\@State支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+> **说明：**
+>
+> 从API version 11开始，\@State支持Set类型。
+
+在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Entry
@@ -524,3 +532,108 @@ struct PlayDetailPage {
   }
 }
 ```
+
+### 状态变量的修改放在构造函数内未生效
+
+在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者把状态变量的修改放在构造函数里时，此修改不会经过代理（因为是直接对数据源中的值进行修改），即使修改成功执行，也无法观测UI的刷新。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model
+
+  constructor() {
+    this.model = new Model(()=>{
+      this.isSuccess = true
+      console.log(`this.isSuccess: ${this.isSuccess}`)
+    })
+  }
+  query() {
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: ()=>void
+
+  constructor(cb: ()=>void) {
+    this.callback = cb
+  }
+  query(){
+      this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在构造函数内，界面开始时显示“failed”，点击后日志打印“this.isSuccess: true”说明修改成功，但界面依旧显示“failed”，未实现刷新。
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model = new Model(() => {
+  })
+
+  query() {
+    this.model = new Model(() => {
+      this.isSuccess = true
+    })
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: () => void
+
+  constructor(cb: () => void) {
+    this.callback = cb
+  }
+
+  query() {
+    this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在类的普通方法中，界面开始时显示“failed”，点击后显示“success”。

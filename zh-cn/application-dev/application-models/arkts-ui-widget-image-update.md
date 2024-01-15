@@ -13,15 +13,8 @@
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
-   import hilog from '@ohos.hilog';
-   import request from '@ohos.request';
    import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = 'WgtImgUpdateEntryFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
      // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
@@ -38,7 +31,7 @@
          };
        } catch (e) {
          console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-       };
+       }
    
        class FormDataClass {
          text: string = 'Image: Bear';
@@ -64,12 +57,10 @@
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
    import hilog from '@ohos.hilog';
    import request from '@ohos.request';
-   import type Want from '@ohos.app.ability.Want';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -99,7 +90,7 @@
              fileInfo[fileName] = file.fd;
            } catch (e) {
              console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-           };
+           }
    
            class FormDataClass {
              text: string = 'Image: Bear' + fileName;
@@ -132,7 +123,7 @@
    }
    ```
 
-4. 在卡片页面通过Image组件展示EntryFormAbility传递过来的卡片内容。
+4. 在卡片页面通过backgroundImage属性展示EntryFormAbility传递过来的卡片内容。
 
    ```ts
    let storageWidgetImageUpdate = new LocalStorage();

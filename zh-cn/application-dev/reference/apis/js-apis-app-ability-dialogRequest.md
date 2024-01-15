@@ -49,7 +49,7 @@ getRequestInfo(want: Want): RequestInfo
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
@@ -142,7 +142,7 @@ getRequestCallback(want: Want): RequestCallback
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
@@ -221,7 +221,7 @@ getRequestCallback(want: Want): RequestCallback
 
 | 名称      | 类型       | 必填   | 说明     |
 | ------------ | ------------------| ------ | ---------------------- |
-| windowRect<sup>10+</sup>            | windowRect    | 否   | 表示模态弹框的位置属性。          |
+| windowRect<sup>10+</sup>            | [WindowRect](#windowrect10)    | 否   | 表示模态弹框的位置属性。          |
 
 **示例：**
 
@@ -242,7 +242,7 @@ getRequestCallback(want: Want): RequestCallback
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
@@ -386,7 +386,7 @@ setRequestResult(result: RequestResult): void;
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
