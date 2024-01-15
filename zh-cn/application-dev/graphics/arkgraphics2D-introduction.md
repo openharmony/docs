@@ -14,9 +14,13 @@ ArkGraphics2D（方舟2D图形服务 ）主要提供图形绘制与显示相关�
 
 - 提供自绘制的相关能力，开发者可根据需要，自定义绘制实现UI效果，可自定义绘制基础形状、文本、图片等。具体可见@ohos.graphics.drawing (2D图形绘制)。
 
-- 提供图形绘制与显示相关的Native能力，包括[NativeWindow](../reference/native-apis/_native_window.md)、[NativeBuffer](../reference/native-apis/_o_h___native_buffer.md)、[NativeImage](../reference/native-apis/_o_h___native_image.md)、[NativeVsync](../reference/native-apis/_native_vsync.md)、[Vulkan](../reference/native-apis/_vulkan.md)、[Drawing](../reference/native-apis/_drawing.md)等模块。
+- 提供图形绘制与显示相关的Native能力，包括[NativeWindow](../reference/native-apis/_native_window.md)、[NativeBuffer](../reference/native-apis/_o_h___native_buffer.md)、[NativeImage](../reference/native-apis/_o_h___native_image.md)、[NativeVsync](../reference/native-apis/_native_vsync.md)、[Drawing](../reference/native-apis/_drawing.md)等模块。
 
 ## 使用场景
+
+- 图像效果处理：开发者可根据不同的UI效果需要，使用[effectKit模块](../reference/apis/js-apis-effectKit.md)实现图像的效果处理，以提升用户浏览体验。
+
+- 设置图像色域：开发者可根据设计需求使用图像文件并设置色域信息，实现图像广色域效果的绘制和显示。
 
 - 定制帧率场景：支持开发者根据不同内容和需要，定制帧率进行绘制。比如不同游戏场景和界面时，设置不同的帧率，以提升用户体验流畅性并达到平衡功耗的效果。
 
