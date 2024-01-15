@@ -233,7 +233,7 @@ function getMediaKeySystemName(uuid: string): string
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| string           | drm方案名称，如com.drm.clearplay。                   |
+| string           | drm方案名称，如com.clearplay.drm。                   |
 
 **错误码：**
 
@@ -250,12 +250,12 @@ function getMediaKeySystemName(uuid: string): string
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystemName = drm.getMediaKeySystemName()
+let mediaKeysystemName = drm.getMediaKeySystemName("com.clearplay.drm")
 ```
 
 ### drm.createMediaKeySystem
 
-createMediaKeySystem(uuid: string): MediaKeySystem
+createMediaKeySystem(name: string): MediaKeySystem
 
 创建MediaKeySystem实例，同步返回结果。
 
@@ -265,7 +265,7 @@ createMediaKeySystem(uuid: string): MediaKeySystem
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| uuid  | string     | 是   | 插件类型。                   |
+| name  | string     | 是   | 插件类型。                   |
 
 **返回值：**
 
@@ -289,12 +289,89 @@ createMediaKeySystem(uuid: string): MediaKeySystem
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 ```
 
 ### drm.isMediaKeySystemSupported
 
-isMediaKeySystemSupported(uuid: string, mimeType: string, level: ContentProtectionLevel): boolean
+isMediaKeySystemSupported(name: string): boolean
+
+判断设备是否支持指定DRM类型的DRM方案。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件类型。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [boolean]          | 返回设备是否支持指定DRM类型的DRM方案。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed               |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+
+let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm");
+```
+
+### drm.isMediaKeySystemSupported
+
+isMediaKeySystemSupported(name: string, mimeType: string): boolean
+
+判断设备是否支持指定DRM类型、媒体类型的DRM方案。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件类型。                   |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型的DRM方案。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed               |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+
+let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+```
+
+### drm.isMediaKeySystemSupported
+
+isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
 
 判断设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。
 
@@ -304,9 +381,9 @@ isMediaKeySystemSupported(uuid: string, mimeType: string, level: ContentProtecti
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| uuid  | string     | 是   | 插件类型。                   |
-| mimeType  | string     | 否   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
-| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 否   | 设备安全级别。                   |
+| name  | string     | 是   | 插件类型。                   |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
+| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 是   | 设备安全级别。                   |
 
 **返回值：**
 
@@ -329,8 +406,9 @@ isMediaKeySystemSupported(uuid: string, mimeType: string, level: ContentProtecti
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem: drm.isMediaKeySystemSupported("com.drm.clearplay", "video/mp4", drm.ContentProtectionLevel.SECURITY_LEVEL_SW_CRYPTO);
+let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.SECURITY_LEVEL_SW_CRYPTO);
 ```
+
 ## MediaKeySystem
 管理和记录MediaKeySession。在调用MediaKeySystem方法之前，必须使用[createMediaKeySystem](#drmcreatemediakeysystem)获取一个MediaKeySystem实例，然后才能调用其成员函数。
 
@@ -364,7 +442,7 @@ setConfigurationString(configName: string, value: string): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.setConfigurationString("configName", "configValue");
 ```
 
@@ -403,7 +481,7 @@ getConfigurationString(configName: string): string
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.getConfigurationString("configName");
 ```
 
@@ -437,7 +515,7 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.setConfigurationByteArray("configName", Uint8Array.from("configValue"));
 ```
 
@@ -476,7 +554,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.getConfigurationByteArray("configName");
 ```
 
@@ -509,7 +587,7 @@ getStatistics(): StatisticKeyValue[]
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let statisticKeyValue = mediaKeysystem.getStatistics();
 ```
 
@@ -542,7 +620,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let maxLevel = mediaKeysystem.getMaxContentProtectionLevel();
 ```
 
@@ -575,7 +653,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let keySystemRequest = mediaKeysystem.generateKeySystemRequest();
 ```
 
@@ -595,12 +673,20 @@ processKeySystemResponse(response: Uint8Array): Promise<void>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed               |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
 **示例：**
 
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.processKeySystemResponse(Uint8Array.from("keySystemResponse"));
 ```
 
@@ -633,7 +719,7 @@ getCertificateStatus():CertificateStatus
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let certificateStatus = mediaKeysystem.getCertificateStatus();
 ```
 
@@ -650,7 +736,7 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明需要请求设备证书                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明需要请求设备证书                 |
 
 **错误码：**
 
@@ -732,7 +818,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed               |
-| 24700101                |  All unknown errors                  |
+| 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
 **示例：**
@@ -740,7 +826,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.SECURITY_LEVEL_SW_CRYPTO);
 ```
 
@@ -765,6 +851,7 @@ createMediaKeySession(): MediaKeySession
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
+| 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
 **示例：**
@@ -772,7 +859,7 @@ createMediaKeySession(): MediaKeySession
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 ```
 
@@ -805,7 +892,7 @@ getOfflineMediaKeyIds(): Uint8Array[]
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let offlineMediaKeyIds = mediaKeysystem.getOfflineMediaKeyIds();
 ```
 
@@ -844,7 +931,7 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.getOfflineMediaKeyStatus(Uint8Array.from("mediaKeyIdString"));
 ```
 
@@ -860,7 +947,7 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   | 离线许可证Id可以在MediaKeySession成员processKeySystemResponse返回值中获取 |
+| mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   | 离线许可证Id可以在MediaKeySession成员processMeidaKeyResponse返回值中获取 |
 
 **错误码：**
 
@@ -877,7 +964,7 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.clearOfflineMediaKeys(Uint8Array.from("mediaKeyIdString"));
 ```
 
@@ -889,12 +976,21 @@ destroy(): void
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
 **示例：**
 
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.destroy();
 ```
 
@@ -903,8 +999,7 @@ mediaKeysystem.destroy();
 
 ### generateMediaKeyRequest
 
-generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number,
-        options: OptionsData[]): Promise<MediaKeyRequest>
+generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number, options?: OptionsData[]): Promise<MediaKeyRequest>
 
 生成许可证请求。
 
@@ -940,7 +1035,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 var OptionsData = [
     {name : "optionalsDataNameA", value : "optionalsDataValueA"},
@@ -949,9 +1044,9 @@ var OptionsData = [
 let mediaKeyRequest=  mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData);
 ```
 
-### processKeySystemResponse
+### processMediaKeyResponse
 
-processKeySystemResponse(response: Uint8Array): Promise<Uint8Array>
+processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array>
 
 处理离线许可证响应返回。
 
@@ -984,9 +1079,9 @@ processKeySystemResponse(response: Uint8Array): Promise<Uint8Array>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
-let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("mediaKeyResponse"));
+let mediaKeyId =  mediaKeySession.processMediaKeyResponse(Uint8Array.from("mediaKeyResponse"));
 ```
 
 ### checkMediaKeyStatus
@@ -1017,7 +1112,7 @@ let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("medi
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let keyStatus=  mediaKeySession.checkMediaKeyStatus();
 ```
@@ -1044,7 +1139,7 @@ clearMediaKeys(): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 mediaKeySession.clearMediaKeys();
 ```
@@ -1084,7 +1179,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let mediaKeyId=  mediaKeySession.processMediaKeyResponse(Uint8Array.from("offlineReleaseRequest"));
 let offlineReleaseRequest = mediaKeySession.generateOfflineReleaseRequest(mediaKeyId);
@@ -1120,7 +1215,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let mediaKeyId=  mediaKeySession.processMediaKeyResponse(Uint8Array.from("offlineReleaseRequest"));
 let offlineReleaseResponse = mediaKeySession.processOfflineReleaseResponse(mediaKeyId, Uint8Array.from(response));
@@ -1156,7 +1251,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let offlineReleaseResponse = mediaKeySession.processOfflineReleaseResponse(mediaKeyId, Uint8Array.from(response));
 mediaKeySession.restoreOfflineMediaKeys(mediaKeyId);
@@ -1190,7 +1285,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let contentProtectionLevel= mediaKeySession.getContentProtectionLevel();
 ```
@@ -1230,14 +1325,14 @@ requireSecureDecoderModule(mimeType: string): boolean
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let status = mediaKeySession.requireSecureDecoderModule(mimeType);
 ```
 
 ### on('keyRequired')
 
-on(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥请求事件，通过注册回调函数获取结果。
 
@@ -1248,7 +1343,7 @@ on(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyNeeded'，MediaKeySystem实例创建成功可监听。key请求时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
 
 **错误码：**
 
@@ -1273,7 +1368,7 @@ function registerKeyNeeded(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('keyRequired')
 
-off(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥请求事件。
 
@@ -1284,7 +1379,7 @@ off(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyNeeded'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1307,7 +1402,7 @@ function unregisterKeyNeeded(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('keyExpired')
 
-on(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥过期，通过注册回调函数获取结果。
 
@@ -1318,7 +1413,7 @@ on(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。密钥过期时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
@@ -1343,7 +1438,7 @@ function registerKeyExpired(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('keyExpired')
 
-off(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥过期事件。
 
@@ -1354,7 +1449,7 @@ off(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1377,7 +1472,7 @@ function unregisterKeyExpired(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('vendorDefined')
 
-on(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 监听第三方定义事件，通过注册回调函数获取结果。
 
@@ -1388,7 +1483,7 @@ on(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。第三方定义事件发生时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
@@ -1413,7 +1508,7 @@ function registerVendorDefinedt(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('vendorDefined')
 
-off(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听第三方定义事件。
 
@@ -1424,7 +1519,7 @@ off(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1447,7 +1542,7 @@ function unregisterVendorDefined(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('expirationUpdated')
 
-on(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 监听过期更新事件，通过注册回调函数获取结果。
 
@@ -1458,7 +1553,7 @@ on(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): vo
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdated'，MediaKeySystem实例创建成功可监听。密钥过期更新时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
@@ -1483,7 +1578,7 @@ function registerExpirationUpdated(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('expirationUpdated')
 
-off(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听过期更新事件。
 
@@ -1494,7 +1589,7 @@ off(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): v
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdated'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1517,7 +1612,7 @@ function unregisterExpirationUpdated(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('keyChanged')
 
-on(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
 监听密钥变化事件，通过注册回调函数获取结果。
 
@@ -1528,7 +1623,7 @@ on(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyChanged'，MediaKeySystem实例创建成功可监听。密钥变化时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
@@ -1553,7 +1648,7 @@ function registerKeyChanged(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('keyChanged')
 
-off(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
 注销监听密钥变化事件。
 
@@ -1564,7 +1659,7 @@ off(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyChanged'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1593,12 +1688,21 @@ destroy(): void
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
 **示例：**
 
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 mediaKeySession.destroy();
 ```
