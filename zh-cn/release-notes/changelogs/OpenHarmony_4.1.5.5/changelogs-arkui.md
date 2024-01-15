@@ -73,7 +73,11 @@ b) showTips 第二个参数设置文本内容时，文本内容可能产生变�
 
 API 11前，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize_contrary`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize_contrary`，环形样式进度条默认进度条底色是系统资源中的`ohos_id_color_component_normal`。
 
+![progress](figures/oldProgress.png)
+
 API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize`，前景色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize`，内描边颜色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，环形样式进度条默认进度条底是系统资源中的`ohos_id_color_button_normal`。
+
+![progress](figures/newProgress.png)
 
 **适配指导**
 
@@ -105,7 +109,11 @@ API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos
 
 API 11前，默认前景色不透明度为0.6，默认前景色是“#99666666”。
 
+![loadingProgress](figures/oldLoadingProgress.png)
+
 API 11及以后，默认前景色不透明度为1.0，默认前景色是“#ff666666”。
+
+![loadingProgress](figures/newLoadingProgress.png)
 
 **适配指导**
 
@@ -206,7 +214,11 @@ API 11及以后，默认前景色不透明度为1.0，默认前景色是“#ff66
 
 API 11前，Datapanel组件的默认阴影模糊半径为5vp。
 
+![dataPanel](figures/oldDataPanel.png)
+
 API 11及以后，Datapanel组件的默认阴影模糊半径为20vp。
+
+![dataPanel](figures/newDataPanel.png)
 
 **适配指导**
 
