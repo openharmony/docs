@@ -14,6 +14,16 @@
 
 该变更为兼容性变更，需要开发者进行适配。
 
+
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_AVMemory_Create | 10 |
+| OH_AVMemory_GetAddr | 9 |
+| OH_AVMemory_GetSize  | 9 |
+| OH_AVMemory_Destroy  | 10 |
+
 **变更发生版本**
 
 从OpenHarmony SDK 4.1.6.3 开始。
@@ -51,6 +61,17 @@
 **变更影响**
 
 该变更为兼容性变更，需要开发者进行适配。
+
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_AVCodecOnNeedInputData | 9 |
+| OH_AVCodecOnNewOutputData | 9 |
+| OH_AVCodecAsyncCallback  | 9 |
+| const char *OH_AVCODEC_MIMETYPE_VIDEO_MPEG4  | 10 |
+| AudioChannelSet | 10 |
+| AudioChanelLayout | 10 |
 
 **变更发生版本**
 
@@ -111,6 +132,15 @@
 
 该变更为兼容性变更，需要开发者进行适配。
 
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_VideoDecoder_SetCallback | 9 |
+| OH_VideoDecoder_PushInputData | 9 |
+| OH_VideoDecoder_RenderOutputData  | 9 |
+| OH_VideoDecoder_FreeOutputData  | 9 |
+
 **变更发生版本**
 
 从OpenHarmony SDK 4.1.6.3 开始。
@@ -157,6 +187,14 @@
 
 该变更为兼容性变更，需要开发者进行适配。
 
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_VideoEncoder_SetCallback | 9 |
+| OH_VideoEncoder_PushInputData | 9 |
+| OH_VideoEncoder_FreeOutputData  | 9 |
+
 **变更发生版本**
 
 从OpenHarmony SDK 4.1.6.3 开始。
@@ -202,6 +240,12 @@
 
 该变更为兼容性变更，需要开发者进行适配。
 
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_AVDemuxer_ReadSample | 10 |
+
 **变更发生版本**
 
 从OpenHarmony SDK 4.1.6.3 开始。
@@ -236,6 +280,12 @@
 
 该变更为兼容性变更，需要开发者进行适配。
 
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_AVMuxer_WriteSample | 10 |
+
 **变更发生版本**
 
 从OpenHarmony SDK 4.1.6.3 开始。
@@ -269,6 +319,25 @@
 **变更影响**
 
 该变更为兼容性变更，需要开发者进行适配。
+
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_AudioDecoder_CreateByName | 9 |
+| OH_AudioDecoder_CreateByMime | 9 |
+| OH_AudioDecoder_SetCallback | 9 |
+| OH_AudioDecoder_Configure | 9 |
+| OH_AudioDecoder_Prepare | 9 |
+| OH_AudioDecoder_Start | 9 |
+| OH_AudioDecoder_PushInputData | 9 |
+| OH_AudioDecoder_FreeOutputData | 9 |
+| OH_AudioDecoder_Flush | 9 |
+| OH_AudioDecoder_IsValid | 10 |
+| OH_AudioDecoder_Reset | 9 |
+| OH_AudioDecoder_Stop | 9 |
+| OH_AudioDecoder_Destroy | 9 |
+
 
 **变更发生版本**
 
@@ -359,6 +428,25 @@
 **变更影响**
 
 该变更为兼容性变更，需要开发者进行适配。
+
+**API Level**
+
+|         接口声明         |          API Level                |
+| ----------------------- | :--------------------------------|
+| OH_AudioEncoder_CreateByName | 9 |
+| OH_AudioEncoder_CreateByMime | 9 |
+| OH_AudioEncoder_SetCallback | 9 |
+| OH_AudioEncoder_Configure | 9 |
+| OH_AudioEncoder_Prepare | 9 |
+| OH_AudioEncoder_Start | 9 |
+| OH_AudioEncoder_PushInputData | 9 |
+| OH_AudioEncoder_FreeOutputData | 9 |
+| OH_AudioEncoder_Flush | 9 |
+| OH_AudioEncoder_IsValid | 10 |
+| OH_AudioEncoder_Reset | 9 |
+| OH_AudioEncoder_Stop | 9 |
+| OH_AudioEncoder_Destroy | 9 |
+
 
 **变更发生版本**
 
