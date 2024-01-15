@@ -430,7 +430,7 @@ Unsubscribes from upload progress events.
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-Unsubscribes from HTTP header events for the upload task.
+This interface is used to unsubscribe from the HTTP header event of an upload task.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -592,7 +592,7 @@ Removes this upload task. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -623,7 +623,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -673,7 +673,7 @@ Implements a **TaskState** object, which is the callback parameter of the [on('c
 | message | string | Yes| Description of the upload task result.|
 
 ## File
-Describes the list of files in [UploadConfig](#uploadconfig6).
+Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -683,12 +683,12 @@ Describes the list of files in [UploadConfig](#uploadconfig6).
 | -------- | -------- | -------- | -------- |
 | filename | string | Yes| File name in the header when **multipart** is used.|
 | name | string | Yes| Name of a form item when **multipart** is used. The default value is **file**.|
-| uri | string | Yes| Local path for storing files.<br>Only the **internal** protocol type is supported. In the value, **"internal://cache/"** must be included. Example:<br>internal://cache/path/to/file.txt |
+| uri | string | Yes| Local path for storing files.<br>Only the **internal** protocol is currently supported. **internal://cache/** is the private directory of the application and is mandatory. Example:<br>internal://cache/path/to/file.txt |
 | type | string | Yes| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
 
 
 ## RequestData
-Describes the form data in [UploadConfig](#uploadconfig6).
+Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -715,7 +715,7 @@ Downloads files. This API uses a promise to return the result. You can use [on('
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
 
 **Return value**
 
@@ -769,7 +769,7 @@ Downloads files. This API uses an asynchronous callback to return the result. Yo
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
 
 **Error codes**
@@ -826,7 +826,7 @@ Downloads files. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
 
 **Return value**
 
@@ -866,7 +866,7 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
 
 **Example**
@@ -1756,7 +1756,7 @@ Defines the download task configuration.
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The default value is **false**. In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.<br>- **true**: allowed<br>- **false**: not allowed|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The default value is **false**.<br>- **true**: allowed<br>- **false**: not allowed|
 | description | string | No| Description of the download session.|
-| filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored.<br>- In the FA model, use [context](js-apis-inner-app-context.md#contextgetcachedir) to obtain the cache directory of the application, for example, **\${featureAbility.getContext().getFilesDir()}/test.txt\**, and store the file in this directory.<br>- In the stage model, use [AbilityContext](js-apis-inner-application-context.md) to obtain the file path, for example, **\${globalThis.abilityContext.tempDir}/test.txt\**, and store the file in this path.|
+| filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored.<br>- In the FA model, use [context](js-apis-inner-app-context.md#contextgetcachedir) to obtain the application storage path.<br>- In the stage model, use [AbilityContext](js-apis-inner-application-context.md) to obtain the application storage path.|
 | networkType | number | No| Network type allowed for the download. The default value is **NETWORK_MOBILE and NETWORK_WIFI**.<br>- NETWORK_MOBILE: 0x00000001<br>- NETWORK_WIFI: 0x00010000|
 | title | string | No| Download task name.|
 | background<sup>9+</sup> | boolean | No| Whether to enable background task notification so that the download status is displayed in the notification panel. The default value is false.|
@@ -1865,7 +1865,7 @@ Provides the configuration information of an upload or download task.
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
 | url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
-| title | string | No| Task title. The value contains a maximum of 256 characters. The default value is a null string.|
+| title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.|
 | mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>- For a foreground task, a callback is used for notification.<br>- For a background task, the system notification and network connection features (detection, recovery, and automatic retry) are provided.|
 | overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.|
@@ -1942,12 +1942,12 @@ Defines the filter criteria.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundle | string | No| Bundle name of an application.<br>**System API**: This is a system API.|
+| bundle | string | No| Bundle name of the application.<br>**System API**: This is a system API.|
 | before | number | No| Unix timestamp of the end time, in milliseconds. The default value is the invoking time.|
 | after | number | No| Unix timestamp of the start time, in milliseconds. The default value is the invoking time minus 24 hours.|
 | state | [State](#state10) | No| Task state.|
 | action | [Action](#action10) | No| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
-| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**<br>- **BACKGROUND**|
+| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**: Foreground tasks are queried.<br>- **BACKGROUND**: Background tasks are queried.<br>- No value: All tasks are queried.|
 
 ## TaskInfo<sup>10+</sup> 
 Defines the data structure of the task information for query. The fields available vary depending on the query type.
@@ -3673,7 +3673,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
-Shows the task details based on the task ID. This API uses an asynchronous callback to return the result.
+Queries a task details based on the task ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3737,9 +3737,9 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
   ```ts
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in showing the upload task.`);
+    console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to show the upload task. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3773,10 +3773,10 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```ts
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to touch an upload task. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in touching an upload task.`);
+    console.info(`Succeeded in touching a upload task.`);
   });
   ```
 
@@ -3816,7 +3816,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to touch an upload task. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3940,7 +3940,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
-Queries the task details based on the task ID. This API uses an asynchronous callback to return the result.
+Queries a task details based on the task ID. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DOWNLOAD_SESSION_MANAGER or ohos.permission.UPLOAD_SESSION_MANAGER
 
@@ -3968,7 +3968,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   ```ts
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
-      console.error(`Failed to query the upload task. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
@@ -3980,7 +3980,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 query(id: string): Promise&lt;TaskInfo&gt;
 
-Queries the task details based on the task ID. This API uses a promise to return the result.
+Queries a task details based on the task ID. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DOWNLOAD_SESSION_MANAGER or ohos.permission.UPLOAD_SESSION_MANAGER
 
@@ -4014,7 +4014,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query the upload task. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
