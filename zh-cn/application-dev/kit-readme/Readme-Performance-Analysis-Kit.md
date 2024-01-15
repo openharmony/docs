@@ -1,5 +1,5 @@
 # Performance Analysis Kit（性能诊断服务）
-- [Lancet Kit简介](../dfx/lancetkit-overview.md)
+- [Performance Analysis Kit简介](../dfx/performance-analysis-kit-overview.md)
 - [应用事件打点开发指导](../dfx/hiappevent-guidelines.md)
 - [分布式跟踪开发指导](../dfx/hitracechain-guidelines.md)
 - [HiLog开发指导（Native）](../dfx/hilog-guidelines.md)
