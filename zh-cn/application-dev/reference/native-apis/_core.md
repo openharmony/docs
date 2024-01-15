@@ -17,12 +17,12 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | 用声道布局来表示在录制或播放时扬声器的外观和顺序。<br>**引用文件**：<multimedia/player_framework/native_audio_channel_layout.h> <br>**库**：libnative_media_core.so | 
-| [native_avbuffer.h](native__avbuffer_8h.md) | 声明了媒体数据结构AVBuffer的函数接口。<br>**引用文件**：<multimedia/player_framework/native_avbuffer.h> <br>**库**：libnative_media_core.so | 
-| [native_avbuffer_info.h](native__avbuffer__info_8h.md) | 声明了媒体数据结构AVBuffer属性的定义。<br>**引用文件**：<multimedia/player_framework/native_avbuffer_info.h> <br>**库**：libnative_media_core.so | 
-| [native_averrors.h](native__averrors_8h.md) | 声明了媒体子系统的错误码OH_AVErrCode的定义。<br>**引用文件**：<multimedia/player_framework/native_averrors.h> <br>**库**：libnative_media_core.so | 
-| [native_avformat.h](native__avformat_8h.md) | 声明了格式相关的函数和枚举。<br>**引用文件**：<multimedia/player_framework/native_avformat.h> <br>**库**：libnative_media_core.so | 
-| [native_avmemory.h](native__avmemory_8h.md) | 声明了媒体数据结构AVMemory的定义。<br>**引用文件**：<multimedia/player_framework/native_avmemory.h> <br>**库**：libnative_media_core.so | 
+| [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | 用声道布局来表示在录制或播放时扬声器的外观和顺序。 | 
+| [native_avbuffer.h](native__avbuffer_8h.md) | 声明了媒体数据结构AVBuffer的函数接口。 | 
+| [native_avbuffer_info.h](native__avbuffer__info_8h.md) | 声明了媒体数据结构AVBuffer属性的定义。 | 
+| [native_averrors.h](native__averrors_8h.md) | 声明了媒体子系统的错误码OH_AVErrCode的定义。 | 
+| [native_avformat.h](native__avformat_8h.md) | 声明了格式相关的函数和枚举。 | 
+| [native_avmemory.h](native__avmemory_8h.md) | 声明了媒体数据结构AVMemory的定义。 | 
 
 
 ### 结构体
