@@ -1,6 +1,6 @@
 # ArkUI子系统变更说明
 
-## cl.arkui.1 TextInput/TextArea组件圆角部分截断显示效果变更
+## cl.arkui.1 TextInput/TextArea组件光标超出圆角部分截断显示效果变更
 
 **访问级别**
 
