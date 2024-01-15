@@ -53,7 +53,7 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 | Event capability| Supported| Supported|
 | Custom animation| Not supported| Supported|
 | Custom drawing| Not supported| Supported|
-| Logic code execution (excluding the import capability)| Not supported| Supported|
+| Logic code execution| Not supported| Supported|
 
 As can be seen above, ArkTS widgets provide more capabilities and use cases than JS widgets. Therefore, ArkTS widgets are always recommended, except for the case where the widget consists of only static pages.
 

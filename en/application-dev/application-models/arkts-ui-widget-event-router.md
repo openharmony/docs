@@ -17,79 +17,106 @@ Generally, a button is used to start a page. Below is an example:
   ```ts
   @Entry
   @Component
-  struct WidgetCard {
+  struct WidgetEventRouterCard {
     build() {
       Column() {
-        Button ('Function A')
-          .onClick(() => {
-            console.info('Jump to EntryAbility funA');
-            postCardAction(this, {
-              action: 'router',
-              abilityName: 'EntryAbility', // Only the UIAbility of the current application is allowed.
-              params: {
-                targetPage: 'funA' // Process the information in the EntryAbility.
-              }
-            });
-          })
+        Text($r('app.string.JumpLabel'))
+          .fontColor('#FFFFFF')
+          .opacity(0.9)
+          .fontSize(14)
+          .margin({ top: '8%', left: '10%' })
+        Row() {
+          Column() {
+            Button() {
+              Text($r('app.string.ButtonA_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '20%' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'router',
+                abilityName: 'EntryAbility',
+                params: { targetPage: 'funA' }
+              });
+            })
   
-        Button ('Function B')
-          .onClick(() => {
-            console.info('Jump to EntryAbility funB');
-            postCardAction(this, {
-              action: 'router',
-              abilityName: 'EntryAbility', // Only the UIAbility of the current application is allowed.
-              params: {
-                targetPage: 'funB' // Process the information in the EntryAbility.
-              }
-            });
-          })
+            Button() {
+              Text($r('app.string.ButtonB_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '8%', bottom: '15vp' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'router',
+                abilityName: 'EntryAbility',
+                params: { targetPage: 'funB' }
+              });
+            })
+          }
+        }.width('100%').height('80%')
+        .justifyContent(FlexAlign.Center)
       }
       .width('100%')
-      .height('100%').justifyContent(FlexAlign.SpaceAround)
+      .height('100%')
+      .alignItems(HorizontalAlign.Start)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
-
+  
 - The UIAbility receives the router event and obtains parameters. It then starts the page specified by **params**.
   
   ```ts
+  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import hilog from '@ohos.hilog';
   import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
-  import Want from '@ohos.app.ability.Want';
-  import Base from '@ohos.base';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type Want from '@ohos.app.ability.Want';
+  import type window from '@ohos.window';
   
-  let selectPage: string = "";
-  let currentWindowStage: window.WindowStage | null = null;
+  const TAG: string = 'EntryAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
   export default class EntryAbility extends UIAbility {
-    // If the UIAbility is started for the first time, the onCreate lifecycle callback is triggered after the router event is received.
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    private selectPage: string = '';
+    private currentWindowStage: window.WindowStage | null = null;
+  
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // Obtain the targetPage parameter passed in the router event.
-      console.info("onCreate want:" + JSON.stringify(want));
-      if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
-        console.info("onCreate router targetPage:" + params.targetPage);
-        selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
+      if (want.parameters !== undefined) {
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
+        this.selectPage = params.targetPage;
       }
     }
+  
     // If the UIAbility is running in the background, the onNewWant lifecycle callback is triggered after the router event is received.
-    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      console.info("onNewWant want:" + JSON.stringify(want));
+    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
-        console.info("onNewWant router targetPage:" + params.targetPage);
-        selectPage = params.targetPage;
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        this.selectPage = params.targetPage;
       }
-      if (currentWindowStage != null) {
-        this.onWindowStageCreate(currentWindowStage);
+      if (this.currentWindowStage !== null) {
+        this.onWindowStageCreate(this.currentWindowStage);
       }
     }
-
-    onWindowStageCreate(windowStage: window.WindowStage) {
+  
+    onWindowStageCreate(windowStage: window.WindowStage): void {
+      // Main window is created, set main page for this ability
       let targetPage: string;
       // Start the page specified by targetPage.
-      switch (selectPage) {
+      switch (this.selectPage) {
         case 'funA':
           targetPage = 'pages/FunA';
           break;
@@ -99,15 +126,16 @@ Generally, a button is used to start a page. Below is an example:
         default:
           targetPage = 'pages/Index';
       }
-      if (currentWindowStage === null) {
-        currentWindowStage = windowStage;
+      if (this.currentWindowStage === null) {
+        this.currentWindowStage = windowStage;
       }
-      windowStage.loadContent(targetPage, (err: Base.BusinessError) => {
-        if (err && err.code) {
-          console.info('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+      windowStage.loadContent(targetPage, (err, data) => {
+        if (err.code) {
+          hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
           return;
         }
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
-  };
+  }
   ```

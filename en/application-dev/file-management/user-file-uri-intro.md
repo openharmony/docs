@@ -112,9 +112,9 @@ Media file URIs are in the following formats:
   'file://media/Photo/\<id\>/IMG_datetime_0001/displayName.jpg'
 
 - Video URI format:
-
+  
   'file://media/Photo/\<id>/VID_datetime_0001/displayName.mp4'
-
+  
 - Audio File URI format:
 
   'file://media/Audio/\<id>/AUD_datetime_0001/displayName.mp3'

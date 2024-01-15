@@ -5,6 +5,7 @@ A widget can be updated through a proxy – a system application that has data s
 ## Implementation Principles
 
 **Figure 1** Updating widget content through a proxy
+
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
 Compared with the [implementation of the ArkTS widget](../application-models/arkts-ui-widget-working-principles.md#implementation-principles) alone, updating through a proxy involves the data management service and data provider.
@@ -42,6 +43,9 @@ There are two types of shared data provided by the data provider:
 
 The update-through-proxy configuration varies by the type of shared data.
 
+## Data Provider Development
+
+For details, see [Data Management](../database/share-data-by-silent-access.md).
 
 ## Widget Provider Development (Ephemeral Data)
 
@@ -50,9 +54,9 @@ The update-through-proxy configuration varies by the type of shared data.
   {
     "forms": [
       {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+        "name": "WidgetProcessData",
+        "description": "$string:ProcessDataEntryAbility_desc",
+        "src": "./ets/widgetprocessdata/pages/WidgetProcessDataCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -63,58 +67,68 @@ The update-through-proxy configuration varies by the type of shared data.
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"],
+        "supportDimensions": [
+          "2*2"
+        ],
         "dataProxyEnabled": true
       }
     ]
   }
   ```
-
-- Configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and return the information to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In this example, **key** is set to **detail** and **subscriberId** is set to **11**.
+  
+- Configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and return the information to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In this example, **key** is set to **datashareproxy://com.samples.widgetupdatebyproxy/weather** and **subscriberId** is set to **11**.
   > **NOTE**
   >
   > The value of **key** can be a URI or a simple string. The default value of **subscriberId** is the value of **formId**. The actual value depends on the definition of the data provider.
   ```ts
+  import formInfo from '@ohos.app.form.formInfo';
   import formBindingData from '@ohos.app.form.formBindingData';
-  import Want from '@ohos.app.ability.Want';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-
-  export default class EntryFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want) {
+  import hilog from '@ohos.hilog';
+  import type Want from '@ohos.app.ability.Want';
+  
+  const TAG: string = 'ProcessDataFormAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  
+  export default class ProcessDataFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want): formBindingData.FormBindingData {
       let formData: Record<string, Object> = {};
       let proxies: formBindingData.ProxyData[] = [
         {
-          "key": "detail",
-          "subscriberId": "11"
+          key: 'datashareproxy://com.samples.widgetupdatebyproxy/weather',
+          subscriberId: '11'
         }
-      ]
+      ];
       let formBinding = formBindingData.createFormBindingData(formData);
-      formBinding["proxies"] = proxies;
+      formBinding.proxies = proxies;
+      hilog.info(DOMAIN_NUMBER, TAG, 'onAddForm');
       return formBinding;
     }
   }
   ```
-
+  
 - In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'detail'** and displayed in the **\<Text>** component.
   ```ts
-  let storage = new LocalStorage();
-  @Entry(storage)
+  let storageProcess = new LocalStorage();
+  
+  @Entry(storageProcess)
   @Component
-  struct Index {
-    @LocalStorageProp('detail') detail: string = 'Loading...';
-
+  struct WidgetProcessDataCard {
+    @LocalStorageProp('datashareproxy://com.samples.widgetupdatebyproxy/weather') city: ResourceStr = $r('app.string.loading');
+  
     build() {
-      Row() {
+      Column() {
         Column() {
-          Text(this.detail)
-            .fontSize('12vp')
-            .textAlign(TextAlign.Center)
-            .width('100%')
-            .height('15%')
-        }
-  	  .width('100%')
-      }
-  	.height('100%')
+          Text(this.city)
+            .fontColor('#FFFFFF')
+            .opacity(0.9)
+            .fontSize(14)
+            .margin({ top: '8%', left: '10%' })
+        }.width('100%')
+        .alignItems(HorizontalAlign.Start)
+      }.width('100%').height('100%')
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
@@ -125,9 +139,9 @@ The update-through-proxy configuration varies by the type of shared data.
   {
     "forms": [
       {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+        "name": "WidgetPersistentData",
+        "description": "This is a service widget update by proxy using persistent data.",
+        "src": "./ets/widgetpersistentdata/pages/WidgetPersistentDataCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -137,53 +151,58 @@ The update-through-proxy configuration varies by the type of shared data.
         "isDefault": true,
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
+        "updateDuration": 1,
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"],
+        "supportDimensions": [
+          "2*2"
+        ],
         "dataProxyEnabled": true
       }
-    ]
+  ]
   }
   ```
 
-- Add a subscription template ([addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)) to the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format.
+- Add a subscription template ([addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)) to the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format. When the subscribed persistent data is updated, the system automatically updates the widget data.
 
   > **NOTE**
   >
   > - The value of **key** is a URI, which depends on the definition of the data release party.
   > - The value of **subscriberId** can be customized. Ensure that the value of **subscriberId** in **addTemplate** is the same as that of **proxies.subscriberId**.
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import dataShare from '@ohos.data.dataShare';
-  import Want from '@ohos.app.ability.Want';
-
-  let dataShareHelper: dataShare.DataShareHelper;
-  export default class EntryFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want) {
-      let template: dataShare.Template = {
+  import type formBindingData from '@ohos.app.form.formBindingData';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+  import formInfo from '@ohos.app.form.formInfo';
+  import type Want from '@ohos.app.ability.Want';
+  
+  export default class PersistentDataFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want): formBindingData.FormBindingData {
+      let dataShareHelper;
+      let subscriberId = '111';
+      let template = {
         predicates: {
-          "list": "select type from TBL00 limit 0,1"
+          'list': `select type from TBL00 where cityId = ${subscriberId}`
         },
-        scheduler: ""
-      }
-      let subscriberId: string = "111";
-      dataShare.createDataShareHelper(this.context, "datashareproxy://com.example.myapplication", {
+        scheduler: ''
+      };
+      dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.widgetupdatebyproxy', {
         isProxy: true
-      }).then((data: dataShare.DataShareHelper) => {
+      }).then((data) => {
         dataShareHelper = data;
-        dataShareHelper.addTemplate("datashareproxy://com.example.myapplication/test", subscriberId, template);
-      })
-
-      let formData: Record<string, Object> = {};
-      let proxies: formBindingData.ProxyData[] = [
+        dataShareHelper.addTemplate('datashareproxy://com.samples.widgetupdatebyproxy/test', subscriberId, template);
+      });
+      let formData = {};
+      let proxies = [
         {
-          "key": "datashareproxy://com.example.myapplication/test",
-          "subscriberId": subscriberId
+          key: 'datashareproxy://com.samples.widgetupdatebyproxy/test',
+          subscriberId: subscriberId
         }
-      ]
-      let formBinding = formBindingData.createFormBindingData(formData);
-      formBinding["proxies"] = proxies;
-
+      ];
+  
+      let formBinding = {
+        data: JSON.stringify(formData),
+        proxies: proxies
+      };
       return formBinding;
     }
   }
@@ -191,39 +210,29 @@ The update-through-proxy configuration varies by the type of shared data.
 
 - In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
   ```ts
-  let storage = new LocalStorage();
-  @Entry(storage)
+  let storagePersis = new LocalStorage();
+  
+  @Entry(storagePersis)
   @Component
-  struct WidgetCard {
-    readonly ACTION_TYPE: string = 'router';
-    readonly ABILITY_NAME: string = 'EntryAbility';
-    readonly MESSAGE: string = 'add detail';
+  struct WidgetPersistentDataCard {
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
-    @LocalStorageProp('list') list: Record<string, string>[] = [{"type": "a"}];
-
+    @LocalStorageProp('list') list: Record<string, string>[] = [{ 'type': 'a' }];
+  
     build() {
-      Row() {
+      Column() {
         Column() {
-          Text((this.list[0]["type"]))
-            .fontSize($r('app.float.font_size'))
-        }
-        .width(this.FULL_WIDTH_PERCENT)
-      }
-      .height(this.FULL_HEIGHT_PERCENT)
-      .onClick(() => {
-        postCardAction(this, {
-          action: this.ACTION_TYPE,
-          abilityName: this.ABILITY_NAME,
-          params: {
-            message: this.MESSAGE
-          }
-        })
-      })
+          Text((this.list[0]['type']))
+            .fontColor('#FFFFFF')
+            .opacity(0.9)
+            .fontSize(14)
+            .margin({ top: '8%', left: '10%' })
+        }.width('100%')
+        .alignItems(HorizontalAlign.Start)
+      }.width(this.FULL_WIDTH_PERCENT).height(this.FULL_HEIGHT_PERCENT)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
 
-## Data Provider Development
-
-For details, see [Data Management](../database/share-data-by-silent-access.md).
