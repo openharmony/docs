@@ -7,12 +7,19 @@ Hit test control allows you to configure hit testing for components. When proces
 >  - The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >  - When the touch areas of nodes, for example, two nodes, in the **\<Stack>** component overlap, hit testing is performed only on the node displayed at the top layer by default. To perform hit testing on the node at the lower layer, set **hitTestBehavior** to **HitTestMode.Transparent** for the upper-layer node.
 
+## hitTestBehavior
 
-## Attributes
+hitTestBehavior(value: HitTestMode)
 
-| Name              | Type    | Description                                 |
-| -------------------- | -------- | ---------------------------------------- |
-| hitTestBehavior      | [HitTestMode](#hittestmode) | How the component behaves during hit testing.<br>Default value: **HitTestMode.Default**|
+Sets how the component behaves during hit testing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name           | Type    | Mandatory                            | Description                              |
+| -------------------- | -------- | ---------------------------------------- | ---------------------------------------- |
+| value | [HitTestMode](#hittestmode) | Yes| How the component behaves during hit testing.<br>Default value: **HitTestMode.Default**|
 
 ## HitTestMode
 

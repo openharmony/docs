@@ -6,11 +6,19 @@ The foreground color attributes set the foreground color of a component.
 >
 >  The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## foregroundColor
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| foregroundColor | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-types.md#coloringstrategy) | Foreground color. The value can be a specific color or a coloring strategy.|
+foregroundColor(value: ResourceColor | ColoringStrategy)
+
+Sets the foreground color of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-types.md#coloringstrategy10)<sup>10+</sup> | Yes  | Foreground color. The value can be a specific color or a coloring strategy.|
 
 ## Example
 

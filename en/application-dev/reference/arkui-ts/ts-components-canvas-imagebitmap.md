@@ -14,18 +14,18 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                                                    |
-| ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
-| src    | string   | Yes  | -      | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, ImageBitmap("common/images/example.jpg"). The start point of the image loading path is the **ets** folder.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| src  | string | Yes   | -    | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, ImageBitmap("common/images/example.jpg"). The start point of the image loading path is the ets folder.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>- ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
 
 
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| width | number | Pixel width of the **ImageBitmap** object. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| height | number | Pixel height of the **ImageBitmap** object. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name    | Type    | Description                                      |
+| ------ | ------ | ---------------------------------------- |
+| width  | number | Pixel width of the **ImageBitmap** object, in vp. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number | Pixel height of the **ImageBitmap** object, in vp. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 

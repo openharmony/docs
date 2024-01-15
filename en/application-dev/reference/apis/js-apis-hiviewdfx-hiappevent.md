@@ -31,7 +31,7 @@ Adds a data processor for migrating events to the cloud. The implementation of d
 
 | Type   | Description                  |
 | ------ | ---------------------- |
-| number | ID of the data processor to be added. If the operation fails, **-1** is returned. If the operation is successful, a value greater than 0 is returned.|
+| number | ID of the data processor to be added. If the operation fails, **-1** is returned. If the operation is successful, a value greater than **0** is returned.|
 
 **Error codes**
 
@@ -42,17 +42,17 @@ Adds a data processor for migrating events to the cloud. The implementation of d
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
       name: 'analytics_demo'
     };
     let id: number = hiAppEvent.addProcessor(processor);
-    hiLog.info('hiAppEvent', `addProcessor event was successful, id=${id}`);
+    hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
 } catch (error) {
-    hiLog.info('hiAppEvent', `failed to addProcessor event, code=${error.code}`);
-} 
+    hilog.error(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+}
 ```
 
 ## Processor<sup>11+</sup>
@@ -63,15 +63,16 @@ Defines a data processor for reporting events.
 
 | Name               | Type                    | Mandatory| Description                                                                                                       |
 | ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
-| name                | string                  | Yes  | Name of a data processor.                                                                                          |
-| debugMode           | boolean                 | No  | Whether to enable the debugging mode. The value **true** means to enable the debugging mode, and the value **false** means the opposite.                                   |
-| routeInfo           | string                  | No  | Server location information, which cannot exceed 8 KB.                                                                                  |
-| onStartReport       | boolean                 | No  | Whether the data processor reports events during startup. The value **true** means to report events, and the value **false** means the opposite.                                  |
-| onBackgroundReport  | boolean                 | No  | Whether to report events after an application switches to the background. The value **true** means to report events, and the value **false** means the opposite.                                |
-| periodReport        | number                  | No  | Time period for reporting events, in seconds. The value must be greater than or equal to **0**. If the value is **0**, no events are reported.                                               |
-| batchReport         | number                  | No  | Threshold for reporting events. It is expressed by the number of events. The value must be greater than **0** and less than **1000**. If the value is not within the value range, no events are reported.                        |
-| userIds             | string[]                | No  | Name array of user IDs that can be reported by the data processor. A name can contain a maximum of 256 characters, including uppercase letters, lowercase letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit.   |
-| userProperties      | string[]                | No  | Name array of user properties that can be reported by the data processor. A name can contain a maximum of 256 characters, including uppercase letters, lowercase letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit.  |
+| name                | string                  | Yes  | Name of a data processor. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.                                                                                          |
+| debugMode           | boolean                 | No  | Whether to enable the debug mode. The default value is **false**. The value **true** means to enable the debugging mode, and the value **false** means the opposite.                                   |
+| routeInfo           | string                  | No  | Server location information. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length exceeds 8 KB, the default value is used.                                                                                  |
+| appId               | string                  | No  | Application ID. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length exceeds 8 KB, the default value is used.|
+| onStartReport       | boolean                 | No  | Whether to report an event when the data processor starts. The default value is **false**. The value **true** means to report events, and the value **false** means the opposite.                                  |
+| onBackgroundReport  | boolean                 | No  | Whether to report an event when an application switches to the background. The default value is **false**. The value **true** means to report events, and the value **false** means the opposite.                                |
+| periodReport        | number                  | No  | Interval for event reporting, in seconds. The input value must be greater than or equal to **0**. If the input value is less than **0**, the default value **0** is used and periodic reporting is not performed.                                               |
+| batchReport         | number                  | No  | Event reporting threshold. When the number of events reaches the threshold, an event is reported. The value must be greater than **0** and less than **1000**. If the value is not within the range, the default value **0** is used and no events are reported.                        |
+| userIds             | string[]                | No  | Name array of user IDs that can be reported by the data processor. **name** corresponds to the **name** parameter of the [setUserId](#hiappeventsetuserid11) API.   |
+| userProperties      | string[]                | No  | Name array of user properties that can be reported by the data processor. **name** corresponds to the **name** parameter of the [setUserProperty](#hiappeventsetuserproperty11) API.  |
 | eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | No  | Array of events that can be reported by the data processor.                                                                                |
 
 ## AppEventReportConfig<sup>11+</sup>
@@ -83,7 +84,7 @@ Description of events that can be reported by the data processor.
 | Name        | Type   | Mandatory| Description                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
 | domain      | string  | No  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name        | string  | No  | Event name. It is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
+| name        | string  | No  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | isRealTime  | boolean | No  | Whether to report events in real time. The value **true** means to report events, and the value **false** means the opposite.|
 
 ## hiAppEvent.removeProcessor<sup>11+</sup>
@@ -99,7 +100,7 @@ Removes a data processor.
 | Name| Type   | Mandatory| Description                        |
 | ------| ------- | ---- | --------------------------- |
 | id    | number  | Yes  | ID of a data processor. The value must be greater than **0**.|
-	
+
 **Error codes**
 
 | ID| Error Message         |
@@ -109,7 +110,7 @@ Removes a data processor.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
@@ -118,15 +119,15 @@ try {
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
 } catch (error) {
-    hiLog.info('hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
-} 
+    hilog.error(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.write
 
-write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;): void
+write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-Writes events to the event file of the current day through [AppEventInfo](#appeventinfo) objects. This API uses an asynchronous callback to return the result.
+Writes events to the event file of the current day through **AppEventInfo** objects. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -155,6 +156,7 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -167,18 +169,18 @@ hiAppEvent.write({
   params: eventParams,
 }, (err: BusinessError) => {
   if (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.log(`success to write event`);
+  hilog.info(0x0000, 'hiAppEvent', `success to write event`);
 });
 ```
 
 ## hiAppEvent.write
 
-write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
+write(info: AppEventInfo): Promise&lt;void&gt;
 
-Writes events to the event file of the current day through [AppEventInfo](#appeventinfo) objects. This API uses a promise to return the result.
+Writes events to the event file of the current day through **AppEventInfo** objects. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -212,6 +214,7 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -223,9 +226,9 @@ hiAppEvent.write({
   eventType: hiAppEvent.EventType.FAULT,
   params: eventParams,
 }).then(() => {
-  console.log(`success to write event`);
+  hilog.info(0x0000, 'hiAppEvent', `success to write event`);
 }).catch((err: BusinessError) => {
-  console.error(`code: ${err.code}, message: ${err.message}`);
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -238,13 +241,13 @@ Defines parameters for an **AppEventInfo** object.
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | domain    | string                  | Yes  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name      | string                  | Yes  | Event name. It is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
+| name      | string                  | Yes  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
-| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
+| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
 
 ## hiAppEvent.configure
 
-configure(config: [ConfigOption](configoption)): void
+configure(config: ConfigOption): void
 
 Configures the application event logging function, such as setting the event logging switch and maximum size of the directory that stores the event logging files.
 
@@ -289,7 +292,7 @@ Provides configuration options for application event logging.
 | Name      | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | No  | Whether to enable the event logging function. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite.|
-| maxStorage | string  | No  | Maximum size of the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.|
+| maxStorage | string  | No  | Quota for the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.<br>The quota value must meet the following requirements:<br>- The quota value consists of only digits and a unit (which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb], which are case insensitive.)<br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left empty, **b** (that is, byte) is used by default.|
 
 ## hiAppEvent.setUserId<sup>11+</sup>
 
@@ -303,8 +306,8 @@ Sets a user ID.
 
 | Name    | Type                     | Mandatory| Description          |
 | --------- | ------------------------- | ---- | -------------  |
-| name      | string                    | Yes  | Key of a user ID. It is a string that contains a maximum of 256 characters, including uppercase letters, lowercase letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit.  |
-| value     | string                    | Yes  | Value of a user ID. It is a string that contains a maximum of 256 characters. If the value is **null**, **undefine**, or **empty**, the user ID is cleared.|
+| name      | string                    | Yes  | Key of a user ID. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.  |
+| value     | string                    | Yes  | Value of a user ID. It can contain a maximum of 256 characters. If the value is **null** or left empty, the user ID is cleared.|
 
 **Error codes**
 
@@ -315,13 +318,13 @@ Sets a user ID.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserId('key', 'value');
 } catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUseId event, code=${error.code}`);
-} 
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUserId event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.getUserId<sup>11+</sup>
@@ -336,7 +339,7 @@ Obtains the value set by **setUserId**.
 
 | Name    | Type                   | Mandatory| Description        |
 | --------- | ----------------------- | ---- | ----------  |
-| name      | string                  | Yes  | Key of a user ID. It is a string that contains a maximum of 256 characters, including uppercase letters, lowercase letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit.|
+| name      | string                  | Yes  | Key of a user ID. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.|
 
 **Return value**
 
@@ -353,15 +356,15 @@ Obtains the value set by **setUserId**.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
-  hiLog.info('hiAppEvent', `getUseId event was successful, userId=${value}`);/* "value" */
+  hilog.info(0x0000, 'hiAppEvent', `getUserId event was successful, userId=${value}`);
 } catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUseId event, code=${error.code}`);
-} 
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserId event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.setUserProperty<sup>11+</sup>
@@ -376,8 +379,8 @@ Sets user properties.
 
 | Name    | Type                     | Mandatory| Description          |
 | --------- | ------------------------- | ---- | -------------- |
-| name      | string                    | Yes  | Key of a user attribute. It is a string that contains a maximum of 256 characters, including uppercase letters, lowercase letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit. |
-| value     | string                    | Yes  | Value of a user attribute. It is a string that contains a maximum of 1024 characters. If the value is **null**, **undefine**, or **empty**, the user ID is cleared. |
+| name      | string                    | Yes  | Key of a user property. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit. |
+| value     | string                    | Yes  | Value of a user property. It is a string that contains a maximum of 1024 characters. If the value is **null**, **undefine**, or **empty**, the user property is cleared. |
 
 **Error codes**
 
@@ -388,13 +391,13 @@ Sets user properties.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
 } catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
-} 
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.getUserProperty<sup>11+</sup>
@@ -409,13 +412,13 @@ Obtains the value set by **setUserProperty**.
 
 | Name    | Type                   | Mandatory| Description         |
 | --------- | ----------------------- | ---- | ----------    |
-| name      | string                  | Yes  | Key of a user attribute. It is a string that contains a maximum of 256 characters, including uppercase letters, lowercase letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit.|
+| name      | string                  | Yes  | Key of a user property. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.|
 
 **Return value**
 
 | Type   | Description                            |
 | ------ | -------------------------------- |
-| string | Value of a user attribute. If no user ID is found, an empty string is returned.|
+| string | Value of a user property. If no user ID is found, an empty string is returned.|
 
 **Error codes**
 
@@ -426,20 +429,20 @@ Obtains the value set by **setUserProperty**.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserProperty('key', 'value');
 try {
   let value: string = hiAppEvent.getUserProperty('key');
-  hiLog.info('hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);/* "value" */
+  hilog.info(0x0000, 'hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);
 } catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
-} 
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.addWatcher
 
-addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpackageholder)
+addWatcher(watcher: Watcher): AppEventPackageHolder
 
 Adds a watcher to subscribe to application events.
 
@@ -488,17 +491,17 @@ hiAppEvent.addWatcher({
   },
   onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
     if (holder == null) {
-      console.error("holder is null");
+      hilog.error(0x0000, 'hiAppEvent', "holder is null");
       return;
     }
-    console.info(`curRow=${curRow}, curSize=${curSize}`);
+    hilog.info(0x0000, 'hiAppEvent', `curRow=${curRow}, curSize=${curSize}`);
     let eventPkg: hiAppEvent.AppEventPackage | null = null;
     while ((eventPkg = holder.takeNext()) != null) {
-      console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-      console.info(`eventPkg.row=${eventPkg.row}`);
-      console.info(`eventPkg.size=${eventPkg.size}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.packageId=${eventPkg.packageId}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.row=${eventPkg.row}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.size=${eventPkg.size}`);
       for (const eventInfo of eventPkg.data) {
-        console.info(`eventPkg.data=${eventInfo}`);
+        hilog.info(0x0000, 'hiAppEvent', `eventPkg.data=${eventInfo}`);
       }
     }
   }
@@ -511,19 +514,39 @@ let holder = hiAppEvent.addWatcher({
 if (holder != null) {
   let eventPkg: hiAppEvent.AppEventPackage | null = null;
   while ((eventPkg = holder.takeNext()) != null) {
-    console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-    console.info(`eventPkg.row=${eventPkg.row}`);
-    console.info(`eventPkg.size=${eventPkg.size}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.packageId=${eventPkg.packageId}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.row=${eventPkg.row}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.size=${eventPkg.size}`);
     for (const eventInfo of eventPkg.data) {
-      console.info(`eventPkg.data=${eventInfo}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.data=${eventInfo}`);
     }
   }
 }
+
+// 3. You can have the watcher processed the subscription event in the onReceive function.
+hiAppEvent.addWatcher({
+  name: "watcher3",
+  appEventFilters: [
+    {
+      domain: "test_domain",
+      eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
+    }
+  ],
+  onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
+    hilog.info(0x0000, 'hiAppEvent', `domain=${domain}`);
+    for (const eventGroup of appEventGroups) {
+      hilog.info(0x0000, 'hiAppEvent', `eventName=${eventGroup.name}`);
+      for (const eventInfo of eventGroup.appEventInfos) {
+        hilog.info(0x0000, 'hiAppEvent', `event=${JSON.stringify(eventInfo)}`, );
+      }
+    }
+  }
+});
 ```
 
 ## hiAppEvent.removeWatcher
 
-removeWatcher(watcher: [Watcher](#watcher)): void
+removeWatcher(watcher: Watcher): void
 
 Removes a watcher to unsubscribe from application events.
 
@@ -567,9 +590,10 @@ Defines parameters for a **Watcher** object.
 | Name            | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string                                                       | Yes  | Unique name of a watcher.                            |
-| triggerCondition | [TriggerCondition](#triggercondition)                        | No  | Subscription callback triggering condition. This parameter takes effect only when it is passed together with the callback.          |
+| triggerCondition | [TriggerCondition](#triggercondition)                        | No  | Subscription callback triggering condition. This parameter takes effect only when it is passed together with **onTrigger**.          |
 | appEventFilters  | [AppEventFilter](#appeventfilter)[]                          | No  | Subscription filtering condition. This parameter is passed only when subscription events need to be filtered.              |
-| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | No  | Subscription callback, which takes effect only when it is passed together with the callback triggering condition. The input arguments are described as follows:<br>**curRow**: total number of subscription events when the callback is triggered.<br>**curSize**: total size of subscribed events when the callback is triggered, in bytes.<br>**holder**: subscription data holder, which can be used to process subscribed events.|
+| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | No  | Subscription callback. This parameter takes effect only when it is passed together with **triggerCondition**. The input arguments are described as follows:<br>**curRow**: total number of subscription events when the callback is triggered.<br>**curSize**: total size of subscribed events when the callback is triggered, in bytes.<br>**holder**: subscription data holder, which can be used to process subscribed events.|
+| onReceive<sup>11+</sup>        | (domain: string, appEventGroups: Array<[AppEventGroup](#appeventgroup11)>) => void | No| Real-time subscription callback. Only this callback function is triggered if it is passed together with **onTrigger**. The input arguments are described as follows:<br>domain: domain name.<br>appEventGroups: event group.|
 
 ## TriggerCondition
 
@@ -593,6 +617,7 @@ Defines parameters for an **AppEventFilter** object.
 | ---------- | ------------------------- | ---- | ------------------------ |
 | domain     | string                    | Yes  | Event domain.    |
 | eventTypes | [EventType](#eventtype)[] | No  | Event types.|
+| names<sup>11+</sup>      | string[]                  | No  | Names of the events to be subscribed.|
 
 ## AppEventPackageHolder
 
@@ -649,7 +674,7 @@ holder2.setSize(1000);
 
 ### takeNext
 
-takeNext(): [AppEventPackage](#appeventpackage)
+takeNext(): AppEventPackage
 
 Extracts subscription event data based on the configured data size threshold. If all subscription event data has been extracted, **null** will be returned.
 
@@ -681,6 +706,17 @@ Defines parameters for an **AppEventPackage** object.
 | size      | number   | Yes  | Event size of the event package, in bytes.|
 | data      | string[] | Yes  | Event data in the event package.            |
 
+## AppEventGroup<sup>11+</sup>
+
+Defines the event group returned by a subscription.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+| Name         | Type                           | Mandatory | Description         |
+| ------------- | ------------------------------- | ---- | ------------- |
+| name          | string                          | Yes  | Event name.    |
+| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | Yes  | Event object group.|
+
 ## hiAppEvent.clearData
 
 clearData(): void
@@ -710,9 +746,20 @@ Enumerates event types.
 | BEHAVIOR  | 4    | Behavior event.|
 
 
+## domain<sup>11+</sup>
+
+Defines the domain name of predefined events.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+| Name| Type  | Description      |
+| ---  | ------ | ---------- |
+| OS   | string | System domain.|
+
+
 ## event
 
-Provides constants that define the names of all predefined events.
+Defines the names of predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -721,11 +768,13 @@ Provides constants that define the names of all predefined events.
 | USER_LOGIN                | string | User login event.      |
 | USER_LOGOUT               | string | User logout event.      |
 | DISTRIBUTED_SERVICE_START | string | Distributed service startup event.|
+| APP_CRASH<sup>11+</sup>   | string | Application crash event.      |
+| APP_FREEZE<sup>11+</sup>  | string | Application freeze event.      |
 
 
 ## param
 
-Provides constants that define the names of all predefined event parameters.
+Defines the names of predefined event parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 

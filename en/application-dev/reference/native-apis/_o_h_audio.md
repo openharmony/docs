@@ -78,6 +78,7 @@ The **OHAudio** module provides C APIs of the audio module.
 | [OH_AudioCapturer_GetCapturerInfo](#oh_audiocapturer_getcapturerinfo) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) \*sourceType) | Obtains the usage scenario of an audio capturer.| 
 | [OH_AudioCapturer_GetFrameSizeInCallback](#oh_audiocapturer_getframesizeincallback) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*frameSize) | Obtains the frame size in the callback. The frame size is the fixed length of the buffer returned by each callback.| 
 | [OH_AudioCapturer_GetTimestamp](#oh_audiocapturer_gettimestamp) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an audio input stream.| 
+| [OH_AudioCapturer_GetFramesRead](#oh_audiocapturer_getframesread) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, int64_t *frame) | Obtains the number of frames that have been read since the stream was created.|
 | [OH_AudioRenderer_Release](#oh_audiorenderer_release) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Releases an audio renderer.| 
 | [OH_AudioRenderer_Start](#oh_audiorenderer_start) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Starts an audio renderer.| 
 | [OH_AudioRenderer_Pause](#oh_audiorenderer_pause) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Pauses an audio renderer.| 
@@ -574,6 +575,30 @@ Obtains the encoding type of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
+### OH_AudioCapturer_GetFramesRead()
+
+```
+OH_AudioStream_Result OH_AudioCapturer_GetFramesRead (OH_AudioCapturer * capturer, int64_t * frames )
+```
+
+**Description**
+
+Obtains the number of frames that have been read since the stream was created.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| frames | Pointer to the variable that holds the frame count. (It is used as a return value.)| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 ### OH_AudioCapturer_GetFrameSizeInCallback()
 
@@ -1299,7 +1324,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy (OH_AudioStreamBuilder * bui
 **Description**
 
 Destroys an audio stream builder when it is no longer required.
-
 
 **Since**: 10
 

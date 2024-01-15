@@ -5,13 +5,11 @@
 
 The **OHOS::Media::OhosImageComponent** struct defines the information about an image component.
 
-**Since**
+**System capability**: SystemCapability.Multimedia.Image
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

@@ -5,13 +5,11 @@
 
 The **OhosPixelMapCreateOps** struct defines the options used for creating a pixel map.
 
-**Since**
+**System capability**: SystemCapability.Multimedia.Image
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

@@ -176,6 +176,7 @@ Called to report a system update event.
 **Example**
 
 ```ts
+import systemManager from '@ohos.enterprise.systemManager';
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
     console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
