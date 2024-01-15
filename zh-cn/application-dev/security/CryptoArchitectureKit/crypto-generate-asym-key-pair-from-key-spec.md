@@ -102,7 +102,7 @@ function rsaUsePubKeySpecGetCallback() {
 
 3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCCommonParamsSpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对keyPair。
+4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对（KeyPair）。
 
 5. 分别传入密钥对中的私钥和公钥，调用[PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1)和[PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中私钥和公钥的各种密钥参数。
 
@@ -224,7 +224,7 @@ function testEccUseCommKeySpecGet() {
 
 3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCKeyPairSpec对象传入，创建非对称密钥生成器。
 
-4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对keyPair。
+4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到各项数据与密钥参数一致的密钥对（KeyPair）。
 
 5. 调用[PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1)，获取SM2算法中椭圆曲线参数。
 
