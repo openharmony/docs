@@ -19,7 +19,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 |ohos.permission.GET_BUNDLE_RESOURCES| system_basic | Allows an application to obtain resource information of another application.|
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Allows an application to read the list of installed applications.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
 
 ## Enums
 
@@ -309,3 +309,5 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed: %{public}s', message);
 }
 ```
+
+ <!--no_check--> 

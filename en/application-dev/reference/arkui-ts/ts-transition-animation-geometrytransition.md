@@ -14,7 +14,7 @@
 
 > **NOTE**
 >
-> For the settings to take effect, **geometryTransition** must be used together with **animateTo**. The animation duration and curve follow the settings in **animateTo**. The **.animation** implicit animation is not supported.
+> For the settings to take effect, [geometryTransition](ts-transition-animation-geometrytransition.md) must be used together with [animateTo](ts-explicit-animation.md). The animation duration and curve follow the settings in [animateTo](ts-explicit-animation.md). [animation](ts-animatorproperty.md) is not supported.
 
 ## Example
 

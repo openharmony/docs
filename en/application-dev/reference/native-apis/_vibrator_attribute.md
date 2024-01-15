@@ -7,7 +7,7 @@ The **Vibrator_Attribute** struct defines the vibrator attribute.
 
 **Since**: 11
 
-**Related module**: [Vibrator](_xe9_xa9_xac_xe8_xbe_xbe.md)
+**Related module**: [Vibrator](_vibrator.md)
 
 
 ## Summary
@@ -17,8 +17,8 @@ The **Vibrator_Attribute** struct defines the vibrator attribute.
 
 | Name| Description|
 | -------- | -------- |
-| [id](#id) | int32_t<br>Vibration scenario. |
-| **usage** | [Vibrator_Usage](_xe9_xa9_xac_xe8_xbe_xbe.md#vibrator_usage) |
+| [id](#id) | Vibrator ID. |
+| [usage](#usage) | Vibration scenario.|
 
 
 ## Member Variable Description
@@ -29,6 +29,16 @@ The **Vibrator_Attribute** struct defines the vibrator attribute.
 ```
 int32_t Vibrator_Attribute::id
 ```
+**Description**
+
+Vibrator ID.
+
+### usage
+
+```
+Vibrator_Usage Vibrator_Attribute::usage
+```
+
 **Description**
 
 Vibration scenario.

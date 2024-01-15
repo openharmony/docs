@@ -6,12 +6,19 @@ The **renderFit** attribute sets how the final state of a component's content is
 >
 >  The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
+## renderFit
 
-## Attributes
+renderFit(fitMode: RenderFit)
 
-| Name       | Type                       | Mandatory  | Description                                      |
-| --------- | --------------------------- | ---- | ---------------------------------------- |
-| renderFit | [RenderFit](#renderfit) | Yes   | How the final state of the component's content is rendered during its width and height animation process.<br>If **renderFit** is not set, the default value **RenderFit.TOP_LEFT** is used.|
+Sets how the final state of the component's content is rendered during its width and height animation process.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                           | Mandatory| Description                                                        |
+| ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| fitMode | [RenderFit](#renderfit) | Yes  | How the final state of the component's content is rendered during its width and height animation process.<br>If **renderFit** is not set, the default value **RenderFit.TOP_LEFT** is used.|
 
 ## RenderFit
 

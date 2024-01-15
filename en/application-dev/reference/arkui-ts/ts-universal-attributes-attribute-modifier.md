@@ -1,16 +1,24 @@
 # Attribute Modifier
 
-With the attribute modifier, you can dynamically set component attributes, complete with the **if/else** syntax.
+With the attribute modifier, you can dynamically set component attributes, complete with the **if/else** syntax and polymorphic style.
 
 >  **NOTE**
 >
 >  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## attributeModifier
 
-| Name             | Type                                       | Description                                                        |
-| ----------------- | ----------------------------------------------- | ------------------------------------------------------------ |
-| attributeModifier | modifier:&nbsp;AttributeModifier\<T> | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.<br>Currently, this API only works with the **backgroundColor** attribute of the **\<Button>** component. |
+attributeModifier(modifier: AttributeModifier\<T>)
+
+Creates an attribute modifier.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                                        |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| modifier | AttributeModifier\<T> | Yes  | Modifier for dynamically setting attributes on the current component. The **if/else** syntax is supported.<br>**modifier**: attribute modifier. You need to customize classes to implement the **AttributeModifier** API.<br> Currently, this API only works with the **backgroundColor** attribute of the **\<Button>** component.|
 
 ## AttributeModifier\<T>
 
@@ -19,13 +27,35 @@ You need to customize classes to implement the **AttributeModifier** API.
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
-Applies the attributes to the component type specified by **instance**. This method can be used with the **if/else** syntax. You must customize this method.
+Applies the style of a component in the normal state.
+
+### applyPressedAttribute
+applyPressedAttribute(instance: T) : void
+
+Applies the style of a component in the pressed state.
+
+### applyFocusedAttribute
+applyFocusedAttribute(instance: T) : void
+
+Applies the style of a component in the focused state.
+
+### applyDisabledAttribute
+applyDisabledAttribute(instance: T) : void
+
+Applies the style of a component in the disabled state.
+
+### applySelectedAttribute
+applySelectedAttribute(instance: T) : void
+
+Applies the style of a component in the selected state.
+
+In the preceding APIs, **instance** indicates the component type. You can customize these APIs and use them with the **if/else **syntax.
 
 **Parameters**
 
-| Name            | Type   | Description                                                        |
-| -------------------- | ----------------- | ------------------------------------------------------------ |
-| instance | T | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** of the **\<Text>** component.|
+| Name            | Description                                                        |
+| -------------------- | ------------------------------------------------------------ |
+| instance |Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** of the **\<Text>** component.|
 
 ## Example
 
@@ -55,6 +85,39 @@ struct attributeDemo {
           .onClick(() => {
             this.modifier.isDark = !this.modifier.isDark
           })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
+
+
+
+```ts
+// xxx.ets
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Black)
+  }
+
+  applyPressedAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Red)
+  }
+}
+
+@Entry
+@Component
+struct attributePressedDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
       }
       .width('100%')
     }

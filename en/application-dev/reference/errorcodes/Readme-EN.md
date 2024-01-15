@@ -108,5 +108,6 @@
   - [Common Library Error Codes](errorcode-utils.md)
 - Application services
   - [OAID Error Codes](errorcode-oaid.md)
+  - [Ads Service Framework Error Codes](errorcode-ads.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

@@ -3,14 +3,15 @@
 
 ## Overview
 
-Provides rawfile descriptor information.
+Defines the file descriptor information of a file in the **rawfile** directory.
 
-**RawFileDescriptor** is an output parameter of [OH_ResourceManager_GetRawFileDescriptor](rawfile.md#oh_resourcemanager_getrawfiledescriptor). It provides information including the rawfile descriptor and the start position and length of the rawfile in the HAP package.
+**RawFileDescriptor** is an output parameter of [OH_ResourceManager_GetRawFileDescriptor()](rawfile.md#oh_resourcemanager_getrawfiledescriptor). It contains the file descriptor of a raw file and the start position and length of the raw file in the HAP.
 
-**Since:**
+**Since**
+
 8
 
-**Related Modules:**
+**Related module**
 
 [Rawfile](rawfile.md)
 
@@ -20,41 +21,47 @@ Provides rawfile descriptor information.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [fd](#fd) |rawfile descriptor  | 
-| [start](#start) | Start position of rawfile in the HAP package  | 
-| [length](#length) | Length of rawfile in the HAP package  | 
+| [fd](#fd) | File descriptor of the raw file.|
+| [start](#start) | Start position of the raw file in the HAP.|
+| [length](#length) | Length of the raw file in the HAP.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### fd
 
-  
+
 ```
 int RawFileDescriptor::fd
 ```
-**Description**<br>
-rawfile descriptor
+
+**Description**
+
+File descriptor of the raw file.
 
 
 ### length
 
-  
+
 ```
 long RawFileDescriptor::length
 ```
-**Description**<br>
-Length of rawfile in the HAP package
+
+**Description**
+
+Length of the raw file in the HAP.
 
 
 ### start
 
-  
+
 ```
 long RawFileDescriptor::start
 ```
-**Description**<br>
-Start position of rawfile in the HAP package
+
+**Description**
+
+Start position of the raw file in the HAP.

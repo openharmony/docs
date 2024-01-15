@@ -91,15 +91,18 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
 import { BusinessError } from '@ohos.base';
+import type rpc from '@ohos.rpc';
+
+interface DataType {
+  deviceId : number;
+  remote : rpc.IRemoteObject;
+}
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
   deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }, (error : BusinessError, data: {
-      deviceId : number;
-      remote : rpc.IRemoteObject;
-  }) => {
+  }, (error : BusinessError, data : DataType) => {
     if (error) {
       console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;

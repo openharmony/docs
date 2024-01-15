@@ -236,6 +236,8 @@ struct IdExample {
             windowY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the application window.
             displayX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the device screen.
             displayY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the device screen.
+            stopPropagation: () => {
+            },
             timestamp: 1,
             target: {
               area: {
@@ -276,6 +278,8 @@ struct IdExample {
             deviceId: 0,
             metaKey: 0,
             timestamp: 0,
+            stopPropagation: () => {
+            },
             intentionCode: IntentionCode.INTENTION_DOWN
           }
           sendKeyEvent(keyEvent) // Send a key event.

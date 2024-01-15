@@ -40,7 +40,7 @@ Adds the applications that are not allowed to run by the current user through th
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -90,7 +90,7 @@ Adds the applications that are not allowed to run by the specified user through 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -144,7 +144,7 @@ Adds the applications that are not allowed to run by the current or specified us
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -191,7 +191,7 @@ Removes the applications that are not allowed to run by the current user through
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -240,7 +240,7 @@ Removes the applications that are not allowed to run by the specified user throu
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -294,7 +294,7 @@ Removes the applications that are not allowed to run by the current or specified
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -340,7 +340,7 @@ Obtains the applications that are not allowed to run by the current user through
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -387,7 +387,7 @@ Obtains the applications that are not allowed to run by the specified user throu
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -439,7 +439,7 @@ Obtains the applications that are not allowed to run by the current or specified
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -459,4 +459,159 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## applicationManager.addAutoStartApps<sup>11+</sup>
+
+addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
+
+Adds the auto-start applications (applications that automatically run at system startup) through the specified device administrator application. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| autoStartApps | Array\<[Want](js-apis-app-ability-want.md)> | Yes   | Auto-start applications to add. A maximum of 10 applications can be added at a time.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.addAutoStartApps(wantTemp, autoStartApps);
+  console.info(`Succeeded in adding auto start applications`);
+} catch(err) {
+  console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.removeAutoStartApps<sup>11+</sup>
+
+removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
+
+Remotes the auto-start applications through the specified device administrator application. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| autoStartApps | Array\<[Want](js-apis-app-ability-want.md)> | Yes   | Auto-start applications to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
+  console.info(`Succeeded in removing auto start applications`);
+} catch(err) {
+  console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.getAutoStartApps<sup>11+</sup>
+
+getAutoStartApps(admin: Want): Array\<Want>
+
+Obtains the auto-start applications through the specified device administrator application. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Array\<[Want](js-apis-app-ability-want.md)> | List of the auto-start applications obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp);
+  console.info(`Succeeded in adding auto start apps: ${res}`);
+} catch(err) {
+  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
+}
 ```
