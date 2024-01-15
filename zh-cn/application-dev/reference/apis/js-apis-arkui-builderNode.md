@@ -47,7 +47,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 | 参数名    | 类型                                    | 必填 | 说明                                                              |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
-| uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](#uicontext获取方法)。 |
+| uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
 | options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。                                       |
 
 ### build
