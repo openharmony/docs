@@ -8,6 +8,7 @@ Component startup refers to the behavior of starting or connecting to an applica
 
 - Connect to the ServiceExtensionAbility and DataShareExtensionAbility components. For example, you can use **connectServiceExtensionAbility()** and **createDataShareHelper()**.
 
+## General Component Startup Rules
 
 To deliver a better user experience, the system restricts the following behavior:
 
@@ -21,24 +22,20 @@ To deliver a better user experience, the system restricts the following behavior
 
 In view of this, the system formulates a set of component startup rules, as follows:
 
+- Before starting a component of another application, check whether the component can be called by others.
 
-- **Before starting a component of another application, verify the visible field of the target component.**
-  - If the **exported** field of the target component is **false**, verify the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-  - For details, see [Component exported Configuration](../quick-start/module-configuration-file.md#abilities).
+  If the **exported** field of the component is set to **true**, the component can be called by other applications. If the field is set to **false**, the component cannot be called by other applications. If this is the case, you must also verify the **ohos.permission.START_INVISIBLE_ABILITY** permission. For details about the **exported** fields, see [abilities](../quick-start/module-configuration-file.md#abilities).
 
-- **Before starting a UIAbility component of a background application, verify the BACKGROUND permission.**
-  - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
-  - Verify the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+- Before starting a UIAbility component of a background application, verify the permission **ohos.permission.START_ABILITIES_FROM_BACKGROUND**.
 
-- **When the startAbilityByCall() method is used, verify the call permission.** For details, see [Using Call to Implement UIAbility Interaction](uiability-intra-device-interaction.md#using-call-to-implement-uiability-interaction) and [Using Cross-Device Call](hop-multi-device-collaboration.md#using-cross-device-call).
-  - Verify the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** permission.
+  > NOTE
+  > 
+  > An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
+ 
+- Before using **startAbilityByCall()** to start a component, verify the permission **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION**.
 
+The preceding component startup rules take effect since API version 9. Familiarity with these rules helps you prevent service function exceptions.  
 
-> **NOTE**
->
-> - Component startup control has been implemented since OpenHarmony v3.2 Release.
-> 
-> - The new component startup rules are more strict than the original ones. You must be familiar with the new startup rules to prevent service exceptions.
 
 
 ## Intra-Device Component Startup Rules

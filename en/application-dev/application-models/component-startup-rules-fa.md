@@ -25,7 +25,7 @@ In view of this, the system formulates a set of component startup rules, as foll
 - **Before starting a component of another application, verify the visible field of the target component.**
   - This rule applies only to cross-application scenarios.
   - If the **visible** field of the target component is **false**, verify the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-  - For details, see [Component Visible Configuration](../quick-start/module-configuration-file.md#abilities).
+  - For details about the **visible** field, see [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).
 
 - **Before starting a component of a background application, verify the BACKGROUND permission.**
   > **NOTE**
