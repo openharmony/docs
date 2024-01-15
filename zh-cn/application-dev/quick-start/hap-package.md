@@ -24,9 +24,9 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack形式上架，应用市场分发时会将所有HAP从App Pack中拆分出来，同时对其中的所有HAP进行重签名，这样保证了所有HAP签名证书的一致性。在调试阶段，开发者通过命令行或DevEco Studio将HAP安装到设备上时，要保证所有HAP签名证书一致，否则会出现安装失败的问题。
 
-## 创建HAP模块
+## 创建
 
-下面简要介绍如何通过DevEco Studio新建一个entry/feature类型的Module，用于HAP开发。
+下面简要介绍如何通过DevEco Studio新建一个HAP模块。
 
 1. 创建工程，详见[构建第一个ArkTS应用](start-with-ets-stage.md)。
 2. 在工程目录上单击右键，选择**New > Module**。
@@ -36,11 +36,13 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 5. 在Ability配置界面，配置**Ability name**，然后单击**Finish**完成创建。
 
-## 开发HAP
+## 开发
 
-HAP模块中支持添加UIAbility组件或ExtensionAbility组件，添加Pages页面，以及引用HAR或HSP共享包等。具体操作可参考[应用/服务开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_ability-0000001053183674-V3)。
+- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加Pages页面。具体操作可参考[应用/服务开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_ability-0000001053183674-V3)。
 
-## 调试HAP
+- HAP中支持引用HAR或HSP共享包，详见[使用HAR](./har-package.md#使用)、[使用HSP](./in-app-hsp.md#使用)。
+
+## 调试
 
 通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/customized-multi-targets-and-products-0000001430013853-V3?catalogVersion=V3)。
 

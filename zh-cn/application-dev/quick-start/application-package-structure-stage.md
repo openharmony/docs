@@ -38,7 +38,7 @@
 
 > 说明：
 > 
-> 在编译HAP和HSP时,会把他们依赖的HAR直接编译到HAP和HSP中.
+> 在编译HAP和HSP时,会把他们所依赖的HAR直接编译到HAP和HSP中。
 
 ## 发布态包结构
 
@@ -60,7 +60,7 @@ HAP、HAR、HSP三者的功能和使用场景总结对比如下：
 
 | Module类型 | 包类型 | 说明 | 
 | -------- | -------- | -------- | 
-| Ability | [HAP](hap-package.md)| 应用的功能模块，可以独立安装和运行，必须包含一个Entry类型的HAP，可选包含1个或多个Feature类型的HAP。| 
+| Ability | [HAP](hap-package.md)| 应用的功能模块，可以独立安装和运行，必须包含一个entry类型的HAP，可选包含1个或多个feature类型的HAP。| 
 | Static Library | [HAR](har-package.md) | 静态共享包，编译态复用。<br/> - 支持应用内共享，也可以发布后供其他应用使用。<br/> &ensp; - 作为二方库，发布到[OHPM](https://ohpm.openharmony.cn/)私仓，供公司内部其他应用使用。<br/> &ensp; - 作为三方库，发布到[OHPM](https://ohpm.openharmony.cn/)中心仓，供其他应用使用。<br/> - 多包（HAP/HSP）引用相同的HAR时，会造成多包间代码和资源的重复拷贝，从而导致应用包膨大。 | 
 | Shared Library | [HSP](in-app-hsp.md)| 动态共享包，运行时复用。<br/> - 当前仅支持应用内共享。<br/> - 当多包(HAP/HSP)同时引用同一个共享包时，采用HSP替代HAR，可以避免HAR造成的多包间代码和资源的重复拷贝，从而减小应用包大小。 | 
 

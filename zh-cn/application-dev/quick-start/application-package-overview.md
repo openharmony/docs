@@ -15,15 +15,15 @@
 
 - **支持多设备适配：** 一个应用往往需要适配多种设备类型，在采用多Module设计的应用中，每个Module都会标注所支持的设备类型。有些Module支持全部类型的设备，有些Module只支持某一种或几种型的设备（比如平板），那么在应用市场分发应用包时，也能够根据设备类型做精准的筛选和匹配，从而将不同的包合理的组合和部署到对应的设备上。
 
-- **支持共享包机制：** 一个应用中多个模块公用的代码和资源，可以打包成独立的共享包。当前支持两种不同类型的共享包，其中一种可以作为二方库或三方库，发布到[OHPM](https://ohpm.openharmony.cn/)私仓或中心仓；另外一种可以实现运行时的按需加载。后续章节会对两种类型共享包的差异、以及[如何选择合适的包类型](./application-package-structure-stage.md#选择合适的包类型)展开详细介绍。
+- **支持共享包机制：** 一个应用中多个模块共用的代码和资源，可以打包成独立的共享包。当前支持两种不同类型的共享包，其中一种可以作为二方库或三方库，发布到[OHPM](https://ohpm.openharmony.cn/)私仓或中心仓；另外一种可以实现运行时的按需加载。后续章节会对两种类型共享包的差异以及[如何选择合适的包类型](./application-package-structure-stage.md#选择合适的包类型)展开详细介绍。
 
 ## Module类型
 
 Module按照使用场景可以分为两种类型：
 
 - **Ability类型的Module：** 用于实现应用的功能和特性。每一个Ability类型的Module编译后，会生成一个以.hap为后缀的文件，我们称其为HAP（Harmony Ability Package）包。HAP包可以独立安装和运行，是应用安装的基本单位，一个应用中可以包含一个或多个HAP包，具体包含如下两种类型。
-  - Entry类型的Module：应用的主模块，包含应用的入口界面、入口图标和主功能特性，编译后生成Entry类型的HAP。每一个应用分发到同一类型的设备上的应用程序包，只能包含唯一一个Entry类型的HAP。
-  - Feature类型的Module：应用的动态特性模块，编译后生成Feature类型的HAP。一个应用中可以包含一个或多个Feature类型的HAP，也可以不包含。
+  - entry类型的Module：应用的主模块，包含应用的入口界面、入口图标和主功能特性，编译后生成entry类型的HAP。每一个应用分发到同一类型的设备上的应用程序包，只能包含唯一一个entry类型的HAP。
+  - feature类型的Module：应用的动态特性模块，编译后生成feature类型的HAP。一个应用中可以包含一个或多个feature类型的HAP，也可以不包含。
 
 - **Library类型的Module：** 用于实现代码和资源的共享。同一个Library类型的Module可以被其他的Module多次引用，合理地使用该类型的Module，能够降低开发和维护成本。Library类型的Module分为Static和Shared两种类型，编译后会生成共享包。
   - Static Library：静态共享库。编译后会生成一个以.har为后缀的文件，即静态共享包HAR（Harmony Archive）。

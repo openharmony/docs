@@ -17,7 +17,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
 
 
-## 创建HSP模块
+## 创建
 通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 library
@@ -31,7 +31,7 @@ library
 └── oh-package.json5
 ```
 
-## 导出HSP的ArkUI组件、接口、资源
+## 开发
 
 
 介绍如何导出HSP的ArkUI组件、接口、资源，供应用内的其他HAP/HSP引用。

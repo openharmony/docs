@@ -13,16 +13,13 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR不支持引用AppScope目录中的资源。在编译构建时，AppScope中的内容不会打包到HAR中，导致HAR资源引用失败。
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
-## 创建HAR模块
+## 创建
 通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
 
 
-
-
-
-
 ## 开发
-重点介绍如何导出HAR的ArkUI组件、接口、资源，供其他应用或当前应用的其他模块引用。
+
+介绍如何导出HAR的ArkUI组件、接口、资源，供其他应用或当前应用的其他模块引用。
 
 Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
 ```json
@@ -288,7 +285,7 @@ struct Index {
 > HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
 
-- 对于API 10及以上版本，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
+对于API 10及以上版本，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
 
   ```json
   {
