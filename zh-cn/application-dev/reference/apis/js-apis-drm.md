@@ -1,6 +1,7 @@
 # @ohos.multimedia.drm (数字版权保护)
 
 DRM（Digital Rights Management）框架组件支持音视频媒体业务数字版权管理功能的开发。开发者可以调用系统提供的DRM插件，完成以下功能：
+
 * DRM证书管理：生成证书请求、设置证书响应，实现对证书Provision（下载）功能。
 * DRM许可证管理：生成许可证请求、设置许可证响应，实现对许可证的离线管理等功能。
 * DRM节目授权：支持底层DRM插件根据许可证对DRM节目授权。
@@ -9,7 +10,7 @@ DRM（Digital Rights Management）框架组件支持音视频媒体业务数字�
 > **说明：**
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-### 导入模块
+## 导入模块
 
 ```ts
 import drm from '@ohos.multimedia.drm';
@@ -18,7 +19,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，错误码。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -31,7 +32,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，配置选项名。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -47,7 +48,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，监听事件类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -63,7 +64,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，许可证类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -74,7 +75,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，离线许可证状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -86,7 +87,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，证书状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -100,7 +101,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，请求类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -115,7 +116,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，内容保护级别。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -129,7 +130,7 @@ import drm from '@ohos.multimedia.drm';
 
 设备证书请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -140,7 +141,7 @@ import drm from '@ohos.multimedia.drm';
 
 设备证书请求的操作数据。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -151,7 +152,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -163,7 +164,7 @@ import drm from '@ohos.multimedia.drm';
 
 事件类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -174,7 +175,7 @@ import drm from '@ohos.multimedia.drm';
 
 统计信息。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -185,7 +186,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证状态
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -196,7 +197,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证状态
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -207,7 +208,7 @@ import drm from '@ohos.multimedia.drm';
 
 用于指示媒体源的drm信息。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -220,7 +221,7 @@ function getMediaKeySystemName(uuid: string): string
 
 获取设备支持的drm方案的名称。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -258,7 +259,7 @@ createMediaKeySystem(uuid: string): MediaKeySystem
 
 创建MediaKeySystem实例，同步返回结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -297,7 +298,7 @@ isMediaKeySystemSupported(uuid: string, mimeType: string, level: ContentProtecti
 
 判断设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -339,7 +340,7 @@ setConfigurationString(configName: string, value: string): void
 
 设置配置信息以字符串类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -373,7 +374,7 @@ getConfigurationString(configName: string): string
 
 获取配置信息以字符串类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -412,7 +413,7 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 设置配置信息以字符数组类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -446,7 +447,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 获取配置信息以字符数组类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -485,7 +486,7 @@ getStatistics(): StatisticKeyValue[]
 
 获取性能统计信息。其中包括当前会话数、插件版本信息、解密次数和解密失败次数。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -518,7 +519,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 
 获取设备支持的最大安全级别。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -551,7 +552,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest>
 
 生成获取mediaKeySystem设备证书的请求
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -584,7 +585,7 @@ processKeySystemResponse(response: Uint8Array): Promise<void>
 
 处理应用程序获得的设备证书请求对应的响应。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -609,7 +610,7 @@ getCertificateStatus():CertificateStatus
 
 获取Oem设备证书状态值。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -642,7 +643,7 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听设备证书请求，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -678,7 +679,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听设备证书请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -710,7 +711,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 根据给定的安全级别进行创建drm会话实例。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -749,7 +750,7 @@ createMediaKeySession(): MediaKeySession
 
 根据默认的软件安全级别进行创建drm会话实例。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -781,7 +782,7 @@ getOfflineMediaKeyIds(): Uint8Array[]
 
 获取离线许可证Id。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 
 **返回值：**
@@ -814,7 +815,7 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 获取离线许可证状态返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -853,7 +854,7 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 根据指定的离线许可证Id删除离线许可证。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -886,7 +887,7 @@ destroy(): void
 
 销毁MediaKeySystem运行时申请的资源。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **示例：**
 
@@ -907,7 +908,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 生成许可证请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -954,7 +955,7 @@ processKeySystemResponse(response: Uint8Array): Promise<Uint8Array>
 
 处理离线许可证响应返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -994,7 +995,7 @@ let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("medi
 
 检查在线许可证状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -1027,7 +1028,7 @@ clearMediaKeys(): void
 
 删除在线许可证。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **错误码：**
 
@@ -1054,7 +1055,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array>
 
 生成离线许可证释放请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1095,7 +1096,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 处理离线许可证响应。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1131,7 +1132,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void>
 
 恢复离线许可证。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1167,7 +1168,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 获取当前会话的安全级别。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -1200,7 +1201,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 获取安全解码模块状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1240,7 +1241,7 @@ on(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 监听密钥请求事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1276,7 +1277,7 @@ off(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 注销监听密钥请求事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1310,7 +1311,7 @@ on(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 监听密钥过期，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1346,7 +1347,7 @@ off(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 注销监听密钥过期事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1380,7 +1381,7 @@ on(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 监听第三方定义事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1416,7 +1417,7 @@ off(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 注销监听第三方定义事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1450,7 +1451,7 @@ on(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): vo
 
 监听过期更新事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1486,7 +1487,7 @@ off(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): v
 
 注销监听过期更新事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1520,7 +1521,7 @@ on(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 监听密钥变化事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1556,7 +1557,7 @@ off(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 注销监听密钥变化事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1590,7 +1591,7 @@ destroy(): void
 
 销毁MediaKeySession运行时申请的资源。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **示例：**
 
