@@ -98,13 +98,11 @@ function rsaUsePubKeySpecGetCallback() {
 
    使用密钥参数生成密钥时，用到的bigint类型需要以大端模式输入，且必须为正数。
 
-2. 创建[ECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#ECCCommonParamsSpec)对象，用于指定ECC算法中公私钥包含的公共参数。
+2. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCCommonParamsSpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCCommonParamsSpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
+3. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对（KeyPair）。
 
-4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对（KeyPair）。
-
-5. 分别传入密钥对中的私钥和公钥，调用[PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1)和[PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中私钥和公钥的各种密钥参数。
+4. 分别传入密钥对中的私钥和公钥，调用[PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1)和[PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中私钥和公钥的各种密钥参数。
 
 以使用Promise方式根据密钥参数生成ECC密钥为例：
 
