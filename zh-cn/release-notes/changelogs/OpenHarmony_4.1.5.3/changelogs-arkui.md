@@ -247,7 +247,7 @@ UX能力增强。
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.2 开始。
+从OpenHarmony SDK 4.1.5.2 开始。
 
 **变更的接口/组件**
 
