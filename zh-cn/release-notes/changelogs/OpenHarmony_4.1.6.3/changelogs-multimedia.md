@@ -523,3 +523,35 @@
 调用OH_AudioCodec_Stop()，停止编解码器。
 
 调用OH_AudioCodec_Destroy()，销毁编解码器实例，释放资源。
+
+## cl.multimedia.9 AVPlayer/AVRecorder支持的格式规格变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+使用AVCodec进行解封装、编解码。
+
+**变更影响**
+
+不支持以下格式：
+解封装格式：WebM
+视频解码：H.263, MPEG2, MPEG4, VP8
+视频编码：MPEG4
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
+
+**变更的接口/组件**
+AVPlayer组件，AVRecorder组件
+
+**适配指导**
+1. 视频编码使用 AVC 代替MPEG4。
+2. 音视频播放资源涉及封装格式 WebM，或视频解码格式 H.263/MPEG2/MPEG4/VP8，会播放失败，尽量使用封装格式 MP4，视频解码格式 AVC 的资源代替。
