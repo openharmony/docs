@@ -102,6 +102,7 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
+  - [Battery Info Error Codes](errorcode-battery-info.md)
 - Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Common Library

@@ -35,7 +35,7 @@ Number formatting is implemented through the [format](../reference/apis/js-apis-
 
 **Number Formatting Options**
 
-You can use [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
+You can use [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
 
 The following uses **123000.123** as an example to show the parameter values and corresponding display effects.
 
@@ -124,7 +124,7 @@ let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 
 ### Currency and Unit Formatting
 
-Currency and unit formatting is based on number formatting. When creating a **NumberFormat** object for currency and unit formatting, set the number formatting style to currency and unit, respectively. Similarly, this can be done through [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6). The following tables show the parameter values and corresponding display effects.
+Currency and unit formatting is based on number formatting. When creating a **NumberFormat** object for currency and unit formatting, set the number formatting style to currency and unit, respectively. Similarly, this can be done through [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions). The following tables show the parameter values and corresponding display effects.
 
 **Currency Formatting Options**
 
@@ -194,7 +194,7 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 Units of measurement conversion and formatting are implemented by the [unitConvert](../reference/apis/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
 
-1. Import the **i18n** module.
+1. Import the **intl** module.
    ```ts
    import I18n from '@ohos.i18n';
    ```
@@ -225,8 +225,8 @@ Assume that **fromUnit** is **cup** (US unit), **toUnit** is **liter** (SI unit)
 import I18n from '@ohos.i18n'
 
 // Set the fromUnit and toUnit.
-let fromUnit = {unit: 'cup', measureSystem: 'US'};
-let toUnit = {unit: 'liter', measureSystem: 'SI'};
+let fromUnit: I18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
+let toUnit: I18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // Convert the unit based on the locale en-US.
 let convertedUnit1 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L

@@ -40,13 +40,14 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |Creates a **NetHandle** object that contains the **netId** of the default network. This API uses an asynchronous callback to return the result.|
 | getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| Obtains the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
 | setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| Sets the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
+| setAppHttpProxy(httpProxy: HttpProxy): void;| Sets the application-level HTTP proxy configuration of the network.|
 | getAppNet(callback: AsyncCallback\<NetHandle>): void;| Obtains a **NetHandle** object that contains the **netId** of the network bound to the application. This API uses an asynchronous callback to return the result.|
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Binds an application to the specified network. The application can access the external network only through this network. This API uses an asynchronous callback to return the result.|
 | getDefaultNetSync(): NetHandle; |Obtains the default active data network in synchronous mode. You can use **getNetCapabilities** to obtain information such as the network type and capabilities.|
-| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |Checks whether the default network is available. This API uses an asynchronous callback to return the result.|
+| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.|
 | getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| Obtains the list of **NetHandle** objects of the connected network. This API uses an asynchronous callback to return the result.|
-| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains link information of the default network. This API uses an asynchronous callback to return the result.|
-| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains the capability set of the default network. This API uses an asynchronous callback to return the result.|
+| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains network connection information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
+| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains capability information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
 | isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |Checks whether the data traffic usage on the current network is metered. This API uses an asynchronous callback to return the result.|
 | reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
 | reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
@@ -55,33 +56,33 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result.|
 | createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.|
 | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | Binds a **TCPSocket** or **UDPSocket** to the current network. This API uses an asynchronous callback to return the result.|
-| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the default network by resolving the domain name. This API uses an asynchronous callback to return the result.|
+| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
 | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |Obtains an IP address of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
-| on(type: 'netAvailable', callback: Callback\<NetHandle>): void; |Subscribes to **netAvailable** events.|
-| on(type: 'netCapabilitiesChange', callback: Callback\<{ netHandle: NetHandle, netCap: NetCapabilities }>): void; |Subscribes to **netCapabilitiesChange** events.|
+| on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |Subscribes to **netAvailable** events.|
+| on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |Subscribes to **netCapabilitiesChange** events.|
 | on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |Subscribes to **netConnectionPropertiesChange** events.|
 | on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |Subscribes to **netBlockStatusChange** events.|
 | on(type: 'netLost', callback: Callback\<NetHandle>): void; |Subscribes to **netLost** events.|
 | on(type: 'netUnavailable', callback: Callback\<void>): void; |Subscribes to **netUnavailable** events.|
-| register(callback: AsyncCallback\<void>): void; |Registers an observer for the default network or the network specified in **createNetConnection**.|
-| unregister(callback: AsyncCallback\<void>): void; |Unregisters the observer for the default network or the network specified in **createNetConnection**.|
+| register(callback: AsyncCallback\<void>): void; |Subscribes to network status changes.|
+| unregister(callback: AsyncCallback\<void>): void; |Unsubscribes from network status changes.|
 
 ## Subscribing to Status Changes of the Specified Network
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
-2. Import the connection namespace from **@ohos.net.connection.d.ts**.
+1. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
-3. Call **createNetConnection()** to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used. 
+2. Call **createNetConnection()** to create a **NetConnection** object. You can specify the network type, capability, and timeout interval. If you do not specify parameters, the default values will be used. 
 
-4. Call **conn.on()** to subscribe to the target event. You must pass in **type** and **callback**.
+3. Call **conn.on()** to subscribe to the target event. You must pass in **type** and **callback**.
 
-5. Call **conn.register()** to subscribe to network status changes of the specified network.
+4. Call **conn.register()** to subscribe to network status changes of the specified network.
 
-6. When the network is available, the callback will be invoked to return the **netAvailable** event. When the network is unavailable, the callback will be invoked to return the **netUnavailable** event.
+5. When the network is available, the callback will be invoked to return the **netAvailable** event. When the network is unavailable, the callback will be invoked to return the **netUnavailable** event.
 
-7. Call **conn.unregister()** to unsubscribe from the network status changes if required.
+6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
 
 ```ts
 // Import the connection namespace.
@@ -103,18 +104,17 @@ let timeout = 10 * 1000;
 // Create a NetConnection object.
 let conn = connection.createNetConnection(netSpecifier, timeout);
 
-// Listen to network status change events. If the network is available, an on_netAvailable event is returned.
-conn.on('netAvailable', ((data: connection.NetHandle) => {
-  console.log("net is available, netId is " + data.netId);
-}));
-
-// Listen to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
-conn.on('netUnavailable', ((data: void) => {
-  console.log("net is unavailable, data is " + JSON.stringify(data));
-}));
-
 // Register an observer for network status changes.
 conn.register((err: BusinessError, data: void) => {
+  // Subscribe to network status change events. If the network is available, an on_netAvailable event is returned.
+  conn.on('netAvailable', ((data: connection.NetHandle) => {
+    console.log("net is available, netId is " + data.netId);
+  }));
+
+  // Subscribe to network status change events. If the network is unavailable, an on_netUnavailable event is returned.
+  conn.on('netUnavailable', ((data: void) => {
+    console.log("net is unavailable, data is " + JSON.stringify(data));
+  }));
 });
 
 // Unregister the observer for network status changes.
@@ -127,7 +127,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ### How to Develop
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
@@ -176,7 +176,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### How to Develop
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
@@ -220,49 +220,49 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
   console.log(JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netHandle = data;
-  }
-})
 
-// Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
-connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-  console.log(JSON.stringify(err));
+    // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
+      console.log(JSON.stringify(err));
 
-  // Obtain the network type via bearerTypes.
-  let bearerTypes: Set<number> = new Set(data.bearerTypes);
-  let bearerTypesNum = Array.from(bearerTypes.values());
-  for (let item of bearerTypesNum) {
-    if (item == 0) {
-      // Cellular network
-      console.log(JSON.stringify("BEARER_CELLULAR"));
-    } else if (item == 1) {
-      // Wi-Fi network
-      console.log(JSON.stringify("BEARER_WIFI"));
-    } else if (item == 3) {
-      // Ethernet network
-      console.log(JSON.stringify("BEARER_ETHERNET"));
-    }
-  }
-  
-  // Obtain the specific network capabilities via networkCap.
-  let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
-  let dataNumber = Array.from(itemNumber.values());
-  for (let item of dataNumber) {
-    if (item == 0) {
-      // The network can connect to the carrier's Multimedia Messaging Service Center (MMSC) to send and receive multimedia messages.
-      console.log(JSON.stringify("NET_CAPABILITY_MMS"));
-    } else if (item == 11) {
-      // The network traffic is not metered.
-      console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
-    } else if (item == 12) {
-      // The network has the Internet access capability, which is set by the network provider.
-      console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
-    } else if (item == 15) {
-      // The network does not use a Virtual Private Network (VPN).
-      console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
-    } else if (item == 16) {
-      // The Internet access capability of the network is successfully verified by the connection management module.
-      console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
-    }
+      // Obtain the network type via bearerTypes.
+      let bearerTypes: Set<number> = new Set(data.bearerTypes);
+      let bearerTypesNum = Array.from(bearerTypes.values());
+      for (let item of bearerTypesNum) {
+        if (item == 0) {
+          // Cellular network
+          console.log(JSON.stringify("BEARER_CELLULAR"));
+        } else if (item == 1) {
+          // Wi-Fi network
+          console.log(JSON.stringify("BEARER_WIFI"));
+        } else if (item == 3) {
+          // Ethernet network
+          console.log(JSON.stringify("BEARER_ETHERNET"));
+        }
+      }
+      
+      // Obtain the specific network capabilities via networkCap.
+      let itemNumber : Set<number> = new Set(data.networkCap);
+      let dataNumber = Array.from(itemNumber.values());
+      for (let item of dataNumber) {
+        if (item == 0) {
+          // The network can connect to the carrier's Multimedia Messaging Service Center (MMSC) to send and receive multimedia messages.
+          console.log(JSON.stringify("NET_CAPABILITY_MMS"));
+        } else if (item == 11) {
+          // The network traffic is not metered.
+          console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
+        } else if (item == 12) {
+          // The network has the Internet access capability, which is set by the network provider.
+          console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
+        } else if (item == 15) {
+          // The network does not use a Virtual Private Network (VPN).
+          console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
+        } else if (item == 16) {
+          // The Internet access capability of the network is successfully verified by the connection management module.
+          console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
+        }
+      }
+    })
   }
 })
 
@@ -278,24 +278,24 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
+
+    let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
+    let dataNumber = Array.from(itemNumber.values());
+    for (let item of dataNumber) {
+      // Obtain the network capability information of the network specified by each netHandle on the network list cyclically.
+      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(data));
+      })
+
+      // Obtain the connection information of the network specified by each netHandle on the network list cyclically.
+      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(data));
+      })
+    }
   }
 })
-
-let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
-let dataNumber = Array.from(itemNumber.values());
-for (let item of dataNumber) {
-  // Obtain the network capability information of the network specified by each netHandle on the network list cyclically.
-  connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(err));
-    console.log(JSON.stringify(data));
-  })
-
-  // Obtain the connection information of the network specified by each netHandle on the network list cyclically.
-  connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(err));
-    console.log(JSON.stringify(data));
-  })
-}
 ```
 
 ## Resolving the domain name of a network to obtain all IP addresses
@@ -303,7 +303,7 @@ for (let item of dataNumber) {
 ### How to Develop
 
 1. Declare the required permission: **ohos.permission.INTERNET**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Import the connection namespace from **@ohos.net.connection.d.ts**.
 

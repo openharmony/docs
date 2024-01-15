@@ -87,6 +87,6 @@ The following uses date and time formatting as an example. For details about API
    result = enDateTimeFmt.format(date); // result = "10/23/2023"
    
    // Method 3
-   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString);
+   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString());
    result = systemDateTimeFmt.format(date); // result = "2023/10/23" (The display effect depends on the current system environment.)
    ```
