@@ -1,0 +1,21 @@
+# Access Control
+
+- [Access Control Overview](access-token-overview.md)
+- Application Permission Management
+  - [Application Permission Management Overview] (app-permission-mgmt-overview.md)
+  - Requesting Application Permissions
+    - [Workflow for Using Permissions](determine-application-mode.md)
+    - [Declaring Permissions](declare-permissions.md)
+    - [Declaring ACL Permissions](declare-permissions-in-acl.md)
+    - [Requesting User Authorization](request-user-authorization.md)
+  - Application Permissions
+    - [Permissions for All Applications](permissions-for-all.md)
+    - [Permissions for System Applications](permissions-for-system-apps.md)
+    - [Permissions for MDM Applications](permissions-for-mdm-apps.md)
+  - [Application Permission Groups](app-permission-group-list.md)
+- [Using System Pickers](use-picker.md)
+- Using Security Components
+  - [Security Component Overview](security-component-overview.md)
+  - [Using \<PasteButton>](pastebutton.md)
+  - [Using \<SaveButton>](savebutton.md)
+  - [Using \<LocationButton>](locationbutton.md)
