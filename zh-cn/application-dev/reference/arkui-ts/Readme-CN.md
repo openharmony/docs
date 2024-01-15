@@ -189,6 +189,7 @@
   - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](ts-composite-components-editabletitlebar.md)
   - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](ts-composite-components-exceptionprompt.md)
   - [@ohos.arkui.advanced.Filter (多条件筛选)](ts-composite-components-filter.md)
+  - [@ohos.arkui.advanced.GridObjectSortComponent  (网格对象的编辑排序)](ts-composite-components-gridobjectsortcomponent.md)
   - [@ohos.arkui.advanced.ProgressButton (下载按钮)](ts-composite-components-progressbutton.md)
   - [@ohos.arkui.advanced.Popup (气泡组件)](ohos-arkui-advanced-popup.md)
   - [@ohos.arkui.advanced.SegmentButton (分段按钮)](ohos-arkui-advanced-segmentbutton.md)
