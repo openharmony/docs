@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: number) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。 该任务不可以是任务组任务和串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -171,7 +171,7 @@ taskpool.execute(taskGroup2).then((res: Array<number>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。
+延时执行任务。该任务不可以是任务组任务或串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -825,7 +825,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务不可以是任务组任务、串行队列任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -858,17 +858,6 @@ function delay(args: number): number {
 let task1:taskpool.Task = new taskpool.Task(delay, 100);
 let task2:taskpool.Task = new taskpool.Task(delay, 200);
 let task3:taskpool.Task = new taskpool.Task(delay, 200);
-
-console.info("dependency: start execute first")
-taskpool.execute(task1).then(()=>{
-  console.info("dependency: first task1 success")
-})
-taskpool.execute(task2).then(()=>{
-  console.info("dependency: first task2 success")
-})
-taskpool.execute(task3).then(()=>{
-  console.info("dependency: first task3 success")
-})
 
 console.info("dependency: add dependency start");
 task1.addDependency(task2);
@@ -1003,7 +992,7 @@ let name: string = taskGroup.name;
 
 addTask(func: Function, ...args: Object[]): void
 
-将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。
+将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1107,7 +1096,7 @@ let runner：taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 execute(task: Task): Promise\<Object>
 
-执行串行任务。使用该方法前需要先构造SequenceRunner。
+执行串行任务。使用该方法前需要先构造SequenceRunner。串行队列不可以执行任务组任务、其他串行队列任务、有依赖关系的任务和已执行的任务。
 
 > **说明：**
 >
