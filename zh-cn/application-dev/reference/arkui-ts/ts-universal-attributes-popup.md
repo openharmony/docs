@@ -160,7 +160,7 @@ struct PopupExample {
 }
 ```
 
-<img src="figures/popup.gif" alt="figures/popup.gif" style="zoom: 25%;" />
+![](figures/popup.gif)
 
 ### 示例2
 
