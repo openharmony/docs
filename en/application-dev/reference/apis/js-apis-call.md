@@ -35,7 +35,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -86,7 +86,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -148,7 +148,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -306,7 +306,7 @@ Launches the call screen and displays the dialed number. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -353,7 +353,7 @@ Launches the call screen and displays the dialed number. This API uses a promise
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -416,7 +416,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 | Type                  | Description                                   |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that a call is in progress, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -442,7 +442,7 @@ Checks whether a call is in progress.
 
 | Type                  | Description         |
 | ---------------------- |-------------|
-| boolean | Promise used to return the result.|
+| boolean | Promise used to return the result. The value **true** indicates that a call is in progress, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -564,7 +564,7 @@ Checks whether the called number is an emergency number. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -607,7 +607,7 @@ Checks whether the called number is an emergency number based on the phone numbe
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -652,11 +652,11 @@ Checks whether the called number is an emergency number based on the phone numbe
 
 | Type                  | Description                                               |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the called number is an emergency number, and the value **false** indicates the opposite.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -698,7 +698,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -742,7 +742,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -795,7 +795,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -840,7 +840,7 @@ The phone number must match the specified country code. For example, for a China
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -892,7 +892,7 @@ All country codes are supported.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -934,7 +934,7 @@ Mutes the ringtone while it is playing. It does not work if the ringtone has bee
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -981,7 +981,7 @@ Mutes the ringtone while it is playing. It does not work if the ringtone has bee
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1025,7 +1025,7 @@ Answers a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1078,7 +1078,7 @@ Answers a call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1123,7 +1123,7 @@ Answers a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1171,7 +1171,7 @@ Ends a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1224,7 +1224,7 @@ Ends a call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1269,7 +1269,7 @@ Ends a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1318,7 +1318,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1368,7 +1368,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1425,7 +1425,7 @@ Rejects a call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1473,7 +1473,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1521,7 +1521,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1572,7 +1572,7 @@ Holds a call based on the specified call ID. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1625,7 +1625,7 @@ Holds a call based on the specified call ID. This API uses a promise to return t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1670,7 +1670,7 @@ Unholds a call based on the specified call ID. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1723,7 +1723,7 @@ Unholds a call based on the specified call ID. This API uses a promise to return
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1768,7 +1768,7 @@ Switches a call. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1821,7 +1821,7 @@ Switches a call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -1864,7 +1864,7 @@ Combines two calls into a conference call. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1915,7 +1915,7 @@ Combines two calls into a conference call. This API uses a promise to return the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1960,7 +1960,7 @@ Removes a specified call from a conference call. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2012,7 +2012,7 @@ Removes a specified call from a conference call. This API uses a promise to retu
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2055,7 +2055,7 @@ Obtains the main call ID. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2106,7 +2106,7 @@ Obtains the main call ID. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2149,7 +2149,7 @@ Obtains the list of subcall IDs. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2199,7 +2199,7 @@ Obtains the list of subcall IDs. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2241,7 +2241,7 @@ Obtains the list of call IDs in a conference. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2291,7 +2291,7 @@ Obtains the list of call IDs in a conference. This API uses a promise to return 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2335,7 +2335,7 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2388,7 +2388,7 @@ Obtains the call waiting status. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2434,7 +2434,7 @@ Specifies whether to enable the call waiting service. This API uses an asynchron
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2488,7 +2488,7 @@ Specifies whether to enable the call waiting service. This API uses a promise to
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2532,7 +2532,7 @@ Starts playing DTMF tones. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2549,7 +2549,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 import { BusinessError } from '@ohos.base';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
-    id (err) {
+    if (err) {
         console.error(`startDTMF fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`startDTMF success.`);
@@ -2583,7 +2583,7 @@ Starts playing DTMF tones. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2625,7 +2625,7 @@ Stops playing DTMF tones. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2675,7 +2675,7 @@ Stops playing DTMF tones. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2723,7 +2723,7 @@ the system reports a **postDialDelay** event when the call is connected. The app
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2776,7 +2776,7 @@ the system reports a **postDialDelay** event when the call is connected. The app
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2820,7 +2820,7 @@ Checks whether a call is an emergency call. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2867,7 +2867,7 @@ Checks whether a call is an emergency call. This API uses a promise to return th
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2910,7 +2910,7 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2951,7 +2951,7 @@ Subscribes to **callEventChange** events. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2992,7 +2992,7 @@ Subscribes to **callDisconnectedCause** events. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3033,7 +3033,7 @@ Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3074,7 +3074,7 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3115,7 +3115,7 @@ Unsubscribes from **callEventChange** events. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3156,7 +3156,7 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3197,7 +3197,7 @@ Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3239,7 +3239,7 @@ Subscribes to audio device change events. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3281,7 +3281,7 @@ Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3322,7 +3322,7 @@ Subscribes to **postDialDelay** events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3363,7 +3363,7 @@ Unsubscribes from **postDialDelay** events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3401,7 +3401,7 @@ Checks whether a new call is allowed. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3445,7 +3445,7 @@ Checks whether a new call is allowed. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3485,7 +3485,7 @@ Separates calls from a conference call. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3536,7 +3536,7 @@ Separates calls from a conference call. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3582,7 +3582,7 @@ Obtains the call restriction status. This API uses an asynchronous callback to r
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3636,7 +3636,7 @@ Obtains the call restriction status. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3682,7 +3682,7 @@ Sets the call restriction status. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3741,7 +3741,7 @@ Sets the call restriction status. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3793,7 +3793,7 @@ Changes the call barring password. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3847,7 +3847,7 @@ Changes the call barring password. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3893,7 +3893,7 @@ Obtains call transfer information. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3947,7 +3947,7 @@ Obtains call transfer information. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -3993,7 +3993,7 @@ Sets call transfer information. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4052,7 +4052,7 @@ Sets call transfer information. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4101,7 +4101,7 @@ Checks whether the ringtone is playing. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4148,7 +4148,7 @@ Checks whether the ringtone is playing. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4188,7 +4188,7 @@ Sets call muting. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4232,7 +4232,7 @@ Sets call muting. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4271,7 +4271,7 @@ Cancels call muting. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4315,7 +4315,7 @@ Cancels call muting. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4357,7 +4357,7 @@ Sets the audio device for a call. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4412,7 +4412,7 @@ Sets the audio device for a call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4459,7 +4459,7 @@ Joins a conference call. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4512,7 +4512,7 @@ Joins a conference call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4558,7 +4558,7 @@ Updates the IMS call mode. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4608,7 +4608,7 @@ Updates the IMS call mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4652,7 +4652,7 @@ Enables the IMS service. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4704,7 +4704,7 @@ Enables the IMS service. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4749,7 +4749,7 @@ Disables the IMS service. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4801,7 +4801,7 @@ Disables the IMS service. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4840,11 +4840,11 @@ Checks whether the IMS service is enabled. This API uses an asynchronous callbac
 | Name  | Type                        | Mandatory| Description                                  |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.          |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4893,7 +4893,7 @@ Checks whether the IMS service is enabled. This API uses a promise to return the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4938,7 +4938,7 @@ Cancels the unfinished USSD services. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -4991,7 +4991,7 @@ Cancels the unfinished USSD services. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5039,7 +5039,7 @@ Sets the status of the VoNR switch. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5095,7 +5095,7 @@ Sets the status of the VoNR switch. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5143,7 +5143,7 @@ Obtains the status of the VoNR switch. This API uses an asynchronous callback to
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5197,7 +5197,7 @@ Obtains the status of the VoNR switch. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5244,7 +5244,7 @@ Checks whether the call forwarding time can be set. This API uses an asynchronou
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5294,11 +5294,11 @@ Checks whether the call forwarding time can be set. This API uses a promise to r
 
 | Type                  | Description                                         |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the call forwarding time can be set, and the value **false** indicates the opposite.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -5345,7 +5345,7 @@ Performs a secret code broadcast. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -5396,7 +5396,7 @@ Performs a secret code broadcast. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -5441,7 +5441,7 @@ Removes missed call notifications. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -5487,7 +5487,7 @@ Removes missed call notifications. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -5731,6 +5731,24 @@ Defines the call attribute options.
 | callId          | number                                   | Yes  | Call ID.        |
 | callState       | [DetailedCallState](#detailedcallstate7) | Yes  | Detailed call state.  |
 | conferenceState | [ConferenceState](#conferencestate7)     | Yes  | Conference state.      |
+| voipCallAttribute | [VoipCallAttribute](#voipcallattribute11)     | No  | VoIP call information.      |
+
+## VoipCallAttribute<sup>11+</sup>
+
+Defines the VoIP call information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+|      Name      | Type              | Mandatory| Description          |
+| --------------- | ------------------- | ---- | -------------- |
+| voipCallId   | string    | Yes  | Unique ID of a VoIP call.      |
+| userName  | string    | Yes  | User nickname.|
+| userProfile       | [image.PixelMap](js-apis-image.md#pixelmap7)    | Yes  | User profile picture. |
+| extensionId      | string     | Yes  |  Process ID of the third-party application. |
+| abilityName      | string     | Yes  |  Ability name of the third-party application. |
+| voipBundleName    | string     | Yes  |  Bundle name of the third-party application. |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5761,6 +5779,7 @@ Enumerates call types.
 | TYPE_IMS      | 1    | IMS call.     |
 | TYPE_OTT      | 2    | OTT call.     |
 | TYPE_ERR_CALL | 3    | Error call type.|
+| TYPE_VOIP<sup>11+</sup> | 4    | VoIP call.|
 
 ## VideoStateType<sup>7+</sup>
 
@@ -6080,7 +6099,7 @@ Defines the MMI code result.
 
 ## call.answerCall<sup>11+</sup>
 
-answerCall(videoState: VideoStateType, callId?: number\): Promise\<void\>
+answerCall(videoState: VideoStateType, callId: number\): Promise\<void\>
 
 Answers a call. This API uses a promise to return the result.
 
@@ -6095,7 +6114,7 @@ Answers a call. This API uses a promise to return the result.
 | Name                  | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | videoState| [VideoStateType](#videostatetype7)| Yes  | Video state.                                                |
-| callId    | number                            |  No | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. If this field is not set, the latest ringing call will be connected.|
+| callId    | number                            | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.                |
 
 **Return value**
 
@@ -6105,7 +6124,7 @@ Answers a call. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -6155,7 +6174,7 @@ Cancels the upgrade of a video call. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6206,7 +6225,7 @@ Uses the specified camera to make a video call. If **cameraId** is left empty, t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6230,9 +6249,9 @@ call.controlCamera(1, "1").then(() => {
 });
 ```
 
-## call.setPreviewWindow<sup>11+</sup>
+## call.setPreviewSurface<sup>11+</sup>
 
-setPreviewWindow\(callId: number, surfaceId: string\): Promise\<void\>
+setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 
 Sets the local preview window. This API uses a promise to return the result.
 
@@ -6257,7 +6276,7 @@ Sets the local preview window. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6274,16 +6293,16 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.setPreviewWindow(1, "surfaceId1").then(() => {
-    console.log(`setPreviewWindow success.`);
+call.setPreviewSurface(1, "surfaceId1").then(() => {
+    console.log(`setPreviewSurface success.`);
 }).catch((err: BusinessError) => {
-    console.error(`setPreviewWindow fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setPreviewSurface fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## call.setDisplayWindow<sup>11+</sup>
+## call.setDisplaySurface<sup>11+</sup>
 
-setDisplayWindow\(callId: number, surfaceId: string\): Promise\<void\>
+setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 
 Sets the remote display window. This API uses a promise to return the result.
 
@@ -6308,7 +6327,7 @@ Sets the remote display window. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6325,10 +6344,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.setDisplayWindow(1, "surfaceId1").then(() => {
-    console.log(`setDisplayWindow success.`);
+call.setDisplaySurface(1, "surfaceId1").then(() => {
+    console.log(`setDisplaySurface success.`);
 }).catch((err: BusinessError) => {
-    console.error(`setDisplayWindow fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDisplaySurface fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -6359,7 +6378,7 @@ Sets the video image to follow the device direction. This API uses a promise to 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6380,56 +6399,6 @@ call.setDeviceDirection(1, 0).then(() => {
     console.log(`setDeviceDirection success.`);
 }).catch((err: BusinessError) => {
     console.error(`setDeviceDirection fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## call.setPausePicture<sup>11+</sup>
-
-setPausePicture\(callId: number\): Promise\<void\>
-
-Sets the image displayed when a video call is paused. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**Required permission**: ohos.permission.SET_TELEPHONY_STATE
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name| Type                                            | Mandatory| Description          |
-| ------ | ----------------------------------------------- | ---- | -------------- |
-| callId | number                                          | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
-
-**Return value**
-
-| Type               | Description                       |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
-
-**Error codes**
-
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
-
-| ID|                 Error Message                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-call.setPausePicture(1).then(() => {
-    console.log(`setPausePicture success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setPausePicture fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -6454,7 +6423,7 @@ Subscribes to **imsCallModeChange** events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6497,7 +6466,7 @@ Unsubscribes from **imsCallModeChange** events. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6540,7 +6509,7 @@ Subscribes to **callSessionEvent** events. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6583,7 +6552,7 @@ Unsubscribes from **callSessionEvent** events. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6626,7 +6595,7 @@ Subscribes to **peerDimensionsChange** events. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6664,12 +6633,12 @@ Unsubscribes from **peerDimensionsChange** events. This API uses an asynchronous
 
 | Name  | Type                                                      | Mandatory| Description                      |
 | -------- | --------------------------------------------------------- | ---- | -------------------------- |
-| type     | string                                                    | Yes  | Peer image resolution change. This field has a fixed value of **peerDimensionsChange**.|
-| callback | Callback<[PeerDimensionsDetail](#peerdimensionsdetail11)> | Yes  |  Callback used to return the result. If this field is not set, no subscription cancellation result will be received.                |
+| type     | string                                                    | Yes  | Screen resolution change. This field has a fixed value of **peerDimensionsChange**.|
+| callback | Callback<[PeerDimensionsDetail](#peerdimensionsdetail11)> | No  |  Callback used to return the result. If this field is not set, no subscription cancellation result will be received.                |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -6712,7 +6681,7 @@ Subscribes to **cameraCapabilitiesChange** events. This API uses an asynchronous
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -6753,7 +6722,7 @@ Unsubscribes from **cameraCapabilitiesChange** events. This API uses an asynchro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md) and [Universal Error Codes](../../reference/errorcodes/errorcode-universal.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -6834,7 +6803,7 @@ Defines the video call mode information.
 | callId  | number                                             | Yes  | Call ID.        |
 | isRequestInfo| boolean                                       | Yes  | Whether the information is request information.|
 | imsCallMode  | [ImsCallMode](#imscallmode8)                  | Yes  | Video call mode.   |
-| requestResult  | [VideoRequestResultType](#videorequestresulttype11)| No  | Call ending message.|
+| result  | [VideoRequestResultType](#videorequestresulttype11)| Yes  | Call ending message.|
 
 ## CallSessionEvent<sup>11+</sup>
 

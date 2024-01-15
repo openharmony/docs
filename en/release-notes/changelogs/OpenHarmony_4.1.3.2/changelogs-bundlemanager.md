@@ -43,21 +43,25 @@ Sample code:
         napi_value fingerprint;
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
+
+        char* appId = OH_NativeBundle_GetAppId();
         // Convert the application ID obtained by calling the native API to the appId attribute in the JavaScript object.
-        napi_value appId;
-        napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
-        napi_set_named_property(env, result, "appId", appId);
+        napi_value napi_appId;
+        napi_create_string_utf8(env, appId, NAPI_AUTO_LENGTH, &napi_appId);
+        napi_set_named_property(env, result, "appId", napi_appId);
+
+        char* appIdentifier = OH_NativeBundle_GetAppIdentifier();
         // Convert the application identifier obtained by calling the native API to the appIdentifier attribute in the JavaScript object.
-        napi_value appIdentifier;
-        napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
-        napi_set_named_property(env, result, "appIdentifier", appIdentifier);
+        napi_value napi_appIdentifier;
+        napi_create_string_utf8(env, appIdentifier, NAPI_AUTO_LENGTH, &napi_appIdentifier);
+        napi_set_named_property(env, result, "appIdentifier", napi_appIdentifier);
         // To prevent memory leak, manually release the memory.
         free(nativeApplicationInfo.bundleName);
         free(nativeApplicationInfo.fingerprint);
-        free(nativeApplicationInfo.appId);  // new
-        free(nativeApplicationInfo.appIdentifier);  // new
+        free(appId);
+        free(appIdentifier);
         return result;
     }
- ```
+```
 
 For details, see [Native Bundle Development](../../../application-dev/napi/native-bundle-guidelines.md).

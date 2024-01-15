@@ -57,30 +57,30 @@ UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录Unifi
    ```
 2. 创建图片数据记录，并初始化得到带有该数据记录的UnifiedData对象。
 
-   （1）创建图片数据记录。
+   - 创建图片数据记录。
 
-   ```ts
-   let image = new unifiedDataChannel.Image();
-   ```
+      ```ts
+      let image = new unifiedDataChannel.Image();
+      ```
 
-   （2）修改对象属性。
+   - 修改对象属性。
 
-   ```ts
-   // Image对象包含一个属性imageUri
-   image.imageUri = '...';
-   ```
+      ```ts
+      // Image对象包含一个属性imageUri
+      image.imageUri = '...';
+      ```
 
-   （3）访问对象属性。
+   - 访问对象属性。
 
-   ```ts
-   console.info(`imageUri = ${image.imageUri}`);
-   ```
+      ```ts
+      console.info(`imageUri = ${image.imageUri}`);
+      ```
 
-   （4）创建一个统一数据对象实例。
+   - 创建一个统一数据对象实例。
 
-   ```ts
-   let unifiedData = new unifiedDataChannel.UnifiedData(image);
-   ```
+      ```ts
+      let unifiedData = new unifiedDataChannel.UnifiedData(image);
+      ```
 3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象。
 
    ```ts

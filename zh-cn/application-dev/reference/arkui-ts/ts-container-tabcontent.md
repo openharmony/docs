@@ -76,6 +76,7 @@ SubTabBarStyle的静态构造函数。
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。|
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
+| id<sup>11+</sup> | string | 设置子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
 
@@ -149,7 +150,8 @@ BottomTabBarStyle的静态构造函数。
 | verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
 | layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10枚举说明) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL |
 | symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false |
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。 |
+| id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
 
 ## LayoutMode<sup>10+</sup>枚举说明
 

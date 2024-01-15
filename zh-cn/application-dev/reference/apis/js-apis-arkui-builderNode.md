@@ -27,11 +27,11 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 
 创建BuilderNode时的可选参数。
 
-| 参数名        | 类型                              | 必填 | 说明                                                                                                            |
-| ------------- | --------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------- |
-| selfIdealSize | [Size](js-apis-arkui-graphics.md#size)                     | 否   | 节点的理想大小。                                                                                                |
-| type          | [NodeRenderType](#noderendertype) | 否   | 节点的渲染类型。                                                                                                |
-| surfaceId     | string                            | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage)。 |
+| 参数名        | 类型                                   | 必填 | 说明                                                                                                            |
+| ------------- | -------------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------- |
+| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                                                                                |
+| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                                                                                |
+| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage)。 |
 
 ## BuilderNode
 
@@ -45,10 +45,10 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内容大小为空，不显示任何内容。
 
-| 参数名    | 类型                                      | 必填 | 说明                                                              |
-| --------- | ----------------------------------------- | ---- | ----------------------------------------------------------------- |
-| uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](#uicontext获取方法)。 |
-| options   | [RenderOptions](#renderoptions)           | 否   | BuilderNode的构造可选参数。                                       |
+| 参数名    | 类型                                    | 必填 | 说明                                                              |
+| --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
+| uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
+| options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。                                       |
 
 ### build
 
@@ -61,10 +61,10 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 **参数：**
 
-| 参数名  | 类型                 | 必填 | 说明                                                                                   |
-| ------- | -------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | WrappedBuilder\<Args> | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
-| arg     | Object               | 否   | 对象，作为builder入参的对象。                                                          |
+| 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
+| ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
+| arg     | Object                                                          | 否   | 对象，作为builder入参的对象。                                                          |
 
 
 ### getFrameNode
@@ -77,8 +77,8 @@ getFrameNode(): FrameNode | null
 
 **返回值：**
 
-| 类型                            | 说明                                                                  |
-| ------------------------------- | --------------------------------------------------------------------- |
+| 类型                                                      | 说明                                                                  |
+| --------------------------------------------------------- | --------------------------------------------------------------------- |
 | [FrameNode](js-apis-arkui-frameNode.md#framenode) \| null | 一个FrameNode对象。若该BuilderNode不包含FrameNode，则返回空对象null。 |
 
 **示例1：**
@@ -107,7 +107,7 @@ function buildText(params: Params) {
 }
 
 class TextNodeController extends NodeController {
-  private textNode: BuilderNode<Params[]> | null = null;
+  private textNode: BuilderNode<[Params]> | null = null;
   private message: string = "DEFAULT";
 
   constructor(message: string) {
@@ -117,7 +117,7 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(new WrappedBuilder<Params[]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
 
     return this.textNode.getFrameNode();
   }
@@ -172,7 +172,7 @@ function buildText(params: Params) {
 
 class TextNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
-  private textNode: BuilderNode<Params[]> | null = null;
+  private textNode: BuilderNode<[Params]> | null = null;
   private message: string = "DEFAULT";
 
   constructor(message: string) {
@@ -184,7 +184,7 @@ class TextNodeController extends NodeController {
     this.rootNode = new FrameNode(context);
 
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
-    this.textNode.build(new WrappedBuilder<Params[]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     const textRenderNode = this.textNode?.getFrameNode()?.getRenderNode();
 
     const rootRenderNode = this.rootNode.getRenderNode();
@@ -233,6 +233,7 @@ update(arg: Object): void
 
 **示例：**
 ```ts
+import { UIContext } from '@ohos.arkui.UIContext';
 import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
 
 class Params {
@@ -254,7 +255,7 @@ function buildText(params: Params) {
 
 class TextNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
-  private textNode: BuilderNode<Params[]> | null = null;
+  private textNode: BuilderNode<[Params]> | null = null;
   private message: string = "";
 
   constructor(message: string) {
@@ -265,7 +266,7 @@ class TextNodeController extends NodeController {
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
     this.textNode = new BuilderNode(context);
-    this.textNode.build(new WrappedBuilder<Params[]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
 
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
@@ -361,39 +362,28 @@ function ButtonBuilder(params: Params) {
 }
 
 class MyNodeController extends NodeController {
-  private rootNode: BuilderNode<Params[]> = null;
-  private wrapBuilder = new WrappedBuilder(ButtonBuilder);
+  private rootNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
 
   makeNode(uiContext: UIContext): FrameNode | null {
-    if (this.rootNode == null) {
-      this.rootNode = new BuilderNode(uiContext);
-      this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
+    this.rootNode = new BuilderNode(uiContext);
+    this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
+    return this.rootNode.getFrameNode();
+  }
+
+  postTouchEvent(touchEvent: TouchEvent): void {
+    if(this.rootNode == null){
+      return;
     }
-    return this.rootNode.getFrameNode();
-  }
-
-  getBuilderNode(): FrameNode {
-    return this.rootNode.getFrameNode();
-  }
-
-  setBuilderNode(rootNode: BuilderNode<Params[]>): void {
-    this.rootNode = rootNode;
+    let result = this.rootNode.postTouchEvent(touchEvent);
+    console.log("result " + result);
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private rootNode: BuilderNode<Params[]> = null;
-  private nodeController: MyNodeController = new MyNodeController()
-  private wrapBuilder = new WrappedBuilder(ButtonBuilder);
-
-  aboutToAppear() {
-    this.rootNode = new BuilderNode(this.getUIContext());
-    this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
-    this.nodeController.setBuilderNode(this.rootNode)
-    this.nodeController.rebuild()
-  }
+  private nodeController: MyNodeController = new MyNodeController();
 
   build() {
     Column() {
@@ -406,8 +396,9 @@ struct MyComponent {
         .height(300)
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
-          let result = this.rootNode.postTouchEvent(event)
-          console.log("result " + result);
+          if(event != undefined){
+            this.nodeController.postTouchEvent(event);
+          }
         })
     }
   }

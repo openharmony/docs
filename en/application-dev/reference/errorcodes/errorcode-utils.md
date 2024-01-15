@@ -475,3 +475,39 @@ The dependent task to remove does not exist.
 **Solution**
 
 Ensure that the dependent task to remove has been added by using [addDependency()](../apis/js-apis-taskpool.md#adddependency11). If you are not sure, capture exceptions.
+
+## 10200028 Delay Less Than Zero
+
+**Error Message**
+
+The delayTime is less than zero.
+
+**Description**
+
+This error code is reported when the value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+
+**Possible Causes**
+
+The value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+
+**Solution**
+
+Ensure that [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is set to a value greater than 0. If you are not sure, capture exceptions.
+
+## 10200029 ArrayBuffer Cannot Be Set as Both TransferList and CloneList
+
+**Error Message**
+
+Can not set an arraybuffer to both transferList and cloneList.
+
+**Description**
+
+An ArrayBuffer cannot be set as both a transfer list and a clone list.
+
+**Possible Causes**
+
+During the transmission of a shared list, an ArrayBuffer is a parameter of both [setTransferList](../apis/js-apis-taskpool.md#settransferlist10) and [setCloneList](../apis/js-apis-taskpool.md#setclonelist11).
+
+**Solution**
+
+Ensure that an ArrayBuffer is set as either a transfer list or clone list. If you are not sure, capture exceptions.

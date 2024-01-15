@@ -14,12 +14,12 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.vibrator | startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt; | Starts vibration with the specified effect and attribute. This API uses a promise to return the result.|
 | ohos.vibrator | startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.|
-| ohos.vibrator | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration in the specified mode. This API uses a promise to return the result.                                |
+| ohos.vibrator | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration in the specified mode. This API uses a promise to return the result.                              |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.                                |
 | ohos.vibrator | stopVibration(): Promise&lt;void&gt;                         | Stops vibration in all modes. This API uses a promise to return the result.                                    |
 | ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | Stops vibration in all modes. This API uses an asynchronous callback to return the result.                                    |
-| ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | Checks whether an effect ID is supported. This API uses a promise to return the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
-| ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
+| ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | Checks whether an effect ID is supported. This API uses a promise to return the result. This API uses a promise to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.|
+| ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result. This API uses an asynchronous callback to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.|
 
 
 ## Vibration Effect Description
@@ -133,7 +133,7 @@ The following requirements must be met:
 
 ## How to Develop
 
-1. Before using the vibrator on a device, you must declare the **ohos.permission.VIBRATE** permission. For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
+1. Before using the vibrator on a device, you must declare the **ohos.permission.VIBRATE** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Start vibration with the specified effect and attribute.
 
@@ -247,26 +247,26 @@ The following requirements must be met:
 - Method 1: Stop vibration in the specified mode. This method is invalid for custom vibration.
 
    - Stop fixed-duration vibration.
-
-      ```ts
-      import vibrator from '@ohos.vibrator';
-      import { BusinessError } from '@ohos.base';
-      
-      try {
-        // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-        vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
-          if (error) {
-            console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-            return;
-          }
-          console.info('Succeed in stopping vibration');
-        })
-      } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-      }
-      ```
-
+   
+     ```ts
+     import vibrator from '@ohos.vibrator';
+     import { BusinessError } from '@ohos.base';
+     
+     try {
+       // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
+       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+         if (error) {
+           console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+           return;
+         }
+         console.info('Succeed in stopping vibration');
+       })
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+     }
+     ```
+   
    - Stop preset vibration.
 
      ```ts
@@ -290,22 +290,23 @@ The following requirements must be met:
 
 - Method 2: Stop vibration in all modes, including custom vibration.
 
-  ```ts
-  import vibrator from '@ohos.vibrator';
-  import { BusinessError } from '@ohos.base';
-  
-  try {
-    // Stop vibration in all modes.
-    vibrator.stopVibration((error: BusinessError) => {
-      if (error) {
-        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-        return;
-      }
-      console.info('Succeed in stopping vibration');
-    })
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-  }
-  ```
+   ```ts
+   import vibrator from '@ohos.vibrator';
+   import { BusinessError } from '@ohos.base';
+   
+   try {
+     // Stop vibration in all modes.
+     vibrator.stopVibration((error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
+ <!--no_check--> 

@@ -75,7 +75,6 @@ import { commonType } from '@ohos.data.commonType';
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 键类型 | 值类型                   |
-| ------ | ------------------------ |
-| number | 主键的类型可以是number。 |
-| string | 主键的类型可以是string。 |
+| 键类型 | 值类型                  |
+| ------ | ----------------------- |
+| string | [ValueType](#valuetype) |

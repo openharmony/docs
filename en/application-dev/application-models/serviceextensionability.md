@@ -97,12 +97,8 @@ Create the **IdlServiceExt** directory in the **ets** directory of a module in a
 An example of **idl_service_ext_impl.ts** is as follows:
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import bundleManager from '@ohos.bundle.bundleManager';
 import IdlServiceExtStub from './idl_service_ext_stub';
 import Logger from '../utils/Logger';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
 import { insertDataToMapCallback } from './i_idl_service_ext';
 import { processDataCallback } from './i_idl_service_ext';
 
@@ -114,6 +110,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // Implement service logic.
     Logger.info(TAG, `processData: ${data}`);
+    callback(ERR_OK, data + 1); // The verification is successful, and service logic is executed normally.
   }
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
@@ -217,6 +214,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
    import Logger from '../utils/Logger';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
@@ -242,6 +240,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
    import Logger from '../utils/Logger';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
@@ -265,6 +264,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
    import common from '@ohos.app.ability.common';
    import Logger from '../utils/Logger';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    context.terminateSelf().then(() => {
@@ -297,6 +297,12 @@ The ServiceExtensionAbility returns an IRemoteObject in the **onConnect()** call
   import common from '@ohos.app.ability.common';
   import Logger from '../utils/Logger';
   import Want from '@ohos.app.ability.Want';
+  import promptAction from '@ohos.promptAction';
+  import hilog from '@ohos.hilog';
+  import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
+  
+  const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[Page_ServiceExtensionAbility]';
   
   let connectionId: number;
   let want: Want = {
@@ -344,7 +350,11 @@ The ServiceExtensionAbility returns an IRemoteObject in the **onConnect()** call
   
   ```ts
   import Logger from '../utils/Logger';
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   
+  let connectionId: number;
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
   context.disconnectServiceExtensionAbility(connectionId).then(() => {
@@ -365,10 +375,14 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
 - Using the IDL APIs provided by the server for communication (recommended)
 
   ```ts
-  import Logger from '../utils/Logger';
   // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
   import common from '@ohos.app.ability.common';
+  import Logger from '../utils/Logger';
+  import hilog from '@ohos.hilog';
+  
+  const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[Page_ServiceExtensionAbility]';
   
   let options: common.ConnectOptions = {
     onConnect(elementName, remote): void {

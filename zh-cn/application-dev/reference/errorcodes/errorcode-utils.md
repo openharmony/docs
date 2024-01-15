@@ -493,3 +493,21 @@ The delayTime is less than zero.
 **处理步骤**
 
 调用时，确保给定参数[delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11)的值大于零。无法保证时，需要捕获异常。
+
+## 10200029 无法将ArrayBuffer同时设置为transferList和cloneList
+
+**错误信息**
+
+Can not set an arraybuffer to both transferList and cloneList.
+
+**错误描述**
+
+不能将同一个ArrayBuffer同时设置为转移列表和克隆列表。
+
+**可能原因**
+
+在传输共享列表时，同一个ArrayBuffer既是[setTransferList](../apis/js-apis-taskpool.md#settransferlist10)的参数，又是[setCloneList](../apis/js-apis-taskpool.md#setclonelist11)的参数。
+
+**处理步骤**
+
+调用时，确保同一个ArrayBuffer只被设置为transferList或cloneList中的一种。无法保证时，需要捕获异常。

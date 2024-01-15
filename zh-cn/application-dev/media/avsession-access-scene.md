@@ -148,8 +148,8 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 ### 历史歌单
 
-历史歌单的接入，需要应用先接入意图框架支持MUSIC_PLAYBACK的能力，参考意图框架。
-接入意图框架后，当启动历史歌单时，应用同样会在意图框架的MUSIC_PLAYBACK的意图接口中获取到启动参数。
+历史歌单（播放列表）的接入，需要应用先接入意图框架支持MUSIC_PLAYBACK的能力（注册后台模式的PlayMusicList意图），并实现相应的意图调用接口，具体参考意图框架。
+注册后台模式的PlayMusicList意图后，当系统启动历史歌单播放时，应用同样会在意图调用接口中获取到歌单的启动参数。
 
 音乐类应用在播放内容时，可以通过setAVMetadata接口进行歌单的设置，歌单由这几个信息组成：
 
@@ -157,8 +157,14 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 - avQueueId: 歌单的唯一标识
 - avQueueImage: 歌单的图片资源
 
-当应用向系统设置歌单后，用户在播控中心界面操作后，可以针对歌单进行播放控制。
-歌单在播放后，应用内仍然通过AVSession的控制命令
+当应用向系统设置歌单后，用户在播控中心界面操作后，可以针对歌单进行播放控制，系统会将歌单的唯一标识传回应用。
+
+歌单启动播放后，应用内仍然通过AVSession的控制命令
+
+需要注意的是：
+1. 应用接入历史歌单，就相当于接入了系统后台冷启动播放。
+2. 若应用只注册后台模式的PlayMusicList意图，但没有通过setAVMetadata设置歌单内容，请务必支持没有歌单唯一标识的PlayMusicList意图后台播放，系统后台冷启动会启动空歌单Id的歌单意图播放，由应用来决定播放内容。
+3. 若应用注册后台模式的PlayMusicList意图，且通过setAVMetadata设置歌单内容，系统后台冷启动会启动对应歌单播放。
 
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
@@ -171,6 +177,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
     // 把歌单信息设置给AVSession
     let metadata: AVSessionManager.AVMetadata = {
+      // 下面内容均由应用指定
       assetId: '0', 
       avQueueName: 'myQueue',
       avQueueId: 'myQueue123',
@@ -181,7 +188,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
     }).catch((err: BusinessError) => {
       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
     });
-
+    // 上报播放状态，参考播放状态
   }
 ```
 
@@ -276,6 +283,9 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 应用接入AVSession，可以通过注册不同的控制命令来实现播控中心界面上的控制操作，即通过on接口注册不同的控制命令参数，即可实现对应的功能。
 具体的接口参考[接口注册](../reference/apis/js-apis-avsession.md#onplay10)。
+> **说明：**
+>
+> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session 
 
 媒体资源支持的控制命令列表：
 

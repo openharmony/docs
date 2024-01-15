@@ -307,7 +307,11 @@ UX一致性需求变更
 
 变更前，showInSubWindow为true时，CustomDialog的蒙层范围为子窗口范围，showInSubWindow为false时，CustomDialog的蒙层范围为应用窗口范围。
 
+![zh-cn_image_alert](figures/zh-cn_image_alert.gif)
+
 变更后，无论showInSubWindow为true还是false，CustomDialog的蒙层范围都为应用窗口的范围。
+
+![zh-cn_image_alert_showinsubwindow](figures/zh-cn_image_alert_showinsubwindow.jpg)
 
 **API Level**
 

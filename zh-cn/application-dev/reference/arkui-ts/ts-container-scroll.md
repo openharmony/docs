@@ -163,7 +163,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value | number   | 是   | 要滑动到的目标元素在当前容器中的索引值。      <br/>**说明：** <br/>value值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
 | smooth | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。|
-| align | [ScrollAlign](#scrollalign10枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>List中的默认值为：ScrollAlign.START。Grid中默认值为：ScrollAlign.AUTO<br/>**说明：** <br/>仅List、Grid组件支持该参数。 |
+| align | [ScrollAlign](#scrollalign10枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>List中的默认值为：ScrollAlign.START。Grid中默认值为：ScrollAlign.AUTO。WaterFlow中的默认值为：ScrollAlign.START。<br/>**说明：** <br/>仅List、Grid、WaterFlow组件支持该参数。 |
 
 ### scrollBy<sup>9+</sup>
 
@@ -317,7 +317,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = Curves.interpolatingSpring(100, 1, 228, 30) //创建一个阶梯曲线
+          let curve = Curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
         })

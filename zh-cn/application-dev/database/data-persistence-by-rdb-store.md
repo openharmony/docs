@@ -110,10 +110,9 @@
              store.version = 3;
            }
          }
-
-         // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
-
        });
+
+       // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
      }
    }
    ```
@@ -163,10 +162,9 @@
        store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
        store.version = 3;
      }
-
-     // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
-
    });
+
+   // 请确保获取到RdbStore实例后，再进行数据库的增、删、改、查等操作
    ```
 
    > **说明：**

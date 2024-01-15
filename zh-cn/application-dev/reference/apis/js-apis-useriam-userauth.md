@@ -639,9 +639,12 @@ try {
 }
 ```
 
-## AuthResultInfo<sup>9+</sup>
+## AuthResultInfo<sup>(deprecated)</sup>
 
 表示认证结果信息。
+
+> **说明：**
+> 从 API version 9 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
 
@@ -652,9 +655,12 @@ try {
 | remainAttempts  | number     | 否   | 剩余的认证尝试次数。 |
 | lockoutDuration | number     | 否   | 认证操作的锁定时长，时间单位为毫秒ms。 |
 
-## TipInfo<sup>9+</sup>
+## TipInfo<sup>(deprecated)</sup>
 
 表示认证过程中的提示信息。
+
+> **说明：**
+> 从 API version 9 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
@@ -663,37 +669,49 @@ try {
 | module        | number | 是   | 发送提示信息的模块标识。       |
 | tip        | number | 是   | 认证过程提示信息。       |
 
-## EventInfo<sup>9+</sup>
+## EventInfo<sup>(deprecated)</sup>
 
 表示认证过程中事件信息的类型。
+
+> **说明：**
+> 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[UserAuthResult](#userauthresult10)替代。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
 | 取值类型    | 说明                       |
 | --------- | ----------------------- |
-| [AuthResultInfo](#authresultinfo9)    | 获取到的认证结果信息。  |
-| [TipInfo](#tipinfo9)    | 认证过程中的提示信息。      |
+| [AuthResultInfo](#authresultinfodeprecated)    | 获取到的认证结果信息。  |
+| [TipInfo](#tipinfodeprecated)    | 认证过程中的提示信息。      |
 
-## AuthEventKey<sup>9+</sup>
+## AuthEventKey<sup>(deprecated)</sup>
 
 表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+
+> **说明：**
+> 从 API version 9 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core。
 
 | 取值类型       | 说明                    |
 | ---------- | ----------------------- |
-| "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callback9)回调返回认证的结果信息。 |
-| "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callback9)回调返回认证操作中的提示信息。 |
+| "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callbackdeprecated)回调返回认证的结果信息。 |
+| "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callbackdeprecated)回调返回认证操作中的提示信息。 |
 
-## AuthEvent<sup>9+</sup>
+## AuthEvent<sup>(deprecated)</sup>
 
 认证接口的异步回调对象。
 
-### callback<sup>9+</sup>
+> **说明：**
+> 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[IAuthCallback](#iauthcallback10)替代。
+
+### callback<sup>(deprecated)</sup>
 
 callback(result : EventInfo) : void
 
 通过该回调获取认证结果信息或认证过程中的提示信息。
+
+> **说明：**
+> 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[onResult](#onresult10)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -701,7 +719,7 @@ callback(result : EventInfo) : void
 
 | 参数名    | 类型                       | 必填 | 说明                           |
 | --------- | -------------------------- | ---- | ------------------------------ |
-| result    | [EventInfo](#eventinfo9)     | 是   | 返回的认证结果信息或提示信息。  |
+| result    | [EventInfo](#eventinfodeprecated)     | 是   | 返回的认证结果信息或提示信息。  |
 
 **示例：**
 
@@ -774,8 +792,8 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 | 参数名    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name  | [AuthEventKey](#autheventkey9) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
-| callback  | [AuthEvent](#authevent9)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。 |
+| name  | [AuthEventKey](#autheventkeydeprecated) | 是   | 表示认证事件类型，取值为"result"时，回调函数返回认证结果；取值为"tip"时，回调函数返回认证过程中的提示信息。 |
+| callback  | [AuthEvent](#autheventdeprecated)   | 是   | 认证接口的回调函数，用于返回认证结果或认证过程中的提示信息。 |
 
 **错误码：**
 
@@ -840,7 +858,7 @@ off : (name : AuthEventKey) => void
 
 | 名称    | 类型                        | 必填 | 说明                       |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name    | [AuthEventKey](#autheventkey9)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
+| name    | [AuthEventKey](#autheventkeydeprecated)      | 是   | 表示认证事件类型，取值为"result"时，取消订阅认证结果；取值为"tip"时，取消订阅认证过程中的提示信息。 |
 
 **错误码：**
 
@@ -1279,7 +1297,7 @@ if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
 返回认证结果的回调对象。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthEvent](#authevent9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthEvent](#autheventdeprecated)代替。
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -1288,7 +1306,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 回调函数，返回认证结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[callback](#callbackdeprecated)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1330,7 +1348,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 回调函数，返回认证过程中的提示信息，非必须实现。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[callback](#callbackdeprecated)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1380,7 +1398,7 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
 表示认证结果的对象。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfo9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfodeprecated)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1413,9 +1431,12 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
 | LOCKED                  | 9      | 认证器已锁定。       |
 | NOT_ENROLLED            | 10     | 用户未录入认证信息。 |
 
-## FaceTips<sup>8+</sup>
+## FaceTips<sup>(deprecated)</sup>
 
 表示人脸认证过程中提示码的枚举。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1434,9 +1455,12 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
 | FACE_AUTH_TIP_NOT_DETECTED    | 11     | 没有检测到人脸信息。                 |
 
 
-## FingerprintTips<sup>8+</sup>
+## FingerprintTips<sup>(deprecated)</sup>
 
 表示指纹认证过程中提示码的枚举。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 

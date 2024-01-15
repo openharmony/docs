@@ -18,8 +18,6 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
    import type Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {

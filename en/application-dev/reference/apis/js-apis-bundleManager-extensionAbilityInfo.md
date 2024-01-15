@@ -25,4 +25,4 @@ The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A 
 | enabled              | boolean                                                      | Yes  | No  | Whether the ExtensionAbility is enabled.                          |
 | readPermission       | string                                                       | Yes  | No  | Permission required for reading data from the ExtensionAbility.                |
 | writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |
-| extensionAbilityType<sup>11</sup>      | string                                                       | Yes  | No  | Type of the ExtensionAbility.                |
+| extensionAbilityTypeName<sup>11</sup>      | string                                 | Yes  | No  | Type of the ExtensionAbility.                |

@@ -2,16 +2,17 @@
 
 The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 ```
 
-## socket.constructUDPSocketInstance<sup>7+</sup>
+## socket.constructUDPSocketInstance
 
 constructUDPSocketInstance(): UDPSocket
 
@@ -22,21 +23,21 @@ Creates a **UDPSocket** object.
 **Return value**
 
 | Type                              | Description                   |
-| :--------------------------------- | :---------------------- |
+|  --------------------------------- |  ---------------------- |
 | [UDPSocket](#udpsocket) | **UDPSocket** object.|
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
 
-## UDPSocket<sup>7+</sup>
+## UDPSocket
 
 Defines a UDP socket connection. Before calling UDPSocket APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** object.
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -62,7 +63,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -80,7 +81,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 });
 ```
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -106,12 +107,12 @@ Binds the IP address and port number. The port number can be specified or random
 **Return value**
 
 | Type           | Description                                      |
-| :-------------- | :----------------------------------------- |
+|  -------------- |  ----------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -127,7 +128,7 @@ udp.bind(bindAddr).then(() => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -143,7 +144,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over the UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -155,7 +156,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -177,7 +178,7 @@ udp.send(sendOptions, (err: BusinessError) => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -193,7 +194,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over the UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
 
 **Error codes**
 
@@ -205,12 +206,12 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 **Return value**
 
 | Type           | Description                                          |
-| :-------------- | :--------------------------------------------- |
+|  -------------- |  --------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -230,7 +231,7 @@ udp.send(sendOptions).then(() => {
 });
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -248,7 +249,7 @@ Closes a UDP socket connection. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -262,7 +263,7 @@ udp.close((err: BusinessError) => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(): Promise\<void\>
 
@@ -275,12 +276,12 @@ Closes a UDP socket connection. This API uses a promise to return the result.
 **Return value**
 
 | Type           | Description                                      |
-| :-------------- | :----------------------------------------- |
+|  -------------- |  ----------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -292,13 +293,13 @@ udp.close().then(() => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -319,7 +320,7 @@ Obtains the status of the UDP socket connection. This API uses an asynchronous c
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -344,13 +345,13 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the UDP socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -360,12 +361,12 @@ Obtains the status of the UDP socket connection. This API uses a promise to retu
 **Return value**
 
 | Type                                            | Description                                      |
-| :----------------------------------------------- | :----------------------------------------- |
+|  ----------------------------------------------- |  ----------------------------------------- |
 | Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result.|
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -388,13 +389,13 @@ udp.bind(bindAddr, (err: BusinessError) => {
 });
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -417,7 +418,7 @@ Sets other properties of the UDP socket connection. This API uses an asynchronou
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -450,13 +451,13 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 Sets other properties of the UDP socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -472,7 +473,7 @@ Sets other properties of the UDP socket connection. This API uses a promise to r
 **Return value**
 
 | Type           | Description                                                |
-| :-------------- | :--------------------------------------------------- |
+|  -------------- |  --------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
@@ -484,7 +485,7 @@ Sets other properties of the UDP socket connection. This API uses a promise to r
 
 **Example**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -515,7 +516,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### on('message')<sup>7+</sup>
+### on('message')
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -527,12 +528,12 @@ Subscribes to **message** events of the UDP socket connection. This API uses an 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -544,7 +545,8 @@ class SocketInfo {
 let messageView = '';
 udp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -553,13 +555,13 @@ udp.on('message', (value: SocketInfo) => {
 });
 ```
 
-### off('message')<sup>7+</sup>
+### off('message')
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -568,12 +570,12 @@ Unsubscribes from **message** events of the UDP socket connection. This API uses
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 class SocketInfo {
@@ -584,7 +586,8 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -597,7 +600,7 @@ udp.off('message', callback);
 udp.off('message');
 ```
 
-### on('listening' | 'close')<sup>7+</sup>
+### on('listening' | 'close')
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
@@ -609,12 +612,12 @@ Subscribes to **listening** events or **close** events of the UDP socket connect
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **listening**: data packet message event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -626,13 +629,13 @@ udp.on('close', () => {
 });
 ```
 
-### off('listening' | 'close')<sup>7+</sup>
+### off('listening' | 'close')
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **listening** events or **close** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -641,12 +644,12 @@ Unsubscribes from **listening** events or **close** events of the UDP socket con
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **listening**: data packet message event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **listening**: data packet message event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -666,7 +669,7 @@ udp.off('close', callback2);
 udp.off('close');
 ```
 
-### on('error')<sup>7+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -678,12 +681,12 @@ Subscribes to **error** events of the UDP socket connection. This API uses an as
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -692,13 +695,13 @@ udp.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>7+</sup>
+### off('error')
 
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -707,12 +710,12 @@ Unsubscribes from **error** events of the UDP socket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -725,7 +728,7 @@ udp.off('error', callback);
 udp.off('error');
 ```
 
-## NetAddress<sup>7+</sup>
+## NetAddress
 
 Defines the destination address.
 
@@ -737,18 +740,18 @@ Defines the destination address.
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
 | family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**.|
 
-## UDPSendOptions<sup>7+</sup>
+## UDPSendOptions
 
-Defines the parameters for sending data over the UDP socket connection.
+Defines the parameters for sending data over a UDP socket connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name | Type                              | Mandatory| Description          |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string \| ArrayBuffer<sup>7+</sup>                          | Yes  | Data to send.  |
+| data    | string \| ArrayBuffer                          | Yes  | Data to send.  |
 | address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
-## UDPExtraOptions<sup>7+</sup>
+## UDPExtraOptions
 
 Defines other properties of the UDP socket connection.
 
@@ -762,7 +765,7 @@ Defines other properties of the UDP socket connection.
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.     |
 | socketTimeout     | number  | No  | Timeout duration of the UDP socket connection, in ms. The default value is **0**.|
 
-## SocketStateBase<sup>7+</sup>
+## SocketStateBase
 
 Defines the status of the socket connection.
 
@@ -774,7 +777,7 @@ Defines the status of the socket connection.
 | isClose     | boolean | Yes  | Whether the connection is in the closed state.|
 | isConnected | boolean | Yes  | Whether the connection is in the connected state.|
 
-## SocketRemoteInfo<sup>7+</sup>
+## SocketRemoteInfo
 
 Defines information about the socket connection.
 
@@ -793,6 +796,725 @@ The UDP error code mapping is in the format of 2301000 + Linux kernel error code
 
 For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
 
+## socket.constructMulticastSocketInstance<sup>11+</sup>
+
+constructMulticastSocketInstance(): MulticastSocket
+
+Creates a **MulticastSocket** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                              | Description                   |
+| ----------------------------------- | ----------------------------- |
+| [MulticastSocket](#multicastsocket) | **MulticastSocket** object.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+```
+## MulticastSocket<sup>11+</sup>
+
+Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance) to create a **MulticastSocket** object.
+
+### addMembership<sup>11+</sup>
+
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+
+Adds a member to a multicast group. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
+> A member in a multicast group can serve as a sender or a receiver. Data is transmitted in broadcast mode, regardless of the client or server.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name            | Type                          | Mandatory| Description                                      |
+| ----------------- | ----------------------------- | ---- | ----------------------------------------- |
+| multicastAddress  | [NetAddress](#netaddress)     |  Yes | Destination address. For details, see [NetAddress](#netaddress).|
+| callback          | AsyncCallback\<void\>         |  Yes | Callback used to return the result.                                 |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.addMembership(addr, (err) => {
+  if (err) {
+    console.log('add membership fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('add membership success');
+})
+```
+
+### addMembership<sup>11+</sup>
+
+addMembership(multicastAddress: NetAddress): Promise\<void\>;
+
+Adds a member to a multicast group. This API uses a promise to return the result.
+
+> **NOTE**
+> The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
+> A member in a multicast group can serve as a sender or a receiver. Data is transmitted in broadcast mode, regardless of the client or server.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name            | Type                          | Mandatory| Description                                          |
+| ----------------- | ----------------------------- | ---- | --------------------------------------------  |
+| multicastAddress  | [NetAddress](#netaddress)     |  Yes | Destination address. For details, see [NetAddress](#netaddress).|
+
+**Return value**
+
+| Type           | Description                                              |
+|  -------------- |  -----------------------------------------------  |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.addMembership(addr).then(() => {
+  console.log('addMembership success');
+}).catch((err) => {
+  console.log('addMembership fail');
+});
+```
+
+### dropMembership<sup>11+</sup>
+
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+
+Drops a member from a multicast group. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
+> You can drop only a member that has been added to a multicast group by using [addMembership](#addmembership11).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name            | Type                          | Mandatory| Description                                        |
+| ----------------- | ----------------------------- | ---- | ------------------------------------------- |
+| multicastAddress  | [NetAddress](#netaddress)     |  Yes | Destination address. For details, see [NetAddress](#netaddress).  |
+| callback          | AsyncCallback\<void\>         |  Yes | Callback used to return the result.                                   |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.dropMembership(addr, (err) => {
+  if (err) {
+    console.log('drop membership fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('drop membership success');
+})
+```
+
+### dropMembership<sup>11+</sup>
+
+dropMembership(multicastAddress: NetAddress): Promise\<void\>;
+
+Drops a member from a multicast group. This API uses a promise to return the result.
+
+> **NOTE**
+> The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
+> You can drop only a member that has been added to a multicast group by using [addMembership](#addmembership11).
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name            | Type                                  | Mandatory| Description                                          |
+| ----------------- | ------------------------------------- | ---- | --------------------------------------------  |
+| multicastAddress  | [NetAddress](#netaddress) |  Yes | Destination address. For details, see [NetAddress](#netaddress).    |
+
+**Return value**
+
+| Type           | Description                                             |
+|  -------------- |  ----------------------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.dropMembership(addr).then(() => {
+  console.log('drop membership success');
+}).catch((err) => {
+  console.log('drop membership fail');
+});
+```
+
+### setMulticastTTL<sup>11+</sup>
+
+setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
+
+Sets the time to live (TTL) for multicast packets. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> TTL is used to limit the maximum number of router hops for packet transmission on a network.
+> The value ranges from 0 to 255. The default value is **1**.
+> If the TTL value is **1**, multicast packets can be transmitted only to the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name        | Type                  | Mandatory| Description                        |
+| ------------- | --------------------- | ---- | ----------------------------- |
+| ttl           | number                |  Yes | TTL value. The value is of the number type.|
+| callback      | AsyncCallback\<void\> |  Yes | Callback used to return the result.                    |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let ttl = 8
+multicast.setMulticastTTL(ttl, (err) => {
+  if (err) {
+    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set ttl success');
+})
+```
+
+### setMulticastTTL<sup>11+</sup>
+
+setMulticastTTL(ttl: number): Promise\<void\>;
+
+Sets the TTL for multicast packets. This API uses a promise to return the result.
+
+> **NOTE**
+> TTL is used to limit the maximum number of router hops for data packet transmission on a network.
+> The value ranges from 0 to 255. The default value is **1**.
+> If the TTL value is **1**, multicast packets can be received only by the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name        | Type                  | Mandatory| Description                          |
+| ------------- | ---------------------- | ---- | ------------------------------ |
+| ttl           | number                 |  Yes | TTL value. The value is of the number type.|
+
+**Return value**
+
+| Type           | Description                                            |
+|  -------------- |  ---------------------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.setMulticastTTL(8).then(() => {
+  console.log('set ttl success');
+}).catch((err) => {
+  console.log('set ttl failed');
+});
+```
+
+### getMulticastTTL<sup>11+</sup>
+
+getMulticastTTL(callback: AsyncCallback\<number\>): void;
+
+Obtains the TTL for multicast packets. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> TTL is used to limit the maximum number of router hops for data packet transmission on a network.
+> The value ranges from 0 to 255. The default value is **1**.
+> If the TTL value is **1**, multicast packets can be received only by the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name        | Type                    | Mandatory| Description                        |
+| ------------- | ----------------------- | ---- | --------------------------- |
+| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result.                   |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getMulticastTTL((err, value) => {
+  if (err) {
+    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set ttl success, value: ' + JSON.stringify(value));
+})
+```
+
+### getMulticastTTL<sup>11+</sup>
+
+getMulticastTTL(): Promise\<number\>;
+
+Obtains the TTL for multicast packets. This API uses a promise to return the result.
+
+> **NOTE**
+> TTL is used to limit the maximum number of router hops for data packet transmission on a network.
+> The value ranges from 0 to 255. The default value is **1**.
+> If the TTL value is **1**, multicast packets can be received only by the host directly connected to the sender. If the TTL is set to a large value, multicast packets can be transmitted over a longer distance.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type              | Description                       |
+| ----------------   | --------------------------- |
+| Promise\<number\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message               |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getMulticastTTL().then((value) => {
+  console.log('ttl: ', JSON.stringify(value));
+}).catch((err) => {
+  console.log('set ttl failed');
+});
+```
+
+### setLoopbackMode<sup>11+</sup>
+
+setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
+
+Sets the loopback mode flag for multicast communication. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> Use this API to enable or disable the loopback mode. By default, the loopback mode is enabled.
+> The value **true** indicates that the host is allowed to receive the multicast packets sent by itself, and the value **false** indicates the opposite.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name        | Type                 | Mandatory| Description                        |
+| ------------- | --------------------- | ---- | ---------------------------- |
+| flag          | boolean               |  Yes | Loopback mode flag. The value is of the Boolean type. |
+| callback      | AsyncCallback\<void\> |  Yes | Callback used to return the result.                   |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.setLoopbackMode(false, (err) => {
+  if (err) {
+    console.log('set loopback mode fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set loopback mode success');
+})
+```
+
+### setLoopbackMode<sup>11+</sup>
+
+setLoopbackMode(flag: boolean): Promise\<void\>;
+
+Sets the loopback mode flag in multicast communication. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> Use this API to enable or disable the loopback mode. By default, the loopback mode is enabled.
+> The value **true** indicates that the host is allowed to receive the multicast packets sent by itself, and the value **false** indicates the opposite.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name        | Type                  | Mandatory| Description                            |
+| ------------- | ---------------------- | ---- | -------------------------------- |
+| flag          | boolean                |  Yes | Loopback mode flag. The value is of the Boolean type.|
+
+**Return value**
+
+| Type           | Description                                            |
+|  -------------- |  ---------------------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message               |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.setLoopbackMode(false).then(() => {
+  console.log('set loopback mode success');
+}).catch((err) => {
+  console.log('set loopback mode failed');
+});
+```
+
+### getLoopbackMode<sup>11+</sup>
+
+getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
+
+Obtains the loopback mode flag in multicast communication. This API uses a promise to return the result.
+
+> **NOTE**
+> Use this API to check whether the loopback mode is enabled.
+> The value **true** indicates that the loopback mode is enabled, and the value **false** indicates the opposite. When the loopback mode is disabled, the host is does not receive the multicast packets sent by itself.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name        | Type                    | Mandatory| Description                        |
+| ------------- | ----------------------- | ---- | --------------------------- |
+| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result.                   |
+
+**Error codes**
+
+| ID| Error Message               |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getLoopbackMode((err, value) => {
+  if (err) {
+    console.log('get loopback mode fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('get loopback mode success, value: ' + JSON.stringify(value));
+})
+```
+
+### getLoopbackMode<sup>11+</sup>
+
+getLoopbackMode(): Promise\<boolean\>;
+
+Obtains the loopback mode flag in multicast communication. This API uses a promise to return the result.
+
+> **NOTE**
+> Use this API to check whether the loopback mode is enabled.
+> The value **true** indicates that the loopback mode is enabled, and the value **false** indicates the opposite. When the loopback mode is disabled, the host is does not receive the multicast packets sent by itself.
+> This API is effective only after [addMembership](#addmembership11) is called.
+
+**System capability**: SystemCapability.Communication.NetStack
+                                                      
+**Return value**
+
+| Type               | Description                       |
+| ----------------  | --------------------------- |
+| Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message               |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301088 | Not a socket.           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getLoopbackMode().then((value) => {
+  console.log('loopback mode: ', JSON.stringify(value));
+}).catch((err) => {
+  console.log('get loopback mode failed');
+});
+```
+
+
+### send<sup>7+</sup>
+
+send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
+
+Sends data in multicast communication. This API uses an asynchronous callback to return the result.
+
+Before sending data, call [addMembership](#addmembership11) to add a member to the multicast group.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                               | Mandatory| Description                                                        |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+| callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**Example**
+
+```ts
+import socket from '@ohos.net.socket';
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '239.255.0.1',
+    port: 8080
+  }
+}
+multicast.send(sendOptions, (err) => {
+  if (err) {
+    console.log('send fail: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('send success');
+});
+```
+
+### send<sup>7+</sup>
+
+send(options: UDPSendOptions): Promise\<void\>
+
+Sends data in multicast communication. This API uses a promise to return the result.
+
+Before sending data, call [addMembership](#addmembership11) to add a member to the multicast group.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                    | Mandatory| Description                                                        |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**Return value**
+
+| Type           | Description                             |
+| :-------------- | :------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import socket from '@ohos.net.socket';
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '239.255.0.1',
+    port: 8080
+  }
+}
+multicast.send(sendOptions).then(() => {
+  console.log('send success');
+}).catch((err) => {
+  console.log('send fail, ' + JSON.stringify(err));
+});
+```
+
+### on('message')<sup>7+</sup>
+
+on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Subscribes to **message** events of a **MulticastSocket** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                                                   | Mandatory| Description                                |
+| -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                                                | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket"
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
+
+multicast.on('message', (data) => {
+  console.info ('Received data:' + JSON.stringify (data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
+  }
+  console.info(str)
+})
+```
+
+### off('message')<sup>7+</sup>
+
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+Unsubscribes to **message** events of a **MulticastSocket** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                                                                 | Mandatory| Description                                |
+| -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                                              | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                           |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket"
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
+multicast.on('message', (data) => {
+  console.info ('Received data:' + JSON.stringify (data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
+  }
+  console.info(str)
+})
+multicast.off('message')
+```
+
+
 ## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
@@ -804,28 +1526,30 @@ Creates a **TCPSocket** object.
 **Return value**
 
 | Type                              | Description                   |
-  | :--------------------------------- | :---------------------- |
+| --------------------------------- | ---------------------- |
 | [TCPSocket](#tcpsocket) | **TCPSocket** object.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
 
-## TCPSocket<sup>7+</sup>
+## TCPSocket
 
-Defines a TCP socket connection. Before calling TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance) to create a **TCPSocket** object.
+Defines a TCP socket connection. Before calling TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance7) to create a **TCPSocket** object.
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds an IP address and a port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
-> If the bind operation fails due to a port conflict, the system will randomly allocate a port number. The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server. If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
+> **NOTE**
+> If the bind operation fails due to a port conflict, the system will randomly allocate a port number.
+> The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server.
+> If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -847,7 +1571,7 @@ Binds an IP address and a port number. The port number can be specified or rando
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -864,14 +1588,16 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress): Promise\<void\>
 
 Binds an IP address and a port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
 
-> **NOTE**<br>
-> If the bind operation fails due to a port conflict, the system will randomly allocate a port number. The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server. If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
+> **NOTE**
+> If the bind operation fails due to a port conflict, the system will randomly allocate a port number.
+> The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server.
+> If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -886,7 +1612,7 @@ Binds an IP address and a port number. The port number can be specified or rando
 **Return value**
 
 | Type           | Description                                                    |
-| :-------------- | :------------------------------------------------------- |
+| --------------- | ------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
@@ -898,7 +1624,7 @@ Binds an IP address and a port number. The port number can be specified or rando
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -913,13 +1639,13 @@ tcp.bind(bindAddr).then(() => {
 });
 ```
 
-### connect<sup>7+</sup>
+### connect
 
 connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 Sets up a connection to the specified IP address and port number. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API allows you to connect to the TCP server without first executing **tcp.bind**.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -942,7 +1668,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -963,13 +1689,13 @@ tcp.connect(tcpconnectoptions, (err: BusinessError) => {
 })
 ```
 
-### connect<sup>7+</sup>
+### connect
 
 connect(options: TCPConnectOptions): Promise\<void\>
 
 Sets up a connection to the specified IP address and port number. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API allows you to connect to the TCP server without first executing **tcp.bind**.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -985,7 +1711,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 **Return value**
 
 | Type           | Description                                                      |
-| :-------------- | :--------------------------------------------------------- |
+| -------------- | --------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
@@ -997,7 +1723,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1016,13 +1742,13 @@ tcp.connect(tcpconnectoptions).then(() => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1033,7 +1759,7 @@ Sends data over a TCP socket connection. This API uses an asynchronous callback 
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over the TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 | callback | AsyncCallback\<void\>                   | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -1045,7 +1771,7 @@ Sends data over a TCP socket connection. This API uses an asynchronous callback 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1072,13 +1798,13 @@ tcp.connect(tcpconnectoptions, () => {
 })
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: TCPSendOptions): Promise\<void\>
 
 Sends data over a TCP socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1089,12 +1815,12 @@ Sends data over a TCP socket connection. This API uses a promise to return the r
 
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over the TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 
 **Return value**
 
 | Type           | Description                                              |
-| :-------------- | :------------------------------------------------- |
+| -------------- | ------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
@@ -1106,7 +1832,7 @@ Sends data over a TCP socket connection. This API uses a promise to return the r
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1131,7 +1857,7 @@ tcp.connect(tcpconnectoptions, () => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -1155,7 +1881,7 @@ Closes a TCP socket connection. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1169,7 +1895,7 @@ tcp.close((err: BusinessError) => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(): Promise\<void\>
 
@@ -1182,7 +1908,7 @@ Closes a TCP socket connection. This API uses a promise to return the result.
 **Return value**
 
 | Type           | Description                                      |
-| :-------------- | :----------------------------------------- |
+| -------------- | ----------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
@@ -1193,7 +1919,7 @@ Closes a TCP socket connection. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
@@ -1204,13 +1930,13 @@ tcp.close().then(() => {
 });
 ```
 
-### getRemoteAddress<sup>7+</sup>
+### getRemoteAddress
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1231,7 +1957,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1255,13 +1981,13 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### getRemoteAddress<sup>7+</sup>
+### getRemoteAddress
 
 getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1271,7 +1997,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 **Return value**
 
 | Type                                       | Description                                       |
-| :------------------------------------------ | :------------------------------------------ |
+| ------------------------------------------ | ------------------------------------------ |
 | Promise<[NetAddress](#netaddress)> | Promise used to return the result.|
 
 **Error codes**
@@ -1282,7 +2008,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1306,13 +2032,13 @@ tcp.connect(tcpconnectoptions).then(() => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1333,7 +2059,7 @@ Obtains the status of the TCP socket connection. This API uses an asynchronous c
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1357,13 +2083,13 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TCP socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1373,7 +2099,7 @@ Obtains the status of the TCP socket connection. This API uses a promise to retu
 **Return value**
 
 | Type                                            | Description                                      |
-| :----------------------------------------------- | :----------------------------------------- |
+| ----------------------------------------------- | ----------------------------------------- |
 | Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
 
 **Error codes**
@@ -1384,7 +2110,7 @@ Obtains the status of the TCP socket connection. This API uses a promise to retu
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1414,7 +2140,7 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 
 Obtains the file descriptor of the **TCPSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1427,7 +2153,7 @@ Obtains the file descriptor of the **TCPSocket** object. This API uses an asynch
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1454,7 +2180,7 @@ getSocketFd(): Promise\<number\>
 
 Obtains the file descriptor of the **TCPSocket** object. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1462,12 +2188,12 @@ Obtains the file descriptor of the **TCPSocket** object. This API uses a promise
 **Return value**
 
 | Type                                            | Description                                      |
-| :----------------------------------------------- | :----------------------------------------- |
+| ----------------------------------------------- | ----------------------------------------- |
 | Promise\<number\> | Promise used to return the result.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1488,13 +2214,13 @@ tcp.getSocketFd().then((data: number) => {
 })
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1517,7 +2243,7 @@ Sets other properties of the TCP socket connection. This API uses an asynchronou
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1550,13 +2276,13 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TCP socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -1572,7 +2298,7 @@ Sets other properties of the TCP socket connection. This API uses a promise to r
 **Return value**
 
 | Type           | Description                                                |
-| :-------------- | :--------------------------------------------------- |
+| -------------- | --------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
@@ -1584,7 +2310,7 @@ Sets other properties of the TCP socket connection. This API uses a promise to r
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1615,7 +2341,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### on('message')<sup>7+</sup>
+### on('message')
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1627,12 +2353,12 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1643,7 +2369,8 @@ class SocketInfo {
 let messageView = '';
 tcp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1652,13 +2379,13 @@ tcp.on('message', (value: SocketInfo) => {
 });
 ```
 
-### off('message')<sup>7+</sup>
+### off('message')
 
 off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Unsubscribes from **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1667,12 +2394,12 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1683,7 +2410,8 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1696,7 +2424,7 @@ tcp.off('message', callback);
 tcp.off('message');
 ```
 
-### on('connect' | 'close')<sup>7+</sup>
+### on('connect' | 'close')
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1708,12 +2436,12 @@ Subscribes to connection or close events of the TCP socket connection. This API 
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1725,13 +2453,13 @@ tcp.on('close', () => {
 });
 ```
 
-### off('connect' | 'close')<sup>7+</sup>
+### off('connect' | 'close')
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from connection or close events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1740,12 +2468,12 @@ Unsubscribes from connection or close events of the TCP socket connection. This 
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1765,7 +2493,7 @@ tcp.off('close', callback2);
 tcp.off('close');
 ```
 
-### on('error')<sup>7+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1777,12 +2505,12 @@ Subscribes to **error** events of the TCP socket connection. This API uses an as
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1791,13 +2519,13 @@ tcp.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>7+</sup>
+### off('error')
 
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1806,12 +2534,12 @@ Unsubscribes from **error** events of the TCP socket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1824,7 +2552,7 @@ tcp.off('error', callback);
 tcp.off('error');
 ```
 
-## TCPConnectOptions<sup>7+</sup>
+## TCPConnectOptions
 
 Defines TCP socket connection parameters.
 
@@ -1835,18 +2563,18 @@ Defines TCP socket connection parameters.
 | address | [NetAddress](#netaddress) | Yes  | Bound IP address and port number.      |
 | timeout | number                             | No  | Timeout duration of the TCP socket connection, in ms.|
 
-## TCPSendOptions<sup>7+</sup>
+## TCPSendOptions
 
-Defines the parameters for sending data over the TCP socket connection.
+Defines the parameters for sending data over a TCP socket connection.
 
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string\| ArrayBuffer<sup>7+</sup>  | Yes  | Data to send.                                                |
+| data     | string\| ArrayBuffer  | Yes  | Data to send.                                                |
 | encoding | string | No  | Character encoding format. The options are as follows: **UTF-8**, **UTF-16BE**, **UTF-16LE**, **UTF-16**, **US-AECII**, and **ISO-8859-1**. The default value is **UTF-8**.|
 
-## TCPExtraOptions<sup>7+</sup>
+## TCPExtraOptions
 
 Defines other properties of the TCP socket connection.
 
@@ -1874,19 +2602,19 @@ Creates a **TCPSocketServer** object.
 **Return value**
 
 | Type                               | Description                         |
-| :---------------------------------- | :---------------------------- |
+|  ---------------------------------- |  ---------------------------- |
 | [TCPSocketServer](#tcpsocketserver10) | **TCPSocketServer** object.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 ```
 
 ## TCPSocketServer<sup>10+</sup>
 
-Defines a TCPSocketServer connection. Before calling TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
+Defines a TCP socket server connection. Before calling TCPSocketServer APIs, you need to call [socket.constructTCPSocketServerInstance](#socketconstructtcpsocketserverinstance10) to create a **TCPSocketServer** object.
 
 ### listen<sup>10+</sup>
 
@@ -1905,7 +2633,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 | Name  | Type                     | Mandatory| Description                                         |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
-| address  | [NetAddress](#netaddress7) | Yes  | Destination address.|
+| address  | [NetAddress](#netaddress) | Yes  | Destination address.|
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.                                   |
 
 **Error codes**
@@ -1922,7 +2650,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -1957,12 +2685,12 @@ Binds the IP address and port number. The port number can be specified or random
 
 | Name | Type                     | Mandatory| Description                                         |
 | ------- | ------------------------- | ---- | --------------------------------------------- |
-| address | [NetAddress](#netaddress7) | Yes  | Destination address.|
+| address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
 **Return value**
 
 | Type           | Description                                                        |
-| :-------------- | :----------------------------------------------------------- |
+|  -------------- |  ----------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -1979,7 +2707,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -1999,9 +2727,9 @@ tcpServer.listen(listenAddr).then(() => {
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-Obtains the status of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Obtains the status of a TCP socket server connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2012,7 +2740,7 @@ Obtains the status of the TCPSocketServer connection. This API uses an asynchron
 
 | Name  | Type                                              | Mandatory| Description      |
 | -------- | -------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase7)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2025,7 +2753,7 @@ Obtains the status of the TCPSocketServer connection. This API uses an asynchron
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2054,9 +2782,9 @@ tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
 
 getState(): Promise\<SocketStateBase\>
 
-Obtains the status of the TCPSocketServer connection. This API uses a promise to return the result.
+Obtains the status of a TCP socket server connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2066,8 +2794,8 @@ Obtains the status of the TCPSocketServer connection. This API uses a promise to
 **Return value**
 
 | Type                                        | Description                                      |
-| :------------------------------------------- | :----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase7)> | Promise used to return the result.|
+|  ------------------------------------------- |  ----------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2079,7 +2807,7 @@ Obtains the status of the TCPSocketServer connection. This API uses a promise to
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2106,9 +2834,9 @@ tcpServer.getState().then((data: socket.SocketStateBase) => {
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Sets other properties of a TCP socket server connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2119,7 +2847,7 @@ Sets other properties of the TCPSocketServer connection. This API uses an asynch
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TCPSocketServer connection.|
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
 | callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2133,7 +2861,7 @@ Sets other properties of the TCPSocketServer connection. This API uses an asynch
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2173,9 +2901,9 @@ tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-Sets other properties of the TCPSocketServer connection. This API uses a promise to return the result.
+Sets other properties of a TCP socket server connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2186,12 +2914,12 @@ Sets other properties of the TCPSocketServer connection. This API uses a promise
 
 | Name | Type                               | Mandatory| Description                                                        |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TCPSocketServer connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
 
 **Return value**
 
 | Type           | Description                                                      |
-| :-------------- | :--------------------------------------------------------- |
+|  -------------- |  --------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -2205,7 +2933,7 @@ Sets other properties of the TCPSocketServer connection. This API uses a promise
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2243,9 +2971,9 @@ tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
 
 on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
-Subscribes to TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
+Subscribes to **connect** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2254,7 +2982,7 @@ Subscribes to TCPSocketServer connection events. This API uses an asynchronous c
 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
@@ -2265,7 +2993,7 @@ Subscribes to TCPSocketServer connection events. This API uses an asynchronous c
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
@@ -2277,9 +3005,9 @@ tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
 
 off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
-Unsubscribes from TCPSocketServer connection events. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2288,7 +3016,7 @@ Unsubscribes from TCPSocketServer connection events. This API uses an asynchrono
 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | No  | Callback used to return the result.                           |
 
 **Error codes**
@@ -2299,7 +3027,7 @@ Unsubscribes from TCPSocketServer connection events. This API uses an asynchrono
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (data: socket.TCPSocketConnection) => {
@@ -2315,9 +3043,9 @@ tcpServer.off('connect');
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to **error** events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Subscribes to **error** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2326,7 +3054,7 @@ Subscribes to **error** events of the TCPSocketServer connection. This API uses 
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2337,7 +3065,7 @@ Subscribes to **error** events of the TCPSocketServer connection. This API uses 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2350,9 +3078,9 @@ tcpServer.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **error** events of the TCPSocketServer connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **error** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2361,7 +3089,7 @@ Unsubscribes from **error** events of the TCPSocketServer connection. This API u
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2372,7 +3100,7 @@ Unsubscribes from **error** events of the TCPSocketServer connection. This API u
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2389,7 +3117,7 @@ tcpServer.off('error');
 
 Defines a **TCPSocketConnection** object, that is, the connection between the TCPSocket client and the server. Before calling TCPSocketConnection APIs, you need to obtain a **TCPSocketConnection** object.
 
-> **NOTE**<br>
+> **NOTE**
 > The TCPSocket client can call related APIs through the **TCPSocketConnection** object only after a connection is successfully established between the TCPSocket client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2406,7 +3134,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2417,7 +3145,7 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions7) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
 | callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2430,7 +3158,7 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
@@ -2450,7 +3178,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 Sends data over a **TCPSocketConnection** object. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2461,12 +3189,12 @@ Sends data over a **TCPSocketConnection** object. This API uses a promise to ret
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions7) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
 
 **Return value**
 
 | Type           | Description                                                        |
-| :-------------- | :----------------------------------------------------------- |
+|  -------------- |  ----------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -2479,7 +3207,7 @@ Sends data over a **TCPSocketConnection** object. This API uses a promise to ret
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2522,7 +3250,7 @@ Closes a TCP socket connection. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2551,7 +3279,7 @@ Closes a TCP socket connection. This API uses a promise to return the result.
 **Return value**
 
 | Type           | Description                                        |
-| :-------------- | :------------------------------------------- |
+|  -------------- |  ------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -2563,7 +3291,7 @@ Closes a TCP socket connection. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -2581,7 +3309,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2592,7 +3320,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 | Name  | Type                                    | Mandatory| Description      |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress7)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<[NetAddress](#netaddress)> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2605,7 +3333,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2626,7 +3354,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a socket connection. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after a connection with the client is set up.
 
 **Required permissions**: ohos.permission.INTERNET
@@ -2636,8 +3364,8 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 **Return value**
 
 | Type                              | Description                                       |
-| :--------------------------------- | :------------------------------------------ |
-| Promise<[NetAddress](#netaddress7)> | Promise used to return the result.|
+|  --------------------------------- |  ------------------------------------------ |
+| Promise<[NetAddress](#netaddress)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2649,7 +3377,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2674,8 +3402,8 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -2685,7 +3413,7 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2698,7 +3426,8 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message[i]
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -2714,7 +3443,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 Unsubscribes from **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2723,8 +3452,8 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -2734,7 +3463,7 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2745,7 +3474,8 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -2772,7 +3502,7 @@ Subscribes to **close** events of a **TCPSocketConnection** object. This API use
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
 
 **Error codes**
@@ -2783,7 +3513,7 @@ Subscribes to **close** events of a **TCPSocketConnection** object. This API use
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2800,7 +3530,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2809,7 +3539,7 @@ Unsubscribes from **close** events of a **TCPSocketConnection** object. This API
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                         |
 
 **Error codes**
@@ -2820,7 +3550,7 @@ Unsubscribes from **close** events of a **TCPSocketConnection** object. This API
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = () => {
@@ -2846,7 +3576,7 @@ Subscribes to **error** events of a **TCPSocketConnection** object. This API use
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2857,7 +3587,7 @@ Subscribes to **error** events of a **TCPSocketConnection** object. This API use
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2874,7 +3604,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -2883,7 +3613,7 @@ Unsubscribes from **error** events of a **TCPSocketConnection** object. This API
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -2894,13 +3624,13 @@ Unsubscribes from **error** events of a **TCPSocketConnection** object. This API
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', callback);
   // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -2915,6 +3645,1400 @@ The TCP error code mapping is in the format of 2301000 + Linux kernel error code
 
 For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
 
+## socket.constructLocalSocketInstance<sup>11+</sup>
+
+constructLocalSocketInstance(): LocalSocket
+
+Creates a **LocalSocket** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                              | Description                   |
+  | :--------------------------------- | :---------------------- |
+| [LocalSocket](#localsocket) | **LocalSocket** object.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+```
+
+## LocalSocket<sup>11+</sup>
+
+Defines a **LocalSocket** object. Before calling LocalSocket APIs, you need to call [socket.constructLocalSocketInstance](#socketconstructlocalsocketinstance11) to create a **LocalSocket** object.
+
+### bind<sup>11+</sup>
+
+bind(address: LocalAddress): Promise\<void\>;
+
+Binds the address of a local socket file. This API uses a promise to return the result.
+
+> **NOTE**
+> This API explicitly binds the client to a local socket file based on the specified address.
+> It is not mandatory in local socket communication.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                              | Mandatory| Description                                                  |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address  | [LocalAddress](#localaddress11) | Yes  | Destination address. For details, see [LocalAddress](#localaddress11).|
+
+**Error codes**
+
+| ID| Error Message                   |
+| ------- | -------------------------- |
+| 401     | Parameter error.           |
+| 2301013 | Insufficient permissions.  |
+| 2301022 | Invalid argument.          |
+| 2301098 | Address already in use.    |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+
+let client = socket.constructLocalSocketInstance()
+let address : socket.LocalAddress = {
+  address: '/tmp/testSocket'
+}
+client.bind(address).then(() => {
+  console.log('bind success')
+}).catch((err: Object) => {
+  console.error('failed to bind: ' + JSON.stringify(err))
+})
+```
+
+### connect<sup>11+</sup>
+
+connect(options: LocalConnectOptions): Promise\<void\>
+
+Connects to the specified socket file. This API uses a promise to return the result.
+
+> **NOTE**
+> This API allows you to connect to the TCP server without first executing **localsocket.bind**.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                    | Mandatory| Description                                                        |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [LocalConnectOptions](#localconnectoptions11) | Yes  | Local socket connection parameters. For details, see [LocalConnectOptions](#localconnectoptions11).|
+
+**Return value**
+
+| Type           | Description                                      |
+| :-------------- | :---------------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.                 |
+| 2301013     | Insufficient permissions.        |
+| 2301022     | Invalid argument.                |
+| 2301111     | Connection refused.              |
+| 2301099     | Cannot assign requested address. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+
+let client = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success')
+}).catch((err: Object) => {
+  console.error('connect fail: ' + JSON.stringify(err));
+});
+```
+
+### send<sup>11+</sup>
+
+send(options: LocalSendOptions): Promise\<void\>
+
+Sends data over a local socket connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **connect** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [LocalSendOptions](#localsendoptions11) | Yes  | Parameters for sending data over a local socket connection. For details, see [LocalSendOptions](#localsendoptions11).|
+
+**Return value**
+
+| Type           | Description                                        |
+| :-------------- | :------------------------------------------ |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301011 | Operation would block.  |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket"
+
+let client: socket.LocalSocket = socket.constructLocalSocketInstance()
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success')
+}).catch((err: Object) => {
+  console.error('connect failed: ' + JSON.stringify(err))
+})
+let sendOpt: socket.LocalSendOptions = {
+  data: 'Hello world!'
+}
+client.send(sendOpt).then(() => {
+  console.log('send success')
+}).catch((err: Object) => {
+  console.error('send fail: ' + JSON.stringify(err))
+})
+```
+
+### close<sup>11+</sup>
+
+close(): Promise\<void\>
+
+Closes a local socket connection. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                      |
+| :-------------- | :----------------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 2301009 | Bad file descriptor.    |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+
+client.close().then(() => {
+  console.log('close success');
+}).catch((err: Object) => {
+  console.error('close fail: ' + JSON.stringify(err));
+});
+```
+
+### getState<sup>11+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+Obtains the local socket connection status. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                         | Description                                    |
+| :------------------------------------------- | :--------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success');
+  client.getState().then(() => {
+    console.log('getState success');
+  }).catch((err: Object) => {
+    console.error('getState fail: ' + JSON.stringify(err))
+  });
+}).catch((err: Object) => {
+  console.error('connect fail: ' + JSON.stringify(err));
+});
+```
+
+### getSocketFd<sup>11+</sup>
+
+getSocketFd(): Promise\<number\>
+
+Obtains the file descriptor of the **LocalSocket** object. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
+> The file descriptor is allocated by the system kernel to uniquely identify the local socket in use.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type              | Description                             |
+| :---------------- | :-------------------------------- |
+| Promise\<number\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect ok')
+}).catch((err: Object) => {
+  console.error('connect fail: ' + JSON.stringify(err))
+})
+client.getSocketFd().then((data: number) => {
+  console.info("fd: " + data);
+}).catch((err: Object) => {
+  console.error("getSocketFd faile: " + JSON.stringify(err));
+})
+```
+
+### setExtraOptions<sup>11+</sup>
+
+setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
+
+Sets other properties of the local socket connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                                                        |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [ExtraOptionsBase](#extraoptionsbase10) | Yes  | Other properties of the local socket connection. For details, see [ExtraOptionsBase](#extraoptionsbase10).|
+
+**Return value**
+
+| Type           | Description                                          |
+| :-------------- | :-------------------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success');
+  let options: socket.ExtraOptionsBase = {
+    receiveBufferSize: 8000,
+    sendBufferSize: 8000,
+    socketTimeout: 3000
+  }
+  client.setExtraOptions(options).then(() => {
+    console.log('setExtraOptions success');
+  }).catch((err: Object) => {
+    console.error('setExtraOptions fail: ' + JSON.stringify(err));
+  });
+}).catch((err: Object) => {
+  console.error('connect fail: ' + JSON.stringify(err));
+});
+```
+
+### getExtraOptions<sup>11+</sup>
+
+getExtraOptions(): Promise\<ExtraOptionsBase\>;
+
+Obtains other properties of the local socket connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **bind** or **connect** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                        | Description                                     |
+| :-------------------------- | :---------------------------------------- |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 2301009 | Bad file descriptor.    |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success');
+  client.getExtraOptions().then((options : socket.ExtraOptionsBase) => {
+    console.log('options: ' + JSON.stringify(options));
+  }).catch((err: Object) => {
+    console.error('setExtraOptions fail: ' + JSON.stringify(err));
+  });
+}).catch((err: Object) => {
+  console.error('connect fail: ' + JSON.stringify(err));
+});
+```
+
+### on('message')<sup>11+</sup>
+
+on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
+
+Subscribes to **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                     |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+client.on('message', (value: socket.LocalSocketMessageInfo) => {
+  const uintArray = new Uint8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+});
+```
+
+### off('message')<sup>11+</sup>
+
+off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
+
+Unsubscribes from **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description                                |
+| -------- | ------------------------------------------------ | ---- | ----------------------------------- |
+| type     | string                                           | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | No  | Callback passed to the **on** function.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let messageView = '';
+let callback = (value: socket.LocalSocketMessageInfo) => {
+  const uintArray = new Uint8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+}
+client.on('message', callback);
+client.off('message');
+```
+
+### on('connect')<sup>11+</sup>
+
+on(type: 'connect', callback: Callback\<void\>): void;
+
+Subscribes to **connect** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                                                        |
+| -------- | ---------------- | ---- | --------------------------------------------------------- |
+| type     | string           | Yes  | Event type.<br/>                                            |
+| callback | Callback\<void\> | Yes  | Callback used to return the result.                    |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+client.on('connect', () => {
+  console.log("on connect success")
+});
+```
+
+### off('connect')<sup>11+</sup>
+
+off(type: 'connect', callback?: Callback\<void\>): void;
+
+Unsubscribes from **connect** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                                                        |
+| -------- | ---------------- | ---- | --------------------------------------------------------- |
+| type     | string           | Yes  | Event type.<br/>                                            |
+| callback | Callback\<void\> | Yes  | Callback passed to the **on** function.                          |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = () => {
+  console.log("on connect success");
+}
+client.on('connect', callback);
+// You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+client.off('connect', callback);
+client.off('connect');
+```
+
+### on('close')<sup>11+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void;
+
+Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string           | Yes  | Event type.|
+| callback | Callback\<void\> | No  | Callback used to return the result.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = () => {
+  console.log("on close success");
+}
+client.on('close', callback);
+```
+
+### off('close')<sup>11+</sup>
+
+off(type: 'close', callback?: Callback\<void\>): void;
+
+Unsubscribes from **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string           | Yes  | Event type.|
+| callback | Callback\<void\> | No  | Callback passed to the **on** function.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = () => {
+  console.log("on close success");
+}
+client.on('close', callback);
+// You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+client.off('close', callback);
+client.off('close');
+```
+
+### on('error')<sup>11+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **error** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                           |
+| -------- | ------------- | ---- | ---------------------------- |
+| type     | string        | Yes  | Event type.  |
+| callback | ErrorCallback | Yes  | Callback used to return the result.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+client.on('error', (err) => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void;
+
+Unsubscribes from **error** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                            |
+| -------- | ------------- | ---- | ----------------------------- |
+| type     | string        | Yes  | Event type.|
+| callback | ErrorCallback | No  | Callback passed to the **on** function.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = (err) => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+client.on('error', callback);
+// You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+client.off('error', callback);
+client.off('error');
+```
+
+## LocalSocketMessageInfo<sup>11+</sup>
+
+Defines the data received by the client over a local socket connection.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name    | Type           | Mandatory| Description              |
+| ------- | --------------- | --- | ------------------ |
+| message | ArrayBuffer     | Yes  | Data received.    |
+| address | string          | Yes  | Local socket connection address.|
+| size    | number          | Yes  | Data length.         |
+
+## LocalAddress<sup>11+</sup>
+
+Defines the address of a local socket file. When the address is passed for binding, a socket file is created at this address.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name    | Type      | Mandatory| Description              |
+| ------- | ---------- | --- | ------------------ |
+| address | string     | Yes  | Address of the local socket file.    |
+
+## LocalConnectOptions<sup>11+</sup>
+
+Defines local socket connection parameters.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name    | Type      | Mandatory| Description                           |
+| ------- | ---------- | --- | ------------------------------ |
+| address | string     | Yes  | Address of the local socket file.           |
+| timeout | number     | No  | Timeout duration of the local socket connection, in ms. |
+
+## LocalSendOptions<sup>11+</sup>
+
+Defines the parameters for sending data over a local socket connection.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name    | Type      | Mandatory| Description                |
+| ------- | ---------- | --- | ------------------- |
+| address | string     | Yes  | Address of the local socket file.|
+| timeout | encoding   | No  | Encoding format of the string.          |
+
+## ExtraOptionsBase<sup>10+</sup>
+
+Defines other properties of the local socket connection.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name           | Type   | Mandatory| Description                             |
+| ----------------- | ------- | ---- | ----------------------------- |
+| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.    |
+| sendBufferSize    | number  | No  | Size of the send buffer, in bytes.    |
+| reuseAddress      | boolean | No  | Whether to reuse addresses.                  |
+| socketTimeout     | number  | No  | Timeout duration of the local socket connection, in ms.   |
+
+## socket.constructLocalSocketServerInstance<sup>11+</sup>
+
+constructLocalSocketServerInstance(): LocalSocketServer
+
+Creates a **LocalSocketServer** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                               | Description                         |
+| :---------------------------------- | :---------------------------- |
+| [LocalSocketServer](#localsocketserver11) | **LocalSocketServer** object.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+```
+
+## LocalSocketServer<sup>11+</sup>
+
+Defines a local socket server connection. Before calling LocalSocketServer APIs, you need to call [socket.constructLocalSocketServerInstance](#socketconstructlocalsocketserverinstance11) to create a **LocalSocketServer** object. 
+
+### listen<sup>11+</sup>
+
+listen(address: LocalAddress): Promise\<void\>
+
+Binds the address of the local socket file. The server listens to and accepts local socket connections established over the socket. Multiple threads are used to process client data concurrently. This API uses a promise to return the result.
+
+> **NOTE**
+> The server uses this API to perform the **bind**, **listen**, and **accept** operations.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                     | Mandatory| Description                                         |
+| ------- | ------------------------- | ---- | --------------------------------------------- |
+| address | [LocalAddress](#localaddress11) | Yes  | Destination address.|
+
+**Return value**
+
+| Type           | Description                                                  |
+| :-------------- | :---------------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                     |
+| -------- | --------------------------- |
+| 401      | Parameter error.            |
+| 2303109  | Bad file number.            |
+| 2301013  | Insufficient permissions.   |
+| 2301022  | Invalid argument.           |
+| 2303198  | Address already in use.     |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let addr: socket.LocalAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(addr).then(() => {
+  console.log('listen success');
+}).catch((err: Object) => {
+  console.error('listen fail: ' + JSON.stringify(err));
+});
+```
+
+### getState<sup>11+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+Obtains the status of a local socket server connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                        | Description                                           |
+| :------------------------------------------- | :--------------------------------------------- |
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.LocalAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err: Object) => {
+  console.error("listen fail: " + JSON.stringify(err));
+})
+server.getState().then((data: socket.SocketStateBase) => {
+  console.log('getState success: ' + JSON.stringify(data));
+}).catch((err: Object) => {
+  console.error('getState fail: ' + JSON.stringify(err));
+});
+```
+
+### setExtraOptions<sup>11+</sup>
+
+setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
+
+Sets other properties of the local socket server connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                           |
+| ------- | --------------------------------------- | ---- | ------------------------------ |
+| options | [ExtraOptionsBase](#extraoptionsbase10) | Yes  | Other properties of a local socket server connection.|
+
+**Return value**
+
+| Type           | Description                                            |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2301009  | Bad file descriptor.            |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err: Object) => {
+  console.error("listen fail: " + JSON.stringify(err));
+})
+
+let options: socket.ExtraOptionsBase = {
+  receiveBufferSize: 6000,
+  sendBufferSize: 6000,
+  socketTimeout: 3000
+}
+server.setExtraOptions(options).then(() => {
+  console.log('setExtraOptions success');
+}).catch((err: Object) => {
+  console.error('setExtraOptions fail: ' + JSON.stringify(err));
+});
+```
+
+### getExtraOptions<sup>11+</sup>
+
+getExtraOptions(): Promise\<ExtraOptionsBase\>;
+
+Obtains other properties of a local socket server connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                        | Description                       |
+| :-------------------------- | :-------------------------- |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | -------------------- |
+| 2301009  | Bad file descriptor. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err: Object) => {
+  console.error("listen fail: " + JSON.stringify(err));
+})
+server.getExtraOptions().then((options) => {
+  console.log('options: ' + JSON.stringify(options));
+}).catch((err: Object) => {
+  console.error('getExtraOptions fail: ' + JSON.stringify(err));
+});
+```
+
+### on('connect')<sup>11+</sup>
+
+on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
+
+Subscribes to **connect** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                                 |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  if (connection) {
+    console.log('accept a client')
+  }
+});
+```
+
+### off('connect')<sup>11+</sup>
+
+off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
+
+Unsubscribes from **connect** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                           | Mandatory| Description                                 |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | No  | Callback passed to the **on** function.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = (connection: socket.LocalSocketConnection) => {
+  if (connection) {
+    console.log('accept a client')
+  }
+}
+server.on('connect', callback);
+// You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+server.off('connect', callback);
+server.off('connect');
+```
+
+### on('error')<sup>11+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **error** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API can be called only after **listen** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
+| callback | ErrorCallback | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('error', (err) => {
+  console.error("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **error** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
+| callback | ErrorCallback | No  | Callback passed to the **on** function.  |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = (err) => {
+  console.error("on error, err:" + JSON.stringify(err));
+}
+server.on('error', callback);
+// You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+server.off('error', callback);
+server.off('error');
+```
+
+
+## LocalSocketConnection<sup>11+</sup>
+
+Defines a local socket connection, that is, the session between the local socket client and the server. Before calling LocalSocketConnection APIs, you need to obtain a **LocalSocketConnection** object.
+
+> **NOTE**
+> The LocalSocketConnection client can call related APIs through the **LocalSocketConnection** object only after a connection is successfully established between the local socket client and the server.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+### Attributes
+
+| Name    | Type  | Mandatory| Description                           |
+| -------- | ------ | ---- | ---------------------------- |
+| clientId | number | Yes  | ID of the session between the client and the server.|
+
+### send<sup>11+</sup>
+
+send(options: LocalSendOptions): Promise\<void\>
+
+Sends data through a local socket connection. This API uses a promise to return the result.
+
+> **NOTE**
+> This API can be used only after the server obtains a **LocalSocketConnection** object through the **callback** of the **connect** event.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | -------------------------------------- |
+| options | [LocalSendOptions](#localsendoptions11) | Yes  | Defines the parameters for sending data over a local socket connection.|
+
+**Return value**
+
+| Type           | Description                                            |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2301011  | Operation would block. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  let sendOptions: socket.LocalSendOptions = {
+    data: 'Hello, client!'
+  }
+  connection.send(sendOptions).then(() => {
+    console.log('send success');
+  }).catch((err: Object) => {
+    console.error('send fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### close<sup>11+</sup>
+
+close(): Promise\<void\>
+
+Closes a local socket connection. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type           | Description                                        |
+| :-------------- | :------------------------------------------- |
+| Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | -------------------- |
+| 201      | Permission denied.   |
+| 2301009  | Bad file descriptor. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.close().then(() => {
+    console.log('close success');
+  }).catch((err: Object) => {
+    console.error('close fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### on('message')<sup>11+</sup>
+
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+
+Subscribes to **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                    |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------- |
+| type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.    |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.LocalAddress = {
+  address: '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err: Object) => {
+  console.error("listen fail: " + JSON.stringify(err));
+});
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('message', (value: socket.LocalSocketMessageInfo) => {
+    const uintArray = new Uint8Array(value.message);
+    let messageView = '';
+    for (let i = 0; i < uintArray.length; i++) {
+      messageView = String.fromCharCode(uintArray[i]);
+    }
+    console.log('total: ' + JSON.stringify(value));
+    console.log('message infomation: ' + messageView);
+  });
+});
+```
+
+### off('message')<sup>11+</sup>
+
+off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
+
+Unsubscribes from **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | No  | Callback passed to the **on** function.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = (value: socket.LocalSocketMessageInfo) => {
+  const uintArray = new Uint8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+}
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('message', callback);
+  // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+  connection.off('message', callback);
+  connection.off('message');
+});
+```
+
+### on('close')<sup>11+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+Unsubscribes from **close** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                               |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
+| callback | Callback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('close', () => {
+    console.log("on close success")
+  });
+});
+```
+
+### off('close')<sup>11+</sup>
+
+off(type: 'close', callback?: Callback\<void\>): void
+
+Unsubscribes from **close** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description                               |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
+| callback | Callback\<void\> | No  | Callback passed to the **on** function.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = () => {
+  console.log("on close success");
+}
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('close', callback);
+  // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+  connection.off('close', callback);
+  connection.off('close');
+});
+```
+
+### on('error')<sup>11+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **error** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
+| callback | ErrorCallback | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('error', (err) => {
+    console.error("on error, err:" + JSON.stringify(err))
+  });
+});
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **error** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
+| callback | ErrorCallback | No  | Callback passed to the **on** function.  |
+
+**Error codes**
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import socket from "@ohos.net.socket";
+let callback = (err) => {
+  console.error("on error, err: " + JSON.stringify(err));
+}
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('error', callback);
+  // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
+  connection.off('error', callback);
+  connection.off('error');
+});
+```
+
+## Description of LocalSocket Error Codes
+
+The LocalSocket error code mapping is in the format of 2301000 + Linux kernel error code.
+
+For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
+
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
 constructTLSSocketInstance(): TLSSocket
@@ -2926,12 +5050,12 @@ Creates a **TLSSocket** object.
 **Return value**
 
 | Type                              | Description                   |
-| :--------------------------------- | :---------------------- |
+|  --------------------------------- |  ---------------------- |
 | [TLSSocket](#tlssocket9) | **TLSSocket** object.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
@@ -2968,7 +5092,7 @@ Binds the IP address and port number. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3004,7 +5128,7 @@ Binds the IP address and port number. This API uses a promise to return the resu
 **Return value**
 
 | Type           | Description                                                    |
-| :-------------- | :------------------------------------------------------- |
+|  -------------- |  ------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -3018,7 +5142,7 @@ Binds the IP address and port number. This API uses a promise to return the resu
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3056,7 +5180,7 @@ Obtains the status of the TLS socket connection. This API uses an asynchronous c
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3091,7 +5215,7 @@ Obtains the status of the TLS socket connection. This API uses a promise to retu
 **Return value**
 
 | Type                                            | Description                                      |
-| :----------------------------------------------- | :----------------------------------------- |
+|  ----------------------------------------------- |  ----------------------------------------- |
 | Promise\<[SocketStateBase](#socketstatebase)> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -3103,7 +5227,7 @@ Obtains the status of the TLS socket connection. This API uses a promise to retu
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3150,7 +5274,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3202,7 +5326,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 **Return value**
 
 | Type           | Description                                                |
-| :-------------- | :--------------------------------------------------- |
+|  -------------- |  --------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -3215,7 +5339,7 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3260,12 +5384,12 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3276,7 +5400,8 @@ class SocketInfo {
 let messageView = '';
 tls.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3289,9 +5414,9 @@ tls.on('message', (value: SocketInfo) => {
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
-Unsubscribes from **message** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **message** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3300,12 +5425,12 @@ Unsubscribes from **message** events of the TLS socket connection. This API uses
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3316,7 +5441,8 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3339,12 +5465,12 @@ Subscribes to **connect** or **close** events of the TLS socket connection. This
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3360,9 +5486,9 @@ tls.on('close', () => {
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
-Unsubscribes from **connect** or **close** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** or **close** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3371,12 +5497,12 @@ Unsubscribes from **connect** or **close** events of the TLS socket connection. 
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | Yes  | Type of the event to subscribe to.<br>- **connect**: connection event.<br>- **close**: close event.|
+| type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3407,12 +5533,12 @@ Subscribes to **error** events of the TLS socket connection. This API uses an as
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3425,9 +5551,9 @@ tls.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from **error** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+Unsubscribes from **error** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -3436,12 +5562,12 @@ Unsubscribes from **error** events of the TLS socket connection. This API uses a
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3466,7 +5592,7 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | Name  | Type                                  | Mandatory| Description|
 | -------- | ---------------------------------------| ----| --------------- |
 | options  | [TLSConnectOptions](#tlsconnectoptions9) | Yes  | Parameters required for the TLS socket connection.|
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void\>                  | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -3490,7 +5616,7 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
@@ -3593,7 +5719,7 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
@@ -3681,7 +5807,7 @@ Obtains the remote address of a TLS socket connection. This API uses an asynchro
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3705,7 +5831,7 @@ Obtains the remote address of a TLS socket connection. This API uses a promise t
 **Return value**
 
 | Type                                       | Description                                       |
-| :------------------------------------------ | :------------------------------------------ |
+|  ------------------------------------------ |  ------------------------------------------ |
 | Promise\<[NetAddress](#netaddress)> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -3717,7 +5843,7 @@ Obtains the remote address of a TLS socket connection. This API uses a promise t
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3752,7 +5878,7 @@ Obtains the local digital certificate after a TLS socket connection is establish
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3789,12 +5915,16 @@ Obtains the local digital certificate after a TLS socket connection is establish
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -3823,7 +5953,7 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3859,7 +5989,7 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3894,7 +6024,7 @@ Obtains the communication protocol version after a TLS socket connection is esta
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3931,7 +6061,7 @@ Obtains the communication protocol version after a TLS socket connection is esta
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3967,7 +6097,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4005,7 +6135,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4039,7 +6169,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4075,7 +6205,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4114,7 +6244,7 @@ Sends a message to the server after a TLS socket connection is established. This
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4160,7 +6290,7 @@ Sends a message to the server after a TLS socket connection is established. This
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4197,7 +6327,7 @@ Closes a TLS socket connection. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4236,7 +6366,7 @@ Closes a TLS socket connection. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4304,12 +6434,12 @@ Creates a **TLSSocketServer** object.
 **Return value**
 
 | Type                                 | Description                         |
-| :------------------------------------ | :---------------------------- |
+|  ------------------------------------ |  ---------------------------- |
 | [TLSSocketServer](#tlssocketserver10) | **TLSSocketServer** object.|
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4334,7 +6464,7 @@ Listens to client connections after **bind** is successfully called. This API us
 | Name  | Type                                    | Mandatory| Description                                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------ |
 | options  | [TLSConnectOptions](#tlsconnectoptions9) | Yes  | Parameters required for the connection.               |
-| callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -4355,7 +6485,7 @@ Listens to client connections after **bind** is successfully called. This API us
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4423,7 +6553,7 @@ Listens to client connections after **bind** is successfully called. This API us
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4458,7 +6588,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TLS socket server connection upon successful listening. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4467,7 +6597,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase7)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -4479,7 +6609,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4520,7 +6650,7 @@ getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TLS socket server connection upon successful listening. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4528,8 +6658,8 @@ Obtains the status of the TLS socket server connection upon successful listening
 **Return value**
 
 | Type                                          | Description                                                        |
-| :--------------------------------------------- | :----------------------------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+|  --------------------------------------------- |  ----------------------------------------------------------- |
+| Promise\<[SocketStateBase](#socketstatebase)> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -4540,7 +6670,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4579,7 +6709,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TLS socket server connection upon successful listening. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4588,7 +6718,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 | Name  | Type                                | Mandatory| Description                                            |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TLS socket server connection.                 |
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TLS socket server connection.                 |
 | callback | AsyncCallback\<void\>                | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -4601,7 +6731,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4653,7 +6783,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TLS socket server connection upon successful listening. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4662,12 +6792,12 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 | Name | Type                                | Mandatory| Description                           |
 | ------- | ------------------------------------ | ---- | ------------------------------- |
-| options | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TLS socket server connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TLS socket server connection.|
 
 **Return value**
 
 | Type           | Description                                                     |
-| :-------------- | :-------------------------------------------------------- |
+|  -------------- |  -------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -4680,7 +6810,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4730,7 +6860,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 Obtains the local digital certificate after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4752,9 +6882,11 @@ Obtains the local digital certificate after a TLS socket server connection is es
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -4782,7 +6914,9 @@ tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
   } else {
-    console.log("getCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getCertificate callback: " + str);
   }
 });
 ```
@@ -4793,7 +6927,7 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 Obtains the local digital certificate after a TLS socket server connection is established. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4814,9 +6948,11 @@ Obtains the local digital certificate after a TLS socket server connection is es
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -4840,8 +6976,10 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 }).catch((err: BusinessError) => {
   console.log("failed: " + JSON.stringify(err));
 });
-tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
-  console.log(data);
+tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -4853,7 +6991,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 Obtains the communication protocol version after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4875,7 +7013,7 @@ Obtains the communication protocol version after a TLS socket server connection 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4916,7 +7054,7 @@ getProtocol():Promise\<string\>
 
 Obtains the communication protocol version after a TLS socket server connection is established. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4937,7 +7075,7 @@ Obtains the communication protocol version after a TLS socket server connection 
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4976,7 +7114,7 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
 Subscribes to TLS socket server connection events. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -4985,7 +7123,7 @@ Subscribes to TLS socket server connection events. This API uses an asynchronous
 
 | Name  | Type                                                   | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                  | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                                                  | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
@@ -4996,7 +7134,7 @@ Subscribes to TLS socket server connection events. This API uses an asynchronous
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5031,9 +7169,9 @@ tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
 
 off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 
-Unsubscribes from TLS socket server connection events. This API uses an asynchronous callback to return the result.
+Unsubscribes from **connect** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
@@ -5043,7 +7181,7 @@ Unsubscribes from TLS socket server connection events. This API uses an asynchro
 
 | Name  | Type                                                   | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                  | Yes  | Type of the event to subscribe to.<br/> **connect**: connection event.|
+| type     | string                                                  | Yes  | Event type.<br/> **connect**: connection event.|
 | callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | No  | Callback used to return the result.                           |
 
 **Error codes**
@@ -5054,7 +7192,7 @@ Unsubscribes from TLS socket server connection events. This API uses an asynchro
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5096,7 +7234,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to **error** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -5105,7 +7243,7 @@ Subscribes to **error** events of a **TLSSocketServer** object. This API uses an
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -5116,7 +7254,7 @@ Subscribes to **error** events of a **TLSSocketServer** object. This API uses an
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5153,7 +7291,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API can be called only after **listen** is successfully called.
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
@@ -5163,7 +7301,7 @@ Unsubscribes from **error** events of a **TLSSocketServer** object. This API use
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -5174,7 +7312,7 @@ Unsubscribes from **error** events of a **TLSSocketServer** object. This API use
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5214,7 +7352,7 @@ tlsServer.off('error');
 
 Defines a **TLSSocketConnection** object, that is, the connection between the TLSSocket client and the server. Before calling TLSSocketConnection APIs, you need to obtain a **TLSSocketConnection** object.
 
-> **NOTE**<br>
+> **NOTE**
 > The TLSSocket client can call related APIs through the **TLSSocketConnection** object only after a connection is successfully established between the TLSSocket client and the server.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -5237,7 +7375,7 @@ Sends a message to the client after a TLS socket server connection is establishe
 
 | Name  | Type                 | Mandatory| Description                                            |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string                | Yes  | Parameters for sending data over the TLS socket server connection.           |
+| data     | string                | Yes  | Parameters for sending data over a TLS socket server connection.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -5253,7 +7391,7 @@ Sends a message to the client after a TLS socket server connection is establishe
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5303,7 +7441,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string | Yes  | Parameters for sending data over the TLS socket server connection.|
+| data   | string | Yes  | Parameters for sending data over a TLS socket server connection.|
 
 **Return value**
 
@@ -5324,7 +7462,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5386,7 +7524,7 @@ Closes a TLS socket server connection. This API uses an asynchronous callback to
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5449,7 +7587,7 @@ Closes a TLS socket server connection. This API uses a promise to return the res
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5496,7 +7634,7 @@ Obtains the remote address of a TLS socket server connection. This API uses an a
 
 | Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[NetAddress](#netaddress7)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5508,7 +7646,7 @@ Obtains the remote address of a TLS socket server connection. This API uses an a
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5556,8 +7694,8 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 **Return value**
 
 | Type                                | Description                                                        |
-| :----------------------------------- | :----------------------------------------------------------- |
-| Promise\<[NetAddress](#netaddress7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+|  ----------------------------------- |  ----------------------------------------------------------- |
+| Promise\<[NetAddress](#netaddress)> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5568,7 +7706,7 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5627,9 +7765,11 @@ Obtains the digital certificate of the peer end after a TLS socket server connec
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -5656,9 +7796,11 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     if (err) {
-      console.log("getRemoteCertificate callback error = " + err);
+      console.log("getRemoteCertificate callback error: " + err);
     } else {
-      console.log("getRemoteCertificate callback = " + data);
+      const decoder = util.TextDecoder.create();
+      const str = decoder.decodeWithStream(data.data);
+      console.log("getRemoteCertificate callback: " + str);
     }
   });
 });
@@ -5687,9 +7829,11 @@ Obtains the digital certificate of the peer end after a TLS socket server connec
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -5715,7 +7859,9 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-    console.log('getRemoteCertificate success:' + JSON.stringify(data));
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);
   });
@@ -5748,7 +7894,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5810,7 +7956,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5869,7 +8015,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5929,7 +8075,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5976,8 +8122,8 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.                               |
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
 
@@ -5987,7 +8133,7 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6022,7 +8168,8 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message[i]
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -6038,7 +8185,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 Unsubscribes from **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -6047,8 +8194,8 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result.                               |
+| type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Error codes**
 
@@ -6058,7 +8205,7 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6092,7 +8239,8 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -6119,7 +8267,7 @@ Subscribes to **close** events of a **TLSSocketConnection** object. This API use
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
 
 **Error codes**
@@ -6130,7 +8278,7 @@ Subscribes to **close** events of a **TLSSocketConnection** object. This API use
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6169,7 +8317,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -6178,7 +8326,7 @@ Unsubscribes from **close** events of a **TLSSocketConnection** object. This API
 
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | Yes  | Type of the event to subscribe to.<br/> **close**: close event.|
+| type     | string           | Yes  | Event type.<br/> **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.                         |
 
 **Error codes**
@@ -6189,7 +8337,7 @@ Unsubscribes from **close** events of a **TLSSocketConnection** object. This API
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6239,7 +8387,7 @@ Subscribes to **error** events of a **TLSSocketConnection** object. This API use
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -6250,7 +8398,7 @@ Subscribes to **error** events of a **TLSSocketConnection** object. This API use
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6290,7 +8438,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -6299,7 +8447,7 @@ Unsubscribes from **error** events of a **TLSSocketConnection** object. This API
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to.<br/> **error**: error event.|
+| type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                          |
 
 **Error codes**
@@ -6310,7 +8458,7 @@ Unsubscribes from **error** events of a **TLSSocketConnection** object. This API
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();

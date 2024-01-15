@@ -16,6 +16,9 @@ The following code snippet shows how to explicitly start a PageAbility through *
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
 import Want from '@ohos.app.ability.Want';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 ```
 ```ts
 (async (): Promise<void> => {

@@ -373,6 +373,7 @@ struct DragControllerPage {
         if(event){
           if (event.type == TouchType.Down) {
             console.log("muti drag Down by listener");
+            this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -397,7 +398,6 @@ struct DragControllerPage {
                 if (!this.dragAction) {
                   return
                 }
-                this.customBuilders.splice(0, this.customBuilders.length)
                 this.dragAction.off('statusChange')
               }
             })

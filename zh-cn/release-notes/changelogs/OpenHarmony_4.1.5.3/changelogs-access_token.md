@@ -7,31 +7,47 @@
 
 **变更原因**
 
-根据安全隐私要求，地理位置支持使用期间允许的管控能力。位置权限申请使用时，禁止通过弹窗形式授予后台位置权限。
+根据安全隐私要求，地理位置支持使用期间允许的管控能力。位置权限申请使用时，禁止通过弹窗形式授予后台位置权限；
+
+应用如需使用后台位置权限，需要在设置界面由用户手动授予，具体授权方式请参考下文【适配指导】
 
 **变更影响**
 
-该变更为非兼容性变更。地理位置支持使用期间允许的管控能力。位置权限申请使用时，禁止通过弹窗形式授予后台位置权限。具体受影响的弹窗场景见下文：
+涉及权限：
 
-a) 应用仅申请后台权限（前台权限未弹窗授予）
+前台位置权限（用于管控应用前台获取位置信息行为）：
 
-变更前：弹出弹窗，点击允许可授予后台权限
+精确位置权限：[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionlocation)：允许应用获取设备精确位置信息；需要先申请模糊位置权限才可申请此权限。
 
-变更后：不弹窗，不授予后台权限
+模糊位置权限：[ohos.permission.APPROXIMATELY_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location)：允许应用获取设备模糊位置信息。
 
-b) 应用仅申请后台权限（前台权限已弹窗授予）
+后台位置权限（用于管控应用后台获取位置信息行为）：
 
-变更前：不弹窗，后台权限在第一次授予前台权限时同时授予
+[ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)：允许应用在后台运行时获取设备位置信息；需要先申请前台位置权限后，才可申请此权限。
 
-变更后：不弹窗，不授予后台权限
+具体受影响的弹窗场景见下文：
 
-c) 应用同时申请前台和后台权限
+a) 应用仅申请后台位置权限（前台位置权限未弹窗申请）
 
-变更前：弹窗展示允许和拒绝选项，选择允许则授予前台+后台权限
+变更前：弹出弹窗，点击允许可授予后台位置权限
+
+变更后：不弹窗，不授予后台位置权限
+
+b) 应用仅申请后台位置权限（前台位置权限已授予）
+
+变更前：不弹窗，后台位置权限在第一次授予前台位置权限时同时授予
+
+变更后：不弹窗，不授予后台位置权限
+
+c) 应用同时申请前台位置和后台位置权限
+
+变更前：弹窗展示允许和拒绝选项，选择允许则授予前台位置+后台位置权限
 
 变更后：
-    API 10及以前：弹窗展示使用期间允许和拒绝选项，选择使用期间允许，仅授予前台权限
-    API 11及以后：不弹窗，不授予前台和后台权限
+
+API 10及以前：弹窗展示使用期间允许和拒绝选项，选择使用期间允许，仅授予前台位置权限;
+
+API 11及以后：不弹窗，不授予前台位置和后台位置权限
 
 **API level**
 
@@ -43,7 +59,7 @@ c) 应用同时申请前台和后台权限
 
 **变更的接口/组件**
 
-@ohos.abilityAccessCtrl.d.ts中requestPermissionsFromUser接口
+@ohos.abilityAccessCtrl.d.ts中[requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口
 
 **可能影响接口**
 
@@ -127,5 +143,31 @@ c) 应用同时申请前台和后台权限
 | @ohos.wifiManager.d.ts | wifiManager.off('p2pPeerDeviceChange') |
 
 **适配指导**
+
+1、应用在requestPermissionsFromUser接口中同时申请前台、后台位置权限
+
+    a) 排查应用是否需要后台位置权限，如需要，将接口申请权限行为更改为单独申请前台位置权限
+
+        由：atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION', 'ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        更改为：atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION'], ......)
+
+        或由：atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        更改为：atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION'], ......)
+
+    b) 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面
+
+    c) 用户在设置界面选择【始终允许】选项，手动授予后台位置权限
+
+2、应用仅在requestPermissionsFromUser接口中申请后台位置权限
+
+    a) 排查应用是否需要后台位置权限，如需要，需要先弹窗申请前台位置权限（后台位置权限仅在前台位置权限生效情况下才能够使用）
+
+        由：atManager.requestPermissionsFromUser(context, ['ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        更改为：atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION'], ......)
+
+        或由：atManager.requestPermissionsFromUser(context, ['ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        更改为：atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION'], ......)
+
+    b) 参考情况1
 
 接口使用的示例代码可参考[requestPermissionsFromUser接口指导](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)

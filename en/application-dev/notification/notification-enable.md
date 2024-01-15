@@ -37,14 +37,15 @@ For details about the APIs, see [@ohos.notificationManager](../reference/apis/js
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 2. Call the API to request notification to be enabled.
 
    ```ts
    notificationManager.requestEnableNotification().then(() => {
-       console.info(`[ANS] requestEnableNotification success`);
-   }).catch((err:Base.BusinessError) => {
-       console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+     logger.info(`[ANS] requestEnableNotification success`);
+   }).catch((err: Base.BusinessError) => {
+     logger.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
    });
    ```

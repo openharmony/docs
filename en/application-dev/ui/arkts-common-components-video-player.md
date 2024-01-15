@@ -72,13 +72,13 @@ The **\<Video>** component supports both local and online videos.
 
 ### Loading a Video in the Application Sandbox
 
-To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
+To load a video in the application sandbox, use a string with the **file://data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
 
 ```ts
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videosrc: string = 'file://data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {
@@ -94,7 +94,7 @@ export struct VideoPlayer {
 
 ### Loading an Online Video
 
-To load online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for the permission, see [Declaring Permissions](../security/accesstoken-guidelines.md). In this scenario, the **src** attribute indicates the URL of the online video.
+To load online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for the permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). In this scenario, the **src** attribute indicates the URL of the online video.
 
 
 ```ts
@@ -270,3 +270,4 @@ The video controller is used to control video playback. For details, see [VideoC
 ## Remarks
 
 The **\<Video>** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Video Playback](../media/video-playback.md).
+<!--no_check-->
