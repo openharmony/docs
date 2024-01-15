@@ -69,89 +69,91 @@ Custom dialog boxes can be used for data interactions to complete a series of re
 
 1. Add buttons in the \@CustomDialog decorator structure and add data functions.
 
-  ```ts
-  @CustomDialog
-  struct CustomDialogExample {
-    cancel: () => void = () => {
-      console.info('Callback when the first button is clicked')
-    }
-    confirm: () => void = () => {
-      console.info('Callback when the second button is clicked')
-    }
-    controller: CustomDialogController = new CustomDialogController({
-      builder: CustomDialogExample({
-        cancel: this.cancel,
-        confirm: this.confirm,
-      }),
-    })
-  
-    build() {
-      Column() {
-        Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
-          Button('cancel')
-            .onClick(() => {
-              this.controller.close()
-              this.cancel()
-            }).backgroundColor(0xffffff).fontColor(Color.Black)
-          Button('confirm')
-            .onClick(() => {
-              this.controller.close()
-              this.confirm()
-            }).backgroundColor(0xffffff).fontColor(Color.Red)
-        }.margin({ bottom: 10 })
-      }
-    }
-  }
-  ```
+     ```ts
+   @CustomDialog
+   struct CustomDialogExample {
+     cancel?: () => void
+     confirm?: () => void
+     controller: CustomDialogController
+   
+     build() {
+       Column() {
+         Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
+         Flex({ justifyContent: FlexAlign.SpaceAround }) {
+           Button('cancel')
+             .onClick(() => {
+               this.controller.close()
+               if(this.cancel) this.cancel()
+             }).backgroundColor(0xffffff).fontColor(Color.Black)
+           Button('confirm')
+             .onClick(() => {
+               this.controller.close()
+               if(this.confirm) this.confirm()
+             }).backgroundColor(0xffffff).fontColor(Color.Red)
+         }.margin({ bottom: 10 })
+       }
+     }
+   }
+     ```
 
 2. Receive the page in the builder and create corresponding function operations.
 
-  ```ts
-  @Entry
-  @Component
-  struct CustomDialogUser {
-    @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
-    dialogController: CustomDialogController = new CustomDialogController({
-      builder: CustomDialogExample(this.bud),
-    })
-  
-    onCancel() {
-      console.info('Callback when the first button is clicked')
-    }
-  
-    onAccept() {
-      console.info('Callback when the second button is clicked')
-    }
-  
-    build() {
-      Column() {
-        Button('Click Me')
-          .onClick(() => {
-            this.dialogController.open()
-          })
-      }.width('100%').margin({ top: 5 })
-    }
-  }
-  ```
+     ```ts
+   @Entry
+   @Component
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
+       builder: CustomDialogExample({
+         cancel: this.onCancel,
+         confirm: this.onAccept,
+       }),
+     })
    
-   ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
+     onCancel() {
+       console.info('Callback when the first button is clicked')
+     }
+   
+     onAccept() {
+       console.info('Callback when the second button is clicked')
+     }
+   
+     build() {
+       Column() {
+         Button('Click Me')
+           .onClick(() => {
+             this.dialogController.open()
+           })
+       }.width('100%').margin({ top: 5 })
+     }
+   }
+     ```
+
+      ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
 
 ## Sample Code
 
 ```ts
-// xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController = new CustomDialogController({
-    builder: undefined
-  })
+  cancel?: () => void
+  confirm?: () => void
+  controller: CustomDialogController
 
   build() {
     Column() {
-      Text ('I am content')
-        .fontSize(20)
-        .margin({ top: 10, bottom: 10 })
+      Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Button('cancel')
+          .onClick(() => {
+            this.controller.close()
+            if (this.cancel) this.cancel()
+          }).backgroundColor(0xffffff).fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            this.controller.close()
+            if (this.confirm) this.confirm()
+          }).backgroundColor(0xffffff).fontColor(Color.Red)
+      }.margin({ bottom: 10 })
     }
   }
 }
@@ -159,9 +161,11 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct CustomDialogUser {
-  @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample(this.bud),
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+    }),
   })
 
   onCancel() {
