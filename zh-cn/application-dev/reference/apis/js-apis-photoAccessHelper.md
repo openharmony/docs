@@ -572,7 +572,7 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[createAlbumRequest](#createalbumrequest11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.createAlbumRequest](#createalbumrequest11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -630,7 +630,7 @@ createAlbum(name: string): Promise&lt;Album&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[createAlbumRequest](#createalbumrequest11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.createAlbumRequest](#createalbumrequest11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -689,7 +689,7 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAlbums](#deletealbums11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAlbums](#deletealbums11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -753,7 +753,7 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAlbums](#deletealbums11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAlbums](#deletealbums11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1213,7 +1213,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1281,7 +1281,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1479,7 +1479,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1543,7 +1543,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[deleteAssets](#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -2337,7 +2337,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2392,7 +2392,7 @@ open(mode: string): Promise&lt;number&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2455,7 +2455,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2512,7 +2512,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2572,7 +2572,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。对应的close接口一并废弃。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2631,7 +2631,7 @@ close(fd: number): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。对应的close接口一并废弃。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2856,7 +2856,7 @@ setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setFavorite](#setfavorite11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setFavorite](#setfavorite11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2915,7 +2915,7 @@ setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setFavorite](#setfavorite11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setFavorite](#setfavorite11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2980,7 +2980,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setHidden](#sethidden11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setHidden](#sethidden11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -3041,7 +3041,7 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setHidden](#sethidden11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setHidden](#sethidden11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -3234,7 +3234,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setUserComment](#setusercomment11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setUserComment](#setusercomment11)替代。
 
 **注意**：此接口只可修改图片或者视频的备注信息。
 
@@ -3299,7 +3299,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest](#mediaassetchangerequest11)中的[setUserComment](#setusercomment11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setUserComment](#setusercomment11)替代。
 
 **注意**：此接口只可修改图片或者视频的备注信息。
 
@@ -3880,7 +3880,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 
 提交编辑数据以及编辑后的图片或视频，该方法使用callback形式来返回结果。
 
-通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](./js-apis-file-fileuri.md)。
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](js-apis-file-fileuri.md)。
 
 **注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
 
@@ -3945,7 +3945,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 提交编辑数据以及编辑后的图片或视频，该方法使用promise形式来返回结果。
 
-通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](./js-apis-file-fileuri.md)。
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](js-apis-file-fileuri.md)。
 
 **注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
 
@@ -5314,7 +5314,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[addAssets](#addassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5376,7 +5376,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[addAssets](#addassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5442,7 +5442,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[removeAssets](#removeassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5504,7 +5504,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[removeAssets](#removeassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5570,7 +5570,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&g
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[recoverAssets](#recoverassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.recoverAssets](#recoverassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -5635,7 +5635,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[recoverAssets](#recoverassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.recoverAssets](#recoverassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -5704,7 +5704,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11-2)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5771,7 +5771,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[deleteAssets](#deleteassets11-2)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5842,7 +5842,7 @@ setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[setCoverUri](#setcoveruri11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.setCoverUri](#setcoveruri11)替代。
 
 **注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
 
@@ -5909,7 +5909,7 @@ setCoverUri(uri: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的[setCoverUri](#setcoveruri11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.setCoverUri](#setcoveruri11)替代。
 
 **注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
 
@@ -6073,7 +6073,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 创建图片资产变更请求。
 
-通过fileUri指定待创建资产的数据来源，可参考[FileUri](./js-apis-file-fileuri.md)。
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](js-apis-file-fileuri.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -6123,7 +6123,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 创建视频资产变更请求。
 
-通过fileUri指定待创建资产的数据来源，可参考[FileUri](./js-apis-file-fileuri.md)。
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](js-apis-file-fileuri.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
