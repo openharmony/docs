@@ -537,6 +537,8 @@ Connects this ability to a ServiceAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) instead.
+
 **Parameters**
 
 | Name     | Type            | Mandatory  | Description                   |

@@ -7,6 +7,7 @@ The **AbilityManager** module provides APIs for obtaining, adding, and modifying
 > The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.abilityManager](js-apis-app-ability-abilityManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module are system APIs and cannot be called by third-party applications.
 
+
 ## Modules to Import
 
 ```ts
@@ -38,7 +39,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
+ 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -117,10 +118,11 @@ Obtains the ability running information. This API uses an asynchronous callback 
 **Example**
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
+import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilitymanager.getAbilityRunningInfos((err,data) => { 
-    console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
+abilityManager.getAbilityRunningInfos((err: BusinessError, data) => { 
+    console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -143,11 +145,12 @@ Obtains the ability running information. This API uses a promise to return the r
 **Example**
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
- 
-abilitymanager.getAbilityRunningInfos().then((data) => {
-    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err);
+import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+abilityManager.getAbilityRunningInfos().then((data) => {
+    console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);
 });
 ```
