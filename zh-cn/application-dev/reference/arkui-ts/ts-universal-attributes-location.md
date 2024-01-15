@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | 设置容器元素绘制区域内的子元素的对齐方式。<br>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| align | [Alignment](ts-appendix-enums.md#alignment) | 设置容器元素绘制区域内的子元素的对齐方式。<br>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | direction | [Direction](ts-appendix-enums.md#direction) | 设置容器元素内主轴方向上的布局。<br/>例：Column组件的主轴为纵轴。<br/>默认值：Direction.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | position | [Position](ts-types.md#position8) | 绝对定位，设置子元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不参与父容器布局，即不占位，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | markAnchor | [Position](ts-types.md#position8) | 设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
