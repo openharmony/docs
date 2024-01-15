@@ -105,8 +105,12 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * key
 ```
 struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_CertChain * certChain )
 ```
+
 **描述**
 获取密钥证书链。
+
+**需要权限：**
+ohos.permission.ATTEST_KEY
 
 **起始版本：** 9
 
