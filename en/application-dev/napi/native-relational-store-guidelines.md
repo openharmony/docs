@@ -1,12 +1,12 @@
-# RelationalStore Development
+# Relational Store Development
 
 
 ## When to Use
 
-RelationalStore provides a complete mechanism for local database management. It offers a series of APIs for adding, deleting, modifying, and querying data in an RDB store. To satisfy different needs in complicated scenarios, RelationalStore also supports direct execution of SQL statements.
+The RelationalStore module provides a complete mechanism for managing local databases. It offers a series of interfaces for adding, deleting, modifying, and querying data, and supports direct execution of SQL statements to satisfy different needs in complicated scenarios.
 
 
-## Basic concepts
+## Basic Concepts
 
 - **Predicates**: a representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
 
@@ -15,9 +15,9 @@ RelationalStore provides a complete mechanism for local database management. It 
 
 ## Restrictions
 
-- The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
+- The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL**.
 
-- RelationalStore supports a maximum of four connection pools to manage read and write operations.
+- A maximum of four connection pools are supported to manage read and write operations.
 
 - To ensure data accuracy, only one write operation is allowed at a time.
 
@@ -32,15 +32,15 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
 | API| Description|
 | -------- | -------- |
-| OH_Rdb_GetOrOpen(const OH_Rdb_Config *config, int *errCode) | Obtains an OH_Rdb_Store instance for RDB store operations.|
+| OH_Rdb_GetOrOpen(const OH_Rdb_Config *config, int *errCode) | Obtains an **OH_Rdb_Store** instance for RDB store operations.|
 | OH_Rdb_Execute(OH_Rdb_Store *store, const char *sql) | Executes an SQL statement that contains specified arguments but returns no value.|
 | OH_Rdb_Insert(OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBucket) | Inserts a row of data into a table.|
-| OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates) | Updates data in the RDB store based on the specified OH_Predicates instance.|
-| OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates) | Deletes data from the RDB store based on the specified OH_Predicates instance.|
-| OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length) | Queries data in the RDB store based on specified conditions.|
+| OH_Rdb_Update(OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates *predicates) | Updates data in an RDB store based on the conditions specified by an **OH_Predicates** instance.|
+| OH_Rdb_Delete(OH_Rdb_Store *store, OH_Predicates *predicates) | Deletes data from an RDB store based on the conditions specified by an **OH_Predicates** instance.|
+| OH_Rdb_Query(OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length) | Queries data in an RDB store based on the conditions specified by an **OH_Predicates** instance.|
 | OH_Rdb_DeleteStore(const OH_Rdb_Config *config) | Deletes an RDB store.|
-| OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Rdb_Asset *value) | Puts data of the **Rdb_Asset** type into an **OH_VBucket** object.|
-| OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Rdb_Asset *value, uint32_t count) | Puts data of the **Rdb_Assets** type into an **OH_VBucket** object.|
+| OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Rdb_Asset *value) | Puts an RDB asset into an **OH_VBucket** object.|
+| OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Rdb_Asset *value, uint32_t count) | Puts an array of RDB assets into an **OH_VBucket** object.|
 | OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint32_t count, Rdb_DistributedType type, const Rdb_DistributedConfig *config) | Sets distributed database tables.|
 | OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, const char *columnName, OH_VObject *values) | Obtains the last modification time of the data in the specified column of a database table.|
 | OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, OH_Rdb_SyncCallback *progress) | Manually performs device-cloud synchronization for a table. The cloud service must be available.|
@@ -56,11 +56,11 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 | int OH_Data_Asset_GetPath(Data_Asset *asset, char *path, size_t *length) | Obtains the relative path of a data asset.|
 | int OH_Data_Asset_GetCreateTime(Data_Asset *asset, int64_t *createTime) | Obtains the creation time of a data asset.|
 | int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime) | Obtains the last modification time of a data asset.|
-| int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size) | Obtains the space occupied by a data asset.|
+| int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size) | Obtains the size of a data asset.|
 | int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status) | Obtains the status of a data asset.|
-| Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. Call **OH_Data_Asset_DestroyOne** to release the memory after the use of this data asset.|
-| int OH_Data_Asset_DestroyOne(Data_Asset *asset) | Destroys a data asset instance to reclaim the memory.|
-| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates multiple data asset instances. Call **OH_Data_Asset_DestroyMultiple** to release the memory after the use of the data assets.|
+| Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. When this data asset is no longer needed, call **OH_Data_Asset_DestroyOne** to release it.|
+| int OH_Data_Asset_DestroyOne(Data_Asset *asset) | Destroys a data asset instance to reclaim memory.|
+| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates multiple data asset instances. When these data assets are no longer needed, call **OH_Data_Asset_DestroyMultiple** to release them.|
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | Destroys multiple data asset instances to reclaim memory.|
 
 
@@ -68,7 +68,7 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
 **Adding Dynamic Link Libraries**
 
-Add the following lib to **CMakeLists.txt**.
+Add the following library to **CMakeLists.txt**.
 
 ```txt
 libnative_rdb_ndk.z.so
@@ -86,7 +86,7 @@ libnative_rdb_ndk.z.so
 #include <database/rdb/relational_store_error_code.h>
 ```
 
-1. Obtain the **OH_Rdb_Store** instance and create a database file.<br>The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md). **area** indicates the security level of the directory for storing the database files. For details, see [contextConstant](../reference/apis/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**. <br>Example:
+1. Obtain an **OH_Rdb_Store** instance and create a database file.<br>The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application instead. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md). **area** indicates the security level of the directory for storing the database file. For details, see [contextConstant](../reference/apis/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**.<br>Example:
 
    ```c
    // Create an OH_Rdb_Config object.
@@ -109,11 +109,11 @@ libnative_rdb_ndk.z.so
    config.area = RDB_SECURITY_AREA_EL1;
    
    int errCode = 0;
-   // Obtain the OH_Rdb_Store instance.
+   // Obtain an OH_Rdb_Store instance.
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
    ```
 
-2. Use **OH_Rdb_Execute** to create a table and use **OH_Rdb_Insert** to insert data to the table created.<br>Example:
+2. Use **OH_Rdb_Execute** to create a table and use **OH_Rdb_Insert** to insert data to the table.<br>Example:
 
    ```c
    char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
@@ -121,7 +121,7 @@ libnative_rdb_ndk.z.so
    // Create a table.
    OH_Rdb_Execute(store_, createTableSql);
    
-   // Create a key-value pair instance.
+   // Create a key-value (KV) pair instance.
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Lisa");
    valueBucket->putInt64(valueBucket, "AGE", 18);
@@ -139,9 +139,9 @@ libnative_rdb_ndk.z.so
    >
    > **RelationalStore** does not provide explicit flush operations for data persistence. **insert()** stores data in a file persistently.
 
-3. Modify or delete data based on the specified **Predicates** instance.
+3. Modify or delete data based on the conditions specified by **OH_Predicates**.
 
-   Call **OH_Rdb_Update** to modify data and call **OH_Rdb_Delete** to delete data. <br>Example:
+   Call **OH_Rdb_Update** to modify data and call **OH_Rdb_Delete** to delete data.<br>Example:
 
    ```c
    // Modify data.
@@ -181,9 +181,9 @@ libnative_rdb_ndk.z.so
    predicates->destroy(predicates);
    ```
 
-4. Query data based on the conditions specified by **Predicates**.
+4. Query data based on the conditions specified by **OH_Predicates**.
 
-   Call **OH_Rdb_Query** to query data. The data obtained is returned in an **OH_Cursor** object. <br>Example:
+   Call **OH_Rdb_Query** to query data. The data obtained is returned in an **OH_Cursor** object.<br>Example:
 
    ```c
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
@@ -201,7 +201,7 @@ libnative_rdb_ndk.z.so
        cursor->getInt64(cursor, 1, &age);
    }
    
-   // Destroy the Predicates instance.
+   // Destroy the OH_Predicates instance.
    predicates->destroy(predicates);
    // Destroy the result set.
    cursor->destroy(cursor);
@@ -311,7 +311,7 @@ libnative_rdb_ndk.z.so
    int errcode = OH_Rdb_SetDistributedTables(storeTestRdbStore_, table, TABLE_COUNT, Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
    ```
 
-9. Manually perform device-cloud synchronization for distributed tables.<br>After setting distributed tables by using **OH_Rdb_SetDistributedTables**, call **OH_Rdb_CloudSync** to perform device-cloud synchronization for the tables. Before using this API, ensure that the cloud service is available.<br>Example:
+9. Manually perform device-cloud synchronization for the distributed tables.<br>Call **OH_Rdb_CloudSync** to perform device-cloud synchronization for the tables. Before using this API, ensure that the cloud service is available.<br>Example:
 
    ```c
    // Define a callback.
@@ -323,7 +323,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_CloudSync(storeTestRdbStore_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &callback);
    ```
 
-10. Delete the database.<br>Call **OH_Rdb_DeleteStore** to delete the RDB store and related database files. <br>Example:
+10. Delete the database.<br>Call **OH_Rdb_DeleteStore** to delete the RDB store and related database file.<br>Example:
 
       ```c
       // Close the database instance.
@@ -331,9 +331,3 @@ libnative_rdb_ndk.z.so
       // Delete the database file.
       OH_Rdb_DeleteStore(&config);
       ```
-
-    
-
-
-
-  

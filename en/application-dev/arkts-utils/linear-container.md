@@ -29,11 +29,13 @@ To accelerate data access, linear containers support Create, Read, Update, and D
 
 ## Vector
 
+> **NOTE**
+>
+> The APIs provided by **Vector** are deprecated since API version 9. You are advised to use [ArrayList](../reference/apis/js-apis-arraylist.md).
+
 [Vector](../reference/apis/js-apis-vector.md) is a continuous storage structure that can be used to construct a global array object. **Vector** uses generics and must be stored in a contiguous memory space. Its initial capacity is 10, and it has capacity doubled in each dynamic expansion.
 
 Both **Vector** and [ArrayList](../reference/apis/js-apis-arraylist.md) are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. In addition to operator access, **Vector** provides the getter and setter to provide a more complete verification and error tolerance mechanism.
-
-The APIs provided by **Vector** are deprecated since API version 9. You are advised to use [ArrayList](../reference/apis/js-apis-arraylist.md).
 
 **Vector** provides the following CRUD APIs.
 

@@ -3,12 +3,12 @@
 
 The [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md) component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.
 
-The **\<Swiper>** component provides a preloading mechanism, which you can use to improve the swiping experience in complex scenarios. This mechanism allows for prebuilding and prerendering components when the main thread is idle. For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).
+The **\<Swiper>** component provides a preloading mechanism, which you can use to improve the swipe experience in complex scenarios. This mechanism allows for prebuilding and prerendering components when the main thread is idle. For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).
 
 
 ## Layout and Constraints
 
-The size of the **\<Swiper>** component follows its own size settings (if configured) or adapts based on the size of its child components.
+The **\<Swiper>** component follows its own size settings if they are configured. If the component does not have its own size settings configured, it follows the size of its parent component when the **prevMargin** or **nextMargin** attribute is set, or adapts its size to its child components otherwise.
 
 
 ## Loop Playback
@@ -21,7 +21,7 @@ When **loop** is set to **true**, the user can switch to the previous or next pa
 
 ```ts
 ...
-export let swiperController: SwiperController = new SwiperController()
+private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
   Text("0")
@@ -158,7 +158,7 @@ Swiper(this.swiperController) {
  
 
 ```ts
-let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
+let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text("0")
     .width('90%')

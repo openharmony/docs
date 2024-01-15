@@ -3,19 +3,19 @@
 
 ## When to Use
 
-**napi_create_threadsafe_function** is a Node-API interface used to create a thread-safe JavaScript function, which can be called from multiple threads without race conditions or deadlocks. The thread-safe function is a good choice for the following scenarios:
+**napi_create_threadsafe_function** is a Node-API interface used to create a thread-safe JS function, which can be called from multiple threads without race conditions or deadlocks. Thread-safe functions can be used in the following scenarios:
 
 
-- Asynchronous computing: If time-consuming computing or I/O operation needs to be performed, you can create a thread-safe function to have the computing or I/O operation executed in a dedicated thread. This can ensure normal running of the main thread and improve the response speed of your application.
+- Asynchronous computing: If a time-consuming computing or I/O operation needs to be performed, you can create a thread-safe function to have the computing or I/O operation executed in a dedicated thread. This ensures normal running of the main thread and improves the response speed of your application.
 
-- Data sharing: When multiple threads need to access the same data, using a thread-safe function can prevent race condition or deadlock during data read and write operations.
+- Data sharing: When multiple threads need to access the same data, using a thread-safe function can prevent race conditions or deadlocks during data read and write operations.
 
-- Multi-thread programming: In the case of multi-thread programming, a thread-safe function can ensure communication and synchronization between multiple threads.
+- Multithread programming: In the case of multithread programming, a thread-safe function can ensure communication and synchronization between multiple threads.
 
 
 ## Example
 
-1. Define a thread-safe function at the Native entry.
+1. Define a thread-safe function at the native entry.
    ```
    struct CallbackData {
        napi_threadsafe_function tsfn;
@@ -35,17 +35,17 @@
        napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr, 
            callbackData, CallJs, &callbackData->tsfn);
    
-       // Create an asynchronous task.
+       // Create an asynchronous work object.
        napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData,
            &callbackData->work);
    
-       // Add the asynchronous task to the asynchronous task queue.
+       // Add the asynchronous work object to the asynchronous task queue.
        napi_queue_async_work(env, callbackData->work);
        return nullptr;
    }
    ```
 
-2. Call **ExecuteWork** in a worker thread and execute the thread-safe function.
+2. Call **ExecuteWork** in a worker thread to execute the thread-safe function.
    ```
    static void ExecuteWork(napi_env env, void *data)
    {
@@ -126,7 +126,7 @@
    }
    ```
 
-5. Initialize the module and call the ArkTS API.
+5. Initialize the module and call the API from ArkTS.
    ```
    // Initialize the module.
    static napi_value Init(napi_env env, napi_value exports) {
