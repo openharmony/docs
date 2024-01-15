@@ -202,7 +202,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
   }
 
-  // 注册分段式缩略图代理回调监听
+  // 注册原图回调监听
   photoOutPut.on('photoAvailable', (err: BusinessError, photoObj: camera.Photo): void => {
     if (err) {
       console.info(`photoAvailable error: ${JSON.stringify(err)}.`);
