@@ -18,11 +18,11 @@
 
 **变更发生版本**
 
-从Openharmony SDK 4.1.6.2 开始
+从Openharmony SDK 4.1.6.3 开始
 
 **变更的接口/组件**
 
-switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，并且只允许当前输入法应用使用
+switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，仅允许当前输入法应用使用
 
 **适配指导**
 使用该接口的系统应用,需要替换使用新接口switchInputMethod
@@ -45,11 +45,11 @@ switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，并�
 
 **变更发生版本**
 
-从Openharmony SDK 4.1.6.2 开始
+从Openharmony SDK 4.1.6.3 开始
 
 **变更的接口/组件**
 
-switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，并且只允许当前输入法应用使用
+switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，仅允许当前输入法应用使用
 
 **适配指导**
 使用该接口的系统应用,需要替换使用新接口switchInputMethod
@@ -72,11 +72,11 @@ switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，并�
 
 **变更发生版本**
 
-从Openharmony SDK 4.1.6.2 开始
+从Openharmony SDK 4.1.6.3 开始
 
 **变更的接口/组件**
 
-switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，并且只允许当前输入法应用使用
+switchInputMethod取消权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION，仅允许当前输入法应用使用
 
 **适配指导**
 使用该接口的系统应用,需要替换使用新接口switchInputMethod

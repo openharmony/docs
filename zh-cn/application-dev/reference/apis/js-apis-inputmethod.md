@@ -168,7 +168,8 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 切换输入法，使用callback异步回调。
 > **说明：**
 >
-> 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY；API version 11版本起，仅支持当前输入法应用调用。
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法应用调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -216,7 +217,8 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 切换输入法，使用promise异步回调。
 > **说明：**
 >
-> 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY；API version 11版本起，仅支持当前输入法应用调用。
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法应用调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -271,7 +273,7 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -282,8 +284,8 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 
 **返回值：**
 
-  | 类型                                      | 说明                         |
-  | ----------------------------------------- | ---------------------------- |
+  | 类型           | 说明                     |
+  | -------------- | ----------------------- |
   | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
@@ -350,8 +352,10 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 > **说明：**
 >
-> 在API version 9版本，仅支持系统应用调用；API version 10版本，支持系统应用和当前输入法应用调用；API version 11版本起，仅支持当前输入法调用。
-> 在API version 9-10版本，需要权限ohos.permission.CONNECT_IME_ABILITY
+>  - 在API version 9版本，仅支持系统应用调用且。
+>  - 在API version 10版本，支持系统应用和当前输入法应用调用。
+>  - 在API version 9-10版本，需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -412,8 +416,10 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 > **说明：**
 >
-> 在API version 9版本，仅支持系统应用调用；API version 10版本，支持系统应用和当前输入法应用调用；API version 11版本起，仅支持当前输入法调用。
-> 在API version 9-10版本，需要权限ohos.permission.CONNECT_IME_ABILITY
+>  - 在API version 9版本，仅支持系统应用调用。
+>  - 在API version 10版本，支持系统应用和当前输入法应用调用。
+>  - 在API version 9-10版本，需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -497,7 +503,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 > **说明：**
 >
-> 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY；API version 11版本起，仅支持当前输入法调用。
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -550,7 +557,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 > **说明：**
 >
-> 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY；API version 11版本起，仅支持当前输入法调用。
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
