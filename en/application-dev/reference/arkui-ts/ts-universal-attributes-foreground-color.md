@@ -10,7 +10,7 @@ The foreground color attributes set the foreground color of a component.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| foregroundColor | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-types.md#coloringstrategy) | Foreground color. The value can be a specific color or a coloring strategy.|
+| foregroundColor | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy<sup>10+</sup>](ts-types.md#coloringstrategy10) | Foreground color. The value can be a specific color or a coloring strategy.|
 
 ## Example
 
