@@ -1,4 +1,4 @@
-# 网络连接管理模块常用网络信息Native API
+# NetConnection开发指导
 
 ## 场景介绍
 
@@ -11,15 +11,15 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet) | 检查默认数据网络是否被激活，判断设备是否有网络连接，以便在应用程序中采取相应的措施。 |
-| OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle) | 获得默认激活的数据网络。 |
-| OH_NetConn_IsDefaultNetMetered(int32_t *isMetered) | 检查当前网络上的数据流量使用是否被计量 |
-| OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *prop) | 获取netHandle对应的网络的连接信息。 |
-| OH_NetConn_GetNetCapabilities (NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapacities) | 获取netHandle对应的网络的能力信息。 |
-| OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy *httpProxy) | 获取网络默认的代理配置信息。 如果设置了全局代理，则会返回全局代理配置信息。如果进程已经绑定到指定netHandle对应的网络，则返回网络句柄对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。 |
-| OH_NetConn_GetAddrInfo (char *host, char *serv, struct addrinfo *hint, struct addrinfo **res, int32_t netId) | 通过netId获取DNS结果。 |
-| OH_NetConn_FreeDnsResult(struct addrinfo *res) | 释放DNS结果内存。 |
-| OH_NetConn_GetAllNets(NetConn_NetHandleList *netHandleList) | 获取所有处于连接状态的网络列表。 |
+| OH_NetConn_HasDefaultNet(int32_t \*hasDefaultNet) | 检查默认数据网络是否被激活，判断设备是否有网络连接，以便在应用程序中采取相应的措施。 |
+| OH_NetConn_GetDefaultNet(NetConn_NetHandle \*netHandle) | 获得默认激活的数据网络。 |
+| OH_NetConn_IsDefaultNetMetered(int32_t \*isMetered) | 检查当前网络上的数据流量使用是否被计量 |
+| OH_NetConn_GetConnectionProperties(NetConn_NetHandle \*netHandle, NetConn_ConnectionProperties *prop) | 获取netHandle对应的网络的连接信息。 |
+| OH_NetConn_GetNetCapabilities (NetConn_NetHandle \*netHandle, NetConn_NetCapabilities \*netCapacities) | 获取netHandle对应的网络的能力信息。 |
+| OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy \*httpProxy) | 获取网络默认的代理配置信息。 如果设置了全局代理，则会返回全局代理配置信息。如果进程已经绑定到指定netHandle对应的网络，则返回网络句柄对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。 |
+| OH_NetConn_GetAddrInfo (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | 通过netId获取DNS结果。 |
+| OH_NetConn_FreeDnsResult(struct addrinfo \*res) | 释放DNS结果内存。 |
+| OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | 获取所有处于连接状态的网络列表。 |
 | OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
 | OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。 |
 
@@ -173,7 +173,7 @@ struct Index {
   }
 
   CodeNumber() {
-    let testParam = 0; 
+    let testParam = 0;
     let codeNumber = testNetManager.CodeNumber(testParam);
     if (codeNumber === 0) {
       console.log("Test success. [" + codeNumber + "]");
@@ -191,9 +191,7 @@ struct Index {
 
 注意：如图所示，在`add_library`中的`entry`是工程自动生成的`modename`，若要做修改，需和步骤3中`.nm_modname`保持一致；
 
-<div style="text-align:center;">
-  <img src="figures/netmanager-4.png">
-</div>
+![netmanager-4.png](./figures/netmanager-4.png)
 
 经过以上步骤，整个工程的搭建已经完成，接下来就可以连接设备运行工程进行日志查看了。
 
@@ -208,18 +206,12 @@ struct Index {
 - 在点击 `GetDefaultNet` 时，获取的是默认网络ID。
 - 在点击 `codeNumber` 时，获取的是接口返回的响应状态码。
 
-<div style="text-align:center;">
-  <img src="figures/netmanager-1.png">
-</div>
+![netmanager-1.png](./figures/netmanager-1.png)
 
 3、点击 `GetDefaultNet` 按钮，控制台会打印日志：
 
-<div style="text-align:center;">
-  <img src="figures/netmanager-2.png">
-</div>
+![netmanager-2.png](./figures/netmanager-2.png)
 
 4、点击 `codeNumber` 按钮，控制台会打印相应的响应状态码：
 
-<div style="text-align:center;">
-  <img src="figures/netmanager-3.png">
-</div>
+![netmanager-3.png](./figures/netmanager-3.png)

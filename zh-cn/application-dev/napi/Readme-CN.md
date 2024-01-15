@@ -45,6 +45,8 @@
         - [RelationalStore开发指导](native-relational-store-guidelines.md)
     - 包管理
         - [NativeBundle开发指导](native-bundle-guidelines.md)
+    - 网络管理
+        - [NetConnection开发指导](native-netmanager-guidelines.md)
 - 调试和性能分析
     - [调试和性能分析概述](debug-performance-profiling-overview.md)
     - [通过DevEco Studio调试](debug-ide.md)
