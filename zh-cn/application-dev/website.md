@@ -2138,5 +2138,6 @@
   - [启动恢复开发常见问题](faqs/faqs-startup.md)
   - [分布式DeviceProfrofile开发常见问题](faqs/faqs-distributed-device-profile.md)
   - [SDK使用常见问题](faqs/faqs-sdk.md)
+  - [NDK开发常见问题](faqs/faqs-ndk.md)
   - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
   - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
