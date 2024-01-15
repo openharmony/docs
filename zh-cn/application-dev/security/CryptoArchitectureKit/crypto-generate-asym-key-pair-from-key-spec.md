@@ -102,7 +102,7 @@ function rsaUsePubKeySpecGetCallback() {
 
 3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCCommonParamsSpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
-4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对keyPairPromise。
+4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对keyPair。
 
 5. 分别传入密钥对中的私钥和公钥，调用[PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1)和[PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10)，获取ECC算法中私钥和公钥的各种密钥参数。
 
@@ -216,13 +216,13 @@ function testEccUseCommKeySpecGet() {
 
 对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。
 
-1. 构造[sm2CommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定非对称公共密钥参数。根据[genECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#genecccommonparamsspec11)接口传入相应的NID字符串名称生成相应的非对称公共密钥参数。
+1. 构造[ECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定非对称公共密钥参数。根据[genECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#genecccommonparamsspec11)接口传入相应的NID字符串名称生成相应的非对称公共密钥参数。
 
     使用密钥参数生成密钥时，用到的bigint类型需要以大端模式输入，且必须为正数。
 
-2. 创建[sm2KeyPairSpec](../../reference/apis/js-apis-cryptoFramework.md#ecckeypairspec10)对象，用于指定SM2算法中密钥对包含的参数。
+2. 创建[ECCKeyPairSpec](../../reference/apis/js-apis-cryptoFramework.md#ecckeypairspec10)对象，并且algName设置为SM2，用于指定SM2算法中密钥对包含的参数。
 
-3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将sm2KeyPairSpec对象传入，创建非对称密钥生成器。
+3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCKeyPairSpec对象传入，创建非对称密钥生成器。
 
 4. 调用[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，得到随机生成的密钥对keyPair。
 
