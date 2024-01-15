@@ -154,9 +154,9 @@ export { ResManager } from './ResManager';
 
 ## 使用
 
-介绍如何引用HSP的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
+介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
-### 引用HSP的接口
+### 引用HSP中的接口
 要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 

@@ -40,7 +40,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - HAP中支持添加UIAbility组件或ExtensionAbility组件，添加Pages页面。具体操作可参考[应用/服务开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_ability-0000001053183674-V3)。
 
-- HAP中支持引用HAR或HSP共享包，详见[使用HAR](./har-package.md#使用)、[使用HSP](./in-app-hsp.md#使用)。
+- HAP中支持引用HAR或HSP共享包，详见[HAR的使用](./har-package.md#使用)、[HSP的使用](./in-app-hsp.md#使用)。
 
 ## 调试
 
