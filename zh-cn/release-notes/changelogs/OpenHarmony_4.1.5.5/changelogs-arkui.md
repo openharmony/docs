@@ -552,3 +552,37 @@ UX默认规格变更
 **适配指导**
 
 默认高度规格变更，如果与应用UX高度规格不符，可以自定义设置menuItem的height。
+
+## cl.arkui.16  Swiper组件的Indicator属性参数设置逻辑变更
+
+**访问级别**
+
+其他
+
+**变更原因**
+
+Indicator属性的left、top、right、bottom等参数设置为0时不生效，设置成异常值时未按默认值0vp处理。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Indicator属性的left、top、right、bottom等参数设置为0或异常值时，导航点位于Swiper组件底部居中。
+
+变更后，Indicator属性的left、top、right、bottom等参数设置为0或异常值时，导航点位于Swiper组件对应边界的位置，即按默认值0vp处理。
+
+**API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件：Tabs。
+
+**适配指导**
+
+变更后，Indicator属性的left、top、right、bottom等参数设置为正常值（包含0）时按设置的值处理，设置成异常值按默认值0vp处理，不涉及适配。
