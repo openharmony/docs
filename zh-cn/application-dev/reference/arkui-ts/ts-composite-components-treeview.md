@@ -248,7 +248,7 @@ struct TreeViewDemo {
 
   aboutToAppear(): void {
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
-      console.log("Listen to NODE_CLICK");
+      console.log("Listen to NODE_CLICK")
       this.clickNodeId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
