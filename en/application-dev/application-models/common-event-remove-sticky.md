@@ -16,13 +16,16 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
 
 ## How to Develop
 
-1. Request the **ohos.permission.COMMONEVENT_STICKY** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. Declare the **ohos.permission.COMMONEVENT_STICKY** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Import the module.
 
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 3. Call the [removeStickyCommonEvent()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10) API to remove the target sticky common event.
@@ -32,11 +35,14 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
    > The sticky common event to be removed must have been released by the application. For details about how to release sticky common events, see [Publishing Common Events](common-event-publish.md).
 
    ```ts
-   commonEventManager.removeStickyCommonEvent("sticky_event", (err: Base.BusinessError) => { // sticky_event indicates the name of the target sticky common event.
+   commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+     // sticky_event indicates the name of the target sticky common event.
      if (err) {
-       console.error(`Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       Logger.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in removeing sticky event.`);
+     ...
+     Logger.info(TAG, `Succeeded in removeing sticky event.`);
    });
    ```
+<!--no_check-->
