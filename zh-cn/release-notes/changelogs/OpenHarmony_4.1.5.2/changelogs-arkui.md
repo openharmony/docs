@@ -482,12 +482,16 @@ select组件。
 
   Select组件下拉按钮与下拉菜单之间距离4vp。
 
+  ![](figures/select.png)
+
 - 变更后：
   Select组件下拉按钮文本到左边界距离与箭头图标到右边界距离为16vp。
 
   Select组件下拉按钮与下拉菜单之间横坐标无偏移。
   
   Select组件下拉按钮与下拉菜单之间距离8vp。
+
+  ![](figures/selectExample.png)
 
 **适配指导**
 
