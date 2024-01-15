@@ -1,11 +1,10 @@
 # SensorServiceKit开发简介
 
--   [Kit使用场景](#section11660541593)
--   [约束限制](#section1312121216217)
 
 
 
-## Kit使用场景<a name="section11660541593"></a>
+
+## Kit使用场景
 
 ​	SensorServiceKit使应用程序能够从传感器获取原始数据，并提供振感控制能力。
 
@@ -15,7 +14,7 @@
 
 
 
-## 约束限制<a name="section1312121216217"></a>
+## 约束限制
 
 ### Sensor
 
