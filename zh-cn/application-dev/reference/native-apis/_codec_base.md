@@ -17,8 +17,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。<br/>**引用文件**：&lt;multimedia/player_framework/avcodec_audio_channel_layout.h&gt;<br/>**库**：libnative_media_codecbase.so | 
-| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明用于音视频封装、解封装、编解码基础功能的Native API。<br/>**引用文件**：&lt;multimedia/player_framework/native_avcodec_base.h&gt;<br/>**库**：libnative_media_codecbase.so | 
+| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。 | 
+| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明用于音视频封装、解封装、编解码基础功能的Native API。 | 
 
 
 ### 结构体
