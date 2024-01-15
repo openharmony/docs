@@ -241,6 +241,14 @@ UX能力增强。
 
 10.showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。
 
+变更前样式：
+
+![before](figures/popup_before.png)
+
+变更后样式：
+
+![after](figures/popup_after.png)
+
 **API Level**
 
 11
