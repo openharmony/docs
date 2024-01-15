@@ -3,13 +3,11 @@
 
 ## 概述
 
-CodecBase模块提供运行音视频编解码通用的结构体、字符常量、枚举。该模块在部分设备上可能不支持，可以通过[CanIUse](../syscap.md)接口确认。
+CodecBase模块提供用于音视频封装、解封装、编解码基础功能的变量、属性以及函数。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：**
-
-9
+**起始版本：** 9
 
 
 ## 汇总
@@ -19,125 +17,132 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明运行音视频编解码通用的结构体、字符常量、枚举。<br/>**引用文件**：<multimedia/player_framework/native_avcodec_base.h> <br>**库**：libnative_media_codecbase.so| 
+| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。<br/>**引用文件**：&lt;multimedia/player_framework/avcodec_audio_channel_layout.h&gt;<br/>**库**：libnative_media_codecbase.so | 
+| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明用于音视频封装、解封装、编解码基础功能的Native API。<br/>**引用文件**：&lt;multimedia/player_framework/native_avcodec_base.h&gt;<br/>**库**：libnative_media_codecbase.so | 
 
 
 ### 结构体
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) | 定义OH_AVCodec的缓冲区描述信息。 | 
-| [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| struct&nbsp;&nbsp;[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| struct&nbsp;&nbsp;[OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | 枚举OH_AVCodec缓冲区标记的类别。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat) | 枚举封装器的输出文件格式。 | 
-| [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
-| (\*[OH_AVCodecOnError](#oh_avcodeconerror)) (OH_AVCodec \*codec, int32_t errorCode, void \*userData) | 当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。 | 
-| (\*[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) (OH_AVCodec \*codec, OH_AVFormat \*format, void \*userData) | 当输出流发生变化时，将调用此函数指针报告新的流描述信息。 | 
-| (\*[OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, void \*userData) | 当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。 | 
-| (\*[OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。 | 
-| [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
-| [OH_MediaType](#oh_mediatype) | 媒体类型。 | 
-| [OH_AVCProfile](#oh_avcprofile) | AVC Profile枚举。 | 
-| [OH_HEVCProfile](#oh_hevcprofile) | HEVC Profile枚举。 | 
-| [OH_AACProfile](#oh_aacprofile) | AAC Profile枚举。 | 
-| [OH_AVSeekMode](#oh_avseekmode) | 跳转模式。 | 
-| [OH_ColorPrimary](#oh_colorprimary) | 原色。 | 
-| [OH_TransferCharacteristic](#oh_transfercharacteristic) | 转移特性。 | 
-| [OH_MatrixCoefficient](#oh_matrixcoefficient) | 矩阵系数。 | 
-| [OH_BitsPerSample](#oh_bitspersample) | 枚举每个编码样本的音频位数。 | 
+| typedef void(\* [OH_AVCodecOnError](#oh_avcodeconerror)) (OH_AVCodec \*codec, int32_t errorCode, void \*userData) | 当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。 | 
+| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) (OH_AVCodec \*codec, OH_AVFormat \*format, void \*userData) | 当输出码流发生变化时，将调用此函数指针报告新的流描述信息。 | 
+| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, void \*userData) | 当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。 | 
+| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。 | 
+| typedef void(\* [OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | 当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。 | 
+| typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。 | 
+| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)[OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)[OH_AVCodecCallback](#oh_avcodeccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| typedef enum [OH_MediaType](#oh_mediatype)[OH_MediaType](#oh_mediatype) | 媒体类型。 | 
+| typedef enum [OH_AACProfile](#oh_aacprofile)[OH_AACProfile](#oh_aacprofile) | AAC配置。 | 
+| typedef enum [OH_AVCProfile](#oh_avcprofile)[OH_AVCProfile](#oh_avcprofile) | AVC配置。 | 
+| typedef enum [OH_HEVCProfile](#oh_hevcprofile)[OH_HEVCProfile](#oh_hevcprofile) | HEVC配置。 | 
+| typedef enum [OH_AVOutputFormat](#oh_avoutputformat)[OH_AVOutputFormat](#oh_avoutputformat) | 枚举封装器的输出文件格式。 | 
+| typedef enum [OH_AVSeekMode](#oh_avseekmode)[OH_AVSeekMode](#oh_avseekmode) | 跳转模式。 | 
+| typedef enum [OH_ScalingMode](#oh_scalingmode)[OH_ScalingMode](#oh_scalingmode) | 缩放模式。 | 
+| typedef enum [OH_BitsPerSample](#oh_bitspersample)[OH_BitsPerSample](#oh_bitspersample) | 枚举每个编码样本的音频位数。 | 
+| typedef enum [OH_ColorPrimary](#oh_colorprimary)[OH_ColorPrimary](#oh_colorprimary) | 色域。 | 
+| typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic)[OH_TransferCharacteristic](#oh_transfercharacteristic) | 转移特性。 | 
+| typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient)[OH_MatrixCoefficient](#oh_matrixcoefficient) | 矩阵系数。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_NONE** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_EOS** = 1 &lt;&lt; 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_SYNC_FRAME** = 1 &lt;&lt; 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME** = 1 &lt;&lt; 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVCODEC_BUFFER_FLAGS_CODEC_DATA** = 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec缓冲区标记的类别。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AV_OUTPUT_FORMAT_DEFAULT** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AV_OUTPUT_FORMAT_MPEG_4** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AV_OUTPUT_FORMAT_M4A** = 6<br/>} | 枚举封装器的输出文件格式。 | 
-| [OH_MediaType](#oh_mediatype) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MEDIA_TYPE_AUD** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MEDIA_TYPE_VID** = 1<br/>} | 媒体类型。 | 
-| [OH_AVCProfile](#oh_avcprofile) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVC_PROFILE_BASELINE** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVC_PROFILE_HIGH** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AVC_PROFILE_MAIN** = 8<br/>} | AVC Profile枚举。 | 
-| [OH_HEVCProfile](#oh_hevcprofile) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_10** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_STILL** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_10_HDR10** = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**HEVC_PROFILE_MAIN_10_HDR10_PLUS** = 4<br/>} | HEVC Profile枚举。 | 
-| [OH_AACProfile](#oh_aacprofile) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**AAC_PROFILE_LC** = 0<br/>} | AAC Profile枚举。 | 
-| [OH_AVSeekMode](#oh_avseekmode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SEEK_MODE_NEXT_SYNC** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SEEK_MODE_PREVIOUS_SYNC**,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SEEK_MODE_CLOSEST_SYNC**<br/>} | 跳转模式。 | 
-| [OH_ColorPrimary](#oh_colorprimary) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT709** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_UNSPECIFIED** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT470_M** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT601_625** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT601_525** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_SMPTE_ST240** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_GENERIC_FILM** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_BT2020** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_SMPTE_ST428** = 10,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_P3DCI** = 11,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**COLOR_PRIMARY_P3D65** = 12<br/>} | 原色。 | 
-| [OH_TransferCharacteristic](#oh_transfercharacteristic) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT709** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_UNSPECIFIED** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_GAMMA_2_2** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_GAMMA_2_8** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT601** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_SMPTE_ST240** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_LINEAR** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_LOG** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_LOG_SQRT** = 10,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_IEC_61966_2_4** = 11,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT1361** = 12,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_IEC_61966_2_1** = 13,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT2020_10BIT** = 14,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_BT2020_12BIT** = 15,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_PQ** = 16,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_SMPTE_ST428** = 17,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**TRANSFER_CHARACTERISTIC_HLG** = 18<br/>} | 转移特性。 | 
-| [OH_MatrixCoefficient](#oh_matrixcoefficient) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_IDENTITY** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT709** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_UNSPECIFIED** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_FCC** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT601_625** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT601_525** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_SMPTE_ST240** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_YCGCO** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT2020_NCL** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_BT2020_CL** = 10,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_SMPTE_ST2085** = 11,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_CHROMATICITY_NCL** = 12,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_CHROMATICITY_CL** = 13,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**MATRIX_COEFFICIENT_ICTCP** = 14<br/>} | 矩阵系数。 | 
-| [OH_BitsPerSample](#oh_bitspersample) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_U8** = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S16LE** = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S24LE** = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S32LE** = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_F32LE** = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_U8P** = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S16P** = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S24P** = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_S32P** = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**SAMPLE_F32P** = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;**INVALID_WIDTH** = -1<br/>} | 枚举每个编码样本的音频位数。 | 
+| [AudioChannelSet](#audiochannelset) : uint64_t {<br/>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br/>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br/>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br/>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br/>BACK_LEFT = 1ULL &lt;&lt; 4U,<br/>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br/>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br/>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br/>BACK_CENTER = 1ULL &lt;&lt; 8U,<br/>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br/>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br/>TOP_CENTER = 1ULL &lt;&lt; 11U,<br/>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br/>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br/>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br/>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br/>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br/>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br/>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br/>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br/>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br/>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br/>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br/>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br/>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br/>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br/>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br/>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br/>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br/>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br/>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br/>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br/>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br/>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br/>AMBISONICS_W = AMBISONICS_ACN0,<br/>AMBISONICS_Y = AMBISONICS_ACN1,<br/>AMBISONICS_Z = AMBISONICS_ACN2,<br/>AMBISONICS_X = AMBISONICS_ACN3,<br/>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br/>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br/>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br/>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br/>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br/>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br/>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br/>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br/>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br/>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br/>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br/>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br/>} | 音频声道数集合， 将每一个声道数映射为int64的变量。 | 
+| [AudioChannelLayout](#audiochannellayout) : uint64_t {<br/>UNKNOWN_CHANNEL_LAYOUT = 0,<br/>MONO = (AudioChannelSet::FRONT_CENTER),<br/>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br/>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br/>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br/>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br/>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br/>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br/>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br/>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br/>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br/>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br/>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br/>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br/>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br/>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br/>HOA_FIRST,<br/>HOA_SECOND,<br/>HOA_THIRD<br/>} | 音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。 | 
+| [OH_MediaType](#oh_mediatype) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1<br/>} | 媒体类型。 | 
+| [OH_AACProfile](#oh_aacprofile) { AAC_PROFILE_LC = 0 } | AAC配置。 | 
+| [OH_AVCProfile](#oh_avcprofile) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC配置。 | 
+| [OH_HEVCProfile](#oh_hevcprofile) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC配置。 | 
+| [OH_AVOutputFormat](#oh_avoutputformat) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6<br/>} | 枚举封装器的输出文件格式。 | 
+| [OH_AVSeekMode](#oh_avseekmode) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
+| [OH_ScalingMode](#oh_scalingmode) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。 | 
+| [OH_BitsPerSample](#oh_bitspersample) {<br/>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br/>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br/>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br/>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br/>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br/>INVALID_WIDTH = -1<br/>} | 枚举每个编码样本的音频位数。 | 
+| [OH_ColorPrimary](#oh_colorprimary) {<br/>COLOR_PRIMARY_BT709 = 1,<br/>COLOR_PRIMARY_UNSPECIFIED = 2,<br/>COLOR_PRIMARY_BT470_M = 4,<br/>COLOR_PRIMARY_BT601_625 = 5,<br/>COLOR_PRIMARY_BT601_525 = 6,<br/>COLOR_PRIMARY_SMPTE_ST240 = 7,<br/>COLOR_PRIMARY_GENERIC_FILM = 8,<br/>COLOR_PRIMARY_BT2020 = 9,<br/>COLOR_PRIMARY_SMPTE_ST428 = 10,<br/>COLOR_PRIMARY_P3DCI = 11,<br/>COLOR_PRIMARY_P3D65 = 12<br/>} | 色域。 | 
+| [OH_TransferCharacteristic](#oh_transfercharacteristic) {<br/>TRANSFER_CHARACTERISTIC_BT709 = 1,<br/>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br/>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br/>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br/>TRANSFER_CHARACTERISTIC_BT601 = 6,<br/>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br/>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br/>TRANSFER_CHARACTERISTIC_LOG = 9,<br/>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br/>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br/>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br/>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br/>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br/>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br/>TRANSFER_CHARACTERISTIC_PQ = 16,<br/>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br/>TRANSFER_CHARACTERISTIC_HLG = 18<br/>} | 转移特性。 | 
+| [OH_MatrixCoefficient](#oh_matrixcoefficient) {<br/>MATRIX_COEFFICIENT_IDENTITY = 0,<br/>MATRIX_COEFFICIENT_BT709 = 1,<br/>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br/>MATRIX_COEFFICIENT_FCC = 4,<br/>MATRIX_COEFFICIENT_BT601_625 = 5,<br/>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br/>MATRIX_COEFFICIENT_YCGCO = 8,<br/>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br/>MATRIX_COEFFICIENT_BT2020_CL = 10,<br/>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br/>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br/>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br/>MATRIX_COEFFICIENT_ICTCP = 14<br/>} | 矩阵系数。 | 
 
 
 ### 变量
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferAttr::pts](_o_h___a_v_codec_buffer_attr.md#pts) | 此缓冲区的显示时间戳（以微秒为单位） | 
-| [OH_AVCodecBufferAttr::size](_o_h___a_v_codec_buffer_attr.md#size) | 缓冲区中包含的数据的大小（以字节为单位） | 
-| [OH_AVCodecBufferAttr::offset](_o_h___a_v_codec_buffer_attr.md#offset) | 此缓冲区中有效数据的起始偏移量 | 
-| [OH_AVCodecBufferAttr::flags](_o_h___a_v_codec_buffer_attr.md#flags) | 此缓冲区具有的标志，也是多个[OH_AVCodecBufferFlags](#oh_avcodecbufferflags)的组合。 | 
-| [OH_AVCodecAsyncCallback::onError](_o_h___a_v_codec_async_callback.md#onerror) | 监控编解码器操作错误，请参见[OH_AVCodecOnError](#oh_avcodeconerror) | 
-| [OH_AVCodecAsyncCallback::onStreamChanged](_o_h___a_v_codec_async_callback.md#onstreamchanged) | 监控编解码器流变化，请参见[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged) | 
-| [OH_AVCodecAsyncCallback::onNeedInputData](_o_h___a_v_codec_async_callback.md#onneedinputdata) | 监控编解码器需要输入数据，请参见[OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata) | 
-| [OH_AVCodecAsyncCallback::onNeedOutputData](_o_h___a_v_codec_async_callback.md#onneedinputdata) | 监控编解码器已生成输出数据，请参见[OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata) | 
-| \*[OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC视频编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | AAC音频编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC视频编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MPEG音频编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | JPG图片编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | PNG图片编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | BMP图片编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | FLAC音频编解码器的MIME类型。 | 
-| \*[OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频编解码器的MIME类型。 | 
-| \*[OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | 表面的额外数据中时间戳的键，值类型为int64 | 
-| \*[OH_ED_KEY_EOS](#oh_ed_key_eos) | 表面的额外数据中流结束符的键，值类型为bool | 
-| \*[OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 提供统一容器，用于存储媒体描述。 | 
-| \*[OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为字符串。 | 
-| \*[OH_MD_KEY_DURATION](#oh_md_key_duration) | 持续时间键，值类型为int64_t。 | 
-| \*[OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | 比特率的键，值类型为uint32_t。视频编码需要额外设置 [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) 以完成比特率设置。 | 
-| \*[OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | 最大输入大小的键，值类型为uint32_t | 
-| \*[OH_MD_KEY_WIDTH](#oh_md_key_width) | 视频宽度的键，值类型为uint32_t | 
-| \*[OH_MD_KEY_HEIGHT](#oh_md_key_height) | 视频高度键，值类型为uint32_t | 
-| \*[OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | 视频像素格式的键，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#oh_avpixelformat) | 
-| \*[OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | 视频YUV取值范围标志的键，值类型为bool | 
-| \*[OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | 视频颜色原色键, 值类型为int32_t | 
-| \*[OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频转移特性的键，值类型为int32_t | 
-| \*[OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t | 
-| \*[OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为uint32_t | 
-| \*[OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | 视频帧率的键，值类型为双精度浮点。 | 
-| \*[OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | 
-| \*[OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码模板，值类型为数字，具体见[OH_AVCProfile](#oh_avcprofile)，[OH_AACProfile](#oh_aacprofile)或[OH_HEVCProfile](#oh_hevcprofile) | 
-| \*[OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为uint32_t | 
-| \*[OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为uint32_t | 
-| \*[OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 | 
-| \*[OH_MD_KEY_ROTATION](#oh_md_key_rotation) | 表面旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。 | 
-| \*[OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 | 
-| \*[OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为布尔值 | 
-| \*[OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器 | 
-| \*[OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 | 
-| \*[OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见 [OH_BitsPerSample](#oh_bitspersample)。 | 
-| \*[OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | aac格式的键，值类型为uint32_t,aac解码器支持。 | 
-| \*[OH_MD_KEY_SBR](#oh_md_key_sbr) | aac sbr模式的键，值类型为uint32_t,aac编码器支持。 | 
-| \*[OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 | 
-| \*[OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
-| \*[OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
-| \*[OH_MD_KEY_TITLE](#oh_md_key_title) | 源格式标题的键，值类型为字符串 | 
-| \*[OH_MD_KEY_ARTIST](#oh_md_key_artist) | 艺术家的源格式Key，值类型为字符串 | 
-| \*[OH_MD_KEY_ALBUM](#oh_md_key_album) | 相册的源格式键，值类型为字符串 | 
-| \*[OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 源格式专辑_artist的键，值类型为字符串 | 
-| \*[OH_MD_KEY_DATE](#oh_md_key_date) | 源格式日期的键，值类型为字符串 | 
-| \*[OH_MD_KEY_COMMENT](#oh_md_key_comment) | 源格式注释的键，值类型为字符串 | 
-| \*[OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式类型的键，值类型为字符串 | 
-| \*[OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | 源格式版权的键，值类型为字符串 | 
-| \*[OH_MD_KEY_LANGUAGE](#oh_md_key_language) | 源格式语言的键，值类型为字符串 | 
-| \*[OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | 源格式描述的键，值类型为字符串 | 
-| \*[OH_MD_KEY_LYRICS](#oh_md_key_lyrics) | 源格式歌词的键，值类型为字符串 | 
-| \*[OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | 源格式轨道计数的键，值类型为uint32_t | 
-| \*[OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 输入buffer的最大个数，值类型为int32_t | 
-| \*[OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 输出buffer的最大个数，值类型为int32_t | 
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | AAC音频编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | FLAC音频编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | JPG图片编码的MIME类型，仅用于封装JPG封面时使用。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | PNG图片编码的MIME类型，仅用于封装PNG封面时使用。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | BMP图片编码的MIME类型，仅用于封装BMP封面时使用。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | AudioVivid音频解码器的MIME类型。（此规格暂未开放） | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。（此规格暂未开放） | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 | 
+| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | 表面的额外数据中时间戳的键，值类型为int64。 | 
+| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | 表面的额外数据中流结束符的键，值类型为bool。 | 
+| const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](#oh_mediatype)。 | 
+| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | 持续时间键，值类型为int64_t。 | 
+| const char \* [OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | 比特率的键，值类型为int64_t。 | 
+| const char \* [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | 最大输入大小的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_WIDTH](#oh_md_key_width) | 视频宽度的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_HEIGHT](#oh_md_key_height) | 视频高度键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | 视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 | 
+| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | 视频帧率的键，值类型为double。 | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 | 
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码模板，值类型为数字，请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 | 
+| const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 | 
+| const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | 表面旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。 | 
+| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | 视频YUV取值范围标志的键，值类型为bool。 | 
+| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | 视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)。 | 
+| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频转移特性的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)。 | 
+| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)。 | 
+| const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为bool。 | 
+| const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器。 | 
+| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 | 
+| const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 源格式标题的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 相册的源格式键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 相册艺术家的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | 源格式日期的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | 源格式注释的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式类型的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | 源格式版权的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_LANGUAGE](#oh_md_key_language) | 源格式语言的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | 源格式描述的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_LYRICS](#oh_md_key_lyrics) | 源格式歌词的键，值类型为string。 | 
+| const char \* [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | 源格式轨道数量的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 | 
+| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample)。 | 
+| const char \* [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | aac格式的键，值类型为uint32_t,aac解码器支持。 | 
+| const char \* [OH_MD_KEY_SBR](#oh_md_key_sbr) | aac sbr模式的键，值类型为uint32_t,aac编码器支持。 | 
+| const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 | 
+| const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
+| const char \* [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频表面尺度类型, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。 | 
+| const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 | 
+| const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 | 
+| const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 查询是否是hdr vivid的键，值类型为bool。 | 
+| const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键. 值类型为int32_t。 | 
+| const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。 | 
 
 
 ## 类型定义说明
@@ -145,443 +150,776 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 
 ### OH_AACProfile
 
-  
 ```
-typedef enum OH_AACProfile OH_AACProfile
+typedef enum OH_AACProfileOH_AACProfile
 ```
 
-**描述：**
+**描述**
 
-AAC Profile枚举。
+AAC配置。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_AVCodecAsyncCallback
 
-  
 ```
-typedef struct OH_AVCodecAsyncCallback OH_AVCodecAsyncCallback
+typedef struct OH_AVCodecAsyncCallbackOH_AVCodecAsyncCallback
 ```
 
-**描述：**
+**描述**
 
 OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中， 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**参数：**
+**起始版本：** 9
+
+**废弃版本：** 11
+
+**替代接口：**[OH_AVCodecCallback](#oh_avcodeccallback)
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onError](_o_h___a_v_codec_async_callback.md#onerror) | 监控编解码器操作错误，请参见[OH_AVCodecOnError](#oh_avcodeconerror) | 
-| [onStreamChanged](_o_h___a_v_codec_async_callback.md#onstreamchanged) | 监控编解码器流变化，请参见[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged) | 
-| [onNeedInputData](_o_h___a_v_codec_async_callback.md#onneedinputdata) | 监控编解码器需要输入数据，请参见[OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata) | 
-| [onNeedOutputData](_o_h___a_v_codec_async_callback.md#onneedoutputdata) | 监控编解码器已生成输出数据，请参见[OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata) | 
+| onError | 监控编解码器操作错误，请参见[OH_AVCodecOnError](#oh_avcodeconerror)。 | 
+| onStreamChanged | 监控编解码器流变化，请参见[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)。 | 
+| onNeedInputData | 监控编解码器需要输入数据，请参见[OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)。 | 
+| onNeedOutputData | 监控编解码器已生成输出数据，请参见[OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)。 | 
 
 
-### OH_AVCodecBufferAttr
+### OH_AVCodecCallback
 
-  
 ```
-typedef struct OH_AVCodecBufferAttr OH_AVCodecBufferAttr
-```
-
-**描述：**
-
-定义OH_AVCodec的缓冲区描述信息。
-
-\@syscap SystemCapability.Multimedia.Media.CodecBase
-
-
-### OH_AVCodecBufferFlags
-
-  
-```
-typedef enum OH_AVCodecBufferFlags OH_AVCodecBufferFlags
+typedef struct OH_AVCodecCallbackOH_AVCodecCallback
 ```
 
-**描述：**
+**描述**
 
-枚举OH_AVCodec缓冲区标记的类别。
+OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中， 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| onError | 监控编解码器操作错误，请参见[OH_AVCodecOnError](#oh_avcodeconerror)。 | 
+| onStreamChanged | 监控编解码器流变化，请参见[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)。 | 
+| onNeedInputBuffer | 监控编解码器需要输入数据，请参见[OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)。 | 
+| onNewOutputBuffer | 监控编解码器已生成输出数据，请参见[OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)。 | 
 
 
 ### OH_AVCodecOnError
 
-  
 ```
-typedef void (*OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
+typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *userData)
 ```
 
-**描述：**
+**描述**
 
 当OH_AVCodec实例运行出错时，会调用来上报具体的错误信息的函数指针。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**参数：**
+**起始版本：** 9
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | OH_AVCodec实例 | 
-| errorCode | 特定错误代码 | 
-| userData | 用户特定数据 | 
+| codec | OH_AVCodec实例。 | 
+| errorCode | 特定错误代码。 | 
+| userData | 用户特定数据。 | 
+
+
+### OH_AVCodecOnNeedInputBuffer
+
+```
+typedef void(* OH_AVCodecOnNeedInputBuffer) (OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+```
+
+**描述**
+
+当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | OH_AVCodec实例。 | 
+| index | 与新可用的输入缓冲区相对应的索引。 | 
+| buffer | 新的可用输入缓冲区。 | 
+| userData | 用户特定数据。 | 
 
 
 ### OH_AVCodecOnNeedInputData
 
-  
 ```
-typedef void (*OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
 ```
 
-**描述：**
+**描述**
 
 当OH_AVCodec在运行过程中需要新的输入数据时，将调用此函数指针，并携带可用的缓冲区来填充新的输入数据。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**参数：**
+**起始版本：** 9
+
+**废弃版本：** 11
+
+**替代接口：**[OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | OH_AVCodec实例 | 
-| index | 与新可用的输入缓冲区相对应的索引 | 
-| data | 新的可用输入缓冲区 | 
-| userData | 用户特定数据 | 
+| codec | OH_AVCodec实例。 | 
+| index | 与新可用的输入缓冲区相对应的索引。 | 
+| data | 新的可用输入缓冲区。 | 
+| userData | 用户特定数据。 | 
+
+
+### OH_AVCodecOnNewOutputBuffer
+
+```
+typedef void(* OH_AVCodecOnNewOutputBuffer) (OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+```
+
+**描述**
+
+当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | OH_AVCodec实例。 | 
+| index | 与新输出缓冲区对应的索引。 | 
+| buffer | 包含新输出数据的缓冲区。 | 
+| userData | 用户特定数据。 | 
 
 
 ### OH_AVCodecOnNewOutputData
 
-  
 ```
-typedef void (*OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
+typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 ```
 
-**描述：**
+**描述**
 
 当OH_AVCodec运行过程中生成新的输出数据时，将调用此函数指针，并携带包含新输出数据的缓冲区。 需要注意的是，OH_AVCodecBufferAttr指针的生命周期仅在调用函数指针时有效，这将禁止调用结束后继续访问。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**参数：**
+**起始版本：** 9
+
+**废弃版本：** 11
+
+**替代接口：**[OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | OH_AVCodec实例 | 
-| index | 与新输出缓冲区对应的索引 | 
-| data | 包含新输出数据的缓冲区 | 
-| attr | 新输出缓冲区的说明，请参见[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) | 
-| userData | 用户特定数据 | 
+| codec | OH_AVCodec实例。 | 
+| index | 与新输出缓冲区对应的索引。 | 
+| data | 包含新输出数据的缓冲区。 | 
+| attr | 新输出缓冲区的说明，请参见[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)。 | 
+| userData | 用户特定数据。 | 
 
 
 ### OH_AVCodecOnStreamChanged
 
-  
 ```
-typedef void (*OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *format, void *userData)
 ```
 
-**描述：**
+**描述**
 
-当输出流发生变化时，将调用此函数指针报告新的流描述信息。需要注意的是， OH_AVFormat指针的生命周期只有在函数指针被调用时才有效，调用结束后禁止继续访问。
+当输出码流发生变化时，将调用此函数指针报告新的流描述信息。需要注意的是， OH_AVFormat指针的生命周期只有在函数指针被调用时才有效，调用结束后禁止继续访问。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**参数：**
+**起始版本：** 9
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | OH_AVCodec实例 | 
-| format | 新输出流描述信息 | 
-| userData | 用户特定数据 | 
+| codec | OH_AVCodec实例。 | 
+| format | 新输出流描述信息。 | 
+| userData | 用户特定数据。 | 
 
-**format 携载字段：**
-| Key                    | 描述             |
-| ---------------------- | ---------------  |
-| OH_MD_KEY_WIDTH        | 视频输出宽度     |
-| OH_MD_KEY_HEIGHT       | 视频输出高度     |
-| OH_MD_KEY_PIXEL_FORMAT | 视频输出像素格式 |
 
 ### OH_AVCProfile
 
-  
 ```
-typedef enum OH_AVCProfile OH_AVCProfile
+typedef enum OH_AVCProfileOH_AVCProfile
 ```
 
-**描述：**
+**描述**
 
-AVC Profile枚举。
+AVC配置。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_AVOutputFormat
 
-  
 ```
-typedef enum OH_AVOutputFormat OH_AVOutputFormat
+typedef enum OH_AVOutputFormatOH_AVOutputFormat
 ```
 
-**描述：**
+**描述**
 
 枚举封装器的输出文件格式。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_AVSeekMode
 
-  
 ```
-typedef enum OH_AVSeekMode OH_AVSeekMode
+typedef enum OH_AVSeekModeOH_AVSeekMode
 ```
 
-**描述：**
+**描述**
 
 跳转模式。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_BitsPerSample
 
-  
 ```
-typedef enum OH_BitsPerSample OH_BitsPerSample
+typedef enum OH_BitsPerSampleOH_BitsPerSample
 ```
 
-**描述：**
+**描述**
 
 枚举每个编码样本的音频位数。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_ColorPrimary
 
-  
 ```
-typedef enum OH_ColorPrimary OH_ColorPrimary
+typedef enum OH_ColorPrimaryOH_ColorPrimary
 ```
 
-**描述：**
+**描述**
 
-原色。
+色域。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_HEVCProfile
 
-  
 ```
-typedef enum OH_HEVCProfile OH_HEVCProfile
+typedef enum OH_HEVCProfileOH_HEVCProfile
 ```
 
-**描述：**
+**描述**
 
-HEVC Profile枚举。
+HEVC配置。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MatrixCoefficient
 
-  
 ```
-typedef enum OH_MatrixCoefficient OH_MatrixCoefficient
+typedef enum OH_MatrixCoefficientOH_MatrixCoefficient
 ```
 
-**描述：**
+**描述**
 
 矩阵系数。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MediaType
 
-  
 ```
-typedef enum OH_MediaType OH_MediaType
+typedef enum OH_MediaTypeOH_MediaType
 ```
 
-**描述：**
+**描述**
 
 媒体类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+
+### OH_ScalingMode
+
+```
+typedef enum OH_ScalingModeOH_ScalingMode
+```
+
+**描述**
+
+缩放模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_TransferCharacteristic
 
-  
 ```
-typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
+typedef enum OH_TransferCharacteristicOH_TransferCharacteristic
 ```
 
-**描述：**
+**描述**
 
 转移特性。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ## 枚举类型说明
 
 
+### AudioChannelLayout
+
+```
+enum AudioChannelLayout : uint64_t
+```
+
+**描述**
+
+音频声道数类型， 将用户申请的解码器输出格式表示为编解码器的声道类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+**废弃版本：** 11
+
+**替代接口：**[OH_AudioChannelLayout](_core.md#oh_audiochannellayout)
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UNKNOWN_CHANNEL_LAYOUT | 未知通道布局 | 
+| MONO | 单通道布局 | 
+| STEREO | 立体声布局 | 
+| CH_2POINT1 | 2.1布局 | 
+| CH_2_1 | 2_1布局 | 
+| SURROUND | 环绕布局 | 
+| CH_3POINT1 | 3.1布局 | 
+| CH_4POINT0 | 4.0布局 | 
+| CH_4POINT1 | 4.1布局 | 
+| CH_2_2 | 2_2布局 | 
+| QUAD | 四角形布局 | 
+| CH_5POINT0 | 5.0布局 | 
+| CH_5POINT1 | 5.1布局 | 
+| CH_5POINT0_BACK | 5.0后置布局 | 
+| CH_5POINT1_BACK | 5.1后置布局 | 
+| CH_6POINT0 | 6.0布局 | 
+| CH_6POINT0_FRONT | 6.0前置布局 | 
+| HEXAGONAL | 六角形布局 | 
+| CH_6POINT1 | 6.1布局 | 
+| CH_6POINT1_BACK | 6.1后置布局 | 
+| CH_6POINT1_FRONT | 6.1前置布局 | 
+| CH_7POINT0 | 7.0布局 | 
+| CH_7POINT0_FRONT | 7.0前置布局 | 
+| CH_7POINT1 | 7.1布局 | 
+| CH_7POINT1_WIDE | 7.1宽布局 | 
+| CH_7POINT1_WIDE_BACK | 7.1后置宽布局 | 
+| CH_3POINT1POINT2 | 3.1.2布局 | 
+| CH_5POINT1POINT2 | 5.1.2布局 | 
+| CH_5POINT1POINT4 | 5.1.4布局 | 
+| CH_7POINT1POINT2 | 7.1.2布局 | 
+| CH_7POINT1POINT4 | 7.1.4布局 | 
+| CH_9POINT1POINT4 | 9.1.4布局 | 
+| CH_9POINT1POINT6 | 9.1.6布局 | 
+| CH_10POINT2 | 10.2布局 | 
+| CH_22POINT2 | 22.2布局 | 
+| OCTAGONAL | 八边形布局 | 
+| HEXADECAGONAL | 六边形布局 | 
+| STEREO_DOWNMIX | 立体声下混布局 | 
+| HOA_FIRST | 高阶立体声一阶布局 | 
+| HOA_SECOND | 高阶立体声二阶布局 | 
+| HOA_THIRD | 高阶立体声三阶布局 | 
+
+
+### AudioChannelSet
+
+```
+enum AudioChannelSet : uint64_t
+```
+
+**描述**
+
+音频声道数集合， 将每一个声道数映射为int64的变量。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+**废弃版本：** 11，请使用[OH_AudioChannelSet](_core.md#oh_audiochannelset)替代。
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| FRONT_LEFT | 左前声道 | 
+| FRONT_RIGHT | 右前声道 | 
+| FRONT_CENTER | 中前声道 | 
+| LOW_FREQUENCY | 低频声道 | 
+| BACK_LEFT | 左后声道 | 
+| BACK_RIGHT | 右后声道 | 
+| FRONT_LEFT_OF_CENTER | 左前中置声道 | 
+| FRONT_RIGHT_OF_CENTER | 右前中置声道 | 
+| BACK_CENTER | 后方中置声道 | 
+| SIDE_LEFT | 左侧声道 | 
+| SIDE_RIGHT | 右侧声道 | 
+| TOP_CENTER | 上方中置声道 | 
+| TOP_FRONT_LEFT | 上方左前声道 | 
+| TOP_FRONT_CENTER | 上方中前声道 | 
+| TOP_FRONT_RIGHT | 上方右前声道 | 
+| TOP_BACK_LEFT | 上方左后声道 | 
+| TOP_BACK_CENTER | 上方中后声道 | 
+| TOP_BACK_RIGHT | 上方右后声道 | 
+| STEREO_LEFT | 立体声左声道 | 
+| STEREO_RIGHT | 立体声右声道 | 
+| WIDE_LEFT | 宽左声道 | 
+| WIDE_RIGHT | 宽右声道 | 
+| SURROUND_DIRECT_LEFT | 左环绕声道 | 
+| SURROUND_DIRECT_RIGHT | 右环绕声道 | 
+| LOW_FREQUENCY_2 | 低频声道2 | 
+| TOP_SIDE_LEFT | 上方左侧声道 | 
+| TOP_SIDE_RIGHT | 上方右侧声道 | 
+| BOTTOM_FRONT_CENTER | 下方中前声道 | 
+| BOTTOM_FRONT_LEFT | 下方左前声道 | 
+| BOTTOM_FRONT_RIGHT | 下方右前声道 | 
+| AMBISONICS_ACN0 | 零阶立体声声道数r 0 | 
+| AMBISONICS_ACN1 | 一阶立体声声道数 1 | 
+| AMBISONICS_ACN2 | 一阶立体声声道数 2 | 
+| AMBISONICS_ACN3 | 一阶立体声声道数 3 | 
+| AMBISONICS_W | 同于零阶立体声声道数 0 | 
+| AMBISONICS_Y | 同于一阶立体声声道数 1 | 
+| AMBISONICS_Z | 同于一阶立体声声道数 2 | 
+| AMBISONICS_X | 同于一阶立体声声道数 3 | 
+| AMBISONICS_ACN4 | 二阶立体声声道数 4 | 
+| AMBISONICS_ACN5 | 二阶立体声声道数 5 | 
+| AMBISONICS_ACN6 | 二阶立体声声道数 6 | 
+| AMBISONICS_ACN7 | 二阶立体声声道数 7 | 
+| AMBISONICS_ACN8 | 二阶立体声声道数 8 | 
+| AMBISONICS_ACN9 | 三阶立体声声道数 9 | 
+| AMBISONICS_ACN10 | 三阶立体声声道数 10 | 
+| AMBISONICS_ACN11 | 三阶立体声声道数 11. | 
+| AMBISONICS_ACN12 | 三阶立体声声道数 12 | 
+| AMBISONICS_ACN13 | 三阶立体声声道数 13 | 
+| AMBISONICS_ACN14 | 三阶立体声声道数 14 | 
+| AMBISONICS_ACN15 | 三阶立体声声道数 15 | 
+
+
 ### OH_AACProfile
 
-  
 ```
 enum OH_AACProfile
 ```
 
-**描述：**
+**描述**
 
-AAC Profile枚举。
+AAC配置。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
+**起始版本：** 9
 
-### OH_AVCodecBufferFlags
-
-  
-```
-enum OH_AVCodecBufferFlags
-```
-
-**描述：**
-
-枚举OH_AVCodec缓冲区标记的类别。
-
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AAC_PROFILE_LC | AAV编码配置为Low Complexity级别。 | 
 
 
 ### OH_AVCProfile
 
-  
 ```
 enum OH_AVCProfile
 ```
 
-**描述：**
+**描述**
 
-AVC Profile枚举。
+AVC配置。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AVC_PROFILE_BASELINE | AVC编码配置为基本档次。 | 
+| AVC_PROFILE_HIGH | AVC编码配置为高档次。 | 
+| AVC_PROFILE_MAIN | AVC编码配置为主档次。 | 
 
 
 ### OH_AVOutputFormat
 
-  
 ```
 enum OH_AVOutputFormat
 ```
 
-**描述：**
+**描述**
 
 枚举封装器的输出文件格式。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AV_OUTPUT_FORMAT_DEFAULT | 输出文件格式默认值，默认为MP4格式。 | 
+| AV_OUTPUT_FORMAT_MPEG_4 | 输出文件格式为MP4格式。 | 
+| AV_OUTPUT_FORMAT_M4A | 输出文件格式为M4A格式。 | 
 
 
 ### OH_AVSeekMode
 
-  
 ```
 enum OH_AVSeekMode
 ```
 
-**描述：**
+**描述**
 
 跳转模式。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| SEEK_MODE_NEXT_SYNC | 指定时间位置的下一关键帧。 | 
+| SEEK_MODE_PREVIOUS_SYNC | 指定时间位置的上一关键帧。 | 
+| SEEK_MODE_CLOSEST_SYNC | 指定时间位置的最近关键帧。 | 
 
 
 ### OH_BitsPerSample
 
-  
 ```
 enum OH_BitsPerSample
 ```
 
-**描述：**
+**描述**
 
 枚举每个编码样本的音频位数。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| SAMPLE_U8 | 8位无符号整数采样。 | 
+| SAMPLE_S16LE | 16位有符号整数交样。 | 
+| SAMPLE_S24LE | 24位有符号整数采样。 | 
+| SAMPLE_S32LE | 32位有符号整数采样。 | 
+| SAMPLE_F32LE | 32位浮点采样。 | 
+| SAMPLE_U8P | 8位无符号整数平面采样。 | 
+| SAMPLE_S16P | 16位有符号整数平面采样。 | 
+| SAMPLE_S24P | 24位有符号整数平面采样。 | 
+| SAMPLE_S32P | 32位有符号整数平面采样。 | 
+| SAMPLE_F32P | 32位浮点平面采样。 | 
+| INVALID_WIDTH | 无效采样格式。 | 
 
 
 ### OH_ColorPrimary
 
-  
 ```
 enum OH_ColorPrimary
 ```
 
-**描述：**
+**描述**
 
-原色。
+色域。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| COLOR_PRIMARY_BT709 | BT709色域。 | 
+| COLOR_PRIMARY_UNSPECIFIED | 未指定色域。 | 
+| COLOR_PRIMARY_BT470_M | BT470_M色域。 | 
+| COLOR_PRIMARY_BT601_625 | BT601_625色域。 | 
+| COLOR_PRIMARY_BT601_525 | BT601_525色域。 | 
+| COLOR_PRIMARY_SMPTE_ST240 | SMPTE_ST240色域。 | 
+| COLOR_PRIMARY_GENERIC_FILM | GENERIC_FILM色域。 | 
+| COLOR_PRIMARY_BT2020 | BT2020色域。 | 
+| COLOR_PRIMARY_SMPTE_ST428 | SMPTE_ST428色域。 | 
+| COLOR_PRIMARY_P3DCI | P3DCI色域。 | 
+| COLOR_PRIMARY_P3D65 | P3D65色域。 | 
 
 
 ### OH_HEVCProfile
 
-  
 ```
 enum OH_HEVCProfile
 ```
 
-**描述：**
+**描述**
 
-HEVC Profile枚举。
+HEVC配置。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HEVC_PROFILE_MAIN | HEVC编码配置为主档次。 | 
+| HEVC_PROFILE_MAIN_10 | HEVC编码配置为10bit主档次。 | 
+| HEVC_PROFILE_MAIN_STILL | HEVC编码配置为静止图像主档次。 | 
+| HEVC_PROFILE_MAIN_10_HDR10 | HEVC编码配置为HDR10主档次。 | 
+| HEVC_PROFILE_MAIN_10_HDR10_PLUS | HEVC编码配置为HDR10+主档次。 | 
 
 
 ### OH_MatrixCoefficient
 
-  
 ```
 enum OH_MatrixCoefficient
 ```
 
-**描述：**
+**描述**
 
 矩阵系数。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MATRIX_COEFFICIENT_IDENTITY | 单位矩阵。 | 
+| MATRIX_COEFFICIENT_BT709 | BT709转换矩阵。 | 
+| MATRIX_COEFFICIENT_UNSPECIFIED | 未指定转换矩阵。 | 
+| MATRIX_COEFFICIENT_FCC | FCC转换矩阵。 | 
+| MATRIX_COEFFICIENT_BT601_625 | BT601_625转换矩阵。 | 
+| MATRIX_COEFFICIENT_BT601_525 | BT601_525转换矩阵。 | 
+| MATRIX_COEFFICIENT_SMPTE_ST240 | SMPTE_ST240转换矩阵。 | 
+| MATRIX_COEFFICIENT_YCGCO | YCGCO转换矩阵。 | 
+| MATRIX_COEFFICIENT_BT2020_NCL | BT2020_NCL转换矩阵。 | 
+| MATRIX_COEFFICIENT_BT2020_CL | BT2020_CL转换矩阵。 | 
+| MATRIX_COEFFICIENT_SMPTE_ST2085 | SMPTE_ST2085转换矩阵。 | 
+| MATRIX_COEFFICIENT_CHROMATICITY_NCL | CHROMATICITY_NCL转换矩阵。 | 
+| MATRIX_COEFFICIENT_CHROMATICITY_CL | CHROMATICITY_CL转换矩阵。 | 
+| MATRIX_COEFFICIENT_ICTCP | ICTCP转换矩阵。 | 
 
 
 ### OH_MediaType
 
-  
 ```
 enum OH_MediaType
 ```
 
-**描述：**
+**描述**
 
 媒体类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MEDIA_TYPE_AUD | 音频轨。 | 
+| MEDIA_TYPE_VID | 视频轨。 | 
+
+
+### OH_ScalingMode
+
+```
+enum OH_ScalingMode
+```
+
+**描述**
+
+缩放模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| SCALING_MODE_SCALE_TO_WINDOW | 根据窗口尺寸自适应调整图像大小。 | 
+| SCALING_MODE_SCALE_CROP | 根据窗口尺寸裁剪图像大小。 | 
 
 
 ### OH_TransferCharacteristic
 
-  
 ```
 enum OH_TransferCharacteristic
 ```
 
-**描述：**
+**描述**
 
 转移特性。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| TRANSFER_CHARACTERISTIC_BT709 | BT709传递函数。 | 
+| TRANSFER_CHARACTERISTIC_UNSPECIFIED | 未指定传递函数。 | 
+| TRANSFER_CHARACTERISTIC_GAMMA_2_2 | GAMMA_2_2传递函数。 | 
+| TRANSFER_CHARACTERISTIC_GAMMA_2_8 | GAMMA_2_8传递函数。 | 
+| TRANSFER_CHARACTERISTIC_BT601 | BT601传递函数。 | 
+| TRANSFER_CHARACTERISTIC_SMPTE_ST240 | SMPTE_ST240传递函数。 | 
+| TRANSFER_CHARACTERISTIC_LINEAR | LINEAR传递函数。 | 
+| TRANSFER_CHARACTERISTIC_LOG | LOG传递函数。 | 
+| TRANSFER_CHARACTERISTIC_LOG_SQRT | LOG_SQRT传递函数。 | 
+| TRANSFER_CHARACTERISTIC_IEC_61966_2_4 | IEC_61966_2_4传递函数。 | 
+| TRANSFER_CHARACTERISTIC_BT1361 | BT1361传递函数。 | 
+| TRANSFER_CHARACTERISTIC_IEC_61966_2_1 | IEC_61966_2_1传递函数。 | 
+| TRANSFER_CHARACTERISTIC_BT2020_10BIT | BT2020_10BIT传递函数。 | 
+| TRANSFER_CHARACTERISTIC_BT2020_12BIT | BT2020_12BIT传递函数。 | 
+| TRANSFER_CHARACTERISTIC_PQ | PQ传递函数。 | 
+| TRANSFER_CHARACTERISTIC_SMPTE_ST428 | SMPTE_ST428传递函数。 | 
+| TRANSFER_CHARACTERISTIC_HLG | HLG传递函数。 | 
 
 
 ## 变量说明
@@ -589,697 +927,991 @@ enum OH_TransferCharacteristic
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_AAC
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_AUDIO_AAC
 ```
 
-**描述：**
+**描述**
 
 AAC音频编解码器的MIME类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+
+### OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB
+
+```
+const char* OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB
+```
+
+**描述**
+
+AMR_NB音频解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
+
+
+### OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB
+
+```
+const char* OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB
+```
+
+**描述**
+
+AMR_WB音频解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
 
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_FLAC
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_AUDIO_FLAC
 ```
 
-**描述：**
+**描述**
 
 FLAC音频编解码器的MIME类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+
+### OH_AVCODEC_MIMETYPE_AUDIO_G711MU
+
+```
+const char* OH_AVCODEC_MIMETYPE_AUDIO_G711MU
+```
+
+**描述**
+
+G711MU音频编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
 
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_MPEG
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_AUDIO_MPEG
 ```
 
-**描述：**
+**描述**
 
-MPEG音频编解码器的MIME类型。
+MP3音频解码器的MIME类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+
+### OH_AVCODEC_MIMETYPE_AUDIO_OPUS
+
+```
+const char* OH_AVCODEC_MIMETYPE_AUDIO_OPUS
+```
+
+**描述**
+
+OPUS音频编解码器的MIME类型。（目前本规格未开放）
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
+
+
+### OH_AVCODEC_MIMETYPE_AUDIO_VIVID
+
+```
+const char* OH_AVCODEC_MIMETYPE_AUDIO_VIVID
+```
+
+**描述**
+
+AudioVivid音频解码器的MIME类型。（目前本规格未开放）
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
 
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_VORBIS
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_AUDIO_VORBIS
 ```
 
-**描述：**
+**描述**
 
-VORBIS音频编解码器的MIME类型。
+VORBIS音频解码器的MIME类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_AVCODEC_MIMETYPE_IMAGE_BMP
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_IMAGE_BMP
 ```
 
-**描述：**
+**描述**
 
-BMP图片编解码器的MIME类型。
+BMP图片编码的MIME类型，仅用于封装BMP封面时使用。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_AVCODEC_MIMETYPE_IMAGE_JPG
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_IMAGE_JPG
 ```
 
-**描述：**
+**描述**
 
-JPG图片编解码器的MIME类型。
+JPG图片编码的MIME类型，仅用于封装JPG封面时使用。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_AVCODEC_MIMETYPE_IMAGE_PNG
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_IMAGE_PNG
 ```
 
-**描述：**
+**描述**
 
-PNG图片编解码器的MIME类型。
+PNG图片编码的MIME类型，仅用于封装PNG封面时使用。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_AVC
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_VIDEO_AVC
 ```
 
-**描述：**
+**描述**
 
-AVC视频编解码器的MIME类型。
+AVC(H.264)视频编解码器的MIME类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_HEVC
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_VIDEO_HEVC
 ```
 
-**描述：**
+**描述**
 
-HEVC视频编解码器的MIME类型。
+HEVC(H.265)视频编解码器的MIME类型。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 
-  
 ```
 const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 ```
 
-**描述：**
+**描述**
 
-MPEG4视频编解码器的MIME类型。
+MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+**废弃版本：** 11
 
 
 ### OH_ED_KEY_EOS
 
-  
 ```
 const char* OH_ED_KEY_EOS
 ```
 
-**描述：**
+**描述**
 
-表面的额外数据中流结束符的键，值类型为bool
+表面的额外数据中流结束符的键，值类型为bool。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_ED_KEY_TIME_STAMP
 
-  
 ```
 const char* OH_ED_KEY_TIME_STAMP
 ```
 
-**描述：**
+**描述**
 
-表面的额外数据中时间戳的键，值类型为int64
+表面的额外数据中时间戳的键，值类型为int64。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_AAC_IS_ADTS
 
-  
 ```
 const char* OH_MD_KEY_AAC_IS_ADTS
 ```
 
-**描述：**
+**描述**
 
 aac格式的键，值类型为uint32_t,aac解码器支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_ALBUM
 
-  
 ```
 const char* OH_MD_KEY_ALBUM
 ```
 
-**描述：**
+**描述**
 
-相册的源格式键，值类型为字符串
+相册的源格式键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_ALBUM_ARTIST
 
-  
 ```
 const char* OH_MD_KEY_ALBUM_ARTIST
 ```
 
-**描述：**
+**描述**
 
-源格式专辑_artist的键，值类型为字符串
+相册艺术家的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_ARTIST
 
-  
 ```
 const char* OH_MD_KEY_ARTIST
 ```
 
-**描述：**
+**描述**
 
-艺术家的源格式Key，值类型为字符串
+艺术家的源格式键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_AUD_CHANNEL_COUNT
 
-  
 ```
 const char* OH_MD_KEY_AUD_CHANNEL_COUNT
 ```
 
-**描述：**
+**描述**
 
-音频通道计数键，值类型为uint32_t
+音频通道计数键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_AUD_SAMPLE_RATE
 
-  
 ```
 const char* OH_MD_KEY_AUD_SAMPLE_RATE
 ```
 
-**描述：**
+**描述**
 
-音频采样率键，值类型为uint32_t
+音频采样率键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+
+### OH_MD_KEY_AUDIO_COMPRESSION_LEVEL
+
+```
+const char* OH_MD_KEY_AUDIO_COMPRESSION_LEVEL
+```
+
+**描述**
+
+音频编解码压缩水平的键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
+
+
+### OH_MD_KEY_AUDIO_OBJECT_NUMBER
+
+```
+const char* OH_MD_KEY_AUDIO_OBJECT_NUMBER
+```
+
+**描述**
+
+音频对象数目的键，值类型为int32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
 
 
 ### OH_MD_KEY_AUDIO_SAMPLE_FORMAT
 
-  
 ```
 const char* OH_MD_KEY_AUDIO_SAMPLE_FORMAT
 ```
 
-**描述：**
+**描述**
 
-音频原始格式的键，值类型为uint32_t
+音频原始格式的键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+
+### OH_MD_KEY_AUDIO_VIVID_METADATA
+
+```
+const char* OH_MD_KEY_AUDIO_VIVID_METADATA
+```
+
+**描述**
+
+audio vivid元数据的键，值类型为uint8_t\*。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
 
 
 ### OH_MD_KEY_BITRATE
 
-  
 ```
 const char* OH_MD_KEY_BITRATE
 ```
 
-**描述：**
+**描述**
 
-比特率的键，值类型为uint32_t。视频编码需要额外设置 [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) 以完成比特率设置。
+比特率的键，值类型为int64_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_BITS_PER_CODED_SAMPLE
 
-  
 ```
 const char* OH_MD_KEY_BITS_PER_CODED_SAMPLE
 ```
 
-**描述：**
+**描述**
 
-每个编码样本位数的键，值类型为uint32_t，支持flac编码器。
+每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_CHANNEL_LAYOUT
 
-  
 ```
 const char* OH_MD_KEY_CHANNEL_LAYOUT
 ```
 
-**描述：**
+**描述**
 
 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_CODEC_CONFIG
 
-  
 ```
 const char* OH_MD_KEY_CODEC_CONFIG
 ```
 
-**描述：**
+**描述**
 
 编解码器特定数据的键，值类型为uint8_t\*。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_CODEC_MIME
 
-  
 ```
 const char* OH_MD_KEY_CODEC_MIME
 ```
 
-**描述：**
+**描述**
 
-编解码器mime类型的键，值类型为字符串。
+编解码器mime类型的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_COLOR_PRIMARIES
 
-  
 ```
 const char* OH_MD_KEY_COLOR_PRIMARIES
 ```
 
-**描述：**
+**描述**
 
-视频颜色原色键, 值类型为int32_t
+视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_COMMENT
 
-  
 ```
 const char* OH_MD_KEY_COMMENT
 ```
 
-**描述：**
+**描述**
 
-源格式注释的键，值类型为字符串
+源格式注释的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_COMPLIANCE_LEVEL
 
-  
 ```
 const char* OH_MD_KEY_COMPLIANCE_LEVEL
 ```
 
-**描述：**
+**描述**
 
 flac合规性级别的键，值类型为int32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_COPYRIGHT
 
-  
 ```
 const char* OH_MD_KEY_COPYRIGHT
 ```
 
-**描述：**
+**描述**
 
-源格式版权的键，值类型为字符串
+源格式版权的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_DATE
 
-  
 ```
 const char* OH_MD_KEY_DATE
 ```
 
-**描述：**
+**描述**
 
-源格式日期的键，值类型为字符串
+源格式日期的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_DESCRIPTION
 
-  
 ```
 const char* OH_MD_KEY_DESCRIPTION
 ```
 
-**描述：**
+**描述**
 
-源格式描述的键，值类型为字符串
+源格式描述的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_DURATION
 
-  
 ```
 const char* OH_MD_KEY_DURATION
 ```
 
-**描述：**
+**描述**
 
 持续时间键，值类型为int64_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_FRAME_RATE
 
-  
 ```
 const char* OH_MD_KEY_FRAME_RATE
 ```
 
-**描述：**
+**描述**
 
-视频帧率的键，值类型为双精度浮点。
+视频帧率的键，值类型为double。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_GENRE
 
-  
 ```
 const char* OH_MD_KEY_GENRE
 ```
 
-**描述：**
+**描述**
 
-源格式类型的键，值类型为字符串
+源格式类型的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_HEIGHT
 
-  
 ```
 const char* OH_MD_KEY_HEIGHT
 ```
 
-**描述：**
+**描述**
 
-视频高度键，值类型为uint32_t
+视频高度键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_I_FRAME_INTERVAL
 
-  
 ```
 const char* OH_MD_KEY_I_FRAME_INTERVAL
 ```
 
-**描述：**
+**描述**
 
 关键帧间隔的键，值类型为int32_t，单位为毫秒。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_IDENTIFICATION_HEADER
 
-  
 ```
 const char* OH_MD_KEY_IDENTIFICATION_HEADER
 ```
 
-**描述：**
+**描述**
 
 vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_LANGUAGE
 
-  
 ```
 const char* OH_MD_KEY_LANGUAGE
 ```
 
-**描述：**
+**描述**
 
-源格式语言的键，值类型为字符串
+源格式语言的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_LYRICS
 
-  
 ```
 const char* OH_MD_KEY_LYRICS
 ```
 
-**描述：**
+**描述**
 
-源格式歌词的键，值类型为字符串
+源格式歌词的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_MATRIX_COEFFICIENTS
 
-  
 ```
 const char* OH_MD_KEY_MATRIX_COEFFICIENTS
 ```
 
-**描述：**
+**描述**
 
-视频矩阵系数的键，值类型为int32_t
+视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_MAX_INPUT_SIZE
 
-  
 ```
 const char* OH_MD_KEY_MAX_INPUT_SIZE
 ```
 
-**描述：**
+**描述**
 
-最大输入大小的键，值类型为uint32_t
+最大输入大小的键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_PIXEL_FORMAT
 
-  
 ```
 const char* OH_MD_KEY_PIXEL_FORMAT
 ```
 
-**描述：**
+**描述**
 
-视频像素格式的键，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#oh_avpixelformat)
+视频像素格式的键，值类型为int32_t，请参见[ERROR:Invalid link:zh-cn_topic_0000001772826630.xml#xref787325267204512,link:zh-cn_topic_0000001775692696.xml#ga26f7516cb1f6f59a81260c416004b163](zh-cn_topic_0000001775692696.xml#ga26f7516cb1f6f59a81260c416004b163)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_PROFILE
 
-  
 ```
 const char* OH_MD_KEY_PROFILE
 ```
 
-**描述：**
+**描述**
 
-编码模板，值类型为数字，具体见[OH_AVCProfile](#oh_avcprofile)，[OH_AACProfile](#oh_aacprofile)或[OH_HEVCProfile](#oh_hevcprofile)。
+编码模板，值类型为数字，请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_QUALITY
 
-  
 ```
 const char* OH_MD_KEY_QUALITY
 ```
 
-**描述：**
+**描述**
 
-所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器
+所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_RANGE_FLAG
 
-  
 ```
 const char* OH_MD_KEY_RANGE_FLAG
 ```
 
-**描述：**
+**描述**
 
-视频YUV取值范围标志的键，值类型为bool
+视频YUV取值范围标志的键，值类型为bool。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_REQUEST_I_FRAME
 
-  
 ```
 const char* OH_MD_KEY_REQUEST_I_FRAME
 ```
 
-**描述：**
+**描述**
 
-请求立即编码I帧的键。值类型为布尔值
+请求立即编码I帧的键。值类型为bool。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_ROTATION
 
-  
 ```
 const char* OH_MD_KEY_ROTATION
 ```
 
-**描述：**
+**描述**
 
 表面旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_SBR
 
-  
 ```
 const char* OH_MD_KEY_SBR
 ```
 
-**描述：**
+**描述**
 
 aac sbr模式的键，值类型为uint32_t,aac编码器支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+
+
+### OH_MD_KEY_SCALING_MODE
+
+```
+const char* OH_MD_KEY_SCALING_MODE
+```
+
+**描述**
+
+视频表面尺度类型, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_SETUP_HEADER
 
-  
 ```
 const char* OH_MD_KEY_SETUP_HEADER
 ```
 
-**描述：**
+**描述**
 
 vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_TITLE
 
-  
 ```
 const char* OH_MD_KEY_TITLE
 ```
 
-**描述：**
+**描述**
 
-源格式标题的键，值类型为字符串
+源格式标题的键，值类型为string。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_TRACK_COUNT
 
-  
 ```
 const char* OH_MD_KEY_TRACK_COUNT
 ```
 
-**描述：**
+**描述**
 
-源格式轨道计数的键，值类型为uint32_t
+源格式轨道数量的键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_TRACK_TYPE
 
-  
 ```
 const char* OH_MD_KEY_TRACK_TYPE
 ```
 
-**描述：**
+**描述**
 
-提供统一容器，用于存储媒体描述。
+曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](#oh_mediatype)。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_KEY_TRANSFER_CHARACTERISTICS
 
-  
 ```
 const char* OH_MD_KEY_TRANSFER_CHARACTERISTICS
 ```
 
-**描述：**
+**描述**
 
-视频转移特性的键，值类型为int32_t
+视频转移特性的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 
-  
 ```
 const char* OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 ```
 
-**描述：**
+**描述**
 
-视频编码码率模式，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)
+视频编码码率模式，值类型为int32_t，请参见[ERROR:Invalid link:zh-cn_topic_0000001772826630.xml#xref1286296838204512,link:zh-cn_topic_0000001822452261.xml#gae1ca0225c2592c8a04cb86412b3b666d](zh-cn_topic_0000001822452261.xml#gae1ca0225c2592c8a04cb86412b3b666d)。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
+
+
+### OH_MD_KEY_VIDEO_IS_HDR_VIVID
+
+```
+const char* OH_MD_KEY_VIDEO_IS_HDR_VIVID
+```
+
+**描述**
+
+查询是否是hdr vivid的键，值类型为bool。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 11
 
 
 ### OH_MD_KEY_WIDTH
 
-  
 ```
 const char* OH_MD_KEY_WIDTH
 ```
 
-**描述：**
+**描述**
 
-视频宽度的键，值类型为uint32_t
+视频宽度的键，值类型为uint32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 9
 
 
 ### OH_MD_MAX_INPUT_BUFFER_COUNT
 
-  
 ```
 const char* OH_MD_MAX_INPUT_BUFFER_COUNT
 ```
 
-**描述：**
+**描述**
 
-输入buffer的最大个数，值类型为int32_t
+最大输入缓冲区个数的键, 值类型为int32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
 
 
 ### OH_MD_MAX_OUTPUT_BUFFER_COUNT
 
-  
 ```
 const char* OH_MD_MAX_OUTPUT_BUFFER_COUNT
 ```
 
-**描述：**
+**描述**
 
-输出buffer的最大个数，值类型为int32_t
+最大输出缓冲区个数的键, 值类型int32_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
