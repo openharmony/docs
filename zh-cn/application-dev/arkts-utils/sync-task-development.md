@@ -151,7 +151,7 @@ struct Index {
      }
    }
 
-   // Worker.ts代码
+   // MyWorker.ts代码
    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
    import Handle from './handle.ts'  // 返回句柄
 
