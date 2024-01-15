@@ -73,7 +73,6 @@
   - 相机最佳实践(ArkTS)
     - [拍照实现方案(ArkTS)](camera-shooting-case.md)
     - [录像实现方案(ArkTS)](camera-recording-case.md)
-    - [使用人像模式拍照(仅对系统应用开放)(ArkTS)](camera-mode.md)
     - [双路预览(ArkTS)](camera-dual-channel-preview.md)
     - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   - 相机开发指导(C/C++)

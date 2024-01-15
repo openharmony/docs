@@ -24,12 +24,6 @@ import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let context = getContext(this);
 
-function getImageReceiver(width: number, height: number, format: number, capacity: number): image.ImageReceiver {
-  //获取ImageReceiver
-  let imageReceiver: image.ImageReceiver = image.createImageReceiver(width, height, format, capacity);
-  return imageReceiver;
-}
-
 async function savePicture(buffer: ArrayBuffer, img: image.Image) {
   let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
   let testFileName = 'testFile' + Date.now() + '.jpg';
@@ -41,25 +35,30 @@ async function savePicture(buffer: ArrayBuffer, img: image.Image) {
   img.release(); 
 }
 
-function setImageArrivalCb(receiver: image.ImageReceiver) {
-//设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
-  receiver.on('imageArrival', (): void => {
-    receiver.readNextImage((errCode: BusinessError, imageObj: image.Image): void => {
-      if (errCode || imageObj === undefined) {
+function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+  //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
+  photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
+    console.info('getPhoto start');
+    console.info(`err: ${JSON.stringify(errCode)}`);
+    if (errCode || photo === undefined) {
+      console.error('getPhoto failed');
+      return;
+    }
+    let imageObj = photo.main;
+    imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+      console.info('getComponent start');
+      if (errCode || component === undefined) {
+        console.error('getComponent failed');
         return;
       }
-      imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
-        if (errCode || component === undefined) {
-          return;
-        }
-        let buffer: ArrayBuffer;
-        if (component.byteBuffer) {
-          buffer = component.byteBuffer;
-        } else {
-          return;
-        }
-        savePicture(buffer, imageObj);
-      });
+      let buffer: ArrayBuffer;
+      if (component.byteBuffer) {
+        buffer = component.byteBuffer;
+      } else {
+        console.error('byteBuffer is null');
+        return;
+      }
+      savePicture(buffer, imageObj);
     });
   });
 }
@@ -112,8 +111,15 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // 打开相机
   await cameraInput.open();
 
+  // 获取支持的模式类型
+  let modes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+  if (!isSupportPhotoMode) {
+    console.error('photo mode not support');
+    return;
+  }
   // 获取相机设备支持的输出流能力
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error");
     return;
@@ -146,16 +152,10 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     console.error(`Preview output error code: ${error.code}`);
   });
 
-  // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
-  let imageReceiver: image.ImageReceiver = getImageReceiver(1920, 1080, 4, 8);
-  //调用上面的回调函数来保存图片
-  setImageArrivalCb(imageReceiver);
-  // 获取照片显示SurfaceId
-  let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // 创建拍照输出流
   let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
-    photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
+    photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createPhotoOutput errorCode = ' + err.code);
@@ -163,25 +163,29 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   if (photoOutput === undefined) {
     return;
   }
+
+    //调用上面的回调函数来保存图片
+  setPhoptoOutputCb(photoOutput);
+
   //创建会话
-  let captureSession: camera.CaptureSession | undefined = undefined;
+  let photoSession: camera.PhotoSession | undefined = undefined;
   try {
-    captureSession = cameraManager.createCaptureSession();
+    photoSession = cameraManager.createSession(camera.SceneMode..NORMAL_PHOTO);
   } catch (error) {
     let err = error as BusinessError;
-    console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
+    console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
   }
-  if (captureSession === undefined) {
+  if (photoSession === undefined) {
     return;
   }
   // 监听session错误信息
-  captureSession.on('error', (error: BusinessError) => {
+  photoSession.on('error', (error: BusinessError) => {
     console.error(`Capture session error code: ${error.code}`);
   });
 
   // 开始配置会话
   try {
-    captureSession.beginConfig();
+    photoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to beginConfig. errorCode = ' + err.code);
@@ -189,7 +193,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
 
   // 向会话中添加相机输入流
   try {
-    captureSession.addInput(cameraInput);
+    photoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addInput. errorCode = ' + err.code);
@@ -197,7 +201,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
 
   // 向会话中添加预览输出流
   try {
-    captureSession.addOutput(previewOutput);
+    photoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addOutput(previewOutput). errorCode = ' + err.code);
@@ -205,34 +209,34 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
 
   // 向会话中添加拍照输出流
   try {
-    captureSession.addOutput(photoOutput);
+    photoSession.addOutput(photoOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
   }
 
   // 提交会话配置
-  await captureSession.commitConfig();
+  await photoSession.commitConfig();
 
   // 启动会话
-  await captureSession.start().then(() => {
+  await photoSession.start().then(() => {
     console.info('Promise returned to indicate the session start success.');
   });
   // 判断设备是否支持闪光灯
   let flashStatus: boolean = false;
   try {
-    flashStatus = captureSession.hasFlash();
+    flashStatus = photoSession.hasFlash();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to hasFlash. errorCode = ' + err.code);
   }
-  console.info('returned with the flash light support status:' + flashStatus);
+  console.info('Returned with the flash light support status:' + flashStatus);
 
   if (flashStatus) {
     // 判断是否支持自动闪光灯模式
     let flashModeStatus: boolean = false;
     try {
-      let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
+      let status: boolean = photoSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
       flashModeStatus = status;
     } catch (error) {
       let err = error as BusinessError;
@@ -241,7 +245,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     if(flashModeStatus) {
       // 设置自动闪光灯模式
       try {
-        captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
+        photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
       } catch (error) {
         let err = error as BusinessError;
         console.error('Failed to set the flash mode. errorCode = ' + err.code);
@@ -252,7 +256,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // 判断是否支持连续自动变焦模式
   let focusModeStatus: boolean = false;
   try {
-    let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    let status: boolean = photoSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
     focusModeStatus = status;
   } catch (error) {
     let err = error as BusinessError;
@@ -262,7 +266,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   if (focusModeStatus) {
     // 设置连续自动变焦模式
     try {
-      captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+      photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
     } catch (error) {
       let err = error as BusinessError;
       console.error('Failed to set the focus mode. errorCode = ' + err.code);
@@ -272,7 +276,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // 获取相机支持的可变焦距比范围
   let zoomRatioRange: Array<number> = [];
   try {
-    zoomRatioRange = captureSession.getZoomRatioRange();
+    zoomRatioRange = photoSession.getZoomRatioRange();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
@@ -282,7 +286,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
   // 设置可变焦距比
   try {
-    captureSession.setZoomRatio(zoomRatioRange[0]);
+    photoSession.setZoomRatio(zoomRatioRange[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
@@ -300,7 +304,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     console.info('Callback invoked to indicate the photo capture request success.');
   });
   // 停止当前会话
-  captureSession.stop();
+  photoSession.stop();
 
   // 释放相机输入流
   cameraInput.close();
@@ -312,10 +316,10 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   photoOutput.release();
 
   // 释放会话
-  captureSession.release();
+  photoSession.release();
 
   // 会话置空
-  captureSession = undefined;
+  photoSession = undefined;
 }
 ```
 
