@@ -692,7 +692,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 
 | 类型     | 说明           |
 | -------- | -------------- |
-| TextBlob | TextBlob对象。 |
+| [TextBlob](#textblob)| TextBlob对象。 |
 
 **示例：**
 
@@ -733,7 +733,7 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 
 | 类型     | 说明           |
 | -------- | -------------- |
-| TextBlob | TextBlob对象。 |
+| [TextBlob](#textblob)| TextBlob对象。 |
 
 **示例：**
 
@@ -774,7 +774,7 @@ bounds(): common2D.Rect
 
 | 类型          | 说明                   |
 | ------------- | ---------------------- |
-| common2D.Rect | 文字边界框的矩形区域。 |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 文字边界框的矩形区域。 |
 
 **示例：**
 
@@ -961,7 +961,7 @@ getTypeface(): Typeface
 
 | 类型     | 说明   |
 | -------- | ------ |
-| Typeface | 字体。 |
+| [Typeface](#typeface)| 字体。 |
 
 **示例：**
 
@@ -983,7 +983,7 @@ getMetrics(): FontMetrics
 
 | 类型        | 说明              |
 | ----------- | ----------------- |
-| FontMetrics | FontMetrics属性。 |
+| [FontMetrics](#fontmetrics) | FontMetrics属性。 |
 
 **示例：**
 
@@ -1059,7 +1059,7 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 | 类型        | 说明               |
 | ----------- | ------------------ |
-| ColorFilter | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1089,7 +1089,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 | 类型        | 说明               |
 | ----------- | ------------------ |
-| ColorFilter | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1114,7 +1114,7 @@ createLinearToSRGBGamma() : ColorFilter
 
 | 类型        | 说明               |
 | ----------- | ------------------ |
-| ColorFilter | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1135,7 +1135,7 @@ createSRGBGammaToLinear() : ColorFilter
 
 | 类型        | 说明               |
 | ----------- | ------------------ |
-| ColorFilter | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1156,7 +1156,7 @@ createLumaColorFilter() : ColorFilter
 
 | 类型        | 说明               |
 | ----------- | ------------------ |
-| ColorFilter | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
 
 **示例：**
 
