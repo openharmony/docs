@@ -109,3 +109,14 @@ fs的具体使用可以参考：[@ohos.file.fs](../reference/apis/js-apis-file-f
 
 [应用文件上传下载](../file-management/app-file-upload-download.md)
 
+## 如何监听文件或文件目录的变化
+
+适用于：OpenHarmony SDK 4.0 Release API 10
+
+**解决措施**
+
+通过fs.createWatcher，可注册监听回调，从而监听文件或者目录的变化。
+
+**参考链接：**
+
+[@ohos.file.fs](../reference/apis/js-apis-file-fs.md#fscreatewatcher10)
