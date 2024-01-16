@@ -30,10 +30,11 @@ module.json5中配置所需申请的权限
 
 代码中手动申请权限
 ```typescript
-import abilityAccessCtrl, {PermissionRequestResult, Permission} from '@ohos.abilityAccessCtrl';
-import {mContext} from '../entryability/EntryAbility'; // 获取的上下文，需自己定义
-        
-const permissions: Permission[] = ["ohos.permission.READ_CALENDAR", "ohos.permission.WRITE_CALENDAR"];
+import { Permissions } from '@kit.SafetyDetectKit';
+import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
+import { mContext } from '../entryability/EntryAbility'; // 获取的上下文，需自己定义
+
+const permissions: Permissions[] = ["ohos.permission.READ_CALENDAR", "ohos.permission.WRITE_CALENDAR"];
 const atManager = abilityAccessCtrl.createAtManager();
 atManager.requestPermissionsFromUser(mContext, permissions).then((data: PermissionRequestResult) => {
   console.log(`get Permission result: ${JSON.stringify(data)}`);
@@ -42,14 +43,12 @@ atManager.requestPermissionsFromUser(mContext, permissions).then((data: Permissi
 
 申请权限后获取calendarManager
 ```typescript
-import calendarManager from '@ohos.calendarManager';
-import {mContext} from '../entryability/EntryAbility'; // 获取的上下文，需自己定义
-        
+import { calendarManager } from '@kit.CalendarKit';
+import { mContext } from '../entryability/EntryAbility'; // 获取的上下文，需自己定义
+
 let calendarMgr: calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext);
 ```
 
-### 调用calendar Kit函数
+### Calendar Kit API文档参考
 
-- [getCalendar()](../reference/apis/js-apis-calendarManager.md#getcalendar)
-
-- [addEvent()](../reference/apis/js-apis-calendarManager.md#addevent)
+- [API文档参考](../reference/apis/js-apis-calendarManager.md)
