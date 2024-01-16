@@ -275,7 +275,7 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | start | number   | 否 | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
+| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是 | 文本样式。 |
 
 
@@ -286,7 +286,7 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | start | number   | 否 | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
+| end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示无穷大。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
 
@@ -339,7 +339,7 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | start | number   | 否 | 起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 结束位置，省略或者超出文本范围时表示到结尾。 |
+| end | number | 否 | 结束位置，省略或者超出文本范围时表示无穷大。 |
 
 
 ## 示例
