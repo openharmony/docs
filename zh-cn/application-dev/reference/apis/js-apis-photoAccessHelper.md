@@ -6846,6 +6846,107 @@ async function example() {
 }
 ```
 
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, proxy: PhotoProxy): void
+
+通过PhotoProxy数据添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统接口**：此接口为系统接口，仅提供给相机应用使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                   |
+| ------- |---------------------------------| ---- |----------------------|
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。            |
+| proxy | [PhotoProxy](#photoproxy11)     | 是   | 待添加资源的PhotoProxy 数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+|----------|-----------------------------------|
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                | 
+| 14000016 | Operation Not Support.            |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByPhotoProxyDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let photoProxy: PhotoProxy;
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, photoProxy);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByPhotoProxy successfully');
+  } catch (err) {
+    console.error('addResourceByPhotoProxyDemo failed with error: ' + err);
+  }
+}
+```
+
+### setLocation<sup>11+</sup>
+
+setLocation(longitude: number, latitude: number): void
+
+设置文件的经纬度信息。
+
+**系统接口**：此接口为系统接口
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型          | 必填 | 说明    |
+| ------- |-------------| ---- |-------|
+| longitude | number      | 是   | 经度。 |
+| latitude | number | 是   | 纬度。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      | Called by non-system application. |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setLocationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setLocation(120.52, 30.40);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setLocation successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setLocation failed with error:' + err);
+  });
+}
+```
+
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 批量资产变更请求。
@@ -7682,6 +7783,163 @@ async function example() {
 }
 ```
 
+## MediaAssetManager<sup>11+</sup>
+### requestImage<sup>11+</sup>
+
+static requestImage(context: Context, asset: PhotoAsset, requestOption: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，请求图片资源。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名            | 类型                                                                                                        | 必填 | 说明                      |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| assets         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。       
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源数据句柄，当所请求的图片资源准备完成时会触发回调。
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+    onDataPrepared(data: image.ImageSource) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImage(context, photoAsset, requestOptions, handler);
+      console.info('requestImage successfully');
+  });
+}
+```
+
+### requestImageData<sup>11+</sup>
+
+static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler, MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，请求图片资源数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
+| assets | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。       
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源数据句柄，当所请求的图片资源准备完成时会触发回调。
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+    onDataPrepared(data: ArrayBuffer) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImageData');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaDataHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+      console.info('requestImageData successfully');
+  });
+}
+```
+
+## MediaAssetDataHandler<sup>11+</sup>
+
+媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+## onDataPrepared(data: T)<sup>11+</sup>
+
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
+T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明                                                                            |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | 是   | 泛型，支持 ArrayBuffer 与 [ImageSource](js-apis-image.md#imagesource) 两种数据类型。 |
+
+**示例**
+```ts
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+    onDataPrepared(data: image.ImageSource) {
+        console.info('on image data prepared');
+    }
+}}
+
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+    onDataPrepared(data: ArrayBuffer) {
+        console.info('on image data prepared');
+    }
+}}
+```
+
 ## MemberType
 
 成员类型。
@@ -7881,6 +8139,23 @@ title参数规格为：
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
+## RequestOptions<sup>11+</sup>
+
+请求策略。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
+| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式 三种策略。 |
+| sourceMode           | [SourceMode](#sourcemode11)     | 是   | 是   | 请求图片源文件模式，可以指定当前请求获取的是编辑前的图片，或是编辑后的图片 |
+
+## PhotoProxy<sup>11+</sup>
+
+照片代理，相机应用通过该对象写入图片数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## MediaChangeRequest<sup>11+</sup>
 
 媒体变更请求，资产变更请求和相册变更请求的父类型。
@@ -8013,6 +8288,19 @@ title参数规格为：
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
 | isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。 |
+
+
+## DeliveryMode<sup>11+</sup>
+
+枚举，请求图片分发模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| FAST_MODE |  1 |  快速模式。 |
+| HIGH_QUALITY_MODE |  2 |  高质量模式。 |
+| BALANCE_MODE |  3 |  均衡模式。 |
 
 ## SourceMode<sup>11+</sup>
 
