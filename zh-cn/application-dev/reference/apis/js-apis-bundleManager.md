@@ -573,7 +573,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
-let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
+let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 let userId = 100;
 
 try {
@@ -628,7 +628,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
-let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
     bundleManager.getApplicationInfo(bundleName, appFlags, (err, data) => {
@@ -689,7 +689,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = 'com.example.myapplication';
-let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 let userId = 100;
 
 try {
