@@ -1044,7 +1044,7 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 使用指定的颜色和混合模式创建颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1074,7 +1074,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 创建一个先应用inner进行滤波，再应用outer进行滤波的组合颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1106,7 +1106,7 @@ createLinearToSRGBGamma() : ColorFilter
 
 创建一个从线性颜色空间转换到SRGB颜色空间的颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1127,7 +1127,7 @@ createSRGBGammaToLinear() : ColorFilter
 
 创建一个从SRGB颜色空间转换到线性颜色空间的颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1148,7 +1148,7 @@ createLumaColorFilter() : ColorFilter
 
 创建一个将亮度与透明度相乘的颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1173,7 +1173,7 @@ setColor(color: common2D.Color) : void
 
 用于设置画笔的颜色。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1197,7 +1197,7 @@ setStrokeWidth(width: number) : void
 
 用于设置画笔的线宽。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1219,7 +1219,7 @@ setAntiAlias(aa: boolean) : void
 
 用于设置画笔是否开启反走样。开启后，可以使得图形的边缘在显示时更平滑。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1241,7 +1241,7 @@ setAlpha(alpha: number) : void
 
 用于设置画笔的透明度。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1263,7 +1263,7 @@ setColorFilter(filter: ColorFilter) : void
 
 用于给画笔添加额外的颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1286,7 +1286,7 @@ setBlendMode(mode: BlendMode) : void
 
 用于设置画笔的混合模式。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1308,7 +1308,7 @@ setDither(dither: boolean) : void
 
 开启画笔的抖动绘制效果。抖动绘制可以使得绘制出的颜色更加真实。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1334,7 +1334,7 @@ setColor(color: common2D.Color) : void
 
 用于设置画刷的颜色。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1358,7 +1358,7 @@ setAntiAlias(aa: boolean) : void
 
 用于设置画刷是否开启反走样。开启后，可以使得图形的边缘在显示时更平滑。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1380,7 +1380,7 @@ setAlpha(alpha: number) : void
 
 用于设置画刷的透明度。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1402,7 +1402,7 @@ setColorFilter(filter: ColorFilter) : void
 
 用于给画刷添加额外的颜色滤波器。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1425,7 +1425,7 @@ setBlendMode(mode: BlendMode) : void
 
 用于设置画刷的混合模式。
 
-**系统能力：**SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
