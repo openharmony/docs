@@ -2,16 +2,15 @@
 
 ## 功能介绍
 
-SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单易用。工具可以检测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Trace、Temp等，通过量化的指标项帮忙了解游戏性能状况。在开发过程中，使用的可能是有屏或无屏设备，对此SmartPerf提供了两种方式：分别是SmartPerf-Device和SmartPerf-Daemon。SmartPerf-Device适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。SmartPerf-Daemon支持shell命令行方式，适用于无屏设备。
+SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单易用。工具可以检测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用性能状况。在开发过程中，使用的可能是有屏或无屏设备，对此SmartPerf提供了两种方式：分别是SmartPerf-Device和SmartPerf-Daemon。SmartPerf-Device适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。SmartPerf-Daemon支持shell命令行方式，同时适用于有屏和无屏设备。
 
 - CPU：每秒读取一次设备节点下CPU大中小核的频点和各核使用率，衡量应用占用CPU资源的情况，占用过多的CPU资源会导致芯片发烫。
-- GPU：每秒读取一次设备节点下CPU大中小核的频点和负载信息，衡量应用占用GPU资源的情况，占用过多的GPU资源会导致芯片发烫的现象。
-- FPS：应用界面每秒刷新次数，衡量游戏画面的流畅度，刷新次数（帧率）越高，画面越流畅。
-- POWER：每秒读取一次设备节点下的电流信息、电池的电压信息。
-- TEMP：每秒读取一次设备节点下电池等温度信息。
-- RAM：每秒读取一次应用进程的实际物理内存，衡量应用的内存占比情况
-- TRACE：当帧绘制时间超过100ms时，自动抓取trace，1min内抓取1次。
-- 屏幕截图：每秒截取一张应用界面截图。
+- GPU：每秒读取一次设备节点下GPU的频点和负载信息，衡量应用占用GPU资源的情况，当GPU占用过多时，会导致性能下降，应用程序的运行速度变慢。
+- FPS：应用界面每秒刷新次数，衡量应用画面的流畅度，FPS越高表示图像流畅度越好，用户体验也越好。
+- POWER：每秒读取一次设备节点下的电流及电压信息。
+- TEMP：每秒读取一次设备节点下电池温度、系统芯片温度等信息。
+- RAM：每秒读取一次应用进程的实际物理内存，衡量应用的内存占比情况。
+- snapshot：每秒截取一张应用界面截图。
 
 ## 实现原理
 
@@ -41,18 +40,18 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 ![图片说明](figures/SmartPerfConfig2.png)
 ![图片说明](figures/SmartPerfConfig3.png)
 
-2.设置采集参数。
+2.设置采集参数
 
 应用选择完成后回到开始测试页面，根据实际业务需要，配置"测试指标"。同时，可修改测试名称（测试名称包含测试的应用名称和测试时间，会呈现在报告列表中），是否抓取trace，选择是否开启截图。配置完成后，点击底部"开始测试"按钮。
 
-3.悬浮窗控制采集。
+3.悬浮窗控制采集
 
 点击悬浮窗"start"开始采集，点击悬浮窗"计时器"（如下图中00:07）暂停采集。再次点击"计时器"，继续开始采集。双击"计时器"，实时展示采集数据。长按"计时器"，结束采集。<br>整个过程中，可拖动悬浮框调整悬浮框位置。
 
 ![图片说明](figures/SmartPerfControl1.png)
 ![图片说明](figures/SmartPerfControl2.png)
 
-4.查看报告。
+4.查看报告
 
 点击"报告"，查看测试报告列表。点击项目，进入报告详情页，查看测试指标项详情。
 
@@ -61,35 +60,40 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
 ### SmartPerf-Daemon
 
-**命令参数**
+**基础采集命令参数**
 
 | 命令   | 功能                   |必选|
 | :-----| :--------------------- |:-----|
-| -N    | 设置采集次数(一秒采集一次)             |是|
+| -N    | 设置采集次数(一秒采集一次)|是|
 | -PKG  | 设置包名                | 否|
-| -c    | 采集cpu的频点和使用率            | 否|
-| -g    | 采集gpu的频点和负载信息            |否|
-| -f    | 采集指定应用的fps             |否|
-| -profilerfps | 采集fps |否|
-| -t    | 采集电池等温度             |否|
-| -p    | 采集电流             |否|
-| -r    | 采集内存占比             |否|
-| -snapshot | 屏幕截图 |否|
-| -net | 采集网络速率 |否|
-| -start | 开始采集 |否|
-| -stop | 结束采集 |否|
-| -VIEW | 设置图层 |否|
+| -c    | 采集cpu的频点和使用率，设置应用包名：采集整机和应用CPU信息，不设置应用包名：采集整机CPU信息     | 否|
+| -g    | 采集gpu的频点和负载信息   |否|
+| -f    | 采集指定应用的fps，必须设置应用包名        |否|
+| -profilerfps | 采集当前界面fps          |否|
+| -t    | 采集电池等温度           |否|
+| -p    | 采集电流                 |否|
+| -r    | 采集内存，设置应用包名：采集整机和应用内存信息，不设置应用包名：采集整机内存信息             |否|
+| -snapshot | 屏幕截图             |否|
+| -net | 采集网络速率              |否|
+| -VIEW | 设置图层，需要先获取应用图层名                |否|
+
+**启停采集命令参数**
+
+| 命令   | 功能                   |必选|
+| :-----| :--------------------- |:-----|
+| -start | 开始采集，该命令后可添加基础采集命令             |是|
+| -stop | 结束采集，执行后会生成采集报告              |是|
 
 **命令行使用示例**
 
-1.Win + R 打开命令行窗口，进入shell下。
+1.Win + R 打开命令行窗口，进入shell下
 
   ```
   C:\Users\issusser>hdc shell  // 使用示例
   #
   ```
 
-2.拉起daemon进程。
+2.拉起daemon进程
 
   ```
   C:\Users\issusser>hdc shell
@@ -97,7 +101,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-3.查看daemon进程是否存在。
+3.查看daemon进程是否存在
 
   ```
   C:\Users\issusser>hdc shell
@@ -108,10 +112,10 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-4.执行查看帮助命令。
+4.执行查看帮助命令
 
   ```
-  # SP_daemon --helpvoltage_now
+  # SP_daemon --help
   usage: SP_daemon <options> <arguments>
   --------------------------------------------------------------------
   These are common commands list:
@@ -135,12 +139,18 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   ---------------------------------------------------------------------------------------
   Example 2: SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot
   ---------------------------------------------------------------------------------------
-
+  -------------------------------
+  Example 3: SP_daemon -start -c
+  -------------------------------
+  -------------------------------
+  Example 4: SP_daemon -stop
+  -------------------------------
+    
  command exec finished!
  #
  ```
 
-5.执行采集命令。 
+5.执行采集命令
 
   5.1 采集2次整机CPU大中小核频率、各核使用率。
 
@@ -163,13 +173,13 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.2 采集整机CPU大中小核频率、各核使用率，以及进程CPU使用率、负载。
+  5.2 采集整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
-  # SP_daemon -N 2 -PKG com.huawei.hmos.browser -c
+  # SP_daemon -N 2 -PKG ohos.samples.ecg -c
 
   order:0 timestamp=1705043036099
-  order:1 ProcAppName=com.huawei.hmos.browser
+  order:1 ProcAppName=ohos.samples.ecg
   order:2 ProcCpuLoad=0.008766
   order:3 ProcCpuUsage=0.025100
   order:4 ProcId=8815
@@ -190,7 +200,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.3 采集1次整机GPU频率和负载。
+  5.3 采集1次整机GPU频率和负载
 
   ```
   # SP_daemon -N 1 -g
@@ -203,45 +213,45 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.4 采集2次整机温度。
+  5.4 采集2次整机温度
 
-    ```
-    # SP_daemon -N 2 -t
+  ```
+  # SP_daemon -N 2 -t
 
-    order:0 timestamp=1705042469378
-    order:1 Battery=36.000000
-    order:2 shell_back=38.962000
-    order:3 shell_frame=37.962000
-    order:4 shell_front=42.663000
-    order:5 soc_thermal=48.645000
-    order:6 system_h=38.277000
+  order:0 timestamp=1705042469378
+  order:1 Battery=36.000000
+  order:2 shell_back=38.962000
+  order:3 shell_frame=37.962000
+  order:4 shell_front=42.663000
+  order:5 soc_thermal=48.645000
+  order:6 system_h=38.277000
 
-    order:0 timestamp=1705042470389
-    order:1 Battery=36.000000
-    order:2 shell_back=38.962000
-    order:3 shell_frame=37.962000
-    order:4 shell_front=42.663000
-    order:5 soc_thermal=48.486000
-    order:6 system_h=38.277000
+  order:0 timestamp=1705042470389
+  order:1 Battery=36.000000
+  order:2 shell_back=38.962000
+  order:3 shell_frame=37.962000
+  order:4 shell_front=42.663000
+  order:5 soc_thermal=48.486000
+  order:6 system_h=38.277000
 
-    command exec finished!
-    #
-    ```
+  command exec finished!
+  #
+  ```
 
-  5.5 采集1次整机电流和电压。
+  5.5 采集1次整机电流和电压
 
-    ```
-    # SP_daemon -N 1 -p
+  ```
+  # SP_daemon -N 1 -p
 
-    order:0 timestamp=1705041491090
-    order:1 currentNow=-255
-    order:2 voltageNow=4377614
+  order:0 timestamp=1705041491090
+  order:1 currentNow=-255
+  order:2 voltageNow=4377614
 
-    command exec finished!
-    #
-    ```
+  command exec finished!
+  #
+  ```
 
-  5.6 采集整机2次内存。
+  5.6 采集整机2次内存
 
   ```
   # SP_daemon -N 2 -r
@@ -259,10 +269,10 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-5.7 采集2次整机和进程内存。
+  5.7 采集2次整机和进程内存
 
-```
-# SP_daemon -N 2 -PKG com.huawei.hmos.settings -r
+  ```
+  # SP_daemon -N 2 -PKG ohos.samples.ecg -r
 
   order:0 timestamp=1705041668525
   order:1 memAvailable=7350856
@@ -280,7 +290,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.8 采集2次截图。
+  5.8 采集2次截图
 
   ```
   # SP_daemon -N 2 -snapshot
@@ -300,11 +310,11 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >
   >- 截图报告存放路径为data/local/tmp/capture。
   >
-  >- 采集成功后：cd进入 data/local/tmp/capture ls 查看生成的截图。
+  >- 采集成功后：进入 data/local/tmp/capture 查看生成的截图。
   >
   >- 导出截图：重启一个命令行工具执行如下命令： hdc file recv data/local/tmp/ screenCap_1700725192774.png D:\。
 
-  5.9 采集2次网络速率。
+  5.9 采集2次网络速率
 
   ```
   # SP_daemon -N 2 -net
@@ -321,10 +331,10 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.10 采集5次指定应用帧率。
+  5.10 采集5次指定应用帧率
 
   ```
-  # SP_daemon -N 5 -PKG com.huawei.hmos.settings -f
+  # SP_daemon -N 5 -PKG ohos.samples.ecg -f
 
   order:0 timestamp=1705306472232
   order:1 fps=43
@@ -338,9 +348,9 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.11 采集5次应用指定图层帧率。
+  5.11 采集5次应用指定图层帧率
 
-  - 1.获取应用图层名
+  - 获取应用图层名
 
     ```
     # hidumper -s 10 -a surface | grep surface
@@ -350,7 +360,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     #
     ```
 
-  - 2.采集指定图层帧率
+  - 采集指定图层帧率
 
     ```
     # SP_daemon -N 10 -VIEW DisplayNode -f
@@ -365,7 +375,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     #
     ```
 
-  5.12 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、屏幕截图、网络速率、内存信息。
+  5.12 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、屏幕截图、网络速率、内存信息
 
   ```
   # SP_daemon -N 10 -c -g -t -p -snapshot -net -r
@@ -386,13 +396,13 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.13 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、fps、屏幕截图、网络速率、内存信息。
+  5.13 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、fps、屏幕截图、网络速率、内存信息
 
   ```
-  # SP_daemon -N 10 -PKG com.huawei.hmos.browser -c -g -t -p -f -snapshot -net -r
+  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -snapshot -net -r
 
   order:0 timestamp=1705307489445
-  order:1 ProcAppName=com.huawei.hmos.browser
+  order:1 ProcAppName=ohos.samples.ecg
   order:2 ProcCpuLoad=0.000001
   order:3 ProcCpuUsage=0.000000
   order:4 ProcId=13131
@@ -413,7 +423,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.14 采集fps。fps信息需单独采集，不跟随整机全量信息一起采集。
+  5.14 采集当前界面fps(需单独采集，不跟随整机全量信息一起采集)
 
   ```
   # SP_daemon -profilerfps 10
@@ -433,7 +443,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
-  5.15 分时间段采集。分时间段采集的数据需单独采集，不跟随整机和指定应用全量信息一起采集。
+  5.15 fps分时间段采集(需单独采集，不跟随整机全量信息一起采集)
 
   ```
   # SP_daemon -profilerfps 10 -section 10
@@ -455,6 +465,28 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   #
   ```
 
+  5.16 启停服务（开始采集）
+
+  ```
+  # SP_daemon -start -c
+  SP_daemon Collection begins
+  command exec finished!
+  #
+  ```
+
+  5.17 启停服务（结束采集）
+
+  ```
+  # SP_daemon -stop
+  SP_daemon Collection ended
+  Output Path: data/local/tmp/smartperf/1/t_index_info_csv
+  command exec finished!
+  #
+  ```
+  >**说明**
+  >
+  >- 启停服务文件路径为：data/local/tmp/smartperf/1/t_index_info.csv
+  >- 查看与导出方式同下
 
 6.输出测试结果和查看测试结果。
 
@@ -495,8 +527,8 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | cpusoftIrqUsage   | 软中断的使用率         |%| 
     | cpusystemUsage    | 系统/内核态使用率      |%|
     | cpuuserUsage      | 用户态使用率           |%| 
-    | ProcId            | 进程id                |%|
-    | ProcAppName       | app名                 |%| 
+    | ProcId            | 进程id                ||
+    | ProcAppName       | app名                 || 
     | ProcCpuLoad       | 进程CPU负载占比        |%|
     | ProcCpuUsage      | 进程CPU使用率          |%| 
     | ProcUCpuUsage     | 进程用户态CPU使用率     |%|
@@ -512,7 +544,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | shell_front       | 前壳温度              |单位℃|
     | shell_frame       | 边框温度              |单位℃|
     | shell_back        | 后壳温度              |单位℃|
-    | soc_thermal       | SOC温度              |单位°C|
+    | soc_thermal       | 系统芯片温度          |单位°C|
     | system_h          | 系统温度             |单位°C|
     | Battery           | 电池温度             |单位°C|
     | memAvailable      | 整机可用内存         |单位B|
