@@ -2736,7 +2736,9 @@ let descriptor: ble.BLEDescriptor = {
 };
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeDescriptorValue(descriptor);
+    device.writeDescriptorValue(descriptor).then(() => {
+        console.info('writeDescriptorValue promise success');
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
