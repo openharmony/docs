@@ -16,9 +16,902 @@ import image from '@ohos.multimedia.image';
 
 图像像素类，需要先通过[createPixelMap](#createpixelmap7)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
 
-从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。  
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。
+
+
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称              | 类型    | 可读 | 可写 | 说明                       |
+| -----------------| ------- | ---- | ---- | -------------------------- |
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
+
+
+### readPixelsToBuffer<sup>11+</sup>
+
+readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
+
+读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                                                  |
+| ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| -------------- | ----------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+        console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
+    }).catch((error : BusinessError) => {
+        console.error('Failed to read image pixel data.');  //不符合条件则进入
+    })
+}
+```
+
+### readPixelsToBuffer<sup>11+</sup>
+
+readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
+
+读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                                                                  |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
+        if(err) {
+            console.error('Failed to read image pixel data.');  //不符合条件则进入
+            return;
+        } else {
+            console.log('Succeeded in reading image pixel data.');  //符合条件则进入
+        }
+    })
+}
+```
+
+### readPixels<sup>11+</sup>
+
+readPixels(area: PositionArea): Promise\<void>
+
+读取区域内的图片数据，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                     |
+| ------ | ------------------------------ | ---- | ------------------------ |
+| area   | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。 |
+
+**返回值：**
+
+| 类型           | 说明                                                |
+| :------------- | :-------------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取读取结果，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    pixelMap.readPixels(area).then(() => {
+        console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
+    }).catch((error : BusinessError) => {
+        console.error('Failed to read the image data in the area.'); //不符合条件则进入
+    })
+}
+```
+
+### readPixels<sup>11+</sup>
+
+readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
+
+读取区域内的图片数据，使用callback形式返回读取结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                           |
+| -------- | ------------------------------ | ---- | ------------------------------ |
+| area     | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。       |
+| callback | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    pixelMap.readPixels(area, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error('Failed to read pixelmap from the specified area.');
+            return;
+        } else {
+            console.info('Succeeded to read pixelmap from the specified area.');
+        }
+    })
+}
+```
+
+### writePixels<sup>11+</sup>
+
+writePixels(area: PositionArea): Promise\<void>
+
+将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                 |
+| ------ | ------------------------------ | ---- | -------------------- |
+| area   | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。 |
+
+**返回值：**
+
+| 类型           | 说明                                                |
+| :------------- | :-------------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取写入结果，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writePixels(area).then(() => {
+        console.info('Succeeded to write pixelmap into the specified area.');
+    }).catch((error : BusinessError) => {
+        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+    })
+}
+```
+
+### writePixels<sup>11+</sup>
+
+writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
+
+将PixelMap写入指定区域内，使用callback形式返回写入结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名    | 类型                           | 必填 | 说明                           |
+| --------- | ------------------------------ | ---- | ------------------------------ |
+| area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
+| callback  | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const area : image.PositionArea = { pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writePixels(area, (error : BusinessError) => {
+        if (error != undefined) {
+            console.error('Failed to write pixelmap into the specified area.');
+            return;
+        } else {
+            console.info('Succeeded to write pixelmap into the specified area.');
+        }
+    })
+}
+```
+
+### writeBufferToPixels<sup>11+</sup>
+
+writeBufferToPixels(src: ArrayBuffer): Promise\<void>
+
+读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明           |
+| ------ | ----------- | ---- | -------------- |
+| src    | ArrayBuffer | 是   | 图像像素数据。 |
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| -------------- | ----------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writeBufferToPixels(color).then(() => {
+        console.log("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error : BusinessError) => {
+        console.error("Failed to write data from a buffer to a PixelMap.");
+    })
+}
+```
+
+### writeBufferToPixels<sup>11+</sup>
+
+writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
+
+读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| src      | ArrayBuffer          | 是   | 图像像素数据。                 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to write data from a buffer to a PixelMap.");
+            return;
+        } else {
+            console.log("Succeeded in writing data from a buffer to a PixelMap.");
+        }
+    })
+}
+```
+
+### getImageInfo<sup>11+</sup>
+
+getImageInfo(): Promise\<ImageInfo>
+
+获取图像像素信息，使用Promise形式返回获取的图像像素信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                              | 说明                                                        |
+| --------------------------------- | ----------------------------------------------------------- |
+| Promise\<[ImageInfo](#imageinfo)> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+async function Demo() {
+    pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+        if (imageInfo == undefined) {
+            console.error("Failed to obtain the image pixel map information.");
+        }
+        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+            console.log("Succeeded in obtaining the image pixel map information.");
+        }
+    })
+}
+```
+
+### getImageInfo<sup>11+</sup>
+
+getImageInfo(callback: AsyncCallback\<ImageInfo>): void
+
+获取图像像素信息，使用callback形式返回获取的图像像素信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | 是   | 获取图像像素信息回调，异步返回图像像素信息，失败时返回错误信息。 |
+
+**示例:**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
+        if (imageInfo == undefined) {
+            console.error("Failed to obtain the image pixel map information.");
+            return;
+        }
+        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+            console.log("Succeeded in obtaining the image pixel map information.");
+        }
+    })
+}
+```
+
+### getBytesNumberPerRow<sup>11+</sup>
+
+getBytesNumberPerRow(): number
+
+获取图像像素每行字节数。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| number | 图像像素的行字节数。 |
+
+**示例：**
+
+```ts
+let rowCount : number = pixelMap.getBytesNumberPerRow();
+```
+
+### getPixelBytesNumber<sup>11+</sup>
+
+getPixelBytesNumber(): number
+
+获取图像像素的总字节数。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| number | 图像像素的总字节数。 |
+
+**示例：**
+
+```ts
+let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
+```
+
+### getDensity<sup>11+</sup>
+
+getDensity():number
+
+获取当前图像像素的密度。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型   | 说明            |
+| ------ | --------------- |
+| number | 图像像素的密度。|
+
+**示例：**
+
+```ts
+let getDensity : number = pixelMap.getDensity();
+```
+
+### opacity<sup>11+</sup>
+
+opacity(rate: number, callback: AsyncCallback\<void>): void
+
+通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| rate     | number               | 是   | 透明比率的值。   |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let rate : number = 0.5;
+    pixelMap.opacity(rate, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to set opacity.");
+            return;
+        } else {
+            console.log("Succeeded in setting opacity.");
+        }
+    })
+}
+```
+
+### opacity<sup>11+</sup>
+
+opacity(rate: number): Promise\<void>
+
+通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                        |
+| ------ | ------ | ---- | --------------------------- |
+| rate   | number | 是   | 透明比率的值。|
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| -------------- | ----------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let rate : number = 0.5;
+    await pixelMap.opacity(rate).then(() => {
+        console.log('Sucessed in setting opacity.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to set opacity.');
+    })
+}
+```
+
+### createAlphaPixelmap<sup>11+</sup>
+
+createAlphaPixelmap(): Promise\<PixelMap>
+
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                        |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise实例，返回pixelmap。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    await pixelMap.createAlphaPixelmap().then((alphaPixelMap : image.PixelMap) => {
+        console.log('Succeeded in creating alpha pixelmap.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create alpha pixelmap.');
+    })
+}
+```
+
+### createAlphaPixelmap<sup>11+</sup>
+
+createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
+
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                     |
+| -------- | ------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   | 获取回调，异步返回结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
+        if (alphaPixelMap == undefined) {
+            console.error('Failed to obtain new pixel map.');
+            return;
+        } else {
+            console.info('Succeed in obtaining new pixel map.');
+        }
+    })
+}
+```
+
+### scale<sup>11+</sup>
+
+scale(x: number, y: number, callback: AsyncCallback\<void>): void
+
+根据输入的宽高对图片进行缩放，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                            |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | 是   | 宽度的缩放倍数。|
+| y        | number               | 是   | 高度的缩放倍数。|
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let scaleX : number = 2.0;
+    let scaleY : number = 1.0;
+    pixelMap.scale(scaleX, scaleY, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to scale pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in scaling pixelmap.");
+        }
+    })
+}
+```
+
+### scale<sup>11+</sup>
+
+scale(x: number, y: number): Promise\<void>
+
+根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let scaleX : number = 2.0;
+    let scaleY : number = 1.0;
+    await pixelMap.scale(scaleX, scaleY).then(() => {
+        console.log('Sucessed in scaling pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to scale pixelmap.');
+    })
+}
+```
+
+### translate<sup>11+</sup>
+
+translate(x: number, y: number, callback: AsyncCallback\<void>): void
+
+根据输入的坐标对图片进行位置变换，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| x        | number               | 是   | 区域横坐标。                  |
+| y        | number               | 是   | 区域纵坐标。                  |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    pixelMap.translate(translateX, translateY, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to translate pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in translating pixelmap.");
+        }
+    })
+}
+```
+
+### translate<sup>11+</sup>
+
+translate(x: number, y: number): Promise\<void>
+
+根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明        |
+| ------ | ------ | ---- | ----------- |
+| x      | number | 是   | 区域横坐标。|
+| y      | number | 是   | 区域纵坐标。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    await pixelMap.translate(translateX, translateY).then(() => {
+        console.log('Sucessed in translating pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to translate pixelmap.');
+    })
+}
+```
+
+### rotate<sup>11+</sup>
+
+rotate(angle: number, callback: AsyncCallback\<void>): void
+
+根据输入的角度对图片进行旋转，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| angle    | number               | 是   | 图片旋转的角度。              |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let angle : number = 90.0;
+    pixelMap.rotate(angle, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to rotate pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in rotating pixelmap.");
+        }
+    })
+}
+```
+
+### rotate<sup>11+</sup>
+
+rotate(angle: number): Promise\<void>
+
+根据输入的角度对图片进行旋转，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                          |
+| ------ | ------ | ---- | ----------------------------- |
+| angle  | number | 是   | 图片旋转的角度。              |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let angle : number = 90.0;
+    await pixelMap.rotate(angle).then(() => {
+        console.log('Sucessed in rotating pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to rotate pixelmap.');
+    })
+}
+```
+
+### flip<sup>11+</sup>
+
+flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
+
+根据输入的条件对图片进行翻转，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                          |
+| ---------- | -------------------- | ---- | ----------------------------- |
+| horizontal | boolean              | 是   | 水平翻转。                    |
+| vertical   | boolean              | 是   | 垂直翻转。                    |
+| callback   | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    pixelMap.flip(horizontal, vertical, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to flip pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in flipping pixelmap.");
+        }
+    })
+}
+```
+
+### flip<sup>11+</sup>
+
+flip(horizontal: boolean, vertical: boolean): Promise\<void>
+
+根据输入的条件对图片进行翻转，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明      |
+| ---------- | ------- | ---- | --------- |
+| horizontal | boolean | 是   | 水平翻转。|
+| vertical   | boolean | 是   | 垂直翻转。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    await pixelMap.flip(horizontal, vertical).then(() => {
+        console.log('Sucessed in flipping pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to flip pixelmap.');
+    })
+}
+```
+
+### crop<sup>11+</sup>
+
+crop(region: Region, callback: AsyncCallback\<void>): void
+
+根据输入的尺寸对图片进行裁剪，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    pixelMap.crop(region, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to crop pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in cropping pixelmap.");
+        }
+    })
+}
+```
+
+### crop<sup>11+</sup>
+
+crop(region: Region): Promise\<void>
+
+根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明        |
+| ------ | ------------------ | ---- | ----------- |
+| region | [Region](#region7) | 是   | 裁剪的尺寸。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await pixelMap.crop(region).then(() => {
+        console.log('Sucessed in cropping pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to crop pixelmap.');
+    });
+}
+```
 
 ## image.createImageSource
 
