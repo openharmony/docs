@@ -119,8 +119,8 @@ To create a widget in the stage model, you need to implement the lifecycle callb
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
         // Called when the widget is created. The widget provider should return the widget data binding class.
         let obj: Record<string, string> = {
-         title: 'titleOnCreate',
-         detail: 'detailOnCreate'
+         'title': 'titleOnCreate',
+         'detail': 'detailOnCreate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         return formData;
@@ -133,8 +133,8 @@ To create a widget in the stage model, you need to implement the lifecycle callb
         // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
         let obj: Record<string, string> = {
-          title: 'titleOnUpdate',
-          detail: 'detailOnUpdate'
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
@@ -160,7 +160,6 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    ```
 
 > **NOTE**
->
 > FormExtensionAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
 
 
@@ -254,7 +253,6 @@ import type common from '@ohos.app.ability.common';
 import dataPreferences from '@ohos.data.preferences';
 import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formProvider from '@ohos.app.form.formProvider';
 import hilog from '@ohos.hilog';
 import type Want from '@ohos.app.ability.Want';
 
@@ -265,9 +263,9 @@ const DOMAIN_NUMBER: number = 0xFF00;
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
   // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
   let formInfo: Record<string, string | boolean | number> = {
-    formName: formName,
-    tempFlag: tempFlag,
-    updateCount: 0
+    'formName': formName,
+    'tempFlag': tempFlag,
+    'updateCount': 0
   };
   try {
     const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -294,8 +292,8 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     }
 
     let obj: Record<string, string> = {
-      title: 'titleOnCreate',
-      detail: 'detailOnCreate'
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
@@ -310,11 +308,8 @@ You should override **onRemoveForm** to implement widget data deletion.
 import type Base from '@ohos.base';
 import type common from '@ohos.app.ability.common';
 import dataPreferences from '@ohos.data.preferences';
-import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formProvider from '@ohos.app.form.formProvider';
 import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -374,8 +369,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
     let obj: Record<string, string> = {
-      title: 'titleOnUpdate',
-      detail: 'detailOnUpdate'
+      'title': 'titleOnUpdate',
+      'detail': 'detailOnUpdate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
@@ -630,23 +625,25 @@ The following are examples:
   import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
+  import hilog from '@ohos.hilog';
 
   const TAG: string = 'JsCardEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (want.parameters) {
-      let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
-      // Obtain the info parameter passed in the router event.
-      if (params.info === 'router info') {
-        // do something
-        hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
-      }
-      // Obtain the message parameter passed in the router event.
-      if (params.message === 'router message') {
-        // do something
-        hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+      if (want.parameters) {
+        let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+        // Obtain the info parameter passed in the router event.
+        if (params.info === 'router info') {
+          // Execute the service logic.
+          hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
+        }
+        // Obtain the message parameter passed in the router event.
+        if (params.message === 'router message') {
+          // Execute the service logic.
+          hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+        }
       }
     }
   };
@@ -657,6 +654,10 @@ The following are examples:
   
   ```ts
   import FormExtension from '@ohos.app.form.FormExtensionAbility';
+  import hilog from '@ohos.hilog';
+
+  const TAG: string = 'FormAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
   export default class FormAbility extends FormExtension {
     onFormEvent(formId: string, message: string): void {
@@ -665,7 +666,7 @@ The following are examples:
       // Obtain the detail parameter passed in the message event.
       let msg: Record<string, string> = JSON.parse(message);
       if (msg.detail === 'message detail') {
-        // do something
+        // Execute the service logic.
         hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
       }
     }
