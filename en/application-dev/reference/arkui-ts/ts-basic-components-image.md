@@ -346,4 +346,3 @@ struct ImageExample4 {
   }
 }
 ```
-<!--no_check-->

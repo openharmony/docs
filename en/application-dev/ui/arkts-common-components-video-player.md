@@ -270,4 +270,3 @@ The video controller is used to control video playback. For details, see [VideoC
 ## Remarks
 
 The **\<Video>** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Video Playback](../media/video-playback.md).
-<!--no_check-->

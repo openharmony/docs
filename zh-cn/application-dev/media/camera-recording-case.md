@@ -92,7 +92,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth: 640,
     videoFrameHeight: 480,
     videoFrameRate: 30

@@ -302,7 +302,7 @@ int main() {
     };
 
     OH_VideoEncInfo videoEncInfo = {
-        .videoCodec = OH_MPEG4,
+        .videoCodec = OH_H264,
         .videoBitrate = 2000000,
         .videoFrameRate = 30
     };

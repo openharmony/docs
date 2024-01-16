@@ -9,7 +9,7 @@
     - 应用程序包结构
       - [Stage模型应用程序包结构](application-package-structure-stage.md)
       - [FA模型应用程序包结构](application-package-structure-fa.md)
-    - 应用程序包开发
+    - 应用程序包开发与使用
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)

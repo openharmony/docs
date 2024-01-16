@@ -231,4 +231,3 @@ Typically, a widget includes local images or online images downloaded from the n
 > - The **\<Image>** component determines whether to update the image by comparing the values of **imgName** consecutively passed by the EntryFormAbility. It updates the image only when the values are different.
 >
 > - To avoid memory leak, when a file is not in used, close it by calling [fs.closeSync](../reference/apis/js-apis-file-fs.md#fsclosesync). The system does not automatically close files.
-<!--no_check-->
