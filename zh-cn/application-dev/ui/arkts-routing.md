@@ -376,6 +376,10 @@ function onBackClick() {
 
 在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10)来实现。
 
+  **图4** 命名路由跳转 
+
+![(figures/router-add-query-box-before-back.gif)](figures/namedroute-jump-to-mypage.gif)
+
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
 
