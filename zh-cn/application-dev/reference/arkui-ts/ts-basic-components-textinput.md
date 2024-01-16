@@ -48,7 +48,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
 | showUnderline<sup>10+</sup> | boolean | 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp（下划线只支持InputType.Normal类型）。<br/>默认值：false |
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10对象说明) | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
-| enableKeyboardOnFocus<sup>10+</sup> | boolean | TextInput通过点击以外的方式获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
+| enableKeyboardOnFocus<sup>10+</sup> | boolean | TextInput通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
 | barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#barstate) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>**说明：**<br/>取值范围：(0, +∞)。|
