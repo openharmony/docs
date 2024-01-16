@@ -257,6 +257,7 @@
     - [Graphics](js-apis-arkui-graphics.md)
     - [NodeController](js-apis-arkui-nodeController.md)
     - [RenderNode](js-apis-arkui-renderNode.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
