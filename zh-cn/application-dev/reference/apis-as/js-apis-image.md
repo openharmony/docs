@@ -16,7 +16,7 @@ import image from '@ohos.multimedia.image';
 
 图像像素类，需要先通过[createPixelMap](#createpixelmap7)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
 
-从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。  
 
 
 ### 属性
@@ -26,10 +26,8 @@ import image from '@ohos.multimedia.image';
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
-| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
-
-### readPixelsToBuffer<sup>11+</sup>
+### readPixelsToBuffer<sup>7+</sup>
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
@@ -63,7 +61,7 @@ async function Demo() {
 }
 ```
 
-### readPixelsToBuffer<sup>11+</sup>
+### readPixelsToBuffer<sup>7+</sup>
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
@@ -95,7 +93,7 @@ async function Demo() {
 }
 ```
 
-### readPixels<sup>11+</sup>
+### readPixels<sup>7+</sup>
 
 readPixels(area: PositionArea): Promise\<void>
 
@@ -134,7 +132,7 @@ async function Demo() {
 }
 ```
 
-### readPixels<sup>11+</sup>
+### readPixels<sup>7+</sup>
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
@@ -171,7 +169,7 @@ async function Demo() {
 }
 ```
 
-### writePixels<sup>11+</sup>
+### writePixels<sup>7+</sup>
 
 writePixels(area: PositionArea): Promise\<void>
 
@@ -214,7 +212,7 @@ async function Demo() {
 }
 ```
 
-### writePixels<sup>11+</sup>
+### writePixels<sup>7+</sup>
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
@@ -254,7 +252,7 @@ async function Demo() {
 }
 ```
 
-### writeBufferToPixels<sup>11+</sup>
+### writeBufferToPixels<sup>7+</sup>
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
@@ -292,7 +290,7 @@ async function Demo() {
 }
 ```
 
-### writeBufferToPixels<sup>11+</sup>
+### writeBufferToPixels<sup>7+</sup>
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
@@ -328,7 +326,7 @@ async function Demo() {
 }
 ```
 
-### getImageInfo<sup>11+</sup>
+### getImageInfo<sup>7+</sup>
 
 getImageInfo(): Promise\<ImageInfo>
 
@@ -357,7 +355,7 @@ async function Demo() {
 }
 ```
 
-### getImageInfo<sup>11+</sup>
+### getImageInfo<sup>7+</sup>
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
@@ -388,7 +386,7 @@ async function Demo() {
 }
 ```
 
-### getBytesNumberPerRow<sup>11+</sup>
+### getBytesNumberPerRow<sup>7+</sup>
 
 getBytesNumberPerRow(): number
 
@@ -408,7 +406,7 @@ getBytesNumberPerRow(): number
 let rowCount : number = pixelMap.getBytesNumberPerRow();
 ```
 
-### getPixelBytesNumber<sup>11+</sup>
+### getPixelBytesNumber<sup>7+</sup>
 
 getPixelBytesNumber(): number
 
@@ -428,7 +426,7 @@ getPixelBytesNumber(): number
 let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
 ```
 
-### getDensity<sup>11+</sup>
+### getDensity<sup>9+</sup>
 
 getDensity():number
 
@@ -448,7 +446,7 @@ getDensity():number
 let getDensity : number = pixelMap.getDensity();
 ```
 
-### opacity<sup>11+</sup>
+### opacity<sup>9+</sup>
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
@@ -480,7 +478,7 @@ async function Demo() {
 }
 ```
 
-### opacity<sup>11+</sup>
+### opacity<sup>9+</sup>
 
 opacity(rate: number): Promise\<void>
 
@@ -514,7 +512,7 @@ async function Demo() {
 }
 ```
 
-### createAlphaPixelmap<sup>11+</sup>
+### createAlphaPixelmap<sup>9+</sup>
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
@@ -541,7 +539,7 @@ async function Demo() {
 }
 ```
 
-### createAlphaPixelmap<sup>11+</sup>
+### createAlphaPixelmap<sup>9+</sup>
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
@@ -571,7 +569,7 @@ async function Demo() {
 }
 ```
 
-### scale<sup>11+</sup>
+### scale<sup>9+</sup>
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
@@ -605,7 +603,7 @@ async function Demo() {
 }
 ```
 
-### scale<sup>11+</sup>
+### scale<sup>9+</sup>
 
 scale(x: number, y: number): Promise\<void>
 
@@ -641,7 +639,7 @@ async function Demo() {
 }
 ```
 
-### translate<sup>11+</sup>
+### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
@@ -675,7 +673,7 @@ async function Demo() {
 }
 ```
 
-### translate<sup>11+</sup>
+### translate<sup>9+</sup>
 
 translate(x: number, y: number): Promise\<void>
 
@@ -711,7 +709,7 @@ async function Demo() {
 }
 ```
 
-### rotate<sup>11+</sup>
+### rotate<sup>9+</sup>
 
 rotate(angle: number, callback: AsyncCallback\<void>): void
 
@@ -743,7 +741,7 @@ async function Demo() {
 }
 ```
 
-### rotate<sup>11+</sup>
+### rotate<sup>9+</sup>
 
 rotate(angle: number): Promise\<void>
 
@@ -777,7 +775,7 @@ async function Demo() {
 }
 ```
 
-### flip<sup>11+</sup>
+### flip<sup>9+</sup>
 
 flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
 
@@ -811,7 +809,7 @@ async function Demo() {
 }
 ```
 
-### flip<sup>11+</sup>
+### flip<sup>9+</sup>
 
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
@@ -847,7 +845,7 @@ async function Demo() {
 }
 ```
 
-### crop<sup>11+</sup>
+### crop<sup>9+</sup>
 
 crop(region: Region, callback: AsyncCallback\<void>): void
 
@@ -879,7 +877,7 @@ async function Demo() {
 }
 ```
 
-### crop<sup>11+</sup>
+### crop<sup>9+</sup>
 
 crop(region: Region): Promise\<void>
 
@@ -910,6 +908,63 @@ async function Demo() {
     }).catch((err : BusinessError) => {
         console.error('Failed to crop pixelmap.');
     });
+}
+```
+
+### release<sup>7+</sup>
+
+release():Promise\<void>
+
+释放PixelMap对象，使用Promise形式返回释放结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise\<void> | Promise实例，异步返回释放结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    pixelMap.release().then(() => {
+        console.log('Succeeded in releasing pixelmap object.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to release pixelmap object.');
+    })
+}
+```
+
+### release<sup>7+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+释放PixelMap对象，使用callback形式返回释放结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明               |
+| -------- | -------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<void> | 是   | 异步返回释放结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo() {
+    pixelMap.release((err : BusinessError) => {
+        if (err != undefined) {
+            console.error('Failed to release pixelmap object.');
+            return;
+        } else {
+            console.log('Succeeded in releasing pixelmap object.');
+        }
+    })
 }
 ```
 
@@ -1476,64 +1531,7 @@ imageSourceApi.createPixelMap().then((pixelMap : image.PixelMap) => {
 })
 ```
 
-### release<sup>11+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-释放当前图像并使用callback返回结果。
-
-在接收另一个图像前必须先释放对应资源。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明           |
-| -------- | -------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | 是   | 返回操作结果。 |
-
-**示例：**
-
-```ts
-import {BusinessError} from '@ohos.base';
-img.release((err : BusinessError) =>{ 
-    if (err != undefined) {
-        console.error('Failed to release the image source instance.');
-    } else {
-        console.log('Succeeded in releasing the image source instance.');
-    }
-}) 
-```
-
-### release<sup>11+</sup>
-
-release(): Promise\<void>
-
-释放当前图像并使用Promise方式返回结果。
-
-在接收另一个图像前必须先释放对应资源。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**返回值：**
-
-| 类型           | 说明                  |
-| -------------- | --------------------- |
-| Promise\<void> | promise返回操作结果。 |
-
-**示例：**
-
-```ts
-import {BusinessError} from '@ohos.base';
-img.release().then(() =>{
-    console.log('release succeeded.');
-}).catch((error : BusinessError) => {
-    console.error('release failed.');
-})
-```
-
-
-## PositionArea<sup>11+</sup>
+## PositionArea<sup>7+</sup>
 
 表示图片指定区域内的数据。
 
@@ -1556,6 +1554,7 @@ img.release().then(() =>{
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | 是   | 是   | 图片大小。 |
 | density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
+| stride | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
 
 ## Size
 
@@ -1568,6 +1567,47 @@ img.release().then(() =>{
 | height | number | 是   | 是   | 输出图片的高。 |
 | width  | number | 是   | 是   | 输出图片的宽。 |
 
+## PixelMapFormat<sup>7+</sup>
+
+枚举，图片像素格式。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                   |   值   | 说明              |
+| ---------------------- | ------ | ----------------- |
+| UNKNOWN                | 0      | 未知格式。        |
+| RGB_565                | 2      | 格式为RGB_565     |
+| RGBA_8888              | 3      | 格式为RGBA_8888 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888 |
+| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888   |
+| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8   |
+| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
+| NV21<sup>9+</sup>      | 8      | 格式为NV21      |
+| NV12<sup>9+</sup>      | 9      | 格式为NV12      |
+
+## AlphaType<sup>9+</sup>
+
+枚举，图像的透明度类型。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称     |   值   | 说明                    |
+| -------- | ------ | ----------------------- |
+| UNKNOWN  | 0      | 未知透明度。            |
+| OPAQUE   | 1      | 没有alpha或图片不透明。 |
+| PREMUL   | 2      | RGB前乘alpha。         |
+| UNPREMUL | 3      | RGB不前乘alpha。       |
+
+## ScaleMode<sup>9+</sup>
+
+枚举，图像的缩放模式。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称            |   值   | 说明                                               |
+| --------------- | ------ | -------------------------------------------------- |
+| CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
+| FIT_TARGET_SIZE | 0      | 图像适合目标尺寸的效果。                           |
 
 ## SourceOptions<sup>9+</sup>
 
@@ -1578,7 +1618,22 @@ ImageSource的初始化选项。
 | 名称              | 类型                               | 可读 | 可写 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
 | sourceDensity     | number                             | 是   | 是   | ImageSource的密度。|
+| sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 图片像素格式。     |
 | sourceSize        | [Size](#size)                      | 是   | 是   | 图像像素大小。     |
+
+## InitializationOptions<sup>8+</sup>
+
+PixelMap的初始化选项。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                     | 类型                               | 可读 | 可写 | 说明           |
+| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
+| editable                 | boolean                            | 是   | 是   | 是否可编辑。   |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
+| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 
 ## DecodingOptions<sup>7+</sup>
@@ -1595,6 +1650,18 @@ ImageSource的初始化选项。
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
+
+## Region<sup>7+</sup>
+
+表示区域信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称 | 类型          | 可读 | 可写 | 说明         |
+| ---- | ------------- | ---- | ---- | ------------ |
+| size | [Size](#size) | 是   | 是   | 区域大小。   |
+| x    | number        | 是   | 是   | 区域横坐标。 |
+| y    | number        | 是   | 是   | 区域纵坐标。 |
 
 
 ## PackingOption
