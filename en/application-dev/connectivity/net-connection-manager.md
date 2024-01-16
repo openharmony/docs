@@ -70,7 +70,7 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 ## Subscribing to Status Changes of the Specified Network
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 1. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
@@ -127,7 +127,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ### How to Develop
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
@@ -176,7 +176,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### How to Develop
 
 1. Declare the required permission: **ohos.permission.GET_NETWORK_INFO**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
@@ -303,7 +303,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### How to Develop
 
 1. Declare the required permission: **ohos.permission.INTERNET**.
-This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-permission-management) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Import the connection namespace from **@ohos.net.connection.d.ts**.
 
