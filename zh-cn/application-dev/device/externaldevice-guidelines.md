@@ -82,14 +82,14 @@
       console.info('bindDevice success');
       remoteObject = data.remote;
   });
-} catch (error) {
-    let errCode = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
-}
-if (!remoteObject) {
-  console.error('Bind device failed');
-}
+  } catch (error) {
+      let errCode = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+  }
+  if (!remoteObject) {
+    console.error('Bind device failed');
+  }
   ```
 
 3. 绑定成功后使用设备驱动能力。
