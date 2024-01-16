@@ -18,6 +18,8 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 
 节点渲染类型枚举。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                | 值  | 说明                         |
 | ------------------- | --- | ---------------------------- |
 | RENDER_TYPE_DISPLAY | 0   | 表示该节点将被显示到屏幕上。 |
@@ -27,10 +29,12 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 
 创建BuilderNode时的可选参数。
 
-| 参数名        | 类型                                   | 必填 | 说明                                                                                                            |
-| ------------- | -------------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------- |
-| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                                                                                |
-| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                                                                                |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                                   | 必填 | 说明                                                         |
+| ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                             |
+| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                             |
 | surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage)。 |
 
 ## BuilderNode
@@ -39,11 +43,15 @@ class BuilderNode<Args extends Object[]>
 
 BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### constructor
 
 constructor(uiContext: UIContext, options?: RenderOptions)
 
 当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内容大小为空，不显示任何内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名    | 类型                                    | 必填 | 说明                                                              |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
