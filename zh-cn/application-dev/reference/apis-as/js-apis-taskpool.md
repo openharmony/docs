@@ -58,7 +58,7 @@ function printArgs(args: number): number {
     return args;
 }
 
-taskpool.execute(printArgs, 100).then((value: number) => { // 100: test number
+taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
   console.info("taskpool result: " + value);
 });
 ```
@@ -104,7 +104,7 @@ function printArgs(args: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.execute(task).then((value: number) => {
+taskpool.execute(task).then((value: Object) => {
   console.info("taskpool result: " + value);
 });
 ```
@@ -159,10 +159,10 @@ let task3: taskpool.Task = new taskpool.Task(printArgs, 300); // 300: test numbe
 taskGroup2.addTask(task1);
 taskGroup2.addTask(task2);
 taskGroup2.addTask(task3);
-taskpool.execute(taskGroup1).then((res: Array<number>) => {
+taskpool.execute(taskGroup1).then((res: Array<Object>) => {
   console.info("taskpool execute res is:" + res);
 });
-taskpool.execute(taskGroup2).then((res: Array<number>) => {
+taskpool.execute(taskGroup2).then((res: Array<Object>) => {
   console.info("taskpool execute res is:" + res);
 });
 ```
@@ -201,6 +201,9 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 ```ts
 @Concurrent
+// import BusinessError
+import { BusinessError } from '@ohos.base'
+
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
 }
@@ -246,7 +249,7 @@ cancel(task: Task): void
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 第一时间检查取消并回复
+  // 第一次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -256,7 +259,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // 第二次检查取消并作出响应
+  // 第二次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -270,7 +273,7 @@ let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test n
 let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
 let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
 let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: number)=>{
+taskpool.execute(task1).then((res: Object)=>{
   console.info("taskpool test result: " + res);
 });
 taskpool.execute(task2);
@@ -323,10 +326,10 @@ let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup1.addTask(printArgs, 10); // 10: test number
 let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<number>)=>{
+taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
   console.info("taskGroup1 res is:" + res);
 });
-taskpool.execute(taskGroup2).then((res: Array<number>)=>{
+taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
   console.info("taskGroup2 res is:" + res);
 });
 setTimeout(()=>{
@@ -386,15 +389,15 @@ let mediumCount = 0;
 let lowCount = 0;
 let allCount = 100;
 for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+  taskpool.execute(task, taskpool.Priority.LOW).then((res: Object) => {
     lowCount++;
     console.info("taskpool lowCount is :" + lowCount);
   });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: Object) => {
     mediumCount++;
     console.info("taskpool mediumCount is :" + mediumCount);
   });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+  taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
     highCount++;
     console.info("taskpool highCount is :" + highCount);
   });
@@ -516,7 +519,7 @@ function inspectStatus(arg: number): number {
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 第一时间检查取消并回复
+  // 第一次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -526,7 +529,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // 第二次检查取消并作出响应
+  // 第二次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -535,7 +538,7 @@ function inspectStatus(arg: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res: number)=>{
+taskpool.execute(task).then((res: Object)=>{
   console.info("taskpool test result: " + res);
 }).catch((err: string) => {
   console.error("taskpool test occur error: " + err);
@@ -560,9 +563,24 @@ setTransferList(transfer?: ArrayBuffer[]): void
 | -------- | ------------- | ---- | --------------------------------------------- |
 | transfer | ArrayBuffer[] | 否   | 可传输对象是ArrayBuffer的实例对象，默认为空数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                        |
+| -------- | -------------------------------------------------------------- |
+| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+
 **示例：**
 
 ```ts
+@Concurrent
+function testTransfer(arg1: ArrayBuffer, arg2: ArrayBuffer): number {
+  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
+  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
+  return 100;
+}
+
 let buffer: ArrayBuffer = new ArrayBuffer(8);
 let view: Uint8Array = new Uint8Array(buffer);
 let buffer1: ArrayBuffer = new ArrayBuffer(16);
@@ -570,21 +588,164 @@ let view1: Uint8Array = new Uint8Array(buffer1);
 
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
-@Concurrent
-function testTransfer(arg1: ArrayBuffer, arg2: ArrayBuffer): number {
-  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
-  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
-  return 100;
-}
+
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res: number)=>{
+taskpool.execute(task).then((res: Object)=>{
   console.info("test result: " + res);
 }).catch((e: string)=>{
   console.error("test catch: " + e);
 })
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
+```
+
+
+### setCloneList<sup>11+</sup>
+
+setCloneList(cloneList: Object[] | ArrayBuffer[]): void
+
+设置任务的拷贝列表。使用该方法前需要先构造Task。
+
+> **说明：**<br/>
+> 当前仅支持拷贝，[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)需搭配该接口使用，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型                      | 必填 | 说明                                          |
+| --------- | ------------------------ | ---- | --------------------------------------------- |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#sendableclass)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                        |
+| -------- | -------------------------------------------------------------- |
+| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+
+**示例：**
+
+```ts
+import taskpool from '@ohos.taskpool'
+import { BusinessError } from '@ohos.base'
+
+@Sendable
+class BaseClass {
+  private str: string = "sendable: BaseClass";
+  static num :number = 10;
+  str1: string = "sendable: this is BaseClass's string";
+  num1: number = 5;
+  isDone1: boolean = false;
+
+  private fibonacciRecursive(n: number): number {
+    if (n <= 1) {
+      return n;
+    } else {
+      return this.fibonacciRecursive(n - 1) + this.fibonacciRecursive(n - 2);
+    }
+  }
+
+  private privateFunc(num: number): number{
+    let res: number = this.fibonacciRecursive(num);
+    console.info("sendable: BaseClass privateFunc res is: " + res);
+    return res;
+  }
+
+  publicFunc(num: number): number {
+    return this.privateFunc(num);
+  }
+
+  get GetNum(): number {
+    return this.num1;
+  }
+  set SetNum(num: number) {
+    this.num1 = num;
+  }
+
+  constructor(){
+    console.info(this.str);
+    this.isDone1 = true;
+  }
+}
+
+@Sendable
+class DeriveClass extends BaseClass {
+  name: string = "sendable: this is DeriveClass";
+  printName() {
+    console.info(this.name);
+  }
+  constructor() {
+    super();
+  }
+}
+
+@Concurrent
+function testFunc(arr: Array<BaseClass>, num: number): number {
+  let baseInstance1: BaseClass = arr[0];
+  console.info("sendable: str1 is: " + baseInstance1.str1);
+  baseInstance1.SetNum = 100;
+  console.info("sendable: num1 is: " + baseInstance1.GetNum);
+  console.info("sendable: isDone1 is: " + baseInstance1.isDone1);
+  // 获取斐波那契数列第num项的结果
+  let res: number = baseInstance1.publicFunc(num);
+  return res;
+}
+
+@Concurrent
+function printLog(arr: Array<DeriveClass>): void {
+  let deriveInstance = arr[0];
+  deriveInstance.printName();
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text("TaskPool Test")
+        }.onClick(() => {
+          // task1访问调用BaseClass.str1/BaseClass.SetNum/BaseClass.GetNum/BaseClass.isDone1/BaseClass.publicFunc
+          let baseInstance1: BaseClass = new BaseClass();
+          let array1 = new Array<BaseClass>();
+          array1.push(baseInstance1);
+          let task1 = new taskpool.Task(testFunc, array1, 10);
+          task1.setCloneList(array1);
+          taskpool.execute(task1).then((res: Object) => {
+            console.info("sendable: task1 res is: " + res);
+          }).catch((e:BusinessError) => {
+            console.error(`sendable: task1 execute Code is ${e.code}, message is ${e.message}`);
+          })
+
+          // task2调用DeriveClass.printName
+          let deriveInstance: DeriveClass = new DeriveClass();
+          let array2 = new Array<DeriveClass>();
+          array2.push(deriveInstance);
+          let task2 = new taskpool.Task(printLog, array2);
+          task2.setCloneList(array2);
+          taskpool.execute(task2).then(() => {
+            console.info("sendable: task2 execute success");
+          }).catch((e:BusinessError) => {
+            console.error(`sendable: task2 execute Code is ${e.code}, message is ${e.message}`);
+          })
+        })
+        .height('15%')
+        .width('30%')
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 
@@ -656,10 +817,13 @@ function pringLog(data: number): void {
 }
 
 async function testFunc(): Promise<void> {
-  let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
-  task.onReceiveData(pringLog);
-  let ret: number = await taskpool.execute(task) as number;
-  console.info("taskpool: result is: " + ret);
+  try {
+    let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
+    task.onReceiveData(pringLog);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.info(`taskpool: error code: ${e.code}, info: ${e.message}`);
+  }
 }
 
 testFunc();
@@ -838,7 +1002,7 @@ TaskGroup的构造函数，可以指定任务组名称。
 **示例：**
 
 ```ts
-let taskGroupName = "groupName";
+let taskGroupName: string = "groupName";
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup(taskGroupName);
 let name: string = taskGroup.name;
 ```
@@ -944,7 +1108,7 @@ SequenceRunner的构造函数。
 **示例：**
 
 ```ts
-let runner：taskpool.SequenceRunner = new taskpool.SequenceRunner();
+let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 ```
 
 ### execute<sup>11+</sup>
@@ -1152,7 +1316,7 @@ async function delayExcute(): Promise<Object> {
 }
 
 async function taskpoolExecute(): Promise<void> {
-  taskpool.execute(delayExcute).then((result: string) => {
+  taskpool.execute(delayExcute).then((result: Object) => {
     console.info("taskPoolTest task result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1166,6 +1330,8 @@ taskpoolExecute();
 
 ```ts
 // c.ets
+import taskpool from '@ohos.taskpool';
+
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
@@ -1181,7 +1347,7 @@ export async function func1(): Promise<void> {
 export async function func2(): Promise<void> {
   console.info("taskpoolTest2 start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
-  taskpool.execute(strSort, strArray).then((result: Array<string>) => {
+  taskpool.execute(strSort, strArray).then((result: Object) => {
     console.info("func2 result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1190,7 +1356,7 @@ export async function func2(): Promise<void> {
 ```
 
 ```ts
-// a.ets(与c.ets在同一目录中)
+// index.ets
 import { func1, func2 } from "./c";
 
 func1();
@@ -1203,7 +1369,7 @@ func2();
 // 任务取消成功
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 第一时间检查取消并回复
+  // 第一次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -1213,7 +1379,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // 第二次检查取消并作出响应
+  // 第二次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -1223,7 +1389,7 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
+  taskpool.execute(task).then((res: Object)=>{
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1242,7 +1408,7 @@ taskpoolCancel();
 // 已执行的任务取消失败
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 第一时间检查取消并回复
+  // 第一次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     return arg + 2;
   }
@@ -1251,7 +1417,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 500) {
     continue;
   }
-  // 第二次检查取消并作出响应
+  // 第二次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     return arg + 3;
   }
@@ -1260,7 +1426,7 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
+  taskpool.execute(task).then((res: Object)=>{
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1304,12 +1470,12 @@ async function taskpoolGroupCancelTest(): Promise<void> {
   taskGroup2.addTask(task1);
   taskGroup2.addTask(task2);
   taskGroup2.addTask(task3);
-  taskpool.execute(taskGroup1).then((res: Array<number>) => {
+  taskpool.execute(taskGroup1).then((res: Array<Object>) => {
     console.info("taskpool execute res is:" + res);
   }).catch((e: string) => {
     console.error("taskpool execute error is:" + e);
   });
-  taskpool.execute(taskGroup2).then((res: Array<number>) => {
+  taskpool.execute(taskGroup2).then((res: Array<Object>) => {
     console.info("taskpool execute res is:" + res);
   }).catch((e: string) => {
     console.error("taskpool execute error is:" + e);
