@@ -37,7 +37,7 @@ API11版本新增getSupportedOutputCapability(camera: CameraDevice, mode: SceneM
 
 **API Level**
 
-11。
+11
 
 **变更发生版本**
 
@@ -78,7 +78,7 @@ API11版本新增createPhotoOutput(profile: Profile): PhotoOutput。
 
 **API Level**
 
-11。
+11
 
 **变更发生版本**
 
@@ -119,7 +119,7 @@ API11版本新增createSession\<T extends Session\>(mode: SceneMode): T。
 
 **API Level**
 
-11。
+11
 
 **变更发生版本**
 
@@ -160,7 +160,7 @@ API11版本新增PhotoSession和VideoSession区分录像会话和拍照会话。
 
 **API Level**
 
-11。
+11
 
 **变更发生版本**
 
@@ -206,7 +206,7 @@ PreviewOutput接口包含的start与stop接口会在API11版本废弃，保留�
 
 **API Level**
 
-11。
+11
 
 **变更发生版本**
 
@@ -248,7 +248,7 @@ API11版本新增captureStartInfo注册监听与解除注册监听接口。回�
 
 **API Level**
 
-11。
+11
 
 **变更发生版本**
 
