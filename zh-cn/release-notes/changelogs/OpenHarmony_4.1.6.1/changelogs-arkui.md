@@ -1,6 +1,6 @@
 # ArkUI子系统ChangeLog
 
-OpenHarmony 4.0.6.1 版本相较于OpenHarmony 之前的版本，Navigation、NavDestination 组件默认行为变更如下。
+OpenHarmony 4.1.6.1 版本相较于OpenHarmony 之前的版本，Navigation、NavDestination 组件默认行为变更如下。
 
 ## Navigation、NavDestination组件默认扩展到非安全区
 
@@ -22,7 +22,7 @@ OpenHarmony 4.0.6.1 版本相较于OpenHarmony 之前的版本，Navigation、Na
 
 **变更发生版本**
 
-OpenHarmony SDK 4.0.6.1
+OpenHarmony SDK 4.1.6.1
 
 **变更的接口/组件**
 
