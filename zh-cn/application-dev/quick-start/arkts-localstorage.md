@@ -386,10 +386,10 @@ Child自定义组件中的变化：
 // EntryAbility.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-let para:Record<string,number> = { 'PropA': 47 };
-let localStorage: LocalStorage = new LocalStorage(para);
+
 export default class EntryAbility extends UIAbility {
-storage: LocalStorage = localStorage
+para:Record<string, number> = { 'PropA': 47 };
+storage: LocalStorage = new LocalStorage(this.para);
 
 onWindowStageCreate(windowStage: window.WindowStage) {
 windowStage.loadContent('pages/Index', this.storage);
@@ -403,23 +403,73 @@ windowStage.loadContent('pages/Index', this.storage);
 >
 > LocalStorage.GetShared只在模拟器或者实机上才有效，不能在Preview预览器中使用。
 
-```ts
-// 通过GetShared接口获取stage共享的LocalStorage实例
-let storage = LocalStorage.GetShared()
+在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 
+```ts
+// index.ets
+import router from '@ohos.router';
+
+// 通过getShared接口获取stage共享的LocalStorage实例
+let storage = LocalStorage.GetShared()
 @Entry(storage)
 @Component
-struct CompA {
+struct Index {
   // can access LocalStorage instance using 
   // @LocalStorageLink/Prop decorated variables
-  @LocalStorageLink('PropA') varA: number = 1;
+  @LocalStorageLink('PropA') propA: number = 1;
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url:'pages/Page'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
+```ts
+// Page.ets
+import router from '@ohos.router';
+
+let storage = LocalStorage.GetShared()
+@Entry(storage)
+@Component
+struct Page {
+  @LocalStorageLink('PropA') propA: number = 2;
 
   build() {
-    Column() {
-      Text(`${this.varA}`).fontSize(50)
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+
+        Button("Change propA")
+          .onClick(() => {
+            this.propA = 100;
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
     }
   }
 }
+
 ```
 
 
