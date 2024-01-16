@@ -603,4 +603,3 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
 
- <!--no_check--> 

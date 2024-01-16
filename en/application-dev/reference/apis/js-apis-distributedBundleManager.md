@@ -20,11 +20,11 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description              |
+| Permission                                      | APL    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## distributedBundle.getRemoteAbilityInfo
 
@@ -517,5 +517,3 @@ try {
     console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
-
- <!--no_check--> 
