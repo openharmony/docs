@@ -231,7 +231,7 @@ path.reset();
 
 承载绘制内容与绘制状态的载体。
 
-### **constructor**
+### constructor
 
 constructor(pixelmap: image.PixelMap)
 
@@ -250,20 +250,18 @@ Canvas对象的构造函数。
 ```ts
 import drawing from "@ohos.graphics.drawing"
 import image from '@ohos.multimedia.image';
-
-const color : ArrayBuffer = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
-    editable: true,
-    pixelFormat: 4,
-    size: { height: 4, width: 6 },
-    alphaType: 3
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
 }
-
-let pixelMap : image.PixelMap | undefined = undefined;
-await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
-    pixelMap = srcPixelMap;
+image.createPixelMap(color, opts).then((pixelMap) => {
+  const canvas = new drawing.Canvas(pixelMap);
 })
-const canvas = new drawing.Canvas(pixelMap);
 ```
 
 ### drawRect
@@ -568,7 +566,7 @@ class DrawingRenderNode extends RenderNode {
 
 attachBrush(brush: Brush): void
 
-绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状。
+绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并其内部进行填充。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -623,7 +621,7 @@ class DrawingRenderNode extends RenderNode {
 
 detachBrush(): void
 
-用于去除掉画布中的画刷，画布将不再使用画刷去绘制图形形状。
+用于去除掉画布中的画刷，画布将不再使用画刷去绘制图形形状，也不会进行填充。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -690,9 +688,9 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 
 **返回值：**
 
-| 类型     | 说明           |
-| -------- | -------------- |
-| [TextBlob](#textblob)| TextBlob对象。 |
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [TextBlob](#textblob) | TextBlob对象。 |
 
 **示例：**
 
@@ -731,9 +729,9 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 
 **返回值：**
 
-| 类型     | 说明           |
-| -------- | -------------- |
-| [TextBlob](#textblob)| TextBlob对象。 |
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [TextBlob](#textblob) | TextBlob对象。 |
 
 **示例：**
 
@@ -772,8 +770,8 @@ bounds(): common2D.Rect
 
 **返回值：**
 
-| 类型          | 说明                   |
-| ------------- | ---------------------- |
+| 类型                                               | 说明                   |
+| -------------------------------------------------- | ---------------------- |
 | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 文字边界框的矩形区域。 |
 
 **示例：**
@@ -959,9 +957,9 @@ getTypeface(): Typeface
 
 **返回值：**
 
-| 类型     | 说明   |
-| -------- | ------ |
-| [Typeface](#typeface)| 字体。 |
+| 类型                  | 说明   |
+| --------------------- | ------ |
+| [Typeface](#typeface) | 字体。 |
 
 **示例：**
 
@@ -981,8 +979,8 @@ getMetrics(): FontMetrics
 
 **返回值：**
 
-| 类型        | 说明              |
-| ----------- | ----------------- |
+| 类型                        | 说明              |
+| --------------------------- | ----------------- |
 | [FontMetrics](#fontmetrics) | FontMetrics属性。 |
 
 **示例：**
@@ -1010,9 +1008,9 @@ measureText(text: string, encoding: TextEncoding): number
 
 **返回值：**
 
-| 类型   | 说明         |
-| ------ | ------------ |
-| number | 文本的宽度。 |
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 文本的像素宽度。 |
 
 **示例：**
 
@@ -1046,20 +1044,20 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 使用指定的颜色和混合模式创建颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
-| 参数名 | 类型                                                 | 必填 | 说明              |
-| ------ | ---------------------------------------------------- | ---- | ----------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色。  |
-| mode   | [BlendMode](#blendmode)                              | 是   | BlendMode枚举值。 |
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色。 |
+| mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
 
 **返回值：**
 
-| 类型        | 说明               |
-| ----------- | ------------------ |
-| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1076,7 +1074,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 创建一个先应用inner进行滤波，再应用outer进行滤波的组合颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1087,9 +1085,9 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 **返回值：**
 
-| 类型        | 说明               |
-| ----------- | ------------------ |
-| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1108,13 +1106,13 @@ createLinearToSRGBGamma() : ColorFilter
 
 创建一个从线性颜色空间转换到SRGB颜色空间的颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **返回值：**
 
-| 类型        | 说明               |
-| ----------- | ------------------ |
-| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1129,13 +1127,13 @@ createSRGBGammaToLinear() : ColorFilter
 
 创建一个从SRGB颜色空间转换到线性颜色空间的颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **返回值：**
 
-| 类型        | 说明               |
-| ----------- | ------------------ |
-| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1150,13 +1148,13 @@ createLumaColorFilter() : ColorFilter
 
 创建一个将亮度与透明度相乘的颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **返回值：**
 
-| 类型        | 说明               |
-| ----------- | ------------------ |
-| [ColorFilter](#colorfilter)| 返回一个颜色滤波器 |
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
 
 **示例：**
 
@@ -1175,7 +1173,7 @@ setColor(color: common2D.Color) : void
 
 用于设置画笔的颜色。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1199,7 +1197,7 @@ setStrokeWidth(width: number) : void
 
 用于设置画笔的线宽。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1221,7 +1219,7 @@ setAntiAlias(aa: boolean) : void
 
 用于设置画笔是否开启反走样。开启后，可以使得图形的边缘在显示时更平滑。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1243,7 +1241,7 @@ setAlpha(alpha: number) : void
 
 用于设置画笔的透明度。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1265,7 +1263,7 @@ setColorFilter(filter: ColorFilter) : void
 
 用于给画笔添加额外的颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1288,13 +1286,13 @@ setBlendMode(mode: BlendMode) : void
 
 用于设置画笔的混合模式。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
-| 参数名 | 类型                    | 必填 | 说明              |
-| ------ | ----------------------- | ---- | ----------------- |
-| mode   | [BlendMode](#blendmode) | 是   | BlendMode枚举值。 |
+| 参数名 | 类型                    | 必填 | 说明             |
+| ------ | ----------------------- | ---- | ---------------- |
+| mode   | [BlendMode](#blendmode) | 是   | 颜色的混合模式。 |
 
 **示例：**
 
@@ -1310,7 +1308,7 @@ setDither(dither: boolean) : void
 
 开启画笔的抖动绘制效果。抖动绘制可以使得绘制出的颜色更加真实。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1336,7 +1334,7 @@ setColor(color: common2D.Color) : void
 
 用于设置画刷的颜色。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1360,7 +1358,7 @@ setAntiAlias(aa: boolean) : void
 
 用于设置画刷是否开启反走样。开启后，可以使得图形的边缘在显示时更平滑。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1382,7 +1380,7 @@ setAlpha(alpha: number) : void
 
 用于设置画刷的透明度。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1404,7 +1402,7 @@ setColorFilter(filter: ColorFilter) : void
 
 用于给画刷添加额外的颜色滤波器。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1427,13 +1425,13 @@ setBlendMode(mode: BlendMode) : void
 
 用于设置画刷的混合模式。
 
-系统能力：SystemCapability.Graphics.Drawing
+**系统能力：**SystemCapability.Graphics.Drawing
 
 **参数：**
 
-| 参数名 | 类型                    | 必填 | 说明              |
-| ------ | ----------------------- | ---- | ----------------- |
-| mode   | [BlendMode](#blendmode) | 是   | BlendMode枚举值。 |
+| 参数名 | 类型                    | 必填 | 说明             |
+| ------ | ----------------------- | ---- | ---------------- |
+| mode   | [BlendMode](#blendmode) | 是   | 颜色的混合模式。 |
 
 **示例：**
 
