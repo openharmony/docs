@@ -121,15 +121,6 @@ backgroundEffect(options: BackgroundEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | 否   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
-## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
-
-| 名称            | 参数类型                                     | 必填   | 描述                                       |
-| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否    | 背景模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | 否    | 背景模糊效果使用的取色模式。<br/ > 默认值：AdaptiveColor.Default |
-| scale         | number                                   | 否    | 背景材质模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/> |
-| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
-
 ## backgroundBrightness<sup>11+</sup> 
 
 backgroundBrightness({rate:number,lightUpDegree:number})
@@ -146,6 +137,15 @@ backgroundBrightness({rate:number,lightUpDegree:number})
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | rate          | number | 是    | lightUpDegree的速率，随着像素亮度的增加而降低。此参数为系统接口。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞)<br/> |
 | lightUpDegree | number | 是    | 亮度的程度，其亮度变化时rgb值的变化为0。此参数为系统接口。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0]<br/> |
+
+## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
+
+| 名称            | 参数类型                                     | 必填   | 描述                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否    | 背景模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | 否    | 背景模糊效果使用的取色模式。<br/ > 默认值：AdaptiveColor.Default |
+| scale         | number                                   | 否    | 背景材质模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/> |
+| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
 
 ## 示例
 
