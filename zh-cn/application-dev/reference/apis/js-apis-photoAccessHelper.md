@@ -7633,6 +7633,222 @@ async function example() {
 }
 ```
 
+### setDisplayLevel<sup>11+</sup>
+
+setDisplayLevel(displayLevel: number): void
+
+设置人像相册的显示级别。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| displayLevel | number | 是    | 设置人像相册的显示级别， 0：取消该人像相册收藏；1：设置人像相册为首届面；2：设置人像相册为更多界面；3：设置人像相册为收藏界面。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setDisplayLevel Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setDisplayLevel(1);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('setDisplayLevel failed with error: ' + err);
+  }
+}
+```
+
+### setIsMe<sup>11+</sup>
+
+setIsMe(): void
+
+将人像相册的人物关系设置为“我”。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setIsMe Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setIsMe();
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('setIsMe failed with error: ' + err);
+  }
+}
+```
+
+### dismissAssets<sup>11+</sup>
+
+dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从该人像相册中移除指定图片。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;PhotoAsset&gt; | 是    | 需要移除的文件列表 。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('dismissAssets Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+
+    let predicatesAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let assetFetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesAsset
+    };
+    let assetFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(assetFetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await assetFetchResult.getFirstObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.dismissAssets([asset]);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('dismissAssets failed with error: ' + err);
+  }
+}
+```
+
+### mergeAlbum<sup>11+</sup>
+
+mergeAlbum(target: Album): void
+
+将两个人像相册合并。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| target | [Album](#album) | 是    | 需要合并的目标相册，合并相册必须重命名。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('mergeAlbum Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (fetchResult.isAfterLast()) {
+      console.error('lack of album to merge');
+      return;
+    }
+    let target: photoAccessHelper.Album = await fetchResult.getNextObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.mergeAlbum(target);
+    changeRequest.setAlbumName("testName");
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('mergeAlbum failed with error: ' + err);
+  }
+}
+```
+
 ### placeBefore<sup>11+</sup>
 
 placeBefore(album: Album): void;
