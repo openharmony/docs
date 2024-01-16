@@ -95,7 +95,7 @@ struct PopupExample {
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
   }
@@ -133,7 +133,7 @@ struct PopupExample {
             }
           }
         })
-        .position({ x: 100, y: 50 })
+        .position({ x: 100, y: 150 })
 
 
       // CustomPopupOptions 类型设置弹框内容
@@ -144,7 +144,7 @@ struct PopupExample {
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
           placement: Placement.Top,
-          mask: {color:'0x33000000'},
+          mask: {color:'#33000000'},
           popupColor: Color.Yellow,
           enableArrow: true,
           showInSubWindow: false,
@@ -154,13 +154,13 @@ struct PopupExample {
             }
           }
         })
-        .position({ x: 80, y: 200 })
+        .position({ x: 80, y: 300 })
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![figures/popup.gif](figures/popup.gif)
+![](figures/popup.gif)
 
 ### 示例2
 
