@@ -2,11 +2,11 @@
 
 - [Access Control Overview](access-token-overview.md)
 - Application Permission Management
-  - [Application Permission Management Overview] (app-permission-mgmt-overview.md)
+  - [Application Permission Management Overview](app-permission-mgmt-overview.md)
   - Requesting Application Permissions
     - [Workflow for Using Permissions](determine-application-mode.md)
     - [Declaring Permissions](declare-permissions.md)
-    - [Declaring ACL Permissions](declare-permissions-in-acl.md)
+    - [Declaring Permissions in ACL](declare-permissions-in-acl.md)
     - [Requesting User Authorization](request-user-authorization.md)
   - Application Permissions
     - [Permissions for All Applications](permissions-for-all.md)
