@@ -263,7 +263,7 @@ renderGroup(value: boolean)
 
 ## blendMode<sup>11+</sup> 
 
-blendMode(value: BlendMode)
+blendMode(value: BlendMode, type?: BlendApplyType)
 
 将当前控件背景与子节点内容进行混合。
 
@@ -275,7 +275,8 @@ blendMode(value: BlendMode)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode枚举说明) | 是   | 将当前控件背景与子节点内容进行混合。<br/>默认值：BlendMode.NORMAL<br/>**说明：**<br/>-value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NORMAL<br/>**注意事项：**<br/>1、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常<br/>2、SOURCE_IN和DESTINATION_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。 |
+| value  | [BlendMode](#blendmode枚举说明) | 是   | 将当前控件背景与子节点内容进行混合。<br/>默认值：BlendMode.NONE<br/>**说明：**<br/>-value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NONE<br/>**注意事项：**<br/>1、需调用BlendApplyType.OFFSCREEN来触发离屏，第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。<br/>2、SRC_IN和DST_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。<br/>3、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常。 |
+| type    | FAST \| OFFSCREEN   |    是    | 混合类型。<br/>默认为FAST<br/>**说明：**<br/>-FAST为   <br/>-OFFSCREEN为     |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -321,11 +322,38 @@ useShadowBatching(value: boolean)
 
 ## BlendMode枚举说明
 
-| 名称           | 描述                                                              |
-| ---------------| ------                                                            |
-| NORMAL         | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。                  |
-| SOURCE_IN      |r = d * sa,以下层图像的透明度作为权重，将其与上层图像的颜色值进行混合。|
-| DESTINATION_IN |r = s * da,以上层图像的透明度作为权重，将其与下层图像的颜色值进行混合。|
+| 名称           | 描述                                                             |
+| ---------------| ------                                                          |
+| NONE = 0          | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。              |
+| CLEAR = 1             | 清除混合，将目标像素设置为完全透明。           |
+| SRC = 2               | r = s，将源像素直接复制到目标像素上，不做任何混合。                  |
+| DST = 3               | r = d，将目标像素直接复制到源像素上，不做任何混合。                  |
+| SRC_OVER = 4         | r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。                  |
+| DST_OVER = 5         | r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。                 |
+| SRC_IN = 6           | r = s * da，将源像素与目标像素进行“遮罩”混合，只显示源像素与目标像素重叠的部分。                  |
+| DST_IN = 7           | r = d * sa，将目标像素与源像素进行“遮罩”混合，只显示源像素与目标像素重叠的部分。                  |
+| SRC_OUT = 8          | r = s * (1 - da)，将源像素与目标像素进行“反向遮罩”混合，只显示源像素与目标像素不重叠的部分。                |
+| DST_OUT = 9          | r = d * (1 - sa)，将目标像素与源像素进行“反向遮罩”混合，只显示源像素与目标像素不重叠的部分。                  |
+| SRC_ATOP = 10          | r = s * da + d * (1 - sa)，将源像素与目标像素进行“遮罩叠加”混合，只显示源像素与目标像素重叠的部分，并且将源像素的透明度应用到目标像素上。                  |
+| DST_ATOP = 11         | r = d * sa + s * (1 - da)，将目标像素与源像素进行“遮罩叠加”混合，只显示源像素与目标像素重叠的部分，并且将目标像素的透明度应用到源像素上。                 |
+| XOR = 12              | r = s * (1 - da) + d * (1 - sa)，将源像素与目标像素进行异或混合，只显示源像素与目标像素不重叠的部分。        |
+| PLUS = 13             | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                  |
+| MODULATE = 14     | r = s * d，将源图形对象的像素值与目标图形对象的像素值进行乘法运算，并将结果作为新的像素值。                          |
+| SCREEN = 15       | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                  |
+| OVERLAY = 16      | 源像素的透明度与目标像素的颜色进行线性混合。也就是说，透明度越低，颜色越深，透明度越高，颜色越浅。                  |
+| DARKEN = 17       | rc = s + d - max(s * da, d * sa), ra = kSrcOver   当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。            |
+| LIGHTEN = 18      | rc = s + d - min(s * da, d * sa), ra = kSrcOver   将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。            |
+| COLOR_DODGE = 19  | 将源像素的颜色值除以1减去目标像素的颜色值，然后将结果与目标像素的颜色值相加。                  |
+| COLOR_BURN = 20   | 将源像素的颜色值除以目标像素的颜色值，然后将结果与1相减，最后将结果与目标像素的颜色值相加。                     |
+| HARD_LIGHT = 21   | multiply or screen, depending on source，                  |
+| SOFT_LIGHT = 22   | lighten or darken, depending on source，                   |
+| DIFFERENCE = 23   | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，将目标像素颜色的反色与源像素颜色相混合。    |
+| EXCLUSION = 24    | rc = s + d - two(s * d), ra = kSrcOver，将两个图像中相同位置的像素进行异或运算，得到的结果作为混合后的像素值。                   |
+| MULTIPLY = 25     | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。                  |
+| HUE = 26          | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。                  |
+| SATURATION = 27   | 将底层图像的饱和度和顶层图像的亮度进行平均，然后再将这个平均值作为新的饱和度应用到底层图像上。                  |
+| COLOR = 28        | 将源图像的颜色乘以它的不透明度，然后将结果与目标图像的颜色进行混合。                  |
+| LUMINOSITY = 29   | 将源颜色和目标颜色的亮度值相加，然后除以2，得到一个中间值，再根据这个中间值来计算最终的混合颜色。                  |
 
 ## LinearGradientBlurOptions<sup>10+</sup>对象说明
 
@@ -707,17 +735,108 @@ struct RenderGroupExample {
 @Entry
 @Component
 struct Index {
+  @State BlendModeIndex: number = 0
+  @State BlendApplyTypeIndex: number = 0
+  BlendModeArr: BlendMode[] = [0, BlendMode.NONE, BlendMode.CLEAR, BlendMode.SRC, BlendMode.DST,
+    BlendMode.SRC_OVER, BlendMode.DST_OVER, BlendMode.SRC_IN, BlendMode.DST_IN, BlendMode.SRC_OUT, BlendMode.DST_OUT,
+    BlendMode.SRC_ATOP, BlendMode.DST_ATOP, BlendMode.XOR, BlendMode.PLUS, BlendMode.MODULATE, BlendMode.SCREEN,
+    BlendMode.OVERLAY, BlendMode.DARKEN, BlendMode.LIGHTEN, BlendMode.COLOR_DODGE, BlendMode.COLOR_BURN,
+    BlendMode.HARD_LIGHT, BlendMode.SOFT_LIGHT, BlendMode.DIFFERENCE, BlendMode.EXCLUSION, BlendMode.MULTIPLY,
+    BlendMode.HUE, BlendMode.SATURATION, BlendMode.COLOR, BlendMode.LUMINOSITY];
+  BlendApplyTypeArr: BlendApplyType[] = [0, BlendApplyType.FAST, BlendApplyType.OFFSCREEN];
+
   build() {
     Column() {
-      Text("test")
-        .fontSize(144)
-        .fontWeight(FontWeight.Bold)
-        .fontColor('#ffff0101')
+      Row() {
+        Circle()
+          .width(200)
+          .height(200)
+          .fill(Color.Green)
+          .position({ x: 50, y: 100 })
+
+        Circle()
+          .width(200)
+          .height(200)
+          .fill(Color.Blue)
+          .position({ x: 150, y: 100 })
+
+      }
+      .blendMode(this.BlendModeArr[this.BlendModeIndex], this.BlendApplyTypeArr[this.BlendApplyTypeIndex])
+      .alignItems(VerticalAlign.Center)
+      .height(300)
+      .width('100%')
+
+      Row() {
+        Row() {
+          Text("blendMode: ").fontColor(Color.Red)
+          Select([
+            { value: 'undefined' },
+            { value: 'NONE' },
+            { value: 'CLEAR' },
+            { value: 'SRC' },
+            { value: 'DST' },
+            { value: 'SRC_OVER' },
+            { value: 'DST_OVER' },
+            { value: 'SRC_IN' },
+            { value: 'DST_IN' },
+            { value: 'SRC_OUT' },
+            { value: 'DST_OUT' },
+            { value: 'SRC_ATOP' },
+            { value: 'DST_ATOP' },
+            { value: 'XOR' },
+            { value: 'PLUS' },
+            { value: 'MODULATE' },
+            { value: 'SCREEN' },
+            { value: 'OVERLAY' },
+            { value: 'DARKEN' },
+            { value: 'LIGHTEN' },
+            { value: 'COLOR_DODGE' },
+            { value: 'COLOR_BURN' },
+            { value: 'HARD_LIGHT' },
+            { value: 'SOFT_LIGHT' },
+            { value: 'DIFFERENCE' },
+            { value: 'EXCLUSION' },
+            { value: 'MULTIPLY' },
+            { value: 'HUE' },
+            { value: 'SATURATION' },
+            { value: 'COLOR' },
+            { value: 'LUMINOSITY' }])
+            .font({ size: 16, weight: 500 })
+            .fontColor('#182431')
+            .selectedOptionFont({ size: 16, weight: 400 })
+            .optionFont({ size: 16, weight: 400 })
+            .onSelect((index: number) => {
+              console.info("blur style choose " + index + ", value is " + JSON.stringify(this.BlendModeArr[index]))
+              this.BlendModeIndex = index;
+            })
+        }.position({ x: '30%', y: '60%' })
+
+
+        Row() {
+          Text("BlendApplyType: ").fontColor(Color.Red)
+          Select([
+            { value: 'undefined' },
+            { value: 'FAST' },
+            { value: 'OFFSCREEN' }])
+            .selected(0)
+            .font({ size: 16, weight: 500 })
+            .fontColor('#182431')
+            .selectedOptionFont({ size: 16, weight: 400 })
+            .optionFont({ size: 16, weight: 400 })
+            .onSelect((index: number) => {
+              console.info("colorMode choose " + index + ", value is " + JSON.stringify(this.BlendApplyTypeArr[index]))
+              this.BlendApplyTypeIndex = index;
+            })
+        }.position({ x: '30%', y: '70%' })
+
+      }
+      .height('60%')
+      .width('100%')
     }
-    .blendMode(BlendMode.NORMAL)
     .height('100%')
     .width('100%')
-    .backgroundColor('#ff08ff00')
+    .backgroundImage($r('app.media.image'))
+    .backgroundImageSize(ImageSize.Cover)
   }
 }
 ```
@@ -748,48 +867,50 @@ struct Index {
   @State briVal: number = 1.5;
   build() {
     Stack() {
-      Image($r('app.media.lock'))
+      Image($r('app.media.4'))
       Column() {
         Column({ space: 0}) {
-          Text('11')
-            .fontSize(144)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('rgba(255,255,255,1)')
-            .fontFamily('HarmonyOS-Sans-Digit')
-            .maxLines(1)
-            .lineHeight(120*1.25)
-            .height(120*1.25)
-            .letterSpacing(4*1.25)
-          Text('42')
-            .fontSize(144)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('rgba(255,255,255,1)')
-            .fontFamily('HarmonyOS-Sans-Digit')
-            .maxLines(1)
-            .lineHeight(120*1.25)
-            .height(120*1.25)
-            .letterSpacing(4*1.25)
-            .shadow({
-              color: 'rgba(0,0,0,0)',
-              radius: 20,
-              offsetX: 0,
-              offsetY: 0
-            })
-          Row() {
-            Text('10月16日')
-              .fontSize(this.sizeDate)
-              .height(22)
-              .fontWeight('medium')
+          Column(){
+            Text('11')
+              .fontSize(144)
+              .fontWeight(FontWeight.Bold)
               .fontColor('rgba(255,255,255,1)')
-            Text('星期一')
-              .fontSize(this.sizeDate)
-              .height(22)
-              .fontWeight('medium')
+              .fontFamily('HarmonyOS-Sans-Digit')
+              .maxLines(1)
+              .lineHeight(120*1.25)
+              .height(120*1.25)
+              .letterSpacing(4*1.25)
+            Text('42')
+              .fontSize(144)
+              .fontWeight(FontWeight.Bold)
               .fontColor('rgba(255,255,255,1)')
+              .fontFamily('HarmonyOS-Sans-Digit')
+              .maxLines(1)
+              .lineHeight(120*1.25)
+              .height(120*1.25)
+              .letterSpacing(4*1.25)
+              .shadow({
+                color: 'rgba(0,0,0,0)',
+                radius: 20,
+                offsetX: 0,
+                offsetY: 0
+              })
+            Row() {
+              Text('10月16日')
+                .fontSize(this.sizeDate)
+                .height(22)
+                .fontWeight('medium')
+                .fontColor('rgba(255,255,255,1)')
+              Text('星期一')
+                .fontSize(this.sizeDate)
+                .height(22)
+                .fontWeight('medium')
+                .fontColor('rgba(255,255,255,1)')
+            }
           }
+          .blendMode(BlendMode.DST_IN,BlendApplyType.OFFSCREEN)
         }
-        .blendMode(BlendMode.DESTINATION_IN)
-        // @ts-ignore
+        .blendMode(BlendMode.SRC_OVER,BlendApplyType.OFFSCREEN)
         .backgroundEffect({
           radius: this.rad,
           saturation: this.satVal,
