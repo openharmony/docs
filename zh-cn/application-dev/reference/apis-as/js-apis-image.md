@@ -1476,6 +1476,76 @@ imageSourceApi.createPixelMap().then((pixelMap : image.PixelMap) => {
 })
 ```
 
+### release<sup>11+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+释放当前图像并使用callback返回结果。
+
+在接收另一个图像前必须先释放对应资源。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明           |
+| -------- | -------------------- | ---- | -------------- |
+| callback | AsyncCallback\<void> | 是   | 返回操作结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+img.release((err : BusinessError) =>{ 
+    if (err != undefined) {
+        console.error('Failed to release the image source instance.');
+    } else {
+        console.log('Succeeded in releasing the image source instance.');
+    }
+}) 
+```
+
+### release<sup>11+</sup>
+
+release(): Promise\<void>
+
+释放当前图像并使用Promise方式返回结果。
+
+在接收另一个图像前必须先释放对应资源。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> | promise返回操作结果。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+img.release().then(() =>{
+    console.log('release succeeded.');
+}).catch((error : BusinessError) => {
+    console.error('release failed.');
+})
+```
+
+
+## PositionArea<sup>11+</sup>
+
+表示图片指定区域内的数据。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                                         |
+| ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
+| pixels | ArrayBuffer        | 是   | 是   | 像素。                                                       |
+| offset | number             | 是   | 是   | 偏移量。                                                     |
+| stride | number             | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
+| region | [Region](#region7) | 是   | 是   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
+
 ## ImageInfo
 
 表示图片信息。
