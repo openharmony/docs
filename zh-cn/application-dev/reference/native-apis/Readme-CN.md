@@ -192,6 +192,7 @@
   - [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md)
   - [OhosPixelMapInfos](_ohos_pixel_map_infos.md)
   - [RawFileDescriptor](_raw_file_descriptor.md)
+  - [RawFileDescriptor64](_raw_file_descriptor64.md)  
   - [Region](_region.md)
   - [Rect](_rect.md)
   - [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md)
