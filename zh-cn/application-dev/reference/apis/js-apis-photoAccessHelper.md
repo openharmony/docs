@@ -4316,6 +4316,62 @@ async function example() {
 }
 ```
 
+### getAnalysisData<sup>11+</sup>
+
+getAnalysisData(analysisType: AnalysisType): Promise\<string>
+
+根据智慧分析类型获取指定分析结果数据。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名          | 类型           | 必填 | 说明           |
+| :----------- | :----------- | :- | :----------- |
+| analysisType | [AnalysisType](#analysistype11) | 是  | 需要获取的智慧分析类型。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getAnalysisDataDemo')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+      await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (photoAsset != undefined) {
+      let analysisData: string = await photoAsset.getAnalysisData(
+        photoAccessHelper.AnalysisType.ANALYSIS_OCR);
+      console.info('get ocr result: ' + JSON.stringify(analysisData));
+    }
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAnalysisDataDemofailed with error: ' + err)
+  }
+}
+```
+
 ## PhotoViewPicker
 
 图库选择器对象，用来支撑选择图片/视频等用户场景。在使用前，需要先创建PhotoViewPicker实例。
@@ -5086,6 +5142,8 @@ async function example() {
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
 | coverUri | string | 是    | 否    | 封面文件Uri。 |
+| imageCount<sup>11+</sup> | number | 是   | 否   | 相册中图片数量。|
+| videoCount<sup>11+</sup> | number | 是   | 否   | 相册中视频数量。|
 
 ### getAssets
 
@@ -8211,10 +8269,11 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| USER |  0 |  用户相册。 |
-| SYSTEM |  1024 |  系统预置相册。 |
+| 名称                  | 值    | 说明                        |
+| ------------------- | ---- | ------------------------- |
+| USER                | 0    | 用户相册。                     |
+| SYSTEM              | 1024 | 系统预置相册。                   |
+| SMART<sup>11+</sup> | 4096 | 智慧分析相册。**系统接口**：此接口为系统接口。 |
 
 ## AlbumSubtype
 
@@ -8222,17 +8281,23 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| USER_GENERIC |  1 |  用户相册。 |
-| FAVORITE |  1025 |  收藏夹。 |
-| VIDEO |  1026 |  视频相册。 |
-| HIDDEN |  1027 |  隐藏相册。**系统接口**：此接口为系统接口。 |
-| TRASH |  1028 |  回收站。**系统接口**：此接口为系统接口。 |
-| SCREENSHOT |  1029 |  截屏和录屏相册。**系统接口**：此接口为系统接口。 |
-| CAMERA |  1030 |  相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
-| IMAGE<sup>11+</sup> |  1031 | 所有图片相册。**系统接口**：此接口为系统接口。 |
-| ANY |  2147483647 |  任意相册。 |
+| 名称                                | 值          | 说明                              |
+| --------------------------------- | ---------- | ------------------------------- |
+| USER\_GENERIC                     | 1          | 用户相册。                           |
+| FAVORITE                          | 1025       | 收藏夹。                            |
+| VIDEO                             | 1026       | 视频相册。                           |
+| HIDDEN                            | 1027       | 隐藏相册。**系统接口**：此接口为系统接口。         |
+| TRASH                             | 1028       | 回收站。**系统接口**：此接口为系统接口。          |
+| SCREENSHOT                        | 1029       | 截屏和录屏相册。**系统接口**：此接口为系统接口。      |
+| CAMERA                            | 1030       | 相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
+| IMAGE<sup>11+</sup>               | 1031       | 所有图片相册。**系统接口**：此接口为系统接口。       |
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | 来源相册。**系统接口**：此接口为系统接口。         |
+| CLASSIFY<sup>11+</sup>            | 4097       | 分类相册。**系统接口**：此接口为系统接口。         |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | 地图相册。**系统接口**：此接口为系统接口。         |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | 城市相册。**系统接口**：此接口为系统接口。         |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | 拍摄模式相册。**系统接口**：此接口为系统接口。       |
+| PORTRAIT<sup>11+</sup>            | 4102       | 人像相册。**系统接口**：此接口为系统接口。         |
+| ANY                               | 2147483647 | 任意相册。                           |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -8530,3 +8595,22 @@ title参数规格为：
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
+
+## AnalysisType<sup>11+</sup>
+
+枚举，智慧分析类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                            | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| ANALYSIS\_AESTHETICS\_SCORE   | 0  | 美学评分分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_LABEL               | 1  | 分类标签分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_OCR                 | 2  | 文字识别分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_FACE                | 3  | 人脸检测分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_OBJECT              | 4  | 目标检测分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_RECOMMENDATION      | 5  | 推荐构图分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_SEGMENTATION        | 6  | 抠图分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_COMPOSITION         | 7  | 美学构图分析类别。**系统接口**：此接口为系统接口。   |
+| ANALYSIS\_SALIENCY            | 8  | 最佳呈现主体中心分析类别。**系统接口**：此接口为系统接口。   |
+| ANALYSIS\_DETAIL\_ADDRESS     | 9  | 详细地址分析类别。**系统接口**：此接口为系统接口。    |
