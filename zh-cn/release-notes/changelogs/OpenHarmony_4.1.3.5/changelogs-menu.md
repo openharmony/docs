@@ -126,7 +126,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
       }
-      .bindMenu(this.MyMenu,{showInSubwindow:true})
+      .bindMenu(this.MyMenu,{showInSubWindow:true})
       .width('100%')
     }
     .height('100%')
