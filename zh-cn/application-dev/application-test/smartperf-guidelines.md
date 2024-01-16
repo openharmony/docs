@@ -483,8 +483,10 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   command exec finished!
   #
   ```
-  - 注：启停服务文件路径为： data/local/tmp/smartperf/1/t_index_info.csv，查看与导出方式同下
-
+  >**说明**
+  >
+  >- 启停服务文件路径为：data/local/tmp/smartperf/1/t_index_info.csv
+  >- 查看与导出方式同下
 
 6.输出测试结果和查看测试结果。
 
