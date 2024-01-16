@@ -352,19 +352,13 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import image from "@ohos.multimedia.image"
 import drawing from "@ohos.graphics.drawing"
 class DrawingRenderNode extends RenderNode {
-  draw(context : DrawContext) {
-    const color = new ArrayBuffer(96);
-    let opts : image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 3,
-      size: {
-        height: 4,
-        width: 6
-      }
-    }
-    image.createPixelMap(color, opts).then((pixelMap) => {
+  pixelMap: image.PixelMap | null = null;
+
+  async draw(context : DrawContext) {
+    const canvas = context.canvas;
+    if (this.pixelMap != null) {
       canvas.drawImage(pixelMap, 0, 0);
-    })
+    }
   }
 }
 ```
