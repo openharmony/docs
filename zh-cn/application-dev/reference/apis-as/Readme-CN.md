@@ -14,8 +14,9 @@
 - ArkUI
   - UI界面
     - [@ohos.animator (动画)](js-apis-animator.md)
-    - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
+    - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
     - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
+    - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
     - [@ohos.font (注册自定义字体)](js-apis-font.md)
     - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
