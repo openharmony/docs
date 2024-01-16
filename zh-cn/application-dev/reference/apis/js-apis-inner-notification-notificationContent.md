@@ -18,7 +18,7 @@
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
-| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 系统实况窗类型通知内容（仅对系统应用开放）。|
+| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 系统实况窗类型通知内容。|
 | liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | 否  | 否  | 普通实况窗类型通知内容。<br>**系统接口**：此接口为系统接口。|
 
 ## NotificationBasicContent
@@ -84,7 +84,7 @@
 
 ## NotificationSystemLiveViewContent
 
-描述系统实况窗通知内容（仅对系统应用开放）。
+描述系统实况窗通知内容。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
