@@ -22,7 +22,7 @@
 2. 在CMake脚本中链接Camera NDK动态库。
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera/.so)
+    target_link_libraries(PUBLIC libohcamera.so)
    ```
 
 3. 通过OH_Camera_GetCameraMananger方法，获取cameraManager对象。
