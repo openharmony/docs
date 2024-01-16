@@ -682,7 +682,7 @@ uiContext.getDragController();
 
 ### getDragPreview<sup>11+</sup>
 
-getDragPreview(): DragPreview
+getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
 
@@ -690,16 +690,15 @@ getDragPreview(): DragPreview
 
 **返回值：**
 
-| 类型        | 说明                                            |
-| ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
 
 **示例：**
 
@@ -715,10 +714,10 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 **参数：**
 
-| 名称         | 参数类型                                              | 是否必填 | 描述                         |
+| 参数名 | 类型                                              | 必填 | 说明                      |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](../arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
-| keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            | 
+| keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
 
 ## Font
 
@@ -2182,7 +2181,7 @@ try {
 };
 ```
 
-### showActionMenu
+### showActionMenu<sup>11+</sup>
 
 showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
@@ -2192,10 +2191,70 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。   |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是    | 菜单响应结果回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是   | 菜单响应结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                           |
+| -------- | ---------------------------------- |
+| 100001   | if UI execution context not found. |
+
+**示例：**
+
+```ts
+import { PromptAction } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+let promptActionF: PromptAction = uiContext.getPromptAction();
+try {
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
+### showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+
+创建并显示操作菜单，菜单响应结果异步返回。
+
+从API version11开始不再维护，建议使用[showActionMenu](#showactionmenu11)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是   | 菜单响应结果回调。 |
 
 **错误码：**
 
