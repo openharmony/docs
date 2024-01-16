@@ -35,6 +35,14 @@ API11版本新增getSupportedOutputCapability(camera: CameraDevice, mode: SceneM
 
 先通过API11新增接口getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>， 来获取相机设备对象支持的模式，再通过新增getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode): CameraOutputCapability接口，查询相机设备在模式下支持的输出能力。
 
+**API Level**
+
+11。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
+
 ## cl.camera.2 createPhotoOutput接口变更
 
 **访问级别**
@@ -67,6 +75,14 @@ API11版本新增createPhotoOutput(profile: Profile): PhotoOutput。
 **适配指导**
 
 先通过API11新增接口createPhotoOutput(profile: Profile): PhotoOutput， 来创建拍照输出对象。
+
+**API Level**
+
+11。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
 
 ## cl.camera.3 createCaptureSession接口变更
 
@@ -101,6 +117,14 @@ API11版本新增createSession\<T extends Session\>(mode: SceneMode): T。
 
 通过API11新增接口createSession\<T extends Session\>(mode: SceneMode): T创建对应模式的Session。
 
+**API Level**
+
+11。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
+
 ## cl.camera.4 CaptureSession接口变更
 
 **访问级别**
@@ -133,6 +157,14 @@ API11版本新增PhotoSession和VideoSession区分录像会话和拍照会话。
 **适配指导**
 
 通过API11新增接口PhotoSession对应拍照模式会话，VideoSession对应录像模式会话。
+
+**API Level**
+
+11。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
 
 ## cl.camera.5 PreviewOutput类start与stop接口变更
 
@@ -172,6 +204,14 @@ PreviewOutput接口包含的start与stop接口会在API11版本废弃，保留�
 
 ## cl.camera.6 captureStart注册监听与解除注册监听接口变更
 
+**API Level**
+
+11。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
+
 **访问级别**
 
 公开接口
@@ -205,3 +245,11 @@ API11版本新增captureStartInfo注册监听与解除注册监听接口。回�
 **适配指导**
 
 通过API11新增captureStartInfo注册监听与解除注册监听接口获取CaptureStartInfo。
+
+**API Level**
+
+11。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.3开始。
