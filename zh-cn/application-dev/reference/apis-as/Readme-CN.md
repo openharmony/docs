@@ -92,8 +92,6 @@
     - 图形图像
       - [@ohos.display (屏幕属性)](js-apis-display.md)
       - [@ohos.window (窗口)](js-apis-window.md)
-    - 已停止维护的接口
-      - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
 - ArkWeb API参考
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
 - Basic Services Kit API参考
