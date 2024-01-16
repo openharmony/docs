@@ -1,8 +1,8 @@
 # ArkUI子系统ChangeLog
 
-OpenHarmony 4.1.6.1 版本相较于OpenHarmony 之前的版本，Navigation、NavDestination 组件默认行为变更如下。
+OpenHarmony 4.1.6.1 版本相较于OpenHarmony 之前的版本，Navigation、NavDestination、Tabs 组件默认行为变更如下。
 
-## Navigation、NavDestination组件默认扩展到非安全区
+## cl.arkui.1  Navigation、NavDestination组件默认扩展到非安全区
 
 满足安全区可拓展的条件下，Navigation、NavDestination组件默认扩展到非安全区。
 
@@ -59,3 +59,33 @@ struct NavigationExample {
   }
 }
 ```
+
+## cl.arkui.2  Tabs组件默认扩展到底部非安全区
+
+满足安全区可拓展的条件下，Tabs组件默认扩展到底部非安全区。
+
+**访问级别**
+
+公开接口
+
+**变更影响**
+
+变更前：Tabs组件的expandSafeArea属性默认为[SafeAreaExpandType.NONE, SafeAreaExpandEdges.NONE]。
+
+变更后：Tabs组件的expandSafeArea属性默认为[SafeAreaExpandType.SYSTEM, SafeAreaExpandEdges.BOTTOM]，背景色会延伸到底部导航栏。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+OpenHarmony SDK 4.1.6.1
+
+**变更的接口/组件**
+
+受影响组件有：Tabs
+
+**适配指导**
+
+默认满足沉浸式效果，不需要适配。
