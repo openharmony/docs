@@ -35,7 +35,7 @@
 |maxWidth/maxHeight && width/height| minWidth/minHeight |
 |minWidth/minHeight && width/height| 使用组件自身布局逻辑，最终结果不超过maxWidth/maxHeight |
 |maxWidth/maxHeight && minWidth/minHeight| width/height，根据其他布局属性可能拉伸或者压缩。 |
-maxWidth/maxHeight && minWidth/minHeight && width/height|使用父容器传递的布局限制进行布局。|
+|maxWidth/maxHeight && minWidth/minHeight && width/height|使用父容器传递的布局限制进行布局。|
 
 ## 示例
 
