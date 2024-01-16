@@ -23,7 +23,7 @@ import common from '@ohos.app.ability.common';
 | applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。                                                       |
 | cacheDir            | string | 否    | 是    | 缓存目录。                                                            |
 | tempDir             | string | 否    | 是    | 临时目录。                                                            |
-| resourceDir         | string | 否    | 是    | 资源目录。                                                            |
+| resourceDir<sup>11+<sup>         | string | 否    | 是    | 资源目录。                                                            |
 | filesDir            | string | 否    | 是    | 文件目录。                                                            |
 | databaseDir         | string | 否    | 是    | 数据库目录。                                                           |
 | preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
