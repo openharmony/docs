@@ -20,9 +20,9 @@ width(value: Length)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                            |
-| ------ | ---------------------------- | ---- | ------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 要设置的组件宽度。<br/>单位：vp |
+| 参数名   | 类型                           | 必填   | 说明                  |
+| ----- | ---------------------------- | ---- | ------------------- |
+| value | [Length](ts-types.md#length) | 是    | 要设置的组件宽度。<br/>单位：vp |
 
 ## height
 
@@ -38,9 +38,9 @@ height(value: Length)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                            |
-| ------ | ---------------------------- | ---- | ------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 要设置的组件高度。<br/>单位：vp |
+| 参数名   | 类型                           | 必填   | 说明                  |
+| ----- | ---------------------------- | ---- | ------------------- |
+| value | [Length](ts-types.md#length) | 是    | 要设置的组件高度。<br/>单位：vp |
 
 >  **说明：**
 >
@@ -60,9 +60,9 @@ size(value: SizeOptions)
 
 **参数：** 
 
-| 参数名 | 类型                                | 必填 | 说明                        |
-| ------ | ----------------------------------- | ---- | --------------------------- |
-| value  | [SizeOptions](#sizeoptions对象说明) | 是   | 设置高宽尺寸。<br/>单位：vp |
+| 参数名   | 类型                              | 必填   | 说明                |
+| ----- | ------------------------------- | ---- | ----------------- |
+| value | [SizeOptions](#sizeoptions对象说明) | 是    | 设置高宽尺寸。<br/>单位：vp |
 
 ## padding
 
@@ -78,9 +78,9 @@ padding(value: Padding | Length)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length) | 是   | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
+| 参数名   | 类型                                       | 必填   | 说明                                       |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length) | 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
 
 ## margin
 
@@ -96,9 +96,9 @@ margin(value: margin | Length)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填     | 说明                                                         |
-| ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件实际的水平方向offset为20。 |
+| 参数名   | 类型                                       | 必填      | 说明                                       |
+| ----- | ---------------------------------------- | ------- | ---------------------------------------- |
+| value | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件实际的水平方向offset为20。 |
 
 ## layoutWeight
 
@@ -112,9 +112,9 @@ layoutWeight(value: number | string)
 
 **参数：** 
 
-| 参数名 | 类型                       | 必填     | 说明                                                         |
-| ------ | -------------------------- | -------- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在Row/Column/Flex布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| 参数名   | 类型                         | 必填      | 说明                                       |
+| ----- | -------------------------- | ------- | ---------------------------------------- |
+| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在Row/Column/Flex布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 ## constraintSize
 
@@ -130,32 +130,29 @@ constraintSize(value: ConstraintSizeOptions)
 
 **参数：** 
 
-| 参数名 | 类型                                            | 必填 | 说明                                                         |
-| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ConstraintSizeOptions](#constraintsizeoptions) | 是   | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考[constraintSize取值对width/height影响](ts-universal-attributes-size.md#constraintsize取值对widthheight影响)。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
+| 参数名   | 类型                                       | 必填   | 说明                                       |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| value | [ConstraintSizeOptions](#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考[constraintSize取值对width/height影响](ts-universal-attributes-size.md#constraintsize取值对widthheight影响)。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
 
 **constraintSize取值对width/height影响** 
 
-| 缺省值                                   | 结果                                                         |
-| ---------------------------------------- | ------------------------------------------------------------ |
+| 缺省值                                      | 结果                                       |
+| ---------------------------------------- | ---------------------------------------- |
 | /                                        | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height)) |
-| maxWidth/maxHeight                       | max(minWidth/minHeight, width/height)                        |
-| minWidth/minHeight                       | min(maxWidth/maxHeight, width/height)                        |
+| maxWidth/maxHeight                       | max(minWidth/minHeight, width/height)    |
+| minWidth/minHeight                       | min(maxWidth/maxHeight, width/height)    |
 | width/height                             | maxWidth/maxHeight > minWidth/minHeight时使用组件自身布局逻辑，<br/>结果在maxWidth/maxHeight与minWidth/minHeight之间。<br/> 其他情况结果为max(minWidth/minHeight, maxWidth/maxHeight)。 |
-| maxWidth/maxHeight && width/height       | minWidth/minHeight                                           |
-| minWidth/minHeight && width/height       | 使用组件自身布局逻辑，最终结果不超过maxWidth/maxHeight       |
-| maxWidth/maxHeight && minWidth/minHeight | width/height，根据其他布局属性可能拉伸或者压缩。             |
-
-maxWidth/maxHeight && minWidth/minHeight && width/height|使用父容器传递的布局限制进行布局。|
-
-## 示例
+| maxWidth/maxHeight && width/height       | minWidth/minHeight                       |
+| minWidth/minHeight && width/height       | 使用组件自身布局逻辑，最终结果不超过maxWidth/maxHeight     |
+| maxWidth/maxHeight && minWidth/minHeight | width/height，根据其他布局属性可能拉伸或者压缩。           |
+| maxWidth/maxHeight && minWidth/minHeight && width/height | 使用父容器传递的布局限制进行布局。                        |
 
 ## SizeOptions对象说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称   | 类型                         | 描述           |
-| ------ | ---------------------------- | -------------- |
+| 名称     | 类型                           | 描述      |
+| ------ | ---------------------------- | ------- |
 | width  | [Length](ts-types.md#length) | 设置组件宽度。 |
 | height | [Length](ts-types.md#length) | 设置组件高度。 |
 
@@ -163,8 +160,8 @@ maxWidth/maxHeight && minWidth/minHeight && width/height|使用父容器传递�
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称      | 类型                         | 描述               |
-| --------- | ---------------------------- | ------------------ |
+| 名称        | 类型                           | 描述        |
+| --------- | ---------------------------- | --------- |
 | minWidth  | [Length](ts-types.md#length) | 设置组件最小宽度。 |
 | maxWidth  | [Length](ts-types.md#length) | 设置组件最大宽度。 |
 | minHeight | [Length](ts-types.md#length) | 设置组件最小高度。 |
@@ -173,19 +170,6 @@ maxWidth/maxHeight && minWidth/minHeight && width/height|使用父容器传递�
 >  **说明：**
 >
 >  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
-
-constraintSize取值对width/height影响
-
-| 缺省值                                   | 结果                 |
-| ---------------------------------------- | ------------------ |
-| / | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height))       |
-| maxWidth/maxHeight | max(minWidth/minHeight, width/height) |
-| minWidth/minHeight | min(maxWidth/maxHeight, width/height)       |
-|width/height|maxWidth/maxHeight > minWidth/minHeight时使用组件自身布局逻辑，<br/>结果在maxWidth/maxHeight与minWidth/minHeight之间。<br/> 其他情况结果为max(minWidth/minHeight, maxWidth/maxHeight)。 |
-|maxWidth/maxHeight && width/height| minWidth/minHeight |
-|minWidth/minHeight && width/height| 使用组件自身布局逻辑，最终结果不超过maxWidth/maxHeight |
-|maxWidth/maxHeight && minWidth/minHeight| width/height，根据其他布局属性可能拉伸或者压缩。 |
-maxWidth/maxHeight && minWidth/minHeight && width/height|使用父容器传递的布局限制进行布局。|
 
 ## 示例
 
