@@ -8,10 +8,10 @@
 - 如果支持分段式能力，可以调用相机框架提供的使能接口**使能**分段式能力。
 - 监听缩略图回调，获取缩略图代理类，将缩略图存入媒体库。
 
-**注意事项：**
-
-- 分段式拍照能力是根据**设备**和**模式**决定的，不同的设备支持不同的模式，不同的模式下分段式能力也各有不同，所以应用在切换设备或模式后需要重新使能分段式能力。
-- 分段式使能需要在配流期间完成，配流完成后的使能操作不生效。
+> **说明：**
+> 
+> - 分段式拍照能力是根据**设备**和**模式**决定的，不同的设备支持不同的模式，不同的模式下分段式能力也各有不同，所以应用在切换设备或模式后需要重新使能分段式能力。
+> - 分段式使能需要在配流期间完成，配流完成后的使能操作不生效。
 
 
 
@@ -20,8 +20,6 @@
 详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
 
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
-
-   【示例1】
 
    ```ts
    import camera from '@ohos.multimedia.camera';
@@ -35,8 +33,6 @@
 2. 确定拍照输出流。
 
    通过CameraOutputCapability类中的photoProfiles()方法，可获取当前设备支持的拍照输出流，通过createPhotoOutput()方法创建拍照输出流。
-
-   【示例2】
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager,
@@ -58,8 +54,6 @@
 
 3. 查询当前设备当前模式是否支持相应分段式能力。
 
-   【示例3】
-
    ```ts
    function isDeferredImageDeliverySupported(photoOutput: camera.PhotoOutput,
                                              deferredType: camera.DeferredDeliveryImageType): boolean {
@@ -74,8 +68,6 @@
 
 4. 使能分段式拍照能力。
 
-   【示例4】
-
    ```ts
    function EnableDeferredPhotoAbility(photoOutput: camera.PhotoOutput): void {
    	photoOutPut.deferImageDeliveryFor(camera.DeferredDeliveryImageType.PHOTO);
@@ -83,8 +75,6 @@
    ```
 
 5. 查询是否已经成功使能分段式拍照。
-
-   【示例5】
 
    ```ts
    function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutpu,
@@ -98,15 +88,13 @@
    }
    ```
 
-6. 触发拍照，与普通拍照方式相同，请参考[拍照(ArkTS)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/camera-shooting.md)。
+6. 触发拍照，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
 
 
 
 ## 状态监听
 
 1. 注册缩略图监听回调。
-
-   【示例6】
 
    ```ts
    function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
@@ -120,7 +108,7 @@
          proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
            AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
          });
-         // 调用媒体库接口落盘缩略图，详细实现见【示例7】。
+         // 调用媒体库接口落盘缩略图，详细实现见2。
          this.saveDeferredPhoto(proxyObj);
        });
    }
@@ -130,9 +118,7 @@
 
 2. 调用媒体库接口落盘缩略图。
 
-   Context获取方式请参考：[获取UIAbility的上下文信息](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/uiability-usage.md#获取uiability的上下文信息)。
-
-   【示例7】
+   Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
    let context = getContext(this);
