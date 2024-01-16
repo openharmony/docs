@@ -23,7 +23,7 @@
 | 接口 | 说明 |
 | ---- | ---- |
 | createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | 创建延迟预览输出对象，在配流时替代普通的预览输出对象加入数据流。 |
-| addDeferredSurface(surfaceId: string): Promise\<void> | 配置延迟预览的Surface，可以在session.commitConfig()配流和session.start()启流之后运行。 |
+| addDeferredSurface(surfaceId: string): Promise\<void> | 配置延迟预览的Surface，可以在[session.commitConfig](../reference/apis/js-apis-camera.md#commitconfig)配流和[session.start](../reference/apis/js-apis-camera.md#start-4))启流之后运行。 |
 
 ### 开发示例
 
@@ -73,7 +73,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 > **说明：**
 >
-> - isQuickThumbnailSupported及enableQuickThumbnail接口的调用需要在CaptureSession.addOutput、CaptureSession.addInput后，CaptureSession.commitConfig()之前。
+> - [isQuickThumbnailSupported](../reference/apis/js-apis-camera.md#isquickthumbnailsupported)及[enableQuickThumbnail](../reference/apis/js-apis-camera.md#enablequickthumbnail)接口的调用需要在[addOutput](../reference/apis/js-apis-camera.md#addoutput)、[addInput](../reference/apis/js-apis-camera.md#addinput)后，[commitConfig](../reference/apis/js-apis-camera.md#commitconfig)之前。
 > - on接口需要在enableQuickThumbnail(true)之后生效。
 
 ### 开发示例

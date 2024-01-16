@@ -18,7 +18,7 @@
 
 2. 创建拍照输出流。
 
-   通过CameraOutputCapability类中的photoProfiles，可获取当前设备支持的拍照输出流，通过createPhotoOutput()方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
+   通过[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../reference/apis/js-apis-camera.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
@@ -160,7 +160,7 @@
 
 5. 触发拍照。
 
-   通过photoOutput类的capture()方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
+   通过photoOutput类的[capture](../reference/apis/js-apis-camera.md#capture)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
