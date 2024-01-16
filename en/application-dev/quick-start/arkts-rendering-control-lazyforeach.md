@@ -46,15 +46,15 @@ interface IDataSource {
 
 ```ts
 interface DataChangeListener {
-    onDataReloaded(): void; // Invoked when data is reloaded.
-    onDataAdded(index: number): void; // Invoked when data is added.
-    onDataMoved(from: number, to: number): void; // Invoked when data is moved.
-    onDataDeleted(index: number): void; // Invoked when data is deleted.
-    onDataChanged(index: number): void; // Invoked when data is changed.
-    onDataAdd(index: number): void; // Invoked when data is added.
-    onDataMove(from: number, to: number): void; // Invoked when data is moved.
-    onDataDelete(index: number): void; // Invoked when data is deleted.
-    onDataChange(index: number): void; // Invoked when data is changed.
+    onDataReloaded(): void; // Invoked after data is reloaded.
+    onDataAdded(index: number): void; // Invoked after data is added.
+    onDataMoved(from: number, to: number): void; // Invoked after data is moved.
+    onDataDeleted(index: number): void; // Invoked after data is deleted.
+    onDataChanged(index: number): void; // Invoked after data is changed.
+    onDataAdd(index: number): void; // Invoked after data is added.
+    onDataMove(from: number, to: number): void; // Invoked after data is moved.
+    onDataDelete(index: number): void; // Invoked after data is deleted.
+    onDataChange(index: number): void; // Invoked after data is changed.
 }
 ```
 
@@ -111,7 +111,7 @@ class BasicDataSource implements IDataSource {
     return this.originDataArray[index];
   }
 
-  // This method is called by the framework to add a listener to the data source of the LazyForEach component.
+  // This method is called by the framework to add a listener to the LazyForEach data source.
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       console.info('add listener');
@@ -119,7 +119,7 @@ class BasicDataSource implements IDataSource {
     }
   }
 
-  // This method is called by the framework to remove the listener from the data source of the LazyForEach component.
+  // This method is called by the framework to remove the listener from the LazyForEach data source.
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
