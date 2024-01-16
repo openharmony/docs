@@ -18,9 +18,7 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                   |
+| 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
 | width  | number | 是   | 是   | 组件的宽度，单位为vp。 |
 | height | number | 是   | 是   | 组件的高度，单位为vp。 |
@@ -31,12 +29,10 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                     |
-| ------ | ------ | ---- | ---- | ------------------------ |
-| x      | number | 是   | 是   | 水平方向位置，单位为vp。 |
-| y      | number | 是   | 是   | 垂直方向位置，单位为vp。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| x    | number | 是   | 是   | 水平方向位置，单位为vp。 |
+| y    | number | 是   | 是   | 垂直方向位置，单位为vp。 |
 
 ## Frame
 
@@ -44,9 +40,7 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                     |
+| 名称   | 类型   | 可读 | 可写 | 说明                     |
 | ------ | ------ | ---- | ---- | ------------------------ |
 | x      | number | 是   | 是   | 水平方向位置，单位为vp。 |
 | y      | number | 是   | 是   | 垂直方向位置，单位为vp。 |
@@ -59,12 +53,10 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                                                                |
-| ------ | ------ | ---- | ---- | ------------------------------------------------------------------- |
-| x      | number | 是   | 是   | 轴心的X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| y      | number | 是   | 是   | 轴心的Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                                         |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| x    | number | 是   | 是   | 轴心的X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| y    | number | 是   | 是   | 轴心的Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
 
 ## Scale
 
@@ -72,12 +64,10 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                                         |
-| ------ | ------ | ---- | ---- | -------------------------------------------- |
-| x      | number | 是   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。 |
-| y      | number | 是   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                                         |
+| ---- | ------ | ---- | ---- | -------------------------------------------- |
+| x    | number | 是   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。 |
+| y    | number | 是   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。 |
 
 ## Translation
 
@@ -85,12 +75,10 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                         |
-| ------ | ------ | ---- | ---- | ---------------------------- |
-| x      | number | 是   | 是   | 水平方向的平移量，单位为vp。 |
-| y      | number | 是   | 是   | 垂直方向的平移量，单位为vp。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| ---- | ------ | ---- | ---- | ---------------------------- |
+| x    | number | 是   | 是   | 水平方向的平移量，单位为vp。 |
+| y    | number | 是   | 是   | 垂直方向的平移量，单位为vp。 |
 
 ## Rotation
 
@@ -98,13 +86,11 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                           |
-| ------ | ------ | ---- | ---- | ------------------------------ |
-| x      | number | 是   | 是   | x 轴方向的旋转角度，单位为vp。 |
-| y      | number | 是   | 是   | y 轴方向的旋转角度，单位为vp。 |
-| z      | number | 是   | 是   | z 轴方向的旋转角度，单位为vp。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                           |
+| ---- | ------ | ---- | ---- | ------------------------------ |
+| x    | number | 是   | 是   | x 轴方向的旋转角度，单位为vp。 |
+| y    | number | 是   | 是   | y 轴方向的旋转角度，单位为vp。 |
+| z    | number | 是   | 是   | z 轴方向的旋转角度，单位为vp。 |
 
 ## Offset
 
@@ -112,12 +98,10 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名 | 类型   | 可读 | 可写 | 说明                         |
-| ------ | ------ | ---- | ---- | ---------------------------- |
-| x      | number | 是   | 是   | x 轴方向的偏移量，单位为vp。 |
-| y      | number | 是   | 是   | y 轴方向的偏移量，单位为vp。 |
+| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| ---- | ------ | ---- | ---- | ---------------------------- |
+| x    | number | 是   | 是   | x 轴方向的偏移量，单位为vp。 |
+| y    | number | 是   | 是   | y 轴方向的偏移量，单位为vp。 |
 
 ## Matrix4
 
