@@ -13,7 +13,7 @@
       - [UIAbility Launch Type](uiability-launch-type.md)
       - [UIAbility Usage](uiability-usage.md)
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
-      - [Interaction Between Intra-Device UIAbility Components](uiability-intra-device-interaction.md)
+      - [Intra-Device Interaction Between UIAbility Components](uiability-intra-device-interaction.md)
     - ExtensionAbility Component
       - [ExtensionAbility Overview](extensionability-overview.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
@@ -72,7 +72,7 @@
         - [Common Event Subscription Overview](common-event-subscription-overview.md)
         - [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md)
         - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
-        - [Unsubscribing from Common Events](common-event-unsubscription.md)
+        - [Unsubscribing from Common Events in Dynamic Mode](common-event-unsubscription.md)
       - [Publishing Common Events](common-event-publish.md)
       - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
     - [Background Services](background-services.md)

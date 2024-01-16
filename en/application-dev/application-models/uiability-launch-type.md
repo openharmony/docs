@@ -120,7 +120,7 @@ In the following example, there are two UIAbility components: EntryAbility and S
        Row() {
          Column() {
            ...
-           Button(){
+           Button()
    		...
              .onClick(() => {
                let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
@@ -144,7 +144,7 @@ In the following example, there are two UIAbility components: EntryAbility and S
    
            ...
    
-           Button(){
+           Button()
    		...
              .onClick(() => {
                let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;

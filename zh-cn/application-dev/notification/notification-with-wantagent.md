@@ -32,7 +32,6 @@
    import wantAgent from '@ohos.app.ability.wantAgent';
    import { WantAgent } from '@ohos.app.ability.wantAgent';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. 创建WantAgentInfo信息。
@@ -86,10 +85,10 @@
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
-       logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info('Succeeded in getting want agent.');
+     console.info('Succeeded in getting want agent.');
      wantAgentObj = data;
    });
    ```
@@ -114,10 +113,10 @@
    
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info('Succeeded in publishing notification.');
+     console.info('Succeeded in publishing notification.');
    });
    ```
 

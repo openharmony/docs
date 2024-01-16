@@ -103,6 +103,70 @@ try {
 }
 ```
 
+## inputConsumer.setShieldStatus<sup>11+</sup>
+
+setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
+
+Sets the key shielding status.
+
+**Required permissions**: ohos.permission.INPUT_CONTROL_DISPATCHING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Parameters**
+
+| Name        | Type                        | Mandatory  | Description                                      |
+| ---------- | -------------------------- | ---- | ---------------------------------------- |
+| shieldMode       | ShieldMode                     | Yes   | Shielding mode. Currently, only **FACTORY_MODE** is supported.                      |
+| isShield | boolean  | Yes   | Whether to enable key shielding. The value **true** means to enable key shielding, and the value **false** indicates the opposite.             |
+
+**Example**
+
+```js
+let FACTORY_MODE = 0;
+try {
+  inputConsumer.setShieldStatus(FACTORY_MODE,true);
+  console.log(`set shield status success`);
+} catch (error) {
+  console.log(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+
+```
+
+## inputConsumer.getShieldStatus<sup>11+</sup>
+
+getShieldStatus(shieldMode: ShieldMode): boolean
+
+Checks whether key shielding is enabled.
+
+**Required permissions**: ohos.permission.INPUT_CONTROL_DISPATCHING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Parameters**
+
+| Name        | Type                        | Mandatory  | Description                                      |
+| ---------- | -------------------------- | ---- | ---------------------------------------- |
+| shieldMode       | ShieldMode                    | Yes   | Shielding mode. Currently, only **FACTORY_MODE** is supported.                      |
+
+**Return value**
+
+| Parameter        |  Description                                      |
+| ---------- |  ---------------------------------------- |
+| boolean                    | Whether to enable key shielding. The value **true** means to enable key shielding, and the value **false** indicates the opposite.                      |
+
+**Example**
+
+```js
+try {
+  let FACTORY_MODE = 0;
+  let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
+  console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
+} catch (error) {
+  console.log(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## KeyOptions
 
 Represents combination key options.
@@ -115,3 +179,13 @@ Represents combination key options.
 | finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback is triggered by the final key.<br>For example, in the combination keys **Ctrl+Alt+A**, **A** is called the final key.|
 | isFinalKeyDown       | boolean | Yes   |  No| Whether the final key is pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.|
 | finalKeyDownDuration | number  | Yes   |  No| Duration for pressing a key, in μs.<br>If the value of this field is **0**, a callback is triggered immediately.<br>If the value of this field is greater than **0** and **isFinalKeyDown** is **true**, a callback is triggered when the key keeps being pressed after the specified duration expires. If **isFinalKeyDown** is **false**, a callback is triggered when the key is released before the specified duration expires.  |
+
+## shieldMode<sup>11+</sup>
+
+Enumerates key shielding modes.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+| Shielding Mode                         | Value   | Description            |
+| ------------------------------ | ----------- | ---------------- |
+| FACTORY_MODE | 0 | Factory mode, which means to shield all shortcut keys.|

@@ -11,18 +11,11 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-      - 应用程序包多HAP机制
-        - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
-        - [多HAP构建视图](quick-start/multi-hap-build-view.md)
-        - [多HAP的开发调试与发布部署流程](quick-start/multi-hap-release-deployment.md)
-        - [多HAP使用规则](quick-start/multi-hap-rules.md)
-        - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
-      - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
-      - [应用程序包更新流程](quick-start/application-package-update.md)
-      - 共享包
-        - [共享包概述](quick-start/shared-guide.md)
+      - 应用程序包开发
+        - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
+      - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -454,7 +447,7 @@
   - 媒体
     - [媒体应用开发概述](media/media-application-overview.md)
     - 音视频
-      - [音视频概述](media/av-overview.md)
+      - [音视频概述](./media/av-overview.md)
       - [AVPlayer和AVRecorder](media/avplayer-avrecorder-overview.md)
       - 音频播放
         - [音频播放开发概述](media/audio-playback-overview.md)
@@ -2138,5 +2131,8 @@
   - [启动恢复开发常见问题](faqs/faqs-startup.md)
   - [分布式DeviceProfrofile开发常见问题](faqs/faqs-distributed-device-profile.md)
   - [SDK使用常见问题](faqs/faqs-sdk.md)
+  - [NDK开发常见问题](faqs/faqs-ndk.md)
   - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
   - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
+
+<!--no_check-->

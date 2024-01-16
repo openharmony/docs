@@ -18,7 +18,7 @@ import notificationSubscribe from '@ohos.notificationSubscribe';
 
 subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void
 
-订阅通知并指定订阅信息（callback形式）。
+订阅通知并指定订阅信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -75,7 +75,7 @@ notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
-订阅当前用户下所有应用的通知（callback形式）。
+订阅当前用户下所有应用的通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -236,7 +236,7 @@ notificationSubscribe.subscribeSelf(subscriber).then(() => {
 
 unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
-取消订阅（callback形式）。
+取消订阅。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -338,7 +338,7 @@ notificationSubscribe.unsubscribe(subscriber).then(() => {
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-根据应用的包信息和通知键值，删除指定通知（callback形式）。
+根据应用的包信息和通知键值，删除指定通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -456,7 +456,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 
 remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-通过通知的唯一ID，删除指定通知（callback形式）。
+通过通知的唯一ID，删除指定通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -553,7 +553,7 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-批量删除指定通知（callback形式）。
+批量删除指定通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -649,7 +649,7 @@ notificationSubscribe.remove(hashCodes, reason).then(() => {
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
-删除指定应用的所有通知（callback形式）。
+删除指定应用的所有通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -697,7 +697,7 @@ notificationSubscribe.removeAll(bundle, removeAllCallback);
 
 removeAll(callback: AsyncCallback\<void\>): void
 
-删除所有通知（callback形式）。
+删除所有通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -788,7 +788,7 @@ notificationSubscribe.removeAll().then(() => {
 
 removeAll(userId: number, callback: AsyncCallback\<void>): void
 
-删除指定用户下的所有通知（callback形式）。
+删除指定用户下的所有通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 

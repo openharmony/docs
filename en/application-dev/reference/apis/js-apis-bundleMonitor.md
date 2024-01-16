@@ -14,11 +14,11 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 ## Required Permissions
 
-| Permission                                | Permission Level   | Description                          |
+| Permission                                | APL | Description                          |
 | ------------------------------------ | ----------- | ------------------------------ |
 | ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## BundleChangeInfo
 

@@ -53,14 +53,14 @@ The following table provides only a brief description of related APIs. For detai
 | API                                    | Description                                        |
 | ------------------------------------------ | -------------------------------------------- |
 | setUserId(name: string, value: string): void | Sets a user ID. The data processor can carry the user ID when reporting an event.|
-| getUserId(name: string): void               | Obtains the user ID that has been set.                          |
+| getUserId(name: string): string               | Obtains the user ID that has been set.                          |
 
 **User Property APIs**
 
 | API                                          | Description                                            |
 | ------------------------------------------------ | ------------------------------------------------ |
 | setUserProperty(name: string, value: string): void | Sets user properties. The data processor can carry user properties when reporting events.|
-| getUserProperty(name: string): void               | Obtains the user properties that have been set.                           |
+| getUserProperty(name: string): string               | Obtains the user properties that have been set.                           |
 
 ## Event Subscription
 
@@ -228,7 +228,7 @@ The following describes how to subscribe to the crash event generated when a use
           names: [hiAppEvent.event.APP_CRASH]
         }
       ],
-      // Implement real-time subscription callback so that you can apply custom processing to the events obtained through subscription.
+      // Implement a real-time subscription callback on your own so that you can apply custom processing to the events obtained through subscription.
       onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
         hilog.info(0x0000, 'testTag', `HiAppEvent onReceive: domain=${domain}`);
         for (const eventGroup of appEventGroups) {
@@ -240,23 +240,23 @@ The following describes how to subscribe to the crash event generated when a use
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
             // Obtain the timestamp of the crash event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params.time}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // Obtain the crash type of the crash event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params.crash_type}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['crash_type']}`);
             // Obtain the foreground and background status of the crashed application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params.foreground}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
             // Obtain the version information of the crashed application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params.bundle_version}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // Obtain the bundle name of the crashed application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params.bundle_name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
             // Obtain the process ID of the crashed application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params.pid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params.uid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params.uuid}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
             // Obtain the exception type, cause, and call stack of the crash event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params.exception)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // Obtain the log information about the crash event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params.hilog.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
           }
         }
       }
@@ -268,11 +268,7 @@ The following describes how to subscribe to the crash event generated when a use
    ```ts
     Button("appCrash").onClick(()=>{
       // Construct a crash scenario in the onClick function for triggering a crash event.
-      let obj = {
-        'name': 'crash',
-      }
-      obj = null
-      hilog.info(0x0000, 'testTag', `HiAppEvent obj.name: ${obj.name}`)
+      let result: object = JSON.parse("");
     })
    ```
 
@@ -294,7 +290,7 @@ The following describes how to subscribe to the crash event generated when a use
    HiAppEvent eventInfo.params.pid=2027
    HiAppEvent eventInfo.params.uid=20010043
    HiAppEvent eventInfo.params.uuid=...
-   HiAppEvent eventInfo.params.exception={"message":"Cannot read property name of null","name":"TypeError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:47:44)"}
+   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON\\n","name":"SyntaxError\\n","stack":"\\n    at anonymous (entry/src/main/ets/pages/Index.ets:60:34)\\n"}
    HiAppEvent eventInfo.params.hilog.size=100
    ```
 
@@ -307,7 +303,6 @@ The following describes the attributes in the freeze event.
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
 | time     | number | Event triggering time, in milliseconds.|
-| freeze_type | string | Freeze type. Currently, only **AppFreeze** is supported.|
 | foreground | boolean | Whether the application is in the foreground.|
 | bundle_version | string | Application version.|
 | bundle_name | string | Application name.|
@@ -362,7 +357,7 @@ The following describes the attributes in the freeze event.
 
 The following describes how to subscribe to the freeze event generated when a user clicks the button to trigger an application freeze.
 
-1. In the **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to button touch events. The complete sample code is as follows: 
+1. In the **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to **onCreate** to subscribe to system events. The complete sample code is as follows: 
 
    ```ts
     hiAppEvent.addWatcher({
@@ -375,11 +370,11 @@ The following describes how to subscribe to the freeze event generated when a us
           names: [hiAppEvent.event.APP_FREEZE]
         }
       ],
-      // Implement the real-time callback for subscription so that you can apply custom processing to the event logging data obtained through subscription.
+      // Implement a real-time subscription callback on your own so that you can apply custom processing to the events obtained through subscription.
       onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
         hilog.info(0x0000, 'testTag', `HiAppEvent onReceive: domain=${domain}`);
         for (const eventGroup of appEventGroups) {
-          // You can distinguish system events based on the event names in the event set.
+          // Distinguish system events based on the event names in the event set.
           hilog.info(0x0000, 'testTag', `HiAppEvent eventName=${eventGroup.name}`);
           for (const eventInfo of eventGroup.appEventInfos) {
             // Apply custom processing to the event data in the event set, for example, print the event data in the log.
@@ -387,35 +382,33 @@ The following describes how to subscribe to the freeze event generated when a us
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
             // Obtain the timestamp of the freeze event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params.time}`);
-            // Obtain the freeze type of the freeze event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.freeze_type=${eventInfo.params.freeze_type}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // Obtain the foreground and background status of the freeze application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params.foreground}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
             // Obtain the version information of the freeze application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params.bundle_version}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // Obtain the bundle name of the freeze application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params.bundle_name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
             // Obtain the process name of the freeze application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params.process_name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.process_name=${eventInfo.params['process_name']}`);
             // Obtain the process ID of the freeze application.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params.pid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params.uid}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params.uuid}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uuid=${eventInfo.params['uuid']}`);
             // Obtain the exception type and cause of the freeze event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params.exception)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // Obtain the log information about the freeze event.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params.hilog.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
             // Obtain the number of messages that are not yet processed by the main thread when the freeze event occurs.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params.event_handler.length}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params.event_handler_size_3s}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params.event_handler_size_6s}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params['event_handler'].length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params['event_handler_size_3s']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params['event_handler_size_6s']}`);
             // Obtain the synchronous binder call information logged when the freeze event occurs.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params.peer_binder.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params['peer_binder'].length}`);
             // Obtain the full thread call stack logged when the freeze event occurs.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params.threads.length}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params['threads'].length}`);
             // Obtain the memory information logged when the freeze event occurs.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params.memory)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
           }
         }
       }
@@ -444,7 +437,6 @@ The following describes how to subscribe to the freeze event generated when a us
    HiAppEvent eventInfo.name=APP_FREEZE
    HiAppEvent eventInfo.eventType=1
    HiAppEvent eventInfo.params.time=1702553728887
-   HiAppEvent eventInfo.params.freeze_type=AppFreeze
    HiAppEvent eventInfo.params.foreground=true
    HiAppEvent eventInfo.params.bundle_version=1.0.0
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
@@ -533,10 +525,10 @@ The following describes how to log a user click event and enable the data proces
 
    ```ts
      Button("userPropertyTest").onClick(()=>{
-       // Set the user property in the onClick function.
+       // Set the user ID in the onClick function.
        hiAppEvent.setUserProperty('testUserPropertyName', '123456');
 
-       // Obtain the user property set in the onClick function.
+       // Obtain the user ID set in the onClick function.
        let userProperty = hiAppEvent.getUserProperty('testUserPropertyName');
        hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`)
      })

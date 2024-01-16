@@ -485,7 +485,7 @@ In some cases you may want to control the scrolling position of a list. For exam
 
 When the **\<List>** component is initialized, you can use the **scroller** parameter to bind a [Scroller](../reference/arkui-ts/ts-container-scroll.md#scroller) object to control the scrolling of the list. In this example of a news page list, the **scrollToIndex** API of the **Scroller** object is used to scroll the list to the list item with the specified index. This allows the user to return to the top of the list by clicking a specific button.
 
-First, you need to create a **Scroller** object **listScroller**.
+To start with, create a **Scroller** object **listScroller**.
 
 
 ```ts
@@ -501,7 +501,6 @@ Stack({ alignContent: Alignment.Bottom }) {
   List({ space: 20, scroller: this.listScroller }) {
     // ...
   }
-  // ...
 
   Button() {
     // ...
@@ -510,7 +509,6 @@ Stack({ alignContent: Alignment.Bottom }) {
     // Specify where e to jump when the specific button is clicked, which is the top of the list in this example.
     this.listScroller.scrollToIndex(0)
   })
-  // ...
 }
 ```
 
@@ -752,7 +750,7 @@ The process of implementing the addition feature is as follows:
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   let arr = Array.isArray(value.index)?value.index:[value.index];
+                   let arr = Array.isArray(value.index) ? value.index : [value.index];
                    for(let i = 0; i < arr.length; i++) {
                       this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // Add to-do list items (available items).
                    }
@@ -804,13 +802,13 @@ The process of implementing the deletion feature is as follows:
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     // ToDoListItem.ets
     ```
     ```ts
@@ -822,9 +820,9 @@ The process of implementing the deletion feature is as follows:
     GestureGroup(GestureMode.Exclusive,
       LongPressGesture()
         .onAction(() => {
-          if (!todolist.isEditMode) {
-            todolist.isEditMode = true; // Enter the editing mode.
-            todolist.selectedItems.push(todolist.toDoItem); // Record the list item selected when the user long presses the button.
+          if (!toDoList.isEditMode) {
+            toDoList.isEditMode = true; // Enter the editing mode.
+            toDoList.selectedItems.push(toDoList.toDoItem); // Record the list items selected when long pressed.
           }
         })
       )
@@ -832,7 +830,7 @@ The process of implementing the deletion feature is as follows:
     ```
 
 2. Respond to the user's selection and record the list items to be deleted.
-   In this example of the to-do list, the list items are selected or unselected according to the user's selection.
+   In this to-do list example, the list items are selected or unselected according to the user's selection.
 
     ```ts
     // Structure reference
@@ -846,26 +844,26 @@ The process of implementing the deletion feature is as follows:
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     // ToDoListItem.ets
     ```
     ```ts
     // Implementation reference
-    if (todolist.isEditMode) {
+    if (toDoList.isEditMode) {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            todolist.selectedItems.push(todolist.toDoItem) // When an item is selected, record the selected item.
+            toDoList.selectedItems.push(toDoList.toDoItem) // When an item is selected, record the selected item.
           } else {
-            let index = todolist.selectedItems.indexOf(todolist.toDoItem)
+            let index = toDoList.selectedItems.indexOf(toDoList.toDoItem)
             if (index !== -1) {
-              todolist.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
+              toDoList.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
             }
           }
         })
@@ -886,32 +884,32 @@ The process of implementing the deletion feature is as follows:
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     ```
     ```ts
     // Implementation reference
     Button ('Delete')
       .onClick(() => {
         // Delete the toDoData data corresponding to the selected list items.
-        let leftData = todolist.toDoData.filter((item) => {
-          return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+        let leftData = toDoList.toDoData.filter((item) => {
+          return toDoList.selectedItems.find((selectedItem) => selectedItem !== item);
         })
 
-        todolist.toDoData = leftData;
-        todolist.isEditMode = false;
+        toDoList.toDoData = leftData;
+        toDoList.isEditMode = false;
       })
     ```
 
 
 ## Handling a Long List
 
-[ForEach](../quick-start/arkts-rendering-control-foreach.md) is applicable to short lists. With regard to a long list with a large number of list items, using **ForEach** will greatly slow down page loading, as it loads all list items at a time. Therefore, for better list performance, use [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) instead to implement on-demand iterative data loading.
+[ForEach](../quick-start/arkts-rendering-control-foreach.md) is applicable to short lists. With regard to a long list with a large number of list items, using **ForEach** will greatly slow down page loading, as it loads all list items at once. Therefore, for better list performance, use [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) instead to implement on-demand iterative data loading.
 
 For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
 

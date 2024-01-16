@@ -2,7 +2,7 @@
 
 ## 功能介绍
 
-多模输入子系统为多种输入设备提供服务，如触控板、触摸屏、鼠标、键盘等。通过对这些输入设备上报驱动事件的归一化处理，确保不同输入设备与用户交互体验统一和流畅。除基础的输入事件服务，多模子系统还支持获取设备列表，以及改变鼠标光标样式等。
+Input Kit（多模输入Kit）为多种输入设备提供服务，如触控板、触摸屏、鼠标、键盘等。通过对这些输入设备上报驱动事件的归一化处理，确保不同输入设备与用户交互体验统一和流畅。除基础的输入事件服务，多模子系统还支持获取设备列表，以及改变鼠标光标样式等。
 
 Input Kit除了提供基础的输入事件服务之外，还提供了获取输入设备列表，改变鼠标光标样式等功能和接口。
 
@@ -15,15 +15,9 @@ Input Kit除了提供基础的输入事件服务之外，还提供了获取输�
 
 1. 在使用下列函数时，开发者需要请求相应的权限。
 
-| 接口名称  | 描述 | 权限 |
-| ------------------------------------------------------------ | -------------------------- |-----|
-| setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void | 设置屏蔽按键拦截状态。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
-| getShieldStatus(shieldMode: ShieldMode): boolean | 获取屏蔽按键拦截是否生效。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
+  | 接口名称  | 描述 | 权限 |
+  | ------------------------------------------------------------ | -------------------------- |-----|
+  | setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void | 设置屏蔽按键拦截状态。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
+  | getShieldStatus(shieldMode: ShieldMode): boolean | 获取屏蔽按键拦截是否生效。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
     
-2. [组合按键](inputconsumer-guidelines.md);[注入事件](inputeventclient-guidelines.md);[输入监听](inputmonitor-guidelines.md);[快捷键](shortkey-guidelines.md)模块接口为系统接口，其中[输入监听](inputmonitor-guidelines.md)模块接口接口需要 ohos.permission.INPUT_MONITORING权限。
-
-
-
-
-
-
+2. [组合按键](inputconsumer-guidelines.md)、[注入事件](inputeventclient-guidelines.md)、[输入监听](inputmonitor-guidelines.md)、[快捷键](shortkey-guidelines.md)模块接口为系统接口，其中[输入监听](inputmonitor-guidelines.md)模块接口接口需要 ohos.permission.INPUT_MONITORING权限。

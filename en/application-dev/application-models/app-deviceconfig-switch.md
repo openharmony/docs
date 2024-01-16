@@ -27,4 +27,3 @@ OpenHarmony has reconstructed the [deviceConfig](../quick-start/deviceconfig-str
 | supportBackup | Whether the application supports data backup and restore.| / | This configuration is not supported in the stage model.|
 | compressNativeLibs | Whether the **libs** libraries are packaged in the HAP file after being compressed.| / | This configuration is not supported in the stage model.|
 | network | Network security configuration.| / | This configuration is not supported in the stage model.|
-

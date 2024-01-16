@@ -1,6 +1,6 @@
-# ArkUI
+# ArkUI Kit（方舟UI框架）
 
-- [ArkUI 简介](../ui/arkui-overview.md)
+- [ArkUI kit简介](../ui/arkui-overview.md)
 - UI开发（ArkTS声明式开发范式）
   - [UI开发（ArkTS声明式开发范式）概述](../ui/arkts-ui-development-overview.md)
   - 开发布局

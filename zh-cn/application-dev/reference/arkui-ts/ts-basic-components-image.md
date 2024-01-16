@@ -1,6 +1,6 @@
 # Image
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../apis/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)类型的数据源，支持png、jpg、bmp、svg和gif类型的图片格式。
+Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../apis/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp和gif类型的图片格式。
 
 > **说明：**
 >
@@ -56,7 +56,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | enableAnalyzer<sup>11+</sup> | boolean                                                 | 设置组件支持AI分析，设置为true时，组件可进行AI分析。<br>不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。<br/>默认值：false<br>**说明：**<br/> 该特性依赖设备能力。 <br/> 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../apis/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../apis/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。 <br/> alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。<br/> 基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。<br/> copyOption属性不影响AI分析功能。 |
 | analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | 设置AI分析类型，包括主体识别和文字识别功能，默认全部开启。<br>**说明：**<br /> 分析类型不支持动态修改。<br>**系统接口：**<br /> 此接口为系统接口。|
 | edgeAntialiasing<sup>11+</sup> | number                                                 | 设置SVG图源抗锯齿效果，仅对svg图源生效。<br/>取值范围：$[0.333, 1.333]$，有效数字保留小数点后3位。<br/>默认值：$0$。 <br>**系统接口：**<br /> 此接口为系统接口。|
-|resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | 设置图像拉伸时可调整大小的图像选项。<br> **说明：**<br /> 1. 拉伸对拖拽缩略图以及占位图有效。<br>2. 设置合法的 [ResizableOptions](#resizableoptions11) 时，objectfit 属性设置不生效。<br>3. 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。<br/>|
+|resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | 设置图像拉伸时可调整大小的图像选项。<br> **说明：**<br /> 1. 拉伸对拖拽缩略图以及占位图有效。<br>2. 设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。<br>3. 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。<br/>|
 
 >  **说明：**
 >
@@ -104,7 +104,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| slice<sup>11+</sup>  | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。|
+| slice  | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。<br>**说明：**<br>只有当bottom和right同时大于0时，该属性生效。|
 
 ## 事件
 
@@ -175,7 +175,7 @@ type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
 | -------------------- | ------ | ------------------------- |
 | componentWidth       | number | 组件的宽。<br/>单位：像素 |
 | componentHeight      | number | 组件的高。<br/>单位：像素 |
-| message<sup>9+</sup> | string | 报错信息。                |
+| message | string | 报错信息。                |
 
 ## 示例
 
@@ -242,68 +242,33 @@ struct ImageExample2 {
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-}
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
-  @State widthValue: number = 0;
-  @State heightValue: number = 0;
-  private on: Resource = $r('app.media.image_on');
-  private off: Resource = $r('app.media.image_off');
-  private on2off: Resource = $r('app.media.image_on2off');
-  private off2on: Resource = $r('app.media.image_off2on');
-  @State src: Resource = this.on;
+  private imageOne: Resource = $r('app.media.earth');
+  private imageTwo: Resource = $r('app.media.star');
+  private imageThree: Resource = $r('app.media.moveStar');
+  @State src: Resource = this.imageOne
+  @State src2: Resource = this.imageThree
+  build(){
+    Column(){
+      //为图片添加点击事件，点击完成后加载特定图片
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          this.src = this.imageTwo
+        })
 
-  build() {
-    Column() {
-      Row({ space: 20 }) {
-        Column() {
-          Image($r('app.media.img_example1'))
-            .alt($r('app.media.ic_public_picture'))
-            .sourceSize({
-              width: 900,
-              height: 900
-            })
-            .objectFit(ImageFit.Cover)
-            .height(180).width(180)
-            // 图片加载完成后，获取图片尺寸。
-            .onComplete(msg => {
-              if(msg){
-                this.widthValue = msg.width
-                this.heightValue = msg.height
-              }
-            })
-            .onError(() => {
-              console.log('load image fail')
-            })
-            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
-              align: Alignment.Bottom,
-              offset: { x: 0, y: 20 }
-            })
-        }
-        // 为图片添加点击事件，点击完成后加载特定图片
-        Image(this.src)
-          .width(120).height(120)
-          .onClick(() => {
-            if (this.src == this.on || this.src == this.off2on) {
-              this.src = this.on2off
-            } else {
-              this.src = this.off2on
-            }
-          })
-          .onFinish(() => {
-            if (this.src == this.off2on) {
-              this.src = this.on
-            } else {
-              this.src = this.off
-            }
-          })
-      }
-    }.width('100%')
+      //当加载图片为SVG格式时
+      Image(this.src2)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          //SVG动效播放完成时加载另一张图片
+          this.src2 = this.imageOne
+        })
+    }.width('100%').height('100%')
   }
 }
 ```

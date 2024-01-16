@@ -23,8 +23,12 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 
 ```ts
 import common from '@ohos.app.ability.common';
+import Logger from '../utils/Logger';
 import { BusinessError } from '@ohos.base';
 
+const TAG: string = 'EntryAbility';
+
+...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
 ... // Obtain a pixelMap object.
@@ -52,7 +56,11 @@ Call [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-applic
 ```ts
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
+import Logger from '../utils/Logger';
 
+const TAG: string = 'EntryAbility';
+
+...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 // Set a name for the mission snapshot.
 context.setMissionLabel('test').then(() => {

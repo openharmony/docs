@@ -497,7 +497,7 @@ SymbolSpan样式选项。
 | 名称            | 类型                                       | 必填   | 描述                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -577,13 +577,13 @@ SymbolSpan样式选项。
 
 组件SymbolSpan样式信息。
 
-| 名称                | 类型                                       | 必填   | 描述                                       |
-| ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fontColor         | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否    | 组件颜色。<br/> 默认值：Color.Black。              |
-| fontSize          | number \| string \| [Resource](ts-types.md#resource) | 否    | 设置组件大小。<br/>默认值：系统默认值。                   |
-| fontWeight        | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
-| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 否    | 渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
-| effectStrategy    | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 否    | 动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 设置SymbolGlyph组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
+| fontSize | number \| string \| [Resource](../arkui-ts/ts-types.md#resource) | 否 | 设置SymbolGlyph组件大小。<br/>默认值：系统默认值。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 设置SymbolGlyph组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
@@ -729,7 +729,7 @@ struct Index {
       Column() {
         RichEditor(this.options)
           .onReady(() => {
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("012345",
               {
                 style:
                 {
@@ -751,7 +751,7 @@ struct Index {
                   size: ["57px", "57px"]
                 }
               })
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("56789",
               {
                 style:
                 {

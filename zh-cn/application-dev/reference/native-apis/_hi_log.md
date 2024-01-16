@@ -36,7 +36,7 @@ HiLog模块实现日志打印功能。
 | [OH_LOG_INFO](#oh_log_info)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
 | [OH_LOG_WARN](#oh_log_warn)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
 | [OH_LOG_ERROR](#oh_log_error)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
-| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
+| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 
 
 ### 枚举
@@ -159,7 +159,7 @@ ERROR级别写日志，宏封装接口。
 
 
 ```
-#define OH_LOG_FATAL( type,  ... )   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
+#define OH_LOG_FATAL( type,  ... )   ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
 ```
 
 **描述：**

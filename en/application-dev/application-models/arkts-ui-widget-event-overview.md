@@ -67,4 +67,3 @@ Button ('Start in Background')
 
 ## Static Widget Event Capability
 See [FormLink](../reference/arkui-ts/ts-container-formlink.md).
-<!--no_check-->

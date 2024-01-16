@@ -42,7 +42,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.CaptureSession  = cameraManager.createCaptureSession();
+  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -92,17 +92,17 @@ import common from '@ohos.app.ability.common';
 async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
-  let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
+  // 创建PhotoSession实例
+  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
   // 开始配置会话
-  captureSession.beginConfig();
+  photoSession.beginConfig();
   // 把CameraInput加入到会话
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   cameraInput.open();
-  captureSession.addInput(cameraInput);
+  photoSession.addInput(cameraInput);
   // 把PhotoOutPut加入到会话
   let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
-  captureSession.addOutput(photoOutPut);
+  photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {
     // 使能快速缩略图

@@ -118,4 +118,3 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
       }
       ```
 
- <!--no_check--> 

@@ -53,7 +53,7 @@ async getVideoSurfaceID(){
   if (deviceInfo.deviceType == 'phone') {
     Logger.info(this.tag, `deviceType = phone`)
     this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
     if (this.cameraDeviceIndex == 1) {
       this.videoConfig.rotation = this.photoRotationMap.rotation270;
     } else {

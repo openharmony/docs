@@ -51,12 +51,12 @@
 
    ```ets
    //xxx.ets
-   // 创建XComponentController 
+   // 创建XComponentController
    @Component
    struct XComponentPage {
      // 创建XComponentController
      mXComponentController: XComponentController = new XComponentController;
-   
+
      build() {
        Flex() {
          // 创建XComponent
@@ -87,51 +87,60 @@
    import camera from '@ohos.multimedia.camera';
 
    async function createDualChannelPreview(cameraManager: camera.CameraManager, XComponentSurfaceId: string, receiver: image.ImageReceiver): Promise<void> {
-     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // 获取支持的相机设备对象
-   
+     // 获取支持的相机设备对象
+     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+
+     // 获取支持的模式类型
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(camerasDevices[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+
      // 获取profile对象
-     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
+     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0], camera.SceneMode.NORMAL_PHOTO); // 获取对应相机设备profiles
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
-   
+
      // 预览流1
      let previewProfilesObj: camera.Profile = previewProfiles[0];
-   
+
      // 预览流2
      let previewProfilesObj2: camera.Profile = previewProfiles[0];
-   
+
      // 创建 预览流1 输出对象
      let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(previewProfilesObj, XComponentSurfaceId);
-   
+
      // 创建 预览流2 输出对象
      let imageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
      let previewOutput2: camera.PreviewOutput = cameraManager.createPreviewOutput(previewProfilesObj2, imageReceiverSurfaceId);
-   
+
      // 创建cameraInput对象
      let cameraInput: camera.CameraInput = cameraManager.createCameraInput(camerasDevices[0]);
-   
+
      // 打开相机
      await cameraInput.open();
-   
+
      // 会话流程
-     let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
-   
+     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+
      // 开始配置会话
-     captureSession.beginConfig();
-   
+     photoSession.beginConfig();
+
      // 把CameraInput加入到会话
-     captureSession.addInput(cameraInput);
-   
+     photoSession.addInput(cameraInput);
+
      // 把 预览流1 加入到会话
-     captureSession.addOutput(previewOutput);
-   
+     photoSession.addOutput(previewOutput);
+
      // 把 预览流2 加入到会话
-     captureSession.addOutput(previewOutput2);
-   
+     photoSession.addOutput(previewOutput2);
+
      // 提交配置信息
-     await captureSession.commitConfig();
-   
+     await photoSession.commitConfig();
+
      // 会话开始
-     await captureSession.start();
+     await photoSession.start();
    }
    ```
 

@@ -1,4 +1,4 @@
-# USB Error Codes
+# USB Service Error Codes
 
 > **NOTE**
 >

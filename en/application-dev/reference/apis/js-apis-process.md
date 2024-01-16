@@ -169,8 +169,8 @@ Sends a signal to the specified process to terminate it.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pid | number | Yes| PID of the process, to which the signal will be sent.|
 | signal | number | Yes| Signal to send.|
+| pid | number | Yes| PID of the process, to which the signal will be sent.|
 
 **Return value**
 
@@ -266,7 +266,7 @@ Obtains the thread priority based on the specified TID.
 
 | Type| Description|
 | -------- | -------- |
-| number | Priority of the thread.|
+| number | Priority of the thread. The priority depends on the operating system.|
 
 **Example**
 
@@ -450,7 +450,7 @@ Obtains the thread priority based on the specified TID.
 
 | Type| Description|
 | -------- | -------- |
-| number | Priority of the thread.|
+| number | Priority of the thread. The priority depends on the operating system.|
 
 **Example**
 
@@ -554,8 +554,8 @@ Sends a signal to the specified process to terminate it.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pid | number | Yes| PID of the process, to which the signal will be sent.|
 | signal | number | Yes| Signal to send.|
+| pid | number | Yes| PID of the process, to which the signal will be sent.|
 
 **Return value**
 
