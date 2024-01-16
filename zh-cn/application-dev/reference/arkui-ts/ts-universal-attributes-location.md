@@ -74,7 +74,7 @@ markAnchor(value: Position)
 
 offset(value: Position)
 
-相对定位，设置子素相对于自身的额外偏移量。
+相对定位，设置子元素相对于自身的额外偏移量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
