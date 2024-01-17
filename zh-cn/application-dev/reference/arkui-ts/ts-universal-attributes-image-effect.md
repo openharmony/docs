@@ -265,7 +265,7 @@ renderGroup(value: boolean)
 
 blendMode(value: BlendMode, type?: BlendApplyType)
 
-将当前控件背景与子节点内容进行混合。
+将当前控件的内容（包含子节点内容）和屏幕上已有内容进行混合。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -275,8 +275,8 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode枚举说明)  | 是   | 将当前控件背景与子节点内容进行混合。<br/>默认值：BlendMode.NONE<br/>**说明：**<br/>-value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NONE<br/>**注意事项：**<br/>1、需调用BlendApplyType.OFFSCREEN来触发离屏，第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。<br/>2、SRC_IN和DST_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。<br/>3、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常。 |
-| type   | [BlendApplyType](#blendapplytype对象说明)  |    是    | 混合类型。<br/>默认值：BlendApplyType.FAST<br/>     |
+| value  | [BlendMode](#blendmode枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE  |
+| type   | [BlendApplyType](#blendapplytype对象说明)  |    否    | 混合类型。<br/>默认值：BlendApplyType.FAST     |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -359,8 +359,8 @@ useShadowBatching(value: boolean)
 
 | 名称           | 描述                                                             |
 | ---------------| ------                                                          |
-| FAST           |   在目标图像上按顺序混合视图的内容                    |
-| OFFSCREEN      |   将此视图的内容组合成屏幕外图像，然后混合到目标图像    |
+| FAST           |   在目标图像上按顺序混合视图的内容                        |
+| OFFSCREEN      |   将此控件和子控件内容绘制到离屏画布上，然后整体进行混合    |
 
 ## LinearGradientBlurOptions<sup>10+</sup>对象说明
 
@@ -761,7 +761,7 @@ struct Index {
           .position({ x: 150, y: 50 })
 
       }
-      .blendMode(BlendMode.NONE)
+      .blendMode(BlendMode.OVERLAY,BlendApplyType.OFFSCREEN)
       .alignItems(VerticalAlign.Center)
       .height(300)
       .width('100%')
@@ -780,7 +780,7 @@ BlendMode.NONE<br/>
 ![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode2.png)
 <br/>BlendMode.COLOR,BlendApplyType.FAST<br/>
 ![zh-cn_image_effect_blendMode3](figures/zh-cn_image_effect_blendMode3.png)
-<br/>不同的模式控制不同的混合方式从而产生不同的效果。
+<br/>不同的模式组合不同的混合方式从而产生不同的效果。
 
 ### 示例11
 blendMode搭配backgroundEffect实现文字图形异形渐变效果。
