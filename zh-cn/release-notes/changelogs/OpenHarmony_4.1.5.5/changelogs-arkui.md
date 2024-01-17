@@ -73,7 +73,11 @@ b) showTips 第二个参数设置文本内容时，文本内容可能产生变�
 
 API 11前，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize_contrary`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize_contrary`，环形样式进度条默认进度条底色是系统资源中的`ohos_id_color_component_normal`。
 
+![progress](figures/oldProgress.png)
+
 API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize`，前景色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize`，内描边颜色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，环形样式进度条默认进度条底是系统资源中的`ohos_id_color_button_normal`。
+
+![progress](figures/newProgress.png)
 
 **适配指导**
 
@@ -105,7 +109,11 @@ API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos
 
 API 11前，默认前景色不透明度为0.6，默认前景色是“#99666666”。
 
+![loadingProgress](figures/oldLoadingProgress.png)
+
 API 11及以后，默认前景色不透明度为1.0，默认前景色是“#ff666666”。
+
+![loadingProgress](figures/newLoadingProgress.png)
 
 **适配指导**
 
@@ -206,7 +214,11 @@ API 11及以后，默认前景色不透明度为1.0，默认前景色是“#ff66
 
 API 11前，Datapanel组件的默认阴影模糊半径为5vp。
 
+![dataPanel](figures/oldDataPanel.png)
+
 API 11及以后，Datapanel组件的默认阴影模糊半径为20vp。
+
+![dataPanel](figures/newDataPanel.png)
 
 **适配指导**
 
@@ -258,6 +270,8 @@ API 11及以后，默认Dialog的内容区对齐方式在无标题且内容只�
 
 该变更为兼容性变更。在统一渲染模式下，弹窗类组件背板的默认视觉效果变更为模糊材质。
 
+如果开发者需要更换模糊材质及背景色，可以通过添加backgroundColor及backgroundBlurStyle参数修改。
+
 **API Level**
 
 11
@@ -276,7 +290,38 @@ API 11及以后，弹窗类组件背板显示为模糊材质。
 
 **适配指导**
 
-默认背板效果变更，不涉及适配。
+去除模糊材质示例代码：
+```ts
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+      Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show({
+            message:"alertDialog",
+          })
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+将
+```ts
+AlertDialog.show({
+  message:"alertDialog",
+})
+```
+替换为
+```ts
+AlertDialog.show({
+  message:"alertDialog",
+  backgroundColor:Color.White,
+  backgroundBlurStyle:BlurStyle.NONE
+})
+```
+即手动设置背景色与背景模糊材质枚举值。
 
 ## cl.Arkui.9 Dialog组件内容区Text默认分词方式变更
 
@@ -311,42 +356,8 @@ API 11及以后，默认Dialog的内容区分词方式为BREAK_ALL。
 **适配指导**
 
 默认分词方式变更，不涉及适配。
-## cl.arkui.10 Image组件autoResize interpolation属性默认行为变更
 
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-应用侧需要设置autoResize为false、 interpolation设置为LOW来解决图片锯齿问题
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-变更前，Image组件的autoResize默认值为true， interpolation为None。
-
-变更后，Image组件的autoResize默认值为false， interpolation为LOW，该修改会提升图片显示效果，但是image组件在大图显示成小组件时，默认内存会上涨，需要应用根据实际情况进行内存优化。
-说明：该修改不影响大桌面效果。
-
-**API Level**
-
-11
-
-**变更发生版本**
-
-从OpenHarmony SDK 4.1.5.5 开始。
-
-**变更的接口/组件**
-
-受影响的组件有：Image。
-
-**适配指导**
-
-默认行为变更，不涉及适配。
-
-## cl.arkui.11  opacity属性非法值设置变更
+## cl.arkui.10  opacity属性非法值设置变更
 
 **访问级别**
 
@@ -380,7 +391,7 @@ opacity属性设置小于0的非法值需要按照完全透明来处理。
 
 默认行为变更，不涉及适配。
 
-## cl.Arkui.12 ListItem、GridItem的selectable属性异常值处理逻辑变更
+## cl.Arkui.11 ListItem、GridItem的selectable属性异常值处理逻辑变更
 
 **访问级别**
 
@@ -418,7 +429,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 默认行为变更，不涉及适配。
 
-## cl.arkui.13  Text组件fontSize属性非法值设置变更
+## cl.arkui.12  Text组件fontSize属性非法值设置变更
 
 **访问级别**
 
@@ -452,7 +463,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 默认行为变更，不涉及适配。
 
-## cl.arkui.14  点击事件规格变更
+## cl.arkui.13  点击事件规格变更
 
 **访问级别**
 
@@ -485,3 +496,71 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 **适配指导**
 
 默认行为变更，不涉及适配。
+
+## cl.arkui.14  menuItem默认高度规格变更
+
+**访问级别**
+
+其他
+
+**变更原因**
+
+UX默认规格变更
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前，menuItem只传入图标高度为24vp，menuItem传入为空时高度为0。
+
+变更后，menuItem只传入图标高度为48vp，menuItem传入为空时高度也为48vp。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件：MenuItem、Menu、MenuItemGroup。
+
+**适配指导**
+
+默认高度规格变更，如果与应用UX高度规格不符，可以自定义设置menuItem的height。
+
+## cl.arkui.15  Swiper组件的Indicator属性参数设置逻辑变更
+
+**访问级别**
+
+其他
+
+**变更原因**
+
+Indicator属性的left、top、right、bottom等参数设置为0时不生效，设置成异常值时未按默认值0vp处理。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Indicator属性的left、top、right、bottom等参数设置为0或异常值时，导航点位于Swiper组件底部居中。
+
+变更后，Indicator属性的left、top、right、bottom等参数设置为0或异常值时，导航点位于Swiper组件对应边界的位置，即按默认值0vp处理。
+
+**API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件：Tabs。
+
+**适配指导**
+
+变更后，Indicator属性的left、top、right、bottom等参数设置为正常值（包含0）时按设置的值处理，设置成异常值按默认值0vp处理，不涉及适配。

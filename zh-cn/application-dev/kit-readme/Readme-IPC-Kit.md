@@ -1,4 +1,4 @@
-# IPC Kit
+# IPC Kit（进程间通信服务）
 
 - [IPC Kit简介](../connectivity/ipc-rpc-overview.md)
 - [IPC与RPC通信开发指导](../connectivity/ipc-rpc-development-guideline.md)

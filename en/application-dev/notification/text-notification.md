@@ -10,7 +10,8 @@ You can publish basic notifications to send SMS messages, prompt messages, and a
 | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.|
 | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.|
 | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.|
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | Live view (for system applications only).|
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | System live view (for system applications only). |
+| NOTIFICATION_CONTENT_LIVE_VIEW | Common live view.|
 
 
 Notifications are displayed in the notification panel, which is the only supported subscriber to notifications. Below you can see two examples of the basic notification.
@@ -18,7 +19,8 @@ Notifications are displayed in the notification panel, which is the only support
 > 
 > The figures are for reference only. The actual effect may vary.
 
-**Figure 1** Examples of the basic notification 
+**Figure 1** Examples of the basic notification
+
 ![en-us_image_0000001466462305](figures/en-us_image_0000001466462305.png)
 
 
@@ -42,6 +44,7 @@ The following table describes the APIs for notification publishing. You specify 
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. Create a **NotificationRequest** object and publish a progress notification.
@@ -61,10 +64,10 @@ The following table describes the APIs for notification publishing. You specify 
       };
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -74,7 +77,7 @@ The following table describes the APIs for notification publishing. You specify 
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 2,
         content: {
           notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
           longText: {
@@ -90,10 +93,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -103,14 +106,14 @@ The following table describes the APIs for notification publishing. You specify 
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 3,
         content: {
           notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
           multiLine: {
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'longTitle',
+            longTitle: 'test_longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -118,10 +121,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -146,7 +149,7 @@ The following table describes the APIs for notification publishing. You specify 
       })
       if (imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {
-          id: 1,
+          id: 4,
           content: {
             notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
             picture: {
@@ -162,17 +165,17 @@ The following table describes the APIs for notification publishing. You specify 
         // Publish the notification.
         notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
           if (err) {
-            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
             return;
           }
-          console.info('Succeeded in publishing notification.');
+          logger.info('Succeeded in publishing notification.');
         });
       }
       ```
    
       Below is an example of the picture-attached notification. 
      ![en-us_image_0000001466582045](figures/en-us_image_0000001466582045.png)
-   - In addition to the parameters in the normal text notification, the live view notification provides the **typeCode**, **capsule**, **button**, **time**, and **progress** parameters. For details, see [NotificationSystemLiveViewContent](../../application-dev/reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent).
+   - In addition to the parameters in the normal text notification, the system live view provides the **typeCode**, **capsule**, **button**, **time**, and **progress** parameters. For details, see [NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent).
      
       ```ts
       import image from '@ohos.multimedia.image';
@@ -268,4 +271,76 @@ The following table describes the APIs for notification publishing. You specify 
         // Publish the notification.
         notificationManager.publish(notificationRequest, publishCallback);
       }
+      ```
+
+   - In addition to the parameters in the normal text notification, the common live view provides the **status**, **version**, **extraInfo**, and **pictureInfo** parameters. For details, see [NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11).
+
+      ```ts
+      import Want from '@ohos.app.ability.Want';
+      import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+
+      let wantAgentInfo: wantAgent.WantAgentInfo = {
+        wants: [
+            {
+                deviceId: '',
+                bundleName: 'com.example.myapplication',
+                abilityName: 'EntryAbility',
+                action: '',
+                entities: [],
+                uri: '',
+                parameters: {}
+            }
+        ],
+        operationType: wantAgent.OperationType.START_ABILITY,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG]
+      }
+      let notificationRequest: notificationManager.NotificationRequest = {
+        id: 1,
+        content: {
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+          liveView: {
+            status: notificationManager.LiveViewStatus.LIVE_VIEW_CREATE,
+            version: 1,
+            extraInfo: {
+              "event": "TAXI",
+              "isMute": false,
+              "primaryData.title": "primary title",
+              "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
+              "primaryData.keepTime": 60,
+              "primaryData.extend.text": "extendData text",
+              "primaryData.extend.type": 1,
+              "PickupLayout.layoutType": 4,
+              "PickupLayout.title": "layout title",
+              "PickupLayout.content": "layout content",
+              "PickupLayout.underlineColor": "#FFFFFFFF",
+              "CapsuleData.status": 1,
+              "CapsuleData.type": 1,
+              "CapsuleData.backgroundColor": "#FFFFFFFF",
+              "CapsuleData.title": "capsule title",
+              "CapsuleData.content": "capsule content",
+              "TimerCapsule.content": "capsule title",
+              "TimerCapsule.initialtime": 7349485944,
+              "TimerCapsule.isCountdown": false,
+              "TimerCapsule.isPause": true
+            }
+          }
+        },
+        notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
+        isOngoing: true,
+        isUnremovable: false,
+        autoDeletedTime: 500,
+        wantAgent: await WantAgent.getWantAgent(WantAgentInfo),
+        extraInfo: {
+          'testKey': 'testValue'
+        },
+      }
+
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
+      });
       ```

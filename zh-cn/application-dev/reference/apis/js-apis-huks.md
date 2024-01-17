@@ -554,6 +554,8 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 获取密钥证书，使用Callback方式回调异步返回结果 。
 
+**需要权限**：ohos.permission.ATTEST_KEY
+
 **系统能力**：SystemCapability.Security.Huks.Extension
 
 **参数：**
@@ -693,6 +695,8 @@ async function generateKeyThenattestKey(alias: string) {
 attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
 获取密钥证书，使用Promise方式异步返回结果 。
+
+**需要权限**：ohos.permission.ATTEST_KEY
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 

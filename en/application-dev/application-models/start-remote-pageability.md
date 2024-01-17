@@ -48,6 +48,10 @@ The following sample code shows how to request the data synchronization permissi
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';
+
 async requestPermission(): Promise<void> {
   Logger.info(TAG, 'RequestPermission begin');
   let array: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
@@ -88,6 +92,10 @@ The following sample code shows how to use **getAvailableDeviceListSync()** to o
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import promptAction from '@ohos.promptAction';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';
 
 getRemoteDeviceId(): void {
   let dmClass: deviceManager.DeviceManager;
@@ -124,6 +132,11 @@ The following sample code shows how to explicitly start a remote PageAbility thr
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';;
 
 onStartRemoteAbility(): void {
   Logger.info(TAG, 'onStartRemoteAbility begin');

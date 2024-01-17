@@ -33,6 +33,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    import wantAgent from '@ohos.app.ability.wantAgent';
    import { WantAgent } from '@ohos.app.ability.wantAgent';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. Create a **WantAgentInfo** object.
@@ -47,8 +48,8 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
      wants: [
        {
          deviceId: '',
-         bundleName: 'com.example.myapplication',
-         abilityName: 'EntryAbility',
+         bundleName: 'com.samples.notification',
+         abilityName: 'SecondAbility',
          action: '',
          entities: [],
          uri: '',
@@ -86,10 +87,10 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
-       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in geting want agent.');
+     logger.info('Succeeded in getting want agent.');
      wantAgentObj = data;
    });
    ```
@@ -100,24 +101,24 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    // Create a NotificationRequest object.
    let notificationRequest: notificationManager.NotificationRequest = {
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'Test_Title',
          text: 'Test_Text',
          additionalText: 'Test_AdditionalText',
        },
      },
-     id: 1,
+     id: 6,
      label: 'TEST',
      wantAgent: wantAgentObj,
    }
    
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     logger.info('Succeeded in publishing notification.');
    });
    ```
 

@@ -33,7 +33,7 @@
       if (deviceInfo.deviceType == 'phone') {
         Logger.info(this.tag, `deviceType = phone`)
         this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-        this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+        this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
         if (this.cameraDeviceIndex == 1) {
           this.videoConfig.rotation = this.photoRotationMap.rotation270;
         } else {
@@ -63,13 +63,13 @@
 
    ```c++
     //导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 5. 创建录像输出流。
@@ -83,7 +83,7 @@
      let aVRecorderProfile: media.AVRecorderProfile = {
        fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
        videoBitrate : 100000, // 视频比特率
-       videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+       videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
        videoFrameWidth : 640,  // 视频分辨率的宽
        videoFrameHeight : 480, // 视频分辨率的高
        videoFrameRate : 30 // 视频帧率

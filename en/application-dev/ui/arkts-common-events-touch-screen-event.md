@@ -49,7 +49,10 @@ struct IfElseTransition {
   }
 }
 ```
+**Figure 2** Showing or hiding an image through the click event of a button
 
+
+![ClickEventControl.gif](figures/ClickEventControl.gif)
 
 ## Drag Event
 
@@ -241,7 +244,7 @@ struct Index {
   }
 }
 ```
-
+![en-us_image_drag_drop](figures/en-us_image_drag_drop.gif)
 
 ## Touch Event
 

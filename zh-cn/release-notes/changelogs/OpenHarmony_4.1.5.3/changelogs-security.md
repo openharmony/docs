@@ -39,4 +39,4 @@
 | anonAttestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult> |
 | struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain) |
 
-适配方式2：业务申请并配置ohos.permission.ATTEST_KEY权限
+适配方式2：业务申请并配置ohos.permission.ATTEST_KEY权限(仅面向系统应用开放)

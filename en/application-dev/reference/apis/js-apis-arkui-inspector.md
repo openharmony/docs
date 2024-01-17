@@ -135,11 +135,23 @@ Unregisters the listener for completion of component drawing.
       let onDrawComplete:()=>void=():void=>{
           // do something here
       }
+      let offLayoutComplete:()=>void=():void=>{
+          // do something here
+      }
+      let offDrawComplete:()=>void=():void=>{
+          // do something here
+      }
       let FuncLayout = onLayoutComplete // bind current js instance
       let FuncDraw = onDrawComplete // bind current js instance
+      let OffFuncLayout = offLayoutComplete // bind current js instance
+      let OffFuncDraw = offDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
+
+      // Unregister the callback with the corresponding query condition by using the handle. You can determine when to call this API.
+      // this.listener.off('layout', OffFuncLayout)
+      // this.listener.off('draw', OffFuncDraw)
     }
   }
   ```

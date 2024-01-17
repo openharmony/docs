@@ -257,6 +257,7 @@
     - [Graphics](js-apis-arkui-graphics.md)
     - [NodeController](js-apis-arkui-nodeController.md)
     - [RenderNode](js-apis-arkui-renderNode.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
@@ -264,7 +265,9 @@
   - [@ohos.display (屏幕属性)](js-apis-display.md)
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.common2D (2D图形通用数据类型)](js-apis-graphics-common2D.md)
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
+  - [@ohos.graphics.drawing (绘制模块)](js-apis-graphics-drawing.md)
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)

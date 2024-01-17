@@ -41,7 +41,7 @@
   
 ```ts
 @Component
-export struct PlayListHeader {
+export struct Header {
   @State moreBackgroundColor: Resource = $r('app.color.play_list_cover_background_color');
   build() {
     GridRow() {
@@ -91,9 +91,88 @@ export struct PlayListHeader {
 
   
 ```ts
+import { optionList } from '../model/SongList'
+
 @Component
 export default struct PlayListCover {
-  ...
+    @State imgHeight: number = 0;
+    @StorageProp('coverMargin') coverMargin: number = 0;
+    @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
+    @StorageProp('fontSize') fontSize: number = 0;
+
+    @Builder
+    CoverImage() {
+      Stack({ alignContent: Alignment.BottomStart }) {
+        Image($r('app.media.pic_album'))
+          .width('100%')
+          .aspectRatio(1)
+          .borderRadius(8)
+          .onAreaChange((oldArea: Area, newArea: Area) => {
+            this.imgHeight = newArea.height as number
+          })
+        Text($r('app.string.collection_num'))
+          .letterSpacing(1)
+          .fontColor('#fff')
+          .fontSize(this.fontSize - 4)
+          .translate({ x: 10, y: '-100%' })
+      }
+      .width('100%')
+      .height('100%')
+      .aspectRatio(1)
+    }
+
+    @Builder
+    CoverIntroduction() {
+      Column() {
+        Text($r('app.string.list_name'))
+          .opacity(0.9)
+          .fontWeight(500)
+          .fontColor('#556B89')
+          .fontSize(this.fontSize + 2)
+          .margin({ bottom: 10 })
+
+        Text($r('app.string.playlist_Introduction'))
+          .opacity(0.6)
+          .width('100%')
+          .fontWeight(400)
+          .fontColor('#556B89')
+          .fontSize(this.fontSize - 2)
+      }
+      .width('100%')
+      .height(this.currentBreakpoint === 'sm' ? this.imgHeight : 70)
+      .alignItems(HorizontalAlign.Start)
+      .justifyContent(FlexAlign.Center)
+      .padding({ left: this.currentBreakpoint === 'sm' ? 20 : 0 })
+      .margin({
+        top: this.currentBreakpoint === 'sm' ? 0 : 30,
+        bottom: this.currentBreakpoint === 'sm' ? 0 : 20
+      })
+    }
+
+    @Builder
+    CoverOptions() {
+      Row() {
+        ForEach(optionList, item => {
+          Column({ space: 4 }) {
+            Image(item.image).height(30).width(30)
+            Text(item.text)
+              .fontColor('#556B89')
+              .fontSize(this.fontSize - 1)
+          }
+        })
+      }
+      .width('100%')
+      .height(70)
+      .padding({
+        left: this.currentBreakpoint === 'sm' ? 20 : 0,
+        right: this.currentBreakpoint === 'sm' ? 20 : 0
+      })
+      .margin({
+        top: this.currentBreakpoint === 'sm' ? 15 : 0,
+        bottom: this.currentBreakpoint === 'sm' ? 15 : 0
+      })
+      .justifyContent(FlexAlign.SpaceBetween)
+    }
   build() {
     Column() {
       // 借助栅格组件实现总体布局
@@ -116,7 +195,7 @@ export default struct PlayListCover {
       }
       .margin({ left: this.coverMargin, right: this.coverMargin })
     }
-    .height(this.currentBreakpoint === 'sm' ? this.coverHeight : '100%')
+    .height('100%')
     .padding({ top: this.currentBreakpoint === 'sm' ? 50 : 70 })
   }
 }
@@ -129,9 +208,68 @@ export default struct PlayListCover {
 
   
 ```ts
+import { songList } from '../model/SongList';
+import MyDataSource from '../model/SongModule'
+
 @Component
 export default struct PlayList {
-  ...
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
+  @StorageProp('fontSize') fontSize: number = 0;
+  @Consume coverHeight: number;
+   @Builder
+  PlayAll() {
+    Row() {
+      Image($r("app.media.ic_play_all"))
+        .height(23)
+        .width(23)
+      Text($r('app.string.play_all'))
+        .maxLines(1)
+        .padding({ left: 10 })
+        .fontColor('#000000')
+        .fontSize(this.fontSize)
+      Blank()
+      Image($r('app.media.ic_order_play'))
+        .width(24)
+        .height(24)
+        .margin({ right: 16 })
+      Image($r('app.media.ic_sort_list'))
+        .height(24)
+        .width(24)
+    }
+    .height(60)
+    .width('100%')
+    .padding({ left: 12, right: 12 })
+  }
+
+  @Builder
+  SongItem(title: string, label: Resource, singer: string) {
+    Row() {
+      Column() {
+        Text(title)
+          .fontColor('#000000')
+          .fontSize(this.fontSize)
+          .margin({ bottom: 4 })
+        Row() {
+          Image(label)
+            .width(16)
+            .height(16)
+            .margin({ right: 4 })
+          Text(singer)
+            .opacity(0.38)
+            .fontColor('#000000')
+            .fontSize(this.fontSize - 4)
+        }
+      }
+      .alignItems(HorizontalAlign.Start)
+
+      Blank()
+      Image($r('app.media.ic_list_more'))
+        .height(24)
+        .width(24)
+    }
+    .height(60)
+    .width('100%')
+  }
   build() {
     Column() {
       this.PlayAll()
@@ -141,7 +279,7 @@ export default struct PlayList {
             ListItem() {
               this.SongItem(item.title, item.label, item.singer)
             }
-          }, item => item.id)
+          })
         }
         .width('100%')
         .height('100%')
@@ -164,11 +302,27 @@ export default struct PlayList {
   
 ```ts
 @Component
-export struct MusicBar {
+export default struct Player {
+  @StorageProp('fontSize') fontSize: number = 0;
   build() {
     Row() {
       Image($r('app.media.pic_album')).height(32).width(32).margin({right: 12})
-      SongTitle()
+      Column() {
+        Text($r('app.string.song_name'))
+          .fontColor('#000000')
+          .fontSize(this.fontSize - 1)
+        Row() {
+          Image($r('app.media.ic_vip'))
+            .height(16)
+            .width(16)
+            .margin({ right: 4 })
+          Text($r('app.string.singer'))
+            .fontColor('#000000')
+            .fontSize(this.fontSize - 4)
+            .opacity(0.38)
+        }
+      }
+      .alignItems(HorizontalAlign.Start)
       // 通过Blank组件实现拉伸能力
       Blank()
       Image($r('app.media.icon_play')).height(26).width(26).margin({right: 16})
@@ -198,9 +352,12 @@ export struct MusicBar {
 
   
 ```ts
+import PlayListCover from '../common/PlayListCover';
+import PlayList from '../common/PlayList';
+
 @Component
-export default struct MusicContent {
-  ...
+export default struct Content {
+  // ...
   build() {
     GridRow() {
       // 歌单封面
@@ -221,17 +378,22 @@ export default struct MusicContent {
 
   
 ```ts
+
+import Header from '../common/Header';
+import Player from '../common/Player';
+import Content from '../common/Content';
+
 @Entry
 @Component
 struct Index {
   build() {
     Column() {
       // 标题栏
-      PlayListHeader()
+      Header()
       // 歌单
-      MusicContent()
+      Content()
       // 播放控制栏
-      MusicBar()
+      Player()
     }.width('100%').height('100%')
   }
 }

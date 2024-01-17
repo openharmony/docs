@@ -101,6 +101,7 @@ zh-cn/application-dev/application-test/ @ningningW
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/key-features/multi-device-app-dev/ @HelloCrease @uhamc
+zh-cn/application-dev/kit-readme/Readme-Accessibility-Kit.md @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @mupceet @RayShih @mupceet @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @niulihua @tomatodevboy
 
@@ -287,6 +288,7 @@ zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @R
 zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis-as/js-apis-accessibility.md @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-appControl.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @warehouse12  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
@@ -331,6 +333,7 @@ zh-cn/application-dev/reference/apis/js-apis-arkui-UIContext.md @HelloCrease @ni
 zh-cn/application-dev/reference/apis/js-apis-font.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-plugincomponent.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-uiappearance.md @HelloCrease @niulihua @tomatodevboy
+zh-cn/application-dev/reference/native-apis/_usb_ddk.md @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-accessibility.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-animator.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-backgroundTaskMgr.md @ningningW
@@ -690,6 +693,9 @@ zh-cn/application-dev/application-models/thread*.md @huipeizi  @li-weifeng2  @lx
 zh-cn/application-dev/application-models/itc*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
 zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/application-models/accessibilityKit.md @warehouse12
+zh-cn/application-dev/application-models/accessibilityextensionability.md @warehouse12
+
 
 [开发-通知]
 zh-cn/application-dev/notification/ @huipeizi  @idanny  @suzhenxuan  @lixiaogang30

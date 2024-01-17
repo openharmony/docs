@@ -37,7 +37,7 @@ Places the function to be executed in the internal task queue of the task pool. 
 
 | Type             | Description                                |
 | ----------------- | ------------------------------------ |
-| Promise\<Object> | Promise used to return the result.|
+| Promise\<Object>  | Promise used to return an object that carries the function execution result.|
 
 **Error codes**
 
@@ -82,7 +82,7 @@ Places a task in the internal task queue of the task pool. The task will be dist
 
 | Type             | Description             |
 | ----------------  | ---------------- |
-| Promise\<Object> | Promise used to return the result.|
+| Promise\<Object> | Promise used to return an object that carries the function execution result.|
 
 **Error codes**
 
@@ -128,7 +128,7 @@ Places a task group in the internal task queue of the task pool. The task group 
 
 | Type                | Description                              |
 | ----------------    | ---------------------------------- |
-| Promise\<Object[]> | Promise used to return the result.|
+| Promise\<Object[]>  | Promise used to return an object array that carries the function execution result.|
 
 **Error codes**
 
@@ -166,6 +166,55 @@ taskpool.execute(taskGroup2).then((res: Array<number>) => {
   console.info("taskpool execute res is:" + res);
 });
 ```
+
+## taskpool.executeDelayed<sup>11+</sup>
+
+executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
+
+Executes a task after a given delay.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name      | Type         | Mandatory| Description                |
+| ----------- | ------------- | ---- | -------------------- |
+| delayTime   | number        | Yes  | Delay, in ms. |
+| task        | [Task](#task) | Yes  | Task to delay.|
+| priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+
+**Return value**
+
+| Type                | Description                              |
+| ----------------    | ---------------------------------- |
+| Promise\<Object>  | Promise used to return an object array that carries the function execution result.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID  | Error Message                        |
+| --------- | -------------------------------- |
+| 10200028 | The delayTime is less than zero. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: number): void {
+    console.info("printArgs: " + args);
+}
+
+let t: number = Date.now();
+console.info("taskpool start time is: " + t);
+let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
+  console.info("taskpool execute success");
+}).catch((e: BusinessError) => {
+  console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
+})
+```
+
 
 ## taskpool.cancel
 
@@ -393,7 +442,7 @@ let task: taskpool.Task = new taskpool.Task(printArgs, "this is my first Task");
 
 ### constructor<sup>11+</sup>
 
-constructor(name: String, func: Function, ...args: Object[])
+constructor(name: string, func: Function, ...args: Object[])
 
 A constructor used to create a **Task** instance, with the task name specified.
 
@@ -403,7 +452,7 @@ A constructor used to create a **Task** instance, with the task name specified.
 
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| name   | String   | Yes  | Task name.                                                  |
+| name   | string   | Yes  | Task name.                                                  |
 | func   | Function | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
@@ -419,14 +468,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.info("printArgs: " + args);
   return args;
 }
 
-let taskName = "taskName";
+let taskName: string = "taskName";
 let task: taskpool.Task = new taskpool.Task(taskName, printArgs, "this is my first Task");
-let name: String = task.name;
+let name: string = task.name;
 ```
 
 ### isCanceled<sup>10+</sup>
@@ -511,6 +560,14 @@ Sets the task transfer list. Before using this API, you must create a **Task** i
 | -------- | ------------- | ---- | --------------------------------------------- |
 | transfer | ArrayBuffer[] | No  | **ArrayBuffer** instance holding the objects to transfer. The default value is an empty array.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                                       |
+| -------- | -------------------------------------------------------------- |
+| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+
 **Example**
 
 ```ts
@@ -537,6 +594,155 @@ taskpool.execute(task).then((res: number)=>{
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
 ```
+
+
+### setCloneList<sup>11+</sup>
+
+setCloneList(cloneList: Object[] | ArrayBuffer[]): void
+
+Sets the task clone list. Before using this API, you must create a **Task** instance.
+
+> **NOTE**<br>
+> Currently, only clone is supported. This API must be used together with [@Sendable decorator](../../arkts-utils/arkts-sendable.md). Otherwise, an exception is thrown.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type                     | Mandatory| Description                                         |
+| --------- | ------------------------ | ---- | --------------------------------------------- |
+| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [SendableClass](../../arkts-utils/arkts-sendable.md#sendableclass) or ArrayBuffer.<br>- For **SendableClass** instances or **ArrayBuffer** objects held by all objects passed in to the clone list, the inter-thread transmission behavior changes to the clone operation. This means that any modification to the transmitted objects does not affect the original objects.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                                       |
+| -------- | -------------------------------------------------------------- |
+| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+
+**Example**
+
+```ts
+import taskpool from '@ohos.taskpool'
+import { BusinessError } from '@ohos.base'
+
+@Sendable
+class BaseClass {
+  private str: string = "sendable: BaseClass";
+  static num :number = 10;
+  str1: string = "sendable: this is BaseClass's string";
+  num1: number = 5;
+  isDone1: boolean = false;
+
+  private fibonacciRecursive(n: number): number {
+    if (n <= 1) {
+      return n;
+    } else {
+      return this.fibonacciRecursive(n - 1) + this.fibonacciRecursive(n - 2);
+    }
+  }
+
+  private privateFunc(num: number): number{
+    let res: number = this.fibonacciRecursive(num);
+    console.info("sendable: BaseClass privateFunc res is: " + res);
+    return res;
+  }
+
+  publicFunc(num: number): number {
+    return this.privateFunc(num);
+  }
+
+  get GetNum(): number {
+    return this.num1;
+  }
+  set SetNum(num: number) {
+    this.num1 = num;
+  }
+
+  constructor(){
+    console.info(this.str);
+    this.isDone1 = true;
+  }
+}
+
+@Sendable
+class DeriveClass extends BaseClass {
+  name: string = "sendable: this is DeriveClass";
+  printName() {
+    console.info(this.name);
+  }
+  constructor() {
+    super();
+  }
+}
+
+@Concurrent
+function testFunc(arr: Array<BaseClass>, num: number): number {
+  let baseInstance1: BaseClass = arr[0];
+  console.info("sendable: str1 is: " + baseInstance1.str1);
+  baseInstance1.SetNum = 100;
+  console.info("sendable: num1 is: " + baseInstance1.GetNum);
+  console.info("sendable: isDone1 is: " + baseInstance1.isDone1);
+  // Obtain the result of the item specified by num from Fibonacci sequence.
+  let res: number = baseInstance1.publicFunc(num);
+  return res;
+}
+
+@Concurrent
+function printLog(arr: Array<DeriveClass>): void {
+  let deriveInstance = arr[0];
+  deriveInstance.printName();
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text("TaskPool Test")
+        }.onClick(() => {
+          // task1 calls BaseClass.str1/BaseClass.SetNum/BaseClass.GetNum/BaseClass.isDone1/BaseClass.publicFunc.
+          let baseInstance1: BaseClass = new BaseClass();
+          let array1 = new Array<BaseClass>();
+          array1.push(baseInstance1);
+          let task1 = new taskpool.Task(testFunc, array1, 10);
+          task1.setCloneList(array1);
+          taskpool.execute(task1).then((res: Object) => {
+            console.info("sendable: task1 res is: " + res);
+          }).catch((e:BusinessError) => {
+            console.error(`sendable: task1 execute Code is ${e.code}, message is ${e.message}`);
+          })
+
+          // task2 calls DeriveClass.printName.
+          let deriveInstance: DeriveClass = new DeriveClass();
+          let array2 = new Array<DeriveClass>();
+          array2.push(deriveInstance);
+          let task2 = new taskpool.Task(printLog, array2);
+          task2.setCloneList(array2);
+          taskpool.execute(task2).then(() => {
+            console.info("sendable: task2 execute success");
+          }).catch((e:BusinessError) => {
+            console.error(`sendable: task2 execute Code is ${e.code}, message is ${e.message}`);
+          })
+        })
+        .height('15%')
+        .width('30%')
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 
 ### sendData<sup>11+</sup>
 
@@ -744,11 +950,14 @@ taskpool.execute(task3).then(() => {
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type     | Readable| Writable| Description                                                        |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function  | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
-| arguments | Object[] | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| name<sup>11+</sup>      | String    | Yes  | Yes  | Name of the task specified when the task is created.                                   |
+| Name                | Type      | Readable| Writable| Description                                                        |
+| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
+| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
+| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| name<sup>11+</sup>   | string    | Yes  | Yes  | Name of the task specified when the task is created.                                   |
+| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.                                   |
+| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.                                   |
+| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.                                   |
 
 ## TaskGroup<sup>10+</sup>
 
@@ -770,7 +979,7 @@ let taskGroup = new taskpool.TaskGroup();
 
 ### constructor<sup>11+</sup>
 
-constructor(name: String)
+constructor(name: string)
 
 A constructor used to create a **TaskGroup** instance, with the task group name specified.
 
@@ -780,14 +989,14 @@ A constructor used to create a **TaskGroup** instance, with the task group name 
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | ------------ |
-| name   | String | Yes  | Task group name.|
+| name   | string | Yes  | Task group name.|
 
 **Example**
 
 ```ts
 let taskGroupName = "groupName";
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup(taskGroupName);
-let name: String = taskGroup.name;
+let name: string = taskGroup.name;
 ```
 
 ### addTask<sup>10+</sup>
@@ -868,7 +1077,7 @@ taskGroup.addTask(task);
 
 | Name| Type  | Readable| Writable| Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | String | Yes  | Yes  | Name of the task group specified when the task group is created.|
+| name<sup>11+</sup> | string | Yes  | Yes  | Name of the task group specified when the task group is created.|
 
 ## SequenceRunner <sup>11+</sup>
 
@@ -940,7 +1149,7 @@ function additionDelay(delay:number): void {
   }
 }
 @Concurrent
-function waitForRunner(finalString:string): string {
+function waitForRunner(finalString: string): string {
   return finalString;
 }
 async function seqRunner()
@@ -1099,7 +1308,7 @@ async function delayExcute(): Promise<Object> {
 }
 
 async function taskpoolExecute(): Promise<void> {
-  taskpool.execute(delayExcute).then((result: string) => {
+  taskpool.execute(delayExcute).then((result: Object) => {
     console.info("taskPoolTest task result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1336,3 +1545,5 @@ for(let taskInfo of taskIS) {
   console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
 }
 ```
+
+ <!--no_check--> 

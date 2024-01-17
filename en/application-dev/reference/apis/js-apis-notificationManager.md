@@ -31,15 +31,20 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| ID| Error Message                                             |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **Example**
 
@@ -93,15 +98,20 @@ Publishes a notification. This API uses a promise to return the result.
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| ID| Error Message                                             |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **Example**
 
@@ -152,16 +162,21 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| ID| Error Message                                             |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600008  | The user is not exist.                               |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **Example**
 
@@ -222,16 +237,21 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| ID| Error Message                                             |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600008  | The user is not exist.                               |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **Example**
 
@@ -510,7 +530,7 @@ let addSlotCallBack = (err: Base.BusinessError): void => {
 }
 // NotificationSlot object
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot, addSlotCallBack);
 ```
@@ -557,7 +577,7 @@ import Base from '@ohos.base';
 
 // NotificationSlot object
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
@@ -696,7 +716,7 @@ let addSlotsCallBack = (err: Base.BusinessError): void => {
 }
 // NotificationSlot object
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
@@ -747,7 +767,7 @@ import Base from '@ohos.base';
 
 // NotificationSlot object
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
@@ -1291,10 +1311,6 @@ Checks whether notification is enabled for this application. This API uses an as
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name    | Type                 | Mandatory| Description                    |
@@ -1305,11 +1321,13 @@ Checks whether notification is enabled for this application. This API uses an as
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| ID| Error Message                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600008  | The user is not exist.                   |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1335,10 +1353,6 @@ Checks whether notification is enabled for the current application. This API use
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API.
-
 **Return value**
 
 | Type                                                       | Description                                                        |
@@ -1354,6 +1368,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600008  | The user is not exist.                   |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -1371,7 +1387,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for a specified user. This API uses an asynchronous callback to return the result.
+Checks whether notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1749,6 +1765,60 @@ let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
+## notificationManager.setSlotFlagsByBundle<sup>11+</sup>
+
+setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
+
+Sets the notification slot for a specified application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type        | Mandatory| Description      |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| slotFlags   | number | Yes  | Notification slot flag.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+let slotFlags: number = 1;
+
+notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
+	console.info("setSlotFlagsByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
@@ -1796,7 +1866,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
@@ -1847,13 +1917,63 @@ let bundle: notificationManager.BundleOption = {
 };
 
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 }).catch((err: Base.BusinessError) => {
     console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getSlotFlagsByBundle<sup>11+</sup>
+
+getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
+
+Obtains the notification slot flag of the specified application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type        | Mandatory| Description      |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+|  Promise\<number\>| Promise used to return the notification slot flag.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+notificationManager.getSlotFlagsByBundle(bundle).then(() => {
+	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2291,6 +2411,120 @@ notificationManager.getActiveNotifications().then((data: Array<notificationManag
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+
+getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback\<NotificationRequest\>): void
+
+Obtains information about the common live view that matches the specified filter criteria. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                          |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                                 |
+| -------- | ---------------------------------------- |
+| 1600007  | The notification is not exist.           |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+let notificationKey: notificationSubscribe.NotificationKey = {
+    id: 11,
+    label: ""
+};
+let filter: notificationManager.NotificationFilter = {
+    bundle: bundleOption,
+    notificationKey: notificationKey,
+    extraInfoKeys: ['event']
+}
+let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
+    if (err) {
+        console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("getActiveNotificationByFilter success");
+    }
+}
+notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
+```
+
+## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+
+getActiveNotificationByFilter(filter: NotificationFilter): Promise\<NotificationRequest\>
+
+Obtains information about the common live view that matches the specified filter criteria. This API uses a promise to return the URI of the file in the destination directory.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                          |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
+
+**Return value**
+
+| Type                                                        | Description                                   |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                                 |
+| -------- | ---------------------------------------- |
+| 1600007  | The notification is not exist.           |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+let notificationKey: notificationSubscribe.NotificationKey = {
+    id: 11,
+    label: ""
+};
+let filter: notificationManager.NotificationFilter = {
+    bundle: bundleOption,
+    notificationKey: notificationKey,
+    extraInfoKeys: ['event']
+}
+notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
+	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3136,7 +3370,7 @@ notificationManager.requestEnableNotification().then(() => {
 });
 ```
 
-## notificationManager.requestEnableNotification<sup>11+<sup>
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
@@ -3187,7 +3421,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.requestEnableNotification<sup>11+<sup>
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
@@ -3970,6 +4204,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -3985,7 +4220,6 @@ let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
         console.info("setNotificationEnableSlot success");
     }
 };
-
 notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -3993,11 +4227,66 @@ notificationManager.setNotificationEnableSlot(
     setNotificationEnableSlotCallback);
 ```
 
+## notificationManager.setNotificationEnableSlot<sup>11+</sup>
+
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl: boolean, callback: AsyncCallback\<void>): void
+
+Sets the enabled status of a slot type for the specified application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                    |
+| -------- | ----------------------------- | ---- | ----------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| type     | [SlotType](#slottype)         | Yes  | Notification slot type.          |
+| enable   | boolean                       | Yes  | Whether to enable the notification slot type.              |
+| isForceControl<sup>11+</sup> | boolean                 | Yes  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite.|
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.   |
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+    if (err) {
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("setNotificationEnableSlot success");
+    }
+};
+
+notificationManager.setNotificationEnableSlot(
+    { bundle: "ohos.samples.notification", },
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
+    true,
+    false,
+    setNotificationEnableSlotCallback);
+```
+
 ## notificationManager.setNotificationEnableSlot
 
-setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl?: boolean): Promise\<void>
 
-Sets whether to enable a specified notification slot type for a specified application. This API uses a promise to return the result.
+Sets the enabled status of a notification slot type for the specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4012,6 +4301,7 @@ Sets whether to enable a specified notification slot type for a specified applic
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
 | enable | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.    |
+| isForceControl<sup>11+</sup> | boolean               | No  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite.<br> Default value: **false**    |
 
 **Error codes**
 
@@ -4022,6 +4312,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -4369,7 +4660,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 import Base from '@ohos.base';
 
-let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
+let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
     if(info.notificationId == 1){
         let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
@@ -4380,8 +4671,70 @@ let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): no
     }
 }
 try{
-    notificationManager.on("checkNotification", OnCheckNotification);
+    notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
+    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+}
+```
+
+## notificationManager.on<sup>11+</sup>
+
+on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: (checkInfo: NotificationCheckInfo) => Promise\<NotificationCheckResult\>): void
+
+Subscribes to notification events. The notification service sends the notification information in the callback to the verification program. The verification program returns the verification result to determine whether to publish the notification, for example, controlling the publish frequency of marketing notifications. This API uses a promise to return the URI of the file in the destination directory.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**Parameters**
+
+| Name| Type                                                                                                            | Mandatory| Description          |
+| ------ |-----------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                            | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest.md#notificationcheckrequest11)    | Yes  | Notification verification content.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | Yes  | Pointer to the notification verification function.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+public static async check(checkInfo : notificationManager.NotificationCheckInfo): Promise<NotificationCheckResult> {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    const { contentType, slotType, bundleName, userId, extraInfos } = checkInfo;
+    if(contentType != NOTIFICATION_CONTENT_LIVE_VIEW){
+        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "INVALID_PARAMETERS"};
+        return result;
+    } else {
+        let result: notificationManager.NotificationCheckResult =  { code: 0, message: "SUCCESS"};
+        return result;
+    }
+}
+
+try {
+    notificationManager.on(
+      "checkNotification",
+      {
+        contentType: ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+        slotType: SlotType.LIVE_VIEW ,
+        extraInfoKeys: ["event"],
+      },
+      check
+    );
+} catch (error) {
     console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
@@ -4403,7 +4756,7 @@ Unsubscribes from notification events.
 | Name| Type                                                                                                                     | Mandatory| Description          |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
 | type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Callback used to return the result. This parameter is left empty by default.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Pointer to the notification verification function.|
 
 **Error codes**
 
@@ -4421,7 +4774,7 @@ import Base from '@ohos.base';
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4466,20 +4819,22 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Bundle of the application
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 // Notification ID
 let notificationId = 1;
 // Button information
-let buttonOptions = {
+let buttonOptions: notificationManager.ButtonOptions = {
     buttonName: "buttonName1",
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
-	console.info("triggerSystemLiveView success");
+  console.info("triggerSystemLiveView success");
 }).catch((error: Base.BusinessError) => {
-    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+  console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -4520,6 +4875,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
     console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
 }
@@ -4558,7 +4915,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | TYPE_NONE    | 0 | Non-DND.                          |
 | TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
 | TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
-| TYPE_CLEARLY | 3 | DND at the specified time segment (considering the year, month, day, hour, and minute).    |
+| TYPE_CLEARLY | 3 | DND at the specified time segment (with the hour, day, and month specified).    |
 
 
 ## ContentType
@@ -4567,12 +4924,13 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- |------------------|
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | Normal text notification.         |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.        |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.         |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification (not supported currently).|
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.       |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | Live view notification (for system applications only).       |
+| NOTIFICATION_CONTENT_BASIC_TEXT   | 0          | Normal text notification.         |
+| NOTIFICATION_CONTENT_LONG_TEXT    | 1          | Long text notification.        |
+| NOTIFICATION_CONTENT_PICTURE      | 2          | Picture-attached notification.         |
+| NOTIFICATION_CONTENT_CONVERSATION | 3          | Conversation notification (not supported currently).|
+| NOTIFICATION_CONTENT_MULTILINE    | 4          | Multi-line text notification.       |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | Live view notification (for system applications only).       |
+| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | Common live view notification. |
 
 ## SlotLevel
 
@@ -4598,7 +4956,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | SERVICE_INFORMATION  | 2 | Notification slot for service information.|
 | CONTENT_INFORMATION  | 3 | Notification slot for content consultation.|
 | LIVE_VIEW<sup>11+</sup>            | 4 | Notification slot for live view (for system applications only).|
-| CUSTOMER_SERVICE     | 5 | Notification slot for customer service. This type is used for messages between users and customer service providers. The messages must be initiated by users. |
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Notification slot for customer service. This type is used for messages between users and customer service providers. The messages must be initiated by users. |
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes.|
 
 
@@ -4638,11 +4996,15 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| Name | Type                                 | Mandatory| Description                  |
-| ----- | ------------------------------------- | --- | ---------------------- |
-| bundleName  | string                          | Yes  | Bundle name.|
-| notificationId | number                       | Yes  | Notification ID.    |
-| contentType   | [ContentType](#contenttype)   | Yes  | Notification type.  |
+| Name                        | Type                        | Mandatory| Description           |
+| ---------------------------- | ---------------------------- | --- | --------------- |
+| bundleName                   | string                       | Yes  | Bundle name.   |
+| notificationId               | number                       | Yes  | Notification ID.       |
+| label<sup>11+</sup>          | string                       | No  | Notification label.     |
+| contentType                  | [ContentType](#contenttype)  | Yes  | Notification type.     |
+| creatorUserId<sup>11+</sup>  | number                       | Yes  | User ID of the notification.|
+| slotType<sup>11+</sup>       | [SlotType](#slottype)        | Yes  | Notification slot type.     |
+| extraInfos<sup>11+</sup>     | [key: string]: object        | No  | Extra information of the notification.|
 
 ## NotificationCheckResult<sup>10+</sup>
 

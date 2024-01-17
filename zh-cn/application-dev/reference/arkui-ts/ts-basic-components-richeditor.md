@@ -441,12 +441,12 @@ getSelection(): RichEditorSelection
 | 名称        | 类型                                       | 必填   | 描述                              |
 | --------- | ---------------------------------------- | ---- | ------------------------------- |
 | start     | number                                   | 否    | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
-| end       | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
+| end       | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本样式。                           |
 
 >  **说明：**
 >
->  当start大于end时为异常情况，此时start为0，end为文本结尾位置。
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ## RichEditorUpdateImageSpanStyleOptions
 
@@ -455,12 +455,12 @@ getSelection(): RichEditorSelection
 | 名称         | 类型                                       | 必填   | 描述                              |
 | ---------- | ---------------------------------------- | ---- | ------------------------------- |
 | start      | number                                   | 否    | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。  |
-| end        | number                                   | 否    | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
+| end        | number                                   | 否    | 需要更新样式的图片结束位置，省略或者超出文本范围时表示无穷大。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是    | 图片样式。                           |
 
 >  **说明：**
 >
->  当start大于end时为异常情况，此时start为0，end为文本结尾位置。
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ## RichEditorUpdateSymbolSpanStyleOptions<sup>11+</sup>
 
@@ -469,12 +469,12 @@ SymbolSpan样式选项。
 | 名称          | 类型                                       | 必填   | 描述                              |
 | ----------- | ---------------------------------------- | ---- | ------------------------------- |
 | start       | number                                   | 否    | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
-| end         | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
+| end         | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
 | symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 是    | 组件样式。                           |
 
 >  **说明：**
 >
->  当start大于end时为异常情况，此时start为0，end为文本结尾位置。
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
@@ -483,12 +483,12 @@ SymbolSpan样式选项。
 | 名称    | 类型                                       | 必填   | 描述                                 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------- |
 | start | number                                   | 否    | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。     |
-| end   | number                                   | 否    | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示到结尾。 |
+| end   | number                                   | 否    | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示无穷大。 |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 段落样式。                              |
 
 >  **说明：**
 >
->  当start大于end时为异常情况，此时start为0，end为文本结尾位置。
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ## RichEditorParagraphStyle<sup>11+</sup>
 
@@ -497,7 +497,7 @@ SymbolSpan样式选项。
 | 名称            | 类型                                       | 必填   | 描述                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -577,13 +577,13 @@ SymbolSpan样式选项。
 
 组件SymbolSpan样式信息。
 
-| 名称                | 类型                                       | 必填   | 描述                                       |
-| ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fontColor         | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否    | 组件颜色。<br/> 默认值：Color.Black。              |
-| fontSize          | number \| string \| [Resource](ts-types.md#resource) | 否    | 设置组件大小。<br/>默认值：系统默认值。                   |
-| fontWeight        | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
-| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 否    | 渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
-| effectStrategy    | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 否    | 动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 设置SymbolGlyph组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
+| fontSize | number \| string \| [Resource](../arkui-ts/ts-types.md#resource) | 否 | 设置SymbolGlyph组件大小。<br/>默认值：系统默认值。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 设置SymbolGlyph组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
@@ -600,7 +600,7 @@ SymbolSpan样式选项。
 | 名称    | 类型     | 必填   | 描述                     |
 | ----- | ------ | ---- | ---------------------- |
 | start | number | 否    | 起始位置，省略或者设置负值时表示从0开始。  |
-| end   | number | 否    | 结束位置，省略或者超出文本范围时表示到结尾。 |
+| end   | number | 否    | 结束位置，省略或者超出文本范围时表示无穷大。 |
 
 ## SelectionMenuOptions<sup>11+</sup>
 
@@ -729,7 +729,7 @@ struct Index {
       Column() {
         RichEditor(this.options)
           .onReady(() => {
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("012345",
               {
                 style:
                 {
@@ -751,7 +751,7 @@ struct Index {
                   size: ["57px", "57px"]
                 }
               })
-            this.controller.addTextSpan("0123456789",
+            this.controller.addTextSpan("56789",
               {
                 style:
                 {
@@ -1793,57 +1793,109 @@ struct Index {
 import font from '@ohos.font'
 const canvasWidth = 1000
 const canvasHeight = 100
-const Indentation = 10
+const Indentation = 40
 class LeadingMarginCreator {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight);
-  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings);
-  public static instance: LeadingMarginCreator = new LeadingMarginCreator();
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
+
+  // 获得字体字号级别，分别是从0到4级
+  public getFontSizeLevel(fontSize: number) {
+    const fontScaled: number = Number(fontSize) / 16
+
+    enum FontSizeScaleThreshold {
+      SMALL = 0.9,
+      NORMAL = 1.1,
+      LEVEL_1_LARGE = 1.2,
+      LEVEL_2_LARGE = 1.4,
+      LEVEL_3_LARGE = 1.5
+    }
+
+    let fontSizeLevel: number = 1
+
+    if (fontScaled < FontSizeScaleThreshold.SMALL) {
+      fontSizeLevel = 0
+    } else if (fontScaled < FontSizeScaleThreshold.NORMAL) {
+      fontSizeLevel = 1
+    } else if (fontScaled < FontSizeScaleThreshold.LEVEL_1_LARGE) {
+      fontSizeLevel = 2
+    } else if (fontScaled < FontSizeScaleThreshold.LEVEL_2_LARGE) {
+      fontSizeLevel = 3
+    } else if (fontScaled < FontSizeScaleThreshold.LEVEL_3_LARGE) {
+      fontSizeLevel = 4
+    } else {
+      fontSizeLevel = 1
+    }
+
+    return fontSizeLevel
+  }
+  // 获得字体字号级别，分别是从0到4级
+  public getmarginLevel(Width: number) {
+    let marginlevel: number = 1
+    if (Width == 40) {
+      marginlevel = 2.0
+    } else if (Width == 80) {
+      marginlevel = 1.0
+    } else if (Width == 120) {
+      marginlevel = 2/3
+    } else if (Width == 160) {
+      marginlevel = 0.5
+    } else if (Width == 200) {
+      marginlevel = 0.4
+    }
+    return marginlevel
+  }
 
   public genStrMark(fontSize: number, str: string): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
-    this.clearCanvas();
-    this.offContext.font = fontSize + 'vp sans-serif';
-    this.offContext.fillText(str + '.', 0, fontSize * 0.9);
-    return this.offContext.getPixelMap(0, 0, fontSize * (str.length + 1) / 1.75, fontSize);
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    this.offContext.font = fontSize + 'vp sans-serif'
+    this.offContext.fillText(str + '.', 0, fontSize * 0.9)
+    return this.offContext.getPixelMap(0, 0, fontSize * (str.length + 1) / 1.75, fontSize)
   }
 
   public genSquareMark(fontSize: number): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
-    this.clearCanvas();
-    const coordinate = fontSize * (1 - 1 / 1.5) / 2;
-    const sideLength = fontSize / 1.5;
-    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength);
-    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2
+    const sideLength = fontSize / 1.5
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength)
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
   }
 
-  public genCircleMark(fontSize: number): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
-    this.clearCanvas();
-    const centerCoordinate = fontSize / 2;
-    const radius = fontSize / 3;
-    this.offContext.ellipse(centerCoordinate, centerCoordinate, radius, radius, 0, 0, 2 * Math.PI);
-    this.offContext.fillStyle = Color.Black;
-    this.offContext.fill();
-    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+  // 生成圆圈符号
+  public genCircleMark(fontSize: number, width: number, level?: number ): PixelMap {
+    const indentLevel = level ?? 1
+    const offsetLevel = [22, 28, 32, 34, 38]
+    const fontSizeLevel = this.getFontSizeLevel(fontSize)
+    const marginlevel = this.getmarginLevel(width)
+    const newOffContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+    const centerCoordinate = 50
+    const radius = 10
+    this.clearCanvas()
+    newOffContext.ellipse(100 * (indentLevel + 1) - centerCoordinate * marginlevel, offsetLevel[fontSizeLevel], radius * marginlevel, radius, 0, 0, 2 * Math.PI)
+    newOffContext.fillStyle = '66FF0000'
+    newOffContext.fill()
+    return newOffContext.getPixelMap(0, 0, 100 + 100 * indentLevel, 100)
   }
 
   private clearCanvas() {
-    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight)
   }
 }
 
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance
   private fontNameRawFile: string = 'MiSans-Bold'
   @State fs: number = 30
   @State cl: number = Color.Black
-  private leftMargin: Dimension = 0;
-  private richEditorTextStyle: RichEditorTextStyle = {};
+  private leftMargin: Dimension = 0
+  private richEditorTextStyle: RichEditorTextStyle = {}
 
   aboutToAppear() {
     font.registerFont({
@@ -1927,15 +1979,16 @@ struct Index {
           Button("向右列表缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
-              margin += Indentation;
-              this.leftMargin = margin;
+              margin += Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
               end: -10,
               style: {
                 leadingMargin : {
-                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(16), size: [margin, 30]
+                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(100, margin, 1),
+                  size: [margin, 40]
                 }
               }
             })
@@ -1944,15 +1997,16 @@ struct Index {
           Button("向左列表缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin > 0) {
-              margin -= Indentation;
-              this.leftMargin = margin;
+              margin -= Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
               end: -10,
               style: {
                 leadingMargin : {
-                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(16), size: [margin, 30]
+                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(100, margin, 1),
+                  size: [margin, 40]
                 }
               }
             })
@@ -1963,8 +2017,8 @@ struct Index {
           Button("向右空白缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
-              margin += Indentation;
-              this.leftMargin = margin;
+              margin += Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
@@ -1978,8 +2032,8 @@ struct Index {
           Button("向左空白缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin > 0) {
-              margin -= Indentation;
-              this.leftMargin = margin;
+              margin -= Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,

@@ -29,9 +29,9 @@ Media Kit（媒体服务）提供了[AVPlayer](#avplayer)和[AVRecorder](#avreco
 
 - 网络协议：比如HLS、HTTP/HTTPS
 
-- 容器格式：比如mp4、mkv、mpeg-ts、webm
+- 容器格式：比如mp4、mkv、mpeg-ts
 
-- 编码格式：比如h263/h264/h265、MPEG4/MPEG2
+- 编码格式：比如h264/h265
 
 ## AVPlayer
 
@@ -109,19 +109,14 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 | -------- | -------- |
 | H265<sup>10+</sup>      | 是 |
 | H264      | 是 |
-| MPEG2     | 否 |
-| MPEG4     | 否 |
-| H263      | 否 |
-| VP8       | 否 |
 
 支持的视频播放格式和主流分辨率如下：
 
 | 视频容器规格 | 规格描述 | 分辨率 | 
 | -------- | -------- | -------- |
-| mp4 | 视频格式：H265<sup>10+</sup>/H264/MPEG2/MPEG4/H263<br/>音频格式：AAC/MP3 | 主流分辨率，如4K/1080P/720P/480P/270P |
-| mkv | 视频格式：H265<sup>10+</sup>/H264/MPEG2/MPEG4/H263<br/>音频格式：AAC/MP3 | 主流分辨率，如4K/1080P/720P/480P/270P |
-| ts | 视频格式：H265<sup>10+</sup>/H264/MPEG2/MPEG4<br/>音频格式：AAC/MP3 | 主流分辨率，如4K/1080P/720P/480P/270P |
-| webm | 视频格式：VP8<br/>音频格式：VORBIS | 主流分辨率，如4K/1080P/720P/480P/270P |
+| mp4 | 视频格式：H265<sup>10+</sup>/H264<br/>音频格式：AAC/MP3 | 主流分辨率，如4K/1080P/720P/480P/270P |
+| mkv | 视频格式：H265<sup>10+</sup>/H264<br/>音频格式：AAC/MP3 | 主流分辨率，如4K/1080P/720P/480P/270P |
+| ts | 视频格式：H265<sup>10+</sup>/H264<br/>音频格式：AAC/MP3 | 主流分辨率，如4K/1080P/720P/480P/270P |
 
 ## AVRecorder
 
@@ -169,7 +164,6 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | 音视频编码格式 | 说明 | 
 | -------- | -------- |
 | audio/mp4a-latm | 音频/mp4a-latm类型 | 
-| video/mp4v-es | 视频/mpeg4类型 | 
 | video/avc | 视频/avc类型 | 
 
 支持的输出文件格式如下：

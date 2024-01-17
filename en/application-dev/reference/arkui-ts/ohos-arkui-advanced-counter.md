@@ -215,7 +215,7 @@ struct NumberStyleExample {
           max: 1000,
           textWidth: 100,
           onChange: (value: number) => {
-              console.log("onDateChange Date: " + value.toString());
+            console.log("onDateChange Date: " + value.toString());
           }
         } }
        })

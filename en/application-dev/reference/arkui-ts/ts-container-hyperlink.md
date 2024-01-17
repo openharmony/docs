@@ -13,14 +13,12 @@ If Internet access is required, you need to apply for the **ohos.permission.INTE
 
 ## Child Components
 
-Supported
+This component can contain the **\<Image>** child component.
 
 
 ## APIs
 
 Hyperlink(address: string | Resource, content?: string | Resource)
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -31,7 +29,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-Only the following attributes are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
@@ -64,4 +62,3 @@ struct HyperlinkExample {
 ```
 
 ![hyperlink](figures/hyperlink.PNG)
-<!--no_check-->

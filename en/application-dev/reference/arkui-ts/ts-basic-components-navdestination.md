@@ -27,6 +27,14 @@ In addition to the [backgroundColor](ts-universal-attributes-background.md) attr
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | title        | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle) \| [NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle) | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long:<br>(1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...).<br>(2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
 | hideTitleBar | boolean                                                      | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
+| mode<sup>11+</sup> | [NavDestinationMode](#navdestinationmode11)                                                   | Mode of the navigation destination page.<br>Default value: **NavDestinationMode.STANDARD**|
+| backButtonIcon<sup>11+</sup> |   [ResourceStr](ts-types.md#resourcestr)  \|  [PixelMap](../apis/js-apis-image.md#pixelmap7)       | Icon of the back button on the title bar.|
+
+## NavDestinationMode<sup>11+</sup>
+| Name  | Description                                      |
+| ---- | ---------------------------------------- |
+| STANDARD | Standard mode, where the lifecycle of the navigation destination page changes with the standard destination in the **NavPathStack**.                      |
+| DIALOG | Dialog mode, where the navigation destination page is transparent by default, and the lifecycle of other navigation destination pages is not affected.   |
 
 ## Events
 

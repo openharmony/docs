@@ -53,7 +53,7 @@ async getVideoSurfaceID(){
   if (deviceInfo.deviceType == 'phone') {
     Logger.info(this.tag, `deviceType = phone`)
     this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
     if (this.cameraDeviceIndex == 1) {
       this.videoConfig.rotation = this.photoRotationMap.rotation270;
     } else {
@@ -89,13 +89,13 @@ try {
 
 ```c++
 // c++侧需要导入NDK接口
-#include "multimedia/camera_framework/camera.h"
-#include "multimedia/camera_framework/camera_input.h"
-#include "multimedia/camera_framework/capture_session.h"
-#include "multimedia/camera_framework/photo_output.h"
-#include "multimedia/camera_framework/preview_output.h"
-#include "multimedia/camera_framework/video_output.h"
-#include "multimedia/camera_framework/camera_manager.h"
+#include "ohcamera/camera.h"
+#include "ohcamera/camera_input.h"
+#include "ohcamera/capture_session.h"
+#include "ohcamera/photo_output.h"
+#include "ohcamera/preview_output.h"
+#include "ohcamera/video_output.h"
+#include "ohcamera/camera_manager.h"
 
 
 void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
