@@ -668,7 +668,7 @@ Nullable\<T> {
 | grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
 
 ## BackgroundEffectOptions<sup>11+<sup>
-背景光源参数。
+背景效果参数。
  | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |

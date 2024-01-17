@@ -123,9 +123,9 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 ## backgroundBrightness<sup>11+</sup> 
 
-backgroundBrightness({rate:number,lightUpDegree:number})
+backgroundBrightness(params: BackgroundBrightnessOptions)
 
-设置组件背景动态提亮。
+设置组件背景提亮效果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -133,10 +133,9 @@ backgroundBrightness({rate:number,lightUpDegree:number})
 
 **参数：** 
 
-| 名称            | 参数类型                                     | 必填   | 描述                                       |
+| 参数名            | 类型                                     | 必填   | 说明                                       |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| rate          | number | 是    | lightUpDegree的速率，随着像素亮度的增加而降低。此参数为系统接口。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞)<br/> |
-| lightUpDegree | number | 是    | 亮度的程度，其亮度变化时rgb值的变化为0。此参数为系统接口。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0]<br/> |
+| params        | [BackgroundBrightnessOptions](#backgroundBrightnessOptions11对象说明) | 是    |  设置组件背景提亮效果，包括：亮度变化速率，提亮程度。      |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
@@ -146,6 +145,13 @@ backgroundBrightness({rate:number,lightUpDegree:number})
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | 否    | 背景模糊效果使用的取色模式。<br/ > 默认值：AdaptiveColor.Default |
 | scale         | number                                   | 否    | 背景材质模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/> |
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
+
+## BackgroundBrightnessOptions<sup>11+</sup>对象说明
+
+| 名称            | 参数类型                                     | 必填   | 描述                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| rate          | number | 是    | 亮度变化速率。亮度变化速率越大，亮度下降速度越快，亮度提升程度越低。此参数为系统接口。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞)<br/> |
+| lightUpDegree | number | 是    | 提亮程度。提亮程度越大，亮度提升程度越大。此参数为系统接口。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0]<br/> |
 
 ## 示例
 
