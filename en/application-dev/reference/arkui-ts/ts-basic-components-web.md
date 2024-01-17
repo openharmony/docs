@@ -1292,7 +1292,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -1374,7 +1374,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -1549,7 +1549,7 @@ Triggered when **prompt()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2049,7 +2049,7 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | The value **true** means that the pop-up window provided by the system is displayed. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2524,8 +2524,15 @@ Called when a context menu is displayed after the user clicks the right mouse bu
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    result: WebContextMenuResult | null = null;
     build() {
       Column() {
+        Button('copyImage')
+        .onClick(() => {
+          if (this.result) {
+            this.result.copyImage()
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x())
@@ -2617,6 +2624,29 @@ Called when a request to obtain the geolocation information is received.
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <p id="locationInfo">Location information</p>
+  <button onclick="getLocation()">Get Location</button>
+  <script>
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- Access to the device location by the frontend page -->
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onGeolocationHide
@@ -3210,7 +3240,7 @@ Implements the **WebResourceRequest** object. For the sample code, see [onErrorR
 
 ### getRequestHeader
 
-getResponseHeader() : Array\<Header\>
+getRequestHeader(): Array\<Header\>
 
 Obtains the information about the resource request header.
 
@@ -4660,14 +4690,15 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
         })
       }
     }

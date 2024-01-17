@@ -199,7 +199,7 @@ The **BorderOptions** type is used to provide border information.
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup>       | No   | Border width.  |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No   | Border color.  |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>    | No   | Radius of the rounded corner border.|
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | No   | Border style.  |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup> | No   | Border style.  |
 
 ## ColorFilter<sup>9+</sup>
 
