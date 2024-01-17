@@ -286,7 +286,7 @@ struct BackgroundExample {
 
 ### 示例4
 
-设置组件背景动态提亮效果
+设置组件背景提亮效果
 
 ```ts
 // xxx.ets
@@ -313,6 +313,8 @@ struct BackgroundBrightnessDemo {
 ```
 
 效果图如下：
+
+rate和lightUpDegree参数值为0.5,0.5：
 
 ![zh-cn_image_background_brightness1](figures/zh-cn_image_background_brightness1.png)
 
