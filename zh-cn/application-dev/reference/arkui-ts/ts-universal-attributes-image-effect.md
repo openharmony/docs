@@ -742,102 +742,29 @@ struct RenderGroupExample {
 @Entry
 @Component
 struct Index {
-  @State BlendModeIndex: number = 0
-  @State BlendApplyTypeIndex: number = 0
-  BlendModeArr: BlendMode[] = [0, BlendMode.NONE, BlendMode.CLEAR, BlendMode.SRC, BlendMode.DST,
-    BlendMode.SRC_OVER, BlendMode.DST_OVER, BlendMode.SRC_IN, BlendMode.DST_IN, BlendMode.SRC_OUT, BlendMode.DST_OUT,
-    BlendMode.SRC_ATOP, BlendMode.DST_ATOP, BlendMode.XOR, BlendMode.PLUS, BlendMode.MODULATE, BlendMode.SCREEN,
-    BlendMode.OVERLAY, BlendMode.DARKEN, BlendMode.LIGHTEN, BlendMode.COLOR_DODGE, BlendMode.COLOR_BURN,
-    BlendMode.HARD_LIGHT, BlendMode.SOFT_LIGHT, BlendMode.DIFFERENCE, BlendMode.EXCLUSION, BlendMode.MULTIPLY,
-    BlendMode.HUE, BlendMode.SATURATION, BlendMode.COLOR, BlendMode.LUMINOSITY];
-  BlendApplyTypeArr: BlendApplyType[] = [0, BlendApplyType.FAST, BlendApplyType.OFFSCREEN];
-
   build() {
     Column() {
+      Text("blendMode")
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+        .fontColor('#ffff0101')
       Row() {
         Circle()
           .width(200)
           .height(200)
           .fill(Color.Green)
-          .position({ x: 50, y: 100 })
+          .position({ x: 50, y: 50 })
 
         Circle()
           .width(200)
           .height(200)
           .fill(Color.Blue)
-          .position({ x: 150, y: 100 })
+          .position({ x: 150, y: 50 })
 
       }
-      .blendMode(this.BlendModeArr[this.BlendModeIndex], this.BlendApplyTypeArr[this.BlendApplyTypeIndex])
+      .blendMode(BlendMode.NONE)
       .alignItems(VerticalAlign.Center)
       .height(300)
-      .width('100%')
-
-      Row() {
-        Row() {
-          Text("blendMode: ").fontColor(Color.Red)
-          Select([
-            { value: 'undefined' },
-            { value: 'NONE' },
-            { value: 'CLEAR' },
-            { value: 'SRC' },
-            { value: 'DST' },
-            { value: 'SRC_OVER' },
-            { value: 'DST_OVER' },
-            { value: 'SRC_IN' },
-            { value: 'DST_IN' },
-            { value: 'SRC_OUT' },
-            { value: 'DST_OUT' },
-            { value: 'SRC_ATOP' },
-            { value: 'DST_ATOP' },
-            { value: 'XOR' },
-            { value: 'PLUS' },
-            { value: 'MODULATE' },
-            { value: 'SCREEN' },
-            { value: 'OVERLAY' },
-            { value: 'DARKEN' },
-            { value: 'LIGHTEN' },
-            { value: 'COLOR_DODGE' },
-            { value: 'COLOR_BURN' },
-            { value: 'HARD_LIGHT' },
-            { value: 'SOFT_LIGHT' },
-            { value: 'DIFFERENCE' },
-            { value: 'EXCLUSION' },
-            { value: 'MULTIPLY' },
-            { value: 'HUE' },
-            { value: 'SATURATION' },
-            { value: 'COLOR' },
-            { value: 'LUMINOSITY' }])
-            .font({ size: 16, weight: 500 })
-            .fontColor('#182431')
-            .selectedOptionFont({ size: 16, weight: 400 })
-            .optionFont({ size: 16, weight: 400 })
-            .onSelect((index: number) => {
-              console.info("blur style choose " + index + ", value is " + JSON.stringify(this.BlendModeArr[index]))
-              this.BlendModeIndex = index;
-            })
-        }.position({ x: '30%', y: '60%' })
-
-
-        Row() {
-          Text("BlendApplyType: ").fontColor(Color.Red)
-          Select([
-            { value: 'undefined' },
-            { value: 'FAST' },
-            { value: 'OFFSCREEN' }])
-            .selected(0)
-            .font({ size: 16, weight: 500 })
-            .fontColor('#182431')
-            .selectedOptionFont({ size: 16, weight: 400 })
-            .optionFont({ size: 16, weight: 400 })
-            .onSelect((index: number) => {
-              console.info("colorMode choose " + index + ", value is " + JSON.stringify(this.BlendApplyTypeArr[index]))
-              this.BlendApplyTypeIndex = index;
-            })
-        }.position({ x: '30%', y: '70%' })
-
-      }
-      .height('60%')
       .width('100%')
     }
     .height('100%')
@@ -846,14 +773,15 @@ struct Index {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+
 ```
-BlendMode.NORMAL<br/>
-![testNormal](figures/testNormal.jpeg)
-<br/>BlendMode.SOURCE_IN<br/>
-![testSourceIn](figures/testSourceIn.jpeg)
-<br/>BlendMode.DESTINATION_IN<br/>
-![testDestinationIn](figures/testDestinationIn.jpeg)
-<br/>当前控件下有多个子节点（所有子组件放到一个离屏buffer上绘制，将绘制结果进行blend）
+BlendMode.NONE<br/>
+![zh-cn_image_effect_blendMode1](figures/zh-cn_image_effect_blendMode1.jpeg)
+<br/>BlendMode.OVERLAY,BlendApplyType.OFFSCREEN<br/>
+![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode2.jpeg)
+<br/>BlendMode.COLOR,BlendApplyType.FAST<br/>
+![zh-cn_image_effect_blendMode3](figures/zh-cn_image_effect_blendMode3.jpeg)
+<br/>不同的模式控制不同的混合方式从而产生不同的效果。
 
 ### 示例11
 blendMode搭配backgroundEffect实现文字图形异形渐变效果。
