@@ -109,7 +109,7 @@ enum OH_VideoEncodeBitrateMode
 ### OH_VideoEncoder_Configure()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 ```
 
 **描述**
@@ -135,7 +135,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec * codec, OH_AVFormat * format
 ### OH_VideoEncoder_CreateByMime()
 
 ```
-OH_AVCodec* OH_VideoEncoder_CreateByMime (const char * mime)
+OH_AVCodec* OH_VideoEncoder_CreateByMime (const char *mime)
 ```
 
 **描述**
@@ -160,7 +160,7 @@ OH_AVCodec* OH_VideoEncoder_CreateByMime (const char * mime)
 ### OH_VideoEncoder_CreateByName()
 
 ```
-OH_AVCodec* OH_VideoEncoder_CreateByName (const char * name)
+OH_AVCodec* OH_VideoEncoder_CreateByName (const char *name)
 ```
 
 **描述**
@@ -185,7 +185,7 @@ OH_AVCodec* OH_VideoEncoder_CreateByName (const char * name)
 ### OH_VideoEncoder_Destroy()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_Destroy (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -210,7 +210,7 @@ OH_AVErrCode OH_VideoEncoder_Destroy (OH_AVCodec * codec)
 ### OH_VideoEncoder_Flush()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -237,7 +237,7 @@ OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec * codec)
 ### OH_VideoEncoder_FreeOutputBuffer()
 
 ```
-OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index )
 ```
 
 **描述**
@@ -263,7 +263,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec * codec, uint32_t inde
 ### OH_VideoEncoder_FreeOutputData()
 
 ```
-OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
 ```
 
 **描述**
@@ -293,7 +293,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec * codec, uint32_t index 
 ### OH_VideoEncoder_GetInputDescription()
 
 ```
-OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -318,7 +318,7 @@ OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec * codec)
 ### OH_VideoEncoder_GetOutputDescription()
 
 ```
-OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -345,7 +345,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec * codec)
 ### OH_VideoEncoder_GetSurface()
 
 ```
-OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec * codec, OHNativeWindow ** window )
+OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** window )
 ```
 
 **描述**
@@ -371,7 +371,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec * codec, OHNativeWindow ** w
 ### OH_VideoEncoder_IsValid()
 
 ```
-OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
 ```
 
 **描述**
@@ -397,7 +397,7 @@ OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec * codec, bool * isValid )
 ### OH_VideoEncoder_NotifyEndOfStream()
 
 ```
-OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -422,7 +422,7 @@ OH_AVErrCode OH_VideoEncoder_NotifyEndOfStream (OH_AVCodec * codec)
 ### OH_VideoEncoder_Prepare()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -447,7 +447,7 @@ OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec * codec)
 ### OH_VideoEncoder_PushInputBuffer()
 
 ```
-OH_AVErrCode OH_VideoEncoder_PushInputBuffer (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_VideoEncoder_PushInputBuffer (OH_AVCodec *codec, uint32_t index )
 ```
 
 **描述**
@@ -473,7 +473,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer (OH_AVCodec * codec, uint32_t index
 ### OH_VideoEncoder_PushInputData()
 
 ```
-OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr )
 ```
 
 **描述**
@@ -504,7 +504,7 @@ OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec * codec, uint32_t index, 
 ### OH_VideoEncoder_RegisterCallback()
 
 ```
-OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec * codec, OH_AVCodecCallback callback, void * userData )
+OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData )
 ```
 
 **描述**
@@ -531,7 +531,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec * codec, OH_AVCodecCal
 ### OH_VideoEncoder_Reset()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -556,7 +556,7 @@ OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec * codec)
 ### OH_VideoEncoder_SetCallback()
 
 ```
-OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData )
 ```
 
 **描述**
@@ -587,7 +587,7 @@ OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCal
 ### OH_VideoEncoder_SetParameter()
 
 ```
-OH_AVErrCode OH_VideoEncoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OH_VideoEncoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *format )
 ```
 
 **描述**
@@ -613,7 +613,7 @@ OH_AVErrCode OH_VideoEncoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * for
 ### OH_VideoEncoder_Start()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -638,7 +638,7 @@ OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec * codec)
 ### OH_VideoEncoder_Stop()
 
 ```
-OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec *codec)
 ```
 
 **描述**

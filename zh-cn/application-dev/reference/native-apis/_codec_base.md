@@ -1655,7 +1655,7 @@ const char* OH_MD_KEY_PIXEL_FORMAT
 
 **描述**
 
-视频像素格式的键，值类型为int32_t，请参见[ERROR:Invalid link:zh-cn_topic_0000001772826630.xml#xref787325267204512,link:zh-cn_topic_0000001775692696.xml#ga26f7516cb1f6f59a81260c416004b163](zh-cn_topic_0000001775692696.xml#ga26f7516cb1f6f59a81260c416004b163)。
+视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1850,7 +1850,7 @@ const char* OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 
 **描述**
 
-视频编码码率模式，值类型为int32_t，请参见[ERROR:Invalid link:zh-cn_topic_0000001772826630.xml#xref1286296838204512,link:zh-cn_topic_0000001822452261.xml#gae1ca0225c2592c8a04cb86412b3b666d](zh-cn_topic_0000001822452261.xml#gae1ca0225c2592c8a04cb86412b3b666d)。
+视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

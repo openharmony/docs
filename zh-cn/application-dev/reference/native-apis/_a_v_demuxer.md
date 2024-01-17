@@ -17,7 +17,7 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avdemuxer.h](native__avdemuxer_8h.md) | 声明用于音视频解封装的Native API。 | 
+| [native_avdemuxer.h](native__avdemuxer_8h.md) | 声明用于音视频解封装的Native API。<br>**引用文件**：<multimedia/player_framework/native_avdemuxer.h><br>**库**：libnative_media_avdemuxer.so | 
 
 
 ### 函数
@@ -39,7 +39,7 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 ### OH_AVDemuxer_CreateWithSource()
 
 ```
-OH_AVDemuxer* OH_AVDemuxer_CreateWithSource (OH_AVSource * source)
+OH_AVDemuxer* OH_AVDemuxer_CreateWithSource (OH_AVSource *source)
 ```
 
 **描述**
@@ -64,7 +64,7 @@ OH_AVDemuxer* OH_AVDemuxer_CreateWithSource (OH_AVSource * source)
 ### OH_AVDemuxer_Destroy()
 
 ```
-OH_AVErrCode OH_AVDemuxer_Destroy (OH_AVDemuxer * demuxer)
+OH_AVErrCode OH_AVDemuxer_Destroy (OH_AVDemuxer *demuxer)
 ```
 
 **描述**
@@ -91,7 +91,7 @@ OH_AVErrCode OH_AVDemuxer_Destroy (OH_AVDemuxer * demuxer)
 ### OH_AVDemuxer_ReadSample()
 
 ```
-OH_AVErrCode OH_AVDemuxer_ReadSample (OH_AVDemuxer * demuxer, uint32_t trackIndex, OH_AVMemory * sample, OH_AVCodecBufferAttr * info )
+OH_AVErrCode OH_AVDemuxer_ReadSample (OH_AVDemuxer *demuxer, uint32_t trackIndex, OH_AVMemory *sample, OH_AVCodecBufferAttr *info )
 ```
 
 **描述**
@@ -125,7 +125,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSample (OH_AVDemuxer * demuxer, uint32_t trackInde
 ### OH_AVDemuxer_ReadSampleBuffer()
 
 ```
-OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer (OH_AVDemuxer * demuxer, uint32_t trackIndex, OH_AVBuffer * sample )
+OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer (OH_AVDemuxer *demuxer, uint32_t trackIndex, OH_AVBuffer *sample )
 ```
 
 **描述**
@@ -154,7 +154,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer (OH_AVDemuxer * demuxer, uint32_t tra
 ### OH_AVDemuxer_SeekToTime()
 
 ```
-OH_AVErrCode OH_AVDemuxer_SeekToTime (OH_AVDemuxer * demuxer, int64_t millisecond, OH_AVSeekMode mode )
+OH_AVErrCode OH_AVDemuxer_SeekToTime (OH_AVDemuxer *demuxer, int64_t millisecond, OH_AVSeekMode mode )
 ```
 
 **描述**
@@ -181,7 +181,7 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime (OH_AVDemuxer * demuxer, int64_t millisecon
 ### OH_AVDemuxer_SelectTrackByID()
 
 ```
-OH_AVErrCode OH_AVDemuxer_SelectTrackByID (OH_AVDemuxer * demuxer, uint32_t trackIndex )
+OH_AVErrCode OH_AVDemuxer_SelectTrackByID (OH_AVDemuxer *demuxer, uint32_t trackIndex )
 ```
 
 **描述**
@@ -209,7 +209,7 @@ OH_AVErrCode OH_AVDemuxer_SelectTrackByID (OH_AVDemuxer * demuxer, uint32_t trac
 ### OH_AVDemuxer_UnselectTrackByID()
 
 ```
-OH_AVErrCode OH_AVDemuxer_UnselectTrackByID (OH_AVDemuxer * demuxer, uint32_t trackIndex )
+OH_AVErrCode OH_AVDemuxer_UnselectTrackByID (OH_AVDemuxer *demuxer, uint32_t trackIndex )
 ```
 
 **描述**

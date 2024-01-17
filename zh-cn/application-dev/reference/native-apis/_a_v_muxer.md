@@ -40,7 +40,7 @@ AVMuxer模块提供用于音视频封装功能的函数。
 ### OH_AVMuxer_AddTrack()
 
 ```
-OH_AVErrCode OH_AVMuxer_AddTrack (OH_AVMuxer * muxer, int32_t * trackIndex, OH_AVFormat * trackFormat )
+OH_AVErrCode OH_AVMuxer_AddTrack (OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFormat *trackFormat )
 ```
 
 **描述**
@@ -95,7 +95,7 @@ OH_AVMuxer* OH_AVMuxer_Create (int32_t fd, OH_AVOutputFormat format )
 ### OH_AVMuxer_Destroy()
 
 ```
-OH_AVErrCode OH_AVMuxer_Destroy (OH_AVMuxer * muxer)
+OH_AVErrCode OH_AVMuxer_Destroy (OH_AVMuxer *muxer)
 ```
 
 **描述**
@@ -120,7 +120,7 @@ OH_AVErrCode OH_AVMuxer_Destroy (OH_AVMuxer * muxer)
 ### OH_AVMuxer_SetRotation()
 
 ```
-OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer * muxer, int32_t rotation )
+OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer *muxer, int32_t rotation )
 ```
 
 **描述**
@@ -148,7 +148,7 @@ OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer * muxer, int32_t rotation )
 ### OH_AVMuxer_Start()
 
 ```
-OH_AVErrCode OH_AVMuxer_Start (OH_AVMuxer * muxer)
+OH_AVErrCode OH_AVMuxer_Start (OH_AVMuxer *muxer)
 ```
 
 **描述**
@@ -175,7 +175,7 @@ OH_AVErrCode OH_AVMuxer_Start (OH_AVMuxer * muxer)
 ### OH_AVMuxer_Stop()
 
 ```
-OH_AVErrCode OH_AVMuxer_Stop (OH_AVMuxer * muxer)
+OH_AVErrCode OH_AVMuxer_Stop (OH_AVMuxer *muxer)
 ```
 
 **描述**
@@ -202,7 +202,7 @@ OH_AVErrCode OH_AVMuxer_Stop (OH_AVMuxer * muxer)
 ### OH_AVMuxer_WriteSample()
 
 ```
-OH_AVErrCode OH_AVMuxer_WriteSample (OH_AVMuxer * muxer, uint32_t trackIndex, OH_AVMemory * sample, OH_AVCodecBufferAttr info )
+OH_AVErrCode OH_AVMuxer_WriteSample (OH_AVMuxer *muxer, uint32_t trackIndex, OH_AVMemory *sample, OH_AVCodecBufferAttr info )
 ```
 
 **描述**
@@ -236,7 +236,7 @@ OH_AVErrCode OH_AVMuxer_WriteSample (OH_AVMuxer * muxer, uint32_t trackIndex, OH
 ### OH_AVMuxer_WriteSampleBuffer()
 
 ```
-OH_AVErrCode OH_AVMuxer_WriteSampleBuffer (OH_AVMuxer * muxer, uint32_t trackIndex, const OH_AVBuffer * sample )
+OH_AVErrCode OH_AVMuxer_WriteSampleBuffer (OH_AVMuxer *muxer, uint32_t trackIndex, const OH_AVBuffer *sample )
 ```
 
 **描述**

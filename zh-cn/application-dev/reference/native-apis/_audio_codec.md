@@ -47,7 +47,7 @@ AudioCodec模块提供用于音频编解码功能的函数。
 ### OH_AudioCodec_Configure()
 
 ```
-OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec * codec, const OH_AVFormat * format )
+OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *format )
 ```
 
 **描述**
@@ -73,7 +73,7 @@ OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec * codec, const OH_AVFormat * fo
 ### OH_AudioCodec_CreateByMime()
 
 ```
-OH_AVCodec* OH_AudioCodec_CreateByMime (const char * mime, bool isEncoder )
+OH_AVCodec* OH_AudioCodec_CreateByMime (const char *mime, bool isEncoder )
 ```
 
 **描述**
@@ -99,7 +99,7 @@ OH_AVCodec* OH_AudioCodec_CreateByMime (const char * mime, bool isEncoder )
 ### OH_AudioCodec_CreateByName()
 
 ```
-OH_AVCodec* OH_AudioCodec_CreateByName (const char * name)
+OH_AVCodec* OH_AudioCodec_CreateByName (const char *name)
 ```
 
 **描述**
@@ -124,7 +124,7 @@ OH_AVCodec* OH_AudioCodec_CreateByName (const char * name)
 ### OH_AudioCodec_Destroy()
 
 ```
-OH_AVErrCode OH_AudioCodec_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioCodec_Destroy (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -149,7 +149,7 @@ OH_AVErrCode OH_AudioCodec_Destroy (OH_AVCodec * codec)
 ### OH_AudioCodec_Flush()
 
 ```
-OH_AVErrCode OH_AudioCodec_Flush (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioCodec_Flush (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -176,7 +176,7 @@ OH_AVErrCode OH_AudioCodec_Flush (OH_AVCodec * codec)
 ### OH_AudioCodec_FreeOutputBuffer()
 
 ```
-OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index )
 ```
 
 **描述**
@@ -202,7 +202,7 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec * codec, uint32_t index 
 ### OH_AudioCodec_GetOutputDescription()
 
 ```
-OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -229,7 +229,7 @@ OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec * codec)
 ### OH_AudioCodec_IsValid()
 
 ```
-OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec * codec, bool * isValid )
+OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec *codec, bool *isValid )
 ```
 
 **描述**
@@ -255,7 +255,7 @@ OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec * codec, bool * isValid )
 ### OH_AudioCodec_Prepare()
 
 ```
-OH_AVErrCode OH_AudioCodec_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioCodec_Prepare (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -280,7 +280,7 @@ OH_AVErrCode OH_AudioCodec_Prepare (OH_AVCodec * codec)
 ### OH_AudioCodec_PushInputBuffer()
 
 ```
-OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index )
 ```
 
 **描述**
@@ -310,7 +310,7 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec * codec, uint32_t index )
 ### OH_AudioCodec_RegisterCallback()
 
 ```
-OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec * codec, OH_AVCodecCallback callback, void * userData )
+OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData )
 ```
 
 **描述**
@@ -337,7 +337,7 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec * codec, OH_AVCodecCallb
 ### OH_AudioCodec_Reset()
 
 ```
-OH_AVErrCode OH_AudioCodec_Reset (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioCodec_Reset (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -362,7 +362,7 @@ OH_AVErrCode OH_AudioCodec_Reset (OH_AVCodec * codec)
 ### OH_AudioCodec_SetParameter()
 
 ```
-OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec * codec, const OH_AVFormat * format )
+OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec *codec, const OH_AVFormat *format )
 ```
 
 **描述**
@@ -390,7 +390,7 @@ OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec * codec, const OH_AVFormat *
 ### OH_AudioCodec_Start()
 
 ```
-OH_AVErrCode OH_AudioCodec_Start (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioCodec_Start (OH_AVCodec *codec)
 ```
 
 **描述**
@@ -415,7 +415,7 @@ Prepare成功后调用此接口启动编解码器。启动后，编解码器将�
 ### OH_AudioCodec_Stop()
 
 ```
-OH_AVErrCode OH_AudioCodec_Stop (OH_AVCodec * codec)
+OH_AVErrCode OH_AudioCodec_Stop (OH_AVCodec *codec)
 ```
 
 **描述**
