@@ -8075,7 +8075,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOption: RequestO
 | context        | [Context](js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
 | assets         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。       
-| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源数据句柄，当所请求的图片资源准备完成时会触发回调。
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
 
 **错误码：**
 
@@ -8136,7 +8136,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 | context | [Context](js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
 | assets | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。       
-| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源数据句柄，当所请求的图片资源准备完成时会触发回调。
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
 
 **错误码：**
 
@@ -8186,7 +8186,9 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-## onDataPrepared(data: T)<sup>11+</sup>
+### onDataPrepared<sup>11+</sup>
+
+onDataPrepared(data: T): void
 
 媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
 T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。
@@ -8197,21 +8199,23 @@ T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类�
 
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | 是   | 泛型，支持 ArrayBuffer 与 [ImageSource](js-apis-image.md#imagesource) 两种数据类型。 |
+| data | T | 是   | 泛型，支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。 |
 
 **示例**
 ```ts
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-    onDataPrepared(data: image.ImageSource) {
-        console.info('on image data prepared');
-    }
-}}
+  onDataPrepared(data: image.ImageSource) {
+    // 自定义对ImageSource的处理逻辑
+    console.info('on image data prepared');
+  }
+}
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-    onDataPrepared(data: ArrayBuffer) {
-        console.info('on image data prepared');
-    }
-}}
+  onDataPrepared(data: ArrayBuffer) {
+    // 自定义对ArrayBuffer的处理逻辑
+    console.info('on image data prepared');
+  }
+}
 ```
 
 ## MemberType
@@ -8429,7 +8433,7 @@ title参数规格为：
 | 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
 | ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式 三种策略。 |
-| sourceMode           | [SourceMode](#sourcemode11)     | 是   | 是   | 请求图片源文件模式，可以指定当前请求获取的是编辑前的图片，或是编辑后的图片 |
+| sourceMode           | [SourceMode](#sourcemode11)     | 是   | 是   | 资源文件的读取类型，可以指定当前请求获取的是源文件，或是编辑后的文件。**系统接口**：此接口为系统接口。 |
 
 ## PhotoProxy<sup>11+</sup>
 
@@ -8585,7 +8589,7 @@ title参数规格为：
 
 ## SourceMode<sup>11+</sup>
 
-枚举，图片或视频资源的读取类型。
+枚举，资源文件的读取类型。
 
 **系统接口**：此接口为系统接口。
 
