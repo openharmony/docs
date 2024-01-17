@@ -91,4 +91,3 @@ HMAC使用的对称密钥可以是任何长度。
 | HMAC | SHA512 | 512 | HMAC\|SHA512 | 11+ | 
 | HMAC | SM3 | 256 | HMAC\|SM3 | 11+ | 
 | HMAC | - | [1, 32768] | HMAC | 11+ | 
-
