@@ -597,11 +597,24 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | 否 | 表示文件列表副本 |
-| pageRange | PrinterRange | 否 | 表示待打印文件的范围 |
+| pageRange | PrintPageRange | 否 | 表示待打印文件的范围 |
 | pageSize | PrintPageSize \| PrintPageType | 否 | 表示代打印文件的页面大小 |
 | directionMode | PrintDirectionMode | 否 | 表示待打印文件的方向 |
 | colorMode | PrintColorMode | 否 | 表示待打印文件的色彩模式 |
 | duplexMode | PrintDuplexMode | 否 | 表示待打印文件的单双面模式 |
+
+## PrintPageRange<sup>11+</sup>
+
+定义打印页面范围的接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**属性：**
+| **名称** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| startPage | number | 否 | 表示起始页 |
+| endPage | number | 否 | 表示结束页 |
+| pages | Array&lt;number&gt; | 否 | 表示离散页面 |
 
 ## PrintMargin
 
@@ -619,9 +632,11 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | left | number | 否 | 表示页面左边距 |
 | right | number | 否 | 表示页面右边距 |
 
-## PrinterRange<sup>11+</sup>
+## PrinterRange
 
 定义打印范围的接口。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -2470,14 +2485,14 @@ import { BusinessError } from '@ohos.base';
 let jobId : string= '1';
 class MyPrintAttributes implements print.PrintAttributes {
     copyNumber?: number;
-    pageRange?: print.PrinterRange;
+    pageRange?: print.PrintPageRange;
     pageSize?: print.PrintPageSize | print.PrintPageType;
     directionMode?: print.PrintDirectionMode;
     colorMode?: print.PrintColorMode;
     duplexMode?: print.PrintDuplexMode;
 }
 
-class MyPrinterRange implements print.PrinterRange {
+class MyPrintPageRange implements print.PrintPageRange {
     startPage?: number;
     endPage?: number;
     pages?: Array<number>;
@@ -2492,7 +2507,7 @@ class MyPrintPageSize implements print.PrintPageSize {
 
 let printAttributes = new MyPrintAttributes();
 printAttributes.copyNumber = 2;
-printAttributes.pageRange = new MyPrinterRange();
+printAttributes.pageRange = new MyPrintPageRange();
 printAttributes.pageRange.startPage = 0;
 printAttributes.pageRange.endPage = 5;
 printAttributes.pageRange.pages = [1, 3];
