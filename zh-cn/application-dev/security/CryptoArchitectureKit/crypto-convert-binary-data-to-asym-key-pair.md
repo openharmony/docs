@@ -38,7 +38,7 @@ function convertAsyKey() {
   let pkBlob: cryptoFramework.DataBlob = { data: pkVal };
   rsaGenerator.convertKey(pkBlob, null, (err, keyPair) => {
     if (err) {
-      console.error(`convertKey failed, ${e.code}, ${e.message}`);
+      console.error(`convertKey failed, ${err.code}, ${err.message}`);
       return;
     }
     console.info('convertKey success');
@@ -72,7 +72,7 @@ function convertEccAsyKey() {
   let generator = cryptoFramework.createAsyKeyGenerator('ECC256');
   generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
     if (error) {
-      console.error(`convertKey failed, ${e.code}, ${e.message}`);
+      console.error(`convertKey failed, ${error.code}, ${error.message}`);
       return;
     }
     console.info('convertKey success');
@@ -106,7 +106,7 @@ function convertSM2AsyKey() {
   let generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
   generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
     if (error) {
-      console.error(`convertKey failed, ${e.code}, ${e.message}`);
+      console.error(`convertKey failed, ${error.code}, ${error.message}`);
       return;
     }
     console.info('convertKey success');
