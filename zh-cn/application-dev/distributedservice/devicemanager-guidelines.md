@@ -48,7 +48,7 @@
    import featureAbility from '@ohos.ability.featureAbility';
    ``` 
   
-2. 调用窗口API拉起用户授权弹框
+2. 调用窗口API拉起用户授权弹框。
   
    ```ts
    let context = featureAbility.getContext();
@@ -185,7 +185,7 @@
    
 3. 建立设备间的可信关系[设备绑定开发指导](#设备绑定开发指导)。
 
-4. 查询周围上线并且可行的设备
+4. 查询周围上线并且可行的设备。
 
    ```ts
    try {
