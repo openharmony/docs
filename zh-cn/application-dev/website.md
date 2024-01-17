@@ -2031,6 +2031,7 @@
       - [OhosPixelMapCreateOps](reference/native-apis/_ohos_pixel_map_create_ops.md)
       - [OhosPixelMapInfos](reference/native-apis/_ohos_pixel_map_infos.md)
       - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+      - [RawFileDescriptor64](reference/native-apis/_raw_file_descriptor64.md)
       - [Region](reference/native-apis/_region.md)
       - [Rect](reference/native-apis/_rect.md)
       - [OH_AI_CallBackParam](reference/native-apis/_o_h___a_i___call_back_param.md)
