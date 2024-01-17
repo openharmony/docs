@@ -898,6 +898,30 @@ async function createTonePlayerBefore(){
 | MODE_ALL_LEFT | 2      | 从左声道拷贝覆盖到右声道混合。  |
 | MODE_ALL_RIGHT | 3 | 从右声道拷贝覆盖到左声道混合。 |
 
+## AudioStreamDeviceChangeReason<sup>11+</sup>
+
+枚举，流设备变更原因。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                                        |  值     | 说明              |
+|:------------------------------------------| :----- |:----------------|
+| REASON_UNKNOWN | 0 | 未知原因。           |
+| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。         |
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。当报告此原因时，应用程序应考虑暂停音频播放。 |
+| REASON_OVERRODE | 3 | 强选。 |
+
+## AudioStreamDeviceChangeInfo<sup>11+</sup>
+
+流设备变更时，应用接收的事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                                                | 必填 | 说明               |
+| :---------------- |:------------------------------------------------------------------| :--- | :----------------- |
+| devices              | [AudioDeviceDescriptors](#audiodevicedescriptors)                 | 是   | 设备信息。 |
+| changeReason | [AudioStreamDeviceChangeReason](#audiostreamdevicechangereason11) | 是   | 流设备变更原因。 |
+
 ## DeviceChangeType
 
 枚举，设备连接状态变化。
@@ -2693,7 +2717,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -3415,7 +3439,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -3586,7 +3610,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -4225,7 +4249,7 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -4272,7 +4296,7 @@ off(type: 'audioRendererChange'): void
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -4302,7 +4326,7 @@ on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -4347,7 +4371,7 @@ off(type: 'audioCapturerChange'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -4703,7 +4727,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -4737,7 +4761,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -5705,7 +5729,7 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -5743,7 +5767,7 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -8321,7 +8345,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -8535,9 +8559,11 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -8548,6 +8574,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
+
 ### off('outputDeviceChange') <sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
@@ -8565,9 +8592,11 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -8576,6 +8605,74 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
   console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+});
+```
+
+### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+
+on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
+
+订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                                       | 必填 | 说明                                          |
+| :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
+  console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
+  console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
+  console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
+});
+```
+
+### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+
+off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
+
+取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                                       | 必填 | 说明                                          |
+| :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
+  console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
+  console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
+  console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
 });
 ```
 
@@ -9370,7 +9467,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -9445,7 +9542,7 @@ off(type: 'audioInterrupt'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 6800101 | if input parameter value error. |
 
 **示例：**
 
@@ -9469,6 +9566,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回监听的音频输入设备变化(返回数据为切换后的设备信息)。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9500,6 +9599,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9526,6 +9627,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，返回监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9557,6 +9660,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
