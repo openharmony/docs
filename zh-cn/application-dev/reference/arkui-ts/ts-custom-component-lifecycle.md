@@ -129,6 +129,14 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 ```ts
 // xxx.ets
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value
+  }
+}
+
 @Entry
 @Component
 struct Index {
@@ -144,7 +152,7 @@ struct Index {
           this.switch = !this.switch
         })
       if (this.switch) {
-        Child()
+        Child({ message: new Message('Child') })
       }
     }
     .height("100%")
@@ -155,13 +163,15 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params: Object) {
-    console.info("Recycle Child")
+  @State message: Message = new Message('AboutToReuse');
+
+  aboutToReuse(params: Record<string, ESObject>) {
+    this.message = params.message as Message
   }
 
   build() {
     Column() {
-      Text("Child Component")
+      Text(this.message.value)
         .fontSize(20)
     }
     .borderWidth(2)
