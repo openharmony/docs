@@ -35,7 +35,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | placeholderColor          | [ResourceColor](ts-types.md#resourcecolor)                   | 设置placeholder文本颜色。<br/>默认值跟随主题。               |
 | placeholderFont           | [Font](ts-types.md#font)                                     | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。 |
-| textAlign                 | [TextAlign](ts-appendix-enums.md#textalign)                  | 设置文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>支持TextAlign.Start、TextAlign.Center和TextAlign.End。<br/>可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。 <br>从API version 11开始，textAlign可设置TextAlign.JUSTIFY|
+| textAlign                 | [TextAlign](ts-appendix-enums.md#textalign)                  | 设置文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>支持TextAlign.Start、TextAlign.Center和TextAlign.End。<br/>可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。<br/>当`textAlign`属性设置为TextAlign.JUSTIFY时，最后一行文本不参与两端对齐，为水平对齐首部效果。 <br>从API version 11开始，textAlign可设置TextAlign.JUSTIFY|
 | caretColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入框光标颜色。<br/>默认值：'#007DFF'。                 |
 | inputFilter<sup>8+</sup>  | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string) => void<br/>} | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
 | copyOption<sup>9+</sup>   | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。 <br/>设置CopyOptions.None时，当前TextArea中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。 |
@@ -48,7 +48,6 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>**说明：**<br/>取值范围：(0, +∞)。|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextAreaController](#textareacontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
 | type<sup>11+</sup>                     | [TextAreaType](#textareatype11枚举说明)     | 设置输入框类型。<br/>默认值：TextAreaType.Normal        |
-| selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false 。不全选文本。 |
 | enterKeyType<sup>11+</sup>  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 设置输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
 >  **说明：**
 >
