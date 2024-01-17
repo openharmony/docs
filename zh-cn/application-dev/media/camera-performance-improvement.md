@@ -23,7 +23,7 @@
 | 接口 | 说明 |
 | ---- | ---- |
 | createDeferredPreviewOutput(profile: Profile): Promise\<PreviewOutput> | 创建延迟预览输出对象，在配流时替代普通的预览输出对象加入数据流。 |
-| addDeferredSurface(surfaceId: string): Promise\<void> | 配置延迟预览的Surface，可以在session.commitConfig()配流和session.start()启流之后运行。 |
+| addDeferredSurface(surfaceId: string): Promise\<void> | 配置延迟预览的Surface，可以在[session.commitConfig](../reference/apis/js-apis-camera.md#commitconfig)配流和[session.start](../reference/apis/js-apis-camera.md#start-4))启流之后运行。 |
 
 ### 开发示例
 
@@ -42,7 +42,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.CaptureSession  = cameraManager.createCaptureSession();
+  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -73,7 +73,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 > **说明：**
 >
-> - isQuickThumbnailSupported及enableQuickThumbnail接口的调用需要在CaptureSession.addOutput、CaptureSession.addInput后，CaptureSession.commitConfig()之前。
+> - [isQuickThumbnailSupported](../reference/apis/js-apis-camera.md#isquickthumbnailsupported)及[enableQuickThumbnail](../reference/apis/js-apis-camera.md#enablequickthumbnail)接口的调用需要在[addOutput](../reference/apis/js-apis-camera.md#addoutput)、[addInput](../reference/apis/js-apis-camera.md#addinput)后，[commitConfig](../reference/apis/js-apis-camera.md#commitconfig)之前。
 > - on接口需要在enableQuickThumbnail(true)之后生效。
 
 ### 开发示例
@@ -92,17 +92,17 @@ import common from '@ohos.app.ability.common';
 async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
-  let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
+  // 创建PhotoSession实例
+  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
   // 开始配置会话
-  captureSession.beginConfig();
+  photoSession.beginConfig();
   // 把CameraInput加入到会话
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   cameraInput.open();
-  captureSession.addInput(cameraInput);
+  photoSession.addInput(cameraInput);
   // 把PhotoOutPut加入到会话
   let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
-  captureSession.addOutput(photoOutPut);
+  photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {
     // 使能快速缩略图
