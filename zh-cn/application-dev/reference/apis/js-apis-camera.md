@@ -63,11 +63,11 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 相机设备信息。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称           | 类型                                | 必填 | 只读 | 说明        |
 | -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | 是   | 是   | CameraDevice对象。|
+| cameraId       | string                            | 是   | 是   | 相机id。|
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 是   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 是   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 是   | 相机连接类型。 |
@@ -144,7 +144,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 相机管理器回调返回的接口实例，表示相机状态信息。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
@@ -232,7 +232,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 ## CameraManager
 
-相机管理器类，使用前需要通过getCameraManager获取相机管理实例。
+相机管理器类，使用前需要通过[getCameraManager](#cameragetcameramanager)获取相机管理实例。
 
 ### getSupportedCameras
 
@@ -450,9 +450,9 @@ createCameraInput(camera: CameraDevice): CameraInput
 
 **参数：**
 
-| 参数名     | 类型                                         | 必填 | 说明                                |
-| -------- | ------------------------------------------- | ---- | --------------------------------- |
-| cameraDevice   | [CameraDevice](#cameradevice)         | 是   | CameraDevice对象，通过 getSupportedCameras 接口获取。   |
+| 参数名     | 类型                                         | 必填 | 说明                                               |
+| -------- | ------------------------------------------- | ---- |--------------------------------------------------|
+| cameraDevice   | [CameraDevice](#cameradevice)         | 是   | CameraDevice对象，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。 |
 
 **返回值：**
 
@@ -600,7 +600,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过getSupportedOutputCapability接口获取。|
+| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
 | surfaceId| string            | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的surfaceId。|
 
 **返回值：**
@@ -646,7 +646,7 @@ createPhotoOutput(profile: Profile): PhotoOutput
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过getSupportedOutputCapability接口获取。|
+| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
 
 **返回值：**
 
@@ -693,7 +693,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
 | 参数名     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息，通过getSupportedOutputCapability接口获取。 |
+| profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。 |
 | surfaceId| string          | 是   | 从[AVRecorder](js-apis-media.md#avrecorder9)获取的surfaceId。|
 
 **返回值：**
@@ -741,7 +741,7 @@ createMetadataOutput(metadataObjectTypes: Array\<MetadataObjectType\>): Metadata
 
 | 参数名                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。 |
 
 **返回值：**
 
@@ -884,11 +884,13 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo): void {
+  console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+  console.info(`status: ${cameraStatusInfo.status}`);
+}
+
 function registerCameraStatus(cameraManager: camera.CameraManager): void {
-  cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.info(`status: ${cameraStatusInfo.status}`);
-  });
+  cameraManager.on('cameraStatus', callback);
 }
 ```
 
@@ -905,7 +907,7 @@ off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
 | 参数名     | 类型            | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
 | type     | string           | 是   | 监听事件，固定为'cameraStatus'。cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | 否   | 可选参数，有表明匹配on接口callback。 |
+| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -937,11 +939,13 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, curMuetd: boolean): void {
+  let isMuted: boolean = curMuetd;
+  console.info(`cameraMute status: ${isMuted}`);
+}
+
 function registerCameraMute(cameraManager: camera.CameraManager): void {
-  cameraManager.on('cameraMute', (err: BusinessError, curMuted: boolean) => {
-    let isMuted: boolean = curMuted;
-    console.info(`cameraMute status: ${isMuted}`);
-  })
+  cameraManager.on('cameraMute', callback);
 }
 ```
 
@@ -957,10 +961,10 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 参数名     | 类型             | 必填 | 说明       |
-| -------- | --------------- | ---- | --------- |
+| 参数名     | 类型             | 必填 | 说明                                                      |
+| -------- | --------------- | ---- |---------------------------------------------------------|
 | type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，有表明匹配on接口callback。               |
+| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，有就是匹配on('error') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
 
@@ -1321,10 +1325,11 @@ on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, torchStatusInfo: camera.TorchStatusInfo): void {
+  console.info(`onTorchStatusChange, isTorchAvailable: ${torchStatusInfo.isTorchAvailable}, isTorchActive: ${torchStatusInfo.isTorchActive}, level: ${torchStatusInfo.torchLevel}`);
+}
+
 function registerTorchStatusChange(cameraManager: camera.CameraManager): void {
-  let callback = (err: BusinessError, torchStatusInfo: camera.TorchStatusInfo): void => {
-    console.info('onTorchStatusChange, isTorchAvailable: ${torchStatusInfo.isTorchAvailable}, isTorchActive: ${torchStatusInfo.isTorchActive}, level: ${torchStatusInfo.torchLevel}');
-  };
   cameraManager.on('torchStatusChange', callback);
 }
 ```
@@ -1342,7 +1347,7 @@ off(type: 'torchStatusChange', callback?: AsyncCallback\<TorchStatusInfo\>): voi
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'torchStatusChange'。cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<TorchStatusInfo> | 否   | 回调函数，可选参数，有表明匹配on接口callback。               |
+| callback | AsyncCallback\<TorchStatusInfo> | 否   | 回调函数，可选参数，有就是匹配on('error') callback（callback对象不可是匿名函数）。               |
 
 **示例：**
 
@@ -1389,7 +1394,7 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
@@ -1413,7 +1418,7 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 手电筒回调返回的接口实例，表示手电筒状态信息。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称           | 类型                                | 只读 | 说明        |
 | -------------- | --------------------------------- | ---- | ---------- |
@@ -1536,6 +1541,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to open the camera, error code: ${err.code}.`);
   });
 }
@@ -1610,6 +1616,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close().then(() => {
     console.info('Promise returned with camera closed.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to close the cameras, error code: ${err.code}.`);
   });
 }
@@ -1627,7 +1634,7 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如（设备不可用或者冲突等返回对应错误信息）。 |
+| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如设备不可用或者冲突等返回对应错误信息。 |
 | cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
 | callback | ErrorCallback | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
 
@@ -1636,10 +1643,12 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Camera input error code: ${err.code}`);
+}
+
 function registerCameraInputError(cameraInput: camera.CameraInput, cameraDevice: camera.CameraDevice): void {
-  cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.error(`Camera input error code: ${error.code}`);
-  });
+  cameraInput.on('error', cameraDevice, callback);
 }
 ```
 
@@ -1655,9 +1664,9 @@ off(type: 'error', camera: CameraDevice, callback?: ErrorCallback): void
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如（设备不可用或者冲突等返回对应错误信息）。 |
+| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如设备不可用或者冲突等返回对应错误信息。 |
 | cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback。   |
+| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
 
 **示例：**
 
@@ -1750,7 +1759,8 @@ function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release().then(() => {
     console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to previewOutput release '+ err.code);
+    let err = error as BusinessError;
+    console.error(`Failed to previewOutput release, error code: ${err.code}`);
   });
 }
 
@@ -1758,7 +1768,8 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.release().then(() => {
     console.info('Promise returned to indicate that the VideoOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to videoOutput release '+ err.code);
+    let err = error as BusinessError;
+    console.error(`Failed to videoOutput release, error code: ${err.code}`);
   });
 }
 ```
@@ -1842,6 +1853,7 @@ function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start().then(() => {
     console.info('Promise returned with previewOutput started.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to previewOutput start, error code: ${err.code}.`);
   });
 }
@@ -1906,6 +1918,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.stop().then(() => {
     console.info('Callback returned with previewOutput stopped.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to previewOutput stop, error code: ${err.code}.`);
   });
 }
@@ -1929,10 +1942,12 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+function callback(): void {
+  console.info('Preview frame started');
+}
+
 function registerPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
-  previewOutput.on('frameStart', () => {
-    console.info('Preview frame started');
-  });
+  previewOutput.on('frameStart', callback);
 }
 ```
 
@@ -1949,7 +1964,7 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                     |
 | -------- | -------------------- | ---- | --------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                     |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。                     |
 
 **示例：**
 
@@ -1977,10 +1992,12 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+function callback(): void {
+  console.info('Preview frame ended');
+}
+
 function registerPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
-  previewOutput.on('frameEnd', () => {
-    console.info('Preview frame ended');
-  });
+  previewOutput.on('frameEnd', callback);
 }
 ```
 
@@ -1997,7 +2014,7 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。 |
-| callback | AsyncCallback\<void\> | 否   |  回调函数，可选，有表明匹配on接口callback。                |
+| callback | AsyncCallback\<void\> | 否   |  回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。                |
 
 **示例：**
 
@@ -2019,7 +2036,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用（[Session.start](#start-5)，[CameraOutput.release](#release-1)）等接口发生错误时返回对应错误信息。|
+| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用[Session.start](#start-5)，[CameraOutput.release](#release-1)等接口发生错误时返回对应错误信息。 |
 | callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
 
 **示例：**
@@ -2027,10 +2044,12 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(previewOutputError: BusinessError): void {
+  console.error(`Preview output error code: ${previewOutputError.code}`);
+}
+
 function registerPreviewOutputError(previewOutput: camera.PreviewOutput): void {
-  previewOutput.on('error', (previewOutputError: BusinessError) => {
-    console.error(`Preview output error code: ${previewOutputError.code}`);
-  })
+  previewOutput.on('error', callback)
 }
 ```
 
@@ -2046,8 +2065,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。|
-| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。 |
+| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
 
 **示例：**
 
@@ -2061,7 +2080,7 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 
 addDeferredSurface(surfaceId: string): void
 
-配置延迟预览的Surface，可以在session.commitConfig()配流和session.start()启流之后运行。
+配置延迟预览的Surface，可以在[commitConfig](#commitconfig)配流和[Session.start](#start-4)启流之后运行。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2272,10 +2291,12 @@ on(type: 'sketchStatusChanged', callback: AsyncCallback\<SketchStatusData\>): vo
 **示例：**
 
 ```ts
+function callback(errorCode: number, data: camera.SketchStatusData): void {
+  console.info(`sketch errorCode is ${errorCode}, data is ${JSON.stringify(data)}`);
+}
+
 function registerSketchStatusChanged(previewOutput: camera.PreviewOutput): void {
-  previewOutput.on('sketchStatusChanged', (errorCode: number, data: camera.SketchStatusData) => {
-    console.info(`sketch errorCode is ${errorCode}, data is ${JSON.stringify(data)}`);
-  });
+  previewOutput.on('sketchStatusChanged', callback);
 }
 ```
 
@@ -2294,7 +2315,7 @@ off(type: 'sketchStatusChanged', callback?: AsyncCallback\<SketchStatusData\>): 
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'sketchStatusChanged'，画中画流创建成功后可监听。 |
-| callback | AsyncCallback\<SketchStatusData\> | 否   | 回调函数，可选。            |
+| callback | AsyncCallback\<SketchStatusData\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。           |
 
 **示例：**
 
@@ -2392,10 +2413,12 @@ getThumbnail(): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-function getThumbnail(proxyObj: camera.DeferredPhotoProxy): void => {
-	proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
-		AppStorage.setOrCreate('proxyThumbnail', thumbnail);
-	});
+import image from '@ohos.multimedia.image';
+
+function getThumbnail(proxyObj: camera.DeferredPhotoProxy): void {
+  proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
+    AppStorage.setOrCreate('proxyThumbnail', thumbnail);
+  });
 }
 ```
 
@@ -2418,8 +2441,8 @@ release(): Promise\<void\>
 **示例：**
 
 ```ts
-async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): void => {
-	await proxyObj.release();
+async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): Promise<void> {
+  await proxyObj.release();
 }
 ```
 
@@ -2452,8 +2475,8 @@ release(): Promise\<void\>
 **示例：**
 
 ```ts
-async function releaseDeferredPhotoProxy(photo: camera.Photo): void => {
-	await photo.release();
+async function releaseDeferredPhotoProxy(photo: camera.Photo): Promise<void> {
+  await photo.release();
 }
 ```
 
@@ -2532,6 +2555,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture().then(() => {
     console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to photoOutput capture, error code: ${err.code}.`);
   });
 }
@@ -2639,6 +2663,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture(settings).then(() => {
     console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to photoOutput capture, error code: ${err.code}.`);
   });
 }
@@ -2715,9 +2740,9 @@ isDeferredImageDeliverySupported(type: DeferredDeliveryImageType): boolean
 
 ```ts
 function isDeferredImageDeliverySupported(photoOutput: camera.PhotoOutput, type: camera.DeferredDeliveryImageType): boolean {
-	let res: boolean = false;
-	res = photoOutPut.isDeferredImageDeliverySupported(type);
-	return res;
+  let res: boolean = false;
+  res = photoOutPut.isDeferredImageDeliverySupported(type);
+  return res;
 }
 ```
 
@@ -2758,9 +2783,9 @@ isDeferredImageDeliveryEnabled(type: DeferredDeliveryImageType): boolean
 
 ```ts
 function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutput, type: camera.DeferredDeliveryImageType): boolean {
-	let res: boolean = false;
-	res = photoOutPut.isDeferredImageDeliveryEnabled(type);
-	return res;
+  let res: boolean = false;
+  res = photoOutPut.isDeferredImageDeliveryEnabled(type);
+  return res;
 }
 ```
 
@@ -2795,7 +2820,7 @@ deferImageDelivery(type: DeferredDeliveryImageType): void
 
 ```ts
 function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.DeferredDeliveryImageType): void {
-	photoOutPut.deferImageDelivery(type);
+  photoOutPut.deferImageDelivery(type);
 }
 ```
 
@@ -2819,10 +2844,12 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, photo: camera.Photo): void {
+  let mainImage: image.Image = photo.main;
+}
+
 function registerPhotoOutputPhotoAvailable(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('photoAvailable', (err: BusinessError, photo: camera.Photo) => {
-	let mainImage: image.Image = photo.main;
-  });
+  photoOutput.on('photoAvailable', callback);
 }
 ```
 
@@ -2839,17 +2866,19 @@ off(type: 'photoAvailable', callback?: AsyncCallback\<Photo\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'photoAvailable'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[Photo](#photo)\> | 否   | 回调函数，可选，有表明匹配on接口callback。            |
+| callback | AsyncCallback\<[Photo](#photo)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。            |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, photo: camera.Photo): void {
+  let mainImage: image.Image = photo.main;
+}
+
 function unRegisterPhotoOutputPhotoAvailable(photoOutput: camera.PhotoOutput): void {
-  photoOutput.off('photoAvailable', (err: BusinessError, photo: camera.Photo) => {
-	let mainImage: image.Image = photo.main;
-  });
+  photoOutput.off('photoAvailable', callback);
 }
 ```
 
@@ -2874,12 +2903,16 @@ on(type: 'deferredPhotoProxyAvailable', callback: AsyncCallback\<DeferredPhotoPr
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
+  proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
+    AppStorage.setOrCreate('proxyThumbnail', thumbnail);
+  });
+}
 
 function registerPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy) => {
-	proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
-		AppStorage.setOrCreate('proxyThumbnail', thumbnail);});
-  });
+  photoOutput.on('deferredPhotoProxyAvailable', callback);
 }
 ```
 
@@ -2898,18 +2931,22 @@ off(type: 'deferredPhotoProxyAvailable', callback?: AsyncCallback\<DeferredPhoto
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'deferredPhotoProxyAvailable'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DeferredPhotoProxy](#deferredphotoproxy11)\> | 否   | 回调函数，可选，有表明匹配on接口callback。            |
+| callback | AsyncCallback\<[DeferredPhotoProxy](#deferredphotoproxy11)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。            |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+function callback(err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void {
+  proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
+    AppStorage.setOrCreate('proxyThumbnail', thumbnail);
+  });
+}
 
 function unRegisterPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
-  photoOutput.off('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy) => {
-	proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
-		AppStorage.setOrCreate('proxyThumbnail', thumbnail);});
-  });
+  photoOutput.off('deferredPhotoProxyAvailable', callback);
 }
 ```
 
@@ -2933,10 +2970,12 @@ on(type: 'captureStartWithInfo', callback: AsyncCallback\<CaptureStartInfo\>): v
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, captureStartInfo: camera.CaptureStartInfo): void {
+  console.info(`photo capture started, captureStartInfo : ${captureStartInfo}`);
+}
+
 function registerCaptureStartWithInfo(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo) => {
-    console.info(`photo capture started, captureStartInfo : ${captureStartInfo}`);
-  });
+  photoOutput.on('captureStartWithInfo', callback);
 }
 ```
 
@@ -2953,7 +2992,7 @@ off(type: 'captureStartWithInfo', callback?: AsyncCallback\<CaptureStartInfo\>):
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'captureStartWithInfo'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | 否   | 回调函数，可选，有表明匹配on接口callback。            |
+| callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。            |
 
 **示例：**
 
@@ -3011,10 +3050,12 @@ on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, captureId: number): void {
+  console.info(`photo capture started, captureId : ${captureId}`);
+}
+
 function registerPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('captureStart', (err: BusinessError, captureId: number) => {
-    console.info(`photo capture started, captureId : ${captureId}`);
-  });
+  photoOutput.on('captureStart', callback);
 }
 ```
 
@@ -3034,7 +3075,7 @@ off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<number\> | 否   | 回调函数，可选，有表明匹配on接口callback。            |
+| callback | AsyncCallback\<number\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。            |
 
 **示例：**
 
@@ -3064,11 +3105,13 @@ on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, frameShutterInfo: camera.FrameShutterInfo): void {
+  console.info(`CaptureId for frame : ${frameShutterInfo.captureId}`);
+  console.info(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
+}
+
 function registerPhotoOutputFrameShutter(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('frameShutter', (err: BusinessError, frameShutterInfo: camera.FrameShutterInfo) => {
-    console.info(`CaptureId for frame : ${frameShutterInfo.captureId}`);
-    console.info(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
-  });
+  photoOutput.on('frameShutter', callback);
 }
 ```
 
@@ -3085,7 +3128,7 @@ off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，可选，有表明匹配on接口callback。             |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。             |
 
 **示例：**
 
@@ -3115,11 +3158,13 @@ on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, captureEndInfo: camera.CaptureEndInfo): void {
+  console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
+  console.info(`frameCount : ${captureEndInfo.frameCount}`);
+}
+
 function registerPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo) => {
-    console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
-    console.info(`frameCount : ${captureEndInfo.frameCount}`);
-  });
+  photoOutput.on('captureEnd', callback);
 }
 ```
 
@@ -3136,7 +3181,7 @@ off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 | 参数名     | 类型           | 必填 | 说明                                       |
 | -------- | --------------- | ---- | ---------------------------------------- |
 | type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，可选，有表明匹配on接口callback。                  |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
 
@@ -3166,10 +3211,12 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Photo output error code: ${err.code}`);
+}
+
 function registerPhotoOutputError(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('error', (error: BusinessError) => {
-    console.error(`Photo output error code: ${error.code}`);
-  });
+  photoOutput.on('error', callback);
 }
 ```
 
@@ -3186,7 +3233,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选。          |
+| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
 
 **示例：**
 
@@ -3202,7 +3249,7 @@ isQuickThumbnailSupported(): boolean
 
 是否支持输出快速缩略图。
 
-在CaptureSession.addOutput、CaptureSession.addInput之后，CaptureSession.commitConfig之前生效。
+在[addOutput](#addoutput)、[addInput](#addinput)之后，[commitConfig](#commitconfig)之前生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3252,7 +3299,7 @@ enableQuickThumbnail(enabled: boolean): void
 
 启用/禁用快速缩略图。
 
-在CaptureSession.addOutput、CaptureSession.addInput之后，CaptureSession.commitConfig之前生效。
+在[addOutput](#addoutput)、[addInput](#addinput)之后，[commitConfig](#commitconfig)之前生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3332,6 +3379,15 @@ import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 
+function callback(err: BusinessError, pixelMap: image.PixelMap): void {
+  if (err || pixelMap === undefined) {
+      console.error('photoOutput on thumbnail failed');
+      return;
+  }
+  // 显示或保存pixelMap
+  // do something
+}
+
 async function registerQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
@@ -3358,14 +3414,7 @@ async function registerQuickThumbnail(context: common.BaseContext, photoProfile:
     console.error(`The enableQuickThumbnail call failed. error code: ${err.code}`);
   }
 
-  photoOutput.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err || pixelMap === undefined) {
-      console.error('photoOutput on thumbnail failed');
-      return;
-    }
-    // 显示或保存pixelMap
-    // do something
-  })
+  photoOutput.on('quickThumbnail', callback);
 }
 ```
 
@@ -3384,7 +3433,7 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有表明匹配on接口callback。 |
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -3502,6 +3551,7 @@ function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start().then(() => {
     console.info('Promise returned to indicate that start method execution success.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to videoOutput start, error code: ${err.code}.`);
   });
 }
@@ -3560,6 +3610,7 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop().then(() => {
     console.info('Promise returned to indicate that stop method execution success.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to videoOutput stop, error code: ${err.code}.`);
   });
 }
@@ -3583,10 +3634,12 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+function callback(): void {
+  console.info('Video frame started');
+}
+
 function registerVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
-  videoOutput.on('frameStart', () => {
-    console.info('Video frame started');
-  });
+  videoOutput.on('frameStart', callback);
 }
 ```
 
@@ -3603,7 +3656,7 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                     |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。                     |
 
 **示例：**
 
@@ -3632,10 +3685,12 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+function callback(): void {
+  console.info('Video frame ended');
+}
+
 function registerVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
-  videoOutput.on('frameEnd', () => {
-    console.info('Video frame ended');
-  });
+  videoOutput.on('frameEnd', callback);
 }
 ```
 
@@ -3652,7 +3707,7 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有表明匹配on接口callback。                      |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。                      |
 
 **示例：**
 
@@ -3674,7 +3729,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型       | 必填 | 说明                                    |
 | -------- | ----------- | ---- | -------------------------------------- |
-| type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。录像接口调用出现错误时触发该事件并返回对应错误码，比如调用（[start](#start-1)，[CameraOutput.release](#release-1)）接口时出现错误返回对应错误信息。 |
+| type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。录像接口调用出现错误时触发该事件并返回对应错误码，比如调用[start](#start-1)，[CameraOutput.release](#release-1)接口时出现错误返回对应错误信息。 |
 | callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。                 |
 
 **示例：**
@@ -3682,10 +3737,12 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Video output error code: ${err.code}`);
+}
+
 function registerVideoOutputError(videoOutput: camera.VideoOutput): void {
-  videoOutput.on('error', (error: BusinessError) => {
-    console.error(`Video output error code: ${error.code}`);
-  });
+  videoOutput.on('error', callback);
 }
 ```
 
@@ -3702,7 +3759,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。               |
+| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。               |
 
 **示例：**
 
@@ -3787,6 +3844,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
     console.info('Callback returned with metadataOutput started.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
   });
 }
@@ -3845,6 +3903,7 @@ function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop().then(() => {
     console.info('Callback returned with metadataOutput stopped.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
   });
 }
@@ -3870,10 +3929,12 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObj
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>): void {
+  console.info('metadata output metadataObjectsAvailable');
+}
+
 function registerMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
-  metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-    console.info('metadata output metadataObjectsAvailable');
-  });
+  metadataOutput.on('metadataObjectsAvailable', callback);
 }
 ```
 
@@ -3890,7 +3951,7 @@ off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataO
 | 参数名      | 类型         | 必填 | 说明                                  |
 | -------- | -------------- | ---- | ------------------------------------ |
 | type     | string         | 是   | 监听事件，固定为'metadataObjectsAvailable'，metadataOutput创建成功后可监听。 |
-| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，可选，有表明匹配on接口callback。 |
+| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -3912,7 +3973,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
-| type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。metadata接口使用错误时触发该事件并返回对应错误码，比如调用（[start](#start-3)，[CameraOutput.release](#release-1)）接口时发生错误返回对应错误信息。 |
+| type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。metadata接口使用错误时触发该事件并返回对应错误码，比如调用[start](#start-3)，[CameraOutput.release](#release-1)接口时发生错误返回对应错误信息。 |
 | callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。            |
 
 **示例：**
@@ -3920,10 +3981,12 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(metadataOutputError: BusinessError): void {
+  console.error(`Metadata output error code: ${metadataOutputError.code}`);
+}
+
 function registerMetadataOutputError(metadataOutput: camera.MetadataOutput): void {
-  metadataOutput.on('error', (metadataOutputError: BusinessError) => {
-    console.error(`Metadata output error code: ${metadataOutputError.code}`);
-  });
+  metadataOutput.on('error', callback);
 }
 ```
 
@@ -3940,7 +4003,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有表明匹配on接口callback。           |
+| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。           |
 
 **示例：**
 
@@ -4021,7 +4084,7 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 枚举，闪光灯模式。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                    | 值   | 说明        |
 | ---------------------- | ---- | ---------- |
@@ -4060,7 +4123,7 @@ getSupportedExposureRange(): Array\<number\>
 
  **示例：**
  
- ```ts
+```ts
 function getSupportedExposureRange(nightPhotoSession: camera.NightPhotoSession): Array<number> {
   let exposureRange: Array<number> = nightPhotoSession.getSupportedExposureRange();
   return exposureRange;
@@ -4125,7 +4188,7 @@ setExposure(exposure: number): void
 | --------------- | --------------- |
 | 7400103                |  Session not config.  |
 
- ```ts
+```ts
 function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
   let exposureRange: Array<number> = nightPhotoSession.getSupportedExposureRange();
   if (exposureRange === undefined || exposureRange.length <= 0) {
@@ -4139,7 +4202,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 枚举，曝光模式。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                           | 值   | 说明         |
 | ----------------------------- | ---- | ----------- |
@@ -4151,7 +4214,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 枚举，焦距模式。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                        | 值   | 说明          |
 | -------------------------- | ---- | ------------ |
@@ -4164,7 +4227,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 枚举，焦距状态。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                   | 值   | 说明       |
 | --------------------- | ---- | --------- |
@@ -4176,7 +4239,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 枚举，视频防抖模式。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称       | 值   | 说明         |
 | --------- | ---- | ------------ |
@@ -4359,6 +4422,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
     console.info('Promise returned to indicate the commit config success.');
   }).catch((err: BusinessError) => {
     // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
     console.error(`The commitConfig call failed. error code: ${err.code}`);
   });
 }
@@ -4368,7 +4432,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
 
 canAddInput(cameraInput: CameraInput): boolean
 
-判断当前cameraInput是否可以添加到session中。当前函数需要在Session.beginConfig()和Session.commitConfig()之间生效。
+判断当前cameraInput是否可以添加到session中。当前函数需要在[beginConfig](#beginconfig)和[commitConfig](#commitconfig)之间生效。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4390,8 +4454,8 @@ canAddInput(cameraInput: CameraInput): boolean
 import { BusinessError } from '@ohos.base';
 
 function canAddInput(captureSession: camera.CaptureSession, cameraInput: camera.CameraInput): void {
-    let canAdd ：boolean = captureSession.canAddInput(cameraInput);
-    console.error(`The input canAddInput : ${canAdd}`);
+  let canAdd: boolean = captureSession.canAddInput(cameraInput);
+  console.info(`The input canAddInput: ${canAdd}`);
 }
 ```
 
@@ -4439,7 +4503,7 @@ function addInput(captureSession: camera.CaptureSession, cameraInput: camera.Cam
 
 removeInput(cameraInput: CameraInput): void
 
-移除[CameraInput](#camerainput)。当前函数需要在Session.beginConfig()和Session.commitConfig()之间生效。
+移除[CameraInput](#camerainput)。当前函数需要在[beginConfig](#beginconfig)和[commitConfig](#commitconfig)之间生效。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4479,7 +4543,7 @@ function removeInput(captureSession: camera.CaptureSession, cameraInput: camera.
 
 canAddOutput(cameraOutput: CameraOutput): boolean
 
-判断当前cameraOutput是否可以添加到session中。当前函数需要在Session.addInput(cameraInput)和Session.commitConfig之间生效。
+判断当前cameraOutput是否可以添加到session中。当前函数需要在[addInput](#addinput)和[commitConfig](#commitconfig)之间生效。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4501,8 +4565,8 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 import { BusinessError } from '@ohos.base';
 
 function canAddOutput(captureSession: camera.CaptureSession, cameraOutput: camera.CameraOutput): void {
-  let canAdd : boolean = captureSession.canAddOutput(cameraOutput);
-  console.error(`This addOutput can add : ${canAdd}`);
+  let canAdd: boolean = captureSession.canAddOutput(cameraOutput);
+  console.info(`This addOutput can add: ${canAdd}`);
 }
 ```
 
@@ -4657,6 +4721,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start().then(() => {
     console.info('Promise returned to indicate the session start success.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to start the session, error code: ${err.code}.`);
   });
 }
@@ -4731,6 +4796,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop().then(() => {
     console.info('Promise returned to indicate the session stop success.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to stop the session, error code: ${err.code}.`);
   });
 }
@@ -4805,6 +4871,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release().then(() => {
     console.info('Promise returned to indicate that the CaptureSession instance is released successfully.');
   }).catch((err: BusinessError) => {
+    let err = error as BusinessError;
     console.error(`Failed to release the CaptureSession instance, error code: ${err.code}.`);
   });
 }
@@ -5244,7 +5311,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填 | 说明                 |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | 是   | 曝光补偿，getExposureBiasRange查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。<br>曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。<br>接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| exposureBias   | number                   | 是   | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。<br>曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。<br>接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5578,7 +5645,7 @@ function getFocalLength(captureSession: camera.CaptureSession): number {
 
 平滑变焦参数信息。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   -- | 类型       |   必填   | 说明       |
 | -------- | ---------- | -------- | ---------- |
@@ -6222,7 +6289,7 @@ function getColorEffect(session: camera.PhotoSession): camera.ColorEffectType {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core。
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                  | 值   | 说明       |
 | --------------------- | ---- | --------- |
@@ -6696,20 +6763,22 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 参数名     | 类型                                                          | 必填 | 说明                           |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（[Session.beginConfig](#beginconfig)，[Session.commitConfig](#commitconfig)，[Session.addInput](#addinput)）等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
+| 参数名     | 类型                                                          | 必填 | 说明                                                                                                                                                              |
+| -------- | ----------------------------------------------------------- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig)，[commitConfig](#commitconfig)，[addInput](#addinput)等接口发生错误时返回错误信息。 |
+| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。                                                                                                   |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Capture session error code: ${err.code}`);
+}
+
 function registerSessionError(captureSession: camera.CaptureSession): void {
-  captureSession.on('error', (error: BusinessError) => {
-    console.error(`Capture session error code: ${error.code}`);
-  });
+  captureSession.on('error', callback);
 }
 ```
 
@@ -6726,7 +6795,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
 | type     | string              | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback       | 否   | 回调函数，可选，有表明匹配on接口callback。      |
+| callback | ErrorCallback       | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。      |
 
 **示例：**
 
@@ -6756,10 +6825,12 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
 function registerFocusStateChange(captureSession: camera.CaptureSession): void {
-  captureSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.info(`Focus state: ${focusState}`);
-  });
+  captureSession.on('focusStateChange', callback);
 }
 ```
 
@@ -6776,7 +6847,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -6804,13 +6875,17 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（[Session.beginConfig](#beginconfig)，[Session.commitConfig](#commitconfig)，[Session.addInput](#addinput)）等接口发生错误时返回错误信息。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig)，[commitConfig](#commitconfig)，[addInput](#addinput)等接口发生错误时返回错误信息。 |
 | callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError): void {
+  console.error(`Photo session error code: ${err.code}`);
+}
 
 function registerSessionError(photoSession: camera.PhotoSession): void {
   photoSession.on('error', (error: BusinessError) => {
@@ -6832,7 +6907,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                            | 必填 | 说明                           |
 | -------- | -------------------------------- | ---- | ------------------------------ |
 | type     | string                           | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有表明匹配on接口callback。     |
+| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。     |
 
 **示例：**
 
@@ -6862,10 +6937,12 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
 function registerFocusStateChange(photoSession: camera.PhotoSession): void {
-  photoSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.info(`Focus state: ${focusState}`);
-  });
+  photoSession.on('focusStateChange', callback);
 }
 ```
 
@@ -6882,7 +6959,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -6912,10 +6989,12 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
 function registerSmoothZoomInfo(photoSession: camera.PhotoSession): void {
-  photoSession.on('smoothZoomInfoAvailable', (err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo) => {
-    console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
-  });
+  photoSession.on('smoothZoomInfoAvailable', callback);
 }
 ```
 
@@ -6932,7 +7011,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -6964,10 +7043,12 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, macroStatus: boolean): void {
+  console.info(`Macro state: ${macroStatus}`);
+}
+
 function registerMacroStatusChanged(photoSession: camera.PhotoSession): void {
-  photoSession.on('macroStatusChanged', (err: BusinessError, macroStatus: boolean) => {
-    console.info(`Macro state: ${macroStatus}`);
-  });
+  photoSession.on('macroStatusChanged', callback);
 }
 ```
 
@@ -6986,7 +7067,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有表明匹配on接口callback。 |
+| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -7014,7 +7095,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型              | 必填 | 说明                           |
 | -------- | ------------------ | ---- | ------------------------------ |
-| type     | string             | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（[Session.beginConfig](#beginconfig)，[Session.commitConfig](#commitconfig)，[Session.addInput](#addinput)）等接口发生错误时返回错误信息。 |
+| type     | string             | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig)，[commitConfig](#commitconfig)，[addInput](#addinput)等接口发生错误时返回错误信息。 |
 | callback | ErrorCallback      | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。   |
 
 **示例：**
@@ -7022,10 +7103,12 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Video session error code: ${err.code}`);
+}
+
 function registerSessionError(videoSession: camera.VideoSession): void {
-  videoSession.on('error', (error: BusinessError) => {
-    console.error(`Video session error code: ${error.code}`);
-  });
+  videoSession.on('error', callback);
 }
 ```
 
@@ -7042,7 +7125,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                          | 必填 | 说明                           |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | type     | string                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有表明匹配on接口callback。      |
+| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。      |
 
 **示例：**
 
@@ -7072,10 +7155,12 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
 function registerFocusStateChange(videoSession: camera.VideoSession): void {
-  videoSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.info(`Focus state: ${focusState}`);
-  });
+  videoSession.on('focusStateChange', callback);
 }
 ```
 
@@ -7092,7 +7177,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否  | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否  | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -7122,10 +7207,12 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
 function registerSmoothZoomInfo(videoSession: camera.VideoSession): void {
-  videoSession.on('smoothZoomInfoAvailable', (err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo) => {
-    console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
-  });
+  videoSession.on('smoothZoomInfoAvailable', callback);
 }
 ```
 
@@ -7142,7 +7229,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -7174,10 +7261,12 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, macroStatus: boolean): void {
+  console.info(`Macro state: ${macroStatus}`);
+}
+
 function registerMacroStatusChanged(videoSession: camera.VideoSession): void {
-  videoSession.on('macroStatusChanged', (err: BusinessError, macroStatus: boolean) => {
-    console.info(`Macro state: ${macroStatus}`);
-  });
+  videoSession.on('macroStatusChanged', callback);
 }
 ```
 
@@ -7196,7 +7285,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | 参数名    | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有表明匹配on接口callback。 |
+| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -7226,7 +7315,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（[Session.beginConfig](#beginconfig)，[Session.commitConfig](#commitconfig)，[Session.addInput](#addinput)）等接口发生错误时返回错误信息。 |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig)，[commitConfig](#commitconfig)，[addInput](#addinput)等接口发生错误时返回错误信息。 |
 | callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
 
 **示例：**
@@ -7234,10 +7323,12 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Portrait photo session error code: ${err.code}`);
+}
+
 function registerSessionError(portraitPhotoSession: camera.PortraitPhotoSession): void {
-  portraitPhotoSession.on('error', (error: BusinessError) => {
-    console.error(`Portrait photo session error code: ${error.code}`);
-  });
+  portraitPhotoSession.on('error', callback);
 }
 ```
 
@@ -7256,7 +7347,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | -------------------------- | ---- | ------------------------------ |
 | type     | string                     | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有表明匹配on接口callback。    |
+| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
 
 **示例：**
 
@@ -7288,10 +7379,12 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
 function registerFocusStateChange(portraitPhotoSession: camera.PortraitPhotoSession): void {
-  portraitPhotoSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.info(`Focus state: ${focusState}`);
-  });
+  portraitPhotoSession.on('focusStateChange', callback);
 }
 ```
 
@@ -7310,7 +7403,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -7342,10 +7435,12 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
 function registerSmoothZoomInfo(portraitPhotoSession: camera.PortraitPhotoSession): void {
-  portraitPhotoSession.on('smoothZoomInfoAvailable', (err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo) => {
-    console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
-  });
+  portraitPhotoSession.on('smoothZoomInfoAvailable', callback);
 }
 ```
 
@@ -7364,7 +7459,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -7394,18 +7489,20 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（[Session.beginConfig](#beginconfig)，[Session.commitConfig](#commitconfig)，[Session.addInput](#addinput)）等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig)，[commitConfig](#commitconfig)，[addInput](#addinput)等接口发生错误时返回错误信息。 |
+| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError): void {
+  console.error(`Night photo session error code: ${err.code}`);
+}
+
 function registerSessionError(nightPhotoSession: camera.NightPhotoSession): void {
-  nightPhotoSession.on('error', (error: BusinessError) => {
-    console.error(`Night photo session error code: ${error.code}`);
-  });
+  nightPhotoSession.on('error', callback);
 }
 ```
 
@@ -7424,7 +7521,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                        | 必填 | 说明                           |
 | -------- | ------------------------ | ---- | ------------------------------ |
 | type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有表明匹配on接口callback。       |
+| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
 
 **示例：**
 
@@ -7456,10 +7553,12 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
 function registerFocusStateChange(nightPhotoSession: camera.NightPhotoSession): void {
-  nightPhotoSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.info(`Focus state: ${focusState}`);
-  });
+  nightPhotoSession.on('focusStateChange', callback);
 }
 ```
 
@@ -7478,7 +7577,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -7510,10 +7609,12 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 ```ts
 import { BusinessError } from '@ohos.base';
 
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
 function registerSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): void {
-  nightPhotoSession.on('smoothZoomInfoAvailable', (err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo) => {
-    console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
-  });
+  nightPhotoSession.on('smoothZoomInfoAvailable', callback);
 }
 ```
 
@@ -7532,7 +7633,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有表明匹配on接口callback。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 

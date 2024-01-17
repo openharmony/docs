@@ -8,7 +8,7 @@
 
 ## 约束与限制
 
-- 暂不支持动态添加流，即不能在没有调用session.stop的情况下，调用addOutput添加流。
+- 暂不支持动态添加流，即不能在没有调用[session.stop](../reference/apis/js-apis-camera.md#stop-4)的情况下，调用[addOutput](../reference/apis/js-apis-camera.md#addoutput)添加流。
 - 对ImageReceiver组件获取到的图像数据处理后，需要将对应的图像Buffer释放，确保Surface的BufferQueue正常轮转。
 
 ## 调用流程
@@ -81,7 +81,7 @@
 
 4. 实现双路预览。
 
-   将步骤2、3生成的两路SurfaceId通过createPreviewOutput方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
+   将步骤2、3生成的两路SurfaceId通过[createPreviewOutput](../reference/apis/js-apis-camera.md#createpreviewoutput)方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
 
    ```ts
    import camera from '@ohos.multimedia.camera';
