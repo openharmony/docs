@@ -929,7 +929,7 @@ httpRequest.off("dataEnd");
 
 ### on("dataReceiveProgress")<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<\{ receiveSize: number, totalSize: number \}\>): void
+on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -943,7 +943,7 @@ on(type: "dataReceiveProgress", callback: Callback\<\{ receiveSize: number, tota
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceiveProgress'。 |
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | 是   | 回调函数。<br>receiveSize：已接收的数据字节数，totalSize待接收的字节总数 |
+| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。返回数据接收进度信息。 |
 
 **示例：**
 
@@ -964,7 +964,7 @@ httpRequest.off("dataReceiveProgress");
 
 ### off("dataReceiveProgress")<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
 
 取消订阅HTTP流式响应数据接收进度事件。
 
@@ -978,7 +978,7 @@ off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, tot
 | 参数名   | 类型               | 必填 | 说明                                   |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | 是   | 取消订阅的事件类型：'dataReceiveProgress'。 |
-| callback | Callback\<{ receiveSize: number, totalSize: number }\>   | 否   | 回调函数。                             |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 否   | 回调函数。 返回数据接收进度信息。    |
 
 **示例：**
 
@@ -999,7 +999,7 @@ httpRequest.off("dataReceiveProgress");
 
 ### on("dataSendProgress")<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<{ sendSize: number, totalSize: number }\>): void
+on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 
 订阅HTTP网络请求数据发送进度事件。
 
@@ -1010,7 +1010,7 @@ on(type: "dataSendProgress", callback: Callback\<{ sendSize: number, totalSize: 
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataSendProgress'。 |
-| callback | AsyncCallback\<{ sendSize: number, totalSize: number }\>   | 是   | 回调函数。<br>sendSize：已发送的数据字节数，totalSize待发送的总字节数。 |
+| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。返回数据发送进度信息。|
 
 **示例：**
 
@@ -1031,7 +1031,7 @@ httpRequest.off("dataSendProgress");
 
 ### off("dataSendProgress")<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<{ sendSize: number, totalSize: number }\>): void
+off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 
 取消订阅HTTP网络请求数据发送进度事件。
 
@@ -1045,7 +1045,7 @@ off(type: "dataSendProgress", callback?: Callback\<{ sendSize: number, totalSize
 | 参数名   | 类型               | 必填 | 说明                                   |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | 是   | 取消订阅的事件类型：'dataSendProgress'。 |
-| callback | Callback\<{ sendSize: number, totalSize: number }\>  | 否 | 回调函数。 |
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>  | 否 | 回调函数。返回数据接发送进度信息。 |
 
 **示例：**
 
@@ -1199,6 +1199,30 @@ request方法回调函数的返回值类型。
 | responseHeaderTiming  | number | 是   | 从[request](#request)请求到header解析完成的耗时。 |
 | responseBodyTiming  | number | 是   | 从[request](#request)请求到body解析完成的耗时。 |
 | totalTiming  | number | 是   | 从[request](#request)请求回调到应用程序的耗时。 |
+
+## DataReceiveProgressInfo<sup>11+</sup>
+
+数据接收信息
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+|  receiveSize        | number | 是  | 已接收的数据量（字节）。           |
+| totalSize| number | 是 | 总共要接收的数据量（字节）|
+
+## DataSendProgressInfo<sup>11+</sup>
+
+数据发送信息
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+### 属性
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| sendSize        | number | 是  | 每次发送的数据量（字节）。  |
+| totalSize | number | 是 | 总共要发送的数据量（字节）。 |
 
 ## MultiFormData<sup>11+</sup>
 

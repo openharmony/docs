@@ -518,7 +518,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 ### on('message')
 
-on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -529,7 +529,7 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。                                |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。                                |
 
 **示例：**
 
@@ -557,7 +557,7 @@ udp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<[SocketMessageInfo]\>): void
 
 取消订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -571,7 +571,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                               |
 
 **示例：**
 
@@ -1452,7 +1452,7 @@ multicast.send(sendOptions).then(() => {
 
 ### on('message')<sup>7+</sup>
 
-on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅MulticastSocket接收消息事件。使用callback方式作为异步方法。
 
@@ -1463,7 +1463,7 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 | 参数名   | 类型                                                                                    | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                                | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。                            |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。                            |
 
 **示例：**
 
@@ -1484,7 +1484,7 @@ multicast.on('message', (data) => {
 
 ### off('message')<sup>7+</sup>
 
-off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅消息事件。使用callback方式作为异步方法。
 
@@ -1495,7 +1495,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 | 参数名   | 类型                                                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                              | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                            |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                            |
 
 **示例：**
 
@@ -2343,7 +2343,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 ### on('message')
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
 订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -2354,7 +2354,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 是   | 回调函数。                               |
 
 **示例：**
 
@@ -2381,7 +2381,7 @@ tcp.on('message', (value: SocketInfo) => {
 
 ### off('message')
 
-off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 取消订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -2395,7 +2395,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                               |
 
 **示例：**
 
@@ -3392,7 +3392,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### on('message')<sup>10+</sup>
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
 订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -3403,7 +3403,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 是   | 回调函数。                                |
 
 **错误码：**
 
@@ -3439,7 +3439,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback<[SocketMessageInfo]\>): void
 
 取消订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -3453,7 +3453,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                              |
 
 **错误码：**
 
@@ -4043,7 +4043,7 @@ client.connect(connectOpt).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4054,7 +4054,7 @@ on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                      |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 以callback的形式异步返回接收的消息。|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
 
 **示例：**
 
@@ -4074,7 +4074,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4088,7 +4088,7 @@ off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 指定传入on中的callback取消一个订阅。|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
 
 **示例：**
 
@@ -4796,7 +4796,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4807,7 +4807,7 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 | 参数名   | 类型                                              | 必填 | 说明                                     |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
 
 **错误码：**
 
@@ -4843,7 +4843,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4857,7 +4857,7 @@ off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 指定传入on的一个callback取消注册。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
 
 **错误码：**
 
@@ -5374,7 +5374,7 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -5385,7 +5385,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -5412,7 +5412,7 @@ tls.on('message', (value: SocketInfo) => {
 
 ### off('message')<sup>9+</sup>
 
-off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -5426,7 +5426,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。 |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。 |
 
 **示例：**
 
@@ -7429,6 +7429,17 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 });
 ```
 
+## SocketMessageInfo<sup>11+</sup>
+
+socket连接信息
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| message   | ArrayBuffer | 是   | 接收的事件消息。 |
+| remoteInfo   | [SocketRemoteInfo](#socketremoteinfo) | 是   | socket连接信息。 |
+
 ### send<sup>10+</sup>
 
 send(data: string): Promise\<void\>
@@ -8112,7 +8123,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 ### on('message')<sup>10+</sup>
 
-on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -8123,7 +8134,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 是   | 回调函数。                                |
 
 **错误码：**
 
@@ -8181,7 +8192,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 ### off('message')<sup>10+</sup>
 
-off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅TLSSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -8195,7 +8206,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | 否   | 回调函数。                                |
 
 **错误码：**
 
@@ -8495,4 +8506,3 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.off('error');
 });
 ```
-
