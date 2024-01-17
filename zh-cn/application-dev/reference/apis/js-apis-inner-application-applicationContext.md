@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): Prominse\<void\>
+off(type: 'environment', callbackId: **number**): Promise\<void\>
 
 取消对系统环境变化的监听。
 
@@ -466,7 +466,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>): void
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。以Callback形式返回。
 
@@ -664,14 +664,6 @@ on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 | type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 是   | 注册监听应用开机自启动状态变化的回调对象。 |
 
-**错误码**：
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 16000050 | Internal error.                              |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -712,14 +704,6 @@ off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 | type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 否   | 注销监听应用开机自启动状态变化的回调对象。 |
 
-**错误码**：
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 16000050 | Internal error.                              |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -759,17 +743,6 @@ setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 | -------- | ------------------- | ---- | -------------------------- |
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | 是   | 设置开机自启动的应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。当设置为开机自启动成功，err为undefined，否则为错误对象。   |
-
-**错误码**：
-
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
-| 16000004 | Can not start invisible component.              |
-| 16000013 | The application is controlled by EDM.           |
-| 16000050 | Internal error.                                 |
-| 16300003 | The target application is not self application. |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -814,17 +787,6 @@ setAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | --------------- | ------------------------------------------- |
 | Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
-
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
-| 16000004 | Can not start invisible component.              |
-| 16000013 | The application is controlled by EDM.           |
-| 16000050 | Internal error.                                 |
-| 16300003 | The target application is not self application. |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -864,17 +826,6 @@ cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 | -------- | ------------------- | ---- | -------------------------- |
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | 是   | 取消开机自启动的应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。当取消开机自启动成功，err为undefined，否则为错误对象。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
-| 16000004 | Can not start invisible component.              |
-| 16000013 | The application is controlled by EDM.           |
-| 16000050 | Internal error.                                 |
-| 16300003 | The target application is not self application. |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -919,17 +870,6 @@ cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | --------------- | ------------------------------------------- |
 | Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
-**错误码**：
-
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
-| 16000004 | Can not start invisible component.              |
-| 16000013 | The application is controlled by EDM.           |
-| 16000050 | Internal error.                                 |
-| 16300003 | The target application is not self application. |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -969,15 +909,6 @@ isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 | -------- | ---------------------- | ---- | -------------------------- |
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)        | 是   | 查询是否开机启动的应用自身组件的信息。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示查询的应用组件是开机自启动；返回false表示查询的应用组件不是开机自启动。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
-| 16000050 | Internal error.                                 |
-| 16300003 | The target application is not self application. |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1021,15 +952,6 @@ isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
 | 类型             | 说明                                        |
 | ---------------- | ------------------------------------------- |
 | Promise\<boolean\> | Promise对象。返回true表示查询的应用组件是开机自启动；返回false表示查询的应用组件不是开机自启动。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息                                        |
-| -------- | ----------------------------------------------- |
-| 16000050 | Internal error.                                 |
-| 16300003 | The target application is not self application. |
-
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
