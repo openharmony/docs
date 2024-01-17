@@ -776,11 +776,11 @@ struct Index {
 
 ```
 BlendMode.NONE<br/>
-![zh-cn_image_effect_blendMode1](figures/zh-cn_image_effect_blendMode1.jpeg)
+![zh-cn_image_effect_blendMode1](figures/zh-cn_image_effect_blendMode1.png)
 <br/>BlendMode.OVERLAY,BlendApplyType.OFFSCREEN<br/>
-![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode2.jpeg)
+![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode2.png)
 <br/>BlendMode.COLOR,BlendApplyType.FAST<br/>
-![zh-cn_image_effect_blendMode3](figures/zh-cn_image_effect_blendMode3.jpeg)
+![zh-cn_image_effect_blendMode3](figures/zh-cn_image_effect_blendMode3.png)
 <br/>不同的模式控制不同的混合方式从而产生不同的效果。
 
 ### 示例11
