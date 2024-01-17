@@ -14,6 +14,8 @@ The following figure shows the effect of \<**PasteButton**> component.
 
 - The temporary authorization for reading data from the pasteboard remains valid until data is written to the pasteboard (for example, the user copies new data).
 
+- The temporary authorization will be automatically revoked when the screen turns off, the app switches to the background, or the app exits.
+
 - During the authorization period, there is no limit on the number of API calls.
 
 - The \<**PasteButton**> component must be visible and legible to users. You need to properly configure the component attributes such as the size and color to prevent authorization failures. If the authorization fails due to invalid component style, check the device error logs.
@@ -32,10 +34,8 @@ The following procedure implements the following: After **Paste** is tapped, the
    
    The \<**PasteButton**> component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options.<br>
 
-   When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created. The following example uses the default parameters. For details, see [PasteButton](../../reference/arkui-ts/ts-security-components-pastebutton.md).<br>
+   When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created. The following example uses the default parameters. For details, see [PasteButton](../../reference/arkui-ts/ts-security-components-pastebutton.md).<br>In addition, all security components inherit the [Security Component Universal Attributes](../../reference/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
 
-   In addition, all security components inherit the [Security Component Universal Attributes](../../reference/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
-   
    ```ts
    import pasteboard from '@ohos.pasteboard';
    import { BusinessError } from '@ohos.base';
