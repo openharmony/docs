@@ -32,7 +32,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 | ------ | ------------------------------- | ---- | ------------------------------ |
 | context| [Context](js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
-| type   | [AVSessionType](#avsessiontype10) | 是   | 会话类型，当前支持音频和视频。 |
+| type   | [AVSessionType](#avsessiontype10) | 是   | 会话类型。 |
 
 **返回值：**
 
@@ -81,7 +81,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context| [Context](js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
-| type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型，当前支持音频和视频。                               |
+| type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型。                               |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
 
 **错误码：**
@@ -1902,6 +1902,7 @@ avSession.stopCasting(myToken).then(() => {
 | ----- | ------ | ---- |
 | audio | string | 音频 |
 | video | string | 视频 |
+| voice_call | string | 通话 |
 
 ## AVSession<sup>10+</sup>
 
