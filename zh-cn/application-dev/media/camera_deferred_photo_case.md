@@ -237,7 +237,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   console.info('isDeferredImageDeliverySupported res:' + isSupportDeferred);
   if (isSupportDeferred) {
     // 使能分段式拍照
-	photoOutPut.deferImageDeliveryFor(camera.DeferredDeliveryImageType.PHOTO);
+	photoOutPut.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
     // 查询使能分段式结果
     let isSupportEnabled: boolean = photoOutPut.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
     console.info('isDeferredImageDeliveryEnabled res:' + isSupportEnabled);
