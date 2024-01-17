@@ -298,7 +298,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 **示例：**
 
 ```ts
-// 额外获取带有permissions信息的appInfo
+// 额外获取带有permissions信息的abilitiesInfo
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
