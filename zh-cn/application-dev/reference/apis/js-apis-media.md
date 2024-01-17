@@ -1857,6 +1857,53 @@ off(type: 'audioInterrupt'): void
 avPlayer.off('audioInterrupt')
 ```
 
+### on('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+
+on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStreamDeviceChangeInfo>): void
+
+订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`${JSON.stringify(data)}`);
+});
+```
+
+### off('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+
+off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStreamDeviceChangeInfo>): void
+
+取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**示例：**
+
+```ts
+avPlayer.off('audioOutputDeviceChangeWithInfo');
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 [AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
