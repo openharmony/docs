@@ -26,7 +26,7 @@ Crypto Architecture Kit provides the following functionalities, with algorithm s
 
 - [Message Digest](crypto-generate-message-digest.md)
 
-- [MAC](crypto-compute-mac.md)
+- [MAC Operation](crypto-compute-mac.md)
 
 - [Random Number Generation](crypto-generate-random-number.md)
 
@@ -54,3 +54,4 @@ Crypto Architecture Kit provides cryptographic operations, but not key managemen
 
 If key management (such as key storage) is required, use [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md).
 
+<!--no_check-->
