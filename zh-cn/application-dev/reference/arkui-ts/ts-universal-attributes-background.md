@@ -135,7 +135,7 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 | 参数名            | 类型                                     | 必填   | 说明                                       |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| params        | [BackgroundBrightnessOptions](#backgroundBrightnessOptions11对象说明) | 是    |  设置组件背景提亮效果，包括：亮度变化速率，提亮程度。      |
+| params        | [BackgroundBrightnessOptions](#backgroundbrightnessoptions11对象说明) | 是    |  设置组件背景提亮效果，包括：亮度变化速率，提亮程度。      |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
@@ -302,7 +302,7 @@ struct BackgroundBrightnessDemo {
       .height(100)
       .position({ x: 100, y: 100 })
       .backgroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
-      .backgroundBrightness({rate:0.5,lightUpDegree:0.5}) // 背景动态提亮
+      .backgroundBrightness({rate:0.5,lightUpDegree:0.5}) // 背景提亮效果
     }
     .width('100%')
     .height('100%')
