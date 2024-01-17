@@ -77,7 +77,7 @@
     - [使用人像模式拍照(仅对系统应用开放)(ArkTS)](camera-mode.md)
     - [双路预览(ArkTS)](camera-dual-channel-preview.md)
     - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
-    - [高性能拍照方案(仅对系统应用开放)(ArkTS)](camera_deferred_photo_case.md)
+    - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](camera_deferred_photo_case.md)
   - 相机开发指导(C/C++)
     - [设备输入(C/C++)](native-camera-device-input.md)
     - [会话管理(C/C++)](native-camera-session-management.md)
