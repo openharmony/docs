@@ -802,28 +802,28 @@ struct Index {
   @State briVal: number = 1.5;
   build() {
     Stack() {
-      Image($r('app.media.4'))
+      Image($r('app.media.image'))
       Column() {
-        Column({ space: 0}) {
-          Column(){
+        Column({ space: 0 }) {
+          Column() {
             Text('11')
               .fontSize(144)
               .fontWeight(FontWeight.Bold)
               .fontColor('rgba(255,255,255,1)')
               .fontFamily('HarmonyOS-Sans-Digit')
               .maxLines(1)
-              .lineHeight(120*1.25)
-              .height(120*1.25)
-              .letterSpacing(4*1.25)
+              .lineHeight(120 * 1.25)
+              .height(120 * 1.25)
+              .letterSpacing(4 * 1.25)
             Text('42')
               .fontSize(144)
               .fontWeight(FontWeight.Bold)
               .fontColor('rgba(255,255,255,1)')
               .fontFamily('HarmonyOS-Sans-Digit')
               .maxLines(1)
-              .lineHeight(120*1.25)
-              .height(120*1.25)
-              .letterSpacing(4*1.25)
+              .lineHeight(120 * 1.25)
+              .height(120 * 1.25)
+              .letterSpacing(4 * 1.25)
               .shadow({
                 color: 'rgba(0,0,0,0)',
                 radius: 20,
@@ -843,9 +843,9 @@ struct Index {
                 .fontColor('rgba(255,255,255,1)')
             }
           }
-          .blendMode(BlendMode.DST_IN,BlendApplyType.OFFSCREEN)
+          .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
         }
-        .blendMode(BlendMode.SRC_OVER,BlendApplyType.OFFSCREEN)
+        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
         .backgroundEffect({
           radius: this.rad,
           saturation: this.satVal,
@@ -856,11 +856,10 @@ struct Index {
       }
     }
   }
-  getVolumeDialogWindowColor(): ResourceColor|string {
+  getVolumeDialogWindowColor(): ResourceColor | string {
     return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.gVal.toFixed(0)})`;
   }
 }
-
 ```
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
