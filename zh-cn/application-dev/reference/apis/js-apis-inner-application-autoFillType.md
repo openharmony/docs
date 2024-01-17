@@ -13,7 +13,7 @@
 import autoFillManager from '@ohos.app.ability.autoFillManager';
 ```
 
-## 属性
+## AutoFillType
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

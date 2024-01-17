@@ -866,7 +866,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 定义启动Ability时返回的错误码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
