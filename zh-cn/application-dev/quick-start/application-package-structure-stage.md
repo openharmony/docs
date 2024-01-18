@@ -11,7 +11,7 @@
 
 工程结构主要包含的文件类型及用途如下：
 
-> 说明：
+> **说明：**
 > 
 > - AppScope目录由DevEco Studio自动生成，不可更改。 
 > - Module目录名称可以由DevEco Studio自动生成（比如entry、library等），也可以自定义。为了便于说明，下表中统一采用用Module_name表示。
@@ -36,9 +36,9 @@
 - **resources目录**：AppScope目录下的资源文件会合入到Module下面资源目录中，如果两个目录下的存在重名文件，编译打包后只会保留AppScope目录下的资源文件。
 - **module配置文件**：AppScope目录下的app.json5文件字段会合入到Module下面的module.json5文件之中，编译后生成HAP或HSP最终的module.json文件。
 
-> 说明：
+> **说明：**
 > 
-> 在编译HAP和HSP时,会把他们所依赖的HAR直接编译到HAP和HSP中。
+> 在编译HAP和HSP时，会把他们所依赖的HAR直接编译到HAP和HSP中。
 
 ## 发布态包结构
 
@@ -46,7 +46,7 @@
 
 当应用发布上架到应用市场时，需要将Bundle打包为一个.app后缀的文件用于上架，这个.app文件称为**App Pack**（Application Package），与此同时，DevEco Studio工具自动会生成一个**pack.info**文件。**pack.info**文件描述了App Pack中每个HAP和HSP的属性，包含APP中的bundleName和versionCode信息、以及Module中的name、type和abilities等信息。
 
-> 说明：
+> **说明：**
 > 
 > - App Pack是发布上架到应用市场的基本单元，但是不能在设备上直接安装和运行。
 > - 在应用签名、云端分发、端侧安装时，都是以HAP/HSP为单位进行签名、分发和安装的。
@@ -77,7 +77,7 @@ HAP、HSP、HAR支持的规格对比如下，其中“√”表示是，“×”
 | 支持依赖其他HSP文件 | √ |×  |√  |
 | 支持在设备上独立安装运行 | √ |× |× |
 
-> 说明：
+> **说明：**
 > 
 > - HAR虽然不支持在配置文件中声明pages页面，但是可以包含pages页面，并通过[命名路由](../ui/arkts-routing.md#命名路由)的方式进行跳转。
 > - HAR和HSP均不支持循环依赖，也不支持依赖传递。
