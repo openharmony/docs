@@ -400,11 +400,11 @@ struct BlurEffectsExample {
       Flex({ alignItems: ItemAlign.Center }) {
         Text('original text').margin(10)
         Text('blur text')
-          .blur(1).margin(10)
+          .blur(5).margin(10)
         Text('blur text')
-          .blur(2).margin(10)
+          .blur(10).margin(10)
         Text('blur text')
-          .blur(3).margin(10)
+          .blur(15).margin(10)
       }.width('90%').height(40)
       .backgroundColor(0xF9CF93)
 
@@ -416,7 +416,7 @@ struct BlurEffectsExample {
         .height(40)
         .fontSize(16)
         .backdropBlur(3)
-        .backgroundImage('/pages/attrs/image/image.jpg')
+        .backgroundImage($r('app.media.image'))
         .backgroundImageSize({ width: 1200, height: 160 })
     }.width('100%').margin({ top: 5 })
   }
