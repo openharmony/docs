@@ -25,7 +25,13 @@ AVCastPicker()
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| normalColor | Color &#124; number &#124; string | 指定正常状态下投播组件的颜色 |
+| activeColor | Color &#124; number &#124; string | 指定处于活动状态下投播组件的颜色 |
+| onStateChange | (state: [AVCastPickerState](../apis/@ohos.multimedia.avCastPickerParam.md)) => void | 投播状态更改回调 |
 
 ## 事件
 
@@ -37,14 +43,23 @@ AVCastPicker()
 
 ```ts
 import AVCastPicker from '@ohos.multimedia.avCastPicker'
+import { AVCastPickerState } from '@ohos.multimedia.avCastPickerParam'
 
 @Entry
 @Component
 struct Index {
+  private onStateChange(state: AVCastPickerState) {
+    if (state == AVCastPickerState.STATE_APPEARING) {
+      console.log('The picker starts showing.')
+    } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+      console.log('The picker finishes presenting.')
+    }
+  }
+
   build() {
     Row() {
       Column() {
-        AVCastPicker()
+        AVCastPicker({ normalColor: Color.Red, activeColor: Color.Blue, onStateChange: this.onStateChange })
           .width('40vp')
           .height('40vp')
           .border({ width: 1, color: Color.Red })
