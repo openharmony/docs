@@ -103,3 +103,27 @@
 **参考链接**
 
 [ForEach：循环渲染](../quick-start/arkts-rendering-control-foreach.md)
+
+## CustomDialog，Popup等弹窗如何与页面解耦，最佳实践是什么样的(API 10)
+
+**解决措施**
+
+弹框类组件需要绑定到对应组件上，由事件触发。对于内容可以使用全局builder，只需定义一次。
+
+全局builder：
+
+定义的语法：
+
+@Builder function MyGlobalBuilderFunction(){ ... }
+
+使用方法：
+
+MyGlobalBuilderFunction()
+
+全局的自定义构建函数可以被整个应用获取。如果不涉及组件状态变化，建议使用全局的自定义构建方法。
+
+**参考链接**
+
+1. [自定义弹窗（CustomDialog）](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+2. [Popup控制](../reference/arkui-ts/ts-universal-attributes-popup.md)
+3. [@Builder装饰器：自定义构建函数](../quick-start/arkts-builder.md)
