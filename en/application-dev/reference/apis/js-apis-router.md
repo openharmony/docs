@@ -1,7 +1,5 @@
 # @ohos.router (Page Routing)
 
-<!--subsystem: ArkUI-->
-
 The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in the same application, and return to the previous page or a specified page.
 
 > **NOTE**
@@ -1107,7 +1105,7 @@ Enumerates the routing modes.
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
 | Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If the routing mode is not used, the page is redirected to in multi-instance mode.|
-| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page closest to the top of the stack is moved to the top and becomes a new page.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
+| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
 
 ## NamedRouterOptions<sup>10+</sup>
 
