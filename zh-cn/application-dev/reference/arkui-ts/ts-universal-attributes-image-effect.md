@@ -46,7 +46,7 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 为组件添加阴影效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为[ShadowStyle](#shadowstyle10枚举说明)类型。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -789,6 +789,7 @@ struct Index {
           }
         }
         .blendMode(BlendMode.DESTINATION_IN)
+        // @ts-ignore
         .backgroundEffect({
           radius: this.rad,
           saturation: this.satVal,
