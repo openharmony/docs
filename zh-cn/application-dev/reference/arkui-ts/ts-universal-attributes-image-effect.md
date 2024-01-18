@@ -265,7 +265,7 @@ renderGroup(value: boolean)
 
 blendMode(value: BlendMode, type?: BlendApplyType)
 
-将当前控件的内容（包含子节点内容）和屏幕上已有内容进行混合。
+将当前控件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -276,7 +276,7 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE  |
-| type   | [BlendApplyType](#blendapplytype对象说明)  |    否    | 混合类型。<br/>默认值：BlendApplyType.FAST     |
+| type   | [BlendApplyType](#blendapplytype对象说明)  |    否    | blend实现方式是否离屏，BlendApplyType.FAST不离屏，BlendApplyType.OFFSCREEN会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -322,45 +322,47 @@ useShadowBatching(value: boolean)
 
 ## BlendMode枚举说明
 
+注：s：源像素，d：目标像素，sa：原像素透明度 da：目标像素透明度 r：混合后像素 ra：混合后像素透明度
+
 | 名称           | 描述                                                             |
-| ---------------| ------                                                          |
-| NONE = 0            | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。              |
-| CLEAR = 1           | 清除混合，将目标像素设置为完全透明。           |
-| SRC = 2             | r = s，将源像素直接复制到目标像素上，不做任何混合。                  |
-| DST = 3             | r = d，将目标像素直接复制到源像素上，不做任何混合。                  |
-| SRC_OVER = 4        | r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。                 |
-| DST_OVER = 5        | r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。                 |
-| SRC_IN = 6          | r = s * da，将源像素与目标像素进行“遮罩”混合，只显示源像素与目标像素重叠的部分。                  |
-| DST_IN = 7          | r = d * sa，将目标像素与源像素进行“遮罩”混合，只显示源像素与目标像素重叠的部分。                  |
-| SRC_OUT = 8         | r = s * (1 - da)，将源像素与目标像素进行“反向遮罩”混合，只显示源像素与目标像素不重叠的部分。                |
-| DST_OUT = 9         | r = d * (1 - sa)，将目标像素与源像素进行“反向遮罩”混合，只显示源像素与目标像素不重叠的部分。                  |
-| SRC_ATOP = 10       | r = s * da + d * (1 - sa)，将源像素与目标像素进行“遮罩叠加”混合，只显示源像素与目标像素重叠的部分，并且将源像素的透明度应用到目标像素上。                 |
-| DST_ATOP = 11       | r = d * sa + s * (1 - da)，将目标像素与源像素进行“遮罩叠加”混合，只显示源像素与目标像素重叠的部分，并且将目标像素的透明度应用到源像素上。                 |
-| XOR = 12            | r = s * (1 - da) + d * (1 - sa)，将源像素与目标像素进行异或混合，只显示源像素与目标像素不重叠的部分。        |
-| PLUS = 13           | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                  |
-| MODULATE = 14       | r = s * d，将源图形对象的像素值与目标图形对象的像素值进行乘法运算，并将结果作为新的像素值。                          |
-| SCREEN = 15         | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                  |
-| OVERLAY = 16        | 源像素的透明度与目标像素的颜色进行线性混合。也就是说，透明度越低，颜色越深，透明度越高，颜色越浅。                  |
-| DARKEN = 17         | rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。                 |
-| LIGHTEN = 18        | rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。            |
-| COLOR_DODGE = 19    | 将源像素的颜色值除以1减去目标像素的颜色值，然后将结果与目标像素的颜色值相加。                  |
-| COLOR_BURN = 20     | 将源像素的颜色值除以目标像素的颜色值，然后将结果与1相减，最后将结果与目标像素的颜色值相加。                     |
-| HARD_LIGHT = 21     | 源图像的像素值比目标图像的像素值大，产生亮度增加、饱和度降低的效果；反之，产生亮度降低、饱和度增加的效果。                  |
-| SOFT_LIGHT = 22     | 将源图像和目标图像的像素值分别归一化到[0, 1]，如果源像素的值小于0.5，将目标像素的值乘以2倍，然后将两个像素的值相乘;否则将目标像素的值乘以2倍减去1，然后将两个像素的值相乘。 |
-| DIFFERENCE = 23     | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，将目标像素颜色的反色与源像素颜色相混合。    |
-| EXCLUSION = 24      | rc = s + d - two(s * d), ra = kSrcOver，将两个图像中相同位置的像素进行异或运算，得到的结果作为混合后的像素值。                   |
-| MULTIPLY = 25       | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。                 |
-| HUE = 26            | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。                                          |
-| SATURATION = 27     | 将底层图像的饱和度和顶层图像的亮度进行平均，然后再将这个平均值作为新的饱和度应用到底层图像上。                  |
-| COLOR = 28          | 将源图像的颜色乘以它的不透明度，然后将结果与目标图像的颜色进行混合。                                          |
-| LUMINOSITY = 29     | 将源颜色和目标颜色的亮度值相加，然后除以2，得到一个中间值，再根据这个中间值来计算最终的混合颜色。               |
+| ---------------| ------                                                        |
+| NONE            | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。              |
+| CLEAR           | 将源像素覆盖的目标像素清除为完全透明。                      |
+| SRC             | r = s，只显示源像素。                    |
+| DST             | r = d，只显示目标像素。                  |
+| SRC_OVER        | r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。                 |
+| DST_OVER        | r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。                 |
+| SRC_IN          | r = s * da，只显示源像素中与目标像素重叠的部分。                        |
+| DST_IN          | r = d * sa，只显示目标像素中与源像素重叠的部分。                        |
+| SRC_OUT         | r = s * (1 - da)，只显示源像素中与目标像素不重叠的部分。                |
+| DST_OUT         | r = d * (1 - sa)，只显示目标像素中与源像素不重叠的部分。                |
+| SRC_ATOP        | r = s * da + d * (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。                 |
+| DST_ATOP        | r = d * sa + s * (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。                 |
+| XOR             | r = s * (1 - da) + d * (1 - sa)，只显示源像素与目标像素不重叠的部分。                     |
+| PLUS            | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                     |
+| MODULATE        | r = s * d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。                          |
+| SCREEN          | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                    |
+| OVERLAY         | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                                  |
+| DARKEN          | rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。                 |
+| LIGHTEN         | rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。            |
+| COLOR_DODGE     | 使目标像素变得更亮来反映源像素。                     |
+| COLOR_BURN      | 使目标像素变得更暗来反映源像素。                     |
+| HARD_LIGHT      | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                  |
+| SOFT_LIGHT      | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。                                                             |
+| DIFFERENCE      | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。                      |
+| EXCLUSION       | rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。          |
+| MULTIPLY        | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。                           |
+| HUE             | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。                                   |
+| SATURATION      | 保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。                                |
+| COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
+| LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
 
 ## BlendApplyType对象说明
 
 | 名称           | 描述                                                             |
 | ---------------| ------                                                          |
-| FAST           |   在目标图像上按顺序混合视图的内容                        |
-| OFFSCREEN      |   将此控件和子控件内容绘制到离屏画布上，然后整体进行混合    |
+| FAST           |   在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      |   将此控件和子控件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## LinearGradientBlurOptions<sup>10+</sup>对象说明
 
@@ -759,7 +761,6 @@ struct Index {
           .height(200)
           .fill(Color.Blue)
           .position({ x: 150, y: 50 })
-
       }
       .blendMode(BlendMode.OVERLAY,BlendApplyType.OFFSCREEN)
       .alignItems(VerticalAlign.Center)
@@ -772,7 +773,6 @@ struct Index {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
-
 ```
 BlendMode.NONE<br/>
 ![zh-cn_image_effect_blendMode1](figures/zh-cn_image_effect_blendMode1.png)
@@ -780,7 +780,7 @@ BlendMode.NONE<br/>
 ![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode2.png)
 <br/>BlendMode.COLOR,BlendApplyType.FAST<br/>
 ![zh-cn_image_effect_blendMode3](figures/zh-cn_image_effect_blendMode3.png)
-<br/>不同的模式组合不同的混合方式从而产生不同的效果。
+<br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
 ### 示例11
 blendMode搭配backgroundEffect实现文字图形异形渐变效果。
