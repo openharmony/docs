@@ -17,7 +17,9 @@
 **API Level**
 
 setRenderRate(): 8
+
 getRenderRate(): 8
+
 getRenderRateSync(): 10
 
 **废弃发生版本**
