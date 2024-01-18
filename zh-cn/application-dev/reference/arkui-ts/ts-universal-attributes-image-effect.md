@@ -275,8 +275,8 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>注意：blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度 da表示目标像素透明度 r表示混合后像素 ra表示混合后像素透明度。  |
-| type   | [BlendApplyType](#blendapplytype对象说明)  |    否    | blendMode实现方式是否离屏。<br/>BlendApplyType.FAST：不离屏。<br/>BlendApplyType.OFFSCREEN：会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
+| value  | [BlendMode](#blendmode11枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>注意：blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度 da表示目标像素透明度 r表示混合后像素 ra表示混合后像素透明度。  |
+| type   | [BlendApplyType](#blendapplytype11对象说明)  |    否    | blendMode实现方式是否离屏。<br/>BlendApplyType.FAST：不离屏。<br/>BlendApplyType.OFFSCREEN：会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
 
 ## useShadowBatching<sup>11+</sup> 
 
