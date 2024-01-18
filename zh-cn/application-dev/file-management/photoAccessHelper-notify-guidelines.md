@@ -18,14 +18,14 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 
 对指定PhotoAsset注册监听，当被监听的PhotoAsset发生变更时，返回监听回调。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以对一张图片注册监听，通过将这张图片设置为收藏触发监听回调为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. 对指定PhotoAsset注册监听。
@@ -64,14 +64,14 @@ async function example() {
 
 对指定Album注册监听，当被监听的Album发生变更时，返回监听回调。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以对一个用户相册注册监听，通过重命名相册触发监听回调为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取用户相册](photoAccessHelper-userAlbum-guidelines.md#获取用户相册)。
 2. 对指定Album注册监听。
@@ -119,14 +119,14 @@ async function example() {
 
 对所有PhotoAsset注册监听，当有被监听的PhotoAsset发生变更时，返回监听回调。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以对所有PhotoAsset注册监听，对被监听的PhotoAsset设置为收藏触发监听回调为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. 对所有PhotoAsset注册监听。
 2. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
@@ -164,14 +164,14 @@ async function example() {
 
 取消对指定uri的监听，通过调用[unRegisterChange](../reference/apis/js-apis-photoAccessHelper.md#unregisterchange)接口取消对指定uri的监听。一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时取消该uri的所有监听。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以取消对一张图片指定的监听为例，取消监听后，改变图片的收藏状态不再触发对应的监听回调。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. 取消对指定媒体资源uri的监听。

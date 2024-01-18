@@ -8,8 +8,6 @@
 
 本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](avsession-overview.md)和[申请长时任务](../task-management/continuous-task.md)，避免播放过程中音频模块被系统强制中断。
 
-## 开发指导
-
 播放的全流程包含：创建AVPlayer，设置播放资源和窗口，设置播放参数（音量/倍速/缩放模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。在进行应用开发的过程中，开发者可以通过AVPlayer的state属性主动获取当前状态或使用on('stateChange')方法监听状态变化。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
 **图1** 播放状态变化示意图  
@@ -18,7 +16,7 @@
 
 状态的详细说明请参考[AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
-### 开发步骤及注意事项
+## 开发步骤及注意事项
 
 详细的API说明请参考[AVPlayer API参考](../reference/apis/js-apis-media.md#avplayer9)。
 
@@ -65,8 +63,7 @@
 
 8. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
-
-### 完整示例
+## 完整示例
 
 
 ```ts

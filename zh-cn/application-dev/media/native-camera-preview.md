@@ -29,7 +29,8 @@
      
     XComponent组件为预览流提供的Surface，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
 
-    **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推
+    > **说明：**
+    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推
 
    ```ts
     // 获取 previewSurfaceId （参考ndk demo：在tableIndex.ets中调用）
@@ -69,7 +70,7 @@
     }
    ```
 
-5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
@@ -78,7 +79,7 @@
     }
    ```
 
-6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Stop(previewOutput);
@@ -122,7 +123,7 @@
     }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
     void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)

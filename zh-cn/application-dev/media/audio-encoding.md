@@ -153,9 +153,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-4. 调用OH_AudioCodec_Configure设置编码器
-   设置必选项：采样率，码率，以及声道数，声道类型、位深；可选项：最大输入长度
-   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度
+4. 调用OH_AudioCodec_Configure设置编码器。
+
+   设置必选项：采样率，码率，以及声道数，声道类型、位深。
+
+   可选项：最大输入长度。
+
+   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。
 
    例AAC调用流程：
 
@@ -192,7 +196,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-   例FLAC调用流程：
+    例FLAC调用流程：
 
     ```cpp
     int32_t ret;
@@ -270,7 +274,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | 88200 |  8192  |
    | 96000 |  8192  |
 
-   **注意**：aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
+   > **说明：**
+   > aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
    ```c++
     constexpr int32_t FRAME_SIZE = 1024; // aac
@@ -367,7 +372,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 12. 调用OH_AudioCodec_Destroy()销毁编码器实例，释放资源。
 
-    **注意**：资源不能重复销毁
+    > **说明：**
+    > 资源不能重复销毁
 
     ```c++
     // 调用OH_AudioCodec_Destroy, 注销编码器

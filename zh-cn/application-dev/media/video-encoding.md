@@ -76,7 +76,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
 
-   > **注意：**
+   > **说明：**
    >
    > 在回调函数中，对数据队列进行操作时，需要注意多线程冲突的问题。
    >
@@ -353,7 +353,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 14. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
 
-    > **注意：**
+    > **说明：**
     >
     > 执行该步骤之后，需要开发者将videoEnc指向nullptr，防止野指针导致程序错误。
     >
@@ -401,7 +401,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
 
-   > **注意：**
+   > **说明：**
    >
    > 在回调函数中，对数据队列进行操作时，需要注意多线程冲突的问题。
    >
