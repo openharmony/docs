@@ -271,7 +271,6 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    > **说明：**
    > aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
-
    ```c++
    constexpr int32_t FRAME_SIZE = 1024; //aac
    constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
@@ -296,6 +295,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
+
 8. 调用OH_AudioEncoder_FreeOutputData()，输出编码格式码流
 
    ```c++
@@ -313,6 +313,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 结束
    }
    ```
+
 9. （可选）调用OH_AudioEncoder_Flush()刷新编码器。
    调用OH_AudioEncoder_Flush()后，编码器处于Flush状态，会将当前编码队列清空。
    此时需要调用OH_AudioEncoder_Start()重新开始编码。
@@ -333,6 +334,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
+
 10. （可选）调用OH_AudioEncoder_Reset()重置编码器。
     调用OH_AudioEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_AudioEncoder_Configure()重新配置，然后调用OH_AudioEncoder_Start()重新开始编码。
 
@@ -348,6 +350,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // 异常处理
     }
     ```
+
 11. 调用OH_AudioEncoder_Stop()停止编码器。
 
     ```c++
@@ -357,16 +360,11 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // 异常处理
     }
     ```
-<<<<<<< HEAD
-1.  调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
-    **注意**：资源不能重复销毁
-=======
 
-1.  调用OH_AudioCodec_Destroy()销毁编码器实例，释放资源。
+12. 调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
 
     > **说明：**
     > 资源不能重复销毁
->>>>>>> 1803f3b3da (update docs)
 
     ```c++
     // 调用OH_AudioEncoder_Destroy, 注销编码器
