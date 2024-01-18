@@ -25,6 +25,8 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## ElementAttributeValues
 
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
 | key            | value            | Description                 |
 | ------------- | ------------- | ------------------- |
 | accessibilityFocused | boolean          |   Accessibility focus status.  |
@@ -139,7 +141,7 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 | Name        | Type                 | Mandatory  | Description      |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | Yes   | Name of the target bundle.|
+| targetNames | Array&lt;string&gt; | Yes   | Bundles name of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
 
 **Return value**
 
@@ -172,7 +174,7 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 
 | Name        | Type                       | Mandatory  | Description                                      |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
-| targetNames | Array&lt;string&gt;       | Yes   | Name of the target bundle.                                |
+| targetNames | Array&lt;string&gt;       | Yes   | Bundle names of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.                                |
 | callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
@@ -181,13 +183,17 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 import { BusinessError } from '@ohos.base';
 
 let targetNames = ['com.ohos.xyz'];
-axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
-  if (err) {
-    console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
-});
+try {
+  axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
+    if (err && err.code) {
+      console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
+  });
+} catch (error) {
+  console.error(`failed to set target bundle names, Because ${JSON.stringify(error)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
@@ -900,10 +906,10 @@ Performs an action based on the specified action name. This API uses a promise t
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
+| Name        | Type                                    | Mandatory  | Description                                                      |
+| ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
-| parameters | object | No   | Parameters required for performing the target action. Empty by default. Not supported currently.    |
+| parameters | object | No   | Parameters required for performing the target action. Empty by default. Not supported currently.                            |
 
 **Return value**
 
@@ -984,11 +990,11 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 **Parameters**
 
-| Name       | Type                       | Mandatory  | Description                                      |
-| ---------- | ------------------------- | ---- | ---------------------------------------- |
+| Name       | Type                       | Mandatory  | Description                                                      |
+| ---------- | ------------------------- | ---- |----------------------------------------------------------|
 | actionName | string                    | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
-| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                 |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                       |
+| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                            |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                                       |
 
 **Error codes**
 
