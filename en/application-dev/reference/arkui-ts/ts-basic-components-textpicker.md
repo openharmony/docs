@@ -14,15 +14,23 @@ Not supported
 
 ## APIs
 
-TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeContent[] | TextCascadePickerRangeContent[], selected?: number \| number[], value?: string \| string[]})
+TextPicker(options?: TextPickerOptions)
 
 Creates a text picker based on the selection range specified by **range**.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
+
+| Name | Type                                           | Mandatory| Description                  |
+| ------- | ----------------------------------------------- | ---- | ---------------------- |
+| options | [TextPickerOptions](#textpickeroptions) | No  | Parameters of the text picker.|
+
+## TextPickerOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | string[] \| string[][]<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../quick-start/resource-categories-and-access.md#resource-group-directories).|
+| range | string[] \| string[] []10+ \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../quick-start/resource-categories-and-access.md#resource-group-directories).|
 | selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
@@ -59,8 +67,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onAccept(callback: (value: string, index: number) => void)<sup>(deprecated) </sup>  | Triggered when the OK button in the dialog box is clicked.<br>- **value**: value of the selected item.<br>- **index**: index of the selected item.<br>This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
-| onCancel(callback: () => void)<sup>(deprecated) </sup>  | Triggered when the Cancel button in the dialog box is clicked.<br>This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
+| onAccept(callback: (value: string, index: number) => void)<sup>(deprecated) </sup>  | Triggered when the OK button in the dialog box is clicked.<br>- **value**: value of the selected item.<br>- **index**: index of the selected item.<br> This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
+| onCancel(callback: () => void)<sup>(deprecated) </sup>  | Triggered when the Cancel button in the dialog box is clicked.<br> This API is deprecated since API version 10.<br>**NOTE**<br>This event can be triggered only in the [text picker dialog box](ts-methods-textpicker-dialog.md).|
 | onChange(callback: (value: string \| string[]<sup>10+</sup>, index: number \| number[]<sup>10+</sup>) =&gt; void) | Triggered when an item in the picker is selected.<br>- **value**: value of the selected item. (For a multi-column picker, **value** is of the array type.)<br>- **index**: index of the selected item. (For a multi-column picker, **index** is of the array type.)<br>**NOTE**<br>When the picker contains text only or both text and imagery, **value** indicates the text value of the selected item. When the picker contains imagery only, **value** is empty.|
 
 
