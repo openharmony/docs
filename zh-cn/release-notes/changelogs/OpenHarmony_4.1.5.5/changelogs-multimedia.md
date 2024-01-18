@@ -14,6 +14,12 @@
 
 非兼容性变更，需要开发者进行适配。
 
+**API Level**
+
+setRenderRate(): 8
+getRenderRate(): 8
+getRenderRateSync(): 10
+
 **废弃发生版本**
 
 从OpenHarmony SDK 4.1.5.5开始。
@@ -29,6 +35,8 @@ setRenderRate(rate: AudioRendererRate): Promise<void>;
 getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;
 
 getRenderRate(): Promise<AudioRendererRate>;
+
+getRenderRateSync(): AudioRendererRate;
 
 **适配指导**
 
