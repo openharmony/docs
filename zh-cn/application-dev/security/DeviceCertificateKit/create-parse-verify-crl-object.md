@@ -144,7 +144,7 @@ function crlSample(): void {
           console.error(`isRevoked failed, errCode: ${e.code}, errMsg:${e.message}`);
         }
       } else {
-        console.error(`create x509 cert failed errCode: ${err.code}, errMsg: ${err.message}`);
+        console.error(`create x509 cert failed, errCode: ${err.code}, errMsg: ${err.message}`);
       }
     })
     if (!revokedFlag) {

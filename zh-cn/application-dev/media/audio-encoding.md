@@ -148,9 +148,14 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-4. 调用OH_AudioEncoder_Configure设置编码器
-   设置必选项：采样率，码率，以及声道数，声道类型、位深；可选项：最大输入长度
-   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度
+
+4. 调用OH_AudioEncoder_Configure设置编码器。
+
+   设置必选项：采样率，码率，以及声道数，声道类型、位深。
+
+   可选项：最大输入长度。
+
+   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。
 
    例AAC调用流程：
 
@@ -187,7 +192,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    }
    ```
 
-   例FLAC调用流程：
+    例FLAC调用流程：
 
    ```cpp
    int32_t ret;
@@ -220,11 +225,13 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
+
 5. 调用OH_AudioEncoder_Prepare()，编码器就绪。
 
    ```c++
    OH_AudioEncoder_Prepare(audioEnc);
    ```
+
 6. 调用OH_AudioEncoder_Start()启动编码器，进入运行态。
 
    ```c++
@@ -240,12 +247,14 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
+
 7. 调用OH_AudioEncoder_PushInputData()，写入待编码器的数据。
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
-   aac： 样点数(FRAME_SIZE)固定为1024
+   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
-   flac： 样点数(FRAME_SIZE)比较特殊需要，根据如下表格进行设置
+   aac： 样点数(FRAME_SIZE)固定为1024。
+
+   flac： 样点数(FRAME_SIZE)比较特殊需要，根据如下表格进行设置。
 
    | 采样率 | 样点数 |
    | :----: | :----: |
@@ -259,7 +268,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    | 88200 |  8192  |
    | 96000 |  8192  |
 
-   **注意**：aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
+   > **说明：**
+   > aac的样点数固定为1024，其他值会直接返回错误码，flac的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
 
    ```c++
@@ -347,8 +357,16 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // 异常处理
     }
     ```
-12. 调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
+<<<<<<< HEAD
+1.  调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
     **注意**：资源不能重复销毁
+=======
+
+1.  调用OH_AudioCodec_Destroy()销毁编码器实例，释放资源。
+
+    > **说明：**
+    > 资源不能重复销毁
+>>>>>>> 1803f3b3da (update docs)
 
     ```c++
     // 调用OH_AudioEncoder_Destroy, 注销编码器

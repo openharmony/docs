@@ -45,7 +45,8 @@
 
    通过[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../reference/apis/js-apis-camera.md#createvideooutput)方法创建录像输出流。
 
-   **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+   > **说明：**
+   > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
