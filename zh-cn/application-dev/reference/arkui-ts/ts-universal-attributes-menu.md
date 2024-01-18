@@ -68,6 +68,8 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 ## MenuOptions<sup>10+</sup>
 
+继承自[ContextMenuOptions](#contextmenuoptions10)。
+
 | 名称        | 类型                                         | 必填 | 描述                                                         |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | title       | string                                       | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
@@ -90,6 +92,8 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | onDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单消失时的事件回调。                                       |
 | aboutToAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单显示动效前的事件回调。                                       |
 | aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
+| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 

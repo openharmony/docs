@@ -12,7 +12,8 @@
 
 ## ActionSheet.show
 
-show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource, subtitle:&nbsp;Resource,&nbsp;message: string&nbsp;|&nbsp;Resource,&nbsp;confirm?: {enabled?: boolean, defaultFocus?: boolean, style?: DialogButtonStyle, value: string&nbsp;|&nbsp;Resource,&nbsp;action:() => void},&nbsp;cancel?:()=>void,&nbsp;sheets: Array&lt;SheetInfo&gt;,&nbsp;autoCancel?:boolean,&nbsp;alignment?: DialogAlignment,&nbsp;offset?: { dx: number | string | Resource; dy: number | string | Resource } })
+show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource, subtitle:&nbsp;Resource,&nbsp;message: string&nbsp;|&nbsp;Resource,&nbsp;confirm?: {enabled?: boolean, defaultFocus?: boolean, style?: DialogButtonStyle, value: string&nbsp;|&nbsp;Resource,&nbsp;action:() => void},&nbsp;cancel?:()=>void,&nbsp;sheets: Array&lt;SheetInfo&gt;,&nbsp;autoCancel?:boolean,&nbsp;alignment?: DialogAlignment,&nbsp;offset?: { dx: number | string | Resource; dy: number | string | Resource },
+&nbsp;maskRect?: Rectangle,&nbsp;showInSubWindow?: boolean,&nbsp;isModal?: boolean,&nbsp;backgroundColor?: ResourceColor,&nbsp;backgroundBlurStyle?: BlurStyle })
 
 定义列表弹窗并弹出。
 
@@ -32,6 +33,8 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource, subtitle:&nbsp;Resource,&
 | maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
 | showInSubWindow<sup>11+</sup> | boolean | 否 | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，在子窗口不显示弹窗。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 |
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
+| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
 
 ## SheetInfo接口说明
 
