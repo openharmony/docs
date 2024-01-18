@@ -313,7 +313,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     
 12. 调用OH_AudioDecoder_Destroy()销毁解码器实例，释放资源。
 
-    **注意**：不要重复销毁解码器
+    > **说明：**
+    >不要重复销毁解码器
 
     ```c++
     // 调用OH_AudioDecoder_Destroy, 注销解码器
