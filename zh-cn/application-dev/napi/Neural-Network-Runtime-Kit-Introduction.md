@@ -3,7 +3,7 @@
 ## 使用场景
 Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
 
-Neural Network Runtime的Native系统接口主要面向AI推理框架的开发者，或者希望直接使用AI加速硬件实现模型推理加速的应用开发者。
+Neural Network Runtime的Native接口主要面向AI推理框架的开发者，或者希望直接使用AI加速硬件实现模型推理加速的应用开发者。
 
 AI推理框架可以调用NNRt的构图接口将推理框架的模型图转换为NNRt内部使用的模型图，然后调用NNRt的编译和执行接口在NNRt底层对接的AI加速硬件上进行模型推理。该方式可以实现无感知的跨AI硬件推理，但是首次加载模型速度较慢。
 
@@ -42,7 +42,7 @@ AI推理框架和应用开发者也可以无需调用NNRt构图接口，直接�
 
 ## 与相关Kit的关系
 
-Neural Network Runtime Kit可支持系统内置的MindSpore Lite推理框架（MindSpore Lite Kit），MindSpore Lite已开放了配置NNRt的Native系统接口。
+Neural Network Runtime Kit可支持系统内置的MindSpore Lite推理框架（MindSpore Lite Kit），MindSpore Lite已开放了配置NNRt的Native接口。
 
 MindSpore Lite对接NNRt可无需构图，两者共享同一份模型图格式（MindIR），因此使用MindSpore Lite在NNRt上加载模型将快于其他AI推理框架。
 
