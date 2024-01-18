@@ -7,9 +7,11 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 每一个具体场景对应一个[ExtensionAbilityType](../reference/apis/js-apis-bundleManager.md#extensionabilitytype)，开发者只能使用（包括实现和访问）系统已定义的类型。各类型的ExtensionAbility组件均由相应的系统服务统一管理，例如InputMethodExtensionAbility组件由输入法管理服务统一管理。
 
 当前系统已定义的ExtensionAbility类型如下表所示。
-说明：
-- “是否允许三方应用实现”是指：对于一类ExtensionAbility，三方应用能否继承该ExtensionAbility父类实现自己的业务逻辑。
-- “是否允许三方应用访问”是指：有些ExtensionAbility会对外提供一些服务，这些ExtensionAbility可能允许三方访问，也可能不允许。“Y”表示允许，“N”表示不允许，“NA”表示不涉及对外服务。
+
+> 说明：
+> 
+> - “是否允许三方应用实现”是指：对于一类ExtensionAbility，三方应用能否继承该ExtensionAbility父类实现自己的业务逻辑。
+> - “是否允许三方应用访问”是指：有些ExtensionAbility会对外提供一些服务，这些ExtensionAbility可能允许三方访问，也可能不允许。“Y”表示允许，“N”表示不允许，“NA”表示不涉及对外服务。
 
 对于系统应用，不受下表约束，允许实现系统已定义的各类ExtensionAbility，也允许访问提供的各类对外服务。
 
