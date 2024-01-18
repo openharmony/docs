@@ -322,7 +322,7 @@ useShadowBatching(value: boolean)
 
 ## BlendMode<sup>11+</sup>枚举说明
 
->  **说明**
+>  **说明：**
 >
 >  blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度，da表示目标像素透明度，r表示混合后像素，ra表示混合后像素透明度。
 
