@@ -6,12 +6,24 @@ The visible area change event of a component refers to the change in the visual 
 >
 >  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
+## onVisibleAreaChange
 
-## Events
+onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void)
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | Called when the visual area of the component changes.<br>- **ratios**: threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>- **isVisible**: whether the ratio of the component's visible area to its total area is greater than the threshold. The value **true** means that the ratio is greater than the threshold, and **false** means that the ratio is less than the threshold.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.<br>**NOTE**<br>This API applies only to the scenario where the component layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the area becomes invisible due to component stacking or the visible area exceeds the allowed range as a result of calling transformation APIs such as **offset** or **translate**.|
+Called when the visual area of the component changes.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                                        |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.|
+| event  | (isVisible: boolean, currentRatio: number) => void) | Yes  | - **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.<br>**NOTE**<br>This API applies only to the scenario where the component layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the area becomes invisible due to component stacking or the visible area exceeds the allowed range as a result of calling transformation APIs such as **offset** or **translate**.|
+
+> **NOTE**
+>
+> This API applies only to the scenario where the component layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the area becomes invisible due to component stacking or the visible area exceeds the allowed range as a result of calling transformation APIs such as **offset** or **translate**.
 
 
 ## Example
@@ -76,8 +88,8 @@ struct ScrollExample {
             }
 
             if (!isVisible && currentRatio <= 0.0) {
-              console.info('Test Row is is completely invisible.')
-              this.testRowStr = 'Test Row is is completely invisible'
+              console.info('Test Row is completely invisible.')
+              this.testRowStr = 'Test Row is completely invisible'
             }
           })
 

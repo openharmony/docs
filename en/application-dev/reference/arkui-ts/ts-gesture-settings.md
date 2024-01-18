@@ -15,9 +15,9 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| gesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to bind.<br>- **gesture**: type of the gesture to bind.<br>- **mask**: mask for gesture events.|
+| gesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to bind.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.|
 | priorityGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to preferentially recognize.<br>- **gesture**: type of the gesture to bind.<br>- **mask**: mask for gesture events.<br>1. By default, the child component preferentially recognizes the gesture specified by **gesture**, and the parent component preferentially recognizes the gesture specified by **priorityGesture** (if set).<br>2. With regard to long press gestures, the component with the shortest minimum hold-down time responds first, ignoring the **priorityGesture** settings.|
-| parallelGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.<br>The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events that are the same for the parent and child components can be triggered, thereby implementing a bubbling effect. If both the single-tap gesture event and the double-tap gesture event are bound to the parent and child components, only the single-tap gesture event is responded.|
+| parallelGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture that can be recognized at once by the component and its child component.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.<br>The gesture event is not a bubbling event. When **parallelGesture** is set for a component, both it and its child component can respond to the same gesture events, thereby implementing a quasi-bubbling effect. If the component and its child component are bound to both the single-tap and double-tap gesture events, only the single-tap gesture event is responded.|
 
 
 ## GestureType
@@ -40,7 +40,7 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 
 ## Gesture Response Event
 
-The component binds gesture objects of different **GestureType**s through gesture events. Each gesture object provides gesture-related information in the gesture response event. In the following example, the **TapGesture** object provides gesture-related information in the **onAction** event. For details about the event definitions of other gestures, see the corresponding gesture sections. To bind multiple gestures, use [combined gestures](ts-combined-gestures.md).
+The component binds gesture objects of different **GestureType** instances through gesture events. Each gesture object provides gesture-related information in the gesture response event. In the following example, the **TapGesture** object provides gesture-related information in the **onAction** event. For details about the event definitions of other gestures, see the corresponding gesture sections. To bind multiple gestures, use [combined gestures](ts-combined-gestures.md).
 
 **TapGesture**
 
@@ -59,7 +59,7 @@ The component binds gesture objects of different **GestureType**s through gestur
 | pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
 | pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
 | speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the gesture event.<br>**NOTE**<br>The first element (that is, **fingerList[0]**) of the **fingerList** array is the **FingerInfo** object.|
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the gesture event.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.|
 | timestamp<sup>8+</sup> | number | Timestamp of the event.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](#sourcetype) | Event input device.|
