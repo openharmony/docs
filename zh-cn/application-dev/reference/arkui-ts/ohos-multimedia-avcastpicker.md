@@ -31,7 +31,7 @@ AVCastPicker()
 | -------- | -------- | -------- |
 | normalColor | Color &#124; number &#124; string | 指定正常状态下投播组件的颜色 |
 | activeColor | Color &#124; number &#124; string | 指定处于活动状态下投播组件的颜色 |
-| onStateChange | (state: [AVCastPickerState](../apis/@ohos.multimedia.avCastPickerParam.md)) => void | 投播状态更改回调 |
+| onStateChange | (state: [AVCastPickerState](../apis/js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
 
 ## 事件
 
