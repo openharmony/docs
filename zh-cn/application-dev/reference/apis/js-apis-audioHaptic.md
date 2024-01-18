@@ -192,8 +192,6 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 创建音振播放器，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.VIBRATE
-
 如果应用创建的AudioHapticPlayer需要触发振动，则需要校验应用是否拥有该权限。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
@@ -296,8 +294,8 @@ start(): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
-| 5400102 | Operation not allowed. |
-| 5400103 | I/O error. |
+| 5400102 | Operate not permit. |
+| 5400103 | IO error. |
 | 5400105 | Service died. |
 
 
@@ -333,7 +331,7 @@ stop(): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
-| 5400102 | Operation not allowed. |
+| 5400102 | Operate not permit. |
 | 5400105 | Service died. |
 
 **示例：**

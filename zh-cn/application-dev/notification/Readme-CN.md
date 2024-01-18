@@ -1,6 +1,6 @@
 # 通知
 
-- [通知概述](notification-overview.md)
+- [Notification Kit简介](notification-overview.md)
 - [请求通知授权](notification-enable.md)
 - [管理通知角标](notification-badge.md)
 - [管理通知渠道](notification-slot.md)

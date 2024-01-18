@@ -179,16 +179,6 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | APP            | 0    | 该Bundle是应用。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
 
-### ApplicationReservedFlag<sup>11+</sup>
-
-应用保留信息标志，指示需要获取的applicationReservedFlag中的信息内容。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
-
-| 名称           | 值   | 说明            |
-| -------------- | ---- | --------------- |
-| ENCRYPTED_APPLICATION  | 0x00000001    | 用于获取应用是否为加密应用。    |
-
 ## 接口
 
 ### bundleManager.getBundleInfoForSelf

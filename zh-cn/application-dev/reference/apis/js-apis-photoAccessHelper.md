@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -16,7 +16,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-获取相册管理模块模块的实例，用于访问和修改相册中的媒体文件。
+获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -26,13 +26,13 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块模块的实例。 |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
 
 **错误码：**
 
@@ -3586,7 +3586,7 @@ async function example() {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let editdata = await photoAsset.requestEditData();
+    let editdata: string = await photoAsset.requestEditData();
     console.info('Editdata is ' + editdata);
   } catch (err) {
     console.error('requestEditDataPromiseDemo failed with error: ' + err);
