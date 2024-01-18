@@ -1,4 +1,6 @@
-## c1.multimedia.1 ohos.multimedia.audio AudioRenderer接口setRenderRate/getRenderRate废弃
+# 媒体子系统音频接口变更说明
+
+## cl.multimedia.1 ohos.multimedia.audio AudioRenderer接口setRenderRate/getRenderRate废弃
 
 **访问级别**
 
@@ -6,7 +8,7 @@
 
 **废弃原因**
 
-被功能更全面的新接口SetSpeed/GetSpeed替代
+被功能更全面的新接口SetSpeed/GetSpeed替代，故废弃原接口
 
 **废弃影响**
 
