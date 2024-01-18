@@ -6,15 +6,66 @@ Create a more gorgeous look for a component by applying a gradient color effect 
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## linearGradient
 
-## Attributes
+linearGradient(value: {
+    angle?: number | string;
+    direction?: GradientDirection;
+    colors: Array<any>;
+    repeating?: boolean;
+  })
+
+Linear gradient.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br>angle?: number \| string,<br>direction?: [GradientDirection](ts-appendix-enums.md#gradientdirection),<br>colors: Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt;,<br>repeating?: boolean<br>} | Yes  | Linear gradient.<br>- **angle**: start angle of the linear gradient. A positive value indicates a clockwise rotation from the origin, (0, 0).<br>  Default value: **180**<br>- **direction**: direction of the linear gradient. It does not take effect when **angle** is set.<br>  Default value: **GradientDirection.Bottom**<br>- **colors**: array of color stops, each of which consists of a color and its stop position. Invalid colors are automatically skipped.<br>- **repeating**: whether the colors are repeated.<br>  Default value: **false**|
+
+## sweepGradient
+
+sweepGradient(value: {
+    center: Array<any>;
+    start?: number | string;
+    end?: number | string;
+    rotation?: number | string;
+    colors: Array<any>;
+    repeating?: boolean;
+  })
+
+Sweep gradient.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br>center: [Point](./ts-drawing-components-polygon.md#point),<br>start?: number \| string,<br>end?: number \| string,<br>rotation?: number \| string,<br>colors: Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt;,<br>repeating?: boolean<br>} | Yes  | Sweep gradient, which can sweep around the specified center point in the 0–360 degree range. If the rotation angle exceeds the range, a monochrome color instead of a gradient will be drawn.<br>- **center**: center point of the sweep gradient, that is, the coordinates relative to the upper left corner of the current component.<br>- **start**: start point of the sweep gradient.<br> Default value: **0**<br>- **end**: end point of the sweep gradient.<br> Default value: **0**<br>- **rotation**: rotation angle of the sweep gradient.<br> Default value: **0**<br>- **colors**: array of color stops, each of which consists of a color and its stop position. Invalid colors are automatically skipped.<br>- **repeating**: whether the colors are repeated.<br>  Default value: **false**<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 360 evaluates to the value **1**.<br>When the data type of **start**, **end**, and **rotation** is string, the value **"90"** or **"90%"** is equivalent to **90**.|
+
+## radialGradient
+
+radialGradient(value: { center: Array<any>; radius: number | string; colors: Array<any>; repeating?: boolean })
+
+Radial gradient.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
 
 
-| Name             | Type                                        | Description                              |
-| -------------- | -------------------------------------------- | ----------------------------------- |
-| linearGradient | {<br>angle?: number \| string,<br>direction?: [GradientDirection](ts-appendix-enums.md#gradientdirection),<br>colors: Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt;,<br>repeating?: boolean<br>} | Linear gradient.<br>- **angle**: start angle of the linear gradient. A positive value indicates a clockwise rotation from the origin, (0, 0).<br>  Default value: **180**<br>- **direction**: direction of the linear gradient. It does not take effect when **angle** is set.<br>  Default value: **GradientDirection.Bottom**<br>- **colors**: array of color stops, each of which consists of a color and its stop position.<br>- **repeating**: whether the colors are repeated.<br>  Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| sweepGradient  | {<br>center: [Point](./ts-drawing-components-polygon.md#point),<br>start?: number \| string,<br>end?: number \| string,<br>rotation?: number\|string,<br>colors: Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt;,<br>repeating?: boolean<br>} | Sweep gradient, which can sweep around the specified center point in the 0–360 degree range. If the rotation angle exceeds the range, a monochrome color instead of a gradient will be drawn.<br>- **center**: center point of the sweep gradient, that is, the coordinates relative to the upper left corner of the current component.<br>- **start**: start point of the sweep gradient.<br> Default value: **0**<br>- **end**: end point of the sweep gradient.<br> Default value: **0**<br>- **rotation**: rotation angle of the sweep gradient.<br> Default value: **0**<br>- **colors**: array of color stops, each of which consists of a color and its stop position.<br>- **repeating**: whether the colors are repeated.<br>  Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 360 evaluates to the value **1**.<br>When the data type of **start**, **end**, and **rotation** is string, the value **"90"** or **"90%"** is equivalent to **90**.|
-| radialGradient | {<br>center: [Point](./ts-drawing-components-polygon.md#point),<br> radius: number \| string,<br>colors: Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt;,<br>repeating?: boolean<br>} | Radial gradient.<br>- **center**: center point of the radial gradient, that is, the coordinates relative to the upper left corner of the current component.<br>- **radius**: radius of the radial gradient.<br> Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>- **colors**: array of color stops, each of which consists of a color and its stop position.<br>- **repeating**: whether the colors are repeated.<br>  Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name    | Type                                        | Mandatory                            | Description                              |
+| -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
+| value | {<br>center: [Point](./ts-drawing-components-polygon.md#point),<br> radius: number \| string,<br>colors: Array&lt;[[ResourceColor](ts-types.md#resourcecolor), number]&gt;,<br>repeating?: boolean<br>} | Yes| Radial gradient.<br>- **center**: center point of the radial gradient, that is, the coordinates relative to the upper left corner of the current component.<br>- **radius**: radius of the radial gradient.<br> Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>- **colors**: array of color stops, each of which consists of a color and its stop position. Invalid colors are automatically skipped.<br>- **repeating**: whether the colors are repeated.<br>  Default value: **false**|
 
 >  **NOTE**
 >

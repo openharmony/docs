@@ -9,7 +9,9 @@ The **\<ColumnSplit>** component lays out child components vertically and insert
 
 Supported
 
-This component limits the height of its child components. During initialization, the layout of the component is calculated based on the height of its child components. After initialization, changes to the height of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
+This component limits the height of its child components through dividers. During initialization, the divider positions are calculated based on the height of its child components. After initialization, changes to the height of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
+
+After initialization, if, due to dynamic changes to the **margin**, **border**, or **padding** attributes, the height of the child components is greater than the allowable distance between adjacent dividers, dividers cannot be dragged to adjust the height of the child components.
 ## APIs
 
 ColumnSplit()
@@ -19,8 +21,8 @@ ColumnSplit()
 
 | Name                  | Type                                                             | Description                            | 
 |-----------------------|-------------------------------------------------------------------|---------------------------------|
-| resizeable            | boolean                                                           | Whether the divider can be dragged.<br>Default value: **false**   |
-| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#columnsplitdividerstyle10) \| null | Margin of the divider.<br>- **DividerStyle**: distance between the divider and the child component above or below it.<br>- Default value: **null**, indicating that the top and bottom margins of the divider are 0.|
+| resizeable            | boolean                                                           | Whether the divider can be dragged.<br>Default value: **false**   | 
+| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#columnsplitdividerstyle10) \| null | Margin of the divider.<br>- **DividerStyle**: distance between the divider and the child component above or below it.<br>- Default value: **null**, indicating that the top and bottom margins of the divider are 0.| 
 
 ## ColumnSplitDividerStyle<sup>10+</sup>
 

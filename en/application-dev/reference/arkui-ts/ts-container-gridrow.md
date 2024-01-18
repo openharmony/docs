@@ -23,10 +23,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-|gutter|Length \| GutterOption|   No |Gutter of the grid layout.|
-|columns| number \| GridRowColumnOption |  No |Number of columns in the grid layout.|
-|breakpoints|BreakPoints|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
-|direction|GridRowDirection|   No |Arrangement direction of the grid layout.|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.|
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.|
+|breakpoints|[BreakPoints](#breakpoints)|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
+|direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.|
 
 ## GutterOption
 
@@ -36,23 +36,35 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | No  | Horizontal spacing between grid child components.   |
-| y  | Length \| GridRowSizeOption | No  | Vertical spacing between grid child components.   |
+| x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | No  | Horizontal spacing between grid child components.   |
+| y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | No  | Vertical spacing between grid child components.   |
 
 ## GridRowColumnOption
 
-Describes the numbers of grid columns for different device width types.
+Describes the numbers of grid columns for devices with different grid sizes.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | No   | Number of grid columns for minimum device width.   |
-| sm  | number | No   | Number of grid columns for small device width.     |
-| md  | number | No   | Number of grid columns for medium device width.   |
-| lg  | number | No   | Number of grid columns for large device width.     |
-| xl  | number | No   | Number of grid columns for extra large device width.   |
-| xxl | number | No   | Number of grid columns for extra extra large device width.   |
+| xs  | number | No   | Number of grid columns on the device where the grid size is xs.   |
+| sm  | number | No   | Number of grid columns on the device where the grid size is sm.     |
+| md  | number | No   | Number of grid columns on the device where the grid size is md.   |
+| lg  | number | No   | Number of grid columns on the device where the grid size is lg.     |
+| xl  | number | No   | Number of grid columns on the device where the grid size is xl.   |
+| xxl | number | No   | Number of grid columns on the device where the grid size is xxl.   |
+
+**NOTE**
+
+In the **\<GridRow>** component, you can define the value range of [breakpoints](../../ui/arkts-layout-development-grid-layout.md#grid-breakpoints). A maximum of six breakpoints are supported, which are xs, sm, md, lg, xl, and xxl. The breakpoint names cannot be modified. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
+|Breakpoint|Value Range|
+|---|-----------|
+|xs |[0, n0)    |
+|sm |[n0, n1)   |
+|md |[n1, n2)   |
+|lg |[n2, n3)   |
+|xl |[n3, n4)   |
+|xxl|[n4, INF)  |
 
 ## GridRowSizeOption
 
@@ -62,12 +74,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | Length | No   | Gutter size for minimum device width.   |
-| sm  | Length | No   | Gutter size for small device width.     |
-| md  | Length | No   | Gutter size for medium device width.   |
-| lg  | Length | No   | Gutter size for large device width.     |
-| xl  | Length | No   | Gutter size for extra large device width.   |
-| xxl | Length | No   | Gutter size for extra extra large device width.   |
+| xs  | [Length](ts-types.md#length) | No   | Gutter size for minimum device width.   |
+| sm  | [Length](ts-types.md#length) | No   | Gutter size for small device width.     |
+| md  | [Length](ts-types.md#length) | No   | Gutter size for medium device width.   |
+| lg  | [Length](ts-types.md#length) | No   | Gutter size for large device width.     |
+| xl  | [Length](ts-types.md#length) | No   | Gutter size for extra large device width.   |
+| xxl | [Length](ts-types.md#length) | No   | Gutter size for extra extra large device width.   |
 
 ## BreakPoints
 
@@ -78,7 +90,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | No | Array of monotonically increasing breakpoints.<br>Default value: **["320vp", "600vp", "840vp"]**   |
-| reference  | BreakpointsReference | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize**|
+| reference  | [BreakpointsReference](#breakpointsreference) | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize**|
 ```ts
   // Enable the xs, sm, and md breakpoints.
   breakpoints: {value: ["100vp", "200vp"]}
@@ -105,17 +117,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- |
 | Row | Grid elements are arranged in the row direction.|
 | RowReverse | Grid elements are arranged in the reverse row direction.|
-
-A grid supports a maximum of six breakpoints: xs, sm, md, lg, xl and xxl, whose names cannot be changed. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
-
-|Breakpoint|Value Range|
-|---|-----------|
-|xs |[0, n0)    |
-|sm |[n0, n1)   |
-|md |[n1, n2)   |
-|lg |[n2, n3)   |
-|xl |[n3, n4)   |
-|xxl|[n4, INF)  |
 
 **NOTE**
 * Grid elements can be arranged only in the **Row** or **RowReverse** direction, but not in the **Column** or **ColumnReverse** direction.

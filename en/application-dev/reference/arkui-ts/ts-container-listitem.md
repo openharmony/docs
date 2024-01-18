@@ -43,40 +43,37 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This API is deprecated since API version 9. You are advised to use **sticky** of the [\<List>](ts-container-list.md#attributes) component.|
-| editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmodedeprecated) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9.<br>Default value: **false**|
+| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.|
+| editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmodedeprecated) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9. There is no substitute API.<br>Default value: **false**|
 | selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
 | selected<sup>10+</sup> | boolean | Whether the list item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
-| swipeAction<sup>9+</sup> | {<br>start?: CustomBuilder \| [SwipeActionItem](#swipeactionitem10),<br>end?:CustomBuilder \| [SwipeActionItem](#swipeactionitem10),<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Swipe action displayed when the list item is swiped out from the screen edge.<br>- **start**: swipe action displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: swipe action displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>- The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.<br> - The swipe gesture works only in the list item area. If a swipe causes a child component to extend beyond the list item area, the portion outside the area does not respond to the swipe. In light of this, avoid setting **swipeAction** to a component too wide in a multi-column list.|
+| swipeAction<sup>9+</sup> | {<br>start?: [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10),<br>end?:[CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10),<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Swipe action displayed when the list item is swiped out from the screen edge.<br>- **start**: swipe action displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: swipe action displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>- The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.<br> - The swipe gesture works only in the list item area. If a swipe causes a child component to extend beyond the list item area, the portion outside the area does not respond to the swipe. In light of this, avoid setting **swipeAction** to a component too wide in a multi-column list.|
 
 ## Sticky<sup>(deprecated)</sup>
-This API is deprecated since API version 9. You are advised to use [stickyStyle](ts-container-list.md#stickystyle9) of the **\<List>** component.
-| Name| Description|
-| -------- | -------- |
-| None | The list item is not sticky.|
-| Normal | The list item is sticky with no special effects.|
-| Opacity | The list item is sticky with opacity changes.|
+This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the \<List> component](ts-container-list.md#stickystyle9) instead.
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| None |  0  | The list item is not sticky.|
+| Normal |  1  | The list item is sticky with no special effects.|
+| Opacity |  2  | The list item is sticky with opacity changes.|
 
 ## EditMode<sup>(deprecated)</sup>
-This API is deprecated since API version 9.
-| Name    | Description       |
-| ------ | --------- |
-| None   | The editing operation is not restricted.   |
-| Deletable | The list item can be deleted.|
-| Movable | The list item can be moved.|
+This API is deprecated since API version 9. There is no substitute API.
+| Name    | Value| Description       |
+| ------ | ------ | --------- |
+| None   |  0  | The editing operation is not restricted.   |
+| Deletable |  1  | The list item can be deleted.|
+| Movable |  2  | The list item can be moved.|
 
 ## SwipeEdgeEffect<sup>9+</sup>
-| Name| Description|
-| -------- | -------- |
-| Spring | When the list item scrolls to the edge of the list, it can continue to scroll for a distance. If the delete area is set, the list item can continue to scroll after the scroll distance reaches the delete threshold and, after being released, rebound following the spring curve.|
-| None | The list item cannot scroll beyond the edge of the list. If the delete area is set, the list item cannot continue to scroll after the scroll distance reaches the delete threshold. If the delete callback is set, it is triggered when the delete threshold is reached and the list item is released.|
+| Name    | Value| Description       |
+| ------ | ------ | --------- |
+|   Spring   |    0    | When the list item scrolls to the edge of the list, it can continue to scroll for a distance.<br>If the delete area is set, the list item can continue to scroll after the scroll distance exceeds the delete threshold and,<br>after being released, rebound following the spring curve.|
+|   None   |    1    | The list item cannot scroll beyond the edge of the list.<br>If the delete area is set, the list item cannot continue to scroll after the scroll distance exceeds the delete threshold.<br>If the delete callback is set, it is triggered when the delete threshold is reached and the list item is released.|
 
 ## SwipeActionItem<sup>10+</sup>
-Describes the swipe action item.
-
-For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
-
-For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
+Describes the swipe action item.<br>For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
+<br>For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -84,7 +81,7 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 | onAction | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br> This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
 | onEnterActionArea | () => void | No| Callback invoked each time the list item enters the delete area.|
 | onExitActionArea | () => void | No|Callback invoked each time the list item exits the delete area.|
-| builder |  CustomBuilder | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
+| builder |  [CustomBuilder](ts-types.md#custombuilder8) | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
 | onStateChange<sup>11+</sup> | (swipeActionState) => void | No|Triggered when the swipe state of the list item changes.|
 ## ListItemOptions<sup>10+</sup>
 
@@ -100,18 +97,18 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 
 ## ListItemStyle<sup>10+</sup>
 
-| Name| Description              |
-| ---- | ------------------ |
-| NONE | No style.          |
-| CARD | Default card style.|
+| Name| Value | Description              |
+| ---- | ---- | ------------------ |
+| NONE | 0 | No style.          |
+| CARD | 1 | Default card style.|
 
 ## SwipeActionState<sup>11+</sup>
 
-| Name     | Description                                                        |
-| --------- | ------------------------------------------------------------ |
-| COLLAPSED | Collapsed state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is hidden.|
-| EXPANDED  | Expanded state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is shown.<br>**NOTE**<br>This option requires a swipe action to be set for the list item.|
-| ACTIONING | Actioning state. The list item is in this state when it enters the delete area.<br>**NOTE**<br>A list item can enter this state only when it is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
+| Name     | Value    | Description                                                        |
+| --------- | --------- | ------------------------------------------------------------ |
+| COLLAPSED | 0 | Collapsed state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is hidden.|
+| EXPANDED  | 1 | Expanded state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is shown.<br>**NOTE**<br>When the list item is swiped left or right (in vertical list layout)<br>or up or down (in horizontal list layout), the swipe action is shown.|
+| ACTIONING | 2 | In-action state. The list item is in this state when it enters the delete area.<br>**NOTE**<br>A list item can enter this state only when it is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
 
 ## Events
 
@@ -249,7 +246,7 @@ struct ListItemExample3 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // List in light blue
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })

@@ -47,10 +47,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Description|
 | -------- | -------- |
-| Minibar | A minibar panel displays content in the minibar area or a large (fullscreen-like) area.|
-| Foldable | A foldable panel displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area.|
-| Temporary | A temporary panel displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area.|
-| CUSTOM<sup>10+</sup> | A custom panel automatically adapts its height to the content, without support for manual size switching.|
+| Minibar | A minibar panel that displays content in the minibar area or a large (fullscreen-like) area.|
+| Foldable | A foldable panel that displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area.|
+| Temporary | A temporary panel that displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area.|
+| CUSTOM<sup>10+</sup> | A custom panel that automatically adapts its height to the content, but does not support manual resizing.|
 
 ## PanelMode
 

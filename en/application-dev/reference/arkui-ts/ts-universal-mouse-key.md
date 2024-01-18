@@ -1,7 +1,3 @@
-
-
-
-
 # Mouse Event
 
 If a mouse action triggers multiple events, the order of these events is fixed. By default, mouse events are transmitted transparently.
@@ -11,13 +7,34 @@ If a mouse action triggers multiple events, the order of these events is fixed. 
 >  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >  - For the time being, a mouse event can be triggered only by an external mouse.
 
+## onHover
 
-## Events
+onHover(event: (isHover: boolean, event: HoverEvent) => void)
 
-| Name                                      | Bubbling Supported| Description                                      |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onHover(event: (isHover?: boolean, event<sup>10+</sup>?: HoverEvent) =&gt; void) | Yes   | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.<br>**event**: bubbling blocking of the event.|
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Yes   | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+Triggered when the mouse pointer enters or leaves the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name             | Type                               | Mandatory| Description                                                        |
+| ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| isHover             | boolean                             | No  | Whether the mouse cursor hovers over the component. The value **true** means that the mouse cursor enters the component, and the value **false** means that the mouse cursor leaves the component.|
+| event<sup>10+</sup> | [HoverEvent](#hoverevent10) | No  | Bubbling of the blocking event.                                      |
+
+## onMouse
+
+onMouse(event: (event: MouseEvent) => void)
+
+Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| onMouse | [MouseEvent](#mouseevent) | No  | Timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 
 ## MouseEvent
@@ -29,9 +46,9 @@ If a mouse action triggers multiple events, the order of these events is fixed. 
 | button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.                       |
 | action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.                       |
 | stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.                     |
-| timestamp<sup>8+</sup> | number                                   | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
-| target<sup>8+</sup>    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.              |
-| source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.                     |
+| timestamp | number                                   | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| target    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.              |
+| source    | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.                     |
 | windowX<sup>10+</sup> | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.|
 | windowY<sup>10+</sup> | number                          | Y coordinate of the mouse pointer relative to the upper left corner of the application window.|
 | displayX<sup>10+</sup> | number                         | X coordinate of the mouse pointer relative to the upper left corner of the application screen.|

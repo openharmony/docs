@@ -6,11 +6,21 @@ You can draw an image around a component.
 >
 >  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## borderImage
 
-| Name         | Type                                    | Description                                    |
-| ----------- | ---------------------------------------- | -------------------------------------- |
-| borderImage | [BorderImageOption](#borderimageoption) | Border image or border gradient.<br>This API is supported in ArkTS widgets.|
+borderImage(value: BorderImageOption)
+
+Sets the border image of the component.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                           | Mandatory| Description                            |
+| ----------- | ----------------------------------------------- | ---- | -------------------------------- |
+| borderImage | [BorderImageOption](#borderimageoption) | Yes  | Border image or border gradient.|
 
 ## BorderImageOption
 
