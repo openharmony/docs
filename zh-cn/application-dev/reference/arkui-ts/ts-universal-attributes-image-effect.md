@@ -789,7 +789,6 @@ struct Index {
           }
         }
         .blendMode(BlendMode.DESTINATION_IN)
-        // @ts-ignore
         .backgroundEffect({
           radius: this.rad,
           saturation: this.satVal,
