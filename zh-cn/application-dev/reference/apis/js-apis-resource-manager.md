@@ -4206,7 +4206,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
