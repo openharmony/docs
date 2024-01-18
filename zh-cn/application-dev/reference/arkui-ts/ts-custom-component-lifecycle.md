@@ -140,12 +140,11 @@ export class Message {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
   @State switch: boolean = true
 
   build() {
     Column() {
-      Button(this.message)
+      Button('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
