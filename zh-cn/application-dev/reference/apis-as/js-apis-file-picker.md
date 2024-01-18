@@ -143,19 +143,6 @@ async function example03() {
 }
 ```
 
-
-## PhotoViewMIMETypes
-
-枚举，可选择的媒体文件类型。
-
-**系统能力：** SystemCapability.FileManagement.UserFileService
-
-| 名称  |  值 |  说明 |
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型 |
-| VIDEO_TYPE |  'video/*' | 视频类型 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型 |
-
 ## PhotoSelectOptions
 
 图库选择选项。
