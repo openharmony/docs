@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
+import faultLogger from '@ohos.faultLogger';
 ```
 
 ## FaultType

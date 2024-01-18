@@ -19,8 +19,8 @@
    此处以获取证书吊销列表版本、证书吊销列表类型为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis/js-apis-cert.md#x509crl11)。
 
 4. 基于已有公钥信息，创建PublicKey公钥对象。
-   
-   具体可参考[加解密算法库框架-指定二进制数据生成非对称密钥对](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md/#convertkey-3)。
+
+   具体可参考[加解密算法库框架-指定二进制数据生成非对称密钥对](../../reference/apis/js-apis-cryptoFramework.md#convertkey-3)。
 
 5. 调用[X509CRL.verify](../../reference/apis/js-apis-cert.md#verify11)校验签名合法性。
 
@@ -144,7 +144,7 @@ function crlSample(): void {
           console.error(`isRevoked failed, errCode: ${e.code}, errMsg:${e.message}`);
         }
       } else {
-        console.error(`create x509 cert failed errCode: ${err.code}, errMsg: ${err.message}`);
+        console.error(`create x509 cert failed, errCode: ${err.code}, errMsg: ${err.message}`);
       }
     })
     if (!revokedFlag) {

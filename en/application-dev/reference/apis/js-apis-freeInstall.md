@@ -16,12 +16,12 @@ import freeInstall from '@ohos.bundle.freeInstall';
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description              |
+| Permission                                      | APL    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.  |
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 ## UpgradeFlag
 
 **System API**: This is a system API.
@@ -416,5 +416,3 @@ try {
     console.error('Operation failed:' + JSON.stringify(err));
 }
 ```
-
- <!--no_check--> 

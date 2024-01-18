@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -4316,6 +4316,62 @@ async function example() {
 }
 ```
 
+### getAnalysisData<sup>11+</sup>
+
+getAnalysisData(analysisType: AnalysisType): Promise\<string>
+
+根据智慧分析类型获取指定分析结果数据。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名          | 类型           | 必填 | 说明           |
+| :----------- | :----------- | :- | :----------- |
+| analysisType | [AnalysisType](#analysistype11) | 是  | 需要获取的智慧分析类型。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getAnalysisDataDemo')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+      await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (photoAsset != undefined) {
+      let analysisData: string = await photoAsset.getAnalysisData(
+        photoAccessHelper.AnalysisType.ANALYSIS_OCR);
+      console.info('get ocr result: ' + JSON.stringify(analysisData));
+    }
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAnalysisDataDemofailed with error: ' + err)
+  }
+}
+```
+
 ## PhotoViewPicker
 
 图库选择器对象，用来支撑选择图片/视频等用户场景。在使用前，需要先创建PhotoViewPicker实例。
@@ -5086,6 +5142,8 @@ async function example() {
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
 | coverUri | string | 是    | 否    | 封面文件Uri。 |
+| imageCount<sup>11+</sup> | number | 是   | 否   | 相册中图片数量。|
+| videoCount<sup>11+</sup> | number | 是   | 否   | 相册中视频数量。|
 
 ### getAssets
 
@@ -6846,6 +6904,107 @@ async function example() {
 }
 ```
 
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, proxy: PhotoProxy): void
+
+通过PhotoProxy数据添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统接口**：此接口为系统接口，仅提供给相机应用使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                   |
+| ------- |---------------------------------| ---- |----------------------|
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。            |
+| proxy | [PhotoProxy](#photoproxy11)     | 是   | 待添加资源的PhotoProxy 数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+|----------|-----------------------------------|
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                | 
+| 14000016 | Operation Not Support.            |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByPhotoProxyDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let photoProxy: PhotoProxy;
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, photoProxy);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByPhotoProxy successfully');
+  } catch (err) {
+    console.error('addResourceByPhotoProxyDemo failed with error: ' + err);
+  }
+}
+```
+
+### setLocation<sup>11+</sup>
+
+setLocation(longitude: number, latitude: number): void
+
+设置文件的经纬度信息。
+
+**系统接口**：此接口为系统接口
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型          | 必填 | 说明    |
+| ------- |-------------| ---- |-------|
+| longitude | number      | 是   | 经度。 |
+| latitude | number | 是   | 纬度。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      | Called by non-system application. |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setLocationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setLocation(120.52, 30.40);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setLocation successfully');
+  }).catch((err: BusinessError) => {
+    console.error('apply setLocation failed with error:' + err);
+  });
+}
+```
+
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 批量资产变更请求。
@@ -7633,6 +7792,222 @@ async function example() {
 }
 ```
 
+### setDisplayLevel<sup>11+</sup>
+
+setDisplayLevel(displayLevel: number): void
+
+设置人像相册的显示级别。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| displayLevel | number | 是    | 设置人像相册的显示级别， 0：取消该人像相册收藏；1：设置人像相册为首届面；2：设置人像相册为更多界面；3：设置人像相册为收藏界面。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setDisplayLevel Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setDisplayLevel(1);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('setDisplayLevel failed with error: ' + err);
+  }
+}
+```
+
+### setIsMe<sup>11+</sup>
+
+setIsMe(): void
+
+将人像相册的人物关系设置为“我”。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setIsMe Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setIsMe();
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('setIsMe failed with error: ' + err);
+  }
+}
+```
+
+### dismissAssets<sup>11+</sup>
+
+dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从该人像相册中移除指定图片。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;PhotoAsset&gt; | 是    | 需要移除的文件列表 。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('dismissAssets Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+
+    let predicatesAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let assetFetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesAsset
+    };
+    let assetFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(assetFetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await assetFetchResult.getFirstObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.dismissAssets([asset]);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('dismissAssets failed with error: ' + err);
+  }
+}
+```
+
+### mergeAlbum<sup>11+</sup>
+
+mergeAlbum(target: Album): void
+
+将两个人像相册合并。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| target | [Album](#album) | 是    | 需要合并的目标相册，合并相册必须重命名。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('mergeAlbum Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (fetchResult.isAfterLast()) {
+      console.error('lack of album to merge');
+      return;
+    }
+    let target: photoAccessHelper.Album = await fetchResult.getNextObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.mergeAlbum(target);
+    changeRequest.setAlbumName("testName");
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error('mergeAlbum failed with error: ' + err);
+  }
+}
+```
+
 ### placeBefore<sup>11+</sup>
 
 placeBefore(album: Album): void;
@@ -7678,6 +8053,167 @@ async function example() {
     console.info('placeBefore successfully');
   } catch (err) {
     console.error('placeBeforeDemo failed with error: ' + err);
+  }
+}
+```
+
+## MediaAssetManager<sup>11+</sup>
+### requestImage<sup>11+</sup>
+
+static requestImage(context: Context, asset: PhotoAsset, requestOption: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，请求图片资源。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名            | 类型                                                                                                        | 必填 | 说明                      |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| assets         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。       
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+    onDataPrepared(data: image.ImageSource) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImage(context, photoAsset, requestOptions, handler);
+      console.info('requestImage successfully');
+  });
+}
+```
+
+### requestImageData<sup>11+</sup>
+
+static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler, MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，请求图片资源数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
+| assets | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。       
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+    onDataPrepared(data: ArrayBuffer) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImageData');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaDataHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+      console.info('requestImageData successfully');
+  });
+}
+```
+
+## MediaAssetDataHandler<sup>11+</sup>
+
+媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onDataPrepared<sup>11+</sup>
+
+onDataPrepared(data: T): void
+
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
+T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明                                                                            |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | 是   | 泛型，支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。 |
+
+**示例**
+```ts
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+  onDataPrepared(data: image.ImageSource) {
+    // 自定义对ImageSource的处理逻辑
+    console.info('on image data prepared');
+  }
+}
+
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+  onDataPrepared(data: ArrayBuffer) {
+    // 自定义对ArrayBuffer的处理逻辑
+    console.info('on image data prepared');
   }
 }
 ```
@@ -7737,10 +8273,11 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| USER |  0 |  用户相册。 |
-| SYSTEM |  1024 |  系统预置相册。 |
+| 名称                  | 值    | 说明                        |
+| ------------------- | ---- | ------------------------- |
+| USER                | 0    | 用户相册。                     |
+| SYSTEM              | 1024 | 系统预置相册。                   |
+| SMART<sup>11+</sup> | 4096 | 智慧分析相册。**系统接口**：此接口为系统接口。 |
 
 ## AlbumSubtype
 
@@ -7748,17 +8285,23 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| USER_GENERIC |  1 |  用户相册。 |
-| FAVORITE |  1025 |  收藏夹。 |
-| VIDEO |  1026 |  视频相册。 |
-| HIDDEN |  1027 |  隐藏相册。**系统接口**：此接口为系统接口。 |
-| TRASH |  1028 |  回收站。**系统接口**：此接口为系统接口。 |
-| SCREENSHOT |  1029 |  截屏和录屏相册。**系统接口**：此接口为系统接口。 |
-| CAMERA |  1030 |  相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
-| IMAGE<sup>11+</sup> |  1031 | 所有图片相册。**系统接口**：此接口为系统接口。 |
-| ANY |  2147483647 |  任意相册。 |
+| 名称                                | 值          | 说明                              |
+| --------------------------------- | ---------- | ------------------------------- |
+| USER\_GENERIC                     | 1          | 用户相册。                           |
+| FAVORITE                          | 1025       | 收藏夹。                            |
+| VIDEO                             | 1026       | 视频相册。                           |
+| HIDDEN                            | 1027       | 隐藏相册。**系统接口**：此接口为系统接口。         |
+| TRASH                             | 1028       | 回收站。**系统接口**：此接口为系统接口。          |
+| SCREENSHOT                        | 1029       | 截屏和录屏相册。**系统接口**：此接口为系统接口。      |
+| CAMERA                            | 1030       | 相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
+| IMAGE<sup>11+</sup>               | 1031       | 所有图片相册。**系统接口**：此接口为系统接口。       |
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | 来源相册。**系统接口**：此接口为系统接口。         |
+| CLASSIFY<sup>11+</sup>            | 4097       | 分类相册。**系统接口**：此接口为系统接口。         |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | 地图相册。**系统接口**：此接口为系统接口。         |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | 城市相册。**系统接口**：此接口为系统接口。         |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | 拍摄模式相册。**系统接口**：此接口为系统接口。       |
+| PORTRAIT<sup>11+</sup>            | 4102       | 人像相册。**系统接口**：此接口为系统接口。         |
+| ANY                               | 2147483647 | 任意相册。                           |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -7880,6 +8423,23 @@ title参数规格为：
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
+
+## RequestOptions<sup>11+</sup>
+
+请求策略。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
+| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式 三种策略。 |
+| sourceMode           | [SourceMode](#sourcemode11)     | 是   | 是   | 资源文件的读取类型，可以指定当前请求获取的是源文件，或是编辑后的文件。**系统接口**：此接口为系统接口。 |
+
+## PhotoProxy<sup>11+</sup>
+
+照片代理，相机应用通过该对象写入图片数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -8014,9 +8574,22 @@ title参数规格为：
 | photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
 | isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。 |
 
+
+## DeliveryMode<sup>11+</sup>
+
+枚举，请求图片分发模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| FAST_MODE |  1 |  快速模式。 |
+| HIGH_QUALITY_MODE |  2 |  高质量模式。 |
+| BALANCE_MODE |  3 |  均衡模式。 |
+
 ## SourceMode<sup>11+</sup>
 
-枚举，图片或视频资源的读取类型。
+枚举，资源文件的读取类型。
 
 **系统接口**：此接口为系统接口。
 
@@ -8026,3 +8599,22 @@ title参数规格为：
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
+
+## AnalysisType<sup>11+</sup>
+
+枚举，智慧分析类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                            | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| ANALYSIS\_AESTHETICS\_SCORE   | 0  | 美学评分分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_LABEL               | 1  | 分类标签分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_OCR                 | 2  | 文字识别分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_FACE                | 3  | 人脸检测分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_OBJECT              | 4  | 目标检测分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_RECOMMENDATION      | 5  | 推荐构图分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_SEGMENTATION        | 6  | 抠图分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_COMPOSITION         | 7  | 美学构图分析类别。**系统接口**：此接口为系统接口。   |
+| ANALYSIS\_SALIENCY            | 8  | 最佳呈现主体中心分析类别。**系统接口**：此接口为系统接口。   |
+| ANALYSIS\_DETAIL\_ADDRESS     | 9  | 详细地址分析类别。**系统接口**：此接口为系统接口。    |

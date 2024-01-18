@@ -45,4 +45,3 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
      Logger.info(TAG, `Succeeded in removeing sticky event.`);
    });
    ```
-<!--no_check-->

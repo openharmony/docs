@@ -2,11 +2,8 @@
 
 OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以根据需要，按以下指导自行开发文件管理器。
 
-## 接口说明
-
-开发用户文件管理器的相关API详细介绍请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
-
 ## 开发步骤
+开发用户文件管理器的相关API详细介绍请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
 
 1. 权限配置和导入模块。
    申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
@@ -158,4 +155,73 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
       console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
      };
    }
+   ```
+
+## 监听设备上下线
+
+开发设备上下线的相关API详细介绍请参见[API参考](../reference/apis/js-apis-fileAccess.md)。
+
+notify接口不仅可以用来监听目录的变化，还能监听设备上线，下线功能。
+
+
+1. 权限配置和导入模块。
+
+   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[访问控制授权申请](../security/AccessToken/declare-permissions.md)。
+
+   > **说明：**
+   >
+   > ohos.permission.FILE_ACCESS_MANAGER是使用文件访问框架接口的基础权限。
+   >
+   > ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限可以用于查询系统内当前支持的文件管理服务端应用信息。
+
+2. 导入依赖模块。
+
+   ```ts
+   import fileAccess from '@ohos.file.fileAccess';
+   import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
+   ```
+
+ 其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
+
+3. 提供监听回调方法
+
+   ```ts
+   const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+     if (NotifyMessageDir != undefined) {
+       console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+     } else {
+      console.error("NotifyMessageDir is undefined");
+     }
+   }
+   ```
+
+4. 注册监听设备
+
+  开发者可以根据提供的[DEVICES_URI](../reference/apis/js-apis-fileAccess.md#常量),传入方法中，就能监听设备上线，下线状态。
+
+   ```ts
+   import { BusinessError } from '@ohos.base';
+   async function UnregisterObserver03() {
+     try {
+       // 监听设备的上下线
+       fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+     } catch (err) {
+       let error: BusinessError = err as BusinessError;
+       console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+     }
+   }
+   ```
+5. 取消设备监听
+
+  开发者可以根据提供的[DEVICES_URI](../reference/apis/js-apis-fileAccess.md#常量),传入方法中，就能取消设备上线，下线状态。
+
+   ```ts
+   import { BusinessError } from '@ohos.base';
+     try {
+       // 取消监听设备的上下线
+       fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI, callbackDir1);
+     } catch (err) {
+       let error: BusinessError = err as BusinessError;
+       console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+     }
    ```

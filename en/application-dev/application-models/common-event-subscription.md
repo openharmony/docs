@@ -72,4 +72,3 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
      console.error(`Need create subscriber`);
    }
    ```
-<!--no_check-->

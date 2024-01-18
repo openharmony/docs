@@ -174,6 +174,50 @@ async function Demo() {
 }
 ```
 
+## image.createPixelMapFromSurface<sup>11+</sup>
+
+从Surface id创建一个pixelmap对象
+
+createPixelMapFromSurface(surfaceId: string, region: Region): Promise<PixelMap>;
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980115 | Invalid input parameter|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo(surfaceId: string) {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await multimedia_image.createPixelMapFromSurface(surfaceId, region).then(() => {
+        console.log('Succeeded in creating pixelmap from Surface');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create pixelmap');
+    });
+} 
+```
+
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过[createPixelMap](#imagecreatepixelmap8)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
@@ -186,9 +230,10 @@ async function Demo() {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称       | 类型    | 可读 | 可写 | 说明                       |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| isEditable | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| 名称              | 类型    | 可读 | 可写 | 说明                       |
+| -----------------| ------- | ---- | ---- | -------------------------- |
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -1094,9 +1139,9 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980101| The image data is abnormal.            |
-| 62980103| The image data is not supported.             |
-| 62980115| Invalid image parameter.            |
+| 62980101| If the image data abnormal.            |
+| 62980103| If the image data unsupport.             |
+| 62980115| If the image parameter invalid.            |
 
 **示例：**
 
@@ -1126,8 +1171,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| The image source data is incomplete.        |
-| 62980115| Invalid image parameter.             |
+| 62980111| If the operation invalid.        |
+| 62980115| If the image parameter invalid.             |
 
 **示例：**
 
@@ -3834,6 +3879,7 @@ img.release().then(() =>{
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | 是   | 是   | 图片大小。 |
 | density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
+| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
 
 ## Size
 

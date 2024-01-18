@@ -14,7 +14,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description           |
+| Permission                                      | APL    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
 | ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to obtain basic information about a bundle.  |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
@@ -22,7 +22,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | Permission to enable or disable an application or ability. |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Permission to read installed application list.|
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## Enums
 
@@ -4818,5 +4818,3 @@ try {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed: %{public}s', message);
 }
 ```
-
- <!--no_check--> 

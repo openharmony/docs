@@ -1953,6 +1953,30 @@ async function registerObserver03() {
 }
 ```
 
+**示例4：注册监听设备上下线**
+
+```
+import { BusinessError } from '@ohos.base';
+async function UnregisterObserver03() {
+  try {
+    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+      if (NotifyMessageDir != undefined) {
+        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+      } else {
+        console.error("NotifyMessageDir is undefined");
+      }
+    }
+    // 监听设备的上下线
+    fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+    // 取消监听设备的上下线
+    fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+}
+```
+
 ### unregisterObserver<sup>10+</sup>
 
  unregisterObserver(uri: string, callback?: Callback&lt;NotifyMessage&gt;): void
@@ -2063,6 +2087,30 @@ async function UnregisterObserver03() {
     // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
     fileAccessHelper.unregisterObserver(dirUri);
     await fileAccessHelper.delete(dirUri);
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+}
+```
+
+**示例4：解注册监听设备的上下线**
+
+```
+import { BusinessError } from '@ohos.base';
+async function UnregisterObserver03() {
+  try {
+    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+      if (NotifyMessageDir != undefined) {
+        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+      } else {
+        console.error("NotifyMessageDir is undefined");
+      }
+    }
+    // 监听设备的上下线
+    fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+    // 取消监听设备的上下线
+    fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2479,3 +2527,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 | errCode   | number | 是   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。 |
 | errMsg    | string | 是   | 否   | 错误信息。                                                   |
 
+## 常量
+
+| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
+| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
+| DEVICES_URI<sup>11+</sup>  | string | 是   | 否   | 监听设备上线，下线通知，作为注册监听的URI。<br/> **模型约束**：仅可在Stage模型下使用。<br/> **系统能力**：SystemCapability.FileManagement.UserFileService <br/> **需要权限**：ohos.permission.FILE_ACCESS_MANAGER |

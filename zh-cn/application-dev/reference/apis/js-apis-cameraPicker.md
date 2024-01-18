@@ -22,11 +22,11 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 **参数：**
 
-| 参数名          | 类型                                                   | 必填 | 说明                           |
-| -------------- | ------------------------------------------------------ | ---- | ---------------------------- |
-| context        | [BaseContext](js-apis-inner-application-baseContext.md)| 是   | 应用上下文。                   |
-| mediaTypes     | Array\<[PickerMediaType](#pickermediatype)\>           | 是   | 媒体类型。                    |
-| pickerProfile  | [PickerProfile](#pickerprofile)                        | 是   | pickerProfile对象。            |
+| 参数名          | 类型                                              | 必填 | 说明                           |
+| -------------- |-------------------------------------------------| ---- | ---------------------------- |
+| context        | [Context](js-apis-inner-application-context.md) | 是   | 应用上下文。                   |
+| mediaTypes     | Array\<[PickerMediaType](#pickermediatype)\>    | 是   | 媒体类型。                    |
+| pickerProfile  | [PickerProfile](#pickerprofile)                 | 是   | pickerProfile对象。            |
 
 **返回值：**
 

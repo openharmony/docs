@@ -55,27 +55,27 @@ ohos_shared_library示例
 import("//build/ohos.gni")
 ohos_shared_library("helloworld") {
   sources = ["file"]
-  include_dirs = []             # 如有重复头文件定义，优先使用前面路径头文件
-  cflags = []                   # 如重复冲突定义，后面的参数优先生效，也就是该配置项中优先生效
+  include_dirs = []             # 如有重复头文件定义，优先使用前面路径头文件。
+  cflags = []                   # 如重复冲突定义，后面的参数优先生效，也就是该配置项中优先生效。
   cflags_c = []
   cflags_cc = []
-  ldflags = []                  # 如重复冲突定义，前面参数优先生效，也就是ohos_template中预制参数优先生效
+  ldflags = []                  # 如重复冲突定义，前面参数优先生效，也就是ohos_template中预制参数优先生效。
   configs = []
   deps = []                     # 部件内模块依赖
 
-  external_deps = [             # 跨部件模块依赖定义，
-  "part_name:module_name",      # 定义格式为 "部件名:模块名称"
-  ]                             # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
+  external_deps = [             # 跨部件模块依赖定义
+  "part_name:module_name",      # 定义格式为 "部件名:模块名称"。
+  ]                             # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块。
 
   output_name = [string]        # 模块输出名
   output_extension = []         # 模块名后缀
-  module_install_dir = ""       # 缺省在/system/lib64或/system/lib下， 模块安装路径，模块安装路径，从system/，vendor/后开始指定
-  relative_install_dir = ""     # 模块安装相对路径，相对于/system/lib64或/system/lib；如果有module_install_dir配置时，该配置不生效
+  module_install_dir = ""       # 模块安装路径，缺省在/system/lib64或/system/lib下; 模块安装路径从system/，vendor/后开始指定。
+  relative_install_dir = ""     # 模块安装相对路径，相对于/system/lib64或/system/lib；如果有module_install_dir配置时，该配置不生效。
 
   part_name = ""                # 必选，所属部件名称
   output_dir
 
-  # Sanitizer配置，每项都是可选的，默认为false/空
+  # Sanitizer配置，每项都是可选的，默认为false/空。
   sanitize = {
     # 各个Sanitizer开关
     cfi = [boolean]               # 控制流完整性检测
@@ -92,7 +92,7 @@ ohos_shared_library("helloworld") {
 
   testonly = [boolean]
   license_as_sources = []
-  license_file = []             # 后缀名是.txt的文件
+  license_file = []               # 后缀名是.txt的文件
   remove_configs = []
   no_default_deps = []
   install_images = []
@@ -118,7 +118,7 @@ ohos_static_library("helloworld") {
 
   external_deps = [             # 跨部件模块依赖定义，
   "part_name:module_name",      # 定义格式为 "部件名:模块名称"
-  ]                             # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
+  ]                             # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块。
 
   lib_dirs = []
   public_configs = []
@@ -140,7 +140,7 @@ ohos_static_library("helloworld") {
 
   remove_configs = []
   no_default_deps = []
-  license_file = []             # 后缀名是.txt的文件
+  license_file = []               # 后缀名是.txt的文件
   license_as_sources = []
   use_exceptions = []
 }
@@ -158,7 +158,7 @@ ohos_executable("helloworld") {
 
   external_deps = [                  # 跨部件模块依赖定义，
   "part_name:module_name",           # 定义格式为 "部件名:模块名称"
-  ]                                  # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
+  ]                                  # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块。
   ohos_test = []
   test_output_dir = []
 
@@ -265,7 +265,7 @@ ohos_prebuilt_executable("helloworld") {
 
   install_images = []
   module_install_dir = ""                 # 模块安装路径，从system/，vendor/后开始指定
-  relative_install_dir = ""               # 模块安装相对路径，相对于system/etc；如果有module_install_dir配置时，该配置不生效
+  relative_install_dir = ""               # 模块安装相对路径，相对于system/etc；如果有module_install_dir配置时，该配置不生效。
   symlink_target_name = []
 
 
@@ -279,7 +279,7 @@ ohos_prebuilt_shared_library示例
 ```shell
 import("//build/ohos.gni")
 ohos_prebuilt_shared_library("helloworld") {
-  source = "file"                     # 一般是后缀为.so的文件
+  source = "file"                      # 一般是后缀为.so的文件
   output = []
   install_enable = [boolean]
 
@@ -293,7 +293,7 @@ ohos_prebuilt_shared_library("helloworld") {
 
   install_images = []
   module_install_dir = ""              # 模块安装路径，从system/，vendor/后开始指定
-  relative_install_dir = ""            # 模块安装相对路径，相对于system/etc；如果有module_install_dir配置时，该配置不生效
+  relative_install_dir = ""            # 模块安装相对路径，相对于system/etc；如果有module_install_dir配置时，该配置不生效。
   symlink_target_name = [string]
 
 
@@ -346,7 +346,7 @@ ohos_prebuilt_etc("helloworld") {
   subsystem_name = ""                      # 子系统名
   part_name = ""                           # 必选，所属部件名称
   install_images = []
-  relative_install_dir = ""                # 模块安装相对路径，相对于system/etc；如果有module_install_dir配置时，该配置不生效
+  relative_install_dir = ""                # 模块安装相对路径，相对于system/etc；如果有module_install_dir配置时，该配置不生效。
   
   # ohos_prebuilt_etc模板不常用属性:
   deps = []                                # 部件内模块依赖
@@ -399,7 +399,7 @@ ohos_sa_profile("helloworld") {
       "publishAs": "code-segment",                              # HPM包的发布方式，当前默认都为code-segment
       "segment": {
           "destPath": "third_party/nghttp2"
-      },                                                        # 发布类型为code-segment时为必填项，定义发布类型code-segment的代码还原路径（源码路径）
+      },                                                        # 发布类型为code-segment时为必填项，定义发布类型code-segment的代码还原路径（源码路径）。
       "dirs": {},                                               # HPM包的目录结构，字段必填内容可以留空
       "scripts": {},                                            # HPM包定义需要执行的脚本，字段必填，值非必填
       "licensePath": "COPYING",
@@ -410,7 +410,7 @@ ohos_sa_profile("helloworld") {
           "name": "<component_name>",                           # 部件名称
           "subsystem": ,                                        # 部件所属子系统
           "syscap": [],                                         # 部件为应用提供的系统能力
-          "features": [],                                       # 部件对外的可配置特性列表，一般与build中的sub_component对应，可供产品配置
+          "features": [],                                       # 部件对外的可配置特性列表，一般与build中的sub_component对应，可供产品配置。
           "adapted_system_type": [],                            # 轻量(mini)小型(small)和标准(standard)，可以是多个
           "rom": "xxxKB"                                        # ROM基线，没有基线写当前值
           "ram": "xxxKB",                                       # RAM基线，没有基线写当前值

@@ -219,4 +219,3 @@ The following walks you through how to implement the entire process of audio and
     close(fd); // Close the FD.
     ```
 
- <!--no_check--> 

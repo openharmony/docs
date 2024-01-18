@@ -2794,4 +2794,5 @@ Enumerates the avoidance modes for the virtual keyboard.
 | ------ | ---------- |
 | OFFSET | Avoid the virtual keyboard through offset.|
 | RESIZE | Avoid the virtual keyboard through resizing.|
-<!--no_check-->
+
+ <!--no_check--> 
