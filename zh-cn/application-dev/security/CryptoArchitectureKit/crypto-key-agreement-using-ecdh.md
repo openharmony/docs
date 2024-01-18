@@ -1,7 +1,7 @@
 # 使用ECDH进行密钥协商
 
 
-对应的算法规格请查看[签名验签算法规格：ECDH](crypto-key-agreement-overview.md#ecdh)。
+对应的算法规格请查看[密钥协商算法规格：ECDH](crypto-key-agreement-overview.md#ecdh)。
 
 
 ## 开发步骤
