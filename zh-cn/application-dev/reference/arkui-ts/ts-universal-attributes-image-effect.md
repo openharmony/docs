@@ -275,8 +275,8 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE  |
-| type   | [BlendApplyType](#blendapplytype对象说明)  |    否    | blend实现方式是否离屏，BlendApplyType.FAST不离屏，BlendApplyType.OFFSCREEN会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
+| value  | [BlendMode](#blendmode枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>注意：blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度 da表示目标像素透明度 r表示混合后像素 ra表示混合后像素透明度。  |
+| type   | [BlendApplyType](#blendapplytype对象说明)  |    否    | blendMode实现方式是否离屏。<br/>BlendApplyType.FAST：不离屏。<br/>BlendApplyType.OFFSCREEN：会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -320,9 +320,7 @@ useShadowBatching(value: boolean)
 | OUTER_FLOATING_SM | 浮动小阴影。 |
 | OUTER_FLOATING_MD | 浮动中阴影。 |
 
-## BlendMode枚举说明
-
-注：s：源像素，d：目标像素，sa：原像素透明度 da：目标像素透明度 r：混合后像素 ra：混合后像素透明度
+## BlendMode<sup>11+</sup>枚举说明
 
 | 名称           | 描述                                                             |
 | ---------------| ------                                                        |
@@ -357,7 +355,7 @@ useShadowBatching(value: boolean)
 | COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
 | LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
 
-## BlendApplyType对象说明
+## BlendApplyType<sup>11+</sup>对象说明
 
 | 名称           | 描述                                                             |
 | ---------------| ------                                                          |
@@ -774,12 +772,9 @@ struct Index {
   }
 }
 ```
-BlendMode.NONE<br/>
-![zh-cn_image_effect_blendMode1](figures/zh-cn_image_effect_blendMode1.png)
+
 <br/>BlendMode.OVERLAY,BlendApplyType.OFFSCREEN<br/>
-![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode2.png)
-<br/>BlendMode.COLOR,BlendApplyType.FAST<br/>
-![zh-cn_image_effect_blendMode3](figures/zh-cn_image_effect_blendMode3.png)
+![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode.png)
 <br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
 ### 示例11
