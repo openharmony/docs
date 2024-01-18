@@ -4,8 +4,7 @@
 
 ## 获取相册管理模块实例
 
-应用需要使用应用上下文Context通过接口[getPhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md#photoaccesshelpergetp
-hotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中媒体数据信息（如图片、视频）。
+应用需要使用应用上下文Context通过接口[getPhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中媒体数据信息（如图片、视频）。
 
 **开发步骤**
 
