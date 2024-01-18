@@ -47,7 +47,7 @@ AudioEncoder模块提供用于音频编码的函数。
 ### OH_AudioEncoder_Configure()
 
 ```
-OH_AVErrCode OH_AudioEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
+OH_AVErrCode OH_AudioEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format)
 ```
 
 **描述**
@@ -195,7 +195,7 @@ OH_AVErrCode OH_AudioEncoder_Flush (OH_AVCodec *codec)
 ### OH_AudioEncoder_FreeOutputData()
 
 ```
-OH_AVErrCode OH_AudioEncoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
+OH_AVErrCode OH_AudioEncoder_FreeOutputData (OH_AVCodec *codec, uint32_t index)
 ```
 
 **描述**
@@ -254,7 +254,7 @@ OH_AVFormat* OH_AudioEncoder_GetOutputDescription (OH_AVCodec *codec)
 ### OH_AudioEncoder_IsValid()
 
 ```
-OH_AVErrCode OH_AudioEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
+OH_AVErrCode OH_AudioEncoder_IsValid (OH_AVCodec *codec, bool *isValid)
 ```
 
 **描述**
@@ -313,7 +313,7 @@ OH_AVErrCode OH_AudioEncoder_Prepare (OH_AVCodec *codec)
 ### OH_AudioEncoder_PushInputData()
 
 ```
-OH_AVErrCode OH_AudioEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OH_AudioEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr)
 ```
 
 **描述**
@@ -377,7 +377,7 @@ OH_AVErrCode OH_AudioEncoder_Reset (OH_AVCodec *codec)
 ### OH_AudioEncoder_SetCallback()
 
 ```
-OH_AVErrCode OH_AudioEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData )
+OH_AVErrCode OH_AudioEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData)
 ```
 
 **描述**
@@ -408,7 +408,7 @@ OH_AVErrCode OH_AudioEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 ### OH_AudioEncoder_SetParameter()
 
 ```
-OH_AVErrCode OH_AudioEncoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *format )
+OH_AVErrCode OH_AudioEncoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *format)
 ```
 
 **描述**

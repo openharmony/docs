@@ -515,7 +515,7 @@ uint8_t* OH_AVBuffer_GetAddr (OH_AVBuffer *buffer)
 ### OH_AVBuffer_GetBufferAttr()
 
 ```
-OH_AVErrCode OH_AVBuffer_GetBufferAttr (OH_AVBuffer *buffer, OH_AVCodecBufferAttr *attr )
+OH_AVErrCode OH_AVBuffer_GetBufferAttr (OH_AVBuffer *buffer, OH_AVCodecBufferAttr *attr)
 ```
 
 **描述**
@@ -616,7 +616,7 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 ### OH_AVBuffer_SetBufferAttr()
 
 ```
-OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBufferAttr *attr )
+OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBufferAttr *attr)
 ```
 
 **描述**
@@ -642,7 +642,7 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBuf
 ### OH_AVBuffer_SetParameter()
 
 ```
-OH_AVErrCode OH_AVBuffer_SetParameter (OH_AVBuffer *buffer, const OH_AVFormat *format )
+OH_AVErrCode OH_AVBuffer_SetParameter (OH_AVBuffer *buffer, const OH_AVFormat *format)
 ```
 
 **描述**
@@ -668,7 +668,7 @@ OH_AVErrCode OH_AVBuffer_SetParameter (OH_AVBuffer *buffer, const OH_AVFormat *f
 ### OH_AVFormat_Copy()
 
 ```
-bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from )
+bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from)
 ```
 
 **描述**
@@ -694,7 +694,7 @@ bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from )
 ### OH_AVFormat_Create()
 
 ```
-struct OH_AVFormat* OH_AVFormat_Create (void )
+struct OH_AVFormat* OH_AVFormat_Create (void)
 ```
 
 **描述**
@@ -713,7 +713,7 @@ struct OH_AVFormat* OH_AVFormat_Create (void )
 ### OH_AVFormat_CreateAudioFormat()
 
 ```
-struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t sampleRate, int32_t channelCount )
+struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t sampleRate, int32_t channelCount)
 ```
 
 **描述**
@@ -740,7 +740,7 @@ struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t
 ### OH_AVFormat_CreateVideoFormat()
 
 ```
-struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t width, int32_t height )
+struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t width, int32_t height)
 ```
 
 **描述**
@@ -813,7 +813,7 @@ const char* OH_AVFormat_DumpInfo (struct OH_AVFormat *format)
 ### OH_AVFormat_GetBuffer()
 
 ```
-bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t ** addr, size_t *size )
+bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t ** addr, size_t *size)
 ```
 
 **描述**
@@ -841,7 +841,7 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 ### OH_AVFormat_GetDoubleValue()
 
 ```
-bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, double *out )
+bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, double *out)
 ```
 
 **描述**
@@ -868,7 +868,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 ### OH_AVFormat_GetFloatValue()
 
 ```
-bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, float *out )
+bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, float *out)
 ```
 
 **描述**
@@ -895,7 +895,7 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, flo
 ### OH_AVFormat_GetIntValue()
 
 ```
-bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32_t *out )
+bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32_t *out)
 ```
 
 **描述**
@@ -922,7 +922,7 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32
 ### OH_AVFormat_GetLongValue()
 
 ```
-bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int64_t *out )
+bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int64_t *out)
 ```
 
 **描述**
@@ -949,7 +949,7 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int6
 ### OH_AVFormat_GetStringValue()
 
 ```
-bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, const char ** out )
+bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, const char ** out)
 ```
 
 **描述**
@@ -976,7 +976,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 ### OH_AVFormat_SetBuffer()
 
 ```
-bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size )
+bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const uint8_t *addr, size_t size)
 ```
 
 **描述**
@@ -1004,7 +1004,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 ### OH_AVFormat_SetDoubleValue()
 
 ```
-bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, double value )
+bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, double value)
 ```
 
 **描述**
@@ -1031,7 +1031,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 ### OH_AVFormat_SetFloatValue()
 
 ```
-bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, float value )
+bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, float value)
 ```
 
 **描述**
@@ -1058,7 +1058,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 ### OH_AVFormat_SetIntValue()
 
 ```
-bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32_t value )
+bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32_t value)
 ```
 
 **描述**
@@ -1085,7 +1085,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 ### OH_AVFormat_SetLongValue()
 
 ```
-bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int64_t value )
+bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int64_t value)
 ```
 
 **描述**
@@ -1112,7 +1112,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 ### OH_AVFormat_SetStringValue()
 
 ```
-bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, const char *value )
+bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, const char *value)
 ```
 
 **描述**

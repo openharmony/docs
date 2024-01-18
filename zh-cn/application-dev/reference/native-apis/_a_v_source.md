@@ -37,7 +37,7 @@ AVSource模块提供用于构造音视频资源对象功能的函数。
 ### OH_AVSource_CreateWithFD()
 
 ```
-OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size )
+OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size)
 ```
 
 **描述**
@@ -145,7 +145,7 @@ OH_AVFormat* OH_AVSource_GetSourceFormat (OH_AVSource *source)
 ### OH_AVSource_GetTrackFormat()
 
 ```
-OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource *source, uint32_t trackIndex )
+OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource *source, uint32_t trackIndex)
 ```
 
 **描述**

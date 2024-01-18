@@ -47,7 +47,7 @@ AudioCodec模块提供用于音频编解码功能的函数。
 ### OH_AudioCodec_Configure()
 
 ```
-OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *format )
+OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *format)
 ```
 
 **描述**
@@ -73,7 +73,7 @@ OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *form
 ### OH_AudioCodec_CreateByMime()
 
 ```
-OH_AVCodec* OH_AudioCodec_CreateByMime (const char *mime, bool isEncoder )
+OH_AVCodec* OH_AudioCodec_CreateByMime (const char *mime, bool isEncoder)
 ```
 
 **描述**
@@ -176,7 +176,7 @@ OH_AVErrCode OH_AudioCodec_Flush (OH_AVCodec *codec)
 ### OH_AudioCodec_FreeOutputBuffer()
 
 ```
-OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index )
+OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index)
 ```
 
 **描述**
@@ -229,7 +229,7 @@ OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec *codec)
 ### OH_AudioCodec_IsValid()
 
 ```
-OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec *codec, bool *isValid )
+OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec *codec, bool *isValid)
 ```
 
 **描述**
@@ -280,7 +280,7 @@ OH_AVErrCode OH_AudioCodec_Prepare (OH_AVCodec *codec)
 ### OH_AudioCodec_PushInputBuffer()
 
 ```
-OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index )
+OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index)
 ```
 
 **描述**
@@ -310,7 +310,7 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index )
 ### OH_AudioCodec_RegisterCallback()
 
 ```
-OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData )
+OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallback callback, void *userData)
 ```
 
 **描述**
@@ -362,7 +362,7 @@ OH_AVErrCode OH_AudioCodec_Reset (OH_AVCodec *codec)
 ### OH_AudioCodec_SetParameter()
 
 ```
-OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec *codec, const OH_AVFormat *format )
+OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec *codec, const OH_AVFormat *format)
 ```
 
 **描述**
