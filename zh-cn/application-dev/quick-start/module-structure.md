@@ -123,7 +123,6 @@ distro示例：
 | parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空 |
 | results | 标识Ability返回值的元信息。每个返回值的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配。 | 对象数组 | 可缺省，缺省值为空。 |
-| [mergeRule](#mergerule对象的内部结构) | 该标签标识合并配置的规则。 | 对象 | 可缺省，缺省值为空。 |
 
 ## parameters对象内部结构
 
@@ -203,7 +202,7 @@ metadata对象示例：
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | uri | 标识Ability的统一资源标识符。该标签最大长度为255个字节。 | 字符串 | 可缺省，对于data类型的Ability不可缺省。 |
-| launchType | 标识Ability的启动模式，支持"standard"和"singleton"两种模式：<br/>standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
+| launchType | 标识Ability的启动模式，支持"multiton"和"singleton"两种模式：<br/>multiton：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
 | visible | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
 | permissions | 标识其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。 |
 |skills | 标识Ability能够接收的want的特征。 | 对象数组 | 可缺省，缺省值为空。 |
@@ -226,7 +225,6 @@ metadata对象示例：
 | startWindowIcon | 标识该Ability启动页面图标资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$media:icon。 | 字符串 | 可缺省，缺省值为空。 |
 | startWindowBackground | 标识该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$color:red。 | 字符串 | 可缺省，缺省值为空。 |
 | removeMissionAfterTerminate | 该标签标识Ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的Ability。true表示销毁后移除任务，&nbsp;false表示销毁后不移除任务。 | 布尔值 | 可缺省，缺省值为false。 |
-| [mergeRule](#mergerule对象的内部结构) | 该标签标识合并配置的规则。 | 对象 | 可缺省，缺省值为空。 |
 
 
 **不允许应用隐藏入口图标**
@@ -418,7 +416,6 @@ skills示例：
 | name | 需要使用的权限名称。 | 字符串 | 否 |
 | reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空 |
 | usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse" |
-| [mergeRule](#mergerule对象的内部结构) | 该标签标识合并配置的规则。 | 对象 | 可缺省，缺省值为空。 |
 
 ## usedScene对象内部结构
 
@@ -440,7 +437,6 @@ skills示例：
 | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省，缺省值见表15。 |
 | type | 标识JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为"normal"。 |
 |mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空。 |
-| [mergeRule](#mergerule对象的内部结构) | 该标签标识合并配置的规则。 | 对象 | 可缺省，缺省值为空。 |
 
 ## window对象的内部结构
 
@@ -700,7 +696,6 @@ distroFilter示例：
 | data | 标识配置当前静态公共事件要携带的附加数据数组。 | 字符串数组 | 可缺省，缺省值为空。 |
 | type | 该标签用于配置当前静态公共事件的分类数组。 | 字符串数组 | 可缺省，缺省值为空。 |
 | events | 此标签标识可接收的意图的一组事件值。一般由系统预定义，也可以自定义。 | 字符串数组 | 不可缺省。 |
-| [mergeRule](#mergerule对象的内部结构) | 该标签标识合并配置的规则。 | 对象 | 可缺省，缺省值为空。 |
 
 
 commonEvents示例：
@@ -753,57 +748,3 @@ definePermission仅支持系统应用配置，三方应用配置不生效。
 | distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限。 | 布尔值 | 可缺省，缺省值为false。 |
 | label | 标识权限的简短描述，配置为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识权限的详细描述，可以是字符串（最大长度为255字节），或者为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
-
-## mergeRule对象的内部结构
-
-**表30** **mergeRule对象的内部结构说明**
-
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| remove | 标识合并后需要移除的标签。 | 字符串数组 | 可缺省，缺省值为空。 |
-| replace | 标识合并冲突时需要替换的标签，并始终保留最高优先级的值。 | 字符串数组 | 可缺省，缺省值为空。 |
-
-mergeRule示例：
-```json
-//合并前hap的config.json
-{
-  "abilities": [
-    {
-      "mergeRule": {
-        "remove": ["orientation"],
-        "replace": ["launchType"]
-      },
-      "name": "com.example.myapplication.entry.MainAbility",
-      "type": "page",
-      "launchType": "standard",
-      "visible": false
-    }
-  ]
-}
-
-//合并前har的config.json
-{
-  "abilities": [
-    {
-      "name": "com.example.myapplication.entry.MainAbility",
-      "type": "page",
-      "launchType": "singleton",
-      "orientation": "portrait",
-      "visible": false
-    }
-  ]
-}
-
-//合并后的config.json
-{
-  "abilities": [
-    {
-      "name": "com.example.myapplication.entry.MainAbility",
-      "type": "page",
-      "launchType": "standard",
-      "visible": false
-    }
-  ]
-}
-```
-由于hap和har的ability.name值一样，需要合并两个config.json中的ability，在hap的abilities标签下添加mergeRule，其中remove标识合并后删除的子标签，replace标识合并后需要替换的子标签。
