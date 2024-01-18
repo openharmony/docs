@@ -4724,6 +4724,56 @@ try {
 }
 ```
 
+### bundleManager.deleteAbc<sup>11+</sup>
+
+deleteAbc(abcPath: string): Promise\<void>
+
+根据给定的abcPath删除.abc文件。使用Promise异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPath  | string | 是   | .abc文件路径。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700202 | deleteAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPath : string = '/data/storage/el2/base/a.abc';
+
+try {
+    bundleManager.deleteAbc(abcPath).then((data) => {
+        hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
+}
+```
+
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>
