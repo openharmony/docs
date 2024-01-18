@@ -10,9 +10,9 @@ The location attributes set the alignment mode, layout direction, and position o
 
 align(value: Alignment)
 
-Alignment mode of the component content in the drawing area.
+Sets the alignment mode of the component content in the drawing area.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,9 +26,9 @@ Alignment mode of the component content in the drawing area.
 
 direction(value: Direction)
 
-Horizontal layout of the component.
+Sets how elements are laid out along the main axis of the container.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,15 +36,15 @@ Horizontal layout of the component.
 
 | Name| Type                                       | Mandatory| Description                                               |
 | ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [Direction](ts-appendix-enums.md#direction) | Yes  | Horizontal layout of the component.<br>Default value: **Direction.Auto**|
+| value  | [Direction](ts-appendix-enums.md#direction) | Yes  | How elements are laid out along the main axis of the component.<br>For example, the main axis of the **\<Column>** component runs vertically.<br>Default value: **Direction.Auto**|
 
 ## position
 
 position(value: Position)
 
-Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values.
+Sets the absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ Offset of the component's upper left corner relative to the parent component's u
 
 | Name| Type                             | Mandatory| Description                                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | Yes  | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.|
+| value  | [Position](ts-types.md#position8) | Yes  | Absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.|
 
 ## markAnchor
 
@@ -60,7 +60,7 @@ markAnchor(value: Position)
 
 Sets the anchor for locating the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,9 +74,9 @@ Sets the anchor for locating the component.
 
 offset(value: Position)
 
-Offset of the component relative to itself. This offset is expressed using relative values.
+Sets the relative position of the component, which defines the offset of the component relative to itself.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,15 +84,15 @@ Offset of the component relative to itself. This offset is expressed using relat
 
 | Name| Type                             | Mandatory| Description                                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | Yes  | Offset of the component relative to itself. This offset is expressed using relative values. With this attribute set, the component participates in the layout of the parent component. During drawing, an extra offset is made based on the offset provided by the parent component.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none|
+| value  | [Position](ts-types.md#position8) | Yes  | Offset of the component relative to itself. With this attribute set, the component participates in the layout of the parent component. During drawing, an extra offset is made based on the offset provided by the parent component.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none|
 
 ## alignRules<sup>9+</sup>
 
 alignRules(value: AlignRuleOption)
 
-Alignment rules relative to the container. This attribute is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).
+Sets the alignment rules in the relative container. This API is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +100,7 @@ Alignment rules relative to the container. This attribute is valid only when the
 
 | Name| Type                                       | Mandatory| Description                    |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| value  | [AlignRuleOption](#alignruleoption) | Yes  | Alignment rule of the relative container.|
+| value  | [AlignRuleOption](#alignruleoption) | Yes  | Alignment rules in the relative container.|
 
 ## AlignRuleOption
 

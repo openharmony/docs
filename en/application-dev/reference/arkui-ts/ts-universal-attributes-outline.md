@@ -4,7 +4,7 @@ You can set outline attributes for components.
 
 >  **NOTE**
 >
->  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## outline
 

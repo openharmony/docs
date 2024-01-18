@@ -39,7 +39,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other [scrollable components](ts-container-list.md).|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [\<Grid>](ts-container-grid.md), or [\<Scroll>](ts-container-scroll.md).|
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | No| Layout options of a scrolling grid.|
 
 ## GridLayoutOptions<sup>10+</sup>
@@ -104,7 +104,7 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 - The **\<Grid>** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
 - The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
 - In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
-- When **layoutDirection** is set to **Row**, elements are arranged row by row from left to right. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
+- When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row will be added. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
 - When **layoutDirection** is set to **Column**, elements are arranged column by column from top to bottom. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
 
 ## GridDirection<sup>8+</sup>
@@ -325,7 +325,7 @@ Below shows how the grid looks after grid item 1 and grid item 6 swap their posi
 
 ### Example 3
 
-This examples uses **irregularIndexes** and **onGetIrregularSizeByIndex** in **GridLayoutOptions**.
+This example uses **irregularIndexes** and **onGetIrregularSizeByIndex** in **GridLayoutOptions**.
 
 ```ts
 // xxx.ets
@@ -406,7 +406,7 @@ struct GridExample {
 
 ### Example 4
 
-This examples uses **onGetRectByIndex** in **GridLayoutOptions**.
+This example uses **onGetRectByIndex** in **GridLayoutOptions**.
 
 ```ts
 @Entry

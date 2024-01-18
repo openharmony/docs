@@ -117,28 +117,28 @@ export class WaterFlowDataSource implements IDataSource {
   // Notify the controller of data addition.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
+      listener.onDataAdd(index)
     })
   }
 
   // Notify the controller of data changes.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
+      listener.onDataChange(index)
     })
   }
 
   // Notify the controller of data deletion.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDeleted(index)
+      listener.onDataDelete(index)
     })
   }
 
   // Notify the controller of the data location change.
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMoved(from, to)
+      listener.onDataMove(from, to)
     })
   }
 

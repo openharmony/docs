@@ -6,21 +6,175 @@ The size attributes set the width, height, and margin of a component.
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## width
 
-## Attributes
+width(value: Length)
 
+Sets the width of the component. By default, the width required to fully hold the component content is used. If the width of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
 
-| Name          | Type                                                    | Description                                                        |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width          | [Length](ts-types.md#length)                                 | Width of the component. By default, the width required to fully hold the component content is used. If the width of the component is greater than that of the parent container, the range of the parent container is drawn.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| height         | [Length](ts-types.md#length)                                 | Height of the component. By default, the height required to fully hold the component content is used. If the height of the component is greater than that of the parent container, the range of the parent container is drawn.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| size           | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | Size of the component.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| padding        | [Padding](ts-types.md#padding) \| [Length](ts-types.md#length) | Padding of the component.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>Unit: vp<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| margin         | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Margin of the component.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 20.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| layoutWeight   | number \| string                                   | Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
-| constraintSize | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | Constraint size of the component, which is used to limit the size range during component layout. **constraintSize** takes precedence over **width** and **height**. Learn [how the value of this attribute affects the width and height](#impact-of-constraintsize-on-widthheight).<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+Since API version 10, this API supports the calc calculation feature.
 
-## Impact of constraintSize on width/height
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                           |
+| ------ | ---------------------------- | ---- | ------------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Width of the component to set.<br>Unit: vp|
+
+## height
+
+height(value: Length)
+
+Sets the height of the component. By default, the height required to fully hold the component content is used. If the height of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
+
+Since API version 10, this API supports the calc calculation feature.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                           |
+| ------ | ---------------------------- | ---- | ------------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Height of the component to set.<br>Unit: vp|
+
+>  **NOTE**
+>
+>  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+
+## Size
+
+size(value: SizeOptions)
+
+Sets the size of the component.
+
+Since API version 10, this API supports the calc calculation feature.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                       |
+| ------ | ----------------------------------- | ---- | --------------------------- |
+| value  | [SizeOptions](#sizeoptions) | Yes  | Size of the component to set.<br>Unit: vp|
+
+## padding
+
+padding(value: Padding | Length)
+
+Sets the padding of the component.
+
+Since API version 10, this API supports the calc calculation feature.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Padding](ts-types.md#padding) \|  [Length](ts-types.md#length) | Yes  | Padding of the component to set.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>Unit: vp<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.|
+
+## margin
+
+margin(value: margin | Length)
+
+Sets the margin of the component.
+
+Since API version 10, this API supports the calc calculation feature.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory    | Description                                                        |
+| ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 20.|
+
+## layoutWeight
+
+layoutWeight(value: number | string)
+
+Sets the weight of the component during layout.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                      | Mandatory    | Description                                                        |
+| ------ | -------------------------- | -------- | ------------------------------------------------------------ |
+| value  | number \| string | Yes| Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+
+## constraintSize
+
+constraintSize(value: ConstraintSizeOptions)
+
+Sets the constraint size of the component, which is used to limit the size range during component layout.
+
+Since API version 10, this API supports the calc calculation feature.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ConstraintSizeOptions](#constraintsizeoptions) | Yes  | Constraint size of the component to set. **constraintSize** takes precedence over **width** and **height**. See **Impact of constraintSize on width/height**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>|
+
+**Impact of constraintSize on width/height**
+
+| Default Value                                  | Result                                                        |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| /                                        | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height)) |
+| maxWidth/maxHeight                       | max(minWidth/minHeight, width/height)                        |
+| minWidth/minHeight                       | min(maxWidth/maxHeight, width/height)                        |
+| width/height                             | In the case of maxWidth/maxHeight > minWidth/minHeight, the layout logic of the component is used, and the result is between maxWidth/maxHeight and minWidth/minHeight.<br>In other cases, the result is max(minWidth/minHeight, maxWidth/maxHeight).|
+| maxWidth/maxHeight && width/height       | minWidth/minHeight                                           |
+| minWidth/minHeight && width/height       | The layout logic of the component is used. The final result does not exceed maxWidth/maxHeight.      |
+| maxWidth/maxHeight && minWidth/minHeight | Width/Height, which may be stretched or compressed based on other layout attributes.            |
+
+maxWidth/maxHeight && minWidth/minHeight && width/height|The layout restrictions passed by the parent container are used for layout.|
+
+## Example
+
+## SizeOptions
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name  | Type                        | Description          |
+| ------ | ---------------------------- | -------------- |
+| width  | [Length](ts-types.md#length) | Component width.|
+| height | [Length](ts-types.md#length) | Component height.|
+
+## ConstraintSizeOptions
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name     | Type                        | Description              |
+| --------- | ---------------------------- | ------------------ |
+| minWidth  | [Length](ts-types.md#length) | Minimum width of the component.|
+| maxWidth  | [Length](ts-types.md#length) | Maximum width of the component.|
+| minHeight | [Length](ts-types.md#length) | Minimum height of the component.|
+| maxHeight | [Length](ts-types.md#length) | Maximum height of the component.|
+
+>  **NOTE**
+>
+>  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+
+Impact of constraintSize on width/height
 
 | Default Value                                  | Result                |
 | ---------------------------------------- | ------------------ |

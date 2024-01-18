@@ -6,13 +6,37 @@ Layout constraints refer to constraints on the aspect ratio and display priority
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## aspectRatio
 
-## Attributes
+aspectRatio(value: number)
 
-| Name             | Type  | Description                                      |
-| --------------- | ------ | ---------------------------------------- |
-| aspectRatio     | number | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>Since API version 9, this API is supported in ArkTS widgets.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **\<Row>** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **\<Row>** component is 0.|
-| displayPriority | number | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
+Sets the aspect ratio of the component.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **\<Row>** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **\<Row>** component is 0.|
+
+## displayPriority
+
+displayPriority(value: number)
+
+Sets the display priority for the component in the layout container.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
 
 ## Example
 
