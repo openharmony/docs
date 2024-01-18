@@ -181,30 +181,30 @@
 
    - 通过OH_PhotoOutput_Capture方法，执行拍照任务。该方法有一个参数，该参数为CreatePhotoOutput时的回调参Camera_PhotoOutput** photoOutput。
 
-   ```c++
-    Camera_ErrorCode ret = OH_PhotoOutput_Capture(photoOutput);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
-    }
-   ```
+     ```c++
+      Camera_ErrorCode ret = OH_PhotoOutput_Capture(photoOutput);
+      if (ret == CAMERA_OK) {
+          OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
+      } else {
+          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
+      }
+     ```
 
    - 通过OH_PhotoOutput_Capture_WithCaptureSetting方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
- 
-   ```c++
-    Camera_PhotoCaptureSetting* photoSetting = nullptr;
-    photoSetting->quality = QUALITY_LEVEL_HIGH; // 设置图片质量高
-    photoSetting->rotation = IMAGE_ROTATION_0; // 设置图片旋转角度0
 
-    // 使用当前拍照设置进行拍照
-    ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting success ");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting failed. %d ", ret);
-    }
-   ```
+     ```c++
+      Camera_PhotoCaptureSetting* photoSetting = nullptr;
+      photoSetting->quality = QUALITY_LEVEL_HIGH; // 设置图片质量高
+      photoSetting->rotation = IMAGE_ROTATION_0; // 设置图片旋转角度0
+
+      // 使用当前拍照设置进行拍照
+      ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);
+      if (ret == CAMERA_OK) {
+          OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting success ");
+      } else {
+          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting failed. %d ", ret);
+      }
+     ```
 
 ## 状态监听
 
@@ -242,7 +242,7 @@
     }
   ```
 
-- 通过注册固定的onError回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册固定的onError回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
     void PhotoOutputOnError(Camera_PhotoOutput* photoOutput, Camera_ErrorCode errorCode)

@@ -41,7 +41,7 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 
 7. 退出播放：调用OH_AVPlayer_Release()销毁实例，AVPlayer进入released状态，退出播放。
 
-## 示例
+## 完整示例
 
 ```c
 #include "napi/native_api.h"

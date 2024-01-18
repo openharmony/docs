@@ -265,7 +265,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
-   
+
 9. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
    此时需要调用OH_AudioCodec_Start()重新开始解码。
@@ -286,7 +286,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-   
+
 10. （可选）调用OH_AudioCodec_Reset()重置解码器。
     调用OH_AudioCodec_Reset()后，解码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始解码。
 
@@ -302,7 +302,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // 异常处理
     }
     ```
-    
+
 11. 调用OH_AudioCodec_Stop()停止解码器。
 
     ```c++
@@ -312,10 +312,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-    
+
 12. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
 
-    **注意**：不要重复销毁解码器
+    > **说明：**
+    >不要重复销毁解码器
 
     ```c++
     // 调用OH_AudioCodec_Destroy, 注销解码器

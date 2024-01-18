@@ -18,12 +18,12 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 
 通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取收藏夹对象。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
-**开发步骤：**
+**开发步骤**
 
 1. 设置获取收藏夹的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.FAVORITE。
 2. 调用PhotoAccessHelper.getAlbums接口获取收藏夹对象。
@@ -45,18 +45,18 @@ async function example() {
 }
 ```
 
-### 收藏图片和视频
+### 收藏图片和视频（仅向系统应用开放）
 
 通过[PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频设置收藏。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面将以收藏一张图片为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取指定媒体资源](photoAccessHelper-resource-guidelines.md#获取指定媒体资源)。
 2. favoriteState参数设置为true，表示将会设置为收藏。
@@ -92,14 +92,14 @@ async function example() {
 
 先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取收藏夹中的资源。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取收藏夹中的一张图片为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取收藏夹对象](#获取收藏夹对象)。
 2. 建立图片检索条件，用于获取图片。
@@ -135,18 +135,18 @@ async function example() {
 }
 ```
 
-### 取消收藏图片或视频
+### 取消收藏图片或视频（仅向系统应用开放）
 
 通过[PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1)接口将图片或者视频取消收藏。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以将一张图片取消收藏为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. [获取收藏夹中的图片和视频](#获取收藏夹中的图片和视频)。
 2. favoriteState参数设置为false。
@@ -192,12 +192,12 @@ async function example() {
 
 通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取视频相册对象。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
-**开发步骤：**
+**开发步骤**
 
 1. 设置获取视频相册的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.VIDEO。
 2. 调用PhotoAccessHelper.getAlbums接口获取视频相册。
@@ -223,14 +223,14 @@ async function example() {
 
 先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取视频相册对象中的视频资源。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取视频相册中的一个视频为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. 先[获取视频相册对象](#获取视频相册对象)。
 2. 建立视频检索条件，用于获取视频。
@@ -266,7 +266,7 @@ async function example() {
 }
 ```
 
-## 截屏和录屏相册
+## 截屏和录屏相册（仅向系统应用开放）
 
 截屏和录屏相册属于系统相册，用户文件中属于截屏和录屏的媒体文件会自动加入到截屏和录屏相册中。
 
@@ -274,12 +274,12 @@ async function example() {
 
 通过[PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2)接口获取截屏和录屏相册对象。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
-**开发步骤：**
+**开发步骤**
 
 1. 设置获取截屏和录屏相册的参数为photoAccessHelper.AlbumType.SYSTEM和photoAccessHelper.AlbumSubtype.SCREENSHOT。
 2. 调用PhotoAccessHelper.getAlbums接口获取截屏和录屏相册。
@@ -305,14 +305,14 @@ async function example() {
 
 先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-3)接口获取截屏和录屏相册对象中的媒体资源。
 
-**前提条件：**
+**前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取截屏和录屏相册中的一个媒体资源为例。
 
-**开发步骤：**
+**开发步骤**
 
 1. 先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。
 2. 建立检索条件，用于获取媒体资源。
