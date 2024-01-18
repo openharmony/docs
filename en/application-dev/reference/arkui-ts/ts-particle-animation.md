@@ -50,10 +50,10 @@ function Particle
 | value | {<br>particles:Array&lt;[ParticleOptions](#particleoptions)&lt;<br>[PARTICLE](#particletype), <br>[COLOR_UPDATER](#particleupdater),<br>[OPACITY_UPDATER](#particleupdater),<br>[SCALE_UPDATER](#particleupdater),<br>[ACC_SPEED_UPDATER](#particleupdater),<br> [ACC_ANGLE_UPDATER](#particleupdater),<br>[SPIN_UPDATER](#particleupdater)<br>&gt;&gt;<br>} | Yes| An array of particle options, each of which covers the emitter, color, opacity, scale, velocity, acceleration, and spin speed of particles. For details, see [ParticleOptions](#particleoptions).
 
 ## Attributes
-The universal attributes are supported.
+The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## Events
-The universal events are supported.
+The [universal events](ts-universal-events-click.md) are supported.
 
 ## ParticleOptions
 

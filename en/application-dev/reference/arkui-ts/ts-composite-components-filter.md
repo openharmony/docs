@@ -39,7 +39,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 | multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | Yes| \@Prop | List of filter criteria.| 
 | additionFilters | [FilterParams](#filterparams) | No| \@Prop | Additional quick filter.| 
 | filterType | [FilterType](#filtertype) | No| \@Prop | Filter type.| 
-| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;) =&gt; void | Yes| \@Prop | Callback invoked when the filter criteria is changed. The input parameter is the list of selected filter criteria.| 
+| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;) =&gt; void | Yes| - | Callback invoked when the filter criteria is changed. The input parameter is the list of selected filter criteria.| 
 | container | ()=&gt;void | No| \@BuilderParam | Custom content of the filtering result display area, which is passed in a trailing closure.| 
 
 
@@ -53,10 +53,10 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterType
 
-| Name| Description| 
-| -------- | -------- |
-| MULTI_LINE_FILTER | Multi-line collapsible.| 
-| LIST_FILTER | Multi-line list.| 
+| Name| Value| Description| 
+| -------- | -------- | -------- |
+| MULTI_LINE_FILTER | 0 | Multi-line collapsible.| 
+| LIST_FILTER | 1 | Multi-line list.| 
 
 
 ## FilterResult

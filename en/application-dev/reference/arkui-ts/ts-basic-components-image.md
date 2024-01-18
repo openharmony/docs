@@ -1,6 +1,6 @@
 # Image
 
-The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, BMP, SVG, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **\<Image>** component is usually used to display images in applications. It
 
 ## Required Permissions
 
-To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 
 ## Child Components
@@ -44,7 +44,7 @@ For details about how to use the attributes, see [Setting Attributes](../../ui/a
 | objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | interpolation                    | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed.<br>Default value: **ImageInterpolation.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | renderMode                       | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| sourceSize                       | {<br>width: number,<br>height: number<br>} | Decoding size of the image. This attribute can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.<br>Unit: px<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute works only when the target size is smaller than the source size.<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
+| sourceSize                       | {<br>width: number,<br>height: number<br>} | Decoding size of the image. This attribute can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute works only when the target size is smaller than the source size.<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
 | matchTextDirection               | boolean                                                 | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | fitOriginalSize                  | boolean                                                 | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | fillColor                        | [ResourceColor](ts-types.md#resourcecolor)              | Fill color to be superimposed on the image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute applies only to an SVG image. Once set, the fill color will replace that of the SVG image.|
@@ -53,8 +53,8 @@ For details about how to use the attributes, see [Setting Attributes](../../ui/a
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | Whether the image can be copied.<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>SVG images cannot be copied.|
 | colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.|
 | draggable<sup>9+</sup> | boolean                                                 | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**<br>**NOTE**<br>The default value is **false** in API version 9 and **true** in API version 10.|
-| enableAnalyzer<sup>11+</sup>   | boolean                                                 | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect.<br>Default value: **false**<br>**NOTE**<br> This feature depends on device capabilities.<br> Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../apis/js-apis-image.md#pixelmap7) can be passed in for analysis.<br> The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.<br> Analysis is performed based on the complete original image. If the **clip**, **margin**, **borderRadius**, **position**, or **objectFit** attribute is set, the image is not displayed completely. If **renderMode** is used to apply a mask, analysis is still performed based on the complete original image.<br> The **copyOption** attribute does not affect the AI analyzer.|
-| analyzerConfig<sup>11+</sup>   | [ImageAnalyzerConfig](#imageanalyzerconfig11)           | Type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported.|
+| enableAnalyzer<sup>11+</sup> | boolean                                                 | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect.<br>Default value: **false**<br>**NOTE**<br> This feature depends on device capabilities.<br> Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../apis/js-apis-image.md#pixelmap7) in [RGBA_8888](../apis/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example](#enabling-ai-analyzer-for-pixel-maps)<br> The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.<br> Analysis is performed based on the complete original image. If the **clip**, **margin**, **borderRadius**, **position**, or **objectFit** attribute is set, the image is not displayed completely. If **renderMode** is used to apply a mask, analysis is still performed based on the complete original image.<br> The **copyOption** attribute does not affect the AI analyzer.|
+| analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | Type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported.<br>**NOTE**<br> The type of the AI analyzer cannot be dynamically modified.<br>**System API**:<br> This is a system API.|
 | edgeAntialiasing<sup>11+</sup> | number                                                  | Edge antialiasing of the image. This attribute applies only to an SVG image.<br>Value range: $[0.333, 1.333]$. The value is valid up to three decimal places.<br>Default value: **$0$**|
 
 >  **NOTE**
@@ -87,6 +87,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 Since API version 11, this API is supported in ArkTS widgets.
 
 Describes the type of the AI analyzer.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description          |
 | -------- | -------------- |
@@ -162,12 +166,11 @@ Describes the return object that triggers the callback for when an error occurs 
 | -------------------- | ------ | ------------------------- |
 | componentWidth       | number | Width of the component.<br>Unit: pixel|
 | componentHeight      | number | Height of the component.<br>Unit: pixel|
-| message<sup>9+</sup> | string | Error information.               |
+| message | string | Error information.               |
 
 ## Example
 
 ### Loading Images of Basic Types
-
 
 ```ts
 @Entry
@@ -208,7 +211,7 @@ struct ImageExample1 {
 
 The default network timeout period is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure the placeholder image displayed during loading. If more flexible network configuration is required, you can use the [HTTP](../../connectivity/http-request.md) tool to send a network request, and then decode the returned data into a **PixelMap** object in the **\<Image>** component. For details about image development, see [Image Processing](../../media/image-overview.md).
 
-To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 ```ts
 @Entry
@@ -230,70 +233,72 @@ struct ImageExample2 {
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-}
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
-  @State widthValue: number = 0;
-  @State heightValue: number = 0;
-  private on: Resource = $r('app.media.image_on');
-  private off: Resource = $r('app.media.image_off');
-  private on2off: Resource = $r('app.media.image_on2off');
-  private off2on: Resource = $r('app.media.image_off2on');
-  @State src: Resource = this.on;
+  private imageOne: Resource = $r('app.media.earth');
+  private imageTwo: Resource = $r('app.media.star');
+  private imageThree: Resource = $r('app.media.moveStar');
+  @State src: Resource = this.imageOne
+  @State src2: Resource = this.imageThree
+  build(){
+    Column(){
+      // Add a click event so that a specific image is loaded upon clicking.
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          this.src = this.imageTwo
+        })
 
-  build() {
-    Column() {
-      Row({ space: 20 }) {
-        Column() {
-          Image($r('app.media.img_example1'))
-            .alt($r('app.media.ic_public_picture'))
-            .sourceSize({
-              width: 900,
-              height: 900
-            })
-            .objectFit(ImageFit.Cover)
-            .height(180).width(180)
-            // Obtain the size of an image after the image loading is complete.
-            .onComplete(msg => {
-              if(msg){
-                this.widthValue = msg.width
-                this.heightValue = msg.height
-              }
-            })
-            .onError(() => {
-              console.log('load image fail')
-            })
-            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
-              align: Alignment.Bottom,
-              offset: { x: 0, y: 20 }
-            })
-        }
-        // Add a click event so that a specific image is loaded upon clicking.
-        Image(this.src)
-          .width(120).height(120)
-          .onClick(() => {
-            if (this.src == this.on || this.src == this.off2on) {
-              this.src = this.on2off
-            } else {
-              this.src = this.off2on
-            }
-          })
-          .onFinish(() => {
-            if (this.src == this.off2on) {
-              this.src = this.on
-            } else {
-              this.src = this.off
-            }
-          })
-      }
-    }.width('100%')
+      // When the image to be loaded is in SVG format:
+      Image(this.src2)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          // Load another image when the SVG image has finished its animation.
+          this.src2 = this.imageOne
+        })
+    }.width('100%').height('100%')
   }
 }
 ```
 
 ![en-us_image_0000001607845173](figures/en-us_image_0000001607845173.gif)
+
+### Enabling AI Analyzer for Pixel Maps
+
+```ts
+import image from '@ohos.multimedia.image'
+@Entry
+@Component
+struct ImageExample4 {
+  @State imagePixelMap: image.PixelMap | undefined = undefined
+
+  async aboutToAppear() {
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'))
+  }
+
+  build() {
+    Column() {
+      Image(this.imagePixelMap)
+        .enableAnalyzer(true)
+        .width(200)
+        .height(200)
+    }
+  }
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+}
+```
