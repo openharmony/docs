@@ -45,7 +45,7 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen 
 
 ## MediaQueryListener
 
-Implements the media query listener, including the first query result when the listener is applied for.
+Implements the media query listener, including the first query result when the listener is applied for. The specified media query condition, for example, **'(width <= 600vp)'**, is compared system information. If related information is not initialized during the first query, **matches** returns **false**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,7 +61,7 @@ Implements the media query listener, including the first query result when the l
 
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
-Registers the media query listener. The callback is triggered when the media attributes change.
+Registers a media query listener. The callback is triggered when the media attributes change.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +81,7 @@ Registers the media query listener. The callback is triggered when the media att
 
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
-Deregisters the media query listener, so that no callback is triggered when the media attributes change.
+Deregisters a media query listener, so that no callback is triggered when the media attributes change.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

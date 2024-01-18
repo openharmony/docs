@@ -35,7 +35,7 @@ LocalStorage provides two decorators based on the synchronization type of the co
 
 ## Restrictions
 
-- Once created, the type of a named attribute cannot be changed. Subsequent calls to **Set** must set a value of same type.
+- Once created, a named attribute cannot have its type changed. Subsequent calls to **Set** must set a value of same type.
 - LocalStorage provides page-level storage. The [GetShared](../reference/arkui-ts/ts-state-management.md#getshared9) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
@@ -118,7 +118,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 | \@LocalStorageLink Decorator| Description                                      |
 | ----------------------- | ---------------------------------------- |
 | Decorator parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified and must be the same as the corresponding attribute in LocalStorage. **any** is not supported. The **undefined** and **null** values are not allowed.|
+| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified and must be the same as the corresponding attribute in LocalStorage. **any** is not supported. The **undefined** and **null** values are not allowed.|
 | Synchronization type                   | Two-way: from the attribute in LocalStorage to the custom component variable and back|
 | Initial value for the decorated variable              | Mandatory. It is used as the default value for initialization if the attribute does not exist in LocalStorage.|
 
@@ -226,7 +226,7 @@ This example uses \@LocalStorageLink to show how to:
 
 ### Simple Example of Using \@LocalStorageProp with LocalStorage
 
-In this example, the **CompA** and **Child** components create local data that is one-way synced with the PropA attribute in the LocalStorage instance **storage**.
+In this example, the **CompA** and **Child** components create local data that is one-way synchronized with the PropA attribute in the LocalStorage instance **storage**.
 
 - The change of **this.storProp1** in **CompA** takes effect only in **CompA** and is not synchronized to **storage**.
 
@@ -379,41 +379,92 @@ Changes in the **Child** custom component:
 
 ### Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages
 
-In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its owning child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in the owning UIAbility and call windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9).
+In the preceding examples, the LocalStorage instance is shared only in an \@Entry decorated component and its child component (a page). To enable a LocalStorage instance to be shared across pages, you can create a LocalStorage instance in its owning UIAbility and call windowStage.[loadContent](../reference/apis/js-apis-window.md#loadcontent9).
 
 
 ```ts
 // EntryAbility.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-let para:Record<string,number> = { 'PropA': 47 };
-let localStorage: LocalStorage = new LocalStorage(para);
+
 export default class EntryAbility extends UIAbility {
-storage: LocalStorage = localStorage
+para:Record<string, number> = { 'PropA': 47 };
+storage: LocalStorage = new LocalStorage(this.para);
 
 onWindowStageCreate(windowStage: window.WindowStage) {
 windowStage.loadContent('pages/Index', this.storage);
 }
 }
 ```
+> **NOTE**
+>
+> On the page, call the **GetShared** API to obtain the LocalStorage instance shared through **loadContent**.
+>
+> **LocalStorage.GetShared** works only on emulators and real devices, not in DevEco Studio Previewer.
 
-On the page, call the **GetShared** API to obtain the LocalStorage instance shared through **loadContent**.
-
+In the following example, **propA** on the **Index** page uses the **GetShared()** API to obtain the shared LocalStorage instance. Click the button to go to the **Page** page. Click **Change propA** and then return to the **Index** page. It can be observed that the value of **propA** on the page is changed.
 
 ```ts
+// index.ets
+import router from '@ohos.router';
+
 // Use the GetShared API to obtain the LocalStorage instance shared by stage.
 let storage = LocalStorage.GetShared()
-
 @Entry(storage)
 @Component
-struct CompA {
-  // can access LocalStorage instance using 
-  // @LocalStorageLink/Prop decorated variables
-  @LocalStorageLink('PropA') varA: number = 1;
+struct Index {
+  // The LocalStorage instance can be accessed using 
+  // @LocalStorageLink/Prop decorated variables.
+  @LocalStorageLink('PropA') propA: number = 1;
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url:'pages/Page'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
+```ts
+// Page.ets
+import router from '@ohos.router';
+
+let storage = LocalStorage.GetShared()
+@Entry(storage)
+@Component
+struct Page {
+  @LocalStorageLink('PropA') propA: number = 2;
 
   build() {
-    Column() {
-      Text(`${this.varA}`).fontSize(50)
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+
+        Button("Change propA")
+          .onClick(() => {
+            this.propA = 100;
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
     }
   }
 }

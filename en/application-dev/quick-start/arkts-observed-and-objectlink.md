@@ -1,7 +1,7 @@
 # \@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects
 
 
-The decorators described above can observe only the changes of the first layer. However, in real-world application development, the application may encapsulate its own data model based on development requirements. In the case of multi-layer nesting, for example, a two-dimensional array, an array item class, or a class insider another class as an attribute, the attribute changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.
+The aforementioned decorators can observe only the changes of the first layer. However, in real-world application development, an application may encapsulate its own data model based on development requirements. However, in the case of multi-layer nesting, for example, a two-dimensional array, an array item class, or a class insider another class as an attribute, the attribute changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.
 
 
 > **NOTE**
@@ -17,12 +17,15 @@ The decorators described above can observe only the changes of the first layer. 
 
 - The \@ObjectLink decorated state variable in the child component is used to accept the instance of the \@Observed decorated class and establish two-way data binding with the corresponding state variable in the parent component. The instance can be an \@Observed decorated item in the array or an \@Observed decorated attribute in the class object.
 
-- Using \@Observed alone has no effect. Combined use with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization is required.
+- Using \@Observed alone has no effect. It needs to be used with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization.
 
 
 ## Restrictions
 
-Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
+- Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
+
+- The \@ObjectLink decorator cannot be used in custom components decorated by \@Entry.
+
 
 ## Decorator Description
 
@@ -52,7 +55,7 @@ this.objLink= ...
 >
 > Value assignment is not allowed for the \@ObjectLink decorated variable. To assign a value, use [@Prop](arkts-prop.md) instead.
 >
-> - \@Prop creates a one-way synchronization from the data source to the decorated variable. It takes a copy of its source tp enable changes to remain local. When \@Prop observes a change to its source, the local value of the \@Prop decorated variable is overwritten.
+> - \@Prop creates a one-way synchronization from the data source to the decorated variable. It takes a copy of its source to enable changes to remain local. When \@Prop observes a change to its source, the local value of the \@Prop decorated variable is overwritten.
 >
 > - \@ObjectLink creates a two-way synchronization between the data source and the decorated variable. An \@ObjectLink decorated variable can be considered as a pointer to the source object inside the parent component. If value assignment of an \@ObjectLink decorated variable occurs, the synchronization chain is interrupted.
 
@@ -62,7 +65,7 @@ this.objLink= ...
 | \@ObjectLink Transfer/Access| Description                                      |
 | ----------------- | ---------------------------------------- |
 | Initialization from the parent component          | Mandatory.<br>To initialize an \@ObjectLink decorated variable, a variable in the parent component must meet all the following conditions:<br>- The variable type is an \@Observed decorated class.<br>- The initialized value must be an array item or a class attribute.<br>- The class or array of the synchronization source must be decorated by \@State, \@Link, \@Provide, \@Consume, or \@ObjectLink.<br>For an example where the synchronization source is an array item, see [Object Array](#object-array). For an example of the initialized class, see [Nested Object](#nested-object).|
-| Synchronize with the source           | Two-way.                                     |
+| Synchronization with the source           | Two-way.                                     |
 | Subnode initialization         | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 
 
@@ -107,7 +110,7 @@ In the preceding example, **ClassB** is decorated by \@Observed, and the value c
 ```ts
 @ObjectLink b: ClassB
 
-// The value assignment can be observed.
+// Value changes can be observed.
 this.b.a = new ClassA(5)
 this.b.b = 5
 
@@ -190,6 +193,8 @@ struct ViewB {
 
   build() {
     Column() {
+      // In earlier versions, DevEco Studio may throw a warning.
+      // You can still compile and run your code in this case.
       ViewA({ label: 'ViewA #1', a: this.b.a })
       ViewA({ label: 'ViewA #2', a: this.b.a })
 
@@ -211,7 +216,7 @@ struct ViewB {
 ```
 
 
-Event handlers in **ViewB**:
+Event handles in **ViewB**:
 
 
 - this.b.a = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
@@ -293,11 +298,11 @@ struct ViewB {
 ```
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..): The change of this state variable triggers two updates.
-  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#api-description) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of ForEach is executed to create a **ViewA** component instance.
-  2. ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] }): The preceding update changes the first element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[0]** is updated.
+  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#available-apis) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of ForEach is executed to create a **ViewA** component instance.
+  2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] }): The preceding update changes the first element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[0]** is updated.
 
 - this.arrA.push(new ClassA(0)): The change of this state variable triggers two updates with different effects.
-  1. ForEach: The newly added Class A object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#api-description). The item builder of **ForEach** will be executed to create a **View A** component instance.
+  1. ForEach: The newly added Class A object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#available-apis). The item builder of **ForEach** will be executed to create a **View A** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
 - this.arrA[Math.floor (this.arrA.length/2)].c: [@State](arkts-state.md#observed-changes) cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.

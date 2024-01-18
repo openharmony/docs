@@ -331,9 +331,9 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
   ```ts
   Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').backgroundColor(0xF5DEB3)  
+    Text('2').width('33%').backgroundColor(0xD2B48C)  
+    Text('3').width('33%').backgroundColor(0xF5DEB3)
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
