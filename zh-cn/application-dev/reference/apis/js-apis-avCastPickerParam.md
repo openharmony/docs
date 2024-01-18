@@ -14,5 +14,5 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](../arkui-ts/ohos-multi
 
 | 类型   | 说明    |
 |------|-------|
-| STATE_APPEARING    | 开始投播。 |
-| STATE_DISAPPEARING    | 投播完成。 |
+| STATE_APPEARING    | 组件显示。 |
+| STATE_DISAPPEARING    | 组件消失。 |
