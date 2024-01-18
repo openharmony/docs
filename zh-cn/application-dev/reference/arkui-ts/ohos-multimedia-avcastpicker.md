@@ -29,8 +29,8 @@ AVCastPicker()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| normalColor | Color &#124; number &#124; string | 指定正常状态下投播组件的颜色 |
-| activeColor | Color &#124; number &#124; string | 指定处于活动状态下投播组件的颜色 |
+| normalColor | Color &#124; number &#124; string | 指正常状态下投播组件的颜色 |
+| activeColor | Color &#124; number &#124; string | 指设备切换成功状态下投播组件的颜色 |
 | onStateChange | (state: [AVCastPickerState](../apis/js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
 
 ## 事件
