@@ -52,7 +52,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.<br>**NOTE**<br>Available options are **Stack**, **Split**, and **Auto**.|
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar.<br>Default value: **false**|
+| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar. If this parameter is set to **true**, the navigation bar, including the title bar, content area, and toolbar, is hidden. In this case, if the navigation destination page is in the navigation stack, it is moved to the top of the stack and displayed. Otherwise, a blank page is displayed. From API version 9 to API version 10, this attribute takes effect only in dual-column mode. Since API version 11, this attribute takes effect in single-column, dual-column, and auto modes.<br>Default value: **false**|
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | Builder for a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar (valid in dual-column mode).<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If custom values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | Minimum width of the navigation bar content area (valid in dual-column mode).<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If custom values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
@@ -64,7 +64,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Called when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Called when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
 | onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| Called when the **\<Navigation>** component is displayed for the first time or its display mode switches between single-column and dual-column.<br>**NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
-| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation11)): [NavigationAnimatedTransition](#navigationanimatedtransition11)<sup>11+</sup> | Callback of the custom transition animation.<br>**from**: parameters of the exit destination page.<br> **to**: parameters of the enter destination page.<br> **operation**: transition type.|
+| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation-11)): [NavigationAnimatedTransition](#navigationanimatedtransition11)<sup>11+</sup> | Callback of the custom transition animation.<br>**from**: parameters of the exit destination page.<br> **to**: parameters of the enter destination page.<br> **operation**: transition type.|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -123,6 +123,42 @@ Replaces the top of the navigation stack with the page specified by **name**.
 | name  | string  | Yes   | Name of the navigation destination page.  |
 | param | Object | Yes   | Detailed parameters of the navigation destination page.|
 | animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+
+### removeByIndexes<sup>11+</sup>
+
+removeByIndexes(indexes: Array<number\>): number
+
+Removes the navigation destination pages specified by **indexes** from the navigation stack.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| indexes  | Array<number\>  | Yes   | Array of indexes of the navigation destination pages to remove.  |
+
+**Return value**
+
+| Type         | Description                      |
+| ----------- | ------------------------ |
+| number | Number of the navigation destination pages removed.|
+
+### removeByName<sup>11+</sup>
+
+removeByName(name: string): number
+
+Removes the navigation destination page specified by **name** from the navigation stack.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | Yes   | Name of the navigation destination page to remove.  |
+
+**Return value**
+
+| Type         | Description                      |
+| ----------- | ------------------------ |
+| number | Number of the navigation destination pages removed.|
 
 ### pop<sup>10+</sup>
 
@@ -335,7 +371,7 @@ Provides the destination information.
 |-------|-------|------|-------|
 | name | string | No| Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 | index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.|
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode11) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -670,8 +706,8 @@ export struct PageOneTmp {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
     })
   }
@@ -810,8 +846,8 @@ export struct pageOneTmp {
     }.title('pageOne')
     .mode(NavDestinationMode.STANDARD)
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
     })
     .translate({x: this.x, y: 0, z: 0})
@@ -856,8 +892,8 @@ export struct PageTwoTemp {
     }.title('pageTwo')
     .backgroundColor(Color.White)
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
     })
     .translate({x: this.x})
