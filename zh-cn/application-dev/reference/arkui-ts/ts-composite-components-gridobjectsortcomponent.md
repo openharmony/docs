@@ -25,7 +25,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 ## GridObjectSortComponent
 
-GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array<GridObjectSortComponentItem>, onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void, onCancel: () => void })
+GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array\<GridObjectSortComponentItem>, onSave: (select: Array\<GridObjectSortComponentItem>, unselect: Array\<GridObjectSortComponentItem>) => void, onCancel: () => void })
 
 **装饰器类型：**\@Component
 
@@ -35,48 +35,48 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 **参数**：
 
 
-| 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
-| -------- | -------------------------------- | ---------- | ---- | ------------ |
-| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | 是   | 组件配置信息。 |
-| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
-| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>) | - | 否 | 保存编辑排序的回调函数，返回编辑后的数据。 |
-| onCancel | () => void | - | 否 | 取消保存数据的回调。 |
-| build | () => void | - | 是 | 构建函数。 |
+| 名称       | 类型                                       | 装饰器类型 | 必填   | 说明                                |
+| -------- | ---------------------------------------- | ----- | ---- | --------------------------------- |
+| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop | 是    | 组件配置信息。                           |
+| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是    | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
+| onSave   | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>) | -     | 否    | 保存编辑排序的回调函数，返回编辑后的数据。             |
+| onCancel | () => void                               | -     | 否    | 取消保存数据的回调。                        |
+| build    | () => void                               | -     | 是    | 构建函数。                             |
 
 
 ##  GridObjectSortComponentOptions
 
-| 名称           | 类型                      | 必填 | 说明                                                   |
-| -------------- | ------------------------- | ---- | ------------------------------------------------------ |
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text。 |
-| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸。<br />默认值：56。                          |
-| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认：频道。            |
-| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认：长按拖动排序。 |
-| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认：点击添加。            |
-| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认：编辑。             |
+| 名称            | 类型                                       | 必填   | 说明                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type          | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否    | 组件展示形态：文字\|图片+文字。<br />默认值：GridObjectSortComponentType.text。 |
+| imageSize     | number \| [Resource](ts-types.md#resource) | 否    | 图片的尺寸。<br />默认值：56。                      |
+| normalTitle   | [ResourceStr](ts-types.md#resourcestr)   | 否    | 未编辑状态下显示的标题。<br />默认值：频道。                |
+| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)   | 否    | 展示区域标题，第一个子标题。<br />默认值：长按拖动排序。          |
+| addAreaTitle  | [ResourceStr](ts-types.md#resourcestr)   | 否    | 添加区域标题，第二个子标题。<br />默认值：点击添加。            |
+| editTitle     | [ResourceStr](ts-types.md#resourcestr)   | 否    | 编辑状态下头部标题显示。<br />默认值：编辑。                |
 
 
 ## GridObjectSortComponentType 
 
-| 名称     | 类型   | 值           | 说明           |
-| -------- | ------ | ------------ | -------------- |
+| 名称       | 类型     | 值            | 说明      |
+| -------- | ------ | ------------ | ------- |
 | IMAGE_TE | string | 'image_text' | 图片文字类型。 |
-| TEXT     | string | 'text'       | 文字类型。     |
+| TEXT     | string | 'text'       | 文字类型。   |
 
 
 ## GridObjectSortComponentItem
 
-| 名称     | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| id       | string \| number                       | 是   | 数据id序号，不可重复。                                       |
-| text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。                                               |
-| selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。                  |
-| url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |
-| order    | number                                 | 是   | 顺序序号。                                                   |
+| 名称       | 类型                                     | 必填   | 说明                                       |
+| -------- | -------------------------------------- | ---- | ---------------------------------------- |
+| id       | string \| number                       | 是    | 数据id序号，不可重复。                             |
+| text     | [ResourceStr](ts-types.md#resourcestr) | 是    | 显示文本信息。                                  |
+| selected | boolean                                | 是    | 是否已经被添加，添加：true，未添加：false。               |
+| url      | [ResourceStr](ts-types.md#resourcestr) | 否    | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |
+| order    | number                                 | 是    | 顺序序号。                                    |
 
 ##  事件
 
-不支持[通用事件](https://gitee.com/epro123/docs/blob/e9117a947a1c1649cb8fbd77e99eb3c0944f40f4/zh-cn/application-dev/reference/arkui-ts/ts-universal-events-click.md)。
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
