@@ -35,6 +35,9 @@ FolderStack(value?: { upperItems?:  Array<string\>})
 | alignContent    | [Alignment](ts-appendix-enums.md#alignment) | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>**说明：** <br/>该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。 |
 | enableAnimation | boolean                                     | 设置是否使用默认动效。<br/>默认值：true。                                                                                                     |
 | autoHalfFold    | boolean                                     | 是否开启自动旋转。<br/>默认值：true。                                                                                                            |
+>  **说明：**
+>
+>  设置offset和margin属性，可能会导致上下半屏遮挡折痕区，不建议开发者使用。
 
 ## 事件
 
