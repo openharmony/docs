@@ -18,5 +18,5 @@
 - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
 - [使用Web组件打印前端页面](web-print.md)
-- [Web组件的下载能力](web-download.md)
+- [使用Web组件的下载能力](web-download.md)
 - [使用预连接和预加载能力加速web页面的访问](web-predictor.md)
