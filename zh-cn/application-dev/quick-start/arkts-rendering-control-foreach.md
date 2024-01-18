@@ -64,7 +64,7 @@ struct Parent {
     Row() {
       Column() {
         ForEach(this.simpleList, (item: string) => {
-          ChildItem({ item: item })
+          ChildItem({ 'item': item } as Record<string, string>)
         }, (item: string) => item)
       }
       .width('100%')
@@ -105,7 +105,7 @@ struct ChildItem {
      Row() {
        Column() {
          ForEach(this.simpleList, (item: string) => {
-           ChildItem({ item: item })
+           ChildItem({ 'item': item } as Record<string, string>)
          }, (item: string) => item)
        }
        .width('100%')
@@ -298,7 +298,7 @@ struct ArticleListView {
       List() {
         ForEach(this.articleList, (item: Article) => {
           ListItem() {
-            ArticleCard({ article: item })
+            ArticleCard({ 'article': item } as Record<string, Article>)
               .margin({ top: 20 })
           }
         }, (item: Article) => item.id)
@@ -512,7 +512,7 @@ struct Parent {
       })
 
       ForEach(this.simpleList, (item: string) => {
-        ChildItem({ item: item })
+        ChildItem({ 'item': item } as Record<string, string>)
       }, (item: string, index: number) => index.toString())
     }
     .justifyContent(FlexAlign.Center)
@@ -567,7 +567,7 @@ struct Parent {
       })
 
       ForEach(this.simpleList, (item: string) => {
-        ChildItem({ item: item })
+        ChildItem({ 'item': item } as Record<string, string>)
       })
     }
     .justifyContent(FlexAlign.Center)

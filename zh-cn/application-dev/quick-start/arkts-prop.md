@@ -195,7 +195,7 @@ struct Index {
 
         ForEach(this.arr, 
           item => {
-            Child({value: item})
+            Child({'value': item} as Record<string, number>)
           }, 
           item => item.toString()
         )
