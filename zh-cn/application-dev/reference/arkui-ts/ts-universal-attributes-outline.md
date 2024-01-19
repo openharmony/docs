@@ -20,7 +20,7 @@ outline(value: OutlineOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ---- |
-| value  | [OutlineOptions](#outlineoptions对象说明) | 是   |      |
+| value  | [OutlineOptions](#outlineoptions对象说明) | 是   |   外描边样式。   |
 
 ## outlineStyle
 
