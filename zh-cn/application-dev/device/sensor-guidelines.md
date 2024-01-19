@@ -52,25 +52,25 @@
 
 4. 注册监听。可以通过on()和once()两种接口监听传感器的调用结果。
 
-- 通过on()接口，实现对传感器的持续监听，传感器上报周期interval设置为100000000纳秒。
+   通过on()接口，实现对传感器的持续监听，传感器上报周期interval设置为100000000纳秒。
 
-    ```ts    
-    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+   ```ts    
+   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    }, { interval: 100000000 });
-    ```
+   }, { interval: 100000000 });
+   ```
 
     ![输入图片说明](figures/002.png)
 
-- 通过once()接口，实现对传感器的一次监听。
+   通过once()接口，实现对传感器的一次监听。
 
-    ```ts  
-    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
-        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    });
-    ```
+   ```ts
+   sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+       console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+   });
+   ```
 
-    ![输入图片说明](figures/003.png)
+   ![输入图片说明](figures/003.png)
 
 5. 取消持续监听。
 
