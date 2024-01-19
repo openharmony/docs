@@ -16,7 +16,7 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
-   let keyAlias = 'dh_key_fingerprint_access';
+   let keyAlias = 'test_sm4_key_alias';
    class throwObject {
        isThrow: boolean = false;
    }
