@@ -724,7 +724,7 @@ class EntryAbility extends UIAbility {
 | ---------- | ------ | ---- | ---------------------------------------- |
 | sourceTable | string | 是   | 关联的子表。   |
 | targetTable | string | 是   | 关联的父表。   |
-| refFields   | {[src: string]: string} | 是   | 表示关联表的关联字段。键值数据中键为子表字段，值为父表字段。       |
+| refFields   | Record<string, string> | 是   | 表示关联表的关联字段。键值数据中键为子表字段，值为父表字段。       |
 
 ## DistributedConfig<sup>10+</sup>
 
