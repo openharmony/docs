@@ -163,6 +163,18 @@ Navigation() {
   TooTmp])
 ```
 
+图片也可以引用resources中的资源
+
+```ts
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
+Navigation() {
+  ...
+}
+.menus([TooTmp,
+  TooTmp,
+  TooTmp])
+```
+
 **图6** 设置了4个图标的菜单栏  
 
 ![菜单栏](figures/菜单栏.jpg)
