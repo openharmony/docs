@@ -1,10 +1,10 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
+AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果等。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -40,8 +40,6 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 | SHARE<sup>10+</sup>           | 5    | 通过元服务分享启动ability。 |
-| AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
-| INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。 |
 
 **示例：**
 
@@ -67,7 +65,6 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| ABILITY_NOT_RESPONDING | 1    | ability未响应。从API version 9 开始支持，从API version 10 开始废弃，建议使用APP_FREEZE替代。 |
 | NORMAL | 2    | 用户主动关闭，应用程序正常退出。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。 |
@@ -112,50 +109,6 @@ class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
         return AbilityConstant.OnContinueResult.AGREE;
     }
-}
-```
-
-## AbilityConstant.WindowMode
-
-启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                        | 值 | 说明                 |
-| ---                         | --- | ---                  |
-| WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
-| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。   |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。   |
-| WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let option: StartOptions = {
-  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
-};
-
-// 确保从上下文获取到context
-class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
-      console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
-    });
-  }
 }
 ```
 

@@ -8,9 +8,6 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [Component<sup>9+</sup>](#component9)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
 - [Driver<sup>9+</sup>](#driver9)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
 - [UiWindow<sup>9+</sup>](#uiwindow9)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能力。
-- [By<sup>(deprecated)</sup>](#bydeprecated)：提供控件特征描述能力，用于控件筛选匹配查找。从API version 9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
-- [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。从API version 9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
-- [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 >**说明：**
 >
@@ -20,7 +17,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块
 
 ```ts
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
+import {Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -623,10 +620,10 @@ click(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -651,10 +648,10 @@ doubleClick(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -679,10 +676,10 @@ longClick(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -713,10 +710,10 @@ getId(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -747,10 +744,10 @@ getText(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -781,10 +778,10 @@ getType(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -815,10 +812,10 @@ getBounds(): Promise\<Rect>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -849,10 +846,10 @@ getBoundsCenter(): Promise\<Point>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -883,10 +880,10 @@ isClickable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -913,18 +910,18 @@ isLongClickable(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                               |
-| ----------------- |--------------------------------------------------|
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | 以Promise形式返回控件对象是否可长按点击，true：可长按点击，false：不可长按点击。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -959,10 +956,10 @@ isChecked(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -997,10 +994,10 @@ isCheckable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1035,10 +1032,10 @@ isScrollable(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1074,10 +1071,10 @@ isEnabled(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1112,10 +1109,10 @@ isFocused(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1142,18 +1139,18 @@ isSelected(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                                |
-| ----------------- | --------------------------------------------------- |
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | 以Promise形式返回控件对象被选中状态，true：被选中，false：未被选中。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1188,10 +1185,10 @@ inputText(text: string): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1215,10 +1212,10 @@ clearText(): Promise\<void>
 **错误码：**
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1255,10 +1252,10 @@ scrollSearch(on: On): Promise\<Component>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1289,10 +1286,10 @@ scrollToTop(speed?: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1323,10 +1320,10 @@ scrollToBottom(speed?: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1357,10 +1354,10 @@ dragTo(target: Component): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1392,10 +1389,10 @@ pinchOut(scale: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1426,10 +1423,10 @@ pinchIn(scale: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000004 | if the component is invisible or destroyed.      |
 
 **示例：**
 
@@ -1491,16 +1488,16 @@ static create(): Driver
 
 **返回值：**
 
-| 类型 | 说明           |
-| -------- | ---------------------- |
-| Driver   | 返回构造的Driver对象。 |
+| 类型   | 说明                   |
+| ------ | ---------------------- |
+| Driver | 返回构造的Driver对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
 | 17000001 | if the test framework failed to initialize. |
 
 **示例：**
@@ -1530,8 +1527,8 @@ Driver对象在给定的时间内延时。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1568,8 +1565,8 @@ findComponent(on: On): Promise\<Component>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1606,8 +1603,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1644,8 +1641,8 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1675,16 +1672,16 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 **返回值：**
 
-| 类型                              | 说明                              |
-| --------------------------------- | --------------------------------- |
+| 类型                               | 说明                              |
+| ---------------------------------- | --------------------------------- |
 | Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1715,10 +1712,10 @@ assertComponentExist(on: On): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000003 | if the assertion failed.    |
+| 17000003 | if the assertion failed.                         |
 
 **示例：**
 
@@ -1742,8 +1739,8 @@ Driver对象进行点击BACK键的操作。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1774,8 +1771,8 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1808,8 +1805,8 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1842,8 +1839,8 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1875,8 +1872,8 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1908,8 +1905,8 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1944,8 +1941,8 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -1980,8 +1977,8 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2010,16 +2007,16 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **返回值：**
 
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
+| 类型              | 说明                                                    |
+| ----------------- | ------------------------------------------------------- |
 | Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2050,8 +2047,8 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2082,8 +2079,8 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2114,8 +2111,8 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2146,8 +2143,8 @@ getDisplaySize(): Promise\<Point>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2179,8 +2176,8 @@ getDisplayDensity(): Promise\<Point>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2205,8 +2202,8 @@ wakeUpDisplay(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2231,8 +2228,8 @@ pressHome(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2270,8 +2267,8 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2305,8 +2302,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2344,8 +2341,8 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2384,8 +2381,8 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2415,16 +2412,16 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **返回值：**
 
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
+| 类型              | 说明                                                    |
+| ----------------- | ------------------------------------------------------- |
 | Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2458,8 +2455,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2494,8 +2491,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2526,8 +2523,8 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2550,16 +2547,16 @@ createUIEventObserver(): UIEventObserver;
 
 **返回值：**
 
-| 类型                                   | 说明                                  |
-| ------------------------------------ | ------------------------------------- |
-|[UIEventObserver](#uieventobserver10) | 返回找到的目标窗口对象。 |
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [UIEventObserver](#uieventobserver10) | 返回找到的目标窗口对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 
 **示例：**
@@ -2870,10 +2867,10 @@ getBundleName(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000004 | if the window is invisible or destroyed.         |
 
 **示例：**
 
@@ -2905,10 +2902,10 @@ getBounds(): Promise\<Rect>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000004 | if the window is invisible or destroyed.         |
 
 **示例：**
 
@@ -2939,10 +2936,10 @@ getTitle(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000004 | if the window is invisible or destroyed.         |
 
 **示例：**
 
@@ -2973,10 +2970,10 @@ getWindowMode(): Promise\<WindowMode>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
+| 17000004 | if the window is invisible or destroyed.         |
 
 **示例：**
 
@@ -3007,10 +3004,10 @@ isFocused(): Promise\<boolean>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000004 | if the window is invisible or destroyed.         |
 
 **示例：**
 
@@ -3020,42 +3017,6 @@ async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
   let focused = await window.isFocused();
-}
-```
-
-### isActived<sup>(deprecated)</sup>
-
-isActived(): Promise\<boolean>
-
-判断窗口是否为用户正在交互窗口，使用Promise异步回调。
-
-从API version 9开始支持，从API version 11开始废弃，建议使用[isActive<sup>11+</sup>](#isactive11)替代。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-
-**示例：**
-
-```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
-async function demo() {
-  let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let focused = await window.isActived();
 }
 ```
 
@@ -3071,10 +3032,10 @@ focus(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000004 | if the window is invisible or destroyed.         |
 
 **示例：**
 
@@ -3106,11 +3067,11 @@ moveTo(x: number, y: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3143,11 +3104,11 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3172,11 +3133,11 @@ split(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.         |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3201,11 +3162,11 @@ maximize(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3230,11 +3191,11 @@ minimize(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3259,11 +3220,11 @@ resume(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3288,11 +3249,11 @@ close(): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
 | 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.   |
 
 **示例：**
 
@@ -3405,1084 +3366,3 @@ async function demo() {
 }
 ```
 
-## By<sup>(deprecated)</sup>
-
-UiTest框架通过By类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
-By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated)和[By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
-
-从API version 9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
-
-```ts
-import { BY } from '@ohos.UiTest';
-BY.text('123').type('Button');
-```
-
-### text<sup>(deprecated)</sup>
-
-text(txt: string, pattern?: MatchPattern): By
-
-指定目标控件文本属性，支持多种匹配模式，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[text<sup>9+</sup>](#text9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名  | 类型                          | 必填 | 说明                                                |
-| ------- | ----------------------------- | ---- | --------------------------------------------------- |
-| txt     | string                        | 是   | 指定控件文本，用于匹配目标控件文本。                |
-| pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
-
-**返回值：**
-
-| 类型                | 说明                               |
-| ------------------- | ---------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件文本属性的By对象。 |
-
-**示例：**
-
-```ts
-import { BY, By } from '@ohos.UiTest';
-let by: By = BY.text('123'); // 使用静态构造器BY创建by对象，指定目标控件的text属性。
-```
-
-
-### key<sup>(deprecated)</sup>
-
-key(key: string): By
-
-指定目标控件key值属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[id<sup>9+</sup>](#id9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明              |
-| ------ | ------ | ---- | ----------------- |
-| key    | string | 是   | 指定控件的Key值。 |
-
-**返回值：**
-
-| 类型                | 说明                                |
-| ------------------- | ----------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件key值属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.key('123'); // 使用静态构造器BY创建by对象，指定目标控件的key值属性。
-```
-
-
-### id<sup>(deprecated)</sup>
-
-id(id: number): By
-
-指定目标控件id属性，返回By对象自身。
-
-从API version 9开始废弃。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| id     | number | 是   | 指定控件的id值。 |
-
-**返回值：**
-
-| 类型                | 说明                             |
-| ------------------- | -------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件id属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.id(123); // 使用静态构造器BY创建by对象，指定目标控件的id属性。
-```
-
-
-### type<sup>(deprecated)</sup>
-
-type(tp: string): By
-
-指定目标控件的控件类型属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[type<sup>9+</sup>](#type9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。 |
-
-**返回值：**
-
-| 类型                | 说明                                     |
-| ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件的控件类型属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.type('Button'); // 使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
-```
-
-
-### clickable<sup>(deprecated)</sup>
-
-clickable(b?: boolean): By
-
-指定目标控件的可点击状态属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[clickable<sup>9+</sup>](#clickable9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件可点击状态，true：可点击，false：不可点击。默认为true。 |
-
-**返回值：**
-
-| 类型                | 说明                                       |
-| ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | 返回指定目标控件的可点击状态属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.clickable(true); // 使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
-```
-
-
-### scrollable<sup>(deprecated)</sup>
-
-scrollable(b?: boolean): By
-
-指定目标控件的可滑动状态属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[scrollable<sup>9+</sup>](#scrollable9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                        |
-| ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | 否   | 控件可滑动状态，true：可滑动，false：不可滑动。默认为true。 |
-
-**返回值：**
-
-| 类型                | 说明                                       |
-| ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | 返回指定目标控件的可滑动状态属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.scrollable(true); // 使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
-```
-
-### enabled<sup>(deprecated)</sup>
-
-enabled(b?: boolean): By
-
-指定目标控件的使能状态属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[enabled<sup>9+</sup>](#enabled9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                      |
-| ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | 否   | 指定控件使能状态，true：使能，false：未使能。默认为true。 |
-
-**返回值：**
-
-| 类型                | 说明                                     |
-| ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件的使能状态属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.enabled(true); // 使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
-```
-
-### focused<sup>(deprecated)</sup>
-
-focused(b?: boolean): By
-
-指定目标控件的获焦状态属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[focused<sup>9+</sup>](#focused9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                  |
-| ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | 否   | 控件获焦状态，true：获焦，false：未获焦。默认为true。 |
-
-**返回值：**
-
-| 类型                | 说明                                     |
-| ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件的获焦状态属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.focused(true); // 使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
-```
-
-### selected<sup>(deprecated)</sup>
-
-selected(b?: boolean): By
-
-指定目标控件的被选中状态属性，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[selected<sup>9+</sup>](#selected9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被选中状态，true：被选中，false：未被选中。默认为true。 |
-
-**返回值：**
-
-| 类型                | 说明                                       |
-| ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | 返回指定目标控件的被选中状态属性的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-let by: By = BY.selected(true); // 使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
-```
-
-### isBefore<sup>(deprecated)</sup>
-
-isBefore(by: By): By
-
-指定目标控件位于给出的特征属性控件之前，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[isBefore<sup>9+</sup>](#isbefore9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型                | 必填 | 说明             |
-| ------ | ------------------- | ---- | ---------------- |
-| by     | [By](#bydeprecated) | 是   | 特征控件的属性。 |
-
-**返回值：**
-
-| 类型                | 说明                                                 |
-| ------------------- | ---------------------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之前的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-
-// 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
-let by: By = BY.type('Button').isBefore(BY.text('123')); // 查找text为123之前的第一个Button组件
-```
-
-### isAfter<sup>(deprecated)</sup>
-
-isAfter(by: By): By
-
-指定目标控件位于给出的特征属性控件之后，返回By对象自身。
-
-从API version 9开始不再维护，建议使用[isAfter<sup>9+</sup>](#isafter9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型                | 必填 | 说明             |
-| ------ | ------------------- | ---- | ---------------- |
-| by     | [By](#bydeprecated) | 是   | 特征控件的属性。 |
-
-**返回值：**
-
-| 类型                | 说明                                                 |
-| ------------------- | ---------------------------------------------------- |
-| [By](#bydeprecated) | 返回指定目标控件位于给出的特征属性控件之后的By对象。 |
-
-**示例：**
-
-```ts
-import { By, BY } from '@ohos.UiTest';
-
-// 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
-let by: By = BY.type('Text').isAfter(BY.text('123')); // 查找 text为123之后的第一个Text组件
-```
-
-## UiComponent<sup>(deprecated)</sup>
-
-UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
-该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
-
-从API version 9开始不再维护，建议使用[Component<sup>9+</sup>](#component9)。
-
-### click<sup>(deprecated)</sup>
-
-click(): Promise\<void>
-
-控件对象进行点击操作。
-
-从API version 9开始不再维护，建议使用[click<sup>9+</sup>](#click9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**示例：**
-
-```ts
-import { UiDriver, BY, Driver, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  await button.click();
-}
-```
-
-### doubleClick<sup>(deprecated)</sup>
-
-doubleClick(): Promise\<void>
-
-控件对象进行双击操作。
-
-从API version 9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  await button.doubleClick();
-}
-```
-
-### longClick<sup>(deprecated)</sup>
-
-longClick(): Promise\<void>
-
-控件对象进行长按操作。
-
-从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  await button.longClick();
-}
-```
-
-### getId<sup>(deprecated)</sup>
-
-getId(): Promise\<number>
-
-获取控件对象的id值。
-
-从API version 9开始不再维护，被废弃。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                            |
-| ---------------- | ------------------------------- |
-| Promise\<number> | 以Promise形式返回的控件的id值。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  let id = await button.getId();
-}
-```
-
-### getKey<sup>(deprecated)</sup>
-
-getKey(): Promise\<string>
-
-获取控件对象的key值。
-
-从API version 9开始不再维护，建议使用[getId<sup>9+</sup>](#getid9)
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                           |
-| ---------------- | ------------------------------ |
-| Promise\<string> | 以Promise形式返回控件的key值。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  let str_key = await button.getKey();
-}
-```
-
-### getText<sup>(deprecated)</sup>
-
-getText(): Promise\<string>
-
-获取控件对象的文本信息。
-
-从API version 9开始不再维护，建议使用[getText<sup>9+</sup>](#gettext9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                              |
-| ---------------- | --------------------------------- |
-| Promise\<string> | 以Promise形式返回控件的文本信息。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  let text = await button.getText();
-}
-```
-
-### getType<sup>(deprecated)</sup>
-
-getType(): Promise\<string>
-
-获取控件对象的控件类型。
-
-从API version 9开始不再维护，建议使用[getType<sup>9+</sup>](#gettype9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                          |
-| ---------------- | ----------------------------- |
-| Promise\<string> | 以Promise形式返回控件的类型。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  let type = await button.getType();
-}
-```
-
-### isClickable<sup>(deprecated)</sup>
-
-isClickable(): Promise\<boolean>
-
-获取控件对象可点击状态。
-
-从API version 9开始不再维护，建议使用[isClickable<sup>9+</sup>](#isclickable9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可点击状态，true：可点击，false：不可点击。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isClickable()) {
-    console.info('This button can be Clicked');
-  } else {
-    console.info('This button can not be Clicked');
-  }
-}
-```
-
-### isScrollable<sup>(deprecated)</sup>
-
-isScrollable(): Promise\<boolean>
-
-获取控件对象可滑动状态。
-
-从API version 9开始不再维护，建议使用[isScrollable<sup>9+</sup>](#isscrollable9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态，true：可滑动，false：不可滑动。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
-  if(await scrollBar.isScrollable()) {
-    console.info('This scrollBar can be operated');
-  } else {
-    console.info('This scrollBar can not be operated');
-  }
-}
-```
-
-
-### isEnabled<sup>(deprecated)</sup>
-
-isEnabled(): Promise\<boolean>
-
-获取控件使能状态。
-
-从API version 9开始不再维护，建议使用[isEnabled<sup>9+</sup>](#isenabled9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                       |
-| ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件使能状态，true：使能，false：未使能。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isEnabled()) {
-    console.info('This button can be operated');
-  } else {
-    console.info('This button can not be operated');
-  }
-}
-
-```
-
-### isFocused<sup>(deprecated)</sup>
-
-isFocused(): Promise\<boolean>
-
-判断控件对象是否获焦。
-
-从API version 9开始不再维护，建议使用[isFocused<sup>9+</sup>](#isfocused9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否获焦，true：获焦，false：未获焦。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isFocused()) {
-    console.info('This button is focused');
-  } else {
-    console.info('This button is not focused');
-  }
-}
-```
-
-### isSelected<sup>(deprecated)</sup>
-
-isSelected(): Promise\<boolean>
-
-获取控件对象被选中状态。
-
-从API version 9开始不再维护，建议使用[isSelected<sup>9+</sup>](#isselected9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                  |
-| ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态，true：被选中，false：未被选中。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isSelected()) {
-    console.info('This button is selected');
-  } else {
-    console.info('This button is not selected');
-  }
-}
-```
-
-### inputText<sup>(deprecated)</sup>
-
-inputText(text: string): Promise\<void>
-
-向控件中输入文本(适用于文本框控件)。
-
-从API version 9开始不再维护，建议使用[inputText<sup>9+</sup>](#inputtext9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| text   | string | 是   | 输入的文本信息。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let text: UiComponent = await driver.findComponent(BY.text('hello world'));
-  await text.inputText('123');
-}
-```
-
-### scrollSearch<sup>(deprecated)</sup>
-
-scrollSearch(by: By): Promise\<UiComponent>
-
-在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
-
-从API version 9开始不再维护，建议使用[scrollSearch<sup>9+</sup>](#scrollsearch9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型                | 必填 | 说明                 |
-| ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
-
-**返回值：**
-
-| 类型                                            | 说明                                  |
-| ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let scrollBar: UiComponent = await driver.findComponent(BY.type('Scroll'));
-  let button = await scrollBar.scrollSearch(BY.text('next page'));
-}
-```
-
-## UiDriver<sup>(deprecated)</sup>
-
-UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
-该类提供的方法除UiDriver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await调用。
-
-从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
-
-### create<sup>(deprecated)</sup>
-
-static create(): UiDriver
-
-静态方法，构造一个UiDriver对象，并返回该对象。
-
-从API version 9开始不再维护，建议使用[create<sup>9+</sup>](#create9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型     | 说明                     |
-| -------- | ------------------------ |
-| UiDriver | 返回构造的UiDriver对象。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-}
-```
-
-### delayMs<sup>(deprecated)</sup>
-
-delayMs(duration: number): Promise\<void>
-
-UiDriver对象在给定的时间内延时。
-
-从API version 9开始不再维护，建议使用[delayMs<sup>9+</sup>](#delayms9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明         |
-| -------- | ------ | ---- | ------------ |
-| duration | number | 是   | 给定的时间。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.delayMs(1000);
-}
-```
-
-### findComponent<sup>(deprecated)</sup>
-
-findComponent(by: By): Promise\<UiComponent>
-
-在UiDriver对象中，根据给出的目标控件属性要求查找目标控件。
-
-从API version 9开始不再维护，建议使用[findComponent<sup>9+</sup>](#findcomponent9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型                | 必填 | 说明                 |
-| ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
-
-**返回值：**
-
-| 类型                                            | 说明                              |
-| ----------------------------------------------- | --------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let button: UiComponent = await driver.findComponent(BY.text('next page'));
-}
-```
-
-### findComponents<sup>(deprecated)</sup>
-
-findComponents(by: By): Promise\<Array\<UiComponent>>
-
-在UiDriver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
-
-从API version 9开始不再维护，建议使用[findComponents<sup>9+</sup>](#findcomponents9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型                | 必填 | 说明                 |
-| ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
-
-**返回值：**
-
-| 类型                                                    | 说明                                    |
-| ------------------------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
-
-**示例：**
-
-```ts
-import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  let buttonList: Array<UiComponent> = await driver.findComponents(BY.text('next page'));
-}
-```
-
-### assertComponentExist<sup>(deprecated)</sup>
-
-assertComponentExist(by: By): Promise\<void>
-
-断言API，用于断言当前界面存在满足给出的目标控件属性的控件; 如果控件不存在，该API将抛出JS异常，使当前测试用例失败。
-
-从API version 9开始不再维护，建议使用[assertComponentExist<sup>9+</sup>](#assertcomponentexist9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型                | 必填 | 说明                 |
-| ------ | ------------------- | ---- | -------------------- |
-| by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000003 | if the assertion failed.                         |
-
-**示例：**
-
-```ts
-import { UiDriver, BY } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.assertComponentExist(BY.text('next page'));
-}
-```
-
-### pressBack<sup>(deprecated)</sup>
-
-pressBack(): Promise\<void>
-
-UiDriver对象进行点击BACK键的操作。
-
-从API version 9开始不再维护，建议使用[pressBack<sup>9+</sup>](#pressback9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.pressBack();
-}
-```
-
-### triggerKey<sup>(deprecated)</sup>
-
-triggerKey(keyCode: number): Promise\<void>
-
-UiDriver对象采取如下操作：通过key值找到对应键并点击。
-
-从API version 9开始不再维护，建议使用[triggerKey<sup>9+</sup>](#triggerkey9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明          |
-| ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值。 |
-
-**示例：**
-
-```ts
-import { Driver, UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.triggerKey(123);
-}
-```
-
-
-### click<sup>(deprecated)</sup>
-
-click(x: number, y: number): Promise\<void>
-
-UiDriver对象采取如下操作：在目标坐标点单击。
-
-从API version 9开始不再维护，建议使用[click<sup>9+</sup>](#click9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.click(100,100);
-}
-```
-
-### doubleClick<sup>(deprecated)</sup>
-
-doubleClick(x: number, y: number): Promise\<void>
-
-UiDriver对象采取如下操作：在目标坐标点双击。
-
-从API version 9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.doubleClick(100,100);
-}
-```
-
-### longClick<sup>(deprecated)</sup>
-
-longClick(x: number, y: number): Promise\<void>
-
-UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
-
-从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.longClick(100,100);
-}
-```
-
-### swipe<sup>(deprecated)</sup>
-
-swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
-
-UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
-
-从API version 9开始不再维护，建议使用[swipe<sup>9+</sup>](#swipe9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。 |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。 |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。 |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.swipe(100,100,200,200);
-}
-```
-
-### screenCap<sup>(deprecated)</sup>
-
-screenCap(savePath: string): Promise\<boolean>
-
-UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
-
-从API version 9开始不再维护，建议使用[screenCap<sup>9+</sup>](#screencap9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明           |
-| -------- | ------ | ---- | -------------- |
-| savePath | string | 是   | 文件保存路径。 |
-
-**返回值：**
-
-| 类型              | 说明                                   |
-| ----------------- | -------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@ohos.UiTest';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.screenCap('/data/storage/el2/base/cache/1.png');
-}
-```

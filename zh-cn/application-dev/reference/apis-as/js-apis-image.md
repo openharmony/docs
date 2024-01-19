@@ -968,6 +968,8 @@ async function Demo() {
 }
 ```
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
 ## image.createImageSource
 
 createImageSource(uri: string): ImageSource
@@ -1635,7 +1637,6 @@ PixelMap的初始化选项。
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
 | size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
-
 ## DecodingOptions<sup>7+</sup>
 
 图像解码设置选项。
@@ -1662,7 +1663,6 @@ PixelMap的初始化选项。
 | size | [Size](#size) | 是   | 是   | 区域大小。   |
 | x    | number        | 是   | 是   | 区域横坐标。 |
 | y    | number        | 是   | 是   | 区域纵坐标。 |
-
 
 ## PackingOption
 

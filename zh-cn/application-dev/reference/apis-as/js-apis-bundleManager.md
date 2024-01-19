@@ -53,27 +53,6 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
 | FORM             | 0   | [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。 |
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
-| INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
-| SERVICE          | 3   | [ServiceExtensionAbility](../apis/js-apis-app-ability-serviceExtensionAbility.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis/js-apis-application-dataShareExtensionAbility.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
-| FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
-| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis/js-apis-application-staticSubscriberExtensionAbility.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
-| WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
-| BACKUP           |  9  | BackupExtensionAbility：数据备份扩展能力，提供应用数据和公共数据备份回复能力。预留能力，当前暂未支持。 |
-| WINDOW           |  10 | [WindowExtensionAbility](../apis/js-apis-application-windowExtensionAbility.md)：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
-| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis/js-apis-EnterpriseAdminExtensionAbility.md)：企业设备管理扩展能力，提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。 |
-| THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，当前暂未支持。 |
-| PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，当前暂未支持。 |
-| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
-| SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](../apis/js-apis-app-ability-shareExtensionAbility.md)：提供分享业务能力，为开发者提供基于UIExtension的分享业务模板。 |
-| PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
-| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis/js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
-| ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](../apis/js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
-| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，当前暂未支持。 |
-| UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
-
 
 ### PermissionGrantState
 
@@ -109,20 +88,6 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | SINGLETON        | 0   | ability的启动模式，表示单实例。 |
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
 | SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己置顶多实例。 |
-
-### AbilityType
-
-指示Ability组件的类型。
-
- **模型约束：** 仅可在FA模型下使用
-
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
-
-|  名称   | 值   |                            说明                            |
-| :-----: | ---- | :--------------------------------------------------------: |
-|  PAGE   | 1    |     表示基于Page模板开发的FA，用于提供与用户交互的能力。     |
-| SERVICE | 2    |  表示基于Service模板开发的PA，用于提供后台运行任务的能力。   |
-|  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。 |
 
 ### DisplayOrientation
 
@@ -675,104 +640,5 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
-}
-```
-
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
-
-根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用callback异步回调。
-
-**需要权限：** ohos.permission.RUN_DYN_CODE
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
-| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。|
-| callback | AsyncCallback\<void> | 是 | 回调函数，当获取成功时，err为null；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
-| 17700201 | verifyAbc failed. |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-    bundleManager.verifyAbc(abcPaths, true, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-        }
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
-}
-```
-
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
-
-根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用Promise异步回调。
-
-**需要权限：** ohos.permission.RUN_DYN_CODE
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
-| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。       |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 17700201 | verifyAbc failed. |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-    bundleManager.verifyAbc(abcPaths, true).then((data) => {
-        hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
 }
 ```

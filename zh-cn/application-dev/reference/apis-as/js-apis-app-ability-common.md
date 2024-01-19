@@ -47,5 +47,4 @@ let eventHub: common.EventHub;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
-let autoStartupCallback: common.AutoStartupCallback;
 ```
