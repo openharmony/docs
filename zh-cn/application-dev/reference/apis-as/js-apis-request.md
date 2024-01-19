@@ -902,8 +902,8 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数，返回创建任务的配置信息。 |
 
 **错误码：**
