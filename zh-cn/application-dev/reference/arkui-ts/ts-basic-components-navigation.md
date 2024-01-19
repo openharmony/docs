@@ -747,7 +747,7 @@ struct NavigationExample {
       console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
       console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
       console.log(`operation: ${operation}`)
-      if (from.index === -1) {
+      if (from.index === -1 || to.index === -1) {
         return undefined;
       }
       let customAnimation: NavigationAnimatedTransition = {
@@ -761,7 +761,9 @@ struct NavigationExample {
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.name);
           fromParam.start(operation == NavigationOperation.PUSH, true);
           toParam.start(operation == NavigationOperation.PUSH, false);
-          animateTo({duration: toParam.timeout, onFinish: ()=>{
+          animateTo({duration: 400, onFinish: ()=>{
+            fromParam.onFinish(operation === NavigationOperation.PUSH, true);
+            toParam.onFinish(operation === NavigationOperation.PUSH, true);
             transitionProxy.finishTransition();
           }}, ()=>{
             fromParam.finish(operation === NavigationOperation.PUSH, true)
@@ -786,16 +788,13 @@ export struct pageOneTmp {
   @State scaleVal: number = 1
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageOne', (isPush: boolean, isExit: boolean) => {
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=> {
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200);
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -816,6 +815,13 @@ export struct pageOneTmp {
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
     })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageOne')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageOne')
+    })
     .translate({x: this.x, y: 0, z: 0})
     .backgroundColor(Color.White)
   }
@@ -831,17 +837,14 @@ export struct PageTwoTemp {
   @State x: number = 300
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageTwo', (isPush: boolean, isExit: boolean)=>{
       console.log("current page is pageOne")
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=>{
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200)
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -861,6 +864,13 @@ export struct PageTwoTemp {
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
     })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageTwo')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageTwo')
+    })
     .translate({x: this.x})
     .backgroundColor(Color.White)
   }
@@ -871,6 +881,7 @@ export struct PageTwoTemp {
 export interface AnimateCallback {
   finish: (isPush: boolean, isExit: boolean) => void;
   start: (isPush: boolean, isExit: boolean) => void;
+  onFinish: (isPush: boolean, isExit: boolean) => void
   timeout: number;
 }
 const customTransitionMap: Map<string, AnimateCallback> = new Map()
@@ -886,16 +897,18 @@ export class CustomTransition {
   }
 
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void, timeout: number): void {
+                   endCallback:(operation: boolean, isExit: boolean) => void,
+                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       param.start = startCallback;
       param.finish = endCallback;
       param.timeout = timeout;
+      param.onFinish = onFinish;
       return;
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
     customTransitionMap.set(name, params);
   }
 
@@ -907,7 +920,8 @@ export class CustomTransition {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name).start,
       finish: customTransitionMap.get(name).finish,
-      timeout: customTransitionMap.get(name).timeout
+      timeout: customTransitionMap.get(name).timeout,
+      onFinish: customTransitionMap.get(name).onFinish
     };
     return result;
   }
