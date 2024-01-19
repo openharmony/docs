@@ -1,6 +1,6 @@
-# ArkGraphics2D
+# ArkGraphics 2D
 
-- [ArkGraphics2D简介](arkgraphics2D-introduction.md)
+- [ArkGraphics 2D简介](arkgraphics2D-introduction.md)
 - 使用可变帧率能力定制不同内容的绘制帧率
   - [可变帧率简介](displaysync-overview.md)
   - [请求动画绘制帧率](displaysync-animation.md)
