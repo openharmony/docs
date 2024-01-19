@@ -517,7 +517,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
   | 参数名            | 类型                        | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
   | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | 是   | 发现标识。 标识发现的目标类型。<br>discoverTargetType: 发现目标默认为设备，值为1。|
-  | filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br>availableStatus(0-1): 仅发现设备可信，值为0表示设备不可信。<br />-0：设备离线，客户端需要通过调用bindTarget绑定设备。<br />-1：设备已在线，客户可以进行连接。<br>discoverDistance(0-100)：发现距离本地一定距离内的设备，单位为cm。 <br>authenticationStatus(0-1)：根据不同的认证状态发现设备：<br />-0：设备未认证。<br />-1：设备已认证。<br>authorizationType(0-2)：根据不同的授权类型发现设备：<br />-0：根据临时协商的会话密钥认证的设备。<br />-1：基于同账号密钥进行身份验证的设备。<br />-2：基于不同账号凭据密钥认证的设备。|
+  | filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。会携带以下key值：<br>availableStatus(0-1)：仅发现设备可信，值为0表示设备不可信。<br />-0：设备离线，客户端需要通过调用bindTarget绑定设备。<br />-1：设备已在线，客户可以进行连接。<br>discoverDistance(0-100)：发现距离本地一定距离内的设备，单位为cm。 <br>authenticationStatus(0-1)：根据不同的认证状态发现设备：<br />-0：设备未认证。<br />-1：设备已认证。<br>authorizationType(0-2)：根据不同的授权类型发现设备：<br />-0：根据临时协商的会话密钥认证的设备。<br />-1：基于同账号密钥进行身份验证的设备。<br />-2：基于不同账号凭据密钥认证的设备。|
 
 **错误码：**
 
