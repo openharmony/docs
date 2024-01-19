@@ -3,7 +3,7 @@
 ## 传感器类型
 
 
-OpenHarmony系统传感器是应用访问底层硬件传感器的一种设备抽象概念。开发者根据传感器提供的[Sensor接口](../reference/apis-as/js-apis-sensor.md)，订阅传感器数据，并根据传感器数据定制相应的算法开发各类应用，比如指南针、运动健康、游戏等。
+系统传感器是应用访问底层硬件传感器的一种设备抽象概念。开发者根据传感器提供的[Sensor接口](../reference/apis-as/js-apis-sensor.md)，订阅传感器数据，并根据传感器数据定制相应的算法开发各类应用，比如指南针、运动健康、游戏等。
 
 | 传感器类型                  | 描述               | 说明                                                         | 主要用途                                 |
 | --------------------------- | ------------------ | ------------------------------------------------------------ | ---------------------------------------- |
@@ -14,9 +14,9 @@ OpenHarmony系统传感器是应用访问底层硬件传感器的一种设备抽
 
 ## 运作机制
 
-OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、Sensor Service和HDF层。
+传感器包含如下四个模块：Sensor API、Sensor Framework、Sensor Service和HDF层。
 
-  **图1** OpenHarmony传感器
+  **图1** 传感器
 
 ![fad1a124-a90e-460f-84fc-e87d6caebb21](figures/fad1a124-a90e-460f-84fc-e87d6caebb21.png)
 
