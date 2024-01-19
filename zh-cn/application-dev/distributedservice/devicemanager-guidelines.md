@@ -182,7 +182,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
-设备信息查询接口说明如下，详细信息参见：[getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)。
+设备信息查询。详细信息参见：[getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)。
 
 ### 开发步骤
 
