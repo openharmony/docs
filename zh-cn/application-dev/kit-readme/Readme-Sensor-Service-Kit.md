@@ -1,6 +1,6 @@
-# SensorService Kit
+# Sensor Service Kit
 
-- [SensorService Kit简介](../device/sensorservice-kit-intro.md)
+- [Sensor Service Kit简介](../device/sensorservice-kit-intro.md)
 
 - 传感器
 
