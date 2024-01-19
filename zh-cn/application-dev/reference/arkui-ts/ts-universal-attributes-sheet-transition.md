@@ -35,7 +35,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>底部弹窗竖屏时，当设置sheetDetents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离信号栏8vp。<br />底部弹窗横屏时，该属性设置无效，高度为距离屏幕顶部8vp。<br/>居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MUDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。 |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。 |
-| preferType<sup>11+</sup> | [SheetType.CENTER](#sheettype11) \|  [SheetType.POPUP](#sheettype11) | 否 | 半模态页面的样式。 |
+| preferType<sup>11+</sup> | [SheetType.CENTER](#sheettype11) \|  [SheetType.POPUP](#sheettype11) | 否 | 半模态页面的样式。<br/>**说明：**<br/>preferType不可设置为SheetType.BOTTOM。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/>**说明：**<br/>Resource需要为boolean类型。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的dentents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 半模态页面的背板颜色。     |
