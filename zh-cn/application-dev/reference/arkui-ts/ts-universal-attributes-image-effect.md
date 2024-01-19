@@ -46,7 +46,7 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 为组件添加阴影效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -371,7 +371,7 @@ useShadowBatching(value: boolean)
 | 名称          | 类型                                                        | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | fractionStops | Array\<FractionStop>                                    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
-| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 渐变模糊方向。<br/>默认值：<br/>[GradientDirection](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-appendix-enums.md#gradientdirection).Bottom |
+| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
 ## InvertOptions<sup>11+</sup>对象说明
 
