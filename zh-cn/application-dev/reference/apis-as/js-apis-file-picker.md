@@ -52,7 +52,6 @@ import { BusinessError } from '@ohos.base';
 async function example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
     photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
@@ -90,7 +89,6 @@ import { BusinessError } from '@ohos.base';
 async function example02() {
   try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
     photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
@@ -143,19 +141,6 @@ async function example03() {
 }
 ```
 
-
-## PhotoViewMIMETypes
-
-枚举，可选择的媒体文件类型。
-
-**系统能力：** SystemCapability.FileManagement.UserFileService
-
-| 名称  |  值 |  说明 |
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型 |
-| VIDEO_TYPE |  'video/*' | 视频类型 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型 |
-
 ## PhotoSelectOptions
 
 图库选择选项。
@@ -164,7 +149,7 @@ async function example03() {
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
+| MIMEType              | PhotoViewMIMETypes   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
 | maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 
@@ -176,7 +161,7 @@ async function example03() {
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
+| MIMEType              | PhotoViewMIMETypes   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
 | maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 ## PhotoSelectResult
