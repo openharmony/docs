@@ -487,7 +487,20 @@ struct NavigationExample {
         .margin({ top: 12, left: '10%' })
       }
       .title(this.NavigationTitle)
-      .menus(this.NavigationMenus)
+      .menus([
+        {
+          value: '添加',
+          icon: 'resources/base/media/ic_public_add.png'
+        },
+        {
+          value: '添加',
+          icon: 'resources/base/media/ic_public_add.png'
+        },
+        {
+          value: '更多',
+          icon: 'resources/base/media/ic_public_more.png'
+        }
+      ])
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
