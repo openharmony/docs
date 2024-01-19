@@ -450,7 +450,7 @@
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
 
 - 设备管理
-  - [@ohos.app.ability.DriverExtensionAbility (DriverExtensionAbility)](js-apis-app-ability-driverExtensionAbility.md)
+  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (耗电统计)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
