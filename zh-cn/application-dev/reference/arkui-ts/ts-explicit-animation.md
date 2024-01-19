@@ -34,9 +34,9 @@ animateTo(value: AnimateParam, event: () => void): void
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。 |
 | onFinish   | ()&nbsp;=&gt;&nbsp;void                  | 动画播放完成回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange) | 设置动画的期望帧率。 |
+| expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | 设置动画的期望帧率。 |
 
-## ExpectedFrameRateRange <sup>11+</sup>
+## ExpectedFrameRateRange<sup>11+</sup>
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|
 | min | number | 期望的最小帧率。 |

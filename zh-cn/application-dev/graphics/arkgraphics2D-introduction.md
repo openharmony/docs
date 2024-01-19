@@ -8,7 +8,7 @@ ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关
 
 - 提供管理抽象化色域对象的基础能力，包括色域的创建、色域基础属性的获取等。具体可见[@ohos.graphics.colorSpaceManager (色彩管理)](../reference/apis/js-apis-colorSpaceManager.md)。
 
-- 提供可针对不同形式的内容指定帧率的能力，可用于开发者自绘制UI。具体可见[@ohos.graphics.displaySync (可变帧率)](../reference/apis/js-apis-graphics-displaySync.md)。
+- 提供可针对不同形式的内容指定帧率的能力，可用于开发者自绘制内容。具体可见[可变帧率简介](displaysync-overview.md)。
 
 - 提供高动态显示的相关能力，具体可见[@ohos.graphics.hdrCapability (HDR能力)](../reference/apis/js-apis-hdrCapability.md)。
 
