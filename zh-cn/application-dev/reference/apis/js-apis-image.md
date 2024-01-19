@@ -178,7 +178,7 @@ async function Demo() {
 
 从Surface id创建一个pixelmap对象
 
-createPixelMapFromSurface(surfaceId: string, region: Region): Promise<PixelMap>;
+createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
