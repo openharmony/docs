@@ -120,7 +120,7 @@ struct FontExample {
 
 ## font.getFontByName<sup>10+</sup>
 
-getFontByName(fontName: string): FontInfo;
+getFontByName(fontName: string): FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
 
