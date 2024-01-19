@@ -20,7 +20,7 @@
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
    - 当数据量较小时，可以在init完成后直接调用doFinal。
-   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)。
+   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 
 5. 调用[Cipher.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
    - 由于已使用update传入数据，此处data传入null。
