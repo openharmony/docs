@@ -22,7 +22,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 |
 | launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility启动时的参数。 |
 | lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility最后请求时的参数。|
-| callee | [Callee] | 是 | 否 | 调用Stub（桩）服务对象。|
+| callee | Callee | 是 | 否 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
 
