@@ -102,7 +102,8 @@ import huks from '@ohos.security.huks';
 /* 以生成AES128密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_AES
 }
 let keyAlias: string = 'keyAlias';
 let properties: HuksProperties[] = [
@@ -185,7 +186,8 @@ import huks from '@ohos.security.huks';
 import { BusinessError } from '@ohos.base';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest 
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_AES
 }
 let keyAlias = 'keyAlias';
 let properties: HuksProperties[] = [
@@ -374,7 +376,7 @@ import huks from '@ohos.security.huks';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
-    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_AES
 }
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
@@ -468,7 +470,7 @@ import { BusinessError } from '@ohos.base';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
-    huks.HuksCipherMode
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_AES
 }
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
@@ -1004,8 +1006,8 @@ import huks from '@ohos.security.huks';
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
-    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_AES
 }
 let keyAlias = "HuksDemoAES";
 let properties: HuksProperties[] = [
@@ -1114,9 +1116,8 @@ import { BusinessError } from '@ohos.base';
  */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyDigest | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
-    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_AES
 }
 
 function stringToUint8Array(str: string) {
