@@ -17,9 +17,9 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
 2. To decrease the count on the badge, call the [setBadgeNumber()](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10) API.
 
-| API| Description|
-| -------- | -------- |
-| setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | Sets the count on the badge.|
+  | API| Description|
+  | -------- | -------- |
+  | setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | Sets the number count on the badge.|
 
 
 ## How to Develop
@@ -29,7 +29,6 @@ After a notification is read, the count on the badge is decremented by 1. If the
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 2. Increase the count on the badge.
@@ -41,10 +40,10 @@ After a notification is read, the count on the badge is decremented by 1. If the
    ```ts
    setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info(`Succeeded in setting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
    let badgeNumber = 9;
@@ -58,10 +57,10 @@ After a notification is read, the count on the badge is decremented by 1. If the
    ```ts
    setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info(`Succeeded in setting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
    let badgeNumber = 8;
