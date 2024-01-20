@@ -140,7 +140,6 @@ class MyAbility extends UIAbility {
 import UIAbility from '@ohos.app.ability.UIAbility';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
