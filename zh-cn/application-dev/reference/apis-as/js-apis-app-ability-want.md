@@ -89,7 +89,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want: BusinessError, (err) => {
+        context.startAbility(want: Want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```

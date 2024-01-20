@@ -46,6 +46,7 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -78,6 +79,7 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -104,6 +106,7 @@ Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-abilit
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
@@ -128,6 +131,7 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
@@ -157,6 +161,7 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
@@ -180,6 +185,7 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
