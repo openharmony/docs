@@ -2889,6 +2889,43 @@ try {
 }
 ```
 
+## dlpPermission.isDLPFeatureProvided<sup>12+<sup>
+isDLPFeatureProvided(): Promise&lt;boolean&gt;
+
+查询当前系统是否提供DLP特性，使用Promise方式异步返回结果
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise对象。返回当前系统是否提供DLP特性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 19100011 | System service exception. |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+async getSandboxAppConfig() {
+  try {
+    dlpPermission.isDLPFeatureProvided().then((res) => {
+      console.info('res', JSON.stringify(res))
+    }); // 查询当前系统是否提供DLP特性
+  } catch (err) {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  }
+}
+```
+
 ## ActionFlagType
 
 可以对DLP文件进行的操作类型枚举。例如：DLP沙箱应用可以根据是否具有操作权限，对其按钮进行置灰

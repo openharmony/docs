@@ -138,7 +138,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
    import dlpPermission from '@ohos.dlpPermission';
    import fs from '@ohos.file.fs';
    import { BusinessError } from '@ohos.base';
-   
+
    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
@@ -246,7 +246,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
     import UIAbility from '@ohos.app.ability.UIAbility'
     import Want from '@ohos.app.ability.Want';
     import { BusinessError } from '@ohos.base';
-    
+
     try {
       let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
       let want: Want = {
@@ -261,5 +261,21 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
       }); // 打开DLP权限管理应用
     } catch (err) {
       console.error('error', err.code, err.message); // 失败报错
+    }
+    ```
+
+12. 查询当前系统是否提供DLP特性。
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import { BusinessError } from '@ohos.base';
+
+    async getSandboxAppConfig() {
+      try {
+        dlpPermission.isDLPFeatureProvided().then((res) => {
+          console.info('res', JSON.stringify(res))
+        }); // 查询当前系统是否提供DLP特性
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
     }
     ```
