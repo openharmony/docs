@@ -109,8 +109,8 @@ function printProperties(obj: any) {
 
 ```typescript
 function printProperties(obj: Record<string, Object>) {
-  console.log(obj.name);
-  console.log(obj.value);
+  console.log(obj.name as string);
+  console.log(obj.value as string);
 }
 ```
 
@@ -155,19 +155,19 @@ foo((value: string) => {
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = {
-  new (value: number): Controller;
+type ControllerConstructor = {
+  new (value: string): Controller;
 }
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
       return new this.controller(123);
@@ -184,18 +184,18 @@ console.log(t.createController()!.value);
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => {
-    return new Controller(123);
+  controller: ControllerConstructor = () => {
+    return new Controller('abc');
   }
 
   createController() {
@@ -291,22 +291,22 @@ class Person {
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-interface ControllerConstrucotr {
-  new (value: number): Controller;
+interface ControllerConstructor {
+  new (value: string): Controller;
 }
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('abc');
     }
     return null;
   }
@@ -320,18 +320,18 @@ console.log(t.createController()!.value);
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => {
-    return new Controller(123);
+  controller: ControllerConstructor = () => {
+    return new Controller('abc');
   }
 
   createController() {
@@ -1057,7 +1057,7 @@ function foo() {
   console.log(this.value);
 }
 
-let obj = { value: 123 };
+let obj = { value: 'abc' };
 foo.apply(obj);
 ```
 
@@ -1067,8 +1067,8 @@ Use the method of a class. If the method is used by multiple classes, consider u
 
 ```typescript
 class Test {
-  value: number = 0
-  constructor (value: number) {
+  value: string = ''
+  constructor (value: string) {
     this.value = value
   }
   
@@ -1077,7 +1077,7 @@ class Test {
   }
 }
 
-let obj: Test = new Test(123);
+let obj: Test = new Test('abc');
 obj.foo();
 ```
 
@@ -1091,10 +1091,10 @@ function foo(obj: Test) {
 }
 
 class Test {
-  value: number = 0
+  value: string = ''
 }
 
-let obj: Test = { value: 123 };
+let obj: Test = { value: 'abc' };
 foo(obj);
 ```
 
@@ -1102,15 +1102,15 @@ foo(obj);
 
 Pass the attribute as a parameter.
 ```typescript
-function foo(value: number) {
+function foo(value: string) {
   console.log(value);
 }
 
 class Test {
-  value: number = 0
+  value: string = ''
 }
 
-let obj: Test = { value: 123 };
+let obj: Test = { value: 'abc' };
 foo(obj.value);
 ```
 
@@ -1180,19 +1180,19 @@ Declare attributes within a class, not on a constructor.
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value
   }
 }
 
-type ControllerConstrucotr = new (value: number) => Controller;
+type ControllerConstructor = new (value: string) => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('abc');
     }
     return null;
   }
@@ -1206,16 +1206,16 @@ console.log(t.createController()!.value)
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => { return new Controller(123) }
+  controller: ControllerConstructor = () => { return new Controller('abc') }
   createController() {
     if (this.controller) {
       return this.controller();
@@ -1281,7 +1281,7 @@ export class Test {
 
 // file2.ts
 
-print(globalThis.value);
+globalThis.value;
 
 ```
 
@@ -1304,7 +1304,7 @@ export class Test {
 
 import { GlobalContext } from '../GlobalContext'
 
-console.log(GlobalContext.getContext().getObject('value'));
+GlobalContext.getContext().getObject('value');
 ```
 
 ## arkts-no-func-apply-bind-call
@@ -1331,12 +1331,12 @@ let str = String.fromCharCode(...Array.from(arr));
 
 ```typescript
 class A {
-  value: number = 0
+  value: string = ''
   foo: Function = () => {}
 }
 
 class Test {
-  value: number = 1234
+  value: string = '1234'
   obj: A = {
     value: this.value,
     foo: this.foo.bind(this)
@@ -1352,12 +1352,12 @@ class Test {
 
 ```typescript
 class A {
-  value: number = 0
+  value: string = ''
   foo: Function = () => {}
 }
 
 class Test {
-  value: number = 1234
+  value: string = '1234'
   obj: A = {
     value: this.value,
     foo: (): void => this.foo()
@@ -1373,12 +1373,12 @@ class Test {
 
 ```typescript
 class A {
-  value: number = 0
+  value: string = ''
   foo: Function = () => {}
 }
 
 class Test {
-  value: number = 1234
+  value: string = '1234'
   foo: () => void = () => {
     console.log(this.value);
   }
@@ -1395,8 +1395,8 @@ class Test {
 
 ```typescript
 class A {
-  value:number;
-  constructor (value:number) {
+  value: string;
+  constructor (value: string) {
     this.value = value;
   }
 
@@ -1405,8 +1405,8 @@ class A {
   }
 }
 
-let a1 = new A(1);
-let a2 = new A(2);
+let a1 = new A('1');
+let a2 = new A('2');
 
 a1.foo();
 a1.foo.apply(a2);
@@ -1416,8 +1416,8 @@ a1.foo.apply(a2);
 
 ```typescript
 class A {
-  value:number;
-  constructor (value:number) {
+  value: string;
+  constructor (value: string) {
     this.value = value;
   }
 
@@ -1430,8 +1430,8 @@ class A {
   }
 }
 
-let a1 = new A(1);
-let a2 = new A(2);
+let a1 = new A('1');
+let a2 = new A('2');
 
 a1.foo();
 a1.fooApply(a2);
@@ -1439,24 +1439,55 @@ a1.fooApply(a2);
 
 ## arkts-limited-stdlib
 
-ArkTS does not allow the use of the following attributes and methods for global objects: **Infinity**, **NaN**, **isFinite**, **isNaN**, **parseFloat**, and **parseInt**
-
-You can use them for **Number**.
+### Object.fromEntries()
 
 **Before adaptation**
 
 ```typescript
-console.log(NaN);
-console.log(isFinite(123));
-console.log(parseInt('123'));
+let entries = new Map([
+  ['foo', 123],
+  ['bar', 456]
+]);
+
+let obj = Object.fromEntries(entries);
+```
+
+**Before adaptation**
+
+```typescript
+let entries = new Map([
+  ['foo', 123],
+  ['bar', 456]
+]);
+
+let obj: Record<string, Object> = {};
+entries.forEach((value, key) => {
+  if (key != undefined && key != null) {
+    obj[key] = value;
+  }
+})
+```
+
+### Using Number in Attributes and Methods
+
+ArkTS does not allow the use of the following attributes and methods for global objects: **Infinity**, **NaN**, **isFinite**, **isNaN**, **parseFloat**, and **parseInt**
+
+You can use **Number** for them.
+
+**Before adaptation**
+
+```typescript
+NaN;
+isFinite(123);
+parseInt('123');
 ```
 
 **After adaptation**
 
 ```typescript
-console.log(Number.NaN);
-console.log(Number.isFinite(123));
-console.log(Number.parseInt('123'));
+Number.NaN;
+Number.isFinite(123);
+Number.parseInt('123');
 ```
 
 ## arkts-strict-typing(StrictModeError)
@@ -1557,7 +1588,7 @@ In a class, if an attribute is not initialized and is not assigned a value in th
 ```typescript
 //code with error
 class Test {
-  value: nameber
+  value: number
   flag: boolean
 }
 
@@ -1668,7 +1699,7 @@ In the first code segment, if strict null check is not enabled during compilatio
 
 ```typescript
 class Test {
-  handleClick: (action: string, externInfo?: DiaExternInfo) => void | null = null;
+  handleClick: (action: string, externInfo?: string) => void | null = null;
 }
 ```
 
@@ -1678,7 +1709,7 @@ In the original code, the return type of the function is parsed as **void | unde
 
 ```typescript
 class Test {
-  handleClick: ((action: string, externInfo?: DialogExternInfo) => void) | null = null;
+  handleClick: ((action: string, externInfo?: string) => void) | null = null;
 }
 ```
 
@@ -1944,21 +1975,21 @@ import {A, B, C, D } from '***'
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value
   }
 }
 
-interface ControllerConstrucotr {
-  new (value: number): Controller;
+interface ControllerConstructor {
+  new (value: string): Controller;
 }
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('abc');
     }
     return null;
   }
@@ -1972,16 +2003,16 @@ console.log(t.createController()!.value);
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => { return new Controller(123); }
+  controller: ControllerConstructor = () => { return new Controller('abc'); }
   createController() {
     if (this.controller) {
       return this.controller();
