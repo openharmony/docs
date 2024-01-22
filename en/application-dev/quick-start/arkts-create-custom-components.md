@@ -59,9 +59,9 @@ struct ParentComponent {
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent(param);
+      HelloComponent(this.param);
       Divider()
-      HelloComponent(param);
+      HelloComponent(this.param);
     }
   }
 }

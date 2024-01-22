@@ -78,7 +78,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.testNum[0].c}`)
         .onClick(() => {
           this.testNum[0].c += 1;
         })
@@ -144,7 +144,7 @@ The preceding example has the following pitfalls:
 
 - **this.needsUpdate** is a custom state variable that should be applied only to the UI component to which it is bound. Because **this.realState1** and **this.realState2** are regular variables (not decorated), their changes do not trigger UI re-render.
 
-- However, in this application, an attempt is made to update these two regular variables through **this.needsUpdate**. This approach is nonviable and may result in poor re-render performance: The change of **this.needsUpdate** will cause **ForEach** to re-render, even if the original intent is to update only the background color.
+- However, in this application, an attempt is made to update these two regular variables through **this.needsUpdate**. This approach is nonviable and may result in poor re-render performance.
 
 [Example]
 

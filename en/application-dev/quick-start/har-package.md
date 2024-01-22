@@ -64,8 +64,7 @@ Whether obfuscation is enabled by default varies by version.
 The **artifactType** field is forward compatible, and the original functionality is not affected. Yet, it is deprecated since API version 10, and you are advised to use the substitute as soon as possible.
 
 ## Precautions for HAR Development
-- The HAR does not support the declaration of **abilities** and **extensionAbilities** in its configuration file.
-- The HAR does not support the declaration of pages in its configuration file.
+- The HAR does not support UIAbilities, ExtensionAbilities, or pages.
 - The HAR does not support **worker** configuration under **buildOption** in the **build-profile.json5** file.
 - The HAR of the FA model and that of the stage model cannot be referenced by each other.
 - The HAR of the stage model cannot reference content in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
@@ -80,27 +79,42 @@ The **Index.ets** file acts as the entry of the HAR export declaration file and 
 ### Exporting ArkUI Components
 Use **export** to export the ArkUI components. The code snippet is as follows:
 ```ts
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Component
 export struct MainPage {
-  @State message: string = 'Hello World'
+  @State message: string = 'HAR MainPage';
+
   build() {
-    Row() {
-      Column() {
+    Column() {
+      Row() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(32)
           .fontWeight(FontWeight.Bold)
       }
-      .width('100%')
+      .margin({ top: '32px' })
+      .height(56)
+      .width('624px')
+
+      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center, alignContent: FlexAlign.Center }) {
+        Column() {
+          Image($r('app.media.pic_empty')).width('33%')
+          Text($r('app.string.empty'))
+            .fontSize(14)
+            .fontColor($r('app.color.text_color'))
+        }
+      }.width('100%')
+      .height('90%')
     }
+    .width('100%')
     .height('100%')
+    .backgroundColor($r('app.color.page_background'))
   }
 }
 ```
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 ```ts
 // library/Index.ets
-export { MainPage } from './src/main/ets/components/MainPage/MainPage'
+export { MainPage } from './src/main/ets/components/mainpage/MainPage';
 ```
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. Multiple TS classes and methods can be exported at the same time. The code snippet is as follows:
@@ -113,36 +127,36 @@ export class Log {
 }
 
 export function func() {
-  return "har func";
+  return 'har func';
 }
 
 export function func2() {
-  return "har func2";
+  return 'har func2';
 }
 ```
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 ```ts
 // library/Index.ets
-export { Log } from './src/main/ts/test'
-export { func } from './src/main/ts/test'
-export { func2 } from './src/main/ts/test'
+export { Log } from './src/main/ts/test';
+export { func } from './src/main/ts/test';
+export { func2 } from './src/main/ts/test';
 ```
 
 ### Exporting Native Methods
 The HAR can contain .so files written in C++. Native methods in the .so file can be exported from the HAR in the following way. In the example, the **add** API in the **libnative.so** file is exported.
 ```ts
 // library/src/main/ets/utils/nativeTest.ts
-import native from "libnative.so"
+import native from 'liblibrary.so';
 
-export function nativeAdd(a: number, b: number) {
-    let result: number = native.add(a, b);
-    return result;
+export function nativeAdd(a: number, b: number): number {
+  let result: number = native.add(a, b);
+  return result;
 }
 ```
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 ```ts
 // library/Index.ets
-export { nativeAdd } from './src/main/ets/utils/nativeTest'
+export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
 
 ### Resources
@@ -158,23 +172,16 @@ To start with, configure dependency on the HAR.
 
 After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The code snippet is as follows:
 ```ts
-// entry/src/main/ets/pages/Index.ets
-import { MainPage } from "library"
+// entry/src/main/ets/pages/IndexSec.ets
+import { MainPage } from 'library';
 
 @Entry
 @Component
-struct Index {
-  @State message: string = 'Hello World'
+struct IndexSec {
   build() {
     Row() {
       // Reference the ArkUI component in the HAR.
       MainPage()
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
     }
     .height('100%')
   }
@@ -184,24 +191,46 @@ struct Index {
 To reference the TS classes and methods exported from the HAR, use **import** as follows:
 ```ts
 // entry/src/main/ets/pages/Index.ets
-import { Log } from "library"
-import { func } from "library"
+import { Log } from 'library';
+import { func } from 'library';
 
 @Entry
 @Component
 struct Index {
+  @State message: string = 'Hello World';
+
   build() {
-    Row() {
-      Column() {
-        Button('Button')
-          .onClick(()=>{
-            // Reference TS classes and methods in the HAR.
-            Log.info("har msg");
-            func();
+    Column() {
+      Text(this.message)
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(FontWeight.Bold)
+        .fontSize(32)
+        .fontWeight(700)
+        .fontColor($r('app.color.text_color'))
+        .textAlign(TextAlign.Start)
+        .margin({ top: '32px' })
+        .width('624px')
+
+      // Reference TS classes and methods in the HAR.
+      Button($r('app.string.button'))
+        .id('button')
+        .height(48)
+        .width('624px')
+        .margin({ top: '4%' })
+        .type(ButtonType.Capsule)
+        .fontFamily('HarmonyHeiTi')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('app.color.button_background'))
+        .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .fontSize($r('sys.float.ohos_id_text_size_button1'))
+        .onClick(() => {
+          // Reference classes and methods in the HAR.
+          Log.info('har msg');
+          this.message = 'func return: ' + func();
         })
-      }
-      .width('100%')
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
   }
 }
@@ -211,25 +240,43 @@ struct Index {
 To reference the native methods exported from the HAR, use **import** as follows:
 ```ts
 // entry/src/main/ets/pages/Index.ets
-import { nativeAdd } from "library"
+import { nativeAdd } from 'library';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
+
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('nativeAdd(1, 2)')
-          .onClick(()=> {
-            this.message = "result: " + nativeAdd(1, 2);
-          })
-      }
-      .width('100%')
+    Column() {
+      Text(this.message)
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(FontWeight.Bold)
+        .fontSize(32)
+        .fontWeight(700)
+        .fontColor($r('app.color.text_color'))
+        .textAlign(TextAlign.Start)
+        .margin({ top: '32px' })
+        .width('624px')
+
+      // Reference native methods in the HAR.
+      Button($r('app.string.native_add'))
+        .id('nativeAdd')
+        .height(48)
+        .width('624px')
+        .margin({ top: '4%', bottom: '6%' })
+        .type(ButtonType.Capsule)
+        .fontFamily('HarmonyHeiTi')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('app.color.button_background'))
+        .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .fontSize($r('sys.float.ohos_id_text_size_button1'))
+        .onClick(() => {
+          this.message = 'result: ' + nativeAdd(1, 2);
+        })
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
   }
 }
@@ -242,18 +289,33 @@ Use **$r** to reference resources in the HAR. For example, add the **name: hello
 @Entry
 @Component
 struct Index {
+  @State message: string = 'Hello World';
+
   build() {
-    Row() {
-      Column() {
-        // Reference the string in the HAR.
-        Text($r("app.string.hello_har"))
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        // Reference the image in the HAR.
-        Image($r("app.media.icon_har"))
+    Column() {
+      // Reference the string in the HAR.
+      Text($r('app.string.hello_har'))
+        .id('stringHar')
+        .fontFamily('HarmonyHeiTi')
+        .fontColor($r('app.color.text_color'))
+        .fontSize(24)
+        .fontWeight(500)
+        .margin({ top: '40%' })
+
+      List() {
+        ListItem() {
+          // Reference the image in the HAR.
+          Image($r('app.media.icon_har'))
+            .id('iconHar')
+            .borderRadius('48px')
+        }
+        .margin({ top: '5%' })
+        .width('312px')
       }
-      .width('100%')
+      .alignListItem(ListItemAlign.Center)
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
   }
 }
