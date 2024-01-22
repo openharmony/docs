@@ -42,7 +42,7 @@ once(type: string, callback: Callback\<void\>): void
 import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
-  console.log("once test")
+  console.log("once example test")
 })
 
 @Entry
@@ -4197,6 +4197,63 @@ export default class EntryAbility extends UIAbility {
         // 通过在AppStorage对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
         AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
     }
+}
+```
+
+### customizeSchemes
+
+static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
+
+配置Web自定义协议请求的权限。建议在任何Web组件初始化之前进行调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | 是   | 自定义协议配置，最多支持同时配置10个自定义协议。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+interface EvenType {
+  request: WebResourceRequest;
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  responseweb: WebResourceResponse = new WebResourceResponse()
+  scheme1: web_webview.WebCustomScheme = {schemeName: "name1", isSupportCORS: true, isSupportFetch: true}
+  scheme2: web_webview.WebCustomScheme = {schemeName: "name2", isSupportCORS: true, isSupportFetch: true}
+  scheme3: web_webview.WebCustomScheme = {schemeName: "name3", isSupportCORS: true, isSupportFetch: true}
+
+  aboutToAppear():void {
+    try {
+      web_webview.WebviewController.customizeSchemes([this.scheme1, this.scheme2, this.scheme3])
+    } catch(error) {
+      let e:business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onInterceptRequest((event: EventType) => {
+          if (event) {
+            console.log('url:' + event.request.getRequestUrl())
+          }
+          return this.responseweb
+        })
+    }
+  }
 }
 ```
 
