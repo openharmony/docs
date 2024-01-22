@@ -556,12 +556,14 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
       return GestureJudgeResult.CONTINUE
     }
   })
-  .onTouch(event) {
-    if (event.type === TouchType.Down) {
-      downX = event.windowX;
-      downY = event.windowY;
+  .onTouch((event? TouchEvent)=> {
+    if (event) {
+      if (event.type === TouchType.Down) {
+        downX = event.windowX;
+        downY = event.windowY;
+      }
     }
-  }
+  })
 
 ## cl.arkui.14  menuItem默认高度规格变更
 
