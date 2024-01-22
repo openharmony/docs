@@ -579,7 +579,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(): Promise\<void\>
 
-清理应用本身的数据。使用Promise异步回调。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -615,7 +615,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
-清理应用本身的数据。使用callback异步回调。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
