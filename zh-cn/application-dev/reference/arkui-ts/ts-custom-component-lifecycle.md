@@ -42,7 +42,7 @@ onPageHide?(): void
 
 onBackPress?(): void | boolean
 
-当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。
+当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。
 
 
 ```ts
@@ -140,12 +140,11 @@ export class Message {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
   @State switch: boolean = true
 
   build() {
     Column() {
-      Button(this.message)
+      Button('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
