@@ -12,8 +12,8 @@
 
 | 模块 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化 |
-| ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听 |
+| ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化。 |
+| ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听。 |
 
 
 ## 开发步骤
@@ -28,7 +28,9 @@
 
 2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
-3. 注册监听。通过on()接口，实现对传感器的持续监听，将传感器上报频率等级设为”game“。
+3. 注册监听。
+
+    通过on()接口，实现对传感器的持续监听，将传感器上报频率等级设为”game“。
 
     ```ts    
     sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
