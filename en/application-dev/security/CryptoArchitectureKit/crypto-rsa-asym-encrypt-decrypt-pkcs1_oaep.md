@@ -1,43 +1,43 @@
-# 使用RSA非对称密钥（PKCS1_OAEP模式）加解密
+# Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)
 
 
-对应的算法规格请查看[非对称密钥加解密算法规格：RSA](crypto-asym-encrypt-decrypt-spec.md#rsa)。
+For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-decrypt-spec.md#rsa).
 
 
-**加密**
+**Encryption**
 
 
-1. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)、[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3)，指定密钥参数，生成RSA非对称密钥对（KeyPair）。
+1. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and **AsyKeyGeneratorBySpec.generateKeyPair** to generate an RSA key pair (**KeyPair**).
    
-   如何生成RSA非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)和[指定密钥参数生成密钥对](crypto-generate-asym-key-pair-from-key-spec.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. 调用[cryptoFramework.createCipher](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'RSA|PKCS1_OAEP|SHA256|MGF1_SHA1'，创建非对称密钥类型为RSA1024、填充模式为PKCS1_OAEP、摘要算法为SHA256、掩码摘要为MGF1_SHA1的RSA密钥的Cipher实例，用于完成加解密操作。
+2. Use [cryptoFramework.createCipher](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'RSA|PKCS1_OAEP|SHA256|MGF1_SHA1'** to create a **Cipher** instance. The key type is **RSA1024**, padding mode is **PKCS1_OAEP**, MD algorithm is **SHA256**, and mask digest algorithm is **MGF1_SHA1**.
 
-3. 调用[Cipher.init](../../reference/apis/js-apis-cryptoFramework.md#init-1)，设置模式为加密（CryptoMode.ENCRYPT_MODE），指定加密密钥（KeyPair.PubKey），初始化加密Cipher实例。
+3. Use [Cipher.init](../../reference/apis/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **SymKey** (the key used for encryption).
    
-   非对称密钥无加密参数，直接传入null。
+   No encryption parameter is required for asymmetric key pairs. Therefore, pass in **null** in **params**.
 
-4. 在调用Cipher.doFinal前，调用[Cipher.setCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#setcipherspec10)设置PKCS1_OAEP填充参数pSource。调用[Cipher.getCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#getcipherspec10)可获得OAEP相关参数。
+4. Use [Cipher.setCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. You can use [Cipher.getCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
 
-5. 调用[Cipher.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-1)，传入明文，获取加密后的数据。
-
-
-**解密**
+5. Use [Cipher.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-1) to pass in the plaintext and encrypt it.
 
 
-1. 由于RSA算法的Cipher实例不支持重复init操作，需要调用[cryptoFramework.createCipher](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，重新生成Cipher实例。
+**Decryption**
 
-2. 调用[Cipher.init](../../reference/apis/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），指定解密密钥（KeyPair.PriKey）初始化解密Cipher实例。PKCS1模式无加密参数，直接传入null。
 
-3. 在调用Cipher.doFinal前，调用[Cipher.setCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#setcipherspec10)设置PKCS1_OAEP填充参数pSource，此处需要和加密时设置的保持一致。调用[Cipher.getCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#getcipherspec10)可获得OAEP相关参数。
+1. If RSA is used, the **Cipher** instance cannot be initialized repeatedly. Use [cryptoFramework.createCipher](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) to create a new **Cipher** instance.
 
-4. 调用[Cipher.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-1)，传入密文，获取解密后的数据。
+2. Use [Cipher.init](../../reference/apis/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption) and **key** to **KeyPair.PriKey** (the key used for decryption). When PKCS1 mode is used, pass in **null** in **params**.
+
+3. Use [Cipher.setCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#setcipherspec10) to set the parameter **pSource** for **PKCS1_OAEP** before **Cipher.doFinal** is called. The value of **pSource** must be the same as that set in encryption. You can use [Cipher.getCipherSpec](../../reference/apis/js-apis-cryptoFramework.md#getcipherspec10) to obtain OAEP-related parameters.
+
+4. Use [Cipher.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-1) to pass in the ciphertext and decrypt it.
 
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import buffer from '@ohos.buffer';
-// 根据密钥参数属性构造RSA非对称密钥对密钥参数
+// Construct the RSA key pair parameter based on the key pair specifications.
 function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
   let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
     n: nIn,
@@ -53,7 +53,7 @@ function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
   };
   return rsaKeyPairSpec;
 }
-// 生成RSA2048密钥对参数
+// Generate the RSA2048 key pair parameter.
 function genRsa2048KeyPairSpec(): cryptoFramework.RSAKeyPairSpec {
   let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
   let eIn = BigInt("0x010001");
@@ -62,29 +62,29 @@ function genRsa2048KeyPairSpec(): cryptoFramework.RSAKeyPairSpec {
 }
 async function rsaUseSpecDecryptOAEPPromise() {
   let plan = "This is a test";
-  // 获得RSA密钥对密钥参数对象
+  // Generate the RSA key pair parameter (Rsa2048KeyPairSpec) object.
   let rsaKeyPairSpec = genRsa2048KeyPairSpec();
-  // 根据RSA密钥对参数生成RSA密钥对
+  // Generate an RSA key pair based on the RSA key pair parameter.
   let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
   let cipher = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
   let decoder = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
-  // RSA加解密PKCS1-OAEP模式填充字节流P
+  // Set pSource, which defines the encoding input P filled by OAEP.
   let pSource = new Uint8Array([1, 2, 3, 4]);
   let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
-  // 生成密钥对
+  // Generate a key pair.
   let keyPair = await rsaGeneratorSpec.generateKeyPair();
-  // 进行加密操作初始化
+  // Initialize the encryption operation.
   await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-  // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作
+  // Set and obtain the Cipher specifications after the initialization.
   cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
   let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-  // 比较get出来的P字节流与set进去的P字节流是否一致
+  // Check whether the obtained PSource is the same as the PSource set.
   if (retP.toString() != pSource.toString()) {
     console.error("error init pSource" + retP);
   } else {
     console.info("pSource changed ==" + retP);
   }
-  // 进行OAEP其他参数的get操作
+  // Obtain other OAEP parameters.
   let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
   console.info("md == " + md);
   let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
@@ -92,26 +92,26 @@ async function rsaUseSpecDecryptOAEPPromise() {
   let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
   console.info("mgf1Md == " + mgf1Md);
   let cipherDataBlob = await cipher.doFinal(input);
-  // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作
+  // The get() and set() operations can be performed before the init() operation of the Cipher object and are equivalent to those after the init() operation. For example, set and get the decoder.
   decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
   retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-  // 比较get出来的P字节流与set进去的P字节流是否一致
+  // Check whether the obtained PSource is the same as the PSource set.
   if (retP.toString() != pSource.toString()) {
     console.error("error init pSource" + retP);
   } else {
     console.info("pSource changed ==" + retP);
   }
-  // 进行OAEP其他参数的get操作
+  // Obtain other OAEP parameters.
   md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
   console.info("md == " + md);
   mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
   console.info("mgf == " + mgf);
   mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
   console.info("mgf1Md == " + mgf1Md);
-  // 初始化解密操作
+  // Initialize the decryption operation.
   await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
   let decodeData = await decoder.doFinal(cipherDataBlob);
-  // 解密成功
+  // The decryption is successful.
   if (decodeData.data.toString() === input.data.toString()) {
     console.info("oaep decrypt success");
   } else {
