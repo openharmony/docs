@@ -4221,10 +4221,6 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-interface EvenType {
-  request: WebResourceRequest;
-}
-
 @Entry
 @Component
 struct WebComponent {
@@ -4246,7 +4242,7 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .onInterceptRequest((event: EventType) => {
+        .onInterceptRequest((event) => {
           if (event) {
             console.log('url:' + event.request.getRequestUrl())
           }
