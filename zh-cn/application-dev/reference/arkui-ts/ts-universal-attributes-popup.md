@@ -48,6 +48,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置箭头高度。<br/>默认值：8.0_vp <br />**说明：**<br />不支持设置百分比。                          |
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置气泡圆角半径。<br/>默认值：20.0_vp                          |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD      |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
@@ -77,6 +78,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置箭头高度。<br/>默认值：8.0_vp <br />**说明：**<br />不支持设置百分比。                          |
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置气泡圆角半径。<br/>默认值：20.0_vp                          |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD      |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| focusable<sup>11+</sup> | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false。 |
 
 ## 
 
