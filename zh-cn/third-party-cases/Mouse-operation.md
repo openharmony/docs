@@ -89,7 +89,7 @@
     })
     ```
 3. 输入错误手机号时输入框的状态以及输入正确手机号时按钮的变化。 
-    通过判断输入的手机号是否与预设手机号相同。如果相同，通过函数materOnClick()，按钮出现20s倒计时；如果不同，输入框下方出现错误状态提示文本并且点击按钮不发生变化。
+    通过判断输入的手机号是否与预设手机号相同。如果相同，通过函数materOnClick()，按钮出现60s倒计时；如果不同，输入框下方出现错误状态提示文本并且点击按钮不发生变化。
     ```ts
     // 自定义倒计时函数
     private materOnClick(){
@@ -122,7 +122,7 @@
 @Component
 struct Index{
   @State Text: string = ''
-  @State sec: number = 20
+  @State sec: number = 60
   @State flag: boolean = false
   @State color: string = '#46CDD0'
   @State color1:string = '#DECECE'
