@@ -35,7 +35,7 @@ Obtains the network type.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No| Called when the API call is successful. The return value is defined by [NetworkResponse](#networkresponse).|
+| success | Function | No| Called when the API call is successful. The return value is defined by [NetworkResponse](#networkresponse3).|
 | fail | Function | No| Called when API call has failed.|
 | complete | Function | No| Called when the API call is complete.|
 
@@ -78,7 +78,7 @@ Listens to the network connection state. If this method is called multiple times
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse).|
+| success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse3).|
 | fail | Function | No| Called when API call has failed.|
 
 One of the following error codes will be returned if the API call has failed.
