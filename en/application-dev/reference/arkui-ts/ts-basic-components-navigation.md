@@ -5,6 +5,8 @@ The **\<Navigation>** component is the root view container for navigation. It ty
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to overwrite the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 
 
 ## Child Components
@@ -64,7 +66,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Called when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Called when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
 | onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| Called when the **\<Navigation>** component is displayed for the first time or its display mode switches between single-column and dual-column.<br>**NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
-| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation-11)): [NavigationAnimatedTransition](#navigationanimatedtransition11)<sup>11+</sup> | Callback of the custom transition animation.<br>**from**: parameters of the exit destination page.<br> **to**: parameters of the enter destination page.<br> **operation**: transition type.|
+| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation11)): [NavigationAnimatedTransition](#navigationanimatedtransition11)<sup>11+</sup> | Callback of the custom transition animation.<br>**from**: parameters of the exit destination page.<br> **to**: parameters of the enter destination page.<br> **operation**: transition type.|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -371,7 +373,7 @@ Provides the destination information.
 |-------|-------|------|-------|
 | name | string | No| Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 | index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.|
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode11) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -890,7 +892,6 @@ export struct PageTwoTemp {
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
-    .backgroundColor(Color.White)
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
       console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))

@@ -4,7 +4,7 @@ As a child component of the **\<Text>** component, the  **\<SymbolSpan>** compon
 
 >  **NOTE**
 >
->  This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 11. It can inherit attribute settings from its parent component **\<Text>**. This means that, if an attribute is not set in this component, it takes the value (if any) of the attribute from its parent component. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
