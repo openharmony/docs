@@ -815,7 +815,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+| value | CopyOptions | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
 
 **示例：**
 
@@ -3818,7 +3818,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 | 参数名   | 参数类型                                     | 参数描述           |
 | ----- | ---------------------------------------- | -------------- |
-| event | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
+| event | KeyEvent | 触发的KeyEvent事件。 |
 
 **返回值：**
 
@@ -4710,7 +4710,7 @@ setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 | 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
+| data | string \| number \| Resource<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -5497,7 +5497,7 @@ getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
 
-从API version 9开始不再维护，建议使用[getCookie](js-apis-webview.md#getcookiedeprecated)代替。
+从API version 9开始不再维护，建议使用getCookie代替。
 
 **返回值：**
 
@@ -6327,4 +6327,4 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
-| touchEvent  | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |
+| touchEvent  | TouchEvent  | 是    | 手指触摸动作信息。  |
