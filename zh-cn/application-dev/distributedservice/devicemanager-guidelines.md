@@ -36,7 +36,7 @@
 
 应用在使用分布式设备管理系统能力前，需要检查是否已经获取用户授权访问分布式数据同步信息。如未获得授权，可以向用户申请需要的分布式数据同步权限。
 
-- ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
+ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 使用设备管理能力，必须申请权限，并且获得用户授权。
 
@@ -66,11 +66,14 @@
 
 ### 接口说明
 
-发现周边同局域网或者开启蓝牙的设备，所使用的接口说明如下，详细信息参见：[DeviceManager](../reference/apis/js-apis-distributedDeviceManager.md)。
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
+
+发现周边同局域网或者开启蓝牙的设备。详细信息参见：[startDiscovering](../reference/apis/js-apis-distributedDeviceManager.md#startdiscovering)。
+
 
 ### 开发步骤
 
-1. 申请分布式数据同步权限[申请分布式数据同步权限开发指导](#申请分布式数据同步权限开发指导)。
+1. 申请分布式数据同步权限。
 
 2. 导入deviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
    
@@ -131,13 +134,15 @@
 
 ### 接口说明
 
-绑定接口说明如下，详细信息参见：[DeviceManager](../reference/apis/js-apis-distributedDeviceManager.md)。
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
+
+设备绑定。详细信息参见：[bindTarget](../reference/apis/js-apis-distributedDeviceManager.md#bindtarget)。
 
 ### 开发步骤
 
-1. 申请分布式数据同步权限[申请分布式数据同步权限开发指导](#申请分布式数据同步权限开发指导)。
+1. 申请分布式数据同步权限。
 
-2. 发现周边不可信设备[设备发现开发指导](#设备发现开发指导)。
+2. 发现周边不可信设备。
    
 3. 选择不可信设备id，发起设备绑定。
 
@@ -175,17 +180,19 @@
 
 ### 接口说明
 
-设备信息查询接口说明如下，详细信息参见：[DeviceManager](../reference/apis/js-apis-distributedDeviceManager.md)。
+getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
+
+设备信息查询。详细信息参见：[getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)。
 
 ### 开发步骤
 
-1. 申请分布式数据同步权限[申请分布式数据同步权限开发指导](#申请分布式数据同步权限开发指导)。
+1. 申请分布式数据同步权限。
 
-2. 发现周边不可信设备[设备发现开发指导](#设备发现开发指导)。
+2. 发现周边不可信设备。
    
-3. 建立设备间的可信关系[设备绑定开发指导](#设备绑定开发指导)。
+3. 建立设备间的可信关系。
 
-4. 查询周围上线并且可行的设备
+4. 查询周围上线并且可行的设备。
 
    ```ts
    try {
@@ -204,11 +211,13 @@
 
 ### 接口说明
 
-设备上下线监听接口说明如下，详细信息参见：[DeviceManager](../reference/apis/js-apis-distributedDeviceManager.md)。
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+
+设备上下线监听。详细信息参见：[on('deviceStateChange')](../reference/apis/js-apis-distributedDeviceManager.md#ondevicestatechange)。
 
 ### 开发步骤
 
-1. 申请分布式数据同步权限[申请分布式数据同步权限开发指导](#申请分布式数据同步权限开发指导)。
+1. 申请分布式数据同步权限。
 
 2. 导入deviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
    
