@@ -558,7 +558,8 @@ getSelection(): RichEditorSelection
 
 onClick(callback: (event?: ClickEvent) => void)
 
-点击完成时回调事件。
+点击完成时回调事件。<br/>
+双击时，第一次点击触发回调事件。
 
 **参数:**
 
