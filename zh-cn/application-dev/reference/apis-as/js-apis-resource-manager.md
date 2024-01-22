@@ -923,7 +923,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1368,7 +1368,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, error: BusinessError, value: string) => {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1477,7 +1477,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, error: BusinessError, value: string) => {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1842,7 +1842,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1886,7 +1886,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2030,7 +2030,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2082,7 +2082,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2234,7 +2234,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2278,7 +2278,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -3756,7 +3756,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -3855,7 +3855,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColor(resource, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -3954,7 +3954,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4084,7 +4084,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4220,7 +4220,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
   import { BusinessError } from '@ohos.base';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
-    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4350,9 +4350,10 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
-    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
       if (error != null) {
         console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4399,6 +4400,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4478,7 +4480,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
       if (error != null) {
         console.error("error is " + error);
       }
@@ -4572,8 +4574,10 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 **示例：** 
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   try {
-    this.context.resourceManager.getConfiguration((error: BusinessError, value: string) => {
+    this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
       if (error != null) {
         console.error("getConfiguration callback error is " + error);
       } else {
@@ -4603,6 +4607,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -4657,8 +4662,10 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 **示例：** 
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   try {
-    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: string) => {
+    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
       if (error != null) {
         console.error("getDeviceCapability callback error is " + error);
       } else {
@@ -4688,6 +4695,7 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
