@@ -495,7 +495,73 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 **适配指导**
 
-默认行为变更，不涉及适配。
+该变更会导致若点击手势和拖动手势放入同一个并行手势组，会出现拖动手势和点击手势同时响应的情况
+
+适配措施：
+1.应用业务审视是否必须将点击手势和拖动手势放入同一个并行手势组内（大部分之前没有冲突的情况，是因为点击事件的20px的移动限制，自动消减了冲突），如果不是必须则可以不挂到同一个手势组
+修改前：
+  .parallelGesture(GestureGroup(Gesture.Parallel,
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.info("Tapgesture")
+        }
+      })
+    PanGesture({fingers: 1})
+      .onActionStart((event?: GestureEvent)=>{
+        console.info("Pan start")
+      })
+      .onActionUpdate((event?: GestureEvent)=>{
+        console.info("Pan update")
+      })
+      .onActionEnd((event?: GestureEvent)=>{
+        console.info("Pan end")
+      })
+  ))
+
+修改后：
+  .parallelGesture(GestureGroup(Gesture.Parallel,
+    PanGesture({fingers: 1})
+      .onActionStart((event?: GestureEvent)=>{
+        console.info("Pan start")
+      })
+      .onActionUpdate((event?: GestureEvent)=>{
+        console.info("Pan update")
+      })
+      .onActionEnd((event?: GestureEvent)=>{
+        console.info("Pan end")
+      })
+  ))
+  .gesture(
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.info("Tapgesture")
+        }
+    })
+  )
+
+2.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过自行设置的手指移动距离判定点击手势失败：
+示例代码：
+  .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
+    if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
+      let xGap = event.fingerList.globalX - downX
+      if (xGap > 20) {
+        return GestureJudgeResult.REJECT
+      }
+      let yGap = event.fingerList.globalX - downY
+      if (yGap > 20) {
+        return GestureJudgeResult.REJECT
+      }
+      return GestureJudgeResult.CONTINUE
+    }
+  })
+  .onTouch(event) {
+    if (event.type == DOWN) {
+      downX = event.windowX;
+      downY = event.windowY;
+    }
+  }
 
 ## cl.arkui.14  menuItem默认高度规格变更
 
