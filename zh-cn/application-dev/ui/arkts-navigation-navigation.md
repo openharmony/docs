@@ -163,7 +163,7 @@ Navigation() {
   TooTmp])
 ```
 
-图片也可以引用resources中的资源
+图片也可以引用resources中的资源。
 
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
