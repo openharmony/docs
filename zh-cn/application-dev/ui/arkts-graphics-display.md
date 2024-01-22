@@ -6,8 +6,6 @@
 
 Image通过调用接口来创建，接口调用形式如下：
 
-
-
 ```ts
 Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 ```
@@ -195,7 +193,6 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        
          class imagetmp {
            image: PixelMap | undefined = undefined
-       
            set(val: PixelMap) {
              this.image = val
            }
@@ -210,10 +207,10 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    4. 显示图片。
        ```ts
        class htp{
-        httpRequest:Function|undefined = undefined
+        httpRequest: Function | undefined = undefined
         set(){
           if(this.httpRequest){
-          this.httpRequest()
+            this.httpRequest()
           }
         }
       }
@@ -234,8 +231,9 @@ svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
 
 ```ts
-Image($r('app.media.cloud')).width(50)
-.fillColor(Color.Blue) 
+Image($r('app.media.cloud'))
+  .width(50)
+  .fillColor(Color.Blue) 
 ```
 
   **图3** 原始图片  
@@ -265,38 +263,60 @@ struct MyComponent {
 
   build() {
     Scroll(this.scroller) {
-      Row() {
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Contain).margin(15) // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
-          .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.ic_img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Cover).margin(15)
-          // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
-          .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-            // 自适应显示。
-          .objectFit(ImageFit.Auto).margin(15)
-          .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-      }
-      Row() {
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          .objectFit(ImageFit.Fill).margin(15)
-          // 不保持宽高比进行放大缩小，使得图片充满显示边界。
-          .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          // 保持宽高比显示，图片缩小或者保持不变。
-          .objectFit(ImageFit.ScaleDown).margin(15)
-          .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_2')).width(200).height(150)
-          .border({ width: 1 })
-          // 保持原有尺寸显示。
-          .objectFit(ImageFit.None).margin(15)
-          .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      Column() {
+        Row() {
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
+            .objectFit(ImageFit.Contain)
+            .margin(15)
+            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.ic_img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+            .objectFit(ImageFit.Cover)
+            .margin(15)
+              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
+            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 自适应显示。
+            .objectFit(ImageFit.Auto)
+            .margin(15)
+            .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
+
+        Row() {
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+            .objectFit(ImageFit.Fill)
+            .margin(15)
+              // 不保持宽高比进行放大缩小，使得图片充满显示边界。
+            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 保持宽高比显示，图片缩小或者保持不变。
+            .objectFit(ImageFit.ScaleDown)
+            .margin(15)
+            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          Image($r('app.media.img_2'))
+            .width(200)
+            .height(150)
+            .border({ width: 1 })
+              // 保持原有尺寸显示。
+            .objectFit(ImageFit.None)
+            .margin(15)
+            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        }
       }
     }
   }
