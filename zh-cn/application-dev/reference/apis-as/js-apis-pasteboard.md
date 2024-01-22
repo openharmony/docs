@@ -134,7 +134,6 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
         console.error('Failed to get PasteData. Cause: ' + err.message);
         return;
     }
-    let text: string = pasteData.getPrimaryText();
 });
 ```
 
@@ -168,7 +167,6 @@ import { BusinessError } from '@ohos.base';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
-    let text: string = pasteData.getPrimaryText();
 }).catch((err: BusinessError) => {
     console.error('Failed to get PasteData. Cause: ' + err.message);
 });
