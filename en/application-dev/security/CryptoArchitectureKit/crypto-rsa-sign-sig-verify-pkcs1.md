@@ -1,4 +1,4 @@
-# Signing and Signature Verification with an RSA Key Pair(PKCS1 Mode)
+# Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)
 
 
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
