@@ -1,6 +1,36 @@
-# AVPlayer and AVRecorder
+# Introduction to Media Kit
 
-The media module provides the [AVPlayer](#avplayer) and [AVRecorder](#avrecorder) class to implement audio and video playback and recording.
+Media Kit provides [AVPlayer](#avplayer) and [AVRecorder](#avrecorder) for playing and recording audio and video.
+
+You will learn how to use the APIs provided by Media Kit to develop a wealth of audio and video playback or recording scenarios. For example, you can use **SoundPool** to implement simple prompt tones so that a drip sound is played upon the receipt of a new message, or use **AVPlayer** to develop a music player, which can loop a piece of music.
+
+## Highlights
+
+- Lightweight media engine
+  
+   Less system resources (threads and memory) are required. Audio and video playback and recording, flexible pipeline assembly, and source, demuxer, and codec plugins are supported.
+
+- HDR video
+
+   The native data structures and interfaces are provided to support the capture and playback of HDR VIVID. Third-party applications can deliver a more immersive experience by leveraging the HDR capability of the system.
+
+- Sound pool
+
+   Short sound effects (such as the camera shutter sound effect and system notification sound effect) are often required during application development. You can call the APIs provided by **SoundPool** to implement one-time loading of short sounds and multiple times of low-latency playback.
+
+## Development Description
+
+This development guide applies only to audio and video playback or recording, which are implemented by Media Kit. The UI, image processing, media storage, or other related capabilities are not covered.
+
+Before developing features related to audio and video playback or recording, you are advised to understand the following concepts:
+
+- Playback process: network protocol > container format > audio and video codec > graphics/audio rendering
+
+- Network protocols: HLS, HTTP, HTTPS, and more
+
+- Container formats: mp4, mkv, mpeg-ts, and more
+
+- Encoding format: H.264, H.265, and more
 
 ## AVPlayer
 
@@ -8,14 +38,13 @@ The AVPlayer transcodes audio and video media assets (such as MP4, MP3, MKV, and
 
 The AVPlayer provides the integrated playback capability. This means that your application only needs to provide streaming media sources to implement media playback. It does not need to parse or decode data.
 
-
 ### Audio Playback
 
 The figure below shows the interaction when the **AVPlayer** class is used to develop a music application.
 
 **Figure 1** Interaction with external modules for audio playback 
 
-![Audio playback interaction diagram](figures/audio-playback-interaction-diagram.png)
+![Audio Playback Interaction Diagram](figures/audio-playback-interaction-diagram.png)
 
 When a music application calls the **AVPlayer** APIs at the JS interface layer to implement audio playback, the player framework at the framework layer parses the media asset into audio data streams (in PCM format). The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI for rendering. A complete audio playback process requires the cooperation of the application, player framework, audio framework, and audio HDI.
 
@@ -55,7 +84,7 @@ Audio and video containers and codecs are domains specific to content creators. 
 
 The table below lists the supported protocols.
 
-| Scenario| Description| 
+| Scenario| Description|
 | -------- | -------- |
 | Local VOD| The file descriptor is supported, but the file path is not.|
 | Network VoD| HTTP, HTTPS, and HLS are supported.|
@@ -63,13 +92,13 @@ The table below lists the supported protocols.
 
 The table below lists the supported audio playback formats.
 
-| Audio Container Format| Description| 
+| Audio Container Format| Description|
 | -------- | -------- |
-| M4A| Audio format: AAC| 
-| AAC| Audio format: AAC| 
-| MP3| Audio format: MP3| 
-| OGG| Audio format: VORBIS | 
-| WAV| Audio format: PCM | 
+| m4a | Audio format: AAC|
+| aac | Audio format: AAC|
+| mp3 | Audio format: MP3|
+| ogg | Audio format: VORBIS |
+| wav | Audio format: PCM|
 
 > **NOTE**
 > 
@@ -77,21 +106,16 @@ The table below lists the supported audio playback formats.
 
 | Video Format| Mandatory or Not|
 | -------- | -------- |
-| H.265<sup>10+</sup>      | Yes|
-| H.264     | Yes|
-| MPEG-2    | No|
-| MPEG-4    | No|
-| H.263     | No|
-| VP8      | No|
+| H265<sup>10+</sup>      | Yes|
+| H264      | Yes|
 
 The table below lists the supported playback formats and mainstream resolutions.
 
-| Video Container Format| Description| Resolution| 
+| Video Container Format| Description| Resolution|
 | -------- | -------- | -------- |
-| MP4| Video formats: H.265<sup>10+</sup>, H.264, MPEG2, MPEG4, and H.263<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
-| MKV| Video formats: H.265<sup>10+</sup>, H.264, MPEG2, MPEG4, and H.263<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
-| TS| Video formats: H.265<sup>10+</sup>, H.264, MPEG2, and MPEG4<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
-| WebM| Video format: VP8<br>Audio format: VORBIS| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| mp4 | Video formats: H.265<sup>10+</sup>, H.264, MPEG2, and MPEG4<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| mkv | Video formats: H.265<sup>10+</sup>, and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| ts | Video formats: H.265<sup>10+</sup>, and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
 
 ## AVRecorder
 
@@ -123,28 +147,27 @@ In Figure 3, the numbers indicate the process where data is transferred to exter
 
 The table below lists the supported audio sources.
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| mic | The system microphone is used as the audio source input.| 
+| mic | The system microphone is used as the audio source input.|
 
 The table below lists the supported video sources.
 
-| Type| Description | 
+| Type| Description|
 | -------- | -------- |
-| surface_yuv | The input surface carries raw data.| 
-| surface_es | The input surface carries ES data.| 
+| surface_yuv | The input surface carries raw data.|
+| surface_es | The input surface carries ES data.|
 
 The table below lists the supported audio and video encoding formats.
 
-| Encoding Format| Description | 
+| Encoding Format| Description|
 | -------- | -------- |
-| audio/mp4a-latm | Audio encoding format MP4A-LATM.| 
-| video/mp4v-es | Video encoding format MPEG-4.| 
-| video/avc | Video encoding format AVC.| 
+| audio/mp4a-latm | Audio encoding format MP4A-LATM.|
+| video/avc | Video encoding format AVC.|
 
 The table below lists the supported output file formats.
 
-| Format| Description | 
+| Format| Description|
 | -------- | -------- |
-| MP4| Video container format MP4.| 
-| M4A| Audio container format M4A.| 
+| mp4 | Video container format MP4.|
+| m4a | Audio container format M4A.|

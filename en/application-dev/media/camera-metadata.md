@@ -14,7 +14,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    import { BusinessError } from '@ohos.base';
    ```
 
-2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in **CameraOutputCapability**, and then use **createMetadataOutput()** to create a metadata output stream.
+2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../reference/apis/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
      
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
@@ -24,32 +24,32 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
      } catch (error) {
        let err = error as BusinessError;
-       console.info('Failed to createMetadataOutput, error code: '+ err.code);
+       console.error(`Failed to createMetadataOutput, error code: ${err.code}`);
      }
      return metadataOutput;
    }
    ```
 
-3. Call **start()** to start outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+3. Call [start](../reference/apis/js-apis-camera.md#start-3) to start outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
      
    ```ts
    function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
      metadataOutput.start().then(() => {
        console.info('Callback returned with metadataOutput started.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to metadataOutput start, error code: '+ err.code);
+       console.error(`Failed to metadataOutput start, error code: ${err.code}`);
      });
    }
    ```
 
-4. Call **stop()** to stop outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+4. Call [stop](../reference/apis/js-apis-camera.md#stop-3) to stop outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
      
    ```ts
    function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
      metadataOutput.stop().then(() => {
        console.info('Callback returned with metadataOutput stopped.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to metadataOutput stop '+ err.code);
+       console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
      });
    }
    ```
@@ -63,7 +63,7 @@ During camera application development, you can listen for the status of metadata
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-      console.info(`metadata output metadataObjectsAvailable`);
+      console.info('metadata output metadataObjectsAvailable');
     });
   }
   ```
@@ -77,7 +77,7 @@ During camera application development, you can listen for the status of metadata
   ```ts
   function onMetadataError(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('error', (metadataOutputError: BusinessError) => {
-      console.info(`Metadata output error code: ${metadataOutputError.code}`);
+      console.error(`Metadata output error code: ${metadataOutputError.code}`);
     });
   }
   ```

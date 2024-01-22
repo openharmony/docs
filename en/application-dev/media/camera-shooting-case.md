@@ -19,6 +19,49 @@ import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+
+async function savePicture(buffer: ArrayBuffer, img: image.Image) {
+  let photoAccessHelper: PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: PhotoAsset = await photoAccessHelper.createAsset(testFileName);
+  // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+  const fd = await photoAsset.open('rw');
+  fs.write(fd, buffer);
+  await photoAsset.close(fd);
+  img.release(); 
+}
+
+function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+  // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
+  photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
+    console.info('getPhoto start');
+    console.info(`err: ${JSON.stringify(errCode)}`);
+    if (errCode || photo === undefined) {
+      console.error('getPhoto failed');
+      return;
+    }
+    let imageObj = photo.main;
+    imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+      console.info('getComponent start');
+      if (errCode || component === undefined) {
+        console.error('getComponent failed');
+        return;
+      }
+      let buffer: ArrayBuffer;
+      if (component.byteBuffer) {
+        buffer = component.byteBuffer;
+      } else {
+        console.error('byteBuffer is null');
+        return;
+      }
+      savePicture(buffer, imageObj);
+    });
+  });
+}
 
 async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
@@ -62,14 +105,21 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // Listen for camera input errors.
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.info(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   })
 
   // Open the camera.
   await cameraInput.open();
 
+  // Obtain the supported modes.
+  let modes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+  if (!isSupportPhotoMode) {
+    console.error('photo mode not support');
+    return;
+  }
   // Obtain the output stream capabilities supported by the camera.
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error");
     return;
@@ -99,17 +149,13 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
   // Listen for preview output errors.
   previewOutput.on('error', (error: BusinessError) => {
-    console.info(`Preview output error code: ${error.code}`);
+    console.error(`Preview output error code: ${error.code}`);
   });
 
-  // Create an ImageReceiver instance and set photographing parameters. Wherein, the resolution must be one of the photographing resolutions supported by the current device, which are obtained from photoProfilesArray.
-  let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
-  // Obtain the surface ID for displaying photos.
-  let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // Create a photo output stream.
   let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
-    photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
+    photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createPhotoOutput errorCode = ' + err.code);
@@ -117,25 +163,29 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   if (photoOutput === undefined) {
     return;
   }
+
+    // Call the preceding callback to save the image.
+  setPhotoOutputCb(photoOutput);
+
   // Create a session.
-  let captureSession: camera.CaptureSession | undefined = undefined;
+  let photoSession: camera.PhotoSession | undefined = undefined;
   try {
-    captureSession = cameraManager.createCaptureSession();
+    photoSession = cameraManager.createSession(camera.SceneMode..NORMAL_PHOTO);
   } catch (error) {
     let err = error as BusinessError;
-    console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
+    console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
   }
-  if (captureSession === undefined) {
+  if (photoSession === undefined) {
     return;
   }
   // Listen for session errors.
-  captureSession.on('error', (error: BusinessError) => {
-    console.info(`Capture session error code: ${error.code}`);
+  photoSession.on('error', (error: BusinessError) => {
+    console.error(`Capture session error code: ${error.code}`);
   });
 
   // Start configuration for the session.
   try {
-    captureSession.beginConfig();
+    photoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to beginConfig. errorCode = ' + err.code);
@@ -143,7 +193,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
 
   // Add the camera input stream to the session.
   try {
-    captureSession.addInput(cameraInput);
+    photoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addInput. errorCode = ' + err.code);
@@ -151,7 +201,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
 
   // Add the preview output stream to the session.
   try {
-    captureSession.addOutput(previewOutput);
+    photoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addOutput(previewOutput). errorCode = ' + err.code);
@@ -159,34 +209,34 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
 
   // Add the photo output stream to the session.
   try {
-    captureSession.addOutput(photoOutput);
+    photoSession.addOutput(photoOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to addOutput(photoOutput). errorCode = ' + err.code);
   }
 
   // Commit the session configuration.
-  await captureSession.commitConfig();
+  await photoSession.commitConfig();
 
   // Start the session.
-  await captureSession.start().then(() => {
+  await photoSession.start().then(() => {
     console.info('Promise returned to indicate the session start success.');
   });
   // Check whether the camera has flash.
   let flashStatus: boolean = false;
   try {
-    flashStatus = captureSession.hasFlash();
+    flashStatus = photoSession.hasFlash();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to hasFlash. errorCode = ' + err.code);
   }
-  console.info('Promise returned with the flash light support status:' + flashStatus);
+  console.info('Returned with the flash light support status:' + flashStatus);
 
   if (flashStatus) {
     // Check whether the auto flash mode is supported.
     let flashModeStatus: boolean = false;
     try {
-      let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
+      let status: boolean = photoSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
       flashModeStatus = status;
     } catch (error) {
       let err = error as BusinessError;
@@ -195,7 +245,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     if(flashModeStatus) {
       // Set the flash mode to auto.
       try {
-        captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
+        photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
       } catch (error) {
         let err = error as BusinessError;
         console.error('Failed to set the flash mode. errorCode = ' + err.code);
@@ -206,7 +256,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // Check whether the continuous auto focus is supported.
   let focusModeStatus: boolean = false;
   try {
-    let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    let status: boolean = photoSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
     focusModeStatus = status;
   } catch (error) {
     let err = error as BusinessError;
@@ -216,7 +266,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   if (focusModeStatus) {
     // Set the focus mode to continuous auto focus.
     try {
-      captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+      photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
     } catch (error) {
       let err = error as BusinessError;
       console.error('Failed to set the focus mode. errorCode = ' + err.code);
@@ -226,7 +276,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // Obtain the zoom ratio range supported by the camera.
   let zoomRatioRange: Array<number> = [];
   try {
-    zoomRatioRange = captureSession.getZoomRatioRange();
+    zoomRatioRange = photoSession.getZoomRatioRange();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
@@ -236,7 +286,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   }
   // Set a zoom ratio.
   try {
-    captureSession.setZoomRatio(zoomRatioRange[0]);
+    photoSession.setZoomRatio(zoomRatioRange[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to set the zoom ratio value. errorCode = ' + err.code);
@@ -248,13 +298,13 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   // Use the current photographing settings to take photos.
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
-      console.error('Failed to capture the photo ${err.message}');
+      console.error(`Failed to capture the photo ${err.message}`);
       return;
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
   // Stop the session.
-  captureSession.stop();
+  photoSession.stop();
 
   // Release the camera input stream.
   cameraInput.close();
@@ -266,9 +316,9 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   photoOutput.release();
 
   // Release the session.
-  captureSession.release();
+  photoSession.release();
 
   // Set the session to null.
-  captureSession = undefined;
+  photoSession = undefined;
 }
 ```

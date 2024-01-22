@@ -9,6 +9,8 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Check the [state](../reference/apis/js-apis-audio.md#attributes) of the AudioRenderer.
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
   ```
@@ -16,6 +18,8 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Register **stateChange** to listen for state changes of the AudioRenderer.
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
   });
@@ -47,7 +51,6 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 
    ```ts
    import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -92,10 +95,11 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
      This API can be used to obtain the unique ID of the audio playback stream, UID of the audio playback client, audio status, and other information about the audio player.
    > **NOTE**
    >
-   > Before listening for state changes of all audio streams, the application must request the **ohos.permission.USE_BLUETOOTH** [permission](../security/accesstoken-guidelines.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
+   > Before listening for state changes of all audio streams, the application must [declare the ohos.permission.USE_BLUETOOTH permission](../security/AccessToken/declare-permissions.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
