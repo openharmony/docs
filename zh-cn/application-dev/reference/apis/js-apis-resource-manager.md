@@ -3293,7 +3293,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, null, 1);
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3359,7 +3359,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, null, 1);
+    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3417,7 +3417,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', null, 1);
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
