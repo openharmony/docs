@@ -20,4 +20,4 @@ Permission verification failed. You must apply for the **ohos.permission.VIBRATE
 
 **References**
 
-[Applying for Permissions](../security/accesstoken-guidelines.md)
+[Declaring Permissions](../security/AccessToken/declare-permissions.md)

@@ -121,7 +121,7 @@ The development of deferred task scheduling consists of two steps: implementing 
 
 1. Create a project directory.
 
-   In the **./entry/src/main/ets** directory of the project, create a directory and an ArkTS file. For example, create a directory and name it **extension**. In the **extension** directory, create an ArkTS file named **WorkSchedulerExtension.ets** and implement the callbacks for deferred task scheduling.
+   In the **./entry/src/main/ets** directory of the project, create a directory and an ArkTS file. For example, create a directory and name it **WorkSchedulerExtension**. In the **WorkSchedulerExtension** directory, create an ArkTS file named **WorkSchedulerExtension.ets** and implement the callbacks for deferred task scheduling.
 
 2. Import the module.
    

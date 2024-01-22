@@ -43,7 +43,7 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
 | GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**. If this flag is passed in to **GetBundleInfo** or **GetBundleInfoForSelf**, the HAP module information returned contains only the module information for which the file context menu is configured. If this flag is passed in to **GetAllBundleInfo**, the bundle information returned contains only the bundle information of applications for which the file context menu is configured.|
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
 
 ### ApplicationFlag
 
@@ -238,16 +238,6 @@ Enumerates the types of profiles (also called application files).
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
 | INTENT_PROFILE  | 1    | Profile of the InsightIntent framework.   |
-
-### ApplicationReservedFlag<sup>11+</sup>
-
-Enumerates the reserved flags of the application.
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-| Name          | Value  | Description           |
-| -------------- | ---- | --------------- |
-| ENCRYPTED_APPLICATION  | 0x00000001    | Whether the application is encrypted.   |
 
 ## APIs
 
