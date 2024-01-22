@@ -526,10 +526,10 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
@@ -568,20 +568,7 @@ struct NavigationExample {
         .margin({ top: 12, left: '10%' })
       }
       .title(this.NavigationTitle)
-      .menus([
-        {
-          value: '添加',
-          icon: 'resources/base/media/ic_public_add.png'
-        },
-        {
-          value: '添加',
-          icon: 'resources/base/media/ic_public_add.png'
-        },
-        {
-          value: '更多',
-          icon: 'resources/base/media/ic_public_more.png'
-        }
-      ])
+      .menus(this.NavigationMenus)
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
