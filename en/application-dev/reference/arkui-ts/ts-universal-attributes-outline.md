@@ -20,7 +20,7 @@ Sets the outline attributes in one declaration.
 
 | Name| Type                                     | Mandatory| Description|
 | ------ | ----------------------------------------- | ---- | ---- |
-| value  | [OutlineOptions](#outlineoptions) | Yes  |      |
+| value  | [OutlineOptions](#outlineoptions) | Yes  |   Outline attributes.  |
 
 ## outlineStyle
 
