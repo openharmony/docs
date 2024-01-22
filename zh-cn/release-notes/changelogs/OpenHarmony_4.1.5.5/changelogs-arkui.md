@@ -557,7 +557,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
     }
   })
   .onTouch(event) {
-    if (event.type === DOWN) {
+    if (event.type === TouchType.Down) {
       downX = event.windowX;
       downY = event.windowY;
     }
