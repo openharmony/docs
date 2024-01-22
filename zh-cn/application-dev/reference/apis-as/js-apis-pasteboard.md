@@ -95,11 +95,10 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 剪贴板内容对象。
 
-**系统能力：** SystemCapability.MiscServices.Pasteboard
 
 ## SystemPasteboard
 
-系统剪贴板对象。
+系统剪贴板对象。在调用SystemPasteboard的接口前，需要先通过[getSystemPasteboard](#pasteboardgetsystempasteboard)获取系统剪贴板。
 
 ### getData<sup>9+</sup>
 
