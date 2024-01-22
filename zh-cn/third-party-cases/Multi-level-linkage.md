@@ -199,6 +199,6 @@
 ## 完整代码
 在LinkageData.ets根据效果开发者自行进行编辑,在Index.ets在开发步骤中基本展示全部代码。
 ## 参考
-[自定义弹窗](../application-dev/reference/arh-ts/ts-methods-custom-dialog-box.md)
+[自定义弹窗](../application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
 [循环渲染](../application-dev/quick-start/ark-rendering-control-foreach.md)
