@@ -18,8 +18,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [fd](#fd) | rawfile文件描述符，单位为int | 
-| [start](#start) | rawfile在HAP包中的起始位置，单位为long | 
-| [length](#length) | rawfile在HAP包中的长度，单位为long | 
+| [start](#start) | rawfile在HAP包中的起始位置，单位为long  | 
+| [length](#length) | rawfile在HAP包中的长度，单位为long| 
 
 
 ## 结构体成员变量说明
