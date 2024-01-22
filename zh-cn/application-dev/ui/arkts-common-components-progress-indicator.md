@@ -8,16 +8,12 @@ Progress是进度条显示组件，显示内容通常为目标操作的当前进
 
 Progress通过调用接口来创建，接口调用形式如下：
 
-
-
 ```ts
 Progress(options: {value: number, total?: number, type?: ProgressType})
 ```
 
 
 其中，value用于设置初始进度值，total用于设置进度总长度，type用于设置Progress样式。
-
-
 
 ```ts
 Progress({ value: 24, total: 100, type: ProgressType.Linear }) // 创建一个进度总长为100，初始进度值为24的线性进度条
@@ -106,7 +102,7 @@ Progress有5种可选类型，通过ProgressType可以设置进度条样式，Pr
 
 ## 场景示例
 
-更新当前进度值，如应用安装进度条。可通过点击Button增加progressValue，.value()属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。
+更新当前进度值，如应用安装进度条。可通过点击Button增加progressValue，value属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。
 
 ```ts
 @Entry
