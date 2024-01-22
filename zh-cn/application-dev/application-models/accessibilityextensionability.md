@@ -1,6 +1,6 @@
 # AccessibilityExtensionAbility
 
-Accessibility Kit通过基于ExtensionAbility框架的AccessibilityExtensionAbility提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的扩展服务，协助用户完成一些快捷的交互过程。
+Accessibility Kit（无障碍开发服务）通过基于ExtensionAbility框架的AccessibilityExtensionAbility提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的扩展服务，协助用户完成一些快捷的交互过程。
 
 ## 如何创建一个无障碍扩展服务
 
