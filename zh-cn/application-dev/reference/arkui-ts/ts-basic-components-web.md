@@ -3250,68 +3250,144 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 | 类型      | 说明                       |
 | ------- | ------------------------ |
-| boolean | 自定义菜单返回true，默认菜单返回false。 |
+| boolean | 自定义菜单返回true，触发的自定义菜单无效返回false。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import pasteboard from '@ohos.pasteboard'
+  const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    result: WebContextMenuResult | null = null;
+    private result: WebContextMenuResult | undefined = undefined;
+    @State linkUrl: string = '';
+    @State offsetX: number = 0;
+    @State offsetY: number = 0;
+    @State showMenu: boolean = false;
+    @Builder
+    //构建自定义菜单及触发功能接口
+    MenuBuilder(){
+      //以垂直列表形式显示的菜单。
+      Menu(){
+        //展示菜单Menu中具体的item菜单项。
+        MenuItem({
+          content: '复制图片',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copyImage();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '剪切',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.cut();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copy();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '粘贴',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.paste();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制链接',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
+            if(error){
+              return;
+            }
+          })
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '全选',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.selectAll();
+          this.showMenu = false;
+        })
+      }
+      .width(150)
+      .height(300)
+    }
+
     build() {
       Column() {
-        Button('closeContextMenu')
-        .onClick(() => {
-          if (this.result) {
-            this.result.closeContextMenu()
-          }
-        })
-        Button('copyImage')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copyImage()
-          }
-        })
-        Button('copy')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copy()
-          }
-        })
-        Button('paste')
-        .onClick(() => {
-          if (this.result) {
-            this.result.paste()
-          }
-        })
-        Button('cut')
-        .onClick(() => {
-          if (this.result) {
-            this.result.cut()
-          }
-        })
-        Button('selectAll')
-        .onClick(() => {
-          if (this.result) {
-            this.result.selectAll()
-          }
-        })
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          //触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
+              this.result = event.result
               console.info("x coord = " + event.param.x())
               console.info("link url = " + event.param.getLinkUrl())
+              this.linkUrl = event.param.getLinkUrl()
             }
+            console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
+            this.showMenu = true;
+            this.offsetX = 250;
+            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true
+        })
+        .bindPopup(this.showMenu,
+        {
+          builder: this.MenuBuilder(),
+          enableArrow: false,
+          placement: Placement.LeftTop,
+          offset: { x: this.offsetX, y: this.offsetY},
+          mask: false,
+          onStateChange: (e) => {
+            if(!e.isVisible){
+              this.showMenu = false;
+              this.result!.closeContextMenu();
+            }
+          }
         })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <h1>onContextMenuShow</h1>
+    <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
+    //rawfile下放任意一张图片命名为example.png
+    <div><img src="example.png"></div>
+    <p>选中文字鼠标右键弹出菜单</p>
+  </body>
+  </html>
   ```
 
 ### onContextMenuHide<sup>11+</sup>
