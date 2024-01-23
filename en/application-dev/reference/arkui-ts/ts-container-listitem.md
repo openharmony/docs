@@ -72,8 +72,11 @@ This API is deprecated since API version 9. There is no substitute API.
 |   None   |    1    | The list item cannot scroll beyond the edge of the list.<br>If the delete area is set, the list item cannot continue to scroll after the scroll distance exceeds the delete threshold.<br>If the delete callback is set, it is triggered when the delete threshold is reached and the list item is released.|
 
 ## SwipeActionItem<sup>10+</sup>
-Describes the swipe action item.<br>For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
-<br>For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
+Describes the swipe action item.
+
+For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
+
+For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
