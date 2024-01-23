@@ -856,15 +856,15 @@ createSession\<T extends Session\>(mode: SceneMode): T
 import { BusinessError } from '@ohos.base';
 
 function createSession(cameraManager: camera.CameraManager, mode: camera.SceneMode): camera.Session | undefined {
-  let photoSession: camera.PhotoSession | undefined = undefined;
+  let session: camera.Session | undefined = undefined;
   try {
-    photoSession = cameraManager.createSession(mode.NORMAL_PHOTO);
+    session = cameraManager.createSession(mode);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
-    console.error(`createCaptureSession error. error code: ${err.code}`);
+    console.error(`createSession error. error code: ${err.code}`);
   }
-  return photoSession;
+  return session;
 }
 ```
 
