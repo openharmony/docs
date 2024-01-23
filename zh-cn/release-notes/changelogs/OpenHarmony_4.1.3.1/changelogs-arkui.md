@@ -1,6 +1,6 @@
 #  arkui子系统ChangeLog
 
-## cl.arkui.1 TextInput组件单独设置尺寸约束constraintSize minWidth接口效果变更
+## cl.arkui.1 TextInput/TextArea组件单独设置尺寸约束constraintSize minWidth接口效果变更
 
 **访问级别**
 
@@ -18,7 +18,7 @@
 
 从OpenHarmony SDK 4.1.3.1开始。
 
-**TextInput组件**
+**TextInput/TextArea组件**
 
 变更前：API version 10单独使用constraintSize({minWidth:100})且未设置width属性时，TextInput组件宽度为父组件传下来的最大宽度显示。
 
