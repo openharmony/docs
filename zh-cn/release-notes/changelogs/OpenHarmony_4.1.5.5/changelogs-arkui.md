@@ -565,8 +565,9 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
         return GestureJudgeResult.REJECT
       }
       return GestureJudgeResult.CONTINUE
+    } else {
+      return GestureJudgeResult.CONTINUE
     }
-    return GestureJudgeResult.CONTINUE
   })
 ```
 3.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过设置组件flag进行手势互斥判断：
