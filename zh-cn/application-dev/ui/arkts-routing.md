@@ -215,10 +215,21 @@ import router from '@ohos.router';
 - 方式二：返回到指定页面。
 
 
+  返回普通页面。
+
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
+  });
+  ```
+
+  返回命名路由页面。
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage' //myPage为返回的命名路由页面别名
   });
   ```
 
@@ -227,10 +238,24 @@ import router from '@ohos.router';
 - 方式三：返回到指定页面，并传递自定义参数信息。
 
 
+  返回到普通页面。
+
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
+    params: {
+      info: '来自Home页'
+    }
+  });
+  ```
+
+  返回命名路由页面。
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
       info: '来自Home页'
     }
