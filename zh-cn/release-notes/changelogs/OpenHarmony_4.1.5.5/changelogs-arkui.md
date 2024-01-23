@@ -546,6 +546,14 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 2.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过自行设置的手指移动距离判定点击手势失败：
 示例代码：
 ```ts
+  .onTouch((event? TouchEvent)=> {
+    if (event) {
+      if (event.type === TouchType.Down) {
+        this.downX = event.touches[0].windowX
+        this.downY = event.touches[0].windowY
+      }
+    }
+  })
   .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
     if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
       let xGap = event.fingerList.globalX - downX
@@ -558,14 +566,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
       }
       return GestureJudgeResult.CONTINUE
     }
-  })
-  .onTouch((event? TouchEvent)=> {
-    if (event) {
-      if (event.type === TouchType.Down) {
-        downX = event.windowX;
-        downY = event.windowY;
-      }
-    }
+    return GestureJudgeResult.CONTINUE
   })
 ```
 3.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过设置组件flag进行手势互斥判断：
