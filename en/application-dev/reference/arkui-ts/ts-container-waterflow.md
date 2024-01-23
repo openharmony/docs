@@ -28,7 +28,7 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | Name    | Type                                       | Mandatory| Description                                    |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | No  | Footer of the **\<WaterFlow>** component. |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>The **\<WaterFlow>** component supports only the **scrollToIndex** API of the **\<Scroller>** component.|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [\<Grid>](ts-container-grid.md), or [\<Scroll>](ts-container-scroll.md).|
 
 
 ## Attributes
@@ -72,7 +72,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | -------- | -------- |
 | onReachStart(event: () => void) | Triggered when the component reaches the start.|
 | onReachEnd(event: () => void)   | Triggered when the component reaches the end position.|
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. This event is not triggered when the component rebounds or the scrolling controller is used.|
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. It is not triggered when the component rebounds, the scrolling controller is used, or the scrollbar is dragged.|
 
 
 ## Example
@@ -108,28 +108,28 @@ export class WaterFlowDataSource implements IDataSource {
   // Notify the controller of data addition.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
+      listener.onDataAdd(index)
     })
   }
 
   // Notify the controller of data changes.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
+      listener.onDataChange(index)
     })
   }
 
   // Notify the controller of data deletion.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDeleted(index)
+      listener.onDataDelete(index)
     })
   }
 
   // Notify the controller of the data location change.
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMoved(from, to)
+      listener.onDataMove(from, to)
     })
   }
 

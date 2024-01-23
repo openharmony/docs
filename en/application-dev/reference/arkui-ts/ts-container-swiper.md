@@ -130,6 +130,10 @@ Defines the navigation point indicator of the dot style, which inherits attribut
 | color              | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the navigation point indicator of the dot style.<br>Default value: **'\#182431'** (10% opacity)|
 | selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the selected indicator dot.<br>Default value: **'\#007DFF'**|
 
+>**NOTE**
+>
+>When pressed, the navigation point indicator is zoomed in by 1.33 times. To account for this, there is a certain distance between the navigation point indicator's visible boundary and its actual boundary in the non-pressed state. The distance increases with the value of **itemWidth**, **itemHeight**, **selectedItemWidth**, and **selectedItemHeight**.
+
 ## DigitIndicator<sup>10+</sup>
 
 Defines the navigation point indicator of the digit style, which inherits attributes and features from **Indicator**.

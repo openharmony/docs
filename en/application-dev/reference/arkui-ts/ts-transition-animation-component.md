@@ -35,6 +35,7 @@ The static functions listed in the preceding table are used to create a **Transi
 | IDENTITY | Disables the transition effect.|
 | OPACITY | Applies a transition effect with the opacity of 0. It is equivalent to **TransitionEffect.opacity(0)**.|
 | SLIDE | Applies a transition effect of sliding in from the left when the component appears and sliding out from the right when the component disappears. It is equivalent to **TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))**.|
+| SLIDE_SWITCH | Applies a transition effect of sliding in from the right with first scaling down and then scaling up when the component appears and sliding out from the right with first scaling down and then scaling up when the component disappears. The animation duration is 600 ms. The animation curve cubicBezierCurve(0.24f, 0.0f, 0.50f, 1.0f) is used. The minimum scale factor is 0.8.|
 
 >  **NOTE**
 >

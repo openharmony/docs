@@ -1,14 +1,17 @@
 # Property Animation
 
-With property animations, you can animate changes to certain component properties, such as **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**. In a property animation that involves width and height changes, a component's content (such as text, canvas content, and linear gradient) is changed straight to the final state. To enable the content to change with the width and height during the animation process, you can use the [renderFit](ts-universal-attributes-renderfit.md) attribute.
+With property animations, you can animate changes to certain component properties, such as [width](ts-universal-attributes-size.md#attributes), [height](ts-universal-attributes-size.md#attributes), [backgroundColor](ts-universal-attributes-background.md#attributes), [opacity](ts-universal-attributes-opacity.md#opacity), [scale](ts-universal-attributes-transformation.md#attributes), [rotate](ts-universal-attributes-transformation.md#attributes) and [translate](ts-universal-attributes-transformation.md#attributes). In a property animation that involves width and height changes, a component's content (such as text, [canvas](ts-components-canvas-canvas.md#attributes) content, and [linear gradient](ts-universal-attributes-gradient-color.md#attributes)) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md#attributes) attribute.
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+## APIs
 
 animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void})
 
-Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
