@@ -12,7 +12,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
 - 创建不包含子组件的按钮。
 
   ```ts
-  Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+  Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
   ```
 
   其中，label用来设置按钮文字，type用于设置Button类型，stateEffect属性设置Button是否开启点击效果。
