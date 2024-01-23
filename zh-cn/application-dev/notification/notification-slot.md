@@ -1,5 +1,5 @@
 # 通知渠道
-系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，你可以选择适合自己的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
+系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，可以选择适合自己的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
 
 ## 通知渠道类型说明
 
@@ -20,9 +20,7 @@
 | ---------- | -------- |
 | [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)(type: SlotType, callback: AsyncCallback\<void\>): void <br> [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-3)(type: SlotType): Promise\<void\> | 创建指定类型的通知渠道。          |
 | [getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void <br>[getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot-1)(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。  |
-| [getSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslots)(callback: AsyncCallback\<Array\<NotificationSlot>>): void <br> [getSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslots-1)(): Promise\<Array\<NotificationSlot>>  | 获取此应用程序的所有通知渠道。     |
 | [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot)(slotType: SlotType, callback: AsyncCallback\<void\>): void  <br> [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot-1)(slotType: SlotType): Promise\<void\>  | 删除此应用程序指定类型的通知渠道。  |
-| [removeAllSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveallslots)(callback: AsyncCallback\<void\>): void <br> [removeAllSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveallslots-1)(): Promise\<void\>   | 删除此应用程序所有通知渠道。       |
 
 除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
 
@@ -53,6 +51,7 @@
 
 3. 查询指定类型的通知渠道。
 
+获取对应渠道是否创建以及该渠道支持的通知提醒方式，比如是否有声音提示，是否有震动，锁屏是否可见等。
     ```ts
     // getSlot回调
     let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
@@ -60,6 +59,7 @@
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
             console.info(`getSlot success, data is ${JSON.stringify(data)}`);
+            （把data的信息打印出来）
         }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;

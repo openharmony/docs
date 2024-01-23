@@ -1,10 +1,13 @@
 # 为通知添加行为意图
 
-当你发布通知时，如果期望用户可以通过点击通知栏拉起目标应用组件或发布公共事件，可以将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中。
-
-为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)动作。
+当发布通知时，如果期望用户可以通过点击通知栏拉起目标应用组件或发布公共事件，可以通过Ability Kit申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中。
 
 **图1** 携带行为意图的通知运行机制  
+发起端：app
+接收端：通知中心
+ams：Ability Kit
+ans：Notification Kit
+
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
 
 
@@ -23,9 +26,7 @@
 
 ## 开发步骤
 
-1. [请求通知授权](notification-enable.md)。获得用户授权后，才能使用通知功能。
-
-2. 导入模块。
+1. 导入模块。
 
    ```typescript
    import notificationManager from '@ohos.notificationManager';
