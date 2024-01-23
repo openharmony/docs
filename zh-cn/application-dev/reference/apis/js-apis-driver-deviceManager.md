@@ -114,6 +114,54 @@ try {
 }
 ```
 
+## deviceManager.bindDeviceDriver
+function bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
+  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
+
+根据queryDevices()返回的设备信息绑定设备。
+
+需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+**系统能力：**  SystemCapability.Driver.ExternalDevice
+
+**参数：**
+
+| 参数名       | 类型                        | 必填 | 说明                         |
+| ------------ | --------------------------- | ---- | ---------------------------- |
+| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得 |
+| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调           |
+| callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| 是 | 指示绑定结果，包括设备 ID 和远程对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 401      | The parameter check failed.              |
+| 22900001 | ExternalDeviceManager service exception. |
+
+**示例：**
+
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
+try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
+  deviceManager.bindDeviceDriver(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
+  }).then(data => {
+    console.info(`bindDevice success, Device_Id is ${data.deviceId}.
+    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
+  }, (error: BusinessError) => {
+    console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
+  });
+} catch (error) {
+  console.error(`bindDeviceDriver fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
+
 ## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number,
