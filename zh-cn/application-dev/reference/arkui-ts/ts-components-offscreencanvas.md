@@ -233,7 +233,15 @@ struct OffscreenCanvasExamplePage {
 
 ## OffscreenCanvas支持并发线程绘制
 
-从API version 11开始，应用使用开启Worker线程，支持使用postMessage将OffscreenCanvas实例传到worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
+从API version 11开始，当应用创建Worker线程，支持使用postMessage将OffscreenCanvas实例传到Worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
+
+> **说明：**
+>
+> OffscreenCanvas对象使用getContext获取绘图上下文后，不允许通过postMessage传该对象给其他线程，否则抛出异常。
+>
+> 已经通过postMessage传OffscreenCanvas对象到某一线程，声明该对象的线程不允许该对象使用getContext和transferToImageBitmap方法，否则抛出异常。
+>
+> 已经通过postMessage传OffscreenCanvas对象到某一线程，不允许再将该对象通过postMessage传给其他线程，否则抛出异常。
 
 **示例：**
 
