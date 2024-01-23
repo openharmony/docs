@@ -501,13 +501,13 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 1.应用业务审视是否必须将点击手势和拖动手势放入同一个并行手势组内（大部分之前没有冲突的情况，是因为点击事件的20px的移动限制，自动消减了冲突），如果不是必须则可以不挂到同一个手势组
 修改前：
 ```ts
-  .parallelGesture(GestureGroup(Gesture.Parallel,
+  .parallelGesture(GestureGroup(GestureMode.Parallel,
     TapGesture({count: 1})
       .onAction((event?: GestureEvent)=> {
         if (event) {
           console.info("Tapgesture")
         }
-      })
+      }),
     PanGesture({fingers: 1})
       .onActionStart((event?: GestureEvent)=>{
         console.info("Pan start")
@@ -522,7 +522,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 ```
 修改后：
 ```ts
-  .parallelGesture(GestureGroup(Gesture.Parallel,
+  .parallelGesture(GestureGroup(GestureMode.Parallel,
     PanGesture({fingers: 1})
       .onActionStart((event?: GestureEvent)=>{
         console.info("Pan start")
@@ -584,13 +584,13 @@ struct Index {
     .width('100%')
     .height(200)
     .borderWidth(2)
-    .parallelGesture(GestureGroup(Gesture.Parallel,
+    .parallelGesture(GestureGroup(GestureMode.Parallel,
       TapGesture({count: 1})
         .onAction((event?: GestureEvent)=> {
           if (event) {
             console.info("Tapgesture")
           }
-        }).tag("Single-Finger-Click")
+        }).tag("Single-Finger-Click"),
       PanGesture({fingers: 1})
         .onActionStart((event?: GestureEvent)=>{
           console.info("Pan start")
