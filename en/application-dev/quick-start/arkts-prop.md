@@ -1,7 +1,7 @@
-# \@Prop Decorator: One-Way Synchronization from Parent to Child Components
+# \@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components
 
 
-An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. This means that, such a variable is mutable, and its changes will not be synchronized to the parent component.
+One-way synchronization is supported between an \@Prop decorated variable a variable of its parent component. This means that, an \@Prop decorated variable is mutable, and its changes will not be synchronized to the parent component.
 
 
 > **NOTE**
@@ -11,9 +11,9 @@ An \@Prop decorated variable can create one-way synchronization with a variable 
 
 ## Overview
 
-For an \@Prop decorated variable, the value synchronization is uni-directional from the parent component to the owning component.
+For the \@Prop decorated variable of a child component, the change synchronization to the parent component is uni-directional.
 
-- An @Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
+- An \@Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
 - Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten.
 
@@ -39,7 +39,7 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 | Transfer/Access    | Description                                      |
 | --------- | ---------------------------------------- |
 | Initialization from the parent component  | Optional. Initialization from the parent component or local initialization can be used. An \@Prop decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
-| Subnode initialization | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Child component initialization | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.               |
 
 
@@ -61,15 +61,15 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
   ```ts
   // Simple type
   @Prop count: number;
-  // The value assignment can be observed.
+  // The value change can be observed.
   this.count = 1;
   ```
 
 For synchronization between \@State and \@Prop decorated variables:
 
-- The value of an \@State decorated variable in the parent component initializes an \@Prop decorated variable in the child component. The \@State decorated variable also updates the @Prop decorated variable whenever the value of the former changes.
+- The value of an \@State decorated variable in the parent component is used to initialize an \@Prop decorated variable in the child component. Any change to an \@State decorated variable is updated to the @Prop decorated variable.
 
-- Changes to the @Prop decorated variable do not affect the value of its source @State decorated variable.
+- However, any change to the @Prop decorated variable does not affect the value of its source @State decorated variable.
 
 - In addition to \@State, the source can also be decorated with \@Link or \@Prop, where the mechanisms for syncing the \@Prop would be the same.
 
@@ -216,7 +216,7 @@ struct Index {
 Initial render creates six instances of the **Child** component. Each \@Prop decorated variable is initialized with a copy of an array item. The **onclick** event handler of the **Child** component changes the local variable value.
 
 
-Click **1**, **2**, and **3** so that all local values change to **'7'**.
+Click **1** six times, 2 five times, and **3** four times on the page. The local values of all variables are then changed to **7**.
 
 
 

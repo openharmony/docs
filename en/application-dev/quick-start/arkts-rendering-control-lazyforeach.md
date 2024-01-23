@@ -29,7 +29,7 @@ LazyForEach(
 ```ts
 interface IDataSource {
     totalCount(): number; // Obtain the total number of data items.
-    getData(index: number): Object; // Obtain the data that matches the specified index.
+    getData(index: number): Object; // Obtain the data item that matches the specified index.
     registerDataChangeListener(listener: DataChangeListener): void; // Register a data change listener.
     unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
 }
@@ -46,15 +46,15 @@ interface IDataSource {
 
 ```ts
 interface DataChangeListener {
-    onDataReloaded(): void; // Invoked when data is reloaded.
-    onDataAdded(index: number): void; // Invoked when data is added.
-    onDataMoved(from: number, to: number): void; // Invoked when data is moved.
-    onDataDeleted(index: number): void; // Invoked when data is deleted.
-    onDataChanged(index: number): void; // Invoked when data is changed.
-    onDataAdd(index: number): void; // Invoked when data is added.
-    onDataMove(from: number, to: number): void; // Invoked when data is moved.
-    onDataDelete(index: number): void; // Invoked when data is deleted.
-    onDataChange(index: number): void; // Invoked when data is changed.
+    onDataReloaded(): void; // Invoked after data is reloaded.
+    onDataAdded(index: number): void; // Invoked after data is added.
+    onDataMoved(from: number, to: number): void; // Invoked after data is moved.
+    onDataDeleted(index: number): void; // Invoked after data is deleted.
+    onDataChanged(index: number): void; // Invoked after data is changed.
+    onDataAdd(index: number): void; // Invoked after data is added.
+    onDataMove(from: number, to: number): void; // Invoked after data is moved.
+    onDataDelete(index: number): void; // Invoked after data is deleted.
+    onDataChange(index: number): void; // Invoked after data is changed.
 }
 ```
 
@@ -701,7 +701,7 @@ class MyDataSource extends BasicDataSource {
   }
   
   public changeData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index, 1, data);
     this.notifyDataChange(index);
   }
 }

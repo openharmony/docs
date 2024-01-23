@@ -57,11 +57,11 @@ The **\<Video>** component supports both local and online videos.
   export struct VideoPlayer{
      private controller:VideoController;
      private previewUris: Resource = $r ('app.media.preview');
-     private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
+     private videoSrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
        Column() {
          Video({
-           src: this.videosrc,
+           src: this.videoSrc,
            previewUri: this.previewUris,
            controller: this.controller
          })
@@ -78,12 +78,12 @@ To load a video in the application sandbox, use a string with the **file:///data
 @Component
 export struct VideoPlayer {
   private controller: VideoController;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {
       Video({
-        src: this.videosrc,
+        src: this.videoSrc,
         controller: this.controller
       })
     }
@@ -102,11 +102,11 @@ To load online videos, you must apply for the **ohos.permission.INTERNET** permi
 export struct VideoPlayer{
    private controller:VideoController;
    private previewUris: Resource = $r ('app.media.preview');
-   private videosrc: string= 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
+   private videoSrc: string = 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
    build(){
      Column() {
        Video({
-         src: this.videosrc,
+         src: this.videoSrc,
          previewUri: this.previewUris,
          controller: this.controller
        })
