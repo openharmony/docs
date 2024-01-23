@@ -93,7 +93,7 @@ GridItem() {
 .columnEnd(2)
 ```
 
-“=”按键横跨第五行和第六行，只要将将“=”对应GridItem的rowStart和rowEnd设为5和6即可。
+“=”按键横跨第五行和第六行，只要将“=”对应GridItem的rowStart和rowEnd设为5和6即可。
 
 
 ```ts
