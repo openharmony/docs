@@ -170,7 +170,6 @@ struct Utils {
         })
         .width("40%")
         .height(100)
-        .key("image_01")
       Button() {
         Text('getRectangleById').fontSize(40).fontWeight(FontWeight.Bold);
       }.margin(20)

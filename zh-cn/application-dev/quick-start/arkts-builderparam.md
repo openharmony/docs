@@ -25,7 +25,9 @@
   struct Child {
     @Builder doNothingBuilder() {};
 
+    // 使用自定义组件的自定义构建函数初始化\@BuilderParam
     @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
+    // 使用全局自定义构建函数初始化\@BuilderParam
     @BuilderParam aBuilder1: () => void = GlobalBuilder0;
     build(){}
   }
@@ -37,6 +39,7 @@
   @Component
   struct Child {
     @Builder FunABuilder0() {}
+    // 使用父组件\@Builder装饰的方法初始化子组件\@BuilderParam
     @BuilderParam aBuilder0: () => void = this.FunABuilder0;
 
     build() {
@@ -135,7 +138,7 @@ class Tmp{
 struct Child {
   label: string = 'Child'
   @Builder FunABuilder0() {}
-  // 无参数类，指向的componentBuilder也是无参数类型
+  // 无参数类型，指向的componentBuilder也是无参数类型
   @BuilderParam aBuilder0: () => void = this.FunABuilder0;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
   @BuilderParam aBuilder1: ($$ : Tmp) => void = GlobalBuilder1;
@@ -189,6 +192,7 @@ struct Parent {
 struct CustomContainer {
   @Prop header: string = '';
   @Builder CloserFun(){}
+  // 使用父组件的尾随闭包{}(\@Builder装饰的方法)初始化子组件\@BuilderParam
   @BuilderParam closer: () => void = this.CloserFun
 
   build() {

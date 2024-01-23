@@ -96,6 +96,7 @@
       - [@ohos.window (窗口)](js-apis-window.md)
 - ArkWeb API参考
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - [Web](ts-basic-components-web.md)
 - Basic Services Kit API参考
   - [@ohos.base (公共回调信息)](js-apis-base.md)
   - [@ohos.commonEventManager (公共事件模块)(推荐)](js-apis-commonEventManager.md)

@@ -251,7 +251,7 @@ struct Index {
 
   onPageShow() {
     if (this.session != undefined) { 
-      this.session.setReceiveDataCallback((data: Object) => {
+      this.session.setReceiveDataCallback((data: Record<string, Object>) => {
         this.message2 = "data come from comp"
         this.message = JSON.stringify(data)
       })

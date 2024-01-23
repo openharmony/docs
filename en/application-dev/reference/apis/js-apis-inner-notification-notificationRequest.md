@@ -14,10 +14,10 @@ The **NotificationRequest** module provides APIs for defining the notification r
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
 | content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent)   |   No | Yes | Notification content.                                                                |
 | id                            | number                                                   |   No | No | Notification ID.                                                                |
-| slotType<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype)    |   No | No | Notification slot type.<br>This API is deprecated since API version 9. You are advised to use **notificationSlotType** instead.                       |
+| slotType<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype)    |   No | No | Notification slot type.<br>This API is deprecated since API version 11. You are advised to use **notificationSlotType** instead.                       |
 | notificationSlotType<sup>11+</sup> | [SlotType](js-apis-notificationManager.md#slottype) |   No | No | Notification slot type.                       |
 | isOngoing                     | boolean                                                  |   No | No | Whether the notification is an ongoing notification.                                                             |
-| isUnremovable                 | boolean                                                  |   No | No | Whether the notification can be removed. This parameter applies to continuous notification tasks, such as navigation and music playback. If a notification is not removable, it will not be deleted when the user touches the delete button below the notification, but it can still be deleted by swiping left on the notification and touching the delete button.           |
+| isUnremovable                 | boolean                                                  |   No | No | Reserved. |
 | deliveryTime                  | number                                                   |   No | No | Time when the notification is sent.                                                              |
 | tapDismissed                  | boolean                                                  |   No | No | Whether the notification is automatically cleared.                                                            |
 | autoDeletedTime               | number                                                   |   No | No | Time when the notification is automatically cleared.                                                             |
@@ -49,7 +49,7 @@ The **NotificationRequest** module provides APIs for defining the notification r
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   No | No | Distributed notification options.                                                            |
 | deviceId<sup>8+<sup>          | string                                                   |   Yes | No | Device ID of the notification source.<br>**System API**: This is a system API.                      |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   Yes | No | Notification flags.                                                 |
-| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   No | No | **WantAgent** instance to which the notification will be redirected when it is removed.                                         |
+| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   No | No | **WantAgent** instance to which the notification will be redirected when it is removed. The target **WantAgent** instance must be a common event or a system service (for which the value of **OperationType** is 3 or larger).                                         |
 | badgeNumber<sup>9+<sup>       | number                                                   |   No | No | Number of notifications displayed on the application icon.                                                       |
 
 
@@ -79,7 +79,7 @@ Describes the filter criteria for querying the live view.
 | ----------------| ------------------------------------- | ---- | ---------------------------------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the live view.|
 | notificationKey | [NotificationKey](js-apis-notificationSubscribe.md#notificationkey) | Yes  | Notification information, including the notification ID and label.  |
-| extraInfoKeys   | Array\<string>                        | No  | List of extra keys. If this parameter is left blank, all extra information is included.|
+| extraInfoKeys   | Array\<string>                        | No  | List of extra keys. If this parameter is left empty, all extra information is included.|
 
 
 ## NotificationCheckRequest<sup>11+</sup>

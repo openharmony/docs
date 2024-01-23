@@ -60,7 +60,7 @@ export default class MyAbility extends UIAbility {
             },
 
             onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
+                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
             }
         };
         // 1.获取applicationContext

@@ -5,7 +5,6 @@ The **inputMethodList** module is oriented to system applications and input meth
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
-> To use the APIs of this module, you need to apply for the **ohos.permission.CONNECT_IME_ABILITY** permission.
 
 ## Modules to Import
 
@@ -27,8 +26,6 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 Implements a dialog box showing the input method list.
 
 **Decorator type**: @CustomDialog
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

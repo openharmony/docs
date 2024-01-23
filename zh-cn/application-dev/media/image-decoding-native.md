@@ -14,7 +14,7 @@
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so)
 ```
 
-**添加接口映射**
+### 添加接口映射
 
 打开src/main/cpp/hello.cpp文件，在Init函数中添加接口映射如下：
 
@@ -32,7 +32,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-**JS侧调用**
+### JS侧调用
 
 1.  打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
  
@@ -73,7 +73,7 @@ EXTERN_C_END
     ```
 
 
-**Native接口调用**
+### Native接口调用
 
 具体接口说明请参考[API文档](../reference/native-apis/image.md)
 
@@ -254,4 +254,4 @@ EXTERN_C_END
          OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
          return nullptr;
       }
-    ```
+   ```

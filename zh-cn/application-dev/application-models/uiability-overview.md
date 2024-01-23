@@ -11,9 +11,6 @@ UIAbility的设计理念：
 
 2. 支持多设备和多窗口形态。
 
-> **说明：**
->
-> 详细请参见[Stage模型的设计理念](application-model-description.md)。
 
 UIAbility划分原则与建议：
 

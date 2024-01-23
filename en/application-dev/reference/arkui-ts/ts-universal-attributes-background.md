@@ -119,16 +119,39 @@ Sets the background effect of the component.
 
 | Name | Type                                                        | Mandatory| Description                                      |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundBrightnessOptions](ts-appendix-enums.md#backgroundbrightnessoptions11) | No  | Background effect, including saturation, brightness, and color.|
+| options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | No  | Background effect, including saturation, brightness, and color.|
+
+## backgroundBrightness<sup>11+</sup> 
+
+backgroundBrightness(params: BackgroundBrightnessOptions)
+
+Sets the background brightness of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name           | Type                                    | Mandatory  | Description                                      |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| params        | [BackgroundBrightnessOptions](#backgroundbrightnessoptions11) | Yes   |  Background brightness of the component, including the brightness change rate and lightning up degree.     |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>
 
 | Name           | Type                                    | Mandatory  | Description                                      |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | No   | Color mode used for the background blur.<br>Default value: **ThemeColorMode.System**|
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | No   | Adaptive color mode. <br/ >Default value: **AdaptiveColor.Default**|
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | No   | Adaptive color mode.<br> Default value: **AdaptiveColor.Default**|
 | scale         | number                                   | No   | Blurredness of the background material. This API is a system API.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>|
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | No   | Grayscale blur parameters.          |
+
+## BackgroundBrightnessOptions<sup>11+</sup>
+
+| Name           | Type                                    | Mandatory  | Description                                      |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| rate          | number | Yes   | Brightness change rate. A larger value indicates faster brightness decrease and a lower lightning up degree. This API is a system API.<br>Default value: **0.0**<br>Value range: (0.0, +∞)<br>|
+| lightUpDegree | number | Yes   | Lightning up degree. A larger value indicates a higher lightning up degree. This API is a system API.<br> Default value: **0.0**<br>Value range: [-1.0, 1.0]<br>|
 
 ## Example
 
@@ -260,3 +283,46 @@ struct BackgroundExample {
 ```
 
 ![en-us_image_background](figures/en-us_image_background.png)
+
+### Example 4
+
+Example of setting the background brightness for the component:
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct BackgroundBrightnessDemo {
+  build() {
+    Column() {
+      Row() {
+        Text("BackgroundBrightness")
+      }
+      .width(200)
+      .height(100)
+      .position({ x: 100, y: 100 })
+      .backgroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
+      .backgroundBrightness({rate:0.5,lightUpDegree:0.5}) // Background brightness
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundImage($r('app.media.image'))
+    .backgroundImageSize(ImageSize.Cover)
+  }
+}
+```
+
+The following figures show how the component looks with the background brightness set.
+
+When **rate** and **lightUpDegree** are both set to **0.5**
+
+![en-us_image_background_brightness1](figures/en-us_image_background_brightness1.png)
+
+When **rate** is set to **0.5** and **lightUpDegree** **-0.1**
+
+![en-us_image_background_brightness2](figures/en-us_image_background_brightness2.png)
+
+The following figure shows how the component looks without the background brightness set.
+
+![en-us_image_background_brightness3](figures/en-us_image_background_brightness3.png)
+<!--no_check-->

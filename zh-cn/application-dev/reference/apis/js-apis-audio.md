@@ -984,13 +984,13 @@ async function createTonePlayerBefore(){
 
 **需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-当应用指定录制的StreamUsage值中包含SOURCE_TYPE_VOICE_COMMUNICATION的播放音频流时，需要校验应用是否拥有该权限。
+在API 10时，支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO。从API 11开始，直接不再支持此枚举，所以当前接口不再涉及此枚举值或对应权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称   | 类型                               | 必填 | 说明                                                         |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的播放音频流的[StreamUsage](#streamusage)类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MEDIA的播放音频流。 |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -3448,11 +3448,15 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3479,11 +3483,15 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
 });
 ```
 
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3506,6 +3514,49 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 ```ts
 audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
   console.info('Promise returned to indicate that the microphone is muted.');
+});
+```
+
+### setMicMute<sup>11+</sup>
+
+setMicMute(mute: boolean): Promise&lt;void&gt;
+
+设置麦克风静音状态，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Input parameter value error.                |
+
+**示例：**
+
+```ts
+audioVolumeGroupManager.setMicMute(true).then(() => {
+  console.info('Promise returned to indicate that the mic is muted.');
 });
 ```
 
@@ -4151,7 +4202,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
 | 类型                                                                         | 说明                                 |
 | -----------------------------------------------------------------------------| ----------------------------------- |
-| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频渲染器信息。  |
+| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频采集器信息。  |
 
 **示例：**
 
