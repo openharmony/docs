@@ -1,6 +1,6 @@
 # Web
 
-提供具有网页显示能力的Web组件，[@ohos.web.webview](js-apis-webview.md)提供web控制能力。
+提供具有网页显示能力的Web组件，[@ohos.web.webview](../apis/js-apis-webview.md)提供web控制能力。
 
 > **说明：**
 >
@@ -27,8 +27,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | ResourceStr   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| src        | [ResourceStr](ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
@@ -188,7 +188,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 ## 属性
 
-通用属性仅支持aspectRatio、backdropBlur、backgroundColor、bindContentCover、bindContextMenu、bindMenu、bindSheet、borderColor、borderRadius、borderStyle、borderWidth、clip、constraintSize、defaultFocus、focusable、tabIndex、groupDefaultFocus、focusOnTouch、displayPriority、enabled、flexBasis、flexGrow、flexShrink、layoutWeight、id、gridOffset、gridSpan、useSizeType、height、touchable、margin、markAnchor、offset、width、zIndex、visibility、scale、translate、responseRegion、size、stateStyles、opacity、shadow、sharedTransition、transition。
+通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](ts-universal-attributes-menu.md#bindmenu)、[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](ts-universal-attributes-size.md#constraintsize)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusable](ts-universal-attributes-focus.md#focusable)、[tabIndex](ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](ts-universal-attributes-enable.md#enabled)、[flexBasis](ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md)、[gridOffset](ts-universal-attributes-grid.md)、[gridSpan](ts-universal-attributes-grid.md)、[useSizeType](ts-universal-attributes-grid.md)、[height](ts-universal-attributes-size.md#height)、[touchable](ts-universal-attributes-click.md)、[margin](ts-universal-attributes-size.md#margin)、[markAnchor](ts-universal-attributes-location.md#markanchor)、[offset](ts-universal-attributes-location.md#offset)、[width](ts-universal-attributes-size.md#width)、[zIndex](ts-universal-attributes-z-order.md#zindex)、[visibility](ts-universal-attributes-visibility.md#visibility)、[scale](ts-universal-attributes-transformation.md#scale)、[translate](ts-universal-attributes-transformation.md#translate)、[responseRegion](ts-universal-attributes-touch-target.md#responseregion)、[size](ts-universal-attributes-size.md#size)、[stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](ts-universal-attributes-opacity.md#opacity)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](ts-transition-animation-shared-elements.md)、[transition](ts-transition-animation-component.md)。
 
 ### domStorageAccess
 
@@ -289,7 +289,7 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -298,7 +298,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -763,6 +763,16 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </html>
   ```
 
+### password<sup>(deprecated)</sup>
+
+password(password: boolean)
+
+设置是否应保存密码。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
 ### cacheMode
 
 cacheMode(cacheMode: CacheMode)
@@ -805,7 +815,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | CopyOptions | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+| value | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
 
 **示例：**
 
@@ -823,6 +833,38 @@ struct WebComponent {
     }
   }
 }
+  ```
+
+### textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比，默认为100%。
+
+从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
+
+**参数：**
+
+| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述                             |
+| ------------ | ------ | ---- | ---- | -------------------------------- |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State atio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.atio)
+      }
+    }
+  }
   ```
 
 ### textZoomRatio<sup>9+</sup>
@@ -884,6 +926,42 @@ initialScale(percent: number)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .initialScale(this.percent)
+      }
+    }
+  }
+  ```
+
+### userAgent<sup>(deprecated)</sup>
+
+userAgent(userAgent: string)
+
+设置用户代理。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup>替代。
+
+**参数：**
+
+| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
+| --------- | ------ | ---- | ---- | --------- |
+| userAgent | string | 是    | -    | 要设置的用户代理。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .userAgent(this.userAgent)
       }
     }
   }
@@ -1294,6 +1372,26 @@ forceDarkAccess(access: boolean)
   }
   ```
 
+### tableData<sup>(deprecated)</sup>
+
+tableData(tableData: boolean)
+
+设置是否应保存表单数据。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+### wideViewModeAccess<sup>(deprecated)</sup>
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
 ### pinchSmooth<sup>9+</sup>
 
 pinchSmooth(isEnabled: boolean)
@@ -1680,7 +1778,7 @@ enableNativeEmbedMode(mode: boolean)
 
 ## 事件
 
-通用事件仅支持onAppear、onDisAppear、onBlur、onFocus、onDragEnd、onDragEnter、onDragStart、onDragMove、onDragLeave、onDrop、onHover、onMouse、onKeyEvent、onTouch、onVisibleAreaChange。
+通用事件仅支持[onAppear](ts-universal-events-show-hide.md#onappear)、[onDisAppear](ts-universal-events-show-hide.md#ondisappear)、[onBlur](ts-universal-focus-event.md#onblur)、[onFocus](ts-universal-focus-event.md#onfocus)、[onDragEnd](ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](ts-universal-events-drag-drop.md#ondragleave)、[onDrop](ts-universal-events-drag-drop.md#ondrop)、[onHover](ts-universal-mouse-key.md#onhover)、[onMouse](ts-universal-mouse-key.md#onmouse)、[onKeyEvent](ts-universal-events-key.md#onkeyevent)、[onTouch](ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
 ### onAlert
 
@@ -2384,7 +2482,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 | 参数名         | 参数类型    | 参数描述                                     |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | 访问的url。                                  |
-| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
+| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
 
 **示例：**
 
@@ -2409,6 +2507,26 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
     }
   }
   ```
+
+### onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
+
+### onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
 
 ### onRenderExited<sup>9+</sup>
 
@@ -2580,6 +2698,50 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
             console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale)
+          })
+      }
+    }
+  }
+  ```
+
+### onUrlLoadIntercept<sup>(deprecated)</sup>
+
+onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
+
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ---- | ---------------------------------------- | --------- |
+| data | string \| [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            if (event) {
+              console.log('onUrlLoadIntercept ' + event.data.toString())
+            }
+            return true
           })
       }
     }
@@ -3088,74 +3250,144 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 | 类型      | 说明                       |
 | ------- | ------------------------ |
-| boolean | 自定义菜单返回true，默认菜单返回false。 |
+| boolean | 自定义菜单返回true，触发的自定义菜单无效返回false。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import pasteboard from '@ohos.pasteboard'
+  const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    result: WebContextMenuResult | null = null;
+    private result: WebContextMenuResult | undefined = undefined;
+    @State linkUrl: string = '';
+    @State offsetX: number = 0;
+    @State offsetY: number = 0;
+    @State showMenu: boolean = false;
+    @Builder
+    //构建自定义菜单及触发功能接口
+    MenuBuilder(){
+      //以垂直列表形式显示的菜单。
+      Menu(){
+        //展示菜单Menu中具体的item菜单项。
+        MenuItem({
+          content: '复制图片',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copyImage();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '剪切',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.cut();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copy();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '粘贴',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.paste();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制链接',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
+            if(error){
+              return;
+            }
+          })
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '全选',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.selectAll();
+          this.showMenu = false;
+        })
+      }
+      .width(150)
+      .height(300)
+    }
+
     build() {
       Column() {
-        Button('closeContextMenu')
-        .onClick(() => {
-          if (this.result) {
-            this.result.closeContextMenu()
-          }
-        })
-        Button('copyImage')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copyImage()
-            this.result.closeContextMenu()
-          }
-        })
-        Button('copy')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copy()
-            this.result.closeContextMenu()
-          }
-        })
-        Button('paste')
-        .onClick(() => {
-          if (this.result) {
-            this.result.paste()
-            this.result.closeContextMenu()
-          }
-        })
-        Button('cut')
-        .onClick(() => {
-          if (this.result) {
-            this.result.cut()
-            this.result.closeContextMenu()
-          }
-        })
-        Button('selectAll')
-        .onClick(() => {
-          if (this.result) {
-            this.result.selectAll()
-            this.result.closeContextMenu()
-          }
-        })
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          //触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
               console.info("x coord = " + event.param.x())
               console.info("link url = " + event.param.getLinkUrl())
+              this.linkUrl = event.param.getLinkUrl()
             }
+            console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
+            this.showMenu = true;
+            this.offsetX = 250;
+            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true
+        })
+        .bindPopup(this.showMenu,
+        {
+          builder: this.MenuBuilder(),
+          enableArrow: false,
+          placement: Placement.LeftTop,
+          offset: { x: this.offsetX, y: this.offsetY},
+          mask: false,
+          onStateChange: (e) => {
+            if(!e.isVisible){
+              this.showMenu = false;
+              this.result!.closeContextMenu();
+            }
+          }
         })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <h1>onContextMenuShow</h1>
+    <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
+    //rawfile下放任意一张图片命名为example.png
+    <div><img src="example.png"></div>
+    <p>选中文字鼠标右键弹出菜单</p>
+  </body>
+  </html>
   ```
 
 ### onContextMenuHide<sup>11+</sup>
@@ -3656,7 +3888,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 | 参数名   | 参数类型                                     | 参数描述           |
 | ----- | ---------------------------------------- | -------------- |
-| event | KeyEvent | 触发的KeyEvent事件。 |
+| event | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
 
 **返回值：**
 
@@ -3731,7 +3963,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述                      |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
 
 **示例：**
 
@@ -3992,7 +4224,7 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 onControllerAttached(callback: () => void)
 
 当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
-因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
+因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 **示例：**
 
@@ -4147,7 +4379,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | NativeEmbedDataInfo | Embed标签生命周期变化时触发该回调。 |
+| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Embed标签生命周期变化时触发该回调。 |
 
 **示例：**
 
@@ -4164,6 +4396,15 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
         .onNativeEmbedLifecycleChange((event) => {
+            if (event.status == NativeEmbedStatus.CREATE) {
+              this.embedStatus = 'Create'
+            }
+            if (event.status == NativeEmbedStatus.UPDATE) {
+              this.embedStatus = 'Update'
+            }
+            if (event.status == NativeEmbedStatus.DESTROY) {
+              this.embedStatus = 'Destroy'
+            }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
             console.log("embedId = " + event.embedId);
@@ -4191,7 +4432,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | NativeEmbedTouchInfo | 手指触摸到Embed标签时触发该回调。 |
+| event       | [NativeEmbedTouchInfo](#nativeembeddatainfo11) | 手指触摸到Embed标签时触发该回调。 |
 
 **示例：**
 
@@ -4318,6 +4559,10 @@ handlePromptConfirm(result: string): void
 
 通知开发者Web组件退出全屏。示例代码参考[onFullScreenEnter事件](#onfullscreenenter9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
 ### exitFullScreen<sup>9+</sup>
 
 exitFullScreen(): void
@@ -4338,7 +4583,7 @@ setWebController(controller: WebviewController): void
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
@@ -4539,7 +4784,7 @@ setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 | 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| Resource<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
+| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -5103,17 +5348,17 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | 是    | -    | 指定源的字符串索引。                               |
 | allow  | boolean | 是    | -    | 设置的地理位置权限状态。                             |
-| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
+| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](../apis/js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
 
 ## MessageLevel枚举说明
 
 | 名称    | 值 | 描述    |
-| ----- | 0 | ---- |
-| Debug | 1 | 调试级别。 |
-| Error | 2 | 错误级别。 |
-| Info  | 3 | 消息级别。 |
-| Log   | 4 | 日志级别。 |
-| Warn  | 5 | 警告级别。 |
+| ----- | -- | ---- |
+| Debug | 0 | 调试级别。 |
+| Error | 1 | 错误级别。 |
+| Info  | 2 | 消息级别。 |
+| Log   | 3 | 日志级别。 |
+| Warn  | 4 | 警告级别。 |
 
 ## RenderExitReason<sup>9+</sup>枚举说明
 
@@ -5243,12 +5488,12 @@ Web屏幕捕获的配置。
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 
-| 名称           | 描述                                       |
-| ------------ | ---------------------------------------- |
-| SELF_ONLY    | 只自身滚动，不与父组件联动。                           |
-| SELF_FIRST   | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
-| PARENT_FIRST | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
-| PARALLEL     | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 |
+| 名称           | 值 | 描述                                       |
+| ------------ | -- | ---------------------------------------- |
+| SELF_ONLY    | 0 | 只自身滚动，不与父组件联动。                           |
+| SELF_FIRST   | 1 | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
+| PARENT_FIRST | 2 | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL     | 3 | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -5307,6 +5552,751 @@ cancel(): void
     }
   }
   ```
+
+  ## WebController
+
+通过WebController可以控制Web组件各种行为。一个WebController对象只能控制一个Web组件，且必须在Web组件和WebController绑定后，才能调用WebController上的方法。
+
+从API version 9开始不再维护，建议使用[WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller)代替。
+
+### 创建对象
+
+```ts
+let webController: WebController = new WebController()
+```
+
+### getCookieManager<sup>(deprecated)</sup>
+
+getCookieManager(): WebCookie
+
+获取web组件cookie管理对象。
+
+从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookiedeprecated)代替。
+
+**返回值：**
+
+| 类型        | 说明                                       |
+| --------- | ---------------------------------------- |
+| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('getCookieManager')
+          .onClick(() => {
+            let cookieManager = this.controller.getCookieManager()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### requestFocus<sup>(deprecated)</sup>
+
+requestFocus()
+
+使当前web页面获取焦点。
+
+从API version 9开始不再维护，建议使用[requestFocus<sup>9+</sup>](../apis/js-apis-webview.md#requestfocus)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('requestFocus')
+          .onClick(() => {
+            this.controller.requestFocus()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### accessBackward<sup>(deprecated)</sup>
+
+accessBackward(): boolean
+
+当前页面是否可后退，即当前页面是否有返回历史记录。
+
+从API version 9开始不再维护，建议使用[accessBackward<sup>9+</sup>](../apis/js-apis-webview.md#accessbackward)代替。
+
+**返回值：**
+
+| 类型      | 说明                    |
+| ------- | --------------------- |
+| boolean | 可以后退返回true,否则返回false。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('accessBackward')
+          .onClick(() => {
+            let result = this.controller.accessBackward()
+            console.log('result:' + result)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### accessForward<sup>(deprecated)</sup>
+
+accessForward(): boolean
+
+当前页面是否可前进，即当前页面是否有前进历史记录。
+
+从API version 9开始不再维护，建议使用[accessForward<sup>9+</sup>](../apis/js-apis-webview.md#accessforward)代替。
+
+**返回值：**
+
+| 类型      | 说明                    |
+| ------- | --------------------- |
+| boolean | 可以前进返回true,否则返回false。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('accessForward')
+          .onClick(() => {
+            let result = this.controller.accessForward()
+            console.log('result:' + result)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### accessStep<sup>(deprecated)</sup>
+
+accessStep(step: number): boolean
+
+当前页面是否可前进或者后退给定的step步。
+
+从API version 9开始不再维护，建议使用[accessStep<sup>9+</sup>](../apis/js-apis-webview.md#accessstep)代替。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
+| ---- | ------ | ---- | ---- | --------------------- |
+| step | number | 是    | -    | 要跳转的步数，正数代表前进，负数代表后退。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+| ------- | --------- |
+| boolean | 页面是否前进或后退 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State steps: number = 2
+
+    build() {
+      Column() {
+        Button('accessStep')
+          .onClick(() => {
+            let result = this.controller.accessStep(this.steps)
+            console.log('result:' + result)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### backward<sup>(deprecated)</sup>
+
+backward(): void
+
+按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+
+从API version 9开始不再维护，建议使用[backward<sup>9+</sup>](../apis/js-apis-webview.md#backward)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('backward')
+          .onClick(() => {
+            this.controller.backward()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### forward<sup>(deprecated)</sup>
+
+forward(): void
+
+按照历史栈，前进一个页面。一般结合accessForward一起使用。
+
+从API version 9开始不再维护，建议使用[forward<sup>9+</sup>](../apis/js-apis-webview.md#forward)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('forward')
+          .onClick(() => {
+            this.controller.forward()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteJavaScriptRegister<sup>(deprecated)</sup>
+
+deleteJavaScriptRegister(name: string)
+
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refreshdeprecated)接口。
+
+从API version 9开始不再维护，建议使用[deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister)代替。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| name | string | 是    | -    | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State name: string = 'Object'
+
+    build() {
+      Column() {
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            this.controller.deleteJavaScriptRegister(this.name)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getHitTest<sup>(deprecated)</sup>
+
+getHitTest(): HitTestType
+
+获取当前被点击区域的元素类型。
+
+从API version 9开始不再维护，建议使用[getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest)代替。
+
+**返回值：**
+
+| 类型                              | 说明          |
+| ------------------------------- | ----------- |
+| [HitTestType](#hittesttype枚举说明) | 被点击区域的元素类型。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('getHitTest')
+          .onClick(() => {
+            let hitType = this.controller.getHitTest()
+            console.log("hitType: " + hitType)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### loadData<sup>(deprecated)</sup>
+
+loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: string, historyUrl?: string })
+
+baseUrl为空时，通过”data“协议加载指定的一段字符串。
+
+当baseUrl为”data“协议时，编码后的data字符串将被Web组件作为”data"协议加载。
+
+当baseUrl为“http/https"协议时，编码后的data字符串将被Web组件以类似loadUrl的方式以非编码字符串处理。
+
+从API version 9开始不再维护，建议使用[loadData<sup>9+</sup>](../apis/js-apis-webview.md#loaddata)代替。
+
+**参数：**
+
+| 参数名        | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---------- | ------ | ---- | ---- | ---------------------------------------- |
+| data       | string | 是    | -    | 按照”Base64“或者”URL"编码后的一段字符串。              |
+| mimeType   | string | 是    | -    | 媒体类型（MIME）。                              |
+| encoding   | string | 是    | -    | 编码类型，具体为“Base64"或者”URL编码。                |
+| baseUrl    | string | 否    | -    | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
+| historyUrl | string | 否    | -    | 历史记录URL。非空时，可被历史记录管理，实现前后后退功能。当baseUrl为空时，此属性无效。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('loadData')
+          .onClick(() => {
+            this.controller.loadData({
+              data: "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+              mimeType: "text/html",
+              encoding: "UTF-8"
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### loadUrl<sup>(deprecated)</sup>
+
+loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
+
+使用指定的http头加载指定的URL。
+
+通过loadUrl注入的对象只在当前document有效，即通过loadUrl导航到新的页面会无效。
+
+而通过registerJavaScriptProxy注入的对象，在loadUrl导航到新的页面也会有效。
+
+从API version 9开始不再维护，建议使用[loadUrl<sup>9+</sup>](../apis/js-apis-webview.md#loadurl)代替。
+
+**参数：**
+
+| 参数名     | 参数类型                       | 必填   | 默认值  | 参数描述           |
+| ------- | -------------------------- | ---- | ---- | -------------- |
+| url     | string \| Resource                     | 是    | -    | 需要加载的 URL。     |
+| headers | Array\<[Header](#header)\> | 否    | []   | URL的附加HTTP请求头。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('loadUrl')
+          .onClick(() => {
+            this.controller.loadUrl({ url: 'www.example.com' })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### onActive<sup>(deprecated)</sup>
+
+onActive(): void
+
+调用此接口通知Web组件进入前台激活状态。
+
+从API version 9开始不再维护，建议使用[onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('onActive')
+          .onClick(() => {
+            this.controller.onActive()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### onInactive<sup>(deprecated)</sup>
+
+onInactive(): void
+
+调用此接口通知Web组件进入未激活状态。
+
+从API version 9开始不再维护，建议使用[onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('onInactive')
+          .onClick(() => {
+            this.controller.onInactive()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### zoom<sup>(deprecated)</sup>
+zoom(factor: number): void
+
+调整当前网页的缩放比例。
+
+从API version 9开始不再维护，建议使用[zoom<sup>9+</sup>](../apis/js-apis-webview.md#zoom)代替。
+
+**参数：**
+
+| 参数名    | 参数类型   | 必填   | 参数描述                           |
+| ------ | ------ | ---- | ------------------------------ |
+| factor | number | 是    | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State factor: number = 1
+
+    build() {
+      Column() {
+        Button('zoom')
+          .onClick(() => {
+            this.controller.zoom(this.factor)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### refresh<sup>(deprecated)</sup>
+
+refresh()
+
+调用此接口通知Web组件刷新网页。
+
+从API version 9开始不再维护，建议使用[refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('refresh')
+          .onClick(() => {
+            this.controller.refresh()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### registerJavaScriptProxy<sup>(deprecated)</sup>
+
+registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
+
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refreshdeprecated)接口生效。
+
+从API version 9开始不再维护，建议使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)代替。
+
+**参数：**
+
+| 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
+| ---------- | --------------- | ---- | ---- | ---------------------------------------- |
+| object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
+| name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
+| methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  class TestObj {
+    constructor() {
+    }
+
+    test(): string {
+      return "ArkUI Web Component"
+    }
+
+    toString(): void {
+      console.log('Web Component toString')
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    controller: WebController = new WebController()
+    testObj = new TestObj();
+    build() {
+      Column() {
+        Row() {
+          Button('Register JavaScript To Window').onClick(() => {
+            this.controller.registerJavaScriptProxy({
+              object: this.testObj,
+              name: "objName",
+              methodList: ["test", "toString"],
+            })
+          })
+        }
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <meta charset="utf-8">
+      <body>
+          Hello world!
+      </body>
+      <script type="text/javascript">
+      function htmlTest() {
+          str = objName.test("test function")
+          console.log('objName.test result:'+ str)
+      }
+  </script>
+  </html>
+
+  ```
+
+### runJavaScript<sup>(deprecated)</sup>
+
+runJavaScript(options: { script: string, callback?: (result: string) => void })
+
+异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+
+从API version 9开始不再维护，建议使用[runJavaScript<sup>9+</sup>](../apis/js-apis-webview.md#runjavascript)代替。
+
+**参数：**
+
+| 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
+| -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
+| script   | string                   | 是    | -    | JavaScript脚本。                            |
+| callback | (result: string) => void | 否    | -    | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State webResult: string = ''
+    build() {
+      Column() {
+        Text(this.webResult).fontSize(20)
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .onPageEnd((event) => {
+          this.controller.runJavaScript({
+            script: 'test()',
+            callback: (result: string)=> {
+              this.webResult = result
+              console.info(`The test() return value is: ${result}`)
+            }})
+          if (event) {
+            console.info('url: ', event.url)
+          }
+        })
+      }
+    }
+  }
+  ```
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+    <meta charset="utf-8">
+    <body>
+        Hello world!
+    </body>
+    <script type="text/javascript">
+    function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+    }
+    </script>
+  </html>
+  ```
+
+### stop<sup>(deprecated)</sup>
+
+stop()
+
+停止页面加载。
+
+从API version 9开始不再维护，建议使用[stop<sup>9+</sup>](../apis/js-apis-webview.md#stop)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('stop')
+          .onClick(() => {
+            this.controller.stop()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### clearHistory<sup>(deprecated)</sup>
+
+clearHistory(): void
+
+删除所有前进后退记录。
+
+从API version 9开始不再维护，建议使用[clearHistory<sup>9+</sup>](../apis/js-apis-webview.md#clearhistory)代替。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('clearHistory')
+          .onClick(() => {
+            this.controller.clearHistory()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## WebCookie<sup>(deprecated)</sup>
+
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+
+### setCookie<sup>(deprecated)</sup>
+
+setCookie()
+
+设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
+
+从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
+
+### saveCookie<sup>(deprecated)</sup>
+
+saveCookie()
+
+将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
+
+从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
 
 ## ScriptItem<sup>11+</sup>
 
@@ -5371,3 +6361,44 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 参数名      | 参数类型                      | 参数描述              |
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
+
+## NativeEmbedStatus<sup>11+</sup>
+
+定义Embed标签生命周期。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| CREATE                        | 0 | Embed标签创建。   |
+| UPDATE                        | 1 | Embed标签更新。   |
+| DESTROY                       | 2 | Embed标签销毁。 |
+
+## NativeEmbedInfo<sup>11+</sup>
+
+提供Embed标签的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| id     | number             | 是    | Embed标签的id信息。 |
+| type  | string                              | 是    | Embed标签的type信息。  |
+| src | string                              | 是    | Embed标签的src信息。  |
+| width  | number  | 是    | Embed标签的宽。       |
+| height | number                              | 是    | Embed标签的高。  |
+| url | string                              | 是    | Embed标签的url信息。  |
+## NativeEmbedDataInfo<sup>11+</sup>
+
+提供Embed标签生命周期变化的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 是    | Embed标签生命周期状态。 |
+| surfaceId  | string                              | 是    | NativeImage的psurfaceid。  |
+| embedId | string                              | 是    | Embed标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 是    | Embed标签的详细信息。       |
+## NativeEmbedTouchInfo<sup>11+</sup>
+
+提供手指触摸到Embed标签的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| embedId     | string   | 是    | Embed标签的唯一id。 |
+| touchEvent  | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |
