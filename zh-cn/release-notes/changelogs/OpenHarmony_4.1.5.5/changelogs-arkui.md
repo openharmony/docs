@@ -568,7 +568,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
       if (xGap > 5) {
         return GestureJudgeResult.REJECT
       }
-      let yGap = event.fingerList[0].globalX - this.downY
+      let yGap = event.fingerList[0].globalY - this.downY
       if (yGap > 5) {
         return GestureJudgeResult.REJECT
       }
