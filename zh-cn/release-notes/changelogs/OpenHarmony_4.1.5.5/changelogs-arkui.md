@@ -612,6 +612,7 @@ struct Index {
         this.hasPanActive = false;
         return GestureJudgeResult.REJECT
       }
+      return GestureJudgeResult.CONTINUE
     })
   }
 }
