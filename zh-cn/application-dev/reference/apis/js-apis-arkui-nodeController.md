@@ -1,6 +1,6 @@
 # NodeController
 
-NodeController用于实现自定义节点的创建、显示、更新等操作的管理，并负责将自定义节点挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)上。
+NodeController用于实现自定义节点的创建、显示、更新等操作的管理，并负责将自定义节点挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ import { NodeController } from "@ohos.arkui.node";
 
 ## NodeController
 
-通常搭配[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)进行使用。用于创建控制器管理绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)组件。一个NodeController只允许与一个[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)进行绑定。
+通常搭配[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行使用。用于创建控制器管理绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件。一个NodeController只允许与一个[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行绑定。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +24,7 @@ import { NodeController } from "@ohos.arkui.node";
 
 abstract makeNode(uiContext : UIContext): FrameNode | null
 
-当实例绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)创建的时候进行回调。回调方法将返回一个节点，将该节点挂载至[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)。
+当实例绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)创建的时候进行回调。回调方法将返回一个节点，将该节点挂载至[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)。
 或者可以通过NodeConroller的rebuild()方法进行回调的触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -33,19 +33,19 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的UI上下文。 |
 
 **返回值：**
 
 | 类型             | 说明                                                                                                                                                                                                                                                        |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)的占位节点上。若返回null对象，将会将对应[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)的子节点清空。 |  |
+| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的占位节点上。若返回null对象，将会将对应[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的子节点清空。 |  |
 
 ### aboutToAppear
 
 aboutToAppear?(): void
 
-当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)挂载显示时触发此回调。
+当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示时触发此回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,7 +53,7 @@ aboutToAppear?(): void
 
 aboutToDisappear?(): void
 
-当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)卸载消失时触发此回调。
+当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)卸载消失时触发此回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,7 +61,7 @@ aboutToDisappear?(): void
 
 aboutToResize?(size: Size): void
 
-当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)布局的时候触发此回调。
+当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)布局的时候触发此回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,7 +75,7 @@ aboutToResize?(size: Size): void
 
 onTouchEvent?(event: TouchEvent): void
 
-当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)收到Touch事件时触发此回调。
+当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)收到Touch事件时触发此回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,7 +89,7 @@ onTouchEvent?(event: TouchEvent): void
 
 rebuild(): void
 
-调用此接口通知[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)组件重新回调[makeNode](#makenode)方法，更改子节点。
+调用此接口通知[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件重新回调[makeNode](#makenode)方法，更改子节点。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
