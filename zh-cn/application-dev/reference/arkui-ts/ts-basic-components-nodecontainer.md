@@ -1,4 +1,4 @@
-# NodeContanier
+# NodeContainer
 
 基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../apis/js-apis-arkui-node.md#nodecontroller)的实例接口。需要与[NodeController](../apis/js-apis-arkui-node.md#nodecontroller)组合使用。
 
@@ -12,9 +12,9 @@
 
 ## 接口
 
-### NodeContanier
+### NodeContainer
 
-NodeContanier(controller: import('../api/@ohos.arkui.node').NodeController)
+NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 **参数：**
 
@@ -91,4 +91,4 @@ struct Index {
   }
 }
 ```
-![patternlock](figures/nodeContianer_sample.jpg)
+![patternlock](figures/nodeContainer_sample.jpg)
