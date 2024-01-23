@@ -1,6 +1,6 @@
 #  arkui子系统ChangeLog
 
-## cl.arkui.1 尺寸设置constraintSize minWidth接口变更
+## cl.arkui.1 TextInput组件单独设置尺寸约束constraintSize minWidth接口效果变更
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-在API version 10上使用constraintSize minWidth存在错误，因此需要限制constraintSize minWidth接口生效的API版本范围，使得minWidth在API version 10及以下的SDK中不生效。
+在API version 10上使用constraintSize minWidth效果不符合应用预期，因此需要在API version 11上进行变更。
 
 **变更影响**
 
@@ -18,16 +18,15 @@
 
 从OpenHarmony SDK 4.1.3.1开始。
 
-**flex组件**
+**TextInput组件**
 
-变更前：API version 10使用constraintSize minWidth接口正常生效。
+变更前：API version 10单独使用constraintSize({minWidth:100})且未设置width属性时，TextInput组件宽度为父组件传下来的最大宽度显示。
 
-变更后：API version 11及更高的版本使用constraintSize minWidth接口正常生效。API version 10及更低的版本中constraintSize minWidth接口不再生效。
+变更后：API version 11及更高的版本单独使用constraintSize({minWidth:100})且未设置width属性时，在父组件宽度约束不小于100时TextInput组件宽度最小为100，内容超过100组件宽度自适应内容增大。
 
 **适配指导**
 
-若使用API version 10及以下的SDK时，通过constraintSize minWidth接口约束组件的最小宽度，需要修改代码。当宽度变化时，若当前宽度小于minWidth，则直接设置组件宽度的数值。
-从API version 11开始，设置minWidth约束组件的最小宽度正常生效。
+默认行为变更，不涉及适配。
 
 ## cl.arkui.2 Navigation组件hideNavBar属性生效范围变更
 
