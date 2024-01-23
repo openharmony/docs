@@ -197,7 +197,7 @@ struct Index {
 - 后续启动应用：
   1. 执行PersistentStorage.PersistProp('aProp', 47)，在首先查询在PersistentStorage本地文件查询“aProp”属性，成功查询到；
   2. 将在PersistentStorage查询到的值写入AppStorage中；
-  3. 在Index组件里，\@StorageLink绑定的“aProp”为PersistentStorage写入AppStorage中的值，即为上一次退出引用存入的值。
+  3. 在Index组件里，\@StorageLink绑定的“aProp”为PersistentStorage写入AppStorage中的值，即为上一次退出应用存入的值。
 
 
 ### 在PersistentStorage之前访问AppStorage中的属性
