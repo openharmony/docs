@@ -125,7 +125,7 @@
 @Component
 struct Child {
   label: string = 'Child'
-  // 无参数类，指向的componentBuilder也是无参数类型
+  // 无参数类型，指向的componentBuilder也是无参数类型
   @BuilderParam aBuilder0: () => void;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
   @BuilderParam aBuilder1: ($$ : { label : string}) => void;
