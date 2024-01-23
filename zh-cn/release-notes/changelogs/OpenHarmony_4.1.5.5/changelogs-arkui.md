@@ -556,12 +556,12 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
   })
   .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
     if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
-      let xGap = event.fingerList.globalX - downX
-      if (xGap > 20) {
+      let xGap = event.fingerList.globalX - this.downX
+      if (xGap > 5) {
         return GestureJudgeResult.REJECT
       }
-      let yGap = event.fingerList.globalX - downY
-      if (yGap > 20) {
+      let yGap = event.fingerList.globalX - this.downY
+      if (yGap > 5) {
         return GestureJudgeResult.REJECT
       }
       return GestureJudgeResult.CONTINUE
