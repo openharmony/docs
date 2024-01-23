@@ -113,13 +113,7 @@ struct Index {
 
 
 ```ts
-class pgotmp{
-  fingers?:number = 0
-  direction?:PanDirection|null = null
-  distance?:number = 0
-}
-let pgo:pgotmp = new pgotmp()
-new PanGestureOptions(value?:pgo)
+PanGesture(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
 ```
 
 
@@ -317,9 +311,12 @@ struct Index {
               console.info('RotationGesture is onActionCancel');
             })
         )
+        .height(200)
+        .width(300)
+        .padding(20)
+        .border({ width: 3 })
+        .margin(100)
     }
-    .height(200)
-    .width(250)
   }
 }
 ```

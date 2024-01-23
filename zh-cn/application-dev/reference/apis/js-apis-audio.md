@@ -898,6 +898,30 @@ async function createTonePlayerBefore(){
 | MODE_ALL_LEFT | 2      | 从左声道拷贝覆盖到右声道混合。  |
 | MODE_ALL_RIGHT | 3 | 从右声道拷贝覆盖到左声道混合。 |
 
+## AudioStreamDeviceChangeReason<sup>11+</sup>
+
+枚举，流设备变更原因。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                                        |  值     | 说明              |
+|:------------------------------------------| :----- |:----------------|
+| REASON_UNKNOWN | 0 | 未知原因。           |
+| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。         |
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。当报告此原因时，应用程序应考虑暂停音频播放。 |
+| REASON_OVERRODE | 3 | 强选。 |
+
+## AudioStreamDeviceChangeInfo<sup>11+</sup>
+
+流设备变更时，应用接收的事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                                                | 必填 | 说明               |
+| :---------------- |:------------------------------------------------------------------| :--- | :----------------- |
+| devices              | [AudioDeviceDescriptors](#audiodevicedescriptors)                 | 是   | 设备信息。 |
+| changeReason | [AudioStreamDeviceChangeReason](#audiostreamdevicechangereason11) | 是   | 流设备变更原因。 |
+
 ## DeviceChangeType
 
 枚举，设备连接状态变化。
@@ -960,13 +984,13 @@ async function createTonePlayerBefore(){
 
 **需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-当应用指定录制的StreamUsage值中包含SOURCE_TYPE_VOICE_COMMUNICATION的播放音频流时，需要校验应用是否拥有该权限。
+在API 10时，支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO。从API 11开始，直接不再支持此枚举，所以当前接口不再涉及此枚举值或对应权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称   | 类型                               | 必填 | 说明                                                         |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的播放音频流的[StreamUsage](#streamusage)类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MEDIA的播放音频流。 |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -3424,11 +3448,15 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3455,11 +3483,15 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
 });
 ```
 
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3482,6 +3514,49 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 ```ts
 audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
   console.info('Promise returned to indicate that the microphone is muted.');
+});
+```
+
+### setMicMute<sup>11+</sup>
+
+setMicMute(mute: boolean): Promise&lt;void&gt;
+
+设置麦克风静音状态，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Input parameter value error.                |
+
+**示例：**
+
+```ts
+audioVolumeGroupManager.setMicMute(true).then(() => {
+  console.info('Promise returned to indicate that the mic is muted.');
 });
 ```
 
@@ -4127,7 +4202,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
 | 类型                                                                         | 说明                                 |
 | -----------------------------------------------------------------------------| ----------------------------------- |
-| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频渲染器信息。  |
+| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频采集器信息。  |
 
 **示例：**
 
@@ -8535,6 +8610,8 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Invalid parameter error. |
@@ -8548,6 +8625,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
+
 ### off('outputDeviceChange') <sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
@@ -8565,6 +8643,8 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Invalid parameter error. |
@@ -8576,6 +8656,74 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
   console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+});
+```
+
+### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+
+on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
+
+订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                                       | 必填 | 说明                                          |
+| :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
+  console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
+  console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
+  console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
+});
+```
+
+### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+
+off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
+
+取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                                       | 必填 | 说明                                          |
+| :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
+  console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
+  console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
+  console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
 });
 ```
 
@@ -9470,6 +9618,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9500,6 +9650,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9526,6 +9678,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，返回监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9557,6 +9711,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

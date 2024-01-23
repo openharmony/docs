@@ -27,7 +27,7 @@ TabContent()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。<br>设置的内容超出tabbar页签时进行裁切。 |
+| tabBar | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>**说明：**<br/>如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。<br>设置的内容超出tabbar页签时进行裁切。 |
 | tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。<br/>**说明：** <br/>底部样式没有下划线效果。<br/>icon异常时显示灰色图块。 |
 
 >  **说明：**
@@ -76,6 +76,7 @@ SubTabBarStyle的静态构造函数。
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。|
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
+| id<sup>11+</sup> | string | 设置子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
 
@@ -149,7 +150,8 @@ BottomTabBarStyle的静态构造函数。
 | verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
 | layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10枚举说明) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL |
 | symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false |
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。 |
+| id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
 
 ## LayoutMode<sup>10+</sup>枚举说明
 

@@ -3,7 +3,7 @@
 
 ## When to Use
 
-In dynamic subscription mode, an application subscribes to a common event when it is running. If the subscribed event is published during the running period, the subscriber application will receive the event, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../security/accesstoken-guidelines.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
+In dynamic subscription mode, an application, when it is running, subscribes to a common event and then receives the event once it is published, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../security/AccessToken/determine-application-mode.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
 
 
 ## Available APIs
@@ -22,8 +22,12 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
 1. Import the **commonEventManager** module.
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo).
@@ -33,8 +37,8 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    let subscriber: commonEventManager.CommonEventSubscriber | null = null;
    // Subscriber information.
    let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-     events: ["usual.event.SCREEN_OFF"], // Subscribe to the common event screen-off.
-   }
+       events: ['usual.event.SCREEN_OFF'], // Subscribe to the common event screen-off.
+   };
    ```
 
 3. Create a subscriber object and save the returned object for subsequent operations such as subscription and unsubscription.
@@ -49,6 +53,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
      console.info('Succeeded in creating subscriber.');
      subscriber = data;
      // Callback for common event subscription.
+     ...
    })
    ```
 
@@ -56,7 +61,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    
    ```ts
    // Callback for common event subscription.
-   if (subscriber !== null) {
+   if (this.subscriber !== null) {
      commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
          console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);

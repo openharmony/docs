@@ -3020,42 +3020,6 @@ async function demo() {
 }
 ```
 
-### isActived<sup>(deprecated)</sup>
-
-isActived(): Promise\<boolean>
-
-判断窗口是否为用户正在交互窗口，使用Promise异步回调。
-
-从API version 9开始支持，从API version 11开始废弃，建议使用[isActive<sup>11+</sup>](#isactive11)替代。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
-
-**示例：**
-
-```ts
-import { Driver, UiWindow } from '@ohos.UiTest';
-async function demo() {
-  let driver: Driver = Driver.create();
-  let window: UiWindow = await driver.findWindow({actived: true});
-  let focused = await window.isActived();
-}
-```
-
 ### focus<sup>9+</sup>
 
 focus(): Promise\<void>

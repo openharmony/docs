@@ -1,4 +1,4 @@
-# BlendMode接口ChangeLog
+# 图形子系统变更说明
 
 ## cl.blendMode.1 blendMode接口变更
 

@@ -12,6 +12,8 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 * [RenderNode](./js-apis-arkui-renderNode.md#rendernode)模块：提供自绘制渲染节点RenderNode，支持开发者通过C API进行开发，完成自定义绘制需求。
 
+* [XComponentNode](./js-apis-arkui-xcomponentNode.md#xcomponentnode)模块：提供XComponent节点XComponentNode，表示组件树中的XComponent组件，用于EGL/OpenGLES和媒体数据写入，并支持动态修改节点渲染类型。
+
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -33,6 +35,7 @@ import {
   NodeController,
   FrameNode,
   RenderNode,
+  XComponentNode,
   NodeRenderType,
   RenderOptions,
   DrawContext,

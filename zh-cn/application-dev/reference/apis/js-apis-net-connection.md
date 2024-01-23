@@ -336,8 +336,6 @@ setAppHttpProxy(httpProxy: HttpProxy): void;
 
 设置网络应用级Http代理配置信息。
 
-**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -2000,7 +1998,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netBlockStatusChange')
 
-on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
+on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 
 订阅网络阻塞状态事件，使用callback方式作为异步方法。
 
@@ -2013,7 +2011,7 @@ on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, b
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netBlockStatusChange'。<br/>netBlockStatusChange：网络阻塞状态事件。 |
-| callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | 是   | 回调函数，返回数据网络句柄(netHandle),及网络堵塞状态(blocked)。|
+| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)> | 是   | 回调函数。获取网络阻塞状态信息。|
 
 **示例：**
 
@@ -2046,7 +2044,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netCapabilitiesChange')
 
-on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
 订阅网络能力变化事件。
 
@@ -2088,8 +2086,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netConnectionPropertiesChange')
 
-on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
-ConnectionProperties }>): void
+on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPropertyInfo\>): void
 
 订阅网络连接信息变化事件。
 
@@ -2102,7 +2099,7 @@ ConnectionProperties }>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netConnectionPropertiesChange'。<br/>netConnectionPropertiesChange：网络连接信息变化事件。 |
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的连接信息(connectionProperties)。|
+| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | 是   | 回调函数。获取网络连接属性信息。|
 
 **示例：**
 
@@ -2646,6 +2643,32 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
+
+## NetConnectionPropertyInfo<sup>11+</sup>
+
+网络连接信息
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称                 | 类型                                   | 必填 |  说明            |
+| -------------------- | ------------------------------------- | ---- |---------------- |
+| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
+| connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
+
+站## NetBlockStatusInfo<sup>11+</sup>
+
+获取网络状态信息
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称                 | 类型                                   | 必填 |  说明            |
+| -------------------- | ------------------------------------- | ---- |---------------- |
+| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。   |
+| blocked | boolean                  | 是   |标识当前网络是否是堵塞状态 |
 
 ## ConnectionProperties
 

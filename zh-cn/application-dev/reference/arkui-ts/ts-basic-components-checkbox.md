@@ -33,10 +33,10 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | 名称          | 参数类型 | 描述 |
 | ------------- | ------- | -------- |
 | select        | boolean | 设置多选框是否选中。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>**说明：**<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框非选中状态边框颜色。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
-| shape<sup>11+</sup> | [CheckBoxShape](#checkboxshape11枚举类型说明) | 设置CheckBox组件形状, 包括圆形和圆角方形。 |
+| shape<sup>11+</sup> | [CheckBoxShape](#checkboxshape11枚举类型说明) | 设置CheckBox组件形状, 包括圆形和圆角方形。 <br/>默认值：CheckBoxShape.CIRCLE。|
 
 ## 事件
 

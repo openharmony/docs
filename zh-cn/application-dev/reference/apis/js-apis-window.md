@@ -2247,10 +2247,10 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -2264,8 +2264,8 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
-| height   | number                    | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
+| width    | number                    | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| height   | number                    | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                |
 
 **错误码：**
@@ -2303,10 +2303,10 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -2320,8 +2320,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | -- | ------------------------ |
-| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
-| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
+| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
 
 **返回值：**
 
@@ -7250,10 +7250,10 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -7271,8 +7271,8 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名   | 类型                      | 必填 | 说明                       |
 | -------- | ------------------------- | ---- | -------------------------- |
-| width    | number                    | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
-| height   | number                    | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
+| width    | number                    | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| height   | number                    | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                 |
 
 **示例：**
@@ -7297,10 +7297,10 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
 
-应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
+系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -7318,8 +7318,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| width  | number | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
-| height | number | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
+| width  | number | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| height | number | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
 
 **返回值：**
 
@@ -10101,29 +10101,57 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let controller = windowClass.getTransitionController();
-controller.animationForHidden = (context : window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForHiddenCallFunc_: Function = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
+    this.animationForHiddenCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForHidden = (context : window.TransitionContext)=> {
+      this.animationForHiddenCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.hideWithAnimation(()=>{
+      console.info('hide with animation success');
+    })
   }
-  )
-  console.info('complete transition end');
-};
+}
+```
+
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
+try {
+  animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // 动画时长
+      tempo: 0.5, // 播放速率
+      curve: Curve.EaseInOut, // 动画曲线
+      delay: 0, // 动画延迟
+      iterations: 1, // 播放次数
+      playMode: PlayMode.Normal, // 动画模式
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // 设置动画过程中的属性转换
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
 ```

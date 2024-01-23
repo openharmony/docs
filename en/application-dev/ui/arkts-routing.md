@@ -9,7 +9,7 @@ The **Router** module is applicable to page redirection between [modules](../qui
 
 Page redirection is an important part of the development process. When using an application, you usually need to jump between different pages, and sometimes you need to pass data from one page to another.
 
-**Figure 1** Page redirection
+  **Figure 1** Page redirection
 
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
@@ -169,16 +169,20 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 ```ts
 import router from '@ohos.router';
-class infoTmp{
-  age:number = 0
+
+class InfoTmp {
+  age: number = 0
 }
-class rouTmp{
-  id:object = ()=>{}
-  info:infoTmp = new infoTmp()
+
+class RouTmp {
+  id: object = () => {
+  }
+  info: InfoTmp = new InfoTmp()
 }
-const params:rouTmp = router.getParams() as rouTmp; // Obtain the passed parameter object.
-const id:object = params.id // Obtain the value of the id attribute.
-const age:number = params.info.age; // Obtain the value of the age attribute.
+
+const params: RouTmp = router.getParams() as RouTmp; // Obtain the passed parameter object.
+const id: object = params.id // Obtain the value of the id attribute.
+const age: number = params.info.age // Obtain the value of the age attribute.
 ```
 
 
@@ -241,15 +245,25 @@ On the target page, call the **router.getParams()** API at the position where pa
 
 ```ts
 import router from '@ohos.router';
-onPageShow() {
-  const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
-  const info:Object = params['']; // Obtain the value of the info attribute.
+
+@Entry
+@Component
+struct Home {
+  @State message: string = 'Hello World';
+
+  onPageShow() {
+    const params = router.getParams() as Record<string, string>; // Obtain the passed parameter object.
+    if (params) {
+      const info: string = params.info as string; // Obtain the value of the info attribute.
+    }
+  }
+  ...
 }
 ```
 
 >**NOTE**
 >
->When the **router.back()** API is used to return to a specified page, the page is pushed to the top of the stack again, and all page stacks between the original top page (included) and the specified page (excluded) are destroyed.
+>When the **router.back()** API is used to return to a specified page, all pages between the top page (included) and the specified page (excluded) are pushed from the page stack and destroyed.
 >
 > If the **router.back()** method is used to return to the original page, the original page will not be created repeatedly. Therefore, the variable declared using \@State will not be declared repeatedly, and the **aboutToAppear()** lifecycle callback of the page will not be triggered. If you want to use the custom parameters transferred from the returned page on the original page, you can parse the parameters in the required position. For example, parameter parsing can be performed in the **onPageShow()** lifecycle callback.
 
@@ -364,6 +378,10 @@ When the user clicks the back button, the custom confirmation dialog box is disp
 ## Named Route
 
 To redirect to a [page in a shared package](../quick-start/shared-guide.md), you can use [router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10).
+
+  **Figure 4** Named route redirection 
+
+![(figures/router-add-query-box-before-back.gif)](figures/namedroute-jump-to-mypage.gif)
 
 Before using the **Router** module, import it first.
 

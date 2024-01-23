@@ -54,6 +54,20 @@ scale(value: ScaleOptions)
 | ------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ScaleOptions](#scaleoptions对象说明) | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} |
 
+## transform
+
+transform(value: Matrix4Transit)
+
+设置组件旋转。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明                                                         |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Matrix4Transit](../apis/js-apis-matrix4.md) | 是   | 设置当前组件的变换矩阵。 |
+
 ## RotateOptions对象说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。

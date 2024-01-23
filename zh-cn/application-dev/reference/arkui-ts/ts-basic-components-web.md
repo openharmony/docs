@@ -188,7 +188,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 ## 属性
 
-通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](ts-universal-attributes-menu.md#bindmenu)、[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)、[blur](ts-universal-attributes-image-effect.md#blur)、[border](ts-universal-attributes-border.md#border)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](ts-universal-attributes-size.md#constraintsize)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusable](ts-universal-attributes-focus.md#focusable)、[tabIndex](ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority)、[draggable](ts-universal-attributes-drag-drop.md#draggable)、[enabled](ts-universal-attributes-enable.md#enabled)、[flexBasis](ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md)、[gridOffset](ts-universal-attributes-grid.md)、[gridSpan](ts-universal-attributes-grid.md)、[useSizeType](ts-universal-attributes-grid.md)、[height](ts-universal-attributes-size.md#height)、[touchable](ts-universal-attributes-click.md)、[margin](ts-universal-attributes-size.md#margin)、[markAnchor](ts-universal-attributes-location.md#markanchor)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[offset](ts-universal-attributes-location.md#offset)、[width](ts-universal-attributes-size.md#width)、[zIndex](ts-universal-attributes-z-order.md#zindex)、[visibility](ts-universal-attributes-visibility.md#visibility)、[scale](ts-universal-attributes-transformation.md#scale)、[translate](ts-universal-attributes-transformation.md#translate)、[responseRegion](ts-universal-attributes-touch-target.md#responseregion)、[size](ts-universal-attributes-size.md#size)、[stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](ts-universal-attributes-opacity.md#opacity)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](ts-transition-animation-shared-elements.md)、[transition](ts-transition-animation-component.md)。
+通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](ts-universal-attributes-menu.md#bindmenu)、[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](ts-universal-attributes-size.md#constraintsize)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusable](ts-universal-attributes-focus.md#focusable)、[tabIndex](ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](ts-universal-attributes-enable.md#enabled)、[flexBasis](ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md)、[gridOffset](ts-universal-attributes-grid.md)、[gridSpan](ts-universal-attributes-grid.md)、[useSizeType](ts-universal-attributes-grid.md)、[height](ts-universal-attributes-size.md#height)、[touchable](ts-universal-attributes-click.md)、[margin](ts-universal-attributes-size.md#margin)、[markAnchor](ts-universal-attributes-location.md#markanchor)、[offset](ts-universal-attributes-location.md#offset)、[width](ts-universal-attributes-size.md#width)、[zIndex](ts-universal-attributes-z-order.md#zindex)、[visibility](ts-universal-attributes-visibility.md#visibility)、[scale](ts-universal-attributes-transformation.md#scale)、[translate](ts-universal-attributes-transformation.md#translate)、[responseRegion](ts-universal-attributes-touch-target.md#responseregion)、[size](ts-universal-attributes-size.md#size)、[stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](ts-universal-attributes-opacity.md#opacity)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](ts-transition-animation-shared-elements.md)、[transition](ts-transition-animation-component.md)。
 
 ### domStorageAccess
 
@@ -909,7 +909,7 @@ initialScale(percent: number)
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                          |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。 |
 
 **示例：**
 
@@ -3250,68 +3250,144 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 | 类型      | 说明                       |
 | ------- | ------------------------ |
-| boolean | 自定义菜单返回true，默认菜单返回false。 |
+| boolean | 自定义菜单返回true，触发的自定义菜单无效返回false。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import pasteboard from '@ohos.pasteboard'
+  const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    result: WebContextMenuResult | null = null;
+    private result: WebContextMenuResult | undefined = undefined;
+    @State linkUrl: string = '';
+    @State offsetX: number = 0;
+    @State offsetY: number = 0;
+    @State showMenu: boolean = false;
+    @Builder
+    //构建自定义菜单及触发功能接口
+    MenuBuilder(){
+      //以垂直列表形式显示的菜单。
+      Menu(){
+        //展示菜单Menu中具体的item菜单项。
+        MenuItem({
+          content: '复制图片',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copyImage();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '剪切',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.cut();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copy();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '粘贴',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.paste();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制链接',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
+            if(error){
+              return;
+            }
+          })
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '全选',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.selectAll();
+          this.showMenu = false;
+        })
+      }
+      .width(150)
+      .height(300)
+    }
+
     build() {
       Column() {
-        Button('closeContextMenu')
-        .onClick(() => {
-          if (this.result) {
-            this.result.closeContextMenu()
-          }
-        })
-        Button('copyImage')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copyImage()
-          }
-        })
-        Button('copy')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copy()
-          }
-        })
-        Button('paste')
-        .onClick(() => {
-          if (this.result) {
-            this.result.paste()
-          }
-        })
-        Button('cut')
-        .onClick(() => {
-          if (this.result) {
-            this.result.cut()
-          }
-        })
-        Button('selectAll')
-        .onClick(() => {
-          if (this.result) {
-            this.result.selectAll()
-          }
-        })
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          //触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
+              this.result = event.result
               console.info("x coord = " + event.param.x())
               console.info("link url = " + event.param.getLinkUrl())
+              this.linkUrl = event.param.getLinkUrl()
             }
+            console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
+            this.showMenu = true;
+            this.offsetX = 250;
+            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true
+        })
+        .bindPopup(this.showMenu,
+        {
+          builder: this.MenuBuilder(),
+          enableArrow: false,
+          placement: Placement.LeftTop,
+          offset: { x: this.offsetX, y: this.offsetY},
+          mask: false,
+          onStateChange: (e) => {
+            if(!e.isVisible){
+              this.showMenu = false;
+              this.result!.closeContextMenu();
+            }
+          }
         })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <h1>onContextMenuShow</h1>
+    <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
+    //rawfile下放任意一张图片命名为example.png
+    <div><img src="example.png"></div>
+    <p>选中文字鼠标右键弹出菜单</p>
+  </body>
+  </html>
   ```
 
 ### onContextMenuHide<sup>11+</sup>
@@ -4483,6 +4559,10 @@ handlePromptConfirm(result: string): void
 
 通知开发者Web组件退出全屏。示例代码参考[onFullScreenEnter事件](#onfullscreenenter9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
 ### exitFullScreen<sup>9+</sup>
 
 exitFullScreen(): void
@@ -5273,12 +5353,12 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 ## MessageLevel枚举说明
 
 | 名称    | 值 | 描述    |
-| ----- | 0 | ---- |
-| Debug | 1 | 调试级别。 |
-| Error | 2 | 错误级别。 |
-| Info  | 3 | 消息级别。 |
-| Log   | 4 | 日志级别。 |
-| Warn  | 5 | 警告级别。 |
+| ----- | -- | ---- |
+| Debug | 0 | 调试级别。 |
+| Error | 1 | 错误级别。 |
+| Info  | 2 | 消息级别。 |
+| Log   | 3 | 日志级别。 |
+| Warn  | 4 | 警告级别。 |
 
 ## RenderExitReason<sup>9+</sup>枚举说明
 
@@ -5408,12 +5488,12 @@ Web屏幕捕获的配置。
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 
-| 名称           | 描述                                       |
-| ------------ | ---------------------------------------- |
-| SELF_ONLY    | 只自身滚动，不与父组件联动。                           |
-| SELF_FIRST   | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
-| PARENT_FIRST | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
-| PARALLEL     | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 |
+| 名称           | 值 | 描述                                       |
+| ------------ | -- | ---------------------------------------- |
+| SELF_ONLY    | 0 | 只自身滚动，不与父组件联动。                           |
+| SELF_FIRST   | 1 | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
+| PARENT_FIRST | 2 | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL     | 3 | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 

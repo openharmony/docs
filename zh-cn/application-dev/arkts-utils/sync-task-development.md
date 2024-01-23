@@ -11,11 +11,11 @@
 
 ## 使用TaskPool处理同步任务
 
-当调度独立的同步任务，或者一系列同步任务为静态方法实现，或者可以通过单例构造唯一的句柄或类对象，可在不同任务池之间使用时，推荐使用TaskPool。
+当调度独立的任务，或者一系列任务为静态方法实现，或者可以通过单例构造唯一的句柄或类对象，可在不同任务线程之间使用时，推荐使用TaskPool。
 
 1. 定义并发函数，内部调用同步方法。
 
-2. 创建任务，并通过TaskPool执行，再对异步结果进行操作。创建[Task](../reference/apis/js-apis-taskpool.md#task)，并通过[execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute-1)接口执行同步任务。
+2. 创建任务[Task](../reference/apis/js-apis-taskpool.md#task)，通过[execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute-1)接口执行该任务，并对任务返回的结果进行操作。
 
 3. 执行并发操作。
 
@@ -33,8 +33,12 @@ export default class Handle {
     // 同步Get方法
   }
 
-  static syncSet(num: number): void {
-    // 同步Set方法
+  static syncSet(num: number): number {
+    // 模拟同步步骤1
+    console.info("taskpool: this is 1st print!");
+    // 模拟同步步骤2
+    console.info("taskpool: this is 2nd print!");
+    return num++;
   }
 }
 ```
@@ -60,8 +64,10 @@ function func(num: number): boolean {
 async function asyncGet(): Promise<void> {
   // 创建task并传入函数func
   let task: taskpool.Task = new taskpool.Task(func, 1);
-  // 执行task任务并对同步逻辑后的结果进行操作
-  console.info(String(await taskpool.execute(task)));
+  // 执行task任务
+  let res: boolean = await taskpool.execute(task) as boolean;
+  // 打印任务结果
+  console.info("taskpool: task res is: " + res);
 }
 
 @Entry
@@ -149,7 +155,7 @@ struct Index {
     ```
     
     ```ts
-    // Worker.ts代码
+    // MyWorker.ts代码
     import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
     import Handle from './handle'  // 返回句柄
     

@@ -20,7 +20,7 @@
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
 
-开发者通过引入[avplayer.h](../reference/native-apis/avplayer__base_8h.md)、[avpalyer_base.h](../reference/native-apis/avplayer__base_8h.md)和[native_averrors.h](../reference/native-apis/native__averrors_8h.md)头文件，使用音频录制相关API。
+开发者通过引入[avplayer.h](../reference/native-apis/avplayer__base_8h.md)、[avpalyer_base.h](../reference/native-apis/avplayer__base_8h.md)和[native_averrors.h](../reference/native-apis/native__averrors_8h.md)头文件，使用音频播放相关API。
 详细的API说明请参考[AVPlayer API](../reference/native-apis/_a_v_player.md)。
 
 1. 创建实例OH_AVPlayer_Create()，AVPlayer初始化idle状态。
@@ -41,7 +41,7 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 
 7. 退出播放：调用OH_AVPlayer_Release()销毁实例，AVPlayer进入released状态，退出播放。
 
-## 示例
+## 完整示例
 
 ```c
 #include "napi/native_api.h"
@@ -50,41 +50,62 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 #include <multimedia/player_framework/native_averrors.h>
 void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 {
+    const char *url;
+    int32_t ret;
     switch (type) {
-       case AV_INFO_TYPE_SEEKDONE:
-       // do something
-           break;
-       case AV_INFO_TYPE_STATE_CHANGE:
-       // do something
-           break;
-       case AV_INFO_TYPE_SPEEDDONE:
-       // do something
-           break;
-       case AV_INFO_TYPE_POSITION_UPDATE:
-       // do something
-           break;
-       case AV_INFO_TYPE_BITRATE_COLLECT:
-       // do something
-           break;
-       case AV_INFO_TYPE_INTERRUPT_EVENT:
-       // do something
-           break;
-       case AV_INFO_TYPE_RESOLUTION_CHANGE:
-       // do something
-           break;
-       case AV_INFO_TYPE_TRACKCHANGE:
-       // do something
-           break;
-       case AV_INFO_TYPE_SUBTITLE_UPDATE: {
-       // do something
-           break;
-       }
-       case INFO_TYPE_TRACK_INFO_UPDATE: {
-       // do something
-           break;
-       }
-       default:
-           break;
+        case AV_INFO_TYPE_STATE_CHANGE:
+            switch (extra) {
+                case AV_IDLE: // 成功调用reset接口后触发该状态机上报
+                    *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3"
+                    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }
+                    break;
+                case AV_INITIALIZED: 
+                    ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }
+                    break;
+                case AV_PREPARED:  
+                    ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }
+                    break;
+                case AV_PLAYING:  
+                    ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }
+                    break;
+                case AV_PAUSED:  
+                    ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }break;
+                case AV_STOPPED:  
+                    ret = OH_AVPlayer_Reset(player); //调用reset接口初始化avplayer状态
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }
+                    break;
+                case AV_COMPLETED:  
+                    ret = OH_AVPlayer_Stop(player);// 调用播放结束接口
+                    if (ret != AV_ERR_OK) {
+                    // 处理异常
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case AV_INFO_TYPE_POSITION_UPDATE:
+        // do something
+            break;
+        default:
+            break;
     }
 }
 
@@ -105,29 +126,8 @@ int main()
     if (ret != AV_ERR_OK) {
     // 处理异常
     }
-    const char *path = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
-    // 设置url资源
-    int32_t ret = OH_AVPlayer_SetURLSource(player, path);
-    if (ret != AV_ERR_OK) {
-    // 处理异常
-    }
-    // 准备资源
-    int32_t ret = OH_AVPlayer_Prepare(player);
-    if (ret != AV_ERR_OK) {
-    // 处理异常
-    }
-    // 播放资源
-    int32_t ret = OH_AVPlayer_Play(player);
-    if (ret != AV_ERR_OK) {
-    // 处理异常
-    }
-    // 停止播放
-    int32_t ret = OH_AVPlayer_Stop(player);
-    if (ret != AV_ERR_OK) {
-    // 处理异常
-    }
-    // 释放资源
-    int32_t ret = OH_AVPlayer_Release(player);
+    const char *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
+    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
     if (ret != AV_ERR_OK) {
     // 处理异常
     }

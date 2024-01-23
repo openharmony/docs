@@ -7,6 +7,8 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 >  - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 >  - This module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n interfaces defined in ECMA 402. For details about the enhanced i18n capabilities, see [i18n](js-apis-i18n.md).
+>
+>  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
 
 
 ## Modules to Import
@@ -20,27 +22,30 @@ import Intl from '@ohos.intl';
 
 ### Attributes
 
+Since API version 11, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
-| Name             | Type     | Readable  | Writable  | Description                                      |
-| --------------- | ------- | ---- | ---- | ---------------------------------------- |
-| language        | string  | Yes   | No   | Language associated with the locale, for example, **zh**.                   |
-| script          | string  | Yes   | No   | Script type of the language, for example, **Hans**.                         |
-| region          | string  | Yes   | No   | Region associated with the locale, for example, **CN**.                        |
-| baseName        | string  | Yes   | No   | Basic key information about the locale, which consists of the language, script, and region, for example, **zh-Hans-CN**. |
-| caseFirst       | string  | Yes   | No   | Whether case is taken into account for the locale's collation rules. The value can be **upper**, **lower**, or **false**.|
-| calendar        | string  | Yes   | No   | Calendar for the locale. The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.|
-| collation       | string  | Yes   | No   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**.|
-| hourCycle       | string  | Yes   | No   | Time system for the locale. The value can be any of the following: **h12**, **h23**, **h11**, or **h24**.|
-| numberingSystem | string  | Yes   | No   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| numeric         | boolean | Yes   | No   | Whether to apply special collation rules for numeric characters. The default value is **false**.                     |
-
+| Name             | Type     | Mandatory  | Description                                      |
+| --------------- | ------- | -------- | ---------------------------------------- |
+| language        | string  | Yes   | Language associated with the locale, for example, **zh**.                   |
+| script          | string  | Yes   | Script type of the language, for example, **Hans**.                         |
+| region          | string  | Yes   | Region associated with the locale, for example, **CN**.                        |
+| baseName        | string  | Yes   | Basic key information about the locale, which consists of the language, script, and region, for example, **zh-Hans-CN**. |
+| caseFirst       | string  | Yes   | Whether case is taken into account for the locale's collation rules. The value can be **upper**, **lower**, or **false**.|
+| calendar        | string  | Yes   | Calendar for the locale. The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.|
+| collation       | string  | Yes   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**.|
+| hourCycle       | string  | Yes   | Time system for the locale. The value can be any of the following: **h12**, **h23**, **h11**, or **h24**.|
+| numberingSystem | string  | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
+| numeric         | boolean | Yes   | Whether to apply special collation rules for numeric characters. The default value is **false**.                     |
 
 ### constructor<sup>8+</sup>
 
 constructor()
 
 Creates a **Locale** object.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -59,14 +64,16 @@ constructor(locale: string, options?: LocaleOptions)
 
 Creates a **Locale** object.
 
+Since API version 11, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | Yes   | A string containing locale information, including the language, optional script, and region. For details about the international standards and combination modes for the language, script, and country or region, see [intl Development](../../internationalization/intl-guidelines.md#setting-locale-information).|
-| options             | [LocaleOptions](#localeoptions6) | No   | Options for creating the **Locale** object.|
+| locale               | string                           | Yes   | A string containing locale information, including the language, optional script, and region.|
+| options             | [LocaleOptions](#localeoptions) | No   | Options for creating the **Locale** object.|
 
 **Example**
   ```ts
@@ -81,6 +88,8 @@ Creates a **Locale** object.
 toString(): string
 
 Obtains the string representation of a **Locale** object.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -103,6 +112,8 @@ Obtains the string representation of a **Locale** object.
 maximize(): Locale
 
 Maximizes information of the **Locale** object. If the script and locale information is missing, add the information.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -134,6 +145,8 @@ minimize(): Locale
 
 Minimizes information of the **Locale** object. If the script and locale information is present, delete the information.
 
+Since API version 11, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -158,31 +171,33 @@ Minimizes information of the **Locale** object. If the script and locale informa
   ```
 
 
-## LocaleOptions<sup>6+</sup>
+## LocaleOptions
 
 Represents the locale options.
+
 Since API version 9, the attributes in **LocaleOptions** are optional.
+Since API version 11, **LocaleOptions** is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name             | Type     | Readable  | Writable  | Description                                      |
-| --------------- | ------- | ---- | ---- | ---------------------------------------- |
-| calendar        | string  | Yes   | Yes   | Calendar for the locale. The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.|
-| collation       | string  | Yes   | Yes   | Collation rule. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **emoji**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **search**, **searchjl**, **standard**, **stroke**, **trad**, **unihan**, **zhuyin**.|
-| hourCycle       | string  | Yes   | Yes   | Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
-| numberingSystem | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| numeric         | boolean | Yes   | Yes   | Whether to use the 12-hour clock. The default value is **false**.                              |
-| caseFirst       | string  | Yes   | Yes   | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**.|
-
+| Name             | Type     | Mandatory  |  Description                                      |
+| --------------- | ------- | ---- |---------------------------------------- |
+| calendar        | string  | No  |Calendar for the locale. The value can be any of the following: **buddhist**, **chinese**, **coptic**, **dangi**, **ethioaa**, **ethiopic**, **gregory**, **hebrew**, **indian**, **islamic**, **islamic-umalqura**, **islamic-tbla**, **islamic-civil**, **islamic-rgsa**, **iso8601**, **japanese**, **persian**, **roc**, or **islamicc**.|
+| collation       | string  | No    |Collation rule. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **emoji**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **search**, **searchjl**, **standard**, **stroke**, **trad**, **unihan**, **zhuyin**.|
+| hourCycle       | string  | No    |Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
+| numberingSystem | string  | No    |Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
+| numeric         | boolean | No    | Whether to use the 12-hour clock. The default value is **false**.                              |
+| caseFirst       | string  | No    | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**.|
 
 ## DateTimeFormat
-
 
 ### constructor<sup>8+</sup>
 
 constructor()
 
 Creates a **DateTimeOptions** object for the specified locale.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -199,6 +214,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 Creates a **DateTimeOptions** object for the specified locale.
 
+Since API version 11, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -206,7 +223,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options              | [DateTimeOptions](#datetimeoptions6) | No   | Options for creating a **DateTimeFormat** object. If no options are set, the default values of **year**, **month**, and **day** are **numeric**.|
+| options              | [DateTimeOptions](#datetimeoptions) | No   | Options for creating a **DateTimeFormat** object. If no options are set, the default values of **year**, **month**, and **day** are **numeric**.|
 
 **Example**
   ```ts
@@ -227,6 +244,8 @@ Creates a **DateTimeOptions** object for the specified locale.
 format(date: Date): string
 
 Formats the specified date and time.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -261,6 +280,8 @@ formatRange(startDate: Date, endDate: Date): string
 
 Formats the specified date range.
 
+Since API version 11, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -292,13 +313,15 @@ resolvedOptions(): DateTimeOptions
 
 Obtains the formatting options for **DateTimeFormat** object.
 
+Since API version 11, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
 
 | Type                                  | Description                           |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions6) | Formatting options for **DateTimeFormat** objects.|
+| [DateTimeOptions](#datetimeoptions) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
   ```ts
@@ -310,38 +333,39 @@ Obtains the formatting options for **DateTimeFormat** object.
   ```
 
 
-## DateTimeOptions<sup>6+</sup>
+## DateTimeOptions
 
 Provides the options for the **DateTimeFormat** object.
+
 Since API version 9, the attributes in **DateTimeOptions** are optional.
+Since API version 11, **DateTimeOptions** is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name             | Type     | Readable  | Writable  | Description                                      |
-| --------------- | ------- | ---- | ---- | ---------------------------------------- |
-| locale          | string  | Yes   | No   | Locale, for example, **zh-Hans-CN**.                |
-| dateStyle       | string  | Yes   | Yes   | Date display format. The value can be **long**, **short**, **medium**, or **full**.|
-| timeStyle       | string  | Yes   | Yes   | Time display format. The value can be **long**, **short**, **medium**, or **full**.|
-| hourCycle       | string  | Yes   | Yes   | Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
-| timeZone        | string  | Yes   | Yes   | Time zone represented by a valid IANA time zone ID.                     |
-| numberingSystem | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
-| hour12          | boolean | Yes   | Yes   | Whether to use the 12-hour clock. If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.        |
-| weekday         | string  | Yes   | Yes   | Workday display format. The value can be **long**, **short**, or **narrow**.|
-| era             | string  | Yes   | Yes   | Era display format. The value can be **long**, **short**, or **narrow**.|
-| year            | string  | Yes   | Yes   | Year display format. The value can be **numeric** or **2-digit**.  |
-| month           | string  | Yes   | Yes   | Month display format. The value can be any of the following: **numeric**, **2-digit**, **long**, **short**, **narrow**.|
-| day             | string  | Yes   | Yes   | Day display format. The value can be **numeric** or **2-digit**. |
-| hour            | string  | Yes   | Yes   | Hour display format. The value can be **numeric** or **2-digit**. |
-| minute          | string  | Yes   | Yes   | Minute display format. The value can be **numeric** or **2-digit**. |
-| second          | string  | Yes   | Yes   | Seconds display format. The value can be **numeric** or **2-digit**. |
-| timeZoneName    | string  | Yes   | Yes   | Localized representation of a time zone name.                             |
-| dayPeriod       | string  | Yes   | Yes   | Time period display format. The value can be **long**, **short**, or **narrow**.|
-| localeMatcher   | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**.|
-| formatMatcher   | string  | Yes   | Yes   | Format matching algorithm. The value can be **basic** or **best fit**.|
+| Name             | Type     | Mandatory  | Description                                      |
+| --------------- | ------- | ---- |  ---------------------------------------- |
+| locale          | string  | No   |Locale, for example, **zh-Hans-CN**.                |
+| dateStyle       | string  | No    |Date display format. The value can be **long**, **short**, **medium**, or **full**.|
+| timeStyle       | string  | No    |Time display format. The value can be **long**, **short**, **medium**, or **full**.|
+| hourCycle       | string  | No    |Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
+| timeZone        | string  | No    |Time zone represented by a valid IANA time zone ID.                     |
+| numberingSystem | string  | No    |Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
+| hour12          | boolean | No    | Whether to use the 12-hour clock. If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.        |
+| weekday         | string  | No    | Workday display format. The value can be **long**, **short**, or **narrow**.|
+| era             | string  | No    | Era display format. The value can be **long**, **short**, or **narrow**.|
+| year            | string  | No    | Year display format. The value can be **numeric** or **2-digit**.  |
+| month           | string  | No    | Month display format. The value can be any of the following: **numeric**, **2-digit**, **long**, **short**, **narrow**.|
+| day             | string  | No    | Day display format. The value can be **numeric** or **2-digit**. |
+| hour            | string  | No    | Hour display format. The value can be **numeric** or **2-digit**. |
+| minute          | string  | No    | Minute display format. The value can be **numeric** or **2-digit**. |
+| second          | string  | No    | Seconds display format. The value can be **numeric** or **2-digit**. |
+| timeZoneName    | string  | No    | Localized representation of a time zone name.                             |
+| dayPeriod       | string  | No    | Time period display format. The value can be **long**, **short**, or **narrow**.|
+| localeMatcher   | string  | No    | Locale matching algorithm. The value can be **lookup** or **best fit**.|
+| formatMatcher   | string  | No    | Format matching algorithm. The value can be **basic** or **best fit**.|
 
 
 ## NumberFormat
-
 
 ### constructor<sup>8+</sup>
 
@@ -371,7 +395,7 @@ Creates a **NumberFormat** object for the specified locale.
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options              | [NumberOptions](#numberoptions6) | No   | Options for creating a **NumberFormat** object.               |
+| options              | [NumberOptions](#numberoptions) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
   ```ts
@@ -382,7 +406,7 @@ Creates a **NumberFormat** object for the specified locale.
 
 ### format
 
-format(number: number): string;
+format(number: number): string
 
 Formats a number.
 
@@ -421,7 +445,7 @@ Obtains the options of the **NumberFormat** object.
 
 | Type                              | Description                         |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions6) | Formatting options for **NumberFormat** objects.|
+| [NumberOptions](#numberoptions) | Formatting options for **NumberFormat** objects.|
 
 
 **Example**
@@ -434,38 +458,37 @@ Obtains the options of the **NumberFormat** object.
   ```
 
 
-## NumberOptions<sup>6+</sup>
+## NumberOptions
 
 Defines the device capability.
+
 Since API version 9, the attributes in **NumberOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name                      | Type     | Readable  | Writable  | Description                                      |
-| ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
-| locale                   | string  | Yes   | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
-| currency                 | string  | Yes   | Yes   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | Yes   | Yes   | Currency unit symbol. The options are "standard" and "accounting". The default value is **standard**.|
-| currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
-| unit                     | string  | Yes   | Yes   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
-| unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
-| unitUsage<sup>8+</sup>   | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**. The default value is **default**.|
-| signDisplay              | string  | Yes   | Yes   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**. The default value is **auto**.|
-| compactDisplay           | string  | Yes   | Yes   | Compact display format. The value can be **long** or **short**. The default value is **short**.     |
-| notation                 | string  | Yes   | Yes   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**. The default value is **standard**.|
-| localeMatcher            | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
-| style                    | string  | Yes   | Yes   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**. The default value is **decimal**.|
-| numberingSystem          | string  | Yes   | Yes   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**. The default value is the default numbering system of the specified locale.|
-| useGrouping              | boolean | Yes   | Yes   | Whether to use grouping for display. The default value is **auto**.                                 |
-| minimumIntegerDigits     | number  | Yes   | Yes   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**. The default value of is **1**.                 |
-| minimumFractionDigits    | number  | Yes   | Yes   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**. The default value is **0**.                 |
-| maximumFractionDigits    | number  | Yes   | Yes   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**. The default value is **3**.                 |
-| minimumSignificantDigits | number  | Yes   | Yes   | Minimum number of the least significant digits. The value ranges from **1** to **21**. The default value of is **1**.                 |
-| maximumSignificantDigits | number  | Yes   | Yes   | Maximum number of the least significant digits. The value ranges from **1** to **21**. The default value is **21**.                 |
-
+| Name                      | Type     | Mandatory  |  Description                                      |
+| ------------------------ | ------- | ---- |  ---------------------------------------- |
+| locale                   | string  | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
+| currency                 | string  | No   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
+| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting". The default value is **standard**.|
+| currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
+| unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
+| unitDisplay              | string  | No   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
+| unitUsage<sup>8+</sup>   | string  | No   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**. The default value is **default**.|
+| signDisplay              | string  | No   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**. The default value is **auto**.|
+| compactDisplay           | string  | No   | Compact display format. The value can be **long** or **short**. The default value is **short**.     |
+| notation                 | string  | No   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**. The default value is **standard**.|
+| localeMatcher            | string  | No   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| style                    | string  | No   | Number display format. The value can be **decimal**, **currency**, **percent**, or **unit**. The default value is **decimal**.|
+| numberingSystem          | string  | No   | Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**. The default value is the default numbering system of the specified locale.|
+| useGrouping              | boolean | No   | Whether to use grouping for display. The default value is **auto**.                                 |
+| minimumIntegerDigits     | number  | No   | Minimum number of digits allowed in the integer part of a number. The value ranges from **1** to **21**. The default value of is **1**.                 |
+| minimumFractionDigits    | number  | No   | Minimum number of digits in the fraction part of a number. The value ranges from **0** to **20**. The default value is **0**.                 |
+| maximumFractionDigits    | number  | No   | Maximum number of digits in the fraction part of a number. The value ranges from **1** to **21**. The default value is **3**.                 |
+| minimumSignificantDigits | number  | No   | Minimum number of the least significant digits. The value ranges from **1** to **21**. The default value of is **1**.                 |
+| maximumSignificantDigits | number  | No   | Maximum number of the least significant digits. The value ranges from **1** to **21**. The default value is **21**.                 |
 
 ## Collator<sup>8+</sup>
-
 
 ### constructor<sup>8+</sup>
 
@@ -561,20 +584,20 @@ Returns properties reflecting the locale and collation options of a **Collator**
 ## CollatorOptions<sup>8+</sup>
 
 Represents the properties of a **Collator** object.
+
 Since API version 9, the attributes in **CollatorOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name               | Type     | Readable  | Writable  | Description                                      |
-| ----------------- | ------- | ---- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
-| usage             | string  | Yes   | Yes   | Whether the comparison is for sorting or for searching. The value can be **sort** or **search**. The default value is **sort**.       |
-| sensitivity       | string  | Yes   | Yes   | Differences in the strings that lead to non-zero return values. The value can be **base**, **accent**, **case**, or **letiant**. The default value is **variant**.|
-| ignorePunctuation | boolean | Yes   | Yes   | Whether punctuation is ignored. The value can be **true** or **false**. The default value is **false**.       |
-| collation         | string  | Yes   | Yes   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**. The default value is **default**.|
-| numeric           | boolean | Yes   | Yes   | Whether numeric collation is used. The value can be **true** or **false**. The default value is **false**.         |
-| caseFirst         | string  | Yes   | Yes   | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**. The default value is **false**.|
-
+| Name               | Type     | Mandatory  | Description                                      |
+| ----------------- | ------- | ---- | ---------------------------------------- |
+| localeMatcher     | string  | No   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| usage             | string  | No   | Whether the comparison is for sorting or for searching. The value can be **sort** or **search**. The default value is **sort**.       |
+| sensitivity       | string  | No   | Differences in the strings that lead to non-zero return values. The value can be **base**, **accent**, **case**, or **letiant**. The default value is **variant**.|
+| ignorePunctuation | boolean | No   | Whether punctuation is ignored. The value can be **true** or **false**. The default value is **false**.       |
+| collation         | string  | No   | Rule for sorting regions. The value can be any of the following: **big5han**, **compat**, **dict**, **direct**, **ducet**, **eor**, **gb2312**, **phonebk**, **phonetic**, **pinyin**, **reformed**, **searchjl**, **stroke**, **trad**, **unihan**, **zhuyin**. The default value is **default**.|
+| numeric           | boolean | No   | Whether numeric collation is used. The value can be **true** or **false**. The default value is **false**.         |
+| caseFirst         | string  | No   | Whether upper case or lower case is sorted first. The value can be **upper**, **lower**, or **false**. The default value is **false**.|
 
 ## PluralRules<sup>8+</sup>
 
@@ -794,15 +817,16 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 ## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
+
 Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
-| Name           | Type    | Readable  | Writable  | Description                                      |
-| ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher | string | Yes   | Yes   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
-| numeric       | string | Yes   | Yes   | Format of the output message. The value can be **always** or **auto**. The default value is **always**.     |
-| style         | string | Yes   | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**. The default value is **long**.|
 
+| Name           | Type    | Mandatory  |Description                                      |
+| ------------- | ------ | ---- | ---------------------------------------- |
+| localeMatcher | string | No   | Locale matching algorithm. The value can be **lookup** or **best fit**. The default value is **best fit**.|
+| numeric       | string | No   | Format of the output message. The value can be **always** or **auto**. The default value is **always**.     |
+| style         | string | No   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**. The default value is **long**.|
 
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
@@ -810,9 +834,9 @@ Represents the properties of a **RelativeTimeFormat** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-| Name             | Type    | Readable  | Writable  | Description                                      |
+| Name             | Type    | Mandatory  |Description                                      |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
-| locale          | string | Yes   | Yes   | A string containing locale information, including the language, optional script, and region.            |
-| numeric         | string | Yes   | Yes   | Format of the output message. The value can be **always** or **auto**.     |
-| style           | string | Yes   | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
-| numberingSystem | string | Yes   | Yes   | Numbering system.                                |
+| locale          | string | Yes   | A string containing locale information, including the language, optional script, and region.            |
+| numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
+| style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
+| numberingSystem | string | Yes   | Numbering system.                                |

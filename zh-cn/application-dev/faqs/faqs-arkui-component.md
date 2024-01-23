@@ -756,7 +756,11 @@ struct SideBarContainerExample {
 **解决措施**
 
 Canvas组件最终的显示内容分两种，一种是组件通用属性的绘制内容，比如背景色，boarder等这类组件属性方法设置的渲染属性，这类属性是可以通过状态变量驱动更新的。
-另一种是通过CanvasRenderContext2d绘制接口由应用自行绘制的内容。该类命令时绘制接口不响应状态变量，该类接口内置表脏功能，只要调用就会在下一帧刷新绘制内容，不需要开发者显示刷新。
+另一种是通过CanvasRenderingContext2D绘制接口由应用自行绘制的内容。该类命令时绘制接口不响应状态变量，该类接口内置表脏功能，只要调用就会在下一帧刷新绘制内容，不需要开发者显式刷新。
+
+**参考链接**
+
+[CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md)
 
 ## 怎么解决列表组件List在不设置高度的情况下，会出现滑动不到底的问题(API 10)
 
@@ -805,3 +809,42 @@ List组件设置layoutWeight(1)属性，将剩余空间全部分配给List组件
 **参考链接**
 
 [ArkUI-X](https://gitee.com/arkui-x)
+
+## 应用如何在自定义组件的构建流程里跟踪组件数据或者状态(API 10)
+
+**问题现象**
+
+UI的构建build方法内无法插入日志，导致应用无法感知UI绘制流程，不利于调试UI，定位UI问题。  
+
+**解决措施**
+
+使用@Watch回调来监测状态变量的变化，如果执行回调函数，说明在下一次vysnc信号发送时，使用该状态变量的UI会刷新绘制。
+
+示例代码如下：
+
+```ts
+@Prop @Watch('onCountUpdated') count: number = 0; 
+@State total: number = 0; 
+// @Watch 回调 
+onCountUpdated(propName: string): void {
+  this.total += this.count; 
+}
+```
+
+**参考链接**
+
+[@Watch装饰器：状态变量更改通知](../quick-start/arkts-watch.md)
+
+## 自定义component不支持继承语法，针对其他框架支持的自定义组件继承及封装能力，ArkUI的解决方案是什么(API 10)
+
+**解决措施**
+
+对于声明式的自定义组件场景，不会提供继承的能力，需要使用组合的方式进行扩展，并结合后续提供的Modifier机制进行对现有组件属性的继承、复用和传递。
+
+## 组件支持的参数类型及参数单位类型区别是什么，使用场景是什么(API 10)
+
+**解决措施**
+
+屏幕像素单位px(pixel)，表示屏幕上的实际像素，1px代表手机屏幕上的一个像素点。视窗逻辑像素单位lpx，lpx单位为实际屏幕宽度与逻辑宽度（通过designWidth配置）的比值，标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。距离使用vp(virtual pixel)，字体大小使用fp(font pixel)，虚拟像素单位vp(virtual pixel)，vp具体计算公式为：vp= px/（DPI/160）。  
+以屏幕相对像素为单位, 是一台设备针对应用而言所具有的虚拟尺寸（区别于屏幕硬件本身的像素单位）。它提供了一种灵活的方式来适应不同屏幕密度的显示效果,使用虚拟像素，使元素在不同密度的设备上具有一致的视觉体量。字体像素单位fp(font pixel)，字体像素(font pixel)大小默认情况下与vp相同，即默认情况下1fp=1vp。如果用户在设置中选择了更大的字体，字体的实际显示大小就会在vp的基础上乘以scale系数，即1fp=1vp*scale。Percentage - 需要指定以%像素单位，如'10%'。  
+Resource - 资源引用类型，引入系统资源或者应用资源中的尺寸。 

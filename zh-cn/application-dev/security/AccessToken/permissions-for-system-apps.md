@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 以下权限仅对APL等级为systen_basic及以上的应用开放，不向APL等级为normal的应用开放。
+> - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
 > - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
 
 ## system_grant，允许ACL跨级申请
@@ -2038,6 +2038,18 @@
 **授权方式**：system_grant
 
 **ACL使能**：true
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_STATUSBAR_ICON
+
+允许应用接入状态栏图标。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
 
 **起始版本**：11
 

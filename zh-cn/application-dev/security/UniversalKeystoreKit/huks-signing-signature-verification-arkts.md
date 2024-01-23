@@ -168,11 +168,11 @@ async function Sign(keyAlias: string, plaintext: string) {
       console.error(`promise: sign failed, error: ` + JSON.stringify(err));
     })
 }
-async function Verify(keyAlias: string, signature: Uint8Array) {
+async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
   let verifyProperties = GetEccVerifyProperties()
   let options: huks.HuksOptions = {
     properties: verifyProperties,
-    inData: signature
+    inData: StringToUint8Array(plaintext)
   }
   await huks.initSession(keyAlias, options)
     .then((data) => {
@@ -186,6 +186,7 @@ async function Verify(keyAlias: string, signature: Uint8Array) {
     }).catch((err: BusinessError)=>{
       console.error(`promise: update verify failed, error: ` + JSON.stringify(err));
     })
+  options.inData = signature;
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
@@ -207,7 +208,7 @@ async function DeleteEccKey(keyAlias: string) {
 async function testSignVerify() {
   await GenerateEccKey(keyAlias);
   await Sign(keyAlias, plaintext);
-  await Verify(keyAlias, signature);
+  await Verify(keyAlias, plaintext, signature);
   await DeleteEccKey(keyAlias);
 }
 ```

@@ -5,7 +5,7 @@
 
 当设备需要振动固定时长时，可以调用Vibrator模块，例如：设备的按键可以设置不同时长的振动。
 
-详细的接口介绍请参考[Vibrator接口](../reference/apis/js-apis-vibrator.md)。
+详细的接口介绍请参考[Vibrator接口](../reference/apis-as/js-apis-vibrator.md)。
 
 
 ## 接口说明

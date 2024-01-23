@@ -57,11 +57,11 @@ The **\<Video>** component supports both local and online videos.
   export struct VideoPlayer{
      private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
-     private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
+     private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
        Column() {
          Video({
-           src: this.videosrc,
+           src: this.videoSrc,
            previewUri: this.previewUris,
            controller: this.controller
          })
@@ -72,18 +72,18 @@ The **\<Video>** component supports both local and online videos.
 
 ### Loading a Video in the Application Sandbox
 
-To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
+To load a video in the application sandbox, use a string with the **file://data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
 
 ```ts
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {
       Video({
-        src: this.videosrc,
+        src: this.videoSrc,
         controller: this.controller
       })
     }
@@ -94,7 +94,7 @@ export struct VideoPlayer {
 
 ### Loading an Online Video
 
-To load online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for the permission, see [Declaring Permissions](../security/accesstoken-guidelines.md). In this scenario, the **src** attribute indicates the URL of the online video.
+To load online videos, you must apply for the **ohos.permission.INTERNET** permission. For details about how to apply for the permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). In this scenario, the **src** attribute indicates the URL of the online video.
 
 
 ```ts
@@ -102,11 +102,11 @@ To load online videos, you must apply for the **ohos.permission.INTERNET** permi
 export struct VideoPlayer{
    private controller:VideoController | undefined;
    private previewUris: Resource = $r ('app.media.preview');
-   private videosrc: string= 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
+   private videoSrc: string = 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
    build(){
      Column() {
        Video({
-         src: this.videosrc,
+         src: this.videoSrc,
          previewUri: this.previewUris,
          controller: this.controller
        })

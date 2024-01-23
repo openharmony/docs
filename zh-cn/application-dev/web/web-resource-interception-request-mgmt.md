@@ -69,3 +69,97 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     }
   }
   ```
+
+为自定义的JavaScript请求响应生成 CodeCache：自定义请求响应的资源类型如果是JavaScript脚本，可以在响应头中添加“ResponseDataID”字段，Web内核读取到该字段后会在为该JS资源生成CodeCache，加速JS执行，并且ResponseData如果有更新时必须更新该字段。不添加“ResponseDataID”字段的情况下默认不生成CodeCache。
+
+在下面的示例中，Web组件通过拦截页面请求“https://www.example.com/test.js”， 应用侧代码构建响应资源，在响应头中添加“ResponseDataID”字段，开启生成CodeCache的功能。
+
+- 前端页面index.html代码。
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+  </head>
+  <body>
+  
+  <div id="div-1">this is a test div</div>
+  <div id="div-2">this is a test div</div>
+  <div id="div-3">this is a test div</div>
+  <div id="div-4">this is a test div</div>
+  <div id="div-5">this is a test div</div>
+  <div id="div-6">this is a test div</div>
+  <div id="div-7">this is a test div</div>
+  <div id="div-8">this is a test div</div>
+  <div id="div-9">this is a test div</div>
+  <div id="div-10">this is a test div</div>
+  <div id="div-11">this is a test div</div>
+  
+  <script src="https://www.example.com/test.js"></script>
+  </body>
+  </html>
+  ```
+
+- 应用侧代码。
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    responseResource: WebResourceResponse = new WebResourceResponse()
+    // 开发者自定义响应数据（响应数据长度需大于等于1024才会生成codecache）
+    @State jsData: string = 'let text_msg = "the modified content:version 0000000000001";\n' +
+      'let element1 = window.document.getElementById("div-1");\n' +
+      'let element2 = window.document.getElementById("div-2");\n' +
+      'let element3 = window.document.getElementById("div-3");\n' +
+      'let element4 = window.document.getElementById("div-4");\n' +
+      'let element5 = window.document.getElementById("div-5");\n' +
+      'let element6 = window.document.getElementById("div-6");\n' +
+      'let element7 = window.document.getElementById("div-7");\n' +
+      'let element8 = window.document.getElementById("div-8");\n' +
+      'let element9 = window.document.getElementById("div-9");\n' +
+      'let element10 = window.document.getElementById("div-10");\n' +
+      'let element11 = window.document.getElementById("div-11");\n' +
+      'element1.innerHTML = text_msg;\n' +
+      'element2.innerHTML = text_msg;\n' +
+      'element3.innerHTML = text_msg;\n' +
+      'element4.innerHTML = text_msg;\n' +
+      'element5.innerHTML = text_msg;\n' +
+      'element6.innerHTML = text_msg;\n' +
+      'element7.innerHTML = text_msg;\n' +
+      'element8.innerHTML = text_msg;\n' +
+      'element9.innerHTML = text_msg;\n' +
+      'element10.innerHTML = text_msg;\n' +
+      'element11.innerHTML = text_msg;\n'
+  
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .onInterceptRequest((event) => {
+            // 拦截页面请求
+            if (event?.request.getRequestUrl() == 'https://www.example.com/test.js') {
+              // 构造响应数据
+              this.responseResource.setResponseHeader([
+                {
+                  // 格式：不超过13位纯数字。js识别码，Js有更新时必须更新该字段
+                  headerKey: "ResponseDataID",
+                  headerValue: "0000000000001"
+                }]);
+              this.responseResource.setResponseData(this.jsData);
+              this.responseResource.setResponseEncoding('utf-8');
+              this.responseResource.setResponseMimeType('application/javascript');
+              this.responseResource.setResponseCode(200);
+              this.responseResource.setReasonMessage('OK');
+              return this.responseResource;
+            }
+            return null;
+          })
+      }
+    }
+  }
+  ```

@@ -7,6 +7,18 @@ You may want your application to behave differently based on the device environm
 Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
 
 
+## Environment Built-in Parameters
+
+| Key| Data Type| Description                                     |
+| ------------------ | ------------------ | ------------------ |
+| accessibilityEnabled              | boolean                  | Whether to enable accessibility.                |
+| colorMode              | ColorMode enum                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.Dark**: dark mode.                |
+| fontScale              | number                  | Font scale. Range: [0.85, 1.45].                |
+| fontWeightScale              | LayoutDirection                  | Font weight scale. Range: [0.6, 1.6].               |
+| layoutDirection              | boolean                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
+| languageCode              | string                  | Current system language. The value is in lowercase, for example, **zh**.                |
+
+
 ## Use Scenarios
 
 

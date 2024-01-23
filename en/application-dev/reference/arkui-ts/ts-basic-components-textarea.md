@@ -52,7 +52,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | enterKeyType<sup>11+</sup>  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }  <br>Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }  <br>Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md).
 
 ## Events
 

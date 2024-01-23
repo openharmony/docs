@@ -12,13 +12,13 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 
    ```c++
     // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 2. 在CMake脚本中链接Camera NDK动态库。
@@ -85,7 +85,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
   >
   > 当前的元数据类型仅支持人脸检测（FACE_DETECTION）功能。元数据信息对象为识别到的人脸区域的矩形信息（Rect），包含矩形区域的左上角x坐标、y坐标和矩形的宽高数据。
 
-- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
   void OnMetadataOutputError(Camera_MetadataOutput* metadataOutput, Camera_ErrorCode errorCode)

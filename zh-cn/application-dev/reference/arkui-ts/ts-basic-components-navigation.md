@@ -5,6 +5,8 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 > **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -52,7 +54,7 @@ Navigation(pathInfos: NavPathStack)
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。<br/>默认值：false |
+| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
@@ -123,6 +125,42 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### removeByIndexes<sup>11+</sup>
+
+removeByIndexes(indexes: Array<number\>): number
+
+将页面栈内索引值在indexes中的NavDestination页面删除。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| number | 返回删除的NavDestination页面数量。 |
+
+### removeByName<sup>11+</sup>
+
+removeByName(name: string): number
+
+将页面栈内指定name的NavDestination页面删除。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | 删除的NavDestination页面的名字。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| number | 返回删除的NavDestination页面数量。 |
 
 ### pop<sup>10+</sup>
 
@@ -745,7 +783,7 @@ struct NavigationExample {
       console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
       console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
       console.log(`operation: ${operation}`)
-      if (from.index === -1) {
+      if (from.index === -1 || to.index === -1) {
         return undefined;
       }
       let customAnimation: NavigationAnimatedTransition = {
@@ -759,7 +797,9 @@ struct NavigationExample {
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.name);
           fromParam.start(operation == NavigationOperation.PUSH, true);
           toParam.start(operation == NavigationOperation.PUSH, false);
-          animateTo({duration: toParam.timeout, onFinish: ()=>{
+          animateTo({duration: 400, onFinish: ()=>{
+            fromParam.onFinish(operation === NavigationOperation.PUSH, true);
+            toParam.onFinish(operation === NavigationOperation.PUSH, true);
             transitionProxy.finishTransition();
           }}, ()=>{
             fromParam.finish(operation === NavigationOperation.PUSH, true)
@@ -784,16 +824,13 @@ export struct pageOneTmp {
   @State scaleVal: number = 1
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageOne', (isPush: boolean, isExit: boolean) => {
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=> {
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200);
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -814,6 +851,13 @@ export struct pageOneTmp {
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
     })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageOne')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageOne')
+    })
     .translate({x: this.x, y: 0, z: 0})
     .backgroundColor(Color.White)
   }
@@ -829,17 +873,14 @@ export struct PageTwoTemp {
   @State x: number = 300
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageTwo', (isPush: boolean, isExit: boolean)=>{
       console.log("current page is pageOne")
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=>{
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200)
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -854,11 +895,17 @@ export struct PageTwoTemp {
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
-    .backgroundColor(Color.White)
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageTwo')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageTwo')
     })
     .translate({x: this.x})
     .backgroundColor(Color.White)
@@ -870,6 +917,7 @@ export struct PageTwoTemp {
 export interface AnimateCallback {
   finish: (isPush: boolean, isExit: boolean) => void;
   start: (isPush: boolean, isExit: boolean) => void;
+  onFinish: (isPush: boolean, isExit: boolean) => void
   timeout: number;
 }
 const customTransitionMap: Map<string, AnimateCallback> = new Map()
@@ -885,16 +933,18 @@ export class CustomTransition {
   }
 
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void, timeout: number): void {
+                   endCallback:(operation: boolean, isExit: boolean) => void,
+                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       param.start = startCallback;
       param.finish = endCallback;
       param.timeout = timeout;
+      param.onFinish = onFinish;
       return;
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
     customTransitionMap.set(name, params);
   }
 
@@ -906,7 +956,8 @@ export class CustomTransition {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name).start,
       finish: customTransitionMap.get(name).finish,
-      timeout: customTransitionMap.get(name).timeout
+      timeout: customTransitionMap.get(name).timeout,
+      onFinish: customTransitionMap.get(name).onFinish
     };
     return result;
   }

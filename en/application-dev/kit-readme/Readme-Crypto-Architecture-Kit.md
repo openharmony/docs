@@ -1,0 +1,47 @@
+# Crypto Architecture Kit (Crypto Architecture Kit)
+
+- [Introduction to Crypto Architecture Kit](../security/CryptoArchitectureKit/crypto-architecture-kit-intro.md)
+- Key Generation and Conversion
+  - [Key Generation and Conversion](../security/CryptoArchitectureKit/crypto-key-generation-conversion-overview.md)
+  - Key Generation and Conversion Specifications
+    - [Symmetric Key Generation and Conversion Specifications](../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)
+    - [Asymmetric Key Generation and Conversion Specifications](../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)
+  - Key Generation and Conversion Development
+    - [Randomly Generating a Symmetric Key](../security/CryptoArchitectureKit/crypto-generate-sym-key-randomly.md)
+    - [Converting Binary Data into a Symmetric Key](../security/CryptoArchitectureKit/crypto-convert-binary-data-to-sym-key.md)
+    - [Randomly Generating an Asymmetric Key Pair](../security/CryptoArchitectureKit/crypto-generate-asym-key-pair-randomly.md)
+    - [Converting Binary Data into an Asymmetric Key Pair](../security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair.md)
+    - [Generating an Asymmetric Key Pair Based on Key Parameters](../security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec.md)
+- Encryption and Decryption
+  - [Encryption and Decryption Overview](../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)
+  - Encryption and Decryption Algorithm Specifications
+    - [Symmetric Key Encryption and Decryption Algorithm Specifications](../security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md)
+    - [Asymmetric Key Encryption and Decryption Algorithm Specifications](../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)
+  - Encryption and Decryption Development
+    - [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)
+    - [Encryption and Decryption with an AES Symmetric Key (CBC Mode)](../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc.md)
+    - [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
+    - [Encryption and Decryption with a 3DES Symmetric Key (ECB Mode)](../security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
+    - [Encryption and Decryption with an SM4 Symmetric Key (ECB Mode)](../security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-ecb.md)
+    - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1)](../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
+    - [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)
+    - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
+    - [Encryption and Decryption with an SM2 Asymmetric Key Pair](../security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt.md)
+- Signing and Signature Verification
+  - [Signing and Signature Verification Overview and Algorithm Specifications](../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)
+  - Signing and Signature Verification Development
+    - [Signing and Signature Verification with an RSA Key Pair(PKCS1 Mode)](../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)
+    - [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
+    - [Signing and Signature Verification with an RSA Key Pair (PSS Mode)](../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pss.md)
+    - [Signing and Signature Verification with an ECDSA Key Pair](../security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify.md)
+    - [Signing and Signature Verification with an SM2 Key Pair](../security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1.md)
+- Key Agreement
+  - [Key Agreement Overview and Algorithm Specifications](../security/CryptoArchitectureKit/crypto-key-agreement-overview.md)
+  - Key Agreement Development
+    - [Key Agreement Using ECDH](../security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
+    - [Key Agreement Using X25519](../security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
+    - [Key Agreement Using DH](../security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
+- [MD Operation](../security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+- [MAC Operation](../security/CryptoArchitectureKit/crypto-compute-mac.md)
+- [Random Number Generation](../security/CryptoArchitectureKit/crypto-generate-random-number.md)
+- [Key Derivation](../security/CryptoArchitectureKit/crypto-key-derivation.md)

@@ -101,4 +101,3 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
 
 Now you can use Neon intrinsics in your project.
 
- <!--no_check--> 

@@ -20,7 +20,7 @@
    > **说明：**
    >
    > 需要在avRecorder完成赋值（即“avRecorder = recorder; ”运行完成）后，再进行剩余操作。
-     
+
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -38,7 +38,7 @@
    | -------- | -------- |
    | stateChange | 必要事件，监听AVRecorder的state属性改变 | 
    | error | 必要事件，监听AVRecorder的错误信息 |
-     
+
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -55,16 +55,15 @@
    ```
 
 3. 配置音频录制参数，调用prepare()接口，此时进入prepared状态。
+
    > **说明：**
    > 配置参数需要注意：
-   > 
+   >
    > - prepare接口的入参avConfig中仅设置音频相关的配置参数，如示例代码所示。
    >   如果只需要录制音频，请不要设置视频相关配置参数；如果需要录制视频，可以参考[视频录制开发指导](video-recording.md)进行开发。直接设置视频相关参数会导致后续步骤报错。
-   > 
    > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)。
-   > 
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
- 
+
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -129,7 +128,6 @@
    // 销毁实例
    avRecorder.release();
    ```
-
 
 ## 完整示例
 

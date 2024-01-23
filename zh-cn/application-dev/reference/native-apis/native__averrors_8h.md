@@ -3,15 +3,15 @@
 
 ## 概述
 
-声明了媒体播放框架的错误码。
+声明了媒体子系统的错误码OH_AVErrCode的定义。
 
-**起始版本：**
+**库：** libnative_media_core.so
 
-9
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
-**相关模块：**
+**起始版本：** 9
 
-[Core](_core.md)
+**相关模块：**[Core](_core.md)
 
 
 ## 汇总
@@ -21,11 +21,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVErrCode](_core.md#oh_averrcode) | 音视频错误码。 | 
+| typedef enum [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVErrCode](_core.md#oh_averrcode) | 音视频错误码。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVErrCode](_core.md#oh_averrcode) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OK = 0,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_NO_MEMORY = 1,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_VAL = 3,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_IO = 4,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_TIMEOUT = 5,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNKNOWN = 6,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_SERVICE_DIED = 7,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_INVALID_STATE = 8,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_UNSUPPORT = 9,<br/>&nbsp;&nbsp;&nbsp;&nbsp;AV_ERR_EXTEND_START = 100<br/>} | 音视频错误码。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) {<br/>AV_ERR_OK = 0,<br/>AV_ERR_NO_MEMORY = 1,<br/>AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>AV_ERR_INVALID_VAL = 3,<br/>AV_ERR_IO = 4,<br/>AV_ERR_TIMEOUT = 5,<br/>AV_ERR_UNKNOWN = 6,<br/>AV_ERR_SERVICE_DIED = 7,<br/>AV_ERR_INVALID_STATE = 8,<br/>AV_ERR_UNSUPPORT = 9,<br/>AV_ERR_EXTEND_START = 100<br/>} | 音视频错误码。 | 

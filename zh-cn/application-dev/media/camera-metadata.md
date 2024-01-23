@@ -14,7 +14,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 调用CameraOutputCapability类中的supportedMetadataObjectTypes()方法，获取当前设备支持的元数据类型，并通过createMetadataOutput()方法创建元数据输出流。
+2. 调用[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的supportedMetadataObjectTypes方法，获取当前设备支持的元数据类型，并通过[createMetadataOutput](../reference/apis/js-apis-camera.md#createmetadataoutput)方法创建元数据输出流。
      
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
@@ -30,7 +30,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-3. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+3. 调用[start](../reference/apis/js-apis-camera.md#start-3)方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
@@ -42,7 +42,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-4. 调用stop方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 调用[stop](../reference/apis/js-apis-camera.md#stop-3)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {

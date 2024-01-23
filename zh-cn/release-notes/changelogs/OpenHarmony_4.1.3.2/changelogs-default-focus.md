@@ -56,6 +56,30 @@ API 11及之后，点击按钮后输入框会立即失焦，此时输入框组�
 
 ## Checkbox组件默认形状变更
 
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+增强视觉、交互效果。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.3.2 版本开始。
+
+**变更的接口/组件**
+
+checkbox组件。
+
 当开发者未配置Checkbox组件的shape属性，默认形状变更。
 
 **变更影响**
@@ -64,12 +88,15 @@ API 11及之后，点击按钮后输入框会立即失焦，此时输入框组�
 
 API version 11及之后：Checkbox组件的形状默认为圆形。
 
+  ![](figures/checkbox.png)
+
 API version 11之前：Checkbox组件的形状默认为圆角方形。
+
+  ![](figures/checkbox_old.png)
 
 **适配指导**
 
 若希望API version 11及之后Checkbox组件的形状为变更前的圆角方形，则需要Checkbox组件绑定shape(CheckBoxShape.ROUNDED_SQUARE)属性，这样Checkbox组件的形状就变成圆角方形。
-
 
 
 ## rawfile文件资源校验等级变更

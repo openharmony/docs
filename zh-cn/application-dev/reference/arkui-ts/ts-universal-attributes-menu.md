@@ -68,13 +68,16 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 ## MenuOptions<sup>10+</sup>
 
-| 名称        | 类型                                         | 必填 | 描述                                                         |
-| ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| title       | string                                       | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| offset      | [Position](ts-types.md#position8)            | 否   | 菜单弹出位置的偏移量，不会导致菜单显示超出屏幕范围。<br/>**说明：**<br />菜单类型为相对⽗组件区域弹出时，⾃动根据菜单位置属性 (placement)将区域的宽或⾼计⼊偏移量中。<br/>当菜单相对父组件出现在上侧时（placement设置为Placement.TopLeft，Placement.Top，Placement.TopRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向上进行偏移。<br/>当菜单相对父组件出现在下侧时（placement设置为Placement.BottomLeft，Placement.Bottom，Placement.BottomRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在左侧时（placement设置为Placement.LeftTop，Placement.Left，Placement.LeftBottom），x为正值，菜单相对组件向左进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在右侧时（placement设置为Placement.RightTop，Placement.Right，Placement.RightBottom），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>如果菜单调整了显示位置（与placement初始值主方向不⼀致），则偏移值 (offset) 失效。 |
-| placement   | [Placement](ts-appendix-enums.md#placement8) | 否   | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按默认值[BottomLeft](ts-appendix-enums.md#placement8)处理，相对父组件区域弹出。 |
-| onAppear    | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单弹出时的事件回调。                                       |
-| onDisappear | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单消失时的事件回调。                                       |
+继承自[ContextMenuOptions](#contextmenuoptions10)。
+
+| 名称                          | 类型                                         | 必填 | 描述                                                         |
+| ----------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| title                         | string                                       | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
+| offset                        | [Position](ts-types.md#position8)            | 否   | 菜单弹出位置的偏移量，不会导致菜单显示超出屏幕范围。<br/>**说明：**<br />菜单类型为相对⽗组件区域弹出时，⾃动根据菜单位置属性 (placement)将区域的宽或⾼计⼊偏移量中。<br/>当菜单相对父组件出现在上侧时（placement设置为Placement.TopLeft，Placement.Top，Placement.TopRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向上进行偏移。<br/>当菜单相对父组件出现在下侧时（placement设置为Placement.BottomLeft，Placement.Bottom，Placement.BottomRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在左侧时（placement设置为Placement.LeftTop，Placement.Left，Placement.LeftBottom），x为正值，菜单相对组件向左进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在右侧时（placement设置为Placement.RightTop，Placement.Right，Placement.RightBottom），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>如果菜单调整了显示位置（与placement初始值主方向不⼀致），则偏移值 (offset) 失效。 |
+| placement                     | [Placement](ts-appendix-enums.md#placement8) | 否   | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按默认值[BottomLeft](ts-appendix-enums.md#placement8)处理，相对父组件区域弹出。 |
+| onAppear                      | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单弹出时的事件回调。                                       |
+| onDisappear                   | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单消失时的事件回调。                                       |
+| showInSubWindow<sup>11+</sup> | boolean                                      | 否   | 是否在子窗口显示菜单。                                       |
 
 ## ContextMenuOptions<sup>10+</sup>
 
@@ -90,6 +93,8 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | onDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单消失时的事件回调。                                       |
 | aboutToAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单显示动效前的事件回调。                                       |
 | aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
+| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 

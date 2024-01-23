@@ -162,7 +162,7 @@ struct OffscreenCanvasPage {
 
 ### getContext<sup>10+</sup>
 
-getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
+getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
 
 Obtains the drawing context of the offscreen canvas.
 
@@ -171,7 +171,7 @@ Obtains the drawing context of the offscreen canvas.
 | Name       | Type                                                        | Mandatory| Default Value| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
 | contextType | string                                                       | Yes  | "2d"   | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.                      |
-| option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No  | -      | For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).|
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No  | -      | For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).|
 
 **Return value**
 
@@ -229,3 +229,65 @@ struct OffscreenCanvasExamplePage {
 ```
 
 ![en-us_image_0000001194032666](figures/offscreen_canvas.png)
+
+
+## Concurrent Thread Drawing
+
+Since API version 11, the application can use the worker thread to support multithread concurrency. It can use **postMessage** to pass an **OffscreenCanvas** instance to the worker thread for drawing, and use **onmessage** to receive the drawing result sent by the worker thread for display.
+
+**Example**
+
+```ts
+import worker from '@ohos.worker';
+
+@Entry
+@Component
+struct OffscreenCanvasExamplePage {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
+
+  build() {
+    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+      Column() {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .borderWidth(5)
+          .borderColor('#057D02')
+          .backgroundColor('#FFFFFF')
+          .onReady(() => {
+            let offCanvas = new OffscreenCanvas(600, 800)
+            this.myWorker.postMessage({ myOffCanvas: offCanvas });
+            this.myWorker.onmessage = (e): void => {
+              if (e.data.myImage) {
+                let image: ImageBitmap = e.data.myImage
+                this.context.transferFromImageBitmap(image)
+              }
+            }
+            
+          })
+      }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+After the main thread sends the **OffscreenCanvas** instance through **postMessage**, the worker thread can receive it in **onmessage** for display.
+
+```ts
+workerPort.onmessage = (e: MessageEvents) => {
+  if (e.data.myOffCanvas) {
+    let offCanvas: OffscreenCanvas = e.data.myOffCanvas
+    let offContext = offCanvas.getContext("2d")
+    offContext.fillStyle = '#CDCDCD'
+    offContext.fillRect(0, 0, 200, 150)
+    let image = offCanvas.transferToImageBitmap()
+    workerPort.postMessage({ myImage: image });
+  }
+}
+```
+
+![en-us_image_0000001194032666](figures/offscreen_canvas_width.png)

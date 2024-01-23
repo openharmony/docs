@@ -175,7 +175,7 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 | --------- | ------ | ---- | ----- |
 | response  | number | 否    | 弹簧自然振动周期，决定弹簧复位的速度。<br>默认值：0.55<br/>单位：秒<br/>取值范围：(0, +∞)<br/>**说明：** <br/>设置小于等于0的值时，按默认值0.55处理。 |
 | dampingFraction      | number | 否    | 阻尼系数。<br>0表示无阻尼，一直处于震荡状态；<br>大于0小于1的值为欠阻尼，运动过程中会超出目标值；<br>等于1为临界阻尼；<br>大于1为过阻尼，运动过程中逐渐趋于目标值。<br>默认值：0.825<br/>单位：秒<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按默认值0.825处理。 |
-| overlapDuration | number | 否    | 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。<br/>默认值：0<br/>单位：秒<br/>取值范围：[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0处理。<br>弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)、[pageTransition](../arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的interpolate函数获得插值。 |
+| overlapDuration | number | 否    | 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。<br/>默认值：0<br/>单位：秒<br/>取值范围：[0, +∞)。<br/> **说明：** <br/>设置小于0的值时，按默认值0处理。<br>弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)、[pageTransition](../arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的interpolate函数获得插值。 |
 
 
 **返回值：**
@@ -342,7 +342,7 @@ init(curve?: Curve): string
 steps(count: number, end: boolean): string
 
 
-构造阶梯曲线对象，从API version9开始废弃，推荐使用[Curves. stepsCurve](# curvesstepscurve9)。
+构造阶梯曲线对象，从API version9开始废弃，推荐使用[Curves. stepsCurve](#curvesstepscurve9)。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

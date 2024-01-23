@@ -33,7 +33,7 @@
       if (deviceInfo.deviceType == 'phone') {
         Logger.info(this.tag, `deviceType = phone`)
         this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-        this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+        this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
         if (this.cameraDeviceIndex == 1) {
           this.videoConfig.rotation = this.photoRotationMap.rotation270;
         } else {
@@ -63,27 +63,28 @@
 
    ```c++
     //导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 5. 创建录像输出流。
 
    通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput方法创建录像输出流。
 
-   **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+    > **说明：**
+    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
 
    ```ts
      // ts侧配置AVRecorderProfile（参考ndk demo：在modeSwitchPage.ets中调用）
      let aVRecorderProfile: media.AVRecorderProfile = {
        fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
        videoBitrate : 100000, // 视频比特率
-       videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+       videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
        videoFrameWidth : 640,  // 视频分辨率的宽
        videoFrameHeight : 480, // 视频分辨率的高
        videoFrameRate : 30 // 视频帧率
@@ -190,7 +191,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
   void VideoOutputOnError(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)

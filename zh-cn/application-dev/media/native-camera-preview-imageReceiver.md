@@ -10,13 +10,13 @@
      
    ```c++
     // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 2. 在CMake脚本中链接Camera NDK动态库。
@@ -54,7 +54,7 @@
     }
    ```
 
-5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
@@ -63,7 +63,7 @@
     }
    ```
 
-6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
     ret = OH_PreviewOutput_Stop(previewOutput);
@@ -107,7 +107,7 @@
     }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
     void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)

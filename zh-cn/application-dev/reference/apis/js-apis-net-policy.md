@@ -1464,7 +1464,7 @@ policy
 
 ### on('netUidPolicyChange')<sup>10+</sup>
 
-on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUidPolicy }>): void
+on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 
 注册 policy 发生改变时的回调，使用 callback 方式作为异步方法。
 
@@ -1479,7 +1479,7 @@ on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUid
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                              | 是   | policy 发生改变的类型                  |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy10) }> | 是   | 回调函数。注册 policy 发生改变时调用。 |
+| callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 是   | 回调函数。注册 policy 发生改变时调用。 |
 
 **错误码：**
 
@@ -1507,7 +1507,7 @@ policy.on('netUidPolicyChange', (data: Data) => {
 
 ### off('netUidPolicyChange')<sup>10+</sup>
 
-off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUidPolicy }>): void
+off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 
 注销 policy 发生改变时的回调，使用 callback 方式作为异步方法。
 
@@ -1522,7 +1522,7 @@ off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUi
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                              | 是   | policy 发生改变的类型                  |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy10) }> | 否   | 回调函数。注册 policy 发生改变时调用。 |
+| callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 否   | 回调函数。注销 policy 发生改变时调用。 |
 
 **错误码：**
 
@@ -1547,7 +1547,7 @@ policy.off('netUidPolicyChange', callback);
 
 ### on('netUidRuleChange')<sup>10+</sup>
 
-on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule }>): void
+on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 注册 rule 发生改变时的回调，使用 callback 方式作为异步方法。
 
@@ -1562,7 +1562,7 @@ on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                        | 是   | rule 发生改变的类型                    |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule10) }> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
+| callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
 
 **错误码：**
 
@@ -1585,7 +1585,7 @@ policy.on('netUidRuleChange', (data: object) => {
 
 ### off('netUidRuleChange')<sup>10+</sup>
 
-off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRule }>): void
+off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 
 注销 rule 发生改变时的回调，使用 callback 方式作为异步方法。
 
@@ -1600,7 +1600,7 @@ off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRul
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                                        | 是   | rule 发生改变的类型                    |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule10) }> | 否   | 回调函数。注册 rule 发生改变时的调用。 |
+| callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 否   | 回调函数。注销 rule 发生改变时的调用。 |
 
 **错误码：**
 
@@ -1948,6 +1948,36 @@ policy.off('netBackgroundPolicyChange', callback);
 | NET_RULE_REJECT_METERED           | 1 << 2 | 拒绝访问计量网络     |
 | NET_RULE_ALLOW_ALL                | 1 << 5 | 允许访问所有网络     |
 | NET_RULE_REJECT_ALL               | 1 << 6 | 拒绝访问所有网络     |
+
+## NetUidRuleInfo<sup>11+</sup>
+
+生成网络唯一标识
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称              | 类型                          | 必填 | 说明                                                                                     |
+| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| uid    | number                        | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN。 |
+| rule      | [NetUidRule](#netuidrule10)                 | 是   | 规定一个UID访问计量网络还是非计量网络。                                                                     |
+
+## NetUidPolicyInfo<sup>11+</sup>
+
+注册网络UID策略变化的回调函数
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称              | 类型                          | 必填 | 说明                                                                                     |
+| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| uid    | number                        | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN |
+| policy      | [NetUidPolicy](#netuidpolicy10)                 | 是   | UID指定了在后台模式下网络访问的策略。                                    |
 
 ## RemindType<sup>10+</sup>
 

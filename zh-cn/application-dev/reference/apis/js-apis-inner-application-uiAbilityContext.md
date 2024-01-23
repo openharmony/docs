@@ -3630,6 +3630,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let wantParam: Record<string, Object> = {
     'time':'2023-10-23 20:45',
@@ -3641,7 +3642,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   }
   context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
     console.log(`startAbilityByType success`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```

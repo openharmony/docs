@@ -1,14 +1,17 @@
 # Property Animation (animation)
 
-With property animations, you can animate changes to certain component properties, such as **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**. In a property animation that involves width and height changes, a component's content (such as text, canvas content, and linear gradient) is changed straight to the final state. To enable the content to change with the width and height during the animation process, you can use the [renderFit](ts-universal-attributes-renderfit.md) attribute.
+With property animations, you can animate changes to certain component properties, such as [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [opacity](ts-universal-attributes-opacity.md#opacity), [scale](ts-universal-attributes-transformation.md#scale), [rotate](ts-universal-attributes-transformation.md#rotate) and [translate](ts-universal-attributes-transformation.md#translate). In a property animation that involves width and height changes, a component's content (such as text, [canvas](ts-components-canvas-canvas.md#canvas) content, and [linear gradient](ts-universal-attributes-gradient-color.md#lineargradient)) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md#renderfit) attribute.
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Since API version 9, this API is supported in ArkTS widgets.
 
-animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void, finishCallbackType?: FinishCallbackType})
+## APIs
 
-Since API version 9, this API is supported in ArkTS widgets.
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void, finishCallbackType?: FinishCallbackType, expectedFrameRateRange?: ExpectedFrameRateRange})
+
 
 **Parameters**
 
@@ -22,6 +25,14 @@ Since API version 9, this API is supported in ArkTS widgets.
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | No   | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.<br>For details about the restrictions, see **Notes about PlayMode**.|
 | onFinish   | () => void                               | No   | Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This callback is not invoked when **iterations** is set to **-1**.|
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | No   | Type of the **onFinish** callback.<br>Default value: **FinishCallbackType.REMOVED**<br>Since API version 11, this API is supported in ArkTS widgets.|
+| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange-11) | No|Expected frame rate range of the animation.|
+
+## ExpectedFrameRateRange <sup>11+</sup>
+| Name | Type    | Description     |
+|-----|--------|---------|
+| min | number | Expected minimum frame rate.|
+| max | number | Expected maximum frame rate.|
+| expected | number | Expected optimal frame rate.|
 
 > **Notes about PlayMode**:
 > - **PlayMode.Normal** and **PlayMode.Alternate** are recommended. Under these settings, the first round of the animation is played forwards. If **PlayMode.Reverse** or **PlayMode.AlternateReverse** is used, the first round of the animation is played backwards. In this case, the animation jumps to the end state and then starts from there.
@@ -29,7 +40,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 > - **PlayMode.Reverse** is not recommended. Under this setting, the animation jumps to the end state at the beginning, and its final state will be different from the value of the state variable.
 
 ## Example
-
 ```ts
 // xxx.ets
 @Entry
@@ -73,7 +83,12 @@ struct AttrAnimationExample {
           curve: Curve.Friction,
           delay: 500,
           iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
-          playMode: PlayMode.Alternate
+          playMode: PlayMode.Alternate,
+          expectedFrameRateRange: {
+            min: 20,
+            max: 120,
+            expected: 90,
+          }
         })
     }.width('100%').margin({ top: 20 })
   }

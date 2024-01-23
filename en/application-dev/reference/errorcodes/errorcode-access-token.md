@@ -53,7 +53,7 @@ Permission does not exist.
 
 **Solution**
 
-Set the **permissionName** parameter correctly. For details, see [Application Permission List](../../security/permission-list.md).
+Set **permissionName** correctly. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).
 
 
 ## 12100004 Listener APIs Not Used in Pairs
