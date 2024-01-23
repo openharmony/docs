@@ -1,4 +1,4 @@
-# Performance Analysis Kit（性能分析服务
+# Performance Analysis Kit（性能分析服务）
 
 - [Performance Analysis Kit简介](performance-analysis-kit-overview.md)
 - [应用事件打点开发指导](hiappevent-guidelines.md)
