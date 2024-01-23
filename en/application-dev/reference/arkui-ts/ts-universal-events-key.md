@@ -20,7 +20,7 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 | Name                                   | Type                                      | Description                        |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | Key type.                    |
-| [keyCode](../apis/js-apis-keycode.md) | number                                   | Key code.                    |
+| [keyCode](../apis/js-apis-keycode.md#keycode) | number                                   | Key code.                    |
 | keyText                               | string                                   | Key value.                    |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |

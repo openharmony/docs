@@ -38,13 +38,13 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## RefreshStatus
 
-| Name      | Description                  |
-| -------- | -------------------- |
-| Inactive | The component is not pulled down. This is the default value.            |
-| Drag     | The component is being pulled down, but the pulled distance is shorter than the minimum length required to trigger the refresh.     |
-| OverDrag | The component is being pulled down, and the pulled distance exceeds the minimum length required to trigger the refresh.     |
-| Refresh  | The pull-down ends, and the component rebounds to the minimum length required to trigger the refresh and enters the refresh state.|
-| Done     | The refresh is complete, and the component returns to the initial state (top).    |
+| Name      | Value      | Description                  |
+| -------- | -------- | -------------------- |
+| Inactive | 0 | The component is not pulled down. This is the default value.            |
+| Drag     | 1 | The component is being pulled down, but the pulled distance is shorter than the minimum length required to trigger the refresh.     |
+| OverDrag | 2 | The component is being pulled down, and the pulled distance exceeds the minimum length required to trigger the refresh.     |
+| Refresh  | 3 | The pull-down ends, and the component rebounds to the minimum length required to trigger the refresh and enters the refresh state.|
+| Done     | 4 | The refresh is complete, and the component returns to the initial state (top).    |
 
 
 ## Example

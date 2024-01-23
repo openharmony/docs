@@ -28,7 +28,7 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 | Name    | Type                                       | Mandatory| Description                                    |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | No  | Footer of the **\<WaterFlow>** component. |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>The **\<WaterFlow>** component supports only the **scrollToIndex** API of the **\<Scroller>** component.|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [\<Grid>](ts-container-grid.md), or [\<Scroll>](ts-container-scroll.md).|
 
 
 ## Attributes

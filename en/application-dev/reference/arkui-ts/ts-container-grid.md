@@ -39,7 +39,7 @@ Grid(scroller?: Scroller)
 
 | Name  | Type                                   | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other [scrollable components](ts-container-list.md).|
+| scroller | [Scroller](ts-container-scroll.md#scroller) | No  | Controller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components, such as [\<List>](ts-container-list.md), [\<Grid>](ts-container-grid.md), or [\<Scroll>](ts-container-scroll.md).|
 
 ## Attributes
 
@@ -191,3 +191,93 @@ struct GridExample {
 ```
 
 ![en-us_image_0000001219744183](figures/en-us_image_0000001219744183.gif)
+
+### Example 2
+
+1.  Set **editMode\(true\)** to enable the grid to enter editing mode, where the user can drag the grid items.
+
+2.  Through [onItemDragStart](#events), set the image to be displayed during dragging.
+
+3.  Through [onItemDrop](#events), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#events), complete the array position exchange logic.
+
+```ts
+@Entry
+@Component
+struct GridExample {
+  @State numbers: string[] = []
+  scroller: Scroller = new Scroller()
+  @State text: string = 'drag'
+
+  @Builder pixelMapBuilder () { // Style for the drag event.
+    Column() {
+      Text(this.text)
+        .fontSize(16)
+        .backgroundColor(0xF9CF93)
+        .width(80)
+        .height(80)
+        .textAlign(TextAlign.Center)
+    }
+  }
+
+  aboutToAppear() {
+    for (let i = 1;i <= 15; i++) {
+      this.numbers.push(i + '')
+    }
+  }
+
+  changeIndex(index1: number, index2: number) { // Exchange the array position.
+    const temp = this.numbers[index1];
+    if (index1 > index2) {
+      this.numbers.splice(index2, 0, temp);
+      this.numbers.splice(index1 + 1, 1);
+    } else {
+      this.numbers.splice(index2 + 1, 0, temp);
+      this.numbers.splice(index1, 1);
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller) {
+        ForEach(this.numbers, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width(80)
+              .height(80)
+              .textAlign(TextAlign.Center)
+          }
+        })
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .onScrollIndex((first: number) => {
+        console.info(first.toString())
+      })
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+      .editMode(true) // Enable the grid to enter editing mode, where the user can drag the grid items.
+      .supportAnimation(true) // Enable animation.
+      .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { // Triggered when a grid item starts to be dragged.
+        this.text = this.numbers[itemIndex]
+        return this.pixelMapBuilder() // Set the image to be displayed during dragging.
+      })
+      .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { // Triggered when the dragged item is dropped on the drop target of the grid.
+        // If isSuccess is set to false, the item is dropped outside of the grid. If the value of insertIndex is greater than that of length, an item adding event occurs.
+        if (!isSuccess || insertIndex >= this.numbers.length) {
+          return
+        }
+        console.info('beixiang' + itemIndex + '', insertIndex + '') // itemIndex indicates the initial position of the dragged item. insertIndex indicates the position to which the dragged item will be dropped.
+        this.changeIndex(itemIndex, insertIndex)
+      })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+Below shows the animation when grid items are dragged.
+
+![gridDrag](figures/gridDrag.gif)

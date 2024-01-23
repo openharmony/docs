@@ -60,37 +60,37 @@ struct GestureGroupExample {
     .border({ width: 3, style: this.borderStyles })
     .gesture(
       // The following combined gestures are recognized in sequential recognition mode. If the long press gesture event is not triggered correctly, the drag gesture event will not be triggered.
-    GestureGroup(GestureMode.Sequence,
-    LongPressGesture({ repeat: true })
-      .onAction((event: GestureEvent) => {
-        if (event.repeat) {
-          this.count++
-        }
-        console.info('LongPress onAction')
-      })
-      .onActionEnd(() => {
-        console.info('LongPress end')
-      }),
-    PanGesture()
-      .onActionStart(() => {
-        this.borderStyles = BorderStyle.Dashed
-        console.info('pan start')
-      })
-      .onActionUpdate((event: GestureEvent) => {
-        this.offsetX = this.positionX + event.offsetX
-        this.offsetY = this.positionY + event.offsetY
-        console.info('pan update')
-      })
-      .onActionEnd(() => {
-        this.positionX = this.offsetX
-        this.positionY = this.offsetY
-        this.borderStyles = BorderStyle.Solid
-        console.info('pan end')
-      })
-    )
-      .onCancel(() => {
-        console.info('sequence gesture canceled')
-      })
+      GestureGroup(GestureMode.Sequence,
+        LongPressGesture({ repeat: true })
+          .onAction((event: GestureEvent) => {
+            if (event.repeat) {
+              this.count++
+            }
+            console.info('LongPress onAction')
+          })
+          .onActionEnd(() => {
+            console.info('LongPress end')
+          }),
+        PanGesture()
+          .onActionStart(() => {
+            this.borderStyles = BorderStyle.Dashed
+            console.info('pan start')
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            this.offsetX = this.positionX + event.offsetX
+            this.offsetY = this.positionY + event.offsetY
+            console.info('pan update')
+          })
+          .onActionEnd(() => {
+            this.positionX = this.offsetX
+            this.positionY = this.offsetY
+            this.borderStyles = BorderStyle.Solid
+            console.info('pan end')
+          })
+      )
+        .onCancel(() => {
+          console.info('sequence gesture canceled')
+        })
     )
   }
 }
