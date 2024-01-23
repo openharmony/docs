@@ -37,11 +37,12 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
     let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-        console.log('Succeeded in creating pixelmap.');
+        console.info('Succeeded in creating pixelmap.');
     }).catch((error : BusinessError) => {
         console.error('Failed to create pixelmap.');
     })
@@ -68,6 +69,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
     let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -76,7 +78,7 @@ async function Demo() {
             console.error('Failed to create pixelmap.');
             return;
         } else {
-            console.log('Succeeded in creating pixelmap.');
+            console.info('Succeeded in creating pixelmap.');
         }
     })
 }
@@ -123,6 +125,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 ```ts
 import image from '@ohos.multimedia.image';
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
+
 class MySequence implements rpc.Parcelable {
     pixel_map : image.PixelMap;
     constructor(conPixelmap : image.PixelMap) {
@@ -136,7 +140,8 @@ class MySequence implements rpc.Parcelable {
         try {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
-            console.error('createPixelMapFromParcel error: '+ e);
+            let error = e as BusinessError;
+            console.error(`createPixelMapFromParcel error: ${error}`);
             return false;
         }
       return true;
@@ -214,10 +219,11 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-        console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
+        console.info('Succeeded in reading image pixel data.');  //符合条件则进入 
     }).catch((error : BusinessError) => {
         console.error('Failed to read image pixel data.');  //不符合条件则进入
     })
@@ -243,6 +249,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
     pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
@@ -250,7 +257,7 @@ async function Demo() {
             console.error('Failed to read image pixel data.');  //不符合条件则进入
             return;
         } else {
-            console.log('Succeeded in reading image pixel data.');  //符合条件则进入
+            console.info('Succeeded in reading image pixel data.');  //符合条件则进入
         }
     })
 }
@@ -280,6 +287,7 @@ readPixels(area: PositionArea): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const area : image.PositionArea = {
         pixels: new ArrayBuffer(8),
@@ -288,7 +296,7 @@ async function Demo() {
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
     pixelMap.readPixels(area).then(() => {
-        console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
+        console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
     }).catch((error : BusinessError) => {
         console.error('Failed to read the image data in the area.'); //不符合条件则进入
     })
@@ -314,6 +322,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const area : image.PositionArea = {
         pixels: new ArrayBuffer(8),
@@ -356,6 +365,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const area : image.PositionArea = {
         pixels: new ArrayBuffer(8),
@@ -394,6 +404,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const area : image.PositionArea = { pixels: new ArrayBuffer(8),
         offset: 0,
@@ -439,6 +450,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
     let bufferArr : Uint8Array = new Uint8Array(color);
@@ -446,7 +458,7 @@ async function Demo() {
         bufferArr[i] = i + 1;
     }
     pixelMap.writeBufferToPixels(color).then(() => {
-        console.log("Succeeded in writing data from a buffer to a PixelMap.");
+        console.info("Succeeded in writing data from a buffer to a PixelMap.");
     }).catch((error : BusinessError) => {
         console.error("Failed to write data from a buffer to a PixelMap.");
     })
@@ -472,6 +484,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
     let bufferArr : Uint8Array = new Uint8Array(color);
@@ -483,7 +496,7 @@ async function Demo() {
             console.error("Failed to write data from a buffer to a PixelMap.");
             return;
         } else {
-            console.log("Succeeded in writing data from a buffer to a PixelMap.");
+            console.info("Succeeded in writing data from a buffer to a PixelMap.");
         }
     })
 }
@@ -512,7 +525,7 @@ async function Demo() {
             console.error("Failed to obtain the image pixel map information.");
         }
         if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.log("Succeeded in obtaining the image pixel map information.");
+            console.info("Succeeded in obtaining the image pixel map information.");
         }
     })
 }
@@ -536,6 +549,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
@@ -543,7 +557,7 @@ async function Demo() {
             return;
         }
         if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.log("Succeeded in obtaining the image pixel map information.");
+            console.info("Succeeded in obtaining the image pixel map information.");
         }
     })
 }
@@ -628,6 +642,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let rate : number = 0.5;
     pixelMap.opacity(rate, (err : BusinessError) => {
@@ -635,7 +650,7 @@ async function Demo() {
             console.error("Failed to set opacity.");
             return;
         } else {
-            console.log("Succeeded in setting opacity.");
+            console.info("Succeeded in setting opacity.");
         }
     })
 }
@@ -665,10 +680,11 @@ opacity(rate: number): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let rate : number = 0.5;
     await pixelMap.opacity(rate).then(() => {
-        console.log('Sucessed in setting opacity.');
+        console.info('Sucessed in setting opacity.');
     }).catch((err : BusinessError) => {
         console.error('Failed to set opacity.');
     })
@@ -693,9 +709,10 @@ createAlphaPixelmap(): Promise\<PixelMap>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     await pixelMap.createAlphaPixelmap().then((alphaPixelMap : image.PixelMap) => {
-        console.log('Succeeded in creating alpha pixelmap.');
+        console.info('Succeeded in creating alpha pixelmap.');
     }).catch((error : BusinessError) => {
         console.error('Failed to create alpha pixelmap.');
     })
@@ -720,6 +737,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
         if (alphaPixelMap == undefined) {
@@ -752,6 +770,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let scaleX : number = 2.0;
     let scaleY : number = 1.0;
@@ -760,7 +779,7 @@ async function Demo() {
             console.error("Failed to scale pixelmap.");
             return;
         } else {
-            console.log("Succeeded in scaling pixelmap.");
+            console.info("Succeeded in scaling pixelmap.");
         }
     })
 }
@@ -791,11 +810,12 @@ scale(x: number, y: number): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let scaleX : number = 2.0;
     let scaleY : number = 1.0;
     await pixelMap.scale(scaleX, scaleY).then(() => {
-        console.log('Sucessed in scaling pixelmap.');
+        console.info('Sucessed in scaling pixelmap.');
     }).catch((err : BusinessError) => {
         console.error('Failed to scale pixelmap.');
     })
@@ -822,6 +842,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let translateX : number = 50.0;
     let translateY : number = 10.0;
@@ -830,7 +851,7 @@ async function Demo() {
             console.error("Failed to translate pixelmap.");
             return;
         } else {
-            console.log("Succeeded in translating pixelmap.");
+            console.info("Succeeded in translating pixelmap.");
         }
     })
 }
@@ -861,11 +882,12 @@ translate(x: number, y: number): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let translateX : number = 50.0;
     let translateY : number = 10.0;
     await pixelMap.translate(translateX, translateY).then(() => {
-        console.log('Sucessed in translating pixelmap.');
+        console.info('Sucessed in translating pixelmap.');
     }).catch((err : BusinessError) => {
         console.error('Failed to translate pixelmap.');
     })
@@ -891,6 +913,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let angle : number = 90.0;
     pixelMap.rotate(angle, (err : BusinessError) => {
@@ -898,7 +921,7 @@ async function Demo() {
             console.error("Failed to rotate pixelmap.");
             return;
         } else {
-            console.log("Succeeded in rotating pixelmap.");
+            console.info("Succeeded in rotating pixelmap.");
         }
     })
 }
@@ -928,10 +951,11 @@ rotate(angle: number): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let angle : number = 90.0;
     await pixelMap.rotate(angle).then(() => {
-        console.log('Sucessed in rotating pixelmap.');
+        console.info('Sucessed in rotating pixelmap.');
     }).catch((err : BusinessError) => {
         console.error('Failed to rotate pixelmap.');
     })
@@ -958,6 +982,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let horizontal : boolean = true;
     let vertical : boolean = false;
@@ -966,7 +991,7 @@ async function Demo() {
             console.error("Failed to flip pixelmap.");
             return;
         } else {
-            console.log("Succeeded in flipping pixelmap.");
+            console.info("Succeeded in flipping pixelmap.");
         }
     })
 }
@@ -997,11 +1022,12 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let horizontal : boolean = true;
     let vertical : boolean = false;
     await pixelMap.flip(horizontal, vertical).then(() => {
-        console.log('Sucessed in flipping pixelmap.');
+        console.info('Sucessed in flipping pixelmap.');
     }).catch((err : BusinessError) => {
         console.error('Failed to flip pixelmap.');
     })
@@ -1027,6 +1053,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     pixelMap.crop(region, (err : BusinessError) => {
@@ -1034,7 +1061,7 @@ async function Demo() {
             console.error("Failed to crop pixelmap.");
             return;
         } else {
-            console.log("Succeeded in cropping pixelmap.");
+            console.info("Succeeded in cropping pixelmap.");
         }
     })
 }
@@ -1064,10 +1091,11 @@ crop(region: Region): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     await pixelMap.crop(region).then(() => {
-        console.log('Sucessed in cropping pixelmap.');
+        console.info('Sucessed in cropping pixelmap.');
     }).catch((err : BusinessError) => {
         console.error('Failed to crop pixelmap.');
     });
@@ -1180,7 +1208,7 @@ async function Demo() {
             console.error('Failed to apply color space for pixelmap object.');
             return;
         } else {
-            console.log('Succeeded in applying color space for pixelmap object.');
+            console.info('Succeeded in applying color space for pixelmap object.');
         }
     })
 }
@@ -1227,7 +1255,7 @@ async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelmap.applyColorSpace(targetColorSpace).then(() => {
-        console.log('Succeeded in applying color space for pixelmap object.');
+        console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error : BusinessError) => {
         console.error('Failed to apply color space for pixelmap object.');
     })
@@ -1262,6 +1290,7 @@ marshalling(sequence: rpc.MessageSequence): void
 ```ts
 import image from '@ohos.multimedia.image';
 import rpc from '@ohos.rpc';
+
 class MySequence implements rpc.Parcelable {
     pixel_map : image.PixelMap;
     constructor(conPixelMap : image.PixelMap) {
@@ -1269,7 +1298,7 @@ class MySequence implements rpc.Parcelable {
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
-        console.log('marshalling');
+        console.info('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
@@ -1277,7 +1306,7 @@ class MySequence implements rpc.Parcelable {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
           await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
       });
@@ -1350,6 +1379,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 ```ts
 import image from '@ohos.multimedia.image';
 import rpc from '@ohos.rpc';
+
 class MySequence implements rpc.Parcelable {
     pixel_map : image.PixelMap;
     constructor(conPixelMap : image.PixelMap) {
@@ -1357,7 +1387,7 @@ class MySequence implements rpc.Parcelable {
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
-        console.log('marshalling');
+        console.info('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
@@ -1365,7 +1395,7 @@ class MySequence implements rpc.Parcelable {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
           await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
       });
@@ -1420,9 +1450,10 @@ release():Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     pixelMap.release().then(() => {
-        console.log('Succeeded in releasing pixelmap object.');
+        console.info('Succeeded in releasing pixelmap object.');
     }).catch((error : BusinessError) => {
         console.error('Failed to release pixelmap object.');
     })
@@ -1447,13 +1478,14 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 async function Demo() {
     pixelMap.release((err : BusinessError) => {
         if (err != undefined) {
             console.error('Failed to release pixelmap object.');
             return;
         } else {
-            console.log('Succeeded in releasing pixelmap object.');
+            console.info('Succeeded in releasing pixelmap object.');
         }
     })
 }
@@ -1727,7 +1759,8 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```ts
 const buf : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-const imageSourceIncrementalSApi : image.ImageSource = image.CreateIncrementalSource(buf);
+let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
+const imageSourceIncrementalSApi : image.ImageSource = image.CreateIncrementalSource(buf, sourceOptions);
 ```
 
 ## ImageSource
@@ -1761,11 +1794,12 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getImageInfo(0,(error : BusinessError, imageInfo : image.ImageInfo) => { 
     if(error) {
         console.error('getImageInfo failed.');
     } else {
-        console.log('getImageInfo succeeded.');
+        console.info('getImageInfo succeeded.');
     }
 })
 ```
@@ -1788,11 +1822,12 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
     if (err != undefined) {
         console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
     } else {
-        console.log('Succeeded in obtaining the image information.');
+        console.info('Succeeded in obtaining the image information.');
     }
 })
 ```
@@ -1821,9 +1856,10 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getImageInfo(0)
     .then((imageInfo : image.ImageInfo) => {
-		console.log('Succeeded in obtaining the image information.');
+		console.info('Succeeded in obtaining the image information.');
 	}).catch((error : BusinessError) => {
 		console.error('Failed to obtain the image information.');
 	})
@@ -1869,10 +1905,11 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 .then((data : string) => {
-    console.log('Succeeded in getting the value of the specified attribute key of the image.');
+    console.info('Succeeded in getting the value of the specified attribute key of the image.');
 }).catch((error : BusinessError) => {
     console.error('Failed to get the value of the specified attribute key of the image.');
 })
@@ -1907,9 +1944,10 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getImageProperty("BitsPerSample")
     .then((data : string) => {
-		console.log('Succeeded in getting the value of the specified attribute key of the image.');
+		console.info('Succeeded in getting the value of the specified attribute key of the image.');
 	}).catch((error : BusinessError) => {
 		console.error('Failed to get the value of the specified attribute key of the image.');
 	})
@@ -1938,11 +1976,12 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : string) => { 
     if(error) {
         console.error('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+        console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -1971,12 +2010,13 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 let property : image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty("BitsPerSample",property,(error : BusinessError, data : string) => { 
     if(error) {
         console.error('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+        console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -2025,6 +2065,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
     imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
         console.info(`ImageWidth is :${width}`);
@@ -2065,6 +2106,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
     imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
         console.info(`ImageWidth is :${width}`);
@@ -2100,6 +2142,7 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
     if (err != undefined) {
         console.error('modifyImageProperty Failed');
@@ -2136,6 +2179,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 const array : ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10).then(() => {
     console.info('Succeeded in updating data.');
@@ -2167,6 +2211,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 const array : ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
     if (err != undefined) {
@@ -2201,8 +2246,9 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.createPixelMap().then((pixelMap : image.PixelMap) => {
-    console.log('Succeeded in creating pixelMap object through image decoding parameters.');
+    console.info('Succeeded in creating pixelMap object through image decoding parameters.');
 }).catch((error : BusinessError) => {
     console.error('Failed to create pixelMap object through image decoding parameters.');
 })
@@ -2226,6 +2272,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.createPixelMap((err : BusinessError, pixelMap : image.PixelMap) => {
     if (err != undefined) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
@@ -2254,6 +2301,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 let decodingOptions : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -2267,7 +2315,7 @@ imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelMap : 
     if (err != undefined) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in creating pixelMap object.');
+        console.info('Succeeded in creating pixelMap object.');
     }
 })
 ```
@@ -2308,6 +2356,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -2317,7 +2366,7 @@ let decodeOpts: image.DecodingOptions = {
     index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
-    console.log('Succeeded in creating pixelMapList object.');
+    console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
 })
@@ -2353,6 +2402,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
     if (err != undefined) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
@@ -2393,6 +2443,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 let decodeOpts : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -2405,7 +2456,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
     if (err != undefined) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in creating pixelMapList object.');
+        console.info('Succeeded in creating pixelMapList object.');
     }
 })
 ```
@@ -2442,11 +2493,12 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
     if (err != undefined) {
         console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in delayTimes object.');
+        console.info('Succeeded in delayTimes object.');
     }
 })
 ```
@@ -2483,8 +2535,9 @@ getDelayTimeList(): Promise<Array\<number>>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
-    console.log('Succeeded in delayTimes object.');
+    console.info('Succeeded in delayTimes object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
 })
@@ -2522,11 +2575,12 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
     if (err != undefined) {
         console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in getting frame count.');
+        console.info('Succeeded in getting frame count.');
     }
 })
 ```
@@ -2563,8 +2617,9 @@ getFrameCount(): Promise\<number>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.getFrameCount().then((frameCount: number) => {
-    console.log('Succeeded in getting frame count.');
+    console.info('Succeeded in getting frame count.');
 }).catch((err : BusinessError) => {
     console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
 })
@@ -2588,11 +2643,12 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.release((err : BusinessError) => { 
     if (err != undefined) {
         console.error('Failed to release the image source instance.');
     } else {
-        console.log('Succeeded in releasing the image source instance.');
+        console.info('Succeeded in releasing the image source instance.');
     }
 })
 ```
@@ -2615,8 +2671,9 @@ release(): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imageSourceApi.release().then(()=>{
-    console.log('Succeeded in releasing the image source instance.');
+    console.info('Succeeded in releasing the image source instance.');
 }).catch((error : BusinessError) => {
     console.error('Failed to release the image source instance.');
 })
@@ -2674,13 +2731,14 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {
     if(err) {
         console.error('packing failed.');
     } else {
-        console.log('packing succeeded.');
+        console.info('packing succeeded.');
     }
 })
 ```
@@ -2710,11 +2768,12 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( (data : ArrayBuffer) => {
-        console.log('packing succeeded.');
+        console.info('packing succeeded.');
 	}).catch((error : BusinessError) => {
 	    console.error('packing failed.');
 	})
@@ -2740,12 +2799,13 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
     imagePackerApi.packing(pixelMap, packOpts, (err : BusinessError, data : ArrayBuffer) => { 
-        console.log('Succeeded in packing the image.');
+        console.info('Succeeded in packing the image.');
     })
 }).catch((error : BusinessError) => {
 	console.error('createPixelMap failed.');
@@ -2777,13 +2837,14 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
     imagePackerApi.packing(pixelMap, packOpts)
         .then( (data : ArrayBuffer) => {
-            console.log('Succeeded in packing the image.');
+            console.info('Succeeded in packing the image.');
         }).catch((error : BusinessError) => {
             console.error('Failed to pack the image..');
         })
@@ -2810,11 +2871,12 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imagePackerApi.release((err : BusinessError)=>{ 
     if (err != undefined) {
         console.error('Failed to release image packaging.'); 
     } else {
-        console.log('Succeeded in releasing image packaging.');
+        console.info('Succeeded in releasing image packaging.');
     }
 })
 ```
@@ -2837,8 +2899,9 @@ release(): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 imagePackerApi.release().then(()=>{
-    console.log('Succeeded in releasing image packaging.');
+    console.info('Succeeded in releasing image packaging.');
 }).catch((error : BusinessError)=>{ 
     console.error('Failed to release image packaging.'); 
 }) 
@@ -2878,7 +2941,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessErro
     if(err) {
         console.error('packToFile failed.');
     } else {
-        console.log('packToFile succeeded.');
+        console.info('packToFile succeeded.');
     }
 })
 ```
@@ -2919,9 +2982,9 @@ const filePath : string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi : image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
-    console.log('Succeeded in packToFile.');
+    console.info('Succeeded in packToFile.');
 }).catch((error : BusinessError)=>{ 
-    console.log('Failed to packToFile.'); 
+    console.error('Failed to packToFile.'); 
 }) 
 ```
 
@@ -2960,7 +3023,7 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
         if(err) {
             console.error('packToFile failed.');
         } else {
-            console.log('packToFile succeeded.');
+            console.info('packToFile succeeded.');
         }
     })
 })
@@ -3004,9 +3067,9 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     const imagePackerApi : image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
         .then(() => {
-            console.log('Succeeded in packToFile.');
+            console.info('Succeeded in packToFile.');
         }).catch((error : BusinessError) => {
-            console.log('Failed to packToFile.');
+            console.error('Failed to packToFile.');
         })
 })
 ```
@@ -3118,11 +3181,12 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.getReceivingSurfaceId((err : BusinessError, id : string) => { 
     if(err) {
         console.error('getReceivingSurfaceId failed.');
     } else {
-        console.log('getReceivingSurfaceId succeeded.');
+        console.info('getReceivingSurfaceId succeeded.');
     }
 });
 ```
@@ -3145,8 +3209,9 @@ getReceivingSurfaceId(): Promise\<string>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.getReceivingSurfaceId().then( (id : string) => { 
-    console.log('getReceivingSurfaceId succeeded.');
+    console.info('getReceivingSurfaceId succeeded.');
 }).catch((error : BusinessError) => {
     console.error('getReceivingSurfaceId failed.');
 })
@@ -3170,11 +3235,12 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.readLatestImage((err : BusinessError, img : image.Image) => { 
     if(err) {
         console.error('readLatestImage failed.');
     } else {
-        console.log('readLatestImage succeeded.');
+        console.info('readLatestImage succeeded.');
     }
 });
 ```
@@ -3197,8 +3263,9 @@ readLatestImage(): Promise\<Image>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.readLatestImage().then((img : image.Image) => {
-    console.log('readLatestImage succeeded.');
+    console.info('readLatestImage succeeded.');
 }).catch((error : BusinessError) => {
     console.error('readLatestImage failed.');
 })
@@ -3222,11 +3289,12 @@ readNextImage(callback: AsyncCallback\<Image>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.readNextImage((err : BusinessError, img : image.Image) => { 
     if(err) {
         console.error('readNextImage failed.');
     } else {
-        console.log('readNextImage succeeded.');
+        console.info('readNextImage succeeded.');
     }
 });
 ```
@@ -3249,8 +3317,9 @@ readNextImage(): Promise\<Image>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.readNextImage().then((img : image.Image) => {
-    console.log('readNextImage succeeded.');
+    console.info('readNextImage succeeded.');
 }).catch((error : BusinessError) => {
     console.error('readNextImage failed.');
 })
@@ -3297,11 +3366,12 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base'
+
 receiver.release((err : BusinessError) => {
     if(err) {
         console.error('release ImageReceiver failed.');
     } else {
-        console.log('release ImageReceiver succeeded.');
+        console.info('release ImageReceiver succeeded.');
     }
 })
 ```
@@ -3324,8 +3394,9 @@ release(): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 receiver.release().then(() => {
-    console.log('release succeeded.');
+    console.info('release succeeded.');
 }).catch((error : BusinessError) => {
     console.error('release failed.');
 })
@@ -3437,6 +3508,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.dequeueImage((err : BusinessError, img : image.Image) => {
     if (err) {
         console.error('dequeueImage failed.');
@@ -3464,6 +3536,7 @@ dequeueImage(): Promise\<Image>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.dequeueImage().then((img : image.Image) => {
     console.info('dequeueImage succeeded.');
 }).catch((error : BusinessError) => {
@@ -3490,6 +3563,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
     img.getComponent(4).then( (component : image.Component) => {
@@ -3536,6 +3610,7 @@ queueImage(interface: Image): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
     img.getComponent(4).then((component : image.Component) => {
@@ -3575,6 +3650,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.on('imageRelease', (err : BusinessError) => {
     if (err) {
         console.error('on faild' + err);
@@ -3602,6 +3678,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.release((err : BusinessError) => {
     if (err) {
         console.error('release failed: ' + err);
@@ -3628,6 +3705,7 @@ release(): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 creator.release().then(() => {
     console.info('release succeeded');
 }).catch((error : BusinessError) => {
@@ -3668,11 +3746,12 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 img.getComponent(4, (err : BusinessError, component : image.Component) => {
     if(err) {
         console.error('getComponent failed.');
     } else {
-        console.log('getComponent succeeded.');
+        console.info('getComponent succeeded.');
     }
 })
 ```
@@ -3700,8 +3779,10 @@ getComponent(componentType: ComponentType): Promise\<Component>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 img.getComponent(4).then((component : image.Component) => {
-    console.log('getComponent succeeded.');
+    console.info('getComponent succeeded.');
 }).catch((error : BusinessError) => {
     console.error('getComponent failed');
 })
@@ -3727,11 +3808,12 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 img.release((err : BusinessError) =>{ 
     if (err != undefined) {
         console.error('Failed to release the image source instance.');
     } else {
-        console.log('Succeeded in releasing the image source instance.');
+        console.info('Succeeded in releasing the image source instance.');
     }
 }) 
 ```
@@ -3756,8 +3838,9 @@ release(): Promise\<void>
 
 ```ts
 import {BusinessError} from '@ohos.base';
+
 img.release().then(() =>{
-    console.log('release succeeded.');
+    console.info('release succeeded.');
 }).catch((error : BusinessError) => {
     console.error('release failed.');
 })
