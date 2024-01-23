@@ -51,7 +51,7 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
 | type        | [ButtonType](#buttontype枚举说明) | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontSize    | [Length](ts-types.md#length) | 设置文本显示字号。<br/>默认值：'16sp' |
+| fontSize    | [Length](ts-types.md#length) | 设置文本显示字号。<br/>默认值：'16fp' |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置文本显示颜色。<br/>默认值：'\#ffffff' |
 | fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 设置文本的字体样式。<br>默认值：FontStyle.Normal。 |
