@@ -36,14 +36,13 @@ The major APIs for notification subscription are described as follows. For detai
 
 ## How to Develop
 
-1. Request the **ohos.permission.NOTIFICATION_CONTROLLER** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the **ohos.permission.NOTIFICATION_CONTROLLER** permission. For details, see [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import the **notificationSubscribe** module.
    
    ```ts
    import notificationSubscribe from '@ohos.notificationSubscribe';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. Create a **subscriber** object.
@@ -52,23 +51,23 @@ The major APIs for notification subscription are described as follows. For detai
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
-       logger.info(`onConsume callback. req.id: ${req.id}`);
+       console.info(`onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
-       logger.info(`onCancel callback. req.id: ${req.id}`);
+       console.info(`onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {
-       logger.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
+       console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
      },
      onConnect: () => {
-       logger.info(`onConnect callback.}`);
+       console.info(`onConnect callback.}`);
      },
      onDisconnect: () => {
-       logger.info(`onDisconnect callback.}`);
+       console.info(`onDisconnect callback.}`);
      },
      onDestroy: () => {
-       logger.info(`onDestroy callback.}`);
+       console.info(`onDestroy callback.}`);
      },
    };
    ```
@@ -78,7 +77,7 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    notificationSubscribe.subscribe(subscriber, (err:Base.BusinessError) => { // This API uses an asynchronous callback to return the result.
      if (err) {
-       logger.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
    });

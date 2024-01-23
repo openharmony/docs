@@ -45,7 +45,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 ## 设置输入框类型
 
-TextInput有5种可选类型，分别为Normal基本输入模式、Password密码输入模式、Email邮箱地址输入模式、Number纯数字输入模式、PhoneNumber电话号码输入模式。通过type属性进行设置：
+TextInput有9种可选类型，分别为Normal基本输入模式、Password密码输入模式、Email邮箱地址输入模式、Number纯数字输入模式、PhoneNumber电话号码输入模式、USER_NAME用户名输入模式、NEW_PASSWORD新密码输入模式、NUMBER_PASSWORD纯数字密码输入模式、SCREEN_LOCK_PASSWORD锁屏应用密码输入模式、NUMBER_DECIMAL带小数点的数字输入模式。通过type属性进行设置：
 
 
 - 基本输入模式（默认类型）

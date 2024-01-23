@@ -138,7 +138,7 @@ class Tmp{
 struct Child {
   label: string = 'Child'
   @Builder FunABuilder0() {}
-  // 无参数类，指向的componentBuilder也是无参数类型
+  // 无参数类型，指向的componentBuilder也是无参数类型
   @BuilderParam aBuilder0: () => void = this.FunABuilder0;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
   @BuilderParam aBuilder1: ($$ : Tmp) => void = GlobalBuilder1;

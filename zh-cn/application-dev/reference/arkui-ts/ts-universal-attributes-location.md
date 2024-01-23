@@ -20,7 +20,7 @@ align(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置元素内容在元素绘制区域内的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center |
 
 ## direction
 
@@ -238,7 +238,7 @@ struct PositionExample2 {
           .offset({ x: 15, y: 30 })
         Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
           .textAlign(TextAlign.Center)
-        Text('4 offset(-10%, 20%)')
+        Text('4 offset(-5%, 20%)')
           .size({ width: 100, height: '50' })
           .backgroundColor(0xbbb2cb)
           .border({ width: 1 })

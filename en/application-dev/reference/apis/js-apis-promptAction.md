@@ -258,7 +258,7 @@ Describes the options for showing the dialog box.
 | buttons  | Array&lt;[Button](#button)&gt;    | No  | Array of buttons in the dialog box. The array structure is {text:'button', color: '\#666666'}. More than one button is supported.
 | alignment<sup>10+</sup>  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset<sup>10+</sup>     | [Offset](../arkui-ts/ts-types.md#offset) | No    | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**|
-| maskRect<sup>10+</sup>| [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| maskRect<sup>10+</sup>| [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 | showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
@@ -397,6 +397,12 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 Opens a custom dialog box.
 
+This API cannot be used in [ServiceExtension](../../../application-dev/application-models/serviceextensionability.md).
+
+**isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+
+By default, the width of the dialog box is four columns in portrait mode and five columns in landscape mode.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -511,9 +517,9 @@ Defines the options of the custom dialog box. This API extends [BaseDialogOption
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type                                                   | Mandatory| Description                  |
-| ------- | ------------------------------------------------------- | ---- | ---------------------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | No  | Content of the custom dialog box.|
+| Name   | Type                                                   | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | No  | Content of the custom dialog box.<br>**NOTE**<br>**bind(this)** must be used for the builder.<br>The aspect ratio of the root node is relative to the size of the dialog box container.<br>The aspect ratio of a non-root node is relative to the size of the parent node.|
 
 ## BaseDialogOptions<sup>11+</sup>
 
@@ -523,7 +529,7 @@ Defines the options of the dialog box.
 
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| maskRect        | [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle10) | No  | Mask area.                                            |
+| maskRect        | [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area.                                            |
 | alignment       | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.                                |
 | offset          | [Offset](../arkui-ts/ts-types.md#offset)                     | No  | Offset of the dialog box based on the **alignment** settings.                         |
 | isModal         | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|

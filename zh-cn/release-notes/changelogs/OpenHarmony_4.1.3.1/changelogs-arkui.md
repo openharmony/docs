@@ -8,7 +8,7 @@
 
 **变更原因**
 
-在API version 10上TextInput/TextArea组件单独使用constraintSize minWidth时初始宽度为自适应撑满父组件不符合应用预期，因此需要在API version 11上进行变更。
+在API version 10上使用constraintSize minWidth效果不符合应用预期，因此需要在API version 11上进行变更。
 
 **变更影响**
 
