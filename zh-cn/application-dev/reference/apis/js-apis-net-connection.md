@@ -378,20 +378,20 @@ connection.setAppHttpProxy({
   "network-security-config": {	
 	  "domain-config": {
 		  "domains": [
-            {
-            "include-subdomains": true,
-            "name": "server.com"
-            }
+        {
+          "include-subdomains": true,
+          "name": "server.com"
+        }
       ],
-		"pin-set": {
+      "pin-set": {
         "expiration": "2024-11-08",
         "pin": [
-            {
-              "digest-algorithm": "sha256",
-              "digest": "FEDCBA987654321"
-            }
+          {
+            "digest-algorithm": "sha256",
+            "digest": "FEDCBA987654321"
+          }
         ]
-    }
+      }
     }
   }
 }
@@ -406,16 +406,16 @@ connection.setAppHttpProxy({
         {"certificates": "/etc/security/certificates"}
       ]
     },
-      "domain-config": {
-        "domains": [
-                {
-      "include-subdomains": true,
-      "name": "example.com"
-      }
-    ],
-        "trust-anchors": [
-          {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
-        ]
+    "domain-config": {
+      "domains": [
+        {
+          "include-subdomains": true,
+          "name": "example.com"
+        }
+      ],
+      "trust-anchors": [
+        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
+      ]
     }
   }
 }
