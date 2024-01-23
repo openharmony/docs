@@ -926,11 +926,11 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 获取SIM卡帐户信息。使用callback异步回调。
 
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
 >**说明：**
 >
->如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+>仅需获取ICCID和号码信息时需要GET_TELEPHONY_STATE权限，ICCID和号码信息为敏感数据，不向三方应用开放。调用接口时，获取到的ICCID和号码信息为空。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -973,11 +973,11 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 获取SIM卡帐户信息。使用Promise异步回调。
 
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
 >**说明：**
 >
->如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+>仅需获取ICCID和号码信息时需要GET_TELEPHONY_STATE权限，ICCID和号码信息为敏感数据，不向三方应用开放。调用接口时，获取到的ICCID和号码信息为空。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1026,11 +1026,11 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 获取激活SIM卡帐户信息列表。使用callback异步回调。
 
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
 >**说明：**
 >
->如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+>仅需获取ICCID和号码信息时需要GET_TELEPHONY_STATE权限，ICCID和号码信息为敏感数据，不向三方应用开放。调用接口时，获取到的ICCID和号码信息为空。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1071,11 +1071,11 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 
 获取激活SIM卡帐户信息列表。使用Promise异步回调。
 
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
 >**说明：**
 >
->如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+>仅需获取ICCID和号码信息时需要GET_TELEPHONY_STATE权限，ICCID和号码信息为敏感数据，不向三方应用开放。调用接口时，获取到的ICCID和号码信息为空。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
