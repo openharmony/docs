@@ -118,11 +118,11 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort
-workerPort.onerror = () => {
-    console.log("worker.ts onerror")
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ts onerror" + err.message)
 }
 ```
 
@@ -142,7 +142,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。 |
 
 **错误码：**
@@ -190,7 +190,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **错误码：**
@@ -304,10 +304,10 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
-workerPort.onmessageerror = () => {
+workerPort.onmessageerror = (e: MessageEvents) => {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -365,12 +365,6 @@ ThreadWorker构造函数。
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
-
-**返回值：**
-
-| 类型         | 说明                                                         |
-| ------------ | ------------------------------------------------------------ |
-| ThreadWorker | 执行ThreadWorker构造函数生成的ThreadWorker对象，失败则返回undefined。 |
 
 **错误码：**
 
@@ -542,7 +536,7 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
  console.log("onexit");
 }
 
@@ -580,9 +574,11 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 **示例：**
 
 ```ts
+import worker, { ErrorEvent } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onerror = () => {
-    console.log("onerror");
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.log("onerror" + err.message);
 }
 ```
 
@@ -649,8 +645,10 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 **示例：**
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessageerror= () => {
+workerInstance.onmessageerror= (e: MessageEvents) => {
     console.log("onmessageerror");
 }
 ```
