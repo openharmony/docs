@@ -142,7 +142,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // Define the animation parameters for expanding and collapsing.
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index){
+                  if(index != undefined){
                     this.curIndex = index;
                   }
                   this.isExpand = !this.isExpand;
@@ -289,7 +289,7 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // Define the animation parameters for expanding and collapsing.
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                if(index){
+                if(index != undefined){
                   this.curIndex = index;
                 }
                 this.isExpand = !this.isExpand;
@@ -541,6 +541,7 @@ struct AutoAchieveShareTransitionDemo {
   @State rect_right: number = 0;
 
   // Attributes related to the newly created element.
+  @State rootPosition: number = 0; // Location of the parent component.
   @State item: string = ''; // Record the expanded element.
   @State cardHeight: number = 300; // Widget height.
   @State cardOpacity: number = 1; // Widget opacity.
@@ -581,6 +582,11 @@ struct AutoAchieveShareTransitionDemo {
             // Set a unique ID and obtain the attribute information of the component corresponding to the ID.
             .id(item)
             .onClick(() => {
+              let rootStrJson = getInspectorByKey('root');
+              let rootRect: itTmp = JSON.parse(rootStrJson);
+              let rootRectInfo: Array<object> = JSON.parse('[' + rootRect.$rect + ']');
+              let root_rect_top: string = JSON.parse('[' + rootRectInfo[0] + ']')[1];
+              this.rootPosition = Number(root_rect_top);
               // Obtain the position and size of the corresponding component.
               let strJson = getInspectorByKey(item);
               let rect:itTmp = JSON.parse(strJson);
@@ -598,11 +604,16 @@ struct AutoAchieveShareTransitionDemo {
               this.item = item;
               this.expand = true;
               this.count += 1;
+              this.scrollState = false;
 
-              animateTo({ curve: curves.springMotion() }, () => {
-                this.layoutHeight = 2772 / 3.5;
+              animateTo({
+                curve: curves.springMotion(),
+                onFinish: () => {
+                  this.scrollState = true;
+                }}, () => {
+                this.layoutHeight = px2vp(2772);
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
+                this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
               })
             })
           })
@@ -652,17 +663,19 @@ struct AutoAchieveShareTransitionDemo {
         // Work out the absolute position of the new element.
         .position({
           x: this.layoutWidth == '90%' ? '5%' : 0,
-          y: (this.rect_top - 136) / 3.5
+          y: px2vp(this.rect_top - this.rootPosition)
         })
         .translate({
           y: this.layoutOffset
         })
         .onClick(() => {
           this.count -= 1;
+          this.scrollState = false;
 
           animateTo({
             curve: curves.springMotion(),
             onFinish: (() => {
+              this.scrollState = true;
               if (this.count == 0) {
                 this.expand = false;
               }
@@ -675,6 +688,8 @@ struct AutoAchieveShareTransitionDemo {
         })
       }
     }
+    .id('root')
+    .enabled(this.scrollState)
   }
 }
 ```
