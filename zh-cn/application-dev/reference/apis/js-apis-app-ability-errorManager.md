@@ -1,6 +1,6 @@
 # @ohos.app.ability.errorManager (ErrorManager)
 
-ErrorManager模块提供对错误观察器的注册和注销的能力。使用场景：应用想要捕获js crash。
+ErrorManager模块提供对错误观察器的注册和注销的能力。
 
 > **说明：**
 > 
@@ -15,7 +15,7 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 on(type: 'error', observer: ErrorObserver): number;
 
-注册错误观测器。
+注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
