@@ -93,7 +93,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: 
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建PhotoSession实例
-  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+  let photoSession: camera.PhotoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
   // 开始配置会话
   photoSession.beginConfig();
   // 把CameraInput加入到会话
