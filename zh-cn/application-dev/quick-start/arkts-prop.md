@@ -68,7 +68,7 @@
   // 赋值的变化可以被观察到
   this.count = 1;
   // 复杂类型
-  @Prop count: Model;
+  @Prop title: Model;
   // 可以观察到赋值的变化
   this.title = new Model('Hi');
   ```
