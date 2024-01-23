@@ -31,10 +31,10 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 | Name| Type| Mandatory| Decorator| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | progress | number | Yes| \@Prop | Current download progress.| 
-| content | string | Yes|  | Button text.| 
+| content | string | Yes| \@Prop | Button text.| 
 | progressButtonWidth | [Length](ts-types.md#length) | No| - | Width of the button.<br>Default value: **44**| 
-| clickCallback | void | Yes|  | Callback invoked when the button is clicked.| 
-| enable | boolean | Yes|  | Whether the button can be clicked.| 
+| clickCallback | void | Yes| - | Callback invoked when the button is clicked.| 
+| enable | boolean | Yes| \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> I**false**: The button cannot be clicked.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.

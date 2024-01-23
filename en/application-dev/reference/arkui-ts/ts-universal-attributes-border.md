@@ -6,18 +6,95 @@ The border attributes are used to set border styles for components.
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The border of a component is displayed above the content of its child components since API version 9.
 
+## border
 
-## Attributes
+border(value: BorderOptions)
 
-| Name        | Type                                                    | Description                                                        |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| border       | {<br>width?: [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup>,<br>color?:  [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup>,<br>radius?:  [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>,<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup><br>} | Unified border style.<br>- **width**: border width.<br>- **color**: border color.<br>- **radius**: radius of the rounded corner of the border.<br>- **style**: border style.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The default value is **0**, indicating that the border is not displayed.|
-| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup> | Border style.<br>Default value: **BorderStyle.Solid**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | Border width. The percentage format is not supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | Border color.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Border radius. The percentage format is not supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
+Sets the border.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                                                        |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BorderOptions](#borderoptions) | Yes  | Unified border style.<br>**NOTE**<br>The default value is **0**, indicating that the border is not displayed.<br>The border of a component is displayed above the content of its child components since API version 9.|
+
+## borderStyle
+
+borderStyle(value: BorderStyle | EdgeStyles)
+
+Sets the border style.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                              |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
+| value  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| Yes  | Border style.<br>Default value: **BorderStyle.Solid**|
+
+## borderWidth
+
+borderWidth(value: Length | EdgeWidths)
+
+Sets the border width.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                              |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| value  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | Yes  | Border width. The percentage format is not supported.|
+
+## borderColor
+
+borderColor(value: ResourceColor | EdgeColors)
+
+Sets the border color.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                        |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | Yes  | Border color.<br>Default value: **Color.Black**|
+
+## borderRadius
+
+borderRadius(value: Length | BorderRadiuses)
+
+Sets the radius of the border rounded corners. The radius is restricted by the component size. The maximum value is half of the component width or height.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| value  | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Yes  | Border radius. The percentage format is not supported.|
+
+## BorderOptions
+
+| Name  | Type                                                    | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| width  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | No  | Border width.    |
+| color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No  | Border color.    |
+| radius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | No  | Radius of the border rounded corners.|
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| No  | Border style.    |
 
 ## EdgeWidths<sup>9+</sup>
 

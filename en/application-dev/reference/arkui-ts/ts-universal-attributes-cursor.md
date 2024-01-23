@@ -4,7 +4,7 @@ Cursor control attributes control how the cursor is displayed when the mouse poi
 
 >  **NOTE**
 >
->  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## cursorControl
