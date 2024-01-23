@@ -242,7 +242,7 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。 |
+| [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。<br/>单位：vp。 |
 
 ### scrollToItemInGroup<sup>11+</sup>
 

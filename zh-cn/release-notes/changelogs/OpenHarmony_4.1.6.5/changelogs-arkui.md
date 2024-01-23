@@ -67,3 +67,45 @@ OpenHarmony SDK 4.1.6.5及以后，Gauge组件的默认阴影模糊半径为20vp
 **适配指导**
 
 默认阴影效果变更，不涉及适配。
+
+## cl.arkui.3 getItemRect, getItemRectInGroup接口返回值单位变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+返回值类型为RectResult，位置和宽高以px为单位不合理，故变更返回值单位为vp。
+
+**变更影响**
+
+该变更为非兼容性变更。滚动组件getItemRect接口和List组件getItemRectInGroup接口的返回值单位从px变更为vp。具体受影响的场景如下：
+
+a) 滚动组件通过getItemRect接口获取子组件大小位置
+
+API version 11变更前：大小位置返回值都以px为单位。
+
+API version 11变更后：大小位置返回值都以vp为单位。
+
+b) List组件通过getItemRectInGroup接口获取子组件ListItemGroup内子组件ListItem的大小位置
+
+API version 11变更前：大小位置返回值都以px为单位。
+
+API version 11变更后：大小位置返回值都以vp为单位。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+滚动组件（List、Grid、WaterFlow、Scroll）getItemRect接口、List组件getItemRectInGroup接口
+
+**适配指导**
+
+滚动组件（List、Grid、WaterFlow、Scroll）getItemRect接口、List组件getItemRectInGroup接口的返回值单位由原来的px变更为vp。如果需要使用px单位类型，可用vp2px接口做单位转换。
