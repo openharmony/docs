@@ -20,7 +20,7 @@
   - 加解密开发指导
     - [使用AES对称密钥（GCM模式）加解密](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（CBC模式）加解密](crypto-aes-sym-encrypt-decrypt-cbc.md)
-    - [使用AES对称密钥（GCM模式）分段加解密](crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)
+    - [使用AES对称密钥（GCM模式）分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
     - [使用3DES对称密钥（ECB模式）加解密](crypto-3des-sym-encrypt-decrypt-ecb.md)
     - [使用SM4对称密钥（ECB模式）加解密](crypto-sm4-sym-encrypt-decrypt-ecb.md)
     - [使用RSA非对称密钥（PKCS1模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)

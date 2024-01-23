@@ -4,7 +4,6 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 使用WebSocket建立服务器与客户端的双向连接，需要先通过<span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span>方法创建<span name="WebSocket">[WebSocket](#websocket)</span>对象，然后通过<span name="connect">[connect](#connected)</span>方法连接到服务器。
 当连接成功后，客户端会收到<span name="open">[open](#onopen)</span>事件的回调，之后客户端就可以通过<span name="sended">[send](#send)</span>方法与服务器进行通信。
 当服务器发信息给客户端时，客户端会收到<span name="message">[message](#onmessage)</span>事件的回调。当客户端不要此连接时，可以通过调用<span name="closed">[close](#close)</span>方法主动断开连接，之后客户端会收到<span name="closes">[close](#onclose)</span>事件的回调。
@@ -692,60 +691,9 @@ off(type: 'error', callback?: ErrorCallback): void
 
 ```ts
 import webSocket from '@ohos.net.webSocket';
+
 let ws = webSocket.createWebSocket();
 ws.off('error');
-```
-
-### on('dataEnd')<sup>11+</sup>
-
-on(type: 'dataEnd', callback: Callback\<void\>): void
-
-订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   |       类型        | 必填 |                  说明                   |
-| -------- | ---------------- | ---- | --------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                              |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-
-let ws = webSocket.createWebSocket();
-ws.on('dataEnd', () => {
-  console.log("on dataEnd")
-});
-```
-
-### off('dataEnd')<sup>11+</sup>
-
-off(type: 'dataEnd', callback?: Callback\<void\>): void
-
-取消订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   |        类型       | 必填 |                说明                    |
-| -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。|
-| callback | Callback\<void\> | 否   | 回调函数。                             |
-
-**示例：**
-
-```ts
-import webSocket from '@ohos.net.webSocket';
-let ws = webSocket.createWebSocket();
-ws.off('dataEnd');
 ```
 
 ## WebSocketRequestOptions
@@ -757,20 +705,6 @@ ws.off('dataEnd');
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
-| caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
-| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
-
-## ClientCert<sup>11+</sup>
-
-客户端证书类型。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书秘钥的路径。 |
-| keyPassword | string | 否   | 证书秘钥的密码。 |
 
 ## WebSocketCloseOptions
 

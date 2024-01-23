@@ -1,4 +1,4 @@
-# @ohos.app.ability.DriverExtensionAbility (DriverExtensionAbility)
+# @ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)
 
 DriverExtensionAbility模块提供驱动相关扩展能力，提供驱动创建、销毁、连接、断开等生命周期回调。
 
@@ -12,10 +12,6 @@ DriverExtensionAbility模块提供驱动相关扩展能力，提供驱动创建�
 ```ts
 import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
 ```
-
-## 权限
-
-无
 
 ## 属性
 

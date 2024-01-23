@@ -171,7 +171,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    }
    ```
    
-3. 由于SpecifiedAbility的启动模式被配置为指定实例启动模式，因此在SpecifiedAbility启动之前，会先进入对应的AbilityStage的[`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调中，以获取该UIAbility实例的Key值。然后系统会自动匹配，如果存在与该UIAbility实例匹配的Key，则会启动与之绑定的UIAbility实例，并进入该UIAbility实例的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调函数；否则会创建一个新的UIAbility实例，并进入该UIAbility实例的[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)回调函数和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)回调函数。
+3. 由于SpecifiedAbility的启动模式被配置为指定实例启动模式，因此在SpecifiedAbility启动之前，会先进入对应的AbilityStage的[`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调中，以获取该UIAbility实例的Key值。然后系统会自动匹配，如果存在与该UIAbility实例匹配的Key，则会启动与之绑定的UIAbility实例，并进入该UIAbility实例的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调函数；否则会创建一个新的UIAbility实例，并进入该UIAbility实例的[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)回调函数和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)回调函数。
 
    示例代码中，通过实现[`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调函数，解析传入的`want`参数，获取自定义参数`instanceKey`。业务逻辑会根据这个参数返回一个字符串Key，用于标识当前UIAbility实例。如果返回的Key已经对应一个已启动的UIAbility实例，系统会将该UIAbility实例拉回前台并获焦，而不会创建新的实例。如果返回的Key没有对应已启动的UIAbility实例，则系统会创建新的UIAbility实例并启动。
 
@@ -197,7 +197,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 
    > **说明：**
    >
-   > 1. 当应用的UIAbility实例已经被创建，并且配置为指定实例模式时，如果再次调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例，且[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)的[`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例，则系统会启动原来的UIAbility实例，并且不会重新创建一个新的UIAbility实例。此时，该UIAbility实例的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调会被触发，而不会触发[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
+   > 1. 当应用的UIAbility实例已经被创建，并且配置为指定实例模式时，如果再次调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例，且[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)的[`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)回调匹配到一个已创建的UIAbility实例，则系统会启动原来的UIAbility实例，并且不会重新创建一个新的UIAbility实例。此时，该UIAbility实例的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调会被触发，而不会触发[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
    > 2. DevEco Studio默认工程中未自动生成AbilityStage，AbilityStage文件的创建请参见[AbilityStage组件容器](abilitystage.md)。
 
    例如在文档应用中，可以为不同的文档实例内容绑定不同的Key值。每次新建文档时，可以传入一个新的Key值（例如可以将文件的路径作为一个Key标识），此时AbilityStage中启动UIAbility时都会创建一个新的UIAbility实例；当新建的文档保存之后，回到桌面，或者新打开一个已保存的文档，回到桌面，此时再次打开该已保存的文档，此时AbilityStage中再次启动该UIAbility时，打开的仍然是之前原来已保存的文档界面。

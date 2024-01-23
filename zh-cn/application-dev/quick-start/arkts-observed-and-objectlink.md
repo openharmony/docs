@@ -206,6 +206,10 @@ struct ViewB {
 
 以下是嵌套类对象的数据结构。
 
+> **说明：**
+>
+> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
+
 
 ```ts
 // objectLinkNestedObjects.ets

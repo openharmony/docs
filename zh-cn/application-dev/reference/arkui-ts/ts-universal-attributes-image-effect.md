@@ -46,7 +46,7 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 为组件添加阴影效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -263,9 +263,9 @@ renderGroup(value: boolean)
 
 ## blendMode<sup>11+</sup> 
 
-blendMode(value: BlendMode)
+blendMode(value: BlendMode, type?: BlendApplyType)
 
-将当前控件背景与子节点内容进行混合。
+将当前控件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -275,7 +275,8 @@ blendMode(value: BlendMode)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode枚举说明) | 是   | 将当前控件背景与子节点内容进行混合。<br/>默认值：BlendMode.NORMAL<br/>**说明：**<br/>-value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NORMAL<br/>**注意事项：**<br/>1、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常<br/>2、SOURCE_IN和DESTINATION_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。 |
+| value  | [BlendMode](#blendmode11枚举说明)  | 是   | 混合模式。<br/>默认值：BlendMode.NONE   |
+| type   | [BlendApplyType](#blendapplytype11对象说明)  |    否    | blendMode实现方式是否离屏。<br/>BlendApplyType.FAST：不离屏。<br/>BlendApplyType.OFFSCREEN：会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>默认值：BlendApplyType.FAST     |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -291,7 +292,7 @@ useShadowBatching(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>\1. 默认不开启，如果子节点的阴影半径较大，会对节点的各自阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>\2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
+| value  | boolean | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，会对节点的各自阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
 
 ## ShadowOptions对象说明
 
@@ -319,20 +320,58 @@ useShadowBatching(value: boolean)
 | OUTER_FLOATING_SM | 浮动小阴影。 |
 | OUTER_FLOATING_MD | 浮动中阴影。 |
 
-## BlendMode枚举说明
+## BlendMode<sup>11+</sup>枚举说明
 
-| 名称           | 描述                                                              |
-| ---------------| ------                                                            |
-| NORMAL         | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。                  |
-| SOURCE_IN      |r = d * sa,以下层图像的透明度作为权重，将其与上层图像的颜色值进行混合。|
-| DESTINATION_IN |r = s * da,以上层图像的透明度作为权重，将其与下层图像的颜色值进行混合。|
+>  **说明：**
+>
+>  blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度，da表示目标像素透明度，r表示混合后像素，ra表示混合后像素透明度。
+
+| 名称           | 描述                                                             |
+| ---------------| ------                                                        |
+| NONE            | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。              |
+| CLEAR           | 将源像素覆盖的目标像素清除为完全透明。                      |
+| SRC             | r = s，只显示源像素。                    |
+| DST             | r = d，只显示目标像素。                  |
+| SRC_OVER        | r = s + (1 - sa) * d，将源像素按照透明度进行混合，覆盖在目标像素上。                 |
+| DST_OVER        | r = d + (1 - da) * s，将目标像素按照透明度进行混合，覆盖在源像素上。                 |
+| SRC_IN          | r = s * da，只显示源像素中与目标像素重叠的部分。                        |
+| DST_IN          | r = d * sa，只显示目标像素中与源像素重叠的部分。                        |
+| SRC_OUT         | r = s * (1 - da)，只显示源像素中与目标像素不重叠的部分。                |
+| DST_OUT         | r = d * (1 - sa)，只显示目标像素中与源像素不重叠的部分。                |
+| SRC_ATOP        | r = s * da + d * (1 - sa)，在源像素和目标像素重叠的地方绘制源像素，在源像素和目标像素不重叠的地方绘制目标像素。                 |
+| DST_ATOP        | r = d * sa + s * (1 - da)，在源像素和目标像素重叠的地方绘制目标像素，在源像素和目标像素不重叠的地方绘制源像素。                 |
+| XOR             | r = s * (1 - da) + d * (1 - sa)，只显示源像素与目标像素不重叠的部分。                     |
+| PLUS            | r = min(s + d, 1)，将源像素值与目标像素值相加，并将结果作为新的像素值。                     |
+| MODULATE        | r = s * d，将源像素与目标像素进行乘法运算，并将结果作为新的像素值。                          |
+| SCREEN          | r = s + d - s * d，将两个图像的像素值相加，然后减去它们的乘积来实现混合。                    |
+| OVERLAY         | 根据目标像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                                  |
+| DARKEN          | rc = s + d - max(s * da, d * sa), ra = kSrcOver，当两个颜色重叠时，较暗的颜色会覆盖较亮的颜色。                 |
+| LIGHTEN         | rc = s + d - min(s * da, d * sa), ra = kSrcOver，将源图像和目标图像中的像素进行比较，选取两者中较亮的像素作为最终的混合结果。            |
+| COLOR_DODGE     | 使目标像素变得更亮来反映源像素。                     |
+| COLOR_BURN      | 使目标像素变得更暗来反映源像素。                     |
+| HARD_LIGHT      | 根据源像素的值来决定目标像素变得更亮或者更暗。根据源像素来决定使用MULTIPLY混合模式还是SCREEN混合模式。                  |
+| SOFT_LIGHT      | 根据源像素来决定使用LIGHTEN混合模式还是DARKEN混合模式。                                                             |
+| DIFFERENCE      | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生高对比度的效果。                      |
+| EXCLUSION       | rc = s + d - two(s * d), ra = kSrcOver，对比源像素和目标像素，亮度更高的像素减去亮度更低的像素，产生柔和的效果。          |
+| MULTIPLY        | r = s * (1 - da) + d * (1 - sa) + s * d，将源图像与目标图像进行乘法混合，得到一张新的图像。                           |
+| HUE             | 保留源图像的亮度和饱和度，但会使用目标图像的色调来替换源图像的色调。                                   |
+| SATURATION      | 保留目标像素的亮度和色调，但会使用源像素的饱和度来替换目标像素的饱和度。                                |
+| COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
+| LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
+
+## BlendApplyType<sup>11+</sup>对象说明
+
+| 名称           | 描述                                                             |
+| ---------------| ------                                                          |
+| FAST           |   在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      |   将此控件和子控件内容绘制到离屏画布上，然后整体进行混合。    |
 
 ## LinearGradientBlurOptions<sup>10+</sup>对象说明
 
 | 名称          | 类型                                                        | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | fractionStops | Array\<FractionStop>                                    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
-| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 渐变模糊方向。<br/>默认值：<br/>[GradientDirection](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-appendix-enums.md#gradientdirection).Bottom |
+| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
 ## InvertOptions<sup>11+</sup>对象说明
 
@@ -709,25 +748,38 @@ struct RenderGroupExample {
 struct Index {
   build() {
     Column() {
-      Text("test")
-        .fontSize(144)
+      Text("blendMode")
+        .fontSize(20)
         .fontWeight(FontWeight.Bold)
         .fontColor('#ffff0101')
+      Row() {
+        Circle()
+          .width(200)
+          .height(200)
+          .fill(Color.Green)
+          .position({ x: 50, y: 50 })
+        Circle()
+          .width(200)
+          .height(200)
+          .fill(Color.Blue)
+          .position({ x: 150, y: 50 })
+      }
+      .blendMode(BlendMode.OVERLAY,BlendApplyType.OFFSCREEN)
+      .alignItems(VerticalAlign.Center)
+      .height(300)
+      .width('100%')
     }
-    .blendMode(BlendMode.NORMAL)
     .height('100%')
     .width('100%')
-    .backgroundColor('#ff08ff00')
+    .backgroundImage($r('app.media.image'))
+    .backgroundImageSize(ImageSize.Cover)
   }
 }
 ```
-BlendMode.NORMAL<br/>
-![testNormal](figures/testNormal.jpeg)
-<br/>BlendMode.SOURCE_IN<br/>
-![testSourceIn](figures/testSourceIn.jpeg)
-<br/>BlendMode.DESTINATION_IN<br/>
-![testDestinationIn](figures/testDestinationIn.jpeg)
-<br/>当前控件下有多个子节点（所有子组件放到一个离屏buffer上绘制，将绘制结果进行blend）
+
+<br/>BlendMode.OVERLAY,BlendApplyType.OFFSCREEN<br/>
+![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode.png)
+<br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
 ### 示例11
 blendMode搭配backgroundEffect实现文字图形异形渐变效果。
@@ -748,48 +800,50 @@ struct Index {
   @State briVal: number = 1.5;
   build() {
     Stack() {
-      Image($r('app.media.lock'))
+      Image($r('app.media.image'))
       Column() {
-        Column({ space: 0}) {
-          Text('11')
-            .fontSize(144)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('rgba(255,255,255,1)')
-            .fontFamily('HarmonyOS-Sans-Digit')
-            .maxLines(1)
-            .lineHeight(120*1.25)
-            .height(120*1.25)
-            .letterSpacing(4*1.25)
-          Text('42')
-            .fontSize(144)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('rgba(255,255,255,1)')
-            .fontFamily('HarmonyOS-Sans-Digit')
-            .maxLines(1)
-            .lineHeight(120*1.25)
-            .height(120*1.25)
-            .letterSpacing(4*1.25)
-            .shadow({
-              color: 'rgba(0,0,0,0)',
-              radius: 20,
-              offsetX: 0,
-              offsetY: 0
-            })
-          Row() {
-            Text('10月16日')
-              .fontSize(this.sizeDate)
-              .height(22)
-              .fontWeight('medium')
+        Column({ space: 0 }) {
+          Column() {
+            Text('11')
+              .fontSize(144)
+              .fontWeight(FontWeight.Bold)
               .fontColor('rgba(255,255,255,1)')
-            Text('星期一')
-              .fontSize(this.sizeDate)
-              .height(22)
-              .fontWeight('medium')
+              .fontFamily('HarmonyOS-Sans-Digit')
+              .maxLines(1)
+              .lineHeight(120 * 1.25)
+              .height(120 * 1.25)
+              .letterSpacing(4 * 1.25)
+            Text('42')
+              .fontSize(144)
+              .fontWeight(FontWeight.Bold)
               .fontColor('rgba(255,255,255,1)')
+              .fontFamily('HarmonyOS-Sans-Digit')
+              .maxLines(1)
+              .lineHeight(120 * 1.25)
+              .height(120 * 1.25)
+              .letterSpacing(4 * 1.25)
+              .shadow({
+                color: 'rgba(0,0,0,0)',
+                radius: 20,
+                offsetX: 0,
+                offsetY: 0
+              })
+            Row() {
+              Text('10月16日')
+                .fontSize(this.sizeDate)
+                .height(22)
+                .fontWeight('medium')
+                .fontColor('rgba(255,255,255,1)')
+              Text('星期一')
+                .fontSize(this.sizeDate)
+                .height(22)
+                .fontWeight('medium')
+                .fontColor('rgba(255,255,255,1)')
+            }
           }
+          .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
         }
-        .blendMode(BlendMode.DESTINATION_IN)
-        // @ts-ignore
+        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
         .backgroundEffect({
           radius: this.rad,
           saturation: this.satVal,
@@ -800,11 +854,10 @@ struct Index {
       }
     }
   }
-  getVolumeDialogWindowColor(): ResourceColor|string {
-    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.gVal.toFixed(0)})`;
+  getVolumeDialogWindowColor(): ResourceColor | string {
+    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.aVal.toFixed(0)})`;
   }
 }
-
 ```
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)

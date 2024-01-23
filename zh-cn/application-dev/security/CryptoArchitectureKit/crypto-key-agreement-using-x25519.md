@@ -1,7 +1,7 @@
 # 使用X25519进行密钥协商
 
 
-对应的算法规格请查看[签名验签算法规格：X25519](crypto-key-agreement-overview.md#x25519)。
+对应的算法规格请查看[密钥协商算法规格：X25519](crypto-key-agreement-overview.md#x25519)。
 
 
 ## 开发步骤

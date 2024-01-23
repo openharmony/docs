@@ -39,21 +39,36 @@
 
   
 ```ts
+import Home from '../common/Home';//组件请参考相关实例
+import TabBarItem from '../common/TabBarItem';
+
 @Entry
 @Component
 struct Index {
-  ...
+  @State currentIndex: number = 0;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
+  @Builder
+  tabItem(index: number, title: Resource, icon: Resource, iconSelected: Resource) {
+    TabBarItem({
+      index: index,
+      currentIndex: this.currentIndex,
+      title: title,
+      icon: icon,
+      iconSelected: iconSelected
+    })
+  }
+
   build() {
     // 设置TabBar在主轴方向起始或结尾位置
     Tabs({ barPosition: this.currentBreakpoint === "lg" ? BarPosition.Start : BarPosition.End }) {
       // 首页
       TabContent() {
         Home()
-      }.tabBar(this.tabItem1)
-      TabContent() {}.tabBar(this.tabItem2)
-      TabContent() {}.tabBar(this.tabItem3)
-      TabContent() {}.tabBar(this.tabItem4)
-      TabContent() {}.tabBar(this.tabItem5)
+      }.tabBar(this.tabItem(0, $r('app.string.tabBar1'), $r('app.media.ic_home_normal'), $r('app.media.ic_home_actived')))
+      TabContent() {}.tabBar(this.tabItem(1, $r('app.string.tabBar2'), $r('app.media.ic_app_normal'), $r('app.media.ic_app_actived')))
+      TabContent() {}.tabBar(this.tabItem(2, $r('app.string.tabBar3'), $r('app.media.ic_game_normal'), $r('app.media.ic_mine_actived')))
+      TabContent() {}.tabBar(this.tabItem(3, $r('app.string.tabBar4'), $r('app.media.ic_search_normal'), $r('app.media.ic_search_actived')))
+      TabContent() {}.tabBar(this.tabItem(4, $r('app.string.tabBar4'), $r('app.media.ic_mine_normal'), $r('app.media.ic_mine_actived')))
     }
     .backgroundColor('#F1F3F5')
     .barMode(BarMode.Fixed)
@@ -71,17 +86,18 @@ struct Index {
 ```ts
 @Component
 export default struct TabBarItem {
-  ...
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
+
   build() {
     if (this.currentBreakpoint !== 'md' ) {
       // sm及lg断点下，tabBarItem中的图标和文字垂直排布
       Column() {
-        ...
+       // ...
       }.justifyContent(FlexAlign.Center).height('100%').width('100%')
     } else {
       // md断点下，tabBarItem中的图标和文字水平排布
       Row() {
-        ....
+       // ...
       }.justifyContent(FlexAlign.Center).height('100%').width('100%')
     }
   }
@@ -102,7 +118,38 @@ export default struct TabBarItem {
 ```ts
 @Component
 export default struct IndexHeader {
-  ...
+
+  @Builder searchBar() {
+    Stack({alignContent: Alignment.End}) {
+      TextInput({ placeholder: $r('app.string.search') })
+        .placeholderColor('#FF000000')
+        .placeholderFont({ size: 16, weight: 400 })
+        .textAlign(TextAlign.Start)
+        .caretColor('#FF000000')
+        .width('100%')
+        .height(40)
+        .fontWeight(400)
+        .padding({ top: 9, bottom: 9 })
+        .fontSize(16)
+        .backgroundColor(Color.White)
+
+      Image($r('app.media.ic_public_search'))
+        .width(16)
+        .height(16)
+        .margin({ right: 20 })
+    }.height(56).width('100%')
+  }
+
+  @Builder titleBar() {
+    Text($r('app.string.tabBar1'))
+      .fontSize(24)
+      .fontWeight(500)
+      .fontColor('#18181A')
+      .textAlign(TextAlign.Start)
+      .height(56)
+      .width('100%')
+  }
+
   build() {
     // 借助栅格实现标题栏和搜索栏在不同断点下的不同布局效果。
     GridRow() {
@@ -127,8 +174,8 @@ export default struct IndexHeader {
 ```ts
 @Component
 export default struct IndexSwiper {
-  ...
-  @Builder swiperItem(imageSrc) {
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
+  @Builder swiperItem(imageSrc:Resource) {
     Image(imageSrc)
       .width('100%')
       .aspectRatio(2.5)
@@ -140,7 +187,7 @@ export default struct IndexSwiper {
       this.swiperItem($r('app.media.ic_public_swiper1'))
       this.swiperItem($r('app.media.ic_public_swiper2'))
       this.swiperItem($r('app.media.ic_public_swiper3'))
-      ...
+      // ...
     }
     .autoPlay(true)
     .indicator(false)
@@ -160,7 +207,9 @@ export default struct IndexSwiper {
 
   
 ```ts
-@Component
+import { entranceIcons } from '../model/HomeData';
+import { AllIcons } from '../model/HomeDataType';
+
 @Component
 export default struct IndexEntrance {
   build() {
@@ -168,7 +217,9 @@ export default struct IndexEntrance {
     Row() {
       ForEach(entranceIcons, (icon: AllIcons) => {
         // 各快捷入口的图标及名称
-        Column() { ... }
+        Column() { 
+          // ... 
+          }
       })
     }
     .width('100%')
@@ -186,21 +237,75 @@ export default struct IndexEntrance {
 
   
 ```ts
-@Component
+import { AppItem, MyAppSource } from '../model/HomeDataType';
+
 @Component
 export default struct IndexApps {
-  ...
+  private title?: Resource;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
+  private apps: AppItem[] = [];
+  @Builder
+  appListHeader() {
+    Row() {
+      Text(this.title)
+        .width(100)
+        .fontSize(16)
+        .textAlign(TextAlign.Start)
+        .fontWeight(500)
+      Blank()
+      Text($r('app.string.more'))
+        .fontSize(14)
+        .textAlign(TextAlign.End)
+        .fontWeight(400)
+        .margin({ right: 2 })
+      Image($r('app.media.ic_public_arrow_right'))
+        .width(12)
+        .height(18)
+        .opacity(0.9)
+        .objectFit(ImageFit.Fill)
+    }
+    .margin({ bottom: 9, top: 9 })
+    .width('100%')
+    .alignItems(VerticalAlign.Bottom)
+  }
+
+  @Builder
+  appListItem(app:AppItem) {
+    Column() {
+      Image(app.image)
+        .width(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .height(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .margin({ bottom: 8 })
+      Text(app.title)
+        .width(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .height(16)
+        .fontSize(12)
+        .textAlign(TextAlign.Center)
+        .fontColor('#18181A')
+        .margin({ bottom: 8 })
+      Text($r('app.string.install'))
+        .width(this.currentBreakpoint === 'lg' ? 80 : 56)
+        .height(28)
+        .fontColor('#0A59F7')
+        .textAlign(TextAlign.Center)
+        .borderRadius(this.currentBreakpoint === 'lg' ? 26 : 20)
+        .fontWeight(500)
+        .fontSize(12)
+        .padding({ top: 6, bottom: 6, left: 8, right: 8 })
+        .backgroundColor('rgba(0,0,0,0.05)')
+    }
+  }
   build() {
     Column() {
       this.appListHeader()
       // 借助List组件能力，实现延伸能力场景
       List({ space: this.currentBreakpoint === 'lg' ? 44 : 20}) {
-        LazyForEach(new MyAppSource(this.apps), app => {
+        LazyForEach(new MyAppSource(this.apps), (app: AppItem)=> {
           ListItem() {
             // 每个应用的图标、名称及安装按钮
             this.appListItem(app)
           }
-        }, app => app.id)
+        })
       }
       .width('100%')
       .height(this.currentBreakpoint === 'lg' ? 140 : 120)
@@ -220,9 +325,15 @@ export default struct IndexApps {
 
   
 ```ts
+import IndexSwiper from './IndexSwiper';
+import IndexEntrance from './IndexEntrance';
+import IndexApps from './IndexApps';
+import { appList, gameList } from '../model/HomeData';
+import IndexHeader from './IndexHeader';
+
 @Component
 struct IndexContent {
-  ...
+  // ...
   build() {
     List() {
       // 运营横幅
@@ -246,9 +357,10 @@ struct IndexContent {
   }
 }
 
+@Entry
 @Component
 export default struct Home {
-  ...
+  // ...
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Start }) {
       // 标题栏和搜索栏

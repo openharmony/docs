@@ -22,7 +22,6 @@
 | process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                   |
 | permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限 |
 | codePath                   | string                                                       | 是   | 否   | 应用程序的安装目录。                                             |
-| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<Metadata>> | 是   | 否   | 应用程序的元信息。<strong>注：</strong> 从API version 10开始不再维护，建议使用metadataArray替代。 |
 | metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | 是   | 否   | 应用程序的元信息。 |
 | removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                         |
 | accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                      |
