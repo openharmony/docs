@@ -63,13 +63,39 @@ close(): void
 ```ts
 // xxx.ets
 @CustomDialog
+struct CustomDialogExampleTwo {
+  controllerTwo?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('我是第二个弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭第二个弹窗')
+        .onClick(() => {
+          if (this.controllerTwo != undefined) {
+            this.controllerTwo.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
-  controller: CustomDialogController
-  // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
-  cancel: () => void
-  confirm: () => void
+  dialogControllerTwo: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExampleTwo(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -25 } })
+  controller?: CustomDialogController
+  // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在所有controller的后面
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
 
   build() {
     Column() {
@@ -84,16 +110,26 @@ struct CustomDialogExample {
           .onClick(() => {
             this.controller.close()
             this.cancel()
+
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            this.inputValue = this.textValue
-            this.controller.close()
-            this.confirm()
+            if (this.controller != undefined) {
+              this.inputValue = this.textValue
+              this.controller.close()
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
-    }
-    // dialog默认的borderRadius为24vp，如果需要使用border属性，请和borderRadius属性一起使用。
+
+      Button('点我打开第二个弹窗')
+        .onClick(() => {
+          this.dialogControllerTwo.open()
+
+        })
+        .margin(20)
+    }.borderRadius(10)
+    // 如果需要使用border属性或cornerRadius属性，请和borderRadius属性一起使用。
   }
 }
 
@@ -114,12 +150,13 @@ struct CustomDialogUser {
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    customStyle: false
+    customStyle: false,
+    cornerRadius: 10,
   })
 
   // 在自定义组件即将析构销毁时将dialogControlle置空
   aboutToDisappear() {
-    this.dialogController = undefined // 将dialogController置空
+    this.dialogController = null // 将dialogController置空
   }
 
   onCancel() {
@@ -138,13 +175,12 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          if (this.dialogController != undefined) {
-            this.dialogController.open()
-          }
+          this.dialogController.open()
+
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![zh-cn_image_0000001219744203](figures/zh-cn_image_0000001219744203.gif)
+![zh-cn_image_custom](figures/zh-cn_image_custom.gif)

@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容在元素绘制区域内的对齐方式。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容在元素绘制区域内的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | direction | [Direction](ts-appendix-enums.md#direction) | 设置元素水平方向的布局。<br/>默认值：Direction.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | position | [Position](ts-types.md#position8) | 绝对定位，设置元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | markAnchor | [Position](ts-types.md#position8) | 设置元素在位置定位时的锚点，以元素左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -141,7 +141,7 @@ struct PositionExample2 {
           .offset({ x: 15, y: 30 })
         Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
           .textAlign(TextAlign.Center)
-        Text('4 offset(-10%, 20%)')
+        Text('4 offset(-5%, 20%)')
           .size({ width: 100, height: '50' })
           .backgroundColor(0xbbb2cb)
           .border({ width: 1 })

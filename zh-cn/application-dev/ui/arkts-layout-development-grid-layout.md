@@ -109,7 +109,7 @@ GridRow中通过columns设置栅格布局的总列数。
     ForEach(this.bgColors, (item, index) => {
       GridCol() {
         Row() {
-          Text(`${index + 1}`)
+          Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })
@@ -130,7 +130,7 @@ GridRow中通过columns设置栅格布局的总列数。
       ForEach(this.bgColors, (item, index) => {
         GridCol() {
           Row() {
-            Text(`${index + 1}`)
+            Text(`${index}`)
           }.width('100%').height('50')
         }.backgroundColor(item)
       })
@@ -149,7 +149,7 @@ GridRow中通过columns设置栅格布局的总列数。
       ForEach(this.bgColors, (item, index) => {
         GridCol() {
           Row() {
-            Text(`${index + 1}`)
+            Text(`${index}`)
           }.width('100%').height('50')
         }.backgroundColor(item)
       })
@@ -175,7 +175,7 @@ GridRow中通过columns设置栅格布局的总列数。
     ForEach(this.bgColors, (item, index) => {
       GridCol() {
         Row() {
-          Text(`${index + 1}`)
+          Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })

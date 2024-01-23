@@ -70,7 +70,7 @@ MyMenu(){
         startIcon: $r("app.media.view_list_filled"),
         content: "菜单选项",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)
+        builder: this.SubMenu
       })
     }
     MenuItem({
