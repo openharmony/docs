@@ -71,7 +71,7 @@ Swiper(this.swiperController) {
   Text("2")
     .width('90%')
     .height('100%')
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
