@@ -44,10 +44,6 @@ SymbolGlyph多色模式下各个组件的默认颜色与层数展示图。
 
 支持[通用事件](ts-universal-events-click.md)。
 
-## 手势
-
-不支持[手势处理](ts-gesture-settings.md)。
-
 ## 示例
 
 ```ts
