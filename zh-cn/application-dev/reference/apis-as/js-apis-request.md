@@ -206,6 +206,8 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -277,6 +279,8 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -348,6 +352,8 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -419,6 +425,8 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -498,6 +506,8 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -577,6 +587,8 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -658,6 +670,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -726,6 +740,8 @@ start(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -790,6 +806,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -853,6 +871,8 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -920,6 +940,8 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -1001,6 +1023,8 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -1069,6 +1093,8 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
@@ -1111,6 +1137,8 @@ remove(id: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError, request } from '@kit.BasicServicesKit';
+  
   request.agent.remove("123456").then(() => {
     console.info(`Succeeded in removing a download task. `);
   }).catch((err: BusinessError) => {
