@@ -547,9 +547,11 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 示例代码：
 ```ts
   .gesture(
-    TapGesture()
-      .onAction(()=> {
-        console.log("Tapgesture")
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.log("Tapgesture")
+        }
       })
   )
   .onTouch((event?: TouchEvent)=> {
@@ -562,11 +564,11 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
   })
   .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
     if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
-      let xGap = event.fingerList.globalX - this.downX
+      let xGap = event.fingerList[0].globalX - this.downX
       if (xGap > 5) {
         return GestureJudgeResult.REJECT
       }
-      let yGap = event.fingerList.globalX - this.downY
+      let yGap = event.fingerList[0].globalX - this.downY
       if (yGap > 5) {
         return GestureJudgeResult.REJECT
       }
