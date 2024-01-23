@@ -2,7 +2,6 @@
 
 - [Notification Kit简介](notification-overview.md)
 - [请求通知授权](notification-enable.md)
-- [通知样式规范](notification-appearance.md)
 - [通知角标](notification-badge.md)
 - [通知渠道](notification-slot.md)
 - 发布通知
