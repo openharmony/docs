@@ -122,7 +122,7 @@
      await cameraInput.open();
 
      // 会话流程
-     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+     let photoSession: camera.PhotoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
 
      // 开始配置会话
      photoSession.beginConfig();

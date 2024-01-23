@@ -42,7 +42,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+  const session: camera.PhotoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);

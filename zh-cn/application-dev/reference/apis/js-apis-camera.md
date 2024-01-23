@@ -783,6 +783,7 @@ createCaptureSession(): CaptureSession
 
 > **说明：** 
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[createSession](#createsession11)替代。
+> <br>由于createSession功能问题，当前版本请开发者继续使用createCaptureSession创建实例。后续版本将修复此问题。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -823,6 +824,9 @@ function createCaptureSession(cameraManager: camera.CameraManager): camera.Captu
 createSession\<T extends Session\>(mode: SceneMode): T
 
 创建指定SceneMode的Session实例，同步返回结果。
+
+> **说明：**
+> <br>由于createSession功能问题，请开发者继续使用[createCaptureSession](#createcapturesessiondeprecated)创建实例。后续版本将修复此问题。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
