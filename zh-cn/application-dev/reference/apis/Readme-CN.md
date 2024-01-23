@@ -417,7 +417,6 @@
   - [@ohos.accessibility.GesturePath (手势路径)](js-apis-accessibility-GesturePath.md)
   - [@ohos.accessibility.GesturePoint (手势触摸点)](js-apis-accessibility-GesturePoint.md)
   - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](js-apis-application-accessibilityExtensionAbility.md)
-  - [@ohos.accessibility.AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
   - [@ohos.base (公共回调信息)](js-apis-base.md)
   - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
