@@ -13,18 +13,16 @@ AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、�
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
-## 属性
-
 ## AbilityConstant.LaunchParam
 
 启动参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 是 | 是 | 枚举类型，表示启动原因。 |
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 是 | 是 | 枚举类型，表示最后退出原因。 |
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 否 | 是 | 枚举类型，表示启动原因。 |
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 是 | 枚举类型，表示最后退出原因。 |
 
 ## AbilityConstant.LaunchReason
 
