@@ -370,6 +370,59 @@ connection.setAppHttpProxy({
 } as connection.HttpProxy);
 ```
 
+**JSON配置文件：**
+
+证书锁定的配置例子如下：
+```json
+{
+  "network-security-config": {	
+	  "domain-config": {
+		  "domains": [
+            {
+            "include-subdomains": true,
+            "name": "server.com"
+            }
+      ],
+		"pin-set": {
+        "expiration": "2024-11-08",
+        "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+        ]
+    }
+    }
+  }
+}
+```
+
+应用级证书的配置例子如下：
+```json
+{
+  "network-security-config": {
+    "base-config": {  
+      "trust-anchors": [                         
+        {"certificates": "/etc/security/certificates"}
+      ]
+    },
+      "domain-config": {
+        "domains": [
+                {
+      "include-subdomains": true,
+      "name": "example.com"
+      }
+    ],
+        "trust-anchors": [
+          {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
+        ]
+    }
+  }
+}
+
+```
+
+
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
