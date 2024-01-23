@@ -500,6 +500,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 适配措施：
 1.应用业务审视是否必须将点击手势和拖动手势放入同一个并行手势组内（大部分之前没有冲突的情况，是因为点击事件的20px的移动限制，自动消减了冲突），如果不是必须则可以不挂到同一个手势组
 修改前：
+```ts
   .parallelGesture(GestureGroup(Gesture.Parallel,
     TapGesture({count: 1})
       .onAction((event?: GestureEvent)=> {
@@ -518,8 +519,9 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
         console.info("Pan end")
       })
   ))
-
+```
 修改后：
+```ts
   .parallelGesture(GestureGroup(Gesture.Parallel,
     PanGesture({fingers: 1})
       .onActionStart((event?: GestureEvent)=>{
@@ -540,9 +542,10 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
         }
     })
   )
-
+```
 2.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过自行设置的手指移动距离判定点击手势失败：
 示例代码：
+```ts
   .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
     if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
       let xGap = event.fingerList.globalX - downX
@@ -564,6 +567,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
       }
     }
   })
+```
 
 ## cl.arkui.14  menuItem默认高度规格变更
 
