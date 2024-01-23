@@ -568,7 +568,54 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
     }
   })
 ```
-
+3.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过设置组件flag进行手势互斥判断：
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+  private hasPanActive = false;
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message).width(100).height(40).backgroundColor(Color.Pink)
+      }.margin(20)
+    }
+    .width('100%')
+    .height(200)
+    .borderWidth(2)
+    .parallelGesture(GestureGroup(Gesture.Parallel,
+      TapGesture({count: 1})
+        .onAction((event?: GestureEvent)=> {
+          if (event) {
+            console.info("Tapgesture")
+          }
+        }).tag("Single-Finger-Click")
+      PanGesture({fingers: 1})
+        .onActionStart((event?: GestureEvent)=>{
+          console.info("Pan start")
+        })
+        .onActionUpdate((event?: GestureEvent)=>{
+          console.info("Pan update")
+        })
+        .onActionEnd((event?: GestureEvent)=>{
+          console.info("Pan end")
+        }).tag("Single-Finger-Pan")
+    ))
+    .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
+      // 若滑动手势被触发，则将flag置为true
+      if (gestureInfo.tag === "Single-Finger-Pan") {
+        this.hasPanActive = true
+      }
+      // 若点击手势被触发，且flag为true，则说明再此之前滑动手势已被触发，组件重置flag并拒绝点击手势。
+      if (gestureInfo.tag === "Single-Finger-Click" && this.hasPanActive) {
+        this.hasPanActive = false;
+        return GestureJudgeResult.REJECT
+      }
+    })
+  }
+}
+```
 ## cl.arkui.14  menuItem默认高度规格变更
 
 **访问级别**
