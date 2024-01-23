@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 ```
 
@@ -34,7 +34,7 @@ constructor(record: UnifiedRecord)
 
 **示例：**
 
-```js
+```ts
 let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -56,7 +56,7 @@ addRecord(record: UnifiedRecord): void
 
 **示例：**
 
-```js
+```ts
 let text1 = new unifiedDataChannel.PlainText();
 text1.textContent = 'this is textContent of text1';
 let unifiedData = new unifiedDataChannel.UnifiedData(text1);
@@ -82,7 +82,7 @@ getRecords(): Array\<UnifiedRecord\>
 
 **示例：**
 
-```js
+```ts
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let text = new unifiedDataChannel.PlainText();
@@ -139,7 +139,7 @@ getType(): string
 
 **示例：**
 
-```js
+```ts
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let text = new unifiedDataChannel.PlainText();
@@ -165,7 +165,7 @@ if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
 
 **示例：**
 
-```js
+```ts
 let text = new unifiedDataChannel.Text();
 text.details = {
   title: 'MyTitle',
@@ -187,7 +187,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 **示例：**
 
-```js
+```ts
 let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent';
 text.abstract = 'this is abstract';
@@ -206,7 +206,7 @@ text.abstract = 'this is abstract';
 
 **示例：**
 
-```js
+```ts
 let link = new unifiedDataChannel.Hyperlink();
 link.url = 'www.XXX.com';
 link.description = 'this is description';
@@ -225,7 +225,7 @@ HTML类型数据，是[Text](#text)的子类，用于描述超文本标记语言
 
 **示例：**
 
-```js
+```ts
 let html = new unifiedDataChannel.HTML();
 html.htmlContent = '<div><p>标题</p></div>';
 html.plainContent = 'this is plainContent';
@@ -244,7 +244,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 
 **示例：**
 
-```js
+```ts
 let file = new unifiedDataChannel.File();
 file.details = {
     name: 'test',
@@ -265,7 +265,7 @@ file.uri = 'schema://com.samples.test/files/test.txt';
 
 **示例：**
 
-```js
+```ts
 let image = new unifiedDataChannel.Image();
 image.imageUri = 'schema://com.samples.test/files/test.jpg';
 ```
@@ -282,7 +282,7 @@ image.imageUri = 'schema://com.samples.test/files/test.jpg';
 
 **示例：**
 
-```js
+```ts
 let video = new unifiedDataChannel.Video();
 video.videoUri = 'schema://com.samples.test/files/test.mp4';
 ```
@@ -299,7 +299,7 @@ video.videoUri = 'schema://com.samples.test/files/test.mp4';
 
 **示例：**
 
-```js
+```ts
 let audio = new unifiedDataChannel.Audio();
 audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 ```
@@ -316,7 +316,7 @@ audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 
 **示例：**
 
-```js
+```ts
 let folder = new unifiedDataChannel.Folder();
 folder.folderUri = 'schema://com.samples.test/files/folder/';
 ```
@@ -333,7 +333,7 @@ SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmo
 
 **示例：**
 
-```js
+```ts
 let sdr = new unifiedDataChannel.SystemDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 sdr.details = {
@@ -360,7 +360,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 **示例：**
 
-```js
+```ts
 let form = new unifiedDataChannel.SystemDefinedForm();
 form.formId = 123456;
 form.formName = 'MyFormName';
@@ -393,7 +393,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(form);
 
 **示例：**
 
-```js
+```ts
 let appItem = new unifiedDataChannel.SystemDefinedAppItem();
 appItem.appId = 'MyAppId';
 appItem.appName = 'MyAppName';
@@ -422,16 +422,17 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 **示例：**
 
-```js
+```ts
 import image from '@ohos.multimedia.image'; // PixelMap类定义所在模块
 
-const color = new ArrayBuffer(96); // 创建pixelmap对象
 let opts: image.InitializationOptions = {
   editable: true, pixelFormat: 3, size: {
     height: 4, width: 6
   }
 }
-image.createPixelMap(color, opts, (error, pixelmap) => {
+let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+let imageSourceApi: image.ImageSource = image.createImageSource(0, sourceOptions);
+imageSourceApi.createPixelMap(opts, (error, pixelmap) => {
   if (error) {
     console.error('Failed to create pixelmap.');
   } else {
@@ -459,7 +460,7 @@ ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应�
 
 **示例：**
 
-```js
+```ts
 let record = new unifiedDataChannel.ApplicationDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 record.applicationDefinedType = 'ApplicationDefinedType';

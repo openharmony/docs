@@ -101,7 +101,7 @@ async function example() {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
     } else {
-      console.error('fetchResult fail' + err);
+      console.error(`fetchResult fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -162,7 +162,7 @@ async function example() {
       }
     }
   } catch (err) {
-    console.error('getAssets failed, message = ', err);
+    console.error(`getAssets failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -215,7 +215,7 @@ async function example() {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -274,7 +274,7 @@ async function example() {
     console.info('createAsset file displayName' + photoAsset.displayName);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -331,7 +331,7 @@ async function example() {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -394,7 +394,7 @@ async function example() {
     console.info('createAsset file displayName' + photoAsset.displayName);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -446,7 +446,7 @@ async function example() {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -495,7 +495,7 @@ async function example() {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -553,7 +553,7 @@ async function example() {
     console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -604,7 +604,7 @@ async function example() {
   let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName, (err, album) => {
     if (err) {
-      console.error('createAlbumCallback failed with err: ' + err);
+      console.error(`createAlbumCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     console.info('createAlbumCallback successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
@@ -666,7 +666,7 @@ async function example() {
   phAccessHelper.createAlbum(albumName).then((album) => {
     console.info('createAlbumPromise successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
   }).catch((err: BusinessError) => {
-    console.error('createAlbumPromise failed with err: ' + err);
+    console.error(`createAlbumPromise failed with err: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -722,7 +722,7 @@ async function example() {
   let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   phAccessHelper.deleteAlbums([album], (err) => {
     if (err) {
-      console.error('deletePhotoAlbumsCallback failed with err: ' + err);
+      console.error(`deletePhotoAlbumsCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     console.info('deletePhotoAlbumsCallback successfully');
@@ -789,7 +789,7 @@ async function example() {
   phAccessHelper.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
     }).catch((err: BusinessError) => {
-      console.error('deletePhotoAlbumsPromise failed with err: ' + err);
+      console.error(`deletePhotoAlbumsPromise failed with err: ${err.code}, ${err.message}`);
   });
   fetchResult.close();
 }
@@ -843,7 +843,7 @@ async function example() {
   };
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions, async (err, fetchResult) => {
     if (err) {
-      console.error('getAlbumsCallback failed with err: ' + err);
+      console.error(`getAlbumsCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     if (fetchResult === undefined) {
@@ -896,7 +896,7 @@ async function example() {
   console.info('getAlbumsDemo');
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO, async (err, fetchResult) => {
     if (err) {
-      console.error('getAlbumsCallback failed with err: ' + err);
+      console.error(`getAlbumsCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     if (fetchResult === undefined) {
@@ -971,7 +971,7 @@ async function example() {
     console.info('getAlbumsPromise successfully, albumName: ' + album.albumName);
     fetchResult.close();
   }).catch((err: BusinessError) => {
-    console.error('getAlbumsPromise failed with err: ' + err);
+    console.error(`getAlbumsPromise failed with err: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -1154,7 +1154,7 @@ async function getSysHiddenAlbum() {
       console.info('getAlbumsPromise successfully, albumUri: ' + hiddenAlbum.albumUri);
       fetchResult.close();
     }).catch((err: BusinessError) => {
-      console.error('getSysHiddenAlbumPromise failed with err: ' + err);
+      console.error(`getSysHiddenAlbumPromise failed with err: ${err.code}, ${err.message}`);
     });
 }
 
@@ -1179,12 +1179,12 @@ async function getHiddenAlbumsView() {
       albums[i].getAssets(fetchOption).then((assetFetchResult) => {
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       }).catch((err: BusinessError) => {
-        console.error('album get hidden assets failed with error: ' + err);
+        console.error(`album get hidden assets failed with error: ${err.code}, ${err.message}`);
       });
     }
     fetchResult.close();
   }).catch((err: BusinessError) => {
-    console.error('getHiddenAlbumsViewPromise failed with err: ' + err);
+    console.error(`getHiddenAlbumsViewPromise failed with err: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -1244,11 +1244,11 @@ async function example() {
       if (err === undefined) {
         console.info('deleteAssets successfully');
       } else {
-        console.error('deleteAssets failed with error: ' + err);
+        console.error(`deleteAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('fetch failed, message =', err);
+    console.error(`fetch failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1312,7 +1312,7 @@ async function example() {
     await phAccessHelper.deleteAssets([asset.uri]);
     console.info('deleteAssets successfully');
   } catch (err) {
-    console.error('deleteAssets failed with error: ' + err);
+    console.error(`deleteAssets failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1377,7 +1377,7 @@ async function example() {
     if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
-      console.error('setFavorite failed with error:' + err);
+      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1441,7 +1441,7 @@ async function example() {
     if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
-      console.error('setFavorite failed with error:' + err);
+      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1498,11 +1498,11 @@ async function example() {
       if (err === undefined) {
         console.info('createDeleteRequest successfully');
       } else {
-        console.error('createDeleteRequest failed with error: ' + err);
+        console.error(`createDeleteRequest failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error(`fetch failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1562,7 +1562,7 @@ async function example() {
     await phAccessHelper.createDeleteRequest([asset.uri]);
     console.info('createDeleteRequest successfully');
   } catch (err) {
-    console.error('createDeleteRequest failed with error: ' + err);
+    console.error(`createDeleteRequest failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1631,11 +1631,11 @@ async function example() {
       if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed; error: ${err}`);
+        console.error(`getPhotoIndex failed; error: ${err.code}, ${err.message}`);
       }
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error.code}, ${error.message}`);
   }
 }
 ```
@@ -1708,10 +1708,10 @@ async function example() {
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
     }).catch((err: BusinessError) => {
-      console.info(`getPhotoIndex failed; error: ${err}`);
+      console.error(`getPhotoIndex failed; error: ${err.code}, ${err.message}`);
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error.code}, ${error.message}`);
   }
 }
 ```
@@ -1773,7 +1773,7 @@ async function example() {
     if (err == undefined) {
       console.info('saveFormInfo success');
     } else {
-      console.error('saveFormInfo fail' + err);
+      console.error(`saveFormInfo fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1839,7 +1839,7 @@ async function example() {
   phAccessHelper.saveFormInfo(info).then(() => {
     console.info('saveFormInfo successfully');
   }).catch((err: BusinessError) => {
-    console.info('saveFormInfo failed' + err);
+    console.error(`saveFormInfo failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -1891,7 +1891,7 @@ async function example() {
     if (err == undefined) {
       console.info('removeFormInfo success');
     } else {
-      console.error('removeFormInfo fail' + err);
+      console.error(`removeFormInfo fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1948,7 +1948,7 @@ async function example() {
   phAccessHelper.removeFormInfo(info).then(() => {
     console.info('removeFormInfo successfully');
   }).catch((err: BusinessError) => {
-    console.info('removeFormInfo failed' + err);
+    console.error(`removeFormInfo failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -1985,7 +1985,7 @@ async function example() {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
     if (err !== undefined) {
-      console.error('release failed. message = ', err);
+      console.error(`release failed. error: ${err.code}, ${err.message}`);
     } else {
       console.info('release ok.');
     }
@@ -2027,7 +2027,7 @@ async function example() {
     await phAccessHelper.release();
     console.info('release ok.');
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2095,7 +2095,7 @@ async function example() {
     let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title.toString());
     console.info('photoAsset Get photoAssetTitle = ', photoAssetTitle);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2143,7 +2143,7 @@ async function example() {
     let title: string = photoAccessHelper.PhotoKeys.TITLE.toString();
     photoAsset.set(title, 'newTitle');
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2199,7 +2199,7 @@ async function example() {
       let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
-      console.error('commitModify failed, message =', err);
+      console.error(`commitModify failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2256,7 +2256,7 @@ async function example() {
     let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
     console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2306,7 +2306,7 @@ async function example() {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('Open file err' + err);
+      console.error(`Open file err: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2366,7 +2366,7 @@ async function example() {
       console.error('Open file fail');
     }
   } catch (err) {
-    console.error('Open demo err' + err);
+    console.error(`Open demo err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2418,7 +2418,7 @@ async function example() {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('getReadOnlyFd err' + err);
+      console.error(`getReadOnlyFd err: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2475,7 +2475,7 @@ async function example() {
       console.error('getReadOnlyFd fail');
     }
   } catch (err) {
-    console.error('getReadOnlyFd demo err' + err);
+    console.error(`getReadOnlyFd demo err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2526,11 +2526,11 @@ async function example() {
       if (err === undefined) {
         console.info('asset close succeed.');
       } else {
-        console.error('close failed, message = ' + err);
+        console.error(`close failed, error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('close failed, message = ' + err);
+    console.error(`close failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2585,7 +2585,7 @@ async function example() {
     await asset.close(fd);
     console.info('asset close succeed.');
   } catch (err) {
-    console.error('close failed, message = ' + err);
+    console.error(`close failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2636,7 +2636,7 @@ async function example() {
     if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
-      console.error('getThumbnail fail', err);
+      console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2691,7 +2691,7 @@ async function example() {
     if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
-      console.error('getThumbnail fail', err);
+      console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2751,7 +2751,7 @@ async function example() {
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
   }).catch((err: BusinessError) => {
-    console.error('getThumbnail fail' + err);
+    console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -2805,7 +2805,7 @@ async function example() {
     if (err === undefined) {
       console.info('favorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error(`favorite failed with error:${err.code}, ${err.message}`);
     }
   });
 }
@@ -2865,7 +2865,7 @@ async function example() {
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
-    console.error('setFavorite failed with error:' + err);
+    console.error(`setFavorite failed with error:${err.code}, ${err.message}`);
   });
 }
 ```
@@ -2921,7 +2921,7 @@ async function example() {
     if (err === undefined) {
       console.info('setHidden successfully');
     } else {
-      console.error('setHidden failed with error:' + err);
+      console.error(`setHidden failed with error:${err.code}, ${err.message}`);
     }
   });
 }
@@ -2986,7 +2986,7 @@ async function example() {
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
   }).catch((err: BusinessError) => {
-    console.error('setHidden failed with error:' + err);
+    console.error(`setHidden failed with error:${err.code}, ${err.message}`);
   });
 }
 ```
@@ -3046,7 +3046,7 @@ async function example() {
     console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
-    console.error('getExifDemoCallback failed with error: ' + err);
+    console.error(`getExifDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3108,12 +3108,12 @@ async function example() {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
-        console.error('getExif failed, message = ', err);
+        console.error(`getExif failed, error: ${err.code}, ${err.message}`);
       }
     });
     fetchResult.close();
   } catch (err) {
-    console.error('getExifDemoCallback failed with error: ' + err);
+    console.error(`getExifDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3174,7 +3174,7 @@ async function example() {
     let userComment = 'test_set_user_comment';
     await photoAsset.setUserComment(userComment);
   } catch (err) {
-    console.error('setUserCommentDemoPromise failed with error: ' + err);
+    console.error(`setUserCommentDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3232,11 +3232,11 @@ async function example() {
       if (err === undefined) {
         console.info('setUserComment successfully');
       } else {
-        console.error('setUserComment failed with error: ' + err);
+        console.error(`setUserComment failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('setUserCommentDemoCallback failed with error: ' + err);
+    console.error(`setUserCommentDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3286,20 +3286,20 @@ async function example() {
     let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
-        console.error('setPending(true) failed with error: ' + err);
+        console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
       // write photo buffer in fd
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
-          console.error('setPending(false) failed with error: ' + err);
+          console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
           return;
         }
         await photoAsset.close(fd);
       });
     });
   } catch (err) {
-    console.error('setPendingCallbackDemo failed with error: ' + err);
+    console.error(`setPendingCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3357,7 +3357,7 @@ async function example() {
     photoAsset.setPending(false);
     await photoAsset.close(fd);
   } catch (err) {
-    console.error('setPendingPromiseDemo failed with error: ' + err);
+    console.error(`setPendingPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3414,11 +3414,11 @@ async function example() {
           console.info('Photo is not edited');
         }
       } else {
-        console.error('isEdited failed with error: ' + err);
+        console.error(`isEdited failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('isEditedDemoCallback failed with error: ' + err);
+    console.error(`isEditedDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3475,7 +3475,7 @@ async function example() {
       console.info('Photo is not edited');
     }
   } catch (err) {
-    console.error('isEditedDemoCallback failed with error: ' + err);
+    console.error(`isEditedDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3530,11 +3530,11 @@ async function example() {
       if (err === undefined) {
         console.info('Editdata is ' + editdata);
       } else {
-        console.error('requestEditData failed with error: ' + err);
+        console.error(`requestEditData failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('requestEditDataCallbackDemo failed with error: ' + err);
+    console.error(`requestEditDataCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3589,7 +3589,7 @@ async function example() {
     let editdata: string = await photoAsset.requestEditData();
     console.info('Editdata is ' + editdata);
   } catch (err) {
-    console.error('requestEditDataPromiseDemo failed with error: ' + err);
+    console.error(`requestEditDataPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3642,11 +3642,11 @@ async function example() {
       if (err === undefined) {
         console.info('Source fd is ' + fd);
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('requsetSourceCallbackDemo failed with error: ' + err);
+    console.error(`requsetSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3698,7 +3698,7 @@ async function example() {
     let fd = await photoAsset.requestSource();
     console.info('Source fd is ' + fd);
   } catch (err) {
-    console.error('requsetSourcePromiseDemo failed with error: ' + err);
+    console.error(`requsetSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3759,11 +3759,11 @@ async function example() {
       if (err === undefined) {
         console.info('commitEditedAsset is successful');
       } else {
-        console.error('commitEditedAsset failed with error: ' + err);
+        console.error(`commitEditedAsset failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('commitEditedAssetCallbackDemo failed with error: ' + err);
+    console.error(`commitEditedAssetCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3828,7 +3828,7 @@ async function example() {
     await photoAsset.commitEditedAsset(editData, uri);
     console.info('commitEditedAsset is successful');
   } catch (err) {
-    console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
+    console.error(`commitEditedAssetPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3883,11 +3883,11 @@ async function example() {
       if (err === undefined) {
         console.info('revertToOriginal is successful');
       } else {
-        console.error('revertToOriginal failed with error: ' + err);
+        console.error(`revertToOriginal failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('revertToOriginalCallbackDemo failed with error: ' + err);
+    console.error(`revertToOriginalCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3941,7 +3941,7 @@ async function example() {
     photoAsset.revertToOriginal();
     console.info('revertToOriginal is successful');
   } catch (err) {
-    console.error('revertToOriginalPromiseDemo failed with error: ' + err);
+    console.error(`revertToOriginalPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4001,12 +4001,12 @@ async function example() {
       if (err === undefined) {
         console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     })
     console.info('requestSource taskId: ' + taskId)
   } catch (err) {
-    console.error('requestPhotoDemo failed with error: ' + err)
+    console.error(`requestPhotoDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4071,12 +4071,12 @@ async function example() {
       if (err === undefined) {
         console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     })
     console.info('requestSource taskId: ' + taskId)
   } catch (err) {
-    console.error('requestPhotoDemo failed with error: ' + err)
+    console.error(`requestPhotoDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4134,13 +4134,13 @@ async function example() {
       if (err === undefined) {
         console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     })
     console.info('requestSource taskId: ' + taskId)
     photoAsset.cancelPhotoRequest(taskId);
   } catch (err) {
-    console.error('cancelPhotoRequestDemo failed with error: ' + err)
+    console.error(`cancelPhotoRequestDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4201,11 +4201,11 @@ async function example01() {
     photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     }).catch((err: BusinessError) => {
-      console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4248,14 +4248,14 @@ async function example02() {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       if (err) {
-        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
         return;
       }
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4294,14 +4294,14 @@ async function example03() {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select((err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       if (err) {
-        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
         return;
       }
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4434,7 +4434,7 @@ async function example() {
     fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
-    console.error('close fail. message = ' + err);
+    console.error(`close fail. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4480,7 +4480,7 @@ async function example() {
     if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
-      console.error('photoAsset failed with err:' + err);
+      console.error(`photoAsset failed with err:${err.code}, ${err.message}`);
     }
   });
 }
@@ -4572,7 +4572,7 @@ async function example() {
       if (photoAsset !== undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
       } else {
-        console.error('photoAsset failed with err: ' + err);
+        console.error(`photoAsset failed with err: ${err.code}, ${err.message}`);
       }
     });
   }
@@ -4666,7 +4666,7 @@ async function example() {
     if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
-      console.error('photoAsset failed with err: ' + err);
+      console.error(`photoAsset failed with err: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -4756,7 +4756,7 @@ async function example() {
     if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
-      console.error('photoAsset failed with err: ' + err);
+      console.error(`photoAsset failed with err: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -4851,7 +4851,7 @@ async function example() {
     if (photoAssetList !== undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
     } else {
-      console.error('photoAssetList failed with err:' + err);
+      console.error(`photoAssetList failed with err:${err.code}, ${err.message}`);
     }
   });
 }
@@ -4966,7 +4966,7 @@ async function example() {
     if (albumFetchResult !== undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
     } else {
-      console.error('album getAssets failed with error: ' + err);
+      console.error(`album getAssets failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -5027,7 +5027,7 @@ async function example() {
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
-    console.error('album getAssets failed with error: ' + err);
+    console.error(`album getAssets failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -5076,7 +5076,7 @@ async function example() {
   album.albumName = 'hello';
   album.commitModify((err) => {
     if (err !== undefined) {
-      console.error('commitModify failed with error: ' + err);
+      console.error(`commitModify failed with error: ${err.code}, ${err.message}`);
     } else {
       console.info('commitModify successfully');
     }
@@ -5130,7 +5130,7 @@ async function example() {
   album.commitModify().then(() => {
     console.info('commitModify successfully');
   }).catch((err: BusinessError) => {
-    console.error('commitModify failed with error: ' + err);
+    console.error(`commitModify failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -5184,11 +5184,11 @@ async function example() {
       if (err === undefined) {
         console.info('album addAssets successfully');
       } else {
-        console.error('album addAssets failed with error: ' + err);
+        console.error(`album addAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('addAssetsDemoCallback failed with error: ' + err);
+    console.error(`addAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5247,10 +5247,10 @@ async function example() {
     album.addAssets([asset]).then(() => {
       console.info('album addAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album addAssets failed with error: ' + err);
+      console.error(`album addAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('addAssetsDemoPromise failed with error: ' + err);
+    console.error(`addAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5304,11 +5304,11 @@ async function example() {
       if (err === undefined) {
         console.info('album removeAssets successfully');
       } else {
-        console.error('album removeAssets failed with error: ' + err);
+        console.error(`album removeAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('removeAssetsDemoCallback failed with error: ' + err);
+    console.error(`removeAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5367,10 +5367,10 @@ async function example() {
     album.removeAssets([asset]).then(() => {
       console.info('album removeAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album removeAssets failed with error: ' + err);
+      console.error(`album removeAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('removeAssetsDemoPromise failed with error: ' + err);
+    console.error(`removeAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5427,11 +5427,11 @@ async function example() {
       if (err === undefined) {
         console.info('album recoverAssets successfully');
       } else {
-        console.error('album recoverAssets failed with error: ' + err);
+        console.error(`album recoverAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('recoverAssetsDemoCallback failed with error: ' + err);
+    console.error(`recoverAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5493,10 +5493,10 @@ async function example() {
     album.recoverAssets([asset]).then(() => {
       console.info('album recoverAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album recoverAssets failed with error: ' + err);
+      console.error(`album recoverAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('recoverAssetsDemoPromise failed with error: ' + err);
+    console.error(`recoverAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5555,11 +5555,11 @@ async function example() {
       if (err === undefined) {
         console.info('album deleteAssets successfully');
       } else {
-        console.error('album deleteAssets failed with error: ' + err);
+        console.error(`album deleteAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('deleteAssetsDemoCallback failed with error: ' + err);
+    console.error(`deleteAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5623,10 +5623,10 @@ async function example() {
     album.deleteAssets([asset]).then(() => {
       console.info('album deleteAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album deleteAssets failed with error: ' + err);
+      console.error(`album deleteAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('deleteAssetsDemoPromise failed with error: ' + err);
+    console.error(`deleteAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5685,11 +5685,11 @@ async function example() {
       if (err === undefined) {
         console.info('album setCoverUri successfully');
       } else {
-        console.error('album setCoverUri failed with error: ' + err);
+        console.error(`album setCoverUri failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('setCoverUriDemoCallback failed with error: ' + err);
+    console.error(`setCoverUriDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5752,10 +5752,10 @@ async function example() {
     album.setCoverUri(asset.uri).then(() => {
       console.info('album setCoverUri successfully');
     }).catch((err: BusinessError) => { 
-      console.error('album setCoverUri failed with error: ' + err);
+      console.error(`album setCoverUri failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('setCoverUriDemoPromise failed with error: ' + err);
+    console.error(`setCoverUriDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```

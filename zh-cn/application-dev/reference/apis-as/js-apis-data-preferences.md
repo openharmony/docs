@@ -563,7 +563,6 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
