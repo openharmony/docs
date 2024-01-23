@@ -90,7 +90,7 @@ createWebSocket(): WebSocket
 **示例：**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws = webSocket.createWebSocket();
 ```
 
 ## <span name="websocket">WebSocket<sup>6+</sup></span>
