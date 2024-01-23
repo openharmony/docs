@@ -48,25 +48,35 @@ import font from '@ohos.font';
 @Entry
 @Component
 struct FontExample {
-  @State message: string = '你好，世界'
+  @State message: string = 'Hello World'
+
+  // iconFont示例，假设****为指定icon的Unicode
+  @State unicode: string = '\u****'
+  @State codePoint: string = String.fromCharCode(0x****)
 
   aboutToAppear() {
     // familyName和familySrc都支持string
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf' // font文件与pages目录同级
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
     })
 
     // familyName和familySrc都支持系统Resource
     font.registerFont({
-      familyName: $r('app.string.mediumFamilyName'),
-      familySrc: $r('app.string.mediumFamilySrc')
+      familyName: $r('app.string.font_name'),
+      familySrc: $r('app.string.font_src')
     })
 
     // familySrc支持RawFile
     font.registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
+    })
+
+    // 注册iconFont
+    font.registerFont({
+      familyName: 'iconFont',
+      familySrc: '/font/iconFont.ttf'
     })
   }
 
@@ -76,7 +86,16 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
-        .height('100%')
+      
+      // 使用iconFont的两种方式
+      Text(this.unicode)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('iconFont')
+      Text(this.codePoint)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('iconFont')
     }.width('100%')
   }
 }
