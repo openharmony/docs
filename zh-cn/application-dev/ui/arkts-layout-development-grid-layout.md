@@ -101,27 +101,23 @@ GridRow中通过columns设置栅格布局的总列数。
 
 - columns默认值为12，即在未设置columns时，任何断点下，栅格布局被分成12列。
 
-
   ```ts
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown,Color.Red, Color.Orange, Color.Yellow, Color.Green];
   ...
   GridRow() {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
+      ForEach(this.bgColors, (item: Color, index?: number | undefined) => {
         GridCol() {
           Row() {
-              Text(`${index + 1}`)
+            Text(`${index}`)
           }.width('100%').height('50')
         }.backgroundColor(item)
-      }
-    })
-  }           
+      })
+    } 
   ```
 
-  ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
+    ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
 
 - 当columns为自定义值，栅格布局在任何尺寸设备下都被分为columns列。下面分别设置栅格布局列数为4和8，子元素默认占一列，效果如下：
-
 
   ```ts
   class CurrTmp{
@@ -135,73 +131,67 @@ GridRow中通过columns设置栅格布局的总列数。
   @State currentBp: string = 'unknown';
   ...
   Row() {
-    GridRow({ columns: 4 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
+      GridRow({ columns: 4 }) {
+        ForEach(this.bgColors, (item: Color, index?: number | undefined) => {
           GridCol() {
             Row() {
-              Text(`${index.toString() + 1}`)
+              Text(`${index}`)
             }.width('100%').height('50')
           }.backgroundColor(item)
-        }
+        })
+      }
+      .width('100%').height('100%')
+      .onBreakpointChange((breakpoint: string) => {
+        let CurrSet: CurrTmp = new CurrTmp()
+        CurrSet.set(breakpoint)
       })
     }
-    .width('100%').height('100%')
-    .onBreakpointChange((breakpoint:string) => {
-      let CurrSet:CurrTmp = new CurrTmp()
-      CurrSet.set(breakpoint)
-    })
-  }
-  .height(160)
-  .border(BorderWH)
-  .width('90%')
-
-  Row() {
-    GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
+    .margin(10)
+    .height(160)
+    .border(BorderWH)
+    .width('90%')
+  
+   Row() {
+      GridRow({ columns: 8 }) {
+        ForEach(this.bgColors, (item: Color, index?: number | undefined) => {
           GridCol() {
             Row() {
-              Text(`${index.toString() + 1}`)
+              Text(`${index}`)
             }.width('100%').height('50')
           }.backgroundColor(item)
-        }
+        })
+      }
+      .width('100%').height('100%')
+      .onBreakpointChange((breakpoint: string) => {
+        let CurrSet: CurrTmp = new CurrTmp()
+        CurrSet.set(breakpoint)
       })
     }
-    .width('100%').height('100%')
-    .onBreakpointChange((breakpoint:string) => {
-      let CurrSet:CurrTmp = new CurrTmp()
-      CurrSet.set(breakpoint)
-    })
-  }
-  .height(160)
-  .border(BorderWH)
-  .width('90%')
+    .height(160)
+    .border(BorderWH)
+    .width('90%')
   ```
 
-  ![zh-cn_image_0000001511421268](figures/zh-cn_image_0000001511421268.png)
+    ![zh-cn_image_0000001511421268](figures/zh-cn_image_0000001511421268.png)
 
 - 当columns类型为GridRowColumnOption时，支持下面六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的总列数设置，各个尺寸下数值可不同。
-
 
   ```ts
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
-        GridCol() {
-          Row() {
-            Text(`${index.toString() + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
-      }
+      GridCol() {
+        Row() {
+          Text(`${index}`)
+        }.width('100%').height('50')
+      }.backgroundColor(item)
     })
   }
   ```
 
   ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060689.gif)
 
-  若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8
+若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8
 
 
 ### 排列方向
