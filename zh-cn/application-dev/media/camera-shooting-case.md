@@ -112,7 +112,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   await cameraInput.open();
 
   // 获取支持的模式类型
-  let modes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
   let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
   if (!isSupportPhotoMode) {
     console.error('photo mode not support');
@@ -170,7 +170,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   //创建会话
   let photoSession: camera.PhotoSession | undefined = undefined;
   try {
-    photoSession = cameraManager.createSession(camera.SceneMode..NORMAL_PHOTO);
+    photoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to create the photoSession instance. errorCode = ' + err.code);

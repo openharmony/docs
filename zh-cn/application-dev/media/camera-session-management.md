@@ -21,13 +21,13 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 调用cameraManager类中的[createSession](../reference/apis/js-apis-camera.md#createsession11)方法创建一个会话。
+2. 调用cameraManager类中的[createCaptureSession](../reference/apis/js-apis-camera.md#createcapturesessiondeprecated)方法创建一个会话。
      
    ```ts
    function getPhotoSession(cameraManager: camera.CameraManager): camera.PhotoSession | undefined {
      let photoSession: camera.PhotoSession | undefined = undefined;
      try {
-       photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+       photoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to create the photoSession instance. error: ${JSON.stringify(err)}`);

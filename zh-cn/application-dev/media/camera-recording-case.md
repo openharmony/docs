@@ -154,7 +154,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   //创建会话
   let videoSession: camera.VideoSession | undefined = undefined;
   try {
-    videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
+    videoSession = cameraManager.createCaptureSession() as camera.VideoSession;
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the VideoSession instance. error: ${JSON.stringify(err)}`);
