@@ -131,7 +131,7 @@ By default, parameters in the \@Builder decorated functions are passed by value.
 @Entry
 @Component
 struct Parent {
-  label: string = 'Hello';
+  @State label: string = 'Hello';
   build() {
     Column() {
       ABuilder(this.label)
