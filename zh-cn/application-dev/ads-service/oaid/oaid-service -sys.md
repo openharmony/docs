@@ -14,8 +14,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [getOAID()](../../reference/apis/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
+| [resetOAID()](../../reference/apis/js-apis-oaid.md#identifierresetoaid):&nbsp;void | 重置OAID，此接口为系统接口。 |
 
 
 ### 开发步骤
@@ -59,22 +58,15 @@
     }
    ```
    
-2. 调用getOAID方法获取OAID信息。示例代码如下所示：
+2. 调用resetOAID方法重置OAID信息，此接口为系统接口。示例代码如下所示：
    ```
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
-   import { BusinessError } from '@ohos.base';
-    
+   
+   // 重置OAID
    try {
-     identifier.getOAID((err: BusinessError, data: string) => {
-       if (err.code) {
-         hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
-       } else {
-         const oaid: string = data;
-         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
-       }
-      });
+     identifier.resetOAID();
    } catch (err) {
-     hilog.error(0x0000, 'testTag', '%{public}s', `get oaid catch error: ${err.code} ${err.message}`);
+     hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```
