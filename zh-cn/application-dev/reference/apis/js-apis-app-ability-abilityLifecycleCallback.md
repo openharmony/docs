@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)
 
-AbilityLifecycleCallback模块提供应用上下文[ApplicationContext](js-apis-inner-application-applicationContext.md)的生命周期发生变化时触发相应回调的能力，包括[onAbilityCreate](#abilitylifecyclecallbackonabilitycreate)、[onWindowStageCreate](#abilitylifecyclecallbackonwindowstagecreate)、[onWindowStageActive](#abilitylifecyclecallbackonwindowstageactive)、[onWindowStageInactive](#abilitylifecyclecallbackonwindowstageinactive)、[onWindowStageDestroy](#abilitylifecyclecallbackonwindowstagedestroy)、[onAbilityDestroy](#abilitylifecyclecallbackonabilitydestroy)、[onAbilityForeground](#abilitylifecyclecallbackonabilityforeground)、[onAbilityBackground](#abilitylifecyclecallbackonabilitybackground)、[onAbilityContinue](#abilitylifecyclecallbackonabilitycontinue)方法。
+AbilityLifecycleCallback模块提供应用上下文[ApplicationContext](js-apis-inner-application-applicationContext.md)的生命周期发生变化时触发相应回调的能力。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@ import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback
 
 ## AbilityLifecycleCallback.onAbilityCreate
 
-onAbilityCreate(ability: UIAbility): void;
+onAbilityCreate(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability创建时触发回调。
 
@@ -28,18 +28,12 @@ onAbilityCreate(ability: UIAbility): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');
-    }
-    ...
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onWindowStageCreate
 
-onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
 
@@ -53,17 +47,12 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onWindowStageCreate(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageCreate.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onWindowStageActive
 
-onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
 
@@ -77,17 +66,12 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onWindowStageActive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageActive.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onWindowStageInactive
 
-onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
 
@@ -101,17 +85,12 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onWindowStageInactive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageInactive.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
 
-onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
+onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
 
@@ -125,17 +104,12 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onWindowStageDestroy(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onAbilityDestroy
 
-onAbilityDestroy(ability: UIAbility): void;
+onAbilityDestroy(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability销毁时触发回调。
 
@@ -148,17 +122,12 @@ onAbilityDestroy(ability: UIAbility): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onAbilityDestroy(ability){
-        console.log('AbilityLifecycleCallback onAbilityDestroy.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onAbilityForeground
 
-onAbilityForeground(ability: UIAbility): void;
+onAbilityForeground(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
 
@@ -171,17 +140,12 @@ onAbilityForeground(ability: UIAbility): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onAbilityForeground(ability){
-        console.log('AbilityLifecycleCallback onAbilityForeground.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onAbilityBackground
 
-onAbilityBackground(ability: UIAbility): void;
+onAbilityBackground(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
 
@@ -194,17 +158,12 @@ onAbilityBackground(ability: UIAbility): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onAbilityBackground(ability){
-        console.log('AbilityLifecycleCallback onAbilityBackground.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback.onAbilityContinue
 
-onAbilityContinue(ability: UIAbility): void;
+onAbilityContinue(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability迁移时触发回调。
 
@@ -217,13 +176,8 @@ onAbilityContinue(ability: UIAbility): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
-```ts
-let abilityLifecycleCallback =  {
-    onAbilityContinue(ability){
-        console.log('AbilityLifecycleCallback onAbilityContinue.');
-    }
-};
-```
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
 ## AbilityLifecycleCallback使用
 
@@ -233,7 +187,6 @@ MyFirstAbility.ts
 应用的第一个Ability
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 // 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
