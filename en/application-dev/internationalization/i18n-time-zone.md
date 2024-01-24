@@ -41,14 +41,20 @@ The local time of different countries and regions varies according to their long
    // List of time zone city IDs supported by the system
    let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
    // Traverse the list of time zone city IDs.
-   let timezoneList = []; // Time zone list presented to the user
+   let timezoneList: Array<object> = []; // Time zone list displayed to the user
+   class Item {
+       cityDisplayName : string = "";
+       timezoneId : string = "";
+       offset : string = "";
+       cityId : string = ""
+   }
    for (let i =0 ; i < cityIdArray.length ; i++) {
        let cityId = cityIdArray[i];
-       let timezone = I18n.TimeZone.getTimezoneFromCity(cityID: string); //: TimeZone object corresponding to the city ID
-       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityID: string, locale: string); // Localized city name
+       let timezone = I18n.TimeZone.getTimezoneFromCity(cityId); // TimeZone object corresponding to the city ID
+       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // Localized city name
        let timestamp = (new Date()).getTime()
-       let item = {
-           cityDisplayName : cityDisplayName ,
+       let item : Item = {
+           cityDisplayName : cityDisplayName,
            timezoneId : timezone.getID(),
            offset : 'GMT'+ (timezone.getOffset(timestamp) / 3600*1000),
            cityId : cityId 
@@ -65,7 +71,7 @@ The local time of different countries and regions varies according to their long
 
 ### Dual-Clock Application
 
-1. Import the **i18n** and **intl** modules.
+1. Import the **i18n** module.
    ```ts
    import I18n from '@ohos.i18n';
    import Intl from '@ohos.intl';
