@@ -88,23 +88,23 @@ The following figure illustrates the decorators. For details, see [Component Sta
 ![en-us_image_0000001502704640](figures/en-us_image_0000001502704640.png)
 
 
-In the preceding figure, the decorators in the Components area are used for state management at the component level, while others are used for state management at the application level. You can use @StorageLink/@LocalStorageLink and @StorageProp/@LocalStorageProp to implement two-way and one-way synchronization of the application and component state.
+In the preceding figure, the decorators in the Components area are used for state management at the component level, while others are used for state management at the application level. You can use [@StorageLink](arkts-appstorage.md#storagelink)/[@LocalStorageLink](arkts-localstorage.md#localstoragelink) to implement two-way synchronization of the application and component state, and [@StorageProp](arkts-appstorage.md#storageprop)/[@LocalStorageProp](arkts-localstorage.md#localstorageprop) to implement one-way synchronization.
 
 
 Decorators for [component state management](arkts-state.md):
 
 
-- \@State: An \@State decorated variable holds the state of the owning component. It can be the source of one- or two-way synchronization with child components. When the variable changes, the dependent component will be updated. 
+- [\@State](arkts-state.md): An \@State decorated variable holds the state of the owning component. It can be the source of one- or two-way synchronization with child components. When the variable changes, the dependent component will be updated. 
 
-- \@Prop: An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
+- [\@Prop](arkts-prop.md): An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
 
-- \@Link: An \@Link decorated variable creates two-way synchronization with a variable of its parent component. When the @Link decorated variable has its value changed, its source is updated as well; when the source updates, the @Link decorated variable will do as well.
+- [\@Link](arkts-link.md): An \@Link decorated variable creates two-way synchronization with a variable of its parent component. When the @Link decorated variable has its value changed, its source is updated as well; when the source updates, the @Link decorated variable will do as well.
 
-- \@Provide/\@Consume: Variables decorated by \@Provide/\@Consume are used for data synchronization across component levels. The components can be bound to the variables through aliases or attribute names. Data does not need to be passed through the named parameter mechanism.
+- [\@Provide/\@Consume](arkts-provide-and-consume.md): Variables decorated by \@Provide/\@Consume are used for data synchronization across component levels. The components can be bound to the variables through aliases or attribute names. Data does not need to be passed through the named parameter mechanism.
 
-- \@Observed: \@Observed is a class decorator. You can use it to decorate the class that has multiple levels of nested objects or arrays to be observed. Note that \@Observed must be used with \@ObjectLink for two-way synchronization or with \@Prop for one-way synchronization.
+- [\@Observed](arkts-observed-and-objectlink.md): \@Observed is a class decorator. You can use it to decorate the class that has multiple levels of nested objects or arrays to be observed. Note that \@Observed must be used with \@ObjectLink for two-way synchronization or with \@Prop for one-way synchronization.
 
-- \@ObjectLink: An \@ObjectLink decorated variable, when used with an \@Observed decorated class of the parent component, is for two-way data synchronization in scenarios involving multiple levels of nested objects or arrays in the class.
+- [\@ObjectLink](arkts-observed-and-objectlink.md): An \@ObjectLink decorated variable is used with an \@Observed decorated class of the parent component for two-way data synchronization. It is applicable in scenarios involving multiple levels of nested objects or arrays in the class.
 
 > **NOTE**
 >
@@ -116,14 +116,14 @@ Decorators for [application state management](arkts-state.md):
 
 - AppStorage: a special LocalStorage singleton instance. It is an application-wide database bound to the application process and can be linked to components through the [@StorageProp](arkts-appstorage.md#storageprop) and [@StorageLink](arkts-appstorage.md#storagelink) decorators.
 
-- AppStorage is the hub for application state. Data that needs to interact with components (UI) is stored in AppStorage, including PersistentStorage and Environment data. The UI accesses the data through the decorators or APIs provided by AppStorage.
+- AppStorage is the hub for application state. Data that needs to interact with components (UI) is stored in AppStorage, including [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md) data. The UI accesses the data through the decorators or APIs provided by AppStorage.
 
 - LocalStorage: an in-memory "database" for the application state declared by the application and typically used to share state across pages. It can be linked to the UI through the [@LocalStorageProp](arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](arkts-localstorage.md#localstoragelink) decorators.
 
 
 ### Other State Management Features
 
-\@Watch: listens for the changes of state variables.
+[\@Watch](arkts-watch.md): listens for the changes of state variables.
 
 
 [$$operator](arkts-two-way-sync.md): provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
