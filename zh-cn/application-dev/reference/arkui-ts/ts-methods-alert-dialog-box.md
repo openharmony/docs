@@ -23,7 +23,7 @@
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹窗副标题。 |
 | message    | [ResourceStr](ts-types.md#resourcestr) | 是    | 弹窗内容。 |
 | autoCancel | boolean | 否   | 点击遮障层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。<br>默认值：true |
-| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 确认按钮的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击button是否响应，true表示button可以响应，false表示button不可以响应。<br />默认值：true。<br />defaultFocus：设置button是否是默认焦点，true表示button是默认焦点，false表示button不是默认焦点。<br />默认值：false。<br />style：设置button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：按钮文本内容。<br />fontColor：按钮文本颜色。<br />backgroundColor：按钮背景颜色。<br />action：&nbsp;按钮选中时的回调。 |
+| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void      | 否     | 点击遮障层关闭dialog时的回调。 |
 | alignment  | [DialogAlignment](#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;} |
@@ -37,8 +37,8 @@
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹窗副标题。 |
 | message         | [ResourceStr](ts-types.md#resourcestr) | 是     | 弹窗内容。              |
 | autoCancel      | boolean           | 否   | 点击遮障层时，是否关闭弹窗。<br>默认值：true      |
-| primaryButton   | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | 确认按钮的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击button是否响应。<br />默认值：true。<br />defaultFocus：设置button是否是默认焦点。<br />默认值：false。<br />style：设置button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：按钮文本内容。<br />fontColor：按钮文本颜色。<br />backgroundColor：按钮背景颜色。<br />action：&nbsp;按钮选中时的回调。 |
-| secondaryButton | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否  | 确认按钮的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击button是否响应。<br />默认值：true。<br />defaultFocus：设置button是否是默认焦点。<br />默认值：false。<br />style：设置button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：按钮文本内容。<br />fontColor：按钮文本颜色。<br />backgroundColor：按钮背景颜色。<br />action：&nbsp;按钮选中时的回调。 |
+| primaryButton   | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击Button是否响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
+| secondaryButton | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击Button是否响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点。<br />默认值：false。<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
 | cancel          | ()&nbsp;=&gt;&nbsp;void      | 否  | 点击遮障层关闭dialog时的回调。         |
 | alignment       | [DialogAlignment](#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset          | [Offset](ts-types.md#offset) | 否  | 弹窗相对alignment所在位置的偏移量。 |
@@ -63,13 +63,13 @@
 ## AlertDialogButtonOptions<sup>10+</sup>对象说明
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
 | ------------------| ---------------------- | ------------ | --------------------- |
-| enabled           | boolean | 否     | 点击button是否响应，默认值true。              |
-| defaultFocus           | boolean | 否     | 设置button是否是默认焦点，默认值false。              |
-| style           | [DialogButtonStyle](#dialogbuttonstyle10枚举说明) | 否     | 设置button的风格样式，默认值DialogButtonStyle.DEFAULT。              |
-| value           | [ResourceStr](ts-types.md#resourcestr) | 是     | 按钮的文本内容，若值为null，则该按钮不显示。              |
-| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | 按钮的文本颜色。              |
-| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | 按钮背景颜色。              |
-| action           | 	() => void | 是     | 按钮选中时的回调。              |
+| enabled           | boolean | 否     | 点击Button是否响应，默认值true。        |
+| defaultFocus           | boolean | 否     | 设置Button是否是默认焦点，默认值false。        |
+| style           | [DialogButtonStyle](#dialogbuttonstyle10枚举说明) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。        |
+| value           | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。        |
+| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。        |
+| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。        |
+| action           | 	() => void | 是     | Button选中时的回调。        |
 
 ## DialogButtonDirection<sup>10+</sup>枚举说明
 | 名称                       | 描述      |
