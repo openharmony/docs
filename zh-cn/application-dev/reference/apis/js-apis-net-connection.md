@@ -370,7 +370,7 @@ connection.setAppHttpProxy({
 } as connection.HttpProxy);
 ```
 
-**预置锁定证书PIN**
+**预置锁定证书PIN:**
 
 证书PIN是对证书文件用sha256算法计算出的hash值。 
 对于证书server.pem, 可以用如下openssl命令计算它的PIN:
@@ -384,18 +384,18 @@ cat server.pem \
 | openssl enc -base64
 ```
 
-**预置应用级证书**
+**预置应用级证书:**
 
 直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
 
-**预置JSON配置文件**
+**预置JSON配置文件:**
 
 预置的证书与网络服务器的对应关系通过JSON配置。 
 配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
 
-**JSON配置文件：**
+**JSON配置文件:**
 
-证书锁定的配置例子如下：
+证书锁定的配置例子如下:
 ```json
 {
   "network-security-config": {	
@@ -420,7 +420,7 @@ cat server.pem \
 }
 ```
 
-应用级证书的配置例子如下：
+应用级证书的配置例子如下:
 ```json
 {
   "network-security-config": {
@@ -445,6 +445,47 @@ cat server.pem \
 
 ```
 
+**各个字段含义:**
+
+**network-security-config(object:网络安全配置)**
+
+可包含0或者1个base-config
+
+必须包含1个domain-config
+
+**base-config(object:指示应用程序范围的安全配置)**
+
+必须包含1个trust-anchors
+
+**domain-config(object:指示每个域的安全配置)**
+
+必须包含1个domain
+
+必须包含1个trust-anchors
+
+可包含0个或者1个pin-set
+
+**trust-anchors(array:受信任的CA)**
+
+item必须包含1个以上的certificates(string:CA证书路径)
+
+**domain(array:域)**
+
+item必须包含1个以上的name(string:指示域名)
+
+item可以包含0或者1个include-subdomains(boolean:指示规则是否适用于子域)
+
+**pin-set(object:证书PIN设置)**
+
+必须包含1个pin
+
+必须包含1个expiration(string:指示证书PIN的过期时间)
+
+**pin(array:证书PIN)**
+
+必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)
+
+必须包含1个digest(string:指示公钥PIN)
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
