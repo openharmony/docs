@@ -818,6 +818,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed               |
+| 24700101                 |  MAll unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1379,7 +1380,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyNeeded'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1449,7 +1450,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1519,7 +1520,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1589,7 +1590,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdated'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
 
@@ -1659,7 +1660,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyChanged'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
 
