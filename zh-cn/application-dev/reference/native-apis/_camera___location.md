@@ -17,9 +17,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [latitude](#latitude) | 纬度。 | 
-| [longitude](#longitude) | 经度。 | 
-| [altitude](#altitude) | 海拔高度，单位为像素。 | 
+| double [latitude](#latitude) | 纬度。  | 
+| double [longitude](#longitude) | 经度。  | 
+| double [altitude](#altitude) | 海拔高度，单位为像素。  | 
 
 
 ## 结构体成员变量说明
@@ -30,9 +30,7 @@
 ```
 double Camera_Location::altitude
 ```
-
 **描述**
-
 海拔高度，单位为像素。
 
 
@@ -41,9 +39,7 @@ double Camera_Location::altitude
 ```
 double Camera_Location::latitude
 ```
-
 **描述**
-
 纬度。
 
 
@@ -52,7 +48,5 @@ double Camera_Location::latitude
 ```
 double Camera_Location::longitude
 ```
-
 **描述**
-
 经度。

@@ -5,9 +5,7 @@
 
 元数据输出的回调。
 
-参见
-
-[OH_MetadataOutput_RegisterCallback](_o_h___camera.md#oh_metadataoutput_registercallback)
+参见[OH_MetadataOutput_RegisterCallback](_o_h___camera.md#oh_metadataoutput_registercallback)。
 
 **起始版本：** 11
 
@@ -21,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onMetadataObjectAvailable](#onmetadataobjectavailable) | 此回调将调用元数据输出结果数据。 | 
-| [onError](#onerror) | 元数据输出错误事件。 | 
+| [OH_MetadataOutput_OnMetadataObjectAvailable](_o_h___camera.md#oh_metadataoutput_onmetadataobjectavailable)[onMetadataObjectAvailable](#onmetadataobjectavailable) | 此回调将调用元数据输出结果数据。 | 
+| [OH_MetadataOutput_OnError](_o_h___camera.md#oh_metadataoutput_onerror)[onError](#onerror) | 元数据输出错误事件。 | 
 
 
 ## 结构体成员变量说明

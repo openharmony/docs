@@ -17,9 +17,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [type](#type) | 元数据对象类型。 | 
-| [timestamp](#timestamp) | 元数据对象时间戳（以毫秒为单位）。 | 
-| \*[boundingBox](#boundingbox) | 检测到的元数据对象的轴对齐边界框。 | 
+| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype)[type](#type) | 元数据对象类型。  | 
+| int64_t [timestamp](#timestamp) | 元数据对象时间戳（以毫秒为单位）。  | 
+| [Camera_Rect](_camera___rect.md) \* [boundingBox](#boundingbox) | 检测到的元数据对象的轴对齐边界框。  | 
 
 
 ## 结构体成员变量说明
@@ -30,9 +30,7 @@
 ```
 Camera_Rect* Camera_MetadataObject::boundingBox
 ```
-
 **描述**
-
 检测到的元数据对象的轴对齐边界框。
 
 
@@ -41,9 +39,7 @@ Camera_Rect* Camera_MetadataObject::boundingBox
 ```
 int64_t Camera_MetadataObject::timestamp
 ```
-
 **描述**
-
 元数据对象时间戳（以毫秒为单位）。
 
 
@@ -52,7 +48,5 @@ int64_t Camera_MetadataObject::timestamp
 ```
 Camera_MetadataObjectType Camera_MetadataObject::type
 ```
-
 **描述**
-
 元数据对象类型。

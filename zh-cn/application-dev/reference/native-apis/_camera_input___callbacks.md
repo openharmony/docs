@@ -5,9 +5,7 @@
 
 相机输入错误事件的回调。
 
-参见
-
-[OH_CameraInput_RegisterCallback](_o_h___camera.md#oh_camerainput_registercallback)
+参见[OH_CameraInput_RegisterCallback](_o_h___camera.md#oh_camerainput_registercallback)。
 
 **起始版本：** 11
 
@@ -21,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onError](#onerror) | 相机输入错误事件。 | 
+| [OH_CameraInput_OnError](_o_h___camera.md#oh_camerainput_onerror)[onError](#onerror) | 相机输入错误事件。 | 
 
 
 ## 结构体成员变量说明

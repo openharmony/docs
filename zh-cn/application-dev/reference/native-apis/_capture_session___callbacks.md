@@ -5,9 +5,7 @@
 
 捕获会话的回调。
 
-参见
-
-[OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback)
+参见[OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_capturesession_registercallback)。
 
 **起始版本：** 11
 
@@ -21,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onFocusStateChange](#onfocusstatechange) | 捕获会话焦点状态更改事件。 | 
-| [onError](#onerror) | 捕获会话错误事件。 | 
+| [OH_CaptureSession_OnFocusStateChange](_o_h___camera.md#oh_capturesession_onfocusstatechange)[onFocusStateChange](#onfocusstatechange) | 捕获会话焦点状态更改事件。 | 
+| [OH_CaptureSession_OnError](_o_h___camera.md#oh_capturesession_onerror)[onError](#onerror) | 捕获会话错误事件。 | 
 
 
 ## 结构体成员变量说明

@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [format](#format) | 相机格式。 | 
-| [size](#size) | 图片大小。 | 
+| [Camera_Format](_o_h___camera.md#camera_format)[format](#format) | 相机格式。  | 
+| [Camera_Size](_camera___size.md)[size](#size) | 图片大小。  | 
 
 
 ## 结构体成员变量说明
@@ -29,9 +29,7 @@
 ```
 Camera_Format Camera_Profile::format
 ```
-
 **描述**
-
 相机格式。
 
 
@@ -40,7 +38,5 @@ Camera_Format Camera_Profile::format
 ```
 Camera_Size Camera_Profile::size
 ```
-
 **描述**
-
 图片大小。
