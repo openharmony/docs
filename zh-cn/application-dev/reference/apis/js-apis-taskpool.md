@@ -684,7 +684,7 @@ class DeriveClass extends BaseClass {
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
-  let baseInstance1: BaseClass = arr[0];
+  let baseInstance1 = arr[0];
   console.info("sendable: str1 is: " + baseInstance1.str1);
   baseInstance1.SetNum = 100;
   console.info("sendable: num1 is: " + baseInstance1.GetNum);
