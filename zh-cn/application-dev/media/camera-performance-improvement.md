@@ -42,7 +42,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.PhotoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
+  const session: camera.CaptureSession = cameraManager.createCaptureSession();
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -93,7 +93,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: 
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建PhotoSession实例
-  let photoSession: camera.PhotoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
+  let photoSession: camera.CaptureSession = cameraManager.createCaptureSession();
   // 开始配置会话
   photoSession.beginConfig();
   // 把CameraInput加入到会话

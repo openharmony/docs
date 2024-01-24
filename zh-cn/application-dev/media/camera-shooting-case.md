@@ -25,13 +25,15 @@ import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
 let context = getContext(this);
 
 async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-  let photoAccessHelper: PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  let photoAsset: PhotoAsset = await photoAccessHelper.createAsset(testFileName);
+  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let options: PhotoAccessHelper.CreateOptions = {
+    title: Date.now().toString()
+  };
+  let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
   //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
-  const fd = await photoAsset.open('rw');
-  fs.write(fd, buffer);
-  await photoAsset.close(fd);
+  let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  await fs.write(file.fd, buffer);
+  fs.closeSync(file);
   img.release(); 
 }
 
@@ -168,12 +170,12 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   setPhotoOutputCb(photoOutput);
 
   //创建会话
-  let photoSession: camera.PhotoSession | undefined = undefined;
+  let photoSession: camera.CaptureSession | undefined = undefined;
   try {
-    photoSession = cameraManager.createCaptureSession() as camera.PhotoSession;
+    photoSession = cameraManager.createCaptureSession();
   } catch (error) {
     let err = error as BusinessError;
-    console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
+    console.error('Failed to create the session instance. errorCode = ' + err.code);
   }
   if (photoSession === undefined) {
     return;
