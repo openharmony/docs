@@ -765,7 +765,7 @@ struct OH_AVScreenCapture* OH_AVScreenCapture_Create (void )
 
 **描述：**
 
-实例化对象，创建OH_AVScreenCapture。可以通过调用[OH_AVScreenCapture_Release](#OH_AVScreenCapture_Release)释放实例。
+实例化对象，创建OH_AVScreenCapture。可以通过调用[OH_AVScreenCapture_Release](#oh_avscreencapture_release)释放实例。
 
 **系统能力：**
 
@@ -812,7 +812,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Release (struct OH_AVScreenCaptur
 
 **描述：**
 
-释放创建的OH_AVScreenCapture实例，对应[OH_AVScreenCapture_Create](#OH_AVScreenCapture_Create)。
+释放创建的OH_AVScreenCapture实例，对应[OH_AVScreenCapture_Create](#oh_avscreencapture_create)。
 
 **参数：**
 
@@ -968,7 +968,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture (struct OH_AVSc
 
 **描述：**
 
-结束录屏，与[OH_AVScreenCapture_StartScreenCapture](#OH_AVScreenCapture_StartScreenCapture)配合使用。调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。
+结束录屏，与[OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture)配合使用。调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。
 
 **参数：**
 

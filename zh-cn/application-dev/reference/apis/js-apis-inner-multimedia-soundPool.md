@@ -26,7 +26,7 @@ import audio from '@ohos.multimedia.audio';
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#AudioRendererRate10)。 |
+| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#audiorendererrate8)。 |
 | leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
 | rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
