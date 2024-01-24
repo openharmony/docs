@@ -14,112 +14,112 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 ![AudioRenderer status change](figures/audiorenderer-status-change.png)
 
-在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
+在进行应用开发的过程中，建议开发者通过[on('stateChange')](../reference/apis/js-apis-audio.md#onstatechange-8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
-- prepared状态： 通过调用createAudioRenderer()方法进入到该状态。
+- prepared状态： 通过调用[createAudioRenderer()](../reference/apis/js-apis-audio.md#audiocreateaudiorenderer8)方法进入到该状态。
 
-- running状态： 正在进行音频数据播放，可以在prepared状态通过调用start()方法进入此状态，也可以在paused状态和stopped状态通过调用start()方法进入此状态。
+- running状态： 正在进行音频数据播放，可以在prepared状态通过调用[start()](../reference/apis/js-apis-audio.md#start8)方法进入此状态，也可以在paused状态和stopped状态通过调用[start()](../reference/apis/js-apis-audio.md#start8)方法进入此状态。
 
-- paused状态： 在running状态可以通过调用pause()方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用start()方法继续音频数据播放。
+- paused状态： 在running状态可以通过调用[pause()](../reference/apis/js-apis-audio.md#pause8)方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用[start()](../reference/apis/js-apis-audio.md#start8)方法继续音频数据播放。
 
-- stopped状态： 在paused/running状态可以通过stop()方法停止音频数据的播放。
+- stopped状态： 在paused/running状态可以通过[stop()](../reference/apis/js-apis-audio.md#stop8)方法停止音频数据的播放。
 
-- released状态： 在prepared、paused、stopped等状态，用户均可通过release()方法释放掉所有占用的硬件和软件资源，并且不会再进入到其他的任何一种状态了。
+- released状态： 在prepared、paused、stopped等状态，用户均可通过[release()](../reference/apis/js-apis-audio.md#release8)方法释放掉所有占用的硬件和软件资源，并且不会再进入到其他的任何一种状态了。
 
 ### 开发步骤及注意事项
 
 1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)。
      
-```ts
-import audio from '@ohos.multimedia.audio';
+    ```ts
+    import audio from '@ohos.multimedia.audio';
 
-let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-};
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      channels: audio.AudioChannel.CHANNEL_1,
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    };
 
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-};
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      rendererFlags: 0
+    };
 
-let audioRendererOptions: audio.AudioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-};
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
 
-audio.createAudioRenderer(audioRendererOptions, (err, data) => {
-  if (err) {
-   console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-   return;
-  } else {
-   console.info('Invoke createAudioRenderer succeeded.');
-   let audioRenderer = data;
-  }
-});
-```
+    audio.createAudioRenderer(audioRendererOptions, (err, data) => {
+      if (err) {
+        console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info('Invoke createAudioRenderer succeeded.');
+        let audioRenderer = data;
+      }
+    });
+    ```
 
 2. 调用start()方法进入running状态，开始渲染音频。
      
-```ts
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { BusinessError } from '@ohos.base';
 
-audioRenderer.start((err: BusinessError) => {
-  if (err) {
-    console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Renderer start success.');
-  }
-});
-```
+    audioRenderer.start((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer start success.');
+      }
+    });
+    ```
 
 3. 指定待渲染文件地址，打开文件调用write()方法向缓冲区持续写入音频数据进行渲染播放。如果需要对音频数据进行处理以实现个性化的播放，在写入之前操作即可。
      
-```ts
-import fs from '@ohos.file.fs';
+    ```ts
+    import fs from '@ohos.file.fs';
 
-let context = getContext(this);
-async function read() {
-  const bufferSize: number = await audioRenderer.getBufferSize();
-  let path = context.filesDir;
-  
-  const filePath = path + '/voice_call_data.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  let buf = new ArrayBuffer(bufferSize);
-  let readsize: number = await fs.read(file.fd, buf);
-  let writeSize: number = await audioRenderer.write(buf);
-}
-```
+    let context = getContext(this);
+    async function read() {
+      const bufferSize: number = await audioRenderer.getBufferSize();
+      let path = context.filesDir;
+      
+      const filePath = path + '/voice_call_data.wav';
+      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+      let buf = new ArrayBuffer(bufferSize);
+      let readsize: number = await fs.read(file.fd, buf);
+      let writeSize: number = await audioRenderer.write(buf);
+    }
+    ```
 
 4. 调用stop()方法停止渲染。
      
-```ts
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { BusinessError } from '@ohos.base';
 
-audioRenderer.stop((err: BusinessError) => {
-  if (err) {
-    console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Renderer stopped.');
-  }
-});
-```
+    audioRenderer.stop((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer stopped.');
+      }
+    });
+    ```
 
 5. 调用release()方法销毁实例，释放资源。
      
-```ts
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import { BusinessError } from '@ohos.base';
 
-audioRenderer.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Renderer released.');
-  } 
-});
-```
+    audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer released.');
+      } 
+    });
+    ```
 
 ### 完整示例
 
