@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_CameraManager_StatusCallback](_o_h___camera.md#oh_cameramanager_statuscallback)[onCameraStatus](#oncamerastatus) | 相机状态更改事件。 | 
+| [OH_CameraManager_StatusCallback](_o_h___camera.md#oh_cameramanager_statuscallback) [onCameraStatus](#oncamerastatus) | 相机状态更改事件。 | 
 
 
 ## 结构体成员变量说明

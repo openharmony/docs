@@ -19,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoOutput_OnFrameStart](_o_h___camera.md#oh_videooutput_onframestart)[onFrameStart](#onframestart) | 录像输出帧启动事件。 | 
-| [OH_VideoOutput_OnFrameEnd](_o_h___camera.md#oh_videooutput_onframeend)[onFrameEnd](#onframeend) | 录像输出帧结束事件。 | 
-| [OH_VideoOutput_OnError](_o_h___camera.md#oh_videooutput_onerror)[onError](#onerror) | 录像输出错误事件。 | 
+| [OH_VideoOutput_OnFrameStart](_o_h___camera.md#oh_videooutput_onframestart) [onFrameStart](#onframestart) | 录像输出帧启动事件。 | 
+| [OH_VideoOutput_OnFrameEnd](_o_h___camera.md#oh_videooutput_onframeend) [onFrameEnd](#onframeend) | 录像输出帧结束事件。 | 
+| [OH_VideoOutput_OnError](_o_h___camera.md#oh_videooutput_onerror) [onError](#onerror) | 录像输出错误事件。 | 
 
 
 ## 结构体成员变量说明

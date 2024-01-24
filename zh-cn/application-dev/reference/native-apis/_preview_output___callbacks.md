@@ -19,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_PreviewOutput_OnFrameStart](_o_h___camera.md#oh_previewoutput_onframestart)[onFrameStart](#onframestart) | 预览输出帧开始事件。 | 
-| [OH_PreviewOutput_OnFrameEnd](_o_h___camera.md#oh_previewoutput_onframeend)[onFrameEnd](#onframeend) | 预览输出帧结束事件。 | 
-| [OH_PreviewOutput_OnError](_o_h___camera.md#oh_previewoutput_onerror)[onError](#onerror) | 预览输出错误事件。 | 
+| [OH_PreviewOutput_OnFrameStart](_o_h___camera.md#oh_previewoutput_onframestart) [onFrameStart](#onframestart) | 预览输出帧开始事件。 | 
+| [OH_PreviewOutput_OnFrameEnd](_o_h___camera.md#oh_previewoutput_onframeend) [onFrameEnd](#onframeend) | 预览输出帧结束事件。 | 
+| [OH_PreviewOutput_OnError](_o_h___camera.md#oh_previewoutput_onerror) [onError](#onerror) | 预览输出错误事件。 | 
 
 
 ## 结构体成员变量说明

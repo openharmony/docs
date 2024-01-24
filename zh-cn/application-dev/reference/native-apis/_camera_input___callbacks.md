@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_CameraInput_OnError](_o_h___camera.md#oh_camerainput_onerror)[onError](#onerror) | 相机输入错误事件。 | 
+| [OH_CameraInput_OnError](_o_h___camera.md#oh_camerainput_onerror) [onError](#onerror) | 相机输入错误事件。 | 
 
 
 ## 结构体成员变量说明

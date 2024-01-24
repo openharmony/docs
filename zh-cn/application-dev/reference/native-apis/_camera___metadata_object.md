@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype)[type](#type) | 元数据对象类型。  | 
+| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype) [type](#type) | 元数据对象类型。  | 
 | int64_t [timestamp](#timestamp) | 元数据对象时间戳（以毫秒为单位）。  | 
 | [Camera_Rect](_camera___rect.md) \* [boundingBox](#boundingbox) | 检测到的元数据对象的轴对齐边界框。  | 
 

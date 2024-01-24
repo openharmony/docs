@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Camera_Device](_camera___device.md) \* [camera](#camera) | 相机实例。  | 
-| [Camera_Status](_o_h___camera.md#camera_status)[status](#status) | 当前相机状态。  | 
+| [Camera_Status](_o_h___camera.md#camera_status) [status](#status) | 当前相机状态。  | 
 
 
 ## 结构体成员变量说明

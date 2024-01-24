@@ -19,10 +19,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_PhotoOutput_OnFrameStart](_o_h___camera.md#oh_photooutput_onframestart)[onFrameStart](#onframestart) | 拍照输出帧启动事件。 | 
-| [OH_PhotoOutput_OnFrameShutter](_o_h___camera.md#oh_photooutput_onframeshutter)[onFrameShutter](#onframeshutter) | 拍照输出框快门事件。 | 
-| [OH_PhotoOutput_OnFrameEnd](_o_h___camera.md#oh_photooutput_onframeend)[onFrameEnd](#onframeend) | 拍照输出帧结束事件。 | 
-| [OH_PhotoOutput_OnError](_o_h___camera.md#oh_photooutput_onerror)[onError](#onerror) | 拍照输出错误事件。 | 
+| [OH_PhotoOutput_OnFrameStart](_o_h___camera.md#oh_photooutput_onframestart) [onFrameStart](#onframestart) | 拍照输出帧启动事件。 | 
+| [OH_PhotoOutput_OnFrameShutter](_o_h___camera.md#oh_photooutput_onframeshutter) [onFrameShutter](#onframeshutter) | 拍照输出框快门事件。 | 
+| [OH_PhotoOutput_OnFrameEnd](_o_h___camera.md#oh_photooutput_onframeend) [onFrameEnd](#onframeend) | 拍照输出帧结束事件。 | 
+| [OH_PhotoOutput_OnError](_o_h___camera.md#oh_photooutput_onerror) [onError](#onerror) | 拍照输出错误事件。 | 
 
 
 ## 结构体成员变量说明

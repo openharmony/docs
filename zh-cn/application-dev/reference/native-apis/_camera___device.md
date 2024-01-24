@@ -18,9 +18,9 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | char \* [cameraId](#cameraid) | 相机id属性。  | 
-| [Camera_Position](_o_h___camera.md#camera_position)[cameraPosition](#cameraposition) | 相机位置属性。  | 
-| [Camera_Type](_o_h___camera.md#camera_type)[cameraType](#cameratype) | 相机类型属性。  | 
-| [Camera_Connection](_o_h___camera.md#camera_connection)[connectionType](#connectiontype) | 相机连接类型属性。  | 
+| [Camera_Position](_o_h___camera.md#camera_position) [cameraPosition](#cameraposition) | 相机位置属性。  | 
+| [Camera_Type](_o_h___camera.md#camera_type) [cameraType](#cameratype) | 相机类型属性。  | 
+| [Camera_Connection](_o_h___camera.md#camera_connection) [connectionType](#connectiontype) | 相机连接类型属性。  | 
 
 
 ## 结构体成员变量说明
