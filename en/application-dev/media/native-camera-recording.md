@@ -33,7 +33,7 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
       if (deviceInfo.deviceType == 'phone') {
         Logger.info(this.tag, `deviceType = phone`)
         this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-        this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+        this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
         if (this.cameraDeviceIndex == 1) {
           this.videoConfig.rotation = this.photoRotationMap.rotation270;
         } else {
@@ -63,13 +63,13 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
    ```c++
     // Include the NDK header files in camera_manager.cpp.
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 5. Create a video output stream.
@@ -83,7 +83,7 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
      let aVRecorderProfile: media.AVRecorderProfile = {
        fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
        videoBitrate: 100000, // Video bit rate.
-       videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
+       videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
        videoFrameWidth: 640, // Video frame width.
        videoFrameHeight: 480, // Video frame height.
        videoFrameRate: 30 // Video frame rate.
@@ -135,7 +135,7 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
    ```
 
 7. Stop video recording.
-   
+     
    Call **stop()** of the **AVRecorder** instance to stop recording, and then call **stop()** of the **VideoOutput** instance to stop the video output stream.
    ```ts
      // Stop video recording.

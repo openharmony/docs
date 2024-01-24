@@ -8,7 +8,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 ## Constraints
 
-- Currently, streams cannot be dynamically added. In other words, you cannot call **addOutput** to add streams without calling **session.stop** first.
+-  Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../reference/apis/js-apis-camera.md#addoutput) to add streams without calling [session.stop](../reference/apis/js-apis-camera.md#stop-4) first.
 - After an **ImageReceiver** object processes image data obtained, it must release the image buffer so that the buffer queue of the surface properly rotates.
 
 ## API Calling Process
@@ -35,11 +35,11 @@ The figure below shows the recommended API calling process of the dual-channel p
      console.info('before ImageReceiver check');
      let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
-       console.info('ImageReceiver is ok');
+       console.info('createImageReceiver success');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
-       console.info('ImageReceiver is not ok');
+       console.error('createImageReceiver failed');
      }
      return ImageReceiverSurfaceId;
    }
@@ -56,7 +56,7 @@ The figure below shows the recommended API calling process of the dual-channel p
    struct XComponentPage {
      // Create an XComponentController object.
      mXComponentController: XComponentController = new XComponentController;
-   
+
      build() {
        Flex() {
          // Create an XComponent object.
@@ -81,57 +81,66 @@ The figure below shows the recommended API calling process of the dual-channel p
 
 4. Implement dual-channel preview.
 
-   Call **createPreviewOutput** to transfer the two surface IDs generated in steps 2 and 3 to the camera service to create two preview streams. Develop other processes based on the normal preview process.
+   Call [createPreviewOutput](../reference/apis/js-apis-camera.md#createpreviewoutput) to transfer the two surface IDs generated in steps 2 and 3 to the camera service to create two preview streams. Develop other processes based on the normal preview process.
 
    ```ts
    import camera from '@ohos.multimedia.camera';
 
    async function createDualChannelPreview(cameraManager: camera.CameraManager, XComponentSurfaceId: string, receiver: image.ImageReceiver): Promise<void> {
-     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // Obtain the supported camera devices.
-   
+     // Obtain the supported camera devices.
+     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+
+     // Obtain the supported modes.
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(camerasDevices[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+
      // Obtain the profile object.
-     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0]); // Obtain the profiles of the camera.
+     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0], camera.SceneMode.NORMAL_PHOTO); // Obtain the profiles of the camera.
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
-   
+
      // Preview stream 1.
      let previewProfilesObj: camera.Profile = previewProfiles[0];
-   
+
      // Preview stream 2.
      let previewProfilesObj2: camera.Profile = previewProfiles[0];
-   
+
      // Create an output object for preview stream 1.
      let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(previewProfilesObj, XComponentSurfaceId);
-   
+
      // Create an output object for preview stream 2.
      let imageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
      let previewOutput2: camera.PreviewOutput = cameraManager.createPreviewOutput(previewProfilesObj2, imageReceiverSurfaceId);
-   
+
      // Create a CameraInput object.
      let cameraInput: camera.CameraInput = cameraManager.createCameraInput(camerasDevices[0]);
-   
+
      // Open the camera.
      await cameraInput.open();
-   
+
      // Create a session.
-     let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
-   
+     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+
      // Start configuration for the session.
-     captureSession.beginConfig();
-   
+     photoSession.beginConfig();
+
      // Add the CameraInput object to the session.
-     captureSession.addInput(cameraInput);
-   
+     photoSession.addInput(cameraInput);
+
      // Add preview stream 1 to the session.
-     captureSession.addOutput(previewOutput);
-   
+     photoSession.addOutput(previewOutput);
+
      // Add preview stream 2 to the session.
-     captureSession.addOutput(previewOutput2);
-   
+     photoSession.addOutput(previewOutput2);
+
      // Commit the configuration.
-     await captureSession.commitConfig();
-   
+     await photoSession.commitConfig();
+
      // Start the session.
-     await captureSession.start();
+     await photoSession.start();
    }
    ```
 
@@ -146,15 +155,18 @@ The figure below shows the recommended API calling process of the dual-channel p
      receiver.on('imageArrival', () => {
        receiver.readNextImage((err: BusinessError, nextImage: image.Image) => {
          if (err || nextImage === undefined) {
+           console.error('readNextImage failed');
            return;
          }
          nextImage.getComponent(image.ComponentType.JPEG, (err: BusinessError, imgComponent: image.Component) => {
            if (err || imgComponent === undefined) {
+             console.error('getComponent failed');
              return;
            }
            if (imgComponent.byteBuffer as ArrayBuffer) {
              // do something...
            } else {
+             console.error('byteBuffer is null');
              return;
            }
          })

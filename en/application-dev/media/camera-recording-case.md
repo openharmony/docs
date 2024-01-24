@@ -48,8 +48,16 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     return;
   }
 
+  // Obtain the supported modes.
+  let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let isSupportVideoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_VIDEO) >= 0;
+  if (!isSupportVideoMode) {
+    console.error('video mode not support');
+    return;
+  }
+
   // Obtain the output stream capabilities supported by the camera.
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_VIDEO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
@@ -84,7 +92,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth: 640,
     videoFrameHeight: 480,
     videoFrameRate: 30
@@ -140,28 +148,28 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // Listen for video output errors.
   videoOutput.on('error', (error: BusinessError) => {
-    console.info(`Preview output error code: ${error.code}`);
+    console.error(`Preview output error code: ${error.code}`);
   });
 
   // Create a session.
-  let captureSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.VideoSession | undefined = undefined;
   try {
-    captureSession = cameraManager.createCaptureSession();
+    videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the VideoSession instance. error: ${JSON.stringify(err)}`);
   }
-  if (captureSession === undefined) {
+  if (videoSession === undefined) {
     return;
   }
   // Listen for session errors.
-  captureSession.on('error', (error: BusinessError) => {
-    console.info(`Capture session error code: ${error.code}`);
+  videoSession.on('error', (error: BusinessError) => {
+    console.error(`Video session error code: ${error.code}`);
   });
 
   // Start configuration for the session.
   try {
-    captureSession.beginConfig();
+    videoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
@@ -181,7 +189,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // Listen for camera input errors.
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.info(`Camera input error code: ${error.code}`);
+    console.error(`Camera input error code: ${error.code}`);
   });
 
   // Open the camera.
@@ -194,7 +202,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // Add the camera input stream to the session.
   try {
-    captureSession.addInput(cameraInput);
+    videoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
@@ -214,7 +222,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // Add the preview input stream to the session.
   try {
-    captureSession.addOutput(previewOutput);
+    videoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
@@ -222,7 +230,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // Add a video output stream to the session.
   try {
-    captureSession.addOutput(videoOutput);
+    videoSession.addOutput(videoOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
@@ -230,18 +238,18 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // Commit the session configuration.
   try {
-    await captureSession.commitConfig();
+    await videoSession.commitConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`captureSession commitConfig error: ${JSON.stringify(err)}`);
+    console.error(`videoSession commitConfig error: ${JSON.stringify(err)}`);
   }
 
   // Start the session.
   try {
-    await captureSession.start();
+    await videoSession.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`captureSession start error: ${JSON.stringify(err)}`);
+    console.error(`videoSession start error: ${JSON.stringify(err)}`);
   }
 
   // Start the video output stream.
@@ -279,7 +287,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
 
   // Stop the session.
-  captureSession.stop();
+  videoSession.stop();
 
   // Release the camera input stream.
   cameraInput.close();
@@ -291,9 +299,9 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   videoOutput.release();
 
   // Release the session.
-  captureSession.release();
+  videoSession.release();
 
   // Set the session to null.
-  captureSession = undefined;
+  videoSession = undefined;
 }
 ```
