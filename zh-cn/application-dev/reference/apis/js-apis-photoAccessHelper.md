@@ -8562,7 +8562,7 @@ title参数规格为：
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持照片推荐。      |
-| preselectedUris<sup>11+</sup> | Array<string>  | 否   | 预选择图片的uri数据。 |
+| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
 
 ## PhotoSelectResult
 
