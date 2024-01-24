@@ -370,6 +370,29 @@ connection.setAppHttpProxy({
 } as connection.HttpProxy);
 ```
 
+**预置锁定证书PIN**
+
+证书PIN是对证书文件用sha256算法计算出的hash值。 
+对于证书server.pem, 可以用如下openssl命令计算它的PIN:
+
+```shell
+cat server.pem \
+| sed -n '/-----BEGIN/,/-----END/p' \
+| openssl x509 -noout -pubkey \
+| openssl pkey -pubin -outform der \
+| openssl dgst -sha256 -binary \
+| openssl enc -base64
+```
+
+**预置应用级证书**
+
+直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
+
+**预置JSON配置文件**
+
+预置的证书与网络服务器的对应关系通过JSON配置。 
+配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
+
 **JSON配置文件：**
 
 证书锁定的配置例子如下：
