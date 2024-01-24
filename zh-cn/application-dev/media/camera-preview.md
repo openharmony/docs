@@ -68,15 +68,15 @@
    }
    ```
 
-4. 使能。通过[start](../reference/apis/js-apis-camera.md#start-4)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start-4)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
-   function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
-     previewOutput.start().then(() => {
-       console.info('Callback returned with previewOutput started.');
-     }).catch((err: BusinessError) => {
-       console.error('Failed to previewOutput start '+ err.code);
-     });
+   async function startPreviewOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, session: camera.Session): Promise<void> {
+     session.beginConfig();
+     session.addInput(input);
+     session.addOutput(previewOutput);
+     await session.commitConfig();
+     await session.start();
    }
    ```
 

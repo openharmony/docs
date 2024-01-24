@@ -86,8 +86,16 @@
      avRecorder.prepare(aVRecorderConfig);
      // 创建VideoOutput对象
      let videoOutput: camera.VideoOutput | undefined = undefined;
+     // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
+     let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
+       return profile.size.width === aVRecorderProfile.videoFrameWidth && profile.size.height === aVRecorderProfile.videoFrameHeight：
+     });
+     if (!videoProfile) {
+       console.error('videoProfile is not found');
+       return;
+     }
      try {
-       videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
+       videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
@@ -120,7 +128,7 @@
 
 5. 停止录像。
 
-   先通过avRecorder的[stop](../reference/apis/js-apis-media.md#stop9)方法停止录像，再通过videoOutput的[stop](../reference/apis/js-apis-camera.md#stop-1)方法停止录像输出流。
+   先通过avRecorder的[stop](../reference/apis/js-apis-media.md#stop9-3)方法停止录像，再通过videoOutput的[stop](../reference/apis/js-apis-camera.md#stop-1)方法停止录像输出流。
      
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
