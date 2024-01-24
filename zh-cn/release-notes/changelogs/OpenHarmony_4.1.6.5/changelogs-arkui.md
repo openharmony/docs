@@ -31,3 +31,39 @@ API 11及之后，TextClock组件构造参数timeZoneOffset设置{ 9.5, 3.5, -3.
 **适配指导**
 
 请查阅[TextClock组件](../../../application-dev/reference/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
+
+## cl.arkui.2 Gauge组件的默认阴影模糊半径变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前Gauge组件的默认阴影模糊半径为5vp、UX检视时发现模糊半径过小，因此依照UX规范增加阴影模糊半径到20vp。
+
+**变更影响**
+
+该变更为兼容性变更，改变了组件默认情况下的阴影模糊半径，提升了组件的默认显示效果。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+OpenHarmony SDK 4.1.6.5前，Gauge组件的默认阴影模糊半径为5vp。
+
+![gauge](figures/oldGauge.png)
+
+OpenHarmony SDK 4.1.6.5及以后，Gauge组件的默认阴影模糊半径为20vp。
+
+![gauge](figures/newGauge.png)
+
+**适配指导**
+
+默认阴影效果变更，不涉及适配。
