@@ -16,8 +16,7 @@
 
 **图1** 通知业务流程  
 
-![zh-cn_image_0000001466582017](figures/zh-cn_image_0000001466582017.png)
-
+![zh-cn_image_8](figures/zh-cn_image_8.png)
 
 
 ## 接口说明
@@ -35,16 +34,16 @@
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知回调。               |
-| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知取消回调。           |
-| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void | 通知排序更新回调。       |
-| onConnect?:()&nbsp;=&gt;&nbsp;void;                          | 订阅成功回调。           |
-| onDisconnect?:()&nbsp;=&gt;&nbsp;void;                       | 取消订阅回调。           |
-| onDestroy?:()&nbsp;=&gt;&nbsp;void                           | 与通知子系统断开回调。   |
+| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | 通知回调。               |
+| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void   | 通知取消回调。           |
+| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | 通知排序更新回调。       |
+| onConnect?:()&nbsp;=&gt;&nbsp;void;                                 | 订阅成功回调。           |
+| onDisconnect?:()&nbsp;=&gt;&nbsp;void;                              | 取消订阅回调。           |
+| onDestroy?:()&nbsp;=&gt;&nbsp;void                                  | 与通知子系统断开回调。   |
 | onDoNotDisturbDateChange<sup>deprecated</sup>?:(mode:&nbsp;notification.DoNotDisturbDate<sup>deprecated</sup>)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调（从API11起已废弃）。 |
-| onDoNotDisturbChanged?:(mode:&nbsp;notificationManager.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调。 |
+| onDoNotDisturbChanged?:(mode:&nbsp;notificationManager.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void           | 免打扰时间选项变更回调。 |
 | onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。       |
-| onBadgeChanged?:(data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void | 应用角标个数变化回调。 |
+| onBadgeChanged?:(data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void                               | 应用角标个数变化回调。   |
 
 
 ## 开发步骤

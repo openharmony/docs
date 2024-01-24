@@ -16,11 +16,13 @@
 
 ## 接口说明
 
+通知渠道主要接口如下。其他接口介绍详情参见[API参考](../reference/apis/js-apis-notificationManager.md)。
+
 | **接口名** | **描述** |
 | ---------- | -------- |
-| [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)(type: SlotType, callback: AsyncCallback\<void\>): void <br> [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-3)(type: SlotType): Promise\<void\> | 创建指定类型的通知渠道。          |
-| [getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void <br>[getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot-1)(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。  |
-| [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot)(slotType: SlotType, callback: AsyncCallback\<void\>): void  <br> [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot-1)(slotType: SlotType): Promise\<void\>  | 删除此应用程序指定类型的通知渠道。  |
+| addSlot(type: SlotType): Promise\<void\>                 | 创建指定类型的通知渠道。           |
+| getSlot(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。       |
+| removeSlot(slotType: SlotType): Promise\<void\>          | 删除此应用程序指定类型的通知渠道。  |
 
 除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
 
@@ -51,15 +53,18 @@
 
 3. 查询指定类型的通知渠道。
 
-获取对应渠道是否创建以及该渠道支持的通知提醒方式，比如是否有声音提示，是否有震动，锁屏是否可见等。
+    获取对应渠道是否创建以及该渠道支持的通知提醒方式，比如是否有声音提示，是否有震动，锁屏是否可见等。
     ```ts
     // getSlot回调
     let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
         if (err) {
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
-            console.info(`getSlot success, data is ${JSON.stringify(data)}`);
-            （把data的信息打印出来）
+            console.info(`getSlot success. `);
+            console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
+            console.info(`slot level is ${JSON.stringify(data.level)}`);
+            console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+            console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
         }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;

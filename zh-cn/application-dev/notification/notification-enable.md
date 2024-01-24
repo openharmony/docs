@@ -4,7 +4,7 @@
   
 ## 接口说明
 
-接口详情参见[接口文档](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification)。
+接口详情参见[API参考](../reference/apis/js-apis-notificationManager.md#notificationrequestenablenotification)。
 
 **表1** 通知授权接口功能介绍
 
@@ -24,7 +24,7 @@
     ```
 
 2. 请求通知授权。
-（看下requestEnableNotification的错误码）可通过requestEnableNotification的错误码判断用户是否授权。
+可通过requestEnableNotification的错误码判断用户是否授权。若返回的错误码为1600004，即为拒绝授权。
     ```ts
     notificationManager.isNotificationEnabled().then((status: boolean) => {
       console.info("isNotificationEnabled success, data: " + JSON.stringify(data));

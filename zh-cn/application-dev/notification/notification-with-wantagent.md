@@ -3,13 +3,7 @@
 当发布通知时，如果期望用户可以通过点击通知栏拉起目标应用组件或发布公共事件，可以通过Ability Kit申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中。
 
 **图1** 携带行为意图的通知运行机制  
-发起端：app
-接收端：通知中心
-ams：Ability Kit
-ans：Notification Kit
-
-![notification-with-wantagent](figures/notification-with-wantagent.png)
-
+ ![zh-cn_image_11](figures/zh-cn_image_11.png) 
 
 ## 接口说明
 
@@ -35,7 +29,7 @@ ans：Notification Kit
    import Base from '@ohos.base';
    ```
 
-3. 创建WantAgentInfo信息。
+2. 创建WantAgentInfo信息。
 
    场景一：创建拉起UIAbility的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
@@ -80,7 +74,7 @@ ans：Notification Kit
    };
    ```
 
-4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
+3. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
 
    ```typescript
    // 创建WantAgent
@@ -94,7 +88,7 @@ ans：Notification Kit
    });
    ```
 
-5. 构造NotificationRequest对象，并发布WantAgent通知。
+4. 构造NotificationRequest对象，并发布WantAgent通知。
 
    ```typescript
    // 构造NotificationRequest对象
@@ -121,4 +115,4 @@ ans：Notification Kit
    });
    ```
 
-6. 用户通过点击通知栏上的通知，系统会自动触发WantAgent的动作。
+5. 用户通过点击通知栏上的通知，系统会自动触发WantAgent的动作。
