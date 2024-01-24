@@ -150,17 +150,17 @@ import type rpc from '@ohos.rpc';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
+  deviceManager.bindDeviceDriver(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
   }, (error : BusinessError, data : deviceManager.RemoteDeviceDriver) => {
     if (error) {
-      console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
+      console.error(`bindDeviceDriver async fail. Code is ${error.code}, message is ${error.message}`);
       return;
     }
-    console.info(`bindDevice success`);
+    console.info(`bindDeviceDriver success`);
   });
 } catch (error) {
-  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
+  console.error(`bindDeviceDriver fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
