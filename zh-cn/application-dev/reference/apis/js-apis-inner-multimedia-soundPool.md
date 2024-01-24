@@ -26,8 +26,8 @@ import audio from '@ohos.multimedia.audio';
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#AudioRendererRate)。 |
-| leftVolume  | number | 否  | 设置左声道音量，设置范围（0~1）。                                    |
+| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#AudioRendererRate10)。 |
+| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
 | rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
 | parallelPlayFlag | boolean | 否   | 是否和其它正在播放的音频并行播放的标识，true:不抢占音频焦点和其它正在播放的音频并行播放，false:抢占焦点打断其它正在播放的音频。<br/>此接口为系统接口。|
@@ -36,7 +36,7 @@ import audio from '@ohos.multimedia.audio';
 
 音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例
 
-### load
+### load<sup>10+</sup>
 
 load(uri: string, callback: AsyncCallback\<number>): void
 
@@ -99,7 +99,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 });
 ```
 
-### load
+### load<sup>10+</sup>
 
 load(uri: string): Promise\<number>
 
@@ -117,7 +117,7 @@ load(uri: string): Promise\<number>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<number> | 异步音频池资源的加载，返回资源的id，有效值大于0。 |
+| Promise\<number> | 以Promise方式异步加载音频池资源，返回资源的id，有效值大于0。 |
 
 **错误码：**
 
@@ -168,7 +168,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### load
+### load<sup>10+</sup>
 
 load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void
 
@@ -237,7 +237,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### load
+### load<sup>10+</sup>
 
 load(fd: number, offset: number, length: number): Promise\<number>
 
@@ -257,7 +257,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<number> | 获取回调的soundID，有效值大于0。 |
+| Promise\<number> | 以Promise方式获取返回的soundID，有效值大于0。 |
 
 **错误码：**
 
@@ -309,7 +309,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### play
+### play<sup>10+</sup>
 
 play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>): void
 
@@ -331,6 +331,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -374,7 +375,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### play
+### play<sup>10+</sup>
 
 play(soundID: number, callback: AsyncCallback\<number>): void
 
@@ -395,6 +396,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -431,7 +433,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### play
+### play<sup>10+</sup>
 
 play(soundID: number, params?: PlayParameters): Promise\<number>
 
@@ -450,7 +452,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<number> | 获取回调的音频流ID，有效值大于0。 |
+| Promise\<number> | 以Promise方式获取返回的音频流ID，有效值大于0。 |
 
 **错误码：**
 
@@ -458,6 +460,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -500,7 +503,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### stop
+### stop<sup>10+</sup>
 
 stop(streamID: number, callback: AsyncCallback\<void>): void
 
@@ -521,6 +524,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -556,7 +560,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### stop
+### stop<sup>10+</sup>
 
 stop(streamID: number): Promise\<void>
 
@@ -574,7 +578,7 @@ stop(streamID: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 返回值。 |
+| Promise\<void> | 以Promise方式返回，无返回值。 |
 
 **错误码：**
 
@@ -582,6 +586,7 @@ stop(streamID: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -614,7 +619,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 });
 ```
 
-### setLoop
+### setLoop<sup>10+</sup>
 
 setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
@@ -627,7 +632,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| loop | number | 是   | 设置循环的次数，0为默认1次，小于0为一直循环。 |
+| loop | number | 是   | 设置循环的次数，0为默认1次，-1为一直循环。 |
 | callback | AsyncCallback\<void> | 是   | 异步setLoop的回调方法。 |
 
 **错误码：**
@@ -636,6 +641,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -672,7 +678,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setLoop
+### setLoop<sup>10+</sup>
 
 setLoop(streamID: number, loop: number): Promise\<void>
 
@@ -685,7 +691,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| loop | number | 是   | 设置循环的次数，0为默认1次，小于0为一直循环。|
+| loop | number | 是   | 设置循环的次数，0为默认1次，-1为一直循环。|
 
 **返回值：**
 
@@ -699,6 +705,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -733,7 +740,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setPriority
+### setPriority<sup>10+</sup>
 
 setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>): void
 
@@ -755,6 +762,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -791,7 +799,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setPriority
+### setPriority<sup>10+</sup>
 
 setPriority(streamID: number, priority: number): Promise\<void>
 
@@ -818,6 +826,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -853,7 +862,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setRate
+### setRate<sup>10+</sup>
 
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
@@ -878,6 +887,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -914,7 +924,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setRate
+### setRate<sup>10+</sup>
 
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
@@ -944,6 +954,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -978,7 +989,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setVolume
+### setVolume<sup>10+</sup>
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: AsyncCallback\<void>): void
 
@@ -1001,6 +1012,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -1037,7 +1049,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setVolume
+### setVolume<sup>10+</sup>
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>
 
@@ -1065,6 +1077,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -1099,7 +1112,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### unload
+### unload<sup>10+</sup>
 
 unload(soundID: number, callback: AsyncCallback\<void>): void
 
@@ -1156,7 +1169,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### unload
+### unload<sup>10+</sup>
 
 unload(soundID: number): Promise\<void>
 
@@ -1217,7 +1230,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### release
+### release<sup>10+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -1270,7 +1283,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### release
+### release<sup>10+</sup>
 
 release(): Promise\<void>
 
@@ -1320,7 +1333,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('loadComplete')
+### on('loadComplete')<sup>10+</sup>
 
 on(type: 'loadComplete', callback: Callback\<number>): void
 
@@ -1361,7 +1374,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### off('loadComplete')
+### off('loadComplete')<sup>10+</sup>
 
 off(type: 'loadComplete'): void
 
@@ -1399,7 +1412,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('playFinished')
+### on('playFinished')<sup>10+</sup>
 
 on(type: 'playFinished', callback: Callback\<void>): void
 
@@ -1440,7 +1453,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### off('playFinished')
+### off('playFinished')<sup>10+</sup>
 
 off(type: 'playFinished'): void
 
@@ -1478,7 +1491,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('error')
+### on('error')<sup>10+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1531,7 +1544,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### off('error')
+### off('error')<sup>10+</sup>
 
 off(type: 'error'): void
 
