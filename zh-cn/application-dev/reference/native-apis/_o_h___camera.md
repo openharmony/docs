@@ -1994,4 +1994,1432 @@ Camera_ErrorCode OH_CaptureSession_AddInput (Camera_CaptureSession * session, Ca
 如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
 
 
+### OH_CaptureSession_AddMetadataOutput()
 
+```
+Camera_ErrorCode OH_CaptureSession_AddMetadataOutput (Camera_CaptureSession * session, Camera_MetadataOutput * metadataOutput )
+```
+
+**描述**
+
+添加元数据输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| metadataOutput | 要添加的目标[Camera_MetadataOutput](#camera_metadataoutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_AddPhotoOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_AddPhotoOutput (Camera_CaptureSession * session, Camera_PhotoOutput * photoOutput )
+```
+
+**描述**
+
+添加拍照输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| photoOutput | 要添加的目标[Camera_PhotoOutput](#camera_photooutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_AddPreviewOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_AddPreviewOutput (Camera_CaptureSession * session, Camera_PreviewOutput * previewOutput )
+```
+
+**描述**
+
+添加预览输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| previewOutput | 要添加的目标[Camera_PreviewOutput](#camera_previewoutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_AddVideoOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_AddVideoOutput (Camera_CaptureSession * session, Camera_VideoOutput * videoOutput )
+```
+
+**描述**
+
+添加录像输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| videoOutput | 要添加的目标[Camera_VideoOutput](#camera_videooutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_BeginConfig()
+
+```
+Camera_ErrorCode OH_CaptureSession_BeginConfig (Camera_CaptureSession * session)
+```
+
+**描述**
+
+开始捕获会话配置。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果会话配置已锁定返回CAMERA_SESSION_CONFIG_LOCKED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_CommitConfig()
+
+```
+Camera_ErrorCode OH_CaptureSession_CommitConfig (Camera_CaptureSession * session)
+```
+
+**描述**
+
+提交捕获会话配置。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetExposureBias()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetExposureBias (Camera_CaptureSession * session, float * exposureBias )
+```
+
+**描述**
+
+获取当前曝光补偿。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| exposureBias | 当前的曝光补偿。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetExposureBiasRange()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetExposureBiasRange (Camera_CaptureSession * session, float * minExposureBias, float * maxExposureBias, float * step )
+```
+
+**描述**
+
+查询曝光补偿范围。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| minExposureBias | 曝光补偿的最小值。 | 
+| maxExposureBias | 曝光补偿的最大值。 | 
+| step | 每个级别之间的曝光补偿阶梯。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetExposureMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetExposureMode (Camera_CaptureSession * session, Camera_ExposureMode * exposureMode )
+```
+
+**描述**
+
+获取当前曝光模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| exposureMode | 当前的[Camera_ExposureMode](#camera_exposuremode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetFlashMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetFlashMode (Camera_CaptureSession * session, Camera_FlashMode * flashMode )
+```
+
+**描述**
+
+获取当前闪光灯模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| flashMode | 当前[Camera_FlashMode](#camera_flashmode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetFocusMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetFocusMode (Camera_CaptureSession * session, Camera_FocusMode * focusMode )
+```
+
+**描述**
+
+获取当前聚焦模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| exposureBias | 当前[Camera_FocusMode](#camera_focusmode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetFocusPoint()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetFocusPoint (Camera_CaptureSession * session, Camera_Point * focusPoint )
+```
+
+**描述**
+
+获取当前焦点。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| focusPoint | 当前[Camera_Point](_camera___point.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetMeteringPoint()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetMeteringPoint (Camera_CaptureSession * session, Camera_Point * point )
+```
+
+**描述**
+
+获取当前测量点。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| point | 当前[Camera_Point](_camera___point.md)测量点。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetVideoStabilizationMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetVideoStabilizationMode (Camera_CaptureSession * session, Camera_VideoStabilizationMode * mode )
+```
+
+**描述**
+
+获取当前录像防抖模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| mode | 当前[Camera_VideoStabilizationMode](#camera_videostabilizationmode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetZoomRatio()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetZoomRatio (Camera_CaptureSession * session, float * zoom )
+```
+
+**描述**
+
+获取当前缩放比例。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| zoom | 当前缩放比例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_GetZoomRatioRange()
+
+```
+Camera_ErrorCode OH_CaptureSession_GetZoomRatioRange (Camera_CaptureSession * session, float * minZoom, float * maxZoom )
+```
+
+**描述**
+
+获取所有支持的缩放比例范围。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| minZoom | 缩放比范围的最小值。 | 
+| maxZoom | 缩放比例范围的最大值。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_HasFlash()
+
+```
+Camera_ErrorCode OH_CaptureSession_HasFlash (Camera_CaptureSession * session, bool * hasFlash )
+```
+
+**描述**
+
+检查设备是否有闪光灯。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| hasFlash | 是否支持闪光灯的结果。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_IsExposureModeSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsExposureModeSupported (Camera_CaptureSession * session, Camera_ExposureMode exposureMode, bool * isSupported )
+```
+
+**描述**
+
+检查是否支持指定的曝光模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| exposureMode | 要检查的[Camera_ExposureMode](#camera_exposuremode)。 | 
+| isSupported | 是否支持曝光模式的结果。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_IsFlashModeSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsFlashModeSupported (Camera_CaptureSession * session, Camera_FlashMode flashMode, bool * isSupported )
+```
+
+**描述**
+
+检查是否支持指定的闪光灯模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| flashMode | 要检查的[Camera_FlashMode](#camera_flashmode)。 | 
+| isSupported | 是否支持闪光灯模式的结果。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_IsFocusModeSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsFocusModeSupported (Camera_CaptureSession * session, Camera_FocusMode focusMode, bool * isSupported )
+```
+
+**描述**
+
+检查是否支持指定的聚焦模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| focusMode | 要检查的[Camera_FocusMode](#camera_focusmode)。 | 
+| isSupported | 是否支持聚焦模式的结果。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_IsVideoStabilizationModeSupported()
+
+```
+Camera_ErrorCode OH_CaptureSession_IsVideoStabilizationModeSupported (Camera_CaptureSession * session, Camera_VideoStabilizationMode mode, bool * isSupported )
+```
+
+**描述**
+
+检查是否支持指定的录像防抖模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| mode | 要检查的[Camera_VideoStabilizationMode](#camera_videostabilizationmode)。 | 
+| isSupported | 是否支持录像防抖模式的结果。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_RegisterCallback()
+
+```
+Camera_ErrorCode OH_CaptureSession_RegisterCallback (Camera_CaptureSession * session, CaptureSession_Callbacks * callback )
+```
+
+**描述**
+
+注册捕获会话事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| callback | 要注册的[CaptureSession_Callbacks](_capture_session___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_Release()
+
+```
+Camera_ErrorCode OH_CaptureSession_Release (Camera_CaptureSession * session)
+```
+
+**描述**
+
+释放捕获会话。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | 要释放的[Camera_CaptureSession](#camera_capturesession)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_RemoveInput()
+
+```
+Camera_ErrorCode OH_CaptureSession_RemoveInput (Camera_CaptureSession * session, Camera_Input * cameraInput )
+```
+
+**描述**
+
+删除相机输入。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| cameraInput | 要删除的目标[Camera_Input](#camera_input)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_RemoveMetadataOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_RemoveMetadataOutput (Camera_CaptureSession * session, Camera_MetadataOutput * metadataOutput )
+```
+
+**描述**
+
+删除元数据输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| metadataOutput | 要删除的目标[Camera_MetadataOutput](#camera_metadataoutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_RemovePhotoOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_RemovePhotoOutput (Camera_CaptureSession * session, Camera_PhotoOutput * photoOutput )
+```
+
+**描述**
+
+删除拍照输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| photoOutput | 要删除的目标[Camera_PhotoOutput](#camera_photooutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_RemovePreviewOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_RemovePreviewOutput (Camera_CaptureSession * session, Camera_PreviewOutput * previewOutput )
+```
+
+**描述**
+
+删除预览输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| previewOutput | 要删除的目标[Camera_PreviewOutput](#camera_previewoutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_RemoveVideoOutput()
+
+```
+Camera_ErrorCode OH_CaptureSession_RemoveVideoOutput (Camera_CaptureSession * session, Camera_VideoOutput * videoOutput )
+```
+
+**描述**
+
+删除录像输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| videoOutput | 要删除的目标[Camera_VideoOutput](#camera_videooutput)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果不允许操作返回CAMERA_OPERATION_NOT_ALLOWED。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetExposureBias()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetExposureBias (Camera_CaptureSession * session, float exposureBias )
+```
+
+**描述**
+
+设置曝光补偿。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| exposureBias | 要设置的目标曝光补偿。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetExposureMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetExposureMode (Camera_CaptureSession * session, Camera_ExposureMode exposureMode )
+```
+
+**描述**
+
+设置曝光模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| exposureMode | 要设置的目标[Camera_ExposureMode](#camera_exposuremode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetFlashMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetFlashMode (Camera_CaptureSession * session, Camera_FlashMode flashMode )
+```
+
+**描述**
+
+设置闪光灯模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| flashMode | 要设置的目标[Camera_FlashMode](#camera_flashmode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetFocusMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetFocusMode (Camera_CaptureSession * session, Camera_FocusMode focusMode )
+```
+
+**描述**
+
+设置聚焦模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| focusMode | 要设置的目标[Camera_FocusMode](#camera_focusmode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetFocusPoint()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetFocusPoint (Camera_CaptureSession * session, Camera_Point focusPoint )
+```
+
+**描述**
+
+设置焦点。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| focusPoint | 要设置的目标[Camera_Point](_camera___point.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetMeteringPoint()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetMeteringPoint (Camera_CaptureSession * session, Camera_Point point )
+```
+
+**描述**
+
+设置计量区域的中心点。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| point | 要设置的目标[Camera_Point](_camera___point.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetVideoStabilizationMode()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetVideoStabilizationMode (Camera_CaptureSession * session, Camera_VideoStabilizationMode mode )
+```
+
+**描述**
+
+设置录像防抖模式。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| mode | 要设置的目标[Camera_VideoStabilizationMode](#camera_videostabilizationmode)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_SetZoomRatio()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetZoomRatio (Camera_CaptureSession * session, float zoom )
+```
+
+**描述**
+
+设置缩放比例。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| zoom | 要设置的目标缩放比。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_Start()
+
+```
+Camera_ErrorCode OH_CaptureSession_Start (Camera_CaptureSession * session)
+```
+
+**描述**
+
+启动捕获会话。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | 要启动的[Camera_CaptureSession](#camera_capturesession)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG； 如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_Stop()
+
+```
+Camera_ErrorCode OH_CaptureSession_Stop (Camera_CaptureSession * session)
+```
+
+**描述**
+
+停止捕获会话。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | 要停止的[Camera_CaptureSession](#camera_capturesession)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_CaptureSession_UnregisterCallback()
+
+```
+Camera_ErrorCode OH_CaptureSession_UnregisterCallback (Camera_CaptureSession * session, CaptureSession_Callbacks * callback )
+```
+
+**描述**
+
+注销捕获会话事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
+| callback | 要注销的[CaptureSession_Callbacks](_capture_session___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_MetadataOutput_RegisterCallback()
+
+```
+Camera_ErrorCode OH_MetadataOutput_RegisterCallback (Camera_MetadataOutput * metadataOutput, MetadataOutput_Callbacks * callback )
+```
+
+**描述**
+
+注册元数据输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| metadataOutput | [Camera_MetadataOutput](#camera_metadataoutput)实例。 | 
+| callback | 要注册的[MetadataOutput_Callbacks](_metadata_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_MetadataOutput_Release()
+
+```
+Camera_ErrorCode OH_MetadataOutput_Release (Camera_MetadataOutput * metadataOutput)
+```
+
+**描述**
+
+释放元数据输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| metadataOutput | 要释放的[Camera_MetadataOutput](#camera_metadataoutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_MetadataOutput_Start()
+
+```
+Camera_ErrorCode OH_MetadataOutput_Start (Camera_MetadataOutput * metadataOutput)
+```
+
+**描述**
+
+启动元数据输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| metadataOutput | 要启动的[Camera_MetadataOutput](#camera_metadataoutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_MetadataOutput_Stop()
+
+```
+Camera_ErrorCode OH_MetadataOutput_Stop (Camera_MetadataOutput * metadataOutput)
+```
+
+**描述**
+
+停止元数据输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| metadataOutput | 要停止的[Camera_MetadataOutput](#camera_metadataoutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_MetadataOutput_UnregisterCallback()
+
+```
+Camera_ErrorCode OH_MetadataOutput_UnregisterCallback (Camera_MetadataOutput * metadataOutput, MetadataOutput_Callbacks * callback )
+```
+
+**描述**
+
+注销元数据输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| metadataOutput | [Camera_MetadataOutput](#camera_metadataoutput)实例。 | 
+| callback | 要注销的[MetadataOutput_Callbacks](_metadata_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PhotoOutput_Capture()
+
+```
+Camera_ErrorCode OH_PhotoOutput_Capture (Camera_PhotoOutput * photoOutput)
+```
+
+**描述**
+
+拍摄照片。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | 用于捕获拍照的[Camera_PhotoOutput](#camera_photooutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PhotoOutput_Capture_WithCaptureSetting()
+
+```
+Camera_ErrorCode OH_PhotoOutput_Capture_WithCaptureSetting (Camera_PhotoOutput * photoOutput, Camera_PhotoCaptureSetting setting )
+```
+
+**描述**
+
+使用捕获设置捕获拍照。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | 用于捕获拍照的[Camera_PhotoOutput](#camera_photooutput)实例。 | 
+| setting | 用于捕获拍照的[Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PhotoOutput_IsMirrorSupported()
+
+```
+Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported (Camera_PhotoOutput * photoOutput, bool * isSupported )
+```
+
+**描述**
+
+检查是否支持镜像拍照。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例，用于检查是否支持镜像。 | 
+| isSupported | 是否支持镜像的结果。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PhotoOutput_RegisterCallback()
+
+```
+Camera_ErrorCode OH_PhotoOutput_RegisterCallback (Camera_PhotoOutput * photoOutput, PhotoOutput_Callbacks * callback )
+```
+
+**描述**
+
+注册拍照输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例。 | 
+| callback | 要注册的[PhotoOutput_Callbacks](_photo_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PhotoOutput_Release()
+
+```
+Camera_ErrorCode OH_PhotoOutput_Release (Camera_PhotoOutput * photoOutput)
+```
+
+**描述**
+
+释放拍照输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | 要释放的[Camera_PhotoOutput](#camera_photooutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PhotoOutput_UnregisterCallback()
+
+```
+Camera_ErrorCode OH_PhotoOutput_UnregisterCallback (Camera_PhotoOutput * photoOutput, PhotoOutput_Callbacks * callback )
+```
+
+**描述**
+
+注销拍照输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例。 | 
+| callback | 要注销的[PhotoOutput_Callbacks](_photo_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PreviewOutput_RegisterCallback()
+
+```
+Camera_ErrorCode OH_PreviewOutput_RegisterCallback (Camera_PreviewOutput * previewOutput, PreviewOutput_Callbacks * callback )
+```
+
+**描述**
+
+注册预览输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | [Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+| callback | 要注册的[PreviewOutput_Callbacks](_preview_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PreviewOutput_Release()
+
+```
+Camera_ErrorCode OH_PreviewOutput_Release (Camera_PreviewOutput * previewOutput)
+```
+
+**描述**
+
+释放预览输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | 要释放的[Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PreviewOutput_Start()
+
+```
+Camera_ErrorCode OH_PreviewOutput_Start (Camera_PreviewOutput * previewOutput)
+```
+
+**描述**
+
+开始预览输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | 要启动的[Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PreviewOutput_Stop()
+
+```
+Camera_ErrorCode OH_PreviewOutput_Stop (Camera_PreviewOutput * previewOutput)
+```
+
+**描述**
+
+停止预览输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | 要停止的[Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_PreviewOutput_UnregisterCallback()
+
+```
+Camera_ErrorCode OH_PreviewOutput_UnregisterCallback (Camera_PreviewOutput * previewOutput, PreviewOutput_Callbacks * callback )
+```
+
+**描述**
+
+注销预览输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| previewOutput | [Camera_PreviewOutput](#camera_previewoutput)实例。 | 
+| callback | 要注销的[PreviewOutput_Callbacks](_preview_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_VideoOutput_RegisterCallback()
+
+```
+Camera_ErrorCode OH_VideoOutput_RegisterCallback (Camera_VideoOutput * videoOutput, VideoOutput_Callbacks * callback )
+```
+
+**描述**
+
+注册录像输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| videoOutput | [Camera_VideoOutput](#camera_videooutput)实例。 | 
+| callback | 要注册的[VideoOutput_Callbacks](_video_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_VideoOutput_Release()
+
+```
+Camera_ErrorCode OH_VideoOutput_Release (Camera_VideoOutput * videoOutput)
+```
+
+**描述**
+
+释放录像输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| videoOutput | 要释放的[Camera_VideoOutput](#camera_videooutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_VideoOutput_Start()
+
+```
+Camera_ErrorCode OH_VideoOutput_Start (Camera_VideoOutput * videoOutput)
+```
+
+**描述**
+
+开始录像输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| videoOutput | 要启动的[Camera_VideoOutput](#camera_videooutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果捕获会话未配置返回CAMERA_SESSION_NOT_CONFIG；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_VideoOutput_Stop()
+
+```
+Camera_ErrorCode OH_VideoOutput_Stop (Camera_VideoOutput * videoOutput)
+```
+
+**描述**
+
+停止录像输出。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| videoOutput | 要停止的[Camera_VideoOutput](#camera_videooutput)实例。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT；如果相机服务出现致命错误返回CAMERA_SERVICE_FATAL_ERROR。具体参考[Camera_ErrorCode](#camera_errorcode)。
+
+
+### OH_VideoOutput_UnregisterCallback()
+
+```
+Camera_ErrorCode OH_VideoOutput_UnregisterCallback (Camera_VideoOutput * videoOutput, VideoOutput_Callbacks * callback )
+```
+
+**描述**
+
+注销录像输出更改事件回调。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| videoOutput | [Camera_VideoOutput](#camera_videooutput)实例。 | 
+| callback | 要注销的[VideoOutput_Callbacks](_video_output___callbacks.md)。 | 
+
+**返回：**
+
+如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
