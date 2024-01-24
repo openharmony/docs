@@ -215,44 +215,6 @@ import drm from '@ohos.multimedia.drm';
 | uuid   | string | 是  | 插件类型Id      |
 | pssh     | Uint8Array                 | 是  | drm info内的保护方案特定标头       |
 
-### drm.getMediaKeySystemName
-
-function getMediaKeySystemName(uuid: string): string
-
-获取设备支持的drm方案的名称。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
-
-**参数：**
-
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| uuid  | string     | 是   | 插件类型。                   |
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| string           | drm方案名称，如com.clearplay.drm。                   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 401                |  The parameter check failed               |
-| 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
-
-**示例：**
-
-```ts
-import drm from '@ohos.multimedia.drm';
-
-let mediaKeysystemName = drm.getMediaKeySystemName("com.clearplay.drm")
-```
-
 ### drm.createMediaKeySystem
 
 createMediaKeySystem(name: string): MediaKeySystem
