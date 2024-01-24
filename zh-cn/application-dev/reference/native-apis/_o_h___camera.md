@@ -245,7 +245,7 @@ typedef struct Camera_CaptureEndInfoCamera_CaptureEndInfo
 ### Camera_CaptureSession
 
 ```
-typedef struct Camera_CaptureSessionCamera_CaptureSession
+typedef struct Camera_CaptureSession Camera_CaptureSession
 ```
 
 **描述**
@@ -260,7 +260,7 @@ typedef struct Camera_CaptureSessionCamera_CaptureSession
 ### Camera_Connection
 
 ```
-typedef enum Camera_ConnectionCamera_Connection
+typedef enum Camera_Connection Camera_Connection
 ```
 
 **描述**
@@ -273,7 +273,7 @@ typedef enum Camera_ConnectionCamera_Connection
 ### Camera_Device
 
 ```
-typedef struct Camera_DeviceCamera_Device
+typedef struct Camera_Device Camera_Device
 ```
 
 **描述**
@@ -286,7 +286,7 @@ typedef struct Camera_DeviceCamera_Device
 ### Camera_ErrorCode
 
 ```
-typedef enum Camera_ErrorCodeCamera_ErrorCode
+typedef enum Camera_ErrorCode Camera_ErrorCode
 ```
 
 **描述**
@@ -299,7 +299,7 @@ typedef enum Camera_ErrorCodeCamera_ErrorCode
 ### Camera_ExposureMode
 
 ```
-typedef enum Camera_ExposureModeCamera_ExposureMode
+typedef enum Camera_ExposureMode Camera_ExposureMode
 ```
 
 **描述**
@@ -312,7 +312,7 @@ typedef enum Camera_ExposureModeCamera_ExposureMode
 ### Camera_FlashMode
 
 ```
-typedef enum Camera_FlashModeCamera_FlashMode
+typedef enum Camera_FlashMode Camera_FlashMode
 ```
 
 **描述**
@@ -325,7 +325,7 @@ typedef enum Camera_FlashModeCamera_FlashMode
 ### Camera_FocusMode
 
 ```
-typedef enum Camera_FocusModeCamera_FocusMode
+typedef enum Camera_FocusMode Camera_FocusMode
 ```
 
 **描述**
@@ -338,7 +338,7 @@ typedef enum Camera_FocusModeCamera_FocusMode
 ### Camera_FocusState
 
 ```
-typedef enum Camera_FocusStateCamera_FocusState
+typedef enum Camera_FocusState Camera_FocusState
 ```
 
 **描述**
@@ -351,7 +351,7 @@ typedef enum Camera_FocusStateCamera_FocusState
 ### Camera_Format
 
 ```
-typedef enum Camera_FormatCamera_Format
+typedef enum Camera_Format Camera_Format
 ```
 
 **描述**
@@ -364,7 +364,7 @@ typedef enum Camera_FormatCamera_Format
 ### Camera_FrameRateRange
 
 ```
-typedef struct Camera_FrameRateRangeCamera_FrameRateRange
+typedef struct Camera_FrameRateRange Camera_FrameRateRange
 ```
 
 **描述**
@@ -377,7 +377,7 @@ typedef struct Camera_FrameRateRangeCamera_FrameRateRange
 ### Camera_FrameShutterInfo
 
 ```
-typedef struct Camera_FrameShutterInfoCamera_FrameShutterInfo
+typedef struct Camera_FrameShutterInfo Camera_FrameShutterInfo
 ```
 
 **描述**
@@ -390,7 +390,7 @@ typedef struct Camera_FrameShutterInfoCamera_FrameShutterInfo
 ### Camera_ImageRotation
 
 ```
-typedef enum Camera_ImageRotationCamera_ImageRotation
+typedef enum Camera_ImageRotation Camera_ImageRotation
 ```
 
 **描述**
@@ -403,7 +403,7 @@ typedef enum Camera_ImageRotationCamera_ImageRotation
 ### Camera_Input
 
 ```
-typedef struct Camera_InputCamera_Input
+typedef struct Camera_Input Camera_Input
 ```
 
 **描述**
@@ -418,7 +418,7 @@ typedef struct Camera_InputCamera_Input
 ### Camera_Location
 
 ```
-typedef struct Camera_LocationCamera_Location
+typedef struct Camera_Location Camera_Location
 ```
 
 **描述**
@@ -431,7 +431,7 @@ typedef struct Camera_LocationCamera_Location
 ### Camera_Manager
 
 ```
-typedef struct Camera_ManagerCamera_Manager
+typedef struct Camera_Manager Camera_Manager
 ```
 
 **描述**
@@ -446,7 +446,7 @@ typedef struct Camera_ManagerCamera_Manager
 ### Camera_MetadataObject
 
 ```
-typedef struct Camera_MetadataObjectCamera_MetadataObject
+typedef struct Camera_MetadataObject Camera_MetadataObject
 ```
 
 **描述**
@@ -459,7 +459,7 @@ typedef struct Camera_MetadataObjectCamera_MetadataObject
 ### Camera_MetadataObjectType
 
 ```
-typedef enum Camera_MetadataObjectTypeCamera_MetadataObjectType
+typedef enum Camera_MetadataObjectType Camera_MetadataObjectType
 ```
 
 **描述**
@@ -472,7 +472,7 @@ typedef enum Camera_MetadataObjectTypeCamera_MetadataObjectType
 ### Camera_MetadataOutput
 
 ```
-typedef struct Camera_MetadataOutputCamera_MetadataOutput
+typedef struct Camera_MetadataOutput Camera_MetadataOutput
 ```
 
 **描述**
@@ -487,7 +487,7 @@ typedef struct Camera_MetadataOutputCamera_MetadataOutput
 ### Camera_OutputCapability
 
 ```
-typedef struct Camera_OutputCapabilityCamera_OutputCapability
+typedef struct Camera_OutputCapability Camera_OutputCapability
 ```
 
 **描述**
@@ -500,7 +500,7 @@ typedef struct Camera_OutputCapabilityCamera_OutputCapability
 ### Camera_PhotoCaptureSetting
 
 ```
-typedef struct Camera_PhotoCaptureSettingCamera_PhotoCaptureSetting
+typedef struct Camera_PhotoCaptureSetting Camera_PhotoCaptureSetting
 ```
 
 **描述**
@@ -513,7 +513,7 @@ typedef struct Camera_PhotoCaptureSettingCamera_PhotoCaptureSetting
 ### Camera_PhotoOutput
 
 ```
-typedef struct Camera_PhotoOutputCamera_PhotoOutput
+typedef struct Camera_PhotoOutput Camera_PhotoOutput
 ```
 
 **描述**
@@ -528,7 +528,7 @@ typedef struct Camera_PhotoOutputCamera_PhotoOutput
 ### Camera_Point
 
 ```
-typedef struct Camera_PointCamera_Point
+typedef struct Camera_Point Camera_Point
 ```
 
 **描述**
@@ -541,7 +541,7 @@ typedef struct Camera_PointCamera_Point
 ### Camera_Position
 
 ```
-typedef enum Camera_PositionCamera_Position
+typedef enum Camera_Position Camera_Position
 ```
 
 **描述**
@@ -554,7 +554,7 @@ typedef enum Camera_PositionCamera_Position
 ### Camera_PreviewOutput
 
 ```
-typedef struct Camera_PreviewOutputCamera_PreviewOutput
+typedef struct Camera_PreviewOutput Camera_PreviewOutput
 ```
 
 **描述**
@@ -569,7 +569,7 @@ typedef struct Camera_PreviewOutputCamera_PreviewOutput
 ### Camera_Profile
 
 ```
-typedef struct Camera_ProfileCamera_Profile
+typedef struct Camera_Profile Camera_Profile
 ```
 
 **描述**
@@ -582,7 +582,7 @@ typedef struct Camera_ProfileCamera_Profile
 ### Camera_QualityLevel
 
 ```
-typedef enum Camera_QualityLevelCamera_QualityLevel
+typedef enum Camera_QualityLevel Camera_QualityLevel
 ```
 
 **描述**
@@ -595,7 +595,7 @@ typedef enum Camera_QualityLevelCamera_QualityLevel
 ### Camera_Rect
 
 ```
-typedef struct Camera_RectCamera_Rect
+typedef struct Camera_Rect Camera_Rect
 ```
 
 **描述**
@@ -608,7 +608,7 @@ typedef struct Camera_RectCamera_Rect
 ### Camera_Size
 
 ```
-typedef struct Camera_SizeCamera_Size
+typedef struct Camera_Size Camera_Size
 ```
 
 **描述**
@@ -621,7 +621,7 @@ typedef struct Camera_SizeCamera_Size
 ### Camera_Status
 
 ```
-typedef enum Camera_StatusCamera_Status
+typedef enum Camera_Status Camera_Status
 ```
 
 **描述**
@@ -634,7 +634,7 @@ typedef enum Camera_StatusCamera_Status
 ### Camera_StatusInfo
 
 ```
-typedef struct Camera_StatusInfoCamera_StatusInfo
+typedef struct Camera_StatusInfo Camera_StatusInfo
 ```
 
 **描述**
@@ -647,7 +647,7 @@ typedef struct Camera_StatusInfoCamera_StatusInfo
 ### Camera_Type
 
 ```
-typedef enum Camera_TypeCamera_Type
+typedef enum Camera_Type Camera_Type
 ```
 
 **描述**
@@ -660,7 +660,7 @@ typedef enum Camera_TypeCamera_Type
 ### Camera_VideoOutput
 
 ```
-typedef struct Camera_VideoOutputCamera_VideoOutput
+typedef struct Camera_VideoOutput Camera_VideoOutput
 ```
 
 **描述**
@@ -675,7 +675,7 @@ typedef struct Camera_VideoOutputCamera_VideoOutput
 ### Camera_VideoProfile
 
 ```
-typedef struct Camera_VideoProfileCamera_VideoProfile
+typedef struct Camera_VideoProfile Camera_VideoProfile
 ```
 
 **描述**
@@ -688,7 +688,7 @@ typedef struct Camera_VideoProfileCamera_VideoProfile
 ### Camera_VideoStabilizationMode
 
 ```
-typedef enum Camera_VideoStabilizationModeCamera_VideoStabilizationMode
+typedef enum Camera_VideoStabilizationMode Camera_VideoStabilizationMode
 ```
 
 **描述**
@@ -701,7 +701,7 @@ typedef enum Camera_VideoStabilizationModeCamera_VideoStabilizationMode
 ### CameraInput_Callbacks
 
 ```
-typedef struct CameraInput_CallbacksCameraInput_Callbacks
+typedef struct CameraInput_Callbacks CameraInput_Callbacks
 ```
 
 **描述**
@@ -718,7 +718,7 @@ typedef struct CameraInput_CallbacksCameraInput_Callbacks
 ### CameraManager_Callbacks
 
 ```
-typedef struct CameraManager_CallbacksCameraManager_Callbacks
+typedef struct CameraManager_Callbacks CameraManager_Callbacks
 ```
 
 **描述**
@@ -735,7 +735,7 @@ typedef struct CameraManager_CallbacksCameraManager_Callbacks
 ### CaptureSession_Callbacks
 
 ```
-typedef struct CaptureSession_CallbacksCaptureSession_Callbacks
+typedef struct CaptureSession_Callbacks CaptureSession_Callbacks
 ```
 
 **描述**
@@ -752,7 +752,7 @@ typedef struct CaptureSession_CallbacksCaptureSession_Callbacks
 ### MetadataOutput_Callbacks
 
 ```
-typedef struct MetadataOutput_CallbacksMetadataOutput_Callbacks
+typedef struct MetadataOutput_Callbacks MetadataOutput_Callbacks
 ```
 
 **描述**
@@ -786,6 +786,8 @@ typedef void(* OH_CameraInput_OnError) (const Camera_Input *cameraInput, Camera_
 | errorCode | 相机输入的[Camera_ErrorCode](#camera_errorcode)。 | 
 
 **参见：**
+
+[Camera_ErrorCode](#camera_errorcode)中的：
 
 CAMERA_CONFLICT_CAMERA
 
@@ -837,7 +839,7 @@ typedef void(* OH_CaptureSession_OnError) (Camera_CaptureSession *session, Camer
 
 **参见：**
 
-CAMERA_SERVICE_FATAL_ERROR
+[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_CaptureSession_OnFocusStateChange
@@ -881,7 +883,7 @@ typedef void(* OH_MetadataOutput_OnError) (Camera_MetadataOutput *metadataOutput
 
 **参见：**
 
-CAMERA_SERVICE_FATAL_ERROR
+[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_MetadataOutput_OnMetadataObjectAvailable
@@ -926,7 +928,7 @@ typedef void(* OH_PhotoOutput_OnError) (Camera_PhotoOutput *photoOutput, Camera_
 
 **参见：**
 
-CAMERA_SERVICE_FATAL_ERROR
+[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_PhotoOutput_OnFrameEnd
@@ -1009,7 +1011,7 @@ typedef void(* OH_PreviewOutput_OnError) (Camera_PreviewOutput *previewOutput, C
 
 **参见：**
 
-CAMERA_SERVICE_FATAL_ERROR
+[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_PreviewOutput_OnFrameEnd
@@ -1072,7 +1074,7 @@ typedef void(* OH_VideoOutput_OnError) (Camera_VideoOutput *videoOutput, Camera_
 
 **参见：**
 
-CAMERA_SERVICE_FATAL_ERROR
+[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_VideoOutput_OnFrameEnd
