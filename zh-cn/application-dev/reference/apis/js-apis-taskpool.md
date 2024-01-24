@@ -512,7 +512,7 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 
 ## TaskGroup<sup>10+</sup>
 
-表示任务组。使用[constructor](#constructor10)方法构造TaskGroup。
+表示任务组，一次执行一组任务，如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
 
 ### constructor<sup>10+</sup>
 
