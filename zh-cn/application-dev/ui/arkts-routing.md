@@ -20,7 +20,7 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 >**说明：** 
 >
->- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md)配置第二个页面的路由。
+>- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)配置第二个页面的路由。
 >
 >
 >- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
@@ -417,9 +417,20 @@ import router from '@ohos.router';
 ```ts
 // library/src/main/ets/pages/Index.ets
 // library为新建共享包自定义的名字
-@Entry({ routeName : 'myPage' })
+@Entry({ routeName: 'myPage' })
 @Component
 export struct MyComponent {
+  build() {
+    Row() {
+      Column() {
+        Text('Library Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 
@@ -428,7 +439,7 @@ export struct MyComponent {
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index')  // 引入共享包中的命名路由页面
+const module = import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {
