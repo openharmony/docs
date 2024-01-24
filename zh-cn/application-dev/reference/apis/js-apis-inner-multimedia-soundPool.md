@@ -1510,12 +1510,12 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 
 | 错误码ID | 错误信息              | 说明                                                         |
 | -------- | --------------------- | ------------------------------------------------------------ |
-| 401      | Invalid Parameter:    | 入参错误，表示调用无效。                                     |
-| 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory:            | 内存不足。 |
-| 5400102  | Operation Not Allowed:   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error:             | I/O异常。 |
-| 5400105  | Service Died:         | 播放进程死亡，音频池依赖的service端发生异常。|
+| 401      | Invalid Parameter.    | 入参错误，表示调用无效。                                     |
+| 801      | Unsupport Capability. | 不支持该API能力，表示调用无效。                              |
+| 5400101  | No Memory.            | 内存不足。 |
+| 5400102  | Operation Not Allowed.   | 当前状态机不支持此操作，表示调用无效。                       |
+| 5400103  | IO Error.             | I/O异常。 |
+| 5400105  | Service Died.         | 播放进程死亡，音频池依赖的service端发生异常。|
 
 **示例：**
 
@@ -1536,8 +1536,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`createSoundPool success`)
     soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,and error message is :' + error.message)
-      console.info('error happened,and error code is :' + error.code)
+      console.error('error happened,and error message is :' + error.message)
+      console.error('error happened,and error code is :' + error.code)
     })
   }
 });
