@@ -1,7 +1,7 @@
 # \@Link Decorator: Two-Way Synchronization Between Parent and Child Components
 
 
-An \@Link decorated variable can create two-way synchronization with a variable of its parent component.
+An \@Link decorated variable creates two-way synchronization with a variable of its parent component.
 
 
 > **NOTE**
@@ -25,7 +25,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | Two-way: from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around. |
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Union Type @Link](#union-type-Link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Link a: string \| undefined** is recommended; **@Link a: string** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported. |
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported. |
 | Initial value for the decorated variable                                          | Initialization of the decorated variables is forbidden.                                       |
 
 
@@ -34,7 +34,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink:&nbsp;$aState})** syntax is also supported.|
-| Subnode initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Child component initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | Private, accessible only within the component.                          |
 
   **Figure 1** Initialization rule 
@@ -49,7 +49,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed. For details, see [Example for @Link with Simple and Class Types](#example-for-link-with-simple-and-class-types).
 
-- When the decorated variable is of the class or Object type, its value change and value changes of all its attributes, that is, the attributes that **Object.keys(observedObject)** returns. For details, see [Example for @Link with Simple and Class Types](#example-for-link-with-simple-and-class-types).
+- When the decorated variable is of the class or Object type, its value change and value changes of all its attributes, that is, the attributes that **Object.keys(observedObject)** returns, can be observed. For details, see [Example for @Link with Simple and Class Types](#example-for-link-with-simple-and-class-types).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. For details, see [Array Type \@Link](#array-type-link).
 
@@ -128,13 +128,16 @@ To understand the value initialization and update mechanism of the \@Link decora
    2. The \@Link in the child component and \@State in the parent component traverse the dependent system components and update the corresponding UI. In this way, the \@Link decorated variable in the child component is synchronized back to the \@State decorated variable in the parent component.
 
 
-## Application Scenarios
+## Usage Scenarios
 
 
 ### Example for @Link with Simple and Class Types
 
-The following example is for \@Link of both the simple type and class type. After **Parent View: Set yellowButton** and **Parent View: Set GreenButton** in the parent component **ShufflingContainer** are clicked, the change in the parent component is synchronized to the child components. The change of the \@Link decorated variable in the child components **GreenButton** and **YellowButton** is also synchronized to the parent component.
+In the following example, after **Parent View: Set yellowButton** and **Parent View: Set GreenButton** of the parent component **ShufflingContainer** are clicked, the change in the parent component is synchronized to the child components.
 
+  1. After buttons of the child components **GreenButton** and **YellowButton** are clicked, the child components (@Link decorated variables) change accordingly. Due to the two-way synchronization relationship between @Link and @State, the changes are synchronized to the parent component.
+  
+  2. When a button in the parent component **ShufflingContainer** is clicked, the parent component (@State decorated variable) changes, and the changes are synchronized to the child components, which are then updated accordingly.
 
 ```ts
 class GreenButtonState {
