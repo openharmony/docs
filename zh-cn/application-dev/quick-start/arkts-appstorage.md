@@ -283,6 +283,10 @@ export struct TapImage {
 
 相比借助@StorageLink的双向同步机制实现事件通知，开发者可以使用emit订阅某个事件并接收事件回调的方式来减少开销，增强代码的可读性。
 
+> **说明：**
+>
+> emit接口不支持在Previewer预览器中使用。
+
 
 ```ts
 // xxx.ets
