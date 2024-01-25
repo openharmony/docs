@@ -4046,11 +4046,11 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 必填  | 只读 |说明              |
-| -------- | ------------------------------- | ---- | ---- |-----------------|
-| type  | [MetadataObjectType](#metadataobjecttype)   | 是   |  是  | metadata 类型。 |
-| timestamp | number | 是   |  是  | 当前时间戳（毫秒）。 |
-| boundingBox | [Rect](#rect)           | 是   |  是  | metadata 区域框。 |
+| 名称      | 类型                            | 只读 |说明              |
+| -------- | ------------------------------- | ---- |-----------------|
+| type  | [MetadataObjectType](#metadataobjecttype)   |  是  | metadata 类型。 |
+| timestamp | number |  是  | 当前时间戳（毫秒）。 |
+| boundingBox | [Rect](#rect)           |  是  | metadata 区域框。 |
 
 ## PortraitEffect
 
