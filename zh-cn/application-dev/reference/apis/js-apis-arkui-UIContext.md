@@ -390,29 +390,46 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 **示例：**
 
 ```ts
-class sethours{
+// xxx.ets
+
+class SelectTime{
   selectTime: Date = new Date('2020-12-25T08:30:00')
   hours(h:number,m:number){
     this.selectTime.setHours(h,m)
   }
 }
-uiContext.showTimePickerDialog({
-  selected: this.selectTime,
-  onAccept: (value: TimePickerResult) => {
-    // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
-    let time = new sethours()
-    if(value.hour&&value.minute){
-      time.hours(value.hour, value.minute)
-    }
-    console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TimePickerDialog:onCancel()")
-  },
-  onChange: (value: TimePickerResult) => {
-    console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+
+@Entry
+@Component
+struct TimePickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+
+  build() {
+    Column() {
+      Button('showTimePickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTimePickerDialog({
+            selected: this.selectTime,
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              let time = new SelectTime()
+              if(value.hour&&value.minute){
+                time.hours(value.hour, value.minute)
+              }
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TimePickerDialog:onCancel()")
+            },
+            onChange: (value: TimePickerResult) => {
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### showTextPickerDialog
@@ -441,38 +458,54 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 **示例：**
 
 ```ts
-{ class setvalue{
+// xxx.ets
+
+class SelectedValue{
   select: number = 2
   set(val:number){
     this.select = val
   }
 }
-class setvaluearr{
+class SelectedArray{
   select: number[] = []
   set(val:number[]){
     this.select = val
   }
 }
-let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-uiContext.showTextPickerDialog({
-  range: this.fruits,
-  selected: this.select,
-  onAccept: (value: TextPickerResult) => {
-    // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-    let setv = new setvalue()
-    let setvarr = new setvaluearr()
-    if(value.index){
-      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
-    }
-    console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TextPickerDialog:onCancel()")
-  },
-  onChange: (value: TextPickerResult) => {
-    console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+@Entry
+@Component
+struct TextPickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select : number  = 0;
+  build() {
+    Column() {
+      Button('showTextPickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTextPickerDialog({
+            range: this.fruits,
+            selected: this.select,
+            onAccept: (value: TextPickerResult) => {
+              // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+              let selectedVal = new SelectedValue()
+              let selectedArr = new SelectedArray()
+              if(value.index){
+                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              }
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TextPickerDialog:onCancel()")
+            },
+            onChange: (value: TextPickerResult) => {
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### createAnimator
@@ -499,17 +532,29 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
-let options:AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0
-};
-uiContext.createAnimator(options);
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options:AnimatorOptions = {
+      duration: 1500,
+      easing: "friction",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 3,
+      begin: 200.0,
+      end: 400.0
+    };
+    uiContext.createAnimator(options);
+  });
+}
 ```
 
 ### runScopedTask
@@ -564,7 +609,7 @@ font.registerFont({
   familySrc: '/font/medium.ttf'
 });
 ```
-### getStstemFontList
+### getSystemFontList
 
 getSystemFontList(): Array\<string> 
 
@@ -861,10 +906,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushUrl({
     url: 'pages/routerpage2',
@@ -915,10 +960,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -1070,10 +1115,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceUrl({
     url: 'pages/detail',
@@ -1120,10 +1165,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } 
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -1280,10 +1325,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushNamedRoute({
     name: 'myPage',
@@ -1334,10 +1379,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1490,10 +1535,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceNamedRoute({
     name: 'myPage',
@@ -1540,10 +1585,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -1801,7 +1846,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
+class ButtonsModel {
   text: string = ""
   color: string = ""
 }
@@ -1814,11 +1859,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as buttonsMoabl,
+      } as ButtonsModel,
       {
         text: 'button2',
         color: '#000000'
-      } as buttonsMoabl
+      } as ButtonsModel
     ]
   }, (err, data) => {
     if (err) {
@@ -1922,40 +1967,25 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { PromptAction } from '@ohos.arkui.UIContext';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
-  text: string = ""
-  color: string = ""
-}
-class dataR{
-  err:Error = new Error;
-  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
-}
-let dataAMSR:dataR = new dataR()
+
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  if(dataAMSR.data){
-    promptActionF.showActionMenu({
-      title: 'Title Info',
-      buttons: [
-        {
-          text: 'item1',
-          color: '#666666'
-        } as buttonsMoabl,
-        {
-          text: 'item2',
-          color: '#000000'
-        } as buttonsMoabl
-      ]
-    }, (dataAMSR.data))
-    if (dataAMSR.err) {
-      console.info('showActionMenu err: ' + dataAMSR.err);
-    }else{
-      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
-    }
-  }
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, { index:0 });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
