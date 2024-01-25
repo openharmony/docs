@@ -47,8 +47,8 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| isEnabled | boolean | Yes| Whether to enable the item.| 
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.| 
+| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> **true**: The item is enabled.<br> **false**: The item is disabled.| 
+| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform. This parameter is not available for the item attribute.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.

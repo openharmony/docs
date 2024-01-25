@@ -48,25 +48,35 @@ import font from '@ohos.font';
 @Entry
 @Component
 struct FontExample {
-  @State message: string =' Hello, World'
+  @State message: string = 'Hello World'
+
+  // iconFont example. Assume that **** is the Unicode of the specified icon.
+  @State unicode: string = '\u****'
+  @State codePoint: string = String.fromCharCode(0x****)
 
   aboutToAppear() {
     // Both familyName and familySrc support the string type.
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf' // The font file is at the same level as the pages directory.
+      familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
     })
 
     // Both familyName and familySrc support the Resource type.
     font.registerFont({
-      familyName: $r('app.string.mediumFamilyName'),
-      familySrc: $r('app.string.mediumFamilySrc')
+      familyName: $r('app.string.font_name'),
+      familySrc: $r('app.string.font_src')
     })
 
     // familySrc supports the $rawfile type.
     font.registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
+    })
+
+    // Register iconFont.
+    font.registerFont({
+      familyName: 'iconFont',
+      familySrc: '/font/iconFont.ttf'
     })
   }
 
@@ -76,7 +86,16 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium: name of the custom font to register. (Registered fonts such as $r('app.string.mediumFamilyName') and 'mediumRawFile' can also be used.)
-        .height('100%')
+      
+      // Two methods of using iconFont
+      Text(this.unicode)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('iconFont')
+      Text(this.codePoint)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('iconFont')
     }.width('100%')
   }
 }

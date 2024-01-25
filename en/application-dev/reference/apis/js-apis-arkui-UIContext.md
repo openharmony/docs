@@ -12,7 +12,7 @@ In the stage model, a window stage or window can use the **loadContent** API to 
 
 ## UIContext
 
-In the following API examples, you must first use [getUIContext()](./js-apis-window.md#getuicontext10) in **@ohos.window** to obtain a **UIContext** instance, and then call the APIs using the obtained instance. In this document, the **UIContext** instance is represented by **uiContext**.
+In the following API examples, you must first use [getUIContext()](./js-apis-window.md#getuicontext10) in **@ohos.window** to obtain a **UIContext** instance, and then call the APIs using the obtained instance. Alternatively, you can obtain a **UIContext** instance through the built-in method [getUIContext()](../arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component. In this document, the **UIContext** instance is represented by **uiContext**.
 
 ### getFont
 
@@ -71,6 +71,26 @@ Obtains the **UIInspector** object.
 
 ```ts
 uiContext.getUIInspector();
+```
+
+### getUIObserver<sup>11+</sup>
+
+getUIObserver(): UIObserver
+
+Obtains the **UIObserver** object.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                         | Description                |
+| --------------------------- | ------------------ |
+| [UIObserver](#uiobserver11) | **UIObserver** object.|
+
+**Example**
+
+```ts
+uiContext.getUIObserver();
 ```
 
 ### getMediaQuery
@@ -146,7 +166,7 @@ Applies a transition animation for state changes.
 | Name  | Type                                      | Mandatory  | Description                                   |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
-| event | () => void                               | Yes   | Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
+| event | () => void                               | Yes   | Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the state changes in the closure function.|
 
 **Example**
 
@@ -390,29 +410,46 @@ Shows a time picker dialog box.
 **Example**
 
 ```ts
-class sethours{
+// xxx.ets
+
+class SelectTime{
   selectTime: Date = new Date('2020-12-25T08:30:00')
   hours(h:number,m:number){
     this.selectTime.setHours(h,m)
   }
 }
-uiContext.showTimePickerDialog({
-  selected: this.selectTime,
-  onAccept: (value: TimePickerResult) => {
-    // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-    let time = new sethours()
-    if(value.hour&&value.minute){
-      time.hours(value.hour, value.minute)
-    }
-    console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TimePickerDialog:onCancel()")
-  },
-  onChange: (value: TimePickerResult) => {
-    console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+
+@Entry
+@Component
+struct TimePickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+
+  build() {
+    Column() {
+      Button('showTimePickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTimePickerDialog({
+            selected: this.selectTime,
+            onAccept: (value: TimePickerResult) => {
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              let time = new SelectTime()
+              if(value.hour&&value.minute){
+                time.hours(value.hour, value.minute)
+              }
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TimePickerDialog:onCancel()")
+            },
+            onChange: (value: TimePickerResult) => {
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### showTextPickerDialog
@@ -441,38 +478,54 @@ Shows a text picker in the given settings.
 **Example**
 
 ```ts
-{ class setvalue{
+// xxx.ets
+
+class SelectedValue{
   select: number = 2
   set(val:number){
     this.select = val
   }
 }
-class setvaluearr{
+class SelectedArray{
   select: number[] = []
   set(val:number[]){
     this.select = val
   }
 }
-let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-uiContext.showTextPickerDialog({
-  range: this.fruits,
-  selected: this.select,
-  onAccept: (value: TextPickerResult) => {
-    // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
-    let setv = new setvalue()
-    let setvarr = new setvaluearr()
-    if(value.index){
-      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
-    }
-    console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TextPickerDialog:onCancel()")
-  },
-  onChange: (value: TextPickerResult) => {
-    console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+@Entry
+@Component
+struct TextPickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select : number  = 0;
+  build() {
+    Column() {
+      Button('showTextPickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTextPickerDialog({
+            range: this.fruits,
+            selected: this.select,
+            onAccept: (value: TextPickerResult) => {
+              // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
+              let selectedVal = new SelectedValue()
+              let selectedArr = new SelectedArray()
+              if(value.index){
+                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              }
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TextPickerDialog:onCancel()")
+            },
+            onChange: (value: TextPickerResult) => {
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### createAnimator
@@ -499,17 +552,29 @@ Creates an **Animator** object.
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
-let options:AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0
-};
-uiContext.createAnimator(options);
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options:AnimatorOptions = {
+      duration: 1500,
+      easing: "friction",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 3,
+      begin: 200.0,
+      end: 400.0
+    };
+    uiContext.createAnimator(options);
+  });
+}
 ```
 
 ### runScopedTask
@@ -618,7 +683,7 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 
 |Type|Description|
 |----|----|
-|Nullable<[AtomicServiceBar](#atomicservicebar11)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
+|Nullable<[AtomicServiceBar](#atomicservicebar)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
 
 **Example**
 
@@ -639,6 +704,25 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     }
   });
 }
+```
+### getDragController<sup>11+</sup>
+
+getDragController(): DragController
+
+Obtains the **DragController** object, which can be used to create and initiate dragging.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+|Type|Description|
+|----|----|
+|[DragController](js-apis-arkui-dragController.md#dragController)| **DragController** object.|
+
+**Example**
+
+```ts
+uiContext.getDragController();
 ```
 
 ## Font
@@ -711,7 +795,7 @@ Obtains information about a system font based on the font name.
 
 | Type                                  | Description     |
 | ------------------------------------ | ------- |
-| [FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
+| [FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
 
 **Example**
 
@@ -779,7 +863,7 @@ Creates an observer for the specified component.
 
 | Type                                      | Description                       |
 | ---------------------------------------- | ------------------------- |
-| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register and unregister listeners for completion of component layout or drawing.|
+| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing.|
 
 **Example**
 
@@ -787,6 +871,108 @@ Creates an observer for the specified component.
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
+```
+
+## UIObserver<sup>11+</sup>
+
+In the following API examples, you must first use [getUIObserver()](#getuiobserver11) in **UIContext** to obtain a **UIObserver** instance, and then call the APIs using the obtained instance.
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+
+Subscribes to state changes of this **\<NavDestination>** component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+
+**Example**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+
+Unsubscribes from state changes of this **\<NavDestination>** component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+
+**Example**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate');
+```
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback<NavDestinationInfo>): void
+
+Subscribes to state changes of this **\<NavDestination>** component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+
+**Example**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback<NavDestinationInfo>): void
+
+Unsubscribes from state changes of this **\<NavDestination>** component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+
+**Example**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
 ## MediaQuery
@@ -811,7 +997,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 | Type                | Description                    |
 | ------------------ | ---------------------- |
-| MediaQueryListener | Listening handle to a media event, which is used to register or deregister the listening callback.|
+| MediaQueryListener | Listening handle to a media event, which is used to register or unregister the listening callback.|
 
 **Example**
 
@@ -966,10 +1152,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushUrl({
     url: 'pages/routerpage2',
@@ -1020,10 +1206,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -1175,10 +1361,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceUrl({
     url: 'pages/detail',
@@ -1225,10 +1411,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } 
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -1385,10 +1571,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushNamedRoute({
     name: 'myPage',
@@ -1439,10 +1625,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1595,10 +1781,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceNamedRoute({
     name: 'myPage',
@@ -1645,10 +1831,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -1906,7 +2092,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
+class ButtonsModel {
   text: string = ""
   color: string = ""
 }
@@ -1919,11 +2105,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as buttonsMoabl,
+      } as ButtonsModel,
       {
         text: 'button2',
         color: '#000000'
-      } as buttonsMoabl
+      } as ButtonsModel
     ]
   }, (err, data) => {
     if (err) {
@@ -2045,13 +2231,7 @@ try {
         color: '#000000'
       }
     ]
-  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
+  }, { index:0 });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -2118,6 +2298,302 @@ try {
   let code = (error as BusinessError).code;
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
+```
+## DragController<sup>11+</sup>
+In the following API examples, you must first use [getDragController()](./js-apis-arkui-UIContext.md#getdragcontroller11) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
+
+### executeDrag
+
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
+
+Executes dragging, by passing in the object to be dragged and the dragging information. This API uses a callback to return the drag event result.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                            |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [\<Image>](../arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](../arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | Yes  | Dragging information.                      |
+| callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | If some internal handing failed. |
+
+**Example**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDC.Text()
+              let unifiedData = new UDC.UnifiedData(text)
+
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
+              }
+              class tmp{
+                event:DragEvent|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+                if(eve.event){
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  // ...
+                  }
+                }
+              })
+            }
+          }
+        })
+    }
+  }
+}
+```
+
+### executeDrag
+
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
+
+Executes dragging, by passing in the object to be dragged and the dragging information. This API uses a promise to return the drag event result.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                            |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | Yes  | Dragging information.                      |
+
+**Return value**
+
+| Type                                                  | Description              |
+| ------------------------------------------------------ | ------------------ |
+| Promise&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Promise used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.|
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | If some internal handing failed. |
+
+**Example**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import image from '@ohos.multimedia.image';
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @State pixmap: image.PixelMap|null = null
+
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  @Builder PixmapBuilder() {
+    Column() {
+      Text("PixmapBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDC.Text()
+              let unifiedData = new UDC.UnifiedData(text)
+
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
+              }
+              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
+              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+                this.pixmap = pix;
+                let dragItemInfo: DragItemInfo = {
+                  pixelMap: this.pixmap,
+                  builder: ()=>{this.DraggingBuilder()},
+                  extraInfo: "DragItemInfoTest"
+                }
+
+                class tmp{
+                  event:DragResult|undefined = undefined
+                  extraParams:string = ''
+                }
+                let eve:tmp = new tmp()
+                dragController.executeDrag(dragItemInfo, dragInfo)
+                  .then((eve) => {
+                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                      // ...
+                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                      // ...
+                    }
+                  })
+                  .catch((err:Error) => {
+                  })
+              })
+            }
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### createDragAction
+
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
+
+Creates a **DragAction** object, by explicitly specifying one or more drag previews, drag data, and information about the dragged object. If the drag initiated by a **DragAction** object is not complete, no new **DragAction** object can be created, and calling this API will throw an exception.
+
+**NOTE**<br>You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                            |
+| --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
+| customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt; | Yes  | Object to be dragged.|
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | Yes  | Dragging information.                      |
+
+**Return value**
+
+| Type                                                  | Description              |
+| ------------------------------------------------------ | ------------------ |
+| [DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state change events and start the dragging service.|
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | If some internal handing failed. |
+
+**Example**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import image from '@ohos.multimedia.image';
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @State pixmap: image.PixelMap|null = null
+  private dragAction: dragController.DragAction|null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+
+      Column() {
+        Text ("Test")
+      }
+      .width(100)
+      .height(100)
+      .backgroundColor(Color.Red)
+
+      Button('Drag Multiple Objects').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            console.log("muti drag Down by listener");
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
+            }
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+            if(!this.dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                console.log("drag has start");
+              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                console.log("drag has end");
+                if (!this.dragAction) {
+                  return
+                }
+                this.customBuilders.splice(0, this.customBuilders.length)
+                this.dragAction.off('statusChange')
+              }
+            })
+            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              console.log("start drag Error:" + err.message);
+            })
+            } catch(err) {
+              console.log("create dragAction Error:" + err.message);
+            }
+          }
+        }
+      }).margin({top:20})
+    }
+  }
+}
 ```
 
 ## AtomicServiceBar<sup>11+</sup>

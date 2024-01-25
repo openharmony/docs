@@ -48,23 +48,23 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | -------- | -------- | -------- | -------- |
 | iconStyle | [IconType](#icontype) | No| Icon style of the element on the left.| 
 | icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon resource of the element on the left.| 
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | No| Title of the element in the center.| 
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the element in the center.| 
-| description | [ResourceStr](ts-types.md#resourcestr) | No| Description of the element in the center.| 
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | No| Title of the element in the center. If the length limit is reached, an ellipsis (бн) is displayed to represent clipped text.| 
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the element in the center. If the length limit is reached, an ellipsis (бн) is displayed to represent clipped text.| 
+| description | [ResourceStr](ts-types.md#resourcestr) | No| Description of the element in the center. If the length limit is reached, an ellipsis (бн) is displayed to represent clipped text.| 
 
 
 ## IconType
 
-| Name| Description| 
-| -------- | -------- |
-| BADGE | The icon on the left is a badge, in the size of 8 x 8 dp.| 
-| NORMAL_ICON | The icon on the left is a small icon, in the size of 16 x 16 dp.| 
-| SYSTEM_ICON | The icon on the left is a system icon, in the size of 24 x 24 dp.| 
-| HEAD_SCULPTURE | The icon on the left is a profile picture, in the size of 40 x 40 dp.| 
-| APP_ICON | The icon on the left is an application icon, in the size of 64 x 64 dp.| 
-| PREVIEW | The icon on the left is a preview image, in the size of 96 x 96 dp.| 
-| LONGITUDINAL | The icon on the left uses an aspect ratio where width is greater than height, with the longest edge being 96 dp.| 
-| VERTICAL | The icon on the left uses an aspect ratio where height is greater than width, with the longest edge being 96 dp.| 
+| Name| Value| Description|  
+| -------- | -------- | -------- |
+| BADGE | 1 | The icon on the left is a badge, in the size of 8 x 8 dp.| 
+| NORMAL_ICON | 2 | The icon on the left is a small icon, in the size of 16 x 16 dp.| 
+| SYSTEM_ICON | 3 | The icon on the left is a system icon, in the size of 24 x 24 dp.| 
+| HEAD_SCULPTURE | 4 | The icon on the left is a profile picture, in the size of 40 x 40 dp.| 
+| APP_ICON | 5 | The icon on the left is an application icon, in the size of 64 x 64 dp.| 
+| PREVIEW | 6 | The icon on the left is a preview image, in the size of 96 x 96 dp.| 
+| LONGITUDINAL | 7 | The icon on the left uses an aspect ratio where width is greater than height, with the longest edge being 96 dp.| 
+| VERTICAL | 8 | The icon on the left uses an aspect ratio where height is greater than width, with the longest edge being 96 dp.| 
 
 
 ## OperateItem
@@ -79,7 +79,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | checkbox | [OperateCheck](#operatecheck) | No| The element on the right is a check box, in the size of 24 x 24 dp.| 
 | radio | [OperateCheck](#operatecheck) | No| The element on the right is a radio button, in the size of 24 x 24 dp.| 
 | image | [ResourceStr](ts-types.md#resourcestr) | No| The element on the right is an image, in the size of 48 x 48 dp.| 
-| text | [ResourceStr](ts-types.md#resourcestr) | No| The elements on the right is text.| 
+| text | [ResourceStr](ts-types.md#resourcestr) | No| The element on the right is text.| 
 
 
 ## OperateIcon
@@ -101,8 +101,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| isCheck | boolean | No| Whether the switch, check box, or radio buttion on the right is selected.| 
-| onChange | (value:&nbsp;boolean)=&gt;void | No| Callback invoked when the selected state of the switch, check box, or radio buttion on the right is changed.| 
+| isCheck | boolean | No| Whether the switch, check box, or radio button on the right is selected.<br> Default value: **false**<br> **true**: selected<br> **false**: not selected| 
+| onChange | (value: boolean)=&gt;void | No| Callback invoked when the selected state of the switch, check box, or radio button on the right is changed.<br> **true**: from not selected to selected<br> **false**: from selected to not selected| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
