@@ -6041,9 +6041,9 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | 是    | 是    | 编辑数据的格式。    |
-| formatVersion | string | 是    | 是   | 编辑数据格式的版本。    |
-| data | string | 是    | 是   | 编辑数据的内容。    |
+| compatibleFormat | string | 是    | 是    | 编辑数据的格式。**系统接口**：此接口为系统接口。    |
+| formatVersion | string | 是    | 是   | 编辑数据格式的版本。**系统接口**：此接口为系统接口。    |
+| data | string | 是    | 是   | 编辑数据的内容。**系统接口**：此接口为系统接口。    |
 
 ### constructor<sup>11+</sup>
 
@@ -6299,7 +6299,7 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 | context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如：{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如：{title: 'testPhoto'}。              |
 
 **返回值：**
 
@@ -6717,7 +6717,7 @@ setEditData(editData: MediaAssetEditData): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| editData | (MediaAssetEditData)[#mediaasseteditdata11] | 是   | 待保存的资产编辑数据。 |
+| editData | [MediaAssetEditData](#mediaasseteditdata11) | 是   | 待保存的资产编辑数据。 |
 
 **错误码：**
 
@@ -8060,7 +8060,7 @@ async function example() {
 ## MediaAssetManager<sup>11+</sup>
 ### requestImage<sup>11+</sup>
 
-static requestImage(context: Context, asset: PhotoAsset, requestOption: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
+static requestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
 
 根据不同的策略模式，请求图片资源。
 
@@ -8121,7 +8121,7 @@ async function example() {
 
 ### requestImageData<sup>11+</sup>
 
-static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler, MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
+static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
 
 根据不同的策略模式，请求图片资源数据。
 
@@ -8583,9 +8583,9 @@ title参数规格为：
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| FAST_MODE |  1 |  快速模式。 |
-| HIGH_QUALITY_MODE |  2 |  高质量模式。 |
-| BALANCE_MODE |  3 |  均衡模式。 |
+| FAST_MODE |  0 |  快速模式。 |
+| HIGH_QUALITY_MODE |  1 |  高质量模式。 |
+| BALANCE_MODE |  2 |  均衡模式。 |
 
 ## SourceMode<sup>11+</sup>
 
