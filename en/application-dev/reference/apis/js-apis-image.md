@@ -37,13 +37,15 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-  console.log('Succeeded in creating pixelmap.');
-}).catch((error : BusinessError) => {
-  console.error('Failed to create pixelmap.');
-})
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
+        console.log('Succeeded in creating pixelmap.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create pixelmap.');
+    })
+}
 ```
 
 ## image.createPixelMap<sup>8+</sup>
@@ -66,15 +68,18 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
-    if(error) {
-        console.error('Failed to create pixelmap.');
-    } else {
-        console.log('Succeeded in creating pixelmap.');
-    }
-})
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
+        if(error) {
+            console.error('Failed to create pixelmap.');
+            return;
+        } else {
+            console.log('Succeeded in creating pixelmap.');
+        }
+    })
+}
 ```
 
 ## image.createPixelMapFromParcel<sup>11+</sup>
@@ -132,6 +137,7 @@ class MySequence implements rpc.Parcelable {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
             console.error('createPixelMapFromParcel error: '+ e);
+            return false;
         }
       return true;
     }
@@ -168,19 +174,66 @@ async function Demo() {
 }
 ```
 
+## image.createPixelMapFromSurface<sup>11+</sup>
+
+Creates a **PixelMap** object from a surface ID.
+
+createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name                | Type                | Mandatory| Description                                    |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](js-apis-image.md#imagereceiver9).|
+| region                 | [Region](#region7)  | Yes  | Size of the image after cropping.                        |
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980115 | Invalid input parameter|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**Example**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo(surfaceId: string) {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await multimedia_image.createPixelMapFromSurface(surfaceId, region).then(() => {
+        console.log('Succeeded in creating pixelmap from Surface');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create pixelmap');
+    });
+} 
+```
+
 ## PixelMap<sup>7+</sup>
 
 Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
-Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request.
+Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
+
+Before calling any API in **PixelMap**, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object.
 
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name      | Type   | Readable| Writable| Description                      |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| isEditable | boolean | Yes  | No  | Whether the image pixel map is editable.|
+| Name             | Type   | Readable| Writable| Description                      |
+| -----------------| ------- | ---- | ---- | -------------------------- |
+| isEditable        | boolean | Yes  | No  | Whether the image pixel map is editable.|
+| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -206,12 +259,14 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-    console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
-}).catch((error : BusinessError) => {
-    console.error('Failed to read image pixel data.');  // Called if no condition is met.
-})
+async function Demo() {
+    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+        console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
+    }).catch((error : BusinessError) => {
+        console.error('Failed to read image pixel data.');  // Called if no condition is met.
+    })
+}
 ```
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -233,14 +288,17 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
-    if(err) {
-        console.error('Failed to read image pixel data.');  // Called if no condition is met.
-    } else {
-        console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
-    }
-})
+async function Demo() {
+    const readBuffer : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
+        if(err) {
+            console.error('Failed to read image pixel data.');  // Called if no condition is met.
+            return;
+        } else {
+            console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
+        }
+    })
+}
 ```
 
 ### readPixels<sup>7+</sup>
@@ -267,17 +325,19 @@ Reads image pixel map data in an area. This API uses a promise to return the res
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const area : image.PositionArea = {
-    pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    pixelMap.readPixels(area).then(() => {
+        console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+    }).catch((error : BusinessError) => {
+        console.error('Failed to read the image data in the area.'); // Called if no condition is met.
+    })
 }
-pixelMap.readPixels(area).then(() => {
-    console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
-}).catch((error : BusinessError) => {
-    console.error('Failed to read the image data in the area.'); // Called if no condition is met.
-})
 ```
 
 ### readPixels<sup>7+</sup>
@@ -299,25 +359,22 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    if(pixelMap == undefined){
-        console.error('createPixelMap failed.');
-    } else {
-        const area : image.PositionArea = { pixels: new ArrayBuffer(8),
-            offset: 0,
-            stride: 8,
-            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
-        pixelMap.readPixels(area, (err : BusinessError) => {
-            if (err != undefined) {
-	        console.error('Failed to read pixelmap from the specified area.');
-	    } else {
-	        console.info('Succeeded to read pixelmap from the specified area.');
-	    }
-        })
-    }
-})
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    pixelMap.readPixels(area, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error('Failed to read pixelmap from the specified area.');
+            return;
+        } else {
+            console.info('Succeeded to read pixelmap from the specified area.');
+        }
+    })
+}
 ```
 
 ### writePixels<sup>7+</sup>
@@ -344,31 +401,23 @@ Writes image pixel map data to an area. This API uses a promise to return the re
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts)
-    .then( (pixelMap : image.PixelMap)  => {
-        if (pixelMap == undefined) {
-            console.error('createPixelMap failed.');
-            return;
-        }
-        const area : image.PositionArea = { pixels: new ArrayBuffer(8),
-            offset: 0,
-            stride: 8,
-            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-        }
-        let bufferArr : Uint8Array = new Uint8Array(area.pixels);
-        for (let i = 0; i < bufferArr.length; i++) {
-            bufferArr[i] = i + 1;
-        }
-        pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }).catch((error : BusinessError) => {
-            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-        })
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writePixels(area).then(() => {
+        console.info('Succeeded to write pixelmap into the specified area.');
     }).catch((error : BusinessError) => {
-        console.error('error: ' + error);
+        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
     })
+}
 ```
 
 ### writePixels<sup>7+</sup>
@@ -390,22 +439,25 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const area : image.PositionArea = { pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-}
-let bufferArr : Uint8Array = new Uint8Array(area.pixels);
-for (let i = 0; i < bufferArr.length; i++) {
-    bufferArr[i] = i + 1;
-}
-pixelMap.writePixels(area, (error : BusinessError) => {
-    if (error != undefined) {
-        console.error('Failed to write pixelmap into the specified area.');
-    } else {
-        console.info('Succeeded to write pixelmap into the specified area.');
+async function Demo() {
+    const area : image.PositionArea = { pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr : Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
     }
-})
+    pixelMap.writePixels(area, (error : BusinessError) => {
+        if (error != undefined) {
+            console.error('Failed to write pixelmap into the specified area.');
+            return;
+        } else {
+            console.info('Succeeded to write pixelmap into the specified area.');
+        }
+    })
+}
 ```
 
 ### writeBufferToPixels<sup>7+</sup>
@@ -432,16 +484,18 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let bufferArr : Uint8Array = new Uint8Array(color);
-for (let i = 0; i < bufferArr.length; i++) {
-    bufferArr[i] = i + 1;
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    pixelMap.writeBufferToPixels(color).then(() => {
+        console.log("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error : BusinessError) => {
+        console.error("Failed to write data from a buffer to a PixelMap.");
+    })
 }
-pixelMap.writeBufferToPixels(color).then(() => {
-    console.log("Succeeded in writing data from a buffer to a PixelMap.");
-}).catch((error : BusinessError) => {
-    console.error("Failed to write data from a buffer to a PixelMap.");
-})
 ```
 
 ### writeBufferToPixels<sup>7+</sup>
@@ -463,19 +517,21 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let bufferArr : Uint8Array = new Uint8Array(color);
-for (let i = 0; i < bufferArr.length; i++) {
-    bufferArr[i] = i + 1;
-}
-pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
-    if (err != undefined) {
-        console.error("Failed to write data from a buffer to a PixelMap.");
-        return;
-    } else {
-	console.log("Succeeded in writing data from a buffer to a PixelMap.");
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
     }
-});
+    pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to write data from a buffer to a PixelMap.");
+            return;
+        } else {
+            console.log("Succeeded in writing data from a buffer to a PixelMap.");
+        }
+    })
+}
 ```
 
 ### getImageInfo<sup>7+</sup>
@@ -495,12 +551,7 @@ Obtains pixel map information of this image. This API uses a promise to return t
 **Example**
 
 ```ts
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
-image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
-    if (pixelMap == undefined) {
-        console.error("Failed to obtain the image pixel map information.");
-    }
+async function Demo() {
     pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
@@ -509,7 +560,7 @@ image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
             console.log("Succeeded in obtaining the image pixel map information.");
         }
     })
-})
+}
 ```
 
 ### getImageInfo<sup>7+</sup>
@@ -530,21 +581,17 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 
 ```ts
 import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    if (pixelMap == undefined) {
-        console.error("Failed to obtain the image pixel map information.");
-    }
+async function Demo() {
     pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
+            return;
         }
         if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
             console.log("Succeeded in obtaining the image pixel map information.");
         }
     })
-})
+}
 ```
 
 ### getBytesNumberPerRow<sup>7+</sup>
@@ -564,16 +611,7 @@ Obtains the number of bytes per row of this image pixel map.
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    if (err != undefined) {
-        console.error('Failed to create pixelmap.');
-    } else {
-        let rowCount : number = pixelMap.getBytesNumberPerRow();
-    }
-})
+let rowCount : number = pixelMap.getBytesNumberPerRow();
 ```
 
 ### getPixelBytesNumber<sup>7+</sup>
@@ -635,15 +673,17 @@ Sets an opacity rate for this image pixel map. This API uses an asynchronous cal
 
 ```ts
 import {BusinessError} from '@ohos.base';
-let rate = 0.5;
-pixelMap.opacity(rate, (err : BusinessError) => {
-	if (err) {
-        console.error("Failed to set opacity.");
-        return;
-    } else {
-        console.log("Succeeded in setting opacity.");
-	}
-})
+async function Demo() {
+    let rate : number = 0.5;
+    pixelMap.opacity(rate, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to set opacity.");
+            return;
+        } else {
+            console.log("Succeeded in setting opacity.");
+        }
+    })
+}
 ```
 
 ### opacity<sup>9+</sup>
@@ -669,8 +709,14 @@ Sets an opacity rate for this image pixel map. This API uses a promise to return
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.opacity(0.5);
+    let rate : number = 0.5;
+    await pixelMap.opacity(rate).then(() => {
+        console.log('Sucessed in setting opacity.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to set opacity.');
+    })
 }
 ```
 
@@ -691,9 +737,14 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.createAlphaPixelmap();
-}   
+    await pixelMap.createAlphaPixelmap().then((alphaPixelMap : image.PixelMap) => {
+        console.log('Succeeded in creating alpha pixelmap.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create alpha pixelmap.');
+    })
+}
 ```
 
 ### createAlphaPixelmap<sup>9+</sup>
@@ -714,13 +765,16 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 ```ts
 import {BusinessError} from '@ohos.base';
-pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
-    if (alphaPixelMap == undefined) {
-        console.error('Failed to obtain new pixel map.');
-    } else {
-        console.info('Succeed in obtaining new pixel map.');
-    }
-})
+async function Demo() {
+    pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
+        if (alphaPixelMap == undefined) {
+            console.error('Failed to obtain new pixel map.');
+            return;
+        } else {
+            console.info('Succeed in obtaining new pixel map.');
+        }
+    })
+}
 ```
 
 ### scale<sup>9+</sup>
@@ -742,8 +796,18 @@ Scales this image based on the input scaling multiple of the width and height. T
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.scale(2.0, 1.0);
+    let scaleX : number = 2.0;
+    let scaleY : number = 1.0;
+    pixelMap.scale(scaleX, scaleY, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to scale pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in scaling pixelmap.");
+        }
+    })
 }
 ```
 
@@ -771,8 +835,15 @@ Scales this image based on the input scaling multiple of the width and height. T
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.scale(2.0, 1.0);
+    let scaleX : number = 2.0;
+    let scaleY : number = 1.0;
+    await pixelMap.scale(scaleX, scaleY).then(() => {
+        console.log('Sucessed in scaling pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to scale pixelmap.');
+    })
 }
 ```
 
@@ -795,8 +866,18 @@ Translates this image based on the input coordinates. This API uses an asynchron
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.translate(3.0, 1.0);
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    pixelMap.translate(translateX, translateY, (err : BusinessError) => {
+        if (err) {
+            console.error("Failed to translate pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in translating pixelmap.");
+        }
+    })
 }
 ```
 
@@ -824,8 +905,15 @@ Translates this image based on the input coordinates. This API uses a promise to
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.translate(3.0, 1.0);
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    await pixelMap.translate(translateX, translateY).then(() => {
+        console.log('Sucessed in translating pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to translate pixelmap.');
+    })
 }
 ```
 
@@ -848,15 +936,17 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 
 ```ts
 import {BusinessError} from '@ohos.base';
-let angle = 90.0;
-pixelMap.rotate(angle, (err : BusinessError) => {
-    if (err != undefined) {
-        console.error("Failed to set rotation.");
-        return;
-    } else {
-        console.log("Succeeded in setting rotation.");
-    }
-})
+async function Demo() {
+    let angle : number = 90.0;
+    pixelMap.rotate(angle, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to rotate pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in rotating pixelmap.");
+        }
+    })
+}
 ```
 
 ### rotate<sup>9+</sup>
@@ -882,8 +972,14 @@ Rotates this image based on the input angle. This API uses a promise to return t
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.rotate(90.0);
+    let angle : number = 90.0;
+    await pixelMap.rotate(angle).then(() => {
+        console.log('Sucessed in rotating pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to rotate pixelmap.');
+    })
 }
 ```
 
@@ -906,8 +1002,18 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.flip(false, true);
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    pixelMap.flip(horizontal, vertical, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to flip pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in flipping pixelmap.");
+        }
+    })
 }
 ```
 
@@ -935,8 +1041,15 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.flip(false, true);
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    await pixelMap.flip(horizontal, vertical).then(() => {
+        console.log('Sucessed in flipping pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to flip pixelmap.');
+    })
 }
 ```
 
@@ -958,8 +1071,17 @@ Crops this image based on the input size. This API uses an asynchronous callback
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    pixelMap.crop(region, (err : BusinessError) => {
+        if (err != undefined) {
+            console.error("Failed to crop pixelmap.");
+            return;
+        } else {
+            console.log("Succeeded in cropping pixelmap.");
+        }
+    })
 }
 ```
 
@@ -986,8 +1108,14 @@ Crops this image based on the input size. This API uses a promise to return the 
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 async function Demo() {
-    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await pixelMap.crop(region).then(() => {
+        console.log('Sucessed in cropping pixelmap.');
+    }).catch((err : BusinessError) => {
+        console.error('Failed to crop pixelmap.');
+    });
 }
 ```
 
@@ -1011,16 +1139,15 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980101| If the image data abnormal              |
-| 62980103| If the image data unsupport              |
-| 62980115| If the image parameter invalid             |
+| 62980101| If the image data abnormal.            |
+| 62980103| If the image data unsupport.             |
+| 62980115| If the image parameter invalid.            |
 
 **Example**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
-    let csm : Object = pixelMap.getColorSpace();
+    let csm = pixelMap.getColorSpace();
 }
 ```
 
@@ -1044,8 +1171,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid        |
-| 62980115| If the image parameter invalid             |
+| 62980111| If the operation invalid.        |
+| 62980115| If the image parameter invalid.             |
 
 **Example**
 
@@ -1079,10 +1206,10 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
-| 401 | If the input parameter is not valid parameter. |
-| 62980104| If the internal object initialized failed |
-| 62980108| If the color space converted failed       |
-| 62980115| If the image parameter invalid            |
+| 401 | The parameter check failed. |
+| 62980104| Failed to initialize the internal object. |
+| 62980108| Failed to convert the color space.       |
+| 62980115| Invalid image parameter.            |
 
 **Example**
 
@@ -1096,6 +1223,7 @@ async function Demo() {
     pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
         if (err) {
             console.error('Failed to apply color space for pixelmap object.');
+            return;
         } else {
             console.log('Succeeded in applying color space for pixelmap object.');
         }
@@ -1129,10 +1257,10 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
-| 401 | If the input parameter is not valid parameter. |
-| 62980104| If the internal object initialized failed |
-| 62980108| If the color space converted failed       |
-| 62980115| If the image parameter invalid            |
+| 401 | The parameter check failed. |
+| 62980104| Failed to initialize the internal object. |
+| 62980108| Failed to convert the color space.       |
+| 62980115| Invalid image parameter.            |
 
 **Example**
 
@@ -1171,8 +1299,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980115 | If the input parameter invalid              |
-| 62980097 | If the ipc error              |
+| 62980115 | Invalid image parameter.              |
+| 62980097 | IPC error.             |
 
 **Example**
 
@@ -1258,9 +1386,9 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980115 | If the input parameter invalid              |
-| 62980097 | If the ipc error              |
-| 62980096 | If fail to create async work         |
+| 62980115 | Invalid image parameter.              |
+| 62980097 | IPC error.              |
+| 62980096 | The operation failed.         |
 
 **Example**
 
@@ -1337,11 +1465,13 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 
 ```ts
 import {BusinessError} from '@ohos.base';
-pixelMap.release().then(() => {
-    console.log('Succeeded in releasing pixelmap object.');
-}).catch((error : BusinessError) => {
-    console.error('Failed to release pixelmap object.');
-})
+async function Demo() {
+    pixelMap.release().then(() => {
+        console.log('Succeeded in releasing pixelmap object.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to release pixelmap object.');
+    })
+}
 ```
 
 ### release<sup>7+</sup>
@@ -1362,13 +1492,16 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 
 ```ts
 import {BusinessError} from '@ohos.base';
-pixelMap.release((err : BusinessError) => {
-    if (err != undefined) {
-        console.error('Failed to release pixelmap object.');
-    } else {
-        console.log('Succeeded in releasing pixelmap object.');
-    }
-})
+async function Demo() {
+    pixelMap.release((err : BusinessError) => {
+        if (err != undefined) {
+            console.error('Failed to release pixelmap object.');
+            return;
+        } else {
+            console.log('Succeeded in releasing pixelmap object.');
+        }
+    })
+}
 ```
 
 ## image.createImageSource
@@ -1769,13 +1902,18 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | The parameter check failed.              |
-| 62980111| If the image source data incomplete.             |
-| 62980113| If the image format unknown.             |
-| 62980116| If the image decode failed.              |
-| 62980118| If the image plugin create failed.            |
-| 62980122| If the image decode head abnormal.             |
-| 62980123| If the image unsupport exif.             |
-| 62980135| If the exif value is invalid.             |
+| 62980096| The operation failed.             |
+| 62980103| The image data is not supported.            |
+| 62980110| The image source data is incorrect.            |
+| 62980111| The image source data is incomplete.             |
+| 62980112| The image format does not match.             |
+| 62980113| Unknown image format.             |
+| 62980115| Invalid image parameter.             |
+| 62980116| Failed to decode the image.              |
+| 62980118| Failed to create the image plugin.           |
+| 62980122| The image decoding header is abnormal.           |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980135| The EXIF value is invalid.            |
 
 **Example**
 
@@ -1921,17 +2059,10 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | The parameter check failed.              |
-| 62980110| If the image source data error.       |
-| 62980111| If the image source data incomplete.  |
-| 62980113| If the image format unknown.             |
-| 62980116| If the image decode failed.              |
-| 62980118| If the image plugin create failed.       |
-| 62980123| If the image unsupport exif.             |
-| 62980130| If the image source file is abnormal.    |
-| 62980132| If the image source buffer size is abnormal.            |
-| 62980135| If the exif value is invalid.             |
-| 62980146| If the exif failed to be written to the file.        |
-| 62980147| If the file fails to be read.            |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.    |
+| 62980135| The EXIF value is invalid.             |
+| 62980146| The EXIF data failed to be written to the file.        |
 
 **Example**
 
@@ -2210,11 +2341,23 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096| The operation failed.              |
+| 62980099 | The shared memory data is abnormal. |
+| 62980101 | The image data is abnormal. |
+| 62980103| The image data is not supported.             |
+| 62980106 | The image is too large. |
+| 62980109 | Failed to crop the image. |
+| 62980110| The image source data is incorrect.             |
+| 62980111| The image source data is incomplete.           |
+| 62980112 | The image format does not match. |
+| 62980113 | Unknown image format. |
+| 62980115 | Invalid image parameter. |
+| 62980116 | Failed to decode the image. |
+| 62980118| Failed to create the image plugin.             |
+| 62980122 | The image decoding header is abnormal. |
+| 62980137 | Invalid media operation. |
+| 62980173 | The DMA memory does not exist. |
+| 62980174 | The DMA memory data is abnormal. |
 
 **Example**
 
@@ -2255,11 +2398,23 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | The operation failed.             |
+| 62980099 | The shared memory data is abnormal.  |
+| 62980101 | The image data is abnormal.          |
+| 62980103 | The image data is not supported.         |
+| 62980106 | The image is too large.              |
+| 62980109 | Failed to crop the image.            |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.       |
+| 62980113 | Unknown image format.        |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.         |
+| 62980118 | Failed to create the image plugin.   |
+| 62980122 | The image decoding header is abnormal.   |
+| 62980137 | Invalid media operation.     |
+| 62980173 | The DMA memory does not exist.        |
+| 62980174 | The DMA memory data is abnormal.    |
 
 **Example**
 
@@ -2295,11 +2450,23 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | The operation failed.            |
+| 62980099 | The shared memory data is abnormal.  |
+| 62980101 | The image data is abnormal.         |
+| 62980103 | The image data is not supported.        |
+| 62980106 | The image is too large.              |
+| 62980109 | Failed to crop the image.           |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.        |
+| 62980113 | Unknown image format.         |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.         |
+| 62980118 | Failed to create the image plugin.  |
+| 62980122 | The image decoding header is abnormal.   |
+| 62980137 | Invalid media operation.      |
+| 62980173 | The DMA memory does not exist.         |
+| 62980174 | The DMA memory data is abnormal.     |
 
 **Example**
 
@@ -2326,7 +2493,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-Obtains an array of delay times. This API uses an asynchronous callback to return the result.
+Obtains an array of delay times. This API uses an asynchronous callback to return the result. It is used only for GIF images.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2342,13 +2509,17 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096| The operation failed.              |
+| 62980110| The image source data is incorrect.             |
+| 62980111| The image source data is incomplete.            |
+| 62980112 | The image format does not match. |
+| 62980113| Unknown image format. |
+| 62980115 | Invalid image parameter. |
+| 62980116| Failed to decode the image. |
+| 62980118| Failed to create the image plugin. |
+| 62980122| The image decoding header is abnormal. |
+| 62980137 | Invalid media operation. |
+| 62980149 | Invalid media parameter. |
 
 **Example**
 
@@ -2367,7 +2538,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-Obtains an array of delay times. This API uses a promise to return the result.
+Obtains an array of delay times. This API uses a promise to return the result. It is used only for GIF images.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2383,13 +2554,17 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | The operation failed.             |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.        |
+| 62980113 | Unknown image format.         |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.          |
+| 62980118 | Failed to create the image plugin.  |
+| 62980122 | The image decoding header is abnormal.   |
+| 62980137 | Invalid media operation.      |
+| 62980149 | Invalid media parameter.      |
 
 **Example**
 
@@ -2422,13 +2597,16 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096| The operation failed.              |
+| 62980110| The image source data is incorrect. |
+| 62980111| The image source data is incomplete. |
+| 62980112| The image format does not match. |
+| 62980113| Unknown image format. |
+| 62980115| Invalid image parameter. |
+| 62980116| Failed to decode the image. |
+| 62980118| Failed to create the image plugin. |
+| 62980122| The image decoding header is abnormal. |
+| 62980137| Invalid media operation. |
 
 **Example**
 
@@ -2463,13 +2641,16 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | The operation failed.             |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.        |
+| 62980113 | Unknown image format.         |
+| 62980115 | Invalid image parameter.      |
+| 62980116 | Failed to decode the image.          |
+| 62980118 | Failed to create the image plugin.   |
+| 62980122 | The image decoding header is abnormal.  |
+| 62980137 | Invalid media operation.      |
 
 **Example**
 
@@ -2935,9 +3116,8 @@ Creates an **ImageReceiver** instance by specifying the image size, format, and 
 
 | Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | Yes  | Default image width.      |
-| height   | number | Yes  | Default image height.      |
-| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported.) |
+| size    | [Size](#size)  | Yes  | Default size of the image.      |
+| format   | [ImageFormat](#imageformat9) | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported.)            |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -2945,6 +3125,14 @@ Creates an **ImageReceiver** instance by specifying the image size, format, and 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
 | [ImageReceiver](#imagereceiver9) | Returns an **ImageReceiver** instance if the operation is successful.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401| The parameter check failed.            |
 
 **Example**
 
@@ -2972,8 +3160,9 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 
 | Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| size    | [Size](#size)  | Yes  | Default size of the image.      |
-| format   | [ImageFormat](#imageformat9) | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported.)            |
+| width    | number | Yes  | Default image width.      |
+| height   | number | Yes  | Default image height.      |
+| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported.) |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -3256,6 +3445,15 @@ Creates an **ImageCreator** instance by specifying the image size, format, and c
 | Type                          | Description                                   |
 | ------------------------------ | --------------------------------------- |
 | [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401| The parameter check failed.            |
 
 **Example**
 
@@ -3681,6 +3879,7 @@ Describes image information.
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | Yes  | Yes  | Image size.|
 | density<sup>9+</sup> | number | Yes  | Yes  | Pixel density, in ppi.|
+| stride<sup>11+</sup> | number | Yes  | Yes  | Number of bytes from one row of pixels in memory to the next row of pixels in memory.stride >= region.size.width*4  |
 
 ## Size
 

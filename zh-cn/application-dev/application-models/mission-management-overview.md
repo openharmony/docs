@@ -39,8 +39,13 @@
    import { BusinessError } from '@ohos.base';
    import image from '@ohos.multimedia.image';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'TaskManager';
    ```
    ```ts
+   private listenerId: number = 0;
+   private missionId: number = 0;
    private listener: missionManager.MissionListener = {
      // 任务创建
      onMissionCreated: (mission: number) => {

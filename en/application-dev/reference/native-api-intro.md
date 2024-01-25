@@ -74,4 +74,4 @@ Do not use Native APIs when you want to:
 1. OpenHarmony provides remote code debugging by using the low-level Debugger (LLDB). For details, see [LLDB](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_en.md).
 2. OpenHarmony provides the log debugging for the musl library. For details, see "Debugging Capabilities" in [libc](./native-lib/third_party_libc/musl.md).
 
-<!--no_check-->
+ <!--no_check--> 

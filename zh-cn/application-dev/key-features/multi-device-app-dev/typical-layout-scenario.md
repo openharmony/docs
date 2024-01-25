@@ -349,6 +349,23 @@ struct MultiLaneList {
 
 
 ```ts
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+
+interface imagesInfo{
+  label:string,
+  imageSrc:Resource
+}
+const images:imagesInfo[]=[
+  {
+    label:'moon',
+    imageSrc:$r('app.media.my_image_moon')
+  },
+  {
+    label:'sun',
+    imageSrc:$r('app.media.my_image')
+  }
+]
+
 @Entry
 @Component
 struct SideBarSample {

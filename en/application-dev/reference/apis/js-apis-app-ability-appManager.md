@@ -231,9 +231,13 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-Obtains information about the running processes. This API uses a promise to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
+Obtains information about the running processes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+> **NOTE**
+>
+> Since API version 11, the **ohos.permission.GET_RUNNING_INFO** permission is no longer required for calling this API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -268,9 +272,13 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-Obtains information about the running processes. This API uses an asynchronous callback to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
+Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+> **NOTE**
+>
+> Since API version 11, the **ohos.permission.GET_RUNNING_INFO** permission is no longer required for calling this API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -18,12 +18,12 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
 | 接口名                                                                                                              | 返回值         | 描述                         |
 | ------------------------------------------------------------------------------------------------------------------- | -------------- | ------------                 |
-| hiTraceChain.begin(name: string, flags: number = HiTraceFlag.DEFAULT)                                               | HiTraceId      | 开始跟踪。                   |
+| hiTraceChain.begin(name: string, flags?: number = HiTraceFlag.DEFAULT)                                               | HiTraceId      | 开始跟踪。                   |
 | hiTraceChain.end(id: HiTraceId)                                                                                     | void           | 结束跟踪。                   |
 
 ## 开发步骤
 
-以构造单次[应用事件打点](../reference/apis/js-apis-hiappevent.md)的业务说明分布式调用链的使用方法。
+以构造单次[应用事件打点](../reference/apis/js-apis-hiviewdfx-hiappevent.md)的业务说明分布式调用链的使用方法。
 
 1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > pages > index.ets” 文件，添加一个按钮，完整示例代码如下：
 

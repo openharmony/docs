@@ -49,7 +49,7 @@ CanvasRenderingContext2DSettings(antialias?: boolean)
 
 ### toDataURL
 
-toDataURL(type?: string, quality?:number):
+toDataURL(type?: string, quality?:number): string
 
 生成一个包含图片展示的URL。
 

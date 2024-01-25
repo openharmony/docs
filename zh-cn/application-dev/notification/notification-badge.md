@@ -17,9 +17,9 @@
 
 2. 角标数减少，目前仅支持通过[`setBadgeNumber()`](../reference/apis/js-apis-notificationManager.md#notificationmanagersetbadgenumber10)设置。
 
-| **接口名** | **描述** |
-| -------- | -------- |
-| setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | 设置角标个数 |
+  | **接口名** | **描述** |
+  | -------- | -------- |
+  | setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void | 设置角标个数。 |
 
 
 ## 开发步骤
@@ -29,7 +29,6 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 2. 增加角标个数。
@@ -41,10 +40,10 @@
    ```ts
    setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info(`Succeeded in setting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
    let badgeNumber = 9;
@@ -58,10 +57,10 @@
    ```ts
    setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info(`Succeeded in setting badge number.`);
+     console.info(`Succeeded in setting badge number.`);
    }
    
    let badgeNumber = 8;

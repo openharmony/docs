@@ -120,7 +120,7 @@ struct FontExample {
 
 ## font.getFontByName<sup>10+</sup>
 
-getFontByName(fontName: string): FontInfo;
+getFontByName(fontName: string): FontInfo
 
 Obtains information about a system font based on the font name.
 
@@ -181,6 +181,105 @@ struct FontExample {
           console.log("getFontByName(): italic = " + this.fontInfo.italic)
           console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
           console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
+        })
+    }.width('100%')
+  }
+}
+```
+
+## font.getUIFontConfig<sup>11+</sup>
+getUIFontConfig() : UIFontConfig
+
+Obtains the UI font configuration of the system.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+| Type            | Description                         |
+| ---------------- | ---------------------------- |
+| [UIFontConfig](#uifontconfig11)     | UI font configuration of the system.         |
+
+## UIFontConfig<sup>11+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| fontDir        | Array\<string>  | Yes| Path to the system font file.     |
+| generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | Yes| List of supported generic font families.|
+| fallbackGroups       | Array\<[UIFallbackGroupInfo](#uifallbackgroupinfo11)>  | Yes| List of alternate generic font families.          |
+
+## UIFontGenericInfo<sup>11+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| family        | string | Yes| Font family name, which is the value of **family** specified in the font file.     |
+| alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | Yes| Alias list.|
+| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | No| Weight of the font when displayed, which corresponds to the original weight.|
+
+## UIFallbackGroupInfo<sup>11+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| fontSetName  | string | Yes| Name of the font family corresponding to the alternate fonts.     |
+| fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | Yes| Alternate fonts for the font family. If **fontSetName** is **""**, it indicates that the fonts can be used as alternate fonts for all font families.|
+
+## UIFontAliasInfo<sup>11+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| name          | string  | Yes| Alias name.     |
+| weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.|
+
+## UIFontAdjustInfo<sup>11+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| weight        | number  | Yes| Original weight of the font.     |
+| to            | number  | Yes| Weight of the font displayed in the application.|
+
+## UIFontFallbackInfo<sup>11+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+| Name           | Type   | Mandatory | Description                      |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| language       | number  | Yes| Language supported by the font family. The language format is BCP 47.   |
+| family         | number  | Yes| Font family name, which is the value of **family** specified in the font file.|
+
+**Example**
+
+```ts
+// xxx.ets
+import font from '@ohos.font';
+@Entry
+@Component
+struct FontExample {
+  build() {
+    Column() {
+      Button("getUIFontConfig")
+        .width('60%')
+        .height('6%')
+        .margin(50)
+        .onClick(()=>{
+          let fontConfig = font.getUIFontConfig();
+          console.log("font-dir -----------" + String(fontConfig.fontDir.length));
+          for (let i = 0; i < fontConfig.fontDir.length; i ++) {
+            console.log(fontConfig.fontDir[i]);
+          }
+          console.log("generic-------------" + String(fontConfig.generic.length));
+          for (let i = 0; i < fontConfig.generic.length; i ++){
+            console.log("family:" + fontConfig.generic[i].family);
+            for (let j = 0; j < fontConfig.generic[i].alias.length; j ++){
+              console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
+            }
+            for (let j = 0; j < fontConfig.generic[i].adjust.length; j ++){
+              console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
+            }
+          }
+          console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
+          for (let i = 0; i < fontConfig.fallbackGroups.length; i ++){
+            console.log("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
+            for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j ++){
+              console.log("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" + fontConfig.fallbackGroups[i].fallback[j].family);
+            }
+          }
         })
     }.width('100%')
   }

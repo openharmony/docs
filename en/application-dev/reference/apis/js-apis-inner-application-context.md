@@ -287,3 +287,44 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+## Context.createModuleResourceManager<sup>11+</sup>
+
+createModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+Creates a resource management object for a module.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| bundleName | string | Yes   | Bundle name.|
+| moduleName | string | Yes   | Module name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| resmgr.ResourceManager | Object for resource management.|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import resourceManager from '@ohos.resourceManager';
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let ModuleResourceManager: resourceManager.ResourceManager;
+    try {
+      ModuleResourceManager = this.context.createModuleResourceManager('com.example.test', 'entry');
+    } catch (error) {
+      console.error('createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
+}
+```

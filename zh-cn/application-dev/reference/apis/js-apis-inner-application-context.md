@@ -285,4 +285,45 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+## Context.createModuleResourceManager<sup>11+</sup>
+
+createModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+为指定Moudle创建资源管理对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| bundleName | string | 是    | Bundle名称。 |
+| moduleName | string | 是    | 模块名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| resmgr.ResourceManager | 资源管理对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import resourceManager from '@ohos.resourceManager';
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let ModuleResourceManager: resourceManager.ResourceManager;
+    try {
+      ModuleResourceManager = this.context.createModuleResourceManager('com.example.test', 'entry');
+    } catch (error) {
+      console.error('createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
+}
+```
 

@@ -2124,6 +2124,8 @@ Sets a router proxy for widgets and obtains the Want information required for re
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
+
+
 **Required permissions**: ohos.permission.REQUIRE_FORM
 
 **System capability**: SystemCapability.Ability.Form
@@ -2311,6 +2313,150 @@ try {
     console.log('formHost clear rourter proxy success');
   }).catch((err: Base.BusinessError) => {
     console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+## setFormsRecyclable<sup>11+</sup>
+
+setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Sets widgets to be recyclable. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;;      | Yes  | Array of widget IDs.                                              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the widgets are set to be recyclable, **error** is **undefined**; otherwise, an exception is thrown.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.setFormsRecyclable(formIds, (err: Base.BusinessError) => {
+    if (err) {
+        console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## setFormsRecyclable<sup>11+</sup>
+
+setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
+
+Sets widgets to be recyclable. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name | Type               | Mandatory| Description          |
+| ------- | ------------------- | ---- | -------------- |
+| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.setFormsRecyclable(formIds).then(() => {
+    console.log('setFormsRecyclable success');
+  }).catch((err: Base.BusinessError) => {
+    console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+## recoverForms<sup>11+</sup>
+
+recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Recovers widgets. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;;      | Yes  | Array of widget IDs.                                              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the widgets are recovered, **error** is **undefined**; otherwise, an exception is thrown.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.recoverForms(formIds, (err: Base.BusinessError) => {
+    if (err) {
+        console.error(`recoverForms error, code: ${err.code}, message: ${err.message}`);
+    }
   });
 } catch(error) {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);

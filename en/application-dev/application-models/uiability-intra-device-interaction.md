@@ -36,25 +36,38 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   let wantInfo: Want = {
-     deviceId: '', // An empty deviceId indicates the local device.
-     bundleName: 'com.samples.myapplication',
-     moduleName: 'entry', // moduleName is optional.
-     abilityName: 'FuncAbilityA',
-     parameters: { // Custom information.
-       info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
-     },
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     private context = getContext(this) as common.UIAbilityContext;
+   
+     build() {
+       ...
+       Button()
+         .onClick(() => {
+	   // Context is a member of the ability object and is required for invoking inside a non-ability object.
+           // Pass in the Context object.
+           let wantInfo: Want = {
+             deviceId: '', // An empty deviceId indicates the local device.
+             bundleName: 'com.samples.myapplication',
+             moduleName: 'entry', // moduleName is optional.
+             abilityName: 'FuncAbilityA',
+             parameters: { // Custom information.
+               info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
+             },
+           }
+           // context is the UIAbilityContext of the initiator UIAbility.
+           this.context.startAbility(wantInfo).then(() => {
+             hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
+           }).catch((error: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, 'startAbility failed.');
+           });
+         })
+     }
    }
-   // context is the UIAbilityContext of the initiator UIAbility.
-   this.context.startAbility(wantInfo).then(() => {
-       hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
-   }).catch((error: BusinessError) => {
-       hilog.error(DOMAIN_NUMBER, TAG, 'startAbility failed.');
-   });
    ```
 
 2. In FuncAbility, use [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to receive the parameters passed in by EntryAbility.
@@ -84,18 +97,27 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   
-   // context is the UIAbilityContext of the UIAbility instance to stop.
-   context.terminateSelf((err) => {
-     if (err.code) {
-       hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
-       return;
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     build() {
+       ...
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           // context is the UIAbilityContext of the UIAbility instance to stop.
+           context.terminateSelf((err) => {
+             if (err.code) {
+               hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
+               return;
+             }
+           });
+         })
      }
-   });
+   }
    ```
 
    > **NOTE**
@@ -117,25 +139,34 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   let want: Want = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       bundleName: 'com.samples.stagemodelabilitydevelop',
-       moduleName: 'entry', // moduleName is optional.
-       abilityName: 'FuncAbilityA',
-       parameters: { // Custom information.
-           info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
-       }
-   };
-   // context is the UIAbilityContext of the initiator UIAbility.
-   context.startAbilityForResult(want).then((data) => {
-     // ...
-   }).catch((err: BusinessError) => {
-     hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-   })
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+   
+           let want: Want = {
+             deviceId: '', // An empty deviceId indicates the local device.
+             bundleName: 'com.samples.stagemodelabilitydevelop',
+             moduleName: 'entry', // moduleName is optional.
+             abilityName: 'FuncAbilityA',
+             parameters: { // Custom information.
+               info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
+             }
+           };
+           context.startAbilityForResult(want).then((data) => {
+             // ...
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+           });
+         })
+     }
+   }
    ```
 
 2. Call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
@@ -144,29 +175,37 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_FuncAbilityA]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   const RESULT_CODE: number = 1001;
-   let abilityResult: common.AbilityResult = {
-     resultCode: RESULT_CODE,
-       want: {
-           bundleName: 'com.samples.stagemodelabilitydevelop',
-           moduleName: 'entry', // moduleName is optional.
-           abilityName: 'FuncAbilityB',
-           parameters: {
-               info: 'From the Index page of FuncAbility',
-           },
-       },
-   };
-   // context is the AbilityContext of the target UIAbility.
-   context.terminateSelfWithResult(abilityResult, (err) => {
-       if (err.code) {
-           hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
-           return;
-       }
-   });
+   @Entry
+   @Component
+   struct Page_FuncAbilityA {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           const RESULT_CODE: number = 1001;
+           let abilityResult: common.AbilityResult = {
+             resultCode: RESULT_CODE,
+             want: {
+               bundleName: 'com.samples.stagemodelabilitydevelop',
+               moduleName: 'entry', // moduleName is optional.
+               abilityName: 'FuncAbilityB',
+               parameters: {
+                 info: 'From the Index page of FuncAbility',
+               },
+             },
+           };
+           context.terminateSelfWithResult(abilityResult, (err) => {
+             if (err.code) {
+               hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
+               return;
+             }
+           });
+         })
+     }
+   }
    ```
 
 3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as that specified in the preceding step.
@@ -176,37 +215,47 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
-   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+   const TAG: string = '[EntryAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   const RESULT_CODE: number = 1001;
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           const RESULT_CODE: number = 1001;
    
-   let want: Want = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       bundleName: 'com.samples.stagemodelabilitydevelop',
-       moduleName: 'entry', // moduleName is optional.
-       abilityName: 'FuncAbilityA',
-       parameters: { // Custom information.
-           info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
-       }
-   };
-   context.startAbilityForResult(want).then((data) => {
-       if (data?.resultCode === RESULT_CODE) {
-           // Parse the information returned by the target UIAbility.
-           let info = data.want?.parameters?.info;
-           hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
-       if (info !== null) {
-           promptAction.showToast({
-               message : JSON.stringify(info)
+           let want: Want = {
+             deviceId: '', // An empty deviceId indicates the local device.
+             bundleName: 'com.samples.stagemodelabilitydevelop',
+             moduleName: 'entry', // moduleName is optional.
+             abilityName: 'FuncAbilityA',
+             parameters: { // Custom information.
+               info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
+             }
+           };
+           context.startAbilityForResult(want).then((data) => {
+             if (data?.resultCode === RESULT_CODE) {
+               // Parse the information returned by the target UIAbility.
+               let info = data.want?.parameters?.info;
+               hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+               if (info !== null) {
+                 promptAction.showToast({
+                   message: JSON.stringify(info)
+                 });
+               }
+             }
+             hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
            });
-       }
+         })
+     }
    }
-   hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
-   }).catch((err: BusinessError) => {
-   hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-   });
    
    ```
 
@@ -258,26 +307,33 @@ The following example describes how to start the UIAbility of another applicatio
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   let want: Want = {
-     deviceId: '', // An empty deviceId indicates the local device.
-     // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-     // bundleName: 'com.example.myapplication',
-     action: 'ohos.want.action.viewData',
-     // entities can be omitted.
-     entities: ['entity.system.default'],
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           let want: Want = {
+             deviceId: '', // An empty deviceId indicates the local device.
+             // Uncomment the line below if you want to implicitly query data only in the specific bundle.
+             // bundleName: 'com.samples.stagemodelabilityinteraction',
+             action: 'ohos.want.action.viewData',
+             // entities can be omitted.
+             entities: ['entity.system.default']
+           };
+           // context is the UIAbilityContext of the initiator UIAbility.
+           context.startAbility(want).then(() => {
+             hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting FuncAbility.');
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to start FuncAbility. Code is ${err.code}, message is ${err.message}`);
+           });
+         })
+     }
    }
-   
-   // context is the UIAbilityContext of the initiator UIAbility.
-   context.startAbility(want).then(() => {
-       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting FuncAbility.');
-     }).catch((err: BusinessError) => {
-       hilog.error(DOMAIN_NUMBER, TAG, `Failed to start FuncAbility. Code is ${err.code}, message is ${err.message}`);
-     });
-   })
    ```
 
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use.
@@ -289,18 +345,28 @@ The following example describes how to start the UIAbility of another applicatio
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_FromStageModel]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+   @Entry
+   @Component
+   struct Page_FromStageModel {
+     @State message: string = 'Hello World'
    
-   // context is the UIAbilityContext of the UIAbility instance to stop.
-   context.terminateSelf((err) => {
-       if (err.code) {
-           hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
-           return;
-       }
-   });
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           // context is the UIAbilityContext of the UIAbility instance to stop.
+           context.terminateSelf((err) => {
+             if (err.code) {
+               hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+               return;
+             }
+           });
+         })
+     }
+   }
    ```
 
 
@@ -339,29 +405,38 @@ If you want to obtain the return result when using implicit Want to start the UI
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-   import hilog from '@ohos.hilog';
    
-   const TAG: string = '[EntryAbility]';
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-   let want:Want = {
-     deviceId: '', // An empty deviceId indicates the local device.
-     // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-     // bundleName: 'com.example.myapplication',
-     action: 'ohos.want.action.editData',
-     // entities can be omitted.
-     entities: ['entity.system.default']
-   }
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    
-   // context is the UIAbilityContext of the initiator UIAbility.
-   context.startAbilityForResult(want).then((data) => {
-     // ...
-   }).catch((err: BusinessError) => {
-     hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
-   })
+           let want: Want = {
+             deviceId: '', // An empty deviceId indicates the local device.
+             bundleName: 'com.samples.stagemodelabilitydevelop',
+             moduleName: 'entry', // moduleName is optional.
+             abilityName: 'FuncAbilityA',
+             parameters: { // Custom information.
+               info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
+             }
+           };
+           context.startAbilityForResult(want).then((data) => {
+             // ...
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+           });
+         })
+     }
+   }
    ```
 
 3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
@@ -369,32 +444,38 @@ If you want to obtain the return result when using implicit Want to start the UI
    ```ts
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
-   import Want from '@ohos.app.ability.Want';
    
-   const TAG: string = '[FuncAbility]';
+   const TAG: string = '[Page_FuncAbilityA]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = this.context;
-   const RESULT_CODE: number = 1001;
-   // context is the AbilityContext of the target UIAbility.
-   let abilityResult: common.AbilityResult = {
-       resultCode: RESULT_CODE,
-       want: {
-           bundleName: 'com.samples.stagemodelabilitydevelop',
-           moduleName: 'entry', // moduleName is optional.
-           abilityName: 'CollaborateAbility',
-           parameters: {
-               info: 'OKay'
-           }
-       }
-   };
-   // context is the AbilityContext of the target UIAbility.
-   context.terminateSelfWithResult(abilityResult, (err) => {
-       if (err.code) {
-           hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
-           return;
-       }
-   });
+   @Entry
+   @Component
+   struct Page_FuncAbilityA {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           const RESULT_CODE: number = 1001;
+           let abilityResult: common.AbilityResult = {
+             resultCode: RESULT_CODE,
+             want: {
+               bundleName: 'com.samples.stagemodelabilitydevelop',
+               moduleName: 'entry', // moduleName is optional.
+               abilityName: 'FuncAbilityB',
+               parameters: {
+                 info: 'From the Index page of FuncAbility',
+               },
+             },
+           };
+           context.terminateSelfWithResult(abilityResult, (err) => {
+             if (err.code) {
+               hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
+               return;
+             }
+           });
+         })
+     }
+   }
    ```
 
 4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
@@ -404,27 +485,47 @@ If you want to obtain the return result when using implicit Want to start the UI
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
-   const TAG: string = '[FuncAbility]';
+   const TAG: string = '[EntryAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
    
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
-   const RESULT_CODE: number = 1001;
-
-   let want: Want = {
-     // Want parameter information.
-   };
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           const RESULT_CODE: number = 1001;
    
-   // context is the UIAbilityContext of the initiator UIAbility.
-   context.startAbilityForResult(want).then((data) => {
-     if (data?.resultCode === RESULT_CODE) {
-       // Parse the information returned by the target UIAbility.
-       let info = data.want?.parameters?.info;
-       // ...
+           let want: Want = {
+             deviceId: '', // An empty deviceId indicates the local device.
+             bundleName: 'com.samples.stagemodelabilitydevelop',
+             moduleName: 'entry', // moduleName is optional.
+             abilityName: 'FuncAbilityA',
+             parameters: { // Custom information.
+               info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
+             }
+           };
+           context.startAbilityForResult(want).then((data) => {
+             if (data?.resultCode === RESULT_CODE) {
+               // Parse the information returned by the target UIAbility.
+               let info = data.want?.parameters?.info;
+               hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+               if (info !== null) {
+                 promptAction.showToast({
+                   message: JSON.stringify(info)
+                 });
+               }
+             }
+             hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+           });
+         })
      }
-   }).catch((err: BusinessError) => {
-     hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
-   })
+   }
    ```
 
 ## Starting UIAbility with Window Mode Specified (for System Applications Only)
@@ -460,28 +561,37 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-const TAG: string = '[FuncAbility]';
+const TAG: string = '[Page_UIAbilityComponentsInteractive]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-let want: Want = {
-    deviceId: '', // An empty deviceId indicates the local device.
-    bundleName: 'com.samples.stagemodelabilitydevelop',
-    moduleName: 'entry', // moduleName is optional.
-    abilityName: 'FuncAbilityB',
-    parameters: { // Custom information.
-        info: 'From the Index page of EntryAbility',
-    }
-};
-let options: StartOptions = {
-    windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
-};
-// context is the UIAbilityContext of the initiator UIAbility.
-context.startAbility(want, options).then(() => {
-    hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
-}).catch((err: BusinessError) => {
-    hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-});
+@Entry
+@Component
+struct Page_UIAbilityComponentsInteractive {
+  build() {
+    Button()
+      .onClick(() => {
+        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want: Want = {
+          deviceId: '', // An empty deviceId indicates the local device.
+          bundleName: 'com.samples.stagemodelabilitydevelop',
+          moduleName: 'entry', // moduleName is optional.
+          abilityName: 'FuncAbilityB',
+          parameters: { // Custom information.
+            info: 'From the Index page of EntryAbility',
+          }
+        };
+        let options: StartOptions = {
+          windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+        };
+        // context is the UIAbilityContext of the initiator UIAbility.
+        context.startAbility(want, options).then(() => {
+          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
+        }).catch((err: BusinessError) => {
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+        });
+      })
+  }
+}
 ```
 
 The display effect is shown below.
@@ -513,26 +623,34 @@ import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-const TAG: string = '[FuncAbility]';
+const TAG: string = '[Page_UIAbilityComponentsInteractive]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-let want: Want = {
-    deviceId: '', // An empty deviceId indicates the local device.
-    bundleName: 'com.samples.stagemodelabilityinteraction',
-    moduleName: 'entry', // moduleName is optional.
-    abilityName: 'FuncAbility',
-    parameters: { // Custom parameter used to pass the page information.
-        router: 'FuncA'
-    }
-};
-// context is the UIAbilityContext of the initiator UIAbility.
-context.startAbility(want).then(() => {
-    hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
-}).catch((err: BusinessError) => {
-    hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-  });
-})
+@Entry
+@Component
+struct Page_UIAbilityComponentsInteractive {
+  build() {
+    Button()
+      .onClick(() => {
+        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want: Want = {
+          deviceId: '', // An empty deviceId indicates the local device.
+          bundleName: 'com.samples.stagemodelabilityinteraction',
+          moduleName: 'entry', // moduleName is optional.
+          abilityName: 'FuncAbility',
+          parameters: { // Custom parameter used to pass the page information.
+            router: 'FuncA'
+          }
+        };
+        // context is the UIAbilityContext of the initiator UIAbility.
+        context.startAbility(want).then(() => {
+          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
+        }).catch((err: BusinessError) => {
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+        });
+      })
+  }
+}
 ```
 
 
@@ -589,7 +707,6 @@ The development procedure is as follows:
 1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import hilog from '@ohos.hilog';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import Want from '@ohos.app.ability.Want';
@@ -639,7 +756,7 @@ The development procedure is as follows:
    import hilog from '@ohos.hilog';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import Want from '@ohos.app.ability.Want';
-   import window from '@ohos.window';
+   import { BusinessError } from '@ohos.base';
 
    import { Router, UIContext } from '@ohos.arkui.UIContext';
    
@@ -663,7 +780,6 @@ The development procedure is as follows:
          }
        }
      }
-   
      // ...
    }
    ```
@@ -760,24 +876,30 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
    ```ts
    import type rpc from '@ohos.rpc';
-
+   
    class MyParcelable {
      num: number = 0;
      str: string = '';
-
+   
      constructor(num: number, string: string) {
        this.num = num;
        this.str = string;
-     }
-
+     };
+   
      mySequenceable(num, string): void {
        this.num = num;
        this.str = string;
-     }
-
+     };
+   
      marshalling(messageSequence: rpc.MessageSequence): boolean {
        messageSequence.writeInt(this.num);
        messageSequence.writeString(this.str);
+       return true;
+     };
+   
+     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+       this.num = messageSequence.readInt();
+       this.str = messageSequence.readString();
        return true;
      };
    };
@@ -795,11 +917,38 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    import hilog from '@ohos.hilog';
    import Logger from '../utils/Logger';
    import type rpc from '@ohos.rpc';
-   import type window from '@ohos.window';
    import type { Caller } from '@ohos.app.ability.UIAbility';
 
    const MSG_SEND_METHOD: string = 'CallSendMsg';
    const DOMAIN_NUMBER: number = 0xFF00;
+   const TAG: string = '[CalleeAbility]';
+   
+   class MyParcelable {
+     num: number = 0;
+     str: string = '';
+   
+     constructor(num: number, string: string) {
+       this.num = num;
+       this.str = string;
+     }
+   
+     mySequenceable(num, string): void {
+       this.num = num;
+       this.str = string;
+     }
+   
+     marshalling(messageSequence: rpc.MessageSequence): boolean {
+       messageSequence.writeInt(this.num);
+       messageSequence.writeString(this.str);
+       return true;
+     };
+   
+     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+       this.num = messageSequence.readInt();
+       this.str = messageSequence.readString();
+       return true;
+     };
+   };
 
    function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
@@ -816,6 +965,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    }
 
    export default class CalleeAbility extends UIAbility {
+     caller: Caller | undefined;
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        try {
          this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
@@ -823,7 +973,17 @@ For the CalleeAbility, implement the callback to receive data and the methods to
          hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
        };
      }
-
+     releaseCall(): void {
+       try {
+         if (this.caller) {
+           this.caller.release();
+           this.caller = undefined;
+         }
+         Logger.info('caller release succeed');
+       } catch (error) {
+         Logger.info(`caller release failed with ${error}`);
+       };
+     }
      onDestroy(): void {
        try {
          this.callee.off(MSG_SEND_METHOD);
@@ -851,13 +1011,21 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
    import { Caller } from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
-
-   export default class CallerAbility extends UIAbility {
+   import common from '@ohos.app.ability.common';
+   import promptAction from '@ohos.promptAction';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   
+   const DOMAIN_NUMBER: number = 0xFF00;
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+   
+   @Entry
+   @Component
+   struct Page_UIAbilityComponentsInteractive {
      caller: Caller | undefined = undefined;
-
+   
      // Register the onRelease() listener of the CallerAbility.
      private regOnRelease(caller: Caller): void {
        hilog.info(DOMAIN_NUMBER, TAG, `caller is ${caller}`);
@@ -870,34 +1038,40 @@ For the CalleeAbility, implement the callback to receive data and the methods to
          let code = (err as BusinessError).code;
          let message = (err as BusinessError).message;
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
-       };
+       }
+       ;
      }
-
-     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-     let want: Want = {
-       bundleName: 'com.samples.stagemodelabilityinteraction',
-       abilityName: 'CalleeAbility',
-       parameters: { // Custom information.
-         info: 'CallSendMsg'
-       }
-     };
-
-     context.startAbilityByCall(want).then((caller: Caller) => {
-       hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in starting ability.Code is ${caller}`);
-       if (caller === undefined) {
-         hilog.info(DOMAIN_NUMBER, TAG, 'get caller failed');
-         return;
-       }
-       else {
-         hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
-         this.regOnRelease(caller);
-         promptAction.showToast({
-           message: $r('app.string.CallerSuccess')
-         });
-       }
-     }).catch((err: BusinessError) => {
-       hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-     });
+   
+     build() {
+       Button()
+         .onClick(() => {
+           let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+           let want: Want = {
+             bundleName: 'com.samples.stagemodelabilityinteraction',
+             abilityName: 'CalleeAbility',
+             parameters: { // Custom information.
+               info: 'CallSendMsg'
+             }
+           };
+   
+           context.startAbilityByCall(want).then((caller: Caller) => {
+             hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in starting ability.Code is ${caller}`);
+             if (caller === undefined) {
+               hilog.info(DOMAIN_NUMBER, TAG, 'get caller failed');
+               return;
+             }
+             else {
+               hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
+               this.regOnRelease(caller);
+               promptAction.showToast({
+                 message: $r('app.string.CallerSuccess')
+               });
+             }
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+           });
+         })
+     }
    }
    ```
 

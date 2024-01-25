@@ -31,7 +31,6 @@ import audio from '@ohos.multimedia.audio';
 ```ts
 import audio from '@ohos.multimedia.audio';
 
-const localNetworkId = audio.LOCAL_NETWORK_ID;
 const defaultVolumeGroupId = audio.DEFAULT_VOLUME_GROUP_ID;
 const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
 ```
@@ -353,7 +352,7 @@ async function createTonePlayerBefore(){
 | ALARM<sup>10+</sup>          | 4      | 闹钟。     |
 | ACCESSIBILITY<sup>10+</sup>  | 5      | 无障碍。   |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
-| ULTRASONIC<sup>10+</sup>     | 10     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。|
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -899,6 +898,30 @@ async function createTonePlayerBefore(){
 | MODE_ALL_LEFT | 2      | 从左声道拷贝覆盖到右声道混合。  |
 | MODE_ALL_RIGHT | 3 | 从右声道拷贝覆盖到左声道混合。 |
 
+## AudioStreamDeviceChangeReason<sup>11+</sup>
+
+枚举，流设备变更原因。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                                        |  值     | 说明              |
+|:------------------------------------------| :----- |:----------------|
+| REASON_UNKNOWN | 0 | 未知原因。           |
+| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。         |
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。当报告此原因时，应用程序应考虑暂停音频播放。 |
+| REASON_OVERRODE | 3 | 强选。 |
+
+## AudioStreamDeviceChangeInfo<sup>11+</sup>
+
+流设备变更时，应用接收的事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                                                | 必填 | 说明               |
+| :---------------- |:------------------------------------------------------------------| :--- | :----------------- |
+| devices              | [AudioDeviceDescriptors](#audiodevicedescriptors)                 | 是   | 设备信息。 |
+| changeReason | [AudioStreamDeviceChangeReason](#audiostreamdevicechangereason11) | 是   | 流设备变更原因。 |
+
 ## DeviceChangeType
 
 枚举，设备连接状态变化。
@@ -961,13 +984,13 @@ async function createTonePlayerBefore(){
 
 **需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-当应用指定录制的StreamUsage值中包含SOURCE_TYPE_VOICE_COMMUNICATION的播放音频流时，需要校验应用是否拥有该权限。
+在API 10时，支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO。从API 11开始，直接不再支持此枚举，所以当前接口不再涉及此枚举值或对应权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称   | 类型                               | 必填 | 说明                                                         |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的播放音频流的[StreamUsage](#streamusage)类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MEDIA的播放音频流。 |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -3425,11 +3448,15 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
   console.info(`Updated ringermode: ${ringerMode}`);
 });
 ```
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3456,11 +3483,15 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
 });
 ```
 
-### setMicrophoneMute<sup>9+</sup>
+### setMicrophoneMute<sup>9+(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -3483,6 +3514,49 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 ```ts
 audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
   console.info('Promise returned to indicate that the microphone is muted.');
+});
+```
+
+### setMicMute<sup>11+</sup>
+
+setMicMute(mute: boolean): Promise&lt;void&gt;
+
+设置麦克风静音状态，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                          |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | 是   | 待设置的静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Input parameter value error.                |
+
+**示例：**
+
+```ts
+audioVolumeGroupManager.setMicMute(true).then(() => {
+  console.info('Promise returned to indicate that the mic is muted.');
 });
 ```
 
@@ -3959,11 +4033,9 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, A
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4006,11 +4078,9 @@ async function getCurrentAudioRendererInfoArray(){
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4054,11 +4124,9 @@ try {
     for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
       let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
       console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
       console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
       console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
       console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-      console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
       for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4104,10 +4172,8 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, A
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
         console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4136,7 +4202,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
 | 类型                                                                         | 说明                                 |
 | -----------------------------------------------------------------------------| ----------------------------------- |
-| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频渲染器信息。  |
+| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频采集器信息。  |
 
 **示例：**
 
@@ -4149,10 +4215,8 @@ async function getCurrentAudioCapturerInfoArray(){
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
         console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4195,10 +4259,8 @@ try {
   if (audioCapturerChangeInfoArray != null) {
     for (let i = 0; i < audioCapturerChangeInfoArray.length; i++) {
       console.info(`StreamId for ${i} is: ${audioCapturerChangeInfoArray[i].streamId}`);
-      console.info(`ClientUid for ${i} is: ${audioCapturerChangeInfoArray[i].clientUid}`);
       console.info(`Source for ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.source}`);
       console.info(`Flag  ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-      console.info(`State for ${i} is: ${audioCapturerChangeInfoArray[i].capturerState}`);
       for (let j = 0; j < audioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4248,11 +4310,9 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: aud
     let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
     console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
     console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-    console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
     for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4326,10 +4386,8 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4980,6 +5038,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 设置通信设备激活状态，使用callback方式异步返回结果。
 
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -5009,6 +5069,8 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
 设置通信设备激活状态，使用Promise方式异步返回结果。
+
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -5791,17 +5853,14 @@ import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
-let resultFlag = false;
 
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfoArray[i].clientUid}`);
     console.info(`Content for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.content}`);
     console.info(`Stream for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags}`);
-    console.info(`State for ${i} is: ${AudioRendererChangeInfoArray[i].rendererState}`);
     let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
@@ -5812,10 +5871,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
       console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
       console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-    if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
-      resultFlag = true;
-      console.info(`ResultFlag for ${i} is: ${resultFlag}`);
     }
   }
 });
@@ -5851,15 +5906,12 @@ import audio from '@ohos.multimedia.audio';
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
 
-let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StrId for  ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`CUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Src for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
     let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
@@ -5870,10 +5922,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
       console.info(`SR: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
       console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-    if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
-      resultFlag = true;
-      console.info(`ResultFlag for element ${i} is: ${resultFlag}`);
     }
   }
 });
@@ -8562,6 +8610,8 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Invalid parameter error. |
@@ -8575,6 +8625,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
+
 ### off('outputDeviceChange') <sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
@@ -8592,6 +8643,8 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Invalid parameter error. |
@@ -8603,6 +8656,74 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
   console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
+});
+```
+
+### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+
+on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
+
+订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                                       | 必填 | 说明                                          |
+| :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
+  console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
+  console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
+  console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
+});
+```
+
+### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+
+off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
+
+取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                                       | 必填 | 说明                                          |
+| :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+  console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
+  console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
+  console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
+  console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
 });
 ```
 
@@ -9361,7 +9482,6 @@ let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerC
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
 console.info(`Info capturerFlags: ${info.capturerInfo.capturerFlags}`);
-console.info(`Info capturerState: ${info.capturerState}`);
 console.info(`Info muted: ${info.muted}`);
 console.info(`Info type: ${info.deviceDescriptors[0].deviceType}`);
 console.info(`Info role: ${info.deviceDescriptors[0].deviceRole}`);
@@ -9498,6 +9618,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9528,6 +9650,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9554,6 +9678,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，返回监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9585,6 +9711,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

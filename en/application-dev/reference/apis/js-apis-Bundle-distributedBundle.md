@@ -18,17 +18,17 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description              |
+| Permission                                      | APL | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
 > This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundleManager)](js-apis-distributedBundleManager.md) instead.
 
-getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
+getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void
 
 Obtains information about the remote ability that matches the given element name. This API uses an asynchronous callback to return the result.
 
@@ -89,7 +89,7 @@ This is a system API.
 
 > This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundleManager)](js-apis-distributedBundleManager.md) instead.
 
-getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
+getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void
 
 Obtains information about remote abilities that match the given element names. This API uses an asynchronous callback to return the result.
 
@@ -145,3 +145,4 @@ This is a system API.
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
 | Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Promise used to return an array of the remote ability information.|
+

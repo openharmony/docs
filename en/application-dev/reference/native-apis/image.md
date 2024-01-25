@@ -3,13 +3,11 @@
 
 ## Overview
 
-The **Image** package provides APIs for accessing the **Image** module. For example, you can use the APIs to obtain image data, pixel map data, and pixel map information.
+The **Image** module enables access to image APIs.
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
-
-8
+**Since**: 8
 
 
 ## Summary
@@ -19,12 +17,13 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 
 | Name| Description| 
 | -------- | -------- |
-| [image_mdk.h](image__mdk_8h.md) | Declares the functions that access the image rectangle, size, format, and component data.<br>**File to include**: &lt;multimedia/image_framework/image_mdk.h&gt;<br>**Library**: libimage_ndk.z.so| 
-| [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image interface.<br>**File to include**: &lt;multimedia/image_framework/image_mdk_common.h&gt;<br>**Library**: libimage_ndk.z.so| 
-| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_napi.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
-| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs for obtaining image data from the native layer.<br>**File to include**: &lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br>**Library**: libimage_receiver_ndk.z.so| 
-| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs for decoding an image source into a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_source_mdk.h&gt;<br>**Library**: libimage_source_ndk.z.so| 
+| [image_mdk.h](image__mdk_8h.md) | Declares the APIs used to access the image rectangle, size, format, and component data.<br>**File to include**: &lt;multimedia/image_framework/image_mdk.h&gt;<br>**Library**: libimage_ndk.z.so| 
+| [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image APIs.<br>**File to include**: &lt;multimedia/image_framework/image_mdk_common.h&gt;<br>**Library**: libimage_ndk.z.so|
+| [image_packer_mdk.h](image__packer__mdk_8h.md) | Declares the APIs used to pack an image into a buffer or file.<br>**File to include**: &lt;multimedia/image_framework/image_packer_mdk.h&gt;<br>**Library**:| 
+| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs used to lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | (Deprecated) Declares the APIs used to lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_napi.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
+| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs used to obtain image data from the native layer.<br>**File to include**: &lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br>**Library**: libimage_receiver_ndk.z.so| 
+| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs used to decode an image source into a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_source_mdk.h&gt;<br>**Library**: libimage_source_ndk.z.so|
 
 
 ### Structs
@@ -34,6 +33,7 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 | [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) | Defines the information about an image rectangle.| 
 | [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) | Defines the information about an image component.| 
 | [OhosImageSize](_ohos_image_size.md) | Defines the image size.| 
+| [ImagePacker_Opts_](_image_packer___opts__.md) | Defines the image packing options.| 
 | [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | Defines the information about a pixel map.| 
 | [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | Defines the options for creating a pixel map.| 
 | [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map.| 
@@ -55,6 +55,9 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 | Name| Description| 
 | -------- | -------- |
 | [ImageNative](#imagenative) | Defines an image object at the native layer.| 
+| [IRNdkErrCode](#irndkerrcode) | Defines an enum that enumerates the return values that may be used by the interface.| 
+| [ImagePacker_Native](#imagepacker_native) | Defines an image packer object at the native layer.| 
+| [ImagePacker_Opts](#imagepacker_opts) | Defines the alias of the image packing options.| 
 | [NativePixelMap](#nativepixelmap) | Defines the data type name of the pixel map at the native layer.| 
 | [OhosPixelMapInfos](#ohospixelmapinfos) | Defines the information about a pixel map.| 
 | [ImageReceiverNative](#imagereceivernative) | Defines the data type name of the image receiver at the native layer.| 
@@ -71,9 +74,9 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 
 | Name| Description| 
 | -------- | -------- |
-| { OHOS_IMAGE_FORMAT_YCBCR_422_SP = 1000,<br>OHOS_IMAGE_FORMAT_JPEG = 2000, } | Enumerates the image formats.| 
-| { OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1,<br>OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2,<br>OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3,<br>OHOS_IMAGE_COMPONENT_FORMAT_JPEG = 4, } | Enumerates the image components.| 
-| [IRNdkErrCode](#irndkerrcode) {<br>IMAGE_RESULT_SUCCESS = 0,<br>IMAGE_RESULT_BAD_PARAMETER = -1,<br>IMAGE_RESULT_IMAGE_RESULT_BASE = IMAGE_RESULT_BASE,<br>IMAGE_RESULT_ERR_IPC = IMAGE_RESULT_BASE + 1,<br>IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST = IMAGE_RESULT_BASE + 2,<br>IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL = IMAGE_RESULT_BASE + 3,<br>IMAGE_RESULT_DECODE_ABNORMAL = IMAGE_RESULT_BASE + 4,<br>IMAGE_RESULT_DATA_ABNORMAL = IMAGE_RESULT_BASE + 5,<br>IMAGE_RESULT_MALLOC_ABNORMAL = IMAGE_RESULT_BASE + 6,<br>IMAGE_RESULT_DATA_UNSUPPORT = IMAGE_RESULT_BASE + 7,<br>IMAGE_RESULT_INIT_ABNORMAL = IMAGE_RESULT_BASE + 8,<br>IMAGE_RESULT_GET_DATA_ABNORMAL = IMAGE_RESULT_BASE + 9,<br>IMAGE_RESULT_TOO_LARGE = IMAGE_RESULT_BASE + 10,<br>IMAGE_RESULT_TRANSFORM = IMAGE_RESULT_BASE + 11,<br>IMAGE_RESULT_COLOR_CONVERT = IMAGE_RESULT_BASE + 12,<br>IMAGE_RESULT_CROP = IMAGE_RESULT_BASE + 13,<br>IMAGE_RESULT_SOURCE_DATA = IMAGE_RESULT_BASE + 14,<br>IMAGE_RESULT_SOURCE_DATA_INCOMPLETE = IMAGE_RESULT_BASE + 15,<br>IMAGE_RESULT_MISMATCHED_FORMAT = IMAGE_RESULT_BASE + 16,<br>IMAGE_RESULT_UNKNOWN_FORMAT = IMAGE_RESULT_BASE + 17,<br>IMAGE_RESULT_SOURCE_UNRESOLVED = IMAGE_RESULT_BASE + 18,<br>IMAGE_RESULT_INVALID_PARAMETER = IMAGE_RESULT_BASE + 19,<br>IMAGE_RESULT_DECODE_FAILED = IMAGE_RESULT_BASE + 20,<br>IMAGE_RESULT_PLUGIN_REGISTER_FAILED = IMAGE_RESULT_BASE + 21,<br>IMAGE_RESULT_PLUGIN_CREATE_FAILED = IMAGE_RESULT_BASE + 22,<br>IMAGE_RESULT_ENCODE_FAILED = IMAGE_RESULT_BASE + 23,<br>IMAGE_RESULT_ADD_PIXEL_MAP_FAILED = IMAGE_RESULT_BASE + 24,<br>IMAGE_RESULT_HW_DECODE_UNSUPPORT = IMAGE_RESULT_BASE + 25,<br>IMAGE_RESULT_DECODE_HEAD_ABNORMAL = IMAGE_RESULT_BASE + 26,<br>IMAGE_RESULT_DECODE_EXIF_UNSUPPORT = IMAGE_RESULT_BASE + 27,<br>IMAGE_RESULT_PROPERTY_NOT_EXIST = IMAGE_RESULT_BASE + 28,<br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT = IMAGE_RESULT_BASE + 30,<br>IMAGE_RESULT_MEDIA_TOO_LARGE = IMAGE_RESULT_BASE + 31,<br>IMAGE_RESULT_MEDIA_MALLOC_FAILED = IMAGE_RESULT_BASE + 32,<br>IMAGE_RESULT_MEDIA_END_OF_STREAM = IMAGE_RESULT_BASE + 33,<br>IMAGE_RESULT_MEDIA_IO_ABNORMAL = IMAGE_RESULT_BASE + 34,<br>IMAGE_RESULT_MEDIA_MALFORMED = IMAGE_RESULT_BASE + 35,<br>IMAGE_RESULT_MEDIA_BUFFER_TOO_SMALL = IMAGE_RESULT_BASE + 36,<br>IMAGE_RESULT_MEDIA_OUT_OF_RANGE = IMAGE_RESULT_BASE + 37,<br>IMAGE_RESULT_MEDIA_STATUS_ABNORMAL = IMAGE_RESULT_BASE + 38,<br>IMAGE_RESULT_MEDIA_VALUE_INVALID = IMAGE_RESULT_BASE + 39,<br>IMAGE_RESULT_MEDIA_NULL_POINTER = IMAGE_RESULT_BASE + 40,<br>IMAGE_RESULT_MEDIA_INVALID_OPERATION = IMAGE_RESULT_BASE + 41,<br>IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT = IMAGE_RESULT_BASE + 42,<br>IMAGE_RESULT_MEDIA_EARLY_PREPARE = IMAGE_RESULT_BASE + 43,<br>IMAGE_RESULT_MEDIA_SEEK_ERR = IMAGE_RESULT_BASE + 44,<br>IMAGE_RESULT_MEDIA_PERMISSION_DENIED = IMAGE_RESULT_BASE + 45,<br>IMAGE_RESULT_MEDIA_DEAD_OBJECT = IMAGE_RESULT_BASE + 46,<br>IMAGE_RESULT_MEDIA_TIMED_OUT = IMAGE_RESULT_BASE + 47,<br>IMAGE_RESULT_MEDIA_TRACK_NOT_ALL_SUPPORTED = IMAGE_RESULT_BASE + 48,<br>IMAGE_RESULT_MEDIA_ADAPTER_INIT_FAILED = IMAGE_RESULT_BASE + 49,<br>IMAGE_RESULT_MEDIA_WRITE_PARCEL_FAIL = IMAGE_RESULT_BASE + 50,<br>IMAGE_RESULT_MEDIA_READ_PARCEL_FAIL = IMAGE_RESULT_BASE + 51,<br>IMAGE_RESULT_MEDIA_NO_AVAIL_BUFFER = IMAGE_RESULT_BASE + 52,<br>IMAGE_RESULT_MEDIA_INVALID_PARAM = IMAGE_RESULT_BASE + 53, IMAGE_RESULT_MEDIA_CODEC_ADAPTER_NOT_EXIST = IMAGE_RESULT_BASE + 54,<br>IMAGE_RESULT_MEDIA_CREATE_CODEC_ADAPTER_FAILED = IMAGE_RESULT_BASE + 55,<br>IMAGE_RESULT_MEDIA_CODEC_ADAPTER_NOT_INIT = IMAGE_RESULT_BASE + 56,<br>IMAGE_RESULT_MEDIA_ZCODEC_CREATE_FAILED = IMAGE_RESULT_BASE + 57,<br>IMAGE_RESULT_MEDIA_ZCODEC_NOT_EXIST = IMAGE_RESULT_BASE + 58,<br>IMAGE_RESULT_MEDIA_JNI_CLASS_NOT_EXIST = IMAGE_RESULT_BASE + 59,<br>IMAGE_RESULT_MEDIA_JNI_METHOD_NOT_EXIST = IMAGE_RESULT_BASE + 60,<br>IMAGE_RESULT_MEDIA_JNI_NEW_OBJ_FAILED = IMAGE_RESULT_BASE + 61,<br>IMAGE_RESULT_MEDIA_JNI_COMMON_ERROR = IMAGE_RESULT_BASE + 62,<br>IMAGE_RESULT_MEDIA_DISTRIBUTE_NOT_SUPPORT = IMAGE_RESULT_BASE + 63,<br>IMAGE_RESULT_MEDIA_SOURCE_NOT_SET = IMAGE_RESULT_BASE + 64,<br>IMAGE_RESULT_MEDIA_RTSP_ADAPTER_NOT_INIT = IMAGE_RESULT_BASE + 65,<br>IMAGE_RESULT_MEDIA_RTSP_ADAPTER_NOT_EXIST = IMAGE_RESULT_BASE + 66,<br>IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT = IMAGE_RESULT_BASE + 67,<br>IMAGE_RESULT_MEDIA_RTSP_CAPTURE_NOT_INIT = IMAGE_RESULT_BASE + 68,<br>IMAGE_RESULT_MEDIA_RTSP_SOURCE_URL_INVALID = IMAGE_RESULT_BASE + 69,<br>IMAGE_RESULT_MEDIA_RTSP_VIDEO_TRACK_NOT_FOUND = IMAGE_RESULT_BASE + 70,<br>IMAGE_RESULT_MEDIA_RTSP_CAMERA_NUM_REACH_MAX = IMAGE_RESULT_BASE + 71,<br>IMAGE_RESULT_MEDIA_SET_VOLUME = IMAGE_RESULT_BASE + 72,<br>IMAGE_RESULT_MEDIA_NUMBER_OVERFLOW = IMAGE_RESULT_BASE + 73,<br>IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED = IMAGE_RESULT_BASE + 74,<br>IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75,<br>IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 76,<br>IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 150,<br>IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 151,<br>IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY = IMAGE_RESULT_BASE + 152,<br>IMAGE_RESULT_MEDIA_CONFIG_FAILED = IMAGE_RESULT_BASE + 153,<br>IMAGE_RESULT_JNI_ENV_ABNORMAL = IMAGE_RESULT_BASE + 154,<br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED = IMAGE_RESULT_BASE + 155,<br>IMAGE_RESULT_CREATE_SURFACE_FAILED = IMAGE_RESULT_BASE + 156,<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED = IMAGE_RESULT_BASE + 157,<br>IMAGE_RESULT_GET_SURFACE_FAILED = IMAGE_RESULT_BASE + 158,<br>IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159,<br>IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED = IMAGE_RESULT_BASE + 160,<br>IMAGE_RESULT_REGISTER_LISTENER_FAILED = IMAGE_RESULT_BASE + 161,<br>IMAGE_RESULT_REGISTER_BUFFER_FAILED = IMAGE_RESULT_BASE + 162,<br>IMAGE_RESULT_FREAD_FAILED = IMAGE_RESULT_BASE + 163,<br>IMAGE_RESULT_PEEK_FAILED = IMAGE_RESULT_BASE + 164,<br>IMAGE_RESULT_SEEK_FAILED = IMAGE_RESULT_BASE + 165,<br>IMAGE_RESULT_STREAM_SIZE_ERROR = IMAGE_RESULT_BASE + 166,<br>IMAGE_RESULT_FILE_FD_ERROR = IMAGE_RESULT_BASE + 167,<br>IMAGE_RESULT_FILE_DAMAGED = IMAGE_RESULT_BASE + 168,<br>IMAGE_RESULT_CREATE_DECODER_FAILED = IMAGE_RESULT_BASE + 169,<br>IMAGE_RESULT_CREATE_ENCODER_FAILED = IMAGE_RESULT_BASE + 170,<br>IMAGE_RESULT_CHECK_FORMAT_ERROR = IMAGE_RESULT_BASE + 171,<br>IMAGE_RESULT_THIRDPART_SKIA_ERROR = IMAGE_RESULT_BASE + 172,<br>IMAGE_RESULT_HW_DECODE_FAILED = IMAGE_RESULT_BASE + 173,<br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR = IMAGE_RESULT_BASE + 174,<br>IMAGE_RESULT_ALPHA_TYPE_ERROR = IMAGE_RESULT_BASE + 175,<br>IMAGE_RESULT_INDEX_INVALID = IMAGE_RESULT_BASE + 176,<br>IMAGE_RESULT_MEDIA_UNKNOWN = IMAGE_RESULT_BASE + 200<br>} | Enumerates the return values that may be used by the interface.| 
+| { OHOS_IMAGE_FORMAT_YCBCR_422_SP = 1000,<br>OHOS_IMAGE_FORMAT_JPEG = 2000 } | Enumerates the image formats.| 
+| { OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1,<br>OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2,<br>OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3,<br>OHOS_IMAGE_COMPONENT_FORMAT_JPEG = 4 } | Enumerates the image components.| 
+| [IRNdkErrCode](#irndkerrcode-1) {<br>IMAGE_RESULT_SUCCESS = 0, IMAGE_RESULT_BAD_PARAMETER = -1,<br>IMAGE_RESULT_IMAGE_RESULT_BASE = IMAGE_RESULT_BASE,<br>IMAGE_RESULT_ERR_IPC = IMAGE_RESULT_BASE + 1,<br>IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST = IMAGE_RESULT_BASE + 2,<br>IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL = IMAGE_RESULT_BASE + 3,<br>IMAGE_RESULT_DECODE_ABNORMAL = IMAGE_RESULT_BASE + 4,<br>IMAGE_RESULT_DATA_ABNORMAL = IMAGE_RESULT_BASE + 5,<br>IMAGE_RESULT_MALLOC_ABNORMAL = IMAGE_RESULT_BASE + 6,<br>IMAGE_RESULT_DATA_UNSUPPORT = IMAGE_RESULT_BASE + 7,<br>IMAGE_RESULT_INIT_ABNORMAL = IMAGE_RESULT_BASE + 8,<br>IMAGE_RESULT_GET_DATA_ABNORMAL = IMAGE_RESULT_BASE + 9,<br>IMAGE_RESULT_TOO_LARGE = IMAGE_RESULT_BASE + 10,<br>IMAGE_RESULT_TRANSFORM = IMAGE_RESULT_BASE + 11,<br>IMAGE_RESULT_COLOR_CONVERT = IMAGE_RESULT_BASE + 12,<br>IMAGE_RESULT_CROP = IMAGE_RESULT_BASE + 13,<br>IMAGE_RESULT_SOURCE_DATA = IMAGE_RESULT_BASE + 14,<br>IMAGE_RESULT_SOURCE_DATA_INCOMPLETE = IMAGE_RESULT_BASE + 15,<br>IMAGE_RESULT_MISMATCHED_FORMAT = IMAGE_RESULT_BASE + 16,<br>IMAGE_RESULT_UNKNOWN_FORMAT = IMAGE_RESULT_BASE + 17,<br>IMAGE_RESULT_SOURCE_UNRESOLVED = IMAGE_RESULT_BASE + 18,<br>IMAGE_RESULT_INVALID_PARAMETER = IMAGE_RESULT_BASE + 19,<br>IMAGE_RESULT_DECODE_FAILED = IMAGE_RESULT_BASE + 20,<br>IMAGE_RESULT_PLUGIN_REGISTER_FAILED = IMAGE_RESULT_BASE + 21,<br>IMAGE_RESULT_PLUGIN_CREATE_FAILED = IMAGE_RESULT_BASE + 22,<br>IMAGE_RESULT_ENCODE_FAILED = IMAGE_RESULT_BASE + 23,<br>IMAGE_RESULT_ADD_PIXEL_MAP_FAILED = IMAGE_RESULT_BASE + 24,<br>IMAGE_RESULT_HW_DECODE_UNSUPPORT = IMAGE_RESULT_BASE + 25,<br>IMAGE_RESULT_DECODE_HEAD_ABNORMAL = IMAGE_RESULT_BASE + 26,<br>IMAGE_RESULT_DECODE_EXIF_UNSUPPORT = IMAGE_RESULT_BASE + 27,<br>IMAGE_RESULT_PROPERTY_NOT_EXIST = IMAGE_RESULT_BASE + 28,<br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT = IMAGE_RESULT_BASE + 30,<br>IMAGE_RESULT_MEDIA_TOO_LARGE = IMAGE_RESULT_BASE + 31,<br>IMAGE_RESULT_MEDIA_MALLOC_FAILED = IMAGE_RESULT_BASE + 32,<br>IMAGE_RESULT_MEDIA_END_OF_STREAM = IMAGE_RESULT_BASE + 33,<br>IMAGE_RESULT_MEDIA_IO_ABNORMAL = IMAGE_RESULT_BASE + 34,<br>IMAGE_RESULT_MEDIA_MALFORMED = IMAGE_RESULT_BASE + 35,<br>IMAGE_RESULT_MEDIA_BUFFER_TOO_SMALL = IMAGE_RESULT_BASE + 36,<br>IMAGE_RESULT_MEDIA_OUT_OF_RANGE = IMAGE_RESULT_BASE + 37,<br>IMAGE_RESULT_MEDIA_STATUS_ABNORMAL = IMAGE_RESULT_BASE + 38,<br>IMAGE_RESULT_MEDIA_VALUE_INVALID = IMAGE_RESULT_BASE + 39,<br>IMAGE_RESULT_MEDIA_NULL_POINTER = IMAGE_RESULT_BASE + 40,<br>IMAGE_RESULT_MEDIA_INVALID_OPERATION = IMAGE_RESULT_BASE + 41,<br>IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT = IMAGE_RESULT_BASE + 42,<br>IMAGE_RESULT_MEDIA_EARLY_PREPARE = IMAGE_RESULT_BASE + 43,<br>IMAGE_RESULT_MEDIA_SEEK_ERR = IMAGE_RESULT_BASE + 44,<br>IMAGE_RESULT_MEDIA_PERMISSION_DENIED = IMAGE_RESULT_BASE + 45,<br>IMAGE_RESULT_MEDIA_DEAD_OBJECT = IMAGE_RESULT_BASE + 46,<br>IMAGE_RESULT_MEDIA_TIMED_OUT = IMAGE_RESULT_BASE + 47,<br>IMAGE_RESULT_MEDIA_TRACK_NOT_ALL_SUPPORTED = IMAGE_RESULT_BASE + 48,<br>IMAGE_RESULT_MEDIA_ADAPTER_INIT_FAILED = IMAGE_RESULT_BASE + 49,<br>IMAGE_RESULT_MEDIA_WRITE_PARCEL_FAIL = IMAGE_RESULT_BASE + 50,<br>IMAGE_RESULT_MEDIA_READ_PARCEL_FAIL = IMAGE_RESULT_BASE + 51,<br>IMAGE_RESULT_MEDIA_NO_AVAIL_BUFFER = IMAGE_RESULT_BASE + 52,<br>IMAGE_RESULT_MEDIA_INVALID_PARAM = IMAGE_RESULT_BASE + 53,<br>IMAGE_RESULT_MEDIA_CODEC_ADAPTER_NOT_EXIST = IMAGE_RESULT_BASE + 54,<br>IMAGE_RESULT_MEDIA_CREATE_CODEC_ADAPTER_FAILED = IMAGE_RESULT_BASE + 55,<br>IMAGE_RESULT_MEDIA_CODEC_ADAPTER_NOT_INIT = IMAGE_RESULT_BASE + 56,<br>IMAGE_RESULT_MEDIA_ZCODEC_CREATE_FAILED = IMAGE_RESULT_BASE + 57,<br>IMAGE_RESULT_MEDIA_ZCODEC_NOT_EXIST = IMAGE_RESULT_BASE + 58,<br>IMAGE_RESULT_MEDIA_JNI_CLASS_NOT_EXIST = IMAGE_RESULT_BASE + 59,<br>IMAGE_RESULT_MEDIA_JNI_METHOD_NOT_EXIST = IMAGE_RESULT_BASE + 60,<br>IMAGE_RESULT_MEDIA_JNI_NEW_OBJ_FAILED = IMAGE_RESULT_BASE + 61,<br>IMAGE_RESULT_MEDIA_JNI_COMMON_ERROR = IMAGE_RESULT_BASE + 62,<br>IMAGE_RESULT_MEDIA_DISTRIBUTE_NOT_SUPPORT = IMAGE_RESULT_BASE + 63,<br>IMAGE_RESULT_MEDIA_SOURCE_NOT_SET = IMAGE_RESULT_BASE + 64,<br>IMAGE_RESULT_MEDIA_RTSP_ADAPTER_NOT_INIT = IMAGE_RESULT_BASE + 65,<br>IMAGE_RESULT_MEDIA_RTSP_ADAPTER_NOT_EXIST = IMAGE_RESULT_BASE + 66,<br>IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT = IMAGE_RESULT_BASE + 67,<br>IMAGE_RESULT_MEDIA_RTSP_CAPTURE_NOT_INIT = IMAGE_RESULT_BASE + 68,<br>IMAGE_RESULT_MEDIA_RTSP_SOURCE_URL_INVALID = IMAGE_RESULT_BASE + 69,<br>IMAGE_RESULT_MEDIA_RTSP_VIDEO_TRACK_NOT_FOUND = IMAGE_RESULT_BASE + 70,<br>IMAGE_RESULT_MEDIA_RTSP_CAMERA_NUM_REACH_MAX = IMAGE_RESULT_BASE + 71,<br>IMAGE_RESULT_MEDIA_SET_VOLUME = IMAGE_RESULT_BASE + 72,<br>IMAGE_RESULT_MEDIA_NUMBER_OVERFLOW = IMAGE_RESULT_BASE + 73,<br>IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED = IMAGE_RESULT_BASE + 74,<br>IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75,<br>IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 76,<br>IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 150,<br>IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 151,<br>IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY = IMAGE_RESULT_BASE + 152,<br>IMAGE_RESULT_MEDIA_CONFIG_FAILED = IMAGE_RESULT_BASE + 153,<br>IMAGE_RESULT_JNI_ENV_ABNORMAL = IMAGE_RESULT_BASE + 154,<br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED = IMAGE_RESULT_BASE + 155,<br>IMAGE_RESULT_CREATE_SURFACE_FAILED = IMAGE_RESULT_BASE + 156,<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED = IMAGE_RESULT_BASE + 157,<br>IMAGE_RESULT_GET_SURFACE_FAILED = IMAGE_RESULT_BASE + 158,<br>IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159,<br>IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED = IMAGE_RESULT_BASE + 160,<br>IMAGE_RESULT_REGISTER_LISTENER_FAILED = IMAGE_RESULT_BASE + 161,<br>IMAGE_RESULT_REGISTER_BUFFER_FAILED = IMAGE_RESULT_BASE + 162,<br>IMAGE_RESULT_FREAD_FAILED = IMAGE_RESULT_BASE + 163,<br>IMAGE_RESULT_PEEK_FAILED = IMAGE_RESULT_BASE + 164,<br>IMAGE_RESULT_SEEK_FAILED = IMAGE_RESULT_BASE + 165,<br>IMAGE_RESULT_STREAM_SIZE_ERROR = IMAGE_RESULT_BASE + 166,<br>IMAGE_RESULT_FILE_FD_ERROR = IMAGE_RESULT_BASE + 167,<br>IMAGE_RESULT_FILE_DAMAGED = IMAGE_RESULT_BASE + 168,<br>IMAGE_RESULT_CREATE_DECODER_FAILED = IMAGE_RESULT_BASE + 169,<br>IMAGE_RESULT_CREATE_ENCODER_FAILED = IMAGE_RESULT_BASE + 170,<br>IMAGE_RESULT_CHECK_FORMAT_ERROR = IMAGE_RESULT_BASE + 171,<br>IMAGE_RESULT_THIRDPART_SKIA_ERROR = IMAGE_RESULT_BASE + 172,<br>IMAGE_RESULT_HW_DECODE_FAILED = IMAGE_RESULT_BASE + 173,<br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR = IMAGE_RESULT_BASE + 174,<br>IMAGE_RESULT_ALPHA_TYPE_ERROR = IMAGE_RESULT_BASE + 175,<br>IMAGE_RESULT_INDEX_INVALID = IMAGE_RESULT_BASE + 176,<br>IMAGE_RESULT_MEDIA_UNKNOWN = IMAGE_RESULT_BASE + 200<br>} | Enumerates the return values that may be used by the interface.| 
 | { OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN = 0,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE = 1,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL = 2,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL = 3 } | Enumerates the pixel map alpha types.| 
 | { OHOS_PIXEL_MAP_READ_ONLY = 0,<br>OHOS_PIXEL_MAP_EDITABLE = 1 } | Enumerates the pixel map editing types.| 
 | { OHOS::Media::OHOS_IMAGE_RESULT_SUCCESS = 0,<br>OHOS::Media::OHOS_IMAGE_RESULT_BAD_PARAMETER = -1 } | Enumerates the error codes returned by the functions.| 
@@ -85,12 +88,17 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Image_InitImageNative](#oh_image_initimagenative) (napi_env env, napi_value source) | Parses an **ImageNative** object from an **Image** object at the JavaScript native layer.| 
+| [OH_Image_InitImageNative](#oh_image_initimagenative) (napi_env env, napi_value source) | Converts an **Image** object at the JavaScript native layer into an **ImageNative** object.| 
 | [OH_Image_ClipRect](#oh_image_cliprect) (const [ImageNative](#imagenative) \*native, struct [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) \*rect) | Obtains [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) of an **ImageNative** object.| 
 | [OH_Image_Size](#oh_image_size) (const [ImageNative](#imagenative) \*native, struct [OhosImageSize](_ohos_image_size.md) \*size) | Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.| 
-| [OH_Image_Format](#oh_image_format) (const [ImageNative](#imagenative) \*native, int32_t \*format) | Obtains the image format of an **ImageNative** object.| 
+| [OH_Image_Format](#oh_image_format) (const [ImageNative](#imagenative) \*native, int32_t \*format) | Obtains the format of an **ImageNative** object.| 
 | [OH_Image_GetComponent](#oh_image_getcomponent) (const [ImageNative](#imagenative) \*native, int32_t componentType, struct [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) \*componentNative) | Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of an **ImageNative** object.| 
 | [OH_Image_Release](#oh_image_release) ([ImageNative](#imagenative) \*native) | Releases an **ImageNative** object.| 
+| [OH_ImagePacker_Create](#oh_imagepacker_create) (napi_env env, napi_value \*res) | Obtains an **ImagePacker** object at the JavaScript native layer.| 
+| [OH_ImagePacker_InitNative](#oh_imagepacker_initnative) (napi_env env, napi_value packer) | Converts an **ImagePacker** object at the JavaScript native layer into an **ImagePacker_Native** object.| 
+| [OH_ImagePacker_PackToData](#oh_imagepacker_packtodata) ([ImagePacker_Native](#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](#imagepacker_opts) \*opts, uint8_t \*outData, size_t \*size) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a buffer (defined by **outData**) based on the specified **ImagePacker_Opts** struct.| 
+| [OH_ImagePacker_PackToFile](#oh_imagepacker_packtofile) ([ImagePacker_Native](#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](#imagepacker_opts) \*opts, int fd) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a file based on the specified **ImagePacker_Opts** struct.| 
+| [OH_ImagePacker_Release](#oh_imagepacker_release) ([ImagePacker_Native](#imagepacker_native) \*native) | Releases an [ImagePacker_Native](#imagepacker_native) object.| 
 | [OH_PixelMap_CreatePixelMap](#oh_pixelmap_createpixelmap) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, napi_value \*res) | Creates a **PixelMap** object.| 
 | [OH_PixelMap_CreateAlphaPixelMap](#oh_pixelmap_createalphapixelmap) (napi_env env, napi_value source, napi_value \*alpha) | Creates a **PixelMap** object that contains only alpha channel information.| 
 | [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | Initializes a **PixelMap** object.| 
@@ -121,11 +129,16 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 | [OH_Image_Receiver_GetSize](#oh_image_receiver_getsize) (const [ImageReceiverNative](#imagereceivernative) \*native, struct [OhosImageSize](_ohos_image_size.md) \*size) | Obtains the size of the image receiver through an [ImageReceiverNative](#imagereceivernative) object.| 
 | [OH_Image_Receiver_GetCapacity](#oh_image_receiver_getcapacity) (const [ImageReceiverNative](#imagereceivernative) \*native, int32_t \*capacity) | Obtains the capacity of the image receiver through an [ImageReceiverNative](#imagereceivernative) object.| 
 | [OH_Image_Receiver_GetFormat](#oh_image_receiver_getformat) (const [ImageReceiverNative](#imagereceivernative) \*native, int32_t \*format) | Obtains the format of the image receiver through an [ImageReceiverNative](#imagereceivernative) object.| 
-| [OH_Image_Receiver_Release](#oh_image_receiver_release) ([ImageReceiverNative](#imagereceivernative) \*native) | Releases an [ImageReceiverNative](#imagereceivernative) object. Note: This function is not used to release an **ImageReceiver** object.| 
+| [OH_Image_Receiver_Release](#oh_image_receiver_release) ([ImageReceiverNative](#imagereceivernative) \*native) | Releases an [ImageReceiverNative](#imagereceivernative) object.| 
 | [OH_ImageSource_Create](#oh_imagesource_create) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*src, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object at the JavaScript native layer based on the specified [OhosImageSource](_ohos_image_source.md) and [OhosImageSourceOps](_ohos_image_source_ops.md) structs.| 
-| [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*source, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object at the JavaScript native layer based on the specified [OhosImageSource](_ohos_image_source.md) and [OhosImageSourceOps](_ohos_image_source_ops.md) structs. The image source data will be updated through **OH_ImageSource_UpdateData**.| 
+| [OH_ImageSource_CreateFromUri](#oh_imagesource_createfromuri) (napi_env env, char \*uri, size_t size, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object at the JavaScript native layer based on the specified URI and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.| 
+| [OH_ImageSource_CreateFromFd](#oh_imagesource_createfromfd) (napi_env env, int32_t fd, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object at the JavaScript native layer based on the specified file descriptor and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.| 
+| [OH_ImageSource_CreateFromData](#oh_imagesource_createfromdata) (napi_env env, uint8_t \*data, size_t dataSize, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.| 
+| [OH_ImageSource_CreateFromRawFile](#oh_imagesource_createfromrawfile) (napi_env env, RawFileDescriptor rawFile, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object at the JavaScript native layer based on the specified raw file descriptor and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.| 
+| [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental) (napi_env env, struct [OhosImageSource](_ohos_image_source.md) \*source, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object of the incremental type at the JavaScript native layer based on the specified [OhosImageSource](_ohos_image_source.md) and [OhosImageSourceOps](_ohos_image_source_ops.md) structs.| 
+| [OH_ImageSource_CreateIncrementalFromData](#oh_imagesource_createincrementalfromdata) (napi_env env, uint8_t \*data, size_t dataSize, struct [OhosImageSourceOps](_ohos_image_source_ops.md) \*ops, napi_value \*res) | Creates an **ImageSource** object of the incremental type at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The image data is updated through **OH_ImageSource_UpdateData**. | 
 | [OH_ImageSource_GetSupportedFormats](#oh_imagesource_getsupportedformats) (struct [OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md) \*res) | Obtains all supported decoding formats.| 
-| [OH_ImageSource_InitNative](#oh_imagesource_initnative) (napi_env env, napi_value source) | Converts an **ImageSource** object at the JavaScript native layer to an [ImageSourceNative](#imagesourcenative) object.| 
+| [OH_ImageSource_InitNative](#oh_imagesource_initnative) (napi_env env, napi_value source) | Converts an **ImageSource** object at the JavaScript native layer into an [ImageSourceNative](#imagesourcenative) object.| 
 | [OH_ImageSource_CreatePixelMap](#oh_imagesource_createpixelmap) (const [ImageSourceNative](#imagesourcenative) \*native, struct [OhosImageDecodingOps](_ohos_image_decoding_ops.md) \*ops, napi_value \*res) | Decodes an **ImageSourceNative** object to obtain a **PixelMap** object at the JavaScript native layer based on the specified [OhosImageDecodingOps](_ohos_image_decoding_ops.md) struct.| 
 | [OH_ImageSource_CreatePixelMapList](#oh_imagesource_createpixelmaplist) (const [ImageSourceNative](#imagesourcenative) \*native, struct [OhosImageDecodingOps](_ohos_image_decoding_ops.md) \*ops, napi_value \*res) | Decodes an **ImageSourceNative** object to obtain all **PixelMap** objects at the JavaScript native layer based on the specified [OhosImageDecodingOps](_ohos_image_decoding_ops.md) struct.| 
 | [OH_ImageSource_GetDelayTime](#oh_imagesource_getdelaytime) (const [ImageSourceNative](#imagesourcenative) \*native, struct [OhosImageSourceDelayTimeList](_ohos_image_source_delay_time_list.md) \*res) | Obtains the delay time list from an **ImageSourceNative** object (such as GIF image source).| 
@@ -167,7 +180,7 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 | [OhosImageDecodingOps::fitDensity](#fitdensity) | Defines the pixel density of the output pixel map.| 
 | [OhosImageDecodingOps::index](#index) | Defines the index of the output pixel map.| 
 | [OhosImageDecodingOps::sampleSize](#samplesize) | Defines the size of the sample.| 
-| [OhosImageDecodingOps::rotate](#rotate) | Defines the decoding rotation option.| 
+| [OhosImageDecodingOps::rotate](#rotate) | Defines the decoding rotation options.| 
 | [OhosImageDecodingOps::size](#size-27) | Defines the pixel width and height of the output pixel map.| 
 | [OhosImageDecodingOps::region](#region) | Defines the region of the output pixel map.| 
 | [OhosImageSourceInfo::pixelFormat](#pixelformat-33) | Defines the pixel format of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).| 
@@ -200,7 +213,6 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 
 ### ImageNative
 
-
 ```
 typedef struct ImageNative_ ImageNative
 ```
@@ -209,9 +221,33 @@ typedef struct ImageNative_ ImageNative
 
 Defines an image object at the native layer.
 
-**Since**
+**Since**: 10
 
-10
+
+### ImagePacker_Native
+
+```
+typedef struct ImagePacker_Native_ ImagePacker_Native
+```
+
+**Description**
+
+Defines an image packer object at the native layer.
+
+**Since**: 11
+
+
+### ImagePacker_Opts
+
+```
+typedef struct ImagePacker_Opts_ImagePacker_Opts
+```
+
+**Description**
+
+Defines the alias of the image packing options.
+
+**Since**: 11
 
 
 ### ImageReceiverNative
@@ -224,9 +260,7 @@ typedef struct ImageReceiverNative_ ImageReceiverNative
 
 Defines the data type name of the image receiver at the native layer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### ImageSourceNative
@@ -239,11 +273,20 @@ typedef struct ImageSourceNative_ ImageSourceNative
 
 Defines an image source object at the native layer.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
-**Since**
 
-10
+### IRNdkErrCode
+
+```
+typedef enum anonymous3IRNdkErrCode
+```
+
+**Description**
+
+Defines an enum that enumerates the return values that may be used by the interface.
+
+**Since**: 10
 
 
 ### NativePixelMap
@@ -256,9 +299,7 @@ typedef struct NativePixelMap_ NativePixelMap
 
 Defines the data type name of the pixel map at the native layer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OH_Image_Receiver_On_Callback
@@ -271,28 +312,23 @@ typedef void(* OH_Image_Receiver_On_Callback) ()
 
 Defines the callbacks for the image interface at the native layer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OhosPixelMapInfos
 
 ```
-typedef struct OhosPixelMapInfosOhosPixelMapInfos
+typedef struct OhosPixelMapInfos
 ```
 
 **Description**
 
 Defines the information about a pixel map.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ## Enum Description
-
 
 ### anonymous enum [1/3]
 
@@ -304,9 +340,7 @@ anonymous enum
 
 Enumerates the image formats.
 
-**Since**
-
-10
+**Since**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -324,9 +358,7 @@ anonymous enum
 
 Enumerates the pixel map alpha types.
 
-**Since**
-
-10
+**Since**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -346,13 +378,9 @@ anonymous enum
 
 Enumerates the error codes returned by the functions.
 
-**Since**
+**Since**: 8
 
-8
-
-**Deprecated from**
-
-10
+**Deprecated from**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -370,9 +398,7 @@ anonymous enum
 
 Enumerates the image components.
 
-**Since**
-
-10
+**Since**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -392,9 +418,7 @@ anonymous enum
 
 Enumerates the pixel map editing types.
 
-**Since**
-
-10
+**Since**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -412,13 +436,9 @@ anonymous enum
 
 Enumerates the pixel map formats.
 
-**Since**
+**Since**: 8
 
-8
-
-**Deprecated from**
-
-10
+**Deprecated from**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -437,9 +457,7 @@ anonymous enum
 
 Enumerates the pixel map scale modes.
 
-**Since**
-
-10
+**Since**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -457,9 +475,7 @@ enum IRNdkErrCode
 
 Enumerates the return values that may be used by the interface.
 
-**Since**
-
-10
+**Since**: 10
 
 | Value| Description| 
 | -------- | -------- |
@@ -471,7 +487,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL | Abnormal data in the shared memory.| 
 | IMAGE_RESULT_DECODE_ABNORMAL | Failed to decode the image.| 
 | IMAGE_RESULT_DATA_ABNORMAL | Abnormal input data.| 
-| IMAGE_RESULT_MALLOC_ABNORMAL | an error occurs during memory allocation.| 
+| IMAGE_RESULT_MALLOC_ABNORMAL | An error occurs during memory allocation.| 
 | IMAGE_RESULT_DATA_UNSUPPORT | The image type is not supported.| 
 | IMAGE_RESULT_INIT_ABNORMAL | Failed to initialize the image.| 
 | IMAGE_RESULT_GET_DATA_ABNORMAL | An error occurs during image data retrieval.| 
@@ -506,7 +522,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_MEDIA_VALUE_INVALID | Invalid media value.| 
 | IMAGE_RESULT_MEDIA_NULL_POINTER | Media operation failed.| 
 | IMAGE_RESULT_MEDIA_INVALID_OPERATION | Invalid media operation.| 
-| IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT | an error occurs during media initialization.| 
+| IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT | An error occurs during media initialization.| 
 | IMAGE_RESULT_MEDIA_EARLY_PREPARE | Media preprocessing is carried out too early.| 
 | IMAGE_RESULT_MEDIA_SEEK_ERR | The seek operation failed.| 
 | IMAGE_RESULT_MEDIA_PERMISSION_DENIED | Permission denied.| 
@@ -586,6 +602,10 @@ Obtains the memory address of a **PixelMap** object and locks the memory.
 
 **\*addrPtr** is the memory address obtained. After finishing the access, you must use **OH_UnAccessPixels** to unlock the memory. Then the memory cannot be accessed or operated.
 
+**Since**: 8
+
+**Deprecated from**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -594,21 +614,13 @@ Obtains the memory address of a **PixelMap** object and locks the memory.
 | value | **PixelMap** object at the application layer.| 
 | addrPtr | Double pointer to the memory address.| 
 
-**Returns**
-
-Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an error code otherwise.
-
-**Since**
-
-8
-
-**Deprecated from**
-
-10
-
 **See**
 
 [UnAccessPixels](image.md#oh_unaccesspixels)
+
+**Returns**
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 
 ### OH_GetImageInfo()
@@ -621,6 +633,10 @@ int32_t OHOS::Media::OH_GetImageInfo (napi_env env, napi_value value, OhosPixelM
 
 Obtains the information about a **PixelMap** object and stores the information to the [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) struct.
 
+**Since**: 8
+
+**Deprecated from**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -632,14 +648,6 @@ Obtains the information about a **PixelMap** object and stores the information t
 **Returns**
 
 Returns **0** if the information is obtained and stored successfully; returns an error code otherwise.
-
-**Since**
-
-8
-
-**Deprecated from**
-
-10
 
 **See**
 
@@ -656,6 +664,8 @@ int32_t OH_Image_ClipRect (const ImageNative * native, struct OhosImageRect * re
 
 Obtains [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) of an **ImageNative** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -665,7 +675,7 @@ Obtains [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) of an **Image
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -677,13 +687,9 @@ Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be o
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
-**Since**
-
-10
-
 **See**
 
-ImageNative, [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+[ImageNative](image.md#imagenative), [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
 
 
 ### OH_Image_Format()
@@ -694,7 +700,9 @@ int32_t OH_Image_Format (const ImageNative * native, int32_t * format )
 
 **Description**
 
-Obtains the image format of an **ImageNative** object.
+Obtains the format of an **ImageNative** object.
+
+**Since**: 10
 
 **Parameters**
 
@@ -705,7 +713,7 @@ Obtains the image format of an **ImageNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -717,13 +725,10 @@ Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be o
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
-**Since**
-
-10
 
 **See**
 
-ImageNative
+[ImageNative](image.md#imagenative)
 
 
 ### OH_Image_GetComponent()
@@ -736,6 +741,8 @@ int32_t OH_Image_GetComponent (const ImageNative * native, int32_t componentType
 
 Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of an **ImageNative** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -746,7 +753,7 @@ Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of 
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -758,13 +765,9 @@ Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be o
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
-**Since**
-
-10
-
 **See**
 
-ImageNative, [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+[ImageNative](image.md#imagenative), [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
 
 
 ### OH_Image_InitImageNative()
@@ -777,6 +780,8 @@ ImageNative* OH_Image_InitImageNative (napi_env env, napi_value source )
 
 Parses an **ImageNative** object from an **Image** object at the JavaScript native layer.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -788,13 +793,9 @@ Parses an **ImageNative** object from an **Image** object at the JavaScript nati
 
 Returns a pointer to the **ImageNative** object if the operation is successful; returns a null pointer otherwise.
 
-**Since**
-
-10
-
 **See**
 
-ImageNative, OH_Image_Release
+[ImageNative](image.md#imagenative), [OH_Image_Release](image.md#oh_image_release)
 
 
 ### OH_Image_Receiver_CreateImageReceiver()
@@ -807,6 +808,8 @@ int32_t OH_Image_Receiver_CreateImageReceiver (napi_env env, struct OhosImageRec
 
 Creates an **ImageReceiver** object at the application layer.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -817,7 +820,7 @@ Creates an **ImageReceiver** object at the application layer.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -825,7 +828,9 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be obtained from the surface.
 
 Returns **IMAGE_RESULT_CREATE_SURFACE_FAILED** if the surface fails to be created.
 
@@ -839,9 +844,6 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_MEDIA_DATA_UNSUPPORT** if the media type is not supported.
 
-**Since**
-
-10
 
 **See**
 
@@ -858,6 +860,8 @@ int32_t OH_Image_Receiver_GetCapacity (const ImageReceiverNative * native, int32
 
 Obtains the capacity of the image receiver through an [ImageReceiverNative](#imagereceivernative) object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -867,7 +871,7 @@ Obtains the capacity of the image receiver through an [ImageReceiverNative](#ima
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -879,9 +883,6 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-**Since**
-
-10
 
 **See**
 
@@ -898,6 +899,8 @@ int32_t OH_Image_Receiver_GetFormat (const ImageReceiverNative * native, int32_t
 
 Obtains the format of the image receiver through an [ImageReceiverNative](#imagereceivernative) object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -907,7 +910,7 @@ Obtains the format of the image receiver through an [ImageReceiverNative](#image
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -919,9 +922,6 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-**Since**
-
-10
 
 **See**
 
@@ -938,6 +938,8 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId (const ImageReceiverNative * nat
 
 Obtains the receiver ID through an [ImageReceiverNative](#imagereceivernative) object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -948,7 +950,7 @@ Obtains the receiver ID through an [ImageReceiverNative](#imagereceivernative) o
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -956,7 +958,9 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be obtained from the surface.
 
 Returns **IMAGE_RESULT_GET_SURFACE_FAILED** if the surface fails to be obtained.
 
@@ -964,9 +968,6 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_MEDIA_DATA_UNSUPPORT** if the media type is not supported.
 
-**Since**
-
-10
 
 **See**
 
@@ -983,6 +984,8 @@ int32_t OH_Image_Receiver_GetSize (const ImageReceiverNative * native, struct Oh
 
 Obtains the size of the image receiver through an [ImageReceiverNative](#imagereceivernative) object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -992,7 +995,7 @@ Obtains the size of the image receiver through an [ImageReceiverNative](#imagere
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1003,10 +1006,6 @@ Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
 
 **See**
 
@@ -1023,6 +1022,8 @@ ImageReceiverNative* OH_Image_Receiver_InitImageReceiverNative (napi_env env, na
 
 Initializes an [ImageReceiverNative](#imagereceivernative) object through an **ImageReceiver** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1033,10 +1034,6 @@ Initializes an [ImageReceiverNative](#imagereceivernative) object through an **I
 **Returns**
 
 Returns a pointer to the [ImageReceiverNative](#imagereceivernative) object obtained if the operation is successful; returns a null pointer otherwise.
-
-**Since**
-
-10
 
 **See**
 
@@ -1053,6 +1050,8 @@ int32_t OH_Image_Receiver_On (const ImageReceiverNative * native, OH_Image_Recei
 
 Registers an [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) callback. This callback is triggered whenever a new image is received.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1062,7 +1061,7 @@ Registers an [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) cal
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1076,11 +1075,10 @@ Returns **IMAGE_RESULT_GET_SURFACE_FAILED** if the surface fails to be obtained.
 
 Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-Returns **IMAGE_RESULT_MEDIA_DATA_UNSUPPORT** if the media type is not supported.
+Returns **IMAGE_RESULT_REGISTER_LISTENER_FAILED** if the listener fails to be registered.
 
-**Since**
+Returns **IMAGE_RESULT_REGISTER_BUFFER_FAILED** if the buffer fails to be registered.
 
-10
 
 **See**
 
@@ -1097,6 +1095,8 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 Obtains the latest image through an [ImageReceiverNative](#imagereceivernative) object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1106,7 +1106,7 @@ Obtains the latest image through an [ImageReceiverNative](#imagereceivernative) 
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1114,7 +1114,9 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be obtained from the surface.
 
 Returns **IMAGE_RESULT_CREATE_SURFACE_FAILED** if the surface fails to be created.
 
@@ -1126,11 +1128,8 @@ Returns **IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT** if the media RTSP surface 
 
 Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-Returns **IMAGE_RESULT_MEDIA_DATA_UNSUPPORT** if the media type is not supported.
+Returns **IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED** if the buffer fails to be requested.
 
-**Since**
-
-10
 
 **See**
 
@@ -1147,6 +1146,8 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 Obtains the next image through an [ImageReceiverNative](#imagereceivernative) object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1156,7 +1157,7 @@ Obtains the next image through an [ImageReceiverNative](#imagereceivernative) ob
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1164,7 +1165,9 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be obtained from the surface.
 
 Returns **IMAGE_RESULT_CREATE_SURFACE_FAILED** if the surface fails to be created.
 
@@ -1176,11 +1179,7 @@ Returns **IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT** if the media RTSP surface 
 
 Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-Returns **IMAGE_RESULT_MEDIA_DATA_UNSUPPORT** if the media type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED** if the buffer fails to be requested.
 
 **See**
 
@@ -1197,6 +1196,8 @@ int32_t OH_Image_Receiver_Release (ImageReceiverNative * native)
 
 Releases an [ImageReceiverNative](#imagereceivernative) object. Note: This function is not used to release an **ImageReceiver** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1205,19 +1206,16 @@ Releases an [ImageReceiverNative](#imagereceivernative) object. Note: This funct
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
+Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
+
 Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
 
 **See**
 
@@ -1234,6 +1232,8 @@ int32_t OH_Image_Release (ImageNative * native)
 
 Releases an **ImageNative** object. Note: This function is not used to release an **Image** object at the JavaScript native API. It is used to release an **ImageNative** object parsed by calling **OH_Image_InitImageNative**.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1242,7 +1242,7 @@ Releases an **ImageNative** object. Note: This function is not used to release a
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1252,13 +1252,9 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
-**Since**
-
-10
-
 **See**
 
-ImageNative, OH_Image_InitImageNative
+[ImageNative](image.md#imagenative), [OH_Image_InitImageNative](image.md#oh_image_initimagenative)
 
 
 ### OH_Image_Size()
@@ -1271,6 +1267,8 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -1280,7 +1278,7 @@ Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1292,13 +1290,188 @@ Returns **IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED** if parameters fail to be o
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
-**Since**
+**See**
 
-10
+[ImageNative](image.md#imagenative), [OhosImageSize](_ohos_image_size.md)
+
+
+### OH_ImagePacker_Create()
+
+```
+int32_t OH_ImagePacker_Create (napi_env env, napi_value * res )
+```
+
+**Description**
+
+Obtains an **ImagePacker** object at the JavaScript native layer.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| res | Pointer to an **ImagePacker** object at the JavaScript native layer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+
+### OH_ImagePacker_InitNative()
+
+```
+ImagePacker_Native* OH_ImagePacker_InitNative (napi_env env, napi_value packer )
+```
+
+**Description**
+
+Converts an **ImagePacker** object at the JavaScript native layer into an **ImagePacker_Native** object.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| packer | **ImagePacker** object at the JavaScript native layer.| 
+
+**Returns**
+
+Returns the pointer to an [ImagePacker_Native](#imagepacker_native) object if the operation is successful; returns a null pointer otherwise.
 
 **See**
 
-ImageNative, [OhosImageSize](_ohos_image_size.md)
+[OH_ImagePacker_Release](#oh_imagepacker_release)
+
+
+### OH_ImagePacker_PackToData()
+
+```
+int32_t OH_ImagePacker_PackToData (ImagePacker_Native * native, napi_value source, ImagePacker_Opts * opts, uint8_t * outData, size_t * size )
+```
+
+**Description**
+
+Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a buffer (defined by **outData**) based on the specified **ImagePacker_Opts** struct.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| native | Pointer to an **ImagePacker_Native** object.| 
+| source | **PixelMap** object or **ImageSource** object at the JavaScript native layer.| 
+| opts | Pointer to the packing options. For details, see [ImagePacker_Opts](#imagepacker_opts).| 
+| outData | Pointer to the output buffer.| 
+| size | Pointer to the size of the buffer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+Returns **ERR_IMAGE_DATA_ABNORMAL** if the output buffer is abnormal.
+
+Returns **ERR_IMAGE_MISMATCHED_FORMAT** if the format does not match.
+
+Returns **ERR_IMAGE_MALLOC_ABNORMAL** if an internal error occurs during buffer memory allocation.
+
+Returns **ERR_IMAGE_DECODE_ABNORMAL** if an internal error occurs during codec initialization.
+
+Returns **ERR_IMAGE_ENCODE_FAILED** if an error occurs during encoding.
+
+**See**
+
+[OH_ImagePacker_PackToFile](#oh_imagepacker_packtofile)
+
+
+### OH_ImagePacker_PackToFile()
+
+```
+int32_t OH_ImagePacker_PackToFile (ImagePacker_Native * native, napi_value source, ImagePacker_Opts * opts, int fd )
+```
+
+**Description**
+
+Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a file based on the specified **ImagePacker_Opts** struct.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| native | Pointer to an **ImagePacker_Native** object.| 
+| source | **PixelMap** object or **ImageSource** object at the JavaScript native layer.| 
+| opts | Pointer to the packing options. For details, see [ImagePacker_Opts](#imagepacker_opts).| 
+| fd | File descriptor of the output file.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+Returns **ERR_IMAGE_DATA_ABNORMAL** if the output buffer is abnormal.
+
+Returns **ERR_IMAGE_MISMATCHED_FORMAT** if the format does not match.
+
+Returns **ERR_IMAGE_MALLOC_ABNORMAL** if an internal error occurs during buffer memory allocation.
+
+Returns **ERR_IMAGE_DECODE_ABNORMAL** if an internal error occurs during codec initialization.
+
+Returns **ERR_IMAGE_ENCODE_FAILED** if an error occurs during encoding.
+
+**See**
+
+[OH_ImagePacker_PackToData](#oh_imagepacker_packtodata)
+
+
+### OH_ImagePacker_Release()
+
+```
+int32_t OH_ImagePacker_Release (ImagePacker_Native * native)
+```
+
+**Description**
+
+Releases an [ImagePacker_Native](#imagepacker_native) object,
+
+rather than the **ImagePacker** object at the JavaScript native layer.
+
+It is parsed by calling [OH_ImagePacker_InitNative](#oh_imagepacker_initnative).
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| native | Pointer to an [ImagePacker_Native](#imagepacker_native) object.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+**See**
+
+[OH_ImagePacker_InitNative](#oh_imagepacker_initnative)
+
 
 
 ### OH_ImageSource_Create()
@@ -1311,7 +1484,11 @@ int32_t OH_ImageSource_Create (napi_env env, struct OhosImageSource * src, struc
 
 Creates an **ImageSource** object at the JavaScript native layer based on the specified [OhosImageSource](_ohos_image_source.md) and [OhosImageSourceOps](_ohos_image_source_ops.md) structs.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
+
+**Deprecated from**: 11
+
+Use [OH_ImageSource_CreateFromUri](#oh_imagesource_createfromuri), [OH_ImageSource_CreateFromFd](#oh_imagesource_createfromfd) or [OH_ImageSource_CreateFromData](#oh_imagesource_createfromdata) instead.
 
 **Parameters**
 
@@ -1324,7 +1501,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1362,13 +1539,164 @@ Returns **IMAGE_RESULT_PEEK_FAILED** if peeking the file fails.
 
 Returns **IMAGE_RESULT_FREAD_FAILED** if reading the file fails.
 
-**Since**
-
-10
-
 **See**
 
 [OhosImageSource](_ohos_image_source.md), [OhosImageSourceOps](_ohos_image_source_ops.md)
+
+
+
+### OH_ImageSource_CreateFromData()
+
+```
+int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t dataSize, struct OhosImageSourceOps * ops, napi_value * res )
+```
+
+**Description**
+
+Creates an **ImageSource** object at the JavaScript native layer based on the specified image source buffer resource (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| data | Pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.| 
+| dataSize | Size of the image source buffer.| 
+| ops | Pointer to the options for creating the image source. For details, see [OhosImageSourceOps](_ohos_image_source_ops.md).| 
+| res | Pointer to an **ImageSource** object at the JavaScript native layer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
+
+Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+**See**
+
+[OhosImageSourceOps](_ohos_image_source_ops.md)
+
+
+### OH_ImageSource_CreateFromFd()
+
+```
+int32_t OH_ImageSource_CreateFromFd (napi_env env, int32_t fd, struct OhosImageSourceOps * ops, napi_value * res )
+```
+
+**Description**
+
+Creates an **ImageSource** object at the JavaScript native layer based on the specified file descriptor and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| fd | Descriptor of the image source.| 
+| ops | Pointer to the options for creating the image source. For details, see [OhosImageSourceOps](_ohos_image_source_ops.md).| 
+| res | Pointer to an **ImageSource** object at the JavaScript native layer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
+
+Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+**See**
+
+[OhosImageSourceOps](_ohos_image_source_ops.md)
+
+
+### OH_ImageSource_CreateFromRawFile()
+
+```
+int32_t OH_ImageSource_CreateFromRawFile (napi_env env, RawFileDescriptor rawFile, struct OhosImageSourceOps * ops, napi_value * res )
+```
+
+**Description**
+
+Creates an **ImageSource** object at the JavaScript native layer based on the specified raw file descriptor and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| rawFile | Descriptor of the image source resource.| 
+| ops | Pointer to the options for creating the image source. For details, see [OhosImageSourceOps](_ohos_image_source_ops.md).| 
+| res | Pointer to an **ImageSource** object at the JavaScript native layer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
+
+Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+**See**
+
+[OhosImageSourceOps](_ohos_image_source_ops.md)
+
+
+### OH_ImageSource_CreateFromUri()
+
+```
+int32_t OH_ImageSource_CreateFromUri (napi_env env, char * uri, size_t size, struct OhosImageSourceOps * ops, napi_value * res )
+```
+
+**Description**
+
+Creates an **ImageSource** object at the JavaScript native layer based on the specified URI and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| uri | Pointer to the image source URI. Only a file URI or Base64 URI is accepted.| 
+| size | Length of the image source URI.| 
+| ops | Pointer to the options for creating the image source. For details, see [OhosImageSourceOps](_ohos_image_source_ops.md).| 
+| res | Pointer to an **ImageSource** object at the JavaScript native layer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
+
+Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+**See**
+
+[OhosImageSourceOps](_ohos_image_source_ops.md)
 
 
 ### OH_ImageSource_CreateIncremental()
@@ -1381,7 +1709,12 @@ int32_t OH_ImageSource_CreateIncremental (napi_env env, struct OhosImageSource *
 
 Creates an **ImageSource** object at the JavaScript native layer based on the specified [OhosImageSource](_ohos_image_source.md) and [OhosImageSourceOps](_ohos_image_source_ops.md) structs. The image source data will be updated through **OH_ImageSource_UpdateData**.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
+
+
+**Deprecated from**: 11
+
+Use [OH_ImageSource_CreateIncrementalFromData](#oh_imagesource_createincrementalfromdata) instead.
 
 **Parameters**
 
@@ -1394,7 +1727,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1432,13 +1765,48 @@ Returns **IMAGE_RESULT_PEEK_FAILED** if peeking the file fails.
 
 Returns **IMAGE_RESULT_FREAD_FAILED** if reading the file fails.
 
-**Since**
-
-10
-
 **See**
 
 [OhosImageSource](_ohos_image_source.md), [OhosImageSourceOps](_ohos_image_source_ops.md), [OH_ImageSource_UpdateData](#oh_imagesource_updatedata)
+
+
+### OH_ImageSource_CreateIncrementalFromData()
+
+```
+int32_t OH_ImageSource_CreateIncrementalFromData (napi_env env, uint8_t * data, size_t dataSize, struct OhosImageSourceOps * ops, napi_value * res )
+```
+
+**Description**
+
+Creates an **ImageSource** object of the incremental type at the JavaScript native layer based on the specified image source buffer resource (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The image data is updated through **OH_ImageSource_UpdateData**. 
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| env | Pointer to the JNI environment.| 
+| data | Pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.| 
+| dataSize | Size of the image source buffer.| 
+| ops | Pointer to the options for creating the image source. For details, see [OhosImageSourceOps](_ohos_image_source_ops.md).| 
+| res | Pointer to an **ImageSource** object at the JavaScript native layer.| 
+
+**Returns**
+
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
+
+Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
+
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
+
+**See**
+
+[OhosImageSourceOps](_ohos_image_source_ops.md)
 
 
 ### OH_ImageSource_CreatePixelMap()
@@ -1451,7 +1819,7 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 Decodes an **ImageSourceNative** object to obtain a **PixelMap** object at the JavaScript native layer based on the specified [OhosImageDecodingOps](_ohos_image_decoding_ops.md) struct.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1463,7 +1831,7 @@ Decodes an **ImageSourceNative** object to obtain a **PixelMap** object at the J
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1507,7 +1875,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -1522,10 +1890,6 @@ Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -1542,7 +1906,7 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 Decodes an **ImageSourceNative** object to obtain all **PixelMap** objects at the JavaScript native layer based on the specified [OhosImageDecodingOps](_ohos_image_decoding_ops.md) struct.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1554,9 +1918,9 @@ Decodes an **ImageSourceNative** object to obtain all **PixelMap** objects at th
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
-Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
 Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
@@ -1598,7 +1962,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -1617,10 +1981,6 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 Returns **IMAGE_RESULT_DECODE_EXIF_UNSUPPORT** if EXIF is not supported for image decoding.
 
 Returns **IMAGE_RESULT_PROPERTY_NOT_EXIST** if the image property does not exist.
-
-**Since**
-
-10
 
 **See**
 
@@ -1637,7 +1997,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 
 Obtains the delay time list from an **ImageSourceNative** object (such as GIF image source).
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1648,7 +2008,7 @@ Obtains the delay time list from an **ImageSourceNative** object (such as GIF im
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1678,17 +2038,13 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
 Returns **IMAGE_RESULT_DECODE_EXIF_UNSUPPORT** if EXIF is not supported for image decoding.
 
 Returns **IMAGE_RESULT_PROPERTY_NOT_EXIST** if the image property does not exist.
-
-**Since**
-
-10
 
 **See**
 
@@ -1705,7 +2061,7 @@ int32_t OH_ImageSource_GetFrameCount (const ImageSourceNative * native, uint32_t
 
 Obtains the number of frames from an **ImageSourceNative** object.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1716,7 +2072,7 @@ Obtains the number of frames from an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1746,17 +2102,13 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
 Returns **IMAGE_RESULT_DECODE_EXIF_UNSUPPORT** if EXIF is not supported for image decoding.
 
 Returns **IMAGE_RESULT_PROPERTY_NOT_EXIST** if the image property does not exist.
-
-**Since**
-
-10
 
 **See**
 
@@ -1773,7 +2125,7 @@ int32_t OH_ImageSource_GetImageInfo (const ImageSourceNative * native, int32_t i
 
 Obtains image source information from an **ImageSourceNative** object by index.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1785,7 +2137,7 @@ Obtains image source information from an **ImageSourceNative** object by index.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1815,7 +2167,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1823,9 +2175,6 @@ Returns **IMAGE_RESULT_DECODE_EXIF_UNSUPPORT** if EXIF is not supported for imag
 
 Returns **IMAGE_RESULT_PROPERTY_NOT_EXIST** if the image property does not exist.
 
-**Since**
-
-10
 
 **See**
 
@@ -1842,7 +2191,7 @@ int32_t OH_ImageSource_GetImageProperty (const ImageSourceNative * native, struc
 
 Obtains the value of an image property from an **ImageSourceNative** object.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1854,7 +2203,7 @@ Obtains the value of an image property from an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1884,17 +2233,13 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
 Returns **IMAGE_RESULT_DECODE_EXIF_UNSUPPORT** if EXIF is not supported for image decoding.
 
 Returns **IMAGE_RESULT_PROPERTY_NOT_EXIST** if the image property does not exist.
-
-**Since**
-
-10
 
 **See**
 
@@ -1911,7 +2256,7 @@ int32_t OH_ImageSource_GetSupportedFormats (struct OhosImageSourceSupportedForma
 
 Obtains all supported decoding formats.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1921,7 +2266,7 @@ Obtains all supported decoding formats.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -1934,10 +2279,6 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 Returns **IMAGE_RESULT_DECODE_FAILED** if decoding fails.
 
 Returns **IMAGE_RESULT_CHECK_FORMAT_ERROR** if the format check fails.
-
-**Since**
-
-10
 
 **See**
 
@@ -1952,9 +2293,9 @@ ImageSourceNative* OH_ImageSource_InitNative (napi_env env, napi_value source )
 
 **Description**
 
-Converts an **ImageSource** object at the JavaScript native layer to an [ImageSourceNative](#imagesourcenative) object.
+Converts an **ImageSource** object at the JavaScript native layer into an [ImageSourceNative](#imagesourcenative) object.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1966,10 +2307,6 @@ Converts an **ImageSource** object at the JavaScript native layer to an [ImageSo
 **Returns**
 
 Returns a pointer to the [ImageSourceNative](#imagesourcenative) object if the operation is successful; returns a null pointer otherwise.
-
-**Since**
-
-10
 
 **See**
 
@@ -1986,7 +2323,7 @@ int32_t OH_ImageSource_ModifyImageProperty (const ImageSourceNative * native, st
 
 Modifies the value of an image property of an **ImageSourceNative** object.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -1998,7 +2335,7 @@ Modifies the value of an image property of an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2028,17 +2365,13 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
 Returns **IMAGE_RESULT_DECODE_EXIF_UNSUPPORT** if EXIF is not supported for image decoding.
 
 Returns **IMAGE_RESULT_PROPERTY_NOT_EXIST** if the image property does not exist.
-
-**Since**
-
-10
 
 **See**
 
@@ -2055,7 +2388,7 @@ int32_t OH_ImageSource_Release (ImageSourceNative * native)
 
 Releases an **ImageSourceNative** object.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -2065,7 +2398,7 @@ Releases an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2078,10 +2411,6 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 Returns **IMAGE_RESULT_GET_DATA_ABNORMAL** if an error occurs during image data retrieval.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -2098,7 +2427,7 @@ int32_t OH_ImageSource_UpdateData (const ImageSourceNative * native, struct Ohos
 
 Updates the data of an **ImageSourceNative** object.
 
-\@Syscap SystemCapability.Multimedia.Image
+**Since**: 10
 
 **Parameters**
 
@@ -2109,7 +2438,6 @@ Updates the data of an **ImageSourceNative** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2153,7 +2481,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -2169,9 +2497,6 @@ Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
 
-**Since**
-
-10
 
 **See**
 
@@ -2188,6 +2513,8 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 
 Obtains the memory address of a **NativePixelMap** object and locks the memory.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2197,7 +2524,7 @@ Obtains the memory address of a **NativePixelMap** object and locks the memory.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2233,13 +2560,11 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -2256,6 +2581,8 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 Creates a **PixelMap** object that contains only alpha channel information.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2266,7 +2593,7 @@ Creates a **PixelMap** object that contains only alpha channel information.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2318,15 +2645,14 @@ Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not support
 
 Returns **IMAGE_RESULT_HW_DECODE_FAILED** if hardware decoding fails.
 
+Returns **IMAGE_RESULT_ERR_IPC** if IPC fails.
+
 Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
 
-**Since**
-
-10
 
 **See**
 
@@ -2343,19 +2669,21 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 Creates a **PixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | env | Pointer to the NAPI environment.| 
-| info | Options for setting the **PixelMap** object.| 
+| info |Options for setting the **PixelMap** object.| 
 | buf | Pointer to the buffer of the image.| 
 | len | Image size.| 
 | res | Pointer to the **PixelMap** object at the application layer.| 
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2407,15 +2735,13 @@ Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not support
 
 Returns **IMAGE_RESULT_HW_DECODE_FAILED** if hardware decoding fails.
 
+Returns **IMAGE_RESULT_ERR_IPC** if IPC fails.
+
 Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -2432,6 +2758,8 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 Crops a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2444,7 +2772,7 @@ Crops a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2480,13 +2808,11 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -2503,6 +2829,8 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 Flips a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2513,7 +2841,7 @@ Flips a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2549,13 +2877,12 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
 
-**Since**
-
-10
 
 **See**
 
@@ -2572,6 +2899,8 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 Obtains the number of bytes per row of a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2581,7 +2910,7 @@ Obtains the number of bytes per row of a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2593,11 +2922,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
@@ -2614,6 +2939,8 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 Obtains the pixel density of a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2623,7 +2950,7 @@ Obtains the pixel density of a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2635,11 +2962,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
@@ -2656,6 +2979,8 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 
 Obtains the image information of a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2665,7 +2990,7 @@ Obtains the image information of a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2701,13 +3026,11 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -2724,6 +3047,8 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 Checks whether a **NativePixelMap** object is editable.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2733,7 +3058,7 @@ Checks whether a **NativePixelMap** object is editable.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2745,11 +3070,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
@@ -2766,6 +3087,8 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 
 Initializes a **PixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2776,10 +3099,6 @@ Initializes a **PixelMap** object.
 **Returns**
 
 Returns a pointer to the **NativePixelMap** object if the operation is successful; returns an error code otherwise.
-
-**Since**
-
-10
 
 **See**
 
@@ -2796,6 +3115,8 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 Checks whether a **NativePixelMap** object supports alpha channels.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2805,7 +3126,7 @@ Checks whether a **NativePixelMap** object supports alpha channels.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2817,11 +3138,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
@@ -2838,6 +3155,8 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 Rotates a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2847,7 +3166,7 @@ Rotates a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2883,13 +3202,11 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -2906,6 +3223,8 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 Scales a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2916,7 +3235,7 @@ Scales a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2954,13 +3273,12 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
 
-**Since**
-
-10
 
 **See**
 
@@ -2977,6 +3295,8 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 Sets an alpha channel for a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -2986,7 +3306,7 @@ Sets an alpha channel for a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -2998,11 +3318,8 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
-**Since**
-
-10
 
 **See**
 
@@ -3011,7 +3328,6 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 ### OH_PixelMap_SetDensity()
 
-
 ```
 int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 ```
@@ -3019,6 +3335,8 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 **Description**
 
 Sets the pixel density for a **NativePixelMap** object.
+
+**Since**: 10
 
 **Parameters**
 
@@ -3029,7 +3347,7 @@ Sets the pixel density for a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3041,11 +3359,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
@@ -3062,6 +3376,8 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 Sets the opacity for a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -3071,7 +3387,7 @@ Sets the opacity for a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3083,11 +3399,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
-
-**Since**
-
-10
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **See**
 
@@ -3104,6 +3416,8 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 
 Translates a **NativePixelMap** object.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -3114,7 +3428,7 @@ Translates a **NativePixelMap** object.
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3150,13 +3464,11 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
-
-**Since**
-
-10
 
 **See**
 
@@ -3173,6 +3485,8 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 Unlocks the memory of a **NativePixelMap** object. This function is used with [OH_PixelMap_AccessPixels](#oh_pixelmap_accesspixels) in pairs.
 
+**Since**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -3181,7 +3495,7 @@ Unlocks the memory of a **NativePixelMap** object. This function is used with [O
 
 **Returns**
 
-For details, see [IRNdkErrCode](#irndkerrcode).
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
 Returns **IMAGE_RESULT_SUCCESS** if the operation is successful.
 
@@ -3217,13 +3531,12 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
 
-**Since**
-
-10
 
 **See**
 
@@ -3240,6 +3553,10 @@ int32_t OHOS::Media::OH_UnAccessPixels (napi_env env, napi_value value )
 
 Unlocks the memory of a **PixelMap** object. This function is used with **OH_AccessPixels** in pairs.
 
+**Since**: 8
+
+**Deprecated from**: 10
+
 **Parameters**
 
 | Name| Description| 
@@ -3250,14 +3567,6 @@ Unlocks the memory of a **PixelMap** object. This function is used with **OH_Acc
 **Returns**
 
 Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an error code otherwise.
-
-**Since**
-
-8
-
-**Deprecated from**
-
-10
 
 **See**
 
@@ -3277,9 +3586,7 @@ int32_t OhosImageSourceInfo::alphaType
 
 Defines the alpha type of the image source.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### buffer [1/2]
@@ -3292,10 +3599,7 @@ uint8_t* OhosImageSource::buffer = nullptr
 
 Defines a pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.
 
-**Since**
-
-10
-
+**Since**: 10
 
 ### buffer [2/2]
 
@@ -3307,9 +3611,7 @@ uint8_t* OhosImageSourceUpdateData::buffer = nullptr
 
 Defines a pointer to the buffer for storing the update data.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### bufferSize [1/2]
@@ -3322,10 +3624,6 @@ size_t OhosImageSource::bufferSize = 0
 
 Defines the size of the image source buffer.
 
-**Since**
-
-10
-
 
 ### bufferSize [2/2]
 
@@ -3337,9 +3635,7 @@ size_t OhosImageSourceUpdateData::bufferSize = 0
 
 Defines the size of the buffer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### colorSpace
@@ -3352,9 +3648,7 @@ int32_t OhosImageSourceInfo::colorSpace
 
 Defines the color space of the image source.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### delayTimeList
@@ -3367,9 +3661,7 @@ int32_t* OhosImageSourceDelayTimeList::delayTimeList
 
 Defines a pointer to the head of the image source delay time list.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### density [1/2]
@@ -3382,9 +3674,7 @@ int32_t OhosImageSourceOps::density
 
 Defines the pixel density of the image source.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### density [2/2]
@@ -3397,9 +3687,7 @@ int32_t OhosImageSourceInfo::density
 
 Defines the image density of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### editable
@@ -3412,9 +3700,7 @@ int8_t OhosImageDecodingOps::editable
 
 Defines whether the output pixel map is editable.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### fd
@@ -3427,9 +3713,7 @@ int32_t OhosImageSource::fd = -1
 
 Defines the descriptor of the image source.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### fitDensity
@@ -3442,9 +3726,7 @@ int32_t OhosImageDecodingOps::fitDensity
 
 Defines the pixel density of the output pixel map.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### format
@@ -3457,9 +3739,7 @@ char* OhosImageSourceSupportedFormat::format = nullptr
 
 Defines a pointer to the head of the format string.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### height
@@ -3472,10 +3752,7 @@ int32_t OhosImageRegion::height
 
 Defines the height of the region, in pixels.
 
-**Since**
-
-10
-
+**Since**: 10
 
 ### index
 
@@ -3487,9 +3764,7 @@ uint32_t OhosImageDecodingOps::index
 
 Defines the index of the output pixel map.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### isCompleted
@@ -3502,9 +3777,7 @@ int8_t OhosImageSourceUpdateData::isCompleted = 0
 
 Defines whether the image source data update is completed.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### offset
@@ -3517,9 +3790,7 @@ uint32_t OhosImageSourceUpdateData::offset = 0
 
 Defines the offset of the update data in the buffer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE
@@ -3532,11 +3803,7 @@ const char* OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample"
 
 Defines a pointer to bits per sample, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL
@@ -3549,11 +3816,7 @@ const char* OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBitsPerPi
 
 Defines a pointer to the compressed bits per pixel, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL
@@ -3566,11 +3829,7 @@ const char* OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal"
 
 Defines a pointer to the created date and time, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_EXPOSURE_TIME
@@ -3583,11 +3842,7 @@ const char* OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime"
 
 Defines a pointer to the exposure time, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_F_NUMBER
@@ -3600,11 +3855,7 @@ const char* OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber"
 
 Defines a pointer to the f-number of the image, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_GPS_LATITUDE
@@ -3617,11 +3868,7 @@ const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude"
 
 Defines a pointer to the GPS latitude, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF
@@ -3634,11 +3881,7 @@ const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef"
 
 Defines a pointer to the GPS latitude reference information, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_GPS_LONGITUDE
@@ -3651,11 +3894,7 @@ const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude"
 
 Defines a pointer to the GPS longitude, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF
@@ -3668,11 +3907,9 @@ const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef"
 
 Defines a pointer to the GPS longitude reference information, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_IMAGE_LENGTH
@@ -3685,11 +3922,7 @@ const char* OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength"
 
 Defines a pointer to the image length, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_IMAGE_WIDTH
@@ -3702,11 +3935,9 @@ const char* OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth"
 
 Defines a pointer to the image width, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS
@@ -3719,11 +3950,7 @@ const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings"
 
 Defines a pointer to the ISO speed ratings, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_ORIENTATION
@@ -3736,11 +3963,7 @@ const char* OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation"
 
 Defines a pointer to the orientation, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### OHOS_IMAGE_PROPERTY_SCENE_TYPE
@@ -3753,11 +3976,7 @@ const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType"
 
 Defines a pointer to the scene type, one of the image properties. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
-
-**Since**
-
-10
+**Since**: 10
 
 
 ### pixelFormat [1/3]
@@ -3770,9 +3989,7 @@ int32_t OhosImageSourceOps::pixelFormat
 
 Defines the pixel format of the image source. It is usually used to describe the YUV buffer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### pixelFormat [2/3]
@@ -3785,9 +4002,7 @@ int32_t OhosImageDecodingOps::pixelFormat
 
 Defines the pixel format of the output pixel map.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### pixelFormat [3/3]
@@ -3800,9 +4015,7 @@ int32_t OhosImageSourceInfo::pixelFormat
 
 Defines the pixel format of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### region
@@ -3815,9 +4028,7 @@ struct OhosImageRegion OhosImageDecodingOps::region
 
 Defines the region of the output pixel map.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### rotate
@@ -3828,11 +4039,9 @@ uint32_t OhosImageDecodingOps::rotate
 
 **Description**
 
-Defines the decoding rotation.
+Defines the decoding rotation options.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### sampleSize
@@ -3845,9 +4054,7 @@ uint32_t OhosImageDecodingOps::sampleSize
 
 Defines the size of the sample.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [1/7]
@@ -3860,9 +4067,7 @@ struct OhosImageSize OhosImageSourceOps::size
 
 Defines the pixel width and height of the image source.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [2/7]
@@ -3875,9 +4080,7 @@ struct OhosImageSize OhosImageDecodingOps::size
 
 Defines the pixel width and height of the output pixel map.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [3/7]
@@ -3890,9 +4093,7 @@ struct OhosImageSize OhosImageSourceInfo::size
 
 Defines the pixel width and height of the image source.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [4/7]
@@ -3905,9 +4106,7 @@ size_t OhosImageSourceDelayTimeList::size = 0
 
 Defines the size of the image source delay time list.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [5/7]
@@ -3920,9 +4119,7 @@ size_t OhosImageSourceSupportedFormat::size = 0
 
 Defines the size of the format string.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [6/7]
@@ -3935,9 +4132,7 @@ size_t OhosImageSourceSupportedFormatList::size = 0
 
 Defines the size of the format string list.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### size [7/7]
@@ -3950,9 +4145,7 @@ size_t OhosImageSourceProperty::size = 0
 
 Defines the size of the property string.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### supportedFormatList
@@ -3965,9 +4158,7 @@ struct OhosImageSourceSupportedFormat** OhosImageSourceSupportedFormatList::supp
 
 Defines a double pointer to the head of the format string list.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### updateLength
@@ -3980,9 +4171,7 @@ uint32_t OhosImageSourceUpdateData::updateLength = 0
 
 Defines the length of the update data in the buffer.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### uri
@@ -3995,9 +4184,7 @@ char* OhosImageSource::uri = nullptr
 
 Defines a pointer to the image source URI. Only a file URI or Base64 URI is accepted.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### uriSize
@@ -4010,9 +4197,7 @@ size_t OhosImageSource::uriSize = 0
 
 Defines the length of the image source URI.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### value
@@ -4025,9 +4210,7 @@ char* OhosImageSourceProperty::value = nullptr
 
 Defines a pointer to the head of the property string.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### width
@@ -4040,9 +4223,7 @@ int32_t OhosImageRegion::width
 
 Defines the width of the region, in pixels.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### x
@@ -4055,9 +4236,7 @@ int32_t OhosImageRegion::x
 
 Defines the X coordinate of the start point, in pixels.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### y
@@ -4070,6 +4249,4 @@ int32_t OhosImageRegion::y
 
 Defines the Y coordinate of the start point, in pixels.
 
-**Since**
-
-10
+**Since**: 10

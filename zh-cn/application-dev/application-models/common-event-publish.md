@@ -28,6 +28,9 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
@@ -54,6 +57,9 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ProcessModel';
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。

@@ -5,6 +5,8 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 > **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -52,10 +54,19 @@ Navigation(pathInfos: NavPathStack)
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。<br/>默认值：false |
+| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
-| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
-| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
+| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：优先级规则详见说明。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+
+>  **说明：**
+>
+>  1. 仅设置navBarWidth，不支持Navigation分割线拖拽。
+>
+>  2. navBarWidthRange指定分割线可以拖拽范围。如果不设置值，则按照默认值处理。拖拽范围需要满足navBarWidthRange设置的范围和minContentWidth限制。
+>
+>  3. Navigation显示范围缩小：a. 缩小内容区大小。如果不设置minContentWidth属性，则可以缩小内容区至0， 否则最小缩小至minContentWidth。b. 缩小导航栏大小，缩小时需要满足导航栏宽度大于navBarRange的下限。c. 对显示内容进行裁切。
+
 
 ## 事件
 
@@ -64,6 +75,7 @@ Navigation(pathInfos: NavPathStack)
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | 导航栏显示状态切换时触发该回调。返回值isVisible为true时表示显示，为false时表示隐藏。 |
 | onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| 当Navigation首次显示或者单双栏状态发生变化时触发该回调。<br>NavigationMode.Split: 当前Navigation显示为双栏;<br>NavigationMode.Stack: 当前Navigation显示为单栏。|
+| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation枚举说明-11)): [NavigationAnimatedTransition](#navigationanimatedtransition11) <sup>11+</sup> | 自定义转场动画回调。<br>from: 退场Destination的页面参数; <br> to: 进场Destination的页面参数; <br> operation: 转场类型。|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -122,6 +134,42 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### removeByIndexes<sup>11+</sup>
+
+removeByIndexes(indexes: Array<number\>): number
+
+将页面栈内索引值在indexes中的NavDestination页面删除。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| number | 返回删除的NavDestination页面数量。 |
+
+### removeByName<sup>11+</sup>
+
+removeByName(name: string): number
+
+将页面栈内指定name的NavDestination页面删除。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | 删除的NavDestination页面的名字。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| number | 返回删除的NavDestination页面数量。 |
 
 ### pop<sup>10+</sup>
 
@@ -324,6 +372,44 @@ constructor(name: string, param: unknown)
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
 
+## NavContentInfo<sup>11+</sup>
+
+跳转Destination信息。
+
+**参数：**
+
+| 名称  | 类型  | 必填  | 描述  |
+|-------|-------|------|-------|
+| name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
+| index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
+
+## NavigationAnimatedTransition<sup>11+</sup>
+
+自定义转场动画协议，开发者需实现该协议来定义Navigation路由跳转的跳转动画。
+
+**参数：**
+| 名称 | 类型 | 必填 | 描述 |
+|------|-----|-----|------|
+| timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：1000ms。|
+| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)): void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
+| onTransitionEnd | (success: boolean):void | 否 | 转场完成回调。<br> success: 转场是否成功。 |
+
+## NavigationTransitionProxy <sup>11+</sup>
+
+自定义转场动画代理对象。
+
+**参数：**
+
+| 名称 | 类型  | 必填 | 描述  |
+|------|-------|-----|-------|
+| from | [NavContentInfo](#navcontentinfo11) | 是 | 退场页面信息。|
+| to | [NavContentInfo](#navcontentinfo11) | 是 | 进场页面信息。|
+
+### finishTransition
+
+结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
+
 ## NavigationMenuItem类型说明
 
 | 名称     | 类型            | 必填   | 描述              |
@@ -362,7 +448,7 @@ constructor(name: string, param: unknown)
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。 |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口设置。 |
 | Mini | 固定为小标题模式。                                |
 | Full | 固定为大标题模式。                                |
 
@@ -402,6 +488,12 @@ constructor(name: string, param: unknown)
 | MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
 | MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
 
+## NavigationOperation枚举说明<sup>11+</sup>
+| 名称    | 描述  |
+|---------|------|
+|PUSH | 本次转场为页面进场。|
+|POP | 本次转场为页面退场。|
+| REPLACE | 本次转场为页面替换。|
 
 >  **说明：**
 >
@@ -443,10 +535,10 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
@@ -625,8 +717,8 @@ export struct PageOneTmp {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(this.pageInfos.pop()))
+      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
     })
   }
@@ -659,3 +751,225 @@ export function pageTwoTmp(info: Pages) {
 }
 ```
 ![navigation.gif](figures/navigation.gif)
+
+### 示例3
+
+```ts
+// Index.ets
+import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
+import { pageOneTmp } from './PageOne'
+import {PageTwoTemp} from './PageTwo'
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneTmp()
+    } else if (name === 'pageTwo') {
+      PageTwoTemp()
+    }
+  }
+
+  aboutToAppear() {
+    if (this.pageInfos === undefined) {
+      this.pageInfos = new NavPathStack();
+    }
+    this.pageInfos.pushPath({name: 'pageOne'}, false)
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+    }.title('NavIndex').navDestination(this.PageMap)
+    .hideNavBar(true)
+    .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
+      if (from.mode == NavDestinationMode.DIALOG || to.mode == NavDestinationMode.DIALOG) {
+        return undefined;
+      }
+      console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
+      console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
+      console.log(`operation: ${operation}`)
+      if (from.index === -1 || to.index === -1) {
+        return undefined;
+      }
+      let customAnimation: NavigationAnimatedTransition = {
+        onTransitionEnd: (isSuccess: boolean)=>{
+          console.log(`current transition result is ${isSuccess}`);
+        },
+        timeout: 700,
+        transition: (transitionProxy: NavigationTransitionProxy)=>{
+          console.log("trigger transition callback");
+          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.name);
+          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.name);
+          fromParam.start(operation == NavigationOperation.PUSH, true);
+          toParam.start(operation == NavigationOperation.PUSH, false);
+          animateTo({duration: 400, onFinish: ()=>{
+            fromParam.onFinish(operation === NavigationOperation.PUSH, true);
+            toParam.onFinish(operation === NavigationOperation.PUSH, true);
+            transitionProxy.finishTransition();
+          }}, ()=>{
+            fromParam.finish(operation === NavigationOperation.PUSH, true)
+            toParam.finish(operation === NavigationOperation.PUSH, false);
+          })
+        }
+      };
+      return customAnimation;
+    })
+  }
+}
+```
+
+```ts
+// PageOne.ets
+import {CustomTransition} from './CustomNavigationUtils'
+
+@Component
+export struct pageOneTmp {
+  @Consume('pageInfos') pageInfos: NavPathStack
+  @State x: number = 0
+  @State scaleVal: number = 1
+
+  aboutToAppear() {
+    CustomTransition.getInstance().registerNavParam('pageOne', (isPush: boolean, isExit: boolean) => {
+      this.x = isExit ? 0 : 300;
+    }, (isPush: boolean, isExit: boolean)=> {
+      this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
+    }, 200);
+  }
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPathByName('pageTwo', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .mode(NavDestinationMode.STANDARD)
+    .onBackPressed(() => {
+      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+      return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageOne')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageOne')
+    })
+    .translate({x: this.x, y: 0, z: 0})
+    .backgroundColor(Color.White)
+  }
+}
+```
+```ts
+// PageTwo.ets
+import {CustomTransition} from './CustomNavigationUtils'
+
+@Component
+export struct PageTwoTemp {
+  @Consume('pageInfos') pageInfos: NavPathStack
+  @State x: number = 300
+
+  aboutToAppear() {
+    CustomTransition.getInstance().registerNavParam('pageTwo', (isPush: boolean, isExit: boolean)=>{
+      console.log("current page is pageOne")
+      this.x = isExit ? 0 : 300;
+    }, (isPush: boolean, isExit: boolean)=>{
+      this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
+    }, 200)
+  }
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPathByName('pageOne', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+      return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageTwo')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageTwo')
+    })
+    .translate({x: this.x})
+    .backgroundColor(Color.White)
+  }
+}
+```
+```ts
+// CustomNavigationUtils.ts
+export interface AnimateCallback {
+  finish: (isPush: boolean, isExit: boolean) => void;
+  start: (isPush: boolean, isExit: boolean) => void;
+  onFinish: (isPush: boolean, isExit: boolean) => void
+  timeout: number;
+}
+const customTransitionMap: Map<string, AnimateCallback> = new Map()
+export class CustomTransition {
+  private constructor() {
+
+  }
+
+  static delegate = new CustomTransition();
+
+  static getInstance() {
+    return this.delegate;
+  }
+
+  registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
+                   endCallback:(operation: boolean, isExit: boolean) => void,
+                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
+
+    if (customTransitionMap.has(name)) {
+      let param = customTransitionMap.get(name);
+      param.start = startCallback;
+      param.finish = endCallback;
+      param.timeout = timeout;
+      param.onFinish = onFinish;
+      return;
+    }
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
+    customTransitionMap.set(name, params);
+  }
+
+  unRegisterNavParam(name: string): void {
+    customTransitionMap.delete(name);
+  }
+
+  getAnimateParam(name: string): AnimateCallback {
+    let result: AnimateCallback = {
+      start: customTransitionMap.get(name).start,
+      finish: customTransitionMap.get(name).finish,
+      timeout: customTransitionMap.get(name).timeout,
+      onFinish: customTransitionMap.get(name).onFinish
+    };
+    return result;
+  }
+}
+```
+![customNavigation.gif](figures/customNavigation.gif)

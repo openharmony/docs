@@ -11,7 +11,7 @@ System capability (SysCap) refers to a relatively independent feature in the ope
 ## Modules to Import
 
 ```ts
-import systemcapability from '@ohos.systemCapability'
+import systemcapability from '@ohos.systemCapability';
 ```
 
 ## systemcapability.querySystemCapabilities

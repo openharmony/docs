@@ -60,7 +60,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    > - prepare接口的入参avConfig中仅设置视频相关的配置参数，如示例代码所示。
    >   如果添加了音频参数，系统将认为是“音频+视频录制”。
    > 
-   > - 需要使用支持的[录制规格](avplayer-avrecorder-overview.md#支持的格式)，视频比特率、分辨率、帧率以实际硬件设备支持的范围为准。
+   > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)，视频比特率、分辨率、帧率以实际硬件设备支持的范围为准。
    > 
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
 
@@ -71,7 +71,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
      videoBitrate : 200000, // 视频比特率
-     videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
      videoFrameWidth : 640,  // 视频分辨率的宽
      videoFrameHeight : 480, // 视频分辨率的高
      videoFrameRate : 30 // 视频帧率
@@ -135,7 +135,7 @@ export class VideoRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
     videoBitrate : 100000, // 视频比特率
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+    videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
     videoFrameWidth : 640,  // 视频分辨率的宽
     videoFrameHeight : 480, // 视频分辨率的高
     videoFrameRate : 30 // 视频帧率

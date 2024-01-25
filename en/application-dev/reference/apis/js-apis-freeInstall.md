@@ -16,12 +16,12 @@ import freeInstall from '@ohos.bundle.freeInstall';
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description              |
+| Permission                                      | APL    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all aplications.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.  |
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 ## UpgradeFlag
 
 **System API**: This is a system API.
@@ -49,7 +49,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 ## freeInstall.setHapModuleUpgradeFlag
 
-setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback\<void>):void;
+setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback\<void>):void
 
 Sets an upgrade flag for a module. This API uses an asynchronous callback to return the result.
 
@@ -99,7 +99,7 @@ try {
 
 ## setHapModuleUpgradeFlag
 
-setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag): Promise\<void>;
+setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag): Promise\<void>
 
 Sets an upgrade flag for a module. This API uses a promise to return the result.
 
@@ -153,7 +153,7 @@ try {
 
 ## isHapModuleRemovable
 
-isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCallback\<boolean>): void;
+isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCallback\<boolean>): void
 
 Checks whether a module can be removed. This API uses an asynchronous callback to return the result.
 
@@ -201,7 +201,7 @@ try {
 
 ## isHapModuleRemovable
 
-isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
+isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 
 Checks whether a module can be removed. This API uses a promise to return the result.
 
@@ -253,7 +253,7 @@ try {
 
 ## getBundlePackInfo
 
-getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback: AsyncCallback\<BundlePackInfo>): void;
+getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback: AsyncCallback\<BundlePackInfo>): void
 
 Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This API uses an asynchronous callback to return the result.
 
@@ -299,7 +299,7 @@ try {
 ```
 ## getBundlePackInfo
 
-getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
+getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>
 
 Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This API uses a promise to return the result.
 
@@ -350,7 +350,7 @@ try {
 
 ## getDispatchInfo
 
-getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void;
+getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void
 
 Obtains the dispatch information. This API uses an asynchronous callback to return the result.
 
@@ -385,7 +385,7 @@ try {
 
 ## getDispatchInfo
 
-getDispatchInfo(): Promise\<DispatchInfo>;
+getDispatchInfo(): Promise\<DispatchInfo>
 
 Obtains the dispatch information. This API uses a promise to return the result.
 

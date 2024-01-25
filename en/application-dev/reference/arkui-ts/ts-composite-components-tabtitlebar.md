@@ -34,28 +34,28 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description|
+| Name| Type| Mandatory| Decorator| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | Yes| - | List of tab items on the left of the title bar.|
-| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.|
-| swiperContent | ()&nbsp;=&gt;&nbsp;void | No| \@BuilderParam | Constructor for page content pertaining to the tab list.|
+| tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | Yes| - | List of tab items on the left of the title bar.| 
+| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.| 
+| swiperContent | ()&nbsp;=&gt;&nbsp;void | Yes| \@BuilderParam | Constructor for page content pertaining to the tab list.| 
 
 
 ## TabTitleBarMenuItem
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.|
-| isEnabled | boolean | Yes| Whether to enable the item.|
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.|
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
+| isEnabled | boolean | Yes| Whether to enable the item.<br> Default value: **true**<br> The value **true** means to enable the item, and **false** means the opposite.| 
+| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.| 
 
 
 ## TabTitleBarTabItem
 
-| Name| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.|
-| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the tab.|
+| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.| 
+| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the tab.| 
 
 
 ## Events
@@ -128,7 +128,7 @@ struct Index {
       .backgroundColor("#3498DB")
   }
 
-  private readonly tabItems: Array<tabItem> = [new tabItem('Tab 1'),new tabItem('Tab 2'),new tabItem('Tab 3'),new tabItem("Happy",$r('app.media.emoji_happy'))]
+  private readonly tabItems: Array<tabItem> = [new tabItem('Tab 1'),new tabItem('Tab 2'),new tabItem('Tab 3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('Tab 4')]
   private  readonly menuItems: Array<menuItem> = [
     new menuItem($r('app.media.ic_public_reduce'),true,
       () => promptAction.showToast({ message: "on item click! index 0" })),

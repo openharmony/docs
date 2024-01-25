@@ -46,7 +46,7 @@
    > 
    > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)。
    > 
-   > - 需要使用[支持的播放格式与协议](avplayer-avrecorder-overview.md#支持的格式与协议)。
+   > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
 
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
 

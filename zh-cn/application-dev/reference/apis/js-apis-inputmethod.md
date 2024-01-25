@@ -165,9 +165,11 @@ let inputMethodSetting = inputMethod.getSetting();
 
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
-切换输入法，仅系统应用可用。使用callback异步回调。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+切换输入法，使用callback异步回调。
+> **说明：**
+>
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法应用调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -212,9 +214,11 @@ try{
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
-切换输入法，仅系统应用可用。使用promise异步回调。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+切换输入法，使用promise异步回调。
+> **说明：**
+>
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法应用调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -260,6 +264,66 @@ try {
 }
 ```
 
+## inputMethod.switchInputMethod<sup>11+</sup>
+switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
+
+切换输入法，使用promise异步回调。
+
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  |bundleName |  string| 是 | 目标输入法包名。 |
+  |subtypeId |  string| 否 | 输入法子类型。 |
+
+**返回值：**
+
+  | 类型           | 说明                     |
+  | -------------- | ----------------------- |
+  | Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let currentIme = inputMethod.getCurrentInputMethod();
+try {
+  inputMethod.switchInputMethod(currentIme.name).then(() => {
+    console.log('Succeeded in switching inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  })
+} catch (err) {
+  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+}
+let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
+try {
+  inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
+    console.log('Succeeded in switching inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  })
+} catch (err) {
+  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+}
+```
+
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
 getCurrentInputMethod(): InputMethodProperty
@@ -288,9 +352,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 > **说明：**
 >
-> 在API version 9版本，仅支持系统应用调用；API version 10版本起，支持系统应用和当前输入法应用调用。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+>  - 在API version 9版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 10版本，支持系统应用和当前输入法应用调用；需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -351,9 +415,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 > **说明：**
 >
-> 在API version 9版本，仅支持系统应用调用；API version 10版本起，支持系统应用和当前输入法应用调用。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+>  - 在API version 9版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 10版本，支持系统应用和当前输入法应用调用；需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -437,9 +501,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 > **说明：**
 >
-> 在API version 9-10版本，仅支持系统应用调用；API version 11版本起，应用需要具备ohos.permission.CONNECT_IME_ABILITY权限，如果是输入法应用调用，则必须是当前使用的输入法。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -492,9 +555,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 > **说明：**
 >
-> 在API version 9-10版本，仅支持系统应用调用；API version 11版本起，应用需要具备ohos.permission.CONNECT_IME_ABILITY权限，如果是输入法应用调用，则必须是当前使用的输入法。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+>  - 在API version 9-10版本，仅支持系统应用调用且需要权限ohos.permission.CONNECT_IME_ABILITY。
+>  - 在API version 11版本起，仅支持当前输入法调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

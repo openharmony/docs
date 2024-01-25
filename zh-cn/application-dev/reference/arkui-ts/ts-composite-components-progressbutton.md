@@ -31,10 +31,10 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | progress | number | 是 | \@Prop | 下载按钮的当前进度值。 | 
-| content | string | 是 |  | 下载按钮的文本。 | 
+| content | string | 是 | \@Prop | 下载按钮的文本。 | 
 | progressButtonWidth | [Length](ts-types.md#length) | 否 | - | 下载按钮的宽度。<br/>默认值：44。 | 
-| clickCallback | void | 是 |  | 下载按钮的点击回调。 | 
-| enable | boolean | 是 |  | 下载按钮是否可以点击。 | 
+| clickCallback | void | 是 | - | 下载按钮的点击回调。 | 
+| enable | boolean | 是 | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。 | 
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)

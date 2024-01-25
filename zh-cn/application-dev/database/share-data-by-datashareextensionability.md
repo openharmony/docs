@@ -156,29 +156,33 @@
    
    **表2** data_share_config.json对应属性字段
 
-   | 属性名称          | 备注说明                                     | 必填   |
-   | ------------- | ---------------------------------------- | ---- |
-   | tableConfig   | 配置标签。                                    | 是    |
-   | uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
-   | crossUserMode | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。  | 是    |
-
+   | 属性名称            | 备注说明                                                     | 必填 |
+   | ------------------- | ------------------------------------------------------------ | ---- |
+   | tableConfig         | 配置标签。                                                   | 是   |
+   | uri                 | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是   |
+   | crossUserMode       | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
+   | isSilentProxyEnable | 标识该ExtensionAbility是否关闭静默访问。<br />false：代表关闭静默访问。<br />true：代表打开静默访问。<br />不填写默认为true，即默认开启静默访问。<br />如果该应用下存在多个ExtensionAbility，其中一个配置了该属性为false，代表应用关闭静默访问。<br />如果数据提供方调用过enableSilentProxy和disableSilentProxy接口，则按照接口的设置结果来开启或关闭静默访问。否则会读取该配置来开启或关闭静默访问。 | 否   |
+   
    **data_share_config.json配置样例**
 
    ```json
-   "tableConfig": [
-    {
-      "uri": "*",
-      "crossUserMode": 1
-    },
-    {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
-      "crossUserMode": 1
-    },
-    {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
-      "crossUserMode": 2
-    }
-   ]
+   {
+       "tableConfig":[
+           {
+               "uri":"*",
+               "crossUserMode":1
+           },
+           {
+               "uri":"datashare:///com.acts.datasharetest/entry/DB00",
+               "crossUserMode":1
+           },
+           {
+               "uri":"datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+               "crossUserMode":2
+           }
+       ],
+       "isSilentProxyEnable":true
+   }
    ```
 
 

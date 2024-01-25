@@ -102,11 +102,13 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
+  - [Battery Info Error Codes](errorcode-battery-info.md)
 - Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Common Library
   - [Common Library Error Codes](errorcode-utils.md)
 - Application services
   - [OAID Error Codes](errorcode-oaid.md)
+  - [Ads Service Framework Error Codes](errorcode-ads.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

@@ -58,7 +58,7 @@
    
      // 页面展示
      build() {
-       ...
+       //...
      }
    }
    ```
@@ -81,7 +81,7 @@
    
      // 页面展示
      build() {
-       ...
+       //...
      }
    }
    ```
@@ -111,7 +111,7 @@ export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
     systemLanguage = this.context.config.language; // Module首次加载时，获取系统当前语言
     console.info(`systemLanguage is ${systemLanguage} `);
-    ...
+    //...
   }
 
   onConfigurationUpdate(newConfig: Configuration): void {

@@ -5,9 +5,9 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> 从API version 11开始，可以通过使用UIContext中的[getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
-
 
 ## 导入模块
 
@@ -27,7 +27,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -249,11 +249,13 @@ startDrag(): Promise&lt;void&gt;
 
 启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **错误码：**
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | If some internal handling failed |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 ```ts
@@ -271,7 +273,7 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态。|
@@ -292,7 +294,7 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态， 不设置取消所有监听。|
@@ -371,6 +373,7 @@ struct DragControllerPage {
         if(event){
           if (event.type == TouchType.Down) {
             console.log("muti drag Down by listener");
+            this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -395,7 +398,6 @@ struct DragControllerPage {
                 if (!this.dragAction) {
                   return
                 }
-                this.customBuilders.splice(0, this.customBuilders.length)
                 this.dragAction.off('statusChange')
               }
             })
@@ -622,3 +624,4 @@ struct DragControllerPage {
     .height('100%')
   }
 }
+

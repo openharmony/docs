@@ -999,8 +999,7 @@ sharing.off('sharingStateChange', (data: boolean) => {
 
 ## sharing.on('interfaceSharingStateChange')
 
-on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
-SharingIfaceState }>): void
+on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStateInfo\>): void
 
 注册网卡网络共享状态变化事件，使用 callback 方式作为异步方法。
 
@@ -1012,10 +1011,10 @@ SharingIfaceState }>): void
 
 **参数：**
 
-| 参数名   | 类型                                                                                                                         | 必填 | 说明                                  |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                                                                                       | 是   | 事件名称。                            |
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: [SharingIfaceState](#sharingifacestate) }> | 是   | 回调函数,指定网卡共享状态变化时调用。 |
+| 参数名   | 类型                                                                   | 必填 | 说明                                  |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------- |
+| type     | string                                                                | 是   | 事件名称。                            |
+| callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | 是   | 回调函数。指定网卡共享状态变化时调用。 |
 
 **错误码：**
 
@@ -1037,8 +1036,7 @@ sharing.on('interfaceSharingStateChange', (data: object) => {
 
 ## sharing.off('interfaceSharingStateChange')
 
-off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
-SharingIfaceState }>): void
+off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingStateInfo\>): void
 
 注销网卡网络共享状态变化事件，使用 callback 方式作为异步方法。
 
@@ -1050,10 +1048,10 @@ SharingIfaceState }>): void
 
 **参数：**
 
-| 参数名   | 类型                                                                                                                         | 必填 | 说明                                     |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                                                                                                       | 是   | 事件名称。                               |
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: [SharingIfaceState](#sharingifacestate) }> | 否   | 回调函数，注销指定网卡共享状态变化通知。 |
+| 参数名   | 类型                                                                        | 必填 | 说明                                     |
+| -------- | --------------------------------------------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                                                     | 是   | 事件名称。                               |
+| callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | 否   | 回调函数，注销指定网卡共享状态变化通知。 |
 
 **错误码：**
 
@@ -1146,6 +1144,22 @@ sharing.off('sharingUpstreamChange', (data: object) => {
   console.log(JSON.stringify(data));
 });
 ```
+
+## InterfaceSharingStateInfo<sup>11+</sup>
+
+唤醒在网络共享模式下的变化时的监听器
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.NetSharing
+
+### 属性
+
+| 参数名   | 类型                      | 必填 | 说明                             |
+| -------- | ------------------------- | ---- | -------------------------------- |
+| type     | [SharingIfaceType](#sharingifacetype)                    | 是   | 网络共享类型。                       |
+| iface | string               | 是   | 指定的共享网络名称。 |
+| state | [SharingIfaceState](#sharingifacestate)          | 是   | 网卡共享状态。 |
 
 ## SharingIfaceState
 

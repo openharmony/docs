@@ -1,5 +1,5 @@
-# Network Kit
-- [Network Kit开发概述](../connectivity/net-mgmt-overview.md)
+# Network Kit（网络服务）
+- [Network Kit简介](../connectivity/net-mgmt-overview.md)
 
 - Network Kit数据传输能力
     - [HTTP数据请求](../connectivity/http-request.md)

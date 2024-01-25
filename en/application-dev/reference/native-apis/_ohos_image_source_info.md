@@ -5,15 +5,11 @@
 
 The **OhosImageSourceInfo** struct defines the image source information, which is obtained by calling [OH_ImageSource_GetImageInfo](image.md#oh_imagesource_getimageinfo).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

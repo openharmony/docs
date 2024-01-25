@@ -48,23 +48,23 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | -------- | -------- | -------- | -------- |
 | iconStyle | [IconType](#icontype) | 否 | 左侧元素的图标样式。 | 
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。 | 
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。 | 
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。 | 
-| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。 | 
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容，超出以"..."显示。 | 
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容，超出以"..."显示。 | 
+| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容，超出以"..."显示。 | 
 
 
 ## IconType
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| BADGE | 左侧图标为badge类型，图标大小为8\*8dp。 | 
-| NORMAL_ICON | 左侧图标为小图标类型，图标大小为16\*16dp。 | 
-| SYSTEM_ICON | 左侧图标为系统图标类型，图标大小为24\*24dp。 | 
-| HEAD_SCULPTURE | 左侧图标为头像类型，图标大小为40\*40dp。 | 
-| APP_ICON | 左侧图标为应用图标类型，图标大小为64\*64dp。 | 
-| PREVIEW | 左侧图标为预览图类型，图标大小为96\*96dp。 | 
-| LONGITUDINAL | 左侧图标为横向特殊比例（宽比高大），保持最长边为96dp。 | 
-| VERTICAL | 左侧图标为竖向特殊比例（高比宽大），保持最长边为96dp。 | 
+| 名称 | 值 | 说明 |  
+| -------- | -------- | -------- |
+| BADGE | 1 | 左侧图标为badge类型，图标大小为8\*8dp。 | 
+| NORMAL_ICON | 2 | 左侧图标为小图标类型，图标大小为16\*16dp。 | 
+| SYSTEM_ICON | 3 | 左侧图标为系统图标类型，图标大小为24\*24dp。 | 
+| HEAD_SCULPTURE | 4 | 左侧图标为头像类型，图标大小为40\*40dp。 | 
+| APP_ICON | 5 | 左侧图标为应用图标类型，图标大小为64\*64dp。 | 
+| PREVIEW | 6 | 左侧图标为预览图类型，图标大小为96\*96dp。 | 
+| LONGITUDINAL | 7 | 左侧图标为横向特殊比例（宽比高大），保持最长边为96dp。 | 
+| VERTICAL | 8 | 左侧图标为竖向特殊比例（高比宽大），保持最长边为96dp。 | 
 
 
 ## OperateItem
@@ -101,8 +101,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| isCheck | boolean | 否 | 右侧Switch/CheckBox/Radio选中状态。 | 
-| onChange | (value:&nbsp;boolean)=&gt;void | 否 | 右侧Switch/CheckBox/Radio选中状态改变时触发回调。 | 
+| isCheck | boolean | 否 | 右侧Switch/CheckBox/Radio选中状态。<br> isCheck默认值为false。<br> isCheck为true时，表示为选中。<br> isCheck为false时，表示为未选中。 | 
+| onChange | (value:&nbsp;boolean)=&gt;void | 否 | 右侧Switch/CheckBox/Radio选中状态改变时触发回调。<br> value为true时，表示从未选中变为选中。<br> value为false时，表示从选中变为未选中。 | 
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)

@@ -45,7 +45,7 @@ Obtains the value of the system parameter with the specified key.
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -81,7 +81,7 @@ Obtains the value of the system parameter with the specified key.
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -124,7 +124,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -173,7 +173,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -215,7 +215,7 @@ Sets a value for the system parameter with the specified key.
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -253,7 +253,7 @@ Sets a value for the system parameter with the specified key. This API uses an a
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -301,7 +301,7 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
+For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 

@@ -5,13 +5,11 @@
 
 The **OhosPixelMapInfos** struct defines the information about a pixel map.
 
-**Since**
+**System capability**: SystemCapability.Multimedia.Image
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary
@@ -23,7 +21,7 @@ The **OhosPixelMapInfos** struct defines the information about a pixel map.
 | -------- | -------- |
 | [width](#width) | Image width, in pixels.| 
 | [height](#height) | Image height, in pixels.| 
-| [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(64-fold byte count per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x byte count per pixel.| 
+| [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Roundup(64 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel.| 
 | [pixelFormat](#pixelformat) | Pixel format.| 
 
 
@@ -61,6 +59,8 @@ uint32_t OhosPixelMapInfos::rowSize
 **Description**
 
 Number of bytes per row.
+
+In the case of DMA, the formula is as follows: Image width x Roundup(64 x Number of bytes per pixel). (The roundup means that each row is automatically padded.) In the case of other types of memory, the formula is as follows: Image width x Number of bytes per pixel.
 
 
 ### width

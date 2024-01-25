@@ -1,20 +1,59 @@
 # Safe Area
 
-A safe area refers to the display area that isn't covered by a status bar, navigation bar, or other components that the system includes in its non-safe-area. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea** attribute and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
+A safe area refers to the display area that isn't covered by a status bar, navigation bar, or other components that the system includes in its non-safe-area. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea attribute** – without changing the layout, and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
 
 > **NOTE**
 >
 > This attribute is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+
+## expandSafeArea
+
+expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&gt;)
+
+Sets the safe area to be expanded to.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                              | Mandatory| Description                                                        |
+| ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | No  | Type of the expanded safe zone.<br>Default value:<br>[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
+| edges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | No  | Edges for expanding the safe area.<br> Default value: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br>The default value expands the safe area on all available edges.|
+
+>  **NOTE**
 >
-> To create an immersive experience, the **expandSafeArea** attribute is set to **(type:[SafeAreaType.SYSTEM,], edges:[SafeAreaEdge.BOTTOM])** by default for the **\<Tabs>** and **\<Navigation>** components.
+>To set the **expandSafeArea** attribute for a component, this component cannot have its width and height fixed (except to a percentage).
+>
+>The safe area does not restrict the layout or size of components inside, nor does it clip the components.
 
-## Attributes
+## setKeyboardAvoidMode<sup>11+</sup>
 
-| Name          | Parameter                          | Description                               |
-| -------------- | ----------------------------- | --------------------------------------- |
-| expandSafeArea | type?: Array <[SafeAreaType](ts-types.md#safeareatype10)>,<br>edges?: Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | Sets the safe area to be expanded to.<br>Default value:<br>type: [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD],<br>edges: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br>The default value expands the safe area to all available areas.<br>**type**: type of the expanded safe zone. This parameter is optional.<br>**edges**: edge for expanding the safe area. This parameter is optional.|
-| setKeyboardAvoidMode<sup>11+</sup> | value?: [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Sets the avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**<br>By default, offset is used to avoid the virtual keyboard.<br>**value**: avoidance mode for the virtual keyboard. This parameter is mandatory.|
-| getKeyboardAvoidMode<sup>11+</sup> | NULL| Obtains the avoidance mode for the virtual keyboard.|
+setKeyboardAvoidMode(value: KeyboardAvoidMode)
+
+Sets the avoidance mode for the virtual keyboard.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | No  | Sets the avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**<br>By default, offset is used to avoid the virtual keyboard.<br>**value**: avoidance mode for the virtual keyboard. This parameter is mandatory.|
+
+## getKeyboardAvoidMode
+
+getKeyboardAvoidMode(): KeyboardAvoidMode
+
+Obtains the avoidance mode for the virtual keyboard.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Name                                                | Description                              |
+| ---------------------------------------------------- | ---------------------------------- |
+| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Obtains the avoidance mode for the virtual keyboard.|
 
 ## Example
 

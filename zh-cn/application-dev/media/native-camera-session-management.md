@@ -18,32 +18,38 @@
 1. 导入NDK相关接口，导入方法如下。
      
    ```c++
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "hilog/log.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
-2. 在CMake脚本中链接Camera NDK动态库。
+2. 在CMake脚本中链接相关动态库。
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. 调用cameraManager类中的OH_CameraManager_CreateCaptureSession方法创建一个会话。
+3. 调用cameraManager类中的OH_CameraManager_CreateCaptureSession()方法创建一个会话。
      
    ```c++
+    Camera_Manager *cameraManager = nullptr;
+    Camera_Input* cameraInput = nullptr;
+    Camera_PreviewOutput* previewOutput = nullptr;
+    Camera_PhotoOutput* photoOutput = nullptr;
+    Camera_VideoOutput* videoOutput = nullptr;
     Camera_CaptureSession* captureSession = nullptr;
-    ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
+    Camera_ErrorCode ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
     if (captureSession == nullptr || ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
     }
    ```
 
-4. 调用captureSession类中的OH_CaptureSession_BeginConfig方法配置会话。
+4. 调用captureSession类中的OH_CaptureSession_BeginConfig()方法配置会话。
      
    ```c++
     ret = OH_CaptureSession_BeginConfig(captureSession);
@@ -52,7 +58,7 @@
     }
    ```
 
-5. 使能。向会话中添加相机的输入流和输出流，调用OH_CaptureSession_AddInput添加相机的输入流；调用OH_CaptureSession_AddPreviewOutput/OH_CaptureSession_AddPhotoOutput添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
+5. 使能。向会话中添加相机的输入流和输出流，调用OH_CaptureSession_AddInput()添加相机的输入流；调用OH_CaptureSession_AddPreviewOutput()和OH_CaptureSession_AddPhotoOutput()添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
 
      调用captureSession类中的commitConfig()和start()方法提交相关配置，并启动会话。
      
@@ -116,8 +122,3 @@
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RemovePhotoOutput failed. %d ", ret);
     }
    ```
-
-## 相关实例
-
-针对会话管理，有以下相关实例可供参考：
-- [会话管理(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)

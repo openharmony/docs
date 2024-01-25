@@ -1,12 +1,12 @@
-# &lt;rating&gt; Development
+# \<rating> Development
 
 
-The **&lt;rating&gt;** component provides a rating bar used for reviews and ratings. For details, see [rating](../reference/arkui-js/js-components-basic-rating.md).
+The **\<rating>** component provides a rating bar used for reviews and ratings. For details, see [rating](../reference/arkui-js/js-components-basic-rating.md).
 
 
-## Creating a &lt;rating&gt; Component
+## Creating a \<rating> Component
 
-Create a **&lt;rating&gt;** component in the .hml file under **pages/index**.
+Create a **\<rating>** component in the .hml file under **pages/index**.
 
 
 ```html
@@ -38,7 +38,7 @@ rating {
 
 ## Setting the Rating Level
 
-Use the **&lt;rating&gt;** component to set the number of stars in a rating bar and the current rating using the **numstars** and **rating** attributes, respectively.
+Use the **\<rating>** component to set the number of stars in a rating bar and the current rating using the **numstars** and **rating** attributes, respectively.
 
 
 ```html
@@ -71,7 +71,7 @@ rating {
 
 ## Setting the Rating Style
 
-Use the **&lt;rating&gt;** component to set the background images when a rating star is unselected, selected, and partially selected using the **star-background**, **star-foreground**, and **star-secondary** attributes, respectively.
+Use the **\<rating>** component to set the background images when a rating star is unselected, selected, and partially selected using the **star-background**, **star-foreground**, and **star-secondary** attributes, respectively.
 
 
 ```html
@@ -118,13 +118,13 @@ export default {
 
 > **NOTE**
 > - You must set **star-background**, **star-secondary**, and **star-foreground**. Otherwise, the grey rating star applies, indicating that the image source is incorrectly set.
-> 
+>
 > - The **star-background**, **star-secondary**, and **star-foreground** attributes support only PNG and JPG images in the local path.
 
 
 ## Binding Events
 
-Add the **change** event to the &lt;rating&gt; component to print the current rating.
+Add the **change** event to the **\<rating>** component to display the current rating.
 
 
 ```html
@@ -158,7 +158,7 @@ import promptAction from '@ohos.promptAction';
 export default {
   showrating(e) {
     promptAction.showToast({
-      message:'Current Rating' + e.rating
+      message:'Rating' + e.rating
     })
   }
 }
@@ -167,7 +167,7 @@ export default {
 ![en-us_image_0000001181823160](figures/en-us_image_0000001181823160.gif)
 
 
-## Example Scenario
+## Example
 
 Change the switch status to toggle between the star background images and drag the slider to adjust the rating values.
 
@@ -175,26 +175,26 @@ Change the switch status to toggle between the star background images and drag t
 ```html
 <!-- xxx.hml -->
 <div style="width: 100%;height:100%;flex-direction: column;align-items: center;background-color: #F1F3F5;">
-  <div style="width: 500px;height: 500px;align-items: center;justify-content: center;flex-direction: column;;">
-    <rating numstars="{{stars}}" rating="{{rate}}" stepsize="{{step}}" onchange="showrating" class="myrating"
-    style="width: {{ratewidth}};height:{{rateheight}};star-background: {{backstar}};star-secondary: {{secstar}};
-    star-foreground: {{forestar}};rtl-flip: true;"></rating>
-  </div>
-  <div style="flex-direction: column;width: 80%;align-items: center;">
-    <div style="width: 100%;height: 100px;align-items: center;justify-content: space-around;">
-      <text>Replacing a custom image</text>
-      <switch checked="false" showtext="true" onchange="setstar"></switch>
+    <div style="width: 500px;height: 500px;align-items: center;justify-content: center;flex-direction: column;;">
+        <rating numstars="{{stars}}" rating="{{rate}}" stepsize="{{step}}" onchange="showrating" class="myrating"
+                style="width: {{ratewidth}};height:{{rateheight}};star-background: {{backstar}};star-secondary: {{secstar}};
+                        star-foreground: {{forestar}};rtl-flip: true;"></rating>
     </div>
-    <div style="width: 100%;height:120px;margin-top: 50px;margin-bottom: 50px;flex-direction: column;align-items: center;
-    justify-content: space-around;">
-      <text>numstars   {{stars}}</text>
-      <slider id="sli1" min="-1" max="10" value="5" step="1" onchange="setnumstars"></slider>
+    <div style="flex-direction: column;width: 80%;align-items: center;">
+        <div style="width: 100%;height: 100px;align-items: center;justify-content: space-around;">
+            <text&>Use custom image</text&>
+            <switch checked="false" showtext="true" onchange="setstar"></switch>
+        </div>
+        <div style="width: 100%;height:120px;margin-top: 50px;margin-bottom: 50px;flex-direction: column;align-items: center;
+                justify-content: space-around;">
+            <text>numstars   {{stars}}</text>
+            <slider id="sli1" min="0" max="10" value="5" step="1" onchange="setnumstars"></slider>
+        </div>
+        <div style="width: 100%;height:120px;flex-direction: column;align-items: center;justify-content: space-around;">
+            <text>rating   {{rate}}</text>
+            <slider id="sli2" min="0" max="10" value="{{rate}}" step="0.5" onchange="setrating"></slider>
+        </div>
     </div>
-    <div style="width: 100%;height:120px;flex-direction: column;align-items: center;justify-content: space-around;">
-      <text>rating   {{rate}}</text>
-      <slider id="sli2" min="-1" max="10" value="0" step="1" onchange="setrating"></slider>
-    </div>
-  </div>
 </div>
 ```
 
@@ -202,11 +202,11 @@ Change the switch status to toggle between the star background images and drag t
 ```css
 /* xxx.css */
 .myrating:active {
-  width: 500px;
-  height: 100px;
+    width: 500px;
+    height: 100px;
 }
 switch{
-  font-size: 40px;
+    font-size: 40px;
 }
 ```
 
@@ -215,44 +215,45 @@ switch{
 // xxx.js
 import promptAction from '@ohos.promptAction';
 export default {
-  data: {
-    backstar: '',
-    secstar: '',
-    forestar: '',
-    stars: 5,
-    ratewidth: '300px',
-    rateheight: '60px',
-    step: 0.5,
-    rate: 0
-  },
-  onInit(){
-  },
-  setstar(e) {
-    if (e.checked == true) {
-      this.backstar = 'common/love.png'
-      this.secstar = 'common/love.png'
-      this.forestar = 'common/love1.png'
-    } else {
-      this.backstar = ''
-      this.secstar = ''
-      this.forestar = ''
+    data: {
+        backstar: '',
+        secstar: '',
+        forestar: '',
+        stars: 5,
+        ratewidth: '300px',
+        rateheight: '60px',
+        step: 0.5,
+        rate: 0
+    },
+    onInit(){
+    },
+    setstar(e) {
+        if (e.checked == true) {
+            this.backstar = '/common/love.PNG'
+            this.secstar = 'common/love.png'
+            this.forestar = 'common/love1.png'
+        } else {
+            this.backstar = ''
+            this.secstar = ''
+            this.forestar = ''
+        }
+    },
+    setnumstars(e) {
+        this.stars = e.progress
+        this.ratewidth = 60 * parseInt(this.stars) + 'px'
+    },
+    setstep(e) {
+        this.step = e.progress
+    },
+    setrating(e){
+        this.rate = e.progress
+    },
+    showrating(e) {
+        this.rate = e.rating
+        promptAction.showToast({
+            message:'Rating' + e.rating
+        })
     }
-  },
-  setnumstars(e) {
-    this.stars = e.progress
-    this.ratewidth = 60 * parseInt(this.stars) + 'px'
-  },
-  setstep(e) {
-    this.step = e.progress
-  },
-  setrating(e){
-    this.rate = e.progress
-  },
-  showrating(e) {
-    promptAction.showToast({
-      message:'Current Rating' + e.rating
-    })
-  }
 }
 ```
 

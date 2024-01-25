@@ -54,11 +54,11 @@ Video组件支持加载本地视频和网络视频。
   export struct VideoPlayer{
      private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
-     private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
+     private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
        Column() {
          Video({
-           src: this.videosrc,
+           src: this.videoSrc,
            previewUri: this.previewUris,
            controller: this.controller
          })

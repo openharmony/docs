@@ -433,8 +433,6 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 **示例：**
 
 ```ts
-import call from '@ohos.telephony.call';
-
 observer.on('callStateChange', (data: observer.CallStateInfo) => {
     console.log("on callStateChange, data:" + JSON.stringify(data));
 });
@@ -472,8 +470,6 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 **示例：**
 
 ```ts
-import call from '@ohos.telephony.call';
-
 let options: observer.ObserverOptions = {
     slotId: 0
 }
@@ -517,8 +513,6 @@ off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 **示例：**
 
 ```ts
-import call from '@ohos.telephony.call';
-
 let callback: (data: observer.CallStateInfo) => void = (data: observer.CallStateInfo) => {
     console.log("on callStateChange, data:" + JSON.stringify(data));
 }
@@ -559,9 +553,6 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectio
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
 observer.on('cellularDataConnectionStateChange', (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 });
@@ -599,9 +590,6 @@ on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callbac
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
 let options: observer.ObserverOptions = {
     slotId: 0
 }
@@ -645,9 +633,6 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
 let callback: (data: observer.DataConnectionStateInfo) => void = (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 }

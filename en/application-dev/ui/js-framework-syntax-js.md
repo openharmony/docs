@@ -119,10 +119,10 @@ The ES6 syntax is supported.
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
   | $element | id: string | Obtains the component with a specified ID. If no ID is specified, the root component is returned. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element).<br/>Usage:<br/>```<div id='_xxx_'></div>```<br/>- this.$element('_xxx_'): Obtain the component whose ID is _xxx_.<br/>- this.$element(): Obtain the root component. |
-  | $rootElement | N/A | Obtains the root element.<br/>Usage: this.$rootElement().scrollTo({ duration: 500, position: 300 }), which scrolls the page by 300 px within 500 ms. |
+  | $rootElement | N/A | Obtains the root element.<br/>Usage: this.\$rootElement().scrollTo({ duration: 500, position: 300 }), which scrolls the page by 300 px within 500 ms. |
   | $root | N/A | Obtains the root ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
   | $parent | N/A | Obtains the parent ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
-  | $child | id: string | Obtains the ViewModel instance of a custom child component with a specified ID. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel).<br/>Usage:<br/>this.$child('xxx'): Obtain the ViewModel instance of a custom child component whose ID is _xxx_. |
+  | $child | id: string | Obtains the ViewModel instance of a custom child component with a specified ID. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel).<br/>Usage:<br/>this.\$child('xxx'): Obtain the ViewModel instance of a custom child component whose ID is _xxx_. |
 
 - Event methods
   | Name | Parameter | Description |

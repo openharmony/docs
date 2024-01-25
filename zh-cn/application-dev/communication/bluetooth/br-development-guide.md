@@ -31,7 +31,7 @@
 3. 开启蓝牙。
 4. 关闭蓝牙。
 5. 示例代码：
-```
+```ts
 import access from '@ohos.bluetooth.access';
 import { BusinessError } from '@ohos.base';
 

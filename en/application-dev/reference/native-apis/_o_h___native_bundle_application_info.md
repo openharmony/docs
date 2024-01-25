@@ -25,8 +25,6 @@ It is an output parameter of [OH_NativeBundle_GetCurrentApplicationInfo()](_bund
 | -------- | -------- |
 | [bundleName](#bundlename) | Bundle name of the application.|
 | [fingerprint](#fingerprint) | Fingerprint information of the bundle.|
-| [appId<sup>11+</sup>](#appid) | Application ID.|
-| [appIdentifier<sup>11+</sup>](#appidentifier) | Application identifier. |
 
 
 ## Member Variable Description
@@ -62,34 +60,3 @@ Fingerprint information of the bundle.
 **Since**
 
 9
-
-
-### appId
-
-
-```
-char* OH_NativeBundle_ApplicationInfo::appId
-```
-
-**Description**
-
-Application ID.
-
-**Since**
-
-11
-
-### appIdentifier
-
-
-```
-char* OH_NativeBundle_ApplicationInfo::appIdentifier
-```
-
-**Description**
-
-Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
-
-**Since**
-
-11

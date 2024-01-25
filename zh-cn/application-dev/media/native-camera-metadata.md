@@ -11,32 +11,62 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 1. 导入NDK接口，导入方法如下。
 
    ```c++
-    // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    // 导入NDK接口头文件
+    #include "hilog/log.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
-2. 在CMake脚本中链接Camera NDK动态库。
+2. 在CMake脚本中链接相关动态库。
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. 调用OH_CameraManager_GetSupportedCameraOutputCapability方法，获取当前设备支持的元数据类型metaDataObjectType，并通过OH_CameraManager_CreateMetadataOutput方法创建元数据输出流。
+3. 调用OH_CameraManager_GetSupportedCameraOutputCapability()方法，获取当前设备支持的元数据类型metaDataObjectType，并通过OH_CameraManager_CreateMetadataOutput()方法创建元数据输出流。
      
    ```c++
-    Camera_ErrorCode ret = OH_CameraManager_CreateMetadataOutput(cameraManager_, metaDataObjectType, &metadataOutput);
-    if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
+    Camera_Manager *cameraManager = nullptr;
+    Camera_Device* cameras = nullptr;
+    Camera_OutputCapability* cameraOutputCapability = nullptr;
+    Camera_MetadataOutput* metadataOutput = nullptr;
+    const Camera_MetadataObjectType* metaDataObjectType;
+    uint32_t size = 0;
+    uint32_t cameraDeviceIndex = 0;
+    char* previewSurfaceId = nullptr;
+    Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
+    if (cameraManager == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+    }
+    ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+    if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+    }
+    ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
+                                                                      &cameraOutputCapability);
+    if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+    }
+    if (cameraOutputCapability->previewProfilesSize < 0) {
+        OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+    }
+    metaDataObjectType = cameraOutputCapability->supportedMetadataObjectTypes[2]; // 2:camera metedata types
+    if (metaDataObjectType == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "Get metaDataObjectType failed.");
+    }
+    
+    ret = OH_CameraManager_CreateMetadataOutput(cameraManager, metaDataObjectType, &metadataOutput);
+    if (metadataOutput == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "CreateMetadataOutput failed.");
     }
    ```
 
-4. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见CameraErrorCode。
+4. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码。
      
    ```c++
     ret = OH_MetadataOutput_Start(metadataOutput);
@@ -45,7 +75,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
     }
    ```
 
-5. 调用stop方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见CameraErrorCode。
+5. 调用stop()方法停止输出metadata数据，接口调用失败会返回相应错误码。
      
    ```c++
     ret = OH_MetadataOutput_Stop(metadataOutput);
@@ -61,40 +91,37 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册监听获取metadata对象，监听事件固定为metadataObjectsAvailable。检测到有效metadata数据时，callback返回相应的metadata数据信息，metadataOutput创建成功时可监听。
     
   ```c++
-  void OnMetadataObjectAvailable(Camera_MetadataOutput* metadataOutput,
-      Camera_MetadataObject* metadataObject, uint32_t size)
-  {
-      OH_LOG_INFO(LOG_APP, "size = %{public}d", size);
-  }
-
-  MetadataOutput_Callbacks* GetMetadataOutputListener(void)
-  {
-      static MetadataOutput_Callbacks metadataOutputListener = {
-          .onMetadataObjectAvailable = OnMetadataObjectAvailable,
-          .onError = OnMetadataOutputError
-      };
-      return &metadataOutputListener;
-  }
-  ret = OH_MetadataOutput_RegisterCallback(metadataOutput_, GetMetadataOutputListener());
-  if (ret != CAMERA_OK) {
+    ret = OH_MetadataOutput_RegisterCallback(metadataOutput, GetMetadataOutputListener());
+    if (ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MetadataOutput_RegisterCallback failed.");
-  }
+    }
+  ```
+  ```c++
+    void OnMetadataObjectAvailable(Camera_MetadataOutput* metadataOutput,
+        Camera_MetadataObject* metadataObject, uint32_t size)
+    {
+        OH_LOG_INFO(LOG_APP, "size = %{public}d", size);
+    }
+
+    MetadataOutput_Callbacks* GetMetadataOutputListener(void)
+    {
+        static MetadataOutput_Callbacks metadataOutputListener = {
+            .onMetadataObjectAvailable = OnMetadataObjectAvailable,
+            .onError = OnMetadataOutputError
+        };
+        return &metadataOutputListener;
+    }
   ```
 
   > **说明：**
   >
   > 当前的元数据类型仅支持人脸检测（FACE_DETECTION）功能。元数据信息对象为识别到的人脸区域的矩形信息（Rect），包含矩形区域的左上角x坐标、y坐标和矩形的宽高数据。
 
-- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
-  void OnMetadataOutputError(Camera_MetadataOutput* metadataOutput, Camera_ErrorCode errorCode)
-  {
-      OH_LOG_INFO(LOG_APP, "OnMetadataOutput errorCode = %{public}d", errorCode);
-  }
+    void OnMetadataOutputError(Camera_MetadataOutput* metadataOutput, Camera_ErrorCode errorCode)
+    {
+        OH_LOG_INFO(LOG_APP, "OnMetadataOutput errorCode = %{public}d", errorCode);
+    }
   ```
-
-## 相关实例
-
-针对元数据，有以下相关实例可供参考：
-- [元数据(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)

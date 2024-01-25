@@ -1,6 +1,6 @@
-# 通用密钥库
+# Universal Keystore Kit（密钥管理服务）
 
-- [通用密钥库概述](huks-overview.md)
+- [Universal Keystore Kit简介](huks-overview.md)
 - [通用密钥库基础概念](huks-concepts.md)
 - 密钥生成/导入
   - 密钥生成
@@ -48,8 +48,10 @@
 - 密钥证明
   - [密钥证明介绍及算法规格](huks-key-attestation-overview.md)
   - 开发指导
-    - [密钥证明(ArkTS)](huks-key-attestation-arkts.md)
-    - [密钥证明(C/C++)](huks-key-attestation-ndk.md)
+    - [匿名密钥证明(ArkTS)](huks-key-anon-attestation-arkts.md)
+    - [匿名密钥证明(C/C++)](huks-key-anon-attestation-ndk.md)
+    - [非匿名密钥证明(仅向系统应用开放)(ArkTS)](huks-key-attestation-arkts.md)
+    - [非匿名密钥证明(仅向系统应用开放)(C/C++)](huks-key-attestation-ndk.md)
 - 其他操作
   - 查询密钥是否存在
     - [查询密钥是否存在(ArkTS)](huks-check-key-arkts.md)

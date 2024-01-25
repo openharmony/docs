@@ -75,7 +75,7 @@ borderColor(value: ResourceColor | EdgeColors)
 
 borderRadius(value: Length | BorderRadiuses)
 
-设置边框的圆角。
+设置边框的圆角。圆角大小受组件尺寸限制，最大值为组件宽或高的一半。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

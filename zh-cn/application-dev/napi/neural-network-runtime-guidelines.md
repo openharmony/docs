@@ -1,4 +1,4 @@
-# Neural Network Runtime应用开发指导
+# Neural Network Runtime对接AI推理框架开发指导
 
 ## 场景介绍
 
@@ -15,7 +15,6 @@ Neural Network Runtime作为AI推理引擎和加速芯片的桥梁，为AI推理
 
 Neural Network Runtime部件的环境要求如下：
 
-- 系统接口版本：API 9及以上。
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：系统定义的标准设备，系统中内置AI硬件驱动并已接入Neural Network Runtime。
 

@@ -46,6 +46,7 @@ Enumerates the window types.
 | TYPE_SCREENSHOT<sup>9+</sup>        | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                         |
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                |
+| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | Window used for global search.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
 ## Configuration<sup>9+</sup>
 
 Defines the parameters for creating a subwindow or system window.
@@ -340,6 +341,19 @@ Enumerates the window modes.
 | FLOATING    | 4    | The application is displayed in a floating window.  |
 | SPLIT_SCREEN  | 5    | The application is displayed in split-screen mode.  |
 
+##  TitleButtonRect<sup>11+</sup>
+
+Defines the rectangle used to hold the minimize, maximize, and close buttons on the title bar. This rectangle is located in the upper right corner of the window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name  | Type  | Readable| Writable| Description                                      |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| right  | number | Yes  | Yes  | Right boundary of the rectangle, in vp. The value must be an integer.|
+| top    | number | Yes  | Yes  | Top boundary of the rectangle, in vp. The value must be an integer.|
+| width  | number | Yes  | Yes  | Width of the rectangle, in vp. The value must be an integer.  |
+| height | number | Yes  | Yes  | Height of the rectangle, in vp. The value must be an integer.  |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -489,7 +503,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
+Obtains the top window of the current application. This API uses an asynchronous callback to return the result. If no subwindow is available, the main window of the application is returned.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -512,25 +526,29 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-try {
-  class BaseContext {
-      stageMode: boolean = false;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getLastWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
     }
-    let context: BaseContext = { stageMode: false };
-  window.getLastWindow(context, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-      return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  }
 }
 ```
 
@@ -538,7 +556,7 @@ try {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-Obtains the top window of the current application. This API uses a promise to return the result.
+Obtains the top window of the current application. This API uses a promise to return the result. If no subwindow is available, the main window of the application is returned.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -566,23 +584,27 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-class BaseContext {
-  stageMode: boolean = false;
-}
-let context: BaseContext = { stageMode: false };
-try {
-  let promise = window.getLastWindow(context);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let promise = window.getLastWindow(this.context);
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -1264,6 +1286,56 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 }).catch((err: BusinessError) => {
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
+```
+
+## window.shiftAppWindowFocus<sup>11+</sup>
+
+shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
+
+Shifts the window focus from the source window to the target window in the same application. The window focus can be shifted between the main window and a subwindow.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name         | Type  | Mandatory | Description                   |
+| -------------- | ------ | ----- | ----------------------- |
+| sourceWindowId | number | Yes   | ID of the source window, which is having the focus.|
+| targetWindowId | number | Yes   | ID of the target window.            |
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message                                     |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let sourceWindowId: number = 40;
+  let targetWindowId: number = 41;
+  let promise = window.shiftAppWindowFocus(sourceWindowId, targetWindowId);
+  promise.then(() => {
+    console.info('Succeeded in shifting app window focus');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to shift app window focus. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to shift app window focus. Cause:' + JSON.stringify(exception));
+}
 ```
 
 ## window.create<sup>(deprecated)</sup>
@@ -3961,6 +4033,76 @@ try {
   windowClass.off('windowStatusChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowTitleButtonRectChange')<sup>11+</sup>
+
+on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
+
+Subscribes to the change event of the rectangle that holds the minimize, maximize, and close buttons on the title bar.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'windowTitleButtonRectChange'**, indicating that the change event of the rectangle that holds the minimize, maximize, and close buttons.|
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | No  | Callback used to return the new rectangle.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowTitleButtonRectChange')<sup>11+</sup>
+
+off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
+
+Unsubscribes from the change event of the rectangle that holds the minimize, maximize, and close buttons on the title bar.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'windowTitleButtonRectChange'**, indicating that the change event of the rectangle that holds the minimize, maximize, and close buttons.|
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | No  | Callback used to return the new rectangle. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowTitleButtonRectChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -6784,6 +6926,173 @@ try {
   windowClass.keepKeyboardOnFocus(true);
 } catch (exception) {
   console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+###  setWindowDecorVisible<sup>11+</sup>
+
+setWindowDecorVisible(isVisible: boolean): void
+
+Sets whether the title bar is visible in the main window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name      | Type    | Mandatory | Description                                                  |
+| --------- | ------- | --------- | ------------------------------------------------------------ |
+| isVisible | boolean | Yes       | Whether the title bar is visible. The value **true** means that the title bar is visible and **false** means the opposite. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // Obtain the main window.
+      let mainWindow: window.Window = window.findWindow("test");
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        let isVisible = false;
+        // Call setWindowDecorVisible.
+        try {
+            mainWindow.setWindowDecorVisible(isVisible);
+        } catch (exception) {
+            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+        }
+      })
+    });
+  }
+};
+
+```
+
+###  setWindowDecorHeight<sup>11+</sup>
+
+setWindowDecorHeight(height: number): void
+
+Sets the height of the title bar for this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type   | Mandatory | Description                                                  |
+| ------ | ------ | --------- | ------------------------------------------------------------ |
+| height | number | Yes       | Height of the title bar. The value is an integer in the range [48,112]. The unit is vp. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+let height: number = 50;
+let windowClass: window.Window = window.findWindow("test");
+try {
+  windowClass.setWindowDecorHeight(height);
+} catch (exception) {
+  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+###  getWindowDecorHeight<sup>11+</sup>
+
+getWindowDecorHeight(): number
+
+Obtains the height of the title bar of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type   | Description                                                  |
+| ------ | ------------------------------------------------------------ |
+| number | Height of the title bar. The value is an integer in the range [48,112]. The unit is vp. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let height = windowClass.getWindowDecorHeight();
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+###  getTitleButtonRect<sup>11+</sup>
+
+getTitleButtonRect(): TitleButtonRect
+
+Obtains the rectangle that holds the minimize, maximize, and close buttons on the title bar.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type                                  | Description                                                  |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [TitleButtonRect](#titlebuttonrect11) | Rectangle obtained, which is located in the upper right corner of the window. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let titleButtonArea = windowClass.getTitleButtonRect();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
+} catch (exception) {
+  console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
 
 ```

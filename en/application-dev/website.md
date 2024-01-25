@@ -17,7 +17,7 @@
         - [Multi-HAP Development, Debugging, Release, and Deployment](quick-start/multi-hap-release-deployment.md)
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
-      - [Application Installation and Uninstallation](quick-start/application-package-install-uninstall.md)
+      - [Application Installation and Uninstall](quick-start/application-package-install-uninstall.md)
       - [Application Package Update](quick-start/application-package-update.md)
       - Shared Package
         - [Shared Package Overview](quick-start/shared-guide.md)
@@ -394,8 +394,8 @@
     - Concurrency
       - [Concurrency Overview](arkts-utils/concurrency-overview.md)
       - Using Asynchronous Concurrency for Development
-        - [Asynchronous Concurrency Overview](arkts-utils/async-concurrency-overview.md)
-        - [Single I/O Task Development](arkts-utils/single-io-development.md)
+        - [Asynchronous Concurrency Overview (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
+        - [Single I/O Task Development (Promise and Async/Await)](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
         - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
         - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
@@ -687,6 +687,42 @@
     - Log Analysis
       - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
       - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
+  - Internalization and Localization
+    - [Overview of Internationalization and Localization](internationalization/i18n-l10n.md)
+    - Application Internalization
+      - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
+      - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
+      - Language and User Preference Setting
+        - [System Language and Region Setting](internationalization/i18n-system-language-region.md)
+        - [Preferred Language Setting](internationalization/i18n-preferred-language.md)
+        - [User Preference Setting](internationalization/i18n-user-preferences.md)
+      - [Date and Time Formatting](internationalization/i18n-time-date.md)
+      - [Number and Unit of Measurement Formatting](internationalization/i18n-numbers-weights-measures.md)
+      - [Phone Number Formatting](internationalization/i18n-phone-numbers.md)
+      - [Calendar Setting](internationalization/i18n-calendar.md)
+      - Time Zone and DST Setting
+        - [Timezone Setting](internationalization/i18n-time-zone.md)
+        - [DST Transition](internationalization/i18n-dst-transition.md)
+      - Multilingual Sorting
+        - [Overview of Multilingual Sorting](internationalization/i18n-sorting-overview.md)
+        - [Sorting by Local Habits](internationalization/i18n-sorting-local.md)
+        - [Sorting by Indexes](internationalization/i18n-sorting-index.md)
+      - [Character Processing](internationalization/i18n-character-processing.md)
+      - Name Localization
+        - [Language and Locale Name Localization](internationalization/i18n-language-region-display.md)
+        - [Time Zone Name Localization](internationalization/i18n-time-zone-display.md)
+    - Application Localization
+      - [Multilingual Resource Provisioning](internationalization/l10n-multilingual-resources.md)
+      - Application Translation
+        - [Hard Coding and Concatenation Prevention](internationalization/l10n-hard-coding-concatenate.md)
+        - [Scene and Context Clarification for Translation](internationalization/l10n-translation-scene.md)
+        - [Singular/Plural Form Selection](internationalization/l10n-singular-plural.md)
+    - Localization Testing
+      - Pseudo-Localization Testing
+        - [Overview of Pseudo-Localization Testing](internationalization/pseudo-i18n-testing-overview.md)
+        - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
+        - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
+      - [Linguistic Testing](internationalization/linguistic-testing.md)
   - Application services
     - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
@@ -695,13 +731,31 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
+    - [Getting Started with the NDK](napi/ndk-development-overview.md)
+    - [Creating an NDK Project](napi/create-with-ndk.md)
+    - Building an NDK Project
+      - [NDK Project Building Overview](napi/build-with-ndk-overview.md)
+      - [Building an NDK Project with the DevEco Studio Template](napi/build-with-ndk-ide.md)
+      - [Building an NDK Project with the Command Line CMake](napi/build-with-ndk-cmake.md)
+      - [Building an NDK Project with Prebuilt Libraries](napi/build-with-ndk-prebuilts.md)
+    - Code Development
+      - [Development Overview](napi/develop-code-overview.md)
+      - Node-API Development
+        - [OpenHarmony Node-API Overview](napi/napi-introduction.md)
+        - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
+        - [Node-API Development Specifications](napi/napi-guidelines.md)
+        - [Node-API Development Process](napi/use-napi-process.md)
+        - Typical Scenarios
+            - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
+            - [Thread Safety Development Using Node-API](napi/use-napi-thread-safety.md)
+        - [OpenHarmony Node-API FAQs](napi/use-napi-faqs.md)
       - Graphics
         - [XComponent Development](napi/xcomponent-guidelines.md)
-        - [Drawing Development](napi/drawing-guidelines.md)
-        - [NativeBuffer Development](napi/native-buffer-guidelines.md)
-        - [NativeImage Development](napi/native-image-guidelines.md)
-        - [NativeVsync Development](napi/native-vsync-guidelines.md)
-        - [NativeWindow Development](napi/native-window-guidelines.md)
+        - [Using Drawing to Draw and Display Graphics](napi/drawing-guidelines.md)
+        - [Native Buffer Development](napi/native-buffer-guidelines.md)
+        - [Native Image Development](napi/native-image-guidelines.md)
+        - [Native Vsync Development](napi/native-vsync-guidelines.md)
+        - [Native Window Development](napi/native-window-guidelines.md)
         - [Vulkan Development](napi/vulkan-guidelines.md)
       - Resource Management
         - [Raw File Development](napi/rawfile-guidelines.md)
@@ -715,10 +769,16 @@
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
       - Device Management
         - [USB DDK Development](napi/usb-ddk-guidelines.md)
+        - [HID DDK Development](napi/hid-ddk-guidelines.md)
       - Data Management
-        - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+        - [Relational Store Development](napi/native-relational-store-guidelines.md)
       - Bundle Management
-        - [NativeBuffer Development](napi/native-bundle-guidelines.md)
+        - [Native Bundle Development](napi/native-bundle-guidelines.md)
+    - Debugging and Profiling
+      - [Overview of Debugging and Profiling](napi/debug-performance-profiling-overview.md)
+      - [Debugging in DevEco Studio](napi/debug-ide.md)
+      - [LLDB Debugger](napi/debug-lldb.md)
+      - [C/C++ Memory Error Detection](napi/debug-asan.md)
     - Hardware Compatibility
       - [Introduction to Hardware Compatibility](napi/hw-guide.md)
       - [OpenHarmony ABI](napi/ohos-abi.md)

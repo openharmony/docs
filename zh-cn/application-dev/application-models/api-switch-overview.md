@@ -11,37 +11,70 @@ startAbility接口由FA模型切换到Stage模型的示例：
 
   ```ts
   import featureAbility from '@ohos.ability.featureAbility';
-  import { BusinessError } from '@ohos.base';
+  import Want from '@ohos.app.ability.Want';
+  import Logger from '../../utils/Logger';
   
-  try {
-    Logger.info(TAG, 'Begin to start ability');
-    let want: Want = {
-      bundleName: 'com.samples.famodelabilitydevelop',
-      moduleName: 'entry',
-      abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
-    };
-    await featureAbility.startAbility({ want: want });
-    Logger.info(TAG, `Start ability succeed`);
+  const TAG: string = 'PagePageAbilityFirst';
+  
+  @Entry
+  @Component
+  struct Index {
+    
+    build() {
+      // ...
+      Button() {
+        // ...
+      }
+      .onClick(async () => {
+        try {
+          Logger.info(TAG, 'Begin to start ability');
+          let want: Want = {
+            bundleName: 'com.samples.famodelabilitydevelop',
+            moduleName: 'entry',
+            abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
+          };
+          await featureAbility.startAbility({ want: want });
+          Logger.info(TAG, `Start ability succeed`);
+        }
+        catch (error) {
+          Logger.error(TAG, 'Start ability failed with ' + error);
+        }
+      })
+    }
   }
-  catch (error) {
-    Logger.error(TAG, 'Start ability failed with ' + error);
-  }
+
   ```
 
 - Stage示例示例
 
   ```ts
   import Want from '@ohos.app.ability.Want';
-
-  // context为Ability对象的成员，在非Ability对象内部调用需要
-  // 将Context对象传递过去
-  let wantInfo: Want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  this.context.startAbility(wantInfo).then(() => {
-    console.info('startAbility success.');
-  }).catch((error: BusinessError) => {
-    console.error('startAbility failed.');
-  })
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  
+  @Entry
+  @Component
+  struct Index {
+    private context = getContext(this) as common.UIAbilityContext;
+  
+    build() {
+      // ...
+      Button() {
+        // ...
+      }
+      .onClick(() => {
+        // context为Ability对象的成员，在非Ability对象内部调用需要
+        // 将Context对象传递过去
+        let wantInfo: Want = {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
+        };
+        this.context.startAbility(wantInfo).then(() => {
+          console.info('startAbility success.');
+        }).catch((error: BusinessError) => {
+          console.error('startAbility failed.');
+        })
+      })
+    }
+  }
   ```

@@ -1,6 +1,6 @@
-# \@ohos.dlpPermission (数据防泄漏)
+# @ohos.dlpPermission (数据防泄漏)
 
-数据防泄漏（DLP）是OpenHarmony提供的系统级的数据防泄漏解决方案，提供跨设备的文件的权限管理、加密存储、授权访问等能力。
+数据防泄漏（DLP）是系统提供的系统级的数据防泄漏解决方案，提供跨设备的文件的权限管理、加密存储、授权访问等能力。
 
 > **说明：**
 >
@@ -974,7 +974,7 @@ try {
   }; // 请求参数
   dlpPermission.startDLPManagerForResult(context, want).then((res) => {
     console.info('res.resultCode', res.resultCode);
-    console.info('res.want', JSON.stringifg(res.want));
+    console.info('res.want', JSON.stringify(res.want));
   }); // 打开DLP权限管理应用
 } catch (err) {
   console.error('error', err.code, err.message); // 失败报错

@@ -13,14 +13,12 @@
 
 ## 子组件
 
-可以包含子组件。
+可以包含Image子组件。
 
 
 ## 接口
 
 Hyperlink(address: string | Resource, content?: string | Resource)
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -31,7 +29,7 @@ Hyperlink(address: string | Resource, content?: string | Resource)
 
 ## 属性
 
-仅支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |

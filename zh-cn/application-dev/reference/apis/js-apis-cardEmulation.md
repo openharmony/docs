@@ -5,6 +5,49 @@
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+## **基于Host卡模拟和AID列表的声明定义**
+
+开发基于Host卡模拟相关应用时，需要在应用的属性配置文件中，声明与NFC相关的属性值，比如，在module.json5文件中，声明下面属性值：
+```json
+{
+  "module": {
+    // other declared attributes.
+    "abilities": [
+      {
+        // other declared attributes.
+        "skills": [
+          {
+            "actions": [
+              "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
+            ]
+          }
+        ],
+        "metadata": [
+          {
+            "name": "payment-aid",
+            "value": "your payment aid"
+          },
+          {
+            "name": "other-aid",
+            "value": "your other aid"
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.NFC_CARD_EMULATION",
+        // should add variable card_emulation_reason in string.json
+        "reason": "$string:card_emulation_reason",
+      }
+    ]
+  }
+}
+```
+> **注意：**
+>1. 声明"actions"字段的内容填写，必须是"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
+>2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
+>3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
 
 ## 导入模块
 
@@ -90,9 +133,9 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 **参数：**
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
-| ----------- | ---------------------------------------- | ---- | ----------------------- |
+| ----------- | ---------------------------------------- | ---- |-------------------------|
 | elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是    | 应用的描述，由Bundle名称和组件名称组成。 |
-| type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。                |
+| type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询   |
 
 **返回值：**
 
@@ -100,6 +143,13 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | ------- | ------------------------------------ |
 | boolean | true: 是默认支付应用，&nbsp;false: 不是默认支付应用。 |
 
+**示例：**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let isDefaultService = cardEmulation.isDefaultService(element, cardEmulation.CardType.PAYMENT);
+// do something according to the isDefaultService value
+```
 ## getPaymentServices<sup>11+</sup>
 
 getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
@@ -176,7 +226,7 @@ start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementnam
 
 stopHCE(): boolean
 
-停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。暂不支持使用，仅做接口声明。
+停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表，释放hceCmd注册。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[stop](#stop9)替代。
@@ -191,6 +241,9 @@ stopHCE(): boolean
 | ------- | -------------------------------------- |
 | boolean | true: 禁用HCE功能或HCE已禁用，&nbsp;false: 禁用失败。 |
 
+**示例：**
+
+示例请参见[on](#on8)接口的示例。
 
 ### stop<sup>9+</sup>
 
@@ -235,16 +288,37 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void
 
 **示例：**
 ```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import hilog from '@ohos.hilog';
+import window from '@ohos.window';
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { AsyncCallback } from './basic';
+import { BusinessError } from './basic';
+import { ElementName } from './bundleManager/ElementName'
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+let element: ElementName;
 
-const apduCallback: AsyncCallback<number[]> = (err, data) => {
-  //handle the data and err
-  console.log("got apdu data");
-};
-hceService.on('hceCmd', apduCallback);
+export default class EntryAbility extends UIAbility {
+  onCreate(want, launchParam) {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
+    element = {
+      bundleName: want.bundleName,
+      abilityName: want.abilityName,
+      moduleName: want.moduleName
+    }
+    const apduCallback: AsyncCallback<number[]> = (err, data) => {
+      //handle the data and err
+      console.log("got apdu data");
+    };
+    hceService.on('hceCmd', apduCallback);
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
+    hceService.stop(element)
+  }
+  // other life cycle method...
+}
 ```
 
 

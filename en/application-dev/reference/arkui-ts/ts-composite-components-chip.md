@@ -44,9 +44,13 @@ Defines the type and style parameters of the chip.
 
 > **NOTE**
 >
-> If **suffixIcon** is specified, **allowClose** has no effect.
+> 1. If the width set for the chip is less than the minimum width, the chip is displayed at the minimum width.
 >
-> If **undefined** is assigned to **backgroundColor**, the default background color is used. If an invalid value is assigned to **backgroundColor**, the background color is transparent.
+> 2. If **suffixIcon** is specified, **allowClose** has no effect.
+>
+> 3. If **undefined** is assigned to **backgroundColor**, the default background color is used. If an invalid value is assigned to **backgroundColor**, the background color is transparent.
+>
+> 4. The default value of **fillColor** is **$r('sys.color.ohos_id_color_secondary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_primary')** for **suffixIcon**. The color parsing of **fillColor** is the same as that of the **\<Image>** component.
 
 ## ChipSize
 

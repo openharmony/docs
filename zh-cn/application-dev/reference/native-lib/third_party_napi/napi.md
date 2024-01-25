@@ -113,6 +113,11 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_delete_async_work|释放先前创建的异步工作对象。|
 |FUNC|napi_queue_async_work|将异步工作对象加到队列，由底层去调度执行。|
 |FUNC|napi_cancel_async_work|取消入队的异步任务。|
+|FUNC|napi_async_init|创建一个异步资源上下文环境（暂不支持与async_hook相关能力）。|
+|FUNC|napi_make_callback|在异步资源上下文环境中回调JS函数(暂不支持与async_hook相关能力)。|
+|FUNC|napi_async_destroy|销毁先前创建的异步资源上下文环境（暂不支持与async_hook相关能力）。|
+|FUNC|napi_open_callback_scope|创建一个回调作用域（暂不支持与async_hook相关能力）。|
+|FUNC|napi_close_callback_scope|关闭先前创建的回调作用域（暂不支持与async_hook相关能力）。|
 |FUNC|napi_get_node_version|获取node的版本信息。|
 |FUNC|napi_get_version|获取Node运行时支持的最高 N-API 版本。|
 |FUNC|napi_create_promise|创建一个延迟对象和js promise。|
@@ -145,6 +150,13 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_get_all_property_names|获取一个数组，其中包含此对象过滤后的属性名称。|
 |FUNC|napi_detach_arraybuffer|分离给定`ArrayBuffer`的底层数据。|
 |FUNC|napi_is_detached_arraybuffer|判断给定的`ArrayBuffer`是否已被分离过。|
+|FUNC|napi_set_instance_data|绑定与当前运行的环境相关联的数据项。|
+|FUNC|napi_get_instance_data|检索与当前运行的环境相关联的数据项。|
+|FUNC|napi_add_env_cleanup_hook|注册环境清理钩子函数。|
+|FUNC|napi_remove_env_cleanup_hook|取消环境清理钩子函数。|
+|FUNC|napi_add_async_cleanup_hook|注册清理异步钩子函数。|
+|FUNC|napi_remove_async_cleanup_hook|取消清理异步钩子函数。|
+|FUNC|node_api_get_module_file_name|用于获取加载项加载位置的绝对路径。|
 
 ## N-API组件扩展的符号列表
 

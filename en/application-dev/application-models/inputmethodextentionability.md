@@ -35,7 +35,7 @@ To implement an input method application, manually create an InputMethodExtensio
 
 ```
 /src/main/
-├── ets/inputmethodextability
+├── ets/InputMethodExtensionAbility
 │   └──model/KeyboardController.ts			# Shows the keyboard.
 │   └──InputMethodService.ts				# Customizes a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
 │   └──pages
@@ -224,7 +224,7 @@ To implement an input method application, manually create an InputMethodExtensio
 
    ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData';
-   import keyboardController from '../model/KeyboardController';
+   import keyboardController from '../InputMethodExtensionAbility/model/KeyboardController';
    
    @Component
    struct keyItem {
@@ -339,7 +339,7 @@ To implement an input method application, manually create an InputMethodExtensio
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
            "exported": true,
          }
@@ -350,7 +350,7 @@ To implement an input method application, manually create an InputMethodExtensio
 
 ## Verification
 
-1. Run the hdc command to display the dialog box for switching between input methods: **hdc shell aa start ability -a InputMethod -b cn.openharmonyinputmethodchoosedialog**
+1. Run the hdc command to display the dialog box for switching between input methods: **hdc shell aa start ability -a InputMethod -b com.ohos.inputmethodchoosedialog**
 
 2. In the dialog box for switching between input methods, switch the input method to the demo application.
 

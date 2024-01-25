@@ -724,7 +724,7 @@ class EntryAbility extends UIAbility {
 | ---------- | ------ | ---- | ---------------------------------------- |
 | sourceTable | string | 是   | 关联的子表。   |
 | targetTable | string | 是   | 关联的父表。   |
-| refFields   | {[src: string]: string} | 是   | 表示关联表的关联字段。键值数据中键为子表字段，值为父表字段。       |
+| refFields   | Record<string, string> | 是   | 表示关联表的关联字段。键值数据中键为子表字段，值为父表字段。       |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -814,7 +814,7 @@ class EntryAbility extends UIAbility {
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | schedule | [Progress](#progress10)                           | 是   | 表示端云同步过程。                                           |
 | code     | [ProgressCode](#progresscode10)                   | 是   | 表示端云同步过程的状态。                                     |
-| details  | [table: string] : [TableDetails](#tabledetails10) | 是   | 表示端云同步各表的统计信息。<br>键表示表名，值表示该表的端云同步过程统计信息。 |
+| details  | Record<string, [TableDetails](#tabledetails10)> | 是   | 表示端云同步各表的统计信息。<br>键表示表名，值表示该表的端云同步过程统计信息。 |
 
 ## RdbPredicates
 
@@ -4912,7 +4912,7 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 **返回值：**
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
-| Promise<void> | 无返回结果的Promise对象。        |
+| Promise\<void> | 无返回结果的Promise对象。        |
 
 **错误码：**
 

@@ -22,7 +22,9 @@
    import type window from '@ohos.window';
    import type { Context } from '@ohos.abilityAccessCtrl';
    import Want from '@ohos.app.ability.Want'
+   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
    
+   const DOMAIN_NUMBER: number = 0xFF00;
    const TAG: string = '[EventAbility]';
    
    export default class EntryAbility extends UIAbility {
@@ -54,7 +56,6 @@
    ```ts
    import common from '@ohos.app.ability.common';
    import promptAction from '@ohos.promptAction'
-   import Want from '@ohos.app.ability.Want';
    
    @Entry
    @Component
@@ -73,51 +74,86 @@
      }
    
      build() {
-       Row() {
-         Column() {
-           Text($r('app.string.Page_UIAbilityFourth'))
-             .fontSize(40)
-             .fontWeight(FontWeight.Bold)
-   
-           Button(){
-             Text($r('app.string.EventHubFuncA'))
-               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-               .fontSize($r('sys.float.ohos_id_text_size_button1'))
-               .fontWeight(FontWeight.Bold)
+       Column() {
+         Row() {
+           Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
+             Text($r('app.string.DataSynchronization'))
+               .fontSize(24)
+               .fontWeight(700)
+               .textAlign(TextAlign.Start)
+               .margin({ top: 12 , bottom: 11 , right: 24 , left: 24})
            }
-           .width(300)
-           .height(40)
-           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+         }
+         .width('100%')
+         .height(56)
+         .justifyContent(FlexAlign.Start)
+         .backgroundColor($r('app.color.backGrounding'))
+   
+         List({ initialIndex: 0 }) {
+           ListItem() {
+             Row() {
+               Row(){
+                 Text($r('app.string.EventHubFuncA'))
+                   .textAlign(TextAlign.Start)
+                   .fontWeight(500)
+                   .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                   .fontSize(16)
+                   .width(232)
+                   .height(22)
+                   .fontColor($r('app.color.text_color'))
+               }
+               .height(48)
+               .width('100%')
+               .borderRadius(24)
+               .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+             }
              .onClick(() => {
                this.eventHubFunc();
                promptAction.showToast({
                  message: $r('app.string.EventHubFuncA')
                });
              })
-             .margin(3)
-   
-           Button(){
-             Text($r('app.string.EventHubFuncB'))
-               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-               .fontSize($r('sys.float.ohos_id_text_size_button1'))
-               .fontWeight(FontWeight.Bold)
            }
-           .width(300)
-           .height(40)
-           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+           .height(56)
+           .backgroundColor($r('app.color.start_window_background'))
+           .borderRadius(24)
+           .margin({ top: 8, right: 12, left: 12 })
+   
+           ListItem() {
+             Row() {
+               Row(){
+                 Text($r('app.string.EventHubFuncB'))
+                   .textAlign(TextAlign.Start)
+                   .fontWeight(500)
+                   .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                   .fontSize(16)
+                   .width(232)
+                   .height(22)
+                   .fontColor($r('app.color.text_color'))
+               }
+               .height(48)
+               .width('100%')
+               .borderRadius(24)
+               .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+             }
              .onClick(() => {
                this.context.eventHub.off('event1');
                promptAction.showToast({
                  message: $r('app.string.EventHubFuncB')
                });
              })
-             .margin(3)
+           }
+           .height(56)
+           .backgroundColor($r('app.color.start_window_background'))
+           .borderRadius(24)
+           .margin({ top: 12, right: 12, left: 12 })
          }
-         .width('100%')
+         .height('100%')
+         .backgroundColor($r('app.color.backGrounding'))
        }
-       .height('100%')
+       .width('100%')
+       .margin({ top: 8 })
+       .backgroundColor($r('app.color.backGrounding'))
      }
    }
    ```

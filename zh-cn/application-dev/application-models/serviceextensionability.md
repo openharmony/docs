@@ -88,12 +88,8 @@ interface OHOS.IIdlServiceExt {
 idl_service_ext_impl.ts实现如下：
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import bundleManager from '@ohos.bundle.bundleManager';
 import IdlServiceExtStub from './idl_service_ext_stub';
 import Logger from '../utils/Logger';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
 import { insertDataToMapCallback } from './i_idl_service_ext';
 import { processDataCallback } from './i_idl_service_ext';
 
@@ -105,6 +101,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // 开发者自行实现业务逻辑
     Logger.info(TAG, `processData: ${data}`);
+    callback(ERR_OK, data + 1); // 鉴权通过，执行正常业务逻辑
   }
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
@@ -208,6 +205,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
    import Logger from '../utils/Logger';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
@@ -233,6 +231,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
    import Logger from '../utils/Logger';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
@@ -256,6 +255,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
    import common from '@ohos.app.ability.common';
    import Logger from '../utils/Logger';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
    
    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    context.terminateSelf().then(() => {
@@ -288,6 +288,12 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   import common from '@ohos.app.ability.common';
   import Logger from '../utils/Logger';
   import Want from '@ohos.app.ability.Want';
+  import promptAction from '@ohos.promptAction';
+  import hilog from '@ohos.hilog';
+  import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
+  
+  const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[Page_ServiceExtensionAbility]';
   
   let connectionId: number;
   let want: Want = {
@@ -335,7 +341,11 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   
   ```ts
   import Logger from '../utils/Logger';
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   
+  let connectionId: number;
   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
   context.disconnectServiceExtensionAbility(connectionId).then(() => {
@@ -356,10 +366,14 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 - 使用服务端提供的IDL接口进行通信（推荐）
 
   ```ts
-  import Logger from '../utils/Logger';
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
   import common from '@ohos.app.ability.common';
+  import Logger from '../utils/Logger';
+  import hilog from '@ohos.hilog';
+  
+  const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[Page_ServiceExtensionAbility]';
   
   let options: common.ConnectOptions = {
     onConnect(elementName, remote): void {
@@ -501,7 +515,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
-      // 所校验的具体权限由开发者自行选择，此处ohos.permission.SET_WALLPAPER只作为示例
+      // 所校验的具体权限由开发者自行选择，此处ohos.permission.GET_BUNDLE_INFO_PRIVILEGED只作为示例
       let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
       if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
         Logger.info(TAG, `PERMISSION_DENIED`);

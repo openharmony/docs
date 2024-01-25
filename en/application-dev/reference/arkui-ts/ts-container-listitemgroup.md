@@ -39,10 +39,10 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ## ListItemGroupStyle<sup>10+</sup>
 
-| Name| Description              |
-| ---- | ------------------ |
-| NONE | No style.          |
-| CARD | Default card style.|
+| Name| Value | Description              |
+| ---- | ---- | ------------------ |
+| NONE | 0 | No style.          |
+| CARD | 1 | Default card style.|
 
 > **NOTE**
 >
@@ -62,7 +62,7 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timetable: TimeTable[] = [
+  private timeTable: TimeTable[] = [
     {
       title: 'Monday',
       projects: ['Language', 'Math', 'English']
@@ -102,7 +102,7 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timetable, (item: TimeTable) => {
+        ForEach(this.timeTable, (item: TimeTable) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
             ForEach(item.projects, (project: string) => {
               ListItem() {
@@ -178,7 +178,7 @@ struct ListItemGroupExample2 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // List in light blue
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })

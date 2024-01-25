@@ -268,4 +268,3 @@ interface TimeObject {
   time: number;
 }
 ```
-<!--no_check-->

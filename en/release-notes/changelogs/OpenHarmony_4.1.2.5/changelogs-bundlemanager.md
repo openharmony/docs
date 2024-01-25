@@ -34,29 +34,3 @@ The **dataUnclearable** field is added to the [ApplicationInfo](https://gitee.co
 **Adaptation Guide**
 
 N/A
-
-## c3.bundlemanager.3 Restricted the Installation of Debugging Applications
-
-**Access Level**
-
-Others
-
-**Reason for Change**
-
-Debugging applications can be installed on a device in debugging mode. You can determine whether an application is a debugging one based on the **type** field in the [signing certificate](../../../application-dev/security/app-provision-structure.md).
-
-**Change Impact**
-
-If the signing certificate type of an application is **debug** and the device is in non-debug mode, the application cannot be installed on the device.
-
-**Change Since**
-
-OpenHarmony SDK 4.1.2.5
-
-**Key API/Component Changes**
-
-N/A
-
-**Adaptation Guide**
-
-To install an application on a device in non-debugging mode, use a certificate of the **release** type to sign the application during build.

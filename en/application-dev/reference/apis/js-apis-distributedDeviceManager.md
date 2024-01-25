@@ -1,6 +1,6 @@
 # @ohos.distributedDeviceManager (Device Management)
 
-The **deviceManager** module provides APIs for distributed device management.
+The **distributedDeviceManager** module provides APIs for distributed device management.
 
 Applications can call the APIs to:
 
@@ -13,7 +13,7 @@ Applications can call the APIs to:
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -39,7 +39,7 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Return value**
 
-| Name                                       | Description       |
+| Type                                       | Description       |
 | ------------------------------------------- | --------- |
 | [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
 
@@ -50,10 +50,10 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
   import { BusinessError } from '@ohos.base';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
+    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   } catch(err) {
     let e: BusinessError = err as BusinessError;
-    console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -88,11 +88,11 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   import deviceManager from '@ohos.distributedDeviceManager';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
+    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("release device manager errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('release device manager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -138,7 +138,7 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-| Name                                       | Description       |
+| Type                                       | Description       |
 | ------------------------------------------- | --------- |
 | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
 
@@ -152,7 +152,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -161,7 +161,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -191,7 +191,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -199,14 +199,14 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
   try {
     dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
       if (err) {
-        console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+        console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
         return;
       }
       console.log('get available device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getAvailableDeviceList errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getAvailableDeviceList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -236,7 +236,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -244,7 +244,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
   dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+      console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
   });
   ```
 
@@ -260,7 +260,7 @@ Obtains the network ID of the local device.
 
 **Return value**
 
-| Name                     | Description             |
+| Type                     | Description             |
 | ------------------------- | ---------------- |
 | string | Network ID of the local device obtained.|
 
@@ -274,7 +274,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -283,7 +283,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceNetworkId errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceNetworkId errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -299,7 +299,7 @@ Obtains the local device name.
 
 **Return value**
 
-| Name                     | Description             |
+| Type                     | Description             |
 | ------------------------- | ---------------- |
 | string                    | Name of the local device obtained.|
 
@@ -313,7 +313,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -322,7 +322,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceName errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -338,7 +338,7 @@ Obtains the local device type.
 
 **Return value**
 
-| Name                     | Description             |
+| Type                     | Description             |
 | ------------------------- | ---------------- |
 | number                    | Local device type obtained.|
 
@@ -352,7 +352,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -361,7 +361,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceType errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceType errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -377,7 +377,7 @@ Obtains the local device ID.
 
 **Return value**
 
-| Name                     | Description             |
+| Type                     | Description             |
 | ------------------------- | ---------------- |
 | string                    | Local device ID obtained.|
 
@@ -391,7 +391,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -400,7 +400,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceId errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceId errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -422,7 +422,7 @@ Obtains the device name based on the network ID of the specified device.
 
 **Return value**
 
-| Name                     | Description             |
+| Type                     | Description             |
 | ------------------------- | ---------------- |
 | string                    | Device name obtained.|
 
@@ -436,18 +436,18 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
-    let networkId = "xxxxxxx";
+    let networkId = 'xxxxxxx';
     let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getDeviceName errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -469,7 +469,7 @@ Obtains the device type based on the network ID of the specified device.
 
 **Return value**
 
-| Name                     | Description             |
+| Type                     | Description             |
 | ------------------------- | ---------------- |
 | number                    | Device type obtained.|
 
@@ -483,18 +483,18 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
-    let networkId = "xxxxxxx";
+    let networkId = 'xxxxxxx';
     let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getDeviceType errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getDeviceType errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -513,7 +513,7 @@ Starts to discover devices nearby. The discovery process automatically stops whe
 | Name           | Type                       | Mandatory  | Description   |
 | ------------- | ------------------------------- | ---- | -----  |
 | discoverParam  | {[key:&nbsp;string]:&nbsp;Object}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
-| filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering discovered devices. The default value is **undefined**, which means to discover offline devices. The following **key** values are carried:<br>**availableStatus(0-1)**: Discover trusted devices only. The value **0** indicates that the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: Discover devices within a certain distance (in cm) from the local device.<br>**authenticationStatus(0-1)**: Discover devices based on the authentication status.<br>- **0**: The device is not authenticated.<br>- **1**: The device has been authenticated.<br>**authorizationType(0-2)**: Discover devices based on the authorization type.<br>- **0**: device authenticated by a temporarily agreed session key.<br>- **1**: device authenticated by a key of the same account.<br>- **2**: devices authenticated by a credential key of different accounts.|
+| filterOptions | {[key:&nbsp;string]:&nbsp;Object}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>- **availableStatus(0-1)**: status of the device to discover.<br>The value **0** means the device is offline. The client needs to call **bindTarget** to bind the device.<br>The value **1** means the device is online and can be connected.<br>- **discoverDistance(0-100)**: distance of the device to discover, in cm.<br>- **authenticationStatus(0-1)**: authentication status of the device to discover.<br>The value **0** means the device is not authenticated.<br>The value **1** means the device has been authenticated.<br>- **authorizationType(0-2)**: authorization type of the device to discover.<br>The value **0** means the device is authenticated by a temporarily agreed session key.<br>The value **1** means the device is authenticated by a key of the same account.<br>The value **2** means the device is authenticated by a credential key of different accounts. |
 
 **Error codes**
 
@@ -526,7 +526,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -552,7 +552,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     dmInstance.startDiscovering(discoverParam, filterOptions); // When devices are discovered, discoverSuccess is called to notify the application.
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("startDiscovering errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -577,7 +577,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -585,7 +585,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     dmInstance.stopDiscovering();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("stopDiscovering errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('stopDiscovering errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -603,8 +603,8 @@ Binds a device.
 
 | Name    | Type                                               | Mandatory | Description        |
 | ---------- | --------------------------------------------------- | ----- | ------------ |
-| deviceId   | string                                              | Yes   | Device ID.  |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type.<br>- **1**: PIN.<br>- **2**: QR code.<br>- 3: NFC.<br>- 4: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
+| deviceId   | string                                              | Yes   | ID of the device to bind. |
+| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pairs to be passed in. By default, this parameter contains the following keys:<br>**bindType**: binding type, which is mandatory.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the device to bind.<br>**appName**: application that attempts to bind the device.<br>**appOperation**: reason for the application to bind the device.<br>**customDescription**: detailed description of the operation. |
 | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Error codes**
@@ -618,35 +618,35 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceId: string = "";
+    deviceId: string = '';
   }
 
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
-  let deviceId = "XXXXXXXX";
+  let deviceId = 'XXXXXXXX';
   let bindParam: Record<string, string | number> = {
-    'authType': 1, // Authentication type. The value 1 means PIN authentication.
-    targetPkgName: 'xxxx',
-    appName: 'xxxx',
-    appOperation: 'xxxx',
-    customDescription: 'xxxx'
+    'bindType': 1, // Authentication type. The value 1 means PIN authentication.
+    'targetPkgName': 'xxxx',
+    'appName': 'xxxx',
+    'appOperation': 'xxxx',
+    'customDescription': 'xxxx'
   };
 
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
-        console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+        console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
         return;
       }
-      console.info("bindTarget result:" + JSON.stringify(data));
+      console.info('bindTarget result:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('bindTarget errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -664,7 +664,7 @@ Unbinds a device.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| deviceId | string                    | Yes  | Device ID.|
+| deviceId | string                    | Yes  | ID of the device to unbind. |
 
 **Error codes**
 
@@ -676,16 +676,16 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
-    let deviceId = "XXXXXXXX";
+    let deviceId = 'XXXXXXXX';
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("unbindTarget errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('unbindTarget errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -710,7 +710,7 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -724,10 +724,10 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
       action = 5 - Confirm the input in the PIN input box.
     */
     let operation = 0;
-    dmInstance.replyUiAction(operation, "extra");
+    dmInstance.replyUiAction(operation, 'extra');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("replyUiAction errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('replyUiAction errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -735,7 +735,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
-Subscribes to the UI operation reply result.
+Subscribes to the reply to the UI operation result.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -747,17 +747,17 @@ Subscribes to the UI operation reply result.
 
 | Name     | Type                            | Mandatory| Description                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| type     | string                                | Yes | Event type to subscribe to. The value **replyResult** indicates the reply result of the UI operation.|
+| type     | string                                | Yes | Event type, which has a fixed value of **'replyResult'**.|
 | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    param: string = "";
+    param: string = '';
   }
 
   interface TmpStr {
@@ -766,14 +766,14 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
   try {
     dmInstance.on('replyResult', (data: Data) => {
-      console.log("replyResult executed, dialog closed" + JSON.stringify(data));
+      console.log('replyResult executed, dialog closed' + JSON.stringify(data));
       let tmpStr: TmpStr = JSON.parse(data.param);
       let isShow = tmpStr.verifyFailed;
-      console.log("replyResult executed, dialog closed" + isShow);
+      console.log('replyResult executed, dialog closed' + isShow);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('replyResult errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -781,7 +781,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
-Unsubscribes from the UI operation reply result.
+Unsubscribes from the reply to the UI operation result.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -793,12 +793,12 @@ Unsubscribes from the UI operation reply result.
 
 | Name     | Type                             | Mandatory| Description                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| type     | string                                | Yes  | Event type to unsubscribe from. The value **replyResult** indicates the reply result of the UI operation.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status.|
+| type     | string                                | Yes  | Event type, which has a fixed value of **'replyResult'**.|
+| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -806,7 +806,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     dmInstance.off('replyResult');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('replyResult errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -814,7 +814,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
-Subscribes to changes in the device state.
+Subscribes to the device state changes. The application (identified by the bundle name) will be notified when the device state changes.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -824,12 +824,12 @@ Subscribes to changes in the device state.
 
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.|
 | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -837,20 +837,20 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
   class Data {
     action: deviceManager.DeviceStateChange = 0;
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: "",
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
 
   try {
     dmInstance.on('deviceStateChange', (data: Data) => {
-      console.info("deviceStateChange on:" + JSON.stringify(data));
+      console.info('deviceStateChange on:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceStateChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -858,7 +858,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
-Unsubscribes from changes in the device state.
+Unsubscribes from the device state changes.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -868,12 +868,12 @@ Unsubscribes from changes in the device state.
 
 | Name      | Type                                    | Mandatory  | Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device information and state.|
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
+| callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -881,10 +881,10 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
   class Data {
     action: deviceManager.DeviceStateChange = 0;
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: "",
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
 
@@ -894,7 +894,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceStateChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -902,7 +902,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
 
-Subscribes to device discovery events.
+Subscribes to the **'discoverSuccess'** event. The application will be notified when a device is successfully discovered.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -912,32 +912,32 @@ Subscribes to device discovery events.
 
 | Name      | Type                                    | Mandatory  | Description                        |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates an event of successful device discovery.|
-| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery event.              |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.|
+| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
 
   class Data {
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: "",
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
   
   try {
     dmInstance.on('discoverSuccess', (data: Data) => {
-      console.info("discoverSuccess:" + JSON.stringify(data));
+      console.info('discoverSuccess:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -945,7 +945,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
 
-Unsubscribes from device discovery events.
+Unsubscribes from the **'discoverSuccess'** event.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -955,22 +955,21 @@ Unsubscribes from device discovery events.
 
 | Name      | Type                                    | Mandatory  | Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverSuccess'** indicates a device discovery event.                |
-| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback for the device discovery event.|
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.                |
+| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
 
   class Data {
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: "",
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
 
@@ -980,7 +979,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -988,7 +987,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
 
-Subscribes to device name changes.
+Subscribes to the device name changes. The application will be notified when the name of a device is changed.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -998,26 +997,26 @@ Subscribes to device name changes.
 
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
+| type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
 | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | Yes   | Callback invoked to return the device name change.                |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceName: string = "";
+    deviceName: string = '';
   }
 
   try {
     dmInstance.on('deviceNameChange', (data: Data) => {
-      console.info("deviceNameChange on:" + JSON.stringify(data));
+      console.info('deviceNameChange on:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1025,7 +1024,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void;
 
-Unsubscribes from device name changes.
+Unsubscribes from the device name changes.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1035,17 +1034,17 @@ Unsubscribes from device name changes.
 
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceNameChange'** indicates a device name change event.|
-| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | No   | Callback for the device name change.                |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
+| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | No   | Callback to unregister.                |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceName: string = "";
+    deviceName: string = '';
   }
 
   try {
@@ -1054,7 +1053,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1062,7 +1061,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
-Subscribes to device discovery failures.
+Subscribes to the **'discoverFailure'** event. The application will be notified when a device fails to be discovered. 
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1072,12 +1071,12 @@ Subscribes to device discovery failures.
 
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.|
-| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.|
+| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1087,11 +1086,11 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
   try {
     dmInstance.on('discoverFailure', (data: Data) => {
-      console.info("discoverFailure on:" + JSON.stringify(data));
+      console.info('discoverFailure on:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1099,7 +1098,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): void;
 
-Unsubscribes from device discovery failures.
+Unsubscribes from the **'discoverFailure'** event.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1109,12 +1108,12 @@ Unsubscribes from device discovery failures.
 
 | Name      | Type                                    | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type. The value **'discoverFailure'** indicates an event reported when device discovery fails.    |
-| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure.|
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.    |
+| callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1128,7 +1127,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1136,7 +1135,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
-Subscribes to dead events of the **DeviceManager** service.
+Subscribes to the dead events of the **DeviceManager** service. The application will be notified when the **DeviceManager** service is terminated unexpectedly. 
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1146,22 +1145,22 @@ Subscribes to dead events of the **DeviceManager** service.
 
 | Name      | Type                   | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | Callback&lt;{}&gt; | No   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+| type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
+| callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
-    dmInstance.on("serviceDie", () => {
-      console.info("serviceDie on");
+    dmInstance.on('serviceDie', () => {
+      console.info('serviceDie on');
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('serviceDie errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1169,7 +1168,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
-Unsubscribes from dead events of the **DeviceManager** service.
+Unsubscribes from the dead events of the **DeviceManager** service.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1179,21 +1178,21 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 | Name      | Type                   | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | Callback&lt;{}&gt; | No   | Callback for the dead event of the **DeviceManager** service.                    |
+| type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
+| callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   try {
-    dmInstance.off("serviceDie", () => {
-      console.info("serviceDie off");
+    dmInstance.off('serviceDie', () => {
+      console.info('serviceDie off');
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('serviceDie errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```

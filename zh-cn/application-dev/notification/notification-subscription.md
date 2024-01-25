@@ -43,7 +43,6 @@
    ```ts
    import notificationSubscribe from '@ohos.notificationSubscribe';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. 创建订阅者对象。
@@ -52,23 +51,23 @@
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
-       logger.info(`onConsume callback. req.id: ${req.id}`);
+       console.info(`onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
-       logger.info(`onCancel callback. req.id: ${req.id}`);
+       console.info(`onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {
-       logger.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
+       console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
      },
      onConnect: () => {
-       logger.info(`onConnect callback.}`);
+       console.info(`onConnect callback.}`);
      },
      onDisconnect: () => {
-       logger.info(`onDisconnect callback.}`);
+       console.info(`onDisconnect callback.}`);
      },
      onDestroy: () => {
-       logger.info(`onDestroy callback.}`);
+       console.info(`onDestroy callback.}`);
      },
    };
    ```
@@ -78,7 +77,7 @@
    ```ts
    notificationSubscribe.subscribe(subscriber, (err:Base.BusinessError) => { // callback形式调用异步接口
      if (err) {
-       logger.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
    });

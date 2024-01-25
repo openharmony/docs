@@ -123,7 +123,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
             console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
             return;
           }
-          console.info('Succeeded in hidinging the window.');
+          console.info('Succeeded in hiding the window.');
         });
       });
     });

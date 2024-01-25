@@ -1,4 +1,4 @@
-# Input Kit
+# Input Kit（多模输入服务）
 
 - [Input Kit简介](../device/input-overview.md)
 - 多模开发指导

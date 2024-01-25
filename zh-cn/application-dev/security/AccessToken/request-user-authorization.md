@@ -86,7 +86,7 @@
      if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
        // 已经授权，可以继续访问目标操作
      } else {
-       // 申请日历权限
+       // 申请麦克风权限
      }
    }
    ```

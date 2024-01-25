@@ -356,3 +356,54 @@ struct Index {
 
 [accessStep](../reference/apis/js-apis-webview.md#accessstep)
 
+
+## WebView支持同层渲染吗(API 10)
+
+**解决措施**
+
+1. 支持Video、Map、Camera、Canvas、WebGL、WebView组件同层渲染。
+2. 支持将Web embed标签的id、type、src、width、height、url属性传递给原生组件。
+
+
+## WebView有哪些调试工具，调试工具的用法是什么(API 10)
+
+**解决措施**
+
+setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+
+**参考链接**
+
+[使用Devtools工具调试前端页面（开发指南）](../web/web-debugging-with-devtools.md)
+
+
+## WebView如何实现网络请求拦截功能(API 10)
+
+**解决措施**
+
+可以通过onInterceptRequest()接口实现自定义资源请求响应，该能力可用于自定义Web页面响应、自定义文件资源响应等场景。当Web网页发起资源加载请求时，应用层会收到该请求消息并构造本地资源响应消息发送给Web内核，Web内核根据应用层响应信息进行页面资源加载。
+
+**参考链接**
+
+[自定义页面请求响应（开发指南）](../web/web-resource-interception-request-mgmt.md)
+
+
+## WebView和原生进行通信的方式有哪些，如何实现(API 10)
+
+**解决措施**
+
+1. Native->H5使用runJavaScript接口注入JS进行通信，H5->Native使用registerJavaScriptProy接口。先将Native方法注册至H5侧，H5再通过调用前端方法实现与Native侧的通信。
+2. runJavaScript、registerJavaScriptProy接口同时在NDK侧C API暴露。
+3. 使用onInterceptrequest接口拦截H5侧请求，同时将Native侧数据作为Response返回至H5，实现Native与H5的通信。
+
+**参考链接**
+
+[runJavaScript](../reference/apis/js-apis-webview.md#runjavascriptext10)、[registerJavaScriptProxy](../reference/apis/js-apis-webview.md#registerjavascriptproxy)、[javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)、[onInterceptRequest](../reference/arkui-ts/ts-basic-components-web.md#oninterceptrequest9)
+
+
+## WebView进程模型和渲染机制是什么(API 11)
+
+**解决措施**
+
+1. 进程模型：1个主进程、多个render进程。
+2. 渲染机制：web自渲染。
+

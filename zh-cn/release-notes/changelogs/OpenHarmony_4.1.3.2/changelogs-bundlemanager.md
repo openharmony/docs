@@ -43,19 +43,23 @@
         napi_value fingerprint;
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
+
+        char* appId = OH_NativeBundle_GetAppId();
         // Native接口获取的appId转为js对象里的appId属性
-        napi_value appId;
-        napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
-        napi_set_named_property(env, result, "appId", appId);
+        napi_value napi_appId;
+        napi_create_string_utf8(env, appId, NAPI_AUTO_LENGTH, &napi_appId);
+        napi_set_named_property(env, result, "appId", napi_appId);
+
+        char* appIdentifier = OH_NativeBundle_GetAppIdentifier();
         // Native接口获取的appIdentifier转为js对象里的appIdentifier属性
-        napi_value appIdentifier;
-        napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
-        napi_set_named_property(env, result, "appIdentifier", appIdentifier);
+        napi_value napi_appIdentifier;
+        napi_create_string_utf8(env, appIdentifier, NAPI_AUTO_LENGTH, &napi_appIdentifier);
+        napi_set_named_property(env, result, "appIdentifier", napi_appIdentifier);
         // 最后为了防止内存泄漏，手动释放
         free(nativeApplicationInfo.bundleName);
         free(nativeApplicationInfo.fingerprint);
-        free(nativeApplicationInfo.appId);  // new
-        free(nativeApplicationInfo.appIdentifier);  // new
+        free(appId);
+        free(appIdentifier);
         return result;
     }
 ```

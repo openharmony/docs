@@ -30,7 +30,7 @@ Missions are managed by system applications (such as home screen), rather than t
 
 A UIAbility instance corresponds to an independent mission. Therefore, when an application calls [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility, a mission is created.
 
-1. To call [missionManager](../reference/apis/js-apis-application-missionManager.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system-basic-applications).
+1. To call [missionManager](../reference/apis/js-apis-application-missionManager.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. You can use **missionManager** to manage missions, for example, listening for mission changes, obtaining mission information or snapshots, and clearing, locking, or unlocking missions.
 
@@ -39,8 +39,13 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
    import { BusinessError } from '@ohos.base';
    import image from '@ohos.multimedia.image';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'TaskManager';
    ```
    ```ts
+   private listenerId: number = 0;
+   private missionId: number = 0;
    private listener: missionManager.MissionListener = {
      // Listen for mission creation.
      onMissionCreated: (mission: number) => {
@@ -190,5 +195,3 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
    ```
 
    
-
- <!--no_check--> 

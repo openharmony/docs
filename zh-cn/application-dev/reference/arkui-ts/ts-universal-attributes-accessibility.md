@@ -20,7 +20,7 @@ accessibilityGroup(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 无障碍组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
 
-## accessibilityText<sup>11+</sup>
+## accessibilityText
 
 accessibilityText(value: string)
 
@@ -62,7 +62,7 @@ accessibilityLevel(value: string)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | string | 是   | 无障碍重要性，用于控制某个组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：根据组件不同会转换为“yes”或者“no”。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"<br/>**说明：**<br/>以下组件当accessibilityLevel设置成"auto"时，当前组件可被无障碍辅助服务所识别：Checkbox, CheckboxGroup, Gauge, Marquee, MenuItem, MenuItemGroup, Menu, Navigation,  DatePicker, Progress, Radio, Rating, ScrollBar, Select, Slider, Stepper, Text, TextClock, TextPicker, TextTimer, TimePicker, Toggle, Web. |
 
-## accessibilityVirtualNode
+## accessibilityVirtualNode<sup>11+</sup>
 
 accessibilityVirtualNode(builder: CustomBuilder)
 

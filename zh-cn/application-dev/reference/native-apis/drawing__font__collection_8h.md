@@ -5,13 +5,13 @@
 
 定义绘制模块中与字体集合相关的函数。
 
-**起始版本：**
+**引用文件：**&lt;native_drawing/drawing_font_collection.h&gt;
 
-8
+**库：** libnative_drawing.so
 
-**相关模块：**
+**起始版本：** 8
 
-[Drawing](_drawing.md)
+**相关模块：**[Drawing](_drawing.md)
 
 
 ## 汇总
@@ -19,7 +19,7 @@
 
 ### 函数
 
-| 函数名称 | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建OH_Drawing_FontCollection |
-| [OH_Drawing_DestroyFontCollection](_drawing.md#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*) | 释放被OH_Drawing_FontCollection对象占据的内存 |
+| [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)。 |
+| void [OH_Drawing_DestroyFontCollection](_drawing.md#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 |

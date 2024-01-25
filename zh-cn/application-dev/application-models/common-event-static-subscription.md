@@ -22,9 +22,8 @@
 
    ```ts
    import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import type Base from '@ohos.base';
    import type commonEventManager from '@ohos.commonEventManager';
-   ...
+   import Logger from '../utils/Logger';
    
    const TAG: string = 'StaticSubscriber';
    

@@ -33,3 +33,5 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeBundle_GetCurrentApplicationInfo](native__interface__bundle.md#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身的相关信息。 |
+| [OH_NativeBundle_GetAppId](native__interface__bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
+| [OH_NativeBundle_GetAppIdentifier](native__interface__bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |

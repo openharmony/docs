@@ -32,37 +32,37 @@ Creates a Save button that contains the specified elements.
 | -------- | -------- | -------- | -------- |
 | icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
 | text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#ButtonType) | No| Background style of the Save button.<br>If this parameter is not specified, there is no background.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Save button.<br>If this parameter is not specified, there is no background.|
 
 
 ## SaveIconStyle
 
-| Name| Description|
-| -------- | -------- |
-| FULL_FILLED | Filled style icon.|
-| LINES | Line style icon.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| FULL_FILLED | 0 | Filled style icon.|
+| LINES | 1 | Line style icon.|
 
 
 ## SaveDescription
 
-| Name| Description|
-| -------- | -------- |
-| DOWNLOAD | The text on the Save button is **Download**.|
-| DOWNLOAD_FILE | The text on the Save button is **Download File**.|
-| SAVE | The text on the Save button is **Save**.|
-| SAVE_IMAGE | The text on the Save button is **Save Image**.|
-| SAVE_FILE | The text on the Save button is **Save File**.|
-| DOWNLOAD_AND_SHARE | The text on the Save button is **Download and Share**.|
-| RECEIVE | The text on the Save button is **Receive**.|
-| CONTINUE_TO_RECEIVE | The text on the Save button is **Continue**.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| DOWNLOAD | 0 | The text on the Save button is **Download**.|
+| DOWNLOAD_FILE | 1 | The text on the Save button is **Download File**.|
+| SAVE | 2 | The text on the Save button is **Save**.|
+| SAVE_IMAGE | 3 | The text on the Save button is **Save Image**.|
+| SAVE_FILE | 4 | The text on the Save button is **Save File**.|
+| DOWNLOAD_AND_SHARE | 5 | The text on the Save button is **Download and Share**.|
+| RECEIVE | 6 | The text on the Save button is **Receive**.|
+| CONTINUE_TO_RECEIVE | 7 | The text on the Save button is **Continue**.|
 
 
 ## SaveButtonOnClickResult
 
-| Name| Description|
-| -------- | -------- |
-| SUCCESS | The Save button is touched successfully.|
-| TEMPORARY_AUTHORIZATION_FAILED | Temporary authorization fails after the Save button is touched.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| SUCCESS | 0 | The Save button is touched successfully.|
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Save button is touched.|
 
 
 ## Attributes
@@ -76,7 +76,7 @@ Only the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent)), result: [SaveButtonOnClickResult](#savebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. The authorization is effective for 10 seconds. This means that, a specific media library API can be called, an unlimited number of times, within 10 seconds of the touch. If the API is not called within the 10 seconds, the authorization fails.<br>**event**: For details, see **ClickEvent**.|
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [SaveButtonOnClickResult](#savebuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result. The authorization is effective for 10 seconds. This means that, a specific media library API can be called, an unlimited number of times, within 10 seconds of the touch. If the API is not called within the 10 seconds, the authorization fails.<br>**event**: For details, see **ClickEvent**.|
 
 
 ## Example

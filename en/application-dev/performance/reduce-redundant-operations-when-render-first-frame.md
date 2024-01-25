@@ -28,7 +28,7 @@ On-demand loading, as its name implies, loads resources only when they are neede
 @Entry
 @Component
 struct AllLoad {
-  @State arr: String[] = Array.from(Array(10000), (val,i) =>i.toString());
+  @State arr: String[] = Array.from(Array<string>(10000), (val,i) =>i.toString());
   build() {
     List() {
       ForEach(this.arr, (item: string) => {
@@ -47,14 +47,15 @@ struct AllLoad {
 
 ```ts
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): string {
+    return this.originDataArray[index]
   }
 
   // Register a listener for data changes.
@@ -111,13 +112,13 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = Array.from(Array(10000), (val, i) => i.toString());
+  private dataArray: string[] = Array.from(Array<string>(10000), (val, i) => i.toString());
 
   public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index]
   }
 
@@ -145,7 +146,7 @@ struct SmartLoad {
             .fontSize(20)
             .margin({ left: 10 })
         }
-      }, item => item)
+      }, (item:string) => item)
     }
   }
 }
@@ -163,8 +164,8 @@ The custom component lifecycle **aboutToAppear** is time-consuming and, if not w
 @Entry
 @Component
 struct TaskSync {
-  @State private text: string = undefined;
-  private count: number = undefined;
+  @State private text: string = "";
+  private count: number = 0;
 
   aboutToAppear() {
     this.text = 'hello world';
@@ -199,11 +200,10 @@ import worker from '@ohos.worker';
 @Entry
 @Component
 struct TaskAsync {
-  @State private text: string = undefined;
-  private workerInstance:worker.ThreadWorker
+  @State private text: string = "";
+  private workerInstance:worker.ThreadWorker = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
   aboutToAppear() {
-    this.workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
     // Process messages from the worker thread.
     this.workerInstance.onmessage = (message)=> {
       console.info('message from worker: ' + JSON.stringify(message))
@@ -236,17 +236,17 @@ import worker from '@ohos.worker';
 
 let parentPort = worker.workerPort;
 
-function computeTask(count) {
+function computeTask(count: number) {
   while (count < 100000000) {
     count++;
   }
   return 'task complete'
 }
 // Process messages from the main thread.
-parentPort.onmessage = function(message) {
-  console.info("onmessage: " + JSON.stringify(message))
+parentPort.onmessage = (message) => {
+  console.info("onmessage: " + JSON.stringify(message));
   // Send a message to the main thread.
-  parentPort.postMessage(computeTask(0))
+  parentPort.postMessage(computeTask(0));
 }
 ```
 
@@ -266,7 +266,7 @@ During synchronous loading, images are loaded in the main thread. This means tha
 @Entry
 @Component
 struct SyncLoadImage {
-  @State arr: String[] = Array.from(Array(100), (val,i) =>i.toString());
+  @State arr: String[] = Array.from(Array<string>(100), (val,i) =>i.toString());
   build() {
     Column() {
       Row() {
@@ -294,7 +294,7 @@ struct SyncLoadImage {
 @Entry
 @Component
 struct AsyncLoadImage {
-  @State arr: String[] = Array.from(Array(100), (val,i) =>i.toString());
+  @State arr: String[] = Array.from(Array<string>(100), (val,i) =>i.toString());
     build() {
       Column() {
         Row() {

@@ -1,3 +1,3 @@
-## Contacts Kit
+## Contacts Kit（联系人服务）
 
-- [Contacts Kit简介](../telephony/contacts-overview.md)
+- [Contacts Kit简介](../telephony/contacts-intro.md)

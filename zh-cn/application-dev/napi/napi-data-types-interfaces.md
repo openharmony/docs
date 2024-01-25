@@ -460,6 +460,15 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_queue_async_work | 将异步工作对象加到队列，由底层去调度执行。 | 
 | napi_cancel_async_work | 取消入队的异步任务。 | 
 
+### 自定义异步操作
+
+| 接口 | 功能说明 | 
+| -------- | -------- |
+| napi_async_init | 创建一个异步资源上下文环境（暂不支持与async_hook相关能力）。 | 
+| napi_make_callback | 在异步资源上下文环境中回调JS函数(暂不支持与async_hook相关能力)。|
+| napi_async_destroy | 销毁先前创建的异步资源上下文环境（暂不支持与async_hook相关能力）。| 
+| napi_open_callback_scope | 创建一个回调作用域（暂不支持与async_hook相关能力）。 | 
+| napi_close_callback_scope | 关闭先前创建的回调作用域（暂不支持与async_hook相关能力）。| 
 
 ### 判断给定的两个JS value是否严格相等
 
@@ -508,3 +517,29 @@ napi_status napi_run_script_path(napi_env env,
                                  const char* abcPath,
                                  napi_value* result);
 ```
+
+
+### 环境生命周期
+
+| 接口 | 功能说明 | 
+| -------- | -------- |
+| napi_set_instance_data | 绑定与当前运行的环境相关联的数据项。 | 
+| napi_get_instance_data | 检索与当前运行的环境相关联的数据项。| 
+
+
+### 对象生命周期管理
+
+| 接口 | 功能说明 | 
+| -------- | -------- |
+| napi_add_env_cleanup_hook | 注册环境清理钩子函数。 | 
+| napi_remove_env_cleanup_hook | 取消环境清理钩子函数。| 
+| napi_add_async_cleanup_hook | 注册清理异步钩子函数。 | 
+| napi_remove_async_cleanup_hook | 取消清理异步钩子函数。| 
+
+
+### 其他实用工具
+
+| 接口 | 功能说明 | 
+| -------- | -------- |
+| node_api_get_module_file_name | 用于获取加载项加载位置的绝对路径。| 
+

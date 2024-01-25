@@ -76,7 +76,7 @@ export default class EntryAbility extends UIAbility {
         }
       });
     } catch (exception) {
-      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + 		               JSON.stringify(exception));
+      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
 
     // 设置UI加载

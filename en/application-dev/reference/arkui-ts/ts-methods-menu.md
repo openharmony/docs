@@ -1,6 +1,6 @@
 # Menu
 
-The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#attributes) on a page can be closed as needed.
+The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page can be closed as needed.
 
 >  **NOTE**
 >
@@ -11,7 +11,7 @@ The menu bound to a component through [bindContextMenu](./ts-universal-attribute
 
 |Name|Description|
 |----|---|
-| close(): void | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#attributes) on a page.|
+| close() | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page.|
 
 
 ## Example

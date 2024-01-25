@@ -23,7 +23,7 @@ Not supported
 ## Attributes
 The [universal attributes](ts-universal-attributes-size.md) are supported.
 
-## APIs
+## ToolBar
 
 Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
 
@@ -33,18 +33,14 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| toolBarList | [ToolBarOptions](#toolbaroptions) | Yes| Toolbar list.| 
-| activateIndex | number | No| Index of the active option.<br>Default value: **1**| 
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | Yes| Style of the filter.| 
+| Name| Type| Mandatory| Decorator      | Description                 | 
+| -------- | -------- | -------- |-------------|---------------------|
+| toolBarList | [ToolBarOptions](#toolbaroptions) | Yes| @ObjectLink | Toolbar list.             | 
+| activateIndex | number | No| @Prop       | Index of the active option.<br>Default value: **1**| 
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | Yes| -           | Style of the filter.          | 
 
 
 ## ToolBarOptions
-
-Inherited from **Array\<ToolBarOption>**.
-
-**ToolBarOption**
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
@@ -56,11 +52,11 @@ Inherited from **Array\<ToolBarOption>**.
 
 ## ItemState
 
-| Name| Description| 
-| -------- | -------- |
-| ENABLE | The toolbar option is enabled.| 
-| DISABLE | The toolbar option is disabled.| 
-| ACTIVATE | The toolbar option is activated.| 
+| Name| Value| Description| 
+| -------- | -------- | -------- |
+| ENABLE | 1 | The toolbar option is enabled.| 
+| DISABLE | 2 | The toolbar option is disabled.| 
+| ACTIVATE | 3 | The toolbar option is activated.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -69,39 +65,52 @@ The [universal events](ts-universal-events-click.md) are supported.
 
 ```ts
 import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+
+enum ItemState {
+  ENABLE = 1,
+  DISABLE = 2,
+  ACTIVATE = 3
+}
+
 @Entry
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions()
-    aboutToAppear() {
-    this.toolbarList.push({ text: 'Cut Super Long Text',
+  aboutToAppear() {
+    this.toolbarList.push({
+      content:'Cut Super Long Text',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: 'Copy',
+    this.toolbarList.push({
+      content: 'Copy',
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state:2
+      state:ItemState.DISABLE
     })
-    this.toolbarList.push({ text: 'Paste',
+    this.toolbarList.push({
+      content: 'Paste',
       icon: $r('sys.media.ohos_ic_public_paste'),
       action: () => {
       },
-      state:3
+      state:ItemState.ACTIVATE
     })
-    this.toolbarList.push({ text: 'Select All',
+    this.toolbarList.push({
+      content:'Select All',
       icon: $r('sys.media.ohos_ic_public_select_all'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: 'Share',
+    this.toolbarList.push({
+      content: 'Share',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
     })
-    this.toolbarList.push({ text: 'Share',
+    this.toolbarList.push({
+      content: 'Share',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
@@ -110,24 +119,10 @@ struct Index {
   build() {
     Row() {
       Stack() {
-        Column(){
-          Button ("Delete Item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.pop()
-            })
-          Button ("Add Item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.push(this.toolbarList[1])
-            })
-        }.margin({bottom: 300})
         Column() {
           ToolBar({
-            currentIndex: 2,
-            hwToolBarList: this.toolbarList,
+            activateIndex: 2,
+            toolBarList: this.toolbarList,
           })
         }
       }.align(Alignment.Bottom)

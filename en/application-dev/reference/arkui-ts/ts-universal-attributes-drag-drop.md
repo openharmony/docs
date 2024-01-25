@@ -56,13 +56,13 @@ Sets the preview displayed when the component is dragged
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#attributes), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#events) is lower than that of the preview set in [dragPreview](#dragpreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../apis/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br>Default value: empty<br>|
+| value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#attributes), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#events) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#attributes). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../apis/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br>Default value: empty<br>|
 
 ## dragPreviewOptions<sup>11+</sup>
 
 dragPreviewOptions(value: DragPreviewOptions)
 
-How the background image is processed when the component is dragged.
+Sets how the drag preview is processed when the component is dragged. This API works only for **onDragStart**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ How the background image is processed when the component is dragged.
 
 | Name| Type                                                     | Mandatory| Description                                                        |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | Yes  | How the background image is processed when the component is dragged.<br>Default value: **DragPreviewMode.AUTO**|
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | Yes  | How the drag preview is processed when the component is dragged.<br>Default value: empty|
 
 ## DragPreviewOptions<sup>11+</sup>
 

@@ -234,6 +234,7 @@
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (Layout Callback)](js-apis-arkui-inspector.md)
+  - [@ohos.arkui.observer (Observer)](js-apis-arkui-observer.md)
   - [@ohos.arkui.performanceMonitor (Performance Monitor)](js-apis-arkui-performancemonitor.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
@@ -245,13 +246,15 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-
+  
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
   - [@ohos.display (Display)](js-apis-display.md)
   - [@ohos.effectKit (Image Effects)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (Color Space Management)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.displaySync (Variable Frame Rate)](js-apis-graphics-displaySync.md)
+  - [@ohos.graphics.hdrCapability (HDR Capability)](js-apis-hdrCapability.md)
   - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
   - [@ohos.screen (Screen)](js-apis-screen.md)
   - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
@@ -360,7 +363,7 @@
   - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
-  
+
 - Connectivity
   - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended)](js-apis-bluetooth-a2dp.md)
   - [@ohos.bluetooth.access (Bluetooth Access Module) (Recommended)](js-apis-bluetooth-access.md)
@@ -372,8 +375,8 @@
   - [@ohos.bluetooth.hid (Bluetooth hid Module) (Recommended)](js-apis-bluetooth-hid.md)
   - [@ohos.bluetooth.pan (Bluetooth pan Module) (Recommended)](js-apis-bluetooth-pan.md)
   - [@ohos.bluetooth.socket (Bluetooth socket Module) (Recommended)](js-apis-bluetooth-socket.md)
-  - [@ohos.bluetooth.pbap(Bluetooth PBAP Module) (Recommended)](js-apis-bluetooth-pbap.md)
-  - [@ohos.bluetooth.map (Bluetooth MAP module) (Recommended)](js-apis-bluetooth-map.md)
+  - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended)](js-apis-bluetooth-pbap.md)
+  - [@ohos.bluetooth.map (Bluetooth MAP Module) (Recommended)](js-apis-bluetooth-map.md)
   - [@ohos.bluetooth.wearDetection (Bluetooth Wear Detection Module) (Recommended)](js-apis-bluetooth-wearDetection.md)
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetoothManager.md)
@@ -473,7 +476,7 @@
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-  
+
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
@@ -529,6 +532,8 @@
 
 - Application services
   - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
+  - [@ohos.advertising (Ads Service Framework](js-apis-advertising.md)
+  - [@ohos.advertising.AdsServiceExtensionAbility (ExtensionAbility for Ads](js-apis-adsserviceextensionability.md)
 
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

@@ -105,41 +105,117 @@ On device A, touch the **Start** button provided by the initiator application to
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
+   import promptAction from '@ohos.promptAction';
+   import deviceManager from '@ohos.distributedDeviceManager';
+   import common from '@ohos.app.ability.common';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
+   let dmClass: deviceManager.DeviceManager;
    
-   let want: Want = {
-     deviceId: getRemoteDeviceId(),
-     bundleName: 'com.samples.stagemodelabilityinteraction',
-     abilityName: 'CollaborateAbility'
+   function getRemoteDeviceId(): string | undefined {
+     if (typeof dmClass === 'object' && dmClass !== null) {
+       let list = dmClass.getAvailableDeviceListSync();
+       hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
+       if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
+         hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+         return;
+       }
+       if (list.length === 0) {
+         hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+         return;
+       }
+       return list[0].networkId;
+     } else {
+       hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+       return;
+     }
+   };
+   
+   @Entry
+   @Component
+   struct Page_CollaborateAbility {
+     private context = getContext(this) as common.UIAbilityContext;
+   
+     build() {
+       // ...
+       Button('startAbility')
+         .onClick(() => {
+           let want: Want = {
+             deviceId: getRemoteDeviceId(),
+             bundleName: 'com.samples.stagemodelabilityinteraction',
+             abilityName: 'CollaborateAbility'
+           }
+           this.context.startAbility(want).then(() => {
+             promptAction.showToast({
+               message: $r('app.string.SuccessfulCollaboration')
+             });
+           }).catch((err: BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
+           });
+         }
+         )
+     }
    }
-   this.context.startAbility(want).then(() => {
-     promptAction.showToast({
-       message: $r('app.string.SuccessfulCollaboration')
-     });
-   }).catch((err: BusinessError) => {
-     hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
-   });
+
    ```
 
 5. Call [stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
 
    ```ts
    import Want from '@ohos.app.ability.Want';
+   import hilog from '@ohos.hilog';
    import { BusinessError } from '@ohos.base';
-   let want: Want = {
-       deviceId: getRemoteDeviceId(),
-       bundleName: 'com.example.myapplication',
-       abilityName: 'FuncAbility',
-       moduleName: 'module1', // moduleName is optional.
+   import deviceManager from '@ohos.distributedDeviceManager';
+   import common from '@ohos.app.ability.common';
+   
+   const TAG: string = '[Page_CollaborateAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   let dmClass: deviceManager.DeviceManager;
+   
+   function getRemoteDeviceId(): string | undefined {
+     if (typeof dmClass === 'object' && dmClass !== null) {
+       let list = dmClass.getAvailableDeviceListSync();
+       hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
+       if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
+         hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+         return;
+       }
+       if (list.length === 0) {
+         hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+         return;
+       }
+       return list[0].networkId;
+     } else {
+       hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+       return;
+     }
+   };
+   
+   @Entry
+   @Component
+   struct Page_CollaborateAbility {
+     private context = getContext(this) as common.UIAbilityContext;
+   
+     build() {
+       // ...
+       Button('stopServiceExtensionAbility')
+         .onClick(() => {
+           let want: Want = {
+             deviceId: getRemoteDeviceId(),
+             bundleName: 'com.example.myapplication',
+             abilityName: 'FuncAbility',
+             moduleName: 'module1', // moduleName is optional.
+           }
+           // Stop the ServiceExtensionAbility started by calling startAbility().
+           this.context.stopServiceExtensionAbility(want).then(() => {
+             console.info("stop service extension ability success")
+           }).catch((err: BusinessError) => {
+             console.info("stop service extension ability err is " + JSON.stringify(err))
+           })
+         })
+     }
    }
-   // Stop the ServiceExtensionAbility started by calling startAbility().
-   this.context.stopServiceExtensionAbility(want).then(() => {
-       console.info("stop service extension ability success")
-   }).catch((err: BusinessError) => {
-       console.info("stop service extension ability err is " + JSON.stringify(err))
-   })
    ```
 
 ## Starting UIAbility Across Devices (Data Returned)
@@ -170,34 +246,56 @@ On device A, touch the **Start** button provided by the initiator application to
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
    import { BusinessError } from '@ohos.base';
+   import Want from '@ohos.app.ability.Want';
+   import deviceManager from '@ohos.distributedDeviceManager';
    
    const DOMAIN_NUMBER: number = 0xFF00;
    const TAG: string = '[Page_CollaborateAbility]';
+   let dmClass: deviceManager.DeviceManager;
+   
+   function getRemoteDeviceId(): string | undefined {
+     if (typeof dmClass === 'object' && dmClass !== null) {
+       let list = dmClass.getAvailableDeviceListSync();
+       hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
+       if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
+         hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+         return;
+       }
+       if (list.length === 0) {
+         hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+         return;
+       }
+       return list[0].networkId;
+     } else {
+       hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+       return;
+     }
+   };
    
    @Entry
    @Component
    struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
-     
-      build() {
-        // ...
-        Button ('Data returned for multi-device collaboration')
-          .onClick(()=>{
-            let want: Want = {
-              deviceId: getRemoteDeviceId(),
-              bundleName: 'com.samples.stagemodelabilityinteraction',
-              abilityName: 'CollaborateAbility',
-              moduleName: 'entry', // moduleName is optional.
-            };
+     private context = getContext(this) as common.UIAbilityContext;
+   
+     build() {
+       // ...
+       Button ('Data returned for multi-device collaboration')
+         .onClick(()=>{
+           let want: Want = {
+             deviceId: getRemoteDeviceId(),
+             bundleName: 'com.samples.stagemodelabilityinteraction',
+             abilityName: 'CollaborateAbility',
+             moduleName: 'entry', // moduleName is optional.
+           };
            // context is the AbilityContext of the initiator UIAbility.
            this.context.startAbilityForResult(want).then((data) => {
-               // ...
+             // ...
            }).catch((error: BusinessError) => {
-               hilog.error(DOMAIN_NUMBER, TAG, `startAbilityForResult err: ` + JSON.stringify(error));
+             hilog.error(DOMAIN_NUMBER, TAG, `startAbilityForResult err: ` + JSON.stringify(error));
            })
-          }
-        )
-      }
+         }
+         )
+     }
    }
    ```
 
@@ -249,44 +347,62 @@ On device A, touch the **Start** button provided by the initiator application to
    import common from '@ohos.app.ability.common';
    import deviceManager from '@ohos.distributedDeviceManager';
    import hilog from '@ohos.hilog';
-   import promptAction from '@ohos.promptAction'
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
+   let dmClass: deviceManager.DeviceManager;
+   
+   function getRemoteDeviceId(): string | undefined {
+     if (typeof dmClass === 'object' && dmClass !== null) {
+       let list = dmClass.getAvailableDeviceListSync();
+       hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
+       if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
+         hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+         return;
+       }
+       if (list.length === 0) {
+         hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+         return;
+       }
+       return list[0].networkId;
+     } else {
+       hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+       return;
+     }
+   };
    
    @Entry
    @Component
    struct PageName {
-     
-      private context = getContext(this) as common.UIAbilityContext;
-     
-      build() {
-        // ...
-        Button ('Data returned for multi-device collaboration')
-          .onClick(()=>{
-             let want: Want = {
-               deviceId: getRemoteDeviceId(),
-               bundleName: 'com.samples.stagemodelabilityinteraction',
-               abilityName: 'CollaborateAbility',
-               moduleName: 'entry', // moduleName is optional.
-             };
-            const RESULT_CODE: number = 1001;
-            // ...
-            // context is the UIAbilityContext of the initiator UIAbility.
-            this.context.startAbilityForResult(want).then((data) => {
-                if (data?.resultCode === RESULT_CODE) {
-                    // Parse the information returned by the target UIAbility.
-                    let info = data.want?.parameters?.info;
-                    // ...
-                }
-            }).catch((error: BusinessError) => {
-                // ...
-            })
-          }
-        )
-      }
+     private context = getContext(this) as common.UIAbilityContext;
+   
+     build() {
+       // ...
+       Button ('Data returned for multi-device collaboration')
+         .onClick(() => {
+           let want: Want = {
+             deviceId: getRemoteDeviceId(),
+             bundleName: 'com.samples.stagemodelabilityinteraction',
+             abilityName: 'CollaborateAbility',
+             moduleName: 'entry', // moduleName is optional.
+           };
+           const RESULT_CODE: number = 1001;
+           // ...
+           // context is the UIAbilityContext of the initiator UIAbility.
+           this.context.startAbilityForResult(want).then((data) => {
+             if (data?.resultCode === RESULT_CODE) {
+               // Parse the information returned by the target UIAbility.
+               let info = data.want?.parameters?.info;
+               // ...
+             }
+           }).catch((error: BusinessError) => {
+             // ...
+           })
+         }
+         )
+     }
    }
    ```
 
@@ -313,7 +429,7 @@ A system application can connect to a service on another device by calling [conn
 
 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
-3. (Optional) [Implement a background service](serviceextensionability.md#implementing-a-background-service). Perform this operation only if no background service is available. This operation is available only for system applications.
+3. (Optional) [Implement a background service](serviceextensionability.md#implementing-a-background-service-for-system-applications-only). Perform this operation only if no background service is available. This operation is available only for system applications.
 
 4. Connect to the background service.
    - Implement the **IAbilityConnection** class. **IAbilityConnection** provides the following callbacks that you should implement: **onConnect()**, **onDisconnect()**, and **onFailed()**. The **onConnect()** callback is invoked when a service is connected, **onDisconnect()** is invoked when a service is unexpectedly disconnected, and **onFailed()** is invoked when the connection to a service fails.
@@ -331,12 +447,11 @@ A system application can connect to a service on another device by calling [conn
       import rpc from '@ohos.rpc';
       import Want from '@ohos.app.ability.Want';
       import { BusinessError } from '@ohos.base';
-      import { Caller } from '@ohos.app.ability.UIAbility';
-      
+
       const TAG: string = '[Page_CollaborateAbility]';
       const DOMAIN_NUMBER: number = 0xFF00;
       const REQUEST_CODE = 1;
-      
+      let dmClass: deviceManager.DeviceManager;
       let connectionId: number;
       let options: common.ConnectOptions = {
         onConnect(elementName, remote) {
@@ -378,7 +493,26 @@ A system application can connect to a service on another device by calling [conn
           hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback');
         }
       };
-      
+
+      function getRemoteDeviceId(): string | undefined {
+        if (typeof dmClass === 'object' && dmClass !== null) {
+          let list = dmClass.getAvailableDeviceListSync();
+          hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
+          if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
+            hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+            return;
+          }
+          if (list.length === 0) {
+            hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+            return;
+          }
+          return list[0].networkId;
+        } else {
+          hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+          return;
+        }
+      }
+
       @Entry
       @Component
       struct PageName {
@@ -387,14 +521,14 @@ A system application can connect to a service on another device by calling [conn
           // ...
           Button('connectServiceExtensionAbility')
             .onClick(()=>{
-            let want: Want = {
-              'deviceId': getRemoteDeviceId(),
-              'bundleName': 'com.samples.stagemodelabilityinteraction',
-              'abilityName': 'ServiceExtAbility'
-            };
-            // The ID returned after the connection is set up must be saved. The ID will be passed for service disconnection.
-            connectionId = this.context.connectServiceExtensionAbility(want, options);
-          })
+              let want: Want = {
+                'deviceId': getRemoteDeviceId(),
+                'bundleName': 'com.samples.stagemodelabilityinteraction',
+                'abilityName': 'ServiceExtAbility'
+              };
+              // The ID returned after the connection is set up must be saved. The ID will be passed for service disconnection.
+              connectionId = this.context.connectServiceExtensionAbility(want, options);
+            })
         }
       }
       ```
@@ -406,24 +540,66 @@ A system application can connect to a service on another device by calling [conn
    ```ts
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
+   import promptAction from '@ohos.promptAction';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   import rpc from '@ohos.rpc';
+   import Logger from '../../utils/Logger';
+   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
+   
+   let connectionId: number;
+   const TAG: string = '[Page_ServiceExtensionAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   let want: Want = {
+     deviceId: '',
+     bundleName: 'com.samples.stagemodelabilitydevelop',
+     abilityName: 'ServiceExtAbility'
+   };
+   
+   let options: common.ConnectOptions = {
+     onConnect(elementName, remote: rpc.IRemoteObject): void {
+       Logger.info('onConnect callback');
+       if (remote === null) {
+         Logger.info(`onConnect remote is null`);
+         return;
+       }
+       let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
+       // Communication is carried out by API calling, without exposing RPC details.
+       serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
+         Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+       });
+       serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
+         Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+       })
+     },
+     onDisconnect(elementName): void {
+       Logger.info('onDisconnect callback');
+     },
+     onFailed(code: number): void {
+       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
+     }
+   };
+   
    @Entry
    @Component
    struct PageName {
      private context = getContext(this) as common.UIAbilityContext;
+   
      build() {
        // ...
        Button('disconnectServiceExtensionAbility')
-         .onClick(()=>{
-         this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
-           Logger.info('disconnectServiceExtensionAbility success');
-           // The background service is disconnected.
-           promptAction.showToast({
-             message: $r('app.string.SuccessfullyDisconnectBackendService')
+         .onClick(() => {
+           this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
+             connectionId = this.context.connectServiceExtensionAbility(want, options);
+             Logger.info('disconnectServiceExtensionAbility success');
+             // The background service is disconnected.
+             promptAction.showToast({
+               message: $r('app.string.SuccessfullyDisconnectBackendService')
+             })
+           }).catch((error: BusinessError) => {
+             Logger.error('disconnectServiceExtensionAbility failed');
            })
-         }).catch((error: BusinessError) => {
-           Logger.error('disconnectServiceExtensionAbility failed');
          })
-       })
      }
    }
    ```
@@ -504,7 +680,7 @@ The following describes how to implement multi-device collaboration through cros
              this.str = string;
            }
          
-           mySequenceable(num, string): void {
+           mySequenceable(num: number, string: string): void {
              this.num = num;
              this.str = string;
            }
@@ -533,49 +709,87 @@ The following describes how to implement multi-device collaboration through cros
          import hilog from '@ohos.hilog';
          import Logger from '../utils/Logger';
          import type rpc from '@ohos.rpc';
-         import type window from '@ohos.window';
          import type { Caller } from '@ohos.app.ability.UIAbility';
-         
+		 
          const TAG: string = '[CalleeAbility]';
          const MSG_SEND_METHOD: string = 'CallSendMsg';
          const DOMAIN_NUMBER: number = 0xFF00;
-         
+		 
+         class MyParcelable {
+           num: number = 0;
+           str: string = '';
+		 
+           constructor(num: number, string: string) {
+             this.num = num;
+             this.str = string;
+           };
+		 
+           mySequenceable(num: number, string: string): void {
+             this.num = num;
+             this.str = string;
+           };
+		 
+           marshalling(messageSequence: rpc.MessageSequence): boolean {
+             messageSequence.writeInt(this.num);
+             messageSequence.writeString(this.str);
+             return true;
+           };
+		 
+           unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+             this.num = messageSequence.readInt();
+             this.str = messageSequence.readString();
+             return true;
+           };
+         };
+		 
          function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
            hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
-         
+		 
            // Obtain the parcelable data sent by the CallerAbility.
            let receivedData: MyParcelable = new MyParcelable(0, '');
            data.readParcelable(receivedData);
            hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
            let num: number = receivedData.num;
-         
+		 
            // Process the data.
            // Return the parcelable data result to the CallerAbility.
            return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
          }
-         
+		 
          export default class CalleeAbility extends UIAbility {
            caller: Caller | undefined;
-         
+		 
            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
              try {
                this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-        } catch (error) {
-               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+             } catch (error) {
+               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`)
              };
            }
-         
+		 
            onDestroy(): void {
              try {
                this.callee.off(MSG_SEND_METHOD);
                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
                this.releaseCall();
              } catch (error) {
-               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`)
              };
            }
+		 
+           releaseCall(): void {
+             try {
+               if (this.caller) {
+                 this.caller.release();
+                 this.caller = undefined;
+               }
+               Logger.info('caller release succeed');
+             } catch (error) {
+               Logger.info(`caller release failed with ${error}`)
+             };
+           };
          }
-        ```
+         ```
      
 4. Obtain the caller object and access the CalleeAbility.
    1. Import the **UIAbility** module.
@@ -589,52 +803,79 @@ The following describes how to implement multi-device collaboration through cros
 
        
        ```ts
-       import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
+       import { Caller } from '@ohos.app.ability.UIAbility';
        import { BusinessError } from '@ohos.base';
        import common from '@ohos.app.ability.common';
        import deviceManager from '@ohos.distributedDeviceManager';
        import hilog from '@ohos.hilog';
        import Logger from '../../utils/Logger';
        import promptAction from '@ohos.promptAction';
-       import rpc from '@ohos.rpc';
-       import Want from '@ohos.app.ability.Want';
-       import { BusinessError } from '@ohos.base';
-       import { Caller } from '@ohos.app.ability.UIAbility';
-       
+	      
        const TAG: string = '[Page_CollaborateAbility]';
        const DOMAIN_NUMBER: number = 0xFF00;
-       
        let caller: Caller | undefined;
-       let context = this.context;
-       
-       context.startAbilityByCall({
-         deviceId: getRemoteDeviceId(),
-         bundleName: 'com.samples.stagemodelabilityinteraction',
-         abilityName: 'CalleeAbility'
-       }).then((data) => {
-         if (data !== null) {
-           caller = data;
-           Logger.info('get remote caller success');
-           // Register the onRelease listener of the CallerAbility.
-           caller.onRelease((msg) => {
-             Logger.info(`remote caller onRelease is called ${msg}`);
-           })
-           Logger.info('remote caller register OnRelease succeed');
-           promptAction.showToast({
-             message: $r('app.string.CallerSuccess')
-           });
-           // Register the onRemoteStateChange listener of the CallerAbility.
-           try {
-             caller.onRemoteStateChange((str) => {
-        Logger.info('Remote state changed ' + str);
-             });
-        } catch (error) {
-             Logger.info(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-           };
+       let dmClass: deviceManager.DeviceManager;
+	      
+       function getRemoteDeviceId(): string | undefined {
+         if (typeof dmClass === 'object' && dmClass !== null) {
+           let list = dmClass.getAvailableDeviceListSync();
+           hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass), JSON.stringify(list));
+           if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
+             hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: list is null');
+             return;
+           }
+           if (list.length === 0) {
+             hilog.info(DOMAIN_NUMBER, TAG, `getRemoteDeviceId err: list is empty`);
+             return;
+           }
+           return list[0].networkId;
+         } else {
+           hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
+           return;
          }
-       }).catch((error: BusinessError) => {
-         Logger.error(`get remote caller failed with ${error}`);
-       });
+       }
+	      
+       @Entry
+       @Component
+       struct Page_CollaborateAbility {
+         private context = getContext(this) as common.UIAbilityContext;
+	      
+         build() {
+           // ...
+           Button ('Data returned for multi-device collaboration')
+             .onClick(() => {
+               this.context.startAbilityByCall({
+                 deviceId: getRemoteDeviceId(),
+                 bundleName: 'com.samples.stagemodelabilityinteraction',
+                 abilityName: 'CalleeAbility'
+               }).then((data) => {
+                 if (data !== null) {
+                   caller = data;
+                   Logger.info('get remote caller success');
+                   // Register the onRelease listener of the CallerAbility.
+                   caller.onRelease((msg) => {
+                     Logger.info(`remote caller onRelease is called ${msg}`);
+                   })
+                   Logger.info('remote caller register OnRelease succeed');
+                   promptAction.showToast({
+                     message: $r('app.string.CallerSuccess')
+                   });
+                   // Register the onRemoteStateChange listener of the CallerAbility.
+                   try {
+                     caller.onRemoteStateChange((str) => {
+                       Logger.info('Remote state changed ' + str);
+                     });
+                   } catch (error) {
+                     Logger.info(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                   };
+                 }
+               }).catch((error: BusinessError) => {
+                 Logger.error(`get remote caller failed with ${error}`);
+               });
+             }
+             )
+         }
+       }
        ```
        
        For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
@@ -644,13 +885,39 @@ The following describes how to implement multi-device collaboration through cros
       
        ```ts
        import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
-       import { BusinessError } from '@ohos.base';
+       import type rpc from '@ohos.rpc';
        import Logger from '../utils/Logger';
-       
+	      
        const MSG_SEND_METHOD: string = 'CallSendMsg';
-       
+       class MyParcelable {
+         num: number = 0;
+         str: string = '';
+	      
+         constructor(num: number, string: string) {
+           this.num = num;
+           this.str = string;
+         };
+	      
+         mySequenceable(num: number, string: string): void {
+           this.num = num;
+           this.str = string;
+         };
+	      
+         marshalling(messageSequence: rpc.MessageSequence): boolean {
+           messageSequence.writeInt(this.num);
+           messageSequence.writeString(this.str);
+           return true;
+         };
+	      
+         unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+           this.num = messageSequence.readInt();
+           this.str = messageSequence.readString();
+           return true;
+         };
+       };
+	      
        export default class EntryAbility extends UIAbility {
-        // ...
+         // ...
          caller: Caller | undefined;
          async onButtonCall(): Promise<void> {
            try {
@@ -662,7 +929,7 @@ The following describes how to implement multi-device collaboration through cros
              Logger.info(`caller call failed with ${error}`);
            };
          }
-        // ...
+         // ...
        }
        ```
    2. In the following, **CallWithResult** is used to send data **originMsg** to the CalleeAbility and assign the data processed by the **CallSendMsg** method to **backMsg**.
@@ -671,12 +938,36 @@ The following describes how to implement multi-device collaboration through cros
         import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
         import rpc from '@ohos.rpc';
         import Logger from '../utils/Logger';
-        import type { Caller } from '@ohos.app.ability.UIAbility';
-        
+
         const MSG_SEND_METHOD: string = 'CallSendMsg';
-        let originMsg: string = '';
-        let backMsg: string = '';
-        
+
+        class MyParcelable {
+          num: number = 0;
+          str: string = '';
+
+          constructor(num: number, string: string) {
+            this.num = num;
+            this.str = string;
+          };
+
+          mySequenceable(num: number, string: string): void {
+            this.num = num;
+            this.str = string;
+          };
+
+          marshalling(messageSequence: rpc.MessageSequence): boolean {
+            messageSequence.writeInt(this.num);
+            messageSequence.writeString(this.str);
+            return true;
+          };
+
+          unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+            this.num = messageSequence.readInt();
+            this.str = messageSequence.readString();
+            return true;
+          };
+        };
+
         export default class EntryAbility extends UIAbility {
           // ...
           caller: Caller | undefined;
@@ -691,11 +982,11 @@ The following describes how to implement multi-device collaboration through cros
                 backMsg = result.str;
                 Logger.info(`caller result is [${result.num}, ${result.str}]`);
               }
-         } catch (error) {
+            } catch (error) {
               Logger.info(`caller callWithResult failed with ${error}`);
             };
           }
-            // ...
+          // ...
         }
         ```
    
@@ -706,7 +997,6 @@ The following describes how to implement multi-device collaboration through cros
    ```ts
    import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
    import Logger from '../utils/Logger';
-   import type { Caller } from '@ohos.app.ability.UIAbility';
    
    export default class EntryAbility extends UIAbility {
      caller: Caller | undefined;
@@ -724,4 +1014,3 @@ The following describes how to implement multi-device collaboration through cros
    }
    ```
 
- <!--no_check--> 

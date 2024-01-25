@@ -1,26 +1,6 @@
 # AccessibilityExtensionAbility
 
-AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的辅助应用，协助用户完成一些快捷的交互过程。
-
-## AccessibilityExtensionAbility概述
-
-“信息无障碍”译自“Accessibility”，是指任何人在任何情况下都能平等、方便地获取信息并利用信息。其目的是缩小全社会不同阶层、不同地区、不同年龄、不同健康状况的人群在信息理解、信息交互、信息利用方面的数字鸿沟，使其更加方便地参与社会生活，享受数字发展带来的便利。
-
-AccessibilityExtensionAbility为无障碍扩展服务框架，允许三方开发自己的扩展服务，提供在应用程序和扩展服务之间交换信息的标准机制，以便为各种障碍人群和障碍场景提供辅助能力，增强用户的无障碍使用体验。例如在使用微信时，利用辅助应用旁白，用户可以“听见”当前屏幕内容。
-
-![AccessibilityFramework](figures/AccessibilityFramework.png)
-
-1. Accessibility App：开发者基于无障碍扩展服务框架扩展出来的辅助应用，如视障用户使用的读屏App。
-2. Tartget App：被Accessibility App辅助的目标应用。
-3. AccessibilityAbilityManagerService（AAMS）：无障碍扩展服务框架主服务，用于对Accessibility App生命周期进行管理，同时为Accessibility App和Target App提供信息交互的桥梁。
-4. AccessibilityAbility（AAkit）：Accessibility App利用AAkit构建扩展服务Ability运行环境，并为Accessibility App提供可查询和操作Target App的接口，如查询节点信息、对节点执行点击/长按操作等。
-5. AccessibilitySystemAbilityClient（ASACkit）：Target App通过ASACkit向AAMS发送无障碍事件，如内容变化事件等，同时响应Accessibility App通过AAMS请求的指令，如查询节点信息、对节点执行点击/长按操作等。
-
-## Accessibility目前提供的能力介绍
-
-1. 提供辅助功能查询能力，包括获取辅助应用列表、辅助应用启用状态、辅助应用类型、发送无障碍事件等，具体API接口可参考[@ohos.accessibility](../reference/apis/js-apis-accessibility.md)；
-2. 提供无障碍扩展服务连接、断开连接、指定辅助事件及物理按键等事件的回调，具体API接口可参考[@ohos.application.AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md)；
-3. 提供辅助功能扩展的上下文环境的能力，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等，具体API接口可参考[AccessibilityExtensionContext ](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)；其中，创建注入手势所需的路径信息可参考[@ohos.accessibility.GesturePath](../reference/apis/js-apis-accessibility-GesturePath.md)；创建注入手势所需的手势路径的触摸点信息可参考[ohos.accessibility.GesturePoint](../reference/apis/js-apis-accessibility-GesturePoint.md)。
+Accessibility Kit（无障碍开发服务）通过基于ExtensionAbility框架的AccessibilityExtensionAbility提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的扩展服务，协助用户完成一些快捷的交互过程。
 
 ## 如何创建一个无障碍扩展服务
 
@@ -250,10 +230,11 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 
 当前提供设备-设置中的扩展服务管理页的开关按钮来开启/关闭选择的无障碍扩展服务：  
 
-- 打开设备设置页面，进入“辅助功能”，“扩展服务”小标题下的“已安装的服务”显示当前安装的扩展服务个数，点击进入，展示安装的扩展服务列表；  
-未安装扩展服务时，“已安装的扩展服务”不可点击，并显示“无服务”；<br>
-- 选择需要开启/关闭的扩展服务，通过开关按钮进行扩展服务的开启/关闭；  
-- 开启时，弹出安全提醒，在倒计时结束后，勾选“我已知晓如上风险，并自愿承担可能导致的后果。”后，可选择“开启”/“不开启”按钮；  关闭时，将开启的开关关闭，即可关闭已开启的扩展服务。
+1、打开设备设置页面，进入“辅助功能”，“扩展服务”小标题下的“已安装的服务”显示当前安装的扩展服务个数，点击进入，展示安装的扩展服务列表；未安装扩展服务时，“已安装的扩展服务”不可点击，并显示“无服务”。
+
+2、选择需要开启/关闭的扩展服务，通过开关按钮进行扩展服务的开启/关闭。
+
+3、开启时，弹出安全提醒，在倒计时结束后，勾选“我已知晓如上风险，并自愿承担可能导致的后果。”后，可选择“开启”/“不开启”按钮；  关闭时，将开启的开关关闭，即可关闭已开启的扩展服务。
 
 ## 相关实例
 

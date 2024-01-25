@@ -17,10 +17,14 @@ During application development, you must subscribe to playback state changes and
 1. Call **createSoundPool()** to create a **SoundPool** instance.
 
     ```ts
+    import media from '@ohos.multimedia.media';
+    import audio from '@ohos.multimedia.audio';
+    import { BusinessError } from '@ohos.base';
+
     let soundPool: media.SoundPool;
     let audioRendererInfo: audio.AudioRendererInfo = {
-        usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-        rendererFlags : 1
+      usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+      rendererFlags : 0
     }
 
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
@@ -30,34 +34,39 @@ During application development, you must subscribe to playback state changes and
       } else {
         console.error('create SoundPool fail');
       }
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`soundpool catchCallback, error message:${error.message}`);
     });
     ```
 
 2. Call **load()** to load a sound.
-
     You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../reference/apis/js-apis-inner-multimedia-soundPool.md#load).
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+    import fs from '@ohos.file.fs';
+   
     let soundID: number;
-    await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-      console.info("file fd: " + file.fd);
-      uri = 'fd://' + (file.fd).toString()
-    }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
-    soundPool.load(uri).then((soundId: number) => {
-      console.info('soundPool load uri success');
-      soundID = soundId;
-    }).catch((err) => {
-      console.error('soundPool load failed and catch error is ' + err.message);
-    });
+    let uri: string;
+    async function load() {
+      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+        console.info("file fd: " + file.fd);
+        uri = 'fd://' + (file.fd).toString()
+      }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
+      soundPool.load(uri).then((soundId: number) => {
+        console.info('soundPool load uri success');
+        soundID = soundId;
+      }).catch((err: BusinessError) => {
+        console.error('soundPool load failed and catch error is ' + err.message);
+      })
+    }
     ```
 
 3. Call **on('loadComplete')** to listen for the completion of sound loading.
 
     ```ts
-    soundPool.on('loadComplete', (soundId_: number) => {
-      console.info('loadComplete, soundId: ' + soundId_);
+    soundPool.on('loadComplete', (soundId: number) => {
+      console.info('loadComplete, soundId: ' + soundId);
     });
     ```
 
@@ -65,7 +74,7 @@ During application development, you must subscribe to playback state changes and
      
     ```ts
     soundPool.on('playFinished', () => {
-      console.info("recive play finished message");
+      console.info("receive play finished message");
     });
     ```
 
@@ -102,10 +111,12 @@ During application development, you must subscribe to playback state changes and
 7. Call **setLoop()** to set the number of loops.
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+   
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setLoop failed and catch error is ' + err.message);
     });
     ```
@@ -120,12 +131,14 @@ During application development, you must subscribe to playback state changes and
 9. Call **setVolume()** to set the playback volume.
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+   
     let streamID: number;
     // Call play() to obtain the stream ID.
 
     soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
       console.info('setVolume success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool setVolume failed and catch error is ' + err.message);
     });
     ```
@@ -133,12 +146,14 @@ During application development, you must subscribe to playback state changes and
 10. Call **stop()** to stop the playback.
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+    
     let streamID: number;
     // Call play() to obtain the stream ID.
 
     soundPool.stop(streamID).then(() => {
       console.info('stop success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool load stop and catch error is ' + err.message);
     });
     ```
@@ -146,12 +161,14 @@ During application development, you must subscribe to playback state changes and
 11. Call **unload()** to unload a sound.
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+    
     let soundID: number;
     // Call load() to obtain the sound ID.
 
     soundPool.unload(soundID).then(() => {
       console.info('unload success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool unload failed and catch error is ' + err.message);
     });
     ```
@@ -177,9 +194,11 @@ During application development, you must subscribe to playback state changes and
 15. Call **release()** to release the **SoundPool** instance.
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+    
     soundPool.release().then(() => {
       console.info('release success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('soundpool release failed and catch error is ' + err.message);
     });
     ```
@@ -189,85 +208,83 @@ During application development, you must subscribe to playback state changes and
 The following sample code implements low-latency playback using **SoundPool**.
   
 ```ts
-
 import audio from '@ohos.multimedia.audio';
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs'
-struct Soundpool {
-  private soundPool: media.SoundPool;
-  private streamId: 0;
-  private soundId: 0;
-  private audioRendererInfo: {
-    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags: 1
-  }
-  private PlayParameters: media.PlayParameters = {
-    loop: 3, // The sound is played four times (three loops).
-    rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-    leftVolume: 0.5, // range = 0.0-1.0
-    rightVolume: 0.5, // range = 0.0-1.0
-    priority: 0, // The sound playback has the lowest priority.
-  }
-  private uri: string = "";
-  async create(): Promise<void> {
-    // Create a SoundPool instance.
-    this.soundPool = await media.createSoundPool(5, this.audioRendererInfo);
-    // Register listeners.
-    this.loadCallback();
-    this.finishPlayCallback();
-    this.setErrorCallback();
-    // Load a sound.
-    await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-      console.info("file fd: " + file.fd);
-      this.uri = 'fd://' + (file.fd).toString()
-    }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
-    this.soundId = await this.soundPool.load(this.uri);
-  }
-  async loadCallback(): Promise<void> {
-    // Callback invoked when the sound finishes loading.
-    this.soundPool.on('loadComplete', (soundId_: number) => {
-      console.info('loadComplete, soundId: ' + soundId_);
-    })
-  }
-  // Set the listener when the sound finishes playing.
-  async finishPlayCallback(): Promise<void> {
-    // Callback invoked when the sound finishes playing.
-    this.soundPool.on('playFinished', () => {
-      console.info("recive play finished message");
-      // The sound can be played again.
-    })
-  }
-  // Set the listener for errors.
-  setErrorCallback(): void {
-    this.soundPool.on('error', (error) => {
-      console.info('error happened,message is :' + error.message);
-    })
-  }
-  async PlaySoundPool(): Promise<void> {
-    // Start playback. PlayParameters can be carried in the play() API.
-    this.streamId = await this.soundPool.play(this.soundId);
-    // Set the number of loops.
-    this.soundPool.setLoop (this.streamId, 2); // The sound is played three times (two loops).
-    // Set the priority.
-    this.soundPool.setPriority(this.streamId, 1);
-    // Set the volume.
-    this.soundPool.setVolume(this.streamId, 0.5, 0.5);
-  }
-  async release(): Promise<void> {
-    // Stop the playback of the stream.
-    this.soundPool.stop(this.streamId);
-    // Unload the sound.
-    await this.soundPool.unload(this.soundId);
-    // Unregister the listeners.
-    this.setOffCallback();
-    // Release the SoundPool instance.
-    await this.soundPool.release();
-  }
+
+let soundPool: media.SoundPool;
+let streamId: number = 0;
+let soundId: number = 0;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+let PlayParameters: media.PlayParameters = {
+  loop: 3, // The sound is played four times (three loops).
+  rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
+  leftVolume: 0.5, // range = 0.0-1.0
+  rightVolume: 0.5, // range = 0.0-1.0
+  priority: 0, // The sound playback has the lowest priority.
+}
+let uri: string = "";
+async function create() {
+  // Create a SoundPool instance.
+  soundPool = await media.createSoundPool(5, audioRendererInfo);
+  // Register listeners.
+  loadCallback();
+  finishPlayCallback();
+  setErrorCallback();
+  // Load a sound.
+  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+    console.info("file fd: " + file.fd);
+    uri = 'fd://' + (file.fd).toString()
+  }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
+  soundId = await soundPool.load(uri);
+}
+async function loadCallback() {
+  // Callback invoked when the sound finishes loading.
+  soundPool.on('loadComplete', (soundId_: number) => {
+    console.info('loadComplete, soundId: ' + soundId_);
+  })
+}
+// Set the listener when the sound finishes playing.
+async function finishPlayCallback() {
+  // Callback invoked when the sound finishes playing.
+  soundPool.on('playFinished', () => {
+    console.info("recive play finished message");
+    // The sound can be played again.
+  })
+}
+// Set the listener for errors.
+function setErrorCallback() {
+  soundPool.on('error', (error) => {
+    console.info('error happened,message is :' + error.message);
+  })
+}
+async function PlaySoundPool() {
+  // Start playback. PlayParameters can be carried in the play() API.
+  streamId = await soundPool.play(soundId);
+  // Set the number of loops.
+  soundPool.setLoop (streamId, 2); // The sound is played three times (two loops).
+  // Set the priority.
+  soundPool.setPriority(streamId, 1);
+  // Set the volume.
+  soundPool.setVolume(streamId, 0.5, 0.5);
+}
+async function release() {
+  // Stop the playback of the stream.
+  soundPool.stop(streamId);
+  // Unload the sound.
+  await soundPool.unload(soundId);
   // Unregister the listeners.
-  setOffCallback() {
-    this.soundPool.off('loadComplete');
-    this.soundPool.off('playFinished');
-    this.soundPool.off('error');
-  }
+  setOffCallback();
+  // Release the SoundPool instance.
+  await soundPool.release();
+}
+// Unregister the listeners.
+function setOffCallback() {
+  soundPool.off('loadComplete');
+  soundPool.off('playFinished');
+  soundPool.off('error');
 }
 ```

@@ -11,18 +11,11 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-      - 应用程序包多HAP机制
-        - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
-        - [多HAP构建视图](quick-start/multi-hap-build-view.md)
-        - [多HAP的开发调试与发布部署流程](quick-start/multi-hap-release-deployment.md)
-        - [多HAP使用规则](quick-start/multi-hap-rules.md)
-        - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
-      - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
-      - [应用程序包更新流程](quick-start/application-package-update.md)
-      - 共享包
-        - [共享包概述](quick-start/shared-guide.md)
+      - 应用程序包开发
+        - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
+      - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -50,12 +43,15 @@
         - 自定义组件
           - [创建自定义组件](quick-start/arkts-create-custom-components.md)
           - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
         - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
+        - [wrapBuilder：封装全局@Builder](quick-start/arkts-wrapBuilder.md)
         - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
         - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
         - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
         - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
+        - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
       - 状态管理
         - [状态管理概述](quick-start/arkts-state-management-overview.md)
         - 管理组件拥有的状态
@@ -74,9 +70,12 @@
           - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
           - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+          - [\@Track装饰器：class对象属性级更新](quick-start/arkts-track.md)
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
+        - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
       - 渲染控制
+        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -454,7 +453,7 @@
   - 媒体
     - [媒体应用开发概述](media/media-application-overview.md)
     - 音视频
-      - [音视频概述](media/av-overview.md)
+      - [音视频概述](./media/av-overview.md)
       - [AVPlayer和AVRecorder](media/avplayer-avrecorder-overview.md)
       - 音频播放
         - [音频播放开发概述](media/audio-playback-overview.md)
@@ -888,6 +887,7 @@
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis/js-apis-app-form-formExtensionAbility.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
+        - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](reference/apis/js-apis-VpnExtensionAbility.md)
       - FA模型能力的接口
         - [@ohos.ability.ability (Ability)](reference/apis/js-apis-ability-ability.md)
         - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-ability-featureAbility.md)
@@ -979,6 +979,7 @@
           - [UIExtensionContext](reference/apis/js-apis-inner-application-uiExtensionContext.md)
           - [shellCmdResult](reference/apis/js-apis-inner-application-shellCmdResult.md)
           - [WindowExtensionContext](reference/apis/js-apis-inner-application-windowExtensionContext.md)
+          - [VpnExtensionContext](reference/apis/js-apis-inner-application-VpnExtensionContext.md)
         - wantAgent
           - [triggerInfo](reference/apis/js-apis-inner-wantAgent-triggerInfo.md)
           - [wantAgentInfo](reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -1182,7 +1183,9 @@
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
       - [@ohos.net.statistics (流量管理)](reference/apis/js-apis-net-statistics.md)
       - [@ohos.net.vpn (VPN管理)](reference/apis/js-apis-net-vpn.md)
-      - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
+      - [@ohos.net.vpnExtension (VPN增强管理)](reference/apis/js-apis-net-vpnExtension.md)
+      - [@ohos.net.webSocket (WebSocket连接)](reference/apis/reference/apis/js-apis-webSocket.md)
+      - [@ohos.net.networkSecurity (Network Security)](reference/apis/js-apis-networkSecurity.md)
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
       - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis/js-apis-bluetooth-a2dp.md)
@@ -1195,6 +1198,9 @@
       - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](reference/apis/js-apis-bluetooth-hid.md)
       - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](reference/apis/js-apis-bluetooth-pan.md)
       - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis/js-apis-bluetooth-socket.md)
+      - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](reference/apis/js-apis-bluetooth-pbap.md)
+      - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](reference/apis/js-apis-bluetooth-map.md)
+      - [@ohos.bluetooth.wearDetection(蓝牙佩戴检测模块)(推荐)](reference/apis/js-apis-bluetooth-wearDetection.md)
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
@@ -2138,5 +2144,8 @@
   - [启动恢复开发常见问题](faqs/faqs-startup.md)
   - [分布式DeviceProfrofile开发常见问题](faqs/faqs-distributed-device-profile.md)
   - [SDK使用常见问题](faqs/faqs-sdk.md)
+  - [NDK开发常见问题](faqs/faqs-ndk.md)
   - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
   - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
+
+<!--no_check-->

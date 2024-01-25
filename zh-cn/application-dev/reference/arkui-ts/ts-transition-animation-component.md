@@ -35,6 +35,7 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | IDENTITY | 禁用转场效果。 |
 | OPACITY | 指定透明度为0的转场效果。即相当于TransitionEffect.opacity(0) |
 | SLIDE | 指定出现时从左侧滑入、消失时从右侧滑出的转场效果。即相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END)) |
+| SLIDE_SWITCH | 指定出现时从右先缩小再放大侧滑入、消失时从左侧先缩小再放大滑出的转场效果。动画时长600ms,指定动画曲线曲线cubicBezierCurve(0.24f, 0.0f, 0.50f, 1.0f)，最小缩放比例为0.8。|
 
 >  **说明：**
 >

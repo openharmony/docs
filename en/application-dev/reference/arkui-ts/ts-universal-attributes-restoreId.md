@@ -6,11 +6,19 @@ The **restoreId** attribute identifies a component in distributed migration scen
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## restoreId
 
-| Name       | Type  | Description                                      |
-| --------- | ------ | ---------------------------------------- |
-| restoreId | number | ID of the component used for device matching during distributed migration. This ID must be unique within an application.|
+restoreId(value: number)
+
+ID of the component used for device matching during distributed migration.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | ID of the component used for device matching during distributed migration. This ID must be unique within an application.|
 
 ## Components with Distributed Migration Support
 

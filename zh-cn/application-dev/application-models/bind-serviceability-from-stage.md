@@ -16,32 +16,44 @@ import Logger from '../utils/Logger';
 import promptAction from '@ohos.promptAction'
 import Want from '@ohos.app.ability.Want';
 
-import { BusinessError } from '@ohos.base';
-
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-let want: Want = {
-  bundleName: 'com.samples.famodelabilitydevelop',
-  abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-}
+@Entry
+@Component
+struct Page_StartFAModel {
+  private context = getContext(this) as common.UIAbilityContext;
 
-let options: common.ConnectOptions = {
-  onConnect: (elementName, proxy) => {
-    Logger.info('onConnect called.');
-    promptAction.showToast({
-      message: $r('app.string.ConnectFAServiceAbility')
-    });
-  },
-  onDisconnect: (elementName) => {
-    Logger.info('onDisconnect called.');
-  },
-  onFailed: (code) => {
-    Logger.info('onFailed code is: ' + code);
+  build() {
+    // ...
+    Button() {
+      // ...
+    }
+    .onClick(() => {
+      let want: Want = {
+        bundleName: 'com.samples.famodelabilitydevelop',
+        abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+      }
+
+      let options: common.ConnectOptions = {
+        onConnect: (elementName, proxy) => {
+          Logger.info('onConnect called.');
+          promptAction.showToast({
+            message: $r('app.string.ConnectFAServiceAbility')
+          });
+        },
+        onDisconnect: (elementName) => {
+          Logger.info('onDisconnect called.');
+        },
+        onFailed: (code) => {
+          Logger.info('onFailed code is: ' + code);
+        }
+      };
+      let connectionId = this.context.connectServiceExtensionAbility(want, options);
+      hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+    })
   }
-};
-let connectionId = this.context.connectServiceExtensionAbility(want, options);
-hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+}
 ```
 
 
@@ -57,30 +69,42 @@ import Logger from '../utils/Logger';
 import promptAction from '@ohos.promptAction'
 import Want from '@ohos.app.ability.Want';
 
-import { BusinessError } from '@ohos.base';
-
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-let want: Want = {
-  bundleName: 'com.samples.famodelabilitydevelop',
-  abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-}
+@Entry
+@Component
+struct Page_StartFAModel {
+  private context = getContext(this) as common.UIAbilityContext;
 
-let options: common.ConnectOptions = {
-  onConnect: (elementName, proxy) => {
-    Logger.info('onConnect called.');
-    promptAction.showToast({
-      message: $r('app.string.ConnectFAServiceAbility')
-    });
-  },
-  onDisconnect: (elementName) => {
-    Logger.info('onDisconnect called.');
-  },
-  onFailed: (code) => {
-    Logger.info('onFailed code is: ' + code);
+  build() {
+    // ...
+    Button() {
+      // ...
+    }
+    .onClick(() => {
+      let want: Want = {
+        bundleName: 'com.samples.famodelabilitydevelop',
+        abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+      }
+
+      let options: common.ConnectOptions = {
+        onConnect: (elementName, proxy) => {
+          Logger.info('onConnect called.');
+          promptAction.showToast({
+            message: $r('app.string.ConnectFAServiceAbility')
+          });
+        },
+        onDisconnect: (elementName) => {
+          Logger.info('onDisconnect called.');
+        },
+        onFailed: (code) => {
+          Logger.info('onFailed code is: ' + code);
+        }
+      };
+      let connectionId = this.context.connectServiceExtensionAbility(want, options);
+      hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+    })
   }
-};
-let connectionId = this.context.connectServiceExtensionAbility(want, options);
-hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+}
 ```

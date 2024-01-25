@@ -675,7 +675,7 @@ try {
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | 位置编码类型。  |
+| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | 未知编码类型。  |
 | CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC。 |
 | CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC。 |
 | CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC。|

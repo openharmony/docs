@@ -5,15 +5,11 @@
 
 The OhosImageSourceSupportedFormatList struct defines the format string list supported by an image source. It is obtained by calling [OH_ImageSource_GetSupportedFormats](image.md#oh_imagesource_getsupportedformats).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

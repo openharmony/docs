@@ -1,6 +1,6 @@
 # @ohos.util (util)
 
-The **util** module provides common utility functions, such as [TextEncoder](#textencoder) and [TextDecoder](#textdecoder) for string encoding and decoding, [RationalNumber<sup>8+</sup>](#rationalnumber8) for rational number operations, [LRUCache<sup>9+</sup>](#lrucache9) for cache management, [ScopeHelper<sup>9+</sup>](#scopehelper9) for range determination, [Base64Helper<sup>9+</sup>](#base64helper9) for Base64 encoding and decoding, and [types<sup>8+</sup>](#types8) for built-in object type check.
+The util module provides common utility functions, such as [TextEncoder](#textencoder) and [TextDecoder](#textdecoder) for string encoding and decoding, [RationalNumber<sup>8+</sup>](#rationalnumber8) for rational number operations, [LRUCache<sup>9+</sup>](#lrucache9) for cache management, [ScopeHelper<sup>9+</sup>](#scopehelper9) for range determination, [Base64Helper<sup>9+</sup>](#base64helper9) for Base64 encoding and decoding, [types<sup>8+</sup>](#types8) for built-in object type check, and [Aspect<sup>11+</sup>](#aspect11) for instrumentation and replacement on methods.
 
 > **NOTE**
 >
@@ -12,7 +12,6 @@ The **util** module provides common utility functions, such as [TextEncoder](#te
 ```ts
 import util from '@ohos.util';
 ```
-
 ## util.format<sup>9+</sup>
 
 format(format: string,  ...args: Object[]): string
@@ -26,7 +25,7 @@ Formats a string by replacing the placeholders in it.
 | Name | Type    | Mandatory| Description          |
 | ------- | -------- | ---- | -------------- |
 | format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted.|
-| ...args | Object[] | No  | Data used to replace the placeholders in **format**. If null is passed in, the first argument is returned by default.|
+| ...args | Object[] | No  | Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
@@ -67,23 +66,23 @@ interface utilPersontype {
 let name = 'John';
 let age = 20;
 let formattedString = util.format('My name is %s and I am %s years old', name, age);
-console.log(formattedString);
+console.info(formattedString);
 // Output: My name is John and I am 20 years old
 let num = 10.5;
 formattedString = util.format('The number is %d', num);
-console.log(formattedString);
+console.info(formattedString);
 // Output: The number is 10.5.
 num = 100.5;
 formattedString = util.format('The number is %i', num);
-console.log(formattedString);
+console.info(formattedString);
 // Output: The number is 100.
 const pi = 3.141592653;
 formattedString = util.format('The value of pi is %f', pi);
-console.log(formattedString);
+console.info(formattedString);
 // Output: The value of pi is 3.141592653
 const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
-console.log(formattedString);
+console.info(formattedString);
 // Output: The object is {"name":"John","age":20}.
 const person: utilPersontype = {
   name: 'John',
@@ -93,8 +92,8 @@ const person: utilPersontype = {
     country: 'USA'
   }
 };
-console.log(util.format('Formatted object using %%O: %O', person));
-console.log(util.format('Formatted object using %%o: %o', person));
+console.info(util.format('Formatted object using %%O: %O', person));
+console.info(util.format('Formatted object using %%o: %o', person));
 /*
 Output:
 Formatted object using %O: { name: 'John',
@@ -111,7 +110,7 @@ Formatted object using %o: { name: 'John',
 const percentage = 80;
 let arg = 'homework';
 formattedString = util.format('John finished %d%% of the %s', percentage, arg);
-console.log(formattedString);
+console.info(formattedString);
 // Output: John finished 80% of the homework
 ```
 
@@ -140,7 +139,7 @@ Obtains detailed information about a system error code.
 ```ts
 let errnum = -1; // -1 is a system error code.
 let result = util.errnoToString(errnum);
-console.log("result = " + result);
+console.info("result = " + result);
 ```
 
 **Some error code and message examples**
@@ -186,7 +185,7 @@ async function fn() {
 let cb = util.callbackWrapper(fn);
 cb(1, (err : Object, ret : string) => {
   if (err) throw new Error;
-  console.log(ret);
+  console.info(ret);
 });
 ```
 
@@ -220,9 +219,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 (async () => {
   try {
     let res: string = await addCall();
-    console.log(res);
+    console.info(res);
   } catch (err) {
-    console.log(err);
+    console.info(err);
   }
 })();
 ```
@@ -251,9 +250,8 @@ Uses a secure random number generator to generate a random universally unique id
 
 ```ts
 let uuid = util.generateRandomUUID(true);
-console.log("RFC 4122 Version 4 UUID:" + uuid);
-// Output:
-// RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+console.info("RFC 4122 Version 4 UUID:" + uuid);
+// Output a random UUID.
 ```
 
 ## util.generateRandomBinaryUUID<sup>9+</sup>
@@ -280,7 +278,7 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 
 ```ts
 let uuid = util.generateRandomBinaryUUID(true);
-console.log(JSON.stringify(uuid));
+console.info(JSON.stringify(uuid));
 // Output:
 // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
 ```
@@ -289,7 +287,7 @@ console.log(JSON.stringify(uuid));
 
 parseUUID(uuid: string): Uint8Array
 
-Converts the UUID of the string type generated by **generateRandomUUID** to the UUID of the **Uint8Array** type generated by **generateRandomBinaryUUID**, as described in RFC 4122 version 4.
+Converts a UUID of the string type generated by **generateRandomUUID** to a UUID of the Uint8Array type generated by **generateRandomBinaryUUID**, as described in RFC 4122 version 4.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -309,7 +307,7 @@ Converts the UUID of the string type generated by **generateRandomUUID** to the 
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.log(JSON.stringify(uuid));
+console.info(JSON.stringify(uuid));
 // Output:
 // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
@@ -318,7 +316,7 @@ console.log(JSON.stringify(uuid));
 
 printf(format: string,  ...args: Object[]): string
 
-Formats the specified values and inserts them into the string by replacing the wildcard in the string.
+Formats a string by replacing the placeholders in it.
 
 > **NOTE**
 >
@@ -330,8 +328,8 @@ Formats the specified values and inserts them into the string by replacing the w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| format | string | Yes| String.|
-| ...args | Object[] | No| Values to format. The formatted values will replace the wildcard in the string. If this parameter is not set, the first parameter is returned by default.|
+| format | string | Yes| Format string.|
+| ...args | Object[] | No| Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
@@ -343,7 +341,7 @@ Formats the specified values and inserts them into the string by replacing the w
 
 ```ts
 let res = util.printf("%s", "hello world!");
-console.log(res);
+console.info(res);
 ```
 
 
@@ -376,7 +374,7 @@ Obtains detailed information about a system error code.
 ```ts
 let errnum = -1; // -1 is a system error code.
 let result = util.getErrorString(errnum);
-console.log("result = " + result);
+console.info("result = " + result);
 ```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
@@ -403,6 +401,242 @@ Processes an asynchronous function and returns a promise.
 | -------- | -------- |
 | Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
+
+## TextDecoderOptions<sup>11+</sup>
+
+**System capability**: SystemCapability.Utils.Lang
+
+Decoding-related options, which include **fatal** and **ignoreBOM**.
+
+| Name     | Type| Mandatory| Description              |
+| --------- | -------- | ---- | ------------------ |
+| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
+| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
+
+
+## DecodeWithStreamOptions<sup>11+</sup>
+
+**System capability**: SystemCapability.Utils.Lang
+
+Defines whether decoding follows data blocks.
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| stream | boolean | No| Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
+
+
+## Aspect<sup>11+</sup>
+
+Provides APIs that support Aspect Oriented Programming (AOP). These APIs can be used to perform instrumentation or replacement on class methods.
+
+### addBefore<sup>11+</sup>
+
+static addBefore(targetClass: Object, methodName: string, isStatic: boolean, before: Function): void
+
+Inserts a function before a method of a class object. The inserted function is executed in prior to the original method of the class object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                  |
+| -------- | ------- | ---- | -------------------------------------|
+| targetClass  | Object   | Yes  | Target class object.                   |
+| methodName   | string   | Yes  | Name of the method.                   |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
+
+**Example**
+
+```ts
+class MyClass {
+  msg: string = 'msg000';
+  foo(arg: string): string {
+    console.info('foo arg is ' + arg);
+    return this.msg;
+  }
+
+  static data: string = 'data000';
+  static bar(arg: string): string {
+    console.info('bar arg is ' + arg);
+	return MyClass.data;
+  }
+}
+
+let asp = new MyClass();
+let result = asp.foo('123');
+// Output: foo arg is 123
+console.info('result is ' + result);
+// Output: result is msg000
+console.info('asp.msg is ' + asp.msg);
+// Output: asp.msg is msg000
+
+util.Aspect.addBefore(MyClass, 'foo', false, (instance: MyClass, arg: string) => {
+  console.info('arg is ' + arg);
+  instance.msg = 'msg111';
+  console.info('msg is changed to ' + instance.msg)
+});
+
+result = asp.foo('123');
+// Output: arg is 123
+// Output: msg is changed to msg111
+// Output: foo arg is 123
+console.info('result is ' + result);
+// Output: result is msg111
+console.info('asp.msg is ' + asp.msg);
+// Output: asp.msg is msg111
+
+
+let res = MyClass.bar('456');
+// Output: bar arg is 456
+console.info('res is ' + res);
+// Output: res is data000
+console.info('MyClass.data is ' + MyClass.data);
+// Output: MyClass.data is data000
+
+util.Aspect.addBefore(MyClass, 'bar', true, (target: Object, arg: string) => {
+  console.info('arg is ' + arg);
+  let newVal = 'data111';
+  Reflect.set(target, 'data', newVal);
+  console.info('data is changed to ' + newVal);
+});
+
+res = MyClass.bar('456');
+// Output: arg is 456
+// Output: data is changed to data111
+// Output: bar arg is 456
+console.info('res is ' + res);
+//Output: res is data111
+console.info('MyClass.data is ' + MyClass.data);
+// Output: MyClass.data is data111
+```
+
+### addAfter<sup>11+</sup>
+
+static addAfter(targetClass: Object, methodName: string, isStatic: boolean, after: Function): void
+
+Inserts a function after a method of a class object. The final return value is the return value of the function inserted.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                  |
+| -------- | ------- | ---- | -------------------------------------|
+| targetClass  | Object   | Yes  | Target class object.                   |
+| methodName   | string   | Yes  | Name of the method.                  |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| after        | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; the second parameter is the return value of the original method (**undefined** if the original method does not have a return value); other parameters are the parameters carried by the original method. If the function does not carry any parameter, no processing is performed. |
+
+**Example**
+
+```ts
+class MyClass {
+  msg: string = 'msg000';
+  foo(arg: string): string {
+    console.info('foo arg is ' + arg);
+    return this.msg;
+  }
+}
+
+let asp = new MyClass();
+let result = asp.foo('123');
+// Output: foo arg is 123
+console.info('result is ' + result);
+// Output: result is msg000
+console.info('asp.msg is ' + asp.msg);
+// Output: asp.msg is msg000
+
+util.Aspect.addAfter(MyClass, 'foo', false, (instance: MyClass, ret: string, arg: string): string => {
+  console.info('arg is ' + arg);
+  console.info('ret is ' + ret);
+  instance.msg = 'msg111';
+  console.info('msg is changed to ' + instance.msg);
+  return 'msg222';
+});
+
+result = asp.foo('123');
+// Output: foo arg is 123
+// Output: arg is 123
+// Output: ret is msg000
+// Output: msg is changed to msg111
+console.info('result is ' + result);
+// Output: result is msg222
+console.info('asp.msg is ' + asp.msg);
+// Output: asp.msg is msg111
+
+// Examples of addBefore() and addAfter()
+class AroundTest {
+  foo(arg: string) {
+    console.info('execute foo with arg ' + arg);
+  }
+}
+util.Aspect.addBefore(AroundTest, 'foo', false, () => {
+  console.info('execute before');
+});
+util.Aspect.addAfter(AroundTest, 'foo', false, () => {
+  console.info('execute after');
+});
+
+(new AroundTest()).foo('hello');
+// Output: execute before
+// Output: execute foo with arg hello
+// Output: execute after
+```
+
+### replace<sup>11+</sup>
+
+static replace(targetClass: Object, methodName: string, isStatic: boolean, instead: Function) : void
+
+Replaces a method of a class object with another function. After the replacement, only the new function logic is executed. The final return value is the return value of the new function.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                  |
+| -------- | ------- | ---- | -------------------------------------|
+| targetClass  | Object   | Yes  | Target class object.                   |
+| methodName   | string   | Yes  | Name of the method to be replaced.                 |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.      |
+| instead      | Function | Yes  | Function to be used replacement. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.  |
+
+**Example**
+
+```ts
+class MyClass {
+  msg: string = 'msg000';
+  foo(arg: string): string {
+    console.info('foo arg is ' + arg);
+    return this.msg;
+  }
+}
+
+let asp = new MyClass();
+let result = asp.foo('123');
+// Output: foo arg is 123
+console.info('result is ' + result);
+// Output: result is msg000
+console.info('asp.msg is ' + asp.msg);
+// Output: asp.msg is msg000
+
+util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): string => {
+  console.info('execute instead')
+  console.info('arg is ' + arg);
+  instance.msg = 'msg111';
+  console.info('msg is changed to ' + instance.msg);
+  return 'msg222';
+});
+
+result = asp.foo('123');
+// Output: execute instead
+// Output: foo arg is 123
+// Output: msg is changed to msg111
+console.info('result is ' + result);
+// Output: result is msg222
+console.info('asp.msg is ' + asp.msg);
+//Output: asp.msg is msg111
+```
 
 ## TextDecoder
 
@@ -434,7 +668,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
+create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -445,27 +679,24 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 | Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
-| options  | Object | No  | Encoding-related options, which include **fatal** and **ignoreBOM**.|
-
-**Table 1.1** options
-
-| Name     | Type| Mandatory| Description              |
-| --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
-| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
+| options  | [TextDecoderOptions](#textdecoderoptions11) | No  | Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
 **Example**
 
 ```ts
-let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let result = util.TextDecoder.create('utf-8', textDecoderOptions)
 let retStr = result.encoding
 ```
 
 ### decodeWithStream<sup>9+</sup>
 
-decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
+decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
-Decodes the input content.
+Decodes the input content into a string.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -473,25 +704,26 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes| Uint8Array to decode.|
-| options | Object | No| Options related to decoding.|
-
-**Table 2** options
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| stream | boolean | No| Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | [DecodeWithStreamOptions](#decodewithstreamoptions11) | No| Decoding-related options.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | Data decoded.|
+| string | String obtained.|
 
 **Example**
 
 ```ts
-let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
+  stream: false
+}
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
 let result = new Uint8Array(6);
 result[0] = 0xEF;
 result[1] = 0xBB;
@@ -499,9 +731,9 @@ result[2] = 0xBF;
 result[3] = 0x61;
 result[4] = 0x62;
 result[5] = 0x63;
-console.log("input num:");
-let retStr = textDecoder.decodeWithStream( result , {stream: false});
-console.log("retStr = " + retStr);
+console.info("input num:");
+let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+console.info("retStr = " + retStr);
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -521,7 +753,7 @@ A constructor used to create a **TextDecoder** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | encoding | string | No| Encoding format. The default format is **'utf-8'**.|
-| options | Object | No| Encoding-related options, which include **fatal** and **ignoreBOM**.|
+| options | object | No| Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
 
@@ -540,7 +772,7 @@ let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
 
 decode(input: Uint8Array, options?: { stream?: false }): string
 
-Decodes the input content.
+Decodes the input content into a string.
 
 > **NOTE**
 >
@@ -552,8 +784,8 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes| Uint8Array to decode.|
-| options | Object | No| Options related to decoding.|
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | object | No| Decoding-related options.|
 
 **Table 2** options
 
@@ -565,7 +797,7 @@ Decodes the input content.
 
 | Type| Description|
 | -------- | -------- |
-| string | Data decoded.|
+| string | String obtained.|
 
 **Example**
 
@@ -578,10 +810,22 @@ result[2] = 0xBF;
 result[3] = 0x61;
 result[4] = 0x62;
 result[5] = 0x63;
-console.log("input num:");
+console.info("input num:");
 let retStr = textDecoder.decode( result , {stream: false});
-console.log("retStr = " + retStr);
+console.info("retStr = " + retStr);
 ```
+
+## EncodeIntoUint8ArrayInfo<sup>11+</sup>
+
+**System capability**: SystemCapability.Utils.Lang
+
+Defines encoded text.
+
+| Name     | Type| Readable |Writable | Description              |
+| --------- | -------- | -------- |-------- |------------------ |
+| read     | number  | Yes| No|Number of characters that have been read.|
+| written | number   | Yes|No|Number of bytes that have been written. |
+
 
 ## TextEncoder
 
@@ -634,7 +878,7 @@ let textEncoder = new util.TextEncoder("utf-8");
 
 encodeInto(input?: string): Uint8Array
 
-Encodes the input content.
+Encodes the input content into a Uint8Array object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -648,7 +892,7 @@ Encodes the input content.
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| Uint8Array | Encoded text.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -661,9 +905,9 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
-encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
+encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
-Stores the UTF-8 encoded text.
+Encodes the input content into a Uint8Array object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -672,22 +916,22 @@ Stores the UTF-8 encoded text.
 | Name| Type      | Mandatory| Description                                                   |
 | ------ | ---------- | ---- | ------------------------------------------------------- |
 | input  | string     | Yes  | String to encode.                                     |
-| dest   | Uint8Array | Yes  | **Uint8Array** instance used to store the UTF-8 encoded text.|
+| dest   | Uint8Array | Yes  | Uint8Array object used to store the UTF-8 encoded text.|
 
 **Return value**
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| Uint8Array | Encoded text.|
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters.|
 
 **Example**
 
 ```ts
-let that = new util.TextEncoder()
-let buffer = new ArrayBuffer(4)
-let dest = new Uint8Array(buffer)
-let result = new Object()
-result = that.encodeIntoUint8Array('abcd', dest)
+let that = new util.TextEncoder();
+let buffer = new ArrayBuffer(4);
+let dest = new Uint8Array(buffer);
+let result = new Object();
+result = that.encodeIntoUint8Array('abcd', dest);
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -707,29 +951,29 @@ Stores the UTF-8 encoded text.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | input | string | Yes| String to encode.|
-| dest | Uint8Array | Yes| **Uint8Array** instance used to store the UTF-8 encoded text.|
+| dest | Uint8Array | Yes| Uint8Array object used to store the UTF-8 encoded text.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Encoded text.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
 ```ts
-let that = new util.TextEncoder()
-let buffer = new ArrayBuffer(4)
-let dest = new Uint8Array(buffer)
-let result = new Object()
-result = that.encodeInto('abcd', dest)
+let that = new util.TextEncoder();
+let buffer = new ArrayBuffer(4);
+let dest = new Uint8Array(buffer);
+let result = new Object();
+result = that.encodeInto('abcd', dest);
 ```
 
 ### encode<sup>(deprecated)</sup>
 
 encode(input?: string): Uint8Array
 
-Encodes the input content.
+Encodes the input content in to a Uint8Array object.
 
 > **NOTE**
 >
@@ -747,7 +991,7 @@ Encodes the input content.
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Encoded text.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -815,7 +1059,7 @@ Creates a **RationalNumber** object based on the given string.
 
 | Type| Description|
 | -------- | -------- |
-| object | **RationalNumber** object created.|
+| Object | **RationalNumber** object obtained.|
 
 **Example**
 
@@ -827,7 +1071,7 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 compare​(another: RationalNumber): number​
 
-Compares this **RationalNumber** object with a given object.
+Compares this **RationalNumber** object with another **RationalNumber** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -849,7 +1093,7 @@ Compares this **RationalNumber** object with a given object.
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.compare(rational);
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = -1
 ```
 
@@ -872,14 +1116,14 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.valueOf();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 0.5
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.valueOf();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 0.5
 ```
 
@@ -909,7 +1153,7 @@ Checks whether this **RationalNumber** object equals the given object.
 let rationalNumber = new util.RationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.equals(rational);
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = false
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
@@ -917,7 +1161,7 @@ You are advised to use the following code snippet for API version 9 and later ve
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.equals(rational);
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = false
 ```
 
@@ -946,7 +1190,7 @@ Obtains the greatest common divisor of two specified integers.
 
 ```ts
 let result = util.RationalNumber.getCommonFactor(4,6);
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 2
 ```
 
@@ -969,14 +1213,14 @@ Obtains the numerator of this **RationalNumber** object.
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.getNumerator();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 1
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.getNumerator();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 1
 ```
 
@@ -999,14 +1243,14 @@ Obtains the denominator of this **RationalNumber** object.
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.getDenominator();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 2
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
 let result = rationalNumber.getDenominator();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 2
 ```
 
@@ -1029,14 +1273,14 @@ Checks whether this **RationalNumber** object is **0**.
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.isZero();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = false
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.isZero();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = false
 ```
 
@@ -1059,14 +1303,14 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.isNaN();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = false
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.isNaN();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = false
 ```
 
@@ -1089,14 +1333,14 @@ Checks whether this **RationalNumber** object represents a finite value.
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.isFinite();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = true
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.isFinite();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = true
 ```
 
@@ -1112,21 +1356,21 @@ Obtains the string representation of this **RationalNumber** object.
 
 | Type| Description|
 | -------- | -------- |
-| string | Returns **NaN** if the numerator and denominator of this object are both **0**; returns a string in Numerator/Denominator format otherwise, for example, **3/5**.|
+| string | Returns a string in Numerator/Denominator format in normal cases, for example, 3/5; returns **0/1** if the numerator of this object is **0**; returns **Infinity** if the denominator is **0**; Returns **NaN** if the numerator and denominator are both **0**.|
 
 **Example**
 
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.toString();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 1/2
 ```
 You are advised to use the following code snippet for API version 9 and later versions:
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.toString();
-console.log("result = " + result);
+console.info("result = " + result);
 // Output: result = 1/2
 ```
 
@@ -1244,7 +1488,7 @@ let result = pro.length;
 
 constructor(capacity?: number)
 
-A constructor used to create a **LruCache** instance. The default capacity of the cache is 64.
+A constructor used to create a **LRUCache** instance. The default capacity of the cache is 64.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1252,7 +1496,7 @@ A constructor used to create a **LruCache** instance. The default capacity of th
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the **LruCache** to create. The default value is **64**.|
+| capacity | number | No  | Capacity of the cache to create. The default value is **64**.|
 
 **Example**
 
@@ -1265,7 +1509,7 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 
 updateCapacity(newCapacity: number): void
 
-Changes the **LruCache** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1273,7 +1517,7 @@ Changes the **LruCache** capacity. If the new capacity is less than or equal to 
 
 | Name     | Type  | Mandatory| Description                        |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | Yes  | New capacity of the **LruCache**.|
+| newCapacity | number | Yes  | New capacity of the cache.|
 
 **Example**
 
@@ -1286,7 +1530,7 @@ pro.updateCapacity(100);
 
 toString(): string
 
-Obtains the string representation of this **LruCache** object.
+Obtains the string representation of this cache.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1294,7 +1538,7 @@ Obtains the string representation of this **LruCache** object.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | String representation of this **LruCache** object.|
+| string | String representation of this cache.|
 
 **Example**
 
@@ -1303,9 +1547,9 @@ let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
 pro.get(3);
-console.log(pro.toString());
+console.info(pro.toString());
 // Output: LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
-// maxSize: maximum size of the buffer. hits: number of matched queries. misses: number of mismatched queries. hitRate: matching rate.
+// maxSize: maximum size of the cache. hits: number of matched queries. misses: number of mismatched queries. hitRate: matching rate.
 ```
 
 ### getCapacity<sup>9+</sup>
@@ -1320,7 +1564,7 @@ Obtains the capacity of this cache.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Capacity of this cache.|
+| number | Capacity of the cache.|
 
 **Example**
 
@@ -1363,8 +1607,8 @@ Obtains the number of times that an object is created.
 **Example**
 
 ```ts
-// Create the ChildLruBuffer class that inherits LruCache, and override createDefault() to return a non-undefined value.
-class ChildLruBuffer extends util.LRUCache<number, number> {
+// Create the ChildLRUCache class that inherits LRUCache, and override createDefault() to return a non-undefined value.
+class ChildLRUCache extends util.LRUCache<number, number> {
   constructor() {
     super();
   }
@@ -1373,7 +1617,7 @@ class ChildLruBuffer extends util.LRUCache<number, number> {
     return key;
   }
 }
-let lru = new ChildLruBuffer();
+let lru = new ChildLRUCache();
 lru.put(2,10);
 lru.get(3);
 lru.get(5);
@@ -1541,7 +1785,7 @@ Adds a key-value pair to this cache.
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
+| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
 
 **Example**
 
@@ -1614,7 +1858,7 @@ Removes the specified key and its value from this cache.
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**.|
 
 **Example**
 
@@ -1636,7 +1880,7 @@ Performs subsequent operations after a value is removed.
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isEvict  | boolean | Yes  | Whether the cache capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
+| isEvict  | boolean | Yes  | Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
 | key      | K       | Yes  | Key removed.                                              |
 | value    | V       | Yes  | Value removed.                                              |
 | newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
@@ -1644,21 +1888,23 @@ Performs subsequent operations after a value is removed.
 **Example**
 
 ```ts
-let arr : Object[] = [];
-class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-  constructor() {
-    super();
+class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
 
-  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-  {
-    if (isEvict === false) {
-      arr = [key, value, newValue];
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
     }
   }
 }
-let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
-lru.afterRemoval(false, 10, 30, 50);
+let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+lru.put(1, 1);
+lru.put(2, 2);
+lru.put(3, 3);
 ```
 
 ### contains<sup>9+</sup>
@@ -1684,12 +1930,12 @@ Checks whether this cache contains the specified key.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number|object,number> = new util.LRUCache();
+let pro : util.LRUCache<number | object, number> = new util.LRUCache();
 pro.put(2,10);
 class Lru{
-s : string = ""
+s : string = "";
 }
-let obj : Lru = {s : "key" }
+let obj : Lru = {s : "key" };
 let result = pro.contains(obj);
 ```
 
@@ -1743,7 +1989,7 @@ pro.put(3,15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
-  console.log(value[0]+ ', '+ value[1]);
+  console.info(value[0]+ ', '+ value[1]);
 }
 ```
 
@@ -1774,7 +2020,7 @@ pro.put(3,15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
-  console.log(value[0]+ ', '+ value[1]);
+  console.info(value[0]+ ', '+ value[1]);
 }
 ```
 
@@ -2396,7 +2642,7 @@ A constructor used to create a **Base64Helper** instance.
 
 encodeSync(src: Uint8Array): Uint8Array
 
-Encodes the input content.
+Encodes the input content into a Uint8Array object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2404,13 +2650,13 @@ Encodes the input content.
 
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array encoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -2425,7 +2671,7 @@ Encodes the input content.
 
 encodeToStringSync(src: Uint8Array, options?: Type): string
 
-Encodes the input content.
+Encodes the input content into a string. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2433,14 +2679,14 @@ Encodes the input content.
 
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | String encoded from the Uint8Array.|
+| string | String obtained.|
 
 **Example**
 
@@ -2455,7 +2701,7 @@ Encodes the input content.
 
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
-Decodes the input content.
+Decodes a string into a Uint8Array object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2463,14 +2709,14 @@ Decodes the input content.
 
 | Name| Type                          | Mandatory| Description                         |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode.|
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array decoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -2485,7 +2731,7 @@ Decodes the input content.
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2493,13 +2739,13 @@ Encodes the input content asynchronously.
 
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -2509,7 +2755,7 @@ Encodes the input content asynchronously.
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{
     for (let i = 0; i < rarray.length; i++) {
-      console.log(val[i].toString())
+      console.info(val[i].toString());
     }
   })
   ```
@@ -2519,7 +2765,7 @@ Encodes the input content asynchronously.
 
 encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a string. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2527,14 +2773,14 @@ Encodes the input content asynchronously.
 
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  |  Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| Promise&lt;string&gt; | String obtained after asynchronous encoding.|
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
 **Example**
 
@@ -2551,7 +2797,7 @@ Encodes the input content asynchronously.
 
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
-Decodes the input content asynchronously.
+Decodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2559,14 +2805,14 @@ Decodes the input content asynchronously.
 
 | Name| Type                          | Mandatory| Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode asynchronously.|
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -2614,7 +2860,7 @@ A constructor used to create a **Types** object.
 
 isAnyArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the **ArrayBuffer** type.
+Checks whether the input value is of the ArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2628,7 +2874,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -2642,9 +2888,9 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 isArrayBufferView(value: Object): boolean
 
-Checks whether the input value is of the **ArrayBufferView** type.
+Checks whether the input value is of the ArrayBufferView type.
 
-**ArrayBufferView** is a helper type representing any of the following: **Int8Array**, **Int16Array**, **Int32Array**, **Uint8Array**, **Uint8ClampedArray**, **Uint32Array**, **Float32Array**, **Float64Array**, and **DataView**.
+**ArrayBufferView** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint32Array, Float32Array, **Float64Array**, and DataView.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2658,7 +2904,7 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **ArrayBufferView** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBufferView type; returns **false** otherwise.|
 
 **Example**
 
@@ -2672,7 +2918,7 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 isArgumentsObject(value: Object): boolean
 
-Checks whether the input value is of the **arguments** type.
+Checks whether the input value is of the arguments type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2686,7 +2932,7 @@ Checks whether the input value is of the **arguments** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **arguments** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise.|
 
 **Example**
 
@@ -2703,7 +2949,7 @@ Checks whether the input value is of the **arguments** type.
 
 isArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the **ArrayBuffer** type.
+Checks whether the input value is of the ArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2717,7 +2963,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -2759,7 +3005,7 @@ Checks whether the input value is an asynchronous function.
 
 isBooleanObject(value: Object): boolean
 
-Checks whether the input value is of the **Boolean** type.
+Checks whether the input value is of the Boolean type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2773,7 +3019,7 @@ Checks whether the input value is of the **Boolean** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Boolean** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Boolean type; returns **false** otherwise.|
 
 **Example**
 
@@ -2787,7 +3033,7 @@ Checks whether the input value is of the **Boolean** type.
 
 isBoxedPrimitive(value: Object): boolean
 
-Checks whether the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type.
+Checks whether the input value is of the Boolean, Number, String, or Symbol type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2801,7 +3047,7 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Boolean, Number, String, or Symbol type; returns **false** otherwise.|
 
 **Example**
 
@@ -2815,7 +3061,7 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 
 isDataView(value: Object): boolean
 
-Checks whether the input value is of the **DataView** type.
+Checks whether the input value is of the DataView type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2829,7 +3075,7 @@ Checks whether the input value is of the **DataView** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **DataView** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the DataView type; returns **false** otherwise.|
 
 **Example**
 
@@ -2844,7 +3090,7 @@ Checks whether the input value is of the **DataView** type.
 
 isDate(value: Object): boolean
 
-Checks whether the input value is of the **Date** type.
+Checks whether the input value is of the Date type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2858,7 +3104,7 @@ Checks whether the input value is of the **Date** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Date** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Date type; returns **false** otherwise.|
 
 **Example**
 
@@ -2872,7 +3118,7 @@ Checks whether the input value is of the **Date** type.
 
 isExternal(value: Object): boolean
 
-Checks whether the input value is of the **native external** type.
+Checks whether the input value is of the native external type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2886,7 +3132,7 @@ Checks whether the input value is of the **native external** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **native external** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the native external type; returns **false** otherwise.|
 
 **Example**
 
@@ -2900,7 +3146,7 @@ Checks whether the input value is of the **native external** type.
 
 isFloat32Array(value: Object): boolean
 
-Checks whether the input value is of the **Float32Array** type.
+Checks whether the input value is of the Float32Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2914,7 +3160,7 @@ Checks whether the input value is of the **Float32Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Float32Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Float32Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -2928,7 +3174,7 @@ Checks whether the input value is of the **Float32Array** type.
 
 isFloat64Array(value: Object): boolean
 
-Checks whether the input value is of the **Float64Array** type.
+Checks whether the input value is of the Float64Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2942,7 +3188,7 @@ Checks whether the input value is of the **Float64Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Float64Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Float64Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3013,7 +3259,7 @@ Checks whether the input value is a generator object.
   ```ts
   // This API cannot be used in .ets files.
   let that = new util.types();
-  function* foo() {}
+  function* foo() {};
   const generator = foo();
   let result = that.isGeneratorObject(generator);
   ```
@@ -3023,7 +3269,7 @@ Checks whether the input value is a generator object.
 
 isInt8Array(value: Object): boolean
 
-Checks whether the input value is of the **Int8Array** type.
+Checks whether the input value is of the Int8Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3037,7 +3283,7 @@ Checks whether the input value is of the **Int8Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Int8Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int8Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3051,7 +3297,7 @@ Checks whether the input value is of the **Int8Array** type.
 
 isInt16Array(value: Object): boolean
 
-Checks whether the input value is of the **Int16Array** type.
+Checks whether the input value is of the Int16Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3065,7 +3311,7 @@ Checks whether the input value is of the **Int16Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Int16Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int16Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3079,7 +3325,7 @@ Checks whether the input value is of the **Int16Array** type.
 
 isInt32Array(value: Object): boolean
 
-Checks whether the input value is of the **Int32Array** type.
+Checks whether the input value is of the Int32Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3093,7 +3339,7 @@ Checks whether the input value is of the **Int32Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Int32Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int32Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3107,7 +3353,7 @@ Checks whether the input value is of the **Int32Array** type.
 
 isMap(value: Object): boolean
 
-Checks whether the input value is of the **Map** type.
+Checks whether the input value is of the Map type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3121,7 +3367,7 @@ Checks whether the input value is of the **Map** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Map** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Map type; returns **false** otherwise.|
 
 **Example**
 
@@ -3135,7 +3381,7 @@ Checks whether the input value is of the **Map** type.
 
 isMapIterator(value: Object): boolean
 
-Checks whether the input value is of the **MapIterator** type.
+Checks whether the input value is of the MapIterator type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3150,7 +3396,7 @@ Checks whether the input value is of the **MapIterator** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **MapIterator** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the MapIterator type; returns **false** otherwise.|
 
 **Example**
 
@@ -3165,7 +3411,7 @@ Checks whether the input value is of the **MapIterator** type.
 
 isNativeError(value: Object): boolean
 
-Checks whether the input value is of the **Error** type.
+Checks whether the input value is of the Error type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3179,7 +3425,7 @@ Checks whether the input value is of the **Error** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Error** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Error type; returns **false** otherwise.|
 
 **Example**
 
@@ -3281,7 +3527,7 @@ Checks whether the input value is a proxy.
 
 isRegExp(value: Object): boolean
 
-Checks whether the input value is of the **RegExp** type.
+Checks whether the input value is of the RegExp type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3295,7 +3541,7 @@ Checks whether the input value is of the **RegExp** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **RegExp** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the RegExp type; returns **false** otherwise.|
 
 **Example**
 
@@ -3309,7 +3555,7 @@ Checks whether the input value is of the **RegExp** type.
 
 isSet(value: Object): boolean
 
-Checks whether the input value is of the **Set** type.
+Checks whether the input value is of the Set type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3323,7 +3569,7 @@ Checks whether the input value is of the **Set** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Set** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Set type; returns **false** otherwise.|
 
 **Example**
 
@@ -3338,7 +3584,7 @@ Checks whether the input value is of the **Set** type.
 
 isSetIterator(value: Object): boolean
 
-Checks whether the input value is of the **SetIterator** type.
+Checks whether the input value is of the SetIterator type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3352,7 +3598,7 @@ Checks whether the input value is of the **SetIterator** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **SetIterator** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the SetIterator type; returns **false** otherwise.|
 
 **Example**
 
@@ -3429,9 +3675,9 @@ Checks whether the input value is a symbol object.
 
 isTypedArray(value: Object): boolean
 
-Checks whether the input value is of the **TypedArray** type.
+Checks whether the input value is of the TypedArray type.
 
-**TypedArray** is a helper type representing any of the following: **Int8Array**, **Int16Array**, **Int32Array**, **Uint8Array**, **Uint8ClampedArray**, **Uint16Array**, **Uint32Array**, **Float32Array**, **Float64Array**, and **DataView**.
+**TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, and DataView.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3445,7 +3691,7 @@ Checks whether the input value is of the **TypedArray** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **TypedArray** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the TypedArray type; returns **false** otherwise.|
 
 **Example**
 
@@ -3459,7 +3705,7 @@ Checks whether the input value is of the **TypedArray** type.
 
 isUint8Array(value: Object): boolean
 
-Checks whether the input value is of the **Uint8Array** type.
+Checks whether the input value is of the Uint8Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3473,7 +3719,7 @@ Checks whether the input value is of the **Uint8Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint8Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint8Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3487,7 +3733,7 @@ Checks whether the input value is of the **Uint8Array** type.
 
 isUint8ClampedArray(value: Object): boolean
 
-Checks whether the input value is of the **Uint8ClampedArray** type.
+Checks whether the input value is of the Uint8ClampedArray type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3501,7 +3747,7 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint8ClampedArray** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint8ClampedArray type; returns **false** otherwise.|
 
 **Example**
 
@@ -3515,7 +3761,7 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 
 isUint16Array(value: Object): boolean
 
-Checks whether the input value is of the **Uint16Array** type.
+Checks whether the input value is of the Uint16Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3529,7 +3775,7 @@ Checks whether the input value is of the **Uint16Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint16Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint16Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3543,7 +3789,7 @@ Checks whether the input value is of the **Uint16Array** type.
 
 isUint32Array(value: Object): boolean
 
-Checks whether the input value is of the **Uint32Array** type.
+Checks whether the input value is of the Uint32Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3557,7 +3803,7 @@ Checks whether the input value is of the **Uint32Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint32Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint32Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3571,7 +3817,7 @@ Checks whether the input value is of the **Uint32Array** type.
 
 isWeakMap(value: Object): boolean
 
-Checks whether the input value is of the **WeakMap** type.
+Checks whether the input value is of the WeakMap type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3585,13 +3831,13 @@ Checks whether the input value is of the **WeakMap** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **WeakMap** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the WeakMap type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
   let that = new util.types();
-  let value : WeakMap<object,number> = new WeakMap();
+  let value : WeakMap<object, number> = new WeakMap();
   let result = that.isWeakMap(value);
   ```
 
@@ -3600,7 +3846,7 @@ Checks whether the input value is of the **WeakMap** type.
 
 isWeakSet(value: Object): boolean
 
-Checks whether the input value is of the **WeakSet** type.
+Checks whether the input value is of the WeakSet type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3614,7 +3860,7 @@ Checks whether the input value is of the **WeakSet** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **WeakSet** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the WeakSet type; returns **false** otherwise.|
 
 **Example**
 
@@ -3628,7 +3874,7 @@ Checks whether the input value is of the **WeakSet** type.
 
 isBigInt64Array(value: Object): boolean
 
-Checks whether the input value is of the **BigInt64Array** type.
+Checks whether the input value is of the BigInt64Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3642,7 +3888,7 @@ Checks whether the input value is of the **BigInt64Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **BigInt64Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the BigInt64Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3656,7 +3902,7 @@ Checks whether the input value is of the **BigInt64Array** type.
 
 isBigUint64Array(value: Object): boolean
 
-Checks whether the input value is of the **BigUint64Array** type.
+Checks whether the input value is of the BigUint64Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3670,7 +3916,7 @@ Checks whether the input value is of the **BigUint64Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **BigUint64Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the BigUint64Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3685,6 +3931,10 @@ Checks whether the input value is of the **BigUint64Array** type.
 isModuleNamespaceObject(value: Object): boolean
 
 Checks whether the input value is a module namespace object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3703,6 +3953,7 @@ Checks whether the input value is a module namespace object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   import url from '@ohos.url'
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
@@ -3713,7 +3964,7 @@ Checks whether the input value is a module namespace object.
 
 isSharedArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the **SharedArrayBuffer** type.
+Checks whether the input value is of the SharedArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3727,7 +3978,7 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **SharedArrayBuffer** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the SharedArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -3748,7 +3999,7 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Total number of values in this buffer.|
+| length | number | Yes| No| Total number of values in this cache.|
 
 **Example**
 
@@ -3763,7 +4014,7 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
 
 constructor(capacity?: number)
 
-A constructor used to create a **LruBuffer** instance. The default capacity of the buffer is 64.
+A constructor used to create a **LruBuffer** instance. The default capacity of the cache is 64.
 
 > **NOTE**
 >
@@ -3775,7 +4026,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| capacity | number | No| Capacity of the **LruBuffer** to create. The default value is **64**.|
+| capacity | number | No| Capacity of the cache to create. The default value is **64**.|
 
 **Example**
 
@@ -3787,7 +4038,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 updateCapacity(newCapacity: number): void
 
-Changes the **LruBuffer** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
 > **NOTE**
 >
@@ -3799,7 +4050,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| newCapacity | number | Yes| New capacity of the **LruBuffer**.|
+| newCapacity | number | Yes| New capacity of the cache.|
 
 **Example**
 
@@ -3812,7 +4063,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
 toString(): string
 
-Obtains the string representation of this **LruBuffer** object.
+Obtains the string representation of this cache.
 
 > **NOTE**
 >
@@ -3824,7 +4075,7 @@ Obtains the string representation of this **LruBuffer** object.
 
 | Type| Description|
 | -------- | -------- |
-| string | String representation of this **LruBuffer** object.|
+| string | String representation of this cache.|
 
 **Example**
 
@@ -3840,7 +4091,7 @@ Obtains the string representation of this **LruBuffer** object.
 
 getCapacity(): number
 
-Obtains the capacity of this buffer.
+Obtains the capacity of this cache.
 
 > **NOTE**
 >
@@ -3852,7 +4103,7 @@ Obtains the capacity of this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| number | Capacity of this buffer.|
+| number | Capacity of the cache.|
 
 **Example**
 
@@ -3865,7 +4116,7 @@ Obtains the capacity of this buffer.
 
 clear(): void
 
-Clears key-value pairs from this buffer. The **afterRemoval()** method will be called to perform subsequent operations.
+Clears key-value pairs from this cache. The **afterRemoval()** method will be called to perform subsequent operations.
 
 > **NOTE**
 >
@@ -3939,7 +4190,7 @@ Obtains the number of times that the queried values are mismatched.
 
 getRemovalCount(): number
 
-Obtains the number of removals from this buffer.
+Obtains the number of removals from this cache.
 
 > **NOTE**
 >
@@ -3951,7 +4202,7 @@ Obtains the number of removals from this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of removals from the buffer.|
+| number | Number of removals from the cache.|
 
 **Example**
 
@@ -3994,7 +4245,7 @@ Obtains the number of times that the queried values are matched.
 
 getPutCount(): number
 
-Obtains the number of additions to this buffer.
+Obtains the number of additions to this cache.
 
 > **NOTE**
 >
@@ -4006,7 +4257,7 @@ Obtains the number of additions to this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of additions to the buffer.|
+| number | Number of additions to the cache.|
 
 **Example**
 
@@ -4020,7 +4271,7 @@ Obtains the number of additions to this buffer.
 
 isEmpty(): boolean
 
-Checks whether this buffer is empty.
+Checks whether this cache is empty.
 
 > **NOTE**
 >
@@ -4064,7 +4315,7 @@ Obtains the value of the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
 
 **Example**
 
@@ -4078,7 +4329,7 @@ Obtains the value of the specified key.
 
 put(key: K,value: V): V
 
-Adds a key-value pair to this buffer.
+Adds a key-value pair to this cache.
 
 > **NOTE**
 >
@@ -4097,7 +4348,7 @@ Adds a key-value pair to this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| V | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
+| V | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
 
 **Example**
 
@@ -4110,7 +4361,7 @@ Adds a key-value pair to this buffer.
 
 values(): V[]
 
-Obtains all values in this buffer, listed from the most to the least recently accessed.
+Obtains all values in this cache, listed from the most to the least recently accessed.
 
 > **NOTE**
 >
@@ -4122,7 +4373,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;[] | All values in the buffer, listed from the most to the least recently accessed.|
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -4138,7 +4389,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 keys(): K[]
 
-Obtains all keys in this buffer, listed from the most to the least recently accessed.
+Obtains all keys in this cache, listed from the most to the least recently accessed.
 
 > **NOTE**
 >
@@ -4150,7 +4401,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 | Type| Description|
 | -------- | -------- |
-| K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -4164,7 +4415,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 remove(key: K): V | undefined
 
-Removes the specified key and its value from this buffer.
+Removes the specified key and its value from this cache.
 
 > **NOTE**
 >
@@ -4182,7 +4433,7 @@ Removes the specified key and its value from this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise; throws an error if **null** is passed in for **key**.|
 
 **Example**
 
@@ -4208,38 +4459,38 @@ Performs subsequent operations after a value is removed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isEvict | boolean | Yes| Whether the buffer capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
+| isEvict | boolean | Yes| Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
 | key | K | Yes| Key removed.|
 | value | V | Yes| Value removed.|
 | newValue | V | Yes| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
 **Example**
 
-  ```ts
-  let arr : object = [];
-  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
-  {
-  	constructor()
-  	{
-  		super();
-  	}
-  	afterRemoval(isEvict : boolean, key : K, value : V, newValue : V)
-  	{
-  		if (isEvict === false)
-  		{
-  			arr = [key, value, newValue];
-  		}
-  	}
+```ts
+class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
-  let lru : ChildLruBuffer<number,number|null> = new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
+
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
+    }
+  }
+}
+let lru: ChildLruBuffer<number, number> = new ChildLruBuffer(2);
+lru.put(11, 1);
+lru.put(22, 2);
+lru.put(33, 3);
+```
 
 ### contains<sup>(deprecated)</sup>
 
 contains(key: K): boolean
 
-Checks whether this buffer contains the specified key.
+Checks whether this cache contains the specified key.
 
 
 > **NOTE**
@@ -4258,7 +4509,7 @@ Checks whether this buffer contains the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the buffer contains the specified key; returns **false** otherwise.|
+| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
 
 **Example**
 
@@ -4968,7 +5219,7 @@ A constructor used to create a **Base64** object.
 
 encodeSync(src: Uint8Array): Uint8Array
 
-Encodes the input content.
+Encodes the input content into a Uint8Array object. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -4980,13 +5231,13 @@ Encodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array encoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -5000,7 +5251,7 @@ Encodes the input content.
 
 encodeToStringSync(src: Uint8Array): string
 
-Encodes the input content.
+Encodes the input content into a string. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -5012,13 +5263,13 @@ Encodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | String encoded from the Uint8Array.|
+| string | String obtained.|
 
 **Example**
 
@@ -5032,7 +5283,7 @@ Encodes the input content.
 
 decodeSync(src: Uint8Array | string): Uint8Array
 
-Decodes the input content.
+Decodes the input content into a Uint8Array object.
 
 > **NOTE**
 >
@@ -5044,13 +5295,13 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array decoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -5064,7 +5315,7 @@ Decodes the input content.
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5076,13 +5327,13 @@ Encodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -5092,7 +5343,7 @@ Encodes the input content asynchronously.
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (let i = 0; i < rarray.length; i++) {        
-          console.log(val[i].toString())
+          console.info(val[i].toString())
       }
   })
   ```
@@ -5101,7 +5352,7 @@ Encodes the input content asynchronously.
 
 encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a string. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5113,13 +5364,13 @@ Encodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | String obtained after asynchronous encoding.|
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
 **Example**
 
@@ -5127,7 +5378,7 @@ Encodes the input content asynchronously.
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
-      console.log(val)
+      console.info(val)
   })
   ```
 
@@ -5136,7 +5387,7 @@ Encodes the input content asynchronously.
 
 decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
-Decodes the input content asynchronously.
+Decodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5148,13 +5399,13 @@ Decodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode asynchronously.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -5164,7 +5415,7 @@ Decodes the input content asynchronously.
   let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (let i = 0; i < rarray.length; i++) {        
-          console.log(val[i].toString())
+          console.info(val[i].toString());
       }
   })
   ```

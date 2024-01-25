@@ -20,7 +20,7 @@
 4. 调用[Cipher.update](../../reference/apis/js-apis-cryptoFramework.md#update-1)，更新数据（明文）。
    
    - 当数据量较小时，可以在init完成后直接调用doFinal。
-   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)。
+   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 
 5. 调用[Cipher.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
    

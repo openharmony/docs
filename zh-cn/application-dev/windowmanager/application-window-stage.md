@@ -32,8 +32,8 @@
 
 | 实例名         | 接口名                                                       | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | 获取`WindowStage`实例下的主窗口。<br>其中path为要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。<br/>此接口仅可在`Stage`模型下使用。 |
-| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前`WindowStage`的主窗口加载具体页面。<br/>此接口仅可在`Stage`模型下使用。 |
+| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | 获取`WindowStage`实例下的主窗口。<br/>此接口仅可在`Stage`模型下使用。 |
+| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前`WindowStage`的主窗口加载具体页面。<br>其中path为要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。             |
 | WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | 开启WindowStage生命周期变化的监听。<br/>此接口仅可在`Stage`模型下使用。 |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建系统窗口。<br/>-`config`：创建窗口时的参数。             |

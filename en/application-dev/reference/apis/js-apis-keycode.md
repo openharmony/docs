@@ -287,10 +287,10 @@ Keycode value.
 | KEYCODE_KBD_LAYOUT_NEXT          |  2723 | Next Keyboard Layout key                   |
 | KEYCODE_BRIGHTNESS_MIN           |  2724 | Min Brightness key                      |
 | KEYCODE_BRIGHTNESS_MAX           |  2725 | Max Brightness key                      |
-| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | Keyboard Input-assisted Previous key        |
-| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | Keyboard Input-assisted Next key            |
-| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | Keyboard Input-assisted Previous Group key        |
-| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Keyboard Input-assisted Next Group key            |
+| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | Assist_Previous key, used to view historical inputs.        |
+| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | Assist_Next key, used to view predictive inputs.          |
+| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | Assist_Previous_Group key, used to switch to the previous input method in the input group.        |
+| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Assist_Next_Group key, used to switch to the next input method in the input group.              |
 | KEYCODE_KBDINPUTASSIST_ACCEPT    |  2730 | Keyboard Input-assisted Accept key          |
 | KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | Keyboard Input-assisted Cancel key          |
 | KEYCODE_FRONT                    |  2800 | Front key, used to launch the windshield defogger                  |

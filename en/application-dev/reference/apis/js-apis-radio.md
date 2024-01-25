@@ -61,7 +61,7 @@ radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) =>
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
+getRadioTech\(slotId: number\): Promise\<[NetworkRadioTech](#networkradiotech11)\>
 
 Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -447,8 +447,6 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let countryISO: string = radio.getISOCountryCodeForNetworkSync(slotId);
 console.log(`the country ISO is:` + countryISO);
@@ -646,8 +644,6 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
 console.log(`signal information size is:` + signalInfo.length);
@@ -1013,8 +1009,6 @@ Obtains the carrier name of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let operatorName: string = radio.getOperatorNameSync(slotId);
 console.log(`operator name is:` + operatorName);
@@ -2860,8 +2854,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
@@ -2907,8 +2899,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {

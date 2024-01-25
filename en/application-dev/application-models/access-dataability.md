@@ -52,6 +52,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import { BusinessError } from '@ohos.base';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Callback mode:
    this.DAHelper.insert(this.uri, this.valuesBucket_insert, (error: BusinessError, data: number) => {
@@ -74,6 +77,9 @@ The sample code for accessing a DataAbility is as follows:
    import featureAbility from '@ohos.ability.featureAbility'
    import { BusinessError } from '@ohos.base';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Promise mode (await needs to be used in the asynchronous method):
    this.DAHelper.insert(this.uri, this.valuesBucket_insert).then((datainsert) => {
@@ -94,6 +100,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Callback mode:
    this.DAHelper.delete(this.uri, this.predicates, (error, data) => {
@@ -115,6 +124,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Promise mode (await needs to be used in the asynchronous method):
    this.DAHelper.delete(this.uri, this.predicates).then((datadelete) => {
@@ -135,6 +147,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Callback mode:
    this.predicates.equalTo('name', 'Rose');
@@ -157,6 +172,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Promise mode (await needs to be used in the asynchronous method):
    this.predicates.equalTo('name', 'Rose');
@@ -178,6 +196,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Callback mode:
    this.predicates.equalTo('name', 'Rose');
@@ -209,6 +230,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Promise mode (await needs to be used in the asynchronous method):
    this.predicates.equalTo('name', 'Rose');
@@ -238,6 +262,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Callback mode:
    this.DAHelper.batchInsert(this.uri, this.crowd, (error, data) => {
@@ -259,6 +286,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Promise mode (await needs to be used in the asynchronous method):
    this.DAHelper.batchInsert(this.uri, this.crowd).then((databatchInsert) => {
@@ -279,6 +309,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Callback mode:
    let operations: Array<ability.DataAbilityOperation> = [{
@@ -309,6 +342,9 @@ The sample code for accessing a DataAbility is as follows:
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
    import promptAction from '@ohos.promptAction';
+   import Logger from '../../utils/Logger';
+   
+   const TAG: string = 'PageDataAbility';
    
    // Promise mode (await needs to be used in the asynchronous method):
    let operations: Array<ability.DataAbilityOperation> = [{

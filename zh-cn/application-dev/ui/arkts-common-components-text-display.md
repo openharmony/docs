@@ -42,7 +42,7 @@ Text可通过以下两种方式来创建：
 
 - 创建Span。
 
-  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容内容时，Span内容覆盖Text内容。
+  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容时，Span内容覆盖Text内容。
 
 
   ```ts
@@ -137,19 +137,22 @@ Text可通过以下两种方式来创建：
     .textOverflow({ overflow: TextOverflow.None })
     .maxLines(1)
     .fontSize(12)
-    .border({ width: 1 }).padding(10)
+    .border({ width: 1 })
+    .padding(10)
   Text('我是超长文本，超出的部分显示省略号。I am an extra long text, with ellipses displayed for any excess。')
     .width(250)
     .textOverflow({ overflow: TextOverflow.Ellipsis })
     .maxLines(1)
     .fontSize(12)
-    .border({ width: 1 }).padding(10)
+    .border({ width: 1 })
+    .padding(10)
   Text('当文本溢出其尺寸时，文本将滚动显示。When the text overflows its dimensions, the text will scroll for displaying.')       
     .width(250)
     .textOverflow({ overflow: TextOverflow.MARQUEE })                 
     .maxLines(1)       
     .fontSize(12)
-    .border({ width: 1 }).padding(10)                       
+    .border({ width: 1 })
+    .padding(10)                       
   ```
 
   ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.gif)

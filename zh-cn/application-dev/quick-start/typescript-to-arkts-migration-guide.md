@@ -217,7 +217,7 @@ structural typing是否有助于生成清晰、易理解的代码，关于这一
 
 **级别：错误**
 
-在ArkTS中，对象的属性名不能为数字或字符串。通过属性名访问类的属性，通过数值索引访问数组元素。
+在ArkTS中，对象的属性名不能为数字或字符串。例外：ArkTS支持属性名为字符串字面量和枚举中的字符串值。通过属性名访问类的属性，通过数值索引访问数组元素。
 
 **TypeScript**
 
@@ -246,6 +246,17 @@ z.set('name', '1');
 z.set(2, '2');
 console.log(z.get('name'));
 console.log(z.get(2));
+
+enum Test {
+  A = 'aaa',
+  B = 'bbb'
+}
+
+let obj: Record<string, number> = {
+  [Test.A]: 1,   // 枚举中的字符串值
+  [Test.B]: 2,   // 枚举中的字符串值
+  ['value']: 3   // 字符串字面量
+}
 ```
 
 **相关约束**
@@ -991,26 +1002,6 @@ function greet<T>(): T {
   return 'Hello' as T;
 }
 let z = greet<string>();
-```
-
-### 不支持使用正则字面量
-
-**规则：**`arkts-no-regexp-literals`
-
-**级别：错误**
-
-ArkTS不支持正则字面量，请使用`RegExp()`创建正则对象。
-
-**TypeScript**
-
-```typescript
-let regex: RegExp = /bc*d/;
-```
-
-**ArkTS**
-
-```typescript
-let regex: RegExp = new RegExp('bc*d');
 ```
 
 ### 需要显式标注对象字面量的类型
@@ -2653,33 +2644,6 @@ namespace A {
 A.init();
 ```
 
-### 不支持仅为副作用而导入一个模块
-
-**规则：**`arkts-no-side-effects-imports`
-
-**级别：错误**
-
-ArkTS不支持`window`等全局变量，避免模块导入时产生副作用（模块中会直接运行的代码）。可以通过`*`语法获取所有导出的变量。
-
-**TypeScript**
-
-```typescript
-// === “path/to/module.ts”中的模块
-export const EXAMPLE_VALUE = 42;
-
-// 设置全局变量
-window.MY_GLOBAL_VAR = 'Hello, world!';
-
-// === 使用此模块：
-import 'path/to/module'
-```
-
-**ArkTS**
-
-```typescript
-import * as ns from 'path/to/module'
-```
-
 ### 不支持`import default as ...`
 
 **规则：**`arkts-no-import-default-as`
@@ -2964,7 +2928,7 @@ class C {
 
 **规则：**`arkts-no-globalthis`
 
-**级别：错误**
+**级别：警告**
 
 由于ArkTS不支持动态更改对象的布局，因此不支持全局作用域和`globalThis`。
 
@@ -3017,13 +2981,25 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 
 不支持globalThis
 
-### 不支持`Function.apply`、`Function.bind`和`Function.call`
+### 不支持`Function.apply`和`Function.call`
 
-**规则：**`arkts-no-func-apply-bind-call`
+**规则：**`arkts-no-func-apply-call`
 
 **级别：错误**
 
-ArkTS不允许使用标准库函数`Function.apply`、`Function.bind`以及`Function.call`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
+ArkTS不允许使用标准库函数`Function.apply`和`Function.call`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
+
+**相关约束**
+
+不支持在函数中使用this
+
+### 不支持`Function.bind`
+
+**规则：**`arkts-no-func-bind`
+
+**级别：警告**
+
+ArkTS不允许使用标准库函数`Function.bind`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
 
 **相关约束**
 
@@ -3281,19 +3257,11 @@ export class C {
 import { C } from 'lib1'
 ```
 
-### 除了ArkUI中的装饰器，不允许使用其他装饰器
-
-**规则：**`arkts-no-decorators-except-arkui`
-
-**级别：警告**
-
-现在，ArkTS中只支持ArkUI中的装饰器。使用其他装饰器会造成编译时警告。
-
 ### `class`不能被用作对象
 
 **规则：**`arkts-no-classes-as-obj`
 
-**级别：错误**
+**级别：警告**
 
 在ArkTS中，`class`声明的是一个新的类型，不是一个值。因此，不支持将`class`用作对象（例如将`class`赋值给一个对象）。
 

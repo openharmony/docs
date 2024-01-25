@@ -648,11 +648,15 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 ```
 ![zh-ch_image_Add_Grayscale.png](figures/zh-ch_image_Add_Grayscale.png)
 
-### getPixelMap
+### getPixelMap<sup>(deprecated)</sup>
 
-getPixelMap(): [image.PixelMap](js-apis-image.md#pixelmap7)
+getPixelMap(): image.PixelMap
 
 获取已添加链表效果的源图像的image.PixelMap。
+
+> **说明：**
+>
+> 此接口从API version 9开始支持，从API version 11开始废弃，推荐使用[getEffectPixelMap](#geteffectpixelmap11)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -680,6 +684,43 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
   console.info('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
+})
+```
+
+### getEffectPixelMap<sup>11+</sup>
+
+getEffectPixelMap(): Promise<image.PixelMap>
+
+获取已添加链表效果的源图像的image.PixelMap，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Promise\<image.PixelMap>  | Promise对象。返回已添加链表效果的源图像的image.PixelMap。 |
+
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
+    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
+  })
 })
 ```
 

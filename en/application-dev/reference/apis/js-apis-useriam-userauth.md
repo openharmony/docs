@@ -126,7 +126,7 @@ Subscribes to the user authentication result.
 
 | Name  | Type                             | Mandatory| Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result. |
+| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
 | callback | [IAuthCallback](#iauthcallback10) | Yes  | Callback invoked to return the user authentication result.    |
 
 **Error codes**
@@ -182,7 +182,7 @@ Unsubscribes from the user authentication result.
 
 | Name  | Type                             | Mandatory| Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                         | Yes  | Event type. The value is **result**, which indicates the authentication result. |
+| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
 | callback | [IAuthCallback](#iauthcallback10) | No  | Callback for the user authentication result.    |
 
 **Error codes**
@@ -344,7 +344,7 @@ Obtains a [UserAuthInstance](#userauthinstance10) instance for user authenticati
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance**  instance that supports UI.|
+| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance** instance that supports UI.|
 
 **Error codes**
 
@@ -1105,12 +1105,6 @@ A constructor used to create a **UserAuth** instance.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-**Return value**
-
-| Type                  | Description                |
-| ---------------------- | -------------------- |
-| [UserAuth](#userauthdeprecated) | **UserAuth** instance created.|
-
 **Example**
 
 ```ts
@@ -1477,10 +1471,10 @@ Enumerates the trust levels of the authentication result.
 
 | Name| Value   | Description                                                        |
 | ---- | ----- | ------------------------------------------------------------ |
-| ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data. |
+| ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.|
 | ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as logins to apps and keeping a device in unlocked state. |
-| ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device. |
-| ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment. |
+| ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.|
+| ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
 
 ## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
 
@@ -1517,7 +1511,7 @@ Defines the **Authenticator** object.
 
 execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt;): void
 
-Starts user authentication. This API uses asynchronous callback to return the result.
+Starts user authentication. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is deprecated since API version 8. Use [auth](#authdeprecated) instead.
@@ -1530,15 +1524,9 @@ Starts user authentication. This API uses asynchronous callback to return the re
 
 | Name  | Type                       | Mandatory| Description                                                                                                                   |
 | -------- | --------------------------- | ---- |-----------------------------------------------------------------------------------------------------------------------|
-| type     | AuthType                      | Yes  | Authentication type. Only **FACE_ONLY** is supported currently.<br>**ALL** is a reserved parameter. The current version does not support authentication of the **ALL** type.                                                                |
+| type     | AuthType                      | Yes  | Authentication type. Currently, only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.                                                                |
 | level    | SecureLevel  | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result.                                                                                                                |
-
-Parameters returned in callback
-
-| Type  | Description                                                        |
-| ------ | ------------------------------------------------------------ |
-| number | Authentication result. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. **number** indicates the [AuthenticationResult](#authenticationresultdeprecated).|
 
 **Example**
 
@@ -1573,7 +1561,7 @@ Starts user authentication. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                                                                                                   |
 | ------ | ------ | ---- |-----------------------------------------------------------------------------------------------------------------------|
-| type   | AuthType | Yes  | Authentication type. Only **FACE_ONLY** is supported currently.<br>**ALL** is a reserved parameter. The current version does not support authentication of the **ALL** type.                                                                |
+| type   | AuthType | Yes  | Authentication type. Currently, only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.                                                   |
 | level  | SecureLevel | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 
 **Return value**

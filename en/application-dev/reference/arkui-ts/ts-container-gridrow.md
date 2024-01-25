@@ -23,8 +23,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.|
 |columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.|
 |breakpoints|[BreakPoints](#breakpoints)|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
 |direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.|
 
@@ -153,7 +153,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description  |
 | ----- | ------ | ---- | ---------------------------------------- |
-|breakpoints| string |Yes|Breakpoint change.<br> The value can be **"xs"**, **"sm"**, **"md"**, **"lg"**, **"xl"**, or **"xxl"**.|
+|breakpoints| string |No|Breakpoint change.<br> The value can be **"xs"**, **"sm"**, **"md"**, **"lg"**, **"xl"**, or **"xxl"**.|
 
 ## Example
 

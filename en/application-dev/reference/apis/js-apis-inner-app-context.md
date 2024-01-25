@@ -203,7 +203,7 @@ Requests certain permissions from the system. This API uses an asynchronous call
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | Yes   | Permissions to request. This parameter cannot be **null**.             |
 | requestCode    | number                                   | Yes   | Request code to be passed to **PermissionRequestResult**.|
-| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | Yes   | Callback used to return the permission request result.                          |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | Yes   | Callback used to return the permission request result.                          |
 
 **Example**
 

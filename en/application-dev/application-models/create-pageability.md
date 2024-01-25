@@ -4,6 +4,11 @@
 When you create a PageAbility on DevEco Studio, DevEco Studio automatically generates the **onCreate()** and **onDestroy()** callbacks in **app.js** and **app.ets**. You need to implement the other lifecycle callbacks in **app.js** and **app.ets**. The following code snippet shows how to create a PageAbility:
 
 ```ts
+import featureAbility from '@ohos.ability.featureAbility';
+import Logger from '../utils/Logger';
+
+const TAG: string = 'MainAbility';
+
 class MainAbility {
   onCreate() {
     // Obtain the context and call related APIs.
@@ -97,6 +102,10 @@ The following code snippet shows how to use **getContext()** to obtain the appli
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
+import promptAction from '@ohos.promptAction';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 ```
 ```ts
 (async (): Promise<void> => {

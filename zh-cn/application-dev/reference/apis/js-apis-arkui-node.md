@@ -4,13 +4,15 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 * [BuilderNode](./js-apis-arkui-builderNode.md#buildernode)模块：提供能够挂载原生组件的自定义节点BuilderNode。不建议将BuilderNode作为子节点挂载到其他自定义节点上。
 
-* [FrameNode](./js-apis-arkui-frameNode.md#framenode)模块：提供自定义节点FrameNode，表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。
+* [FrameNode](./js-apis-arkui-frameNode.md#framenode)模块：提供自定义节点FrameNode，表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。
 
-* [NodeController](./js-apis-arkui-nodeController#nodecontroller)模块：提供NodeController用于实现自定义节点的创建、显示、更新等操作，并负责将自定义节点挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)上。
+* [NodeController](./js-apis-arkui-nodeController.md#nodecontroller)模块：提供NodeController用于实现自定义节点的创建、显示、更新等操作，并负责将自定义节点挂载到[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上。
 
 * [Graphics](./js-apis-arkui-graphics.md#graphics)模块：提供自定义节点相关属性设置的定义。
 
 * [RenderNode](./js-apis-arkui-renderNode.md#rendernode)模块：提供自绘制渲染节点RenderNode，支持开发者通过C API进行开发，完成自定义绘制需求。
+
+* [XComponentNode](./js-apis-arkui-xcomponentNode.md#xcomponentnode)模块：提供XComponent节点XComponentNode，表示组件树中的XComponent组件，用于EGL/OpenGLES和媒体数据写入，并支持动态修改节点渲染类型。
 
 > **说明：**
 >
@@ -33,6 +35,7 @@ import {
   NodeController,
   FrameNode,
   RenderNode,
+  XComponentNode,
   NodeRenderType,
   RenderOptions,
   DrawContext,

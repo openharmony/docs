@@ -32,7 +32,7 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Error codes**
 
-For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -86,7 +86,7 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Error codes**
 
-For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -132,7 +132,7 @@ Requests exemption, so that the application can use restricted resources when th
 
 **Error codes**
 
-For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -175,7 +175,7 @@ Cancels exemption for the application.
 
 **Error codes**
 
-For details about the error codes, see [Background Task Management Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |

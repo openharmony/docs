@@ -1,4 +1,4 @@
-# Localization Kit
+# Localization Kit（本地化开发服务）
 
 - [Localization Kit简介](../internationalization/i18n-l10n.md)
 - 应用国际化

@@ -38,10 +38,10 @@ PopupOptions定义Popup的具体式样参数。
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
-| icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 设置popup图标。                      |
+| icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 设置popup图标。<br />**说明：**<br />当size设置异常值或0时不显示。 |
 | title     | [PopupTextOptions](#popuptextoptions)                        | 否   | 设置popup标题文本。                  |
-| message   | [PopupTextOptions](#popuptextoptions)                        | 是   | 设置popup内容文本。                  |
-| showClose | boolean                                                      | 否   | 设置popup关闭按钮。                  |
+| message   | [PopupTextOptions](#popuptextoptions)                        | 是   | 设置popup内容文本。<br />**说明：**<br />message不支持设置fontWeight。 |
+| showClose | boolean\| [Resource](ts-types.md#resource)                 | 否   | 设置popup关闭按钮。                  |
 | onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。          |
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
 
@@ -77,13 +77,13 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                                         | 必填 | 描述               |
-| ------------ | ------------------------------------------------------------ | ---- | ------------------ |
-| image        | [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是   | 设置图标内容。     |
-| width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。     |
-| height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。     |
-| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。 |
-| borderRadius | [Length](ts-types.md#length)\| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。     |
+| 名称         | 类型                                                         | 必填 | 描述                               |
+| ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| image        | [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是   | 设置图标内容。                     |
+| width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP。 |
+| height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。<br />默认值：32VP。 |
+| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。                 |
+| borderRadius | [Length](ts-types.md#length)\| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：12VP   |
 
 ## 示例   
 
@@ -120,7 +120,6 @@ struct PopupExample {
           text: 'This is the message',
           fontSize: 15,
           fontColor: Color.Black,
-          fontWeight: FontWeight.Normal,
         } as PopupTextOptions,
         showClose: false,
         onClose: () => {
@@ -149,7 +148,6 @@ struct PopupExample {
     .width(300)
     .height(200)
     .borderWidth(2)
-    .borderColor(Color.Red)
     .justifyContent(FlexAlign.Center)
   }
 }

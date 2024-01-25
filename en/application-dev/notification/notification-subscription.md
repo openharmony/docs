@@ -36,7 +36,7 @@ The major APIs for notification subscription are described as follows. For detai
 
 ## How to Develop
 
-1. Request the **ohos.permission.NOTIFICATION_CONTROLLER** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. Request the **ohos.permission.NOTIFICATION_CONTROLLER** permission. For details, see [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import the **notificationSubscribe** module.
    

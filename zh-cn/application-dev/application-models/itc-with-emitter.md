@@ -12,6 +12,9 @@ Emitter的开发步骤如下：
    ```ts
    import emitter from '@ohos.events.emitter';
    import promptAction from '@ohos.promptAction';
+   import Logger from '../utils/Logger';
+
+   const TAG: string = 'ThreadModel';
    ```
    ```ts
    // 定义一个eventId为1的事件

@@ -120,5 +120,18 @@ fs的具体使用可以参考：[@ohos.file.fs](../reference/apis/js-apis-file-f
 
 此类文件是保存在/storage/media/100/local/files目录下，具体位置与文件类型和来源有关。知道文件名时，可在此目录下通过如下命令查找：find . -name [filename]
 
+**参考链接：**  
+
 [应用文件上传下载](../file-management/app-file-upload-download.md)
+
+## 如何监听文件或文件目录的变化(API 10)
+
+**解决措施**
+
+通过fs.createWatcher，可注册监听回调，从而监听文件或者目录的变化。
+
+**参考链接：**  
+
+[@ohos.file.fs](../reference/apis/js-apis-file-fs.md#fscreatewatcher10)
+
 

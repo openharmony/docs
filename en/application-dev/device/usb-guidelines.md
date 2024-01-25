@@ -117,8 +117,8 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
    ```ts
    // Open the device, and obtain the USB device pipe for data transfer.
-   let pipe : USBDevicePipe = usb.connectDevice(deviceList[0]);
-   let interface1 : number = deviceList[0].configs[0].interfaces[0];
+   let pipe : usb.USBDevicePipe = usb.connectDevice(deviceList[0]);
+   let interface1 : usb.USBInterface = deviceList[0].configs[0].interfaces[0];
    /*
     Claim the corresponding interface from **deviceList**.
    interface1 must be one present in the device configuration.
@@ -135,9 +135,9 @@ You can set a USB device as a host to connect to a device for data transfer. The
     Read data. Select the corresponding RX endpoint from deviceList for data transfer.
    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
    */
-   let inEndpoint : USBEndpoint = interface1.endpoints[2];
-   let outEndpoint : USBEndpoint = interface1.endpoints[1];
-   let dataUint8Array : Array<number> = new Uint8Array(1024);
+   let inEndpoint : usb.USBEndpoint = interface1.endpoints[2];
+   let outEndpoint : usb.USBEndpoint = interface1.endpoints[1];
+   let dataUint8Array : Uint8Array = new Uint8Array(1024);
    usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
    if (dataLength >= 0) {
      console.info("usb readData result Length : " + dataLength);
@@ -165,4 +165,3 @@ You can set a USB device as a host to connect to a device for data transfer. The
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
-

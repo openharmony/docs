@@ -98,16 +98,16 @@ The following uses a single KV store as an example to describe how to implement 
 > The data on a device can be synchronized only to the devices whose data security labels are not higher than the security level of the device. For details, see [Access Control Mechanism in Cross-Device Synchronization](sync-app-data-across-devices-overview.md#access-control-mechanism-in-cross-device-synchronization).
 
 1. Import the module.
-
+   
    ```ts
    import distributedKVStore from '@ohos.data.distributedKVStore';
    ```
 
-2. Apply for required permissions.
+2. Request permissions.
 
-   a) Apply for the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+   a) Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
-   b) Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+   b) Display a dialog box to ask user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
 
@@ -115,7 +115,7 @@ The following uses a single KV store as an example to describe how to implement 
 
    b) Create a **KvManager** instance.
 
-
+   
    ```ts
    // Obtain the context of the stage model.
    import window from '@ohos.window';
@@ -163,7 +163,7 @@ The following uses a single KV store as an example to describe how to implement 
 
    b) Disable the auto synchronization function (**autoSync:false**) to facilitate subsequent verification of the synchronization function. If synchronization is required, call the **sync()** interface.
 
-
+   
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -197,7 +197,7 @@ The following uses a single KV store as an example to describe how to implement 
    }
    ```
 
-5. Subscribe to changes of distributed data. To unsubscribe from the data changes, call [off('dataChange')](../reference/apis/js-apis-distributedKVStore.md#offdatachange).
+5. Subscribe to distributed data changes. To unsubscribe from the data changes, call [off('dataChange')](../reference/apis/js-apis-distributedKVStore.md#offdatachange).
    
    ```ts
    try {
@@ -216,7 +216,7 @@ The following uses a single KV store as an example to describe how to implement 
 
    b) Write KV pairs to the single KV store.
 
-
+   
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -240,7 +240,7 @@ The following uses a single KV store as an example to describe how to implement 
 
    b) Query data from the single KV store.
 
-
+   
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -296,9 +296,10 @@ The following uses a single KV store as an example to describe how to implement 
        let error = e as BusinessError;
        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
      }
-
+   
    } catch (err) {
      let error = err as BusinessError;
      console.error("createDeviceManager errCode:" + error.code + ",errMessage:" + error.message);
    }
    ```
+

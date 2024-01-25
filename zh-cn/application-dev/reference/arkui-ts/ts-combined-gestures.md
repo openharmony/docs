@@ -30,7 +30,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | 名称                                       | 功能描述                                 |
 | ---------------------------------------- | ------------------------------------ |
-| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 |
+| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 <br/>**说明：** <br/>在窗口失焦的时候会触发。|
 
 
 ## 示例

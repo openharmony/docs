@@ -22,9 +22,9 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
 
 | Name| Type| Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | No  | Name of the variable.|
-| taskId | number | No  | ID used to indicate the association of APIs in a trace. If multiple traces with the same name need to be performed at the same time or a trace needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**.|
-| count  | number | No  | Value of the variable. |
+| name   | string | Yes  | Name of the variable.|
+| taskId | number | Yes  | ID used to indicate the association of APIs in a trace. If multiple traces with the same name need to be performed at the same time or a trace needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**.|
+| count  | number | Yes  | Value of the variable. |
 
 ## Development Example
 

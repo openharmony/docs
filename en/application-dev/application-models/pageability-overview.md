@@ -1,4 +1,4 @@
-# PageAbility Component Overview
+# PageAbility Overview
 
 
 PageAbility is an application component that has the UI and supports user interaction.

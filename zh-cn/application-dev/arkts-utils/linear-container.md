@@ -29,11 +29,13 @@ ArrayList进行增、删、改、查操作的常用API如下：
 
 ## Vector
 
+> **说明**：
+>
+> API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis/js-apis-arraylist.md)。
+
 [Vector](../reference/apis/js-apis-vector.md)是指连续存储结构，可用来构造全局的数组对象。Vector依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为10，并支持动态扩容，每次扩容大小为原始容量的2倍。
 
 Vector和[ArrayList](../reference/apis/js-apis-arraylist.md)相似，都是基于数组实现，但Vector提供了更多操作数组的接口。Vector在支持操作符访问的基础上，还增加了get/set接口，提供更为完善的校验及容错机制，满足用户不同场景下的需求。
-
-API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis/js-apis-arraylist.md)。
 
 Vector进行增、删、改、查操作的常用API如下：
 

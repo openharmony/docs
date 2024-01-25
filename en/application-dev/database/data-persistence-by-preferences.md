@@ -3,7 +3,7 @@
 
 ## When to Use
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data. You can use **Preferences** when you want a unique storage for global data. **Preferences** caches data in the memory, which allows fast access when the data is required. **Preferences** is recommended for storing small amount of data, such as personalized settings (font size and whether to enable the night mode) of applications.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs. You can use **Preferences** when you want a unique storage for global data. **Preferences** caches data in the memory, which allows fast access when the data is required. **Preferences** is recommended for storing small amount of data, such as personalized settings (font size and whether to enable the night mode) of applications.
 
 
 ## Working Principles
@@ -180,9 +180,10 @@ The following table lists the APIs used for persisting user preference data. For
      Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.<br>Example:
      
    ```ts
-   preferences.on('change', (key: string) => {
+   let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
-   });
+   }
+   preferences.on('change', observer);
    // The data is changed from 'auto' to 'manual'.
    preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {

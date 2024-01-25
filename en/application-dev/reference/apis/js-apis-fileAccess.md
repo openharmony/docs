@@ -1734,6 +1734,8 @@ copyFile(sourceUri: string, destUri: string, fileName: string): Promise&lt;strin
 
 Copies a file with an alternative file name. This API uses a promise to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
@@ -1776,9 +1778,11 @@ async function copyFunc01() {
 
 ### copyFile<sup>11+</sup>
 
-copyFile(sourceUri: string, destUri: string, fileName, callback: AsyncCallback&lt;string&gt;) : void
+copyFile(sourceUri: string, destUri: string, fileName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 Copies a file with an alternative file name. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1808,8 +1812,6 @@ try {
   // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
   fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
         console.log("copyResult uri: " + copyResult);
-      }
-    }
   });
 } catch (err) {
   let error: BusinessError = err as BusinessError;
@@ -1850,7 +1852,7 @@ async function registerObserver01() {
     // The URI is 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE', and the event type is NOTIFY_MOVE_SELF.
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1858,7 +1860,7 @@ async function registerObserver01() {
     // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'.
     const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1867,7 +1869,7 @@ async function registerObserver01() {
     // The notification expected to receive is about the NOTIFY_MOVED_FROM event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'.
     const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1901,7 +1903,7 @@ async function registerObserver02() {
     // The notification expected to receive is about the NOTIFY_ADD event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'.
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1932,7 +1934,7 @@ async function registerObserver03() {
     // No second return is expected.
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1980,7 +1982,7 @@ async function UnregisterObserver01() {
     // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2008,7 +2010,7 @@ async function UnregisterObserver02() {
     // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2039,7 +2041,7 @@ async function UnregisterObserver03() {
     // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'.
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2047,7 +2049,7 @@ async function UnregisterObserver03() {
     // No notification is expected to receive.
     const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2070,13 +2072,15 @@ async function UnregisterObserver03() {
 
 ### moveItem<sup>11+</sup>
 
-moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise<Array<MoveResult>>&gt;
+moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;MoveResult&gt;&gt;
 
 Moves a file or folder. This API uses a promise to return the result.
 
 You can forcibly overwrite the file with the same name in the destination directory.
 
 Currently, this API does not support move of files or folders across devices.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -2168,6 +2172,8 @@ Moves a file or folder. This API uses an asynchronous callback to return the res
 
 Currently, this API does not support move of files or folders across devices.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
@@ -2221,6 +2227,8 @@ Moves a file or folder with the specified mode. This API uses an asynchronous ca
 If a file with the same name exists in the destination directory, you can forcibly overwrite the file.
 
 Currently, this API does not support move of files or folders across devices.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -2276,6 +2284,8 @@ Moves a file, and renames it if a file with the same name already exists in the 
 
 Currently, this API does not support move of files across devices.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
@@ -2308,6 +2318,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     // You can use the URI obtained.
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+    let fileName: string;
     try {
       // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
       let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
@@ -2328,6 +2339,8 @@ Moves a file, and renames it if a file with the same name already exists in the 
  
 
 Currently, this API does not support move of files across devices.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -2355,6 +2368,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   // You can use the URI obtained.
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  let fileName: string;
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
@@ -2429,6 +2443,8 @@ Enumerates the notification types.
 | NOTIFY_MOVED_TO   | 2    | File or folder moved in (for example, a file or folder in the target directory is renamed, or a file or folder is moved to the target directory).<br>See example 1 of **registerObserver** and example 1 of **unregisterObserver(uri: string)**.|
 | NOTIFY_MOVED_FROM | 3    | File or folder moved out (for example, a file or folder in the target directory is renamed and no longer in the target directory, or a file or folder is moved out from the target directory).<br>See example 1 of **registerObserver** and example 1 of **unregisterObserver(uri: string)**.|
 | NOTIFY_MOVE_SELF  | 4    | File moved (for example, the target file or folder is renamed or moved).<br>See example 1 **registerObserver**.    |
+| NOTIFY_DEVICE_ONLINE<sup>11+</sup>   | 5    | Device goes online.    |
+| NOTIFY_DEVICE_OFFLINE<sup>11+</sup>   | 6    | Device goes offline.    |
 
 ## NotifyMessage<sup>10+</sup>
 
@@ -2448,6 +2464,8 @@ Represents the notification message.
 ## MoveResult<sup>11+</sup>
 
 Represents the information returned when the move operation fails. If the operation is successful, no information is returned.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 

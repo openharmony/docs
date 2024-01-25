@@ -12,15 +12,23 @@
 
 ## 接口
 
-CheckboxGroup(options?: { group?: string })
+CheckboxGroup(options?: CheckboxGroupOptions)
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数:**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+**参数：** 
+
+| 参数名  | 类型                                                  | 必填 | 描述                 |
+| ------- | ----------------------------------------------------- | ---- | -------------------- |
+| options | [CheckboxGroupOptions](#checkboxgroupoptions对象说明) | 否   | 配置多选框群组参数。 |
+
+## CheckboxGroupOptions对象说明
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
 
@@ -31,7 +39,7 @@ CheckboxGroup(options?: { group?: string })
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的[Checkbox](ts-basic-components-checkbox.md)设置了select属性，则Checkbox的优先级高。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置非选中状态边框颜色。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
 

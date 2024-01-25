@@ -1,28 +1,6 @@
 # AccessibilityExtensionAbility
 
-The **AccessibilityExtensionAbility** module provides accessibility extension capabilities based on the **ExtensionAbility** framework. You can develop your accessibility applications by applying the **AccessibilityExtensionAbility** template to enhance usability.
-
-## AccessibilityExtensionAbility Overview
-
-Accessibility is about giving equal access to everyone so that they can access and use information equally and conveniently under any circumstances. It helps narrow the digital divide between people of different classes, regions, ages, and health status in terms of information understanding, information exchange, and information utilization, so that they can participate in social life more conveniently and enjoy the benefits of technological advances.
-
-AccessibilityExtensionAbility is an accessibility extension service framework. It allows you to develop your own extension services and provides a standard mechanism for exchanging information between applications and extension services. You can use the provided capabilities and APIs to develop accessibility features for users with disabilities or physical limitations. For example, you can develop a screen reader for users with vision impairments.
-
-Below shows the AccessibilityExtensionAbility framework.
-
-![AccessibilityFramework](figures/AccessibilityFramework.png)
-
-1. Accessibility application: application developed based on the AccessibilityExtensionAbility framework to offer accessibility features, for example, a screen reader application.
-2. Target application: application assisted by the accessibility application.
-3. AccessibilityAbilityManagerService (AAMS): main service of the AccessibilityExtensionAbility framework, which is used to manage the lifecycle of accessibility applications and provide a bridge for information exchange between accessibility applications and target applications.
-4. AccessibilityAbility (AAkit): ability that is used by the accessibility application to build an extension service ability operating environment and that provides interfaces for the accessibility application to query and operate the target application, including performing click/long press operations.
-5. AccessibilitySystemAbilityClient (ASACkit): used by the target application to send accessibility events, such as content change events, to AAMS, and respond to the instructions (such as performing click/long press operations) sent by the accessibility application through AAMS.
-
-## Capabilities Provided by Accessibility
-
-1. Accessibility feature query capabilities: including capabilities to obtain the accessibility application list, accessibility application enabling status, accessibility application type, and capabilities to send accessibility events. For details about the APIs, see [@ohos.accessibility](../reference/apis/js-apis-accessibility.md).
-2. Callbacks for events such as connection and disconnection of accessibility extension services, specified auxiliary events, and physical key events. For details about the APIs, see [@ohos.application.AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md).
-3. Context for accessibility extension services, which can be used to configure concerned information type, query node information, injects gestures, and more. For details about the APIs, see [AccessibilityExtensionContext ](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md). For details about the path information required to inject gestures, see [@ohos.accessibility.GesturePath](../reference/apis/js-apis-accessibility-GesturePath.md). For details about the gesture touch point information required to inject gestures, see [ohos.accessibility.GesturePoint](../reference/apis/js-apis-accessibility-GesturePoint.md).
+The Accessibility Kit provides accessibility extension capabilities based on AccessibilityExtensionAbility in the ExtensionAbility framework. You can develop your accessibility extension services by applying the AccessibilityExtensionAbility template to enhance usability.
 
 ## Creating an Accessibility Extension Service
 

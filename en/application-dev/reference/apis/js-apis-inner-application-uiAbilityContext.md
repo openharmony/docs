@@ -1967,14 +1967,17 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
+Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
  - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
-**Required permissions**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+> **NOTE**
+>
+> In versions earlier than API version 11, the permission **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** is required. Since API version 11, only the permission **ohos.permission.DISTRIBUTED_DATASYNC** is required.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

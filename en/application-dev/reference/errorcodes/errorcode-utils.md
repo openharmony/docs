@@ -258,7 +258,7 @@ The task to cancel does not exist in the task pool.
 
 **Solution**
 
-Before canceling a task, ensure that the task has been placed in the task pool by calling **taskpool.execute** and is not finishing. If you are not sure, capture exceptions.
+Before canceling a task, ensure that the task has been placed in the task pool by calling [taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute-1) and is not finishing. If you are not sure, capture exceptions.
 
 ## 10200016 Failed to Cancel a Task Being Executed
 
@@ -276,7 +276,7 @@ The task to cancel is being executed.
 
 **Solution**
 
-Before canceling a task, ensure that the task has been placed in the task pool by calling **taskpool.execute** and has not started execution. If you are not sure, capture exceptions.
+Before canceling a task, ensure that the task has been placed in the task pool by calling [taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute-1) and has not started execution. If you are not sure, capture exceptions.
 
 ## 10200017 Failed to Delete an Element That Does Not Exist
 
@@ -312,7 +312,7 @@ The task group to cancel does not exist in the task pool.
 
 **Solution**
 
-Before canceling a task group, ensure that the task group is placed in the task pool by calling **taskpool.execute** and is not finishing. If you are not sure, capture exceptions.
+Before canceling a task group, ensure that the task group placed in the task pool by calling [taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute10) and is not finishing. If you are not sure, capture exceptions.
 
 ## 10200019 Failed to Call an API of an Unregistered Object
 
@@ -421,3 +421,93 @@ This function is called without registering a callback in the host thread.
 **Solution**
 
 Ensure that the callback has been registered in the host thread before this function is called. If you are not sure, capture exceptions.
+
+## 10200025 Failed to Add a Task with Dependent Tasks to the Queue
+
+**Error Message**
+
+Add dependent task to SequenceRunner.
+
+**Description**
+
+A task that has dependent tasks cannot be added to the queue.
+
+**Possible Causes**
+
+The task to be added to the queue has dependent tasks.
+
+**Solution**
+
+Call [removeDependency()](../apis/js-apis-taskpool.md#removedependency11) to remove the dependent tasks first.
+
+## 10200026 Task with a Cyclic Dependency
+
+**Error Message**
+
+There is a circular dependency.
+
+**Description**
+
+The current task has a cyclic dependency.
+
+**Possible Causes**
+
+The current task has a cyclic dependency.
+
+**Solution**
+
+Call [removeDependency()](../apis/js-apis-taskpool.md#removedependency11) to remove unnecessary dependencies.
+
+## 10200027 Dependency Does Not Exist
+
+**Error Message**
+
+The dependency does not exist.
+
+**Description**
+
+[removeDependency()](../apis/js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
+
+**Possible Causes**
+
+The dependent task to remove does not exist.
+
+**Solution**
+
+Ensure that the dependent task to remove has been added by using [addDependency()](../apis/js-apis-taskpool.md#adddependency11). If you are not sure, capture exceptions.
+
+## 10200028 Delay Less Than Zero
+
+**Error Message**
+
+The delayTime is less than zero.
+
+**Description**
+
+This error code is reported when the value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+
+**Possible Causes**
+
+The value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+
+**Solution**
+
+Ensure that [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is set to a value greater than 0. If you are not sure, capture exceptions.
+
+## 10200029 ArrayBuffer Cannot Be Set as Both TransferList and CloneList
+
+**Error Message**
+
+Can not set an arraybuffer to both transferList and cloneList.
+
+**Description**
+
+An ArrayBuffer cannot be set as both a transfer list and a clone list.
+
+**Possible Causes**
+
+During the transmission of a shared list, an ArrayBuffer is a parameter of both [setTransferList](../apis/js-apis-taskpool.md#settransferlist10) and [setCloneList](../apis/js-apis-taskpool.md#setclonelist11).
+
+**Solution**
+
+Ensure that an ArrayBuffer is set as either a transfer list or clone list. If you are not sure, capture exceptions.

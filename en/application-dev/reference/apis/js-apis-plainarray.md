@@ -166,7 +166,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number
 
-Obtains the index of the first occurrence of an element with the specified key in this container.
+Obtains the index of the element with the specified key in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -380,7 +380,7 @@ plainArray.add(1, "squirrel");
 
 remove(key: number): T
 
-Removes an element with the specified key from this container.
+Removes a key-value pair with the specified key.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -394,7 +394,7 @@ Removes an element with the specified key from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value of the element removed.|
+| T | Value in the key-value pair removed.|
 
 **Error codes**
 
