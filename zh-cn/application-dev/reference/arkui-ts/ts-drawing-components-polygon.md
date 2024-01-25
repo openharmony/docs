@@ -35,9 +35,9 @@ Polygon(value?: {width?: string | number, height?: string | number})
 | -------- | -------- | -------- | -------- |
 | points | Array&lt;[Point](ts-drawing-components-polygon.md#point)&gt; | [] | 多边形的顶点坐标列表。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
-| fillOpacity | [Length](ts-types.md#length) | 1 | 设置填充区域透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| fillOpacity | [Length](ts-types.md#length) | 1 | 设置填充区域透明度。 <br/>取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 || strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | 设置边框间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>线段相交时可能会出现重叠现象。异常值按照默认值处理。 |
 | stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>异常值不会绘制边框线条。 |
-| strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | 设置边框间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | 设置边框间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>线段相交时可能会出现重叠现象。异常值按照默认值处理。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
