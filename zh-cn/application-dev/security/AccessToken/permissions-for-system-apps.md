@@ -2844,3 +2844,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.READ_HEALTH_MOTION
+
+允许系统应用读取步数及运动三环信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
