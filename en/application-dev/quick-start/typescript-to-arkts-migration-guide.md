@@ -609,6 +609,10 @@ class C {
 }
 ```
 
+**NOTE**
+
+Currently, the static block syntax is not supported. This rule must be followed in .ets files when the syntax is supported.
+
 ### Recipe: Indexed Signatures Are Not Supported
 
 **Rule:** `arkts-no-indexed-signatures`
