@@ -93,6 +93,8 @@
 | [OH_AVScreenCapture_Init](#oh_avscreencapture_init) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) config) | 初始化OH_AVScreenCapture相关参数。 | 
 | [OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 开始录屏，采集原始码流。调用后可以通过回调的监听(OH_AVScreenCaptureOnAudioBufferAvailable，OH_AVScreenCaptureOnVideoBufferAvailable)来监听当前是否有码流的产生。 | 
 | [OH_AVScreenCapture_StopScreenCapture](#oh_avscreencapture_stopscreencapture) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 结束录屏，与OH_AVScreenCapture_StartScreenCapture配合使用。调用后针对调用该接口的应用会停止录屏或屏幕共享，释放麦克风。 | 
+| [OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 启动录屏，调用此接口，可采集编码后的码流。 | 
+| [OH_AVScreenCapture_StopScreenRecording](#oh_avscreencapture_stopscreenrecording) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 停止录屏，与OH_AVScreenCapture_StartScreenRecording配合使用。| 
 | [OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AudioBuffer](_o_h___audio_buffer.md) \*\*audiobuffer, [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type) | 获取音频buffer，应用在调用时，需要对audiobuffer分配对应结构体大小的内存，否则会影响拿到音频buffer的获取。 | 
 | [OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*fence, int64_t \*timestamp, struct [OH_Rect](_o_h___rect.md) \*region) | 获取视频buffer，应用在调用时，通过此接口来获取到视频的buffer以及时间戳等信息。 | 
 | [OH_AVScreenCapture_ReleaseAudioBuffer](#oh_avscreencapture_releaseaudiobuffer) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type) | 根据音频类型释放buffer。 | 
@@ -737,7 +739,7 @@ OH_NativeBuffer* OH_AVScreenCapture_AcquireVideoBuffer (struct OH_AVScreenCaptur
 
 **描述：**
 
-获取视频buffer，应用在调用时，通过此接口来获取到视频的buffer以及时间戳等信息。 buffer使用完成后，调用OH_AVScreenCapture_ReleaseVideoBuffer接口进行视频buffer的释放。
+获取视频buffer，应用在调用时，通过此接口来获取到视频的buffer以及时间戳等信息。 buffer使用完成后，调用[OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer)接口进行视频buffer的释放。
 
 **参数：**
 
@@ -960,6 +962,31 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 执行成功返回AV_SCREEN_CAPTURE_ERR_OK, 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)。
 
 
+### OH_AVScreenCapture_StartScreenRecording()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording (struct OH_AVScreenCapture * capture)
+```
+
+**描述：**
+
+启动录屏，调用此接口，可采集编码后的码流。
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向OH_AVScreenCapture实例的指针。 | 
+
+**系统能力：**
+
+SystemCapability.Multimedia.Media.AVScreenCapture
+
+**返回：**
+
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK， 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)。
+
+
 ### OH_AVScreenCapture_StopScreenCapture()
 
 ```
@@ -985,3 +1012,26 @@ SystemCapability.Multimedia.Media.AVScreenCapture
 执行成功返回AV_SCREEN_CAPTURE_ERR_OK， 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)。
 
 
+### OH_AVScreenCapture_StopScreenRecording()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording (struct OH_AVScreenCapture * capture)
+```
+
+**描述：**
+
+停止录屏，与[OH_AVScreenCapture_StartScreenRecording](#OH_AVScreenCapture_StartScreenRecording)配合使用。
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向OH_AVScreenCapture实例的指针。 | 
+
+**系统能力：**
+
+SystemCapability.Multimedia.Media.AVScreenCapture
+
+**返回：**
+
+执行成功返回AV_SCREEN_CAPTURE_ERR_OK， 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)。

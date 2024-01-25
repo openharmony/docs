@@ -36,7 +36,7 @@ import audio from '@ohos.multimedia.audio';
 
 音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例
 
-### load<sup>10+</sup>
+### load
 
 load(uri: string, callback: AsyncCallback\<number>): void
 
@@ -99,7 +99,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 });
 ```
 
-### load<sup>10+</sup>
+### load
 
 load(uri: string): Promise\<number>
 
@@ -168,7 +168,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### load<sup>10+</sup>
+### load
 
 load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void
 
@@ -237,7 +237,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### load<sup>10+</sup>
+### load
 
 load(fd: number, offset: number, length: number): Promise\<number>
 
@@ -309,7 +309,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### play<sup>10+</sup>
+### play
 
 play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>): void
 
@@ -375,7 +375,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### play<sup>10+</sup>
+### play
 
 play(soundID: number, callback: AsyncCallback\<number>): void
 
@@ -433,7 +433,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### play<sup>10+</sup>
+### play
 
 play(soundID: number, params?: PlayParameters): Promise\<number>
 
@@ -503,7 +503,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### stop<sup>10+</sup>
+### stop
 
 stop(streamID: number, callback: AsyncCallback\<void>): void
 
@@ -560,7 +560,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### stop<sup>10+</sup>
+### stop
 
 stop(streamID: number): Promise\<void>
 
@@ -619,7 +619,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 });
 ```
 
-### setLoop<sup>10+</sup>
+### setLoop
 
 setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
@@ -678,7 +678,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setLoop<sup>10+</sup>
+### setLoop
 
 setLoop(streamID: number, loop: number): Promise\<void>
 
@@ -740,7 +740,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setPriority<sup>10+</sup>
+### setPriority
 
 setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>): void
 
@@ -799,7 +799,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setPriority<sup>10+</sup>
+### setPriority
 
 setPriority(streamID: number, priority: number): Promise\<void>
 
@@ -862,7 +862,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setRate<sup>10+</sup>
+### setRate
 
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
@@ -924,7 +924,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setRate<sup>10+</sup>
+### setRate
 
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
@@ -989,7 +989,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setVolume<sup>10+</sup>
+### setVolume
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: AsyncCallback\<void>): void
 
@@ -1049,7 +1049,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### setVolume<sup>10+</sup>
+### setVolume
 
 setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>
 
@@ -1112,7 +1112,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### unload<sup>10+</sup>
+### unload
 
 unload(soundID: number, callback: AsyncCallback\<void>): void
 
@@ -1169,7 +1169,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### unload<sup>10+</sup>
+### unload
 
 unload(soundID: number): Promise\<void>
 
@@ -1230,7 +1230,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### release<sup>10+</sup>
+### release
 
 release(callback: AsyncCallback\<void>): void
 
@@ -1283,7 +1283,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### release<sup>10+</sup>
+### release
 
 release(): Promise\<void>
 
@@ -1333,7 +1333,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('loadComplete')<sup>10+</sup>
+### on('loadComplete')
 
 on(type: 'loadComplete', callback: Callback\<number>): void
 
@@ -1374,7 +1374,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### off('loadComplete')<sup>10+</sup>
+### off('loadComplete')
 
 off(type: 'loadComplete'): void
 
@@ -1412,7 +1412,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('playFinished')<sup>10+</sup>
+### on('playFinished')
 
 on(type: 'playFinished', callback: Callback\<void>): void
 
@@ -1453,7 +1453,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### off('playFinished')<sup>10+</sup>
+### off('playFinished')
 
 off(type: 'playFinished'): void
 
@@ -1491,7 +1491,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('error')<sup>10+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1544,7 +1544,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### off('error')<sup>10+</sup>
+### off('error')
 
 off(type: 'error'): void
 
