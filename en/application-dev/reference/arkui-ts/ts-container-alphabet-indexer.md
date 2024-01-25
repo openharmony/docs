@@ -44,7 +44,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}**|
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected text excluding the initial letter in the pop-up window.<br>Default value: **#FF182431**|
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the unselected text in the pop-up window.<br>Default value: **#FF182431**|
-| popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | Font of the text excluding the initial letter in the pop-up window.<br>Default value:<br>{<br>size:24,<br>style:FontStyle.Medium<br>}|
+| popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | Font of the text excluding the initial letter in the pop-up window.<br>Default value:<br>{<br>size:24,<br>weight:FontWeight.Medium<br>}|
 | popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the portion excluding the initial letter in the pop-up window.<br>Default value: **#FFFFFF**|
 
 ## IndexerAlign
@@ -93,7 +93,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
 
           ForEach(this.arrayB, (item: string) => {
@@ -103,7 +103,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
 
           ForEach(this.arrayC, (item: string) => {
@@ -113,7 +113,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
 
           ForEach(this.arrayL, (item: string) => {
@@ -123,7 +123,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
         }
         .width('50%')

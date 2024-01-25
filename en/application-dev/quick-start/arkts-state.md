@@ -38,7 +38,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | Transfer/Access         | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
 | Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An @State decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
-| Subnode initialization  | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Child component initialization  | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                                  |
 
   **Figure 1** Initialization rule 
@@ -126,36 +126,42 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   Use \@State to decorate a variable of the Model class array type.
 
   ```ts
+  // Array type
   @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   The value assignment of the array itself can be observed.
 
   ```ts
+  // Value assignment of the array
   this.title = [new Model(2)];
   ```
 
   The value assignment of array items can be observed.
 
   ```ts
+  // Value assignment of an array item
   this.title[0] = new Model(2);
   ```
 
   The deletion of array items can be observed.
 
   ```ts
+  // Array item change
   this.title.pop();
   ```
 
   The addition of array items can be observed.
 
   ```ts
+  // Array item change
   this.title.push(new Model(12));
   ```
 
   The property value assignment in the array items cannot be observed.
 
   ```ts
+  // The value assignment of the nested property cannot be observed.
   this.title[0].value = 6;
   ```
 
@@ -260,7 +266,8 @@ struct EntryComponent {
     Column() {
       // The parameters specified here will overwrite the default values defined locally during initial render. Not all parameters need to be initialized from the parent component.
       MyComponent({ count: 1, increaseBy: 2 })
-      MyComponent({ title: new Model('Hello, World 2'), count: 7 })
+        .width(300)
+      MyComponent({ title: new Model('Hello World 2'), count: 7 })
     }
   }
 }
@@ -274,20 +281,28 @@ struct MyComponent {
   build() {
     Column() {
       Text(`${this.title.value}`)
-      Button(`Click to change title`).onClick(() => {
-        // The update of the @State decorated variable triggers the update of the <Text> component.
-        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
-      })
+        .margin(10)
+      Button(`Click to change title`)
+        .onClick(() => {
+          // The update of the @State decorated variable triggers the update of the <Text> component.
+          this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
+        })
+        .width(300)
+        .margin(10)
 
-      Button(`Click to increase count=${this.count}`).onClick(() => {
-        // The update of the @State decorated variable triggers the update of the <Button> component.
-        this.count += this.increaseBy;
-      })
+      Button(`Click to increase count = ${this.count}`)
+        .onClick(() => {
+          // The update of the @State decorated variable triggers the update of the <Button> component.
+          this.count += this.increaseBy;
+        })
+        .width(300)
+        .margin(10)
     }
   }
 }
 ```
 
+![Video-state](figures/Video-state.gif)
 
 From this example, we learn the initialization process of an \@State decorated variable on initial render.
 
@@ -313,3 +328,194 @@ From this example, we learn the initialization process of an \@State decorated v
    let obj = new C1(1, 2)
    MyComponent(obj)
    ```
+## FAQs
+
+### Failure to Change a State Variable Using an Arrow Function
+
+The **this** object inside the arrow function's body is established based on the scope where the arrow function is defined points, not the scope where the arrow function is executed. As such, **this** of **changeCoverUrl** points to **PlayDetailViewModel** instead of the state variable decorated by @State.
+
+Nonexample:
+
+```ts
+
+export default class PlayDetailViewModel {
+  coverUrl: string = '#00ff00'
+
+  changeCoverUrl= ()=> {
+    this.coverUrl = '#00F5FF'
+  }
+
+}
+```
+
+```ts
+import PlayDetailViewModel from './PlayDetailViewModel'
+
+@Entry
+@Component
+struct PlayDetailPage {
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+
+  build() {
+    Stack() {
+      Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
+      Row() {
+        Button ('Change Color')
+          .onClick(() => {
+            this.vm.changeCoverUrl()
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .alignContent(Alignment.Top)
+  }
+}
+```
+
+To fix the issue, pass **this.vm** and call the attribute of the decorated state variable to assign a value.
+
+Example:
+
+```ts
+
+export default class PlayDetailViewModel {
+  coverUrl: string = '#00ff00'
+
+  changeCoverUrl= (model:PlayDetailViewModel)=> {
+    model.coverUrl = '#00F5FF'
+  }
+
+}
+```
+
+```ts
+import PlayDetailViewModel from './PlayDetailViewModel'
+
+@Entry
+@Component
+struct PlayDetailPage {
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+
+  build() {
+    Stack() {
+      Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
+      Row() {
+        Button ('Change Color')
+          .onClick(() => {
+            let self = this.vm
+            this.vm.changeCoverUrl(self)
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .alignContent(Alignment.Top)
+  }
+}
+```
+
+### State Variable Changes in the Constructor Not Taking Effect
+
+In state management, classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering. If a state variable is changed in a constructor, the change does not pass through the proxy (because the change occurs in the data source). Even if the change is successful, the UI cannot be re-rendered.
+
+[Nonexample]
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model
+
+  constructor() {
+    this.model = new Model(()=>{
+      this.isSuccess = true
+      console.log(`this.isSuccess: ${this.isSuccess}`)
+    })
+  }
+  query() {
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: ()=>void
+
+  constructor(cb: ()=>void) {
+    this.callback = cb
+  }
+  query(){
+      this.callback()
+  }
+}
+```
+
+In the preceding example, the state variable is changed in the constructor. After the button is clicked, the change takes effect, indicated by "this.isSuccess: true" in the log. However, the page is not refreshed, and still displays "failed".
+
+[Example]
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model = new Model(() => {
+  })
+
+  query() {
+    this.model = new Model(() => {
+      this.isSuccess = true
+    })
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: () => void
+
+  constructor(cb: () => void) {
+    this.callback = cb
+  }
+
+  query() {
+    this.callback()
+  }
+}
+```
+
+In the preceding example, the state variable is changed through a method of the class. After the button is clicked, the page content changes from "failed" to "success."

@@ -108,9 +108,10 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 
 let context: featureAbility.Context = featureAbility.getContext();
-bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
+bundle.getBundleInfo('com.context.test', 1, (err: BusinessError, datainfo: bundle.BundleInfo) =>{
     context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (error, data) =>{
         if (error && error.code !== 0) {
             console.error(`verifyPermission fail, error: ${JSON.stringify(error)}`);
@@ -167,7 +168,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 | Name        | Type                                     | Mandatory  | Description      |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | Yes   | Name of the permission to verify.|
-| options    | [PermissionOptions](#permissionoptions) | No   | Permission options.   |
+| options    | [PermissionOptions](#permissionoptions7) | No   | Permission options.   |
 
 **Return value**
 
@@ -190,7 +191,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)>): void
 
 Requests certain permissions from the system. This API uses an asynchronous callback to return the result.
 
@@ -202,7 +203,7 @@ Requests certain permissions from the system. This API uses an asynchronous call
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | Yes   | Permissions to request. This parameter cannot be **null**.             |
 | requestCode    | number                                   | Yes   | Request code to be passed to **PermissionRequestResult**.|
-| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | Yes   | Callback used to return the permission request result.                          |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | Yes   | Callback used to return the permission request result.                          |
 
 **Example**
 

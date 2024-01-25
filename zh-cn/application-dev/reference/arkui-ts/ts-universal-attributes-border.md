@@ -17,7 +17,7 @@
 | borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9对象说明)<sup>9+</sup> | 设置元素的边框宽度，不支持百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9对象说明)<sup>9+</sup> | 设置元素的边框颜色。<br/>默认值：Color.Black<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup> | 设置元素的边框圆角半径，不支持百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup> | 设置元素的边框圆角半径，圆角大小受组件尺寸限制，最大值为组件宽或高的一半，不支持百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## EdgeWidths<sup>9+</sup>对象说明
 

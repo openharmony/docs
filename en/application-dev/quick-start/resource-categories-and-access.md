@@ -315,3 +315,20 @@ When your application needs to use a resource, the system preferentially searche
 - If the qualifiers subdirectories contain the MCC, MNC, language, script, screen orientation, device type, and color mode qualifiers, their values must be consistent with the current device status so that the subdirectories can be used for matching the device resources. For example, the qualifiers subdirectory **zh_CN-car-ldpi** cannot be used for matching the resource files labeled **en_US**.
 
 For more information about how resources are loaded in applications, see the internationalization and localization documents.
+
+**Overlay Mechanism**
+
+Overylay is a resource replacement mechanism. With overlay resource packages, you enable your application GUI to adapt to different styles of various brands and products, without having to repack your application HAPs. The overylay mechanism works in dynamic and static modes.
+
+- Using overlay in dynamic mode
+
+1. Place the overlay resource package in the target application installation path. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
+
+2. The application uses [addResource(path)](../reference/apis/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().BundleCodeDir**) and the HSP name of the resource. For example, **let path = getContext().bundleCodeDir + "HSP name"**, such as **/data/storage/el1/bundle/enter-release-signed.hsp**.
+
+- Using overlay in static mode
+
+If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority** fields during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase. Modules with the overlay feature generally provide an overlay resource file for other modules on the device, so that the module specified by **targetModuleName** can display different colors, labels, themes, and the like by using the overlay resource file in a running phase.
+
+The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis/js-apis-overlay.md).
+

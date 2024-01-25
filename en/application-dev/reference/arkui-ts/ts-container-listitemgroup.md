@@ -38,10 +38,10 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ## ListItemGroupStyle<sup>10+</sup>
 
-| Name| Description              |
-| ---- | ------------------ |
-| NONE | No style.          |
-| CARD | Default card style.|
+| Name| Value | Description              |
+| ---- | ---- | ------------------ |
+| NONE | 0 | No style.          |
+| CARD | 1 | Default card style.|
 
 > **NOTE**
 >
@@ -177,7 +177,7 @@ struct ListItemGroupExample2 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // List in light blue
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })

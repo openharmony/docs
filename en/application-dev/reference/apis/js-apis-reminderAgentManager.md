@@ -198,6 +198,12 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> When the preset reminder time arrives, a notification message is displayed in the notification center. The reminder is valid before the user touches the CLOSE button to close the message.
+>
+> For an alarm reminder that repeats every day, the reminder is valid regardless of whether the user touches the CLOSE button.
+
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
@@ -255,6 +261,12 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> When the preset reminder time arrives, a notification message is displayed in the notification center. The reminder is valid before the user touches the CLOSE button to close the message.
+>
+> For an alarm reminder that repeats every day, the reminder is valid regardless of whether the user touches the CLOSE button.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -389,7 +401,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. Only the type can be set.|
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notification\.slot instance. Only **type** can be set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -424,7 +436,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. Only the type can be set.|
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notification\.slot instance. Only **type** can be set.|
 
 **Return value**
 

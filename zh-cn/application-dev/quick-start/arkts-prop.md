@@ -21,7 +21,7 @@
 
 ## 限制条件
 
-- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。
+- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
 
 - \@Prop装饰器不能在\@Entry装饰的自定义组件中使用。
 
@@ -67,7 +67,7 @@
   // 赋值的变化可以被观察到
   this.count = 1;
   // 复杂类型
-  @Prop count: Model;
+  @Prop title: Model;
   // 可以观察到赋值的变化
   this.title = new Model('Hi');
   ```
@@ -317,7 +317,7 @@ struct Index {
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
 
-如果点击界面上的“1”、“2”、“3”，将所有变量的本地取值都变为“7”。
+如果点击界面上的“1”六下、“2”五下、“3”四下，将所有变量的本地取值都变为“7”。
 
 
 

@@ -98,7 +98,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 返回0表示有权限，返回-1表示无权限。 | 
+  | Promise&lt;number&gt; | 以Promise形式返回检验结果。返回0表示有权限，返回-1表示无权限。 | 
 
 **错误码：**
 
@@ -207,7 +207,7 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 返回0表示有权限，返回-1表示无权限。 | 
+  | Promise&lt;number&gt; | 以Promise形式返回检验结果。0表示有权限，返回-1表示无权限。 | 
 
 **错误码：**
 

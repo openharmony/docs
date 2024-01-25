@@ -1350,8 +1350,8 @@ Obtains the number of times that an object is created.
 **Example**
 
 ```ts
-// Create the ChildLruBuffer class that inherits LruCache, and override createDefault() to return a non-undefined value.
-class ChildLruBuffer extends util.LRUCache<number, number> {
+// Create the ChildLRUCache class that inherits LRUCache, and override createDefault() to return a non-undefined value.
+class ChildLRUCache extends util.LRUCache<number, number> {
   constructor() {
     super();
   }
@@ -1360,7 +1360,7 @@ class ChildLruBuffer extends util.LRUCache<number, number> {
     return key;
   }
 }
-let lru = new ChildLruBuffer();
+let lru = new ChildLRUCache();
 lru.put(2,10);
 lru.get(3);
 lru.get(5);
@@ -1631,21 +1631,23 @@ Performs subsequent operations after a value is removed.
 **Example**
 
 ```ts
-let arr : Object[] = [];
-class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-  constructor() {
-    super();
+class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
 
-  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-  {
-    if (isEvict === false) {
-      arr = [key, value, newValue];
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
     }
   }
 }
-let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
-lru.afterRemoval(false, 10, 30, 50);
+let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+lru.put(1, 1);
+lru.put(2, 2);
+lru.put(3, 3);
 ```
 
 ### contains<sup>9+</sup>
@@ -4207,25 +4209,25 @@ Performs subsequent operations after a value is removed.
 
 **Example**
 
-  ```ts
-  let arr : object = [];
-  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
-  {
-  	constructor()
-  	{
-  		super();
-  	}
-  	afterRemoval(isEvict : boolean, key : K, value : V, newValue : V)
-  	{
-  		if (isEvict === false)
-  		{
-  			arr = [key, value, newValue];
-  		}
-  	}
+```ts
+class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
-  let lru : ChildLruBuffer<number,number|null> = new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
+
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
+    }
+  }
+}
+let lru: ChildLruBuffer<number, number> = new ChildLruBuffer(2);
+lru.put(11, 1);
+lru.put(22, 2);
+lru.put(33, 3);
+```
 
 ### contains<sup>(deprecated)</sup>
 

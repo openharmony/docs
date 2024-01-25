@@ -50,10 +50,10 @@ function Particle
 | value | {<br/>particles:Array&lt;[ParticleOptions](#particleoptions)&lt;<br/>[PARTICLE](#particletype), <br/>[COLOR_UPDATER](#particleupdater),<br/>[OPACITY_UPDATER](#particleupdater),<br/>[SCALE_UPDATER](#particleupdater),<br/>[ACC_SPEED_UPDATER](#particleupdater),<br/> [ACC_ANGLE_UPDATER](#particleupdater),<br/>[SPIN_UPDATER](#particleupdater)<br/>&gt;&gt;<br/>} | 是 | 粒子动画的集合。每一个的粒子动画（ParticleOptions）包含粒子发射，同时可配置粒子的颜色、透明度、大小、速度、加速度与旋转速度，旋转速度，详见[ParticleOptions](#particleoptions)属性说明。
 
 ## 属性
-支持通用属性
+支持[通用属性](ts-universal-attributes-size.md)
 
 ## 事件
-支持通用事件
+支持[通用事件](ts-universal-events-click.md)
 
 ## ParticleOptions
 

@@ -1003,13 +1003,17 @@ struct RequestFocusExample {
     Column({ space:20 }){
       Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
         .focusable(false)
       Button("id: " + this.idList[1] + " default")
         .width(400).height(70).fontColor(Color.White)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[2] + " focusOnTouch(false)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
+        .hoverEffect(HoverEffect.Scale)
       Button("id: " + this.idList[3] + " focusOnTouch(true)")
         .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
+        .hoverEffect(HoverEffect.Scale)
     }.width('100%').margin({ top:20 })
   }
 }

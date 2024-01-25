@@ -113,7 +113,7 @@ Cross-device migration supports the following features:
 
    The **launchReason** parameter in the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
 
-```ts
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import Want from '@ohos.app.ability.Want';
@@ -148,7 +148,7 @@ Cross-device migration supports the following features:
         }
       }
    }
-```
+   ```
 
 ## Configuring Optional Migration Features
 
@@ -345,15 +345,15 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
    The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. Specifically, change **"apl":"normal_core"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
 
-   1. Choose **File > Project Structure**.
+      1. Choose **File > Project Structure**.
 
-      ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
+         ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
 
-   2. Click **Signing Configs** and click **OK**.
+      2. Click **Signing Configs** and click **OK**.
 
-      ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
+         ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
 
-   3. Connect to the developer board and run the demo.
+      3. Connect to the developer board and run the demo.
 
 ### Device Networking
 

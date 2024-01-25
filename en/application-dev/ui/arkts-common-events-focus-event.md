@@ -113,6 +113,7 @@ struct FocusEventExample {
     Column({ space: 20 }) {
       // You can use the up and down arrow keys on an external keyboard to move the focus between the three buttons. When a button gains focus, its color changes. When it loses focus, its color changes back.
       Button('First Button')
+        .defaultFocus(true)
         .width(260)
         .height(70)
         .backgroundColor(this.oneButtonColor)
@@ -189,7 +190,7 @@ Components can be classified into the following types based on their focusabilit
 
 - Components that can be focused but are unfocusable by default: Typical examples are **\<Text>** and **\<Image>**. To enable them to be focusable, use the **focusable(true)** attribute.
 
-- Components that cannot be focused: These components usually do not allow for interactions, such as **\<Blank>** and **\<Circle>**, and cannot be focused even if they use the **focusable** attribute.
+- Components that cannot be focused: These components usually do not allow for interactions and cannot be focused even if they use the **focusable** attribute. Examples are **\<Blank>** and **\<Circle>**.
 
 
 >**NOTE**
@@ -197,9 +198,10 @@ Components can be classified into the following types based on their focusabilit
 >
 > - When a component is in the focused state, if its **focusable** or **enabled** attribute is set to **false**, the component automatically loses focus. Then, the focus moves to other components based on the [Rules of Focus Navigation](#rules-of-focus-navigation).
 
+
   **Table 1** Focusability of basic components
 
-| Basic Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation    |
+| Basic Component                                    | Can Be Focused| Default Value of focusable| Rules of Focus Navigation    |
 | ---------------------------------------- | ------- | ------------ | -------- |
 | [AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         | Linear navigation    |
 | [Blank](../reference/arkui-ts/ts-basic-components-blank.md) | No      | false        | /        |
@@ -406,7 +408,7 @@ import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener|undefined = undefined;
+  private listener: DataChangeListener | undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -428,33 +430,37 @@ class MyDataSource implements IDataSource {
   }
 }
 
-class swcf{
-  swiperController:SwiperController|undefined
-  fun(index:number){
-    if(this.swiperController){
-      if(index==0){
+class swcf {
+  swiperController: SwiperController | undefined
+
+  fun(index: number) {
+    if (this.swiperController) {
+      if (index == 0) {
         this.swiperController.showPrevious();
-      }else{
+      } else {
         this.swiperController.showNext();
       }
     }
   }
 }
-class TmpM{
-  left:number = 20
-  bottom:number = 20
-  right:number = 20
+
+class TmpM {
+  left: number = 20
+  bottom: number = 20
+  right: number = 20
 }
-let MarginTmp:TmpM = new TmpM()
+
+let MarginTmp: TmpM = new TmpM()
+
 @Entry
 @Component
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
-  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  @State tmp: promptAction.ShowToastOptions = { 'message': 'Button OK on clicked' }
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list:number[] = []
+    let list: number[] = []
     for (let i = 1; i <= 4; i++) {
       list.push(i);
     }
@@ -465,9 +471,9 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Row({ space: 20 }) {
+          Row({ space: 10 }) {
             Column() {
-              Button('1').width(200).height(200)
+              Button('1').width(120).height(120)
                 .fontSize(40)
                 .backgroundColor('#dadbd9')
             }
@@ -475,15 +481,15 @@ struct SwiperExample {
             Column({ space: 20 }) {
               Row({ space: 20 }) {
                 Button('2')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('3')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -492,15 +498,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('4')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('5')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -509,15 +515,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('6')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('7')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -525,13 +531,13 @@ struct SwiperExample {
               }
             }
           }
-          .width(480)
-          .height(380)
+          .width(320)
+          .height(300)
           .justifyContent(FlexAlign.Center)
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, (item:string):string => item)
+        }, (item: string): string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -545,6 +551,7 @@ struct SwiperExample {
         console.info(index.toString());
       })
       .margin({ left: 20, top: 20, right: 20 })
+
       Row({ space: 40 }) {
         Button('←')
           .fontSize(40)
@@ -565,14 +572,14 @@ struct SwiperExample {
             swf.fun(1)
           })
       }
-      .width(480)
+      .width(320)
       .height(50)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
       .borderColor(Color.Gray)
       .backgroundColor('#f7f6dc')
 
-      Row({ space: 40 }) {
+      Row({ space: 20 }) {
         Button('Cancel')
           .fontSize(30)
           .fontColor('#787878')
@@ -592,7 +599,7 @@ struct SwiperExample {
             promptAction.showToast(this.tmp);
           })
       }
-      .width(480)
+      .width(320)
       .height(80)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -600,7 +607,7 @@ struct SwiperExample {
       .backgroundColor('#dff2e4')
       .margin(MarginTmp)
     }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 20 })
+    .margin({ left: 50, top: 50, right: 50 })
   }
 }
 ```
@@ -662,7 +669,7 @@ With the example provided in [Setting Default Focus](#setting-default-focus), th
 ![en-us_image_0000001511421364](figures/en-us_image_0000001511421364.gif)
 
 
-The default order for sequential Tab navigation is from the first focusable component to the last focusable component, and the process goes through Button1 -> Button4 -> Button5 -> Button7 -> Left arrow -> Right arrow -> ButtonOK. This focus navigation queue is relatively complete and traverses most of the components. However, the disadvantage is that the path from the first to the last is long.
+The default order for sequential Tab navigation is from the first focusable component to the last focusable component, and the process goes through Button 1-> Button 2 -> Button 3 -> Button 4 -> Button 5 -> Button 6 -> Button 7 -> Left arrow -> Right arrow -> Button OK. This focus navigation queue is relatively complete and traverses most of the components. However, the disadvantage is that the path from the first to the last is long.
 
 
 If you want to quickly go from the first to the last without sacrificing too much traversal integrity, you can use the **tabIndex** attribute.
@@ -678,10 +685,10 @@ For example, take the white area, the yellow area, and the green area each as a 
 struct MouseExample {
   build() {
     Column() {
-      Button('1').width(200).height(200)
+      Button('1').width(120).height(120)
         .fontSize(40)
         .backgroundColor('#dadbd9')
-        .tabIndex(1)    // Set Button1 as the first tabIndex node.
+        .tabIndex(1)    // Set Button 1 as the first tabIndex node.
     }
   }
 }
@@ -736,7 +743,7 @@ struct MouseExample {
       .onClick(() => {
         promptAction.showToast(this.Tmp);
       })
-      .tabIndex(3)    // Set Button-OK as the third tabIndex node.
+      .tabIndex(3)    // Set Button OK as the third tabIndex node.
     }
   }
 }
@@ -819,9 +826,9 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Row({ space: 20 }) {    // Set the <Row> component as the first tabIndex node.
+          Row({ space: 10 }) {    // Set the <Row> component as the first tabIndex node.
             Column() {
-              Button('1').width(200).height(200)
+              Button('1').width(120).height(120)
                 .fontSize(40)
                 .backgroundColor('#dadbd9')
                 .groupDefaultFocus(true)    // Set Button-1 as the default focus of the first tabIndex node.
@@ -830,15 +837,15 @@ struct SwiperExample {
             Column({ space: 20 }) {
               Row({ space: 20 }) {
                 Button('2')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('3')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -847,15 +854,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('4')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('5')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -864,15 +871,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('6')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('7')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -880,8 +887,8 @@ struct SwiperExample {
               }
             }
           }
-          .width(480)
-          .height(380)
+          .width(320)
+          .height(300)
           .justifyContent(FlexAlign.Center)
           .borderWidth(2)
           .borderColor(Color.Gray)
@@ -921,7 +928,7 @@ struct SwiperExample {
             this.swiperController.showNext();
           })
       }
-      .width(480)
+      .width(320)
       .height(50)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -929,7 +936,7 @@ struct SwiperExample {
       .backgroundColor('#f7f6dc')
       .tabIndex(2)
 
-      Row({ space: 40 }) {    // Set the <Row> component as the third tabIndex node.
+      Row({ space: 20 }) {    // Set the <Row> component as the third tabIndex node.
         Button('Cancel')
           .fontSize(30)
           .fontColor('#787878')
@@ -951,7 +958,7 @@ struct SwiperExample {
           })
           .groupDefaultFocus(true)    // Set Button-OK as the default focus of the third tabIndex node.
       }
-      .width(480)
+      .width(320)
       .height(80)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -960,7 +967,7 @@ struct SwiperExample {
       .margin({ left: 20, bottom: 20, right: 20 })
       .tabIndex(3)
     }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 20 })
+    .margin({ left: 50, top: 50, right: 50 })
   }
 }
 ```

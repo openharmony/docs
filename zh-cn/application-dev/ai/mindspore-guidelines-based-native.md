@@ -258,29 +258,27 @@ const TAG = 'MSLiteNativeDemo'
 @Entry
 @Component
 struct Index {
-    @State message: string = 'MindSpore Lite Demo'
-    build() {
-        Row() {
-            Column() {
-                Text(this.message)
-                    .fontSize(30)
-                    .fontWeight(FontWeight.Bold)
-                    .onClick(() => {
-                        resManager.getResourceManager().then(mgr => {
-                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-                            let ret: number = 0;
-                            ret = msliteNapi.runDemo("", mgr); // 调用runDemo()，执行AI模型推理。
-                            if (ret == -1) {
-                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
-                            }
-                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-                        })
-                    })
-            }
-            .width('100%')
-        }
-        .height('100%')
+  @State message: string = 'MindSpore Lite Demo'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+            .onClick(async () => {
+              hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+              let ret: number = 0;
+              ret = msliteNapi.runDemo("", getContext(this).resourceManager); // 调用runDemo()，执行AI模型推理。
+              if (ret == -1) {
+                hilog.error(0x0000, TAG, 'Error when running MSLite Demo!');
+              }
+              hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+            })
+      }
+      .width('100%')
     }
+    .height('100%')
+  }
 }
 ```
 

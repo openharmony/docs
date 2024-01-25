@@ -6,6 +6,7 @@
 The following figure illustrates the stage model.
 
 **Figure 1** Stage model
+
 ![stage-concepts](figures/stage-concepts.png)
 
 - [UIAbility](uiability-overview.md) and [ExtensionAbility](extensionability-overview.md) components
@@ -37,7 +38,7 @@ During application development based on the stage model, the following tasks are
 | Task| Description| Guide|
 | -------- | -------- | -------- |
 | Application component development| Use the UIAbility and ExtensionAbility components of the stage model to develop your application.| - [Application- or Component-Level Configuration](application-component-configuration-stage.md)<br>- [UIAbility Component](uiability-overview.md)<br>- [ExtensionAbility Component](extensionability-overview.md)<br>- [AbilityStage Container Component](abilitystage.md)<br>- [Context](application-context-stage.md)<br>- [Component Startup Rules](component-startup-rules.md)|
-| Process model development| Learn the process model and common IPC modes of the stage model.| - [Common Events](common-event-overview.md)<br>- [Background Services](background-services.md)|
+| Process model development| Learn the process model and common IPC modes of the stage model.| [Process Model Overview](process-model-stage.md)|
 | Thread model development| Learn the thread model and common inter-thread communication modes of the stage model.| [Thread Model Overview](thread-model-stage.md)|
 | Mission management development| Learn the basic concepts and typical scenarios of mission management in the stage model.| - [Mission Management Scenarios](mission-management-overview.md)<br>- [Mission Management and Launch Type](mission-management-launch-type.md)<br>- [Page Stack and Mission List](page-mission-stack.md)|
 | Configuration file development| Learn the requirements for developing application configuration files in the stage model.| [Application Configuration File](config-file-stage.md)|

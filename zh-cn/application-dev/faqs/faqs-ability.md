@@ -497,3 +497,9 @@ struct AbilityContextTest {
 **参考链接**
 
 [服务卡片开发指导](../application-models/widget-development-fa.md)
+
+## 系统是否支持在桌面上创建应用的快捷入口，直接打开指定页面？
+
+适用于：OpenHarmony SDK 4.0 Release API10
+
+当前不支持
