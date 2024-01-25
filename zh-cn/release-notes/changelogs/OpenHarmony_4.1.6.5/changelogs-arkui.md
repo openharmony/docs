@@ -109,3 +109,74 @@ API version 11变更后：大小位置返回值都以vp为单位。
 **适配指导**
 
 滚动组件（List、Grid、WaterFlow、Scroll）getItemRect接口、List组件getItemRectInGroup接口的返回值单位由原来的px变更为vp。如果需要使用px单位类型，可用vp2px接口做单位转换。
+## cl.arkui.4  自定义组件构造传参赋值中装饰器变量@Link/@ObjectLink校验日志级别变更 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+装饰器@Link/@ObjectLink父组件校验由WARN 变成ERROR。
+
+**变更影响**
+
+该变更为兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**示例：**
+
+```
+let NextID: number = 1;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State message: string = 'Hello';
+
+  build() {
+    Column() {
+      // ERROR: Property 'message' in the custom component 'Child' is missing (mandatory to specify).
+      // ERROR: Property 'message1' in the custom component 'Child' is missing (mandatory to specify).
+      Child();
+    }
+  }
+}
+
+@Component
+struct Child {
+  @Link message: string;
+  @ObjectLink message1: ClassA;
+
+  build() {
+    Row() {
+    }
+  }
+}
+```
+
+**变更的接口/组件**
+
+不涉及
+
+**适配指导**
+
+子组件使用了装饰器@Link/@ObjectLink，父组件使用带有装饰器@Link/@ObjectLink的自定义组件时，父组件必须给@Link/@ObjectLink修饰的变量传值。
