@@ -14,13 +14,23 @@
 
 ## 接口
 
-Checkbox(options?:&nbsp;{name?: string,  group?: string })
+Checkbox(options?: CheckboxOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+多选框组件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
 
-| 参数名  | 参数类型 | 必填  | 参数描述 |
+| 参数名  | 类型                                        | 必填 | 描述             |
+| ------- | ------------------------------------------- | ---- | ---------------- |
+| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数 |
+
+## CheckboxOptions对象说明
+
+| 名称  | 类型 | 必填  | 描述 |
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 用于指定多选框名称。 |
 | group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
@@ -51,8 +61,8 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | number&nbsp;\|&nbsp;string                 | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | number&nbsp;\|&nbsp;string                 | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
 

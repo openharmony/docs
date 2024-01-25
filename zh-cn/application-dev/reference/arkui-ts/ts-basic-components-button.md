@@ -16,33 +16,45 @@
 
 ### Button
 
-Button(options?: {type?: ButtonType, stateEffect?: boolean, buttonStyle?: ButtonStyleMode, controlSize?: ControlSize})
+Button(options: ButtonOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+创建可以包含单个子组件的按钮。
 
-**参数：**
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 参数名         | 参数类型       | 必填        | 参数描述                              |
-| ----------- | ---------- | ------| --------------------------------- |
-| type        | [ButtonType](#buttontype枚举说明) | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
-| stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
-| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明)   | 否    | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：** <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。
-| controlSize<sup>11+</sup>  | [ControlSize](#controlsize11枚举说明)   | 否    | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                    | 必填 | 说明                 |
+| ------- | --------------------------------------- | ---- | -------------------- |
+| options | [ButtonOptions](#buttonoptions对象说明) | 是   | 配置按钮的显示样式。 |
 
 ### Button
 
-Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean, buttonStyle?: ButtonStyleMode, controlSize?: ControlSize})
+Button(label: ResourceStr, options?: ButtonOptions)
 
 使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 参数类型                                | 必填   | 参数描述          |
-| ------- | ----------------------------------- | ---- | ------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
-| options | { type?: ButtonType, stateEffect?: boolean, buttonStyle<sup>11+</sup>?: ButtonStyleMode, controlSize<sup>11+</sup>?: ControlSize }   | 否    | 见[Button](#button-1)参数说明。 |
+**参数：** 
+
+| 参数名  | 类型                                    | 必填 | 说明                 |
+| ------- | --------------------------------------- | ---- | -------------------- |
+| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。       |
+| options | [ButtonOptions](#buttonoptions对象说明) | 否   | 配置按钮的显示样式。 |
+
+## ButtonOptions对象说明
+
+| 名称                      | 类型                                          | 必填 | 描述                                                         |
+| ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule            |
+| stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
+| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。 |
+| controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL              |
 
 ## 属性
 
@@ -71,11 +83,11 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | Normal  | 普通按钮（默认不带圆角）。      |
 
 >  **说明：**
->  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角），且只支持设置参数为[Length](ts-types.md#length)的圆角。
+>  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置（不支持通过border接口设置圆角），且只支持设置参数为[Length](ts-types.md#length)的圆角。
 >  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为宽、高中较小值的一半。
 >  - 当按钮类型为Circle时，若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；若不设置宽高，则borderRadius为按钮半径；若borderRadius的值为负，则borderRadius的值按照0处理。
->  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
->  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md)为透明色。
+>  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md#属性)进行设置。
+>  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)为透明色。
 
 ## LabelStyle<sup>10+</sup>对象说明
 
