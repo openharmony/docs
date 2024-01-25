@@ -531,7 +531,6 @@ context.startAbility(want).then(() => {
 }).catch((err: BusinessError) => {
     hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
   });
-})
 ```
 
 
