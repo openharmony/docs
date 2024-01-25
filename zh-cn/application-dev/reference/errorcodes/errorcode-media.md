@@ -8,7 +8,7 @@
 
 **错误信息**
 
-No memory.
+No memory. Return by callback/promise.
 
 **错误描述**
 
