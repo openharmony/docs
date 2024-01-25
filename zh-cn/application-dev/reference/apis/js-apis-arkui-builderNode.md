@@ -1,6 +1,6 @@
 # BuilderNode
 
-提供能够挂载原生组件的自定义节点BuilderNode。当前不建议将BuilderNode作为子节点挂载到其他自定义节点上。
+提供能够挂载原生组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用, 且不建议通过获取根节点的renderNode对根节点的子节点以及属性进行操作。
 
 > **说明：**
 >
@@ -49,7 +49,7 @@ BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-bu
 
 constructor(uiContext: UIContext, options?: RenderOptions)
 
-当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内容大小为空，不显示任何内容。
+当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0],即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -229,7 +229,7 @@ struct Index {
 
 update(arg: Object): void
 
-根据提供的参数更新BuilderNode，该参数为[build](###build)方法调用时传入的参数类型相同。暂不支持在自定义组件中通过update方法对BuilderNode进行更新。
+根据提供的参数更新BuilderNode，该参数为[build](###build)方法调用时传入的参数类型相同。对自定义组件进行updaete的时候需要在自定义组件中使用的变量定义为@Prop类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -251,6 +251,24 @@ class Params {
   }
 }
 
+// 自定义组件
+@Component
+struct TextBuilder {
+  @Prop message: string = "TextBuilder";
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({bottom: 36})
+          .backgroundColor(Color.Gray)
+      }
+    }
+  }
+}
+
 @Builder
 function buildText(params: Params) {
   Column() {
@@ -258,6 +276,7 @@ function buildText(params: Params) {
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
+    TextBuilder({message: params.text}) // 自定义组件
   }
 }
 
@@ -272,15 +291,9 @@ class TextNodeController extends NodeController {
   }
 
   makeNode(context: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(context);
     this.textNode = new BuilderNode(context);
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
-
-    const renderNode = this.rootNode.getRenderNode();
-    if (renderNode !== null) {
-      renderNode.appendChild(this.textNode?.getFrameNode()?.getRenderNode());
-    }
-    return this.rootNode;
+    return this.textNode.getFrameNode();
   }
 
   update(message: string) {
