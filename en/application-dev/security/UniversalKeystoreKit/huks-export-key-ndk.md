@@ -1,0 +1,45 @@
+# Exporting a Key (C/C++)
+
+
+This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, and X25519 public keys.
+
+
+## How to Develop
+
+1. Set parameters.
+   - **keyAlias**: key alias encapsulated in a [OH_Huks_Blob](../../reference/native-apis/_o_h___huks___blob.md) struct. The value cannot exceed 64 bytes.
+   - **paramSetIn**: This parameter is reserved. Leave it empty.
+   - **key**: [OH_Huks_Blob](../../reference/native-apis/_o_h___huks___blob.md) object used to hold the key exported. Ensure that there is enough memory for storing the key exported.
+
+2. Use [OH_Huks_ExportPublicKeyItem()](../../reference/native-apis/_huks_key_api.md#oh_huks_exportpublickeyitem) to export the key.
+
+3. Check the return value. If the operation is successful, the exported key is in the **key** field in the DER format defined in X.509. For details about the format, see [Public Key Material Format](huks-concepts.md#public-key-material-format). If the operation fails, an error code is returned.
+
+```c++
+#include "huks/native_huks_api.h"
+#include "huks/native_huks_param.h"
+#include <string.h>
+static napi_value ExportKey(napi_env env, napi_callback_info info)
+{
+    /* 1. Set the key alias. */
+    const char *alias = "test_key";
+    struct OH_Huks_Blob aliasBlob = { .size = (uint32_t)strlen(alias), .data = (uint8_t *)alias };
+    /* Request the memory for holding the public key to be exported. */
+    uint8_t *pubKey = (uint8_t *)malloc(512); // Request memory based on the key size.
+    if (pubKey == nullptr) {
+        return nullptr;
+    }
+    struct OH_Huks_Blob keyBlob = { 256, pubKey };
+    struct OH_Huks_Result ohResult;
+    do {
+        ohResult = OH_Huks_ExportPublicKeyItem(&aliasBlob, nullptr, &keyBlob);
+        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+            break;
+        }
+    } while (0);
+    free(pubKey);
+    napi_value ret;
+    napi_create_int32(env, ohResult.errorCode, &ret);
+    return ret;
+}
+```
