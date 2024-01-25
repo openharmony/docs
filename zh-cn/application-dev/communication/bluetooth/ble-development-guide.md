@@ -35,7 +35,7 @@
 4. 开启广播，对端设备扫描该广播。
 5. 关闭广播。
 6. 示例代码：
-```
+```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
 
@@ -92,7 +92,7 @@ console.info('stopAdvertising success');
 5. 本端设备开启扫描，获取扫描结果。
 6. 关闭扫描。
 7. 示例代码:
-```
+```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
 
