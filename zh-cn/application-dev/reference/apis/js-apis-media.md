@@ -1246,6 +1246,66 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
+### setDecryptionConfig<sup>11+</sup>
+
+setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boolean): void
+
+设置解密配置。当收到[mediaKeySystemInfoUpdate事件](#onmediakeysysteminfoupdate11)时，需根据事件上报的信息创建相关配置并设置解密配置，否则无法播放。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                         |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
+| mediaKeySession | [drm.MediaKeySession](js-apis-drm.md#mediakeysession) | 是   | 解密会话 |
+| secureVideoPath | boolean | 是 | 安全视频通路，true表示选择安全视频通路，false表示选择非安全视频通路 |
+
+**示例：**
+
+
+```ts
+import drm from '@ohos.multimedia.drm'
+
+// 创建MediaKeySystem系统
+let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
+// 创建MediaKeySession解密会话
+let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+// 安全视频通路标志
+var secureVideoPath:boolean = false;
+// 设置解密配置
+avPlayer.setDecryptionConfig(keySession, secureVideoPath);
+```
+关于drm模块的示例具体可见[js-apis-drm.md](js-apis-drm.md)
+
+
+### getMediaKeySystemInfos<sup>11+</sup>
+
+getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
+
+获取当前播放的媒体资源的[MediaKeySystemInfo](js-apis-drm.md#mediakeysysteminfo)。需要在[mediaKeySystemInfoUpdate事件](#onmediakeysysteminfoupdate11)触发成功后才能调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+|  Array<[drm.MediaKeySystemInfo](js-apis-drm.md#mediakeysysteminfo)> | MediaKeySystemInfo数组，MediaKeySystemInfo具有uuid和pssh两个属性。 |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm'
+
+const infos = avPlayer.getMediaKeySystemInfos();
+console.info('GetMediaKeySystemInfos count: ' + infos.length);
+for (var i = 0; i < infos.length; i++) {
+  console.info('GetMediaKeySystemInfos uuid: ' + infos[i]["uuid"]);
+  console.info('GetMediaKeySystemInfos pssh: ' + infos[i]["pssh"]);
+}
+```
+
 ### seek<sup>9+</sup>
 
 seek(timeMs: number, mode?:SeekMode): void
@@ -1481,6 +1541,57 @@ off(type: 'availableBitrates'): void
 
 ```ts
 avPlayer.off('availableBitrates')
+```
+
+
+### on('mediaKeySystemInfoUpdate')<sup>11+</sup>
+
+on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.MediaKeySystemInfo>) => void): void
+
+监听mediaKeySystemInfoUpdate事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 版权保护信息更新上报事件回调类型，支持的事件：'mediaKeySystemInfoUpdate'，当播放内容的版权保护信息更新时上报事件。 |
+| callback | function | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组，具体可见[MediaKeySystemInfo](js-apis-drm.md#mediakeysysteminfo)。 |
+
+**示例：**
+
+```ts
+
+import drm from './@ohos.multimedia.drm';
+
+avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
+    for (var i = 0; i < mediaKeySystemInfo.length; i++) {
+      console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
+      console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
+    }
+})
+```
+
+### off('mediaKeySystemInfoUpdate')<sup>11+</sup>
+
+off(type: 'mediaKeySystemInfoUpdate', callback?: (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => void): void;
+
+取消监听mediaKeySystemInfoUpdate事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 版权保护信息更新上报事件回调类型，取消注册的事件：'mediaKeySystemInfoUpdate'。 |
+| callback | function | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组，具体可见[MediaKeySystemInfo](js-apis-drm.md#mediakeysysteminfo)。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('mediaKeySystemInfoUpdate')
 ```
 
 ### setVolume<sup>9+</sup>
