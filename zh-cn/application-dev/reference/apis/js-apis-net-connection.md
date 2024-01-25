@@ -457,21 +457,27 @@ cat server.pem \
 
 必须包含1个trust-anchors
 
-**domain-config(object:指示每个域的安全配置)**
+**domain-config(array:指示每个域的安全配置)**
 
-必须包含1个domain
+可以包含任意个item
 
-必须包含1个trust-anchors
+item必须包含1个domain
 
-可包含0个或者1个pin-set
+item可以包含0或者1个trust-anchors
+
+item可包含0个或者1个pin-set
 
 **trust-anchors(array:受信任的CA)**
 
-item必须包含1个以上的certificates(string:CA证书路径)
+必须包含1个以上的item
+
+item必须包含1个certificates(string:CA证书路径)
 
 **domain(array:域)**
 
-item必须包含1个以上的name(string:指示域名)
+可以包含任意个item
+
+item必须包含1个name(string:指示域名)
 
 item可以包含0或者1个include-subdomains(boolean:指示规则是否适用于子域)
 
@@ -479,13 +485,15 @@ item可以包含0或者1个include-subdomains(boolean:指示规则是否适用�
 
 必须包含1个pin
 
-必须包含1个expiration(string:指示证书PIN的过期时间)
+可以包含0或者1个expiration(string:指示证书PIN的过期时间)
 
 **pin(array:证书PIN)**
 
-必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)
+可以包含任意个item
 
-必须包含1个digest(string:指示公钥PIN)
+item必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)
+
+item必须包含1个digest(string:指示公钥PIN)
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
