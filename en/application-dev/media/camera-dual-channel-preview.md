@@ -39,7 +39,7 @@ The figure below shows the recommended API calling process of the dual-channel p
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
-       console.info('ImageReceiver is not ok');
+       console.error('ImageReceiver is not ok');
      }
      return ImageReceiverSurfaceId;
    }
