@@ -175,7 +175,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 返回一个第一个参数是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数是已解决的回调函数。 |
+| Function | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
 
 **示例：**
 
@@ -202,13 +202,13 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| original | Function | 是 | 异步函数。 |
+| original | Function | 是 | 回调函数中第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。  |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的函数。 |
+| Function | 返回一个&nbsp;Promise&nbsp;的函数。 |
 
 **示例：**
 
