@@ -12,15 +12,23 @@
 
 ## 接口
 
-CheckboxGroup(options?: { group?: string })
+CheckboxGroup(options?: CheckboxGroupOptions)
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数:**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+**参数：** 
+
+| 参数名  | 类型                                                  | 必填 | 描述                 |
+| ------- | ----------------------------------------------------- | ---- | -------------------- |
+| options | [CheckboxGroupOptions](#checkboxgroupoptions对象说明) | 否   | 配置多选框群组参数。 |
+
+## CheckboxGroupOptions对象说明
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
 
