@@ -88,7 +88,7 @@
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
      let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
-       return profile.size.width === aVRecorderProfile.videoFrameWidth && profile.size.height === aVRecorderProfile.videoFrameHeight：
+       return profile.size.width === aVRecorderProfile.videoFrameWidth && profile.size.height === aVRecorderProfile.videoFrameHeight;
      });
      if (!videoProfile) {
        console.error('videoProfile is not found');
