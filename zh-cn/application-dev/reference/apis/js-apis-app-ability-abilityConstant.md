@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
+AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
 
 > **说明：**
 > 
@@ -260,6 +260,7 @@ class MyAbility extends UIAbility {
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
