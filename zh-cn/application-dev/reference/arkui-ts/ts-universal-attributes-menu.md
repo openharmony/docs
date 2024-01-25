@@ -25,7 +25,7 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 | content | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                         |
 
-## bindMenu
+## bindMenu<sup>11+</sup>
 
 bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 
@@ -197,7 +197,7 @@ struct MenuExample {
 
 ### 示例3
 
-菜单(右键触发显示)
+菜单(长按触发显示)
 
 ```ts
 // xxx.ets
@@ -219,17 +219,19 @@ struct ContextMenuExample {
         .textAlign(TextAlign.Center)
     }.width(100)
   }
-  
+
   build() {
     Column() {
-      Text('rightclick for menu')
+      Text('LongPress for menu')
     }
     .width('100%')
     .margin({ top: 5 })
-    .bindContextMenu(this.MenuBuilder, ResponseType.RightClick)
+    .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
   }
 }
 ```
+
+![longMenu](figures/longMenu.gif)
 
 ### 示例4
 

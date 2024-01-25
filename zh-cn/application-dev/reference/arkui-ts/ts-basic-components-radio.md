@@ -14,13 +14,23 @@
 
 ## 接口
 
-Radio(options: {value: string, group: string})
+Radio(options: RadioOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+创建单选框组件。
 
-**参数:**
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                  | 必填 | 描述               |
+| ------- | ------------------------------------- | ---- | ------------------ |
+| options | [RadioOptions](#RadioOptions对象说明) | 否   | 配置单选框的参数。 |
+
+## RadioOptions对象说明
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 当前单选框的值。|
 | group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。|
@@ -32,7 +42,7 @@ Radio(options: {value: string, group: string})
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle对象说明) | 设置单选框选中状态和非选中状态的样式。 <br/>从API version 10开始，该接口支持在ArkTS组件中使用。|
+| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle10对象说明) | 设置单选框选中状态和非选中状态的样式。 <br/>从API version 10开始，该接口支持在ArkTS组件中使用。|
 
 ## 事件
 
@@ -42,7 +52,7 @@ Radio(options: {value: string, group: string})
 | -------- | -------- |
 | onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -&nbsp;isChecked为true时，表示从未选中变为选中。<br> -&nbsp;isChecked为false时，表示从选中变为未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
-## RadioStyle对象说明
+## RadioStyle<sup>10+</sup>对象说明
 
 | 名称                   | 类型                                       | 必填 | 默认值  | 描述                   |
 | ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |
