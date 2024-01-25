@@ -18,7 +18,7 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 
 意图调用执行模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |

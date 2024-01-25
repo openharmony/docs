@@ -54,7 +54,6 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
   ```ts
   import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import IntentContext from '@ohos.app.ability.InsightIntentContext';
   import insightIntent from '@ohos.app.ability.insightIntent';
   import window from '@ohos.window';
   import Want from '@ohos.app.ability.Want';
@@ -138,7 +137,6 @@ startAbility(want: Want): Promise\<void\>
 
   ```ts
   import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import IntentContext from '@ohos.app.ability.InsightIntentContext';
   import insightIntent from '@ohos.app.ability.insightIntent';
   import window from '@ohos.window';
   import Want from '@ohos.app.ability.Want';
