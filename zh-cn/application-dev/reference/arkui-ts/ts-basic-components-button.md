@@ -16,31 +16,43 @@
 
 ### Button
 
-Button(options?: {type?: ButtonType, stateEffect?: boolean})
+Button(options: ButtonOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+创建可以包含单个子组件的按钮。
 
-**参数：**
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 参数名         | 参数类型       | 必填        | 参数描述                              |
-| ----------- | ---------- | ------| --------------------------------- |
-| type        | [ButtonType](#buttontype枚举说明) | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
-| stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                    | 必填 | 描述                 |
+| ------- | --------------------------------------- | ---- | -------------------- |
+| options | [ButtonOptions](#buttonoptions对象说明) | 是   | 配置按钮的显示样式。 |
 
 ### Button
 
-Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+Button(label: ResourceStr, options?: ButtonOptions)
 
 使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 参数类型                                | 必填   | 参数描述          |
+**参数：** 
+
+| 参数名     | 类型                                | 必填   | 描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
-| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见[Button](#button-1)参数说明。 |
+| options | [ButtonOptions](#buttonoptions对象说明) | 否    | 配置按钮的显示样式。 |
+
+## ButtonOptions对象说明
+
+| 名称        | 类型                              | 必填 | 说明                                                         |
+| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type        | [ButtonType](#buttontype枚举说明) | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule            |
+| stateEffect | boolean                           | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
 ## 属性
 
