@@ -5,9 +5,7 @@
 
 相机设备状态的回调。
 
-参见
-
-[OH_CameraManager_RegisterCallback](_o_h___camera.md#oh_cameramanager_registercallback)
+参见[OH_CameraManager_RegisterCallback](_o_h___camera.md#oh_cameramanager_registercallback)。
 
 **起始版本：** 11
 
@@ -21,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onCameraStatus](#oncamerastatus) | 相机状态更改事件。 | 
+| [OH_CameraManager_StatusCallback](_o_h___camera.md#oh_cameramanager_statuscallback) [onCameraStatus](#oncamerastatus) | 相机状态更改事件。 | 
 
 
 ## 结构体成员变量说明
