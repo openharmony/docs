@@ -153,7 +153,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
    }
    ```
 
-2. 修改EntryAbility.ts。
+2. 修改EntryAbility.ets。
 
    以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 

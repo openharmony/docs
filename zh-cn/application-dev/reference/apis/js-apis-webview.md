@@ -4099,7 +4099,7 @@ struct WebComponent {
 }
 ```
 
-2.修改EntryAbility.ts。
+2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
@@ -4185,7 +4185,7 @@ struct WebComponent {
 }
 ```
 
-2.修改EntryAbility.ts。
+2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
