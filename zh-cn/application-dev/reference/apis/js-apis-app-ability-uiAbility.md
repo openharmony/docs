@@ -18,7 +18,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -957,7 +957,7 @@ on(method: string, callback: CalleeCallback): void
 **示例：**
 
   ```ts
-  import UIAbility, { CalleeCallback } from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
   import rpc from '@ohos.rpc';
