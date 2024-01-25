@@ -387,7 +387,7 @@ struct Parent {
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
