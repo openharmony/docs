@@ -6055,7 +6055,6 @@ Defines the options for selecting images or videos.
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image is editable.     |
 | isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.|
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Recommended image type.     |
-| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | The uri for the preselected files.|
 
 ## PhotoSelectResult
 
