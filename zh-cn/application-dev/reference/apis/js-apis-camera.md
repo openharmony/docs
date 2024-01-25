@@ -1373,7 +1373,7 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| camera | [CameraDevice](#cameradevice) |        是       | 相机信息。 |
+| cameraDevice | [CameraDevice](#cameradevice) |        是       | 相机信息。 |
 | restoreParamType<sup>11+</sup> | [RestoreParamType](#restoreparamtype11) |        否       | 预保存参数类型。 |
 | activeTime<sup>11+</sup> | number |        否       | 激活时间，单位min。 |
 | settingParam<sup>11+</sup> | [SettingParam](#settingparam11) |        否       | 设置参数内容。 |
@@ -2111,7 +2111,7 @@ import common from '@ohos.app.ability.common';
 
 async function preview(context: common.BaseContext, camera: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
-  const cameraInput: camera.CameraInput = cameraManager.createCameraInput(camera)
+  const cameraInput: camera.CameraInput = cameraManager.createCameraInput(camera);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
   const session: camera.CaptureSession  = cameraManager.createCaptureSession();
@@ -2675,7 +2675,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 ### confirmCapture<sup>11+</sup>
 
-confirmCapture(): void
+confirmCapture()
 
 确认拍照，一般用于夜景模式下，在曝光倒计时过程中如需终止倒计时提前拍照的时候调用。
 
