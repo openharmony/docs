@@ -8,18 +8,16 @@ Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体�
 
 菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。
 
-
-
 ```ts
 Button('click for Menu')
   .bindMenu([
-  {
-    value: 'Menu1',
-    action: () => {
-      console.info('handle Menu1 select')
+    {
+      value: 'Menu1',
+      action: () => {
+        console.info('handle Menu1 select')
+      }
     }
-  }       
-])
+  ])
 ```
 
 

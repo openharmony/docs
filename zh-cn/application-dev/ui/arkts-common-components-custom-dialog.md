@@ -17,8 +17,8 @@
      build() {
        Column() {
          Text('我是内容')
-         .fontSize(20)
-         .margin({ top: 10, bottom: 10 })
+           .fontSize(20)
+           .margin({ top: 10, bottom: 10 })
        }
      }
    }
@@ -28,7 +28,7 @@
 
    ```ts
    dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({}),
+     builder: CustomDialogExample({}),
    })
    ```
 
@@ -83,18 +83,18 @@
 
    ```ts
    dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({
-         cancel: this.onCancel,
-         confirm: this.onAccept,
-       }),
-       alignment: DialogAlignment.Default,  // 可设置dialog的对齐方式，设定显示在底部或中间等，默认为底部显示
-     })
-     onCancel() {
-       console.info('Callback when the first button is clicked')
-     }
-     onAccept() {
-       console.info('Callback when the second button is clicked')
-     }
+     builder: CustomDialogExample({
+       cancel: this.onCancel,
+       confirm: this.onAccept,
+     }),
+     alignment: DialogAlignment.Default,  // 可设置dialog的对齐方式，设定显示在底部或中间等，默认为底部显示
+   })
+   onCancel() {
+     console.info('Callback when the first button is clicked')
+   }
+   onAccept() {
+     console.info('Callback when the second button is clicked')
+   }
    ```
 
    ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
