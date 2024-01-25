@@ -239,7 +239,7 @@ async function Demo(surfaceId: string) {
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
-| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
+| isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
 
