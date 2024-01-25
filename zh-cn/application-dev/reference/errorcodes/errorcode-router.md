@@ -72,6 +72,42 @@ Named route error. The named route is not exist.
 
 输入的命名路由name错误或者不存在。
 
+## 100005 Navigation跳转时未注册builder函数
+
+**错误信息**
+
+Builder function not registered.
+
+**错误描述**
+
+Navigation跳转时，Navigation未注册创建NavDestination组件的builder函数，系统会产生此错误码。
+
+**可能原因**
+
+Navigation跳转时，Navigation未注册创建NavDestiantion的builder函数。
+
+**处理步骤**
+
+请检查Navigation创建NavDestination的builder函数是否存在。
+
+## 100006 Navigation跳转时目标页面不存在NavDestination组件
+
+**错误信息**
+
+NavDestination not found.
+
+**错误描述**
+
+Navigation跳转时，目标页面不存在NavDestination组件，系统会产生此错误码。
+
+**可能原因**
+
+Navigation跳转时，目标页面不存在NavDestination组件。
+
+**处理步骤**
+
+请检查待跳转的目标页面中是否存在NavDestination组件。
+
 ## 200002 路由页面替换时输入的uri错误
 
 **错误信息**

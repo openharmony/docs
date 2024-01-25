@@ -101,7 +101,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 ### pushPathByName<sup>11+</sup>
 
-pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): void
+pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
 
@@ -111,8 +111,101 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### pushDestination<sup>11+</sup>
+
+pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
+
+将info指定的NavDestination页面信息入栈，支持返回接口调用结果。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+|   401    | 参数错误。 |
+| 100001    | 系统内部错误。|
+| 100005    | 创建NavDestination组件的builder函数未注册。 |
+| 100006    | 目标页面中不存在NavDestination组件。|
+
+### pushDestinationByName<sup>11+</sup>
+
+pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&lt;void&gt;
+
+将name指定的NavDestination页面信息入栈，传递的数据为param，支持返回接口调用结果。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+|   401    | 参数错误。 |
+| 100001    | 系统内部错误。|
+| 100005    | 创建NavDestination组件的builder函数未注册。 |
+| 100006    | 目标页面中不存在NavDestination组件。|
+
+### pushDestinationByName<sup>11+</sup>
+
+pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
+
+将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，支持返回接口调用结果。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+|   401    | 参数错误。 |
+| 100001    | 系统内部错误。|
+| 100005    | 创建NavDestination组件的builder函数未注册。 |
+| 100006    | 目标页面中不存在NavDestination组件。|
 
 ### replacePath<sup>11+</sup>
 
@@ -213,7 +306,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| NavPathInfo | 返回栈顶NavDestination页面的信息。 |
+| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
 | undefined   | 当路由栈为空时返回undefined。      |
 
 ### popToName<sup>10+</sup>
@@ -431,7 +524,7 @@ constructor(name: string, param: unknown)
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
-| onPop<sup>11+</sup> | Callback\<PopInfo> | 否 | NavDestination页面触发pop时返回的回调。 |
+| onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 
 ## PopInfo<sup>11+</sup>
 
@@ -441,7 +534,7 @@ constructor(name: string, param: unknown)
 
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|-----|
-| info | NavPathInfo | 是 | 页面触发返回时的当前页面信息，系统自动获取填入，无需开发者传入。 |
+| info | [NavPathInfo](#navpathinfo10) | 是 | 页面触发返回时的当前页面信息，系统自动获取填入，无需开发者传入。 |
 | result | Object | 是 | 页面触发返回时的结果，开发者自定义对象。 |
 
 ## NavContentInfo<sup>11+</sup>
@@ -1075,7 +1168,7 @@ struct NavigationExample {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+            this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈。
           })
       }
     }.title('NavIndex').navDestination(this.PageMap)
@@ -1105,37 +1198,37 @@ export struct PageOneTmp {
       Column() {
         Text(this.message)
           .width('80%')
-          .height(100)
-          .margin(20)
+          .height(50)
+          .margin(10)
 
         Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(()=>{
             this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
               this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调
+            }}); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
 
         Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(() => {
             let tmp = new TmpClass()
             this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo)=>{
               this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调
+            }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
 
         Button('pushDestination', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(()=>{
             let tmp = new TmpClass()
-            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
               this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }}).catch((error: BusinessError)=>{
@@ -1148,10 +1241,10 @@ export struct PageOneTmp {
         Button('pushDestinationByName', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(()=>{
             let tmp = new TmpClass()
-            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo)=>{
               this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }).catch((error: BusinessError)=>{
@@ -1164,27 +1257,27 @@ export struct PageOneTmp {
         Button('pushPathWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(()=>{
-            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp()}); // 将name指定的NavDestination页面信息入栈
+            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp()}); // 将name指定的NavDestination页面信息入栈。
           })
 
         Button('pushPathByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(() => {
             let tmp = new TmpClass()
-            this.pageInfo.pushPathByName('pageTwo', tmp); // 将name指定的NavDestination页面信息入栈，传递的数据为param
+            this.pageInfo.pushPathByName('pageTwo', tmp); // 将name指定的NavDestination页面信息入栈，传递的数据为param。
           })
 
         Button('pushDestinationWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(()=>{
             let tmp = new TmpClass()
-            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
             this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp()})
               .catch((error: BusinessError)=>{
               console.error(`[pushDestinationWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
@@ -1196,10 +1289,10 @@ export struct PageOneTmp {
         Button('pushDestinationByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(() => {
             let tmp = new TmpClass()
-            // 将name指定的NavDestination页面信息入栈，传递的数据为param
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param。
             this.pageInfo.pushDestinationByName('pageTwo', tmp)
               .catch((error: BusinessError)=>{
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
@@ -1211,14 +1304,14 @@ export struct PageOneTmp {
         Button('clear', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
-          .margin(20)
+          .margin(10)
           .onClick(() => {
-            this.pageInfo.clear(); // 清除栈中所有页面
+            this.pageInfo.clear(); // 清除栈中所有页面。
           })
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfo.pop({number: 1}) // 弹出路由栈栈顶元素
+      this.pageInfo.pop({number: 1}) // 弹出路由栈栈顶元素。
       return true
     })
   }
@@ -1247,7 +1340,7 @@ export function pageTwoTmp(info: Pages) {
         .height(40)
         .margin(20)
         .onClick(() => {
-          (info.values as NavPathStack).pop(new resultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中
+          (info.values as NavPathStack).pop(new resultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中。
         })
 
       Button('popToName', { stateEffect: true, type: ButtonType.Capsule })
@@ -1255,7 +1348,7 @@ export function pageTwoTmp(info: Pages) {
         .height(40)
         .margin(20)
         .onClick(() => {
-          (info.values as NavPathStack).popToName('pageOne', new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中
+          (info.values as NavPathStack).popToName('pageOne', new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
         })
 
       Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
@@ -1263,7 +1356,7 @@ export function pageTwoTmp(info: Pages) {
         .height(40)
         .margin(20)
         .onClick(() => {
-          (info.values as NavPathStack).popToIndex(0, new resultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中
+          (info.values as NavPathStack).popToIndex(0, new resultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
         })
 
       Button('popWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
@@ -1292,7 +1385,7 @@ export function pageTwoTmp(info: Pages) {
     }.width('100%').height('100%')
   }.title('pageTwo')
   .onBackPressed(() => {
-    (info.values as NavPathStack).pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调
+    (info.values as NavPathStack).pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
     return true;
   })
 }
