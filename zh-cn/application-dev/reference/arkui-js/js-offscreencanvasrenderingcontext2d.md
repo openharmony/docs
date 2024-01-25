@@ -4,12 +4,12 @@
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-使用OffscreenCanvasRenderingContext2D在offscreen canvas上进行绘制，绘制对象可以是矩形、文本、图片等
+使用OffscreenCanvasRenderingContext2D在[OffscreenCanvas对象](js-components-canvas-offscreencanvas.md)上进行绘制，绘制对象可以是矩形、文本、图片等
 
 
 ## 属性
 
-除支持与CanvasRenderingContext2D对象相同的属性外，还支持如下属性：
+除支持与[CanvasRenderingContext2D对象](js-components-canvas-canvasrenderingcontext2d.md)相同的属性外，还支持如下属性：
 
 | 属性     | 类型     | 描述                                       |
 | ------ | ------ | ---------------------------------------- |

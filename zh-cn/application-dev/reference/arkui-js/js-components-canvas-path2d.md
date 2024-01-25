@@ -23,21 +23,21 @@ addPath(path: Object): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path1 = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
-    var path2 = ctx.createPath2D();
-    path2.addPath(path1);
-    ctx.stroke(path2);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path1 = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
+        var path2 = ctx.createPath2D();
+        path2.addPath(path1);
+        ctx.stroke(path2);
+    }
 }
   ```
 
@@ -65,20 +65,20 @@ setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, trans
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
-    path.setTransform(0.8, 0, 0, 0.4, 0, 0);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
+        path.setTransform(0.8, 0, 0, 0.4, 0, 0);
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -96,23 +96,23 @@ closePath(): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(200, 100);
-    path.lineTo(300, 100);
-    path.lineTo(200, 200);
-    path.closePath();
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(200, 100);
+        path.lineTo(300, 100);
+        path.lineTo(200, 200);
+        path.closePath();
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -137,23 +137,23 @@ moveTo(x: number, y: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(50, 100);
-    path.lineTo(250, 100);
-    path.lineTo(150, 200);
-    path.closePath();
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(50, 100);
+        path.lineTo(250, 100);
+        path.lineTo(150, 200);
+        path.closePath();
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -178,24 +178,24 @@ lineTo(x: number, y: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(100, 100);
-    path.lineTo(100, 200);
-    path.lineTo(200, 200);
-    path.lineTo(200, 100);
-    path.closePath();
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(100, 100);
+        path.lineTo(100, 200);
+        path.lineTo(200, 200);
+        path.lineTo(200, 100);
+        path.closePath();
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -224,21 +224,21 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(10, 10);
-    path.bezierCurveTo(20, 100, 200, 100, 200, 20);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(10, 10);
+        path.bezierCurveTo(20, 100, 200, 100, 200, 20);
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -265,21 +265,21 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.moveTo(10, 10);
-    path.quadraticCurveTo(100, 100, 200, 20);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.moveTo(10, 10);
+        path.quadraticCurveTo(100, 100, 200, 20);
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -308,20 +308,20 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.arc(100, 75, 50, 0, 6.28);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.arc(100, 75, 50, 0, 6.28);
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -349,20 +349,20 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.arcTo(150, 20, 150, 70, 50);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.arcTo(150, 20, 150, 70, 50);
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -393,20 +393,20 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx =el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
+        ctx.stroke(path);
+    }
 }
   ```
 
@@ -433,20 +433,20 @@ rect(x: number, y: number, width: number, height: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    var path = ctx.createPath2D();
-    path.rect(20, 20, 100, 100);
-    ctx.stroke(path);
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        var path = ctx.createPath2D();
+        path.rect(20, 20, 100, 100);
+        ctx.stroke(path);
+    }
 }
   ```
 
