@@ -589,7 +589,7 @@ Codec MIME类型枚举。
 | VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
 | VIDEO_MPEG4  | 'video/mpeg4'         | 表示视频/mpeg4类型。     |
 | AUDIO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
-| AUDIO_HEVC   | 'video/hevc'          | 表示视频/H265类型。      |
+| AUDIO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。      |
 | AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
@@ -746,7 +746,7 @@ avPlayer.off('stateChange')
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过reset()或者release()退出播放操作。
+监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1971,15 +1971,15 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 |              名称               |  类型  | 说明                                                         |
 | :-----------------------------: | :----: | :----------------------------------------------------------- |
-|              idle               | string | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了reset()方法之后，进入Idle状态。<br/>首次创建createAVPlayer()，所有属性都为默认值。<br/>调用reset()方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
+|              idle               | string | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入Idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
 |           initialized           | string | 资源初始化，在Idle 状态设置 url<sup>9+</sup> 或 fdSrc<sup>9+</sup>属性，AVPlayer会进入initialized状态，此时可以配置窗口、音频等静态属性。 |
-|            prepared             | string | 已准备状态，在initialized状态调用prepare()方法，AVPlayer会进入prepared状态，此时播放引擎的资源已准备就绪。 |
-|             playing             | string | 正在播放状态，在prepared/paused/completed状态调用play()方法，AVPlayer会进入playing状态。 |
+|            prepared             | string | 已准备状态，在initialized状态调用[prepare()](#prepare9)方法，AVPlayer会进入prepared状态，此时播放引擎的资源已准备就绪。 |
+|             playing             | string | 正在播放状态，在prepared/paused/completed状态调用[play()](#play9)方法，AVPlayer会进入playing状态。 |
 |             paused              | string | 暂停状态，在playing状态调用pause方法，AVPlayer会进入paused状态。 |
-|            completed            | string | 播放至结尾状态，当媒体资源播放至结尾时，如果用户未设置循环播放（loop = true），AVPlayer会进入completed状态，此时调用play()会进入playing状态和重播，调用stop()会进入stopped状态。 |
-|             stopped             | string | 停止状态，在prepared/playing/paused/completed状态调用stop()方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用prepare()重新准备，也可以调用reset()重置，或者调用release()彻底销毁。 |
-|            released             | string | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用release()方法后，会进入released状态，结束流程。 |
-| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../errorcodes/errorcode-media.md)），则会转换至当前状态，可以调用reset()重置，也可以调用release()销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用reset()重置或者release()销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
+|            completed            | string | 播放至结尾状态，当媒体资源播放至结尾时，如果用户未设置循环播放（loop = true），AVPlayer会进入completed状态，此时调用[play()](#play9)会进入playing状态和重播，调用[stop()](#stop9)会进入stopped状态。 |
+|             stopped             | string | 停止状态，在prepared/playing/paused/completed状态调用[stop()](#stop9)方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用[prepare()](#prepare9)重新准备，也可以调用[reset()](#reset9)重置，或者调用[release()](#release9)彻底销毁。 |
+|            released             | string | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用[release()](#release9)方法后，会进入released状态，结束流程。 |
+| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../errorcodes/errorcode-media.md)），则会转换至当前状态，可以调用[reset()](#reset9)重置，也可以调用[release()](#release9)销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用[reset()](#reset9)重置或者[release()](#release9)销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -2238,7 +2238,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-需在prepare()事件成功触发后，才能调用getInputSurface()方法。
+需在[prepare()](#prepare9-2)事件成功触发后，才能调用getInputSurface()方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2283,7 +2283,7 @@ getInputSurface(): Promise\<string>
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-需在prepare()事件成功触发后，才能调用getInputSurface方法。
+需在[prepare()](#prepare9-3)事件成功触发后，才能调用getInputSurface方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2323,7 +2323,7 @@ start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-纯音频录制需在prepare()事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在getInputSurface()事件成功触发后，才能调用start方法。
+纯音频录制需在[prepare()](#prepare9-2)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2363,7 +2363,7 @@ start(): Promise\<void>
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-纯音频录制需在prepare()事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在getInputSurface()事件成功触发后，才能调用start方法。
+纯音频录制需在[prepare()](#prepare9-3)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9-1)事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2401,7 +2401,7 @@ pause(callback: AsyncCallback\<void>): void
 
 异步方式暂停视频录制。通过注册回调函数获取返回值。
 
-需要start()事件成功触发后，才能调用pause方法，可以通过调用resume()接口来恢复录制。
+需要[start()](#start9)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2441,7 +2441,7 @@ pause(): Promise\<void>
 
 异步方式暂停视频录制。通过Promise获取返回值。
 
-需要start()事件成功触发后，才能调用pause方法，可以通过调用resume()接口来恢复录制。
+需要[start()](#start9-1)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9-1)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2479,7 +2479,7 @@ resume(callback: AsyncCallback\<void>): void
 
 异步方式恢复视频录制。通过注册回调函数获取返回值。
 
-需要在pause()事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9-2)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2519,7 +2519,7 @@ resume(): Promise\<void>
 
 异步方式恢复视频录制。通过Promise获取返回值。
 
-需要在pause()事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9-3)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2557,9 +2557,9 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要在start()或pause()事件成功触发后，才能调用stop方法。
+需要在[start()](#start9)或[pause()](#pause9-2)事件成功触发后，才能调用stop方法。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2599,9 +2599,9 @@ stop(): Promise\<void>
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要在start()或pause()事件成功触发后，才能调用stop方法。
+需要在[start()](#start9-1)或[pause()](#pause9-3)事件成功触发后，才能调用stop方法。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-3)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-3)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2639,7 +2639,7 @@ reset(callback: AsyncCallback\<void>): void
 
 异步方式重置音视频录制。通过注册回调函数获取返回值。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2678,7 +2678,7 @@ reset(): Promise\<void>
 
 异步方式重置音视频录制。通过Promise获取返回值。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-3)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-3)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2839,7 +2839,7 @@ avRecorder.off('stateChange');
 
 on(type: 'error', callback: ErrorCallback): void
 
-订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](#avrecorderstate9)也切至error状态，用户需要通过reset()或者release()退出录制操作。
+订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-2)或者[release()](#release9-2)退出录制操作。
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -2850,7 +2850,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
@@ -2925,7 +2925,7 @@ avRecorder.off('error');
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
-| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。仅支持mp4格式。       |
 | location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
 ## AVRecorderProfile<sup>9+</sup>
@@ -2946,6 +2946,7 @@ avRecorder.off('error');
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
+| isHdr<sup>11+</sup>            | boolean                        | 否   | 视频HDR属性，选择视频录制时必填。                         | 
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3675,7 +3676,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-只能在prepare()接口调用后调用。
+只能在[prepare()](#prepare9-4)接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3722,7 +3723,7 @@ getInputSurface(): Promise\<string>;
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-只能在prepare()接口调用后调用。
+只能在[prepare()](#prepare9-5)接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3765,7 +3766,7 @@ start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-在prepare()和getInputSurface()后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#prepare9-4)和[getInputSurface()](#getinputsurface9-2)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3808,7 +3809,7 @@ start(): Promise\<void>
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-在prepare()和getInputSurface()后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#prepare9-5)和[getInputSurface()](#getinputsurface9-3)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3849,7 +3850,7 @@ pause(callback: AsyncCallback\<void>): void
 
 异步方式暂停视频录制。通过注册回调函数获取返回值。
 
-在start()后调用。可以通过调用resume()接口来恢复录制。
+在[start()](#start9-2)后调用。可以通过调用[resume()](#resume9-2)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3892,7 +3893,7 @@ pause(): Promise\<void>
 
 异步方式暂停视频录制。通过Promise获取返回值。
 
-在start()后调用。可以通过调用resume()接口来恢复录制。
+在[start()](#start9-3)后调用。可以通过调用[resume()](#resume9-3)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4013,7 +4014,7 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-4)和[getInputSurface()](#getinputsurface9-2)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4056,7 +4057,7 @@ stop(): Promise\<void>
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-5)和[getInputSurface()](#getinputsurface9-3)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4173,7 +4174,7 @@ reset(callback: AsyncCallback\<void>): void
 
 异步方式重置视频录制。通过注册回调函数获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-4)和[getInputSurface()](#getinputsurface9-2)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4215,7 +4216,7 @@ reset(): Promise\<void>
 
 异步方式重置视频录制。通过Promise获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-5)和[getInputSurface()](#getinputsurface9-3)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4264,7 +4265,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
@@ -4757,7 +4758,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 
 | 参数名   | 类型       | 必填 | 说明                                                         |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成play()调用，音频开始播放，触发该事件。<br>- 'pause'：完成pause()调用，音频暂停播放，触发该事件。<br>- 'stop'：完成stop()调用，音频停止播放，触发该事件。<br>- 'reset'：完成reset()调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成setVolume()调用，播放音量改变后触发该事件。 |
+| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#playdeprecated)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#pausedeprecated)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#stopdeprecated)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#resetdeprecated)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#setvolumedeprecated)调用，播放音量改变后触发该事件。 |
 | callback | () => void | 是   | 播放事件回调方法。                                           |
 
 **示例：**
@@ -4866,7 +4867,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：音频播放中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
@@ -5841,7 +5842,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
@@ -6116,7 +6117,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **示例：**
 
