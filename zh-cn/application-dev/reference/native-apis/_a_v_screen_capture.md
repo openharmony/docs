@@ -1020,7 +1020,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording (struct OH_AV
 
 **描述：**
 
-停止录屏，与[OH_AVScreenCapture_StartScreenRecording](#OH_AVScreenCapture_StartScreenRecording)配合使用。
+停止录屏，与[OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording)配合使用。
 
 **参数：**
 
