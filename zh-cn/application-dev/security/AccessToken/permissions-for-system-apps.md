@@ -2041,7 +2041,7 @@
 
 **起始版本**：11
 
-## ohos.permission.ACCESS_STATUSBAR_ICON
+### ohos.permission.ACCESS_STATUSBAR_ICON
 
 允许应用接入状态栏图标。
 
