@@ -459,6 +459,15 @@
 允许应用在后台运行时获取设备位置信息。
 
 **申请条件**：需要先申请前台位置权限[ohos.permission.LOCATION](#ohospermissionlocation)和[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)后，才可申请此权限。
+由于安全隐私要求，应用不能通过弹窗的形式被授予后台位置权限，应用如果需要使用后台位置权限，需要引导用户到设置界面手动授予。
+
+**申请流程**：
+
+1. 通过弹窗申请前台位置权限。存在两种允许情况：
+   - 申请前台模糊位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)。
+   - 申请前台精确位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)和[ohos.permission.LOCATION](#ohospermissionlocation)。
+2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
+3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
 
 **权限级别**：normal
 
