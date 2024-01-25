@@ -12,11 +12,6 @@
 | **接口名** | **描述** |
 | -------- | -------- |
 | getWantAgent(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | 创建WantAgent。 |
-| trigger(agent:&nbsp;WantAgent,&nbsp;triggerInfo:&nbsp;TriggerInfo,&nbsp;callback?:&nbsp;Callback&lt;CompleteData&gt;):&nbsp;void | 触发WantAgent意图。 |
-| cancel(agent:&nbsp;WantAgent,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消WantAgent。 |
-| getWant(agent:&nbsp;WantAgent,&nbsp;callback:&nbsp;AsyncCallback&lt;Want&gt;):&nbsp;void | 获取WantAgent的want。 |
-| equal(agent:&nbsp;WantAgent,&nbsp;otherAgent:&nbsp;WantAgent,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;):&nbsp;void | 判断两个WantAgent实例是否相等。 |
-
 
 ## 开发步骤
 

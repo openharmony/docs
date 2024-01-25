@@ -26,17 +26,21 @@
 2. 请求通知授权。
 可通过requestEnableNotification的错误码判断用户是否授权。若返回的错误码为1600004，即为拒绝授权。
     ```ts
-    notificationManager.isNotificationEnabled().then((status: boolean) => {
+    notificationManager.isNotificationEnabled().then((data: boolean) => {
       console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
-      if (!status) {
+      if(!data){
         notificationManager.requestEnableNotification().then(() => {
           console.info(`[ANS] requestEnableNotification success`);
-        }).catch((err:Base.BusinessError) => {
-          console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+        }).catch((err:base.BusinessError) => {
+          if(1600004 == err.code){
+            console.info(`[ANS] requestEnableNotification refused`);
+          } else {
+            console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+          }
         });
       }
-    }).catch((err: Base.BusinessError) => {
-      console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    }).catch((err: base.BusinessError) => {
+        console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
     });
     ```
 
