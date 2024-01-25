@@ -2295,6 +2295,18 @@
 
 ## system_grant，不允许ACL跨级申请
 
+### ohos.permission.MANAGE_RGM
+
+允许系统服务或系统应用管理RGM。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
