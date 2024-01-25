@@ -10,8 +10,8 @@ For details about the APIs, see [ohos.file.securityLabel](../reference/apis/js-a
 
 | API| Description| Category| Synchronous Programming| Asynchronous Programming|
 | -------- | -------- | -------- | -------- | -------- |
-| setSecurityLabel | Sets a security level for a file. | Method| Supported| Supported|
-| getSecurityLabel | Obtains the security level of a file. | Method| Supported| Supported|
+| setSecurityLabel | Sets a security level for a file.| Method| Supported| Supported|
+| getSecurityLabel | Obtains the security level of a file.| Method| Supported| Supported|
 
 > **NOTE**
 >
@@ -34,9 +34,12 @@ let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityCo
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 
+// Open the file.
+let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 // Set the data level of the file to S0.
 securityLabel.setSecurityLabel(filePath, 's0').then(() => {
   console.info('Succeeded in setSecurityLabeling.');
+  fs.closeSync(file);
 }).catch((err: BusinessError) => {
   console.error(`Failed to setSecurityLabel. Code: ${err.code}, message: ${err.message}`);
 });

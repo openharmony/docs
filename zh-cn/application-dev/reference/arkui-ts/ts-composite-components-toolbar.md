@@ -23,7 +23,7 @@ import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
 ## 属性
 支持[通用属性](ts-universal-attributes-size.md)
 
-## 接口
+## ToolBar
 
 Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
 
@@ -33,18 +33,14 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | 工具栏列表。 | 
-| activateIndex | number | 否 | 激活态的子项。<br/>默认值：-1。 | 
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | 筛选器的样式类型。 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  | 
+| -------- | -------- | -------- |-------------|---------------------|
+| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              | 
+| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 | 
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 筛选器的样式类型。           | 
 
 
 ## ToolBarOptions
-
-继承自Array&lt;ToolBarOption&gt;
-
-**ToolBarOption：**
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
@@ -56,11 +52,11 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ## ItemState
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| ENABLE | 工具栏子项为正常可点击状态。 | 
-| DISABLE | 工具栏子项为不可点击状态。 | 
-| ACTIVATE | 工具栏子项为激活状态，可点击。 | 
+| 名称 | 值 | 说明 | 
+| -------- | -------- | -------- |
+| ENABLE | 1 | 工具栏子项为正常可点击状态。 | 
+| DISABLE | 2 | 工具栏子项为不可点击状态。 | 
+| ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 | 
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -123,20 +119,6 @@ struct Index {
   build() {
     Row() {
       Stack() {
-        Column(){
-          Button("修改减少item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.pop()
-            })
-          Button("修改增加item")
-            .width(96)
-            .height(40)
-            .onClick(() => {
-              this.toolbarList.push(this.toolbarList[1])
-            })
-        }.margin({bottom: 300})
         Column() {
           ToolBar({
             activateIndex: 2,

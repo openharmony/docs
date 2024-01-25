@@ -8,19 +8,51 @@
 >
 > 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
 
+## pageTransition
 
-| 名称                | 参数                                                         | 必填 | 参数描述                                                     |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br/>type?: [RouteType](#routetype枚举说明),<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br>delay?: number<br/>} | 否   | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>-&nbsp;duration：动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
-| PageTransitionExit  | {<br/>type?: [RouteType](#routetype枚举说明),<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br/>delay?: number<br/>} | 否   | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>-&nbsp;duration：动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
+pageTransition?(): void
 
-## RouteType枚举说明
+进入此页面或移动到其他页面时实现动画。
 
-| 名称 | 描述                                                         |
-| ---- | ------------------------------------------------------------ |
-| Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
-| Push | 跳转到下一页面。PageA跳转到下一个新的界面PageB。对于PageA，指定RouteType为None或者Push的PageTransitionExit组件样式生效，对于PageB，指定RouteType为None或者Push的PageTransitionEnter组件样式生效。 |
-| None | 页面未重定向。如Push和Pop描述中RouteType为None的情形，即页面进场时PageTransitionEnter的转场效果生效；退场时PageTransitionExit的转场效果生效。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## PageTransitionEnter
+
+PageTransitionEnter(value: PageTransitionOptions)
+
+设置当前页面的自定义入场动效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                   | 必填 | 说明                 |
+| ------ | ------------------------------------------------------ | ---- | -------------------- |
+| value  | [PageTransitionOptions](pagetransitionoptions对象说明) | 是   | 配置入场动效的参数。 |
+
+## PageTransitionExit
+
+PageTransitionExit(value: PageTransitionOptions)
+
+设置当前页面的自定义退场动效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                    | 必填 | 说明                 |
+| ------ | ------------------------------------------------------- | ---- | -------------------- |
+| value  | [PageTransitionOptions](#pagetransitionoptions对象说明) | 是   | 配置退场动效的参数。 |
+
+## PageTransitionOptions对象说明
+
+
+| 名称     | 类型                                                         | 必填 | 描述                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [RouteType](#routetype枚举说明)                              | 否   | 页面转场效果生效的路由类型。<br/>默认值：RouteType.None。    |
+| duration | number                                                       | 否   | 动画的时长。<br/>单位：毫秒<br/>默认值：1000                 |
+| curve    | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup> | 否   | 动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear |
+| delay    | number                                                       | 否   | 动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
 
 
 ## 属性
@@ -32,15 +64,6 @@
 | scale     | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否   | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。<br/>-&nbsp;x：横向放大倍数（或缩小比例）。<br/>-&nbsp;y：纵向放大倍数（或缩小比例）。<br/>-&nbsp;z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。centerX和centerY默认值是"50%"，即默认以页面的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表页面的左上角。<br/> |
 | opacity   | number                                                       | 否   | 设置入场的起点透明度值或者退场的终点透明度值。 |
 
-## SlideEffect枚举说明
-
-| 名称     | 描述                        |
-| ------ | ------------------------- |
-| Left   | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 |
-| Right  | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 |
-| Top    | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 |
-| Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 |
-
 
 ## 事件
 
@@ -49,6 +72,22 @@
 | onEnter(event: (type:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到入场动画结束，progress从0变化到1。 |
 | onExit(event: (type:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到退场动画结束，progress从0变化到1。 |
 
+## RouteType枚举说明
+
+| 名称 | 描述                                                         |
+| ---- | ------------------------------------------------------------ |
+| Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
+| Push | 跳转到下一页面。PageA跳转到下一个新的界面PageB。对于PageA，指定RouteType为None或者Push的PageTransitionExit组件样式生效，对于PageB，指定RouteType为None或者Push的PageTransitionEnter组件样式生效。 |
+| None | 页面未重定向。如Push和Pop描述中RouteType为None的情形，即页面进场时PageTransitionEnter的转场效果生效；退场时PageTransitionExit的转场效果生效。 |
+
+## SlideEffect枚举说明
+
+| 名称   | 描述                                               |
+| ------ | -------------------------------------------------- |
+| Left   | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 |
+| Right  | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 |
+| Top    | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 |
+| Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 |
 
 ## 示例
 

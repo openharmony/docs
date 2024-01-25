@@ -8520,6 +8520,8 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Invalid parameter error. |
@@ -8533,6 +8535,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
 ```
+
 ### off('outputDeviceChange') <sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
@@ -8549,6 +8552,8 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9455,6 +9460,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9485,6 +9492,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Input parameter value error.              |
@@ -9511,6 +9520,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，返回监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9542,6 +9553,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置变化。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

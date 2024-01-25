@@ -125,8 +125,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
+
 ### Example 1
+
 This example shows the effect of the basic attributes for different types of progress indicators.
+
 ```ts
 // xxx.ets
 @Entry
@@ -188,8 +191,11 @@ struct ProgressExample {
 ![progress](figures/arkts-progress.png)
 
 ### Example 2
+
 This example shows the effect of visual attributes of the ring style progress indicator.
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -213,8 +219,11 @@ struct ProgressExample {
 ![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
 
 ### Example 3
+
 This example shows the animation effect of the ring style progress indicator.
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -238,8 +247,11 @@ struct ProgressExample {
 ![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
 
 ### Example 4
+
 This example shows the effect of visual attributes of the capsule style progress indicator.
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -259,8 +271,11 @@ struct ProgressExample {
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
 
 ### Example 5
+
 This example shows the smooth effect.
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct Index {

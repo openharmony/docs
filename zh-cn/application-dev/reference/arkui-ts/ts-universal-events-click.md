@@ -20,7 +20,7 @@ onClick(event: (event: ClickEvent) => void)
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent对象说明) | 否   | 获得ClickEvent对象。 |
+| event  | [ClickEvent](#clickevent对象说明) | 否   | 获得[ClickEvent](#clickevent对象说明)对象。 |
 
 ## ClickEvent对象说明
 

@@ -300,9 +300,9 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
 
-startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback<number>): void
+startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
 Starts BLE advertising.
 
@@ -372,9 +372,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -382,7 +382,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -392,9 +392,9 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
 
-startAdvertising(advertisingParams: AdvertisingParams): Promise<void>
+startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
 Starts BLE advertising.
 
@@ -469,9 +469,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -485,9 +485,9 @@ try {
 ```
 
 
-## ble.enableAdvertising<a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
 
-enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback<void>): void
+enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
 Temporarily enables BLE advertising.
 
@@ -557,9 +557,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 300,
     }
     let advHandle = 0xFF;
@@ -567,7 +567,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -589,9 +589,9 @@ try {
 ```
 
 
-## ble.enableAdvertising<a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
 
-enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise<void>
+enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
 Temporarily enables BLE advertising.
 
@@ -666,9 +666,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 300,
     }
     let advHandle = 0xFF;
@@ -676,7 +676,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -697,9 +697,9 @@ try {
 ```
 
 
-## ble.disableAdvertising<a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
 
-disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback<void>): void
+disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
 Temporarily disables BLE advertising.
 
@@ -769,9 +769,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -779,7 +779,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -798,9 +798,9 @@ try {
 ```
 
 
-## ble.disableAdvertising<a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
 
-disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise<void>
+disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
 Temporarily disables BLE advertising.
 
@@ -875,9 +875,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -885,7 +885,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -902,9 +902,9 @@ try {
 }
 ```
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
 
-stopAdvertising(advertisingId: number, callback: AsyncCallback<void>): void
+stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Stops BLE advertising.
 
@@ -974,9 +974,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -984,7 +984,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -1000,9 +1000,9 @@ try {
 ```
 
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
 
-stopAdvertising(advertisingId: number): Promise<void>
+stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
 Stops BLE advertising.
 
@@ -1077,9 +1077,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -1087,12 +1087,12 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
 
-    ble.stopAdvertising(advhandle)
+    ble.stopAdvertising(advHandle)
         .then(() => {
             console.info("enable success");
     });
@@ -1102,7 +1102,7 @@ try {
 ```
 
 
-## ble.on('advertisingStateChange')
+## ble.on('advertisingStateChange')<sup>11+</sup>
 
 on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
@@ -1145,7 +1145,7 @@ try {
 ```
 
 
-## ble.off('advertisingStateChange')
+## ble.off('advertisingStateChange')<sup>11+</sup>
 
 off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
@@ -1160,7 +1160,7 @@ Unsubscribes from BLE advertising status.
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | Yes   | Callback for the advertising status change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | No   | Callback for the advertising status change. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Error codes**
 
@@ -2992,12 +2992,6 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
-**Return value**
-
-| Type                                      | Description                        |
-| ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
-
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
@@ -3475,7 +3469,7 @@ Defines the content of a BLE advertisement packet.
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
 | includeDeviceName | boolean                  | Yes   | Yes   | Whether the device name is contained. This parameter is optional.       |
 
-## AdvertisingParams
+## AdvertisingParams<sup>11+</sup>
 
 Defines the parameters for starting BLE advertising for the first time.
 
@@ -3483,12 +3477,12 @@ Defines the parameters for starting BLE advertising for the first time.
 
 | Name               | Type                            | Readable | Writable | Description                     |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
-| advertisingSettings | AdvertiseSetting                | Yes   | Yes   | Parameters related advertising settings.   |
-| advertisingData     | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
-| advertisingResponse | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
-| duration            | number                          | Yes   | Yes   | Duration for the advertising.    |
+| advertisingSettings<sup>11+</sup> | AdvertiseSetting                | Yes   | Yes   | Parameters related advertising settings.   |
+| advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
+| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
+| duration<sup>11+</sup>            | number                          | Yes   | Yes   | Duration for the advertising.    |
 
-## AdvertisingEnableParams
+## AdvertisingEnableParams<sup>11+</sup>
 
 Defines the parameters for temporarily enabling BLE advertising.
 
@@ -3496,10 +3490,10 @@ Defines the parameters for temporarily enabling BLE advertising.
 
 | Name               | Type                  | Readable | Writable | Description                     |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
-| advertisingId       | number                | Yes   | Yes   | ID of the advertisement.    |
-| duration            | number                | Yes   | Yes   | Duration for the advertising.   |
+| advertisingId<sup>11+</sup>       | number                | Yes   | Yes   | ID of the advertisement.    |
+| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising.   |
 
-## AdvertisingDisableParams
+## AdvertisingDisableParams<sup>11+</sup>
 
 Defines the parameters for temporarily disabling BLE advertising.
 
@@ -3507,9 +3501,9 @@ Defines the parameters for temporarily disabling BLE advertising.
 
 | Name               | Type                  | Readable | Writable | Description                     |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
-| advertisingId       | number                | Yes   | Yes   | ID of the advertisement.    |
+| advertisingId<sup>11+</sup>       | number                | Yes   | Yes   | ID of the advertisement.    |
 
-## AdvertisingStateChangeInfo
+## AdvertisingStateChangeInfo<sup>11+</sup>
 
 Represents the advertising status information.
 
@@ -3517,8 +3511,8 @@ Represents the advertising status information.
 
 | Name               | Type                                    | Readable | Writable | Description                     |
 | ------------------- | --------------------------------------- | ----- | ----- | ------------------------ |
-| advertisingId       | number                                  | Yes   | Yes   | ID of the advertisement.          |
-| state               | [AdvertisingState](#advertisingstate)   | Yes   | Yes   | Advertising status.            |
+| advertisingId<sup>11+</sup>       | number                                  | Yes   | Yes   | ID of the advertisement.          |
+| state<sup>11+</sup>               | [AdvertisingState](#advertisingstate11)   | Yes   | Yes   | Advertising status.            |
 
 ## ManufactureData
 
@@ -3629,7 +3623,7 @@ Enumerates the hardware match modes of BLE scan filters.
 | MATCH_MODE_AGGRESSIVE | 1    | Hardware reports the scan result with a lower threshold of signal strength and few number of matches in a duration. This is the default value.|
 | MATCH_MODE_STICKY     | 2    | Hardware reports the scan result with a higher threshold of signal strength and sightings.      |
 
-## AdvertisingState
+## AdvertisingState<sup>11+</sup>
 
 Enumerates the advertising statuses.
 
@@ -3637,7 +3631,7 @@ Enumerates the advertising statuses.
 
 | Name     | Value   | Description                          |
 | --------  | ---- | ------------------------------ |
-| STARTED   | 1    | The BLE advertising is started for the first time.      |
-| ENABLED   | 2    | The BLE advertising is enabled temporarily.      |
-| DISABLED  | 3    | The BLE advertising is disabled temporarily.      |
-| STOPED    | 4    | The BLE advertising is stopped.      |
+| STARTED<sup>11+</sup>   | 1    | The BLE advertising is started for the first time.      |
+| ENABLED<sup>11+</sup>   | 2    | The BLE advertising is enabled temporarily.      |
+| DISABLED<sup>11+</sup>  | 3    | The BLE advertising is disabled temporarily.      |
+| STOPPED<sup>11+</sup>    | 4    | The BLE advertising is stopped.      |

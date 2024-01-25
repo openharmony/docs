@@ -377,7 +377,7 @@ try {
 
 setSendDataTimeout(timeout: number): boolean
 
-查询发送数据到Tag的等待超时时间，单位是毫秒。
+设置发送数据到Tag的等待超时时间，单位是毫秒。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tagSession.setTimeout](#tagsessionsettimeout9)替代。
@@ -415,7 +415,7 @@ console.log("tag setSendDataTimeout setStatus: " + setStatus);
 
 setTimeout(timeout: number): void
 
-查询发送数据到Tag的等待超时时间，单位是毫秒。
+设置发送数据到Tag的等待超时时间，单位是毫秒。
 
 **需要权限：** ohos.permission.NFC_TAG
 

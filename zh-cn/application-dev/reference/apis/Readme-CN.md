@@ -247,6 +247,7 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
   - [getContext](js-apis-getContext.md)
+  - [postCardAction](js-apis-postCardAction.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
@@ -255,6 +256,7 @@
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
+  - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
@@ -304,6 +306,7 @@
 - 数据管理
   - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
   - [@ohos.data.cloudExtension (端云共享Extension)](js-apis-data-cloudExtension.md)
+  - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)

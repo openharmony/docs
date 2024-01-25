@@ -77,57 +77,73 @@ struct NavRouterExample {
   @State isActiveBluetooth: boolean = false
 
   build() {
-    Column() {
-      Navigation() {
-        NavRouter() {
-          Row() {
-            Row().width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 }).backgroundColor(Color.Pink)
-            Text(`WLAN`)
-              .fontSize(22)
-              .fontWeight(500)
-              .textAlign(TextAlign.Center)
-          }
-          .width('90%')
-          .height(72)
-          NavDestination() {
-            Flex({ direction: FlexDirection.Row }) {
-              Text('未找到可用WLAN').fontSize(30).padding({ left: 15 })
-            }
-          }.hideTitleBar(false).backgroundColor('#0c182431')
-        }.backgroundColor(this.isActiveWLAN ? '#ccc' : '#fff')
-        .borderRadius(24)
-        .onStateChange((isActivated: boolean) => {
-          this.isActiveWLAN = isActivated
-        })
+    Navigation() {
+      NavRouter() {
+        Row() {
+          Row()
+            .width(30)
+            .height(30)
+            .borderRadius(30)
+            .margin({ left: 3, right: 10 })
+            .backgroundColor(Color.Pink)
+          Text(`WLAN`)
+            .fontSize(22)
+            .fontWeight(500)
+            .textAlign(TextAlign.Center)
+        }
+        .width('90%')
+        .height(60)
 
-        NavRouter() {
-          Row() {
-            Row().width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 }).backgroundColor(Color.Pink)
-            Text(`蓝牙`)
-              .fontSize(22)
-              .fontWeight(500)
-              .textAlign(TextAlign.Center)
+        NavDestination() {
+          Flex({ direction: FlexDirection.Row }) {
+            Text('未找到可用WLAN').fontSize(30).padding({ left: 15 })
           }
-          .width('90%')
-          .height(72)
-
-          NavDestination() {
-            Flex({ direction: FlexDirection.Row }) {
-              Text('未找到可用蓝牙').fontSize(30).padding({ left: 15 })
-            }
-          }.hideTitleBar(false).backgroundColor('#0c182431')
-        }.backgroundColor(this.isActiveBluetooth ? '#ccc' : '#fff')
-        .borderRadius(24)
-        .onStateChange((isActivated: boolean) => {
-          this.isActiveBluetooth = isActivated
-        })
+        }.title("WLAN")
       }
-      .title('设置')
-      .titleMode(NavigationTitleMode.Free)
-      .mode(NavigationMode.Auto)
-      .hideTitleBar(false)
-      .hideToolBar(true)
-    }.height('100%')
+      .margin({ top: 10, bottom: 10 })
+      .backgroundColor(this.isActiveWLAN ? '#ccc' : '#fff')
+      .borderRadius(20)
+      .mode(NavRouteMode.PUSH_WITH_RECREATE)
+      .onStateChange((isActivated: boolean) => {
+        this.isActiveWLAN = isActivated
+      })
+
+      NavRouter() {
+        Row() {
+          Row()
+            .width(30)
+            .height(30)
+            .borderRadius(30)
+            .margin({ left: 3, right: 10 })
+            .backgroundColor(Color.Pink)
+          Text(`蓝牙`)
+            .fontSize(22)
+            .fontWeight(500)
+            .textAlign(TextAlign.Center)
+        }
+        .width('90%')
+        .height(60)
+
+        NavDestination() {
+          Flex({ direction: FlexDirection.Row }) {
+            Text('未找到可用蓝牙').fontSize(30).padding({ left: 15 })
+          }
+        }.title("蓝牙")
+      }
+      .margin({ top: 10, bottom: 10 })
+      .backgroundColor(this.isActiveBluetooth ? '#ccc' : '#fff')
+      .borderRadius(20)
+      .mode(NavRouteMode.REPLACE)
+      .onStateChange((isActivated: boolean) => {
+        this.isActiveBluetooth = isActivated
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .title('设置')
+    .backgroundColor("#F2F3F5")
+    .titleMode(NavigationTitleMode.Free)
+    .mode(NavigationMode.Auto)
   }
 }
 ```

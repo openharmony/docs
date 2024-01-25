@@ -1,87 +1,83 @@
-# Security<a name="EN-US_TOPIC_0000001087014383"></a>
+# Security
 
 
-## Introduction<a name="section11660541593"></a>
 
-The security subsystem provides system, data, and application security capabilities to protect system and user data of OpenHarmony.
+## Introduction
 
-It implements application integrity verification, application permission management, device authentication, OpenHarmony Universal KeyStore (HUKS) key management, and data transfer management.
+The security subsystem provides capabilities to protect the application and user data security of OpenHarmony. It implements application integrity verification, application permission management, device authentication, OpenHarmony Universal KeyStore (HUKS) management, and data transfer management.
 
-## Architecture<a name="section342962219551"></a>
+## Architecture
 
-**Figure 1** Security subsystem architecture<a name="fig4460722185514"></a> 
+**Figure 1** Security architecture 
 
-![](figures/security_subsustem_architecture.png)
 
-The security subsystem consists of the following functional modules:
+![](figures/security_architecture.png)
 
-- Interface layer: provides APIs to developers, some of which are only available for system applications
+- Interface layer: provides APIs, some of which are available only for system applications.
+- Application permission management: provides permission management for the Application Framework subsystem and provides APIs for applications to apply for permissions and query the permission authorization status.
+- Application integrity verification: provides capabilities to verify the code integrity before an application is installed or run.
+- Device authentication: provides key agreement and trusted device management capabilities for the devices in a distributed network.
 
-- Application permission management: implements permission management for the application framework subsystem and provides APIs for applications to request permissions and query the permission granting status.
-
-- Application integrity verification: verifies application integrity during application signing and installation.
-- Device authentication: provides key agreement and trusted device management capabilities for interconnections between devices in a distributed network.
-
-- HUKS key management: provides the key management service for basic device authentication.
+- HUKS management: provides key management for basic device authentication.
 
 - Data transfer management: provides API definitions related to data transfer management and control.
 
-## Directory Structure<a name="section92711824195113"></a>
+## Directory Structure
 
 ```
 /base/security
 ├── appverify                       # Application integrity verification
 ├── dataclassification              # Data transfer management
 ├── device_auth                     # Device authentication
-├── huks                            # HUKS key management
+├── huks                            # Key management
 └── permission                      # Permission management
 ```
 
-## Constraints<a name="section7715171045219"></a>
+## Constraints
 
--   In the current version, application permission management is available only for local applications. (The stub mode is used for joint commissioning of upper-layer distributed services.)
--   Device authentication includes authentication for devices with the same account and peer-to-peer device authentication. Currently, only the latter is available. (The stub mode is used for joint commissioning of upper-layer distributed services.)
--   OpenHarmony-specific certificates are used for application integrity verification. The corresponding public key certificates and private keys are preset in the open-source code repositories of OpenHarmony to provide offline signing and verification capabilities for the open-source community. The public key certificates and the corresponding private keys need to be replaced in commercial versions that are based on OpenHarmony.
+-   The current version provides local application permission management, but not distributed application permission management (which uses the stub mode for joint debugging of distributed services).
+-   Device authentication includes authentication of devices with the same account and peer-to-peer device authentication. The current version supports only the peer-to-peer device authentication. The authentication of devices with the same account uses the stub mode for joint debugging of distributed services.
+-   The certificates used for application integrity verification are specific to OpenHarmony. The corresponding public key certificate and private key are preset in the OpenHarmony code repositories to provide offline signing and   signature verification. The public key certificate and the corresponding private key must be replaced in OpenHarmony commercial versions.
 
-## Usage<a name="section2057642312536"></a>
+## Usage
 
-#### Application Permission Management
+**Application Permission Management**
 
-In OpenHarmony, applications and system services run in independent sandboxes. Both processes and data are isolated from each other to protect the security of application data. However, services or applications running in the sandboxes provide some APIs to implement specific functionalities. To access these APIs across processes, applications in other sandboxes need the required permissions, which are granted and managed based on a permission management mechanism.
+The applications and system services in OpenHarmony run in independent sandbox directory. Both processes and data are isolated from each other to ensure application data security. However, the services or applications also need to provide APIs to implement specific functionality. To access these APIs across processes, the applications in other sandbox directories need permissions.
 
-Application permission management provides a mechanism for defining permissions, allowing system services and applications to define new permissions for their sensitive APIs. To access these APIs, other applications need the required permissions.
+Application permission management provides a mechanism for defining permissions, allowing permissions to be defined for sensitive APIs of a system service or application. Other applications cannot access the sensitive APIs without permission.
 
-Application permission management also allows applications to request permissions that are defined by the system or other applications. Upon obtaining the permissions, applications can access the sensitive APIs provided by the system or other applications.
+Application permission management also allows an application to request permissions that are defined by the system or other applications. Upon obtaining the permissions, the application can access the sensitive APIs.
 
-In addition, application permission management allows users to view and manage the permission granting status.
+In addition, application permission management allows users to view and manage the permission authorization status.
 
-#### Application Integrity Verification
+**Application Integrity Verification**
 
-OpenHarmony allows installation of applications. To ensure the integrity and trustworthiness of the applications to be installed in OpenHarmony, the applications must be signed and their signatures must be verified.
+The security subsystem provides signing and signature verification for applications to be installed and applications in runtime to ensure that all applications running on OpenHarmony come from a known and approved source and have not been tampered with.
 
-After developing an application and generating the installation package during the application development process, you must sign the installation package to prevent it from being tampered with when released on devices. The OpenHarmony application integrity verification module provides the signature tool, specifications for generating the signing certificate, and required public key certificate for you to sign the application packages. A public key certificate and a corresponding private key are preset in OpenHarmony to easy your operation. You need to replace the public key certificate and private key in your commercial version of OpenHarmony.
+After developing an application and generating a package for installation, you must sign the installation package to prevent it from being tampered with after release. The OpenHarmony application integrity verification module provides a signing tool hapsigner, specifications for generating a signing certificate, and the public key certificate for you to sign your application package. A public key certificate and the corresponding private key are preset in OpenHarmony to easy your operation. Note that you must replace the public key certificate and private key in your commercial version of OpenHarmony.
 
-In the application installation process, the OpenHarmony application framework subsystem installs applications. Upon receiving an application installation package, the application framework subsystem parses the signature of the installation package, and verifies the signature using the application integrity verification APIs. The application can be installed only after the verification is successful. During the verification, the application integrity verification module uses the preset public key certificate to verify the signature.
+The OpenHarmony Application Framework subsystem is responsible for application installation. Upon receiving an application installation package, the Application Framework subsystem parses the signature of the installation package, and verifies the signature using the application integrity verification APIs. The application can be installed only after the verification is successful. During the verification, the application integrity verification module uses the preset public key certificate to verify the signature.
 
-#### Device Authentication and HUKS
+The application integrity verification module also provides integrity check for applications in runtime, including the kernel-mode code signature verification and code integrity measurement. During application development, you can sign your code as required. When the application is installed, the OpenHarmony Application Framework subsystem calls the application integrity verification API to enable code signing for the application. Once code signing is enabled, the source, code owner, and code integrity of the application will be verified when the application is started to run.
 
-A unified device binding and authentication solution that covers 1+8+N devices is available. Generally, device authentication provides support for cross-device communication implemented by DSoftBus, rather than directly interacting with applications. Device authentication provides the following functionalities:
+**Device Authentication and HUKS**
 
-- Building and maintaining unified trust relationship for a group of devices using different accounts 
+A unified device binding and authentication solution that covers 1+8+N devices is available. Generally, device authentication is used in cross-device communication implemented by DSoftBus, rather than directly interacting with applications. Device authentication provides the following functionalities:
 
-  Devices with different accounts can set up a local trust group after a trust relationship is built by certain means such as scanning a QR code. Services can call APIs to query the group information.
+- Building and maintaining unified trust relationship for a group of devices using different accounts. Devices with different accounts can set up a local trust group after a trust relationship is built by certain means such as scanning a QR code. Services can call APIs to query the group information.
 
-- Implementing unified device authentication 
+- Implementing unified device authentication. A unified authentication solution is provided to discover devices and perform connection authentication and key agreement for encrypted, end-to-end sessions through DSoftBus for the devices in a trust group.
 
-  A unified authentication solution is provided to discover devices and perform connection authentication and key agreement for encrypted, end-to-end sessions through DSoftBus for the devices in a trust group.
+- Providing credentials for device authentication and algorithms for key agreement via the HUKS.
 
-HUKS provides credentials for device authentication and algorithms for key agreement protocols.
+**Data Transfer Management**
 
-#### Data Transfer Management
+In OpenHarmony, the data transfer management module provides cross-device data transfer management and control policies for distributed services.
 
-In OpenHarmony, the data transfer management module provides cross-device data transfer management and control policies for distributed services. The data transfer management module defines a sef of APIs to provide management and control policies for cross-device data transfer and obtain the highest risk level of data to be sent to the peer device.
+The data transfer management module provides APIs to offer cross-device data transfer policies and obtain the highest risk level of data to be sent to the peer device.
 
-## Repositories Involved<a name="section155556361910"></a>
+## Repositories Involved
 
 Security subsystem
 
@@ -104,3 +100,5 @@ Security subsystem
 [security_appverify](https://gitee.com/openharmony/security_appverify)
 
 [security_itrustee_ree_lite](https://gitee.com/openharmony/security_itrustee_ree_lite)
+
+[security_code_signature](https://gitee.com/openharmony/security_code_signature)

@@ -54,10 +54,10 @@ let context = getContext(this) as common.UIAbilityContext;
 let wantInfo: Want = {
   // Uncomment the line below if you want to implicitly query data only in the specific bundle.
   // bundleName: 'com.example.myapplication',
-  'action': 'ohos.want.action.viewData',
+  action: 'ohos.want.action.viewData',
   // entities can be omitted.
-  'entities': ['entity.system.browsable'],
-  'uri': 'https://www.test.com:8080/query/student'
+  entities: ['entity.system.browsable'],
+  uri: 'https://www.test.com:8080/query/student'
 }
 context.startAbility(wantInfo).then(() => {
   // ...
@@ -73,5 +73,4 @@ The matching process is as follows:
 3. If **uri** in the passed **want** parameter is included in **uris** under **skills** of the application component to match, which is concatenated into https://www.test.com:8080/query* (where * is a wildcard), the matching is successful.
 
 If there are multiple matching applications, the system displays a dialog box for you to select one of them. The following figure shows an example. 
-
 ![](figures/ability-startup-with-implicit-want1.png)

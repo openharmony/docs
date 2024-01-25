@@ -9,18 +9,16 @@ The **\<Hyperlink>** component implements a link from a location in the componen
 
 ## Required Permissions
 
-If Internet access is required, you need to apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+If Internet access is required, you need to apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 ## Child Components
 
-Supported
+This component can contain the **\<Image>** child component.
 
 
 ## APIs
 
 Hyperlink(address: string | Resource, content?: string | Resource)
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -31,7 +29,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-Only the following attributes are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |

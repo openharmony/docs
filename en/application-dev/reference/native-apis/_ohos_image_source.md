@@ -5,15 +5,13 @@
 
 The **OhosImageSource** struct defines the input resource of an image source. Only one type of resource is accepted at a time. The image source is obtained by calling [OH_ImageSource_Create](image.md#oh_imagesource_create).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Deprecated from**: 11
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

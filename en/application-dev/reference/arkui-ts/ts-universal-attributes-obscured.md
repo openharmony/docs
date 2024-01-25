@@ -6,13 +6,20 @@ When needed, you can obscure content of a component.
 >
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
+## obscured
 
-## Attributes
+obscured(reasons: Array&lt;ObscuredReasons&gt;)
+
+Sets how the component content is obscured.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
 
 
-| Name   | Type                                    | Description                                 |
-| -----| ------------------------------------------ | ------------------------------------ |
-| obscured | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | How the component content is obscured.<br>Default value: **[]**<br>This API is supported in ArkTS widgets.<br>This API only works for the [\<Image>](ts-basic-components-image.md) and [\<Text>](ts-basic-components-text.md) components.<br>**NOTE**<br>To obscure an image when it is being loaded, you must set the width and height of the **\<Image>** component.<br>Obscuring is not available for **\<Text>** components that have child components.|
+| Name| Type                                    | Mandatory                                  | Description                                 |
+| -----| ------------------------------------------ | ------------------------------------ | ------------------------------------ |
+| reasons | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | Yes| How the component content is obscured.<br>Default value: **[]**<br>This API is supported in ArkTS widgets.<br>This API only works for the [\<Image>](ts-basic-components-image.md) and [\<Text>](ts-basic-components-text.md) components.<br>**NOTE**<br>To obscure an image when it is being loaded, you must set the width and height of the **\<Image>** component.<br>Obscuring is not available for **\<Text>** components that have child components.|
 
 ## Example
 

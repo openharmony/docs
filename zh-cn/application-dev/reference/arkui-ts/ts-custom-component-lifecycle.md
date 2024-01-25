@@ -42,7 +42,7 @@ onPageHide?(): void
 
 onBackPress?(): void | boolean
 
-当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。
+当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。
 
 
 ```ts
@@ -159,22 +159,29 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 ```ts
 // xxx.ets
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value
+  }
+}
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
   @State switch: boolean = true
 
   build() {
     Column() {
-      Button(this.message)
+      Button('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.switch = !this.switch
         })
       if (this.switch) {
-        Child()
+        Child({ message: new Message('Child') })
       }
     }
     .height("100%")
@@ -185,13 +192,16 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params: Object) {
+  @State message: Message = new Message('AboutToReuse');
+
+  aboutToReuse(params: Record<string, ESObject>) {
     console.info("Recycle Child")
+    this.message = params.message as Message
   }
 
   build() {
     Column() {
-      Text("Child Component")
+      Text(this.message.value)
         .fontSize(20)
     }
     .borderWidth(2)
@@ -354,9 +364,10 @@ struct CustomLayout {
 >
 >- 自定义布局暂不支持LazyForEach写法。
 >- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法。
->- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息。
+>- 子组件设置的尺寸信息，除aspectRatio之外，优先级小于onMeasureSize设置的尺寸信息。
+>- 子组件设置的位置信息，除offset、position之外，优先级小于onPlaceChildren设置的位置信息。
 >- 使用自定义布局方法时，如未调用子组件的measure和layout方法，将不显示布局。
->- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如margin、align等。
+>- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如align等。
 
 ```
 // xxx.ets

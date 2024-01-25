@@ -16,6 +16,7 @@
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
+    - [@ohos.app.ability.dialogSession (dialogSession)](js-apis-app-ability-dialogSession.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](js-apis-app-ability-extensionAbility.md)
     - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
@@ -93,12 +94,14 @@
     - application
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
+      - [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
+      - [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
@@ -218,6 +221,7 @@
     - [metadata](js-apis-bundleManager-metadata.md)
     - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
+    - [recoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
     - [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)
     - [SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)
@@ -230,6 +234,7 @@
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (Layout Callback)](js-apis-arkui-inspector.md)
+  - [@ohos.arkui.observer (Observer)](js-apis-arkui-observer.md)
   - [@ohos.arkui.performanceMonitor (Performance Monitor)](js-apis-arkui-performancemonitor.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
@@ -241,13 +246,15 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-
+  
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
   - [@ohos.display (Display)](js-apis-display.md)
   - [@ohos.effectKit (Image Effects)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (Color Space Management)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.displaySync (Variable Frame Rate)](js-apis-graphics-displaySync.md)
+  - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
   - [@ohos.screen (Screen)](js-apis-screen.md)
   - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
   - [@ohos.window (Window)](js-apis-window.md)
@@ -367,6 +374,9 @@
   - [@ohos.bluetooth.hid (Bluetooth hid Module) (Recommended)](js-apis-bluetooth-hid.md)
   - [@ohos.bluetooth.pan (Bluetooth pan Module) (Recommended)](js-apis-bluetooth-pan.md)
   - [@ohos.bluetooth.socket (Bluetooth socket Module) (Recommended)](js-apis-bluetooth-socket.md)
+  - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended)](js-apis-bluetooth-pbap.md)
+  - [@ohos.bluetooth.map (Bluetooth MAP Module) (Recommended)](js-apis-bluetooth-map.md)
+  - [@ohos.bluetooth.wearDetection (Bluetooth Wear Detection Module) (Recommended)](js-apis-bluetooth-wearDetection.md)
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
@@ -465,7 +475,7 @@
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-  
+
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
@@ -486,6 +496,7 @@
   - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
   - [@ohos.enterprise.deviceSettings (Device Settings Management)](js-apis-enterprise-deviceSettings.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.locationManager (Location Service Management)](js-apis-enterprise-locationManager.md)
   - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (Restrictions)](js-apis-enterprise-restrictions.md)
   - [@ohos.enterprise.securityManager (Security Management)](js-apis-enterprise-securityManager.md)
@@ -520,6 +531,8 @@
 
 - Application services
   - [@ohos.identifier.oaid (OAID)](js-apis-oaid.md)
+  - [@ohos.advertising (Ads Service Framework](js-apis-advertising.md)
+  - [@ohos.advertising.AdsServiceExtensionAbility (ExtensionAbility for Ads](js-apis-adsserviceextensionability.md)
 
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

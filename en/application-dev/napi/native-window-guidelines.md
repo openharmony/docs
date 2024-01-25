@@ -2,11 +2,11 @@
 
 ## When to Use
 
-Native Window is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
+The native window module is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
 
-The following scenarios are common for NativeWindow development:
+The following scenarios are common for native window development:
 
-* Request a graphics buffer by using the native API provided by **NativeWindow**, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
+* Request a graphics buffer by using the native window API, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
 * Request and flush a buffer when adapting to the **eglswapbuffer** interface at the EGL.
 
 ## Available APIs
@@ -14,14 +14,14 @@ The following scenarios are common for NativeWindow development:
 | API| Description| 
 | -------- | -------- |
 | OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.| 
-| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
-| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow**, including the width, height, and content format.| 
+| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
+| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
 
 For details about the APIs, see [native_window](../reference/native-apis/_native_window.md).
 
 ## How to Develop
 
-The following describes how to use the native APIs provided by **NativeWindow** to request a graphics buffer, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
+The following describes how to use the native window APIs to request a graphics buffer, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
 
 **Adding Dynamic Link Libraries**
 
@@ -31,7 +31,7 @@ libace_ndk.z.so
 libnative_window.so
 ```
 
-**Header File**
+**Including Header Files**
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_window/external_window.h>
@@ -125,7 +125,7 @@ libnative_window.so
     ```c++
     #include <sys/mman.h>
 
-    // Use mmap() to map the shared memory corresponding to the buffer handle to the user space. Image data can be written to the buffer handle by using the mapped virtual address.
+    // Use mmap() to map the shared memory allocated to the buffer handle to the user space. Image data can be written to the buffer handle by using the obtained virtual address.
     // bufferHandle->virAddr indicates the start address of the buffer handle in the shared memory, and bufferHandle->size indicates the memory usage of the buffer handle in the shared memory.
     void* mappedAddr = mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0);
     if (mappedAddr == MAP_FAILED) {

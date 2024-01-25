@@ -44,11 +44,13 @@ ChipOptions定义chip的样式及具体式样参数。
 
 > **说明：**
 >
-> 操作块有最小宽度限制，当用户设置宽度小于最小宽度时，按最小宽度显示。
+> 1.操作块有最小宽度限制，当用户设置宽度小于最小宽度时，按最小宽度显示。
 >
-> suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
+> 2.suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
 >
-> backgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
+> 3.backgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
+> 
+> 4.prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
 
 ## ChipSize
 

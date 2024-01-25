@@ -38,7 +38,7 @@ Data sources of the archived type can be classified into local resources, online
 
 - Online resources
 
-  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
+  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
 
   ```ts
   Image('https://www.example.com/example.JPG') // Replace the URL with the actual URL.
@@ -147,7 +147,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
 1. Create a **PixelMap** state variable.
 
    ```ts
-   @State image: PixelMap = undefined;
+   @State image: PixelMap | undefined = undefined;
    ```
 
 2. Reference multimedia.
@@ -196,7 +196,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
          }  // Image size.
        
          class imagetmp {
-           image: PixelMap
+           image: PixelMap | undefined = undefined
        
            set(val: PixelMap) {
              this.image = val
@@ -572,3 +572,4 @@ struct MyComponent {
 
 
 ![en-us_image_0000001511740460](figures/en-us_image_0000001511740460.png)
+<!--no_check-->

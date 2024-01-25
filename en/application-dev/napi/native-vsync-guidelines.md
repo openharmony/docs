@@ -8,10 +8,10 @@ The **NativeVSync** module is used to obtain virtual synchronization (VSync) sig
 
 | API| Description|
 | -------- | -------- |
-| OH_NativeVSync_Create (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this function is called.|
+| OH_NativeVSync_Create (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this API is called. |
 | OH_NativeVSync_Destroy (OH_NativeVSync \*nativeVsync) | Destroys an **OH_NativeVSync** instance.|
-| OH_NativeVSync_FrameCallback (long long timestamp, void \*data) | Sets a callback function. **timestamp** indicates the timestamp, and **data** indicates the input parameter of the callback function.|
-| OH_NativeVSync_RequestFrame (OH_NativeVSync \*nativeVsync, OH_NativeVSync_FrameCallback callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked.|
+| OH_NativeVSync_FrameCallback (long long timestamp, void \*data) | Sets a callback function. **timestamp** indicates the timestamp, and **data** indicates a pointer to the input parameters of the callback function. |
+| OH_NativeVSync_RequestFrame (OH_NativeVSync \*nativeVsync, OH_NativeVSync_FrameCallback callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function will be invoked. |
 
 For details about the APIs, see [native_vsync](../reference/native-apis/_native_vsync.md).
 
@@ -26,12 +26,13 @@ Add the following library to **CMakeLists.txt**:
 libnative_vsync.so
 ```
 
-**Header File**
+**Including Header Files**
+
 ```c++
 #include <native_vsync/native_vsync.h>
 ```
 
-1. Prepare a VSync callback function.
+1. Implement a VSync callback function.
     ```c++
     #include <iostream>
 

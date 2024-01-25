@@ -5,13 +5,11 @@
 
 The **OhosImageReceiverInfo** struct defines the information about an image receiver.
 
-**Since**
+**System capability**: SystemCapability.Multimedia.Image
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

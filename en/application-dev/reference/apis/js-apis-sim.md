@@ -96,7 +96,6 @@ Checks whether the SIM card in the specified slot is activated.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let isSimActive: boolean = sim.isSimActiveSync(0);
@@ -143,7 +142,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let slotId : number = 0;
@@ -401,7 +399,6 @@ Obtains the ISO country code of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let countryCode: string = sim.getISOCountryCodeForSimSync(0);
@@ -519,7 +516,6 @@ Obtains the home PLMN ID of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let numeric: string = sim.getSimOperatorNumericSync(0);
@@ -637,7 +633,6 @@ Obtains the SPN of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let spn: string = sim.getSimSpnSync(0);
@@ -753,7 +748,6 @@ Obtains the state of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let simState: sim.SimState = sim.getSimStateSync(0);
@@ -870,7 +864,6 @@ Obtains the type of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let cardType: sim.CardType = sim.getCardTypeSync(0);
@@ -985,7 +978,6 @@ Checks whether the SIM card in the specified slot is installed.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: boolean = sim.hasSimCardSync(0);
@@ -4415,12 +4407,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpKey(0);
+sim.getOpKey(0).then((data: string) => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpKey failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpKeySync<sup>10+</sup>
@@ -4540,12 +4531,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpName(0);
+sim.getOpName(0).then((data: string) => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpName failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpName failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpNameSync<sup>10+</sup>

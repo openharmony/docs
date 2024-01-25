@@ -40,6 +40,11 @@ The following figure shows the application file directory structure. The path of
 
 ![Application file directory structure](figures/application-file-directory-structure.png)
 
+> **NOTE**
+>
+> - Do not use file paths made up by level 1 to level 3 directory names. Incompatibility problems may occur if the directory names are changed in later versions.
+> - Use **Context** to obtain the application file paths, including but not limited to the directories highlighted in green in **Figure 3**. For details about how to obtain the context and application file paths, see [Context (Stage Model)](../application-models/application-context-stage.md).
+
 1. Level 1 directory **data/**: application file directory.
 
 2. Level 2 directory **storage/**: directory for persistent files of the application.
@@ -53,14 +58,9 @@ The following figure shows the application file directory structure. The path of
    
    The application global data is stored in the **distributedfiles** directory and **files**, **cache**, **preferences**, and **temp** in **base**. You can use **ApplicationContext** to obtain the application file paths of these directories.
    
-   You can use **UIAbilityContext**, **AbilityStageContext**, and **ExtensionContext** to obtain application file paths related to a HAP. When a HAP is uninstalled, the files in the **haps/** directory are automatically deleted, without affecting the files in application-level directories. 
+   You can use **UIAbilityContext**, **AbilityStageContext**, and **ExtensionContext** to obtain application file paths related to a HAP. When a HAP is uninstalled, the files in the **haps/** directory are automatically deleted, without affecting the files in application-level directories.
    
    For details about how to obtain the context and application file paths, see [Context (Stage Model)](../application-models/application-context-stage.md).
-
-   > **NOTE**
-   >
-   > - Do not use file paths made up by level 1 to level 3 directory names. Incompatibility problems may occur if the directory names are changed in later versions.
-   > - Use **Context** to obtain the application file paths, including but not limited to the directories highlighted in green in **Figure 3**.
 
 The following table describes the application file paths and their lifecycle.
 

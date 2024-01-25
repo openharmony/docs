@@ -68,11 +68,11 @@ Displays a dialog box from which the user can select options presented in a list
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | Yes| Dialog box controller.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.| 
 | title | [ResourceStr](ts-types.md#resourcestr) | Yes| Title of the dialog box.| 
 | content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.| 
 | selectedIndex | number | No| Index of the selected option in the dialog box.<br>Default value: **-1**| 
-| confirm | [ButtonOptions](#buttonoptions) | No| Confirm button.| 
+| confirm | [ButtonOptions](#buttonoptions) | No| Button at the bottom of the dialog box.| 
 | radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | No| List of subitems in the dialog box. You can set text and a select callback for each subitem.| 
 
 
@@ -90,7 +90,7 @@ Displays an error dialog box that informs the user of an operational error (for 
 
 | Name| Type| Mandatory| Decorator| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | Yes| - | Controller of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Controller of the dialog box.| 
 | title | [ResourceStr](ts-types.md#resourcestr) | Yes| - | Title of the dialog box.| 
 | content | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the dialog box.| 
 | checkTips | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the check box.| 
@@ -113,7 +113,7 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | Yes| Controller of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.| 
 | content | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the dialog box.| 
 | primaryButton | [ButtonOptions](#buttonoptions) | No| Left button of the dialog box.| 
 | secondaryButton | [ButtonOptions](#buttonoptions) | No| Right button of the dialog box.| 
@@ -123,11 +123,17 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 
 LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
+Displays a loading dialog box to inform the user of the operation progress.
+
+**Decorator type**: @CustomDialog
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| controller | CustomDialogController | Yes| Controller of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.| 
 | content | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the dialog box.| 
 
 
@@ -159,6 +165,7 @@ struct Index {
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('app.media.icon'),
+      imageSize: { width: 100, height: 100 },
       title:'Title',
       content: 'This is where content is displayed.',
       isChecked: this.isChecked,
@@ -212,57 +219,57 @@ import { SelectDialog } from '@ohos.arkui.advanced.Dialog'
 @Component
 struct Index {
   radioIndex = 0;
-dialogControllerList: CustomDialogController = new CustomDialogController({
-  builder: SelectDialog({
-    title:'Title',
+  dialogControllerList: CustomDialogController = new CustomDialogController({
+    builder: SelectDialog({
+      title:'Title',
       selectedIndex: this.radioIndex,
-    confirm: {
-      value: 'Cancel',
-      action: () => {},
-    },
-    radioContent: [
-      {
-      title: 'List item',
-      action: () => {
-        this.radioIndex = 0
-      }
-    },
-      {
-      title: 'List item',
-      action: () => {
-        this.radioIndex = 1
-      }
-    },
-      {
-      title: 'List item',
-      action: () => {
-        this.radioIndex = 2
-      }
-    },
-    ]
-  }),
-  customStyle: true,
-  alignment: DialogAlignment.Bottom,
-  autoCancel: false
-})
+      confirm: {
+        value: 'Cancel',
+        action: () => {},
+      },
+      radioContent: [
+        {
+          title: 'List item',
+          action: () => {
+            this.radioIndex = 0
+          }
+        },
+        {
+          title: 'List item',
+          action: () => {
+            this.radioIndex = 1
+          }
+        },
+        {
+          title: 'List item',
+          action: () => {
+            this.radioIndex = 2
+          }
+        },
+      ]
+    }),
+    customStyle: true,
+    alignment: DialogAlignment.Bottom,
+    autoCancel: false
+  })
 
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button("List Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerList.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
@@ -277,28 +284,28 @@ import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
 @Component
 struct Index {
   isChecked = false;
-dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
-  builder: ConfirmDialog({
-    title:'Title',
-    content: 'This is where content is displayed. This is where content is displayed. ',
-    isChecked: this.isChecked,
-    checkTips:'Don't ask again after denying',
-    primaryButton: {
-      value: 'Deny',
-      action: () => {},
-    },
-    secondaryButton: {
-      value: 'Allow',
-      action: () => {
-        this.isChecked = false
-        console.info('Callback when the second button is clicked')
-      }
-    },
-  }),
-  autoCancel: true,
-  customStyle: true,
-  alignment: DialogAlignment.Bottom
-})
+  dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
+    builder: ConfirmDialog({
+      title:'Title',
+      content: 'This is where content is displayed. This is where content is displayed. ',
+      isChecked: this.isChecked,
+      checkTips:'Don't ask again after denying',
+      primaryButton: {
+        value: 'Deny',
+        action: () => {},
+      },
+      secondaryButton: {
+        value: 'Allow',
+        action: () => {
+          this.isChecked = false
+          console.info('Callback when the second button is clicked')
+        }
+      },
+    }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   build() {
     Row() {
@@ -310,13 +317,13 @@ dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
             .onClick(() => {
               this.dialogControllerCheckBox.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
@@ -330,25 +337,25 @@ import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
 @Entry
 @Component
 struct Index {
-dialogControllerConfirm: CustomDialogController = new CustomDialogController({
-  builder: AlertDialog({
-    content: 'This is where content is displayed.',
-    primaryButton: {
-      value: 'Cancel',
-      action: () => {},
-    },
-    secondaryButton: {
-      value: 'OK',
-      fontColor: $r('sys.color.ohos_id_color_warning'),
-      action: () => {
-        console.info('Callback when the second button is clicked')
-      }
-    },
-  }),
-  autoCancel: true,
-  customStyle: true,
-  alignment: DialogAlignment.Bottom
-})
+  dialogControllerConfirm: CustomDialogController = new CustomDialogController({
+    builder: AlertDialog({
+      content: 'This is where content is displayed.',
+      primaryButton: {
+        value: 'Cancel',
+        action: () => {},
+      },
+      secondaryButton: {
+        value: 'OK',
+        fontColor: $r('sys.color.ohos_id_color_warning'),
+        action: () => {
+          console.info('Callback when the second button is clicked')
+        }
+      },
+    }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   build() {
     Row() {
@@ -360,13 +367,13 @@ dialogControllerConfirm: CustomDialogController = new CustomDialogController({
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
@@ -380,32 +387,32 @@ import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
 @Entry
 @Component
 struct Index {
-dialogControllerProgress: CustomDialogController = new CustomDialogController({
-  builder: LoadingDialog({
-    content: 'This is where content is displayed...',
-  }),
-  autoCancel: true,
-  customStyle: true,
-  alignment: DialogAlignment.Bottom
-})
+  dialogControllerProgress: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: 'This is where content is displayed...',
+    }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
+  })
 
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button ("Progress Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerProgress.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 

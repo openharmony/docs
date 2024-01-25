@@ -139,7 +139,7 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
           'viewData': request.viewData,
           'context': this.context,
         };
-        let storage_fill = new LocalStorage(localStorageData);
+        let storage_save = new LocalStorage(localStorageData);
         if (session) {
           session.loadContent('pages/SavePage', storage_save);
         } else {

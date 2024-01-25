@@ -17,9 +17,9 @@
 
 | 接口名        | 描述        |
 | ------------------ | ----------------- |
-|loadModelFromFile(model: string, options: Context): Promise&lt;Model&gt;|从路径加载模型。|
+|loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;|从路径加载模型。|
 |getInputs(): MSTensor[]|获取模型的输入。|
-|predict(inputs: MSTensor[]): Promise&lt;MSTensor&gt;|推理模型。|
+|predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;|推理模型。|
 | getData(): ArrayBuffer                 | 获取张量的数据。 |
 | setData(inputArray: ArrayBuffer): void | 设置张量的数据。 |
 

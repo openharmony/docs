@@ -6,24 +6,127 @@ You can set the background for a component.
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## background<sup>10+</sup>
 
-| Name                              | Type                                    | Description                                      |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| background<sup>10+</sup>         | builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: {align?:[Alignment](ts-appendix-enums.md#alignment)} | Background color of the component.<br>**builder**: custom background.<br>**align**: alignment mode between the custom background and the component.<br>If **background**, **backgroundColor**, and **backgroundImage** are set at the same time, they will all take effect, with **background** at the top layer.<br>**NOTE**<br>The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in the previewer.|
-| backgroundColor                  | [ResourceColor](ts-types.md#resourcecolor) | Background color of the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| backgroundImage                  | src: [ResourceStr](ts-types.md#resourcestr),<br>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat) | **src**: image address, which can be the address of an Internet or a local image or a Base64 encoded image. SVG images are not supported.<br>**repeat**: whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| backgroundImageSize              | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} \| [ImageSize](ts-appendix-enums.md#imagesize) | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. If **height** is set but **width** is not, the image width is adjusted based on the original aspect ratio of the image.|
-| backgroundImagePosition          | [Position](ts-types.md#position8) \| [Alignment](ts-appendix-enums.md#alignment) | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| backgroundBlurStyle<sup>9+</sup> | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br>options<sup>10+</sup>?:[BackgroundBlurStyleOptions](#backgroundblurstyleoptions10) | Background blur style applied between the content and the background.<br>**value**: settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.<br>**options**: background blur options. Optional.<br>This API is supported in ArkTS widgets.|
-| backgroundEffect<sup>11+</sup>  | blurOptions:[BackgroundBrightnessOptions](ts-appendix-enums.md#backgroundbrightnessoptions11)  |  Background effect, including saturation, brightness, and color. |
+background(builder: CustomBuilder, options?: { align?: Alignment })
+
+Sets the background color of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                                        |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| builder | [CustomBuilder](ts-types.md#custombuilder8)          | Yes  | Custom background.                                                |
+| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | No  | Alignment mode between the custom background and the component.<br>If **background**, **backgroundColor**, and **backgroundImage** are set at the same time, they will all take effect, with **background** at the top layer.|
+
+>  **NOTE**
+>
+>  The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in the previewer.
+
+## backgroundColor
+
+backgroundColor(value: ResourceColor)
+
+Sets the background color of the component.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description              |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component.|
+
+## backgroundImage
+
+backgroundImage(src: ResourceStr, repeat?: ImageRepeat)
+
+Sets the background image of the component.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| src    | [ResourceStr](ts-types.md#resourcestr)          | Yes  | Image address, which can be the address of an online, a local, or a Base64 encoded image. SVG images are not supported.|
+| repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | No  | Whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.|
+
+## backgroundImageSize
+
+backgroundImageSize(value: SizeOptions | ImageSize)
+
+Sets the width and height of the component background image.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. If **height** is set but **width** is not, the image width is adjusted based on the original aspect ratio of the image.|
+
+## backgroundImagePosition
+
+backgroundImagePosition(value: Position | Alignment)
+
+Sets the position of the component background image.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position8) \| [Alignment](ts-appendix-enums.md#alignment) | Yes  | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
+
+## backgroundBlurStyle<sup>9+</sup>
+
+backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
+
+Sets the background blur style applied between the content and the background.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name               | Type                                                        | Mandatory| Description                                                        |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
+| options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
+
+## backgroundEffect<sup>11+</sup> 
+
+backgroundEffect(options: BackgroundEffectOptions)
+
+Sets the background effect of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                      |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| options | [BackgroundBrightnessOptions](ts-appendix-enums.md#backgroundbrightnessoptions11) | No  | Background effect, including saturation, brightness, and color.|
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>
 
 | Name           | Type                                    | Mandatory  | Description                                      |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | No   | Color mode used for the background blur.<br>Default value: **ThemeColorMode.System**|
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | No   | Adaptive color mode.<br>Default value: **AdaptiveColor.Default**|
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | No   | Adaptive color mode. <br/ >Default value: **AdaptiveColor.Default**|
 | scale         | number                                   | No   | Blurredness of the background material. This API is a system API.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>|
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | No   | Grayscale blur parameters.          |
 

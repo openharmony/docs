@@ -26,7 +26,7 @@ import Want from '@ohos.app.ability.Want';
 | entities | Array\<string> | No| Additional category information (such as browser and video player) of the ability. It is a supplement to the **action** field for implicit Want. and is used to filter ability types.|
 | uri | string | No| Data carried. This field is used together with **type** to specify the data type. If **uri** is specified in a Want, the Want will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
 | type | string | No| MIME type, that is, the type of the file to open, for example, **'text/xml'** and **'image/*'**. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.|
-| parameters   | {[key: string]: any} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerBundleName**: bundle name of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.<br>- **ability.params.backToOtherMissionStack**: whether to support redirection back across mission stacks.|
+| parameters   | Record\<string, Object> | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerBundleName**: bundle name of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.<br>- **ability.params.backToOtherMissionStack**: whether to support redirection back across mission stacks.|
 | [flags](js-apis-ability-wantConstant.md#wantconstantflags) | number | No| How the **Want** object will be handled. By default, a number is passed in.<br>For example, **wantConstant.Flags.FLAG_ABILITY_CONTINUATION** specifies whether to start the ability in cross-device migration scenarios.|
 
 **Example**
@@ -36,6 +36,7 @@ import Want from '@ohos.app.ability.Want';
   ```ts
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   let want: Want = {
@@ -45,7 +46,7 @@ import Want from '@ohos.app.ability.Want';
     moduleName: 'entry', // moduleName is optional.
   };
 
-  context.startAbility(want, (err) => {
+  context.startAbility(want, (err: BusinessError) => {
     // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
     console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
   });
@@ -57,6 +58,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -67,7 +69,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -75,6 +77,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -86,7 +89,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want: BusinessError, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -94,6 +97,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -104,7 +108,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -112,6 +116,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -127,7 +132,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -135,6 +140,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -148,7 +154,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -179,7 +185,7 @@ import Want from '@ohos.app.ability.Want';
           }
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
@@ -191,13 +197,14 @@ import Want from '@ohos.app.ability.Want';
         // (1) UIAbility1 starts a ServiceExtensionAbility.
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
@@ -206,6 +213,7 @@ import Want from '@ohos.app.ability.Want';
         // (2) The ServiceExtensionAbility starts UIAbility2, carrying **"ability.params.backToOtherMissionStack": true** during the startup.
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
         let want: Want = {
@@ -216,44 +224,45 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-  
+
       > **NOTE**
       >
       > In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility2.
-  
+
       **parameter** carries customized parameters. It is transferred by UIAbilityA to UIAbilityB and obtained from UIAbilityB.
-  
+
       ```ts
-          //(1) UIAbilityA calls startAbility to start UIAbilityB.
-          import common from '@ohos.app.ability.common';
-          import Want from '@ohos.app.ability.Want';
-  
-          let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-          let want: Want = {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'UIAbilityB',
-            parameters: {
-              developerParameters: 'parameters',
-            },
-          };
-          context.startAbility(want, (err) => {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          });
+        //(1) UIAbilityA calls startAbility to start UIAbilityB.
+        import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
+
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'UIAbilityB',
+          parameters: {
+            developerParameters: 'parameters',
+          },
+        };
+        context.startAbility(want, (err: BusinessError) => {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        });
       ```
-  
+
       ```ts
-          // (2) If the UIAbilityB instance is started for the first time, it enters the onCreate lifecycle.
-          import UIAbility from '@ohos.app.ability.UIAbility';
-          import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-          import Want from '@ohos.app.ability.Want';
-  
-          class UIAbilityB extends UIAbility {
-              onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-                  console.log(`onCreate, want parameters: ${want.parameters.developerParameters}`);
-              }
-          }
+        // (2) If the UIAbilityB instance is started for the first time, it enters the onCreate lifecycle.
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+        import Want from '@ohos.app.ability.Want';
+
+        class UIAbilityB extends UIAbility {
+            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+                console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
+            }
+        }
       ```

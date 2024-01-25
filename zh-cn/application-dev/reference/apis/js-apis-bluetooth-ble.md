@@ -2736,7 +2736,9 @@ let descriptor: ble.BLEDescriptor = {
 };
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeDescriptorValue(descriptor);
+    device.writeDescriptorValue(descriptor).then(() => {
+        console.info('writeDescriptorValue promise success');
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -3452,7 +3454,7 @@ try {
 | 名称          | 类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
 | interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
-| txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。   |
+| txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。推荐值：高档（1），中档（-7），低档（-15）。   |
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true。                   |
 
 

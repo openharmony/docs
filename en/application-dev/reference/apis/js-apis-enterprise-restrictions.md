@@ -33,8 +33,8 @@ Enables or disables device printing through the specified device administrator a
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Whether to disable device printing. The value **true** means to disable device printing; the value **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable device printing; the value **false** means the opposite.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -80,7 +80,7 @@ Enables or disables device printing through the specified device administrator a
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Whether to disable device printing. The value **true** means to disable device printing; the value **false** means the opposite.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable device printing; the value **false** means the opposite.|
 
 **Return value**
 
@@ -227,8 +227,8 @@ Enables or disables HDC through the specified device administrator application. 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Whether to disable HDC. The value **true** means to disable HDC; the value **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result.<br> If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable HDC; the value **false** means the opposite.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -274,7 +274,7 @@ Enables or disables HDC through the specified device administrator application. 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| disabled  | boolean | Yes| Whether to disable HDC. The value **true** means to disable HDC; the value **false** means the opposite.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable HDC; the value **false** means the opposite.|
 
 **Return value**
 
@@ -402,4 +402,198 @@ restrictions.isHdcDisabled(wantTemp).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to query is hdc disabled or not. Code is ${err.code}, message is ${err.message}`);
 })
+```
+
+## restrictions.isMicrophoneDisabled<sup>11+</sup>
+
+isMicrophoneDisabled(admin: Want): boolean
+
+Checks whether the microphone is disabled through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Return value**
+
+| Type  | Description                                 |
+| ----- | ----------------------------------- |
+| boolean | Returns **true** if the microphone is disabled; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let result = restrictions.isMicrophoneDisabled(wantTemp);
+  console.info(`Succeeded in querying is microphone disabled : ${result}`);
+} catch (err) {
+  console.error(`Failed to query is microphone disabled or not. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## restrictions.disableMicrophone<sup>11+</sup>
+
+disableMicrophone(admin: Want, disable: boolean): void
+
+Disables or enables the device microphone through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| disable  | boolean | Yes| Operation to perform. The value **true** means to disable the microphone; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  restrictions.disableMicrophone(wantTemp, true);
+  console.info('Succeeded in setting microphone disabled');
+} catch (err) {
+  console.error(`Failed to disable microphone. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## restrictions.setFingerprintAuthDisabled<sup>11+</sup>
+
+setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
+
+Disables or enables fingerprint authentication through the specified device administrator application. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| disabled  | boolean | Yes| Operation to perform. The value **true** means to disable fingerprint authentication; the value **false** the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  restrictions.setFingerprintAuthDisabled(wantTemp, true);
+  console.info('Succeeded in disabling the fingerprint auth');
+} catch (err) {
+  console.error(`Failed to disable fingerprint auth. Code: ${err.code}, message: ${err.message}`);
+};
+
+```
+
+## restrictions.isFingerprintAuthDisabled<sup>11+</sup>
+
+isFingerprintAuthDisabled(admin: Want): boolean
+
+Checks whether fingerprint authentication is disabled through the specified device administrator application. This API returns the result synchronously. 
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Return value**
+
+| Type  | Description                                 |
+| ----- | ----------------------------------- |
+| boolean | Returns **true** if fingerprint authentication is disabled; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  let result: boolean = restrictions.isFingerprintAuthDisabled(wantTemp);
+  console.info(`Succeeded in getting the state of fingerprint auth. result : ${result}`);
+} catch (err) {
+  console.error(`Failed to get the state of fingerprint auth. Code: ${err.code}, message: ${err.message}`);
+};
 ```

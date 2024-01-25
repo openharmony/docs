@@ -8,7 +8,7 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 
 ## Modules to Import
 
-```
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 
@@ -18,7 +18,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
 
 
 ## defaultAppMgr.ApplicationType
@@ -105,7 +105,7 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: 
 
 ## defaultAppMgr.isDefaultApplicationSync<sup>10+</sup>
 
-isDefaultApplicationSync(type: string): boolean;
+isDefaultApplicationSync(type: string): boolean
 
 Checks whether this application is the default application of a system-defined application type. This API is a synchronous API.
 
@@ -300,7 +300,7 @@ defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data) => {
 
 ## defaultAppMgr.getDefaultApplicationSync<sup>10+</sup>
 
-getDefaultApplicationSync(type: string, userId?: number): BundleInfo;
+getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
 Obtains the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API is a synchronous API.
 
@@ -428,7 +428,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void
 
 Sets the default application for a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -491,7 +491,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void
 
 Sets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -551,7 +551,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplicationSync<sup>10+</sup>
 
-setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void;
+setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void
 
 Sets the default application based on the application type defined in the system or the file type that complies with the media type format (type/subtype). This API is a synchronous API.
 
@@ -672,7 +672,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId)
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void
 
 Resets the default application for a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -725,7 +725,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId, (err: BusinessError, 
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 Resets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -775,7 +775,7 @@ defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data) =>
 
 ## defaultAppMgr.resetDefaultApplicationSync<sup>10+</sup>
 
-resetDefaultApplicationSync(type: string, userId?: number): void;
+resetDefaultApplicationSync(type: string, userId?: number): void
 
 Resets the default application based on the application type defined in the system or the file type that complies with the media type format (type/subtype). This API is a synchronous API.
 
@@ -821,3 +821,5 @@ try {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
 ```
+
+ <!--no_check--> 

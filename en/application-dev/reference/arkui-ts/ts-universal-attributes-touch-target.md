@@ -7,13 +7,21 @@ You can set the touch target for components that support universal click events,
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## responseRegion
 
-## Attributes
+responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 
+Sets one or more touch targets.
 
-| Name          | Type                                                    | Description                                                        |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| responseRegion | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | Yes  | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Rectangle
@@ -60,7 +68,7 @@ struct TouchTargetExample {
       "\n{ x: 0, y: 0, width: '50%', height: '100%' }]")
       Button("button2")
         .responseRegion([
-          { x: '100%', y: 0, width: '50%', height: '100%' }, // The first touch target is located rightward by one button width, with its width half of the button width. The touch event is triggered if the left of the right part of button2 is touched.
+          { x: '100%', y: 0, width: '50%', height: '100%' }, // The width of the first touch target is half of that of the button. The touch event is triggered if the half width area on the right of the button is touched.
           { x: 0, y: 0, width: '50%', height: '100%' } // The width of the second touch target is half of the button width. The touch event is triggered if the left half of button2 is touched.
         ])
         .onClick(() => {

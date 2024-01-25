@@ -6,6 +6,17 @@
 
 Environment是ArkUI框架在应用程序启动时创建的单例对象。它为AppStorage提供了一系列描述应用程序运行状态的属性。Environment的所有属性都是不可变的（即应用不可写入），所有的属性都是简单类型。
 
+## Environment内置参数
+
+| 键 | 数据类型 | 描述                                      |
+| ------------------ | ------------------ | ------------------ |
+| accessibilityEnabled              | boolean                  | 获取无障碍屏幕读取是否启用。                 |
+| colorMode              | ColorMode enum                  | 色彩模型类型：选项为ColorMode.light: 浅色，ColorMode.Dark: 深色。                 |
+| fontScale              | number                  | 字体大小比例，范围: [0.85, 1.45]。                 |
+| fontWeightScale              | LayoutDirection                  | 字体粗细程度，范围: [0.6, 1.6]。                |
+| layoutDirection              | boolean                  | 布局方向类型：包括LayoutDirection.LTR: 从左到右，LayoutDirection.RTL: 从右到左。                 |
+| languageCode              | string                  | 当前系统语言值，取值必须为小写字母, 例如zh。                 |
+
 
 ## 使用场景
 

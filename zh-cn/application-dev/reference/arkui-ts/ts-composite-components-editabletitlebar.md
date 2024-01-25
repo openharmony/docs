@@ -40,15 +40,15 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 | 
 | menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 | 
 | onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包。 | 
-| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;CANCEL，触发取消时的动作闭包。 | 
+| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。 | 
 
 
 ## EditableLeftIconType
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| BACK | 0 | 返回按钮。 | 
-| CANCEL | 1 | 取消按钮。 | 
+| Back | 0 | 返回按钮。 | 
+| Cancel | 1 | 取消按钮。 | 
 
 
 ## EditableTitleBarMenuItem

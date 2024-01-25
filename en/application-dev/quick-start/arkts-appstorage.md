@@ -16,7 +16,9 @@ AppStorage is a singleton object that is created at application startup. Its pur
 
 UI components synchronize application state attributes with AppStorage. AppStorage can be accessed during implementation of application service logic as well.
 
-Selected state attributes of AppStorage can be synced with different data sources or data sinks. Those data sources and sinks can be on a local or remote device, and have different capabilities, such as data persistence (see [PersistentStorage](arkts-persiststorage.md)). These data sources and sinks are implemented in the service logic, and separated from the UI. Link to [@StorageProp](#storageprop) and [@StorageLink](#storagelink) those AppStorage attributes whose values should be kept until application re-start.
+AppStorage supports state sharing among multiple UIAbility instances in the [main thread](../application-models/thread-model-stage.md) of an application.
+
+Selected state attributes of AppStorage can be synchronized with different data sources or data sinks. Those data sources and sinks can be on a local or remote device, and have different capabilities, such as data persistence (see [PersistentStorage](arkts-persiststorage.md)). These data sources and sinks are implemented in the service logic, and separated from the UI. Link to [@StorageProp](#storageprop) and [@StorageLink](#storagelink) those AppStorage attributes whose values should be kept until application re-start.
 
 
 ## \@StorageProp
@@ -43,8 +45,8 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.|
-| Subnode initialization    | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | Not supported.                                      |
+| Child component initialization    | Supported. The \@StorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Access from outside the component | Not supported.                                      |
 
 
   **Figure 1** \@StorageProp initialization rule 
@@ -91,7 +93,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | \@StorageLink Decorator| Description                                      |
 | ------------------ | ---------------------------------------- |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
+| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
 | Synchronization type              | Two-way: from the attribute in AppStorage to the custom component variable and vice versa|
 | Initial value for the decorated variable         | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
 
@@ -101,8 +103,8 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.                                     |
-| Subnode initialization    | Supported; can be used to initialize a regular variable or an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | Not supported.                                      |
+| Child component initialization    | Supported. The \@StorageLink decorated variable can be used to initialize a regular variable or an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Access from outside the component | Not supported.                                      |
 
 
   **Figure 2** \@StorageLink initialization rule 

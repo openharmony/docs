@@ -21,6 +21,11 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | displayId | number | No| Display ID. The default value is **0**, indicating the current display.|
+| withAnimation<sup>11+</sup> | boolean | No| Whether the ability has the animation effect.|
+| windowLeft<sup>11+</sup> | number | No| Left position of the window.|
+| windowTop<sup>11+</sup> | number | No| Top position of the window.|
+| windowWidth<sup>11+</sup> | number | No| Width of the window.|
+| windowHeight<sup>11+</sup> | number | No| Height of the window.|
 
 **Example**
 

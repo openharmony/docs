@@ -25,11 +25,11 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 ## NavigationType
 
-| Name     | Description                        |
-| ------- | -------------------------- |
-| Push    | Navigates to the specified page in the application.              |
-| Replace | Replaces the current page with another one in the application and destroys the current page.|
-| Back    | Returns to the specified page. If the specified page does not exist in the stack, no response is returned. If no page is specified, the previous page is returned to.|
+| Name     | Value | Description                        |
+| ------- | ------- | -------------------------- |
+| Push    | 1 | Navigates to the specified page in the application.              |
+| Replace | 2 | Replaces the current page with another one in the application and destroys the current page.|
+| Back    | 3 | Returns to the specified page. If the specified page does not exist in the stack, no response is returned. If no page is specified, the previous page is returned to.|
 
 
 ## Attributes
