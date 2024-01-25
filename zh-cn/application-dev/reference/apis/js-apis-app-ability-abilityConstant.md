@@ -1,6 +1,6 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
+AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
 
 > **说明：**
 > 
