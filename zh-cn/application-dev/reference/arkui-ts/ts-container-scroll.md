@@ -225,7 +225,7 @@ getItemRect(index: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
+| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
