@@ -22,7 +22,7 @@
 
 **变更发生版本**
 
-从Openharmony SDK 4.1.6.1 开始
+从Openharmony SDK 4.1.6.3 开始
 
 **变更的接口/组件**
 
