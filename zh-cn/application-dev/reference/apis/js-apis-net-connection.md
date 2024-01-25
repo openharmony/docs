@@ -469,7 +469,7 @@ item可包含0个或者1个pin-set
 
 **trust-anchors(array:受信任的CA)**
 
-必须包含1个以上的item
+可以包含任意个item
 
 item必须包含1个certificates(string:CA证书路径)
 
