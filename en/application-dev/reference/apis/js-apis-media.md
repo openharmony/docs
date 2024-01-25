@@ -416,11 +416,11 @@ Enumerates the codec MIME types.
 
 | Name        | Value                   | Description                    |
 | ------------ | --------------------- | ------------------------ |
-| VIDEO_H263   | 'video/h263'          | Video in H.263 format.     |
+| VIDEO_H263   | 'video/h263'          | Video in H.263 format.      |
 | VIDEO_AVC    | 'video/avc'           | Video in AVC format.      |
-| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.    |
-| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.    |
-| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
+| VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.     |
+| VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.     |
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.       |
 | AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
@@ -485,7 +485,7 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.|
 | surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
 | loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.|
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default values of **usage** and **rendererFlags** are **STREAM_USAGE_MUSIC** and **0**, respectively.<br>It can be set only when the AVPlayer is in the initialized state.|
 | audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **usage** of **audioRendererInfo** is changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
@@ -1731,8 +1731,8 @@ Describes an audio and video file asset. It is used to specify a particular asse
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](js-apis-resource-manager.md#getrawfd9).    |
-| offset | number | Yes  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
-| length | number | Yes  | Resource length, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
+| offset | number | No  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
+| length | number | No  | Resource length, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
 
 ## AVDataSrcDescriptor<sup>10+</sup>
 
@@ -2649,7 +2649,7 @@ Describes the audio and video recording profile.
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].|
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
 | videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [1 - 3000000]. |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Only **VIDEO_MPEG4** is supported.   |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_MPEG4 is supported.   |
 | videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1920].        |
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1080].        |
 | videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 30].            |

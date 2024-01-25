@@ -219,6 +219,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
+  - [getContext](js-apis-getContext.md)
   
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
@@ -436,7 +437,7 @@
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-  
+
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)

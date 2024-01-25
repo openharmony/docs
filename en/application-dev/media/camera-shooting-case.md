@@ -2,17 +2,66 @@
 
 ## Development Process
 
+
+
+
 After obtaining the output stream capabilities supported by the camera, create a photo stream. The development process is as follows:
 
 ![Photographing Development Process](figures/photographing-development-process.png)
 
 ## Sample Code
+
 For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+
+function getImageReceiver(width: number, height: number, format: number, capacity: number): image.ImageReceiver {
+  // Obtain ImageReceiver.
+  let imageReceiver: image.ImageReceiver = image.createImageReceiver(width, height, format, capacity);
+  return imageReceiver;
+}
+
+async function savePicture(buffer: ArrayBuffer, img: image.Image) {
+  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let testFileName = 'testFile' + Date.now() + '.jpg';
+  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+  const fd = await photoAsset.open('rw');
+  fs.write(fd, buffer);
+  await photoAsset.close(fd);
+  img.release(); 
+}
+
+function setImageArrivalCb(receiver: image.ImageReceiver) {
+// After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
+  receiver.on('imageArrival', (): void => {
+    receiver.readNextImage((errCode: BusinessError, imageObj: image.Image): void => {
+      if (errCode || imageObj === undefined) {
+        return;
+      }
+      imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+        if (errCode || component === undefined) {
+          return;
+        }
+        let buffer: ArrayBuffer;
+        if (component.byteBuffer) {
+          buffer = component.byteBuffer;
+        } else {
+          return;
+        }
+        savePicture(buffer, imageObj);
+      });
+    });
+  });
+}
 
 async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
@@ -97,7 +146,9 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   });
 
   // Create an ImageReceiver instance and set photographing parameters. Wherein, the resolution must be one of the photographing resolutions supported by the current device, which are obtained from photoProfilesArray.
-  let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
+  let imageReceiver: image.ImageReceiver = getImageReceiver(1920, 1080, 4, 8);
+  // Call the preceding callback to save the image.
+  setImageArrivalCb(imageReceiver);
   // Obtain the surface ID for displaying photos.
   let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // Create a photo output stream.
