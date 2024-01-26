@@ -2454,13 +2454,13 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 全质量图对象。
 
-### 属性<sup>11+</sup>
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| main | [image.Image](js-apis-image.md#image9) |        是       | 全质量图Image。 |
+| main<sup>11+</sup> | [image.Image](js-apis-image.md#image9) |        是       | 全质量图Image。 |
 
 ### release<sup>11+</sup>
 
