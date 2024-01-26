@@ -2720,7 +2720,7 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback<audio.AudioCapturerChangeInf
 ```ts
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
-avRecorder.getCurrentAudioCapturerInfo((err: BusinessError， capturerInfo: audio.AudioCapturerChangeInfo) => {
+avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
   if (err == null) {
     console.info('getCurrentAudioCapturerInfo success');
     currentCapturerInfo = capturerInfo;
@@ -2801,7 +2801,7 @@ getAudioCapturerMaxAmplitude(callback: AsyncCallback<number>): void;
 ```ts
 let maxAmplitude: number;
 
-avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError， amplitude: number) => {
+avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
   if (err == null) {
     console.info('getAudioCapturerMaxAmplitude success');
     maxAmplitude = amplitude;
@@ -2879,7 +2879,7 @@ getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder((err: BusinessError， info: media.EncoderInfo) => {
+avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => {
   if (err == null) {
     console.info('getAvailableEncoder success');
     encoderInfo = info;
