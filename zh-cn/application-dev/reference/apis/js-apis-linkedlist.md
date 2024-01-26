@@ -220,7 +220,7 @@ get(index: number): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 根据下标查找到的元素。 |
+| T | 根据下标查找到的元素，元素不存在返回undefined。 |
 
 **错误码：**
 
@@ -332,7 +332,7 @@ let result = linkedList.getIndexOf(2);
 
 removeByIndex(index: number): T
 
-根据元素的下标值查找元素，返回元素后将其删除。
+根据元素的下标值查找元素，并将其删除。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -346,7 +346,7 @@ removeByIndex(index: number): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的元素。 |
+| T | 返回删除的元素，如果为空返回undefined。 |
 
 **错误码：**
 
@@ -496,7 +496,7 @@ removeFirstFound(element: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 删除成功返回true，否则返回false。 |
+| boolean | 删除成功返回true，删除失败或不存在该元素时返回false。 |
 
 **错误码：**
 
@@ -537,7 +537,7 @@ removeLastFound(element: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 删除成功返回true，否则返回false。 |
+| boolean | 删删除成功返回true，删除失败或不存在该元素时返回false。 |
 
 **错误码：**
 
@@ -684,7 +684,7 @@ set(index: number, element: T): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回替换后的元素。 |
+| T | 返回替换后的元素，如果为空返回undefined。 |
 
 **错误码：**
 
@@ -750,7 +750,7 @@ getFirst(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回对应元素，如果为空返回undefined。 |
+| T | 返回对应元素，如果元素为空返回undefined。 |
 
 **错误码：**
 
@@ -783,7 +783,7 @@ getLast(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回对应元素，如果为空返回undefined。 |
+| T | 返回对应元素，如果为元素空返回undefined。 |
 
 **错误码：**
 

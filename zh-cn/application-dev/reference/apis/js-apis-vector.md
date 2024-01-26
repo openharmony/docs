@@ -66,7 +66,7 @@ add(element: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 插入成功返回true,失败返回false。 |
+| boolean | 插入成功返回true，失败返回false。 |
 
 **示例：**
 
@@ -84,7 +84,7 @@ let result3 = vector.add(c);
 
 insert(element: T, index: number): void
 
-在长度范围内任意插入指定元素。
+在长度范围内任意插入指定元素，并将其后续元素向右移动。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -122,7 +122,7 @@ has(element: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 是否包含指定元素。 |
+| boolean | 是否包含指定元素，true表示包含该元素，false表示不包含。 |
 
 **示例：**
 
@@ -205,7 +205,7 @@ let result = vector.getLastIndexOf(2);
 
 removeByIndex(index: number): T
 
-根据元素的下标值查找元素，返回元素后将其删除。
+根据元素的下标值查找元素，返回元素后将其删除，并将其后续元素向左移动。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -219,7 +219,7 @@ removeByIndex(index: number): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的元素。 |
+| T | 返回被删除的元素。数组为空时返回undefined，下标越界时抛出异常。 |
 
 **示例：**
 
