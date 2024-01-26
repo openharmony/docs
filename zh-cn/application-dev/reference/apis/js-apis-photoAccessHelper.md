@@ -8073,7 +8073,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOption: RequestO
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
 | context        | [Context](js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
-| assets         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。       
 | dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
 
@@ -8134,7 +8134,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
-| assets | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
+| asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。       
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
 
