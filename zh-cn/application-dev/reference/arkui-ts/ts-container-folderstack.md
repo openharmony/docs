@@ -45,7 +45,7 @@ FolderStack(value?: { upperItems?:  Array<string\>})
 
 | 名称                                                                | 功能描述                                           |
 |-------------------------------------------------------------------|------------------------------------------------|
-| onFolderStateChange (callback: (foldStatus: [FoldStatus](ts-appendix-enums.md#foldstatus11) => void) | 当折叠状态改变的时候回调，<br/>-&nbsp;foldStatus:当前设备的折叠状态。 |
+| onFolderStateChange (callback: (event: { foldStatus: [FoldStatus](ts-appendix-enums.md#foldstatus11) }) => void) | 当折叠状态改变的时候回调，<br/>-&nbsp;foldStatus:当前设备的折叠状态。 |
 
 ## 示例
 
