@@ -77,7 +77,7 @@
 | Mouse | 鼠标。 |
 | TouchScreen | 触摸屏。 |
 
-## FingerInfo对象说明
+## FingerInfo对象说明<sup>8+</sup>
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | id | number | 手指的索引编号。 |
@@ -86,7 +86,7 @@
 | localX | number | 相对于当前组件元素原始区域左上角的x轴坐标。 |
 | localY | number | 相对于当前组件元素原始区域左上角的y轴坐标。 |
 
-## SourceTool枚举说明
+## SourceTool枚举说明<sup>9+</sup>
 | 名称 | 描述 |
 | -------- | -------- |
 | Unknown | 未知输入源。 |
