@@ -35,7 +35,7 @@ Notification Kit支持的通知样式：
 | [多行文本](./text-notification.md)       | ![zh-cn_image_5](figures/zh-cn_image_5.png)   | 适合于文本内容较长的通知，最多可显示三行内容，每行内容超长后以“...”截断。 |
 | [通知大图标](../reference/apis/js-apis-inner-notification-notificationRequest.md)| ![zh-cn_image_1](figures/zh-cn_image_1.png) | 适合于有图片预览的通知。 |
 | [通知角标](./notification-badge.md)      | ![zh-cn_image_6](figures/zh-cn_image_6.png)   | 以数字的形式展示在右上角。 |
-| [进度条](./progress-bar-notification.md) | ![zh-cn_image](figures/zh-cn_imag.png)    | 适合进度类通知。 |
+| [进度条](./progress-bar-notification.md) | ![zh-cn_image_12](figures/zh-cn_image_12.png)    | 适合进度类通知。 |
 
 ## 约束限制
 - 单个应用已发布的通知在通知中心等系统入口的留存数量有限（当前规格最多24条）。
