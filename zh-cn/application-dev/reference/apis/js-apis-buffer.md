@@ -624,8 +624,7 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number |  表示迭代器的key值。 |
-| number |  表示迭代器的value值。 |
+| IterableIterator&lt;[number,&nbsp;number]&gt; |  包含key和value的迭代器，同时两者皆为number类型。 |
 
 **示例：**
 
