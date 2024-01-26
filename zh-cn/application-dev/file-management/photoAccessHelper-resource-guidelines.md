@@ -7,7 +7,7 @@
 > - 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
 > - 文档中使用到photoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
 
-为了保证应用的运行效率，大部分PhotoAccessHelper调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
+为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
 
 ## 获取指定媒体资源
 
@@ -170,7 +170,7 @@ async function example() {
 
 ## 创建媒体资源
 
-通过接口[PhotoAccessHelper.createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset-3)创建媒体资源。
+创建[MediaAssetChangeRequest](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#mediaassetchangerequest11)媒体资产变更对象并写入媒体资源内容，然后调用[PhotoAccessHelper.applyChanges](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口提交创建资产的变更请求。
 
 **前提条件**
 
@@ -183,12 +183,15 @@ async function example() {
 
 **开发步骤**
 
-1. 设置文件名并建立创建选项，用于创建图片资源时设置属性。
-2. 调用PhotoAccessHelper.createAsset接口创建图片资源。
+1. 定义文件名和创建选项，用于创建图片资源时设置属性。
+2. 调用MediaAssetChangeRequest.createAssetRequest接口创建资产变更请求。
+3. 调用MediaAssetChangeRequest.getWriteCacheHandler接口获取临时文件写句柄，并写入图片资源的内容。
+4. 调用PhotoAccessHelper.applyChanges接口提交资产变更请求。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import fs from '@ohos.file.fs';
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -197,14 +200,18 @@ async function example() {
     let createOption: photoAccessHelper.PhotoCreateOptions = {
       subtype: photoAccessHelper.PhotoSubtype.DEFAULT
     };
-
-    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(displayName, createOption);
-    console.info('createAsset successfully, file displayName: ' + photoAsset.displayName);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
+    let fd: number = await assetChangeRequest.getWriteCacheHandler();
+    // write date into fd
+    await fs.close(fd);
+    await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`create asset failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
+
+应用还可以调用MediaAssetChangeRequest.addResource接口指定媒体资源内容的数据来源，具体包括[应用沙箱](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)，[ArrayBuffer](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)和[PhotoProxy](../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#addresource11)。
 
 ## 使用安全控件创建媒体资源
 
@@ -214,11 +221,10 @@ async function example() {
 
 1. 设置安全控件按钮属性。
 2. 创建安全控件按钮。
-3. 调用[PhotoAccessHelper.createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset-6)接口创建图片资源。
+3. 调用[MediaAssetChangeRequest.createImageAssetRequest](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createimageassetrequest11)和[PhotoAccessHelper.applyChanges](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口创建图片资源。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -242,15 +248,16 @@ struct Index {
                try {
                  let context = getContext();
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-                 let uri = await phAccessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg'); // 创建媒体文件
-                 console.info('createAsset successfully, uri: ' + uri);
-                 let file = await fs.open(uri, fs.OpenMode.READ_WRITE);
-                 await fs.close(file);
+                 // 需要确保fileUri对应的资源存在
+                 let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+                 let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+                 await phAccessHelper.applyChanges(assetChangeRequest);
+                 console.info('createAsset successfully, uri: ' + assetChangeRequest.getAsset().uri);
                } catch (err) {
-                 console.error('createAsset failed, message = ', err);
+                 console.error(`create asset failed with error: ${err.code}, ${err.message}`);
                }
              } else {
-               console.error('SaveButtonOnClickResult createAsset failed');
+               console.error('SaveButtonOnClickResult create asset failed');
              }
           })
       }
@@ -265,7 +272,7 @@ struct Index {
 
 重命名修改的是文件的PhotoAsset.displayName属性，即文件的显示文件名，包含文件后缀。
 
-修改后再通过[PhotoAsset.commitModify](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#commitmodify-1)更新到数据库中完成修改。
+调用[MediaAssetChangeRequest.setTitle](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)重命名后再通过[PhotoAccessHelper.applyChanges](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)更新到数据库中完成修改。
 
 在重命名文件之前，需要先获取文件对象，可以通过[FetchResult](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的文件。
 
@@ -281,13 +288,13 @@ struct Index {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要重命名的图片对象。
-4. 调用[PhotoAsset.set](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#set)接口将图片重命名为新的名字。
-5. 调用PhotoAsset.commitModify接口将修改的图片属性更新到数据库中完成修改。
+4. 调用[MediaAssetChangeRequest.setTitle](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)接口将图片重命名为新的名字。
+5. 调用[PhotoAccessHelper.applyChanges](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将修改的图片属性更新到数据库中完成修改。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -296,26 +303,24 @@ async function example() {
     fetchColumns: ['title'],
     predicates: predicates
   };
-  let newTitle = 'newTestPhoto';
+  let newTitle: string = 'newTestPhoto';
 
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let title: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.TITLE;
-    let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
-    console.info('getAssets photoAsset.title : ' + photoAssetTitle);
-    photoAsset.set(title, newTitle);
-    await photoAsset.commitModify();
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    assetChangeRequest.setTitle(newTitle);
+    await phAccessHelper.applyChanges(assetChangeRequest);
     fetchResult.close();
   } catch (err) {
-    console.error('commitModify failed with err: ' + err);
+    console.error(`rename failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-## 将文件放入回收站（仅向系统应用开放）
+## 将文件放入回收站
 
-通过[PhotoAccessHelper.deleteAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets-1)可以将文件放入回收站。
+通过[MediaAssetChangeRequest.deleteAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11)可以将文件放入回收站。
 
 放入回收站的文件将会保存30天，30天后会自动彻底删除。在此期间，应用用户可以通过系统应用“文件管理”或“图库”恢复文件。
 
@@ -331,12 +336,12 @@ async function example() {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要放入回收站的图片对象。
-4. 调用PhotoAccessHelper.deleteAssets接口将文件放入回收站。
+4. 调用[MediaAssetChangeRequest.deleteAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11)接口将文件放入回收站。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -349,11 +354,10 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    await phAccessHelper.deleteAssets([photoAsset.uri]);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
-    console.error('deleteAssets failed with err: ' + err);
+    console.error(`deleteAssets failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
