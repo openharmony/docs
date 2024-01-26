@@ -31,12 +31,6 @@ hasInstalled(options: CheckPackageHasInstalledOptions): void
 | -------- | -------- | -------- | -------- |
 |options | [CheckPackageHasInstalledOptions](#checkpackagehasinstalledoptions) | 是 | 选项参数。 |
 
-**返回值：**
-
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| result | boolean | 表示查询的应用是否存在，或者原生应用是否安装。 |
-
 **示例：**
 
 ``` ts
