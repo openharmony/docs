@@ -32,12 +32,12 @@
    if (this.subscriber !== null) {
      commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
        if (err) {
-         Logger.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+         console.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
          promptAction.showToast({
            message: $r('app.string.unsubscribe_success_toast')
          });
-         Logger.info(TAG, `Unsubscribe success`);
+         console.info(TAG, `Unsubscribe success`);
          this.subscriber = null;
        }
      })
