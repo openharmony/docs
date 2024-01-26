@@ -1,6 +1,6 @@
 # Introduction to Sensor Service Kit
 
-## Usage Scenarios
+## When to Use
 
 Sensor Service Kit enables applications to obtain raw data from sensors and provides vibration control capabilities.
 
@@ -10,7 +10,7 @@ Sensor Service Kit enables applications to obtain raw data from sensors and prov
 
 ## Constraints
 
-#### Sensor
+### Sensor
 
 - To use sensor functions, ensure that the device where your application runs has the required sensor components.
 
@@ -19,7 +19,7 @@ Sensor Service Kit enables applications to obtain raw data from sensors and prov
 - The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.
 
 
-#### Vibrator
+### Vibrator
 
 - To use vibrator functions, ensure that the device where your application runs has the required misc components.
 - To use vibrators, you need to request the required permissions.
