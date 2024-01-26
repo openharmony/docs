@@ -2863,7 +2863,7 @@ getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
 
 | 参数名   | 类型                                                | 必填 | 说明                                 |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<Array<[EncoderInfo](#encoderInfo11)>> | 是   | 异步获取可用的编码器参数的回调方法。 |
+| callback | AsyncCallback<Array<[EncoderInfo](#encoderinfo11)>> | 是   | 异步获取可用的编码器参数的回调方法。 |
 
 **错误码**：
 
@@ -2893,8 +2893,6 @@ avRecorder.getAvailableEncoder((err: BusinessError， info: media.EncoderInfo) =
 
 getAvailableEncoder(): Promise<Array<EncoderInfo>>;
 
-getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
-
 异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
@@ -2903,7 +2901,7 @@ getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
 
 | 类型                                          | 说明                                            |
 | --------------------------------------------- | ----------------------------------------------- |
-| Promise<Array<[EncoderInfo](#encoderInfo11)>> | 异步方式获取可用的编码参数方法的Promise返回值。 |
+| Promise<Array<[EncoderInfo](#encoderinfo11)>> | 异步方式获取可用的编码参数方法的Promise返回值。 |
 
 **错误码**：
 
