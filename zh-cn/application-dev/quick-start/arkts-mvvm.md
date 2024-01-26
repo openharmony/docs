@@ -160,7 +160,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
 
    当LinkChild中的\@Link testNum更改时。
 
-   1. 更改首先同步到其父组件Parent，然后更改从Parent同步到Siling。
+   1. 更改首先同步到其父组件Parent，然后更改从Parent同步到Sibling。
 
    2. LinkChild中的\@Link testNum更改也同步给子组件LinkLinkChild和PropLinkChild。
 
@@ -757,7 +757,7 @@ struct ViewA {
 }
 ```
 
-与用\@ObjectLink修饰不同，用\@ObjectLink修饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
+与用\@Prop修饰不同，用\@ObjectLink修饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
 
 \@Prop是单向数据同步，ViewA内的Button只会触发Button自身的刷新，不会传播到其他的ViewA实例中。在ViewA中的ClassA只是一个副本，并不是其父组件中\@State arrA : Array&lt;ClassA&gt;中的对象，也不是其他ViewA的ClassA，这使得数组的元素和ViewA中的元素表面是传入的同一个对象，实际上在UI上渲染使用的是两个互不相干的对象。
 
@@ -781,11 +781,11 @@ struct ViewA {
 
 - 显示联系人和设备（"Me"）电话号码 。
 
-- 选中联系人时，进入可编辑态”Edit“，可以更新该联系人详细信息，包括电话号码，住址。
+- 选中联系人时，进入可编辑态“Edit”，可以更新该联系人详细信息，包括电话号码，住址。
 
 - 在更新联系人信息时，只有在单击保存“Save Changes”之后，才会保存更改。
 
-- 可以点击删除联系人”Delete Contact“，可以在联系人列表删除该联系人。
+- 可以点击删除联系人“Delete Contact”，可以在联系人列表删除该联系人。
 
 
 ViewModel需要包括：
