@@ -1,6 +1,6 @@
-# \@ohos.dlpPermission (DLP)
+# @ohos.dlpPermission (DLP)
 
-Data loss prevention (DLP) is a system solution provided by OpenHarmony to prevent data disclosure. The **dlpPermission** module provides APIs for cross-device file access management, encrypted storage, and access authorization.
+Data loss prevention (DLP) is a system solution provided to prevent data disclosure. The **dlpPermission** module provides APIs for cross-device file access management, encrypted storage, and access authorization.
 
 > **NOTE**
 >
@@ -976,7 +976,7 @@ try {
   }; // Request parameters.
   dlpPermission.startDLPManagerForResult(context, want).then((res) => {
     console.info('res.resultCode', res.resultCode);
-    console.info('res.want', JSON.stringifg(res.want));
+    console.info('res.want', JSON.stringify(res.want));
   }); // Start the DLP manager application.
 } catch (err) {
   console.error('error', err.code, err.message); // Error reported if the operation fails.
