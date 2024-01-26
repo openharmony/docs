@@ -27,7 +27,7 @@
 - [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
 
 
-生命周期流程如下图所示，下图展示的是被\@Entry装饰的组件（首页）生命周期。
+生命周期流程如下图所示，下图展示的是被\@Entry装饰的组件（页面）生命周期。
 
 
 ![zh-cn_image_0000001502372786](figures/zh-cn_image_0000001502372786.png)
@@ -46,7 +46,7 @@
 
 4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在执行build()函数的过程中，框架会观察每个状态变量的读取状态，将保存两个map：
    1. 状态变量 -&gt; UI组件（包括ForEach和if）。
-   2. UI组件 -&gt; 此组件的更新函数，即一个lambda方法，作为build()函数的子集，创建对应的UI组件并执行其属性方法，示意如下。
+   2. UI组件 -&gt; 此组件的更新函数，即一个lambda方法，作为build()函数的子集，创建对应的UI组件并执行其属性方法，示例如下。
 
 
    ```ts
