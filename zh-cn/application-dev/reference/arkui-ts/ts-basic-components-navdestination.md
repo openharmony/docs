@@ -24,7 +24,7 @@ NavDestination()
 
 ## 属性
 
-仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundColor)通用属性。
+仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
 
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
