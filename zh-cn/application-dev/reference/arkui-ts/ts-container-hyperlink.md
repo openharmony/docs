@@ -13,7 +13,7 @@
 
 ## 子组件
 
-可以包含Image子组件。
+可以包含[Image](ts-basic-components-image.md)子组件。
 
 
 ## 接口

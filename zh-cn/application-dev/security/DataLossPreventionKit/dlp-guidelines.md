@@ -1,6 +1,6 @@
 # Data Loss Prevention Kit开发指导
 
-Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如: “test.docx.dlp”，文件由授权凭证和原始文件密文组成。
+DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如: “test.docx.dlp”，文件由授权凭证和原始文件密文组成。
 
 通过端云协同认证（需要联网）来获取文件的访问授权，授权类型包含只读、编辑、文档拥有者三种。
 
@@ -47,8 +47,6 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
 | startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式） |
 
 ## 开发步骤
-
-开发步骤
 
 1. 引入[dlpPermission](../../reference/apis/js-apis-dlppermission.md)模块。
 
@@ -132,7 +130,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
    });
    ```
 
-6. 判断当前打开文件是否是dlp文件。
+6. 判断当前打开文件是否是DLP文件。
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';
@@ -192,6 +190,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
    ```
 
 9. 获取DLP文件保留沙箱记录。
+
     ```ts
     async getRetentionSandboxList() {
       try {
@@ -204,6 +203,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
     ```
 
 10. 设置沙箱应用配置信息。
+
     ```ts
     async setSandboxAppConfig() {
       try {
@@ -215,6 +215,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
     ```
 
 11. 清理沙箱应用配置信息。
+
     ```ts
     async cleanSandboxAppConfig() {
       try {
@@ -226,6 +227,7 @@ Data Loss Prevention Kit（数据防泄漏服务），是系统提供的系统�
     ```
 
 12. 查询沙箱应用配置信息。
+
     ```ts
     async getSandboxAppConfig() {
       try {

@@ -862,11 +862,11 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
 | DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
 
-## ErrorCode
+## ErrorCode<sup>7+<sup>
 
 定义启动Ability时返回的错误码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |

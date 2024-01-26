@@ -794,7 +794,6 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {

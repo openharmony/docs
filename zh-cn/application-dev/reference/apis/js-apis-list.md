@@ -341,7 +341,7 @@ let result = list.equal(obj);
 
 removeByIndex(index: number): T
 
-根据元素的下标值查找元素，返回元素后将其删除。
+根据元素的下标值查找元素，并将其删除。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -355,7 +355,7 @@ removeByIndex(index: number): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的元素。 |
+| T | 返回被删除的元素。 |
 
 **错误码：**
 

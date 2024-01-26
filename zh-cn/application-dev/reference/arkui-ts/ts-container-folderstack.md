@@ -34,7 +34,10 @@ FolderStack(value?: { upperItems?:  Array<string\>})
 |-----------------|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | alignContent    | [Alignment](ts-appendix-enums.md#alignment) | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>**说明：** <br/>该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。 |
 | enableAnimation | boolean                                     | 设置是否使用默认动效。<br/>默认值：true。                                                                                                     |
-| autoHalfFold    | boolean                                     | 是否开启自动旋转。<br/>默认值：true。                                                                                                            |
+| autoHalfFold    | boolean                                     | 是否开启自动旋转，仅在系统自动旋转关闭时该属性生效。<br/>默认值：true。                                                                                                            |
+>  **说明：**
+>
+>  设置offset和margin属性，可能会导致上下半屏遮挡折痕区，不建议开发者使用。
 
 ## 事件
 
@@ -42,7 +45,7 @@ FolderStack(value?: { upperItems?:  Array<string\>})
 
 | 名称                                                                | 功能描述                                           |
 |-------------------------------------------------------------------|------------------------------------------------|
-| onFolderStateChange (callback: (foldStatus: [FoldStatus](ts-appendix-enums.md#foldstatus11) => void) | 当折叠状态改变的时候回调，<br/>-&nbsp;foldStatus:当前设备的折叠状态。 |
+| onFolderStateChange (callback: (event: { foldStatus: [FoldStatus](ts-appendix-enums.md#foldstatus11) }) => void) | 当折叠状态改变的时候回调，仅在横屏状态下生效。<br/>-&nbsp;foldStatus:当前设备的折叠状态。 |
 
 ## 示例
 

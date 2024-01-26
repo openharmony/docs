@@ -257,6 +257,7 @@
     - [Graphics](js-apis-arkui-graphics.md)
     - [NodeController](js-apis-arkui-nodeController.md)
     - [RenderNode](js-apis-arkui-renderNode.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
@@ -264,7 +265,9 @@
   - [@ohos.display (屏幕属性)](js-apis-display.md)
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.common2D (2D图形通用数据类型)](js-apis-graphics-common2D.md)
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
+  - [@ohos.graphics.drawing (绘制模块)](js-apis-graphics-drawing.md)
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)
@@ -447,7 +450,7 @@
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
 
 - 设备管理
-  - [@ohos.app.ability.DriverExtensionAbility (DriverExtensionAbility)](js-apis-app-ability-driverExtensionAbility.md)
+  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (耗电统计)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)

@@ -1,10 +1,10 @@
 # @ohos.app.ability.AbilityConstant (AbilityConstant)
 
-AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果、窗口类型等。
+AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因、上次退出原因、迁移结果等。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -13,22 +13,20 @@ AbilityConstant提供Ability相关的枚举，包括设置初次启动原因、�
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
-## 属性
-
 ## AbilityConstant.LaunchParam
 
 启动参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 是 | 是 | 枚举类型，表示启动原因。 |
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 是 | 是 | 枚举类型，表示最后退出原因。 |
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 否 | 是 | 枚举类型，表示启动原因。 |
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 是 | 枚举类型，表示最后退出原因。 |
 
 ## AbilityConstant.LaunchReason
 
-Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
+Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -36,18 +34,17 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
 | START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
-| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
+| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md)接口启动ability。 |
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 | SHARE<sup>10+</sup>           | 5    | 通过元服务分享启动ability。 |
-| AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
-| INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。 |
 
 **示例：**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -60,14 +57,13 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.LastExitReason
 
-Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.lastExitReason的不同类型执行相应操作。
+Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.lastExitReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| ABILITY_NOT_RESPONDING | 1    | ability未响应。从API version 9 开始支持，从API version 10 开始废弃，建议使用APP_FREEZE替代。 |
 | NORMAL | 2    | 用户主动关闭，应用程序正常退出。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。 |
@@ -81,6 +77,7 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -93,7 +90,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.OnContinueResult 
 
-Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)方法进完成相应的返回。
+Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)方法进完成相应的返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -107,6 +104,7 @@ Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-abilit
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
@@ -115,53 +113,9 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.WindowMode
-
-启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                        | 值 | 说明                 |
-| ---                         | --- | ---                  |
-| WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
-| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。   |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。   |
-| WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let option: StartOptions = {
-  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
-};
-
-// 确保从上下文获取到context
-class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
-      console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
-    });
-  }
-}
-```
-
 ## AbilityConstant.MemoryLevel
 
-内存级别，该类型为枚举，可配合[Ability](js-apis-app-ability-ability.md)的[onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
+内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -175,6 +129,7 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
@@ -187,7 +142,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.OnSaveResult
 
-保存应用数据的结果，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法完成相应的返回。
+保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法完成相应的返回。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -204,6 +159,7 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
@@ -214,7 +170,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.StateType
 
-保存应用数据场景原因，该类型为枚举，可配合[Ability](js-apis-app-ability-uiAbility.md)的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法根据reason的不同类型执行相应操作。
+保存应用数据场景原因，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法根据reason的不同类型执行相应操作。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -227,6 +183,7 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {

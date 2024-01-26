@@ -2,13 +2,11 @@
 
 应用需要先获取相册管理模块实例，才能访问和修改相册中的媒体数据信息。相册管理模块涉及用户个人数据信息，所以应用需要向用户申请相册管理模块读写操作权限才能保证功能的正常运行。在使用相册管理模块相关接口时如无其他注明则默认在工程代码的pages/index.ets或者其他自创的ets文件中使用。
 
-开发者在使用PhotoAccessHelper进行功能开发前，请先掌握以下内容：
-
 ## 获取相册管理模块实例
 
 应用需要使用应用上下文Context通过接口[getPhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)，获取相册管理模块实例，用于访问和修改相册中媒体数据信息（如图片、视频）。
 
-**开发步骤：**
+**开发步骤**
 
 1. 导入photoAccessHelper模块以使用相册管理模块相关接口。
 2. 通过getContext获取应用上下文。
@@ -28,12 +26,12 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 | 权限名                         | 说明                                       | 授权方式   |
 | ------------------------------ | ------------------------------------------ | ---------- |
-| ohos.permission.READ_IMAGEVIDEO     | 允许应用读取用户外部存储中的图片和视频媒体文件信息。 | user_grant |
-| ohos.permission.WRITE_IMAGEVIDEO    | 允许应用读写用户外部存储中的图片和视频媒体文件信息。 | user_grant |
+| ohos.permission.READ_IMAGEVIDEO     | 允许应用读取媒体库的图片和视频媒体文件信息。 | user_grant |
+| ohos.permission.WRITE_IMAGEVIDEO    | 允许应用读写媒体库的图片和视频媒体文件信息。 | user_grant |
 
 以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
-**开发步骤参考：**
+**开发步骤**
 
 1. [在配置文件module.json5中声明权限](../security/AccessToken/declare-permissions.md)。
 2. [向用户申请授权](../security/AccessToken/request-user-authorization.md)。

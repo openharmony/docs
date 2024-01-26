@@ -75,8 +75,49 @@ MyGlobalBuilderFunction()
 
 ### 按引用传递参数
 
-按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@Builder方法内的UI刷新。ArkUI提供$$作为按引用传递参数的范式。
+按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@Builder方法内的UI刷新。
 
+
+```ts
+class ABuilderParam {
+  paramA1: string = ''
+  paramB1: string = ''
+}
+
+@Builder function ABuilder(params : ABuilderParam) {...}
+```
+
+
+
+```ts
+class ABuilderParam {
+  paramA1: string = ''
+}
+
+@Builder function ABuilder(params: ABuilderParam) {
+  Row() {
+    Text(`UseStateVarByReference: ${params.paramA1} `)
+  }
+}
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  build() {
+    Column() {
+      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
+      ABuilder({ paramA1: this.label })
+      Button('Click me').onClick(() => {
+        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        this.label = 'ArkUI';
+      })
+    }
+  }
+}
+```
+
+
+按引用传递参数时，如果在\@Builder方法内调用自定义组件，ArkUI提供$$作为按引用传递参数的范式。
 
 ```ts
 class ABuilderParam {
@@ -94,19 +135,34 @@ class ABuilderParam {
   paramA1: string = ''
 }
 
-@Builder function ABuilder($$: ABuilderParam) {
+@Builder function BBuilder($$: ABuilderParam) {
   Row() {
-    Text(`UseStateVarByReference: ${$$.paramA1} `)
+    Column() {
+      Text(`BBuilder===${$$.paramA1}`)
+      HelloComponent({message: $$.paramA1})
+    }
   }
 }
+
+@Component
+struct HelloComponent {
+  @Link message: string;
+
+  build() {
+    Row() {
+      Text(`HelloComponent===${this.message}`)
+    }
+  }
+}
+
 @Entry
 @Component
 struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
-      ABuilder({ paramA1: this.label })
+      // Pass the this.label reference to the BBuilder component when the BBuilder component is called in the Parent component.
+      BBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';

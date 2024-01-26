@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [captureId](#captureid) | 捕获id。 | 
-| [frameCount](#framecount) | 帧数。 | 
+| int32_t [captureId](#captureid) | 捕获id。  | 
+| int64_t [frameCount](#framecount) | 帧数。  | 
 
 
 ## 结构体成员变量说明
@@ -29,9 +29,7 @@
 ```
 int32_t Camera_CaptureEndInfo::captureId
 ```
-
 **描述**
-
 捕获id。
 
 
@@ -40,7 +38,5 @@ int32_t Camera_CaptureEndInfo::captureId
 ```
 int64_t Camera_CaptureEndInfo::frameCount
 ```
-
 **描述**
-
 帧数。

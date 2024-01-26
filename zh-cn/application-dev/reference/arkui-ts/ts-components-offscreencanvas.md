@@ -27,7 +27,7 @@ OffscreenCanvas(width: number, height: number)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+OffscreenCanvas支持以下属性：
 
 | 名称   | 类型   | 默认值 | 描述                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |

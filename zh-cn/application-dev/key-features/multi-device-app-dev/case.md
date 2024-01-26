@@ -431,25 +431,32 @@ struct MessageBubble {
 
 
 ```ts
-const globalMessageList:any[] = [
+ interface globalMessageItem {
+    time:string,
+    content:string,
+    isReceived:boolean
+ }
+
+const globalMessageList:globalMessageItem[] = [
   {
-    'time':'上午 10:20',
-    'content':'项目介绍',
-    'isReceived':false
+    time:'上午 10:20',
+    content:'项目介绍',
+    isReceived:false
   },
   {
-    'time':'上午 10:28',
-    'content':'"一次开发，多端部署"支撑开发者快速高效的开发支持多种终端设备形态的应用，实现对不同设备兼容的同时，提供跨设备的流转、迁移和协同的分布式体验',
-    'isReceived':false
-  },{
-  'time':'上午 10:32',
-  'content':'系统能力',
-  'isReceived':true
+    time:'上午 10:28',
+    content:'"一次开发，多端部署"支撑开发者快速高效的开发支持多种终端设备形态的应用，实现对不同设备兼容的同时，提供跨设备的流转、迁移和协同的分布式体验',
+    isReceived:false
   },
   {
-    'time':'上午 10:35',
-    'content':'系统能力（即SystemCapability，缩写为SysCap）指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失。',
-    'isReceived':true
+    time:'上午 10:32',
+    content:'系统能力',
+    isReceived:true
+  },
+  {
+    time:'上午 10:35',
+    content:'系统能力（即SystemCapability，缩写为SysCap）指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失。',
+    isReceived:true
   }
 ]
 ```
@@ -478,9 +485,9 @@ const globalMessageList:any[] = [
 ```ts
 @Component
 export default struct MessageItem {
-  private isReceived: boolean
-  private content: string
-  private time: string
+  private isReceived?: boolean
+  private content?: string
+  private time?: string
 
   build() {
     GridRow() {
@@ -542,7 +549,7 @@ struct Conversation {
        Column() {
          TopArea()   // 顶部标题栏
          List() {    // 消息列表
-           ForEach(globalMessageList, (item, index) => {
+           ForEach(globalMessageList, (item:globalMessageItem, index) => {
              ListItem() {
                MessageItem({
                  isReceived: item.isReceived,

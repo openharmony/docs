@@ -23,15 +23,15 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 **系统API**：以下各项对应的接口均为系统接口，三方应用不支持调用。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| extension | [ElementName](js-apis-bundleManager-elementName.md) | 是 | 否 | Extension信息。 |
-| pid | number | 是 | 否 | 进程ID。 |
-| uid | number | 是 | 否 | 应用程序的uid。 |
-| processName | string | 是 | 否 | 进程名称。 |
-| startTime | number | 是 | 否 | Extension被启动时的时间戳。 |
-| clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。 |
-| type | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是 | 否 | Extension类型。 |
+| extension | [ElementName](js-apis-bundleManager-elementName.md) | 否 | 是 | Extension信息。 |
+| pid | number | 否 | 是 | 进程ID。 |
+| uid | number | 否 | 是 | 应用程序的uid。 |
+| processName | string | 否 | 是 | 进程名称。 |
+| startTime | number | 否 | 是 | Extension被启动时的时间戳。 |
+| clientPackage | Array&lt;String&gt; | 否 | 是 | 表示当期进程下的所有包名。 |
+| type | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 否 | 是 | Extension类型。 |
 
 **示例：**
 ```ts

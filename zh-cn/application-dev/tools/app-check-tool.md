@@ -1,4 +1,4 @@
-# 扫描工具使用说明
+# 扫描工具
 
 ## 简介
 
@@ -51,51 +51,6 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 }]
 ```
 
-<b>HTML统计结果：</b>
-
-<div id="box">
-        <table>
-            <tr>
-                <td>taskType</td>
-                <td colspan="2">1</td>
-            </tr>
-            <tr>
-                <td>taskDesc</td>
-                <td colspan="2">find the duplicated files</td>
-            </tr>
-            <tr>
-                <td>param</td>
-                <td colspan="2">--stat-duplicate</td>
-            </tr>
-            <tr>
-                <td>startTime</td>
-                <td colspan="2">2023-11-17 14:48:01:265</td>
-            </tr>
-            <tr>
-                <td>stopTime</td>
-                <td colspan="2">2023-11-17 14:48:01:434</td>
-            </tr>
-            <tr>
-                <td rowspan="5">result</td>
-            </tr>
-            <tr>
-                <td>md5</td>
-                <td>975c41f5727b416b1ffefa5bb0f073b</td>
-            </tr>
-            <tr>
-                <td>size</td>
-                <td>1108880</td>
-            </tr>
-            <tr>
-                <td rowspan="2">files</td>
-                <td>/application-entry-default.hap/libs/armeabi-v7a/example.so</td>
-            </tr>
-            <tr>
-                <td>/entry-default.hap/libs/armeabi-v7a/example.so</td>
-            </tr>
-        </table>
-</div>
-
 **扫描重复文件字段信息**
 
 | 字段      | 类型   | 描述                        |
@@ -146,42 +101,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
     }]
 }]
 ```
-<b>HTML统计结果：</b>
 
-<div id="box">
-    <table>
-        <tr>
-            <td>taskType</td>
-            <td colspan="2">2</td>
-        </tr>
-        <tr>
-            <td>taskDesc</td>
-            <td colspan="2">find files whose size exceed the limit size</td>
-        </tr>
-        <tr>
-            <td>param</td>
-            <td colspan="2">--stat-file-size 4</td>
-        </tr>
-        <tr>
-            <td>startTime</td>
-            <td colspan="2">2023-11-17 14:48:01:458</td>
-        </tr>
-        <tr>
-            <td>stopTime</td>
-            <td colspan="2">2023-11-17 14:48:01:491</td>
-        </tr>
-        <tr>
-            <td rowspan="4">result</td>
-        </tr>
-        <tr>
-            <td>file</td> <td>size</td>
-        </tr>
-        <tr>
-            <td>/application-entry-default.hap/libs/x86_64/example.so</td>
-            <td>1292840</td>
-        </tr>
-    </table>
-</div>
 
 **扫描超出指定大小的文件字段信息**
 
@@ -254,69 +174,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 }]
 ```
 
-<b>HTML统计结果：</b>
 
-<div>
-  <table  >
-        <tr>
-            <td>taskType</td>
-            <td colspan="2">3</td>
-        </tr>
-        <tr>
-            <td>taskDesc</td>
-            <td colspan="2">show files group by file type[.suffix]</td>
-        </tr>
-        <tr>
-            <td>param</td>
-            <td colspan="2">--stat-suffix</td>
-        </tr>
-        <tr>
-            <td>startTime</td>
-            <td colspan="2">2023-11-17 14:48:01:497</td>
-        </tr>
-        <tr>
-            <td>stopTime</td>
-            <td colspan="2">2023-11-17 14:48:01:537</td>
-        </tr>
-        <tr>
-			<td >pathList</td>
-			<td colspan="2">
-                test.app/application-entry-default.hap<br>test.app/entry-default.hap
-			</td>
-		</tr>
-        <tr >
-            <td rowspan="30" width="10%">result</td>
-            <td width="10%">suffix</td>
-            <td width="50%">so</td>
-        </tr>
-        <tr>
-            <td>totalSize</td>
-            <td>1292840</td>
-        </tr>
-        <tr>
-            <td rowspan="2">files</td>
-        </tr>
-        <tr>
-            <td>compress:false<br>size:1292840<br>file:/application-entry-default.hap/libs/x86_64/example.so </td>
-        </tr>
-        <tr>
-            <td width="10%">suffix</td>
-            <td width="50%">abc</td>
-        </tr>
-        <tr>
-            <td>totalSize</td>
-            <td>84852</td>
-        </tr>
-        <tr>
-            <td rowspan="2">files</td>
-        </tr>
-        <tr>
-            <td>            
-                size:8548<br>file:/entry-default.hap/ets/modules.abc<br>size:76304<br>file:/application-entry-default.hap/ets/modules.abc<br>
-            </td>
-        </tr>
-    </table>
-</div>
 
 **统计各类型文件大小占比字段信息**
 

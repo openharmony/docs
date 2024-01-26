@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 以下权限仅对APL等级为systen_basic及以上的应用开放，不向APL等级为normal的应用开放。
+> - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
 > - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
 
 ## system_grant，允许ACL跨级申请

@@ -97,6 +97,8 @@ import Logger from '../../utils/Logger';
 
 const TAG: string = 'PagePageAbilitySecond';
 
+@State deviceID: string = '';
+
 getRemoteDeviceId(): void {
   let dmClass: deviceManager.DeviceManager;
   dmClass = deviceManager.createDeviceManager('com.samples.famodelabilitydevelop');
@@ -137,6 +139,8 @@ import { BusinessError } from '@ohos.base';
 import Logger from '../../utils/Logger';
 
 const TAG: string = 'PagePageAbilitySecond';;
+
+@State deviceID: string = '';
 
 onStartRemoteAbility(): void {
   Logger.info(TAG, 'onStartRemoteAbility begin');

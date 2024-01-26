@@ -16,6 +16,4 @@
 | code                  | number               | 是  | 否  | 表示公共事件的结果代码。       |
 | data                  | string               | 是  | 否  | 表示公共事件的自定义结果数据。 |
 | subscriberPermissions | Array\<string>       | 是  | 否  | 表示订阅者的权限。             |
-| isOrdered             | boolean              | 是  | 否  | 表示是否是有序事件。           |
-| isSticky              | boolean              | 是  | 否  | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
 | parameters            | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。       |

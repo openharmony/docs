@@ -36,7 +36,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 ## 限制条件
 
 - LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
-- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
+- LocalStorage是页面级存储，[getShared](../reference/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp
@@ -52,7 +52,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
 
 
-\@LocalStorageProp(key)是和LocalStorage中key对应的属性建立单向数据同步，我们允许本地改变的发生，但是对于\@LocalStorageProp，本地的修改永远不会同步回LocalStorage中，相反，如果LocalStorage给定key的属性发生改变，改变会被同步给\@LocalStorageProp，并覆盖掉本地的修改。
+\@LocalStorageProp(key)是和LocalStorage中key对应的属性建立单向数据同步，ArkUI框架支持修改@LocalStorageProp(key)在本地的值，但是对本地值的修改不会同步回LocalStorage中。相反，如果LocalStorage中key对应的属性值发生改变，例如通过set接口对LocalStorage中的值进行修改，改变会同步给\@LocalStorageProp(key)，并覆盖掉本地的值。
 
 
 ### 装饰器使用规则说明
@@ -387,13 +387,13 @@ struct Parent {
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-let para:Record<string,number> = { 'PropA': 47 };
-let localStorage: LocalStorage = new LocalStorage(para);
+
 export default class EntryAbility extends UIAbility {
-storage: LocalStorage = localStorage
+para:Record<string, number> = { 'PropA': 47 };
+storage: LocalStorage = new LocalStorage(this.para);
 
 onWindowStageCreate(windowStage: window.WindowStage) {
 windowStage.loadContent('pages/Index', this.storage);
@@ -402,28 +402,77 @@ windowStage.loadContent('pages/Index', this.storage);
 ```
 > **说明：**
 >
-> 在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例。
+> 在UI页面通过getShared接口获取通过loadContent共享的LocalStorage实例。
 >
-> LocalStorage.getShared只在模拟器或者实机上才有效，不能在Preview预览器中使用。
+> LocalStorage.getShared()只在模拟器或者实机上才有效，在Previewer预览器中使用不生效。
 
 
+在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
+// index.ets
+import router from '@ohos.router';
+
 // 通过getShared接口获取stage共享的LocalStorage实例
 let storage = LocalStorage.getShared()
-
 @Entry(storage)
 @Component
-struct CompA {
+struct Index {
   // can access LocalStorage instance using 
   // @LocalStorageLink/Prop decorated variables
-  @LocalStorageLink('PropA') varA: number = 1;
+  @LocalStorageLink('PropA') propA: number = 1;
+  build() {
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url:'pages/Page'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
+```ts
+// Page.ets
+import router from '@ohos.router';
+
+let storage = LocalStorage.getShared()
+@Entry(storage)
+@Component
+struct Page {
+  @LocalStorageLink('PropA') propA: number = 2;
 
   build() {
-    Column() {
-      Text(`${this.varA}`).fontSize(50)
+    Row() {
+      Column() {
+        Text(`${this.propA}`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+
+        Button("Change propA")
+          .onClick(() => {
+            this.propA = 100;
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
     }
   }
 }
+
 ```
 
 > **说明：**

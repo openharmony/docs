@@ -556,9 +556,9 @@ const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED);
 ```
 
-## settings.registeKeyObserver<sup>11+</sup>
+## settings.registerKeyObserver<sup>11+</sup>
 
-registeKeyObserver(context: Context, name: string, domainName: string, observer:AsyncCallback\<void>): boolean
+registerKeyObserver(context: Context, name: string, domainName: string, observer:AsyncCallback\<void>): boolean
 
 用于在指定上下文中注册一个观察者，以便于在指定域名中观察指定的域名。当该键值发生变化时，将调用注册的回调函数，如果成功注册则返回true，否则返回false。
 
@@ -588,7 +588,7 @@ registeKeyObserver(context: Context, name: string, domainName: string, observer:
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registeKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, domainName.DEVICE_SHARED, (err, value) => {
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, domainName.DEVICE_SHARED, (err, value) => {
   if(err){
     console.error('Failed to get the setting.${err.message}');
     return;
@@ -597,9 +597,9 @@ settings.registeKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, 
 });
 ```
 
-## settings.unregisteKeyObserver<sup>11+</sup>
+## settings.unregisterKeyObserver<sup>11+</sup>
 
-unregisteKeyObserver(context: Context, name: string, domainName: string): boolean
+unregisterKeyObserver(context: Context, name: string, domainName: string): boolean
 
 同步方法，进行注销指定域名下对指定键的监视器。
 

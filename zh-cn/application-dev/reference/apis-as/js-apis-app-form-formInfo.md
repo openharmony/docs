@@ -104,11 +104,9 @@ import formInfo from '@ohos.app.form.formInfo';
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
-| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统API**: 此接口为系统接口，三方应用不支持调用。  |
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
-| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。  |
 
 ##  FormDimension
 
@@ -147,58 +145,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | UNKNOWN<sup>10+</sup> | 0   | 表示卡片为未知。 |
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
-
-## FormUsageState
-
-卡片当前使用状态枚举。
-
-**系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称        |  值   | 说明         |
-| ----------- | ---- | ------------ |
-| USED<sup>11+</sup> | 0   | 表示卡片在使用中。 |
-| UNUSED<sup>11+</sup> | 1   | 表示卡片未被使用。 |
-
-## RunningFormInfo<sup>10+</sup>
-
-卡片使用方信息
-
-**系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
-| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formId  | string               | 是    | 否     | 卡片标识。                   |
-| bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
-| hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
-| visibilityType  | [VisibilityType](#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
-| moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
-| dimension | number               | 是    | 否     | 卡片规格。   |
-| formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
-| formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
-
-## formProviderFilter<sup>10+</sup>
-
-卡片提供方信息。
-
-**模型约束**：此接口仅可在Stage模型下使用。
-
-**系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
-| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。  |
-| formName    | string               | 是    | 否     | 卡片名称。                     |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。        |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
-| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
 
 ## LaunchReason<sup>10+</sup>
 

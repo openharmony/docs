@@ -21,27 +21,27 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 调用cameraManager类中的createCaptureSession()方法创建一个会话。
+2. 调用cameraManager类中的[createCaptureSession](../reference/apis/js-apis-camera.md#createcapturesessiondeprecated)方法创建一个会话。
      
    ```ts
-   function getCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
-     let captureSession: camera.CaptureSession | undefined = undefined;
+   function getSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+     let session: camera.CaptureSession | undefined = undefined;
      try {
-       captureSession = cameraManager.createCaptureSession();
+       session = cameraManager.createCaptureSession();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
      }
-     return captureSession;
+     return session;
    }
    ```
 
-3. 调用captureSession类中的beginConfig()方法配置会话。
+3. 调用Session类中的[beginConfig](../reference/apis/js-apis-camera.md#beginconfig)方法配置会话。
      
    ```ts
-   function beginConfig(captureSession: camera.CaptureSession): void {
+   function beginConfig(session: camera.Session): void {
      try {
-       captureSession.beginConfig();
+       session.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
@@ -49,39 +49,39 @@
    }
    ```
 
-4. 使能。向会话中添加相机的输入流和输出流，调用captureSession.addInput()添加相机的输入流；调用captureSession.addOutput()添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
+4. 使能。向会话中添加相机的输入流和输出流，调用[addInput](../reference/apis/js-apis-camera.md#addinput)添加相机的输入流；调用[addOutput](../reference/apis/js-apis-camera.md#addoutput)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
 
-     调用captureSession类中的commitConfig()和start()方法提交相关配置，并启动会话。
+     调用Session类中的[commitConfig](../reference/apis/js-apis-camera.md#commitconfig)和[start](../reference/apis/js-apis-camera.md#start-4)方法提交相关配置，并启动会话。
      
    ```ts
-   async function startSession(captureSession: camera.CaptureSession, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {
+   async function startSession(session: camera.Session, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {
      try {
-       captureSession.addInput(cameraInput);
+       session.addInput(cameraInput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to addInput. error: ${JSON.stringify(err)}`);
      }
      try {
-       captureSession.addOutput(previewOutput);
+       session.addOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
      }
      try {
-       captureSession.addOutput(photoOutput);
+       session.addOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to add photoOutput. error: ${JSON.stringify(err)}`);
      }
      try {
-       await captureSession.commitConfig();
+       await session.commitConfig();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to commitConfig. error: ${JSON.stringify(err)}`);
      }
    
      try {
-       await captureSession.start();
+       await session.start();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to start. error: ${JSON.stringify(err)}`);
@@ -89,33 +89,33 @@
    }
    ```
 
-5. 会话控制。调用captureSession类中的stop()方法可以停止当前会话。调用removeOutput()和addOutput()方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
+5. 会话控制。调用Session类中的[stop](../reference/apis/js-apis-camera.md#stop-4)方法可以停止当前会话。调用[removeOutput](../reference/apis/js-apis-camera.md#removeoutput)和[addOutput](../reference/apis/js-apis-camera.md#addoutput)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
      
    ```ts
-   async function switchOutput(captureSession: camera.CaptureSession, videoOutput: camera.VideoOutput, photoOutput: camera.PhotoOutput): Promise<void> {
+   async function switchOutput(session: camera.Session, videoOutput: camera.VideoOutput, photoOutput: camera.PhotoOutput): Promise<void> {
      try {
-       await captureSession.stop();
+       await session.stop();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to stop. error: ${JSON.stringify(err)}`);
      }
    
      try {
-       captureSession.beginConfig();
+       session.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
      }
      // 从会话中移除拍照输出流
      try {
-       captureSession.removeOutput(photoOutput);
+       session.removeOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to remove photoOutput. error: ${JSON.stringify(err)}`);
      }
      // 向会话中添加视频输出流
      try {
-       captureSession.addOutput(videoOutput);
+       session.addOutput(videoOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);

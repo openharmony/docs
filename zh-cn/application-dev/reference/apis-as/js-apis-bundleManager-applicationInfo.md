@@ -22,7 +22,6 @@
 | process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                   |
 | permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限 |
 | codePath                   | string                                                       | 是   | 否   | 应用程序的安装目录。                                             |
-| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<Metadata>> | 是   | 否   | 应用程序的元信息。<strong>注：</strong> 从API version 10开始不再维护，建议使用metadataArray替代。 |
 | metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | 是   | 否   | 应用程序的元信息。 |
 | removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                         |
 | accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                      |
@@ -36,7 +35,6 @@
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（元服务）。                                |
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。        |
-| applicationReservedFlag<sup>11+</sup>       | number                      | 是   | 否   | 应用程序的保留信息标志，按位存储应用程序的各类信息，可以通过[ApplicationReservedFlag](js-apis-bundleManager.md#applicationreservedflag11)来获取相应的信息。        |
 
 ## ModuleMetadata<sup>10+</sup>
 

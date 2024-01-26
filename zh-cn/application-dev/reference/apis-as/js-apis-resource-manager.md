@@ -14,7 +14,7 @@ import resourceManager from '@ohos.resourceManager';
 
 ## 使用说明
 
-从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。此方式FA模型不适用，FA模型还需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源对象。 
+从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
@@ -28,131 +28,6 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
-## resourceManager.getResourceManager
-
-getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
-
-获取当前应用的资源管理对象，使用callback异步回调。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**模型约束**：此接口仅可在FA模型下使用。
-
-**参数：** 
-
-| 参数名      | 类型                                       | 必填   | 说明                            |
-| -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
-
-**示例：** 
-  ```js
-  resourceManager.getResourceManager((error, mgr) => {
-    if (error != null) {
-      console.error("error is " + error);
-      return;
-    }
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  });
-  ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
-
-## resourceManager.getResourceManager
-
-getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManager&gt;): void
-
-获取指定应用的资源管理对象，使用callback异步回调。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**模型约束**：此接口仅可在FA模型下使用。
-
-**参数：** 
-
-| 参数名        | 类型                                       | 必填   | 说明                            |
-| ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | 是    | 应用的Bundle名称。                 |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
-
-**示例：** 
-
-  ```js
-  resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
-  });
-  ```
-
-## resourceManager.getResourceManager
-
-getResourceManager(): Promise&lt;ResourceManager&gt;
-
-获取当前应用的资源管理对象，使用Promise异步回调。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**模型约束**：此接口仅可在FA模型下使用。
-
-**返回值：**
-
-| 类型                                       | 说明                |
-| ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
-
-**示例：** 
-  ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  }).catch((error: BusinessError) => {
-    console.error("error is " + error);
-  });
-  ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
-
-## resourceManager.getResourceManager
-
-getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
-
-获取指定应用的资源管理对象，使用Promise异步回调。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**模型约束**：此接口仅可在FA模型下使用。
-
-**参数：** 
-
-| 参数名        | 类型     | 必填   | 说明            |
-| ---------- | ------ | ---- | ------------- |
-| bundleName | string | 是    | 应用的Bundle名称。 |
-
-**返回值：**
-
-| 类型                                       | 说明                 |
-| ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
-
-**示例：** 
-  ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
-  }).catch((error: BusinessError) => {
-  });
-  ```
 
 ## resourceManager.getSystemResourceManager<sup>10+</sup>
 
@@ -1048,7 +923,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1493,7 +1368,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, error: BusinessError, value: string) => {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1602,7 +1477,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, error: BusinessError, value: string) => {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1967,7 +1842,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2011,7 +1886,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2155,7 +2030,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2207,7 +2082,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2359,7 +2234,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2403,7 +2278,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -3293,7 +3168,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, null, 1);
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3359,7 +3234,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, null, 1);
+    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3417,7 +3292,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', null, 1);
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3881,7 +3756,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -3980,7 +3855,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColor(resource, (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4079,7 +3954,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4209,7 +4084,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4345,7 +4220,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
   import { BusinessError } from '@ohos.base';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
-    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4475,9 +4350,10 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
-    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
       if (error != null) {
         console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4524,6 +4400,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4603,7 +4480,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError, value: string) => {
+    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
       if (error != null) {
         console.error("error is " + error);
       }
@@ -4697,8 +4574,10 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 **示例：** 
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   try {
-    this.context.resourceManager.getConfiguration((error: BusinessError, value: string) => {
+    this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
       if (error != null) {
         console.error("getConfiguration callback error is " + error);
       } else {
@@ -4728,6 +4607,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -4782,8 +4662,10 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 **示例：** 
   ```ts
+  import resourceManager from '@ohos.resourceManager';
+
   try {
-    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: string) => {
+    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
       if (error != null) {
         console.error("getDeviceCapability callback error is " + error);
       } else {
@@ -4813,6 +4695,7 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 **示例：** 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import resourceManager from '@ohos.resourceManager';
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -5099,541 +4982,4 @@ getSymbolByName(resName: string) : number;
     let message = (error as BusinessError).message;
     console.error(`getSymbolByName failed, error code: ${code}, message: ${message}.`);
   }
-  ```
-
-### getString<sup>(deprecated)</sup>
-
-getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
-
-用户获取指定资源ID对应的字符串，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                          | 必填   | 说明              |
-| -------- | --------------------------- | ---- | --------------- |
-| resId    | number                      | 是    | 资源ID值。           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
-
-**示例：**
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let str = value;
-          }
-      });
-  });
-  ```
-
-
-### getString<sup>(deprecated)</sup>
-
-getString(resId: number): Promise&lt;string&gt;
-
-用户获取指定资源ID对应的字符串，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值。 |
-
-**返回值：**
-
-| 类型                    | 说明          |
-| --------------------- | ----------- |
-| Promise&lt;string&gt; | 资源ID值对应的字符串。 |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id).then((value: string) => {
-          let str = value;
-      }).catch((error: BusinessError) => {
-          console.error("getstring promise error is " + error);
-      });
-  });
-  ```
-
-
-### getStringArray<sup>(deprecated)</sup>
-
-getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
-
-用户获取指定资源ID对应的字符串数组，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                                       | 必填   | 说明                |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| resId    | number                                   | 是    | 资源ID值。             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let strArray = value;
-          }
-      });
-  });
-  ```
-
-
-### getStringArray<sup>(deprecated)</sup>
-
-getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
-
-用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值。 |
-
-**返回值：**
-
-| 类型                                 | 说明            |
-| ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-       mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
-          let strArray = value;
-      }).catch((error: BusinessError) => {
-          console.error("getStringArray promise error is " + error);
-      });
-  });
-  ```
-
-
-### getMedia<sup>(deprecated)</sup>
-
-getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
-
-用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                              | 必填   | 说明                 |
-| -------- | ------------------------------- | ---- | ------------------ |
-| resId    | number                          | 是    | 资源ID值。              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let media = value;
-          }
-      });
-  });
-  ```
-
-### getMedia<sup>(deprecated)</sup>
-
-getMedia(resId: number): Promise&lt;Uint8Array&gt;
-
-用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-
-**返回值：**
-
-| 类型                        | 说明             |
-| ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
-          let media = value;
-      }).catch((error: BusinessError) => {
-          console.error("getMedia promise error is " + error);
-      });
-  });
-  ```
-
-
-### getMediaBase64<sup>(deprecated)</sup>
-
-getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
-
-用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                          | 必填   | 说明                       |
-| -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | 是    | 资源ID值                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, ((error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let media = value;
-          }
-      });
-  });
-  ```
-
-
-### getMediaBase64<sup>(deprecated)</sup>
-
-getMediaBase64(resId: number): Promise&lt;string&gt;
-
-用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-
-**返回值：**
-
-| 类型                    | 说明                   |
-| --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
-          let media = value;
-      }).catch((error: BusinessError) => {
-          console.error("getMediaBase64 promise error is " + error);
-      });
-  });
-  ```
-
-
-### getPluralString<sup>(deprecated)</sup>
-
-getPluralString(resId: number, num: number): Promise&lt;string&gt;
-
-根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise异步回调。
-
->**说明**
->
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| num   | number | 是    | 数量值   |
-
-**返回值：**
-
-| 类型                    | 说明                        |
-| --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
-          let str = value;
-      }).catch((error: BusinessError) => {
-          console.error("getPluralString promise error is " + error);
-      });
-  });
-  ```
-
-
-### getPluralString<sup>(deprecated)</sup>
-
-getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
-
-根据指定数量获取指定ID字符串表示的单复数字符串，使用callback异步回调。
-
->**说明**
->
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                          | 必填   | 说明                              |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | 是    | 资源ID值                           |
-| num      | number                      | 是    | 数量值                             |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let str = value;
-          }
-      });
-  });
-  ```
-
-
-### getRawFile<sup>(deprecated)</sup>
-
-getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
-
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                              | 必填   | 说明                      |
-| -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件路径             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt", (error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let rawFile = value;
-          }
-      });
-  });
-  ```
-
-
-### getRawFile<sup>(deprecated)</sup>
-
-getRawFile(path: string): Promise&lt;Uint8Array&gt;
-
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明          |
-| ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
-
-**返回值：**
-
-| 类型                        | 说明          |
-| ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容 |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt").then((value: Uint8Array) => {
-          let rawFile = value;
-      }).catch((error: BusinessError) => {
-          console.error("getRawFile promise error is " + error);
-      });
-  });
-  ```
-
-
-### getRawFileDescriptor<sup>(deprecated)</sup>
-
-getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
-
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                                       | 必填   | 说明                               |
-| -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt", (error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          } else {
-              let fd = value.fd;
-              let offset = value.offset;
-              let length = value.length;
-          }
-      });
-  });
-  ```
-
-### getRawFileDescriptor<sup>(deprecated)</sup>
-
-getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
-
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明          |
-| ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
-
-**返回值：**
-
-| 类型                                       | 说明                  |
-| ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt").then((value: resourceManager.RawFileDescriptor) => {
-          let fd = value.fd;
-          let offset = value.offset;
-          let length = value.length;
-      }).catch((error: BusinessError) => {
-          console.error("getRawFileDescriptor promise error is " + error);
-      });
-  });
-  ```
-
-### closeRawFileDescriptor<sup>(deprecated)</sup>
-
-closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
-
-从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名      | 类型                        | 必填   | 说明          |
-| -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt", (error: BusinessError, value: string) => {
-          if (error != null) {
-              console.error("error is " + error);
-          }
-      });
-  });
-  ```
-
-### closeRawFileDescriptor<sup>(deprecated)</sup>
-
-closeRawFileDescriptor(path: string): Promise&lt;void&gt;
-
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
-
-从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9-1)代替。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明          |
-| ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
-
-**返回值：**
-
-| 类型                  | 说明   |
-| ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值 |
-
-**示例：** 
-  ```ts
-  resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt");
-  });
   ```

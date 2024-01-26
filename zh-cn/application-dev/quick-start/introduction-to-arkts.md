@@ -110,7 +110,7 @@ if (isDone) {
 
 `string`代表字符序列；可以使用转义字符来表示字符。
 
-字符串字面量由单引号（'）或双引号（'）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
+字符串字面量由单引号（'）或双引号（"）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
 
 ```typescript
 let s1 = 'Hello, world!\n';
@@ -587,7 +587,7 @@ function hello(name?: string) {
   if (name == undefined) {
     console.log('Hello!');
   } else {
-    console.log('Hello, ${name}!');
+    console.log(`Hello, ${name}!`);
   }
 }
 ```

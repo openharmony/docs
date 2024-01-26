@@ -18,14 +18,13 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 
 意图调用执行模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UI_ABILITY_FOREGROUND | 0 | 将UIAbility在前台显示。 |
 | UI_ABILITY_BACKGROUND | 1 | 将UIAbility在后台拉起。 |
 | UI_EXTENSION_ABILITY | 2 | 拉起UIExtensionAbility。 |
-| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br/>**系统接口：** 该接口为系统接口。|
 
 ## ExecuteResult
 

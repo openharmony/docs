@@ -11,12 +11,16 @@
 可以包含单个子组件。
 ## 接口
 
-GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
+GridCol(option?: GridColOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| option   | [GridColOptions](#gridcoloptions对象说明) | 否   | 栅格布局子组件参数。 |
 
+## GridColOptions对象说明
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件占用栅格容器组件的列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>默认值：1。 |
@@ -35,6 +39,8 @@ GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColC
 
 ## 属性
 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。<br/>默认值：1。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -49,12 +55,12 @@ GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColC
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | 否    | 在最小宽度类型设备上，栅格子组件占据的栅格数量单位。    |
-| sm  | number | 否    | 在小宽度类型设备上，栅格子组件占据的栅格数量单位。      |
-| md  | number | 否    | 在中等宽度类型设备上，栅格子组件占据的栅格数量单位。    |
-| lg  | number | 否    | 在大宽度类型设备上，栅格子组件占据的栅格数量单位。      |
-| xl  | number | 否    | 在特大宽度类型设备上，栅格子组件占据的栅格数量单位。    |
-| xxl | number | 否    | 在超大宽度类型设备上，栅格子组件占据的栅格数量单位。    |
+| xs  | number | 否    | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。    |
+| sm  | number | 否    | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。      |
+| md  | number | 否    | 在栅格大小为md的设备上，栅格容器组件的栅格列数。    |
+| lg  | number | 否    | 在栅格大小为lg的设备上，栅格容器组件的栅格列数。      |
+| xl  | number | 否    | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。    |
+| xxl | number | 否    | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
 
 ## 示例
 请参考栅格容器示例代码([GridRow](ts-container-gridrow.md#示例))

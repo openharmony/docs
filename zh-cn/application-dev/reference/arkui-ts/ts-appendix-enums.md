@@ -631,7 +631,7 @@ Nullable\<T> {
 ## WordBreak<sup>11+</sup>
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
-| NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行,而Non-CJK文本（如英文等）只能在空白符处断行。|
+| NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
@@ -667,13 +667,13 @@ Nullable\<T> {
 | ----        |  ----   |   ---- | --------------------------  |
 | grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
 
-## BackgroundBrightnessOptions<sup>11+<sup>
-背景光源参数。
- | 名称        |   类型         |   必填 |  说明                        |
+## BackgroundEffectOptions<sup>11+<sup>
+背景效果参数。
+| 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
 | saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
-| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       | 
+| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
@@ -706,7 +706,7 @@ Nullable\<T> {
 
 ## TextSpanType<sup>11+</sup>
 
-Span类型信息。
+[Span](ts-basic-components-span.md)类型信息。
 
 | 名称 | 说明 |
 | -------- | -------- |

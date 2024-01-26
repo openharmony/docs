@@ -65,7 +65,6 @@ struct NestedScroll {
           Text('当前内嵌前滚动模式 scrollForward ---'+`${this.NestedScrollModeF}`).fontSize(10)
           Text('当前内嵌后滚动模式  scrollBackward ---'+`${this.NestedScrollModeB}`).fontSize(10)
 
-          // -----------------------------------------------------------------------------------
           Text("Scroll Area")
             .width("100%")
             .height("10%")

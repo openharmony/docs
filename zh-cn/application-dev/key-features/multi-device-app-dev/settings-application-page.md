@@ -43,6 +43,8 @@ Navigation组件由Navbar和Content两部分区域组成，Navigation组件支�
 设置主页的核心代码如下所示。Navigation组件默认处于Auto模式，其样式会根据应用窗口尺寸在单栏和双栏之间自动切换。
 
 ```ts
+import { SettingList } from '@ohos/settingItems';
+
 @Entry
 @Component
 struct Index { 
@@ -60,11 +62,11 @@ struct Index {
 ```
 ```ts
 //核心代码 SettingList.ets
-import { MainItem } from '../components/MainItem'
-import { ItemGroup } from '../components/ItemGroup'
-import { SearchBox } from '../components/SearchBox'
-import { MoreConnectionsItem } from '../moreconnections/MoreConnectionsItem'
-import { WlanSettingItem } from '../wlan/WlanSettingItem'
+import { MainItem } from '../components/MainItem';
+import { ItemGroup } from '../components/ItemGroup';
+import { SearchBox } from '../components/SearchBox';
+import { MoreConnectionsItem } from '../moreconnections/MoreConnectionsItem';
+import { WlanSettingItem } from '../wlan/WlanSettingItem';
         
 class  ItemObj {
   title?: Resource
@@ -237,6 +239,13 @@ NavRouter组件默认提供了点击响应处理，不需要开发者自定义�
 结合设置应用的具体场景来看，上图1号小红框是NavRouter的第一个孩子节点，2号红框是NavRouter的第二个孩子节点，相应的核心代码实现如下。
 
 ```ts
+import { MainItem } from '../components/MainItem';
+import { WlanMoreSettingItem } from '../components/WlanMoreSettingItem';
+import { SubItemToggle } from '../components/SubItemToggle';
+import { SubItemWifi } from '../components/SubItemWifi';
+import { ItemDescription } from '../components/ItemDescription';
+import { ItemGroup } from '../components/ItemGroup';
+
 class  MainItemObj {
   title?: Resource
   tag?: string
@@ -267,6 +276,97 @@ export struct WlanSettingItem {
     }
   }
 }
+@Component
+struct WlanSetting {
+  @Builder CustomDivider() {
+    Divider()
+      .strokeWidth('1px')
+      .color($r('sys.color.ohos_id_color_list_separator'))
+      .margin({left: 12, right: 8})
+  }
+
+  build() {
+    Column() {
+      Column() {
+        ItemGroup() {
+          SubItemToggle({title: $r('app.string.wifiTab'), isOn: true})
+        }
+
+        Row().height(16)
+
+        ItemGroup() {
+          WlanMoreSettingItem()
+        }
+      }
+      .margin({bottom: 19.5})
+      .flexShrink(0)
+
+      Scroll() {
+        Column() {
+          ItemDescription({description: $r('app.string.wifiTipConnectedWLAN')})
+            .padding({
+              left: 12,
+              right: 12,
+              bottom: 9.5
+            })
+
+          ItemGroup() {
+            SubItemWifi({
+              title: 'UX',
+              subTitle: $r('app.string.wifiSummaryConnected'),
+              isConnected: true,
+              icon: $r('app.media.ic_wifi_signal_4_dark')
+            })
+          }
+
+          Column() {
+            ItemDescription({description: $r('app.string.wifiTipValidWLAN')})
+              .margin({
+                left: 12,
+                right: 12,
+                top: 19.5,
+                bottom: 9.5
+              })
+
+            ItemGroup() {
+              SubItemWifi({
+                title: 'Huwe-yee',
+                subTitle: $r('app.string.wifiSummaryEncrypted'),
+                isConnected: false,
+                icon: $r('app.media.ic_wifi_lock_signal_4_dark')
+              })
+
+              this.CustomDivider()
+
+              SubItemWifi({
+                title: 'UX-5G',
+                subTitle: $r('app.string.wifiSummaryOpen'),
+                isConnected: false,
+                icon: $r('app.media.ic_wifi_signal_4_dark')
+              })
+
+              this.CustomDivider()
+
+              SubItemWifi({
+                title: 'E1-AP',
+                subTitle: $r('app.string.wifiSummarySaveOpen'),
+                isConnected: false,
+                icon: $r('app.media.ic_wifi_signal_4_dark')
+              })
+            }
+          }
+        }
+      }
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.Off)
+      .width('100%')
+      .flexShrink(1)
+    }
+    .width('100%')
+    .height('100%')
+    .padding({left: 12, right: 12})
+  }
+}
 ```
 
 ### 显示刷新
@@ -295,6 +395,12 @@ NavDestination组件用于实际刷新Navigation组件Content区域的显示。�
 结合具体场景，红框3是一个NavRouter组件，点击后可以控制Navigation组件中的Content区域刷新为红框4对应的NavDestination组件吗，其核心代码实现如下所示。
 
 ```ts
+
+import { SubItemArrow } from '../components/SubItemArrow';//组件请参考相关示例
+import { SubItemToggle } from '../components/SubItemToggle';
+import { ItemGroup } from '../components/ItemGroup';
+import { ItemDescription } from '../components/ItemDescription';
+
 class SubItemArrowObj{
   title?: Resource
 }
@@ -315,6 +421,60 @@ export struct WlanMoreSettingItem {
       .title($r('app.string.moreWlanSettings'))
       .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
     }
+  }
+}
+
+@Component
+export struct WlanMoreSetting {
+  build() {
+    Scroll() {
+      Column() {
+        ItemGroup() {
+          SubItemArrow({
+            title: $r('app.string.wlanPlus'),
+            tag: $r('app.string.enabled')
+          })
+        }
+        ItemDescription({description: $r('app.string.wlanPlusTip')})
+          .margin({
+            top: 8,
+            bottom: 24,
+            left: 12,
+            right: 12
+          })
+
+        ItemGroup() {
+          SubItemArrow({ title: $r('app.string.wlanDirect') })
+        }
+
+        Blank().height(12)
+
+        ItemGroup() {
+          SubItemToggle({title: $r('app.string.wlanSecurityCheck')})
+        }
+
+        ItemDescription({description: $r('app.string.wlanSecurityCheckTip')})
+          .margin({
+            top: 8,
+            bottom: 24,
+            left: 12,
+            right: 12
+          })
+
+        ItemGroup() {
+          SubItemArrow({title: $r('app.string.savedWlan')})
+          Divider()
+            .strokeWidth('1px')
+            .color($r('sys.color.ohos_id_color_list_separator'))
+            .margin({left: 12, right: 8})
+          SubItemArrow({title: $r('app.string.installCertificates')})
+        }
+      }
+      .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+      .padding({left: 12, right: 12})
+    }
+    .scrollBar(BarState.Off)
+    .width('100%')
   }
 }
 ```

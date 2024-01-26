@@ -17,10 +17,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [topLeftX](#topleftx) | 左上角的X坐标。 | 
-| [topLeftY](#toplefty) | 左上角的Y坐标。 | 
-| [width](#width) | 矩形宽度，单位为像素。 | 
-| [height](#height) | 矩形高度，单位为像素。 | 
+| int32_t [topLeftX](#topleftx) | 左上角的X坐标。  | 
+| int32_t [topLeftY](#toplefty) | 左上角的Y坐标。  | 
+| int32_t [width](#width) | 矩形宽度，单位为像素。  | 
+| int32_t [height](#height) | 矩形高度，单位为像素。  | 
 
 
 ## 结构体成员变量说明
@@ -31,9 +31,7 @@
 ```
 int32_t Camera_Rect::height
 ```
-
 **描述**
-
 矩形高度，单位为像素。
 
 
@@ -42,9 +40,7 @@ int32_t Camera_Rect::height
 ```
 int32_t Camera_Rect::topLeftX
 ```
-
 **描述**
-
 左上角的X坐标。
 
 
@@ -53,9 +49,7 @@ int32_t Camera_Rect::topLeftX
 ```
 int32_t Camera_Rect::topLeftY
 ```
-
 **描述**
-
 左上角的Y坐标。
 
 
@@ -64,7 +58,5 @@ int32_t Camera_Rect::topLeftY
 ```
 int32_t Camera_Rect::width
 ```
-
 **描述**
-
 矩形宽度，单位为像素。
