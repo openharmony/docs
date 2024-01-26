@@ -42,6 +42,7 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    import notificationSubscribe from '@ohos.notificationSubscribe';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. Create a **subscriber** object.
@@ -50,23 +51,23 @@ The major APIs for notification subscription are described as follows. For detai
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
-       console.info(`onConsume callback. req.id: ${req.id}`);
+       logger.info(`onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
        let req = data.request;
-       console.info(`onCancel callback. req.id: ${req.id}`);
+       logger.info(`onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {
-       console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
+       logger.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
      },
      onConnect: () => {
-       console.info(`onConnect callback.}`);
+       logger.info(`onConnect callback.}`);
      },
      onDisconnect: () => {
-       console.info(`onDisconnect callback.}`);
+       logger.info(`onDisconnect callback.}`);
      },
      onDestroy: () => {
-       console.info(`onDestroy callback.}`);
+       logger.info(`onDestroy callback.}`);
      },
    };
    ```
@@ -76,7 +77,7 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    notificationSubscribe.subscribe(subscriber, (err:Base.BusinessError) => { // This API uses an asynchronous callback to return the result.
      if (err) {
-       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
    });

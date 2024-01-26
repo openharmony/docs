@@ -8,18 +8,16 @@ You can use menu APIs to display a context menu – a vertical list of items dis
 
 Use the **bindMenu** API to implement a menu. **bindMenu** responds to the click event of the bound component. When the bound component is clicked, the menu is displayed.
 
-
-
 ```ts
 Button('click for Menu')
   .bindMenu([
-  {
-    value: 'Menu1',
-    action: () => {
-      console.info('handle Menu1 select')
+    {
+      value: 'Menu1',
+      action: () => {
+        console.info('handle Menu1 select')
+      }
     }
-  }       
-])
+  ])
 ```
 
 
@@ -35,56 +33,68 @@ If the default style does not meet requirements, you can use [\@Builder](../quic
 
 
 ```ts
-class Tmp{
+class Tmp {
   iconStr2: ResourceStr = $r("app.media.view_list_filled")
-  set(val:Resource){
+
+  set(val: Resource) {
     this.iconStr2 = val
   }
 }
-@State select: boolean = true
-private iconStr: ResourceStr = $r("app.media.view_list_filled")
-private iconStr2: ResourceStr = $r("app.media.view_list_filled")
-@Builder
-SubMenu() {
-  Menu() {
-    MenuItem({ content: "Copy", labelInfo: "Ctrl+C" })
-    MenuItem({ content: "Paste", labelInfo: "Ctrl+V" })
-  }
-}
 
-@Builder
-MyMenu(){
-  Menu() {
-    MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option" })
-    MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option" }).enabled(false)
-    MenuItem({
-      startIcon: this.iconStr,
-      content: "Menu option",
-      endIcon: $r("app.media.arrow_right_filled"),
-      // When the builder parameter is set, it indicates that a submenu is bound to a menu item. When the user hovers the cursor over the menu item, the submenu is displayed.
-      builder: this.SubMenu
-    })
-    MenuItemGroup ({ header: 'Subtitle' }) {
-      MenuItem ({ content: "Menu option" })
-        .selectIcon(true)
-        .selected(this.select)
-        .onChange((selected) => {
-           console.info("menuItem select" + selected);
-            let Str:Tmp = new Tmp()
-            Str.set($r("app.media.icon"))
-        })
+@Entry
+@Component
+struct menuExample {
+  @State select: boolean = true
+  private iconStr: ResourceStr = $r("app.media.view_list_filled")
+  private iconStr2: ResourceStr = $r("app.media.view_list_filled")
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "Copy", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "Paste", labelInfo: "Ctrl+V" })
+    }
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option" }).enabled(false)
       MenuItem({
-        startIcon: $r("app.media.view_list_filled"),
+        startIcon: this.iconStr,
         content: "Menu option",
         endIcon: $r("app.media.arrow_right_filled"),
+        // When the builder parameter is set, it indicates that a submenu is bound to a menu item. When the user hovers the cursor over the menu item, the submenu is displayed.
         builder: this.SubMenu
       })
+      MenuItemGroup ({ header: 'Subtitle' }) {
+        MenuItem ({ content: "Menu option" })
+          .selectIcon(true)
+          .selected(this.select)
+          .onChange((selected) => {
+            console.info("menuItem select" + selected);
+            let Str: Tmp = new Tmp()
+            Str.set($r("app.media.icon"))
+          })
+        MenuItem({
+          startIcon: $r("app.media.view_list_filled"),
+          content: "Menu option",
+          endIcon: $r("app.media.arrow_right_filled"),
+          builder: this.SubMenu
+        })
+      }
+
+      MenuItem({
+        startIcon: this.iconStr2,
+        content: "Menu option",
+        endIcon: $r("app.media.arrow_right_filled")
+      })
     }
-    MenuItem({
-      startIcon: this.iconStr2,
-      content: "Menu option",
-      endIcon: $r("app.media.arrow_right_filled")
-    })
+  }
+
+  build() {
+    // ...
   }
 }
 ```

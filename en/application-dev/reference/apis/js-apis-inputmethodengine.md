@@ -10,7 +10,6 @@ The **inputMethodEngine** module is oriented to input method applications (inclu
 
 ```ts
 import inputMethodEngine from '@ohos.inputMethodEngine';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## Constants
@@ -177,7 +176,7 @@ try {
       let keyboardController = kbController;
       let textInputClient = textClient;
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to inputStart: ${JSON.stringify(err)}`);
 }
 ```
@@ -205,7 +204,7 @@ try {
     .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
       console.log('delete inputStart notification.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to inputStart: ${JSON.stringify(err)}`);
 }
 ```
@@ -235,7 +234,7 @@ try {
   inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
     console.log('inputMethodEngine keyboardHide.');
 });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to InputMethodEngine: ${JSON.stringify(err)}`);
 }
 ```
@@ -290,7 +289,7 @@ try {
       let keyboardController = kbController;
       let inputClient = client;
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
@@ -338,7 +337,7 @@ try {
   inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
     console.log('inputMethodAbility inputStop');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to inputStop: ${JSON.stringify(err)}`);
 }
 ```
@@ -365,7 +364,7 @@ try {
   inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
     console.log('inputMethodAbility delete inputStop notification.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to inputStop: ${JSON.stringify(err)}`);
 }
 ```
@@ -392,7 +391,7 @@ try {
   inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
     console.log('inputMethodAbility setCallingWindow');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -419,7 +418,7 @@ try {
   inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
     console.log('inputMethodAbility delete setCallingWindow notification.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -449,7 +448,7 @@ try {
   inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
     console.log('InputMethodAbility keyboardHide.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to keyboard: ${JSON.stringify(err)}`);
 }
 ```
@@ -479,7 +478,7 @@ try {
   inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
     console.log('InputMethodAbility delete keyboardHide notification.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to keyboard: ${JSON.stringify(err)}`);
 }
 ```
@@ -506,7 +505,7 @@ try {
   inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
     console.log('InputMethodAbility setSubtype.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to setSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -533,7 +532,7 @@ try {
   inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
     console.log('InputMethodAbility delete setSubtype notification.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to setSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -563,6 +562,8 @@ Creates an input method panel. This API uses an asynchronous callback to return 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -576,7 +577,7 @@ try {
       }
       console.log('Succeed in creating panel.');
     })
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
 }
 ```
@@ -610,6 +611,8 @@ Creates an input method panel. This API uses a promise to return the result.<br>
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -640,6 +643,8 @@ Destroys the specified input method panel. This API uses an asynchronous callbac
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -655,7 +660,7 @@ try {
       inputPanel = panel;
       console.log('Succeed in creating panel.');
     })
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 try {
@@ -668,7 +673,7 @@ try {
       console.log('Succeed in destroying panel.');
     })
   }
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -695,6 +700,8 @@ Destroys the specified input method panel. This API uses a promise to return the
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -710,7 +717,7 @@ try {
       inputPanel = panel;
       console.log('Succeed in creating panel.');
     })
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
@@ -722,7 +729,7 @@ try {
       console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
     });
   }
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -760,7 +767,7 @@ try {
     console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
     return true;
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to KeyboardDelegate: ${JSON.stringify(err)}`);
 }
 ```
@@ -792,7 +799,7 @@ try {
     console.log('delete keyDown notification.');
     return true;
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to keyevent: ${JSON.stringify(err)}`);
 }
 ```
@@ -824,7 +831,7 @@ try {
     console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
     return true;
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to inputMethodEngine: ${JSON.stringify(err)}`);
 }
 ```
@@ -855,7 +862,7 @@ try {
     return true;
   });
   inputMethodEngine.getKeyboardDelegate().off('keyEvent');
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to keyEvent: ${JSON.stringify(err)}`);
 }
 ```
@@ -884,7 +891,7 @@ try {
     console.log('inputMethodEngine cursorContextChange y:' + y);
     console.log('inputMethodEngine cursorContextChange height:' + height);
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to cursorContextChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -912,7 +919,7 @@ try {
   inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
     console.log('delete cursorContextChange notification.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to cursorContextChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -942,7 +949,7 @@ try {
       console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
       console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
     });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to selectionChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -970,7 +977,7 @@ try {
     .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
       console.log('delete selectionChange notification.');
     });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to selectionChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -998,7 +1005,7 @@ try {
   inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
     console.log('inputMethodEngine textChange. text:' + text);
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to textChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -1025,7 +1032,7 @@ try {
   inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
     console.log('delete textChange notification. text:' + text);
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to textChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -1052,7 +1059,7 @@ try {
   inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
     console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to textChange: ${JSON.stringify(err)}`);
 }
 ```
@@ -1100,6 +1107,8 @@ Loads content from a page to this input method panel. This API uses an asynchron
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
     if (err) {
@@ -1108,7 +1117,7 @@ try {
     }
     console.log('Succeeded in setting the content.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1136,13 +1145,15 @@ Loads content from a page to this input method panel. This API uses a promise to
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1166,6 +1177,8 @@ Loads content from a page linked to LocalStorage to this input method panel. Thi
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
@@ -1176,7 +1189,7 @@ try {
     }
     console.log('Succeeded in setting the content.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1205,6 +1218,8 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
@@ -1213,7 +1228,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1241,6 +1256,8 @@ Resizes this input method panel. This API uses an asynchronous callback to retur
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.resize(500, 1000, (err: BusinessError) => {
     if (err) {
@@ -1249,7 +1266,7 @@ try {
     }
     console.log('Succeeded in changing the panel size.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1282,13 +1299,15 @@ Resizes this input method panel. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.resize(500, 1000).then(() => {
     console.log('Succeeded in changing the panel size.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1312,6 +1331,8 @@ Moves this input method panel to the specified position. This API uses an asynch
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.moveTo(300, 300, (err: BusinessError) =>{
     if (err) {
@@ -1320,7 +1341,7 @@ try {
     }
     console.log('Succeeded in moving the panel.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
     console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1349,13 +1370,15 @@ Moves this input method panel to the specified position. This API uses a promise
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.moveTo(300, 300).then(() => {
     console.log('Succeeded in moving the panel.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to move panel: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1364,7 +1387,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-Shows this input method panel. This API uses an asynchronous callback to return the result.
+Shows this input method panel. This API uses an asynchronous callback to return the result. It can be called when the input method is bound to the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1377,6 +1400,8 @@ Shows this input method panel. This API uses an asynchronous callback to return 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.show((err: BusinessError) => {
   if (err) {
     console.error(`Failed to show panel: ${JSON.stringify(err)}`);
@@ -1390,7 +1415,7 @@ panel.show((err: BusinessError) => {
 
 show(): Promise\<void>
 
-Shows this input method panel. This API uses a promise to return the result.
+Shows this input method panel. This API uses a promise to return the result. It can be called when the input method is bound to the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1403,6 +1428,8 @@ Shows this input method panel. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
 }).catch((err: BusinessError) => {
@@ -1427,6 +1454,8 @@ Hides this panel. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
@@ -1453,6 +1482,8 @@ Hides this panel. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
 }).catch((err: BusinessError) => {
@@ -1482,7 +1513,7 @@ try {
   panel.on('show', () => {
     console.log('Panel is showing.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to show: ${JSON.stringify(err)}`);
 }
 ```
@@ -1509,7 +1540,7 @@ try {
   panel.on('hide', () => {
     console.log('Panel is hiding.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
 }
 ```
@@ -1534,7 +1565,7 @@ Disables listening for the show event of this panel. This API uses an asynchrono
 ```ts
 try {
   panel.off('show');
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to show: ${JSON.stringify(err)}`);
 }
 ```
@@ -1559,7 +1590,7 @@ Disables listening for the hide event of this panel. This API uses an asynchrono
 ```ts
 try {
   panel.off('hide');
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
 }
 ```
@@ -1584,7 +1615,7 @@ Changes the state type of this input method panel. This API only works for [SOFT
 try {
   let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
   panel.changeFlag(panelFlag);
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to panelFlag: ${JSON.stringify(err)}`);
 }
 ```
@@ -1618,6 +1649,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
@@ -1652,6 +1685,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
@@ -1680,6 +1715,8 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
@@ -1710,6 +1747,8 @@ Hides the keyboard. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
@@ -1794,6 +1833,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
  **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 try {
   inputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
@@ -1807,7 +1848,7 @@ try {
       console.error('Failed to sendKeyFunction.');
     }
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
@@ -1843,6 +1884,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 try {
   inputClient.sendKeyFunction(action).then((result: boolean) => {
@@ -1854,7 +1897,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
@@ -1886,6 +1929,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getForward(length, (err: BusinessError, text: string) => {
@@ -1895,7 +1940,7 @@ try {
     }
     console.log('Succeeded in getting forward, text: ' + text);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -1932,6 +1977,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getForward(length).then((text: string) => {
@@ -1939,7 +1986,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -1980,7 +2027,7 @@ let length = 1;
 try {
   let text: string = inputClient.getForwardSync(length);
   console.log(`Succeeded in getting forward, text: ${text}`);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getForwardSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2012,6 +2059,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getBackward(length, (err: BusinessError, text: string) => {
@@ -2021,7 +2070,7 @@ try {
     }
     console.log('Succeeded in getting backward, text: ' + text);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
@@ -2058,6 +2107,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getBackward(length).then((text: string) => {
@@ -2065,7 +2116,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
@@ -2106,7 +2157,7 @@ let length = 1;
 try {
   let text: string = inputClient.getBackwardSync(length);
   console.log(`Succeeded in getting backward, text: ${text}`);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getBackwardSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2138,6 +2189,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
@@ -2151,7 +2204,7 @@ try {
       console.error(`Failed to deleteForward.`);
     }
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -2188,6 +2241,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForward(length).then((result: boolean) => {
@@ -2199,7 +2254,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -2234,7 +2289,7 @@ let length = 1;
 try {
   inputClient.deleteForwardSync(length);
   console.log('Succeeded in deleting forward.');
-} catch (err: BusinessError) {
+} catch (err) {
   console.error('deleteForwardSync err: ' + JSON.stringify(err));
 }
 ```
@@ -2266,6 +2321,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
@@ -2279,7 +2336,7 @@ try {
       console.error(`Failed to deleteBackward.`);
     }
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error('deleteBackward err: ' + JSON.stringify(err));
 }
 ```
@@ -2316,6 +2373,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 inputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
@@ -2358,7 +2417,7 @@ let length = 1;
 try {
   inputClient.deleteBackwardSync(length);
   console.log('Succeeded in deleting backward.');
-} catch (err: BusinessError) {
+} catch (err) {
   console.error('deleteBackwardSync err: ' + JSON.stringify(err));
 }
 ```
@@ -2390,6 +2449,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
@@ -2435,6 +2496,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.insertText('test').then((result: boolean) => {
     if (result) {
@@ -2445,7 +2508,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 }
 ```
@@ -2479,7 +2542,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
   inputClient.insertTextSync('test');
   console.log('Succeeded in inserting text.');
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to insertTextSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2509,6 +2572,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
@@ -2544,6 +2609,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
     console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
@@ -2551,7 +2618,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -2584,7 +2651,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
   console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2615,6 +2682,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
     if (err) {
@@ -2623,7 +2692,7 @@ try {
     }
     console.log('Succeeded in moving cursor.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2659,13 +2728,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
     console.log('Succeeded in moving cursor.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2698,7 +2769,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
   inputClient.moveCursorSync(inputMethodEngine.Direction.CURSOR_UP);
   console.log('Succeeded in moving cursor.');
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to moveCursorSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2730,6 +2801,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range, (err: BusinessError) => {
@@ -2739,7 +2812,7 @@ try {
     }
     console.log('Succeeded in selecting by range.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
@@ -2776,6 +2849,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range).then(() => {
@@ -2783,7 +2858,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
@@ -2818,7 +2893,7 @@ try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRangeSync(range);
   console.log('Succeeded in selecting by range.');
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to selectByRangeSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2850,6 +2925,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement, (err: BusinessError) => {
@@ -2859,7 +2936,7 @@ try {
     }
     console.log('Succeeded in selecting by movement.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2896,6 +2973,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement).then(() => {
@@ -2903,7 +2982,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2938,7 +3017,7 @@ try {
   let movement: inputMethodEngine.Movement = { direction: 1 };  
   inputClient.selectByMovementSync(movement);
   console.log('Succeeded in selecting by movement.');
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2969,6 +3048,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
     console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
@@ -3004,6 +3085,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
 }).catch((err: BusinessError) => {
@@ -3040,7 +3123,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try{
   let index: number = inputClient.getTextIndexAtCursorSync();
   console.log(`Succeeded in getTextIndexAtCursorSync, index: ${index}`);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getTextIndexAtCursorSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -3076,6 +3159,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
     if (err) {
@@ -3084,7 +3169,7 @@ try {
     }
     console.log('Succeeded in sending extend action.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
 }
 ```
@@ -3125,27 +3210,29 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
     console.log('Succeeded in sending extend action.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
 }
 ```
 
 ## EditorAttribute
 
-Attribute of the edit box.
+Describes the attribute of the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name        | Type| Readable| Writable| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| enterKeyType | number   | Yes  | No  | Function attribute of the edit box.|
-| inputPattern | number   | Yes  | No  | Text attribute of the edit box.|
+| enterKeyType | number   | Yes  | No  | Function of the edit box.|
+| inputPattern | number   | Yes  | No  | Text of the edit box.|
 
 ## KeyEvent
 
@@ -3221,6 +3308,8 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getForward(length, (err: BusinessError, text: string) => {
   if (err) {
@@ -3258,6 +3347,8 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getForward(length).then((text: string) => {
   console.log('Succeeded in getting forward, text: ' + text);
@@ -3288,6 +3379,8 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getBackward(length, (err: BusinessError, text: string) => {
   if (err) {
@@ -3325,6 +3418,8 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getBackward(length).then((text: string) => {
   console.log('Succeeded in getting backward: ' + JSON.stringify(text));
@@ -3355,6 +3450,8 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3396,6 +3493,8 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteForward(length).then((result: boolean) => {
   if (result) {
@@ -3430,6 +3529,8 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3471,6 +3572,8 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
@@ -3504,6 +3607,8 @@ Sends the function key. This API uses an asynchronous callback to return the res
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3545,6 +3650,8 @@ Sends the function key. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result: boolean) => {
   if (result) {
@@ -3579,6 +3686,8 @@ Inserts text. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
@@ -3619,6 +3728,8 @@ Inserts text. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.insertText('test').then((result: boolean) => {
   if (result) {
     console.log('Succeeded in inserting text.');
@@ -3651,6 +3762,8 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
@@ -3682,6 +3795,8 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
