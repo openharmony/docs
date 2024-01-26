@@ -3,7 +3,7 @@
 
 ## 概述
 
-用于定义创建PixelMap设置选项的相关信息。
+用于定义创建PixelMap设置选项的相关信息，需要对参数进行初始化
 
 **系统能力：** SystemCapability.Multimedia.Image
 
