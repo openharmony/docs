@@ -30,10 +30,8 @@
   - 接口依赖的元素及定义
     - ability
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
-      - [connectOptions](js-apis-inner-ability-connectOptions.md)  
     - app
       - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
-      - [processInfo](js-apis-inner-app-processInfo.md)          
     - application
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
@@ -132,6 +130,8 @@
     - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
 - Image Kit API参考
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)  
+- Image Kit API参考
+  - [@ohos.multimodalInput.intentionCode (意图事件)](js-apis-intentioncode.md) 
 - Lancet Kit API参考
   - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
   - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](js-apis-hiviewdfx-hiappevent.md)

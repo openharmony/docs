@@ -56,8 +56,17 @@ Navigation(pathInfos: NavPathStack)
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
 | hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
-| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
-| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
+| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：优先级规则详见说明。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+
+>  **说明：**
+>
+>  1. 仅设置navBarWidth，不支持Navigation分割线拖拽。
+>
+>  2. navBarWidthRange指定分割线可以拖拽范围。如果不设置值，则按照默认值处理。拖拽范围需要满足navBarWidthRange设置的范围和minContentWidth限制。
+>
+>  3. Navigation显示范围缩小：a. 缩小内容区大小。如果不设置minContentWidth属性，则可以缩小内容区至0， 否则最小缩小至minContentWidth。b. 缩小导航栏大小，缩小时需要满足导航栏宽度大于navBarRange的下限。c. 对显示内容进行裁切。
+
 
 ## 事件
 
@@ -98,6 +107,114 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### pushPathByName<sup>11+</sup>
+
+pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): void
+
+将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### pushDestination<sup>11+</sup>
+
+pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
+
+将info指定的NavDestination页面信息入栈，支持返回接口调用结果。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+|   401    | 参数错误。 |
+| 100001    | 系统内部错误。|
+| 100005    | 创建NavDestination组件的builder函数未注册。 |
+| 100006    | 目标页面中不存在NavDestination组件。|
+
+### pushDestinationByName<sup>11+</sup>
+
+pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&lt;void&gt;
+
+将name指定的NavDestination页面信息入栈，传递的数据为param，支持返回接口调用结果。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+|   401    | 参数错误。 |
+| 100001    | 系统内部错误。|
+| 100005    | 创建NavDestination组件的builder函数未注册。 |
+| 100006    | 目标页面中不存在NavDestination组件。|
+
+### pushDestinationByName<sup>11+</sup>
+
+pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
+
+将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，支持返回接口调用结果。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+|   401    | 参数错误。 |
+| 100001    | 系统内部错误。|
+| 100005    | 创建NavDestination组件的builder函数未注册。 |
+| 100006    | 目标页面中不存在NavDestination组件。|
 
 ### replacePath<sup>11+</sup>
 
@@ -181,6 +298,26 @@ pop(animated?: boolean): NavPathInfo | undefined
 | NavPathInfo | 返回栈顶NavDestination页面的信息。 |
 | undefined   | 当路由栈为空时返回undefined。      |
 
+### pop<sup>11+</sup>
+
+pop(result: Object, animated?: boolean): NavPathInfo | undefined
+
+弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| result | Object | 是 | 页面自定义处理结果。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
+| undefined   | 当路由栈为空时返回undefined。      |
+
 ### popToName<sup>10+</sup>
 
 popToName(name: string, animated?: boolean): number
@@ -200,6 +337,26 @@ popToName(name: string, animated?: boolean): number
 | ------ | ---------------------------------------- |
 | number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
 
+### popToName<sup>11+</sup>
+
+popToName(name: string, result: Object, animated?: boolean): number
+
+回退路由栈到第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**参数：**
+
+| 名称   | 类型     | 必填   | 描述                  |
+| ---- | ------ | ---- | ------------------- |
+| name | string | 是    | NavDestination页面名称。 |
+| result | Object | 是 | 页面自定义处理结果。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型     | 说明                                       |
+| ------ | ---------------------------------------- |
+| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
+
 ### popToIndex<sup>10+</sup>
 
 popToIndex(index: number, animated?: boolean): void
@@ -212,6 +369,20 @@ popToIndex(index: number, animated?: boolean): void
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### popToIndex<sup>11+</sup>
+
+popToIndex(index: number, result: Object, animated?: boolean): void
+
+回退路由栈到index指定的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**参数：**
+
+| 名称    | 类型     | 必填   | 描述                     |
+| ----- | ------ | ---- | ---------------------- |
+| index | number | 是    | NavDestination页面的位置索引。 |
+| result | Object | 是 | 页面自定义处理结果。 |
+| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### moveToTop<sup>10+</sup>
 
@@ -362,6 +533,18 @@ constructor(name: string, param: unknown)
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
+| onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
+
+## PopInfo<sup>11+</sup>
+
+下一个页面返回的回调信息载体。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+|------|-----|-----|-----|
+| info | [NavPathInfo](#navpathinfo10) | 是 | 页面触发返回时的当前页面信息，系统自动获取填入，无需开发者传入。 |
+| result | Object | 是 | 页面触发返回时的结果，开发者自定义对象。 |
 
 ## NavContentInfo<sup>11+</sup>
 
@@ -439,7 +622,7 @@ constructor(name: string, param: unknown)
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。 |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口设置。 |
 | Mini | 固定为小标题模式。                                |
 | Full | 固定为大标题模式。                                |
 
@@ -964,3 +1147,256 @@ export class CustomTransition {
 }
 ```
 ![customNavigation.gif](figures/customNavigation.gif)
+
+### 示例4
+```ts
+// Index.ets
+import { PageOneTmp } from './PageOne'
+import { pageTwoTmp } from './PageTwo'
+import { Pages }  from './PageTwo'
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack()
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      PageOneTmp()
+    } else if (name === 'pageTwo') {
+      pageTwoTmp({ names: name, values: this.pageInfo } as Pages)
+    }
+  }
+
+  build() {
+    Navigation(this.pageInfo) {
+      Column() {
+        Button('StartTest', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈。
+          })
+      }
+    }.title('NavIndex').navDestination(this.PageMap)
+  }
+}
+```
+```ts
+// PageOne.ets
+import { BusinessError } from '@ohos.base';
+
+class TmpClass{
+  count:number = 10
+}
+
+class ParamWithOp {
+  operation: number = 1
+  count: number = 10
+}
+
+@Component
+export struct PageOneTmp {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @State message: string = 'Hello World'
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text(this.message)
+          .width('80%')
+          .height(50)
+          .margin(10)
+
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(()=>{
+            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+              this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+            }}); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
+          })
+
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(() => {
+            let tmp = new TmpClass()
+            this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo)=>{
+              this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+            }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
+          })
+
+        Button('pushDestination', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(()=>{
+            let tmp = new TmpClass()
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
+            this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+              this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+            }}).catch((error: BusinessError)=>{
+              console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
+            }).then(()=>{
+              console.error('[pushDestination]success.');
+            });
+          })
+
+        Button('pushDestinationByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(()=>{
+            let tmp = new TmpClass()
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
+            this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo)=>{
+              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+            }).catch((error: BusinessError)=>{
+              console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
+            }).then(()=>{
+              console.error('[pushDestinationByName]success.');
+            });
+          })
+
+        Button('pushPathWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(()=>{
+            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp()}); // 将name指定的NavDestination页面信息入栈。
+          })
+
+        Button('pushPathByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(() => {
+            let tmp = new TmpClass()
+            this.pageInfo.pushPathByName('pageTwo', tmp); // 将name指定的NavDestination页面信息入栈，传递的数据为param。
+          })
+
+        Button('pushDestinationWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(()=>{
+            let tmp = new TmpClass()
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
+            this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp()})
+              .catch((error: BusinessError)=>{
+              console.error(`[pushDestinationWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
+            }).then(()=>{
+              console.error('[pushDestinationWithoutOnPop]success.');
+            });
+          })
+
+        Button('pushDestinationByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(() => {
+            let tmp = new TmpClass()
+            // 将name指定的NavDestination页面信息入栈，传递的数据为param。
+            this.pageInfo.pushDestinationByName('pageTwo', tmp)
+              .catch((error: BusinessError)=>{
+                console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
+              }).then(()=>{
+              console.error('[pushDestinationByNameWithoutOnPop]success.');
+            });
+          })
+
+        Button('clear', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(10)
+          .onClick(() => {
+            this.pageInfo.clear(); // 清除栈中所有页面。
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop({number: 1}) // 弹出路由栈栈顶元素。
+      return true
+    })
+  }
+}
+```
+```ts
+// PageTwo.ets
+export class Pages {
+  names: string = ""
+  values: NavPathStack | null = null
+}
+
+class resultClass {
+  constructor(count: number) {
+    this.count = count;
+  }
+  count: number = 10
+}
+
+@Builder
+export function pageTwoTmp(info: Pages) {
+  NavDestination() {
+    Column() {
+      Button('pop', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).pop(new resultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中。
+        })
+
+      Button('popToName', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).popToName('pageOne', new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+        })
+
+      Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).popToIndex(0, new resultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+        })
+
+      Button('popWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).pop();
+        })
+
+      Button('popToNameWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).popToName('pageOne');
+        })
+
+      Button('popToIndexWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).popToIndex(0);
+        })
+    }.width('100%').height('100%')
+  }.title('pageTwo')
+  .onBackPressed(() => {
+    (info.values as NavPathStack).pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
+    return true;
+  })
+}
+```
+![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)

@@ -48,6 +48,7 @@ Binds a popup to the component.
 | arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Arrow height.<br>Default value: **8.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Rounded corner radius of the popup.<br>Default value: **20.0_vp**                         |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)    | No  | Popup shadow.<br>Default value: **ShadowStyle.OUTER_DEFAULT_MD**     |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the popup.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
 
 ## PopupMessageOptions<sup>10+</sup>
 
@@ -77,6 +78,8 @@ Binds a popup to the component.
 | arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Arrow height.<br>Default value: **8.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | No  | Rounded corner radius of the popup.<br>Default value: **20.0_vp**                         |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)    | No  | Popup shadow.<br>Default value: **ShadowStyle.OUTER_DEFAULT_MD**     |
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the popup.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
+| focusable<sup>11+</sup> | boolean | No| Whether the popup obtains focus when displayed.<br>Default value: **false**|
 
 ## 
 
@@ -95,7 +98,7 @@ struct PopupExample {
   // Popup builder
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
   }
@@ -133,7 +136,7 @@ struct PopupExample {
             }
           }
         })
-        .position({ x: 100, y: 50 })
+        .position({ x: 100, y: 150 })
 
 
       // CustomPopupOptions for setting the popup
@@ -144,7 +147,7 @@ struct PopupExample {
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
           placement: Placement.Top,
-          mask: {color:'0x33000000'},
+          mask: {color:'#33000000'},
           popupColor: Color.Yellow,
           enableArrow: true,
           showInSubWindow: false,
@@ -154,13 +157,13 @@ struct PopupExample {
             }
           }
         })
-        .position({ x: 80, y: 200 })
+        .position({ x: 80, y: 300 })
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![figures/popup.gif](figures/popup.gif)
+![](figures/popup.gif)
 
 ### Example 2
 

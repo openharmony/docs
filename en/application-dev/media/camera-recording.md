@@ -15,7 +15,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 2. Create a surface.
    
-   Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call **getInputSurface()** of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
+   Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call [getInputSurface](../reference/apis/js-apis-media.md#getinputsurface9) of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see the next section.
@@ -31,9 +31,9 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
-         console.log('prepare success');
+         console.info('prepare success');
        } else {
-         console.log('prepare failed and error is ' + err.message);
+         console.error('prepare failed and error is ' + err.message);
        }
      });
      let videoSurfaceId = await avRecorder.getInputSurface();
@@ -43,7 +43,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 3. Create a video output stream.
 
-   Obtain the video output streams supported by the current device from **videoProfiles** in the **CameraOutputCapability** class. Then, define video recording parameters and use **createVideoOutput()** to create a video output stream.
+   Obtain the video output streams supported by the current device from **videoProfiles** in the [CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability) class. Then, define video recording parameters and use [createVideoOutput](../reference/apis/js-apis-camera.md#createvideooutput) to create a video output stream.
 
    **NOTE**: The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
 
@@ -58,7 +58,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      let aVRecorderProfile: media.AVRecorderProfile = {
        fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
        videoBitrate: 100000, // Video bit rate.
-       videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
+       videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
        videoFrameWidth: 640, // Video frame width.
        videoFrameHeight: 480, // Video frame height.
        videoFrameRate: 30 // Video frame rate.
@@ -97,13 +97,13 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 4. Start video recording.
    
-   Call **start()** of the **VideoOutput** instance to start the video output stream, and then call **start()** of the **AVRecorder** instance to start recording.
+   Call [start](../reference/apis/js-apis-camera.md#start-1) of the **VideoOutput** instance to start the video output stream, and then call [start](../reference/apis/js-apis-media.md#start9) of the **AVRecorder** instance to start recording.
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
      videoOutput.start(async (err: BusinessError) => {
        if (err) {
-         console.error('Failed to start the video output ${err.message}');
+         console.error(`Failed to start the video output ${err.message}`);
          return;
        }
        console.info('Callback invoked to indicate the video output start success.');
@@ -118,8 +118,8 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Stop video recording.
-   
-   Call **stop()** of the **AVRecorder** instance to stop recording, and then call **stop()** of the **VideoOutput** instance to stop the video output stream.
+
+   Call [stop](../reference/apis/js-apis-media.md#stop9) of the **AVRecorder** instance to stop recording, and then call [stop](../reference/apis/js-apis-camera.md#stop-1) of the **VideoOutput** instance to stop the video output stream.
      
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
@@ -131,7 +131,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      }
      videoOutput.stop((err: BusinessError) => {
        if (err) {
-         console.error('Failed to stop the video output ${err.message}');
+         console.error(`Failed to stop the video output ${err.message}`);
          return;
        }
        console.info('Callback invoked to indicate the video output stop success.');
@@ -169,7 +169,7 @@ During camera application development, you can listen for the status of the vide
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {
     videoOutput.on('error', (error: BusinessError) => {
-      console.info(`Video output error code: ${error.code}`);
+      console.error(`Video output error code: ${error.code}`);
     });
   }
   ```

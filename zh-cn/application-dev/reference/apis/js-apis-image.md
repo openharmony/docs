@@ -191,7 +191,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId              | string              | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
 | region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
 
 **返回值：**
@@ -239,7 +239,7 @@ async function Demo(surfaceId: string) {
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
-| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
+| isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
 

@@ -3,7 +3,7 @@
 >  **说明：**
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-ImageData对象可以存储canvas渲染的像素数据。
+ImageData对象可以存储[canvas组件](js-components-canvas-canvas.md)渲染的像素数据。
 
 
 ## 属性

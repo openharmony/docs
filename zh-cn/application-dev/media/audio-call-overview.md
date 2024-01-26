@@ -16,7 +16,7 @@
 
 如在蜂窝通话场景中会更注重人声的清晰度。系统会使用3A算法对音频数据进行预处理，抑制通话回声，消除背景噪音，调整音量范围，从而达到清晰人声的效果。3A算法，指声学回声消除（Acoustic Echo Cancellation, AEC）、背景噪声抑制（Active Noise Control, ANC）、自动增益控制（Automatic Gain Control, AGC）三种音频处理算法。
 
-当前预置的四种音频场景：
+当前预置的音频场景：
 
 - AUDIO_SCENE_DEFAULT：默认音频场景，音频通话之外的场景均可使用。
 

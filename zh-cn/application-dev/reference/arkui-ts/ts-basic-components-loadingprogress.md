@@ -26,7 +26,7 @@ LoadingProgress()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置加载进度条前景色。<br/>默认值：'#99666666'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置加载进度条前景色。<br/>默认值：<br/>API version 10及以下：'#99666666'<br/>API version 11及以上：'#ff666666'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | enableLoading<sup>10+</sup> | boolean | 设置LoadingProgress动画显示或者不显示。<br/>默认值：true。<br/>**说明：**<br/> LoadingProgress动画不显示时，该组件依旧占位。<br/>通用属性Visibility.Hidden隐藏的是包括border、padding等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。|
 
 ## 事件
