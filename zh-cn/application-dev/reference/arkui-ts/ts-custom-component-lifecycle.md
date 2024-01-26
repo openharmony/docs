@@ -77,9 +77,7 @@ struct IndexComponent {
   }
 }
 ```
-
-![zh-cn_image_0000001563060749](figures/zh-cn_image_0000001563060749.png)
-
+![zh-cn_image_lifecycle](figures/zh-cn_image_lifecycle.gif)
 
 ## onLayout<sup>9+</sup>
 
