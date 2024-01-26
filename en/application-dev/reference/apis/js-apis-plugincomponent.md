@@ -390,6 +390,7 @@ Listens for events of the request type and returns the requested data, or listen
 ```ts
 import pluginComponentManager from '@ohos.pluginComponent'
 import Want from '@ohos.app.ability.Want';
+import {PluginComponentTemplate} from '@ohos.pluginComponent'
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
   console.log("onPushListener template.source=" + template.source)
   console.log("onPushListener source=" + JSON.stringify(source))

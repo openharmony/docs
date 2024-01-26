@@ -48,8 +48,16 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     return;
   }
 
+  // 获取支持的模式类型
+  let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let isSupportVideoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_VIDEO) >= 0;
+  if (!isSupportVideoMode) {
+    console.error('video mode not support');
+    return;
+  }
+
   // 获取相机设备支持的输出流能力
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_VIDEO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
@@ -84,7 +92,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth: 640,
     videoFrameHeight: 480,
     videoFrameRate: 30
@@ -144,24 +152,24 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   });
 
   //创建会话
-  let captureSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.VideoSession | undefined = undefined;
   try {
-    captureSession = cameraManager.createCaptureSession();
+    videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the VideoSession instance. error: ${JSON.stringify(err)}`);
   }
-  if (captureSession === undefined) {
+  if (videoSession === undefined) {
     return;
   }
   // 监听session错误信息
-  captureSession.on('error', (error: BusinessError) => {
-    console.error(`Capture session error code: ${error.code}`);
+  videoSession.on('error', (error: BusinessError) => {
+    console.error(`Video session error code: ${error.code}`);
   });
 
   // 开始配置会话
   try {
-    captureSession.beginConfig();
+    videoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
@@ -194,13 +202,13 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 向会话中添加相机输入流
   try {
-    captureSession.addInput(cameraInput);
+    videoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
   }
 
-  // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
+  // 创建预览输出流，其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
@@ -214,7 +222,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 向会话中添加预览输入流
   try {
-    captureSession.addOutput(previewOutput);
+    videoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
@@ -222,7 +230,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 向会话中添加录像输出流
   try {
-    captureSession.addOutput(videoOutput);
+    videoSession.addOutput(videoOutput);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
@@ -230,18 +238,18 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 提交会话配置
   try {
-    await captureSession.commitConfig();
+    await videoSession.commitConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`captureSession commitConfig error: ${JSON.stringify(err)}`);
+    console.error(`videoSession commitConfig error: ${JSON.stringify(err)}`);
   }
 
   // 启动会话
   try {
-    await captureSession.start();
+    await videoSession.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`captureSession start error: ${JSON.stringify(err)}`);
+    console.error(`videoSession start error: ${JSON.stringify(err)}`);
   }
 
   // 启动录像输出流
@@ -279,7 +287,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
 
   // 停止当前会话
-  captureSession.stop();
+  videoSession.stop();
 
   // 释放相机输入流
   cameraInput.close();
@@ -291,9 +299,9 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   videoOutput.release();
 
   // 释放会话
-  captureSession.release();
+  videoSession.release();
 
   // 会话置空
-  captureSession = undefined;
+  videoSession = undefined;
 }
 ```

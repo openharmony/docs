@@ -403,7 +403,7 @@ async function unregisterSessionListener() {
     // 应用注册循环模式的控制监听
     session.on('setLoopMode', (mode) => {
       console.info(`on setLoopMode ${mode}`);
-      // 应用收到收藏命令后，切换对应的循环模式
+      // 应用收到设置循环模式后，切换对应的循环模式
     });
 
   }
@@ -440,7 +440,7 @@ async function unregisterSessionListener() {
       // 应用响应seek命令，使用应用内播放器完成seek实现
 
       // 应用内更新新的位置后，也需要同步更新状态给系统
-      playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 缓冲状态
+      playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 播放状态
       playbackState.position = {
         elapsedTime: 4000, // 已经播放的位置，以ms为单位
         updateTime: 34000, // 应用更新当前位置的时间戳，以ms为单位
@@ -457,7 +457,7 @@ async function unregisterSessionListener() {
   }
 ```
 
-## 媒体通知的适配
+## 适配媒体通知
 
 当前系统不直接向应用提供主动发送媒体控制通知的接口，那么当应用进入播放状态时，系统会自动发送通知，同时在通知和锁屏界面进行展示。
 

@@ -43,7 +43,7 @@ Defines and shows the action sheet.
 
 ## DialogButtonStyle<sup>10+</sup>
 
-| Name     | Description.                             |
+| Name     | Description                             |
 | --------- | --------------------------------- |
 | DEFAULT   | Blue text on white background (black background under the dark theme).|
 | HIGHLIGHT | White text on blue background.                       |

@@ -5,9 +5,9 @@ The **dragController** module provides APIs for initiating drag actions. When re
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> Since API version 10, you can use the [getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11) API in **UIContext** to obtain the **DragController** object associated with the current UI context.
 > You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
-
 
 ## Modules to Import
 
@@ -27,7 +27,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
 
@@ -249,11 +249,13 @@ startDrag(): Promise&lt;void&gt;
 
 Starts the drag service. This API uses a promise to return the result.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Error codes**
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 100001   | If some internal handling failed |
+| 100001   | if some internal handling failed. |
 
 **Example**
 ```ts
@@ -264,7 +266,7 @@ dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
 
 ### on('statusChange')<sup>11+</sup>
 
-on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
 
 Subscribes to drag state changes.
 
@@ -274,7 +276,7 @@ Subscribes to drag state changes.
 | Name    | Type | Mandatory   | Description            |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | Yes     | Callback used to return a [DragAndDropInfo](#draganddropinfo) instance.|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | Yes     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance.|
 
 **Example**
 ```ts
@@ -285,7 +287,7 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 
 ### off('statusChange')<sup>11+</sup>
 
- off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
 
 Unsubscribes from drag state changes.
 
@@ -295,7 +297,7 @@ Unsubscribes from drag state changes.
 | Name    | Type | Mandatory   | Description            |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | No     | Callback used to return a [DragAndDropInfo](#draganddropinfo) instance. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | No     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
 ```ts
@@ -371,6 +373,7 @@ struct DragControllerPage {
         if(event){
           if (event.type == TouchType.Down) {
             console.log("muti drag Down by listener");
+            this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -395,7 +398,6 @@ struct DragControllerPage {
                 if (!this.dragAction) {
                   return
                 }
-                this.customBuilders.splice(0, this.customBuilders.length)
                 this.dragAction.off('statusChange')
               }
             })
@@ -482,16 +484,66 @@ Applies an animation to the background mask color changes. This API does not wor
 
 **Example**
 
+1. In the **EntryAbility.ets** file, obtain the UI context and save it to LocalStorage.
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+
+let uiContext: UIContext;
+let localStorage: LocalStorage = new LocalStorage('uiContext');
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = localStorage;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      windowStage.getMainWindow((err, data) =>
+      {
+        if (err.code) {
+          hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
+          return;
+        }
+        let windowClass: window.Window = data;
+        uiContext = windowClass.getUIContext();
+        this.storage.setOrCreate<UIContext>('uiContext', uiContext);
+      })
+    });
+  }
+  ```
+2. In the **Index.ets** file, call **LocalStorage.getShared()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
   ```ts
 
 import UDC from '@ohos.data.unifiedDataChannel';
+import hilog from '@ohos.hilog';
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
+import { UIContext } from '@ohos.arkui.UIContext';
 
-@Entry
+
+let storages = LocalStorage.getShared();
+
+@Entry(storages)
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
@@ -516,9 +568,10 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button ('Drag Here').onDragEnter () => {
+      Button ('Drag Here').onDragEnter(() => {
           try {
-            let previewObj: dragController.DragPreview = dragController.getDragPreview();
+            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
             let foregroundColor: ResourceColor = Color.Green;
 
             let previewAnimation: dragController.AnimationOptions = {
@@ -528,9 +581,9 @@ struct DragControllerPage {
               previewObj.setForegroundColor(foregroundColor);
             });
           } catch (error) {
-              let msg = (error as BusinessError).message;
+            let msg = (error as BusinessError).message;
             let code = (error as BusinessError).code;
-            console.error(`show error code is ${code}, message is ${msg}`);
+            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
           }
       })
       .onDrop(() => {
@@ -541,7 +594,6 @@ struct DragControllerPage {
           if (event.type == TouchType.Down) {
             let text = new UDC.Text()
             let unifiedData = new UDC.UnifiedData(text)
-            console.log("one drag Down");
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
@@ -555,18 +607,15 @@ struct DragControllerPage {
               dragController.executeDrag(() => {
                 this.DraggingBuilder()
               }, dragInfo, (err , eve) => {
-            console.log(`ljx ${JSON.stringify(err)}`)
+                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
                 if (eve && eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    console.log('success');
+                    hilog.info(0x0000, 'success', '');
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    console.log('failed');
+                    hilog.info(0x0000, 'failed', '');
                   }
                 }
             })
-
-
-
           }
         }
       }).margin({top:100})

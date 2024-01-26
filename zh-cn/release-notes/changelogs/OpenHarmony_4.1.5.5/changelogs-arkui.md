@@ -73,7 +73,11 @@ b) showTips 第二个参数设置文本内容时，文本内容可能产生变�
 
 API 11前，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize_contrary`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize_contrary`，环形样式进度条默认进度条底色是系统资源中的`ohos_id_color_component_normal`。
 
+![progress](figures/oldProgress.png)
+
 API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize`，前景色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize`，内描边颜色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，环形样式进度条默认进度条底是系统资源中的`ohos_id_color_button_normal`。
+
+![progress](figures/newProgress.png)
 
 **适配指导**
 
@@ -105,7 +109,11 @@ API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos
 
 API 11前，默认前景色不透明度为0.6，默认前景色是“#99666666”。
 
+![loadingProgress](figures/oldLoadingProgress.png)
+
 API 11及以后，默认前景色不透明度为1.0，默认前景色是“#ff666666”。
+
+![loadingProgress](figures/newLoadingProgress.png)
 
 **适配指导**
 
@@ -206,7 +214,11 @@ API 11及以后，默认前景色不透明度为1.0，默认前景色是“#ff66
 
 API 11前，Datapanel组件的默认阴影模糊半径为5vp。
 
+![dataPanel](figures/oldDataPanel.png)
+
 API 11及以后，Datapanel组件的默认阴影模糊半径为20vp。
+
+![dataPanel](figures/newDataPanel.png)
 
 **适配指导**
 
@@ -344,42 +356,8 @@ API 11及以后，默认Dialog的内容区分词方式为BREAK_ALL。
 **适配指导**
 
 默认分词方式变更，不涉及适配。
-## cl.arkui.10 Image组件autoResize interpolation属性默认行为变更
 
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-应用侧需要设置autoResize为false、 interpolation设置为LOW来解决图片锯齿问题
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-变更前，Image组件的autoResize默认值为true， interpolation为None。
-
-变更后，Image组件的autoResize默认值为false， interpolation为LOW，该修改会提升图片显示效果，但是image组件在大图显示成小组件时，默认内存会上涨，需要应用根据实际情况进行内存优化。
-说明：该修改不影响大桌面效果。
-
-**API Level**
-
-11
-
-**变更发生版本**
-
-从OpenHarmony SDK 4.1.5.5 开始。
-
-**变更的接口/组件**
-
-受影响的组件有：Image。
-
-**适配指导**
-
-默认行为变更，不涉及适配。
-
-## cl.arkui.11  opacity属性非法值设置变更
+## cl.arkui.10  opacity属性非法值设置变更
 
 **访问级别**
 
@@ -413,7 +391,7 @@ opacity属性设置小于0的非法值需要按照完全透明来处理。
 
 默认行为变更，不涉及适配。
 
-## cl.Arkui.12 ListItem、GridItem的selectable属性异常值处理逻辑变更
+## cl.Arkui.11 ListItem、GridItem的selectable属性异常值处理逻辑变更
 
 **访问级别**
 
@@ -451,7 +429,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 默认行为变更，不涉及适配。
 
-## cl.arkui.13  Text组件fontSize属性非法值设置变更
+## cl.arkui.12  Text组件fontSize属性非法值设置变更
 
 **访问级别**
 
@@ -485,7 +463,7 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 默认行为变更，不涉及适配。
 
-## cl.arkui.14  点击事件规格变更
+## cl.arkui.13  点击事件规格变更
 
 **访问级别**
 
@@ -517,9 +495,139 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 **适配指导**
 
-默认行为变更，不涉及适配。
+该变更会导致若点击手势和拖动手势放入同一个并行手势组，会出现拖动手势和点击手势同时响应的情况
 
-## cl.arkui.15  menuItem默认高度规格变更
+适配措施：
+1.应用业务审视是否必须将点击手势和拖动手势放入同一个并行手势组内（大部分之前没有冲突的情况，是因为点击事件的20px的移动限制，自动消减了冲突），如果不是必须则可以不挂到同一个手势组
+修改前：
+```ts
+  .parallelGesture(GestureGroup(GestureMode.Parallel,
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.info("Tapgesture")
+        }
+      }),
+    PanGesture({fingers: 1})
+      .onActionStart((event?: GestureEvent)=>{
+        console.info("Pan start")
+      })
+      .onActionUpdate((event?: GestureEvent)=>{
+        console.info("Pan update")
+      })
+      .onActionEnd((event?: GestureEvent)=>{
+        console.info("Pan end")
+      })
+  ))
+```
+修改后：
+```ts
+  .parallelGesture(GestureGroup(GestureMode.Parallel,
+    PanGesture({fingers: 1})
+      .onActionStart((event?: GestureEvent)=>{
+        console.info("Pan start")
+      })
+      .onActionUpdate((event?: GestureEvent)=>{
+        console.info("Pan update")
+      })
+      .onActionEnd((event?: GestureEvent)=>{
+        console.info("Pan end")
+      })
+  ))
+  .gesture(
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.info("Tapgesture")
+        }
+    })
+  )
+```
+2.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过自行设置的手指移动距离判定点击手势失败：
+示例代码：
+```ts
+  .gesture(
+    TapGesture({count: 1})
+      .onAction((event?: GestureEvent)=> {
+        if (event) {
+          console.log("Tapgesture")
+        }
+      })
+  )
+  .onTouch((event?: TouchEvent)=> {
+    if (event) {
+      if (event.type === TouchType.Down) {
+        this.downX = event.touches[0].windowX
+        this.downY = event.touches[0].windowY
+      }
+    }
+  })
+  .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent)=> {
+    if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
+      let xGap = event.fingerList[0].globalX - this.downX
+      if (xGap > 5) {
+        return GestureJudgeResult.REJECT
+      }
+      let yGap = event.fingerList[0].globalY - this.downY
+      if (yGap > 5) {
+        return GestureJudgeResult.REJECT
+      }
+      return GestureJudgeResult.CONTINUE
+    } else {
+      return GestureJudgeResult.CONTINUE
+    }
+  })
+```
+3.若点击必须与滑动放到同一个平行手势组下，则可以通过手势自定义判定能力，通过设置组件flag进行手势互斥判断：
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+  private hasPanActive = false;
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message).width(100).height(40).backgroundColor(Color.Pink)
+      }.margin(20)
+    }
+    .width('100%')
+    .height(200)
+    .borderWidth(2)
+    .parallelGesture(GestureGroup(GestureMode.Parallel,
+      TapGesture({count: 1})
+        .onAction((event?: GestureEvent)=> {
+          if (event) {
+            console.info("Tapgesture")
+          }
+        }).tag("Single-Finger-Click"),
+      PanGesture({fingers: 1})
+        .onActionStart((event?: GestureEvent)=>{
+          console.info("Pan start")
+        })
+        .onActionUpdate((event?: GestureEvent)=>{
+          console.info("Pan update")
+        })
+        .onActionEnd((event?: GestureEvent)=>{
+          console.info("Pan end")
+        }).tag("Single-Finger-Pan")
+    ))
+    .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
+      // 若滑动手势被触发，则将flag置为true
+      if (gestureInfo.tag === "Single-Finger-Pan") {
+        this.hasPanActive = true
+      }
+      // 若点击手势被触发，且flag为true，则说明再此之前滑动手势已被触发，组件重置flag并拒绝点击手势。
+      if (gestureInfo.tag === "Single-Finger-Click" && this.hasPanActive) {
+        this.hasPanActive = false;
+        return GestureJudgeResult.REJECT
+      }
+      return GestureJudgeResult.CONTINUE
+    })
+  }
+}
+```
+## cl.arkui.14  menuItem默认高度规格变更
 
 **访问级别**
 
@@ -539,7 +647,7 @@ UX默认规格变更
 
 **API Level**
 
-10
+11
 
 **变更发生版本**
 
@@ -552,3 +660,37 @@ UX默认规格变更
 **适配指导**
 
 默认高度规格变更，如果与应用UX高度规格不符，可以自定义设置menuItem的height。
+
+## cl.arkui.15  Swiper组件的Indicator属性参数设置逻辑变更
+
+**访问级别**
+
+其他
+
+**变更原因**
+
+Indicator属性的left、top、right、bottom等参数设置为0时不生效，设置成异常值时未按默认值0vp处理。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Indicator属性的left、top、right、bottom等参数设置为0或异常值时，导航点位于Swiper组件底部居中。
+
+变更后，Indicator属性的left、top、right、bottom等参数设置为0或异常值时，导航点位于Swiper组件对应边界的位置，即按默认值0vp处理。
+
+**API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件：Tabs。
+
+**适配指导**
+
+变更后，Indicator属性的left、top、right、bottom等参数设置为正常值（包含0）时按设置的值处理，设置成异常值按默认值0vp处理，不涉及适配。

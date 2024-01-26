@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [width](#width) | 宽度，单位为像素。 | 
-| [height](#height) | 高度，单位为像素。 | 
+| uint32_t [width](#width) | 宽度，单位为像素。  | 
+| uint32_t [height](#height) | 高度，单位为像素。  | 
 
 
 ## 结构体成员变量说明
@@ -29,9 +29,7 @@
 ```
 uint32_t Camera_Size::height
 ```
-
 **描述**
-
 高度，单位为像素。
 
 
@@ -40,7 +38,5 @@ uint32_t Camera_Size::height
 ```
 uint32_t Camera_Size::width
 ```
-
 **描述**
-
 宽度，单位为像素。

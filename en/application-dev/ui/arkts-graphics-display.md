@@ -572,4 +572,3 @@ struct MyComponent {
 
 
 ![en-us_image_0000001511740460](figures/en-us_image_0000001511740460.png)
-<!--no_check-->

@@ -160,4 +160,3 @@ import Want from '@ohos.application.Want';
 
 - For more details and examples, see [Want](../../application-models/want-overview.md).
 
-  <!--no_check-->

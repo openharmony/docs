@@ -24,4 +24,3 @@ Each application can subscribe to common events as required. After your applicat
 **Figure 1** Common events
 
 ![common-event](figures/common-event.png)
-<!--no_check-->

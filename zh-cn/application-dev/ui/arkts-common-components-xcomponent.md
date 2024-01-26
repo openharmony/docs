@@ -19,7 +19,7 @@ XComponent设置为surface类型时，通常用于EGL/OpenGLES和媒体数据写
 
 设置为“surface“类型时XComponent组件可以和其他组件一起进行布局和渲染。
 
-同时XComponent又拥有单独的“NativeWindow“，可以为开发者在native侧提供native window用来创建EGL/OpenGLES环境，进而使用标准的OpenGL ES开发。
+同时XComponent又拥有单独的“NativeWindow“，可以为开发者在Native侧提供NativeWindow用来创建EGL/OpenGLES环境，进而使用标准的OpenGL ES开发。
 
 除此之外，媒体相关应用（视频、相机等）也可以将相关数据写入XComponent所提供的NativeWindow，从而呈现相应画面。
 
@@ -27,9 +27,9 @@ XComponent设置为surface类型时，通常用于EGL/OpenGLES和媒体数据写
 ## 使用EGL/OpenGLES渲染
 
 
-### native侧代码开发要点
+### Native侧代码开发要点
 
-应用如果要通过js来桥接native，一般需要使用napi接口来处理js交互，XComponent同样不例外，具体使用请参考[Native API在应用工程中的使用指导](../napi/napi-guidelines.md)。
+应用如果要通过js来桥接Native，一般需要使用napi接口来处理js交互，XComponent同样不例外，具体使用请参考[Native API在应用工程中的使用指导](../napi/napi-guidelines.md)。
 
 Native侧处理js逻辑的文件类型为so：
 
@@ -82,7 +82,7 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] ={
         DECLARE_NAPI_FUNCTION("changeColor", PluginRender::NapiChangeColor),
     };
-    // 通过此接口开发者可在exports上挂载native方法（即上面的PluginRender::NapiChangeColor），exports会通过js引擎绑定到js层的一个js对象
+    // 通过此接口开发者可在exports上挂载Native方法（即上面的PluginRender::NapiChangeColor），exports会通过js引擎绑定到js层的一个js对象
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
     return exports;
 }
@@ -107,7 +107,7 @@ extern "C" __attribute__((constructor)) void RegisterModule(void)
 
 ### 解析XComponent组件的NativeXComponent实例
 
-NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/native-apis/_o_h___native_x_component.md)。
+NativeXComponent为XComponent提供了在Native层的实例，可作为js层和Native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/native-apis/_o_h___native_x_component.md)。
 
 
 可以在模块被加载时的回调内（即[Napi模块注册](#napi模块注册)中的Init函数）解析获得NativeXComponent实例
@@ -145,8 +145,8 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
     // 解析出NativeXComponent实例
 
     OH_NativeXComponent_Callback callback;
-    callback->OnSurfaceCreated = OnSurfaceCreatedCB; // surface创建成功后触发，开发者可以从中获取native window的句柄
-    callback->OnSurfaceChanged = OnSurfaceChangedCB; // surface发生变化后触发，开发者可以从中获取native window的句柄以及XComponent的变更信息
+    callback->OnSurfaceCreated = OnSurfaceCreatedCB; // surface创建成功后触发，开发者可以从中获取NativeWindow的句柄
+    callback->OnSurfaceChanged = OnSurfaceChangedCB; // surface发生变化后触发，开发者可以从中获取NativeWindow的句柄以及XComponent的变更信息
     callback->OnSurfaceDestroyed = OnSurfaceDestroyedCB; // surface销毁时触发，开发者可以在此释放资源
     callback->DispatchTouchEvent = DispatchTouchEventCB; // XComponent的touch事件回调接口，开发者可以从中获得此次touch事件的信息
 
@@ -158,7 +158,7 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
 
 ### 创建EGL/OpenGLES环境
 
-在注册的OnSurfaceCreated回调中，开发者能拿到native window的句柄（其本质就是XComponent所单独拥有的NativeWindow），因此可以在这里创建应用自己的EGL/OpenGLES开发环境，由此开始具体渲染逻辑的开发。
+在注册的OnSurfaceCreated回调中，开发者能拿到NativeWindow的句柄（其本质就是XComponent所单独拥有的NativeWindow），因此可以在这里创建应用自己的EGL/OpenGLES开发环境，由此开始具体渲染逻辑的开发。
 
 
 ```c++
@@ -186,9 +186,9 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   .onDestroy(() => {})
 ```
 
-- id : 与XComponent组件为一一对应关系，不可重复。通常开发者可以在native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
+- id : 与XComponent组件为一一对应关系，不可重复。通常开发者可以在Native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
 
-- libraryname：加载模块的名称，必须与在native侧Napi模块注册时nm_modname的名字一致。
+- libraryname：加载模块的名称，必须与在Native侧Napi模块注册时nm_modname的名字一致。
 
   >**说明：**
   >
@@ -201,18 +201,18 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   >    ```
   >
   > 2. 使用XComponent组件加载，本质也是使用了NAPI机制来加载。
-  >    该加载方式和import加载方式的区别在于，在加载动态库是会将XComponent的NativeXComponent实例暴露到应用的native层中，从而让开发者可以使用XComponent的NDK接口。
+  >    该加载方式和import加载方式的区别在于，在加载动态库是会将XComponent的NativeXComponent实例暴露到应用的Native层中，从而让开发者可以使用XComponent的NDK接口。
 
 - onLoad事件
   - 触发时刻：XComponent准备好surface后触发。
-  - 参数context：其上面挂载了暴露在模块上的native方法，使用方法类似于利用 import context2 from "libnativerender.so" 直接加载模块后获得的context2实例。
-  - 时序：onLoad事件的触发和Surface相关，其和native侧的OnSurfaceCreated的时序如下图：
+  - 参数context：其上面挂载了暴露在模块上的Native方法，使用方法类似于利用 import context2 from "libnativerender.so" 直接加载模块后获得的context2实例。
+  - 时序：onLoad事件的触发和Surface相关，其和Native侧的OnSurfaceCreated的时序如下图：
 
      ![图片2](figures/图片2.png)
 
 - onDestroy事件
 
-  触发时刻：XComponent组件被销毁时触发与一般ArkUI的组件销毁时机一致，其和native侧的OnSurfaceDestroyed的时序如下图：
+  触发时刻：XComponent组件被销毁时触发与一般ArkUI的组件销毁时机一致，其和Native侧的OnSurfaceDestroyed的时序如下图：
 
   ![图片3](figures/图片3.png)
 

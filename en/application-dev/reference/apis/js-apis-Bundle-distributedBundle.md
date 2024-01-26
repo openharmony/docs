@@ -18,11 +18,11 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description              |
+| Permission                                      | APL | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
@@ -146,4 +146,3 @@ This is a system API.
 | ------------------------------------------------------------ | --------------------------------- |
 | Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Promise used to return an array of the remote ability information.|
 
- <!--no_check--> 

@@ -62,4 +62,3 @@ struct HyperlinkExample {
 ```
 
 ![hyperlink](figures/hyperlink.PNG)
-<!--no_check-->

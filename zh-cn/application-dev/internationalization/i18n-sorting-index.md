@@ -27,7 +27,7 @@
 
 ```ts
 // 导入模块
-improt I18n from '@ohos.i18n';
+import I18n from '@ohos.i18n';
 import Intl from '@ohos.intl';
 // 创建索引
 let indexUtil = I18n.getInstance("zh-CN");

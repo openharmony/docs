@@ -23,16 +23,15 @@ Since API version 9, this API is supported in ArkTS widgets.
 | offset | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of offset columns relative to the original position of the component.<br>Default value: **0**          |
 | order  | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Sequence number of the element. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>Default value: **0**<br>**NOTE**<br>If a child component shares an **order** value with another child component or does not have **order** set, it is displayed based on its code sequence number.<br>If **order** is not set for all child components, those that have **order** set are displayed after those that do not and are sorted in ascending order based on the value.|
 
->  **NOTE**
->
->  The values of `span`, `offset`, and `order` attributes are inherited in the sequence of **xs**, **sm**, **md**, **lg**, **xl**, and **xxl**. If no value is set for a breakpoint, the value is obtained from the previous breakpoint.
->
->  The default values vary by device width type.
->  |Parameter\Breakpoint|xs|sm|md|lg|xl|xxl|
->  |---|---|---|---|---|---|---|
->  |span   |2  |2  |3  |3  |4  |4  |
->  |offset |2  |2  |3  |5  |5  |5  |
->  |order  |20 |20 |20 |3  |3  |3  |
+The values of `span`, `offset`, and `order` attributes are inherited in the sequence of **xs**, **sm**, **md**, **lg**, **xl**, and **xxl**. If no value is set for a breakpoint, the value is obtained from the previous breakpoint.
+
+The default values vary by device width type.
+
+|Parameter\Breakpoint|xs|sm|md|lg|xl|xxl|
+|---|---|---|---|---|---|---|
+|span   |2  |2  |3  |3  |4  |4  |
+|offset |2  |2  |3  |5  |5  |5  |
+|order  |20 |20 |20 |3  |3  |3  |
 
 ## Attributes
 

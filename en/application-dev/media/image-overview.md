@@ -1,4 +1,4 @@
-# Image Overview
+# Introduction to Image Kit
 
 Image development is the process of parsing, processing, and constructing image pixel data to achieve the required image effect. Image development mainly involves image decoding, processing, and encoding.
 
@@ -6,7 +6,7 @@ Before image development, be familiar with the following basic concepts:
 
 - Image decoding
   
-  The operation of decoding an archived image in a supported format into a pixel map for image display or processing. Currently, the following image formats are supported: JPEG, PNG, GIF, RAW, WebP, BMP, and SVG.
+  The operation of decoding an archived image in a supported format into a pixel map for image display or processing. Currently, the following image formats are supported: JPEG, PNG, GIF, RAW, WebP, BMP, SVG, and ICO.
 
 - Pixel map
   
@@ -18,7 +18,7 @@ Before image development, be familiar with the following basic concepts:
 
 - Image encoding
   
-  The operation of encoding a pixel map into an archived image in different formats (only in JPEG and WebP currently) for subsequent processing, such as storage and transmission.
+  The operation of encoding a pixel map into an archived image in different formats (only in JPEG, WebP, and PNG currently) for subsequent processing, such as storage and transmission.
 
 The figure below illustrates the image development process.
 
@@ -36,3 +36,11 @@ The figure below illustrates the image development process.
 5. [Image encoding](image-encoding.md): Use the **ImagePacker** class to compress and encode the pixel map or image source to generate a new image.
 
 In addition to the preceding basic image development capabilities, OpenHarmony provides the [image tool](image-tool.md) to ease your development.
+
+## Highlights
+
+Image Kit supports multiple image formats and uses efficient algorithms and optimization policies to speed up image processing.
+
+## Constraints
+
+During image processing, applications may need to request the read and write permissions from users on images.

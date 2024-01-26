@@ -20,7 +20,7 @@ Sets whether the component responds to user interactions.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions,<br>and **false** means the opposite.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions, and **false** means the opposite.<br>Default value: **true**|
 
 
 ## Example

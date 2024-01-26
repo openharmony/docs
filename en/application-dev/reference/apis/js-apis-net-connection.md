@@ -330,6 +330,48 @@ connection.setGlobalHttpProxy({
 });
 ```
 
+## connection.setAppHttpProxy<sup>10+</sup>
+
+setAppHttpProxy(httpProxy: HttpProxy): void;
+
+Sets the application-level HTTP proxy configuration of the network.
+
+**Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name   | Type                                                        | Mandatory| Description            |
+| --------- | ------------------------------------------------------------ | ---- | ---------------- |
+| httpProxy | [HttpProxy](#httpproxy10)                                      | Yes  | Application-level HTTP proxy configuration.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+
+let exclusionStr = "192.168,baidu.com";
+let exclusionArray = exclusionStr.split(',');
+connection.setAppHttpProxy({
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+} as connection.HttpProxy);
+```
+
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
@@ -1474,7 +1516,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
-Resolves the host name by using the default network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
+Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1512,7 +1554,7 @@ connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.Ne
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
-Resolves the host name by using the default network to obtain all IP addresses. This API uses a promise to return the result.
+Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1548,6 +1590,289 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data));
 });
 ```
+
+## connection.addCustomDnsRule<sup>11+</sup>
+
+addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<void\>): void
+
+Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | Yes  | Name of the custom host.                                    |
+| ip       | Array\<string>       | Yes  | List of IP addresses mapped to the host name.                                  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the mapping is added successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.addCustomDnsRule<sup>11+</sup>
+
+addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
+
+Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type          | Mandatory| Description                      |
+| ------ | -------------- | ---- | -------------------------- |
+| host   | string         | Yes  | Name of the custom host.  |
+| ip     | Array\<string> | Yes  | List of IP addresses mapped to the host name.|
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.removeCustomDnsRule<sup>11+</sup>
+
+removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
+
+Removes the custom DNS rules of the specified host from the current application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | Yes  | Name of the host for which DNS rules are to be deleted.                             |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the DNS rules are removed successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.removeCustomDnsRule<sup>11+</sup>
+
+removeCustomDnsRule(host: string): Promise\<void\>
+
+Removes the custom DNS rules of the specified host from the current application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| host   | string | Yes  | Name of the host for which DNS rules are to be deleted.|
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx").then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.clearCustomDnsRules<sup>11+</sup>
+
+clearCustomDnsRules(callback: AsyncCallback\<void\>): void
+
+Removes all custom DNS rules from the current application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If all the DNS rules are removed successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules((error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.clearCustomDnsRules<sup>11+</sup>
+
+clearCustomDnsRules(): Promise\<void\>
+
+Removes all custom DNS rules from the current application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<void\>        | Promise that returns no value. |
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules().then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+
+## connection.factoryReset<sup>11+</sup>
+
+factoryReset(): Promise\<void\>
+
+Resets the network settings to factory defaults. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| Promise\<void\>        | Promise that returns no value. |
+
+**Error codes**
+
+| ID| Error Message                                   |
+| ------- | ------------------------------------------  |
+| 201     | Permission denied.                          |
+| 202     | Non-system applications use system APIs.    |
+| 401     | Parameter error.                            |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                      |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.factoryReset().then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
 
 ## NetConnection
 

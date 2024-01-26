@@ -76,6 +76,7 @@ The following attributes are supported.
 | board<sup>10+</sup> | [BoardStyle](#boardstyle10)   | Board style of the selected subtab. This attribute applies only |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font of the subtab.|
 | padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Padding of the subtab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}**|
+| id<sup>11+</sup> | string | [ID](ts-universal-attributes-component-id.md#attributes) of the subtab.|
 
 ## IndicatorStyle<sup>10+</sup>
 
@@ -149,7 +150,8 @@ The following attributes are supported.
 | verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | Vertical alignment mode of the images and text on the bottom tab.<br>Default value: **VerticalAlign.Center**|
 | layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10) | Layout of the images and text on the bottom tab. For details, see **LayoutMode**.<br>Default value: **LayoutMode.VERTICAL**|
 | symmetricExtensible<sup>10+</sup> |  boolean | Whether the images and text on the bottom tab can be symmetrically extended by the minimum value of the available space on the left and right bottom tabs. This parameter is valid only between bottom tabs in fixed horizontal mode.<br>Default value: **false**|
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font of the subtab.|
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font of the bottom tab.|
+| id<sup>11+</sup> | string | [ID](ts-universal-attributes-component-id.md#attributes) of the bottom tab.|
 
 ## LayoutMode<sup>10+</sup>
 

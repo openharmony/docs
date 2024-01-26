@@ -29,7 +29,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档]../reference/native-apis/_audio_codec.md)。
+详细的API说明请参考[API文档](../reference/native-apis/_audio_codec.md)。
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器，设置解码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
@@ -265,7 +265,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
-   
+
 9. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
    此时需要调用OH_AudioCodec_Start()重新开始解码。
@@ -286,7 +286,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-   
+
 10. （可选）调用OH_AudioCodec_Reset()重置解码器。
     调用OH_AudioCodec_Reset()后，解码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始解码。
 
@@ -302,7 +302,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // 异常处理
     }
     ```
-    
+
 11. 调用OH_AudioCodec_Stop()停止解码器。
 
     ```c++
@@ -312,10 +312,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-    
+
 12. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
 
-    **注意**：不要重复销毁解码器
+    > **说明：**
+    >不要重复销毁解码器
 
     ```c++
     // 调用OH_AudioCodec_Destroy, 注销解码器

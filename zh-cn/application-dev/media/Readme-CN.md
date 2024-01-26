@@ -70,12 +70,13 @@
     - [拍照(ArkTS)](camera-shooting.md)
     - [录像(ArkTS)](camera-recording.md)
     - [元数据(ArkTS)](camera-metadata.md)
+    - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
   - 相机最佳实践(ArkTS)
     - [拍照实现方案(ArkTS)](camera-shooting-case.md)
     - [录像实现方案(ArkTS)](camera-recording-case.md)
-    - [使用人像模式拍照(仅对系统应用开放)(ArkTS)](camera-mode.md)
     - [双路预览(ArkTS)](camera-dual-channel-preview.md)
     - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
+    - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)
   - 相机开发指导(C/C++)
     - [设备输入(C/C++)](native-camera-device-input.md)
     - [会话管理(C/C++)](native-camera-session-management.md)
@@ -101,6 +102,8 @@
 - Image Kit（图片处理服务）
   - [Image Kit简介](image-overview.md)
   - [图片解码(ArkTS)](image-decoding.md)
+  - [图片解码(C/C++)](image-decoding-native.md)
+  - [图片接收器(C/C++)](image-receiver-native.md)
   - 图片处理
     - [图像变换(ArkTS)](image-transformation.md)
     - [图像变换(C/C++)](image-transformation-native.md)

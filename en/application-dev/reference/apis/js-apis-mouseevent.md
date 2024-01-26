@@ -104,11 +104,11 @@ Defines the mouse event.
 | axes           | [AxisValue](#axisvalue)[] | Yes   | No   | All axis data contained in the event.                              |
 | pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | Yes   | No   | List of pressed keys.                           |
 | ctrlKey        | boolean     | Yes   | No   | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.   |
-| altKey         | boolean     | Yes   | No   | Whether altKey is being pressed.                        |
-| shiftKey       | boolean     | Yes   | No   | Whether shiftKey is being pressed.                      |
-| logoKey        | boolean     | Yes   | No   | Whether logoKey is being pressed.                       |
-| fnKey          | boolean     | Yes   | No   | Whether fnKey is being pressed.                         |
+| altKey         | boolean     | Yes   | No   | Whether altKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                        |
+| shiftKey       | boolean     | Yes   | No   | Whether shiftKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                      |
+| logoKey        | boolean     | Yes   | No   | Whether logoKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                       |
+| fnKey          | boolean     | Yes   | No   | Whether fnKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                         |
 | capsLock       | boolean     | Yes   | No   | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite. |
-| numLock        | boolean     | Yes   | No   | Whether numLock is active.                       |
-| scrollLock     | boolean     | Yes   | No   | Whether scrollLock is active.                    |
+| numLock        | boolean     | Yes   | No   | Whether numLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite.                       |
+| scrollLock     | boolean     | Yes   | No   | Whether scrollLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite.                    |
 | toolType<sup>11+</sup> | [ToolType](#tooltype11) | Yes   | No   | Tool type.                    |

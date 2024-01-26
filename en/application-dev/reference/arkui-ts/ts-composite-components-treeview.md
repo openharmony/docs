@@ -107,7 +107,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | -------- | -------- | -------- | -------- |
 | parentNodeId | number | No| Parent node.| 
 | currentNodeId | number | No| Current child node.| 
-| isFolder | boolean | No| Whether the node is a directory.| 
+| isFolder | boolean | No| Whether the node is a directory.<br> Default value: **false**.<br> **true**: The node is a directory.<br>**false**: The node is a not directory.| 
 | icon | ResourceStr | No| Icon.| 
 | selectedIcon | ResourceStr | No| Icon of the selected node.| 
 | editIcon | ResourceStr | No| Edit icon.| 
@@ -128,7 +128,7 @@ getInstance(): TreeListenerManager
 Obtains a **TreeListenerManager** singleton object.
 
 
-### getTreeListener()
+### getTreeListener
 
 getTreeListener(): TreeListener
 
@@ -160,6 +160,7 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 Registers a one-time listener.
 
+
 **Parameters**
 
 | Name| Type| Mandatory| Description| 
@@ -176,14 +177,13 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 Unregiseters a listener.
 
-
 **Parameters**
 
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | Yes| Listening type.| 
-| nodeParam | [NodeParam](#nodeparam) | Yes| Node information.| 
+| nodeParam | [NodeParam](#nodeparam) | Yes| Node information.|
 
 
 ## TreeListenType
@@ -219,18 +219,45 @@ struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
   @State clickNodeId: number = 0;
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
     this.treeListener.off(TreeListenType.NODE_ADD, undefined);
     this.treeListener.off(TreeListenType.NODE_DELETE, undefined);
+    this.treeListener.off(TreeListenType.NODE_MOVE, undefined);
+  }
+
+  @Builder menuBuilder1() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Add').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.addNode();
+        })
+      Divider()
+      Text('Delete').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.removeNode();
+        })
+      Divider()
+      Text('Rename').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.modifyNode();
+        })
+    }.width(100).border({width: 1, color: 0x80808a, radius: '16dp'})
   }
 
   aboutToAppear(): void {
-    this.treeListener.on(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
-    })
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+    })
+    this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+    })
+    this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+    })
+    this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
     })
 
     let normalResource: Resource = $r('app.media.ic_public_collect_normal');
@@ -257,14 +284,41 @@ struct TreeViewDemo {
       .addNode({ parentNodeId:33, currentNodeId: 34, isFolder: false, primaryTitle: "Project 8" })
       .addNode({ parentNodeId:-1, currentNodeId: 36, isFolder: false, primaryTitle: "Project 9" })
       .buildDone();
+    this.treeController.refreshNode (-1, "Parent", "Child");
   }
 
   build() {
     Column(){
-      TreeView({ treeController: this.treeController })
+      SideBarContainer(SideBarContainerType.Embed)
+      {
+        TreeView({ treeController: this.treeController })
+        Row() {
+          Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
+          Column({ space: 30 }) {
+            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
+            Button('Add', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(90)
+              .onClick((event: ClickEvent) => {
+                this.treeController.addNode();
+              })
+            Button('Modify', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(90)
+              .onClick((event: ClickEvent) => {
+                this.treeController.modifyNode();
+              })
+            Button('Remove', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(120)
+              .onClick((event: ClickEvent) => {
+                this.treeController.removeNode();
+              })
+          }.height('100%').width('70%').alignItems(HorizontalAlign.Start).margin(10)
+        }
+      }
+      .focusable(true)
+      .showControlButton(false)
+      .showSideBar(true)
     }
-  }
-}
+  }}
 ```
 
 ![en-us_image_0000001664822257](figures/en-us_image_0000001664822257.png)

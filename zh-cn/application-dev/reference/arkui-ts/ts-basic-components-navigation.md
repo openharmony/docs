@@ -5,6 +5,8 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 > **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -54,8 +56,17 @@ Navigation(pathInfos: NavPathStack)
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
 | hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
-| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
-| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
+| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：优先级规则详见说明。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+
+>  **说明：**
+>
+>  1. 仅设置navBarWidth，不支持Navigation分割线拖拽。
+>
+>  2. navBarWidthRange指定分割线可以拖拽范围。如果不设置值，则按照默认值处理。拖拽范围需要满足navBarWidthRange设置的范围和minContentWidth限制。
+>
+>  3. Navigation显示范围缩小：a. 缩小内容区大小。如果不设置minContentWidth属性，则可以缩小内容区至0， 否则最小缩小至minContentWidth。b. 缩小导航栏大小，缩小时需要满足导航栏宽度大于navBarRange的下限。c. 对显示内容进行裁切。
+
 
 ## 事件
 
@@ -437,7 +448,7 @@ constructor(name: string, param: unknown)
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。 |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口设置。 |
 | Mini | 固定为小标题模式。                                |
 | Full | 固定为大标题模式。                                |
 
@@ -524,10 +535,10 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
@@ -781,7 +792,7 @@ struct NavigationExample {
       console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
       console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
       console.log(`operation: ${operation}`)
-      if (from.index === -1) {
+      if (from.index === -1 || to.index === -1) {
         return undefined;
       }
       let customAnimation: NavigationAnimatedTransition = {
@@ -795,7 +806,9 @@ struct NavigationExample {
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.name);
           fromParam.start(operation == NavigationOperation.PUSH, true);
           toParam.start(operation == NavigationOperation.PUSH, false);
-          animateTo({duration: toParam.timeout, onFinish: ()=>{
+          animateTo({duration: 400, onFinish: ()=>{
+            fromParam.onFinish(operation === NavigationOperation.PUSH, true);
+            toParam.onFinish(operation === NavigationOperation.PUSH, true);
             transitionProxy.finishTransition();
           }}, ()=>{
             fromParam.finish(operation === NavigationOperation.PUSH, true)
@@ -820,16 +833,13 @@ export struct pageOneTmp {
   @State scaleVal: number = 1
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageOne', (isPush: boolean, isExit: boolean) => {
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=> {
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200);
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -850,6 +860,13 @@ export struct pageOneTmp {
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
     })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageOne')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageOne')
+    })
     .translate({x: this.x, y: 0, z: 0})
     .backgroundColor(Color.White)
   }
@@ -865,17 +882,14 @@ export struct PageTwoTemp {
   @State x: number = 300
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageTwo', (isPush: boolean, isExit: boolean)=>{
       console.log("current page is pageOne")
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=>{
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200)
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -890,11 +904,17 @@ export struct PageTwoTemp {
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
-    .backgroundColor(Color.White)
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageTwo')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageTwo')
     })
     .translate({x: this.x})
     .backgroundColor(Color.White)
@@ -906,6 +926,7 @@ export struct PageTwoTemp {
 export interface AnimateCallback {
   finish: (isPush: boolean, isExit: boolean) => void;
   start: (isPush: boolean, isExit: boolean) => void;
+  onFinish: (isPush: boolean, isExit: boolean) => void
   timeout: number;
 }
 const customTransitionMap: Map<string, AnimateCallback> = new Map()
@@ -921,16 +942,18 @@ export class CustomTransition {
   }
 
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void, timeout: number): void {
+                   endCallback:(operation: boolean, isExit: boolean) => void,
+                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       param.start = startCallback;
       param.finish = endCallback;
       param.timeout = timeout;
+      param.onFinish = onFinish;
       return;
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
     customTransitionMap.set(name, params);
   }
 
@@ -942,7 +965,8 @@ export class CustomTransition {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name).start,
       finish: customTransitionMap.get(name).finish,
-      timeout: customTransitionMap.get(name).timeout
+      timeout: customTransitionMap.get(name).timeout,
+      onFinish: customTransitionMap.get(name).onFinish
     };
     return result;
   }

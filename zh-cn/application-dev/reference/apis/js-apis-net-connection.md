@@ -370,6 +370,131 @@ connection.setAppHttpProxy({
 } as connection.HttpProxy);
 ```
 
+**预置锁定证书PIN:**
+
+证书PIN是对证书文件用sha256算法计算出的hash值。 
+对于证书server.pem, 可以用如下openssl命令计算它的PIN:
+
+```shell
+cat server.pem \
+| sed -n '/-----BEGIN/,/-----END/p' \
+| openssl x509 -noout -pubkey \
+| openssl pkey -pubin -outform der \
+| openssl dgst -sha256 -binary \
+| openssl enc -base64
+```
+
+**预置应用级证书:**
+
+直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
+
+**预置JSON配置文件:**
+
+预置的证书与网络服务器的对应关系通过JSON配置。 
+配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
+
+**JSON配置文件:**
+
+证书锁定的配置例子如下:
+```json
+{
+  "network-security-config": {	
+	  "domain-config": {
+		  "domains": [
+        {
+          "include-subdomains": true,
+          "name": "server.com"
+        }
+      ],
+      "pin-set": {
+        "expiration": "2024-11-08",
+        "pin": [
+          {
+            "digest-algorithm": "sha256",
+            "digest": "FEDCBA987654321"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+应用级证书的配置例子如下:
+```json
+{
+  "network-security-config": {
+    "base-config": {  
+      "trust-anchors": [                         
+        {"certificates": "/etc/security/certificates"}
+      ]
+    },
+    "domain-config": {
+      "domains": [
+        {
+          "include-subdomains": true,
+          "name": "example.com"
+        }
+      ],
+      "trust-anchors": [
+        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
+      ]
+    }
+  }
+}
+
+```
+
+**各个字段含义:**
+
+**network-security-config(object:网络安全配置)**
+
+可包含0或者1个base-config
+
+必须包含1个domain-config
+
+**base-config(object:指示应用程序范围的安全配置)**
+
+必须包含1个trust-anchors
+
+**domain-config(array:指示每个域的安全配置)**
+
+可以包含任意个item
+
+item必须包含1个domain
+
+item可以包含0或者1个trust-anchors
+
+item可包含0个或者1个pin-set
+
+**trust-anchors(array:受信任的CA)**
+
+可以包含任意个item
+
+item必须包含1个certificates(string:CA证书路径)
+
+**domain(array:域)**
+
+可以包含任意个item
+
+item必须包含1个name(string:指示域名)
+
+item可以包含0或者1个include-subdomains(boolean:指示规则是否适用于子域)
+
+**pin-set(object:证书PIN设置)**
+
+必须包含1个pin
+
+可以包含0或者1个expiration(string:指示证书PIN的过期时间)
+
+**pin(array:证书PIN)**
+
+可以包含任意个item
+
+item必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)
+
+item必须包含1个digest(string:指示公钥PIN)
+
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
@@ -1998,7 +2123,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netBlockStatusChange')
 
-on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
+on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 
 订阅网络阻塞状态事件，使用callback方式作为异步方法。
 
@@ -2011,7 +2136,7 @@ on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, b
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netBlockStatusChange'。<br/>netBlockStatusChange：网络阻塞状态事件。 |
-| callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | 是   | 回调函数，返回数据网络句柄(netHandle),及网络堵塞状态(blocked)。|
+| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)> | 是   | 回调函数。获取网络阻塞状态信息。|
 
 **示例：**
 
@@ -2044,7 +2169,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netCapabilitiesChange')
 
-on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
 订阅网络能力变化事件。
 
@@ -2073,8 +2198,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// 订阅网络能力变化事件。调用register后，才能接收到此事件通知
+netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -2086,8 +2211,7 @@ netCon.unregister((error: BusinessError) => {
 
 ### on('netConnectionPropertiesChange')
 
-on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
-ConnectionProperties }>): void
+on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPropertyInfo\>): void
 
 订阅网络连接信息变化事件。
 
@@ -2100,7 +2224,7 @@ ConnectionProperties }>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netConnectionPropertiesChange'。<br/>netConnectionPropertiesChange：网络连接信息变化事件。 |
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的连接信息(connectionProperties)。|
+| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | 是   | 回调函数。获取网络连接属性信息。|
 
 **示例：**
 
@@ -2205,8 +2329,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// 订阅网络不可用事件。调用register后，才能接收到此事件通知
+netCon.on('netUnavailable', () => {
   console.log(JSON.stringify(data));
 });
 
@@ -2644,6 +2768,32 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
+
+## NetConnectionPropertyInfo<sup>11+</sup>
+
+网络连接信息
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称                 | 类型                                   | 必填 |  说明            |
+| -------------------- | ------------------------------------- | ---- |---------------- |
+| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
+| connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
+
+站## NetBlockStatusInfo<sup>11+</sup>
+
+获取网络状态信息
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称                 | 类型                                   | 必填 |  说明            |
+| -------------------- | ------------------------------------- | ---- |---------------- |
+| netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。   |
+| blocked | boolean                  | 是   |标识当前网络是否是堵塞状态 |
 
 ## ConnectionProperties
 

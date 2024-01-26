@@ -8,7 +8,7 @@
 
 ## 约束与限制
 
-- 暂不支持动态添加流，即不能在没有调用session.stop的情况下，调用addOutput添加流。
+- 暂不支持动态添加流，即不能在没有调用[session.stop](../reference/apis/js-apis-camera.md#stop-4)的情况下，调用[addOutput](../reference/apis/js-apis-camera.md#addoutput)添加流。
 - 对ImageReceiver组件获取到的图像数据处理后，需要将对应的图像Buffer释放，确保Surface的BufferQueue正常轮转。
 
 ## 调用流程
@@ -51,12 +51,12 @@
 
    ```ets
    //xxx.ets
-   // 创建XComponentController 
+   // 创建XComponentController
    @Component
    struct XComponentPage {
      // 创建XComponentController
      mXComponentController: XComponentController = new XComponentController;
-   
+
      build() {
        Flex() {
          // 创建XComponent
@@ -81,57 +81,66 @@
 
 4. 实现双路预览。
 
-   将步骤2、3生成的两路SurfaceId通过createPreviewOutput方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
+   将步骤2、3生成的两路SurfaceId通过[createPreviewOutput](../reference/apis/js-apis-camera.md#createpreviewoutput)方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
 
    ```ts
    import camera from '@ohos.multimedia.camera';
 
    async function createDualChannelPreview(cameraManager: camera.CameraManager, XComponentSurfaceId: string, receiver: image.ImageReceiver): Promise<void> {
-     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // 获取支持的相机设备对象
-   
+     // 获取支持的相机设备对象
+     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+
+     // 获取支持的模式类型
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(camerasDevices[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+
      // 获取profile对象
-     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
+     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0], camera.SceneMode.NORMAL_PHOTO); // 获取对应相机设备profiles
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
-   
+
      // 预览流1
      let previewProfilesObj: camera.Profile = previewProfiles[0];
-   
+
      // 预览流2
      let previewProfilesObj2: camera.Profile = previewProfiles[0];
-   
+
      // 创建 预览流1 输出对象
      let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(previewProfilesObj, XComponentSurfaceId);
-   
+
      // 创建 预览流2 输出对象
      let imageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
      let previewOutput2: camera.PreviewOutput = cameraManager.createPreviewOutput(previewProfilesObj2, imageReceiverSurfaceId);
-   
+
      // 创建cameraInput对象
      let cameraInput: camera.CameraInput = cameraManager.createCameraInput(camerasDevices[0]);
-   
+
      // 打开相机
      await cameraInput.open();
-   
+
      // 会话流程
-     let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
-   
+     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+
      // 开始配置会话
-     captureSession.beginConfig();
-   
+     photoSession.beginConfig();
+
      // 把CameraInput加入到会话
-     captureSession.addInput(cameraInput);
-   
+     photoSession.addInput(cameraInput);
+
      // 把 预览流1 加入到会话
-     captureSession.addOutput(previewOutput);
-   
+     photoSession.addOutput(previewOutput);
+
      // 把 预览流2 加入到会话
-     captureSession.addOutput(previewOutput2);
-   
+     photoSession.addOutput(previewOutput2);
+
      // 提交配置信息
-     await captureSession.commitConfig();
-   
+     await photoSession.commitConfig();
+
      // 会话开始
-     await captureSession.start();
+     await photoSession.start();
    }
    ```
 

@@ -174,11 +174,55 @@ async function Demo() {
 }
 ```
 
+## image.createPixelMapFromSurface<sup>11+</sup>
+
+Creates a **PixelMap** object from a surface ID.
+
+createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name                | Type                | Mandatory| Description                                    |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](js-apis-image.md#imagereceiver9).|
+| region                 | [Region](#region7)  | Yes  | Size of the image after cropping.                        |
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980115 | Invalid input parameter|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**Example**
+
+```ts
+import {BusinessError} from '@ohos.base';
+async function Demo(surfaceId: string) {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    await multimedia_image.createPixelMapFromSurface(surfaceId, region).then(() => {
+        console.log('Succeeded in creating pixelmap from Surface');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to create pixelmap');
+    });
+} 
+```
+
 ## PixelMap<sup>7+</sup>
 
 Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
-Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request.
+Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
 
 Before calling any API in **PixelMap**, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object.
 
@@ -186,9 +230,10 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name      | Type   | Readable| Writable| Description                      |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| isEditable | boolean | Yes  | No  | Whether the image pixel map is editable.|
+| Name             | Type   | Readable| Writable| Description                      |
+| -----------------| ------- | ---- | ---- | -------------------------- |
+| isEditable        | boolean | Yes  | No  | Whether the image pixel map is editable.|
+| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -1094,9 +1139,9 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980101| The image data is abnormal.            |
-| 62980103| The image data is not supported.             |
-| 62980115| Invalid image parameter.            |
+| 62980101| If the image data abnormal.            |
+| 62980103| If the image data unsupport.             |
+| 62980115| If the image parameter invalid.            |
 
 **Example**
 
@@ -1126,8 +1171,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980111| The image source data is incomplete.        |
-| 62980115| Invalid image parameter.             |
+| 62980111| If the operation invalid.        |
+| 62980115| If the image parameter invalid.             |
 
 **Example**
 
@@ -3834,6 +3879,7 @@ Describes image information.
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | Yes  | Yes  | Image size.|
 | density<sup>9+</sup> | number | Yes  | Yes  | Pixel density, in ppi.|
+| stride<sup>11+</sup> | number | Yes  | Yes  | Number of bytes from one row of pixels in memory to the next row of pixels in memory.stride >= region.size.width*4  |
 
 ## Size
 

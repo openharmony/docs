@@ -34,9 +34,9 @@ animateTo(value: AnimateParam, event: () => void): void
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.<br>For details about the restrictions, see **Notes about PlayMode**.|
 | onFinish   | () =&gt; void                  | Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | Type of the **onFinish** callback.<br>Default value: **FinishCallbackType.REMOVED**<br>Since API version 11, this API is supported in ArkTS widgets.|
-| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange-11) | Expected frame rate range of the animation.|
+| expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | Expected frame rate range of the animation.|
 
-## ExpectedFrameRateRange <sup>11+</sup>
+## ExpectedFrameRateRange<sup>11+</sup>
 | Name | Type    | Description     |
 |-----|--------|---------|
 | min | number | Expected minimum frame rate.|

@@ -5,6 +5,8 @@ The **\<Navigation>** component is the root view container for navigation. It ty
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 
 
 ## Child Components
@@ -52,7 +54,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.<br>**NOTE**<br>Available options are **Stack**, **Split**, and **Auto**.|
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar.<br>Default value: **false**|
+| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar. If this parameter is set to **true**, the navigation bar, including the title bar, content area, and toolbar, is hidden. In this case, if the navigation destination page is in the navigation stack, it is moved to the top of the stack and displayed. Otherwise, a blank page is displayed. From API version 9 to API version 10, this attribute takes effect only in dual-column mode. Since API version 11, this attribute takes effect in single-column, dual-column, and auto modes.<br>Default value: **false**|
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | Builder for a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar (valid in dual-column mode).<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If custom values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | Minimum width of the navigation bar content area (valid in dual-column mode).<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If custom values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
@@ -123,6 +125,42 @@ Replaces the top of the navigation stack with the page specified by **name**.
 | name  | string  | Yes   | Name of the navigation destination page.  |
 | param | Object | Yes   | Detailed parameters of the navigation destination page.|
 | animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+
+### removeByIndexes<sup>11+</sup>
+
+removeByIndexes(indexes: Array<number\>): number
+
+Removes the navigation destination pages specified by **indexes** from the navigation stack.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| indexes  | Array<number\>  | Yes   | Array of indexes of the navigation destination pages to remove.  |
+
+**Return value**
+
+| Type         | Description                      |
+| ----------- | ------------------------ |
+| number | Number of the navigation destination pages removed.|
+
+### removeByName<sup>11+</sup>
+
+removeByName(name: string): number
+
+Removes the navigation destination page specified by **name** from the navigation stack.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | Yes   | Name of the navigation destination page to remove.  |
+
+**Return value**
+
+| Type         | Description                      |
+| ----------- | ------------------------ |
+| number | Number of the navigation destination pages removed.|
 
 ### pop<sup>10+</sup>
 
@@ -488,10 +526,10 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
@@ -670,8 +708,8 @@ export struct PageOneTmp {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
     })
   }
@@ -745,7 +783,7 @@ struct NavigationExample {
       console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
       console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
       console.log(`operation: ${operation}`)
-      if (from.index === -1) {
+      if (from.index === -1 || to.index === -1) {
         return undefined;
       }
       let customAnimation: NavigationAnimatedTransition = {
@@ -759,7 +797,9 @@ struct NavigationExample {
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.name);
           fromParam.start(operation == NavigationOperation.PUSH, true);
           toParam.start(operation == NavigationOperation.PUSH, false);
-          animateTo({duration: toParam.timeout, onFinish: ()=>{
+          animateTo({duration: 400, onFinish: ()=>{
+            fromParam.onFinish(operation === NavigationOperation.PUSH, true);
+            toParam.onFinish(operation === NavigationOperation.PUSH, true);
             transitionProxy.finishTransition();
           }}, ()=>{
             fromParam.finish(operation === NavigationOperation.PUSH, true)
@@ -784,16 +824,13 @@ export struct pageOneTmp {
   @State scaleVal: number = 1
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageOne', (isPush: boolean, isExit: boolean) => {
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=> {
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200);
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -810,9 +847,16 @@ export struct pageOneTmp {
     }.title('pageOne')
     .mode(NavDestinationMode.STANDARD)
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageOne')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageOne')
     })
     .translate({x: this.x, y: 0, z: 0})
     .backgroundColor(Color.White)
@@ -829,17 +873,14 @@ export struct PageTwoTemp {
   @State x: number = 300
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageTwo', (isPush: boolean, isExit: boolean)=>{
       console.log("current page is pageOne")
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=>{
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200)
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -854,11 +895,17 @@ export struct PageTwoTemp {
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
-    .backgroundColor(Color.White)
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageTwo')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageTwo')
     })
     .translate({x: this.x})
     .backgroundColor(Color.White)
@@ -870,6 +917,7 @@ export struct PageTwoTemp {
 export interface AnimateCallback {
   finish: (isPush: boolean, isExit: boolean) => void;
   start: (isPush: boolean, isExit: boolean) => void;
+  onFinish: (isPush: boolean, isExit: boolean) => void
   timeout: number;
 }
 const customTransitionMap: Map<string, AnimateCallback> = new Map()
@@ -885,16 +933,18 @@ export class CustomTransition {
   }
 
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void, timeout: number): void {
+                   endCallback:(operation: boolean, isExit: boolean) => void,
+                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       param.start = startCallback;
       param.finish = endCallback;
       param.timeout = timeout;
+      param.onFinish = onFinish;
       return;
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
     customTransitionMap.set(name, params);
   }
 
@@ -906,7 +956,8 @@ export class CustomTransition {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name).start,
       finish: customTransitionMap.get(name).finish,
-      timeout: customTransitionMap.get(name).timeout
+      timeout: customTransitionMap.get(name).timeout,
+      onFinish: customTransitionMap.get(name).onFinish
     };
     return result;
   }

@@ -116,4 +116,3 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
 
-<!--no_check-->

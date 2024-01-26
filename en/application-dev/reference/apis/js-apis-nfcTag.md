@@ -140,7 +140,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#tagInfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -1093,4 +1093,5 @@ Enumerates the MIFARE Ultralight tag types.
 | TYPE_UNKNOWN      | 0      | Unknown type.     |
 | TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight.  |
 | TYPE_ULTRALIGHT_C | 2      | MIFARE Ultralight C.|
-<!--no_check-->
+
+ <!--no_check--> 

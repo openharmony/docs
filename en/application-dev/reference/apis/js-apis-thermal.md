@@ -188,6 +188,8 @@ console.info('thermal level is: ' + level);
 
 ## ThermalLevel
 
+> **NOTE**<br>The enum value **ESCAPE** is supported since API version 11.
+
 Represents the thermal level.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager

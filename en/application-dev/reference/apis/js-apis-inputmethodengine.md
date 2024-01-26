@@ -4006,4 +4006,4 @@ textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.Ed
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
-<!--no_check-->
+

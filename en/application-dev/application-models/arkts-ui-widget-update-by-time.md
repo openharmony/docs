@@ -18,7 +18,7 @@ The widget framework provides the following modes of updating widgets periodical
   ```json
   {
     "forms": [
-    {
+      {
         "name": "UpdateDuration",
         "description": "$string:widget_updateduration_desc",
         "src": "./ets/updateduration/pages/UpdateDurationCard.ets",
@@ -40,7 +40,7 @@ The widget framework provides the following modes of updating widgets periodical
     ]
   }
   ```
-  
+
 - Setting the scheduled update time: The widget will be updated at the scheduled time every day. You can specify the time by setting the [scheduledUpdateTime](arkts-ui-widget-configuration.md) field in the **form_updatebytime_config.json** file. For example, you can configure the widget to update at 10:30 a.m. every day.
 
   > **NOTE**
@@ -77,9 +77,7 @@ The widget framework provides the following modes of updating widgets periodical
 
   ```ts
   import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
   
@@ -103,7 +101,7 @@ The widget framework provides the following modes of updating widgets periodical
         });
       } catch (err) {
         hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
-      };
+      }
     }
     ...    
   }

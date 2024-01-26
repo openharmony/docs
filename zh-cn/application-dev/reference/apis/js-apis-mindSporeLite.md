@@ -59,6 +59,7 @@ CPU后端设备选项。
 let context: mindSporeLite.Context = {};
 context.cpu = {};
 context.target = ['cpu'];
+context.cpu.threadNum = 2;
 context.cpu.threadAffinityMode = 0;
 context.cpu.precisionMode = 'preferred_fp16';
 context.cpu.threadAffinityCoreList = [0, 1, 2];
@@ -80,7 +81,7 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 | ------------------ | ---- | ------------ |
 | NO_AFFINITIES      | 0    | 不绑核。     |
 | BIG_CORES_FIRST    | 1    | 绑大核优先。 |
-| LITTLE_CORES_FIRST | 2    | 绑中核优先。 |
+| LITTLE_CORES_FIRST | 2    | 绑小核优先。 |
 
 ## mindSporeLite.loadModelFromFile
 
@@ -179,46 +180,13 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
 **示例：** 
-```ts
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-
-}
-```
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
-import { GlobalContext } from '../GlobalContext';
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 import common from '@ohos.app.ability.common';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 let modelName = '/path/to/xxx.ms';
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
   let modelBuffer : ArrayBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
@@ -370,7 +338,7 @@ mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) =
 ```
 ## mindSporeLite.loadModelFromFd
 
-loadModelFromFd(model: number, context?: Context): Promise&lt; Model&gt;
+loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 
 从文件描述符加载输入模型用于推理。使用Promise异步函数。
 
@@ -478,7 +446,7 @@ globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : 
 
 predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
-执行推理模型。使用Promise异步函数。需要确保调用时模型对象不被资源回收。
+执行推理模型，返回推理结果。使用Promise异步回调。需要确保调用时模型对象不被资源回收。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -492,7 +460,7 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
 | 类型                    | 说明                   |
 | ----------------------- | ---------------------- |
-| [MSTensor](#mstensor)[] | 返回MSTensor对象列表。 |
+| Promise<[MSTensor](#mstensor)[]> | Promise对象。返回MSTensor对象列表。 |
 
 **示例：** 
 

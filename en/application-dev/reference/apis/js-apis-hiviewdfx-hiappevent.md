@@ -51,7 +51,7 @@ try {
     let id: number = hiAppEvent.addProcessor(processor);
     hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
 } catch (error) {
-    hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+    hilog.error(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
 }
 ```
 
@@ -84,7 +84,7 @@ Description of events that can be reported by the data processor.
 | Name        | Type   | Mandatory| Description                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
 | domain      | string  | No  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name        | string  | No  | Event name. The value is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
+| name        | string  | No  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | isRealTime  | boolean | No  | Whether to report events in real time. The value **true** means to report events, and the value **false** means the opposite.|
 
 ## hiAppEvent.removeProcessor<sup>11+</sup>
@@ -119,7 +119,7 @@ try {
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
 } catch (error) {
-    hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+    hilog.error(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
 }
 ```
 
@@ -178,7 +178,7 @@ hiAppEvent.write({
 
 ## hiAppEvent.write
 
-write(info: AppEventInfo)): Promise&lt;void&gt;
+write(info: AppEventInfo): Promise&lt;void&gt;
 
 Writes events to the event file of the current day through **AppEventInfo** objects. This API uses a promise to return the result.
 
@@ -241,9 +241,9 @@ Defines parameters for an **AppEventInfo** object.
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | domain    | string                  | Yes  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name      | string                  | Yes  | Event name. The value is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
+| name      | string                  | Yes  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
-| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
+| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
 
 ## hiAppEvent.configure
 
@@ -292,7 +292,7 @@ Provides configuration options for application event logging.
 | Name      | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | No  | Whether to enable the event logging function. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite.|
-| maxStorage | string  | No  | Maximum size of the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.|
+| maxStorage | string  | No  | Quota for the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.<br>The quota value must meet the following requirements:<br>- The quota value consists of only digits and a unit (which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb], which are case insensitive.)<br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left empty, **b** (that is, byte) is used by default.|
 
 ## hiAppEvent.setUserId<sup>11+</sup>
 
@@ -323,7 +323,7 @@ import hilog from '@ohos.hilog';
 try {
   hiAppEvent.setUserId('key', 'value');
 } catch (error) {
-  hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUserId event, code=${error.code}`);
 }
 ```
 
@@ -361,9 +361,9 @@ import hilog from '@ohos.hilog';
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
-  hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
+  hilog.info(0x0000, 'hiAppEvent', `getUserId event was successful, userId=${value}`);
 } catch (error) {
-  hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserId event, code=${error.code}`);
 }
 ```
 
@@ -379,8 +379,8 @@ Sets user properties.
 
 | Name    | Type                     | Mandatory| Description          |
 | --------- | ------------------------- | ---- | -------------- |
-| name      | string                    | Yes  | Key of a user attribute. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit. |
-| value     | string                    | Yes  | Value of a user attribute. It is a string that contains a maximum of 1024 characters. If the value is **null**, **undefine**, or **empty**, the user ID is cleared. |
+| name      | string                    | Yes  | Key of a user property. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit. |
+| value     | string                    | Yes  | Value of a user property. It is a string that contains a maximum of 1024 characters. If the value is **null**, **undefine**, or **empty**, the user property is cleared. |
 
 **Error codes**
 
@@ -396,7 +396,7 @@ import hilog from '@ohos.hilog';
 try {
   hiAppEvent.setUserProperty('key', 'value');
 } catch (error) {
-  hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
 }
 ```
 
@@ -412,13 +412,13 @@ Obtains the value set by **setUserProperty**.
 
 | Name    | Type                   | Mandatory| Description         |
 | --------- | ----------------------- | ---- | ----------    |
-| name      | string                  | Yes  | Key of a user attribute. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.|
+| name      | string                  | Yes  | Key of a user property. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.|
 
 **Return value**
 
 | Type   | Description                            |
 | ------ | -------------------------------- |
-| string | Value of a user attribute. If no user ID is found, an empty string is returned.|
+| string | Value of a user property. If no user ID is found, an empty string is returned.|
 
 **Error codes**
 

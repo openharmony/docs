@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -16,7 +16,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-获取相册管理模块模块的实例，用于访问和修改相册中的媒体文件。
+获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -26,13 +26,13 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块模块的实例。 |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
 
 **错误码：**
 
@@ -101,7 +101,7 @@ async function example() {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
     } else {
-      console.error('fetchResult fail' + err);
+      console.error(`fetchResult fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -162,7 +162,7 @@ async function example() {
       }
     }
   } catch (err) {
-    console.error('getAssets failed, message = ', err);
+    console.error(`getAssets failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -215,7 +215,7 @@ async function example() {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -274,7 +274,7 @@ async function example() {
     console.info('createAsset file displayName' + photoAsset.displayName);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -331,7 +331,7 @@ async function example() {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -394,7 +394,7 @@ async function example() {
     console.info('createAsset file displayName' + photoAsset.displayName);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -446,7 +446,7 @@ async function example() {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -495,7 +495,7 @@ async function example() {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -553,12 +553,12 @@ async function example() {
     console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### createAlbum
+### createAlbum<sup>(deprecated)</sup>
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
@@ -569,6 +569,10 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.createAlbumRequest](#createalbumrequest11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -604,7 +608,7 @@ async function example() {
   let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName, (err, album) => {
     if (err) {
-      console.error('createAlbumCallback failed with err: ' + err);
+      console.error(`createAlbumCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     console.info('createAlbumCallback successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
@@ -612,7 +616,7 @@ async function example() {
 }
 ```
 
-### createAlbum
+### createAlbum<sup>(deprecated)</sup>
 
 createAlbum(name: string): Promise&lt;Album&gt;
 
@@ -623,6 +627,10 @@ createAlbum(name: string): Promise&lt;Album&gt;
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.createAlbumRequest](#createalbumrequest11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -666,18 +674,22 @@ async function example() {
   phAccessHelper.createAlbum(albumName).then((album) => {
     console.info('createAlbumPromise successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
   }).catch((err: BusinessError) => {
-    console.error('createAlbumPromise failed with err: ' + err);
+    console.error(`createAlbumPromise failed with err: ${err.code}, ${err.message}`);
   });
 }
 ```
 
-### deleteAlbums
+### deleteAlbums<sup>(deprecated)</sup>
 
 deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除相册，使用callback方式返回结果。
 
 删除相册前需先确保相册存在，只能删除用户相册。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAlbums](#deletealbums11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -722,7 +734,7 @@ async function example() {
   let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
   phAccessHelper.deleteAlbums([album], (err) => {
     if (err) {
-      console.error('deletePhotoAlbumsCallback failed with err: ' + err);
+      console.error(`deletePhotoAlbumsCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     console.info('deletePhotoAlbumsCallback successfully');
@@ -731,13 +743,17 @@ async function example() {
 }
 ```
 
-### deleteAlbums
+### deleteAlbums<sup>(deprecated)</sup>
 
 deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 删除相册，使用Promise方式返回结果。
 
 删除相册前需先确保相册存在，只能删除用户相册。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAlbums](#deletealbums11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -789,7 +805,7 @@ async function example() {
   phAccessHelper.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
     }).catch((err: BusinessError) => {
-      console.error('deletePhotoAlbumsPromise failed with err: ' + err);
+      console.error(`deletePhotoAlbumsPromise failed with err: ${err.code}, ${err.message}`);
   });
   fetchResult.close();
 }
@@ -843,7 +859,7 @@ async function example() {
   };
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions, async (err, fetchResult) => {
     if (err) {
-      console.error('getAlbumsCallback failed with err: ' + err);
+      console.error(`getAlbumsCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     if (fetchResult === undefined) {
@@ -896,7 +912,7 @@ async function example() {
   console.info('getAlbumsDemo');
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO, async (err, fetchResult) => {
     if (err) {
-      console.error('getAlbumsCallback failed with err: ' + err);
+      console.error(`getAlbumsCallback failed with err: ${err.code}, ${err.message}`);
       return;
     }
     if (fetchResult === undefined) {
@@ -971,7 +987,7 @@ async function example() {
     console.info('getAlbumsPromise successfully, albumName: ' + album.albumName);
     fetchResult.close();
   }).catch((err: BusinessError) => {
-    console.error('getAlbumsPromise failed with err: ' + err);
+    console.error(`getAlbumsPromise failed with err: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -1154,7 +1170,7 @@ async function getSysHiddenAlbum() {
       console.info('getAlbumsPromise successfully, albumUri: ' + hiddenAlbum.albumUri);
       fetchResult.close();
     }).catch((err: BusinessError) => {
-      console.error('getSysHiddenAlbumPromise failed with err: ' + err);
+      console.error(`getSysHiddenAlbumPromise failed with err: ${err.code}, ${err.message}`);
     });
 }
 
@@ -1179,21 +1195,25 @@ async function getHiddenAlbumsView() {
       albums[i].getAssets(fetchOption).then((assetFetchResult) => {
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       }).catch((err: BusinessError) => {
-        console.error('album get hidden assets failed with error: ' + err);
+        console.error(`album get hidden assets failed with error: ${err.code}, ${err.message}`);
       });
     }
     fetchResult.close();
   }).catch((err: BusinessError) => {
-    console.error('getHiddenAlbumsViewPromise failed with err: ' + err);
+    console.error(`getHiddenAlbumsViewPromise failed with err: ${err.code}, ${err.message}`);
   });
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除媒体文件，删除的文件进入到回收站，使用callback方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1244,20 +1264,24 @@ async function example() {
       if (err === undefined) {
         console.info('deleteAssets successfully');
       } else {
-        console.error('deleteAssets failed with error: ' + err);
+        console.error(`deleteAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('fetch failed, message =', err);
+    console.error(`fetch failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -1312,7 +1336,7 @@ async function example() {
     await phAccessHelper.deleteAssets([asset.uri]);
     console.info('deleteAssets successfully');
   } catch (err) {
-    console.error('deleteAssets failed with error: ' + err);
+    console.error(`deleteAssets failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1377,7 +1401,7 @@ async function example() {
     if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
-      console.error('setFavorite failed with error:' + err);
+      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1441,17 +1465,21 @@ async function example() {
     if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
-      console.error('setFavorite failed with error:' + err);
+      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
 ```
 
-### createDeleteRequest
+### createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 创建一个弹出框来删除照片，删除的文件进入到回收站，使用callback方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1498,20 +1526,24 @@ async function example() {
       if (err === undefined) {
         console.info('createDeleteRequest successfully');
       } else {
-        console.error('createDeleteRequest failed with error: ' + err);
+        console.error(`createDeleteRequest failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error(`fetch failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### createDeleteRequest
+### createDeleteRequest<sup>(deprecated)</sup>
 
 createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 创建一个弹出框来删除照片，删除的文件进入到回收站，使用Promise方式返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1562,7 +1594,7 @@ async function example() {
     await phAccessHelper.createDeleteRequest([asset.uri]);
     console.info('createDeleteRequest successfully');
   } catch (err) {
-    console.error('createDeleteRequest failed with error: ' + err);
+    console.error(`createDeleteRequest failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1631,11 +1663,11 @@ async function example() {
       if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed; error: ${err}`);
+        console.error(`getPhotoIndex failed; error: ${err.code}, ${err.message}`);
       }
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error.code}, ${error.message}`);
   }
 }
 ```
@@ -1708,10 +1740,10 @@ async function example() {
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
     }).catch((err: BusinessError) => {
-      console.info(`getPhotoIndex failed; error: ${err}`);
+      console.error(`getPhotoIndex failed; error: ${err.code}, ${err.message}`);
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error.code}, ${error.message}`);
   }
 }
 ```
@@ -1773,7 +1805,7 @@ async function example() {
     if (err == undefined) {
       console.info('saveFormInfo success');
     } else {
-      console.error('saveFormInfo fail' + err);
+      console.error(`saveFormInfo fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1839,7 +1871,7 @@ async function example() {
   phAccessHelper.saveFormInfo(info).then(() => {
     console.info('saveFormInfo successfully');
   }).catch((err: BusinessError) => {
-    console.info('saveFormInfo failed' + err);
+    console.error(`saveFormInfo failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -1891,7 +1923,7 @@ async function example() {
     if (err == undefined) {
       console.info('removeFormInfo success');
     } else {
-      console.error('removeFormInfo fail' + err);
+      console.error(`removeFormInfo fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -1948,10 +1980,46 @@ async function example() {
   phAccessHelper.removeFormInfo(info).then(() => {
     console.info('removeFormInfo successfully');
   }).catch((err: BusinessError) => {
-    console.info('removeFormInfo failed' + err);
+    console.error(`removeFormInfo failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
+
+### applyChanges<sup>11+</sup>
+
+applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
+
+提交媒体变更请求，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mediaChangeRequest  | [MediaChangeRequest](#mediachangerequest11)  | 是  |  媒体变更请求，支持资产变更请求和相册变更请求。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401   | if parameter is invalid.   |
+| 14000011  | System inner fail.     |
+
+**示例：**
+
+该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)、[MediaAssetsChangeRequest](#mediaassetschangerequest11)和[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的接口示例。
 
 ### release
 
@@ -1985,7 +2053,7 @@ async function example() {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
     if (err !== undefined) {
-      console.error('release failed. message = ', err);
+      console.error(`release failed. error: ${err.code}, ${err.message}`);
     } else {
       console.info('release ok.');
     }
@@ -2027,7 +2095,7 @@ async function example() {
     await phAccessHelper.release();
     console.info('release ok.');
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2095,7 +2163,7 @@ async function example() {
     let photoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title.toString());
     console.info('photoAsset Get photoAssetTitle = ', photoAssetTitle);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2143,7 +2211,7 @@ async function example() {
     let title: string = photoAccessHelper.PhotoKeys.TITLE.toString();
     photoAsset.set(title, 'newTitle');
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2199,7 +2267,7 @@ async function example() {
       let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
-      console.error('commitModify failed, message =', err);
+      console.error(`commitModify failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2256,16 +2324,20 @@ async function example() {
     let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
     console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error(`release failed. error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### open
+### open<sup>(deprecated)</sup>
 
 open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2306,17 +2378,21 @@ async function example() {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('Open file err' + err);
+      console.error(`Open file err: ${err.code}, ${err.message}`);
     }
   });
 }
 ```
 
-### open
+### open<sup>(deprecated)</sup>
 
 open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2366,16 +2442,20 @@ async function example() {
       console.error('Open file fail');
     }
   } catch (err) {
-    console.error('Open demo err' + err);
+    console.error(`Open demo err: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### getReadOnlyFd
+### getReadOnlyFd<sup>(deprecated)</sup>
 
 getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 以只读方式打开当前文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2418,17 +2498,21 @@ async function example() {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('getReadOnlyFd err' + err);
+      console.error(`getReadOnlyFd err: ${err.code}, ${err.message}`);
     }
   });
 }
 ```
 
-### getReadOnlyFd
+### getReadOnlyFd<sup>(deprecated)</sup>
 
 getReadOnlyFd(): Promise&lt;number&gt;
 
 以只读方式打开当前文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。
 
 **注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
@@ -2475,16 +2559,20 @@ async function example() {
       console.error('getReadOnlyFd fail');
     }
   } catch (err) {
-    console.error('getReadOnlyFd demo err' + err);
+    console.error(`getReadOnlyFd demo err: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### close
+### close<sup>(deprecated)</sup>
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。对应的close接口一并废弃。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2526,20 +2614,24 @@ async function example() {
       if (err === undefined) {
         console.info('asset close succeed.');
       } else {
-        console.error('close failed, message = ' + err);
+        console.error(`close failed, error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('close failed, message = ' + err);
+    console.error(`close failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### close
+### close<sup>(deprecated)</sup>
 
 close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。出于安全考量，不再提供获取正式媒体文件句柄的接口。对应的close接口一并废弃。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2585,7 +2677,7 @@ async function example() {
     await asset.close(fd);
     console.info('asset close succeed.');
   } catch (err) {
-    console.error('close failed, message = ' + err);
+    console.error(`close failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2636,7 +2728,7 @@ async function example() {
     if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
-      console.error('getThumbnail fail', err);
+      console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2691,7 +2783,7 @@ async function example() {
     if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
-      console.error('getThumbnail fail', err);
+      console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -2751,16 +2843,20 @@ async function example() {
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
   }).catch((err: BusinessError) => {
-    console.error('getThumbnail fail' + err);
+    console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
   });
 }
 ```
 
-### setFavorite
+### setFavorite<sup>(deprecated)</sup>
 
 setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setFavorite](#setfavorite11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2805,17 +2901,21 @@ async function example() {
     if (err === undefined) {
       console.info('favorite successfully');
     } else {
-      console.error('favorite failed with error:' + err);
+      console.error(`favorite failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
 ```
 
-### setFavorite
+### setFavorite<sup>(deprecated)</sup>
 
 setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setFavorite](#setfavorite11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2865,18 +2965,22 @@ async function example() {
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
-    console.error('setFavorite failed with error:' + err);
+    console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
 
-### setHidden
+### setHidden<sup>(deprecated)</sup>
 
 setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 将文件设置为隐私文件，使用callback方式返回异步结果。
 
 隐私文件存在隐私相册中，用户通过隐私相册去获取隐私文件后可以通过设置hiddenState为false来从隐私相册中移除。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setHidden](#sethidden11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2921,19 +3025,23 @@ async function example() {
     if (err === undefined) {
       console.info('setHidden successfully');
     } else {
-      console.error('setHidden failed with error:' + err);
+      console.error(`setHidden failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
 ```
 
-### setHidden
+### setHidden<sup>(deprecated)</sup>
 
 setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 将文件设置为隐私文件，使用promise方式返回异步结果。
 
 隐私文件存在隐私相册中，用户通过隐私相册去获取隐私文件后可以通过设置hiddenState为false来从隐私相册中移除。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setHidden](#sethidden11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -2986,7 +3094,7 @@ async function example() {
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
   }).catch((err: BusinessError) => {
-    console.error('setHidden failed with error:' + err);
+    console.error(`setHidden failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -3046,7 +3154,7 @@ async function example() {
     console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
-    console.error('getExifDemoCallback failed with error: ' + err);
+    console.error(`getExifDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3108,21 +3216,25 @@ async function example() {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
-        console.error('getExif failed, message = ', err);
+        console.error(`getExif failed, error: ${err.code}, ${err.message}`);
       }
     });
     fetchResult.close();
   } catch (err) {
-    console.error('getExifDemoCallback failed with error: ' + err);
+    console.error(`getExifDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### setUserComment
+### setUserComment<sup>(deprecated)</sup>
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
 修改图片或者视频的备注信息，该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setUserComment](#setusercomment11)替代。
 
 **注意**：此接口只可修改图片或者视频的备注信息。
 
@@ -3136,7 +3248,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为420字符。 |
 
 **返回值：**
 
@@ -3174,16 +3286,20 @@ async function example() {
     let userComment = 'test_set_user_comment';
     await photoAsset.setUserComment(userComment);
   } catch (err) {
-    console.error('setUserCommentDemoPromise failed with error: ' + err);
+    console.error(`setUserCommentDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### setUserComment
+### setUserComment<sup>(deprecated)</sup>
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 修改图片或者视频的备注信息，该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.setUserComment](#setusercomment11)替代。
 
 **注意**：此接口只可修改图片或者视频的备注信息。
 
@@ -3197,7 +3313,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为420字符。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **错误码：**
@@ -3232,11 +3348,11 @@ async function example() {
       if (err === undefined) {
         console.info('setUserComment successfully');
       } else {
-        console.error('setUserComment failed with error: ' + err);
+        console.error(`setUserComment failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('setUserCommentDemoCallback failed with error: ' + err);
+    console.error(`setUserCommentDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3286,20 +3402,20 @@ async function example() {
     let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
-        console.error('setPending(true) failed with error: ' + err);
+        console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
       // write photo buffer in fd
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
-          console.error('setPending(false) failed with error: ' + err);
+          console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
           return;
         }
         await photoAsset.close(fd);
       });
     });
   } catch (err) {
-    console.error('setPendingCallbackDemo failed with error: ' + err);
+    console.error(`setPendingCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3357,7 +3473,7 @@ async function example() {
     photoAsset.setPending(false);
     await photoAsset.close(fd);
   } catch (err) {
-    console.error('setPendingPromiseDemo failed with error: ' + err);
+    console.error(`setPendingPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3414,11 +3530,11 @@ async function example() {
           console.info('Photo is not edited');
         }
       } else {
-        console.error('isEdited failed with error: ' + err);
+        console.error(`isEdited failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('isEditedDemoCallback failed with error: ' + err);
+    console.error(`isEditedDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3475,7 +3591,7 @@ async function example() {
       console.info('Photo is not edited');
     }
   } catch (err) {
-    console.error('isEditedDemoCallback failed with error: ' + err);
+    console.error(`isEditedDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3530,11 +3646,11 @@ async function example() {
       if (err === undefined) {
         console.info('Editdata is ' + editdata);
       } else {
-        console.error('requestEditData failed with error: ' + err);
+        console.error(`requestEditData failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('requestEditDataCallbackDemo failed with error: ' + err);
+    console.error(`requestEditDataCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3586,10 +3702,65 @@ async function example() {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let editdata = await photoAsset.requestEditData();
+    let editdata: string = await photoAsset.requestEditData();
     console.info('Editdata is ' + editdata);
   } catch (err) {
-    console.error('requestEditDataPromiseDemo failed with error: ' + err);
+    console.error(`requestEditDataPromiseDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getEditData<sup>11+</sup>
+
+getEditData(): Promise&lt;MediaAssetEditData&gt;
+
+获得资产编辑数据，该方法使用promise形式来返回结果。
+
+如果资源未编辑过，则返回的编辑数据的内容为空字符串。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;[MediaAssetEditData](#mediaasseteditdata11)&gt; | Promise对象，返回资产编辑数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getEditDataDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let assetEditData: photoAccessHelper.MediaAssetEditData = await photoAsset.getEditData();
+    let data: string = assetEditData.data;
+    console.info('edit data is ' + data);
+  } catch (err) {
+    console.error(`getEditDataDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3642,11 +3813,11 @@ async function example() {
       if (err === undefined) {
         console.info('Source fd is ' + fd);
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('requsetSourceCallbackDemo failed with error: ' + err);
+    console.error(`requsetSourceCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3698,7 +3869,7 @@ async function example() {
     let fd = await photoAsset.requestSource();
     console.info('Source fd is ' + fd);
   } catch (err) {
-    console.error('requsetSourcePromiseDemo failed with error: ' + err);
+    console.error(`requsetSourcePromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3759,11 +3930,11 @@ async function example() {
       if (err === undefined) {
         console.info('commitEditedAsset is successful');
       } else {
-        console.error('commitEditedAsset failed with error: ' + err);
+        console.error(`commitEditedAsset failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('commitEditedAssetCallbackDemo failed with error: ' + err);
+    console.error(`commitEditedAssetCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3828,7 +3999,7 @@ async function example() {
     await photoAsset.commitEditedAsset(editData, uri);
     console.info('commitEditedAsset is successful');
   } catch (err) {
-    console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
+    console.error(`commitEditedAssetPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3883,11 +4054,11 @@ async function example() {
       if (err === undefined) {
         console.info('revertToOriginal is successful');
       } else {
-        console.error('revertToOriginal failed with error: ' + err);
+        console.error(`revertToOriginal failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('revertToOriginalCallbackDemo failed with error: ' + err);
+    console.error(`revertToOriginalCallbackDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -3941,7 +4112,7 @@ async function example() {
     photoAsset.revertToOriginal();
     console.info('revertToOriginal is successful');
   } catch (err) {
-    console.error('revertToOriginalPromiseDemo failed with error: ' + err);
+    console.error(`revertToOriginalPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4001,12 +4172,12 @@ async function example() {
       if (err === undefined) {
         console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     })
     console.info('requestSource taskId: ' + taskId)
   } catch (err) {
-    console.error('requestPhotoDemo failed with error: ' + err)
+    console.error(`requestPhotoDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4071,12 +4242,12 @@ async function example() {
       if (err === undefined) {
         console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     })
     console.info('requestSource taskId: ' + taskId)
   } catch (err) {
-    console.error('requestPhotoDemo failed with error: ' + err)
+    console.error(`requestPhotoDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4134,13 +4305,69 @@ async function example() {
       if (err === undefined) {
         console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error(`requestSource failed with error: ${err.code}, ${err.message}`);
       }
     })
     console.info('requestSource taskId: ' + taskId)
     photoAsset.cancelPhotoRequest(taskId);
   } catch (err) {
-    console.error('cancelPhotoRequestDemo failed with error: ' + err)
+    console.error(`cancelPhotoRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getAnalysisData<sup>11+</sup>
+
+getAnalysisData(analysisType: AnalysisType): Promise\<string>
+
+根据智慧分析类型获取指定分析结果数据。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名          | 类型           | 必填 | 说明           |
+| :----------- | :----------- | :- | :----------- |
+| analysisType | [AnalysisType](#analysistype11) | 是  | 需要获取的智慧分析类型。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getAnalysisDataDemo')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+      await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    if (photoAsset != undefined) {
+      let analysisData: string = await photoAsset.getAnalysisData(
+        photoAccessHelper.AnalysisType.ANALYSIS_OCR);
+      console.info('get ocr result: ' + JSON.stringify(analysisData));
+    }
+    fetchResult.close();
+  } catch (err) {
+    console.error(`getAnalysisDataDemofailed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4201,11 +4428,11 @@ async function example01() {
     photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     }).catch((err: BusinessError) => {
-      console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4248,14 +4475,14 @@ async function example02() {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       if (err) {
-        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
         return;
       }
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4294,14 +4521,14 @@ async function example03() {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select((err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       if (err) {
-        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
         return;
       }
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4434,7 +4661,7 @@ async function example() {
     fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
-    console.error('close fail. message = ' + err);
+    console.error(`close fail. error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4480,7 +4707,7 @@ async function example() {
     if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
-      console.error('photoAsset failed with err:' + err);
+      console.error(`photoAsset failed with err:${err.code}, ${err.message}`);
     }
   });
 }
@@ -4572,7 +4799,7 @@ async function example() {
       if (photoAsset !== undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
       } else {
-        console.error('photoAsset failed with err: ' + err);
+        console.error(`photoAsset failed with err: ${err.code}, ${err.message}`);
       }
     });
   }
@@ -4666,7 +4893,7 @@ async function example() {
     if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
-      console.error('photoAsset failed with err: ' + err);
+      console.error(`photoAsset failed with err: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -4756,7 +4983,7 @@ async function example() {
     if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
-      console.error('photoAsset failed with err: ' + err);
+      console.error(`photoAsset failed with err: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -4851,7 +5078,7 @@ async function example() {
     if (photoAssetList !== undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
     } else {
-      console.error('photoAssetList failed with err:' + err);
+      console.error(`photoAssetList failed with err:${err.code}, ${err.message}`);
     }
   });
 }
@@ -4915,6 +5142,8 @@ async function example() {
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
 | coverUri | string | 是    | 否    | 封面文件Uri。 |
+| imageCount<sup>11+</sup> | number | 是   | 否   | 相册中图片数量。|
+| videoCount<sup>11+</sup> | number | 是   | 否   | 相册中视频数量。|
 
 ### getAssets
 
@@ -4966,7 +5195,7 @@ async function example() {
     if (albumFetchResult !== undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
     } else {
-      console.error('album getAssets failed with error: ' + err);
+      console.error(`album getAssets failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -5027,7 +5256,7 @@ async function example() {
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
-    console.error('album getAssets failed with error: ' + err);
+    console.error(`album getAssets failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
@@ -5076,7 +5305,7 @@ async function example() {
   album.albumName = 'hello';
   album.commitModify((err) => {
     if (err !== undefined) {
-      console.error('commitModify failed with error: ' + err);
+      console.error(`commitModify failed with error: ${err.code}, ${err.message}`);
     } else {
       console.info('commitModify successfully');
     }
@@ -5130,16 +5359,20 @@ async function example() {
   album.commitModify().then(() => {
     console.info('commitModify successfully');
   }).catch((err: BusinessError) => {
-    console.error('commitModify failed with error: ' + err);
+    console.error(`commitModify failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```
 
-### addAssets
+### addAssets<sup>(deprecated)</sup>
 
 addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5184,20 +5417,24 @@ async function example() {
       if (err === undefined) {
         console.info('album addAssets successfully');
       } else {
-        console.error('album addAssets failed with error: ' + err);
+        console.error(`album addAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('addAssetsDemoCallback failed with error: ' + err);
+    console.error(`addAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### addAssets
+### addAssets<sup>(deprecated)</sup>
 
 addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5247,19 +5484,23 @@ async function example() {
     album.addAssets([asset]).then(() => {
       console.info('album addAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album addAssets failed with error: ' + err);
+      console.error(`album addAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('addAssetsDemoPromise failed with error: ' + err);
+    console.error(`addAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### removeAssets
+### removeAssets<sup>(deprecated)</sup>
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5304,20 +5545,24 @@ async function example() {
       if (err === undefined) {
         console.info('album removeAssets successfully');
       } else {
-        console.error('album removeAssets failed with error: ' + err);
+        console.error(`album removeAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('removeAssetsDemoCallback failed with error: ' + err);
+    console.error(`removeAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### removeAssets
+### removeAssets<sup>(deprecated)</sup>
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -5367,19 +5612,23 @@ async function example() {
     album.removeAssets([asset]).then(() => {
       console.info('album removeAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album removeAssets failed with error: ' + err);
+      console.error(`album removeAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('removeAssetsDemoPromise failed with error: ' + err);
+    console.error(`removeAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### recoverAssets
+### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.recoverAssets](#recoverassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -5427,20 +5676,24 @@ async function example() {
       if (err === undefined) {
         console.info('album recoverAssets successfully');
       } else {
-        console.error('album recoverAssets failed with error: ' + err);
+        console.error(`album recoverAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('recoverAssetsDemoCallback failed with error: ' + err);
+    console.error(`recoverAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### recoverAssets
+### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.recoverAssets](#recoverassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -5493,19 +5746,23 @@ async function example() {
     album.recoverAssets([asset]).then(() => {
       console.info('album recoverAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album recoverAssets failed with error: ' + err);
+      console.error(`album recoverAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('recoverAssetsDemoPromise failed with error: ' + err);
+    console.error(`recoverAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5555,20 +5812,24 @@ async function example() {
       if (err === undefined) {
         console.info('album deleteAssets successfully');
       } else {
-        console.error('album deleteAssets failed with error: ' + err);
+        console.error(`album deleteAssets failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('deleteAssetsDemoCallback failed with error: ' + err);
+    console.error(`deleteAssetsDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### deleteAssets
+### deleteAssets<sup>(deprecated)</sup>
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2)替代。
 
 **注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
 
@@ -5623,19 +5884,23 @@ async function example() {
     album.deleteAssets([asset]).then(() => {
       console.info('album deleteAssets successfully');
     }).catch((err: BusinessError) => {
-      console.error('album deleteAssets failed with error: ' + err);
+      console.error(`album deleteAssets failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('deleteAssetsDemoPromise failed with error: ' + err);
+    console.error(`deleteAssetsDemoPromise failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### setCoverUri
+### setCoverUri<sup>(deprecated)</sup>
 
 setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置相册封面，该方法使用callback形式来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.setCoverUri](#setcoveruri11)替代。
 
 **注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
 
@@ -5685,20 +5950,24 @@ async function example() {
       if (err === undefined) {
         console.info('album setCoverUri successfully');
       } else {
-        console.error('album setCoverUri failed with error: ' + err);
+        console.error(`album setCoverUri failed with error: ${err.code}, ${err.message}`);
       }
     });
   } catch (err) {
-    console.error('setCoverUriDemoCallback failed with error: ' + err);
+    console.error(`setCoverUriDemoCallback failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
 
-### setCoverUri
+### setCoverUri<sup>(deprecated)</sup>
 
 setCoverUri(uri: string): Promise&lt;void&gt;
 
 设置相册封面，该方法使用Promise来返回结果。
+
+> **说明：** 
+>
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.setCoverUri](#setcoveruri11)替代。
 
 **注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
 
@@ -5752,10 +6021,2199 @@ async function example() {
     album.setCoverUri(asset.uri).then(() => {
       console.info('album setCoverUri successfully');
     }).catch((err: BusinessError) => { 
-      console.error('album setCoverUri failed with error: ' + err);
+      console.error(`album setCoverUri failed with error: ${err.code}, ${err.message}`);
     });
   } catch (err) {
-    console.error('setCoverUriDemoPromise failed with error: ' + err);
+    console.error(`setCoverUriDemoPromise failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## MediaAssetEditData<sup>11+</sup>
+
+资产编辑数据。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### 属性
+
+| 名称           | 类型    | 可读   | 可写  | 说明   |
+| ------------ | ------ | ---- | ---- | ------- |
+| compatibleFormat | string | 是    | 是    | 编辑数据的格式。**系统接口**：此接口为系统接口。    |
+| formatVersion | string | 是    | 是   | 编辑数据格式的版本。**系统接口**：此接口为系统接口。    |
+| data | string | 是    | 是   | 编辑数据的内容。**系统接口**：此接口为系统接口。    |
+
+### constructor<sup>11+</sup>
+
+constructor(compatibleFormat: string, formatVersion: string)
+
+构造函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| compatibleFormat | string | 是   | 编辑数据的格式。 |
+| formatVersion | string | 是   | 编辑数据格式的版本。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+let assetEditData: photoAccessHelper.MediaAssetEditData = new photoAccessHelper.MediaAssetEditData('system', '1.0');
+```
+
+## MediaAssetChangeRequest<sup>11+</sup>
+
+资产变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(asset: PhotoAsset)
+
+构造函数。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| asset | [PhotoAsset](#photoasset) | 是   | 需要变更的资产。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('MediaAssetChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+}
+```
+
+### createImageAssetRequest<sup>11+</sup>
+
+static createImageAssetRequest(context: Context, fileUri: string): MediaAssetChangeRequest
+
+创建图片资产变更请求。
+
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](js-apis-file-fileuri.md)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+| 13900002   | No such file.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createImageAssetRequestDemo');
+  try {
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createImageAssetRequest successfully');
+  } catch (err) {
+    console.error(`createImageAssetRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### createVideoAssetRequest<sup>11+</sup>
+
+static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetChangeRequest
+
+创建视频资产变更请求。
+
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](js-apis-file-fileuri.md)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+| 13900002   | No such file.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createVideoAssetRequestDemo');
+  try {
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createVideoAssetRequest successfully');
+  } catch (err) {
+    console.error(`createVideoAssetRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, displayName: string, options?: PhotoCreateOptions): MediaAssetChangeRequest
+
+指定待创建的图片或者视频的文件名，创建资产变更请求。
+
+待创建的文件名参数规格为：
+- 应包含有效文件主名和图片或视频扩展名。
+- 文件名字符串长度为1~255。
+- 文件主名中不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| displayName  | string        | 是   | 待创建的图片或者视频文件名。              |
+| options  | [PhotoCreateOptions](#photocreateoptions)        | 否   | 图片或视频的创建选项。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, testFileName);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createAssetRequest successfully');
+  } catch (err) {
+    console.error(`createAssetRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, photoType: PhotoType, extension: string, options?: CreateOptions): MediaAssetChangeRequest
+
+指定待创建的文件类型和扩展名，创建资产变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
+| extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
+| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如：{title: 'testPhoto'}。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let options: photoAccessHelper.CreateOptions = {
+      title: 'testPhoto'
+    }
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension, options);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createAssetRequest successfully');
+  } catch (err) {
+    console.error(`createAssetRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### deleteAssets<sup>11+</sup>
+
+static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
+
+删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待删除的媒体文件数组。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, photoAssetList);
+    console.info('deleteAssets successfully');
+  } catch (err) {
+    console.error(`deleteAssetsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### deleteAssets<sup>11+</sup>
+
+static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;void&gt;
+
+删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 401      |  if parameter is invalid.   |
+| 14000002 |  Invalid asset uri.         |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [asset.uri]);
+    console.info('deleteAssets successfully');
+  } catch (err) {
+    console.error(`deleteAssetsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getAsset<sup>11+</sup>
+
+getAsset(): PhotoAsset
+
+获取当前资产变更请求中的资产。
+
+**注意**：对于创建资产的变更请求，在调用[applyChanges](#applychanges11)提交生效之前，该接口返回null。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [PhotoAsset](#photoasset) | 返回当前资产变更请求中的资产。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('getAssetDemo');
+  try {
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    let asset: photoAccessHelper.PhotoAsset = assetChangeRequest.getAsset();
+    console.info('create asset successfully with uri = ' + asset.uri);
+  } catch (err) {
+    console.error(`getAssetDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setFavorite<sup>11+</sup>
+
+setFavorite(favoriteState: boolean): void
+
+将文件设置为收藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件；false：取消收藏。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setFavoriteDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setFavorite(true);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setFavorite successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setFavorite failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setHidden<sup>11+</sup>
+
+setHidden(hiddenState: boolean): void
+
+将文件设置为隐藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| hiddenState | boolean  | 是    | 是否设置为隐藏文件，true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setHiddenDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setHidden(true);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setHidden successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setHidden failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setUserComment<sup>11+</sup>
+
+setUserComment(userComment: string): void
+
+修改媒体资产的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| userComment | string | 是   | 待修改的资产备注信息，备注信息最长为420字符。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setUserCommentDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  let userComment: string = 'test_set_user_comment';
+  assetChangeRequest.setUserComment(userComment);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setUserComment successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setUserComment failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setTitle<sup>11+</sup>
+
+setTitle(title: string): void
+
+修改媒体资产的标题。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title | string | 是   | 待修改的资产标题。 |
+
+title参数规格为：
+- 不应包含扩展名。
+- 文件名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setTitleDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  let newTitle: string = 'newTitle';
+  assetChangeRequest.setTitle(newTitle);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setTitle successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setTitle failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setEditData<sup>11+</sup>
+
+setEditData(editData: MediaAssetEditData): void
+
+保存资产的编辑数据。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | [MediaAssetEditData](#mediaasseteditdata11) | 是   | 待保存的资产编辑数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setEditDataDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+
+  let assetEditData: photoAccessHelper.MediaAssetEditData = new photoAccessHelper.MediaAssetEditData('system', '1.0');
+  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+  assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+  assetEditData.data = '123456';
+  assetChangeRequest.setEditData(assetEditData);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setEditData successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setEditData failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### getWriteCacheHandler<sup>11+</sup>
+
+getWriteCacheHandler(): Promise&lt;number&gt;
+
+获取临时文件写句柄。
+
+**注意**：对于同一个资产变更请求，不支持在成功获取临时文件写句柄后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise对象，返回临时文件写句柄。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+import fs from '@ohos.file.fs';
+
+async function example() {
+  console.info('getWriteCacheHandlerDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
+    let extension: string = 'mp4';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let fd: number = await assetChangeRequest.getWriteCacheHandler();
+    console.info('getWriteCacheHandler successfully');
+    // write date into fd
+    await fs.close(fd);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  } catch (err) {
+    console.error(`getWriteCacheHandlerDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, fileUri: string): void
+
+通过fileUri从应用沙箱添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
+| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 13900002      |  No such file.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByFileUriDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByFileUri successfully');
+  } catch (err) {
+    console.error(`addResourceByFileUriDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, data: ArrayBuffer): void
+
+通过ArrayBuffer数据添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
+| data | ArrayBuffer | 是   | 待添加资源的数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByArrayBufferDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let buffer: ArrayBuffer = new ArrayBuffer(2048);
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, buffer);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByArrayBuffer successfully');
+  } catch (err) {
+    console.error(`addResourceByArrayBufferDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, proxy: PhotoProxy): void
+
+通过PhotoProxy数据添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统接口**：此接口为系统接口，仅提供给相机应用使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                   |
+| ------- |---------------------------------| ---- |----------------------|
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。            |
+| proxy | [PhotoProxy](#photoproxy11)     | 是   | 待添加资源的PhotoProxy 数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+|----------|-----------------------------------|
+| 202      | Called by non-system application. |
+| 401      | if parameter is invalid.          |
+| 14000011 | System inner fail.                | 
+| 14000016 | Operation Not Support.            |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByPhotoProxyDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let photoProxy: PhotoProxy;
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, photoProxy);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByPhotoProxy successfully');
+  } catch (err) {
+    console.error(`addResourceByPhotoProxyDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setLocation<sup>11+</sup>
+
+setLocation(longitude: number, latitude: number): void
+
+设置文件的经纬度信息。
+
+**系统接口**：此接口为系统接口
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型          | 必填 | 说明    |
+| ------- |-------------| ---- |-------|
+| longitude | number      | 是   | 经度。 |
+| latitude | number | 是   | 纬度。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      | Called by non-system application. |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setLocationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setLocation(120.52, 30.40);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setLocation successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setLocation failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+## MediaAssetsChangeRequest<sup>11+</sup>
+
+批量资产变更请求。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(assets: Array&lt;PhotoAsset&gt;)
+
+构造函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 需要变更的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.   |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('MediaAssetsChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+}
+```
+
+### setFavorite<sup>11+</sup>
+
+setFavorite(favoriteState: boolean): void
+
+将文件设置为收藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件；false：取消收藏。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setFavoriteDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setFavorite(true);
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setFavorite successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setFavorite failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setHidden<sup>11+</sup>
+
+setHidden(hiddenState: boolean): void
+
+将文件设置为隐藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| hiddenState | boolean  | 是    | 是否设置为隐藏文件，true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setHiddenDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setHidden(true);
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setHidden successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setHidden failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setUserComment<sup>11+</sup>
+
+setUserComment(userComment: string): void
+
+修改媒体资产的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| userComment | string | 是   | 待修改的资产备注信息，备注信息最长为420字符。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('setUserCommentDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
+  assetsChangeRequest.setUserComment('test_set_user_comment');
+  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
+    console.info('apply setUserComment successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setUserComment failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+## MediaAlbumChangeRequest<sup>11+</sup>
+
+相册变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(album: Album)
+
+构造函数。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| album | [Album](#album) | 是   | 需要变更的相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('MediaAlbumChangeRequest constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+  let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+}
+```
+
+### createAlbumRequest<sup>11+</sup>
+
+static createAlbumRequest(context: Context, name: string): MediaAlbumChangeRequest
+
+创建相册变更请求。
+
+相册名的参数规格为：
+- 相册名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+- 相册名不允许重名。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| name | string | 是   | 待创建相册的名称。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAlbumChangeRequest](#mediaalbumchangerequest11) | 返回创建相册的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   |  Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAlbumRequestDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('apply createAlbumRequest successfully');
+  } catch (err) {
+    console.error(`createAlbumRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### deleteAlbums<sup>11+</sup>
+
+static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;void&gt;
+
+删除相册，使用Promise方式返回结果。
+
+删除相册前需先确保相册存在，只能删除用户相册。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| albums  |  Array&lt;[Album](#album)&gt;          | 是   | 待删除的相册数组。         |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202   |  Called by non-system application.  |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAlbumsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbums(context, [album]);
+    console.info('deleteAlbums successfully');
+  } catch (err) {
+    console.error(`deleteAlbumsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getAlbum<sup>11+</sup>
+
+getAlbum(): Album
+
+获取当前相册变更请求中的相册。
+
+**注意**：对于创建相册的变更请求，在调用[applyChanges](#applychanges11)提交生效之前，该接口返回null。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [Album](#album) | 返回当前相册变更请求中的相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('getAlbumDemo');
+  try {
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
+    console.info('create album successfully with uri = ' + album.albumUri);
+  } catch (err) {
+    console.error(`getAlbumDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setCoverUri<sup>11+</sup>
+
+setCoverUri(coverUri: string): void
+
+设置相册封面。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| coverUri | string | 是   | 待设置为相册封面文件的uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('setCoverUriDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.setCoverUri(asset.uri);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('setCoverUri successfully');
+  } catch (err) {
+    console.error(`setCoverUriDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setAlbumName<sup>11+</sup>
+
+setAlbumName(name: string): void
+
+设置相册名称。
+
+相册名的参数规格为：
+- 相册名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+- 相册名不允许重名。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| name | string | 是   | 待设置的相册名称。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('setAlbumNameDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    let newAlbumName: string = 'newAlbumName' + new Date().getTime();
+    albumChangeRequest.setAlbumName(newAlbumName);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('setAlbumName successfully');
+  } catch (err) {
+    console.error(`setAlbumNameDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### addAssets<sup>11+</sup>
+
+addAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+向相册中添加资产。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待添加到相册中的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('addAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let albumName: string = 'newAlbumName' + new Date().getTime();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    albumChangeRequest.addAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('addAssets successfully');
+  } catch (err) {
+    console.error(`addAssetsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### removeAssets<sup>11+</sup>
+
+removeAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从相册中移除资产。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从相册中移除的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('removeAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.removeAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('removeAssets successfully');
+  } catch (err) {
+    console.error(`removeAssetsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### moveAssets<sup>11+</sup>
+
+moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
+
+从相册中移动资产到另一个目标相册。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从相册中移出的资产数组。 |
+| targetAlbum | Album | 是   | 待移入资产的目标相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('moveAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    if (albumFetchResult.isAfterLast()) {
+      console.error('lack of album to be moved into');
+      return;
+    }
+    let nextAlbum: photoAccessHelper.Album = await albumFetchResult.getNextObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.moveAssets([asset], nextAlbum);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('moveAssets successfully');
+  } catch (err) {
+    console.error(`moveAssetsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### recoverAssets<sup>11+</sup>
+
+recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从回收站中恢复资产。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从回收站中恢复的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('recoverAssetsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.recoverAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('recoverAssets successfully');
+  } catch (err) {
+    console.error(`recoverAssetsDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### deleteAssets<sup>11+</sup>
+
+deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从回收站中彻底删除资产。
+
+**注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从回收站中彻底删除的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('deleteAssetsPermanentlyDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.deleteAssets([asset]);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('succeed to deleteAssets permanently');
+  } catch (err) {
+    console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setDisplayLevel<sup>11+</sup>
+
+setDisplayLevel(displayLevel: number): void
+
+设置人像相册的显示级别。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| displayLevel | number | 是    | 设置人像相册的显示级别， 0：取消该人像相册收藏；1：设置人像相册为首届面；2：设置人像相册为更多界面；3：设置人像相册为收藏界面。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setDisplayLevel Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setDisplayLevel(1);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error(`setDisplayLevel failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setIsMe<sup>11+</sup>
+
+setIsMe(): void
+
+将人像相册的人物关系设置为“我”。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setIsMe Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.setIsMe();
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error(`setIsMe failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### dismissAssets<sup>11+</sup>
+
+dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从该人像相册中移除指定图片。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;PhotoAsset&gt; | 是    | 需要移除的文件列表 。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('dismissAssets Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+
+    let predicatesAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let assetFetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesAsset
+    };
+    let assetFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(assetFetchOptions);
+    let asset: photoAccessHelper.PhotoAsset = await assetFetchResult.getFirstObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.dismissAssets([asset]);
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error(`dismissAssets failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### mergeAlbum<sup>11+</sup>
+
+mergeAlbum(target: Album): void
+
+将两个人像相册合并。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| target | [Album](#album) | 是    | 需要合并的目标相册，合并相册必须重命名。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not support.         |
+
+**示例：**
+
+``` ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('mergeAlbum Example')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo('user_display_level', 2);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    if (fetchResult.isAfterLast()) {
+      console.error('lack of album to merge');
+      return;
+    }
+    let target: photoAccessHelper.Album = await fetchResult.getNextObject();
+
+    let changeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    changeRequest.mergeAlbum(target);
+    changeRequest.setAlbumName("testName");
+    await phAccessHelper.applyChanges(changeRequest);
+  } catch (err) {
+    console.error(`mergeAlbum failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### placeBefore<sup>11+</sup>
+
+placeBefore(album: Album): void;
+
+将当前相册排序到目标相册之前。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| album | [Album](#album) | 是   |  目标相册。如果要将当前相册排序到末位，则目标相册传入null。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('placeBeforeDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let firstAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (albumFetchResult.isAfterLast()) {
+      console.error('lack of album to place before');
+      return;
+    }
+    let secondAlbum: photoAccessHelper.Album = await albumFetchResult.getNextObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(secondAlbum);
+    albumChangeRequest.placeBefore(firstAlbum);
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('placeBefore successfully');
+  } catch (err) {
+    console.error(`placeBeforeDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## MediaAssetManager<sup>11+</sup>
+### requestImage<sup>11+</sup>
+
+static requestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，请求图片资源。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名            | 类型                                                                                                        | 必填 | 说明                      |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| assets         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。       
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+    onDataPrepared(data: image.ImageSource) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImage(context, photoAsset, requestOptions, handler);
+      console.info('requestImage successfully');
+  });
+}
+```
+
+### requestImageData<sup>11+</sup>
+
+static requestImageData(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;ArrayBuffer&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，请求图片资源数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
+| assets | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
+| requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。       
+| dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+    onDataPrepared(data: ArrayBuffer) {
+        console.info('on image data prepared');
+    }
+}
+
+async function example() {
+  console.info('requestImageData');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE
+  }
+  const handler = new MediaDataHandler();
+
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+      console.info('requestImageData successfully');
+  });
+}
+```
+
+## MediaAssetDataHandler<sup>11+</sup>
+
+媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onDataPrepared<sup>11+</sup>
+
+onDataPrepared(data: T): void
+
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
+T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明                                                                            |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | 是   | 泛型，支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。 |
+
+**示例**
+```ts
+class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
+  onDataPrepared(data: image.ImageSource) {
+    // 自定义对ImageSource的处理逻辑
+    console.info('on image data prepared');
+  }
+}
+
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+  onDataPrepared(data: ArrayBuffer) {
+    // 自定义对ArrayBuffer的处理逻辑
+    console.info('on image data prepared');
   }
 }
 ```
@@ -5815,10 +8273,11 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| USER |  0 |  用户相册。 |
-| SYSTEM |  1024 |  系统预置相册。 |
+| 名称                  | 值    | 说明                        |
+| ------------------- | ---- | ------------------------- |
+| USER                | 0    | 用户相册。                     |
+| SYSTEM              | 1024 | 系统预置相册。                   |
+| SMART<sup>11+</sup> | 4096 | 智慧分析相册。**系统接口**：此接口为系统接口。 |
 
 ## AlbumSubtype
 
@@ -5826,17 +8285,23 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| USER_GENERIC |  1 |  用户相册。 |
-| FAVORITE |  1025 |  收藏夹。 |
-| VIDEO |  1026 |  视频相册。 |
-| HIDDEN |  1027 |  隐藏相册。**系统接口**：此接口为系统接口。 |
-| TRASH |  1028 |  回收站。**系统接口**：此接口为系统接口。 |
-| SCREENSHOT |  1029 |  截屏和录屏相册。**系统接口**：此接口为系统接口。 |
-| CAMERA |  1030 |  相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
-| IMAGE<sup>11+</sup> |  1031 | 所有图片相册。**系统接口**：此接口为系统接口。 |
-| ANY |  2147483647 |  任意相册。 |
+| 名称                                | 值          | 说明                              |
+| --------------------------------- | ---------- | ------------------------------- |
+| USER\_GENERIC                     | 1          | 用户相册。                           |
+| FAVORITE                          | 1025       | 收藏夹。                            |
+| VIDEO                             | 1026       | 视频相册。                           |
+| HIDDEN                            | 1027       | 隐藏相册。**系统接口**：此接口为系统接口。         |
+| TRASH                             | 1028       | 回收站。**系统接口**：此接口为系统接口。          |
+| SCREENSHOT                        | 1029       | 截屏和录屏相册。**系统接口**：此接口为系统接口。      |
+| CAMERA                            | 1030       | 相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
+| IMAGE<sup>11+</sup>               | 1031       | 所有图片相册。**系统接口**：此接口为系统接口。       |
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | 来源相册。**系统接口**：此接口为系统接口。         |
+| CLASSIFY<sup>11+</sup>            | 4097       | 分类相册。**系统接口**：此接口为系统接口。         |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | 地图相册。**系统接口**：此接口为系统接口。         |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | 城市相册。**系统接口**：此接口为系统接口。         |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | 拍摄模式相册。**系统接口**：此接口为系统接口。       |
+| PORTRAIT<sup>11+</sup>            | 4102       | 人像相册。**系统接口**：此接口为系统接口。         |
+| ANY                               | 2147483647 | 任意相册。                           |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -5959,6 +8424,31 @@ title参数规格为：
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
+## RequestOptions<sup>11+</sup>
+
+请求策略。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
+| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式 三种策略。 |
+| sourceMode           | [SourceMode](#sourcemode11)     | 是   | 是   | 资源文件的读取类型，可以指定当前请求获取的是源文件，或是编辑后的文件。**系统接口**：此接口为系统接口。 |
+
+## PhotoProxy<sup>11+</sup>
+
+照片代理，相机应用通过该对象写入图片数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+## MediaChangeRequest<sup>11+</sup>
+
+媒体变更请求，资产变更请求和相册变更请求的父类型。
+
+**注意**：媒体变更请求需要在调用[applyChanges](#applychanges11)后才会提交生效。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## FormInfo<sup>11+</sup>
 
 图库卡片相关信息。
@@ -5971,6 +8461,18 @@ title参数规格为：
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId       |string  |是 | 卡片的ID，由图库创建卡片时提供。 |
 |uri          |string  |是 | 卡片绑定的图片的uri。创建卡片时uri可为空或图片的uri，移除卡片时uri不做校验，传空即可。  |
+
+## ResourceType<sup>11+</sup>
+
+枚举，写入资源的类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| IMAGE_RESOURCE |  1 |  表示图片资源。 |
+| VIDEO_RESOURCE |  2 |  表示视频资源。 |
+| PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
 
 ## ChangeData
 
@@ -6060,6 +8562,7 @@ title参数规格为：
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持照片推荐。      |
+| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
 
 ## PhotoSelectResult
 
@@ -6071,3 +8574,48 @@ title参数规格为：
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
 | isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。 |
+
+
+## DeliveryMode<sup>11+</sup>
+
+枚举，请求图片分发模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| FAST_MODE |  0 |  快速模式。 |
+| HIGH_QUALITY_MODE |  1 |  高质量模式。 |
+| BALANCE_MODE |  2 |  均衡模式。 |
+
+## SourceMode<sup>11+</sup>
+
+枚举，资源文件的读取类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| ORIGINAL_MODE |  0 |  读取源文件。 |
+| EDITED_MODE |  1 |  读取编辑后的文件。|
+
+## AnalysisType<sup>11+</sup>
+
+枚举，智慧分析类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                            | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| ANALYSIS\_AESTHETICS\_SCORE   | 0  | 美学评分分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_LABEL               | 1  | 分类标签分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_OCR                 | 2  | 文字识别分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_FACE                | 3  | 人脸检测分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_OBJECT              | 4  | 目标检测分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_RECOMMENDATION      | 5  | 推荐构图分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_SEGMENTATION        | 6  | 抠图分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_COMPOSITION         | 7  | 美学构图分析类别。**系统接口**：此接口为系统接口。   |
+| ANALYSIS\_SALIENCY            | 8  | 最佳呈现主体中心分析类别。**系统接口**：此接口为系统接口。   |
+| ANALYSIS\_DETAIL\_ADDRESS     | 9  | 详细地址分析类别。**系统接口**：此接口为系统接口。    |

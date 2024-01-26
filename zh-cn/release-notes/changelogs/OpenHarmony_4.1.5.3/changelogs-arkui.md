@@ -203,43 +203,160 @@ UX能力增强。
 
 该变更为兼容性变更。
 
-1.未设置气泡背景色默认使用模糊填充效果。
+1. 未设置气泡背景色，默认背景色加模糊填充效果。如果需要去掉模糊背景效果，可以通过调用backgroundBlurStyle接口，并设置BlurStyle.NONE（backgroundBlurStyle: BlurStyle.NONE）去掉即可。
 
-2.增加12种对齐方式：
+   ```ts
+   // xxx.ets
+   @Entry
+   @Component
+   struct PopupExample {
+     @State handlePopup: boolean = false
+   
+     build() {
+       Column() {
+         // PopupOptions 类型设置弹框内容
+         Button('PopupOptions')
+           .onClick(() => {
+             this.handlePopup = !this.handlePopup;
+           })
+           .bindPopup(this.handlePopup, {
+             message: 'This is a popup with PopupOptions',
+             backgroundBlurStyle: BlurStyle.NONE,
+           })
+           .position({ x: 100, y: 150 })
+       }
+     }
+   }
+   ```
 
-上方:TopLeft/Top/TopRight
+2. 增加12种对齐方式：
 
-下方:BottomLeft/Bottom/BottomRight
+   - 上边：TopLeft/Top/TopRight
+   - 下边：BottomLeft/Bottom/BottomRight
+   - 左边：LeftTop/Left/LeftBottom
+   - 右边：RightTop/Right/RightBottom
 
-左方:LeftTop/Left/LeftBottom
+   ![popup_placement.png](figures/popup_placement.png)
 
-右方:RightTop/Right/RightBottom
+   ```ts
+   // xxx.ets
+   @Entry
+   @Component
+   struct PopupExample {
+     @State handlePopup: boolean = false;
+   
+     build() {
+       Column() {
+         // PopupOptions 类型设置弹框内容
+         Button('按钮名称')
+           .onClick(() => {
+             this.handlePopup = !this.handlePopup;
+           })
+           .bindPopup(this.handlePopup, {
+             message: 'Test',
+             placement: Placement.Bottom
+           })
+           .position({ x: 100, y: 150 })
+       }
+     }
+   }
+   ```
 
-3.避让规则（相对父组件区域弹出）
+3. PopupOptions类型气泡有按钮时，点击气泡区域外消失。
 
-1）按预设方向弹出
+   - 变更前：PopupOptions类型气泡有按钮时，点击气泡区域外消失。
 
-根据位置属性（如未设置则使用默认值），查找指定方向的空间是否满足气泡显示要求，如空间足够，则直接弹出气泡。
+   - 变更后：PopupOptions类型气泡有按钮时，点击气泡区域外不消失。
 
-2）自动调整弹出方向（会根据对齐方式进行避让）
+   > **说明：**
+   >
+   > PopupOptions类型气泡有按钮时，是指bindPopup传入PopupOptions数据结构时，primaryButton或secondaryButton有一个或多个不为空。
 
-如不满足，依次使用如下规则调整显示位置： 1.尝试对向翻转： - 激活组件垂直方向空间不足时，尝试垂直翻转至相对方向显示 - 激活组件水平方向空间不足时，尝试水平翻转至相对方向显示 2. 尝试更多方向变化： - 垂直方向空间均不足时，尝试水平方向（右→左）显示 - 水平方向空间均不足时，尝试垂直方向（下→上）显示 3. 相邻⽅向空间均不足： - 以激活组件为参考，垂直/水平居中覆盖显示在其上方 - 此情况应避免出现（将导致可用性问题）
+4. PopupOptions类型气泡文本超长时添加scroll可以滑动显示。
 
-气泡避让，不用考虑安全边距问题，随着父组件的弹出方向进行避让。
+   - 变更前：PopupOptions类型气泡文本超长时被截断。
 
-4.PopupOptions类型气泡有按钮时点击气泡区域外消失。
+   - 变更后：PopupOptions类型气泡文本超长时添加scroll可以滑动显示。
 
-5.PopupOptions类型气泡文本超长时添加scroll可以滑动显示。（超长规格：showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。）
+5. PopupOptions类型气泡文本颜色取分层参数中ohos_id_color_text_primary值。
 
-6.PopupOptions类型气泡文本颜色取分层参数中ohos_id_color_text_primary值。
+   - 变更前：PopupOptions类型气泡文本颜色取分层参数中ohos_id_color_text_primary_contrary值。
 
-7.PopupOptions类型气泡按钮颜色取分层参数中ohos_id_color_text_primary_activated值。
+   - 变更后：PopupOptions类型气泡文本颜色取分层参数中ohos_id_color_text_primary值。
 
-8.PopupOptions类型气泡按钮布局使用Flex可超长换行。
+6. PopupOptions类型气泡按钮颜色取分层参数中ohos_id_color_text_primary_activated值。
 
-9.CustomPopupOptions类型气泡支持获焦能力。
+   - 变更前：PopupOptions类型气泡按钮颜色取分层参数中ohos_id_color_text_primary_contrary值。
 
-10.showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。
+   - 变更后：PopupOptions类型气泡按钮颜色取分层参数中ohos_id_color_text_primary_activated值。
+
+7. PopupOptions类型气泡按钮布局使用Flex可超长换行。
+
+   - 变更前：PopupOptions类型气泡按钮布超长时显示截断。
+
+   - 变更后：PopupOptions类型气泡按钮布局使用Flex可超长换行。
+
+8. CustomPopupOptions类型气泡新增可配置获焦能力，需要调用CustomPopupOptions中focusable接口并设置为true。
+
+   ```ts
+   // xxx.ets
+   @Entry
+   @Component
+   struct PopupExample {
+     @State customPopup: boolean = false
+   
+     // popup构造器定义弹框内容
+     @Builder
+     popupBuilder() {
+       Row({ space: 2 }) {
+         Button("button1")
+         Button("button2")
+       }
+     }
+   
+     build() {
+       Column() {
+         // CustomPopupOptions 类型设置弹框内容
+         Button('CustomPopupOptions')
+           .position({ x: 80, y: 300 })
+           .onClick(() => {
+             this.customPopup = !this.customPopup
+           })
+           .bindPopup(this.customPopup, {
+             builder: this.popupBuilder,
+             focusable: true
+           })
+       }
+     }
+   }
+   ```
+
+9. `showInSubWindow=true`（可超出窗口显示）时最大高度为设备屏幕高度，`showInSubWindow=false`（不可超出窗口）时最大高度为应用窗口高度。
+
+   - 变更前：没有最大高度限制，文本过长会截断显示。
+
+   - 变更后：有最大高度显示，文本过长会添加滚动条显示文本。
+
+   `showInSubWindow=true`（可超出窗口显示）时最大高度为设备屏幕高度。即状态栏高度（无状态栏时为0）至底部Dock栏高度（无Dock栏时高度为0）。
+
+   `showInSubWindow=false`（不可超出窗口）时最大高度为应用窗口高度。即状态栏高度（无状态栏时为0）至底部Dock栏高度（无Dock栏时高度为0）。
+
+   > **说明：**
+   >
+   > 最大高度距离最上方和最下方分别有40vp的间距。
+
+上述第1、第5和第6条变更前后样式对比如下图所示。  
+
+- 变更前：  
+  ![before](figures/popup_before.png)
+- 变更后：  
+  ![after](figures/popup_after.png)
+
+> **说明：**
+>
+> - PopupOptions类型气泡为，bindPopup传入PopupOptions数据结构时的气泡。
+>
+> - CustomPopupOptions类型气泡为，bindPopup传入CustomPopupOptions数据结构时的气泡。
 
 **API Level**
 
@@ -247,17 +364,17 @@ UX能力增强。
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.2 开始。
+从OpenHarmony SDK 4.1.5.2 开始。
 
 **变更的接口/组件**
 
-不涉及。
+bindPopup属性。
 
 **适配指导**
 
-1.根据用户需求自定义背景色。
+1.根据用户需求自定义气泡背景色，详情参考第1条。
 
-2.根据避让规则进行适配。
+2.根据用户需求自定气泡获焦能力，详情参考第8条。
 
 ## cl.Arkui.6 弹窗类组件支持可显示在子窗口
 
@@ -307,7 +424,11 @@ UX一致性需求变更
 
 变更前，showInSubWindow为true时，CustomDialog的蒙层范围为子窗口范围，showInSubWindow为false时，CustomDialog的蒙层范围为应用窗口范围。
 
+![zh-cn_image_alert](figures/zh-cn_image_alert.gif)
+
 变更后，无论showInSubWindow为true还是false，CustomDialog的蒙层范围都为应用窗口的范围。
+
+![zh-cn_image_alert_showinsubwindow](figures/zh-cn_image_alert_showinsubwindow.jpg)
 
 **API Level**
 

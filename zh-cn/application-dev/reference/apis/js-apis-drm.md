@@ -1,6 +1,7 @@
 # @ohos.multimedia.drm (数字版权保护)
 
 DRM（Digital Rights Management）框架组件支持音视频媒体业务数字版权管理功能的开发。开发者可以调用系统提供的DRM插件，完成以下功能：
+
 * DRM证书管理：生成证书请求、设置证书响应，实现对证书Provision（下载）功能。
 * DRM许可证管理：生成许可证请求、设置许可证响应，实现对许可证的离线管理等功能。
 * DRM节目授权：支持底层DRM插件根据许可证对DRM节目授权。
@@ -9,7 +10,7 @@ DRM（Digital Rights Management）框架组件支持音视频媒体业务数字�
 > **说明：**
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-### 导入模块
+## 导入模块
 
 ```ts
 import drm from '@ohos.multimedia.drm';
@@ -18,7 +19,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，错误码。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -31,7 +32,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，配置选项名。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -47,7 +48,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，监听事件类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -63,7 +64,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，许可证类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -74,7 +75,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，离线许可证状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -86,7 +87,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，证书状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -100,7 +101,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，请求类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -115,7 +116,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，内容保护级别。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
@@ -129,7 +130,7 @@ import drm from '@ohos.multimedia.drm';
 
 设备证书请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -140,7 +141,7 @@ import drm from '@ohos.multimedia.drm';
 
 设备证书请求的操作数据。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -151,7 +152,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -163,7 +164,7 @@ import drm from '@ohos.multimedia.drm';
 
 事件类型。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -174,7 +175,7 @@ import drm from '@ohos.multimedia.drm';
 
 统计信息。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -185,7 +186,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证状态
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -196,7 +197,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证状态
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
@@ -207,64 +208,26 @@ import drm from '@ohos.multimedia.drm';
 
 用于指示媒体源的drm信息。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
 | uuid   | string | 是  | 插件类型Id      |
 | pssh     | Uint8Array                 | 是  | drm info内的保护方案特定标头       |
 
-### drm.getMediaKeySystemName
-
-function getMediaKeySystemName(uuid: string): string
-
-获取设备支持的drm方案的名称。
-
-**系统能力：** SystemCapability.Multimedia.DRM.Core
-
-**参数：**
-
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| uuid  | string     | 是   | 插件类型。                   |
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| string           | drm方案名称，如com.drm.clearplay。                   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 401                |  The parameter check failed               |
-| 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
-
-**示例：**
-
-```ts
-import drm from '@ohos.multimedia.drm';
-
-let mediaKeysystemName = drm.getMediaKeySystemName()
-```
-
 ### drm.createMediaKeySystem
 
-createMediaKeySystem(uuid: string): MediaKeySystem
+createMediaKeySystem(name: string): MediaKeySystem
 
 创建MediaKeySystem实例，同步返回结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| uuid  | string     | 是   | 插件类型。                   |
+| name  | string     | 是   | 插件类型。                   |
 
 **返回值：**
 
@@ -274,7 +237,7 @@ createMediaKeySystem(uuid: string): MediaKeySystem
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -288,34 +251,32 @@ createMediaKeySystem(uuid: string): MediaKeySystem
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 ```
 
 ### drm.isMediaKeySystemSupported
 
-isMediaKeySystemSupported(uuid: string, mimeType: string, level: ContentProtectionLevel): boolean
+isMediaKeySystemSupported(name: string): boolean
 
-判断设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。
+判断设备是否支持指定DRM类型的DRM方案。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| uuid  | string     | 是   | 插件类型。                   |
-| mimeType  | string     | 否   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
-| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 否   | 设备安全级别。                   |
+| name  | string     | 是   | 插件类型。                   |
 
 **返回值：**
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。                   |
+| [boolean]          | 返回设备是否支持指定DRM类型的DRM方案。                   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -328,8 +289,88 @@ isMediaKeySystemSupported(uuid: string, mimeType: string, level: ContentProtecti
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem: drm.isMediaKeySystemSupported("com.drm.clearplay", "video/mp4", drm.ContentProtectionLevel.SECURITY_LEVEL_SW_CRYPTO);
+let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm");
 ```
+
+### drm.isMediaKeySystemSupported
+
+isMediaKeySystemSupported(name: string, mimeType: string): boolean
+
+判断设备是否支持指定DRM类型、媒体类型的DRM方案。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件类型。                   |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型的DRM方案。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed               |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+
+let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+```
+
+### drm.isMediaKeySystemSupported
+
+isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
+
+判断设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件类型。                   |
+| mimeType  | string     | 是   | 媒体类型，支持的媒体类型由设备上的DRM方案决定。                   |
+| level  | [ContentProtectionLevel](#contentprotectionlevel)     | 是   | 设备安全级别。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型和安全级别的DRM方案。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed               |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+
+let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.SECURITY_LEVEL_SW_CRYPTO);
+```
+
 ## MediaKeySystem
 管理和记录MediaKeySession。在调用MediaKeySystem方法之前，必须使用[createMediaKeySystem](#drmcreatemediakeysystem)获取一个MediaKeySystem实例，然后才能调用其成员函数。
 
@@ -339,7 +380,7 @@ setConfigurationString(configName: string, value: string): void
 
 设置配置信息以字符串类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -350,7 +391,7 @@ setConfigurationString(configName: string, value: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -363,7 +404,7 @@ setConfigurationString(configName: string, value: string): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.setConfigurationString("configName", "configValue");
 ```
 
@@ -373,7 +414,7 @@ getConfigurationString(configName: string): string
 
 获取配置信息以字符串类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -389,7 +430,7 @@ getConfigurationString(configName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -402,7 +443,7 @@ getConfigurationString(configName: string): string
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.getConfigurationString("configName");
 ```
 
@@ -412,7 +453,7 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 设置配置信息以字符数组类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -423,7 +464,7 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -436,7 +477,7 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.setConfigurationByteArray("configName", Uint8Array.from("configValue"));
 ```
 
@@ -446,7 +487,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 获取配置信息以字符数组类型返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -462,7 +503,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -475,7 +516,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.getConfigurationByteArray("configName");
 ```
 
@@ -485,7 +526,7 @@ getStatistics(): StatisticKeyValue[]
 
 获取性能统计信息。其中包括当前会话数、插件版本信息、解密次数和解密失败次数。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -495,7 +536,7 @@ getStatistics(): StatisticKeyValue[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -508,7 +549,7 @@ getStatistics(): StatisticKeyValue[]
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let statisticKeyValue = mediaKeysystem.getStatistics();
 ```
 
@@ -518,7 +559,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 
 获取设备支持的最大安全级别。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -528,7 +569,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -541,7 +582,7 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let maxLevel = mediaKeysystem.getMaxContentProtectionLevel();
 ```
 
@@ -551,7 +592,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest>
 
 生成获取mediaKeySystem设备证书的请求
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -561,7 +602,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -574,7 +615,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let keySystemRequest = mediaKeysystem.generateKeySystemRequest();
 ```
 
@@ -584,7 +625,7 @@ processKeySystemResponse(response: Uint8Array): Promise<void>
 
 处理应用程序获得的设备证书请求对应的响应。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -594,32 +635,7 @@ processKeySystemResponse(response: Uint8Array): Promise<void>
 
 **错误码：**
 
-**示例：**
-
-```ts
-import drm from '@ohos.multimedia.drm';
-
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
-mediaKeysystem.processKeySystemResponse(Uint8Array.from("keySystemResponse"));
-```
-
-### getCertificateStatus
-
-getCertificateStatus():CertificateStatus
-
-获取Oem设备证书状态值。
-
-**系统能力：** SystemCapability.Multimedia.DRM.Core
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| [CertificateStatus](#certificatestatus)          | 返回Oem证书状态值。                   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -632,7 +648,40 @@ getCertificateStatus():CertificateStatus
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeysystem.processKeySystemResponse(Uint8Array.from("keySystemResponse"));
+```
+
+### getCertificateStatus
+
+getCertificateStatus():CertificateStatus
+
+获取Oem设备证书状态值。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [CertificateStatus](#certificatestatus)          | 返回Oem证书状态值。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed               |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let certificateStatus = mediaKeysystem.getCertificateStatus();
 ```
 
@@ -642,18 +691,18 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听设备证书请求，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明需要请求设备证书                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明需要请求设备证书                 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -678,7 +727,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听设备证书请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -689,7 +738,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -710,7 +759,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 根据给定的安全级别进行创建drm会话实例。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -726,12 +775,13 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 401                |  The parameter check failed               |
-| 24700101                |  All unknown errors                  |
+| 24700101                 |  MAll unknown errors                  |
+| 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
 **示例：**
@@ -739,7 +789,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.SECURITY_LEVEL_SW_CRYPTO);
 ```
 
@@ -749,7 +799,7 @@ createMediaKeySession(): MediaKeySession
 
 根据默认的软件安全级别进行创建drm会话实例。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -759,11 +809,12 @@ createMediaKeySession(): MediaKeySession
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
+| 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
 **示例：**
@@ -771,7 +822,7 @@ createMediaKeySession(): MediaKeySession
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 ```
 
@@ -781,7 +832,7 @@ getOfflineMediaKeyIds(): Uint8Array[]
 
 获取离线许可证Id。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 
 **返回值：**
@@ -792,7 +843,7 @@ getOfflineMediaKeyIds(): Uint8Array[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -804,7 +855,7 @@ getOfflineMediaKeyIds(): Uint8Array[]
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let offlineMediaKeyIds = mediaKeysystem.getOfflineMediaKeyIds();
 ```
 
@@ -814,7 +865,7 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 获取离线许可证状态返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -830,7 +881,7 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -843,7 +894,7 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.getOfflineMediaKeyStatus(Uint8Array.from("mediaKeyIdString"));
 ```
 
@@ -853,17 +904,17 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 根据指定的离线许可证Id删除离线许可证。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   | 离线许可证Id可以在MediaKeySession成员processKeySystemResponse返回值中获取 |
+| mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   | 离线许可证Id可以在MediaKeySession成员processMeidaKeyResponse返回值中获取 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -876,7 +927,7 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = mediaKeysystem.clearOfflineMediaKeys(Uint8Array.from("mediaKeyIdString"));
 ```
 
@@ -886,14 +937,23 @@ destroy(): void
 
 销毁MediaKeySystem运行时申请的资源。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
 
 **示例：**
 
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeysystem.destroy();
 ```
 
@@ -902,12 +962,11 @@ mediaKeysystem.destroy();
 
 ### generateMediaKeyRequest
 
-generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number,
-        options: OptionsData[]): Promise<MediaKeyRequest>
+generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number, options?: OptionsData[]): Promise<MediaKeyRequest>
 
 生成许可证请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -926,7 +985,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -939,7 +998,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 var OptionsData = [
     {name : "optionalsDataNameA", value : "optionalsDataValueA"},
@@ -948,13 +1007,13 @@ var OptionsData = [
 let mediaKeyRequest=  mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData);
 ```
 
-### processKeySystemResponse
+### processMediaKeyResponse
 
-processKeySystemResponse(response: Uint8Array): Promise<Uint8Array>
+processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array>
 
 处理离线许可证响应返回。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -970,7 +1029,7 @@ processKeySystemResponse(response: Uint8Array): Promise<Uint8Array>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -983,9 +1042,9 @@ processKeySystemResponse(response: Uint8Array): Promise<Uint8Array>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
-let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("mediaKeyResponse"));
+let mediaKeyId =  mediaKeySession.processMediaKeyResponse(Uint8Array.from("mediaKeyResponse"));
 ```
 
 ### checkMediaKeyStatus
@@ -994,7 +1053,7 @@ let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("medi
 
 检查在线许可证状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -1004,7 +1063,7 @@ let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("medi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1016,7 +1075,7 @@ let mediaKeyId =  mediaKeySession.processKeySystemResponse(Uint8Array.from("medi
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let keyStatus=  mediaKeySession.checkMediaKeyStatus();
 ```
@@ -1027,11 +1086,11 @@ clearMediaKeys(): void
 
 删除在线许可证。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1043,7 +1102,7 @@ clearMediaKeys(): void
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 mediaKeySession.clearMediaKeys();
 ```
@@ -1054,7 +1113,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array>
 
 生成离线许可证释放请求。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1070,7 +1129,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1083,7 +1142,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let mediaKeyId=  mediaKeySession.processMediaKeyResponse(Uint8Array.from("offlineReleaseRequest"));
 let offlineReleaseRequest = mediaKeySession.generateOfflineReleaseRequest(mediaKeyId);
@@ -1095,7 +1154,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 处理离线许可证响应。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1106,7 +1165,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1119,7 +1178,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let mediaKeyId=  mediaKeySession.processMediaKeyResponse(Uint8Array.from("offlineReleaseRequest"));
 let offlineReleaseResponse = mediaKeySession.processOfflineReleaseResponse(mediaKeyId, Uint8Array.from(response));
@@ -1131,7 +1190,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void>
 
 恢复离线许可证。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1142,7 +1201,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1155,7 +1214,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void>
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let offlineReleaseResponse = mediaKeySession.processOfflineReleaseResponse(mediaKeyId, Uint8Array.from(response));
 mediaKeySession.restoreOfflineMediaKeys(mediaKeyId);
@@ -1167,7 +1226,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 获取当前会话的安全级别。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
 
@@ -1177,7 +1236,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1189,7 +1248,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let contentProtectionLevel= mediaKeySession.getContentProtectionLevel();
 ```
@@ -1200,7 +1259,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 获取安全解码模块状态。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1216,7 +1275,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1229,29 +1288,29 @@ requireSecureDecoderModule(mimeType: string): boolean
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 let status = mediaKeySession.requireSecureDecoderModule(mimeType);
 ```
 
 ### on('keyRequired')
 
-on(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥请求事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyNeeded'，MediaKeySystem实例创建成功可监听。key请求时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1272,11 +1331,11 @@ function registerKeyNeeded(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('keyRequired')
 
-off(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥请求事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1287,7 +1346,7 @@ off(type: 'keyRequired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1306,22 +1365,22 @@ function unregisterKeyNeeded(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('keyExpired')
 
-on(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥过期，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。密钥过期时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1342,11 +1401,11 @@ function registerKeyExpired(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('keyExpired')
 
-off(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥过期事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1357,7 +1416,7 @@ off(type: 'keyExpired', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1376,22 +1435,22 @@ function unregisterKeyExpired(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('vendorDefined')
 
-on(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 监听第三方定义事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。第三方定义事件发生时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1412,11 +1471,11 @@ function registerVendorDefinedt(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('vendorDefined')
 
-off(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听第三方定义事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1427,7 +1486,7 @@ off(type: 'vendorDefined', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1446,22 +1505,22 @@ function unregisterVendorDefined(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('expirationUpdated')
 
-on(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 监听过期更新事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdated'，MediaKeySystem实例创建成功可监听。密钥过期更新时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1482,11 +1541,11 @@ function registerExpirationUpdated(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('expirationUpdated')
 
-off(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听过期更新事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1497,7 +1556,7 @@ off(type: 'expirationUpdated', callback: Callback\<[EventInfo](#eventinfo)\>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1516,22 +1575,22 @@ function unregisterExpirationUpdated(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### on('keyChanged')
 
-on(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
+on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
 监听密钥变化事件，通过注册回调函数获取结果。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyChanged'，MediaKeySystem实例创建成功可监听。密钥变化时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1552,11 +1611,11 @@ function registerKeyChanged(mediaKeysystem: drm.MediaKeysystem): void {
 
 ### off('keyChanged')
 
-off(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
+off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
 注销监听密钥变化事件。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
 
@@ -1567,7 +1626,7 @@ off(type: 'keyChanged', callback: Callback\<[EventInfo](#eventinfo)\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Drm错误码](../errorcodes/errorcode-drm.md)。
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1590,14 +1649,23 @@ destroy(): void
 
 销毁MediaKeySession运行时申请的资源。
 
-**系统能力：** SystemCapability.Multimedia.DRM.Core
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](../errorcodes/errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
 
 **示例：**
 
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.drm.clearplay");
+let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession = mediaKeysystem.createMediaKeySession();
 mediaKeySession.destroy();
 ```

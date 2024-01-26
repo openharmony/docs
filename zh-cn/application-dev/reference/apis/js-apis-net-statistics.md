@@ -625,7 +625,7 @@ statistics.getUidTxBytes(20010038).then((stats: number) => {
 
 ## statistics.on('netStatsChange')<sup>10+</sup>
 
-on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void
+on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
 订阅流量改变事件通知。
 
@@ -640,7 +640,7 @@ on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>)
 | 参数名   | 类型                                        | 必填 | 说明                                                               |
 | -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | 是   | 订阅事件，固定为'netStatsChange'。                                 |
-| callback | Callback\<{ iface: string, uid?: number }\> | 是   | 当流量有改变时触发回调函数。<br>iface：网卡名称。<br>uid：应用 uid。 |
+| callback | Callback\<[NetStatsChangeInfo](#netstatschangeinfo11)\> | 是   | 当流量有改变时触发回调函数。 |
 
 **错误码：**
 
@@ -670,7 +670,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 ## statistics.off('netStatsChange')<sup>10+</sup>
 
-off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;
+off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
 
 取消订阅流量改变事件通知。
 
@@ -685,7 +685,7 @@ off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }
 | 参数名   | 类型                                        | 必填 | 说明                                                               |
 | -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | 是   | 注销订阅事件，固定为'netStatsChange'。                             |
-| callback | Callback\<{ iface: string, uid?: number }\> | 否   | 当流量有改变时触发回调函数。<br>iface：网卡名称。<br>uid：应用 uid。 |
+| callback | Callback\<[NetStatsChangeInfo](#netstatschangeinfo11)\> | 否   | 当流量有改变时触发回调函数。 |
 
 **错误码：**
 
@@ -1172,3 +1172,18 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
 | txBytes   | number | 是   | 流量上行数据(单位:字节)。 |
 | rxPackets | number | 是   | 流量下行包个数。          |
 | txPackets | number | 是   | 流量上行包个数。          |
+
+## NetStatsChangeInfo<sup>11+</sup>
+
+监听和管理网络接口的状态和使用情况
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+### 属性
+
+| 名称      | 类型   | 必填 | 说明                      |
+| --------- | ------ | ---- | ------------------------ |
+| iface   | string | 是   | 网卡名称。 |
+| uid   | number | 否   | 应用UID。 |

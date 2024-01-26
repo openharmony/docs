@@ -14,7 +14,7 @@ import installer from '@ohos.bundle.installer';
 
 ## Required Permissions
 
-| Permission                          | Permission Level   | Description            |
+| Permission                          | APL   | Description            |
 | ------------------------------ | ----------- | ---------------- |
 | ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.|
 | ohos.permission.INSTALL_ENTERPRISE_BUNDLE | system_core | Permission to install enterprise InHouse applications.|
@@ -25,7 +25,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | Allows automatic updates of the enterprise MDM applications on enterprise devices.|
 
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## BundleInstaller.getBundleInstaller
 
@@ -1164,4 +1164,3 @@ Defines the parameters of the PGO configuration file.
 | moduleName | string | Yes| Module name of the bundle.|
 | pgoFilePath  | string | Yes| Path of the PGO configuration file.          |
 
- <!--no_check--> 

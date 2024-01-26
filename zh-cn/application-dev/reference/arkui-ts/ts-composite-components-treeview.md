@@ -247,15 +247,13 @@ struct TreeViewDemo {
   }
 
   aboutToAppear(): void {
-    this.treeListener.on(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
-    })
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
     })
-    this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
+    this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
     })
-    this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
+    this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
     })
     this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {

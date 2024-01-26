@@ -424,7 +424,7 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
 
 ## ethernet.on('interfaceStateChange')<sup>10+</sup>
 
-on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void
+on(type: 'interfaceStateChange', callback: Callback\<InterfaceStateInfo>): void
 
 注册网卡热插拔事件，使用callback方式作为异步方法。
 
@@ -439,7 +439,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | AsyncCallback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | AsyncCallback\<[InterfaceStateInfo](#interfacestateinfo11)> | 是   | 回调函数。返回以太网卡状态信息。 |
 
 **错误码：**
 
@@ -461,7 +461,7 @@ ethernet.on('interfaceStateChange', (data: object) => {
 
 ## ethernet.off('interfaceStateChange')<sup>10+</sup>
 
-off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void
+off(type: 'interfaceStateChange', callback?: Callback\<InterfaceStateInfo\>): void
 
 注销网卡热插拔事件，使用callback方式作为异步方法。
 
@@ -476,7 +476,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | AsyncCallback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | AsyncCallback\<[InterfaceStateInfo](#interfacestateinfo11)> | 否   | 回调函数。返回以太网卡状态信息。 |
 
 **错误码：**
 
@@ -511,6 +511,21 @@ ethernet.off('interfaceStateChange');
 | netMask      | string                  | 是 | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | dnsServers   | string                  | 是 | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
 | httpProxy<sup>10+</sup> | [HttpProxy](js-apis-net-connection.md#httpproxy10) | 否 | 以太网连接代理配置信息，默认情况下不配置任何代理信息。 |
+
+## InterfaceStateInfo<sup>11+</sup>
+
+监听以太网卡状态变化
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+### 属性
+
+| 名称          | 类型                    | 必填 | 说明                                                         |
+| ------------ | ----------------------- | ---|------------------------------------------------------------ |
+| iface         | string                  |  是 | 以太网卡名称。 |
+| active       | boolean                  | 是 | 以太网卡是否处于激活状态（true：激活；false：未激活）。 |
 
 ## IPSetMode<sup>9+</sup>
 

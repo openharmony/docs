@@ -14,7 +14,7 @@ import bundle from '@ohos.bundle';
 
 ## Required Permissions
 
-| Required Permissions                                        | Permission Level        | Description           |
+| Permission                                        | APL        | Description           |
 |--------------------------------------------|--------------|---------------|
 | ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability.|
 | ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
@@ -22,7 +22,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.     |
 | ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle.|
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
@@ -1930,4 +1930,3 @@ Enumerates the permission grant states.
 | PERMISSION_DENIED  | -1   | Permission denied.|
 | PERMISSION_GRANTED | 0    | Permission granted.    |
 
- <!--no_check--> 

@@ -587,7 +587,7 @@ function hello(name?: string) {
   if (name == undefined) {
     console.log('Hello!');
   } else {
-    console.log('Hello, ${name}!');
+    console.log(`Hello, ${name}!`);
   }
 }
 ```

@@ -4,7 +4,7 @@ A drag event is triggered when a component is dragged.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > The resource files preset in the application (that is, the resource files that are contained in the HAP file before the application is installed) can be dragged and dropped only within the application.
 
@@ -18,24 +18,110 @@ You can also define drag responses by implementing common drag events.
 
 To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
 
+## onDragStart
 
-## Events
+onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
 
-| Name                                                        | Bubbling Supported| Description                                                    |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event. For details, see [DragEvent](#dragevent).<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br> Return value: component information displayed during dragging.<br>Trigger condition: long press for at least 500 ms.<br> Event priority:<br>- Long press time < 500 ms: Long press event > Drag event<br> - Other: Drag event > Long press event|
-| onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
-| onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
-| onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
-| onDrop(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>**NOTE**<br>If **event.setResult()** is not explicitly used, the default value **DRAG_SUCCESSFUL** will be used as the result.|
-| onDragEnd(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void)<sup>10+</sup> | No      | Triggered when the dragging of the component bound to the event ends.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
+Triggered when the component bound to the event is dragged for the first time. A drag operation is recognized only when the long press time is 500 ms or longer and the dragging distance is 10 vp or longer.
+
+**Event priority**:<br>Long press time < 500 ms: Long press event > Drag event<br>Other cases: Drag event > Long press event
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description              |
+| ----------- | ------------------------------- | ---- | ------------------ |
+| event       | [DragEvent](#dragevent)     | No  | Information about the drag event.    |
+| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.|
+
+**Return value**
+
+| Type                                                        | Description                    |
+| ------------------------------------------------------------ | ------------------------ |
+| [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo) | Component information displayed during dragging.<br>**NOTE**<br>The global builder is not supported.|
+
+## onDragEnter
+
+onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
+
+Triggered when the dragged item enters a valid drop target. This event is valid only when a listener for the [onDrop](#ondrop) event is enabled.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+
+## onDragMove
+
+onDragMove(event: (event: DragEvent, extraParams?: string) => void)
+
+Triggered when the dragged item moves in a valid drop target. This event is valid only when a listener for the [onDrop](#ondrop) event is enabled.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+
+## onDragLeave
+
+onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
+
+Triggered when the dragged item leaves a valid drop target. This event is valid only when a listener for the [onDrop](#ondrop) event is enabled.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+
+## onDrop
+
+onDrop(event: (event: DragEvent, extraParams?: string) => void)
+
+Triggered when the dragged item is dropped on a valid drop target. If **event.setResult()** is not explicitly used, the default value **DRAG_SUCCESSFUL** will be used as the result.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+
+## onDragEnd
+
+onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
+
+Triggered when the dragging of the component bound to the event ends.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
 
 ## DragItemInfo
 
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.                    |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this attribute is ignored.|
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this attribute is ignored.<br>**NOTE**<br> Global builder definition is not supported.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
 
@@ -70,6 +156,7 @@ To enable drag and drop for other components, you need to set the **draggable** 
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Copy or paste mode.|
 
 **Error codes**
 
@@ -89,6 +176,16 @@ For details about the error codes, see [Drag Event Error Codes](../errorcodes/er
 | DRAG_CANCELED | The drag and drop operation was canceled. It can be used in **onDrop**.|
 | DROP_ENABLED | The component allows for a drop operation. It can be used in **onDragMove**.|
 | DROP_DISABLED | The component does not allow for a drop operation. It can be used in **onDragMove**.|
+
+## DragBehavior<sup>10+</sup>
+
+Provides the drag behavior. This API takes effect only when [DragResult](#dragresult10) is set to **DROP_ENABLED** and the [onDrop](#ondrop) callback is implemented.
+
+| Name| Description|
+| ----- | ----------------- |
+| COPY | Copy mode.|
+| MOVE| Paste mode.|
+
 
 ## Example
 

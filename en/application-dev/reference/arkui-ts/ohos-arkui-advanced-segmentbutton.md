@@ -143,8 +143,8 @@ Defines the attributes that can be customized for the segment button.
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Background color.<br>Default value: **\#0c182431** for tabs and **\#0c182431** for single-select and mult-select options|
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the option when selected.<br>Default value: **\#ffffffff** for tabs and **\#ff007dff** for single-select and mult-select options|
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Image size. <br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This attribute is effective only for buttons that contain icons.|
-| buttonPadding           | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textPadding             | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | Text margin.<br>Default value: **0**                                     |
+| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
+| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Text margin.<br>Default value: **0**                                     |
 | backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                     |
 
 ## TabSegmentButtonConstructionOptions

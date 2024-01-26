@@ -17,7 +17,7 @@ Universal attributes of security components are basic attributes applicable to a
 | layoutDirection | [SecurityComponentLayoutDirection](#securitycomponentlayoutdirection) | No| Direction of the icon and text on the security component.<br>Default value: **SecurityComponentLayoutDirection.HORIZONTAL**|
 | position | [Position](ts-types.md#position8) | No| Absolute position of the security component, that is, the offset of the component's upper left corner relative to its parent container's.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} |
 | markAnchor | [Position](ts-types.md#position8) | No| Anchor of the security component for moving the component with its upper left corner as the reference point. Generally, this attribute is used together with the **position** and **offset** attributes. When used alone, it produces an effect similar to that produced by **offset**.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} |
-| offset | [Position](ts-types.md#position8) | No| Relative position of the security component, that is, the offset of the component relative to itself.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} |
+| offset | [Position](ts-types.md#position8) | No| Coordinate offset of the security control relative to its own layout position. This attribute does not affect the layout in the parent container. The offset is used only during drawing.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} |
 | fontSize | [Dimension](ts-types.md#dimension10) | No| Font size of the text on the security component.<br>Default value: **16fp**|
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | No| Font style of the text on the security component.<br>Default value: **FontStyle.Normal**|
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No| Font weight of the text on the security component.<br>Default value: **FontWeight.Medium**|
@@ -39,10 +39,10 @@ Universal attributes of security components are basic attributes applicable to a
 
 ## SecurityComponentLayoutDirection
 
-| Name| Description|
-| -------- | -------- |
-| HORIZONTAL | The icon and text on security component are horizontally arranged.|
-| VERTICAL | The icon and text on security component are vertically arranged.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| HORIZONTAL | 0 | The icon and text on security component are horizontally arranged.|
+| VERTICAL | 1 | The icon and text on security component are vertically arranged.|
 
 
 ## Example

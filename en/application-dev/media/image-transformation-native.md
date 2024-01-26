@@ -100,7 +100,7 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
 
 **Calling APIs on the JS Side**
 
-1. Open the **src\main\ets\pages\index.ets** file, import **libentry.so**, and modify the **libentry.so** file as follows:
+1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
     ```js
     import image from '@ohos.multimedia.image'
     export const add:(a: number, b: number) => image.PixelMap;
@@ -109,8 +109,8 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
     export const testAccessPixels: (a: image.PixelMap) => image.PixelMap;
     export const testUnAccessPixels: (a: image.PixelMap) => image.PixelMap;
     ```
-    
-2. Call the native APIs and pass in the JS resource object. The sample code is as follows:
+
+2. Open **src\main\ets\pages\index.ets**, import ***libentry*.so** (where **libentry** varies according to the project name), call the native APIs, and pass in the JS resource object. The sample code is as follows:
 
     ```js
     import testNapi from 'libentry.so'
@@ -134,16 +134,15 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
                 image.createPixelMap(color, opts)
                 .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;
+                    testNapi.testGetImageInfo(this._PixelMap);
+                    console.info("Test GetImageInfo success");
+
+                    testNapi.testAccessPixels(this._PixelMap);
+                    console.info("Test AccessPixels success");
+
+                    testNapi.testUnAccessPixels(this._PixelMap);
+                    console.info("Test UnAccessPixels success");
                 })
-
-                testNapi.testGetImageInfo(this._PixelMap);
-                console.info("Test GetImageInfo success");
-
-                testNapi.testAccessPixels(this._PixelMap);
-                console.info("Test AccessPixels success");
-
-                testNapi.testUnAccessPixels(this._PixelMap);
-                console.info("Test UnAccessPixels success");
             })
         }
         .width('100%')

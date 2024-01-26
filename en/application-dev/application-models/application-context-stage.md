@@ -284,7 +284,7 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   >
   > To obtain the context of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#applying-for-permissions-for-system-basic-applications).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
   >
   > - This is a system API and cannot be called by third-party applications.
   
@@ -321,7 +321,7 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   >
   > To obtain the context of a specified module of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#applying-for-permissions-for-system-basic-applications).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
   >
   > - This is a system API and cannot be called by third-party applications.
   
@@ -461,4 +461,3 @@ export default class LifecycleAbility extends UIAbility {
   }
 };
 ```
- <!--no_check--> 

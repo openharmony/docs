@@ -176,5 +176,3 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
 ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbilities. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
-
-<!--no_check-->

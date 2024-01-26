@@ -20,7 +20,7 @@ Sets the accessibility group.
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Accessibility group. If this attribute is set to **true**, the component and all its child components form an entire selectable component, and the accessibility service will no longer be available for the content of its child components.<br>Default value: **false**|
 
-## accessibilityText<sup>11+</sup>
+## accessibilityText
 
 accessibilityText(value: string)
 
@@ -62,7 +62,7 @@ Sets the accessibility level.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | string | Yes  | Accessibility level, which is used to decide whether a component can be identified by the accessibility service.<br>The options are as follows:<br>**"auto"**: The value is converted to **"yes"** or **"no"** based on the component.<br>**"yes"**: The current component is selectable for the accessibility service.<br>**"no"**: The current component is not selectable for the accessibility service.<br>**"no-hide-descendants"**: The current component and all its child components are not selectable for the accessibility service.<br>**Default value**: **"auto"**<br>**NOTE**<br>When the **accessibilityLevel** attribute of the following components is set to **"auto"**, they are selectable for the accessibility service: Checkbox, CheckboxGroup, Gauge, Marquee, MenuItem, MenuItemGroup, Menu, Navigation, DatePicker, Progress, Radio, Rating, ScrollBar, Select, Slider, Stepper, Text, TextClock, TextPicker, TextTimer, TimePicker, Toggle, Web.|
 
-## accessibilityVirtualNode
+## accessibilityVirtualNode<sup>11+</sup>
 
 accessibilityVirtualNode(builder: CustomBuilder)
 

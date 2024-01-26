@@ -12,7 +12,7 @@
 
 ## UIContext
 
-以下API需先使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。本文中UIContext对象以uiContext表示。
+以下API需先使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](../arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
 ### getFont
 
@@ -410,29 +410,46 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 **示例：**
 
 ```ts
-class sethours{
+// xxx.ets
+
+class SelectTime{
   selectTime: Date = new Date('2020-12-25T08:30:00')
   hours(h:number,m:number){
     this.selectTime.setHours(h,m)
   }
 }
-uiContext.showTimePickerDialog({
-  selected: this.selectTime,
-  onAccept: (value: TimePickerResult) => {
-    // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
-    let time = new sethours()
-    if(value.hour&&value.minute){
-      time.hours(value.hour, value.minute)
-    }
-    console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TimePickerDialog:onCancel()")
-  },
-  onChange: (value: TimePickerResult) => {
-    console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+
+@Entry
+@Component
+struct TimePickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+
+  build() {
+    Column() {
+      Button('showTimePickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTimePickerDialog({
+            selected: this.selectTime,
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              let time = new SelectTime()
+              if(value.hour&&value.minute){
+                time.hours(value.hour, value.minute)
+              }
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TimePickerDialog:onCancel()")
+            },
+            onChange: (value: TimePickerResult) => {
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### showTextPickerDialog
@@ -461,38 +478,54 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 **示例：**
 
 ```ts
-{ class setvalue{
+// xxx.ets
+
+class SelectedValue{
   select: number = 2
   set(val:number){
     this.select = val
   }
 }
-class setvaluearr{
+class SelectedArray{
   select: number[] = []
   set(val:number[]){
     this.select = val
   }
 }
-let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-uiContext.showTextPickerDialog({
-  range: this.fruits,
-  selected: this.select,
-  onAccept: (value: TextPickerResult) => {
-    // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-    let setv = new setvalue()
-    let setvarr = new setvaluearr()
-    if(value.index){
-      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
-    }
-    console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TextPickerDialog:onCancel()")
-  },
-  onChange: (value: TextPickerResult) => {
-    console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+@Entry
+@Component
+struct TextPickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select : number  = 0;
+  build() {
+    Column() {
+      Button('showTextPickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTextPickerDialog({
+            range: this.fruits,
+            selected: this.select,
+            onAccept: (value: TextPickerResult) => {
+              // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+              let selectedVal = new SelectedValue()
+              let selectedArr = new SelectedArray()
+              if(value.index){
+                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              }
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TextPickerDialog:onCancel()")
+            },
+            onChange: (value: TextPickerResult) => {
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### createAnimator
@@ -519,17 +552,29 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
-let options:AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0
-};
-uiContext.createAnimator(options);
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options:AnimatorOptions = {
+      duration: 1500,
+      easing: "friction",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 3,
+      begin: 200.0,
+      end: 400.0
+    };
+    uiContext.createAnimator(options);
+  });
+}
 ```
 
 ### runScopedTask
@@ -682,7 +727,7 @@ uiContext.getDragController();
 
 ### getDragPreview<sup>11+</sup>
 
-getDragPreview(): DragPreview
+getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
 
@@ -690,16 +735,15 @@ getDragPreview(): DragPreview
 
 **返回值：**
 
-| 类型        | 说明                                            |
-| ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
 
 **示例：**
 
@@ -715,10 +759,10 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 **参数：**
 
-| 名称         | 参数类型                                              | 是否必填 | 描述                         |
+| 参数名 | 类型                                              | 必填 | 说明                      |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](../arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
-| keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            | 
+| keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
 
 ## Font
 
@@ -874,7 +918,7 @@ let listener = inspector.createComponentObserver('COMPONENT_ID');
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo>): void
+on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
 
@@ -885,7 +929,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo>): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -899,7 +943,7 @@ observer.on('navDestinationUpdate', (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo>): void
+off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
 
@@ -910,7 +954,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo>): voi
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -922,7 +966,7 @@ observer.off('navDestinationUpdate');
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo>): void
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
 
@@ -934,7 +978,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -948,7 +992,7 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo>): void
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
 
@@ -960,7 +1004,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
 
 **示例：**
 
@@ -1147,10 +1191,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushUrl({
     url: 'pages/routerpage2',
@@ -1201,10 +1245,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -1356,10 +1400,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceUrl({
     url: 'pages/detail',
@@ -1406,10 +1450,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } 
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -1566,10 +1610,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushNamedRoute({
     name: 'myPage',
@@ -1620,10 +1664,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1776,10 +1820,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceNamedRoute({
     name: 'myPage',
@@ -1826,10 +1870,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -2087,7 +2131,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
+class ButtonsModel {
   text: string = ""
   color: string = ""
 }
@@ -2100,11 +2144,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as buttonsMoabl,
+      } as ButtonsModel,
       {
         text: 'button2',
         color: '#000000'
-      } as buttonsMoabl
+      } as ButtonsModel
     ]
   }, (err, data) => {
     if (err) {
@@ -2182,7 +2226,7 @@ try {
 };
 ```
 
-### showActionMenu
+### showActionMenu<sup>11+</sup>
 
 showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
@@ -2192,10 +2236,70 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。   |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是    | 菜单响应结果回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是   | 菜单响应结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                           |
+| -------- | ---------------------------------- |
+| 100001   | if UI execution context not found. |
+
+**示例：**
+
+```ts
+import { PromptAction } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+let promptActionF: PromptAction = uiContext.getPromptAction();
+try {
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
+### showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+
+创建并显示操作菜单，菜单响应结果异步返回。
+
+从API version11开始不再维护，建议使用[showActionMenu](#showactionmenu11)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是   | 菜单响应结果回调。 |
 
 **错误码：**
 
@@ -2226,13 +2330,7 @@ try {
         color: '#000000'
       }
     ]
-  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
+  }, { index:0 });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -2315,7 +2413,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/>**说明：** 不支持全局builder。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 

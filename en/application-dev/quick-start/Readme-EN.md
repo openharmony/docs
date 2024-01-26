@@ -9,18 +9,10 @@
     - Application Package Structure
       - [Application Package Structure in Stage Model](application-package-structure-stage.md)
       - [Application Package Structure in FA Model](application-package-structure-fa.md)
-    - Multi-HAP Mechanism
-      - [Multi-HAP Design Objectives](multi-hap-objective.md)
-      - [Multi-HAP Build View](multi-hap-build-view.md)
-      - [Multi-HAP Development, Debugging, Release, and Deployment](multi-hap-release-deployment.md)
-      - [Multi-HAP Usage Rules](multi-hap-rules.md)
-      - [Multi-HAP Operation Mechanism and Data Communication Modes](multi-hap-principles.md)
-    - [Application Installation and Uninstall](application-package-install-uninstall.md)
-    - [Application Package Update](application-package-update.md)
-    - Shared Package
-      - [Shared Package Overview](shared-guide.md)
+    - Application Package Development and Usage
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
+    - [Application Installation and Uninstallation](application-package-install-uninstall.md)
     - Quick Fix
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)
@@ -48,17 +40,19 @@
       - Custom Component
         - [Creating a Custom Component](arkts-create-custom-components.md)
         - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
+        - [Freezing a Custom Component](arkts-custom-components-freeze.md)
       - [\@Builder Decorator: Custom Builder Function](arkts-builder.md)
       - [\@BuilderParam Decorator: @Builder Function Reference](arkts-builderparam.md)
       - [\@Styles Decorator: Definition of Resusable Styles](arkts-style.md)
       - [\@Extend Decorator: Extension of Built-in Components](arkts-extend.md)
       - [stateStyles Decorator: Polymorphic Style](arkts-statestyles.md)
       - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](arkts-animatable-extend.md)
+      - [\@Require Decorator: Validating Constructor Input Parameters](arkts-require.md)
     - State Management
       - [State Management Overview](arkts-state-management-overview.md)
       - Component State Management
         - [\@State Decorator: State Owned by Component](arkts-state.md)
-        - [\@Prop Decorator: One-Way Synchronization from Parent to Child Components](arkts-prop.md)
+        - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](arkts-prop.md)
         - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](arkts-link.md)
         - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](arkts-provide-and-consume.md)
         - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](arkts-observed-and-objectlink.md)

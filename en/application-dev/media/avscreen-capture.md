@@ -16,7 +16,7 @@ After an **AVScreenCapture** instance is created, different APIs can be called t
 
 ### Permissions Required for Capturing Original Streams
 
-Before development, configure the following permissions for your application. For details about permission configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+Before development, configure the following permissions for your application. For details about permission configuration, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
 
 | Permission| Description| Authorization Mode| APL|
 | ------ | ----- | --------| ------- |
@@ -27,13 +27,30 @@ Before development, configure the following permissions for your application. Fo
 
 The following walks you through how to implement simple screen capture:
 
-1. Create an **AVScreenCapture** instance, named **capture** in this example.
+**Linking the Dynamic Library in the CMake Script**
+
+```c++
+target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
+```
+1. Add the header files.
+
+    ```c++
+    #include "napi/native_api.h"
+    #include <multimedia/player_framework/native_avscreen_capture.h>
+    #include <multimedia/player_framework/native_avscreen_capture_base.h>
+    #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <fcntl.h>
+    #include "string"
+    #include "unistd.h"
+    ```
+
+2. Create an **AVScreenCapture** instance, named **capture** in this example.
 
     ```c++
     OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
     ```
 
-2. Set screen capture parameters.
+3. Set screen capture parameters.
 
     After creating the **capture** instance, you can set the parameters required for screen capture.
 
@@ -68,14 +85,14 @@ The following walks you through how to implement simple screen capture:
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-3. Enable the microphone.
+4. Enable the microphone.
    
     ```c++
     bool isMic = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-4. Set callback functions, which are used to listen for errors that may occur during screen capture and the generation of audio and video stream data.
+5. Set callback functions, which are used to listen for errors that may occur during screen capture and the generation of audio and video stream data.
    
     ```c++
     OH_AVScreenCaptureCallback callback;
@@ -84,43 +101,43 @@ The following walks you through how to implement simple screen capture:
     OH_AVScreenCapture_SetCallback(capture, callback);
     ```
 
-5. Call **StartScreenCapture** to start screen capture.
+6. Call **StartScreenCapture** to start screen capture.
    
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
-6. Call **StopScreenCapture()** to stop screen capture.
+7. Call **StopScreenCapture()** to stop screen capture.
    
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-7. Call **AcquireAudioBuffer()** to obtain an audio buffer.
+8. Call **AcquireAudioBuffer()** to obtain an audio buffer.
    
     ```c++
     OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
     ```
 
-8. Call **AcquireVideoBuffer()** to obtain a video buffer.
+9. Call **AcquireVideoBuffer()** to obtain a video buffer.
    
     ```c++
     OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
     ```
 
-9. Call **ReleaseAudioBuffer()** to release the audio buffer.
-   
+10. Call **ReleaseAudioBuffer()** to release the audio buffer.
+    
     ```c++
     OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
     ```
 
-10. Call **ReleaseVideoBuffer()** to release the video buffer.
+11. Call **ReleaseVideoBuffer()** to release the video buffer.
     
     ```c++
     OH_AVScreenCapture_ReleaseVideoBuffer(capture);
     ```
 
-11. Call **release()** to release the instance.
+12. Call **release()** to release the instance.
     
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -134,20 +151,22 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 
 ```c++
 
-#include "multimedia/player_framework/native_avscreen_capture.h"
-#include "multimedia/player_framework/native_avscreen_capture_base.h"
-#include "multimedia/player_framework/native_avscreen_capture_errors.h"
+#include "napi/native_api.h"
+#include <multimedia/player_framework/native_avscreen_capture.h>
+#include <multimedia/player_framework/native_avscreen_capture_base.h>
+#include <multimedia/player_framework/native_avscreen_capture_errors.h>
+#include <fcntl.h>
+#include "string"
+#include "unistd.h"
 
-void OnError(struct OH_AVScreenCapture *capture, int32_t errorCode)
-{
-    (void) capture;
-    (void) errorCode;
+void OnError(struct OH_AVScreenCapture *capture, int32_t errorCode) {
+    (void)capture;
+    (void)errorCode;
 }
 
-void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type)
-{
+void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type) {
     if (isReady) {
-        OH_AudioBuffer *audiobuffer = (struct OH_AudioBuffer*) malloc (sizeof(OH_AudioBuffer));
+        OH_AudioBuffer *audiobuffer = (struct OH_AudioBuffer *)malloc(sizeof(OH_AudioBuffer));
         // Obtain an audio buffer.
         int32_t ret = OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
         /* Obtain a buffer. */
@@ -159,18 +178,17 @@ void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH
         free(audiobuffer);
         audiobuffer = nullptr;
         // Release the audio buffer.
-        int32_t ret = OH_ScreenCapture_ReleaseAudioBuffer(capture, type);
+        OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
     }
 }
 
-void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady)
-{
+void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady) {
     if (isReady) {
         int32_t fence = 0;
         int64_t timestamp = 0;
         struct OH_Rect damage;
         // Obtain a video buffer.
-        OH_NativeBuffer* buffer = OH_ScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
+        OH_NativeBuffer *buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
         void *virAddr = nullptr;
         OH_NativeBuffer_Map (buffer, &virAddr); // Obtain a buffer.
         OH_NativeBuffer_Config config;
@@ -178,60 +196,48 @@ void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady)
         // Obtain the fence, timestamp, and coordinate information.
         OH_NativeBuffer_UnMap (buffer); // Release the buffer.
         // Release the video buffer.
-        int32_t ret = OH_ScreenCapture_ReleaseVideoBuffer(capture);
+        OH_AVScreenCapture_ReleaseVideoBuffer(capture);
     }
 }
 
-int main()
-{
+int main() {
     // Instantiate AVScreenCapture.
-    struct OH_AVScreenCapture* capture = OH_AVScreenCapture_Create(void);
+    struct OH_AVScreenCapture *capture;
     // Set the callbacks.
     struct OH_AVScreenCaptureCallback callback;
     callback.onError = OnError;
-    callback.onAudioBufferAvailable = OnAudioBufferAvailable ; 
+    callback.onAudioBufferAvailable = OnAudioBufferAvailable;
     callback.onVideoBufferAvailable = OnVideoBufferAvailable;
-    int32_t ret = OH_AVScreenCapture_SetCallback(capture, callback);
+    OH_AVScreenCapture_SetCallback(capture, callback);
     // Initialize the screen capture parameters and pass in an OH_AVScreenRecorderConfig struct.
-    OH_AudioCaptureInfo miccapinfo = {
-        .audioSampleRate = 16000,
-        .audioChannels = 2,
-        .audioSource = OH_MIC
-    };
+    OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
-        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
-    };
+        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };
-    OH_VideoInfo videoinfo = {
-        .videoCapInfo = videocapinfo
-    };
-    OH_AVScreenCaptureConfig config = {
-        .captureMode = OH_CAPTURE_HOME_SCREEN,
-        .dataType = OH_ORIGINAL_STREAM,
-        .audioInfo = audioinfo,
-        .videoInfo = videoinfo
-    };
-    int32_t ret = OH_AVScreenCapture_Init(capture, config);
+    OH_VideoInfo videoinfo = {.videoCapInfo = videocapinfo};
+    OH_AVScreenCaptureConfig config = {.captureMode = OH_CAPTURE_HOME_SCREEN,
+                                       .dataType = OH_ORIGINAL_STREAM,
+                                       .audioInfo = audioinfo,
+                                       .videoInfo = videoinfo};
+    OH_AVScreenCapture_Init(capture, config);
     // Start screen capture.
-    int32_t ret = OH_AVScreenCapture_StartScreenCapture(capture);
+    OH_AVScreenCapture_StartScreenCapture(capture);
     // Enable the microphone.
-    int32_t ret = OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
+    OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
     sleep(10); // Capture the screen for 10s.
     // Stop screen capture.
-    int32_t ret = OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_StopScreenCapture(capture);
     // Release the AVScreenCapture instance.
-    int32_t ret = OH_AVScreenCapture_Release(capture);
+    OH_AVScreenCapture_Release(capture);
     return 0;
 }
 ```
 
 ### Permissions Required for Storing Captured Files
 
-Before development, configure the following permissions for your application. For details about permission configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+Before development, configure the following permissions for your application. For details about permission configuration, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
 
 | Permission| Description| Authorization Mode| APL|
 | ------ | ----- | --------| ------- |
@@ -244,6 +250,7 @@ Before development, configure the following permissions for your application. Fo
 ### Procedure and Precautions for Storing Captured Files
 
 Link the dynamic library in the CMake script.
+
     ```c++
     target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     ```
@@ -296,7 +303,7 @@ Then perform the following steps to store a captured file:
     };
 
     OH_VideoEncInfo videoEncInfo = {
-        .videoCodec = OH_MPEG4,
+        .videoCodec = OH_H264,
         .videoBitrate = 2000000,
         .videoFrameRate = 30
     };

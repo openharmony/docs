@@ -43,6 +43,10 @@ export default class MyAbility extends UIAbility {
         let environmentCallback: EnvironmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
+            },
+
+            onMemoryLevel(level){
+                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
             }
         };
         // 1.获取applicationContext

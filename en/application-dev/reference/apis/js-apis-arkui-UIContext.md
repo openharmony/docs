@@ -638,7 +638,7 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 
 |Type|Description|
 |----|----|
-|Nullable<[AtomicServiceBar](#atomicservicebar)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
+|Nullable<[AtomicServiceBar](#atomicservicebar11)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
 
 **Example**
 
@@ -682,7 +682,7 @@ uiContext.getDragController();
 
 ### getDragPreview<sup>11+</sup>
 
-getDragPreview(): DragPreview
+getDragPreview(): dragController.DragPreview
 
 Obtains the **DragPreview** object, which represents the preview displayed during a drag.
 
@@ -690,16 +690,15 @@ Obtains the **DragPreview** object, which represents the preview displayed durin
 
 **Return value**
 
-| Type       | Description                                           |
-| ------------| ------------------------------------------------|
-| DragPreview | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
 
 **Error codes**
 
 | ID| Error Message     |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
 
 **Example**
 
@@ -715,7 +714,7 @@ Generates a key frame animation. For details about how to use this API, see [key
 
 **Parameters**
 
-| Name        | Type                                             | Mandatory| Description                        |
+| Name| Type                                             | Mandatory| Description                     |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](../arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam) | Yes     | Overall animation parameter of the keyframe animation.    |
 | keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate)&gt;  | Yes     | States of all keyframes.           |
@@ -790,7 +789,7 @@ Obtains information about a system font based on the font name.
 
 | Type                                  | Description     |
 | ------------------------------------ | ------- |
-| [FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
+| [FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example**
 
@@ -874,7 +873,7 @@ In the following API examples, you must first use [getUIObserver()](#getuiobserv
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
 Subscribes to state changes of this **\<NavDestination>** component.
 
@@ -885,7 +884,7 @@ Subscribes to state changes of this **\<NavDestination>** component.
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -899,7 +898,7 @@ observer.on('navDestinationUpdate', (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
 Unsubscribes from state changes of this **\<NavDestination>** component.
 
@@ -910,7 +909,7 @@ Unsubscribes from state changes of this **\<NavDestination>** component.
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -922,9 +921,9 @@ observer.off('navDestinationUpdate');
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
-on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo>): void
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
-Subscribes to state changes of a **\<NavDestination>** component.
+Subscribes to state changes of this **\<NavDestination>** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -933,8 +932,8 @@ Subscribes to state changes of a **\<NavDestination>** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **\<Navigation>** component that contains the target **\<NavDestination>** component. |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -948,9 +947,9 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 ### off('navDestinationUpdate')<sup>11+</sup>
 
-off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo>): void
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of a **\<NavDestination>** component.
+Unsubscribes from state changes of this **\<NavDestination>** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -959,8 +958,8 @@ Unsubscribes from state changes of a **\<NavDestination>** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component.|
-| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **\<Navigation>** component that contains the target **\<NavDestination>** component. |
-| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
 
 **Example**
 
@@ -2182,7 +2181,7 @@ try {
 };
 ```
 
-### showActionMenu
+### showActionMenu<sup>11+</sup>
 
 showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
@@ -2192,10 +2191,70 @@ Shows an action menu. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.  |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes   | Callback used to return the action menu response result.|
+| Name  | Type                                                        | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes  | Callback used to return the action menu response result.|
+
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID| Error Message                          |
+| -------- | ---------------------------------- |
+| 100001   | if UI execution context not found. |
+
+**Example**
+
+```ts
+import { PromptAction } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+let promptActionF: PromptAction = uiContext.getPromptAction();
+try {
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
+### showActionMenu<sup>(deprecated)</sup>
+
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+
+Shows an action menu. This API uses an asynchronous callback to return the result.
+
+his API is deprecated since API version 11. You are advised to use [showActionMenu](#showactionmenu11) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result.|
 
 **Error codes**
 
@@ -2315,7 +2374,7 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | Yes  | Dragging information.                      |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
 
@@ -2323,8 +2382,8 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **Example**
 
@@ -2405,8 +2464,8 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **Example**
 
@@ -2490,13 +2549,11 @@ struct DragControllerPage {
 
 ### createDragAction
 
-createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
 Creates a **DragAction** object, by explicitly specifying one or more drag previews, drag data, and information about the dragged object. If the drag initiated by a **DragAction** object is not complete, no new **DragAction** object can be created, and calling this API will throw an exception.
 
-> **NOTE**
->
-> You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
+**NOTE**<br>You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2511,24 +2568,89 @@ Creates a **DragAction** object, by explicitly specifying one or more drag previ
 
 | Type                                                  | Description              |
 | ------------------------------------------------------ | ------------------ |
-| [DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state changes and start the drag service. |
+| [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state change events and start the dragging service.|
 
 **Error codes**
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | If some internal handing failed. |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **Example**
+1. In the **EntryAbility.ets** file, obtain the UI context and save it to LocalStorage.
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
 
+let uiContext: UIContext;
+let localStorage: LocalStorage = new LocalStorage('uiContext');
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = localStorage;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      windowStage.getMainWindow((err, data) =>
+      {
+        if (err.code) {
+          console.log('Failed to abtain the main window. Cause:' + err.message);
+          return;
+        }
+        let windowClass: window.Window = data;
+        uiContext = windowClass.getUIContext();
+        this.storage.setOrCreate<UIContext>('uiContext', uiContext);
+        // Obtain a UIContext instance.
+      })
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+2. Call **LocalStorage.getShared()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
 ```ts
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import UDC from '@ohos.data.unifiedDataChannel';
+import { UIContext, DragController } from '@ohos.arkui.UIContext'
 
-@Entry
+let storages = LocalStorage.getShared();
+
+@Entry(storages)
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
@@ -2568,26 +2690,27 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.customBuilders.splice(0, this.customBuilders.length)
-                this.dragAction.off('statusChange')
+              let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
+              if(!this.dragAction){
+                console.log("listener dragAction is null");
+                return
               }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
+              this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+                if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                  console.log("drag has start");
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                  console.log("drag has end");
+                  if (!this.dragAction) {
+                    return
+                  }
+                  this.customBuilders.splice(0, this.customBuilders.length)
+                  this.dragAction.off('statusChange')
+                }
+              })
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.log("start drag Error:" + err.message);
+              })
             } catch(err) {
               console.log("create dragAction Error:" + err.message);
             }
@@ -2794,4 +2917,3 @@ Enumerates the avoidance modes for the virtual keyboard.
 | ------ | ---------- |
 | OFFSET | Avoid the virtual keyboard through offset.|
 | RESIZE | Avoid the virtual keyboard through resizing.|
-<!--no_check-->

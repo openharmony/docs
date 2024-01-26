@@ -5,7 +5,6 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 使用该组件需要申请ohos.permission.CONNECT_IME_ABILITY权限。
 
 ## 导入模块
 
@@ -27,8 +26,6 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 输入法切换列表弹窗。
 
 **装饰器类型：**@CustomDialog
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

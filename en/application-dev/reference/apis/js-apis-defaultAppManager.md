@@ -14,11 +14,11 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 ## Required Permissions
 
-| Permission                                   | Permission Level   | Description            |
+| Permission                                   | APL   | Description            |
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | Permission related to the default application.|
 
-For details, see [Permission Levels](../../security/AccessToken/app-permission-mgmt-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 
 ## defaultAppMgr.ApplicationType
@@ -822,4 +822,3 @@ try {
 };
 ```
 
- <!--no_check--> 

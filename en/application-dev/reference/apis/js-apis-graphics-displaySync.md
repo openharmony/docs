@@ -169,5 +169,3 @@ Button('StopBigger')
           this.backDisplaySyncBigger.stop()
         })
 ```
-
- <!--no_check--> 

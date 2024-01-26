@@ -2,7 +2,7 @@
 
 该模块提供跳转到拨号界面，并显示待拨出号码的功能。
 
-如需订阅通话状态请使用[`observer.on('callStateChange')`](../apis/js-apis-observer.md#observeroncallstatechange)。
+如需订阅通话状态请使用[`observer.on('callStateChange')`](../../reference/apis/js-apis-observer.md#observeroncallstatechange)。
 
 >**说明：**
 >

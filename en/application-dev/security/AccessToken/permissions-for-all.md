@@ -4,7 +4,7 @@ Before requesting permissions for your application, read and understand the [Wor
 
 ## system_grant Permissions
 
-The [system_grant permissions](app-permission-mgmt-overview.md#system_grant-system-authorization) are permissions authorized by the system. For details about how to request this type of permissions, see [Declaring Permissions](declaration-permissions.md).
+The [system_grant permissions](app-permission-mgmt-overview.md#system_grant-system-authorization) are permissions authorized by the system. For details about how to request this type of permissions, see [Declaring Permissions](declare-permissions.md).
 
 ### ohos.permission.USE_BLUETOOTH
 
@@ -566,4 +566,3 @@ Allows an application to read media files from and write media files into the us
 
 **Valid since**: 7
 
-<!--no_check-->

@@ -30,6 +30,7 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) | Describes the mouse event.                |
 | [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | Registers callbacks for the surface lifecycle and touch event.|
 | [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) | Registers callbacks for the mouse event.           |
+| [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) | Defines the expected frame rate range. |
 
 
 ### Types
@@ -79,6 +80,9 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_GetKeyEventSourceType](#oh_nativexcomponent_getkeyeventsourcetype) ([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) \*keyEvent, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | Obtains the source type of the specified key event.                       |
 | [OH_NativeXComponent_GetKeyEventDeviceId](#oh_nativexcomponent_getkeyeventdeviceid) ([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) \*keyEvent, int64_t \*deviceId) | Obtains the device ID of the specified key event.                        |
 | [OH_NativeXComponent_GetKeyEventTimeStamp](#oh_nativexcomponent_getkeyeventtimestamp) ([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) \*keyEvent, int64_t \*timeStamp) | Obtains the timestamp of the specified key event.                         |
+| [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | Sets the expected frame rate range.                                          |
+| [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | Registers the display update callback for this **OH_NativeXComponent** instance and enables the callback for each frame.|
+| [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | Deregisters the display update callback for this **OH_NativeXComponent** instance and disables the callback for each frame.|
 
 
 ### Variables
@@ -1080,7 +1084,7 @@ Returns the status code of the execution.
 ### OH_NativeXComponent_RegisterBlurEventCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterBlurEventCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, void *window) callback )
+int32_t OH_NativeXComponent_RegisterBlurEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
 ```
 
 **Description**
@@ -1132,7 +1136,7 @@ Returns the status code of the execution.
 ### OH_NativeXComponent_RegisterFocusEventCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterFocusEventCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, void *window) callback )
+int32_t OH_NativeXComponent_RegisterFocusEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
 ```
 
 **Description**
@@ -1158,7 +1162,7 @@ Returns the status code of the execution.
 ### OH_NativeXComponent_RegisterKeyEventCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, void *window) callback )
+int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
 ```
 
 **Description**
@@ -1206,6 +1210,79 @@ Returns the status code of the execution.
 
 9
 
+### OH_NativeXComponent_RegisterOnFrameCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp) callback )
+```
+**Description**
+
+Registers the display update callback for this **OH_NativeXComponent** instance and enables the callback for each frame.
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| component | Pointer to the **OH_NativeXComponent** instance. |
+| callback | Pointer to the display update callback. |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+11
+
+
+### OH_NativeXComponent_SetExpectedFrameRateRange()
+
+```
+int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * component, OH_NativeXComponent_ExpectedRateRange * range )
+```
+**Description**
+
+Sets the expected frame rate range.
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| component | Pointer to the **OH_NativeXComponent** instance. |
+| range | Pointer to the expected frame rate range.|
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+11
+
+
+### OH_NativeXComponent_UnregisterOnFrameCallback()
+
+```
+int32_t OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent * component)
+```
+**Description**
+
+Deregisters the display update callback for this **OH_NativeXComponent** instance and disables the callback for each frame.
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| component | Pointer to the **OH_NativeXComponent** instance. |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+11
+<!--  -->
 
 ## Variable Description
 
@@ -1767,3 +1844,43 @@ Y coordinate of the clicked point relative to the upper left corner of the compo
 **Since**
 
 8
+
+### expected
+
+```
+int32_t OH_NativeXComponent_ExpectedRateRange::expected
+```
+**Description**
+
+Expected frame rate range.
+
+**Since**
+
+11
+
+### max
+
+```
+int32_t OH_NativeXComponent_ExpectedRateRange::max
+```
+**Description**
+
+Maximum value of the expected frame rate range.
+
+**Since**
+
+11
+
+
+### min
+
+```
+int32_t OH_NativeXComponent_ExpectedRateRange::min
+```
+**Description**
+
+Minimum value of the expected frame rate range.
+
+**Since**
+
+11

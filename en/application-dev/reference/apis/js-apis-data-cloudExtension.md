@@ -133,7 +133,7 @@ Provides a class for interworking with the cloud sync service. You need to inher
 
 connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObject&gt;
 
-Obtains the [RemoteObject](js-apis-rpc.md#remoteobject) object of [ShareCenter](#sharecenter), which is created by [createShareServiceStub](#createshareservicestub). This API uses a promise to return the result.
+Obtains the [RemoteObject](js-apis-rpc.md#remoteobject) object of [ShareCenter](#sharecenter), which is created by [createShareServiceStub](#cloudextensioncreateshareservicestub). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -610,4 +610,5 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
   // ...
 }
 ```
-<!--no_check-->
+
+ <!--no_check--> 

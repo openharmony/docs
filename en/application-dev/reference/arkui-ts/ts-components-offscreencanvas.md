@@ -27,7 +27,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+The following attributes are supported.
 
 | Name  | Type  | Default Value| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
