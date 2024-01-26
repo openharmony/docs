@@ -14,15 +14,31 @@
 
 ## 接口
 
-TimePicker(options?: {selected?: Date})
+TimePicker(options?: TimePickerOptions)
 
 默认以24小时的时间区间创建滑动选择器。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型 | 必填 | 参数描述                                                     |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| selected | Date     | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+**参数：** 
+
+| 参数名  | 类型                                            | 必填 | 描述                     |
+| ------- | ----------------------------------------------- | ---- | ------------------------ |
+| options | [TimePickerOptions](#timepickeroptions对象说明) | 否   | 配置时间选择组件的参数。 |
+
+## TimePickerOptions对象说明
+
+| 名称                 | 类型                                          | 必填 | 说明                                                         |
+| -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| selected             | Date                                          | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat枚举说明) | 否   | 指定需要显示的TimePicker的格式。                             |
+
+## TimePickerFormat枚举说明
+
+| 名称               | 说明                     |
+| ------------------ | ------------------------ |
+| HOUR_MINUTE        | 按照小时和分显示。       |
+| HOUR_MINUTE_SECOND | 按照小时、分钟和秒显示。 |
 
 ## 属性
 
@@ -34,6 +50,7 @@ TimePicker(options?: {selected?: Date})
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | textStyle<sup>10+</sup>          | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| loop<sup>11+</sup>               | boolean                                                      | 是否启用循环模式。<br/>默认值：true，true表示启用循环模式，false表示不启用循环模式。 |
 
 ## 事件
 
@@ -47,10 +64,11 @@ TimePicker(options?: {selected?: Date})
 
 返回值为24小时制时间。
 
-| 名称   | 参数类型 | 描述                                |
-| ------ | -------- | ----------------------------------- |
-| hour   | number   | 选中时间的时。<br/>取值范围：[0-23] |
-| minute | number   | 选中时间的分。<br/>取值范围：[0-59] |
+| 名称                 | 参数类型 | 描述                                |
+| -------------------- | -------- | ----------------------------------- |
+| hour                 | number   | 选中时间的时。<br/>取值范围：[0-23] |
+| minute               | number   | 选中时间的分。<br/>取值范围：[0-59] |
+| second<sup>11+</sup> | number   | 选中时间的秒。<br/>取值范围：[0-59] |
 
 
 ## 示例
