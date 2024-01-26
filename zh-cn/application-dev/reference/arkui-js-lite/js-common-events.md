@@ -11,7 +11,7 @@
 | swipe<sup>5+</sup> | SwipeEvent | 组件上快速滑动后触发。 |
 
 
-  **表6** SwipeEvent 基础事件对象属性列表（继承BaseEvent）
+SwipeEvent 基础事件对象属性列表（继承BaseEvent）
 
 | 属性 | 类型 | 说明 |
 | -------- | -------- | -------- |
