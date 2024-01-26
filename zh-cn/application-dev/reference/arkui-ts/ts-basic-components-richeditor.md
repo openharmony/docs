@@ -266,11 +266,9 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
-> **说明：**
->
-> 暂不支持双击或长按选中操作。
-
 在Richeditor中添加SymbolSpan。
+
+暂不支持手势处理。
 
 **参数：**
 
