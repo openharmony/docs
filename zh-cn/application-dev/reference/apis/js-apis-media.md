@@ -549,6 +549,7 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 | AVERR_TIMEOUT              | 5400104 | 表示系统或网络响应超时。             |
 | AVERR_SERVICE_DIED         | 5400105 | 表示服务进程死亡。                   |
 | AVERR_UNSUPPORT_FORMAT     | 5400106 | 表示不支持当前媒体资源的格式。       |
+| AVERR_AUDIO_INTERRUPTED    | 5400107 | 表示音频焦点被抢占                   |
 
 ## MediaType<sup>8+</sup>
 
@@ -2688,6 +2689,244 @@ avRecorder.release().then(() => {
 });
 ```
 
+## getCurrentAudioCapturerInfo<sup>11+</sup>
+
+getCurrentAudioCapturerInfo(callback: AsyncCallback<audio.AudioCapturerChangeInfo>): void;
+
+异步方式获取当前音频采集参数。通过注册回调函数获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**参数**：
+
+| 参数名   | 类型                                         | 必填 | 说明                                 |
+| -------- | -------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<audio.AudioCapturerChangeInfo> | 是   | 异步获取当前音频采集参数的回调方法。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let currentCapturerInfo: audio.AudioCapturerChangeInfo;
+
+avRecorder.getCurrentAudioCapturerInfo((err: BusinessError， capturerInfo: audio.AudioCapturerChangeInfo) => {
+  if (err == null) {
+    console.info('getCurrentAudioCapturerInfo success');
+    currentCapturerInfo = capturerInfo;
+  } else {
+    console.error('getCurrentAudioCapturerInfo failed and error is ' + err.message);
+  }
+});
+```
+
+## getCurrentAudioCapturerInfo<sup>11+</sup>
+
+getCurrentAudioCapturerInfo(): Promise<audio.AudioCapturerChangeInfo>;
+
+异步方式获取当前音频采集参数。通过Promise获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**返回值**：
+
+| 类型                                   | 说明                                              |
+| -------------------------------------- | ------------------------------------------------- |
+| Promise<audio.AudioCapturerChangeInfo> | 异步方式获取当前音频采集参数方法的Promise返回值。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let currentCapturerInfo: audio.AudioCapturerChangeInfo;
+
+avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturerChangeInfo) => {
+  console.info('getCurrentAudioCapturerInfo success');
+  currentCapturerInfo = capturerInfo;
+}).catch((err: BusinessError) => {
+  console.error('getCurrentAudioCapturerInfo failed and catch error is ' + err.message);
+});
+```
+
+## getAudioCapturerMaxAmplitude<sup>11+</sup>
+
+getAudioCapturerMaxAmplitude(callback: AsyncCallback<number>): void;
+
+异步方式获取当前音频最大振幅。通过注册回调函数获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+获取大的音频最大振幅是两次调用之间的音频最大振幅。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**参数**：
+
+| 参数名   | 类型                  | 必填 | 说明                                 |
+| -------- | --------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<number> | 是   | 异步获取当前音频最大振幅的回调方法。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let maxAmplitude: number;
+
+avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError， amplitude: number) => {
+  if (err == null) {
+    console.info('getAudioCapturerMaxAmplitude success');
+    maxAmplitude = amplitude;
+  } else {
+    console.error('getAudioCapturerMaxAmplitude failed and error is ' + err.message);
+  }
+});
+```
+
+## getAudioCapturerMaxAmplitude<sup>11+</sup>
+
+getAudioCapturerMaxAmplitude(): Promise<number>;
+
+异步方式获取当前音频最大振幅参数。通过Promise获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+获取大的音频最大振幅是两次调用之间的音频最大振幅。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**返回值**：
+
+| 类型            | 说明                                              |
+| --------------- | ------------------------------------------------- |
+| Promise<number> | 异步方式获取当前音频最大振幅方法的Promise返回值。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let maxAmplitude: number;
+
+avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
+  console.info('getAudioCapturerMaxAmplitude success');
+  maxAmplitude = amplitude;
+}).catch((err: BusinessError) => {
+  console.error('getAudioCapturerMaxAmplitude failed and catch error is ' + err.message);
+});
+```
+
+## getAvailableEncoder<sup>11+</sup>
+
+getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
+
+异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**参数**：
+
+| 参数名   | 类型                                                | 必填 | 说明                                 |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<Array<[EncoderInfo](#encoderInfo11)>> | 是   | 异步获取可用的编码器参数的回调方法。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let encoderInfo: media.EncoderInfo;
+
+avRecorder.getAvailableEncoder((err: BusinessError， info: media.EncoderInfo) => {
+  if (err == null) {
+    console.info('getAvailableEncoder success');
+    encoderInfo = info;
+  } else {
+    console.error('getAvailableEncoder failed and error is ' + err.message);
+  }
+});
+```
+
+## getAvailableEncoder<sup>11+</sup>
+
+getAvailableEncoder(): Promise<Array<EncoderInfo>>;
+
+getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
+
+异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**返回值**：
+
+| 类型                                          | 说明                                            |
+| --------------------------------------------- | ----------------------------------------------- |
+| Promise<Array<[EncoderInfo](#encoderInfo11)>> | 异步方式获取可用的编码参数方法的Promise返回值。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let encoderInfo: media.EncoderInfo;
+
+avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
+  console.info('getAvailableEncoder success');
+  encoderInfo = info;
+}).catch((err: BusinessError) => {
+  console.error('getAvailableEncoder failed and catch error is ' + err.message);
+});
+```
+
 ### on('stateChange')<sup>9+</sup>
 
 on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeReason) => void): void
@@ -2761,14 +3000,15 @@ on(type: 'error', callback: ErrorCallback): void
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                                            |
-| -------- | ------------------------------------------------   |
-| 5400101  | No memory. Return by callback.                     |
-| 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | I/O error. Return by callback.                     |
-| 5400104  | Time out. Return by callback.                      |
-| 5400105  | Service died. Return by callback.                  |
-| 5400106  | Unsupport format. Return by callback.              |
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400101  | No memory. Return by callback.             |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400104  | Time out. Return by callback.              |
+| 5400105  | Service died. Return by callback.          |
+| 5400106  | Unsupport format. Return by callback.      |
+| 5400107  | Audio interrupted. Return by callback.     |
 
 **示例：**
 
@@ -2845,7 +3085,7 @@ avRecorder.off('error');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[1 - 3000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。    |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。        |
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
@@ -2893,6 +3133,35 @@ avRecorder.off('error');
 | --------- | ------ | ---- | ---------------- |
 | latitude  | number | 是   | 地理位置的纬度。 |
 | longitude | number | 是   | 地理位置的经度。 |
+
+## EncoderInfo<sup>11+</sup>
+
+编码器和规格参数
+
+系统能力：SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称       | 类型                             | 说明                                                         |
+| ---------- | -------------------------------- | ------------------------------------------------------------ |
+| mimeType   | [CodecMimeType](#codecmimetype8) | 编码器MIME类型名称                                           |
+| type       | string                           | 编码器类型，audio表示音频编码器，video表示视频编码器         |
+| bitRate    | [Range](#range11)                | 比特率，包含该编码器的最大和最小值                           |
+| width      | [Range](#range11)                | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有       |
+| height     | [Range](#range11)                | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有       |
+| channels   | [Range](#range11)                | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有   |
+| sampleRate | Array<number>                    | 音频采样率，包含所有可以使用的音频采样率值，仅音频编码器拥有 |
+
+## Range<sup>11+</sup>
+
+表示一个类型的范围
+
+系统能力：SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称 | 类型   | 说明         |
+| ---- | ------ | ------------ |
+| min  | number | 范围的最小值 |
+| max  | number | 范围的最大值 |
+
+
 
 ## AVMetadataExtractor<sup>11+</sup>
 
