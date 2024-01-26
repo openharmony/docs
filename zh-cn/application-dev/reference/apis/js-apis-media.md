@@ -2689,7 +2689,7 @@ avRecorder.release().then(() => {
 });
 ```
 
-## getCurrentAudioCapturerInfo<sup>11+</sup>
+### getCurrentAudioCapturerInfo<sup>11+</sup>
 
 getCurrentAudioCapturerInfo(callback: AsyncCallback<audio.AudioCapturerChangeInfo>): void;
 
@@ -2730,7 +2730,7 @@ avRecorder.getCurrentAudioCapturerInfo((err: BusinessError， capturerInfo: audi
 });
 ```
 
-## getCurrentAudioCapturerInfo<sup>11+</sup>
+### getCurrentAudioCapturerInfo<sup>11+</sup>
 
 getCurrentAudioCapturerInfo(): Promise<audio.AudioCapturerChangeInfo>;
 
@@ -2769,7 +2769,7 @@ avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturer
 });
 ```
 
-## getAudioCapturerMaxAmplitude<sup>11+</sup>
+### getAudioCapturerMaxAmplitude<sup>11+</sup>
 
 getAudioCapturerMaxAmplitude(callback: AsyncCallback<number>): void;
 
@@ -2811,7 +2811,7 @@ avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError， amplitude: number
 });
 ```
 
-## getAudioCapturerMaxAmplitude<sup>11+</sup>
+### getAudioCapturerMaxAmplitude<sup>11+</sup>
 
 getAudioCapturerMaxAmplitude(): Promise<number>;
 
@@ -2851,7 +2851,7 @@ avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
 });
 ```
 
-## getAvailableEncoder<sup>11+</sup>
+### getAvailableEncoder<sup>11+</sup>
 
 getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
 
@@ -2889,7 +2889,7 @@ avRecorder.getAvailableEncoder((err: BusinessError， info: media.EncoderInfo) =
 });
 ```
 
-## getAvailableEncoder<sup>11+</sup>
+### getAvailableEncoder<sup>11+</sup>
 
 getAvailableEncoder(): Promise<Array<EncoderInfo>>;
 
