@@ -979,7 +979,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 | sectorIndex | number | 是   | 待验证的扇区索引，从0开始。 |
 | key | number[]| 是   | 用于扇区验证的密钥（6字节）。 |
 | isKeyA | boolean | 是   | isKeyA标志。true 表示KeyA，false 表示KeyB。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。|
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回扇区验证结果。|
 
 **错误码：**
 
@@ -1040,7 +1040,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<number[]> | 以Promise形式读取的块数据。 |
+| Promise\<number[]> | 以Promise形式返回读取的块数据。 |
 
 **错误码：**
 
@@ -1094,7 +1094,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要读取的块索引，从0开始。 |
-| callback | AsyncCallback\<number[]> | 是   | 回调函数，返回读取到的数据。 |
+| callback | AsyncCallback\<number[]> | 是   |以callback形式异步返回读取到的块数据。 |
 
 **错误码：**
 
@@ -1207,7 +1207,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要写入的块索引，从0开始。 |
 | data | number[] | 是   | 要写入的数据，大小必须是16个字节。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。 |
 
 **错误码：**
 
@@ -1321,7 +1321,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
 | value | number | 是   | 要增加的数值，非负数。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。。 |
 
 **错误码：**
 
@@ -1434,7 +1434,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
 | value | number | 是   | 要减少的数值，非负数。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。 |
 
 **错误码：**
 
@@ -1544,7 +1544,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。 |
 
 **错误码：**
 
@@ -1653,7 +1653,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。|
+| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回块操作结果。|
 
 **错误码：**
 
@@ -1935,7 +1935,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<number[]> | 以Promise形式读取的4页的数据，共16字节。 |
+| Promise\<number[]> | 以Promise形式返回读取的4页的数据，共16字节。 |
 
 **错误码：**
 
@@ -1990,7 +1990,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | pageIndex | number | 是   | 要读取页面的索引，从0开始。 |
-| callback | AsyncCallback\<number[]> | 是   | 回调函数，返回读取到的数据，共16字节。 |
+| callback | AsyncCallback\<number[]> | 是   | 以callback形式异步返回页操作结果。返回读取到的数据，共16字节。 |
 
 **错误码：**
 
@@ -2102,7 +2102,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | 是   | 要写入页面的索引，从0开始。 |
 | data | number[] | 是   | 要写入页面的数据内容，必须是4个字节大小。 |
-| callback|AsyncCallback\<void> |是| 回调函数。 |
+| callback|AsyncCallback\<void> |是| 以callback形式异步返回页操作结果。 |
 
 **错误码：**
 
@@ -2252,7 +2252,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 回调函数。 |
+| callback: AsyncCallback\<void> | 以callback形式异步返回格式化操作结果。 |
 
 **错误码：**
 
@@ -2372,7 +2372,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | 回调函数。 |
+| callback: AsyncCallback\<void> | 以callback形式异步返回格式化操作结果。 |
 
 **错误码：**
 
