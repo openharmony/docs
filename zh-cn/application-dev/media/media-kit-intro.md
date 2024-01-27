@@ -162,7 +162,8 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 
 | 音视频编码格式 | 说明 | 
 | -------- | -------- |
-| audio/mp4a-latm | 音频/mp4a-latm类型 | 
+| audio/mp4a-latm | 音频/mp4a-latm类型 |
+| video/hevc | 视频/hevc类型 | 
 | video/avc | 视频/avc类型 | 
 
 支持的输出文件格式如下：

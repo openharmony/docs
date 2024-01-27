@@ -3131,6 +3131,96 @@ avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
 });
 ```
 
+### getAVRecorderConfig<sup>11+</sup>
+
+getAVRecorderConfig(callback: AsyncCallback\<config: AVRecorderConfig>): void
+
+通过回调的方式获取实时的配置参数。
+
+只能在[prepare()](#prepare9-4)接口调用后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| config   | [AVRecorderConfig](#avrecorderconfig9) | 是   | 音视频录制的相关参数。            |
+| callback | AsyncCallback\<config: AVRecorderConfig> | 是   | 异步获得实时配置参数的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let AVRecorderConfig: media.AVRecorderConfig;
+
+avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
+  if (err == null) {
+    console.info('getAVRecorderConfig success');
+    AVRecorderConfig = config;
+  } else {
+    console.error('getAVRecorderConfig failed and error is ' + err.message);
+  }
+});
+```
+
+### getAVRecorderConfig<sup>11+</sup>
+
+getAVRecorderConfig(): Promise\<config: AVRecorderConfig>;
+
+通过回调的方式获取实时的配置参数。
+
+只能在[prepare()](#prepare9-4)接口调用后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| config   | [AVRecorderConfig](#avrecorderconfig9) | 音视频录制的相关参数。 |
+| Promise\<config: AVRecorderConfig> | 异步获得实时配置参数的回调方法。 |
+
+**错误码：**
+  
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise.             |
+| 5400105  | Service died. Return by promise.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let AVRecorderConfig: AVRecorderConfig;
+
+avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
+  console.info('getAVRecorderConfig success');
+  AVRecorderConfig = config;
+}).catch((err: BusinessError) => {
+  console.error('getAVRecorderConfig failed and catch error is ' + err.message);
+});
+```
+
 ### on('stateChange')<sup>9+</sup>
 
 on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeReason) => void): void
@@ -3244,6 +3334,52 @@ off(type: 'error'): void
 avRecorder.off('error');
 ```
 
+### on('audioCapturerChange')<sup>11+</sup>
+
+on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo>): void
+
+订阅录音配置变化的回调，任意录音配置的变化会触发变化后的录音配置全量信息回调，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   |录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
+| callback | function | 是   |  变化后的录音配置全量信息[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)。|
+
+**示例：**
+
+```ts
+let capturerChangeInfo: audio.AudioCapturerChangeInfo;
+
+avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCapturerChangeInfo) => {
+  console.info('audioCapturerChange success');
+  capturerChangeInfo = audioCapturerChangeInfo;
+});
+```
+
+### off('audioCapturerChange')<sup>11+</sup>
+
+off(type: 'audioCapturerChange'): void
+
+取消订阅录音变化的回调事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
+
+**示例：**
+
+```ts
+avRecorder.off('audioCapturerChange');
+```
+
 ## AVRecorderState<sup>9+</sup>
 
 音视频录制的状态机。可通过state属性获取当前状态。
@@ -3295,7 +3431,7 @@ avRecorder.off('error');
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
-| isHdr<sup>11+</sup>            | boolean                        | 否   | 视频HDR属性，选择视频录制时必填。                         | 
+| isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，isHdr为true时，对应的编码格式必须为video/hevc。                         |
 
 ## AudioSourceType<sup>9+</sup>
 
