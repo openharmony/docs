@@ -518,7 +518,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用callback异步回调。
+设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
