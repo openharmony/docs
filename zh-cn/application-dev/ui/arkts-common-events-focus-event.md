@@ -57,7 +57,7 @@
   >
   > - 删除组件、设置组件无法获焦后，会使用线性走焦规则，自动先往被删除/Unfocusable组件的前置兄弟组件上走焦，无法走焦的话，再向后置兄弟组件上走焦。
 
-- tabIndex走焦：给组件设置[tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md)通用属性，自定义组件的TAB键/SHIFT+TAB键的走焦顺序。
+- tabIndex走焦：给组件设置[tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md#tabindex9)通用属性，自定义组件的TAB键/SHIFT+TAB键的走焦顺序。
 
 - 区域走焦：给容器组件设置tabIndex通用属性，再结合[groupDefaultFocus](#groupdefaultfocus)通用属性，自定义容器区域的TAB键/SHIFT+TAB键的走焦顺序和默认获焦组件。
 
@@ -386,7 +386,7 @@ struct FocusableExample {
 **主动走焦：**
 
 
-按键盘F键，触发onKeyEvent，focusable置为false，Text组件变成不可获焦，焦点自动转移。按照被动走焦中的说明项，焦点会自动从Text组件先向上寻找下一个可获焦组件，由于上一个组件是一个不可获焦的Text，所以向下寻找下一个可获焦的组件，找到并使焦点转移到Row容器上。根据[走焦至容器规则](#走焦规则)，计算Button1和Button2的位置，Button2比Button1更大，因此焦点会自动转移到Button2上。
+按键盘F键，触发onKeyEvent，focusable置为false，Text组件变成不可获焦，焦点自动转移。按照被动走焦中的说明项，焦点会自动从Text组件先向上寻找下一个可获焦组件，由于上一个组件是一个不可获焦的Text，所以向下寻找下一个可获焦的组件，找到并使焦点转移到Row容器上。根据[走焦至容器规则](#走焦规则)，使用Tab键走焦时应该满足Z字型走焦顺序，因此焦点会自动转移到Button1上。
 
 
 ## 自定义默认焦点
@@ -406,7 +406,6 @@ defaultFocus(value: boolean)
 
 
 ```ts
-// xxx.ets
 // xxx.ets
 import promptAction from '@ohos.promptAction';
 
@@ -997,8 +996,6 @@ focusOnTouch(value: boolean)
 
 ```ts
 // requestFocus.ets
-import promptAction from '@ohos.promptAction';
-
 @Entry
 @Component
 struct RequestFocusExample {
