@@ -529,12 +529,17 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**参数：**
+
+| 类型                                       | 类型                                       | 必填   | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
+| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | 是    | 表示屏幕显示方向。                                |
+
 **返回值：**
 
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) |
-| Promise\<void> | 表示屏幕显示方向。                                |
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
