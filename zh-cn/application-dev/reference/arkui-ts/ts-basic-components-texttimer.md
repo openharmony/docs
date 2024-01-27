@@ -12,9 +12,16 @@
 
 ## 接口
 
-TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
+TextTimer(options?: TextTimerOptions)
 
 **参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| options |  [TextTimerOptions](#texttimeroptions对象说明)| 否 | 通过文本显示计时信息并控制其计时器状态的组件参数。 |
+
+## TextTimerOptions对象说明
+
 
 | 参数名     | 参数类型     | 必填  | 参数描述                   |
 | ----------- | -------- | -------- | -------- |
