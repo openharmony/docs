@@ -24,9 +24,9 @@ Checkbox(options?: CheckboxOptions)
 
 **参数:**
 
-| 参数名  | 类型                                        | 必填 | 描述             |
-| ------- | ------------------------------------------- | ---- | ---------------- |
-| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数 |
+| 参数名  | 类型                                        | 必填 | 描述               |
+| ------- | ------------------------------------------- | ---- | ------------------ |
+| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
 
 ## CheckboxOptions对象说明
 
