@@ -24,11 +24,11 @@ Canvas(context?: CanvasRenderingContext2D)
 
 ## 属性
 
-支持通用属性。
+支持[通用属性](ts-universal-attributes-size.md)。
 
 ## 事件
 
-除支持通用事件外，还支持如下事件：
+除支持[通用事件](ts-universal-events-click.md)外，还支持如下事件：
 
 | 名称                         | 描述                                       |
 | -------------------------- | ---------------------------------------- |
