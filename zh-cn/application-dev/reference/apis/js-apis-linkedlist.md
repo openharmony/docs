@@ -545,7 +545,7 @@ removeLastFound(element: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 删删除成功返回true，删除失败或不存在该元素时返回false。 |
+| boolean | 删除成功返回true，删除失败或不存在该元素时返回false。 |
 
 **错误码：**
 
