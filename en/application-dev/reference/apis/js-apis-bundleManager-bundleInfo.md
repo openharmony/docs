@@ -18,11 +18,11 @@ The **BundleInfo** module defines the bundle information. A system application c
 | versionName                       | string                                                       | Yes  | No  | Version description of the bundle.                                    |
 | minCompatibleVersionCode          | number                                                       | Yes  | No  | Earliest version compatible with the bundle in the distributed scenario.                          |
 | targetVersion                     | number                                                       | Yes  | No  | Target API version required for running the bundle.                               |
-| appInfo                           | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)         | Yes  | No  | Application information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_APPLICATION** to the **bundleFlags** parameter of [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo).                                          |
-| hapModulesInfo                    | Array\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)>     | Yes  | No  | Module configuration information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** to the **bundleFlags** parameter of [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo).                                                |
-| reqPermissionDetails     | Array\<[ReqPermissionDetail](#reqpermissiondetail)>   | Yes  | No  | Detailed information of the permissions to request from the system. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION** to the **bundleFlags** parameter of [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo).|
-| permissionGrantStates        | Array\<[PermissionGrantState](js-apis-bundleManager.md#permissiongrantstate)> | Yes  | No  | Permission grant state. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION** to the **bundleFlags** parameter of [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo).                    |
-| signatureInfo          | [SignatureInfo](#signatureinfo)                                          | Yes  | No  | Signature information of the bundle. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_SIGNATURE_INFO** to the **bundleFlags** parameter of [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo).                                          |
+| appInfo                           | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)         | Yes  | No  | Application information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_APPLICATION** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
+| hapModulesInfo                    | Array\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)>     | Yes  | No  | Module configuration information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
+| reqPermissionDetails     | Array\<[ReqPermissionDetail](#reqpermissiondetail)>   | Yes  | No  | Detailed information of the permissions to request from the system. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
+| permissionGrantStates        | Array\<[PermissionGrantState](js-apis-bundleManager.md#permissiongrantstate)> | Yes  | No  | Permission grant state. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
+| signatureInfo          | [SignatureInfo](#signatureinfo)                                          | Yes  | No  | Signature information of the bundle. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_SIGNATURE_INFO** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
 | installTime                       | number                                                       | Yes  | No  | Time when the bundle was installed.                                         |
 | updateTime                        | number                                                       | Yes  | No  | Time when the bundle was updated.                                           |
 
@@ -39,13 +39,11 @@ Provides the detailed information of the permissions to request from the system.
 | moduleName<sup>10+</sup>            | string                  | Yes  | Yes  | Name of the module that requests the permission.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission. |
 | reasonId              | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
-| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|
-
-
+| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Use scenario and timing for using the permission.|
 
 ## UsedScene
 
-Describes the application scenario and timing for using the permission.
+Describes the use scenario and timing for using the permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
