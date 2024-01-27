@@ -14,10 +14,14 @@
 
 ## 接口
 
-TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
+TextInput(value?: TextInputOptions)
 
 **参数：**
+| 参数名 |类型|必填|说明|
+|-----|-----|----|----|
+| value | [TextInputOptions](#textinputoptions对象说明) | 否  | TextInput组件参数。 |
 
+## TextInputOptions对象说明
 | 参数名                     | 参数类型                                     | 必填   | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置无输入时的提示文本。      |
@@ -42,8 +46,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | 设置输入框为默认风格或内联输入风格（内联输入风格只支持InputType.Normal类型）。<br/>默认值：TextInputStyle.Default |
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>仅支持TextAlign.Start、TextAlign.Center和TextAlign.End。<br/>可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。  |
 | selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置文本选中底板颜色。<br/>如果未设置不透明度，默认为20%不透明度。 |
-| caretStyle<sup>10+</sup> | {<br/>width:&nbsp;[Length](ts-types.md#length)<br/>} | 设置光标风格，不支持百分比设置。                                        |
-| caretPosition<sup>10+</sup> | number | 设置光标位置。 |
+| caretStyle<sup>10+</sup> | [CaretStyle](#caretstyle10对象说明) | 设置光标风格。                         |
 | showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#custombuilder8)       | 设置控件作为文本框单位。<br/>默认无单位。<br/>需搭配showUnderline使用，当showUnderline为true时生效。 |
 | showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
 | showUnderline<sup>10+</sup> | boolean | 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp（下划线只支持InputType.Normal类型）。<br/>默认值：false |
@@ -59,7 +62,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false<br />不支持内联模式。 |
 | showCounter<sup>11+</sup> | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符超过最大字符数时，边框将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。 |
 >  **说明：**    
->  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
+>  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。       
 
 ## SubmitEvent<sup>11+</sup>
@@ -68,8 +71,13 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| keepEditableState| ?(() => void) | 否 | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| keepEditableState| () => void | 否 | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
 | text| string | 否 | 输入框文本内容。 |
+
+## CaretStyle<sup>10+</sup>对象说明
+| 参数名 | 类型  | 必填 | 说明  |
+| ------ | -------- | ---- | ------------------------------------------- |
+| width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
 
 ## EnterKeyType枚举说明
 
@@ -119,7 +127,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。<br/>触发该事件的条件：<br/>1、键盘输入。<br/>2、粘贴、剪切。<br/>3、键盘快捷键Ctrl+v。 |
-| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调。<br/>enterKey：输入法回车键类型。类型为EnterKeyType.NEW_LINE且输入框为内联输入模式时不触发onSubmit。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：提交事件，具体类型见[SubmitEvent事件说明](#submitevent11)。 |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;[SubmitEvent](#submitevent11))&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调。<br/>enterKey：输入法回车键类型。类型为EnterKeyType.NEW_LINE且输入框为内联输入模式时不触发onSubmit。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：提交事件，具体类型见[SubmitEvent事件说明](#submitevent11)。 |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。 |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。 |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |
