@@ -11,16 +11,8 @@
       - Application Package Structure
         - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
-      - Multi-HAP Mechanism
-        - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
-        - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
-        - [Multi-HAP Development, Debugging, Release, and Deployment](quick-start/multi-hap-release-deployment.md)
-        - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
-        - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
-      - [Application Installation and Uninstall](quick-start/application-package-install-uninstall.md)
-      - [Application Package Update](quick-start/application-package-update.md)
-      - Shared Package
-        - [Shared Package Overview](quick-start/shared-guide.md)
+      - Application Package Development
+        - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
       - Quick Fix
@@ -50,12 +42,14 @@
         - Custom Components
           - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
           - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
+          - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
         - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
         - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
         - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
         - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
         - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
+        - [\@Require Decorator: Validating Constructor Input Parameters](quick-start/arkts-require.md)
       - State Management
         - [State Management Overview](quick-start/arkts-state-management-overview.md)
         - Component State Management
@@ -77,6 +71,7 @@
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
+        - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -154,7 +149,7 @@
             - [Common Event Subscription Overview](application-models/common-event-subscription-overview.md)
             - [Subscribing to Common Events in Dynamic Mode](application-models/common-event-subscription.md)
             - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
-            - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
+            - [Unsubscribing from Common Events in Dynamic Mode](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
           - [Removing Sticky Common Events (for System Applications Only)](application-models/common-event-remove-sticky.md)
         - [Background Services](application-models/background-services.md)
@@ -172,8 +167,8 @@
       - FA Model Application Components
         - [Application- or Component-Level Configuration](application-models/application-component-configuration-fa.md)
         - PageAbility Component Development
-          - [PageAbility Component Overview](application-models/pageability-overview.md)
-          - [PageAbility Component Configuration](application-models/pageability-configuration.md)
+          - [PageAbility Overview](application-models/pageability-overview.md)
+          - [PageAbility Configuration](application-models/pageability-configuration.md)
           - [PageAbility Lifecycle](application-models/pageability-lifecycle.md)
           - [PageAbility Launch Type](application-models/pageability-launch-type.md)
           - [Creating a PageAbility](application-models/create-pageability.md)
@@ -491,8 +486,8 @@
         - [Audio Decoding](media/audio-decoding.md)
         - [Video Encoding](media/video-encoding.md)
         - [Video Decoding](media/video-decoding.md)
-        - [Audio/Video Encapsulation](media/audio-video-encapsulation.md)
-        - [Audio/Video Decapsulation](media/audio-video-decapsulation.md)
+        - [Audio and Video Muxing](media/audio-video-muxer.md)
+        - [Audio and Video Demuxing](media/audio-video-demuxer.md)
     - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - Local AVSession
@@ -687,9 +682,9 @@
     - Log Analysis
       - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
       - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
-  - Internalization and Localization
+  - Internationalization and Localization
     - [Overview of Internationalization and Localization](internationalization/i18n-l10n.md)
-    - Application Internalization
+    - Application Internationalization
       - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
       - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
       - Language and User Preference Setting
@@ -1156,6 +1151,9 @@
       - [@ohos.bluetooth.hid (Bluetooth hid Module) (Recommended)](reference/apis/js-apis-bluetooth-hid.md)
       - [@ohos.bluetooth.pan (Bluetooth pan Module) (Recommended)](reference/apis/js-apis-bluetooth-pan.md)
       - [@ohos.bluetooth.socket (Bluetooth socket Module) (Recommended)](reference/apis/js-apis-bluetooth-socket.md)
+      - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended)](reference/apis/js-apis-bluetooth-pbap.md)
+      - [@ohos.bluetooth.map (Bluetooth MAP Module) (Recommended)](reference/apis/js-apis-bluetooth-map.md)
+      - [@ohos.bluetooth.wearDetection (Bluetooth Wear Detection Module) (Recommended)](reference/apis/js-apis-bluetooth-wearDetection.md)
       - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (Active Tags)](reference/apis/js-apis-connectedTag.md)
@@ -2101,3 +2099,5 @@
   - [SDK Usage](faqs/faqs-sdk.md)
   - [Compiler and Runtime Development](faqs/faqs-compiler-runtime.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
+
+ <!--no_check--> 
