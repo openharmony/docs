@@ -19,6 +19,8 @@
 
 ## focusControl<sup>9+</sup>
 
+焦点控制模块
+
 ### requestFocus<sup>9+</sup>
 
 requestFocus(value: string): boolean
