@@ -407,7 +407,6 @@ defaultFocus(value: boolean)
 
 ```ts
 // xxx.ets
-// xxx.ets
 import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
