@@ -166,7 +166,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -253,7 +253,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -422,7 +422,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -515,7 +515,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -700,7 +700,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -800,7 +800,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -1988,7 +1988,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
 
 **错误码：**
 
@@ -2254,7 +2254,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -2347,7 +2347,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -2718,7 +2718,7 @@ isTerminating(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| bool | true：ability当前处于terminating状态；false：不处于terminating状态。 |
+| boolean | true：ability当前处于terminating状态；false：不处于terminating状态。 |
 
 **错误码：**
 
@@ -3043,7 +3043,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -3126,7 +3126,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
