@@ -234,9 +234,10 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain application info with metadata.
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -266,9 +267,10 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain ability info with permissions.
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
