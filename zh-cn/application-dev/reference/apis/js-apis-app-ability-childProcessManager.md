@@ -27,7 +27,7 @@ import childProcessManager from '@ohos.app.ability.childProcessManager';
 
 ## childProcessManager.startChildProcess
 
-startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;;
+startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
 启动子进程，并调用子进程的入口方法，以Promise方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。
 
@@ -90,7 +90,7 @@ try {
 
 ## childProcessManager.startChildProcess
 
-startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void;
+startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void
 
 启动子进程，并调用子进程的入口方法，以Callback方式返回执行结果。创建子进程成功会返回子进程pid，但并不代表入口方法调用成功，具体结果以入口方法是否调用成功为准。子进程中不支持再次调用该方法创建子进程。
 

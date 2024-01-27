@@ -16,7 +16,7 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void;
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
 
 通过type隐式启动UIExtensionAbility。使用callback异步回调。
 
@@ -46,7 +46,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback): Promise\<void>;
+    abilityStartCallback: AbilityStartCallback): Promise\<void>
 
 通过type隐式启动UIExtensionAbility。使用Promise异步回调。
 
