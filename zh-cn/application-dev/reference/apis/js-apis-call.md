@@ -5611,8 +5611,9 @@ IP多媒体系统调用模式。
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| deviceType <sup>10+</sup>         | [AudioDeviceType](#audiodevicetype10) | 是   | 音频设备类型。     |
-| address <sup>10+</sup>            | string                                | 否   | 音频设备地址。     |
+| deviceType <sup>10+</sup>         | [AudioDeviceType](#audiodevicetype10) | 是   | 音频设备类型。    |
+| address <sup>10+</sup>            | string                                | 否   | 音频设备地址。    |
+| deviceName <sup>11+</sup>         | string                                | 否   | 音频设备名称。    |
 
 ## AudioDeviceType<sup>10+</sup>
 
@@ -5628,6 +5629,7 @@ IP多媒体系统调用模式。
 | DEVICE_SPEAKER       | 1    | 扬声器设备   |
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
+| DEVICE_DISTRIBUTED_AUTOMOTIVE<sup>11+</sup> | 4    |  |
 
 ## AudioDeviceCallbackInfo<sup>10+</sup>
 
@@ -5731,7 +5733,9 @@ IP多媒体系统调用模式。
 | callId          | number                                   | 是   | 呼叫Id         |
 | callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态   |
 | conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态       |
-| voipCallAttribute | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
+| voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
+| crsType<sup>11+</sup> | number                             | 是   |          |
+| originalCallType<sup>11+</sup> | number                    | 是   |          |
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -5795,6 +5799,7 @@ VoIP通话信息。
 | TYPE_VIDEO_SEND_ONLY<sup>11+</sup>    | 1    | 视频通话只发送数据状态。 |
 | TYPE_VIDEO_RECEIVE_ONLY<sup>11+</sup> | 2    | 视频通话只接收数据状态。 |
 | TYPE_VIDEO                            | 3    | 视频状态。 |
+| TYPE_VIDEO_BIDIRECTIONAL<sup>11+</sup>| 4    |  |
 
 ## DetailedCallState<sup>7+</sup>
 
@@ -6757,6 +6762,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | TYPE_REQUEST_INVALID                       | 2      | 请求无效。 |
 | TYPE_REQUEST_TIMED_OUT                     | 3      | 请求超时。 |
 | TYPE_REQUEST_REJECTED_BY_REMOTE            | 4      | 请求被拒绝。 |
+| TYPE_REQUEST_UPGRADE_CANCELED              | 5      | 请求升级取消。 |
 | TYPE_DOWNGRADE_RTP_OR_RTCP_TIMEOUT         | 100    | 视频通话降级RTP或RTCP超时。 |
 | TYPE_DOWNGRADE_RTP_AND_RTCP_TIMEOUT        | 101    | 视频通话降级RTP和RTCP超时。 |
 
