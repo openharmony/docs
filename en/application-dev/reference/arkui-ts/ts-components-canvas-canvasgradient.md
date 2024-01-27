@@ -3,7 +3,7 @@
 **CanvasGradient** provides a canvas gradient object.
 
 >  **NOTE**
-> 
+>
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -19,10 +19,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value      | Description                          |
-| ------ | ------ | ---- | --------- | ---------------------------- |
-| offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
-| color  | string | Yes   | '#ffffff' | Gradient color to set. For details about the color notation, see the description of the string type in [ResourceColor](ts-types.md#resourcecolor).                    |
+| Name    | Type    | Mandatory  | Default Value      | Description                                      |
+| ------ | ------ | ---- | --------- | ---------------------------------------- |
+| offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.            |
+| color  | string | Yes   | '#ffffff' | Gradient color to set. For details about the color notation, see the description of the string type in [ResourceColor](ts-types.md#resourcecolor).|
 
 
 **Example**

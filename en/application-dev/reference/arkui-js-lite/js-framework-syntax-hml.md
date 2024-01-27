@@ -1,7 +1,7 @@
 # HML
 
 
-The OpenHarmony Markup Language (HML) is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as data binding, event binding, loop rendering, and conditional rendering.
+HML is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as data binding, event binding, loop rendering, and conditional rendering.
 
 
 ## HML Page Structure
@@ -90,7 +90,7 @@ export default {
 >
 >  Event bubbling is supported since API version 5. After you upgrade the SDK and run an existing JavaScript application, events bound using a traditional statement (such as **onclick**) will not bubble. However, if you use the new SDK to repack the JavaScript application, such events will bubble. To avoid service logic errors, replace the traditional statement with one supported by the new SDK. For example, replace **onclick** with **grab:click**.
 
-**Example:**
+**Example**
 
 ```html
 <!-- xxx.hml -->
@@ -169,17 +169,17 @@ export default {
 <div class="array-container">
   <!-- div loop rendering -->
   <!-- By default, $item indicates the element in the array, and $idx indicates the index of the element in the array. -->
-  <div for="{{array}}" tid="id" onclick="changeText">
-    <text>{{$idx}}.{{$item.name}}</text>
-  </div>
+    <div class="item-container" for="{{array}}" tid="id" onclick="changeText">
+        <text>{{$idx}}.{{$item.name}}</text>
+    </div>
   <!-- Define the name for an element variable. -->
-  <div for="{{value in array}}" tid="id" onclick="changeText">    
-    <text>{{$idx}}.{{value.name}}</text>
-  </div>
+    <div class="item-container" for="{{value in array}}" tid="id" onclick="changeText">
+        <text>{{$idx}}.{{value.name}}</text>
+    </div>
   <!-- Define an element variable and its index name. -->
-  <div for="{{(index, value) in array}}" tid="id" onclick="changeText">    
-    <text>{{index}}.{{value.name}}</text>
-  </div>
+    <div class="item-container" for="{{(index, value) in array}}" tid="id" onclick="changeText">
+        <text>{{index}}.{{value.name}}</text>
+    </div>
 </div>
 ```
 
@@ -202,6 +202,25 @@ export default {
   },
 }
 ```
+
+
+```css
+.array-container {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item-container {
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    flex-direction: column;
+}
+```
+
 
 The **tid** attribute accelerates the **for** loop and improves the re-rendering efficiency when data in a loop changes. The **tid** attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, **tid="id"** indicates that the **id** attribute of each element is its unique ID. The **for** loop supports the following statements:
 
