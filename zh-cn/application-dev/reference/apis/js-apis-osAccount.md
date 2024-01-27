@@ -5652,7 +5652,7 @@ authWithPopup(callback: IUserAuthCallback): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL；
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
 从API version 11开始无需申请权限，建议升级SDK版本。
 
@@ -5701,7 +5701,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL；
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
 从API version 11开始无需申请权限，建议升级SDK版本。
 
@@ -6766,7 +6766,7 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 
 ### onAcquireInfo?<sup>8+</sup>
 
-onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void;
 
 身份认证信息获取回调函数。
 
@@ -6780,7 +6780,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | 是   | 指示用于身份验证的执行器类型。   |
 | acquire   | number  | 是   | 指示不同身份验证执行器的tip代码。|
-| extraInfo | any     | 是   | 保留参数。                     |
+| extraInfo | Uint8Array     | 是   | 保留参数。                     |
 
 **示例：**
   ```ts
@@ -6832,7 +6832,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 
 ### onAcquireInfo?<sup>8+</sup>
 
-onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void;
 
 身份管理信息获取回调函数。
 
@@ -6846,7 +6846,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | 是   | 指示用于身份验证的执行器类型。   |
 | acquire   | number  | 是   | 指示不同身份验证执行器的tip代码。|
-| extraInfo | any     | 是   | 保留参数。                     |
+| extraInfo | Uint8Array | 是   | 保留参数。                     |
 
 **示例：**
   ```ts
