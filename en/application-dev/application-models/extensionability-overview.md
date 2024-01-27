@@ -8,10 +8,10 @@ The system defines an [ExtensionAbility type](../reference/apis/js-apis-bundleMa
 
 The table below lists the ExtensionAbility types defined in the system.
 
-**NOTE**
-
-- The column **Allow Third-Party Apps to Implement** specifies whether third-party applications can inherit the **ExtensionAbility** parent class and implement their own service logic for a type of ExtensionAbility. The value **Y** means that third-party applications can implement their own service logic for a type of ExtensionAbility, **N** means the opposite.
-- The column **Allow Third-Party Apps to Access** specifies whether third-party applications can access external services provided by a type of ExtensionAbility. The value **Y** means that third-party applications can access external services provided by a certain type of ExtensionAbility, **N** means that they cannot access external services, and **NA** means that no external services are provided.
+> NOTE
+> 
+> - The column **Allow Third-Party Apps to Implement** specifies whether third-party applications can inherit the **ExtensionAbility** parent class and implement their own service logic for a type of ExtensionAbility. The value **Y** means that third-party applications can implement their own service logic for a type of ExtensionAbility, **N** means the opposite.
+> - The column **Allow Third-Party Apps to Access** specifies whether third-party applications can access external services provided by a type of ExtensionAbility. The value **Y** means that third-party applications can access external services provided by a certain type of ExtensionAbility, **N** means that they cannot access external services, and **NA** means that no external services are provided.
 
 System applications are not restricted. They can implement all the ExtensionAbility types defined in the system and access external services provided by all the ExtensionAbility types.
 
@@ -24,6 +24,7 @@ System applications are not restricted. They can implement all the ExtensionAbil
 | [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) | ExtensionAbility component of the service type, which provides APIs related to [background services](serviceextensionability.md) for system applications. To implement background transaction processing for non-system applications, use [background tasks](../task-management/background-task-overview.md).     | N | Y |
 | [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) | ExtensionAbility component of the data_share type, which provides APIs for [data sharing](../database/share-data-by-datashareextensionability.md).     | N | Y |
 | [StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md) | ExtensionAbility component of the static_subscriber type, which provides APIs for [static subscription to common events](common-event-static-subscription.md).     | N | NA |
+| [BackupExtensionAbility](../reference/apis/js-apis-application-backupExtensionAbility.md) | ExtensionAbility component of the backup type, which provides APIs for [backing up and restoring application data](../file-management/app-file-backup-overview.md).     | Y | NA |
 | [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md) | ExtensionAbility component of the window type, which provides [window extension](windowextensionability.md) APIs for system applications so that a system application can be embedded in and displayed over another application.     | N | NA |
 | [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)            | ExtensionAbility component of the enterprise_admin type, which provides APIs for managing [enterprise device events](enterprise-extensionAbility.md), such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.     | N | NA|
 | [DriverExtensionAbility](../reference/apis/js-apis-app-ability-driverExtensionAbility.md)            | ExtensionAbility component of the driver type, which provides the [driver-related extension framework](driverextensionability.md).     | Y | Y |
