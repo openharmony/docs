@@ -181,6 +181,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
 | 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
 **Example**
 
@@ -265,6 +266,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
 | 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
 **Example**
 
@@ -353,6 +355,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
 | 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
 **Example**
 
@@ -1163,4 +1166,3 @@ Defines the parameters of the PGO configuration file.
 | ---------- | ------ | ---------------- | ---------------- |
 | moduleName | string | Yes| Module name of the bundle.|
 | pgoFilePath  | string | Yes| Path of the PGO configuration file.          |
-
