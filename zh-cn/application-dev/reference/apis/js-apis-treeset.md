@@ -132,7 +132,7 @@ let result = treeSet.has(123);
 
 getFirstValue(): T
 
-获取容器中排序第一的数据。
+获取容器中排序第一的数据，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -140,7 +140,7 @@ getFirstValue(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回排序第一的数据。 |
+| T | 返回排序第一的数据，为空时返回undefined。 |
 
 **错误码：**
 
@@ -164,7 +164,7 @@ let result = treeSet.getFirstValue();
 
 getLastValue(): T
 
-获取容器中排序最后的数据。
+获取容器中排序最后的数据，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -172,7 +172,7 @@ getLastValue(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回排序最后的数据。 |
+| T | 返回排序最后的数据，为空时返回undefined。 |
 
 **错误码：**
 
@@ -270,7 +270,7 @@ let result = treeSet.remove("sparrow");
 
 getLowerValue(key: T): T
 
-获取容器中比传入元素排序靠前一位的元素。
+获取容器中比传入元素排序靠前一位的元素，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -284,7 +284,7 @@ getLowerValue(key: T): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回排序中对比元素前一位的数据。 |
+| T | 返回排序中对比元素前一位的数据，为空时返回undefined。 |
 
 **错误码：**
 
@@ -309,7 +309,7 @@ let result = treeSet.getLowerValue("sparrow");
 
 getHigherValue(key: T): T
 
-获取容器中比传入元素排序靠后一位的元素。
+获取容器中比传入元素排序靠后一位的元素，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -323,7 +323,7 @@ getHigherValue(key: T): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回排序中传入元素后一位的数据。 |
+| T | 返回排序中传入元素后一位的数据。为空时返回undefined。 |
 
 **错误码：**
 
@@ -348,7 +348,7 @@ let result = treeSet.getHigherValue("sparrow");
 
 popFirst(): T
 
-删除容器中排序最前的数据。
+删除容器中排序最前的数据，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -356,7 +356,7 @@ popFirst(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的数据。 |
+| T | 返回删除的数据，为空时返回undefined。 |
 
 **错误码：**
 
@@ -380,7 +380,7 @@ let result = treeSet.popFirst();
 
 popLast(): T
 
-删除容器中排序最后的数据。
+删除容器中排序最后的数据，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -388,7 +388,7 @@ popLast(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除的数据。 |
+| T | 返回删除的数据，为空时返回undefined。 |
 
 **错误码：**
 

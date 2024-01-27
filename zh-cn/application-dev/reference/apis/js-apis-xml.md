@@ -1,5 +1,7 @@
 # @ohos.xml (xml解析与生成)
 
++Xml模块提供了将Xml文本转换为Javascript对象、以及提供了Xml文件生成和解析的一系列接口。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -63,8 +65,8 @@ setAttributes(name: string, value: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance1", "high1");
@@ -96,8 +98,8 @@ addEmptyElement(name: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let result = '<d/>';
@@ -114,15 +116,15 @@ console.log(view1) // <d/>
 
 setDeclaration(): void
 
-设置Declaration方法。
+编写带有编码的文件声明。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -157,8 +159,8 @@ startElement(name: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -184,8 +186,8 @@ endElement(): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -219,8 +221,8 @@ setNamespace(prefix: string, namespace: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -252,8 +254,8 @@ setComment(text: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let result = '<!--Hello, World!-->';
@@ -283,8 +285,8 @@ setCDATA(text: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let result = '<![CDATA[root SYSTEM]]>';
@@ -314,8 +316,8 @@ setText(text: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
@@ -348,8 +350,8 @@ setDocType(text: string): void
 **示例：**
 
 ```js
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let result = '<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">';
