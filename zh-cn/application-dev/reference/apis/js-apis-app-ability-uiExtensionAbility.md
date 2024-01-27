@@ -60,7 +60,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 ## UIExtensionAbility.onForeground
 
-onForeground(): void;
+onForeground(): void
 
 UIExtensionAbility生命周期回调，当UIExtensionAbility从后台转到前台时触发。
 
@@ -68,7 +68,7 @@ UIExtensionAbility生命周期回调，当UIExtensionAbility从后台转到前�
 
 ## UIExtensionAbility.onBackground
 
-onBackground(): void;
+onBackground(): void
 
 UIExtensionAbility生命周期回调，当UIExtensionAbility从前台转到后台时触发。
 
@@ -76,7 +76,7 @@ UIExtensionAbility生命周期回调，当UIExtensionAbility从前台转到后�
 
 ## UIExtensionAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 UIExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
