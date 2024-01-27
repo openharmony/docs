@@ -202,7 +202,7 @@ typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type,
 
 **描述**
 
-收到播放器消息和警报时调用。
+收到播放器消息时调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
