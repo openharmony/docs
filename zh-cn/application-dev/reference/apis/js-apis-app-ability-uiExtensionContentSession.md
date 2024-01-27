@@ -88,7 +88,7 @@ setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => {
 
 ## UIExtensionContentSession.loadContent
 
-loadContent(path: string, storage?: LocalStorage): void;
+loadContent(path: string, storage?: LocalStorage): void
 
 为当前UIExtensionComponent控件对应的窗口加载与LocalStorage相关联的具体页面内容。
 
@@ -111,7 +111,7 @@ loadContent(path: string, storage?: LocalStorage): void;
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability（callback形式）。
 
@@ -156,7 +156,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability（callback形式）。
 
@@ -200,7 +200,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 ## UIExtensionContentSession.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 启动Ability（promise形式）。
 
@@ -251,7 +251,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability，在Ability终止后返回结果给调用方(callback形式)。Ability的终止方式包括以下几种情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -299,7 +299,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability，在Ability终止后返回结果给调用方(callback形式)。Ability的终止方式包括以下几种情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -346,7 +346,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 ## UIExtensionContentSession.startAbilityForResult
 
-startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 启动一个Ability，在Ability终止后返回结果给调用方(promise形式)。Ability的终止方式包括以下几种情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -401,7 +401,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 ## UIExtensionContentSession.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 停止UIExtensionContentSession对应的窗口界面对象（callback形式）。
 
@@ -415,7 +415,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 ## UIExtensionContentSession.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
 停止UIExtensionContentSession对应的窗口界面对象（promise形式）。
 
@@ -429,7 +429,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 停止UIExtensionContentSession对应的窗口界面对象，并将结果返回给UIExtensionComponent控件（callback形式）。
 
@@ -444,7 +444,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 停止UIExtensionContentSession对应的窗口界面对象，并将结果返回给UIExtensionComponent控件（promise形式）。
 

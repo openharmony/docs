@@ -17,7 +17,7 @@ import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
 ## EnvironmentCallback.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(config: Configuration): void
 
 注册系统环境变化的监听后，在系统环境变化时触发回调。
 
@@ -31,7 +31,7 @@ onConfigurationUpdated(config: Configuration): void;
 
 ## EnvironmentCallback.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
