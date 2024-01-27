@@ -246,7 +246,9 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-  
+  - [getContext](js-apis-getContext.md)
+  - [postCardAction](js-apis-postCardAction.md)
+
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -361,6 +363,7 @@
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
   - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
+  - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity

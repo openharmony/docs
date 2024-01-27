@@ -1,4 +1,4 @@
-# Sample Implementation of Camera Recording (ArkTS)
+# Camera Recording Sample (ArkTS)
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence. Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
