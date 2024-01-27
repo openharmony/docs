@@ -15,9 +15,15 @@
 
 ## 接口
 
-Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , friction?: number | string, builder?: Custombuilder\}\)
+Refresh(value: RefreshOptions)
 
 **参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value |  [RefreshOptions](#refreshoptions对象说明)| 是 | 刷新组件参数。 |
+
+## RefreshOptions对象说明
 
 | 参数         | 参数名                                      | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -98,8 +104,10 @@ struct RefreshExample {
 }
 ```
 
+![zh-cn_image_refresh_example1](figures/zh-cn_image_refresh_example1.gif)
 
 ### 示例2 
+
 自定义刷新组件：
 
 ```ts
@@ -157,3 +165,5 @@ struct RefreshExample {
   }
 }
 ```
+
+![zh-cn_image_refresh_example2](figures/zh-cn_image_refresh_example2.gif)
