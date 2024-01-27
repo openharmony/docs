@@ -32,7 +32,7 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, o
 
 If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
-You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 
 ## Modules to Import
