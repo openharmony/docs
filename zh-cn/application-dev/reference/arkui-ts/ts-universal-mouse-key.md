@@ -19,8 +19,8 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void)
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | 否   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
-| event<sup>10+</sup> | [HoverEvent](#hoverevent10对象说明) | 否   | 设置阻塞事件冒泡属性。                                       |
+| isHover             | boolean                             | 是   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
+| event<sup>10+</sup> | [HoverEvent](#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。                                       |
 
 ## onMouse
 
@@ -34,7 +34,7 @@ onMouse(event: (event: MouseEvent) => void)
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| onMouse | [MouseEvent](#mouseevent对象说明) | 否   | 返回触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
+| onMouse | [MouseEvent](#mouseevent对象说明) | 是   | 返回触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
 
 
 ## MouseEvent对象说明

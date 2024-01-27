@@ -32,7 +32,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息。     |
+| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息。     |
 | extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。 |
 
 **返回值：**
@@ -53,7 +53,7 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
 | extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
 
 ## onDragMove
@@ -68,7 +68,7 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
 | extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
 
 ## onDragLeave
@@ -83,7 +83,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
 | extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
 
 ## onDrop
@@ -98,7 +98,7 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
 | extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
 
 ## onDragEnd
@@ -113,7 +113,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
 | extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
 
 ## DragItemInfo说明
@@ -190,6 +190,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 ## 示例
 
 ```ts
+// xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
@@ -206,6 +207,7 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+
   @Builder
   pixelMapBuilder() {
     Column() {
@@ -216,10 +218,9 @@ struct Index {
     }
   }
 
-  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
     try {
-      let data:UnifiedData = event.getData();
+      let data: UnifiedData = event.getData();
       if (!data) {
         return false;
       }
@@ -235,12 +236,11 @@ struct Index {
     }
   }
 
-  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
-    if(this.getDataFromUdmfRetry(event, callback)) {
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
+    if (this.getDataFromUdmfRetry(event, callback)) {
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
@@ -258,36 +258,36 @@ struct Index {
           .width(100)
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .visibility(this.imgState)
-          .onDragEnd((event)=>{
+          .onDragEnd((event) => {
             // onDragEnd里取到的result值在接收方onDrop设置
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({duration: 100, message: 'Drag Success'});
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({duration: 100, message: 'Drag failed'});
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
             }
           })
         Text('test drag event')
           .width('100%')
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .copyOption(CopyOptions.InApp)
-        TextArea({placeholder: 'please input words'})
+        TextArea({ placeholder: 'please input words' })
           .copyOption(CopyOptions.InApp)
           .width('100%')
           .height(50)
           .draggable(true)
-        Search({placeholder: 'please input you word'})
+        Search({ placeholder: 'please input you word' })
           .searchButton('Search')
           .width('100%')
           .height(80)
-          .textFont({size: 20})
+          .textFont({ size: 20 })
         Column() {
           Text('change video source')
         }.draggable(true)
-        .onDragStart((event)=>{
+        .onDragStart((event) => {
           let video: UDC.Video = new UDC.Video();
           video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
@@ -296,14 +296,15 @@ struct Index {
             this.pixelMapBuilder()
           }, extraInfo: 'extra info' };
         })
+
         Column() {
           Text('this is abstract')
             .fontSize(20)
             .width('100%')
-        }.margin({left: 40, top: 20})
+        }.margin({ left: 40, top: 20 })
         .width('100%')
         .height(100)
-        .onDragStart((event)=>{
+        .onDragStart((event) => {
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
@@ -311,6 +312,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
+
       Column() {
         Text('Drag Target Area')
           .fontSize(20)
@@ -322,18 +324,18 @@ struct Index {
           .width(this.imageWidth)
           .height(this.imageHeight)
           .draggable(true)
-          .margin({left: 15})
-          .border({color: Color.Black, width: 1})
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent?: DragEvent)=> {
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({duration: 1000}, ()=>{
+              animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
@@ -346,18 +348,18 @@ struct Index {
         Text(this.targetText)
           .width('100%')
           .height(100)
-          .border({color: Color.Black, width: 1})
+          .border({ color: Color.Black, width: 1 })
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent?: DragEvent)=>{
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
-              let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
               this.targetText = plainText.textContent;
             })
           })
 
-        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
           .width('100%')
           .height(200)
           .controls(true)
@@ -366,10 +368,14 @@ struct Index {
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
-        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        }
+        .width('100%')
+        .height(100)
+        .margin(20)
+        .border({ color: Color.Black, width: 1 })
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent?: DragEvent)=>{
-          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+        .onDrop((dragEvent?: DragEvent) => {
+          this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
             let plainText: UDC.PlainText = records[0] as UDC.PlainText;
             this.abstractContent = plainText.abstract as string;
@@ -378,7 +384,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }
