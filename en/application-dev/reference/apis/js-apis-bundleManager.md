@@ -14,7 +14,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description           |
+| Permission                                      | APL    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
 | ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to obtain basic information about a bundle.  |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
@@ -108,7 +108,7 @@ Enumerates the types of ExtensionAbilities.
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
-| BACKUP           |  9  | BackupExtensionAbility: provides APIs for backing up and restoring application data and public data. This ability is reserved.|
+| BACKUP           |  9  | [BackupExtensionAbility](js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
 | WINDOW           |  10 | [WindowExtensionAbility](js-apis-application-windowExtensionAbility.md): allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
@@ -250,10 +250,11 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain application info with metadataArray.
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -284,10 +285,11 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain ability info with permissions.
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
@@ -3803,7 +3805,7 @@ Obtains the shared bundle information based on the given bundle name. This API u
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string                                                       | Yes  | Bundle name.                                  |
 | moduleName | string                                                       | Yes  | Module name.                                  |
-| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained.|
+| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained.|
 
 **Error codes**
 
@@ -3908,7 +3910,7 @@ Obtains the information about all shared bundles. This API uses an asynchronous 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained.|
+| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained.|
 
 **Example**
 
@@ -3985,7 +3987,7 @@ Obtains the provision profile based on the given bundle name. This API uses an a
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name.|
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 **Error codes**
 
@@ -4035,7 +4037,7 @@ Obtains the provision profile based on the given bundle name and user ID. This A
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name.|
 | userId | number | Yes| User ID, which can be obtained by calling [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9).|
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 
 **Error codes**
