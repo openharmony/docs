@@ -173,7 +173,7 @@ let result = treeMap.hasValue(123);
 
 get(key: K): V
 
-获取指定key所对应的value。
+获取指定key所对应的value，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -187,7 +187,7 @@ get(key: K): V
 
 | 类型 | 说明 |
 | -------- | -------- |
-| V | 返回key映射的value值。 |
+| V | 返回key映射的value值，为空时返回undefined。 |
 
 **错误码：**
 
@@ -211,7 +211,7 @@ let result = treeMap.get("sparrow");
 
 getFirstKey(): K
 
-获取容器中排序第一的key。
+获取容器中排序第一的key，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -219,7 +219,7 @@ getFirstKey(): K
 
 | 类型 | 说明 |
 | -------- | -------- |
-| K | 返回排序第一的key。 |
+| K | 返回排序第一的key，为空时返回undefined。 |
 
 **错误码：**
 
@@ -243,7 +243,7 @@ let result = treeMap.getFirstKey();
 
 getLastKey(): K
 
-获取容器中排序最后的key。
+获取容器中排序最后的key，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -251,7 +251,7 @@ getLastKey(): K
 
 | 类型 | 说明 |
 | -------- | -------- |
-| K | 返回排序最后的key |
+| K | 返回排序最后的key，为空时返回undefined。 |
 
 **错误码：**
 
@@ -387,7 +387,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-获取容器中等于key或者比传入key排序靠前一位的key。
+获取容器中等于key或者比传入key排序靠前一位的key，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -401,7 +401,7 @@ getLowerKey(key: K): K
 
 | 类型 | 说明 |
 | -------- | -------- |
-| K | 返回排序中key前一位的数据。 |
+| K | 返回排序中key前一位的数据，为空时返回undefined。 |
 
 **错误码：**
 
@@ -426,7 +426,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-获取容器中等于key或者比传入key排序靠后一位的key。
+获取容器中等于key或者比传入key排序靠后一位的key，为空时返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -440,7 +440,7 @@ getHigherKey(key: K): K
 
 | 类型 | 说明 |
 | -------- | -------- |
-| K | 返回排序中key后一位的数据。 |
+| K | 返回排序中key后一位的数据，为空时返回undefined。 |
 
 **错误码：**
 
