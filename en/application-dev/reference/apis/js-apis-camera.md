@@ -161,8 +161,8 @@ Defines the camera output capability.
 | Name                          | Type                                              | Mandatory| Description               |
 | ----------------------------- | -------------------------------------------------- | --- |------------------- |
 | previewProfiles               | Array\<[Profile](#profile)\>                        | Yes | Supported preview profiles.   |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        | Yes | Supported shooting profiles.   |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | Yes | Supported video recording profiles.   |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        | Yes | Supported photo profiles.   |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | Yes | Supported video profiles.   |
 | supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
 
 ## CameraErrorCode
@@ -253,7 +253,7 @@ Implements camera management. Before calling any API in **CameraManager**, you m
 
 getSupportedCameras(): Array\<CameraDevice\>
 
-Obtains supported cameras. This API returns the result synchronously.
+Obtains the supported camera devices. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -261,7 +261,7 @@ Obtains supported cameras. This API returns the result synchronously.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-|  Array\<[CameraDevice](#cameradevice)>            | An array of supported cameras.                  |
+|  Array\<[CameraDevice](#cameradevice)>            | Array of camera devices supported.                  |
 
 **Example**
 
@@ -284,7 +284,7 @@ function getSupportedCameras(cameraManager: camera.CameraManager): Array<camera.
 
 getSupportedOutputCapability(camera:CameraDevice): CameraOutputCapability
 
-Obtains the output capability supported by a camera. This API returns the result synchronously.
+Obtains the output capability supported by a camera device in a given scene mode. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -313,9 +313,9 @@ function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraM
 
 isCameraMuted(): boolean
 
-Checks whether the camera is muted.
+Checks whether the camera device is muted.
 
-Before calling the API, ensure that the camera can be muted. You can use [isCameraMuteSupported](#iscameramutesupported) to check whether the camera can be muted.
+Before calling the API, ensure that the camera device can be muted. You can use [isCameraMuteSupported](#iscameramutesupported) to check whether the camera device can be muted.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -323,7 +323,7 @@ Before calling the API, ensure that the camera can be muted. You can use [isCame
 
 | Type       | Description                                        |
 | ---------- | -------------------------------------------- |
-| boolean    | Returns **true** if the camera is muted; returns **false** otherwise.|
+| boolean    | **true**: The camera device is muted.<br>**false**: The camera device is not muted.|
 
 **Example**
 
@@ -348,7 +348,7 @@ Checks whether the camera can be muted.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Returns **true** if the camera can be muted; returns **false** otherwise.|
+| boolean    | **true**: The camera device can be muted.<br>**false**: The camera device cannot be muted.|
 
 **Example**
 
@@ -363,7 +363,7 @@ function isCameraMuteSupported(cameraManager: camera.CameraManager): boolean {
 
 muteCamera(mute: boolean): void
 
-Mutes or unmutes the camera.
+Mutes or unmutes the camera device.
 
 **System API**: This is a system API.
 
@@ -373,7 +373,7 @@ Mutes or unmutes the camera.
 
 | Name     | Type                             | Mandatory | Description       |
 | -------- | --------------------------------- | ---- | ---------- |
-| mute     | boolean                           |  Yes |  Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite. |
+| mute     | boolean                           |  Yes |  Mutes or unmutes the camera device. |
 
 **Example**
 
@@ -388,7 +388,7 @@ function muteCamera(cameraManager: camera.CameraManager): void {
 
 createCameraInput(camera: CameraDevice): CameraInput
 
-Creates a **CameraInput** instance with the specified **CameraDevice** object. This API returns the result synchronously.
+Creates a **CameraInput** instance with the specified **CameraDevice** instance. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.CAMERA
 
@@ -419,8 +419,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput {
-  let cameraInput: camera.CameraInput;
+function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraDevice);
   } catch (error) {
@@ -477,7 +477,7 @@ function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: cam
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The createCameraInput call failed. error code: ${err.code}`);
+    console.error(`The createCameraInput call failed. error code: ${err.code}`);
   }
   return cameraInput;
 }
@@ -525,7 +525,7 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The createPreviewOutput call failed. error code: ${err.code}`);
+    console.error(`The createPreviewOutput call failed. error code: ${err.code}`);
   }
   return previewOutput;
 }
@@ -573,7 +573,7 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The createPhotoOutput call failed. error code: ${err.code}`);
+    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
   }
   return photoOutput;
 }
@@ -621,7 +621,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The createPhotoOutput call failed. error code: ${err.code}`);
+    console.error(`The createPhotoOutput call failed. error code: ${err.code}`);
   }
   return videoOutput;
 }
@@ -662,13 +662,13 @@ import { BusinessError } from '@ohos.base';
 
 function createMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): void {
   let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
-  let metadataOutput: camera.MetadataOutput;
+  let metadataOutput: camera.MetadataOutput | undefined = undefined;
   try {
     metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`createMetadataOutput error. error code: ${err.code}`);
+    console.error(`createMetadataOutput error. error code: ${err.code}`);
   }
 }
 ```
@@ -707,7 +707,7 @@ function createCaptureSession(cameraManager: camera.CameraManager): camera.Captu
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`createCaptureSession error. error code: ${err.code}`);
+    console.error(`createCaptureSession error. error code: ${err.code}`);
   }
   return captureSession;
 }
@@ -735,8 +735,8 @@ import { BusinessError } from '@ohos.base';
 
 function registerCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.info(`status: ${cameraStatusInfo.status}`);
   });
 }
 ```
@@ -789,7 +789,7 @@ import { BusinessError } from '@ohos.base';
 function registerCameraMute(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraMute', (err: BusinessError, curMuted: boolean) => {
     let isMuted: boolean = curMuted;
-    console.log(`cameraMute status: ${isMuted}`);
+    console.info(`cameraMute status: ${isMuted}`);
   })
 }
 ```
@@ -830,7 +830,7 @@ function unregisterCameraMute(cameraManager: camera.CameraManager): void {
 
 isPrelaunchSupported(camera: CameraDevice): boolean
 
-Checks whether a camera supports prelaunch.
+Checks whether a camera device supports prelaunch.
 
 **System API**: This is a system API.
 
@@ -840,13 +840,13 @@ Checks whether a camera supports prelaunch.
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| camera | [CameraDevice](#cameradevice) | Yes| Camera object.|
+| camera | [CameraDevice](#cameradevice) | Yes| Camera device.|
 
 **Return value**
 
 | Type| Description|
 | -------- | --------------- |
-| boolean | Returns whether the camera supports prelaunch. The value **true** means that the camera supports prelaunch, and **false** means the opposite.|
+| boolean | **true**: The camera device supports prelaunch.<br>**false**: The camera device does not support prelaunch.|
 
 **Error codes**
 
@@ -867,7 +867,7 @@ function isPreLaunchSupported(context: common.BaseContext): boolean {
   let isSupported: boolean = false;
   if (cameras && cameras.length >= 1) {
     isSupported = cameraManager.isPrelaunchSupported(cameras[0]);
-    console.log(`PreLaunch supported states: ${isSupported}`);
+    console.info(`PreLaunch supported states: ${isSupported}`);
     return isSupported;
   }
   return isSupported;
@@ -880,7 +880,7 @@ setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 
 Sets prelaunch configuration.
 
-Before the setting, use [isPrelaunchSupported](#isprelaunchsupported) to check whether the device supports prelaunch.
+Before the setting, use [isPrelaunchSupported](#isprelaunchsupported) to check whether the camera device supports prelaunch.
 
 **System API**: This is a system API.
 
@@ -930,7 +930,7 @@ function setPrelaunchConfig(context: common.BaseContext): void {
 
 prelaunch(): void
 
-Prelaunches the camera. This API is called when a user clicks the system camera icon to start the camera application.
+Prelaunches the camera device. This API is called when a user clicks the system camera icon to start the camera application.
 
 **System API**: This is a system API.
 
@@ -957,7 +957,7 @@ function preLaunch(context: common.BaseContext): void {
 
 createDeferredPreviewOutput(profile: Profile): PreviewOutput
 
-Creates a deferred **PreviewOutput** instance and adds it to the data stream instead of a common **PreviewOutput** instance during stream configuration.
+Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.
 
 **System API**: This is a system API.
 
@@ -973,7 +973,7 @@ Creates a deferred **PreviewOutput** instance and adds it to the data stream ins
 
 | Type| Description|
 | -------- | --------------- |
-| [PreviewOutput](#previewoutput) | Returns a **PreviewOutput** instance.|
+| [PreviewOutput](#previewoutput) | **PreviewOutput** instance obtained.|
 
 **Error codes**
 
@@ -1097,7 +1097,7 @@ Creates a session for a mode.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCaptureSession(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CaptureSession {
+function createCaptureSession(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CaptureSession | undefined {
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameras == undefined || cameras.length <= 0) {
     return;
@@ -1108,7 +1108,7 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
     return;
   }
   let mode: camera.CameraMode = cameraModes[0];
-  let captureSession: camera.CaptureSession
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = modeManager.createCaptureSession(mode);
   } catch (error) {
@@ -1131,17 +1131,17 @@ Currently, the configuration is used for sensor-level prelaunch. It will be used
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| cameraDevice | [CameraDevice](#cameradevice) |        Yes      | Camera object.|
+| cameraDevice | [CameraDevice](#cameradevice) |        Yes      | Camera device.|
 
 ## CameraStatusInfo
 
-Describes the camera status information.
+Defines the camera status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| camera | [CameraDevice](#cameradevice) |        Yes      | Camera object.|
+| camera | [CameraDevice](#cameradevice) |        Yes      | Camera device.|
 | status | [CameraStatus](#camerastatus) |        Yes       | Camera status.|
 
 ## CameraPosition
@@ -1247,13 +1247,13 @@ Enumerates the camera output formats.
 
 ## CameraInput
 
-Provides camera information used in **[CaptureSession](#capturesession)**.
+Provides camera device information used in [CaptureSession](#capturesession).
 
 ### open
 
 open\(callback: AsyncCallback\<void\>\): void
 
-Opens this camera. This API uses an asynchronous callback to return the result.
+Opens this camera device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1284,7 +1284,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
       console.error(`Failed to open the camera. ${err.code}`);
       return;
     }
-    console.log('Callback returned with camera opened.');
+    console.info('Callback returned with camera opened.');
   });
 }
 ```
@@ -1293,7 +1293,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(): Promise\<void\>
 
-Opens this camera. This API uses a promise to return the result.
+Opens this camera device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1320,7 +1320,7 @@ import { BusinessError } from '@ohos.base';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
-    console.log('Promise returned with camera opened.');
+    console.info('Promise returned with camera opened.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to open the camera. ${err.code}`);
   });
@@ -1331,7 +1331,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 close\(callback: AsyncCallback\<void\>\): void
 
-Closes this camera. This API uses an asynchronous callback to return the result.
+Closes this camera device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1360,7 +1360,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
       console.error(`Failed to close the cameras. ${err.code}`);
       return;
     }
-    console.log('Callback returned with camera closed.');
+    console.info('Callback returned with camera closed.');
   });
 }
 ```
@@ -1369,7 +1369,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
 
 close(): Promise\<void\>
 
-Closes this camera. This API uses a promise to return the result.
+Closes this camera device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1394,7 +1394,7 @@ import { BusinessError } from '@ohos.base';
 
 function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close().then(() => {
-    console.log('Promise returned with camera closed.');
+    console.info('Promise returned with camera closed.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to close the cameras. ${err.code}`);
   });
@@ -1414,8 +1414,8 @@ Subscribes to **CameraInput** error events. This API uses a callback to return t
 | Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera. For example, if the device is unavailable or a conflict occurs, the error information is returned.|
-| cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | **CameraDevice** object.|
-| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
+| cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
+| callback | ErrorCallback | Yes  | Callback used to return the result. an error code defined in [CameraErrorCode](#cameraerrorcode).  |
 
 **Example**
 
@@ -1424,7 +1424,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerCameraInputError(cameraInput: camera.CameraInput, cameraDevice: camera.CameraDevice): void {
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.log(`Camera input error code: ${error.code}`);
+    console.info(`Camera input error code: ${error.code}`);
   });
 }
 ```
@@ -1442,7 +1442,7 @@ Unsubscribes from **CameraInput** error events.
 | Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera. For example, if the device is unavailable or a conflict occurs, the error information is returned.|
-| cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | **CameraDevice** object.|
+| cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
 | callback | ErrorCallback | No  | Callback used for unsubscription. If a callback is passed in, only the subscription matching that callback is canceled.  |
 
 **Example**
@@ -1464,7 +1464,7 @@ Enumerates the flash modes.
 | ---------------------- | ---- | ---------- |
 | FLASH_MODE_CLOSE       | 0    | The flash is off.|
 | FLASH_MODE_OPEN        | 1    | The flash is on.|
-| FLASH_MODE_AUTO        | 2    | The flash mode is auto, indicating that the flash fires automatically depending on the shooting conditions.|
+| FLASH_MODE_AUTO        | 2    | The flash mode is auto, indicating that the flash fires automatically depending on the photo capture conditions.|
 | FLASH_MODE_ALWAYS_OPEN | 3    | The flash is steady on.|
 
 ## ExposureMode
@@ -1564,7 +1564,7 @@ function beginConfig(captureSession: camera.CaptureSession): void {
 
 commitConfig(callback: AsyncCallback\<void\>): void
 
-Commits the configuration for this **CaptureSession** instance. This API uses an asynchronous callback to return the result.
+Commits the configuration for this session. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1594,7 +1594,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
       console.error(`The commitConfig call failed. error code: ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the commit config success.');
+    console.info('Callback invoked to indicate the commit config success.');
   });
 }
 ```
@@ -1603,7 +1603,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
 
 commitConfig(): Promise\<void\>
 
-Commits the configuration for this **CaptureSession** instance. This API uses a promise to return the result.
+Commits the configuration for this session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1629,7 +1629,7 @@ import { BusinessError } from '@ohos.base';
 
 function commitConfig(captureSession: camera.CaptureSession): void {
   captureSession.commitConfig().then(() => {
-    console.log('Promise returned to indicate the commit config success.');
+    console.info('Promise returned to indicate the commit config success.');
   }).catch((err: BusinessError) => {
     // If the operation fails, error.code is returned and processed.
     console.error(`The commitConfig call failed. error code: ${err.code}`);
@@ -1641,7 +1641,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
 
 addInput(cameraInput: CameraInput): void
 
-Adds a [CameraInput](#camerainput) instance to the session.
+Adds a [CameraInput](#camerainput) instance to this session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1677,7 +1677,7 @@ function addInput(captureSession: camera.CaptureSession, cameraInput: camera.Cam
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The addInput call failed. error code: ${err.code}`);
+    console.error(`The addInput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1686,7 +1686,7 @@ function addInput(captureSession: camera.CaptureSession, cameraInput: camera.Cam
 
 removeInput(cameraInput: CameraInput): void
 
-Removes a [CameraInput](#camerainput) instance from the session.
+Removes a [CameraInput](#camerainput) instance from this session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1722,7 +1722,7 @@ function removeInput(captureSession: camera.CaptureSession, cameraInput: camera.
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The removeInput call failed. error code: ${err.code}`);
+    console.error(`The removeInput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1731,7 +1731,7 @@ function removeInput(captureSession: camera.CaptureSession, cameraInput: camera.
 
 addOutput(cameraOutput: CameraOutput): void
 
-Adds a [CameraOutput](#cameraoutput) instance to the session.
+Adds a [CameraOutput](#cameraoutput) instance to this session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1767,7 +1767,7 @@ function addOutput(captureSession: camera.CaptureSession, cameraOutput: camera.C
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The addOutput call failed. error code: ${err.code}`);
+    console.error(`The addOutput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1776,7 +1776,7 @@ function addOutput(captureSession: camera.CaptureSession, cameraOutput: camera.C
 
 removeOutput(cameraOutput: CameraOutput): void
 
-Removes a [CameraOutput](#cameraoutput) instance from the session.
+Removes a [CameraOutput](#cameraoutput) instance from this session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1812,7 +1812,7 @@ function removeOutput(captureSession: camera.CaptureSession, previewOutput: came
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
-    console.log(`The removeOutput call failed. error code: ${err.code}`);
+    console.error(`The removeOutput call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -1821,7 +1821,7 @@ function removeOutput(captureSession: camera.CaptureSession, previewOutput: came
 
 start\(callback: AsyncCallback\<void\>\): void
 
-Starts this **CaptureSession**. This API uses an asynchronous callback to return the result.
+Starts this session. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1851,7 +1851,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
       console.error(`Failed to start the session ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the session start success.');
+    console.info('Callback invoked to indicate the session start success.');
   });
 }
 ```
@@ -1860,7 +1860,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
 
 start\(\): Promise\<void\>
 
-Starts this **CaptureSession**. This API uses a promise to return the result.
+Starts this session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1886,7 +1886,7 @@ import { BusinessError } from '@ohos.base';
 
 function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start().then(() => {
-    console.log('Promise returned to indicate the session start success.');
+    console.info('Promise returned to indicate the session start success.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to start the session ${err.code}`);
   });
@@ -1897,7 +1897,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
 
 stop\(callback: AsyncCallback\<void\>\): void
 
-Stops this **CaptureSession**. This API uses an asynchronous callback to return the result.
+Stops this session. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1926,7 +1926,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
       console.error(`Failed to stop the session ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the session stop success.');
+    console.info('Callback invoked to indicate the session stop success.');
   });
 }
 ```
@@ -1935,7 +1935,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
 
 stop(): Promise\<void\>
 
-Stops this **CaptureSession**. This API uses a promise to return the result.
+Stops this session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1960,7 +1960,7 @@ import { BusinessError } from '@ohos.base';
 
 function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop().then(() => {
-    console.log('Promise returned to indicate the session stop success.');
+    console.info('Promise returned to indicate the session stop success.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to stop the session ${err.code}`);
   });
@@ -1971,7 +1971,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
 
 release\(callback: AsyncCallback\<void\>\): void
 
-Releases this **CaptureSession**. This API uses an asynchronous callback to return the result.
+Releases this session. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2000,7 +2000,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
       console.error(`Failed to release the CaptureSession instance ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
+    console.info('Callback invoked to indicate that the CaptureSession instance is released successfully.');
   });
 }
 ```
@@ -2009,7 +2009,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
 
 release(): Promise\<void\>
 
-Releases this **CaptureSession**. This API uses a promise to return the result.
+Releases this session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2034,7 +2034,7 @@ import { BusinessError } from '@ohos.base';
 
 function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release().then(() => {
-    console.log('Promise returned to indicate that the CaptureSession instance is released successfully.');
+    console.info('Promise returned to indicate that the CaptureSession instance is released successfully.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to release the CaptureSession instance ${err.code}`);
   });
@@ -2045,7 +2045,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
 
 hasFlash(): boolean
 
-Checks whether the device has flash. This API uses an asynchronous callback to return the result.
+Checks whether the camera device has flash. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2131,12 +2131,12 @@ function isFlashModeSupported(captureSession: camera.CaptureSession): boolean {
 
 setFlashMode(flashMode: FlashMode): void
 
-Sets a flash mode for the device.
+Sets a flash mode.
 
 Before the setting, do the following checks:
 
-1. Use **[hasFlash](#hasflash)** to check whether the device has flash.
-2. Use **[isFlashModeSupported](#isflashmodesupported)** to check whether the device supports the flash mode.
+1. Use [hasFlash](#hasflash) to check whether the camera device has flash.
+2. Use [isFlashModeSupported](#isflashmodesupported) to check whether the camera device supports the flash mode.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2203,8 +2203,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode {
-  let flashMode: camera.FlashMode;
+function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode | undefined {
+  let flashMode: camera.FlashMode | undefined = undefined;
   try {
     flashMode = captureSession.getFlashMode();
   } catch (error) {
@@ -2234,7 +2234,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Returns **true** if the exposure mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | **true**: The exposure mode is supported.<br>**false**: The exposure mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2289,8 +2289,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getExposureMode(captureSession: camera.CaptureSession): camera.ExposureMode {
-  let exposureMode: camera.ExposureMode;
+function getExposureMode(captureSession: camera.CaptureSession): camera.ExposureMode | undefined {
+  let exposureMode: camera.ExposureMode | undefined = undefined;
   try {
     exposureMode = captureSession.getExposureMode();
   } catch (error) {
@@ -2306,7 +2306,7 @@ function getExposureMode(captureSession: camera.CaptureSession): camera.Exposure
 
 setExposureMode(aeMode: ExposureMode): void
 
-Sets an exposure mode for the device.
+Sets an exposure mode.
 
 Before the setting, use [isExposureModeSupported](#isexposuremodesupported) to check whether the target exposure mode is supported.
 
@@ -2352,7 +2352,7 @@ function setExposureMode(captureSession: camera.CaptureSession): void {
 
 getMeteringPoint(): Point
 
-Obtains the metering point of the device.  
+Obtains the metering point of the camera device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2375,8 +2375,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getMeteringPoint(captureSession: camera.CaptureSession): camera.Point {
-  let exposurePoint: camera.Point;
+function getMeteringPoint(captureSession: camera.CaptureSession): camera.Point | undefined {
+  let exposurePoint: camera.Point | undefined = undefined;
   try {
     exposurePoint = captureSession.getMeteringPoint();
   } catch (error) {
@@ -2439,7 +2439,7 @@ function setMeteringPoint(captureSession: camera.CaptureSession): void {
 
 getExposureBiasRange(): Array\<number\>
 
-Obtains the exposure compensation values of the device.
+Obtains the exposure compensation values of the camera device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2447,7 +2447,7 @@ Obtains the exposure compensation values of the device.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| Array\<number\>   | An array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Array\<number\>   | Array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2481,7 +2481,7 @@ setExposureBias(exposureBias: number): void
 
 Sets an exposure compensation value (EV).
 
-Before the setting, you are advised to use **[getExposureBiasRange](#getexposurebiasrange)** to obtain the supported values.
+Before the setting, you are advised to use [getExposureBiasRange](#getexposurebiasrange) to obtain the supported values.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2505,13 +2505,15 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function setExposureBias(captureSession: camera.CaptureSession, biasRangeArray: Array<number>): void {
-  let exposureBias = biasRangeArray[0];
-  try {
-    captureSession.setExposureBias(exposureBias);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The setExposureBias call failed. error code: ${err.code}`);
+  if (biasRangeArray && biasRangeArray.length > 0) {
+    let exposureBias = biasRangeArray[0];
+    try {
+      captureSession.setExposureBias(exposureBias);
+    } catch (error) {
+      // If the operation fails, error.code is returned and processed.
+      let err = error as BusinessError;
+      console.error(`The setExposureBias call failed. error code: ${err.code}`);
+    }
   }
 }
 ```
@@ -2607,9 +2609,9 @@ function isFocusModeSupported(captureSession: camera.CaptureSession): boolean {
 
 setFocusMode(afMode: FocusMode): void
 
-Sets a focus mode for the device.
+Sets a focus mode.
 
-Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to check whether the focus mode is supported.
+Before the setting, use [isFocusModeSupported](#isfocusmodesupported) to check whether the focus mode is supported.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2676,8 +2678,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getFocusMode(captureSession: camera.CaptureSession): camera.FocusMode {
-  let afMode: camera.FocusMode;
+function getFocusMode(captureSession: camera.CaptureSession): camera.FocusMode | undefined {
+  let afMode: camera.FocusMode | undefined = undefined;
   try {
     afMode = captureSession.getFocusMode();
   } catch (error) {
@@ -2725,9 +2727,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function setFocusPoint(captureSession: camera.CaptureSession): void {
-  const Point1: camera.Point = {x: 1, y: 1};
+  const focusPoint: camera.Point = {x: 1, y: 1};
   try {
-    captureSession.setFocusPoint(Point1);
+    captureSession.setFocusPoint(focusPoint);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
@@ -2740,7 +2742,7 @@ function setFocusPoint(captureSession: camera.CaptureSession): void {
 
 getFocusPoint(): Point
 
-Obtains the focal point of the device.
+Obtains the focal point of the camera device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2763,8 +2765,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getFocusPoint(captureSession: camera.CaptureSession): camera.Point {
-  let point: camera.Point;
+function getFocusPoint(captureSession: camera.CaptureSession): camera.Point | undefined {
+  let point: camera.Point | undefined = undefined;
   try {
     point = captureSession.getFocusPoint();
   } catch (error) {
@@ -2780,7 +2782,7 @@ function getFocusPoint(captureSession: camera.CaptureSession): camera.Point {
 
 getFocalLength(): number
 
-Obtains the focal length of the device.
+Obtains the focal length of the camera device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2950,7 +2952,7 @@ function getZoomRatio(captureSession: camera.CaptureSession): number {
 
 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
-Checks whether the specified video stabilization mode is supported. 
+Checks whether a video stabilization mode is supported. 
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3004,7 +3006,7 @@ Obtains the video stabilization mode in use.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| VideoStabilizationMode    | Video stabilization mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| [VideoStabilizationMode](#videostabilizationmode)    | Video stabilization mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3019,8 +3021,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession): camera.VideoStabilizationMode {
-  let vsMode: camera.VideoStabilizationMode;
+function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession): camera.VideoStabilizationMode | undefined {
+  let vsMode: camera.VideoStabilizationMode | undefined = undefined;
   try {
     vsMode = captureSession.getActiveVideoStabilizationMode();
   } catch (error) {
@@ -3036,7 +3038,7 @@ function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession):
 
 setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
-Sets a video stabilization mode for the device.
+Sets a video stabilization mode.
 
 Before the setting, use [isVideoStabilizationModeSupported](#isvideostabilizationmodesupported) to check whether the target video stabilization mode is supported.
 
@@ -3193,7 +3195,7 @@ Obtains the supported beauty types.
 
 | Type               | Description                                                 |
 | ----------          | -----------------------------                         |
-|  Array\<[BeautyType](#beautytype)\>| Array of the supported beauty types.                            |
+|  Array\<[BeautyType](#beautytype)\>| Array of beauty types supported.                            |
 
 **Error codes**
 
@@ -3276,7 +3278,7 @@ Sets a beauty type and its level. Beauty mode is turned off only when all the [b
 | Name     | Type                   | Mandatory| Description                  |
 | -------- | --------------------------| ---- | --------------------- |
 | type     | [BeautyType](#beautytype) | Yes  | Beauty type.              |
-| value    | number                    | Yes  | Beauty level, which can be obtained through [getSupportedBeautyRange](#getsupportedbeautyrange).|
+| value    | number                    | Yes  | Beauty level, which is obtained through [getSupportedBeautyRange](#getsupportedbeautyrange).|
 
 **Error codes**
 
@@ -3354,7 +3356,7 @@ function getBeauty(portraitSession: camera.PortraitSession): number {
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-Subscribes to focus state events. This API uses an asynchronous callback to return the result.
+Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3372,7 +3374,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerFocusStateChange(captureSession: camera.CaptureSession): void {
   captureSession.on('focusStateChange', (err: BusinessError, focusState: camera.FocusState) => {
-    console.log(`Focus state: ${focusState}`);
+    console.info(`Focus state: ${focusState}`);
   });
 }
 ```
@@ -3381,7 +3383,7 @@ function registerFocusStateChange(captureSession: camera.CaptureSession): void {
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-Unsubscribes from focus state events.
+Unsubscribes from focus state change events.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3422,7 +3424,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerCaptureSessionError(captureSession: camera.CaptureSession): void {
   captureSession.on('error', (error: BusinessError) => {
-    console.log(`Capture session error code: ${error.code}`);
+    console.info(`Capture session error code: ${error.code}`);
   });
 }
 ```
@@ -3467,7 +3469,7 @@ Obtains the supported portrait effects.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Array<[PortraitEffect](#portraiteffect) > | Array of the supported portrait effects.              |
+| Array<[PortraitEffect](#portraiteffect) > | Array of portrait effects supported.              |
 
 **Error codes**
 
@@ -3542,7 +3544,7 @@ Obtains the portrait effect in use.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [PortraitEffect](#portraiteffect)               | Portrait effect in use.               |
+| [PortraitEffect](#portraiteffect)               | Portrait effect.               |
 
 **Error codes**
 
@@ -3555,15 +3557,15 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): Array<camera.PortraitEffect> {
-  let portraitEffects: Array<camera.PortraitEffect> = portraitSession.getSupportedPortraitEffects();
-  return portraitEffects;
+function getPortraitEffect(portraitSession: camera.PortraitSession): camera.PortraitEffect {
+  let portraitEffect: camera.PortraitEffect = portraitSession.getPortraitEffect();
+  return portraitEffect;
 }
 ```
 
 ## CameraOutput
 
-Implements output information used in a **[CaptureSession](#capturesession)**. It is the base class of **output**.
+Implements output information used in [CaptureSession](#capturesession). It is the base class of **output**.
 
 ## PreviewOutput
 
@@ -3602,7 +3604,7 @@ function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
       console.error(`Failed to start the previewOutput. ${err.code}`);
       return;
     }
-    console.log('Callback returned with previewOutput started.');
+    console.info('Callback returned with previewOutput started.');
   });
 }
 ```
@@ -3636,9 +3638,9 @@ import { BusinessError } from '@ohos.base';
 
 function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start().then(() => {
-    console.log('Promise returned with previewOutput started.');
+    console.info('Promise returned with previewOutput started.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to previewOutput start '+ err.code);
+    console.error('Failed to previewOutput start '+ err.code);
   });
 }
 ```
@@ -3668,7 +3670,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
       console.error(`Failed to stop the previewOutput. ${err.code}`);
       return;
     }
-    console.log('Callback returned with previewOutput stopped.');
+    console.info('Callback returned with previewOutput stopped.');
   })
 }
 ```
@@ -3694,9 +3696,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.stop().then(() => {
-    console.log('Callback returned with previewOutput stopped.');
+    console.info('Callback returned with previewOutput stopped.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to previewOutput stop '+ err.code);
+    console.error('Failed to previewOutput stop '+ err.code);
   });
 }
 ```
@@ -3734,7 +3736,7 @@ function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
       console.error(`Failed to release the PreviewOutput instance ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
   });
 }
 ```
@@ -3768,9 +3770,9 @@ import { BusinessError } from '@ohos.base';
 
 function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release().then(() => {
-    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to previewOutput release '+ err.code);
+    console.error('Failed to previewOutput release '+ err.code);
   });
 }
 ```
@@ -3795,7 +3797,7 @@ Subscribes to preview frame start events. This API uses an asynchronous callback
 ```ts
 function registerPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
   previewOutput.on('frameStart', () => {
-    console.log('Preview frame started');
+    console.info('Preview frame started');
   });
 }
 ```
@@ -3843,7 +3845,7 @@ Subscribes to preview frame end events. This API uses an asynchronous callback t
 ```ts
 function registerPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
   previewOutput.on('frameEnd', () => {
-    console.log('Preview frame ended');
+    console.info('Preview frame ended');
   });
 }
 ```
@@ -3893,7 +3895,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerPreviewOutputError(previewOutput: camera.PreviewOutput): void {
   previewOutput.on('error', (previewOutputError: BusinessError) => {
-    console.log(`Preview output error code: ${previewOutputError.code}`);
+    console.info(`Preview output error code: ${previewOutputError.code}`);
   })
 }
 ```
@@ -3935,7 +3937,7 @@ Adds a surface for delayed preview. This API can run after **session.commitConfi
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| surfaceId | string | Yes| Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
+| surfaceId | string | Yes| Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md).|
 
 **Error codes**
 
@@ -3981,7 +3983,7 @@ Enumerates the image rotation angles.
 
 ## Location
 
-Defines geolocation information.
+Defines the geolocation information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4006,7 +4008,7 @@ Enumerates the image quality levels.
 
 ## PhotoCaptureSetting
 
-Defines the settings for photo capture.
+Defines the settings for taking an image.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4015,7 +4017,7 @@ Defines the settings for photo capture.
 | quality  | [QualityLevel](#qualitylevel)   | No  | Photo quality.        |
 | rotation | [ImageRotation](#imagerotation) | No  | Rotation angle of the photo.     |
 | location | [Location](#location)           | No  | Geolocation information of the photo.  |
-| mirror   | boolean                         | No  |Whether mirroring is enabled. By default, mirroring is disabled.|
+| mirror   | boolean                         | No  |Whether mirror photography is enabled (disabled by default).|
 
 ## PhotoOutput
 
@@ -4025,7 +4027,7 @@ Implements output information used in a shooting session. This class inherits fr
 
 capture(callback: AsyncCallback\<void\>): void
 
-Captures a photo with the default shooting parameters. This API uses an asynchronous callback to return the result.
+Captures a photo with the default photo capture parameters. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4055,7 +4057,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
       console.error(`Failed to capture the photo ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the photo capture request success.');
+    console.info('Callback invoked to indicate the photo capture request success.');
   });
 }
 ```
@@ -4064,7 +4066,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(): Promise\<void\>
 
-Captures a photo with the default shooting parameters. This API uses a promise to return the result.
+Captures a photo with the default photo capture parameters. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4090,9 +4092,9 @@ import { BusinessError } from '@ohos.base';
 
 function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture().then(() => {
-    console.log('Promise returned to indicate that photo capture request success.');
+    console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to photoOutput capture '+ err.code);
+    console.error('Failed to photoOutput capture '+ err.code);
   });
 }
 ```
@@ -4101,7 +4103,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 
-Captures a photo with the specified shooting parameters. This API uses an asynchronous callback to return the result.
+Captures a photo with the specified photo capture parameters. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4109,7 +4111,7 @@ Captures a photo with the specified shooting parameters. This API uses an asynch
 
 | Name     | Type                                        | Mandatory| Description                 |
 | -------- | ------------------------------------------- | ---- | -------------------- |
-| setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Shooting settings.            |
+| setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Photo capture settings.            |
 | callback | AsyncCallback\<void\>                        | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
 
 **Error codes**
@@ -4144,7 +4146,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
       console.error(`Failed to capture the photo ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the photo capture request success.');
+    console.info('Callback invoked to indicate the photo capture request success.');
   });
 }
 ```
@@ -4153,7 +4155,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 capture(setting?: PhotoCaptureSetting): Promise\<void\>
 
-Captures a photo with the specified shooting parameters. This API uses a promise to return the result.
+Captures a photo with the specified photo capture parameters. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4161,7 +4163,7 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 | Name    | Type                                        | Mandatory| Description     |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Shooting parameters. The input of **undefined** is processed as if no parameters were passed.|
+| setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Photo capture parameters. The input of **undefined** is processed as if no parameters were passed.|
 
 **Return value**
 
@@ -4197,9 +4199,9 @@ function capture(photoOutput: camera.PhotoOutput): void {
     mirror: false
   }
   photoOutput.capture(settings).then(() => {
-    console.log('Promise returned to indicate that photo capture request success.');
+    console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to photoOutput capture '+ err.code);
+    console.error('Failed to photoOutput capture '+ err.code);
   });
 }
 ```
@@ -4208,7 +4210,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
 
 isMirrorSupported(): boolean
 
-Checks whether mirroring is supported.
+Checks whether mirror photography is supported.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4260,7 +4262,7 @@ function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
       console.error(`Failed to release the PreviewOutput instance ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
   });
 }
 ```
@@ -4294,9 +4296,9 @@ import { BusinessError } from '@ohos.base';
 
 function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
   photoOutput.release().then(() => {
-    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+    console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to photoOutput release '+ err.code);
+    console.error('Failed to photoOutput release '+ err.code);
   });
 }
 ```
@@ -4305,7 +4307,7 @@ function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
 
 on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 
-Subscribes to shooting start events. This API uses an asynchronous callback to return the capture ID.
+Subscribes to capture start events. This API uses an asynchronous callback to return the capture ID.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4323,7 +4325,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('captureStart', (err: BusinessError, captureId: number) => {
-    console.log(`photo capture stated, captureId : ${captureId}`);
+    console.info(`photo capture stated, captureId : ${captureId}`);
   });
 }
 ```
@@ -4332,7 +4334,7 @@ function registerPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void 
 
 off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 
-Unsubscribes from shooting start events.
+Unsubscribes from capture start events.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4373,8 +4375,8 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputFrameShutter(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('frameShutter', (err: BusinessError, frameShutterInfo: camera.FrameShutterInfo) => {
-    console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
-    console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
+    console.info(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
+    console.info(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
   });
 }
 ```
@@ -4406,7 +4408,7 @@ function unregisterPhotoOutputFrameShutter(photoOutput: camera.PhotoOutput): voi
 
 on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 
-Subscribes to shooting end events. This API uses an asynchronous callback to return the result.
+Subscribes to capture end events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4424,8 +4426,8 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo) => {
-    console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
-    console.log(`frameCount : ${captureEndInfo.frameCount}`);
+    console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
+    console.info(`frameCount : ${captureEndInfo.frameCount}`);
   });
 }
 ```
@@ -4434,7 +4436,7 @@ function registerPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
 
 off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 
-Unsubscribes from shooting end events.
+Unsubscribes from capture end events.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -4465,7 +4467,7 @@ Subscribes to **PhotoOutput** error events. This API uses a callback to return t
 
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
-| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photographing-related API.|
+| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photo-related API.|
 | callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
@@ -4475,7 +4477,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerPhotoOutputError(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('error', (error: BusinessError) => {
-    console.log(`Photo output error code: ${error.code}`);
+    console.info(`Photo output error code: ${error.code}`);
   });
 }
 ```
@@ -4519,7 +4521,7 @@ This API takes effect after **CaptureSession.addOutput** and **CaptureSession.ad
 
 | Type| Description|
 | --------- | ------ |
-| boolean | Returns whether the quick thumbnail feature is supported. The value **true** means that the quick thumbnail feature is supported, and **false** means the opposite.|
+| boolean | **true**: The quick thumbnail feature is supported.<br>**false**: The quick thumbnail feature is not supported.|
 
 **Error codes**
 
@@ -4545,7 +4547,7 @@ async function isQuickThumbnailSupported(context: common.BaseContext, photoProfi
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   captureSession.addInput(cameraInput);
-  // Add the photoOutput object to the session.
+  // Add a PhotoOutput instance to the session.
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
   captureSession.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -4569,7 +4571,7 @@ This API takes effect after **CaptureSession.addOutput** and **CaptureSession.ad
 
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
-| enabled    | boolean       | Yes  | Whether to enable the quick thumbnail feature. The value **true** means to enable the quick thumbnail feature, and **false** means the opposite.|
+| enabled    | boolean       | Yes  | Whether to enable the quick thumbnail feature. The value **true** means to enable the quick thumbnail feature, and **false** means to disable it.|
 
 **Error codes**
 
@@ -4601,7 +4603,7 @@ async function enableQuickThumbnail(context: common.BaseContext, photoProfile: c
   captureSession.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   if (!isSupported) {
-    console.log('Quick Thumbnail is not supported to be turned on.');
+    console.info('Quick Thumbnail is not supported to be turned on.');
     return;
   }
   try {
@@ -4630,7 +4632,7 @@ The listening takes effect after **enableQuickThumbnail(true)** is called.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | Yes  | Event type. The value is fixed at **'quickThumbnail'**.|
-| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | Yes| Promise that returns a **PixelMap** instance.|
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | Yes| Callback that returns a **PixelMap** instance.|
 
 **Example**
 
@@ -4655,7 +4657,7 @@ async function registerQuickThumbnail(context: common.BaseContext, photoProfile:
   captureSession.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   if (!isSupported) {
-    console.log('Quick Thumbnail is not supported to be turned on.');
+    console.info('Quick Thumbnail is not supported to be turned on.');
     return;
   }
   try {
@@ -4761,7 +4763,7 @@ function startVideoOutput(videoOutput: camera.VideoOutput): void {
       console.error(`Failed to start the video output ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output start success.');
+    console.info('Callback invoked to indicate the video output start success.');
   });
 }
 ```
@@ -4796,9 +4798,9 @@ import { BusinessError } from '@ohos.base';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start().then(() => {
-    console.log('Promise returned to indicate that start method execution success.');
+    console.info('Promise returned to indicate that start method execution success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to videoOutput start '+ err.code);
+    console.error('Failed to videoOutput start '+ err.code);
   });
 }
 ```
@@ -4828,7 +4830,7 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
       console.error(`Failed to stop the video output ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output stop success.');
+    console.info('Callback invoked to indicate the video output stop success.');
   });
 }
 ```
@@ -4854,9 +4856,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop().then(() => {
-    console.log('Promise returned to indicate that stop method execution success.');
+    console.info('Promise returned to indicate that stop method execution success.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to videoOutput stop '+ err.code);
+    console.error('Failed to videoOutput stop '+ err.code);
   });
 }
 ```
@@ -4894,7 +4896,7 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
       console.error(`Failed to release the PreviewOutput instance ${err.code}`);
       return;
     }
-    console.log('Callback invoked to indicate that the videoOutput instance is released successfully.');
+    console.info('Callback invoked to indicate that the videoOutput instance is released successfully.');
   });
 }
 ```
@@ -4928,9 +4930,9 @@ import { BusinessError } from '@ohos.base';
 
 function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.release().then(() => {
-    console.log('Promise returned to indicate that the videoOutput instance is released successfully.');
+    console.info('Promise returned to indicate that the videoOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to videoOutput release '+ err.code);
+    console.error('Failed to videoOutput release '+ err.code);
   });
 }
 ```
@@ -4955,7 +4957,7 @@ Subscribes to video recording start events. This API uses an asynchronous callba
 ```ts
 function registerVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
   videoOutput.on('frameStart', () => {
-    console.log('Video frame started');
+    console.info('Video frame started');
   });
 }
 ```
@@ -5004,7 +5006,7 @@ Subscribes to video recording stop events. This API uses an asynchronous callbac
 ```ts
 function registerVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
   videoOutput.on('frameEnd', () => {
-    console.log('Video frame ended');
+    console.info('Video frame ended');
   });
 }
 ```
@@ -5054,7 +5056,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerVideoOutputError(videoOutput: camera.VideoOutput): void {
   videoOutput.on('error', (error: BusinessError) => {
-    console.log(`Video output error code: ${error.code}`);
+    console.info(`Video output error code: ${error.code}`);
   });
 }
 ```
@@ -5120,7 +5122,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
       console.error(`Failed to start metadataOutput. ${err.code}`);
       return;
     }
-    console.log('Callback returned with metadataOutput started.');
+    console.info('Callback returned with metadataOutput started.');
   });
 }
 ```
@@ -5155,9 +5157,9 @@ import { BusinessError } from '@ohos.base';
 
 function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
-    console.log('Callback returned with metadataOutput started.');
+    console.info('Callback returned with metadataOutput started.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to metadataOutput start '+ err.code);
+    console.error('Failed to metadataOutput start '+ err.code);
   });
 }
 ```
@@ -5187,7 +5189,7 @@ function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
       console.error(`Failed to stop the metadataOutput. ${err.code}`);
       return;
     }
-    console.log('Callback returned with metadataOutput stopped.');
+    console.info('Callback returned with metadataOutput stopped.');
   })
 }
 ```
@@ -5213,9 +5215,9 @@ import { BusinessError } from '@ohos.base';
 
 function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stopped.');
+    console.info('Callback returned with metadataOutput stopped.');
   }).catch((err: BusinessError) => {
-    console.log('Failed to metadataOutput stop '+ err.code);
+    console.error('Failed to metadataOutput stop '+ err.code);
   });
 }
 ```
@@ -5242,7 +5244,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-    console.log(`metadata output metadataObjectsAvailable`);
+    console.info(`metadata output metadataObjectsAvailable`);
   });
 }
 ```
@@ -5292,7 +5294,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerMetadataOutputError(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.on('error', (metadataOutputError: BusinessError) => {
-    console.log(`Metadata output error code: ${metadataOutputError.code}`);
+    console.info(`Metadata output error code: ${metadataOutputError.code}`);
   });
 }
 ```

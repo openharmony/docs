@@ -800,7 +800,6 @@ Describes the device connection status and device information.
 | type              | [DeviceChangeType](#devicechangetype)             | Yes  | Device connection status.|
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
 
-
 ## DeviceChangeType
 
 Enumerates the device connection statuses.
@@ -7785,6 +7784,7 @@ audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
 }).catch((err: BusinessError) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
+
 ```
 
 ### getStreamInfoSync<sup>10+</sup>

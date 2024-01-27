@@ -20,11 +20,11 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 | Name| Description| 
 | -------- | -------- |
 | [image_mdk.h](image__mdk_8h.md) | Declares the functions that access the image rectangle, size, format, and component data.<br>**File to include**: &lt;multimedia/image_framework/image_mdk.h&gt;<br>**Library**: libimage_ndk.z.so| 
-| [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image interface.<br>**File to include**: &lt;multimedia/image_framework/image_mdk_common.h&gt;<br>**Library**: libimage_ndk.z.so| 
+| [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image APIs.<br>**File to include**: &lt;multimedia/image_framework/image_mdk_common.h&gt;<br>**Library**: libimage_ndk.z.so| 
 | [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
 | [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_pixel_map_napi.h&gt;<br>**Library**: libpixelmap_ndk.z.so| 
-| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs for obtaining image data from the native layer.<br>**File to include**: &lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br>**Library**: libimage_receiver_ndk.z.so| 
-| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs for decoding an image source into a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_source_mdk.h&gt;<br>**Library**: libimage_source_ndk.z.so| 
+| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs used to obtain image data from the native layer.<br>**File to include**: &lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br>**Library**: libimage_receiver_ndk.z.so| 
+| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs used to decode an image source into a pixel map.<br>**File to include**: &lt;multimedia/image_framework/image_source_mdk.h&gt;<br>**Library**: libimage_source_ndk.z.so| 
 
 
 ### Structs
@@ -85,10 +85,10 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Image_InitImageNative](#oh_image_initimagenative) (napi_env env, napi_value source) | Parses an **ImageNative** object from an **Image** object at the JavaScript native layer.| 
+| [OH_Image_InitImageNative](#oh_image_initimagenative) (napi_env env, napi_value source) | Converts an **Image** object at the JavaScript native layer into an **ImageNative** object.| 
 | [OH_Image_ClipRect](#oh_image_cliprect) (const [ImageNative](#imagenative) \*native, struct [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) \*rect) | Obtains [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) of an **ImageNative** object.| 
 | [OH_Image_Size](#oh_image_size) (const [ImageNative](#imagenative) \*native, struct [OhosImageSize](_ohos_image_size.md) \*size) | Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.| 
-| [OH_Image_Format](#oh_image_format) (const [ImageNative](#imagenative) \*native, int32_t \*format) | Obtains the image format of an **ImageNative** object.| 
+| [OH_Image_Format](#oh_image_format) (const [ImageNative](#imagenative) \*native, int32_t \*format) | Obtains the format of an **ImageNative** object.| 
 | [OH_Image_GetComponent](#oh_image_getcomponent) (const [ImageNative](#imagenative) \*native, int32_t componentType, struct [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) \*componentNative) | Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of an **ImageNative** object.| 
 | [OH_Image_Release](#oh_image_release) ([ImageNative](#imagenative) \*native) | Releases an **ImageNative** object.| 
 | [OH_PixelMap_CreatePixelMap](#oh_pixelmap_createpixelmap) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, napi_value \*res) | Creates a **PixelMap** object.| 
@@ -167,7 +167,7 @@ The **Image** package provides APIs for accessing the **Image** module. For exam
 | [OhosImageDecodingOps::fitDensity](#fitdensity) | Defines the pixel density of the output pixel map.| 
 | [OhosImageDecodingOps::index](#index) | Defines the index of the output pixel map.| 
 | [OhosImageDecodingOps::sampleSize](#samplesize) | Defines the size of the sample.| 
-| [OhosImageDecodingOps::rotate](#rotate) | Defines the decoding rotation option.| 
+| [OhosImageDecodingOps::rotate](#rotate) | Defines the decoding rotation options.| 
 | [OhosImageDecodingOps::size](#size-27) | Defines the pixel width and height of the output pixel map.| 
 | [OhosImageDecodingOps::region](#region) | Defines the region of the output pixel map.| 
 | [OhosImageSourceInfo::pixelFormat](#pixelformat-33) | Defines the pixel format of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create).| 
@@ -279,7 +279,7 @@ Defines the callbacks for the image interface at the native layer.
 ### OhosPixelMapInfos
 
 ```
-typedef struct OhosPixelMapInfosOhosPixelMapInfos
+typedef struct OhosPixelMapInfos
 ```
 
 **Description**
@@ -471,7 +471,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL | Abnormal data in the shared memory.| 
 | IMAGE_RESULT_DECODE_ABNORMAL | Failed to decode the image.| 
 | IMAGE_RESULT_DATA_ABNORMAL | Abnormal input data.| 
-| IMAGE_RESULT_MALLOC_ABNORMAL | an error occurs during memory allocation.| 
+| IMAGE_RESULT_MALLOC_ABNORMAL | An error occurs during memory allocation.| 
 | IMAGE_RESULT_DATA_UNSUPPORT | The image type is not supported.| 
 | IMAGE_RESULT_INIT_ABNORMAL | Failed to initialize the image.| 
 | IMAGE_RESULT_GET_DATA_ABNORMAL | An error occurs during image data retrieval.| 
@@ -506,7 +506,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_MEDIA_VALUE_INVALID | Invalid media value.| 
 | IMAGE_RESULT_MEDIA_NULL_POINTER | Media operation failed.| 
 | IMAGE_RESULT_MEDIA_INVALID_OPERATION | Invalid media operation.| 
-| IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT | an error occurs during media initialization.| 
+| IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT | An error occurs during media initialization.| 
 | IMAGE_RESULT_MEDIA_EARLY_PREPARE | Media preprocessing is carried out too early.| 
 | IMAGE_RESULT_MEDIA_SEEK_ERR | The seek operation failed.| 
 | IMAGE_RESULT_MEDIA_PERMISSION_DENIED | Permission denied.| 
@@ -683,7 +683,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 **See**
 
-ImageNative, [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+[ImageNative](image.md#imagenative), [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
 
 
 ### OH_Image_Format()
@@ -694,7 +694,7 @@ int32_t OH_Image_Format (const ImageNative * native, int32_t * format )
 
 **Description**
 
-Obtains the image format of an **ImageNative** object.
+Obtains the format of an **ImageNative** object.
 
 **Parameters**
 
@@ -723,7 +723,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 **See**
 
-ImageNative
+[ImageNative](image.md#imagenative)
 
 
 ### OH_Image_GetComponent()
@@ -764,7 +764,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 **See**
 
-ImageNative, [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+[ImageNative](image.md#imagenative), [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
 
 
 ### OH_Image_InitImageNative()
@@ -775,7 +775,7 @@ ImageNative* OH_Image_InitImageNative (napi_env env, napi_value source )
 
 **Description**
 
-Parses an **ImageNative** object from an **Image** object at the JavaScript native layer.
+Converts an **Image** object at the JavaScript native layer into an **ImageNative** object.
 
 **Parameters**
 
@@ -794,7 +794,7 @@ Returns a pointer to the **ImageNative** object if the operation is successful; 
 
 **See**
 
-ImageNative, OH_Image_Release
+[ImageNative](image.md#imagenative), [OH_Image_Release](image.md#oh_image_release)
 
 
 ### OH_Image_Receiver_CreateImageReceiver()
@@ -1258,7 +1258,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 **See**
 
-ImageNative, OH_Image_InitImageNative
+[ImageNative](image.md#imagenative),  [OH_Image_InitImageNative](image.md#oh_image_initimagenative)
 
 
 ### OH_Image_Size()
@@ -1298,7 +1298,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 **See**
 
-ImageNative, [OhosImageSize](_ohos_image_size.md)
+[ImageNative](image.md#imagenative), [OhosImageSize](_ohos_image_size.md)
 
 
 ### OH_ImageSource_Create()
@@ -1507,7 +1507,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -1598,7 +1598,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -1678,7 +1678,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1746,7 +1746,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1815,7 +1815,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1884,7 +1884,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -2028,7 +2028,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -2153,7 +2153,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
+Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -2232,6 +2232,8 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2317,6 +2319,8 @@ Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not supported.
 
 Returns **IMAGE_RESULT_HW_DECODE_FAILED** if hardware decoding fails.
+
+Returns **IMAGE_RESULT_ERR_IPC** if IPC fails.
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
@@ -2407,6 +2411,8 @@ Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not support
 
 Returns **IMAGE_RESULT_HW_DECODE_FAILED** if hardware decoding fails.
 
+Returns **IMAGE_RESULT_ERR_IPC** if IPC fails.
+
 Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
@@ -2480,6 +2486,8 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
@@ -2549,6 +2557,8 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
@@ -2593,7 +2603,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -2635,7 +2645,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -2701,6 +2711,8 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
@@ -2745,7 +2757,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -2817,7 +2829,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -2882,6 +2894,8 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2954,6 +2968,8 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
+
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
@@ -2998,7 +3014,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -3041,7 +3057,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -3083,7 +3099,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 **Since**
 
@@ -3149,6 +3165,8 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -3216,6 +3234,8 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -3828,7 +3848,7 @@ uint32_t OhosImageDecodingOps::rotate
 
 **Description**
 
-Defines the decoding rotation.
+Defines the decoding rotation options.
 
 **Since**
 

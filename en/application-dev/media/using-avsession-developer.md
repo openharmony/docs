@@ -43,9 +43,9 @@ To enable an audio and video application to access the AVSession service as a pr
    // Create an AVSession object.
    let context: Context = getContext(this);
    async function createSession() {
-   let type: AVSessionManager.AVSessionType = 'audio';
-   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-   await session.activate();
+     let type: AVSessionManager.AVSessionType = 'audio';
+     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+     await session.activate();
      console.info(`session create done : sessionId : ${session.sessionId}`);
    }
    ```
@@ -130,6 +130,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```
 
 3. Set the UIAbility to be started by the controller. The UIAbility configured here is started when a user operates the UI of the controller, for example, clicking a widget in Media Controller.
+   
    The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
 
    ```ts
@@ -348,6 +349,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```
 
 8. When the audio and video application exits and does not need to continue playback, cancel the listener and destroy the **AVSession** object.
+
    The code snippet below is used for canceling the listener for playback control commands:
 
    ```ts
@@ -372,7 +374,7 @@ To enable an audio and video application to access the AVSession service as a pr
    }
    ```
 
-     The code snippet below is used for destroying the AVSession object:
+   The code snippet below is used for destroying the AVSession object:
    
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
