@@ -934,7 +934,7 @@ off(type: 'release'): void
 
 on(method: string, callback: CalleeCallback): void
 
-通用组件服务端注册消息通知callback。使用callback异步回调。
+通用组件服务端注册消息通知callback。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
