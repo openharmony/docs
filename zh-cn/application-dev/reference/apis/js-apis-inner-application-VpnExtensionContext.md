@@ -30,7 +30,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   private blockedAppName: string = 'xxxx';
 
   onCreate(want: Want) {
-    //this.context is VpnExtensionContext
+    // this.context is VpnExtensionContext
     VpnConnection = vpnExt.createVpnConnection(this.context);
   }
 }
