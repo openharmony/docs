@@ -36,7 +36,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -68,7 +68,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -212,7 +212,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
@@ -264,7 +264,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -294,7 +294,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -332,7 +332,7 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const area : image.PositionArea = {
@@ -367,7 +367,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const area : image.PositionArea = {
@@ -410,7 +410,7 @@ writePixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const area : image.PositionArea = {
@@ -449,7 +449,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const area : image.PositionArea = { pixels: new ArrayBuffer(8),
@@ -495,7 +495,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -529,7 +529,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -594,7 +594,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
@@ -687,7 +687,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate : number = 0.5;
@@ -725,7 +725,7 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate : number = 0.5;
@@ -754,7 +754,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     await pixelMap.createAlphaPixelmap().then((alphaPixelMap : image.PixelMap) => {
@@ -782,7 +782,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
@@ -815,7 +815,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let scaleX : number = 2.0;
@@ -855,7 +855,7 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let scaleX : number = 2.0;
@@ -887,7 +887,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let translateX : number = 50.0;
@@ -927,7 +927,7 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let translateX : number = 50.0;
@@ -958,7 +958,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle : number = 90.0;
@@ -996,7 +996,7 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle : number = 90.0;
@@ -1027,7 +1027,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let horizontal : boolean = true;
@@ -1067,7 +1067,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let horizontal : boolean = true;
@@ -1098,7 +1098,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
@@ -1136,7 +1136,7 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
@@ -1244,7 +1244,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
@@ -1295,7 +1295,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
@@ -1495,7 +1495,7 @@ release():Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     pixelMap.release().then(() => {
@@ -1523,7 +1523,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     pixelMap.release((err : BusinessError) => {
@@ -1839,7 +1839,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo(0,(error : BusinessError, imageInfo : image.ImageInfo) => { 
     if(error) {
@@ -1867,7 +1867,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
     if (err != undefined) {
@@ -1901,7 +1901,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo(0)
     .then((imageInfo : image.ImageInfo) => {
@@ -1955,7 +1955,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
@@ -1994,7 +1994,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageProperty("BitsPerSample")
     .then((data : string) => {
@@ -2026,7 +2026,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : string) => { 
     if(error) {
@@ -2060,7 +2060,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let property : image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty("BitsPerSample",property,(error : BusinessError, data : string) => { 
@@ -2108,7 +2108,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
     imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
@@ -2149,7 +2149,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
     imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
@@ -2185,7 +2185,7 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
     if (err != undefined) {
@@ -2222,7 +2222,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 const array : ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10).then(() => {
@@ -2254,7 +2254,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 const array : ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
@@ -2289,7 +2289,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMap().then((pixelMap : image.PixelMap) => {
     console.info('Succeeded in creating pixelMap object through image decoding parameters.');
@@ -2315,7 +2315,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMap((err : BusinessError, pixelMap : image.PixelMap) => {
     if (err != undefined) {
@@ -2344,7 +2344,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let decodingOptions : image.DecodingOptions = {
     sampleSize: 1,
@@ -2411,7 +2411,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
@@ -2469,7 +2469,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
     if (err != undefined) {
@@ -2522,7 +2522,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let decodeOpts : image.DecodingOptions = {
     sampleSize: 1,
@@ -2576,7 +2576,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
     if (err != undefined) {
@@ -2622,7 +2622,7 @@ getDelayTimeList(): Promise<Array\<number>>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
     console.info('Succeeded in delayTimes object.');
@@ -2665,7 +2665,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
     if (err != undefined) {
@@ -2710,7 +2710,7 @@ getFrameCount(): Promise\<number>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getFrameCount().then((frameCount: number) => {
     console.info('Succeeded in getting frame count.');
@@ -2736,7 +2736,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.release((err : BusinessError) => { 
     if (err != undefined) {
@@ -2764,7 +2764,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imageSourceApi.release().then(()=>{
     console.info('Succeeded in releasing the image source instance.');
@@ -2824,7 +2824,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
@@ -2861,7 +2861,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
@@ -2892,7 +2892,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -2930,7 +2930,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -2964,7 +2964,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imagePackerApi.release((err : BusinessError)=>{ 
     if (err != undefined) {
@@ -2992,7 +2992,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 imagePackerApi.release().then(()=>{
     console.info('Succeeded in releasing image packaging.');
@@ -3021,7 +3021,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
 const context : Context = getContext(this);
@@ -3065,7 +3065,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
 const context : Context = getContext(this);
@@ -3102,7 +3102,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -3148,7 +3148,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -3274,7 +3274,7 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 **示例:**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.getReceivingSurfaceId((err : BusinessError, id : string) => { 
     if(err) {
@@ -3302,7 +3302,7 @@ getReceivingSurfaceId(): Promise\<string>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.getReceivingSurfaceId().then( (id : string) => { 
     console.info('getReceivingSurfaceId succeeded.');
@@ -3328,7 +3328,7 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.readLatestImage((err : BusinessError, img : image.Image) => { 
     if(err) {
@@ -3356,7 +3356,7 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.readLatestImage().then((img : image.Image) => {
     console.info('readLatestImage succeeded.');
@@ -3382,7 +3382,7 @@ readNextImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.readNextImage((err : BusinessError, img : image.Image) => { 
     if(err) {
@@ -3410,7 +3410,7 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.readNextImage().then((img : image.Image) => {
     console.info('readNextImage succeeded.');
@@ -3459,7 +3459,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
 
 receiver.release((err : BusinessError) => {
     if(err) {
@@ -3487,7 +3487,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 receiver.release().then(() => {
     console.info('release succeeded.');
@@ -3601,7 +3601,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage((err : BusinessError, img : image.Image) => {
     if (err) {
@@ -3629,7 +3629,7 @@ dequeueImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage().then((img : image.Image) => {
     console.info('dequeueImage succeeded.');
@@ -3656,7 +3656,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
@@ -3703,7 +3703,7 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
@@ -3743,7 +3743,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.on('imageRelease', (err : BusinessError) => {
     if (err) {
@@ -3771,7 +3771,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.release((err : BusinessError) => {
     if (err) {
@@ -3798,7 +3798,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 creator.release().then(() => {
     console.info('release succeeded');
@@ -3839,7 +3839,7 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 img.getComponent(4, (err : BusinessError, component : image.Component) => {
     if(err) {
@@ -3873,7 +3873,7 @@ getComponent(componentType: ComponentType): Promise\<Component>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 img.getComponent(4).then((component : image.Component) => {
     console.info('getComponent succeeded.');
@@ -3901,7 +3901,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 img.release((err : BusinessError) =>{ 
     if (err != undefined) {
@@ -3931,7 +3931,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 img.release().then(() =>{
     console.info('release succeeded.');

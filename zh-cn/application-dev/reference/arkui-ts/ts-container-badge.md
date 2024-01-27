@@ -20,13 +20,20 @@
 
 ### Badge
 
-Badge(value: {count: number, position?: BadgePosition \| Position, maxCount?: number, style: BadgeStyle})
+Badge(value: BadgeParamWithNumber)
 
 创建数字标记组件。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value |  [BadgeParamWithNumber](#badgeparamwithnumber对象说明)| 是 | 数字标记组件参数。|
+
+
+## BadgeParamWithNumber对象说明
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -37,13 +44,20 @@ Badge(value: {count: number, position?: BadgePosition \| Position, maxCount?: nu
 
 ### Badge
 
-Badge(value: {value: string, position?: BadgePosition \| Position, style: BadgeStyle})
+Badge(value: BadgeParamWithString)
 
 根据字符串创建标记组件。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
+
+| 参数名 | 参数类型                                              | 必填 | 参数描述             |
+| ------ | ----------------------------------------------------- | ---- | -------------------- |
+| value  | [BadgeParamWithString](#badgeparamwithstring对象说明) | 是   | 字符串标记组件参数。 |
+
+
+## BadgeParamWithString对象说明
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |

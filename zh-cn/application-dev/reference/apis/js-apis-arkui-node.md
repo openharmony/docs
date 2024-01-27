@@ -25,7 +25,7 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 2.可以通过自定义组件内置方法[getUIContext()](../arkui-ts/ts-custom-component-api.md#getuicontext)获取。
 
-3.可以在[NodeController](#nodecontroller)的[makeNode](./js-apis-arkui-nodeController.md#makenode)回调方法中获取。
+3.可以在[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)的[makeNode](./js-apis-arkui-nodeController.md#makenode)回调方法中获取。
 
 ## 导入模块
 

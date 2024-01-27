@@ -268,6 +268,8 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 在Richeditor中添加SymbolSpan。
 
+暂不支持手势处理。
+
 **参数：**
 
 | 参数名     | 参数类型                                     | 必填   | 参数描述  |

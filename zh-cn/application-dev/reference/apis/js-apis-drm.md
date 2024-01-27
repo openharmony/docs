@@ -215,7 +215,7 @@ import drm from '@ohos.multimedia.drm';
 | uuid   | string | 是  | 插件类型Id      |
 | pssh     | Uint8Array                 | 是  | drm info内的保护方案特定标头       |
 
-### drm.createMediaKeySystem
+## drm.createMediaKeySystem
 
 createMediaKeySystem(name: string): MediaKeySystem
 
@@ -254,7 +254,7 @@ import drm from '@ohos.multimedia.drm';
 let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
 ```
 
-### drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported
 
 isMediaKeySystemSupported(name: string): boolean
 
@@ -292,7 +292,7 @@ import drm from '@ohos.multimedia.drm';
 let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm");
 ```
 
-### drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported
 
 isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
@@ -331,7 +331,7 @@ import drm from '@ohos.multimedia.drm';
 let mediaKeysystem: drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
 ```
 
-### drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported
 
 isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
 
