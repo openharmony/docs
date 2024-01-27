@@ -1,6 +1,6 @@
-# User Authentication Kit (User Authentication Kit)
+# User Authentication
 
-- [Introduction to User Authentication Kit](user-authentication-overview.md)
+- [User Authentication Overview](user-authentication-overview.md)
 - User Authentication Development
   - [Before You Start](prerequisites.md)
   - [Obtaining Supported Authentication Capabilities](obtain-supported-authentication-capabilities.md)

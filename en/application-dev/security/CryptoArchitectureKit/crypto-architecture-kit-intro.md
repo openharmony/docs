@@ -1,20 +1,20 @@
-# Introduction to Crypto Architecture Kit
+# Crypto Framework Overview
 
-Crypto Architecture Kit provides cryptographic functionalities, such as encryption and decryption, signing and signature verification, message authentication code (MAC) generation, hash computation, random number generation, and key derivation.
+Crypto framework provides cryptographic functionalities, such as encryption and decryption, signing and signature verification, message authentication code (MAC) generation, hash computation, random number generation, and key derivation.
 
-Crypto Architecture Kit shields the implementation differences of third-party cryptographic algorithm libraries to elevate your app experience.
+Crypto framework shields the implementation differences of third-party cryptographic algorithm libraries to elevate your app experience.
 
 ## Constraints
 
-- Crypto Architecture Kit does not support multi-thread concurrent operations.
+- Crypto framework does not support multi-thread concurrent operations.
 
-- Currently, Crypto Architecture Kit supports only OpenSSL.
+- Currently, Crypto framework supports only OpenSSL.
 
-- Crypto Architecture Kit provides common algorithms. Some algorithms and specifications, such as MD5, do not apply to scenarios with high security requirements. You need to select the proper algorithms based on service requirements.
+- Crypto framework provides common algorithms. Some algorithms and specifications, such as MD5, do not apply to scenarios with high security requirements. You need to select the proper algorithms based on service requirements.
 
 ## Capability Scope
 
-Crypto Architecture Kit provides the following functionalities, with algorithm specifications and development guides for your reference.
+Crypto framework provides the following functionalities, with algorithm specifications and development guides for your reference.
 
 - [Key Generation and Conversion](crypto-key-generation-conversion-overview.md)
 
@@ -54,4 +54,3 @@ Crypto Architecture Kit provides cryptographic operations, but not key managemen
 
 If key management (such as key storage) is required, use [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md).
 
-<!--no_check-->

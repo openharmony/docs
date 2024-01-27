@@ -1,4 +1,4 @@
-# Data Loss Prevention Kit (DLP Kit)
+# Data Loss Prevention (DLP)
 
-- [Introduction to DLP Kit](dlp-overview.md)
-- [DLP Kit Development](dlp-guidelines.md)
+- [DLP Overview](dlp-overview.md)
+- [DLP Development](dlp-guidelines.md)

@@ -1,6 +1,6 @@
-# Universal Keystore Kit (Key Management Service)
+# HUKS
 
-- [Introduction to Universal Keystore Kit](huks-overview.md)
+- [HUKS Overview](huks-overview.md)
 - [Basic Concepts of HUKS](huks-concepts.md)
 - Key Generation and Import
   - Key Generation
