@@ -10,7 +10,7 @@
 
 | 名称                                                         | 是否冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onTouch(event:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是       | 手指触摸动作触发该回调，event返回值见[TouchEvent](#touchevent对象说明)介绍。 |
+| onTouch(event:&nbsp;(event:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是       | 手指触摸动作触发该回调，event返回值见[TouchEvent](#touchevent对象说明)介绍。 |
 
 
 ## TouchEvent对象说明

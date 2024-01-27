@@ -103,6 +103,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 ## 示例
 
 ```ts
+// xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
@@ -139,12 +140,11 @@ struct Index {
     }
   }
 
-  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
-    if(this.getDataFromUdmfRetry(event, callback)) {
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
+    if (this.getDataFromUdmfRetry(event, callback)) {
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
@@ -211,6 +211,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
+
       Column() {
         Text('Drag Target Area')
           .fontSize(20)
@@ -222,18 +223,18 @@ struct Index {
           .width(this.imageWidth)
           .height(this.imageHeight)
           .draggable(true)
-          .margin({left: 15})
-          .border({color: Color.Black, width: 1})
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent?: DragEvent)=> {
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({duration: 1000}, ()=>{
+              animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
@@ -245,18 +246,18 @@ struct Index {
         Text(this.targetText)
           .width('100%')
           .height(100)
-          .border({color: Color.Black, width: 1})
+          .border({ color: Color.Black, width: 1 })
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent?: DragEvent)=>{
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
-              let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
               this.targetText = plainText.textContent;
             })
           })
 
-        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
           .width('100%')
           .height(200)
           .controls(true)
@@ -265,10 +266,14 @@ struct Index {
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
-        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        }
+        .width('100%')
+        .height(100)
+        .margin(20)
+        .border({ color: Color.Black, width: 1 })
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent?: DragEvent)=>{
-          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+        .onDrop((dragEvent?: DragEvent) => {
+          this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
             let plainText: UDC.PlainText = records[0] as UDC.PlainText;
             this.abstractContent = plainText.abstract as string;
@@ -277,7 +282,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }

@@ -12,7 +12,7 @@
 
 | 名称                                       | 支持冒泡 | 功能描述                                     |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是    | 绑定该方法的组件获焦后，按键动作触发该回调，event返回值见[KeyEvent](#keyevent对象说明)介绍。 |
+| onKeyEvent(event:&nbsp;(event:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是    | 绑定该方法的组件获焦后，按键动作触发该回调，event返回值见[KeyEvent](#keyevent对象说明)介绍。 |
 
 
 ## KeyEvent对象说明
