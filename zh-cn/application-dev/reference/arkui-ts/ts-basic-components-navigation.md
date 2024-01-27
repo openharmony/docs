@@ -363,14 +363,14 @@ disableAnimation(value: boolean): void
 
 ### constructor
 
-constructor(name: string, param?: unknown)
+constructor(name: string, param: unknown)
 
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 否    | NavDestination页面详细参数。 |
+| param | unknown | 是    | NavDestination页面详细参数。 |
 
 ## NavContentInfo<sup>11+</sup>
 
