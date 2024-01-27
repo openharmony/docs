@@ -138,7 +138,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 onDestroy(): void | Promise&lt;void&gt;
 
-UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -452,7 +452,7 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回�
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
-向通用组件服务端发送约定序列化数据。
+向通用组件服务端发送约定序列化数据。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -467,7 +467,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回应答。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -539,7 +539,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
+向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -554,7 +554,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise对象，返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -674,7 +674,7 @@ release(): void
 
  onRelease(callback: OnReleaseCallback): void
 
-注册通用组件服务端Stub（桩）断开监听通知。
+注册通用组件服务端Stub（桩）断开监听通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -690,7 +690,7 @@ release(): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
 
 **示例：**
 
@@ -727,7 +727,7 @@ release(): void
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-注册协同场景下跨设备组件状态变化监听通知。
+注册协同场景下跨设备组件状态变化监听通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -735,7 +735,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 返回onRemoteStateChange回调结果。 |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 回调函数，返回onRemoteStateChange回调结果。 |
 
 **错误码：**
 
@@ -781,7 +781,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-注册通用组件服务端Stub（桩）断开监听通知。
+注册通用组件服务端Stub（桩）断开监听通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -790,7 +790,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -835,7 +835,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -844,7 +844,7 @@ off(type: 'release', callback: OnReleaseCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回off回调结果。 |
 
 **示例：**
 
@@ -934,7 +934,7 @@ off(type: 'release'): void
 
 on(method: string, callback: CalleeCallback): void
 
-通用组件服务端注册消息通知callback。
+通用组件服务端注册消息通知callback。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
