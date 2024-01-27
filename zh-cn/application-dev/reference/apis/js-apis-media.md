@@ -2750,11 +2750,11 @@ getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400105  | Service died. Return by callback.          |
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400102  | Operation not allowed.           |
+| 5400103  | I/O error.                       |
+| 5400105  | Service died. Return by promise. |
 
 **示例**：
 
@@ -2833,10 +2833,10 @@ getAudioCapturerMaxAmplitude(): Promise\<number>
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400105  | Service died. Return by callback.          |
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400102  | Operation not allowed.           |
+| 5400105  | Service died. Return by promise. |
 
 **示例**：
 
@@ -2907,10 +2907,10 @@ getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                                   |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400105  | Service died. Return by callback.          |
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400102  | Operation not allowed.           |
+| 5400105  | Service died. Return by promise. |
 
 **示例**：
 
@@ -3138,15 +3138,16 @@ avRecorder.off('error');
 
 系统能力：SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称       | 类型                             | 说明                                                         |
-| ---------- | -------------------------------- | ------------------------------------------------------------ |
-| mimeType   | [CodecMimeType](#codecmimetype8) | 编码器MIME类型名称                                           |
-| type       | string                           | 编码器类型，audio表示音频编码器，video表示视频编码器         |
-| bitRate    | [Range](#range11)                | 比特率，包含该编码器的最大和最小值                           |
-| width      | [Range](#range11)                | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有       |
-| height     | [Range](#range11)                | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有       |
-| channels   | [Range](#range11)                | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有   |
-| sampleRate | Array<number>                    | 音频采样率，包含所有可以使用的音频采样率值，仅音频编码器拥有 |
+| 名称       | 类型                             | 可读 | 可写 | 说明                                                         |
+| ---------- | -------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| mimeType   | [CodecMimeType](#codecmimetype8) | 是   | 否   | 编码器MIME类型名称                                           |
+| type       | string                           | 是   | 否   | 编码器类型，audio表示音频编码器，video表示视频编码器         |
+| bitRate    | [Range](#range11)                | 是   | 否   | 比特率，包含该编码器的最大和最小值                           |
+| frameRate  | [Range](#range11)                | 是   | 否   | 视频帧率，包含帧率的最大和最小值，仅视频编码器拥有           |
+| width      | [Range](#range11)                | 是   | 否   | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有       |
+| height     | [Range](#range11)                | 是   | 否   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有       |
+| channels   | [Range](#range11)                | 是   | 否   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有   |
+| sampleRate | Array<number>                    | 是   | 否   | 音频采样率，包含所有可以使用的音频采样率值，仅音频编码器拥有 |
 
 ## Range<sup>11+</sup>
 
@@ -3154,10 +3155,10 @@ avRecorder.off('error');
 
 系统能力：SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称 | 类型   | 说明         |
-| ---- | ------ | ------------ |
-| min  | number | 范围的最小值 |
-| max  | number | 范围的最大值 |
+| 名称 | 类型   | 可读 | 可写 | 说明         |
+| ---- | ------ | ---- | ---- | ------------ |
+| min  | number | 是   | 否   | 范围的最小值 |
+| max  | number | 是   | 否   | 范围的最大值 |
 
 
 
