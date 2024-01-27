@@ -1,4 +1,4 @@
-# Sample Implementation of Camera Photographing (ArkTS)
+# Camera Photographing Sample (ArkTS)
 
 This topic provides sample code that covers the complete photographing process to help you understand the complete API calling sequence.
 

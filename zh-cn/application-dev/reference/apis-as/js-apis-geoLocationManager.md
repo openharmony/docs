@@ -30,7 +30,11 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
-如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
+如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
+
+应用如需使用后台位置权限，需要在设置界面由用户手动授予，具体授权方式请参考[程序访问子系统变更说明](../../../release-notes/changelogs/OpenHarmony_4.1.5.3/changelogs-access_token.md)。
+
+长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -247,7 +251,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -294,7 +298,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
   import BusinessError from "@ohos.base";
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -326,9 +330,9 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt;  | [Location](#location) | NA | 返回位置信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [Location](#location) | 返回位置信息。 |
 
 **错误码**：
 
@@ -348,7 +352,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
-          console.log('current location: ' + JSON.stringify(result));
+          console.error('current location: ' + JSON.stringify(result));
       })  
       .catch((error:number) => {
           console.log('promise, getCurrentLocation: error=' + JSON.stringify(error));
@@ -371,9 +375,9 @@ getLastLocation(): Location
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Location  | [Location](#location) | NA | 位置信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [Location](#location) | 位置信息。 |
 
 **错误码**：
 
@@ -408,9 +412,9 @@ isLocationEnabled(): boolean
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | 位置服务是否已经使能。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  |  boolean | 位置服务是否已经使能。 |
 
 **错误码**：
 
