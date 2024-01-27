@@ -109,7 +109,7 @@ Enumerates the types of ExtensionAbilities.
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
-| BACKUP           |  9  | BackupExtensionAbility: provides APIs for backing up and restoring application data and public data. This ability is reserved.|
+| BACKUP           |  9  | [BackupExtensionAbility](js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
 | WINDOW           |  10 | [WindowExtensionAbility](js-apis-application-windowExtensionAbility.md): allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
@@ -264,10 +264,11 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain application info with metadataArray.
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -298,10 +299,11 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain ability info with permissions.
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
@@ -4732,6 +4734,56 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.deleteAbc<sup>11+</sup>
+
+deleteAbc(abcPath: string): Promise\<void>
+
+Deletes an .abc file based on the specified file path. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPath  | string | Yes  | Path of the .abc file.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 17700202 | deleteAbc failed. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPath : string = '/data/storage/el2/base/a.abc';
+
+try {
+    bundleManager.deleteAbc(abcPath).then((data) => {
+        hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```
 
