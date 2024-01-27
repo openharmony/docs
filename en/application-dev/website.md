@@ -1588,7 +1588,7 @@
       - Appendix
         - [Native API Symbols Not Exported](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [EGL Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md) 
+        - [OpenGL ES 3.2 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md) 
         - [OpenSL ES Interfaces Supported by Native APIs](reference/native-lib/third_party_opensles/opensles.md)
 - FAQs
   - [Full SDK Compilation Guide](quick-start/full-sdk-compile-guide.md)

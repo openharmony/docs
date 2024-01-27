@@ -229,6 +229,9 @@ Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is cre
 
 Returns the pointer to the **OHNativeWindow** instance created.
 
+> **NOTE**
+>
+> If this API is unavailable, you can create an **OHNativeWindow** instance by calling [OH_NativeImage_AcquireNativeWindow](_o_h___native_image.md#oh_nativeimage_acquirenativewindow) or through the **\<XComponent>**.
 
 ### OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer()
 
@@ -236,6 +239,10 @@ Returns the pointer to the **OHNativeWindow** instance created.
 ```
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void * pSurfaceBuffer)
 ```
+
+> **NOTE**
+>
+> This API cannot be used.
 
 **Description**
 
