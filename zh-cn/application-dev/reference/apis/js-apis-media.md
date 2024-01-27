@@ -537,19 +537,19 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称                       | 值      | 说明                                 |
-| :------------------------- | ------- | ------------------------------------ |
-| AVERR_OK                   | 0       | 表示操作成功。                       |
-| AVERR_NO_PERMISSION        | 201     | 表示无权限执行此操作。               |
-| AVERR_INVALID_PARAMETER    | 401     | 表示传入入参无效。                   |
-| AVERR_UNSUPPORT_CAPABILITY | 801     | 表示当前版本不支持该API能力。        |
-| AVERR_NO_MEMORY            | 5400101 | 表示系统内存不足或服务数量达到上限。 |
-| AVERR_OPERATE_NOT_PERMIT   | 5400102 | 表示当前状态不允许或无权执行此操作。 |
-| AVERR_IO                   | 5400103 | 表示数据流异常信息。                 |
-| AVERR_TIMEOUT              | 5400104 | 表示系统或网络响应超时。             |
-| AVERR_SERVICE_DIED         | 5400105 | 表示服务进程死亡。                   |
-| AVERR_UNSUPPORT_FORMAT     | 5400106 | 表示不支持当前媒体资源的格式。       |
-| AVERR_AUDIO_INTERRUPTED    | 5400107 | 表示音频焦点被抢占                   |
+| 名称                                  | 值      | 说明                                 |
+| :------------------------------------ | ------- | ------------------------------------ |
+| AVERR_OK                              | 0       | 表示操作成功。                       |
+| AVERR_NO_PERMISSION                   | 201     | 表示无权限执行此操作。               |
+| AVERR_INVALID_PARAMETER               | 401     | 表示传入入参无效。                   |
+| AVERR_UNSUPPORT_CAPABILITY            | 801     | 表示当前版本不支持该API能力。        |
+| AVERR_NO_MEMORY                       | 5400101 | 表示系统内存不足或服务数量达到上限。 |
+| AVERR_OPERATE_NOT_PERMIT              | 5400102 | 表示当前状态不允许或无权执行此操作。 |
+| AVERR_IO                              | 5400103 | 表示数据流异常信息。                 |
+| AVERR_TIMEOUT                         | 5400104 | 表示系统或网络响应超时。             |
+| AVERR_SERVICE_DIED                    | 5400105 | 表示服务进程死亡。                   |
+| AVERR_UNSUPPORT_FORMAT                | 5400106 | 表示不支持当前媒体资源的格式。       |
+| AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | 表示音频焦点被抢占                   |
 
 ## MediaType<sup>8+</sup>
 
@@ -2691,7 +2691,7 @@ avRecorder.release().then(() => {
 
 ### getCurrentAudioCapturerInfo<sup>11+</sup>
 
-getCurrentAudioCapturerInfo(callback: AsyncCallback<audio.AudioCapturerChangeInfo>): void;
+getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeInfo>): void
 
 异步方式获取当前音频采集参数。通过注册回调函数获取返回值。
 
@@ -2701,9 +2701,9 @@ getCurrentAudioCapturerInfo(callback: AsyncCallback<audio.AudioCapturerChangeInf
 
 **参数**：
 
-| 参数名   | 类型                                         | 必填 | 说明                                 |
-| -------- | -------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<audio.AudioCapturerChangeInfo> | 是   | 异步获取当前音频采集参数的回调方法。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                 |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
+| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)> | 是   | 异步获取当前音频采集参数的回调方法。 |
 
 **错误码**：
 
@@ -2732,7 +2732,7 @@ avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.
 
 ### getCurrentAudioCapturerInfo<sup>11+</sup>
 
-getCurrentAudioCapturerInfo(): Promise<audio.AudioCapturerChangeInfo>;
+getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
 
 异步方式获取当前音频采集参数。通过Promise获取返回值。
 
@@ -2742,9 +2742,9 @@ getCurrentAudioCapturerInfo(): Promise<audio.AudioCapturerChangeInfo>;
 
 **返回值**：
 
-| 类型                                   | 说明                                              |
-| -------------------------------------- | ------------------------------------------------- |
-| Promise<audio.AudioCapturerChangeInfo> | 异步方式获取当前音频采集参数方法的Promise返回值。 |
+| 类型                                                         | 说明                                              |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| Promise\<[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)> | 异步方式获取当前音频采集参数方法的Promise返回值。 |
 
 **错误码**：
 
@@ -2771,21 +2771,21 @@ avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturer
 
 ### getAudioCapturerMaxAmplitude<sup>11+</sup>
 
-getAudioCapturerMaxAmplitude(callback: AsyncCallback<number>): void;
+getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
 
 异步方式获取当前音频最大振幅。通过注册回调函数获取返回值。
 
 在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
 
-获取大的音频最大振幅是两次调用之间的音频最大振幅。
+调用接口时，获取到的返回值是上一次获取最大振幅的时刻到当前这段区间内的音频最大振幅。即，如果在1s的时刻获取了一次最大振幅，在2s时再获取到的最大振幅时1-2s这个区间里面的最大值。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
 **参数**：
 
-| 参数名   | 类型                  | 必填 | 说明                                 |
-| -------- | --------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<number> | 是   | 异步获取当前音频最大振幅的回调方法。 |
+| 参数名   | 类型                   | 必填 | 说明                                 |
+| -------- | ---------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback\<number> | 是   | 异步获取当前音频最大振幅的回调方法。 |
 
 **错误码**：
 
@@ -2813,21 +2813,21 @@ avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) 
 
 ### getAudioCapturerMaxAmplitude<sup>11+</sup>
 
-getAudioCapturerMaxAmplitude(): Promise<number>;
+getAudioCapturerMaxAmplitude(): Promise\<number>
 
 异步方式获取当前音频最大振幅参数。通过Promise获取返回值。
 
 在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
 
-获取大的音频最大振幅是两次调用之间的音频最大振幅。
+调用接口时，获取到的返回值是上一次获取最大振幅的时刻到当前这段区间内的音频最大振幅。即，如果在1s的时刻获取了一次最大振幅，在2s时再获取到的最大振幅时1-2s这个区间里面的最大值。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值**：
 
-| 类型            | 说明                                              |
-| --------------- | ------------------------------------------------- |
-| Promise<number> | 异步方式获取当前音频最大振幅方法的Promise返回值。 |
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------- |
+| Promise\<number> | 异步方式获取当前音频最大振幅方法的Promise返回值。 |
 
 **错误码**：
 
@@ -2853,7 +2853,7 @@ avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
 
 ### getAvailableEncoder<sup>11+</sup>
 
-getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
+getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
 
 异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
 
@@ -2861,9 +2861,9 @@ getAvailableEncoder(callback: AsyncCallback<Array<EncoderInfo>>): void;
 
 **参数**：
 
-| 参数名   | 类型                                                | 必填 | 说明                                 |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<Array<[EncoderInfo](#encoderinfo11)>> | 是   | 异步获取可用的编码器参数的回调方法。 |
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback\<Array\<[EncoderInfo](#encoderinfo11)>> | 是   | 异步获取可用的编码器参数的回调方法。 |
 
 **错误码**：
 
@@ -2891,7 +2891,7 @@ avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => 
 
 ### getAvailableEncoder<sup>11+</sup>
 
-getAvailableEncoder(): Promise<Array<EncoderInfo>>;
+getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
 
 异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
 
@@ -2899,9 +2899,9 @@ getAvailableEncoder(): Promise<Array<EncoderInfo>>;
 
 **返回值**：
 
-| 类型                                          | 说明                                            |
-| --------------------------------------------- | ----------------------------------------------- |
-| Promise<Array<[EncoderInfo](#encoderinfo11)>> | 异步方式获取可用的编码参数方法的Promise返回值。 |
+| 类型                                            | 说明                                            |
+| ----------------------------------------------- | ----------------------------------------------- |
+| Promise\<Array\<[EncoderInfo](#encoderinfo11)>> | 异步方式获取可用的编码参数方法的Promise返回值。 |
 
 **错误码**：
 
