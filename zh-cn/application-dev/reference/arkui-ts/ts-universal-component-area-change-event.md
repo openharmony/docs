@@ -35,7 +35,9 @@ struct AreaExample {
   build() {
     Column() {
       Text(this.value)
-        .backgroundColor(Color.Green).margin(30).fontSize(20)
+        .backgroundColor(Color.Green)
+        .margin(30)
+        .fontSize(20)
         .onClick(() => {
           this.value = this.value + 'Text'
         })

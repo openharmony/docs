@@ -445,7 +445,7 @@ URL的无参构造函数。parseURL调用后返回一个URL对象，不单独使
 
 ### parseURL<sup>9+</sup>
 
-static parseURL(url : string, base?: string | URL): URL
+static parseURL(url: string, base?: string | URL): URL
 
 URL静态成员函数。
 

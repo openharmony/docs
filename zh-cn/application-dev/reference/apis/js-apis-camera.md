@@ -369,8 +369,6 @@ isCameraMuted(): boolean
 
 查询相机当前的禁用状态（禁用/未禁用）。
 
-在此之前，需要通过[isCameraMuteSupported](#iscameramutesupported)确认当前设备支持禁用相机。
-
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
