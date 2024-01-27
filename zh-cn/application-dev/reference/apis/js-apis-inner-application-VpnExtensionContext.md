@@ -25,9 +25,9 @@ import vpnExt from '@ohos.net.vpnExtension';
 let VpnConnection: vpnExt.VpnConnection;
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private vpnServerlp: String = 'xxx.xxx.x.x';
-  private tunlp: String = 'x.x.x.x';
-  private blockedAppName: String = 'xxxx';
+  private vpnServerIp: string = 'xxx.xxx.x.x';
+  private tunIp: string = 'x.x.x.x';
+  private blockedAppName: string = 'xxxx';
 
   onCreate(want: Want) {
     //this.context is VpnExtensionContext
