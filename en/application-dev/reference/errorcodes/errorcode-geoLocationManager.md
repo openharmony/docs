@@ -60,6 +60,8 @@ This error code is reported if the location service has failed, leading to a fai
 
 2. Positioning timed out because the network positioning service is abnormal.
 
+3. The system does not cache the location information. As a result, the app fails to obtain the previous location.
+
 **Solution**
 
 Initiate a positioning request again.

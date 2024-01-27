@@ -929,7 +929,7 @@ httpRequest.off("dataEnd");
 
 ### on("dataReceiveProgress")<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<\{ receiveSize: number, totalSize: number \}\>): void
+on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -943,7 +943,7 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataReceiveProgress**.|
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>- **receiveSize**: number of received bytes.<br>- **totalSize**: total number of bytes to be received.|
+| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -964,7 +964,7 @@ httpRequest.off("dataReceiveProgress");
 
 ### off("dataReceiveProgress")<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -978,7 +978,7 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | Yes  | Event type. The value is **dataReceiveProgress**.|
-| callback | Callback\<{ receiveSize: number, totalSize: number }\>   | No  | Callback used to return the result.                            |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | No  | Callback used to return the result.     |
 
 **Example**
 
@@ -999,7 +999,7 @@ httpRequest.off("dataReceiveProgress");
 
 ### on("dataSendProgress")<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<{ sendSize: number, totalSize: number }\>): void
+on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 
 Registers an observer for events indicating progress of sending HTTP requests.
 
@@ -1010,7 +1010,7 @@ Registers an observer for events indicating progress of sending HTTP requests.
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataSendProgress**.|
-| callback | AsyncCallback\<{ sendSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>- **sendSize**: number of sent bytes.<br>**totalSize**: total number of bytes to be sent.|
+| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1031,7 +1031,7 @@ httpRequest.off("dataSendProgress");
 
 ### off("dataSendProgress")<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<{ sendSize: number, totalSize: number }\>): void
+off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of sending HTTP requests.
 
@@ -1045,7 +1045,7 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | Yes  | Event type. The value is **dataSendProgress**.|
-| callback | Callback\<{ sendSize: number, totalSize: number }\>  | No| Callback used to return the result.|
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>  | No| Callback used to return the result.  |
 
 **Example**
 
@@ -1145,6 +1145,7 @@ Enumerates the response codes for an HTTP request.
 | ENTITY_TOO_LARGE  | 413  | "Request Entity Too Large." The server refuses to process a request because the request entity is larger than the server is able to process.           |
 | REQ_TOO_LONG      | 414  | "Request-URI Too Long." The Request-URI is too long for the server to process.             |
 | UNSUPPORTED_TYPE  | 415  | "Unsupported Media Type." The server is unable to process the media format in the request.                                   |
+| RANGE_NOT_SATISFIABLE | 416  | "Range Not Satisfiable." The server cannot serve the requested ranges.                                 |
 | INTERNAL_ERROR    | 500  | "Internal Server Error." The server encounters an unexpected error that prevents it from fulfilling the request.                              |
 | NOT_IMPLEMENTED   | 501  | "Not Implemented." The server does not support the function required to fulfill the request.                      |
 | BAD_GATEWAY       | 502  | "Bad Gateway." The server acting as a gateway or proxy receives an invalid response from the upstream server.|
@@ -1198,6 +1199,30 @@ Configures the timing for performance tracing, in ms.
 | responseHeaderTiming  | number | Yes  | Duration from the time when the [request](#request) is sent to the time when the header resolution is complete.|
 | responseBodyTiming  | number | Yes  | Duration from the time when the [request](#request) is sent to the time when the body resolution is complete.|
 | totalTiming  | number | Yes  | Duration from the time when the [request](#request) is sent to the time when a callback is returned to the application.|
+
+## DataReceiveProgressInfo<sup>11+</sup>
+
+Defines the data receiving progress information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+|  receiveSize        | number | Yes | Size of data that has been received, in bytes.          |
+| totalSize| number | Yes| Total size of data to be received, in bytes.|
+
+## DataSendProgressInfo<sup>11+</sup>
+
+Defines the data sending progress information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+### Attributes
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| sendSize        | number | Yes | Size of data to be sent, in bytes. |
+| totalSize | number | Yes| Total size of data to be sent, in bytes.|
 
 ## MultiFormData<sup>11+</sup>
 
@@ -1396,5 +1421,3 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
-
- <!--no_check--> 

@@ -3,14 +3,19 @@
 
 ## Overview
 
-Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by Neural Network Runtime to construct and compile models and perform inference and computing on acceleration hardware. Note: Currently, the APIs of Neural Network Runtime do not support multi-thread calling.
+Defines APIs for Neural Network Runtime. The AI inference framework uses the native APIs provided by the Neural Network Runtime to construct and build models.
 
-**Since:**
-9
+**NOTE**<br>Currently, the APIs of Neural Network Runtime do not support multi-thread calling.
 
-**Related Modules:**
+**File to include**: &lt;neural_network_runtime/neural_network_runtime_type.h&gt;
 
-[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**Library**: libneural_network_runtime.so
+
+**System capability**: \@Syscap SystemCapability.Ai.NeuralNetworkRuntime
+
+**Since**: 9
+
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary
@@ -18,36 +23,30 @@ Defines the Neural Network Runtime APIs. The AI inference framework uses the Nat
 
 ### Functions
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [OH_NNModel_Construct](_neural_nework_runtime.md#oh_nnmodel_construct) (void) | Creates a model instance of the [OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) type and uses other APIs provided by OH_NNModel to construct the model instance.  | 
-| [OH_NNModel_AddTensor](_neural_nework_runtime.md#oh_nnmodel_addtensor) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor) | Adds a tensor to a model instance.  | 
-| [OH_NNModel_SetTensorData](_neural_nework_runtime.md#oh_nnmodel_settensordata) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | Sets the tensor value.  | 
-| [OH_NNModel_AddOperation](_neural_nework_runtime.md#oh_nnmodel_addoperation) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, [OH_NN_OperationType](_neural_nework_runtime.md#oh_nn_operationtype) op, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*paramIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Adds an operator to a model instance.  | 
-| [OH_NNModel_SpecifyInputsAndOutputs](_neural_nework_runtime.md#oh_nnmodel_specifyinputsandoutputs) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Specifies the inputs and outputs of a model.  | 
-| [OH_NNModel_Finish](_neural_nework_runtime.md#oh_nnmodel_finish) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model) | Completes model composition.  | 
-| [OH_NNModel_Destroy](_neural_nework_runtime.md#oh_nnmodel_destroy) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*\*model) | Releases a model instance.  | 
-| [OH_NNModel_GetAvailableOperations](_neural_nework_runtime.md#oh_nnmodel_getavailableoperations) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, size_t deviceID, const bool \*\*isSupported, uint32_t \*opCount) | Queries whether the device supports operators in the model. The support status is indicated by the Boolean value.  | 
-| [OH_NNCompilation_Construct](_neural_nework_runtime.md#oh_nncompilation_construct) (const [OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model) | Creates a compilation instance of the [OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) type.  | 
-| [OH_NNCompilation_SetDevice](_neural_nework_runtime.md#oh_nncompilation_setdevice) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation, size_t deviceID) | Specifies the device for model compilation and computing.  | 
-| [OH_NNCompilation_SetCache](_neural_nework_runtime.md#oh_nncompilation_setcache) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation, const char \*cachePath, uint32_t version) | Set the cache directory and version of the compiled model.  | 
-| [OH_NNCompilation_SetPerformanceMode](_neural_nework_runtime.md#oh_nncompilation_setperformancemode) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation, [OH_NN_PerformanceMode](_neural_nework_runtime.md#oh_nn_performancemode) performanceMode) | Sets the performance mode for model computing.  | 
-| [OH_NNCompilation_SetPriority](_neural_nework_runtime.md#oh_nncompilation_setpriority) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation, [OH_NN_Priority](_neural_nework_runtime.md#oh_nn_priority) priority) | Sets the model computing priority.  | 
-| [OH_NNCompilation_EnableFloat16](_neural_nework_runtime.md#oh_nncompilation_enablefloat16) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation, bool enableFloat16) | Enables float16 for computing.  | 
-| [OH_NNCompilation_Build](_neural_nework_runtime.md#oh_nncompilation_build) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation) | Compiles a model.  | 
-| [OH_NNCompilation_Destroy](_neural_nework_runtime.md#oh_nncompilation_destroy) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*\*compilation) | Releases the **Compilation** object.  | 
-| [OH_NNExecutor_Construct](_neural_nework_runtime.md#oh_nnexecutor_construct) ([OH_NNCompilation](_neural_nework_runtime.md#oh_nncompilation) \*compilation) | [OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*<br/>Creates an executor instance of the [OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) type.  | 
-| [OH_NNExecutor_SetInput](_neural_nework_runtime.md#oh_nnexecutor_setinput) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const void \*dataBuffer, size_t length) | Sets the single input data for a model.  | 
-| [OH_NNExecutor_SetOutput](_neural_nework_runtime.md#oh_nnexecutor_setoutput) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, void \*dataBuffer, size_t length) | Sets the buffer for a single output of a model.  | 
-| [OH_NNExecutor_GetOutputShape](_neural_nework_runtime.md#oh_nnexecutor_getoutputshape) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, int32_t \*\*shape, uint32_t \*shapeLength) | Obtains the dimension information about the output tensor.  | 
-| [OH_NNExecutor_Run](_neural_nework_runtime.md#oh_nnexecutor_run) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor) | Performs inference.  | 
-| [OH_NNExecutor_AllocateInputMemory](_neural_nework_runtime.md#oh_nnexecutor_allocateinputmemory) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, size_t length) | Allocates shared memory to a single input on a device.  | 
-| [OH_NNExecutor_AllocateOutputMemory](_neural_nework_runtime.md#oh_nnexecutor_allocateoutputmemory) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, size_t length) | Allocates shared memory to a single output on a device.  | 
-| [OH_NNExecutor_DestroyInputMemory](_neural_nework_runtime.md#oh_nnexecutor_destroyinputmemory) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | Releases the input memory to which the [OH_NN_Memory](_o_h___n_n___memory.md) instance points.  | 
-| [OH_NNExecutor_DestroyOutputMemory](_neural_nework_runtime.md#oh_nnexecutor_destroyoutputmemory) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | Releases the output memory to which the [OH_NN_Memory](_o_h___n_n___memory.md) instance points.  | 
-| [OH_NNExecutor_SetInputWithMemory](_neural_nework_runtime.md#oh_nnexecutor_setinputwithmemory) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Specifies the hardware shared memory pointed to by the [OH_NN_Memory](_o_h___n_n___memory.md) instance as the shared memory used by a single input.  | 
-| [OH_NNExecutor_SetOutputWithMemory](_neural_nework_runtime.md#oh_nnexecutor_setoutputwithmemory) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Specifies the hardware shared memory pointed to by the [OH_NN_Memory](_o_h___n_n___memory.md) instance as the shared memory used by a single output.  | 
-| [OH_NNExecutor_Destroy](_neural_nework_runtime.md#oh_nnexecutor_destroy) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*\*executor) | Destroys an executor instance to release the memory occupied by the executor.  | 
-| [OH_NNDevice_GetAllDevicesID](_neural_nework_runtime.md#oh_nndevice_getalldevicesid) (const size_t \*\*allDevicesID, uint32_t \*deviceCount) | Obtains the ID of the device connected to Neural Network Runtime.  | 
-| [OH_NNDevice_GetName](_neural_nework_runtime.md#oh_nndevice_getname) (size_t deviceID, const char \*\*name) | Obtains the name of the specified device.  | 
-| [OH_NNDevice_GetType](_neural_nework_runtime.md#oh_nndevice_gettype) (size_t deviceID, [OH_NN_DeviceType](_neural_nework_runtime.md#oh_nn_devicetype) \*deviceType) | Obtains the type information of the specified device.  | 
+| \*[OH_NNQuantParam_Create](_neural_nework_runtime.md#oh_nnquantparam_create) () | Creates an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.|
+| [OH_NNQuantParam_SetScales](_neural_nework_runtime.md#oh_nnquantparam_setscales) ([NN_QuantParam](_neural_nework_runtime.md#nn_quantparam) \*quantParams, const double \*scales, size_t quantCount) | Sets the scaling coefficient for an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.|
+| [OH_NNQuantParam_SetZeroPoints](_neural_nework_runtime.md#oh_nnquantparam_setzeropoints) ([NN_QuantParam](_neural_nework_runtime.md#nn_quantparam) \*quantParams, const int32_t \*zeroPoints, size_t quantCount) | Sets the zero point for an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.|
+| [OH_NNQuantParam_SetNumBits](_neural_nework_runtime.md#oh_nnquantparam_setnumbits) ([NN_QuantParam](_neural_nework_runtime.md#nn_quantparam) \*quantParams, const uint32_t \*numBits, size_t quantCount) | Sets the number of quantization bits for an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.|
+| [OH_NNQuantParam_Destroy](_neural_nework_runtime.md#oh_nnquantparam_destroy) ([NN_QuantParam](_neural_nework_runtime.md#nn_quantparam) \*\*quantParams) | Destroys an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.|
+| \*[OH_NNModel_Construct](_neural_nework_runtime.md#oh_nnmodel_construct) (void) | Creates a model instance of the [OH_NNModel](_neural_network_runtime.md#oh_nnmodel) type and constructs a model instance by using the APIs provided by **OH_NNModel**.|
+| [OH_NNModel_AddTensorToModel](_neural_nework_runtime.md#oh_nnmodel_addtensortomodel) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, const [NN_TensorDesc](_neural_nework_runtime.md#nn_tensordesc) \*tensorDesc) | Adds a tensor to a model instance.|
+| [OH_NNModel_SetTensorData](_neural_nework_runtime.md#oh_nnmodel_settensordata) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | Sets the tensor value.|
+| [OH_NNModel_SetTensorQuantParams](_neural_nework_runtime.md#oh_nnmodel_settensorquantparams) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, uint32_t index, [NN_QuantParam](_neural_nework_runtime.md#nn_quantparam) \*quantParam) | Sets the quantization parameters of a tensor. For details, see [NN_QuantParam](_neural_network_runtime.md#nn_quantparam).|
+| [OH_NNModel_SetTensorType](_neural_nework_runtime.md#oh_nnmodel_settensortype) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, uint32_t index, [OH_NN_TensorType](_neural_nework_runtime.md#oh_nn_tensortype) tensorType) | Sets the tensor type. For details, see [OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype).|
+| [OH_NNModel_AddOperation](_neural_nework_runtime.md#oh_nnmodel_addoperation) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, [OH_NN_OperationType](_neural_nework_runtime.md#oh_nn_operationtype) op, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*paramIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Adds an operator to a model instance.|
+| [OH_NNModel_SpecifyInputsAndOutputs](_neural_nework_runtime.md#oh_nnmodel_specifyinputsandoutputs) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Sets an index value for the input and output tensors of a model.|
+| [OH_NNModel_Finish](_neural_nework_runtime.md#oh_nnmodel_finish) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model) | Completes model composition.|
+| [OH_NNModel_Destroy](_neural_nework_runtime.md#oh_nnmodel_destroy) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*\*model) | Destroys a model instance.|
+| [OH_NNModel_GetAvailableOperations](_neural_nework_runtime.md#oh_nnmodel_getavailableoperations) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, size_t deviceID, const bool \*\*isSupported, uint32_t \*opCount) | Checks whether all operators in a model are supported by the device. The result is indicated by a Boolean value.|
+| [OH_NNModel_AddTensor](_neural_nework_runtime.md#oh_nnmodel_addtensordeprecated) ([OH_NNModel](_neural_nework_runtime.md#oh_nnmodel) \*model, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor) | Adds a tensor to a model instance.|
+| [OH_NNExecutor_SetInput](_neural_nework_runtime.md#oh_nnexecutor_setinputdeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const void \*dataBuffer, size_t length) | Sets the data for a single model input.|
+| [OH_NNExecutor_SetOutput](_neural_nework_runtime.md#oh_nnexecutor_setoutputdeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, void \*dataBuffer, size_t length) | Sets the memory for a single model output.|
+| [OH_NNExecutor_Run](_neural_nework_runtime.md#oh_nnexecutor_rundeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor) | Executes model inference.|
+| \*[OH_NNExecutor_AllocateInputMemory](_neural_nework_runtime.md#oh_nnexecutor_allocateinputmemorydeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, size_t length) | Applies for shared memory for a single model input on the device.|
+| \*[OH_NNExecutor_AllocateOutputMemory](_neural_nework_runtime.md#oh_nnexecutor_allocateoutputmemorydeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, size_t length) | Applies for shared memory for a single model output on the device.|
+| [OH_NNExecutor_DestroyInputMemory](_neural_nework_runtime.md#oh_nnexecutor_destroyinputmemorydeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | Releases the input memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance.|
+| [OH_NNExecutor_DestroyOutputMemory](_neural_nework_runtime.md#oh_nnexecutor_destroyoutputmemorydeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | Releases the output memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance.|
+| [OH_NNExecutor_SetInputWithMemory](_neural_nework_runtime.md#oh_nnexecutor_setinputwithmemorydeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Specifies the shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for a single model input.|
+| [OH_NNExecutor_SetOutputWithMemory](_neural_nework_runtime.md#oh_nnexecutor_setoutputwithmemorydeprecated) ([OH_NNExecutor](_neural_nework_runtime.md#oh_nnexecutor) \*executor, uint32_t outputIndex, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Specifies the shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for a single model output.|
