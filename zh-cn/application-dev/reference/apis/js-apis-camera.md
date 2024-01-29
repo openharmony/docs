@@ -2288,8 +2288,10 @@ on(type: 'sketchStatusChanged', callback: AsyncCallback\<SketchStatusData\>): vo
 **示例：**
 
 ```ts
-function callback(errorCode: number, data: camera.SketchStatusData): void {
-  console.info(`sketch errorCode is ${errorCode}, data is ${JSON.stringify(data)}`);
+import { BusinessError } from '@ohos.base';
+
+function callback(error: BusinessError, data: camera.SketchStatusData): void {
+  console.info(`sketch errorCode is ${error.code}, data is ${JSON.stringify(data)}`);
 }
 
 function registerSketchStatusChanged(previewOutput: camera.PreviewOutput): void {
@@ -2840,6 +2842,7 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 function callback(err: BusinessError, photo: camera.Photo): void {
   let mainImage: image.Image = photo.main;
@@ -2869,6 +2872,7 @@ off(type: 'photoAvailable', callback?: AsyncCallback\<Photo\>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 function callback(err: BusinessError, photo: camera.Photo): void {
   let mainImage: image.Image = photo.main;
@@ -4266,15 +4270,6 @@ isMacroSupported(): boolean
 | ---------- | ----------------------------- |
 |   boolean  | 返回是否支持微距能力。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103         |  Session not config.                      |
-| 202             |  Not System Application.                  |
-
 **示例：**
 
 ```ts
@@ -4312,7 +4307,7 @@ enableMacro(enabled: boolean): void
 **示例：**
 
 ```ts
-function enableMacro(photoSession: camera.PhotoSession): boolean {
+function enableMacro(photoSession: camera.PhotoSession): void {
   let isSupported: boolean = photoSession.isMacroSupported();
   if (isSupported) {
     photoSession.enableMacro(true);
