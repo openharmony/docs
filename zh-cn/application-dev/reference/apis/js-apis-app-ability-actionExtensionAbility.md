@@ -102,7 +102,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 onDestroy(): void | Promise&lt;void&gt;
 
-ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回调，执行资源清理等操作。
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -111,7 +111,7 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 | 类型                                  | 说明                            |
 | ------------------------------------- | ------------------------------- |
-| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回值或者以Promise形式返回。 |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回结果或无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -123,58 +123,58 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ActionExtAbility。
 
-2. 在ActionExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ActionExtAbility.ets。
+2. 在actionextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ActionExtAbility.ets。
 
     ```text
     ├── ets
-    │ ├── ActionExtAbility
+    │ ├── actionextability
     │ │   ├── ActionExtAbility.ets
     └
     ```
 
 3. ActionExtAbility.ets文件中，增加导入ActionExtensionAbility的依赖包，自定义类继承ActionExtensionAbility并实现生命周期回调。
 
-  ```ts
-  import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+    ```ts
+    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+    import Want from '@ohos.app.ability.Want';
+    import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-  const TAG: string = "[ActionExtAbility]";
+    const TAG: string = "[ActionExtAbility]";
 
-  export default class ActionExtAbility extends ActionExtensionAbility {
-    onCreate() {
-      console.info(TAG, `onCreate`);
-    }
+    export default class ActionExtAbility extends ActionExtensionAbility {
+      onCreate() {
+        console.info(TAG, `onCreate`);
+      }
 
-    onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-      if (want.parameters) {
-        let obj: Record<string, UIExtensionContentSession | object> = {
-          'session': session,
-          'messages': want.parameters.shareMessages
+      onSessionCreate(want: Want, session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+        if (want.parameters) {
+          let obj: Record<string, UIExtensionContentSession | object> = {
+            'session': session,
+            'messages': want.parameters.shareMessages
+          }
+          let storage: LocalStorage = new LocalStorage(obj);
+          session.loadContent('pages/Index', storage);
         }
-        let storage: LocalStorage = new LocalStorage(obj);
-        session.loadContent('pages/Index', storage);
+      }
+
+      onForeground() {
+        console.info(TAG, `ononForeground`);
+      }
+
+      onBackground() {
+        console.info(TAG, `onBackground`);
+      }
+
+      onSessionDestroy(session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionDestroy`);
+      }
+
+      onDestroy() {
+        console.info(TAG, `onDestroy`);
       }
     }
-
-    onForeground() {
-      console.info(TAG, `ononForeground`);
-    }
-
-    onBackground() {
-      console.info(TAG, `onBackground`);
-    }
-
-    onSessionDestroy(session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionDestroy`);
-    }
-
-    onDestroy() {
-      console.info(TAG, `onDestroy`);
-    }
-  }
-  ```
+    ```
 
 4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ActionExtensionAbility，type标签需要设置为“action”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
@@ -189,7 +189,7 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
            "description": "action",
            "type": "action",
            "exported": true,
-           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ets"
+           "srcEntry": "./ets/actionextability/ActionExtAbility.ets"
          }
        ]
      }
