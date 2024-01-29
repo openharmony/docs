@@ -15,7 +15,7 @@ The Network Sharing module allows you to share your device's Internet connection
 
 ## **Constraints**
 
-- Programming language: C++ and JS
+- Programming language: JS
 - System: Linux kernel
 - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 

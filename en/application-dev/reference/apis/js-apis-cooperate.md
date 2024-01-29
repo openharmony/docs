@@ -1,12 +1,14 @@
-# @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)
+# @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)
 
 The **inputDeviceCooperate** module implements screen hopping for two or more networked devices to share the keyboard and mouse for collaborative operations.
 
 > **NOTE**
 >
->   - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The APIs of this module are no longer maintained since API version 10. It is recommended that you use [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md).
+> 
+>- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - The APIs provided by this module are system APIs.
+>- The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -278,7 +280,7 @@ import { BusinessError } from '@ohos.base'
 
 let deviceDescriptor = "descriptor";
 try {
-  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: boolean) => {
+  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
     if (error) {
       console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -322,7 +324,7 @@ import { BusinessError } from '@ohos.base'
 
 let deviceDescriptor = "descriptor";
 try {
-  inputDeviceCooperate.getState(deviceDescriptor).then((data: boolean) => {
+  inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -354,8 +356,8 @@ Enables listening for screen hopping status change events.
 ```ts
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
-function callback(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+function callback(msg: object) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {
@@ -388,8 +390,8 @@ Disables listening for screen hopping status change events.
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
 // Unregister a single callback.
-function callbackOn(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+function callbackOn(msg: object) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 function callbackOff() {
@@ -407,8 +409,8 @@ try {
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
 // Unregister all callbacks.
-function callback(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+function callback(msg: object) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {
