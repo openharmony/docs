@@ -114,7 +114,7 @@ try {
 }
 ```
 
-## deviceManager.bindDeviceDriver<sup>11+</sup>
+## deviceManager.bindDeviceDriver<sup>10+</sup>
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
   callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
 
@@ -217,7 +217,7 @@ try {
   console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.bindDeviceDriver<sup>11+</sup>
+## deviceManager.bindDeviceDriver<sup>10+</sup>
 
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
@@ -392,7 +392,7 @@ USB设备信息。
 | ---- | --- | ------------- |
 | USB  | 1   | USB总线类型。 |
 
-## RemoteDeviceDriver<sup>11+</sup>
+## RemoteDeviceDriver<sup>10+</sup>
 
 远程设备驱动。
 
@@ -400,5 +400,5 @@ USB设备信息。
 
 | 名称      | 类型   | 必填 | 说明                |
 | --------- | ------ | ---- | ------------------- |
-| deviceId<sup>11+</sup>  | number | 是   | 设备ID。  |
-| remote<sup>11+</sup> | [rpc.IRemoteObject](./js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
+| deviceId<sup>10+</sup>  | number | 是   | 设备ID。  |
+| remote<sup>10+</sup> | [rpc.IRemoteObject](./js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
