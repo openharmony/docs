@@ -3,7 +3,7 @@
 
 When running animations, the UI is also interacting with users in real time. It must respond immediately to changes in user behavior. For example, if the user swipes up to exit in the midst of an application launch process, the UI should immediately transit from the startup animation to the exit animation, rather than finishing the startup animation before exiting. In the scenario where the animation triggered when the user lifts their fingers off the screen, the initial velocity of the animation must inherit the gesture speed, so as to avoid pauses caused by speed disconnection. For the preceding and similar scenarios, the system provides efficient APIs for smoothing between animations and between animations and gestures.
 
-Assume that there is a running animation for an animatable property. If the end value of the property changes due to an operation on the UI, just change the property value in the **animateTo** closure or change the input parameter value of the **animation** API to create an animation. The system then automatically connects the previous animation with the current animation – the created animation.
+Assume that there is a running animation for an animatable property. If the end value of the property changes due to an operation on the UI, just change the property value in the [animateTo](../reference/arkui-ts/ts-explicit-animation.md) closure or change the input parameter value of the [animation](../reference/arkui-ts/ts-animatorproperty.md) API to create an animation. The system then automatically connects the previous animation with the current animation – the created animation.
 
 
 ```ts
