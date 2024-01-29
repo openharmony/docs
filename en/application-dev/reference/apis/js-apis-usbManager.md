@@ -108,7 +108,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Error codes**
 
-For details about the error codes, see [USB Error Codes](../errorcodes/errorcode-usb.md).
+For details about the error codes, see [USB Service Error Codes](../errorcodes/errorcode-usb.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -222,7 +222,7 @@ addRight(bundleName: string, deviceName: string): boolean
 
 Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
-[requestRight](#usbrequestright) triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
+[usb.requestRight](#usbrequestright) triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
 
 **System API**: This is a system API.
 
@@ -698,7 +698,7 @@ Sets the current USB function list in Device mode.
 
 **Error codes**
 
-For details about the error codes, see [USB Error Codes](../errorcodes/errorcode-usb.md).
+For details about the error codes, see [USB Service Error Codes](../errorcodes/errorcode-usb.md).
 
 | ID| Error Message                                          |
 | -------- | ---------------------------------------------------- |
@@ -758,7 +758,7 @@ Obtains the list of all physical USB ports.
 
 | Type                         | Description                 |
 | ----------------------------- | --------------------- |
-| [Array\<USBPort\>](#usbport) | List of physical USB ports.|
+| Array&lt;[USBPort](#usbport)&gt; | List of physical USB ports.|
 
 **Example**
 

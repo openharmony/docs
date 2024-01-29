@@ -509,7 +509,7 @@ Defines the network configuration for the Ethernet connection.
 | route        | string                  | Yes| Route of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | gateway      | string                  | Yes| Gateway of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | netMask      | string                  | Yes| Subnet mask of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
-| dnsServers   | string                  | Yes| DNS server addresses of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
+| dnsServers   | string                  | Yes| DNS server addresses of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
 | httpProxy<sup>10+</sup> | [HttpProxy](js-apis-net-connection.md#httpproxy10) | No| HTTP proxy of the Ethernet connection. By default, no proxy is configured.|
 
 ## IPSetMode<sup>9+</sup>
@@ -520,7 +520,9 @@ Defines the configuration mode of the Ethernet connection.
 
 **System capability**: SystemCapability.Communication.NetManager.Ethernet
 
-| Name                 | Value  | Description                  |
-| ------------------------ | ---- | ---------------------- |
-| STATIC | 0 | Static configuration.|
-| DHCP   | 1 | Dynamic configuration.|
+| Name                 | Value  | Description                       |
+| --------------------- | ---- | -------------------------- |
+| STATIC                | 0    | Static network configuration for an Ethernet connection.|
+| DHCP                  | 1    | Dynamic network configuration for an Ethernet connection.|
+| LAN_STATIC<sup>11+</sup>| 2    | Static network configuration for a LAN connection.   |
+| LAN_DHCP<sup>11+</sup>  | 3    | Dynamic network configuration for a LAN connection.   |

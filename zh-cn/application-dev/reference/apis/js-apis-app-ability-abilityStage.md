@@ -88,7 +88,7 @@ onNewProcessRequest(want: Want): string
 
 | 类型 | 说明 | 
 | -------- | -------- |
-| string | 返回一个进程字符串ID，如果之前此ID的进程已被创建，就让ability在此进程中运行，否则创建新的进程。 | 
+| string | 返回一个由开发者自行决定的进程字符串标识，如果之前此标识对应的进程已被创建，就让ability在此进程中运行，否则创建新的进程。 | 
 
 **示例：**
     
@@ -127,7 +127,7 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyAbilityStage extends AbilityStage {
     onConfigurationUpdate(config: Configuration) {
-        console.log('onConfigurationUpdate, language: ${config.language}');
+        console.log(`onConfigurationUpdate, language: ${config.language}`);
     }
 }
 ```

@@ -133,7 +133,7 @@ getDefaultNetSync(): NetHandle
 
 | 类型      | 说明                               |
 | --------- | ---------------------------------- |
-| NetHandle | 以同步方式返回默认激活的数据网络。 |
+| [NetHandle](#nethandle) | 以同步方式返回默认激活的数据网络。 |
 
 **错误码：**
 
@@ -2033,8 +2033,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// 订阅网络能力变化事件。调用register后，才能接收到此事件通知
+netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -2165,8 +2165,8 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+// 订阅网络不可用事件。调用register后，才能接收到此事件通知
+netCon.on('netUnavailable', () => {
   console.log(JSON.stringify(data));
 });
 

@@ -4,7 +4,7 @@ You can use the custom gesture judgment APIs to specify whether to respond to sp
 
 >  **NOTE**
 >
->  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## onGestureJudgeBegin

@@ -1,7 +1,7 @@
 # Drawing
 
 
-The **Drawing** module provides functions for 2D graphics rendering, text drawing, and image display.
+The **Drawing** module provides the functions for 2D graphics rendering, text drawing, and image display.
 
 
 It provides the 2D drawing capability.
@@ -23,15 +23,15 @@ It provides the 2D drawing capability.
 
 | Name                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [drawing_bitmap.h](drawing__bitmap_8h.md)                    | Declares functions related to the **bitmap** object in the drawing module.<br>File to include: <native_drawing/drawing_bitmap.h> <br>Library: libnative_drawing.so                         |
-| [drawing_brush.h](drawing__brush_8h.md)                      | Declares functions related to the **brush** object in the drawing module.<br>File to include: <native_drawing/drawing_brush.h> <br>Library: libnative_drawing.so                      |
-| [drawing_canvas.h](drawing__canvas_8h.md)                    | Declares functions related to the **canvas** object in the drawing module.<br>File to include: <native_drawing/drawing_canvas.h> <br>Library: libnative_drawing.so                         |
-| [drawing_color.h](drawing__color_8h.md)                      | Declares functions related to the **color** object in the drawing module.<br>File to include: <native_drawing/drawing_color.h> <br>Library: libnative_drawing.so                          |
+| [drawing_bitmap.h](drawing__bitmap_8h.md)                    | Declares the functions related to the bitmap in the drawing module.<br>File to include: <native_drawing/drawing_bitmap.h> <br>Library: libnative_drawing.so                         |
+| [drawing_brush.h](drawing__brush_8h.md)                      | Declares the functions related to the brush in the drawing module.<br>File to include: <native_drawing/drawing_brush.h> <br>Library: libnative_drawing.so                      |
+| [drawing_canvas.h](drawing__canvas_8h.md)                    | Declares the functions related to the canvas in the drawing module.<br>File to include: <native_drawing/drawing_canvas.h> <br>Library: libnative_drawing.so                         |
+| [drawing_color.h](drawing__color_8h.md)                      | Declares the functions related to the color in the drawing module.<br>File to include: <native_drawing/drawing_color.h> <br>Library: libnative_drawing.so                          |
 | [drawing_font_collection.h](drawing__font__collection_8h.md) | Declares functions related to **FontCollection** in the drawing module.<br>File to include: <native_drawing/drawing_font_collection.h><br>Library: libnative_drawing.so                 |
 | [drawing_path.h](drawing__path_8h.md)                        | Declares functions related to the **path** object in the drawing module.<br>File to include: <native_drawing/drawing_path.h><br>Library: libnative_drawing.so                    |
-| [drawing_pen.h](drawing__pen_8h.md)                          | Declares functions related to the **pen** object in the drawing module.<br>File to include: <native_drawing/drawing_pen.h><br>Library: libnative_drawing.so                          |
+| [drawing_pen.h](drawing__pen_8h.md)                          | Declares the functions related to the pen in the drawing module.<br>File to include: <native_drawing/drawing_pen.h><br>Library: libnative_drawing.so                          |
 | [drawing_text_declaration.h](drawing__text__declaration_8h.md) | Declares the struct related to text in 2D drawing.<br>File to include: <native_drawing/drawing_text_declaration.h><br>Library: libnative_drawing.so                      |
-| [drawing_text_typography.h](drawing__text__typography_8h.md) | Declares functions related to **typography** in the drawing module.<br>File to include: <native_drawing/drawing_text_typography.h><br>Library: libnative_drawing.so                              |
+| [drawing_text_typography.h](drawing__text__typography_8h.md) | Declares the functions related to the typography in the drawing module.<br>File to include: <native_drawing/drawing_text_typography.h><br>Library: libnative_drawing.so                              |
 | [drawing_types.h](drawing__types_8h.md)                      | Declares the data types for drawing 2D graphics, including the canvas, brush, pen, bitmap, and path.<br>File to include: <native_drawing/drawing_types.h><br>Library: libnative_drawing.so|
 
 
@@ -80,7 +80,7 @@ It provides the 2D drawing capability.
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void)   | Creates an **OH_Drawing_Bitmap** object.                                          |
 | [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Destroys an **OH_Drawing_Bitmap** object and reclaims the memory occupied by the object.                          |
-| [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | Initializes the width and height of an **OH_Drawing_Bitmap** object and sets its pixel format.      |
+| [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | Initializes the width and height of a bitmap and sets the pixel format for the bitmap.      |
 | [OH_Drawing_BitmapGetWidth](#oh_drawing_bitmapgetwidth) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the width of a bitmap.                                        |
 | [OH_Drawing_BitmapGetHeight](#oh_drawing_bitmapgetheight) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the height of a bitmap.                                        |
 | [OH_Drawing_BitmapGetPixels](#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the pixel address of a bitmap. You can use this address to obtain the pixel data of the bitmap.|
@@ -414,7 +414,7 @@ Enumerates the font weights.
 | FONT_WEIGHT_100 | Thin.          |
 | FONT_WEIGHT_200 | Extra-light.   |
 | FONT_WEIGHT_300 | Light.         |
-| FONT_WEIGHT_400 | .Normal/Regular.|
+| FONT_WEIGHT_400 | Normal/Regular.|
 | FONT_WEIGHT_500 | Medium.        |
 | FONT_WEIGHT_600 | Semi-bold.     |
 | FONT_WEIGHT_700 | Bold.          |
@@ -2444,6 +2444,10 @@ Returns the ideographic baseline.
 
 ### OH_Drawing_TypographyGetLongestLine()
 
+```
+double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
+```
+
 **Description**
 
 Obtains the longest line.
@@ -2634,7 +2638,7 @@ Lays out the typography.
 | Name                  | Description                               |
 | --------------------- | ----------------------------------- |
 | OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object.|
-| double                | Maximum text width to set.                       |
+| double                | Maximum text width.                       |
 
 **Since**
 

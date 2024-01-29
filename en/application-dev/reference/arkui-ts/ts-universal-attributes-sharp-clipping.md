@@ -6,14 +6,37 @@ Shape clipping changes the visible portion of a component through clipping or ma
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## clip
 
-## Attributes
+clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute)
 
+Clips the component based on the given shape.
 
-| Name   | Type                                    | Description                                 |
-| -----| ------------------------------------------ | ------------------------------------ |
-| clip | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) \| boolean | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge outline of the parent container.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| mask | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md)\| [ProgressMask](##progressmask10)  | Mask of the specified shape to add to the component.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the **ProgressMask** parameter.|
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | boolean \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge outline of the parent container.<br>Default value: **false**|
+
+## mask
+
+mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute | ProgressMask)
+
+Adds a mask of the specified shape to the component.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                            |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
+| value  | [ProgressMask](##progressmask10)<sup>10+</sup> \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Mask of the specified shape to add to the component.|
 
 ## ProgressMask<sup>10+</sup>
 

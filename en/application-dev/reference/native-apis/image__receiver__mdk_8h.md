@@ -3,15 +3,11 @@
 
 ## Overview
 
-The **image_receiver_mdk.h** file declares the APIs for obtaining image data from the native layer.
+The **image_receiver_mdk.h** file declares the APIs used to obtain image data from the native layer.
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

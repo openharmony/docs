@@ -63,7 +63,7 @@ struct MyComponent {
 }
 ```
 
-Preferrable: Directly use the **transition** API to animate the opacity when the **\<Text>** component appears or disappears.
+Preferable: Directly use the **transition** API to animate the opacity when the **\<Text>** component appears or disappears.
 
 ```typescript
 @Entry
@@ -96,74 +96,89 @@ struct MyComponent {
 ### Using Transform Properties for Component Layout Changes
 You can change the layout of a component in either of the following methods:
 
-- Modify [layout properties](../ui/arkts-attribute-animation-overview.md), which will cause a UI re-render. Common layout properties include **width**, **height**, and **layoutWeight**.
+- Modify [layout properties](../ui/arkts-attribute-animation-overview.md), which will cause a UI re-layout. Common layout properties include **width**, **height**, and **layoutWeight**.
 - Modify [transform properties](../reference/arkui-ts/ts-universal-attributes-transformation.md), which will cause the component to translate, rotate, or scale.
 
-As modifying transform properties does not involve the time-consuming UI re-render, it is more time efficient than modifying layout properties, and is therefore recommended. The following examples use the preceding methods to scale up a component by 10 times.
+As modifying transform properties does not involve the time-consuming UI re-layout, it is more time efficient than modifying layout properties, and is therefore recommended. The following examples use the preceding methods to scale up a component by 10 times.
 
-Avoid: Scale up a component by 10 times by modifying its **width** and **height** properties.
+Avoid: Scale up a component by modifying its **width** and **height** properties.
 
 ```typescript
-    @State textWidth: number = 10;
-    @State textHeight: number = 10;
-    
-    Text()
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .width(this.textWidth)
-      .height(this.textHeight)
+@Entry
+@Component
+struct MyComponent {
+  @State textWidth: number = 10;
+  @State textHeight: number = 10;
 
-    Button ('Layout Properties')
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .margin({ top: 30 })
-      .borderRadius(30)
-      .padding(10)
-      .onClick(() => {
-        animateTo({duration:1000}, () => {
-          this.textWidth = 100;
-          this.textHeight = 100;
+  build() {
+    Column() {
+      Text()
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .width(this.textWidth)
+        .height(this.textHeight)
+
+      Button ('Layout Properties')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .margin({ top: 30 })
+        .borderRadius(30)
+        .padding(10)
+        .onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.textWidth = 100;
+            this.textHeight = 100;
+          })
         })
-      })
+    }
+}
+}
 ```
 
 Because animating the location and size properties of a component involves new UI measurement and layout, performance overhead is high. If a component's location or size changes continuously, as in a pinch gesture, using the **scale** property is a better choice for the animation, as in the example below.
 
-Preferrable: Scale up a component by 10 times by modifying the **scale** property.
+Preferable: Scale up a component by modifying the **scale** property.
 
 ```typescript
-    @State textScaleX: number = 1;
-    @State textScaleY: number = 1;
-    
-    Text()
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .width(10)
-      .height(10)
-      .scale({ x: this.textScaleX, y: this.textScaleY })
-      .margin({ top: 100 })
+@Entry
+@Component
+struct MyComponent {
+  @State textScaleX: number = 1;
+  @State textScaleY: number = 1;
 
-    Button ('Transform Properties')
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .margin({ top: 60 })
-      .borderRadius(30)
-      .padding(10)
-      .onClick(() => {
-        animateTo({ duration: 1000 }, () => {
-        this.textScaleX = 10;
-        this.textScaleY = 10;
-      })
-    })
+  build() {
+    Column() {
+      Text()
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .width(10)
+        .height(10)
+        .scale({ x: this.textScaleX, y: this.textScaleY })
+        .margin({ top: 100 })
+
+      Button ('Transform Properties')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .margin({ top: 60 })
+        .borderRadius(30)
+        .padding(10)
+        .onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.textScaleX = 10;
+            this.textScaleY = 10;
+          })
+        })
+    }
+}
+}
 ```
 
 ### Using Same animateTo for Properties with Same Animation Settings
 Each time **animateTo** is called, a before-after comparison is required. Less **animateTo** calls can contribute to fewer component re-renders and thereby higher performance.
-
 In light of this, if properties share the same animation settings, consider placing them in the same animation closure.
 
 Avoid: Place state variables with the same animation settings in different animation closures.
@@ -172,12 +187,12 @@ Avoid: Place state variables with the same animation settings in different anima
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
+  @State textWidth: number = 200;
   @State color: Color = Color.Red;
   
   func1() {
     animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-      this.width = (this.width === 100 ? 200 : 100);
+      this.textWidth = (this.textWidth === 100 ? 200 : 100);
     });
   }
   
@@ -190,7 +205,7 @@ struct MyComponent {
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
@@ -205,18 +220,18 @@ struct MyComponent {
 }
 ```
 
-Preferrable: Combine animations with the same animation settings into one animation closure.
+Preferable: Combine animations with the same animation settings into one animation closure.
 
 ```typescript
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
+  @State textWidth: number = 200;
   @State color: Color = Color.Red;
   
   func() {
     animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-      this.width = (this.width === 100 ? 200 : 100);
+      this.textWidth = (this.textWidth === 100 ? 200 : 100);
       this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
     });
   }
@@ -224,7 +239,7 @@ struct MyComponent {
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
@@ -252,24 +267,24 @@ The following code updates other states of a component between two **animateTo**
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
-  @State height: number = 50;
+  @State textWidth: number = 200;
+  @State textHeight: number = 50;
   @State color: Color = Color.Red;
   
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
-        .height(this.height)
+        .height(this.textHeight)
         .onClick(() => {
-          this.width = 100;
-          // h is a non-animatable property.
-          this.height = 100;
+          this.textWidth = 100;
+          // textHeight is a non-animatable property.
+          this.textHeight = 100;
           animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-            this.width = 200;
+            this.textWidth = 200;
           });
           this.color = Color.Yellow;
           animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
@@ -283,34 +298,34 @@ struct MyComponent {
 }
 ```
 
-Before the first **animateTo** call, the **width** property is modified. Therefore, the **\<Row>** component needs to be re-rendered. In the animation closure of the first **animateTo** call, the **width** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again and compared to generate a width and height animation. Before the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered four times for its property changes.
-In this example, the state variable **h** irrelevant to the animation is also modified. If the state change is not needed, it should be avoided to reduce redundant re-renders.
+Before the first **animateTo** call, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered four times for its property changes.
+In this example, the state variable **textHeight** irrelevant to the animation is also modified. If the state change is not needed, it should be avoided to reduce redundant re-renders.
 
-Preferrable: Update state variables in a unified manner.
+Preferable: Update state variables in a unified manner.
 
 ![Update State Variables in a Unified Manner 1](figures/unify_animateto.png) or ![Update State Variables in a Unified Manner 2](figures/unify_animateto_three_step.png)
 
-Preferrable 1: Use the original state before **animateTo** to drive the animation from the original state to the target state. In this way, abrupt, unnatural changes can be avoided at the beginning of the animation.
+Preferable 1: Use the original state before **animateTo** to drive the animation from the original state to the target state. In this way, abrupt, unnatural changes can be avoided at the beginning of the animation.
 
 ```typescript
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 100;
-  @State height: number = 50;
+  @State textWidth: number = 100;
+  @State textHeight: number = 50;
   @State color: Color = Color.Yellow;
   
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
-        .height(this.height)
+        .height(this.textHeight)
         .onClick(() => {
           animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-            this.width = (this.width === 100 ? 200 : 100);
+            this.textWidth = (this.textWidth === 100 ? 200 : 100);
           });
           animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
@@ -323,36 +338,36 @@ struct MyComponent {
 }
 ```
 
-Before the first **animateTo** call, no dirty state variable or dirty node needs to be updated, and no re-render is required. In the animation closure of the first **animateTo** call, the **width** property is modified. Therefore, the **\<Row>** component needs to be re-rendered and compared to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered twice for its property changes.
+Before the first **animateTo** call, no dirty state variable or dirty node needs to be updated, and no re-render is required. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered twice for its property changes.
 
-Preferrable 2: Explicitly specify the initial values of all properties that require animation before **animateTo**, update the values to the node, and then animate the properties.
+Preferable 2: Explicitly specify the initial values of all properties that require animation before **animateTo**, update the values to the node, and then animate the properties.
 
 ```typescript
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
-  @State height: number = 50;
+  @State textWidth: number = 200;
+  @State textHeight: number = 50;
   @State color: Color = Color.Red;
   
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
-        .height(this.height)
+        .height(this.textHeight)
         .onClick(() => {
-          this.width = 100;
+          this.textWidth = 100;
           this.color = Color.Yellow;
           animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-            this.width = 200;
+            this.textWidth = 200;
           });
           animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = Color.Red;
           });
-          this.height = 100;
+          this.textHeight = 100;
         })
     }
     .width('100%')
@@ -361,4 +376,4 @@ struct MyComponent {
 }
 ```
 
-Before the first animateTo call, the **width** and **color** properties are modified. Therefore, the **\<Row>** component needs to be re-rendered. In the animation closure of the first **animateTo** call, the **width** property is modified. Therefore, the **\<Row>** component needs to be re-rendered and compared to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered three times for its property changes.
+Before the first **animateTo** call, the **textWidth** and **color** properties are modified. Therefore, the **\<Row>** component needs to be re-rendered. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered three times for its property changes.

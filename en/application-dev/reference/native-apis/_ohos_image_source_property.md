@@ -5,15 +5,11 @@
 
 The **OhosImageSourceProperty** struct defines the property string (in key-value format) of an image source. It is used in [OH_ImageSource_GetImageProperty](image.md#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](image.md#oh_imagesource_modifyimageproperty).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

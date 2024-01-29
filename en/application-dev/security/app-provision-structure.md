@@ -72,23 +72,23 @@ An example of the **HarmonyAppProvision** file is as follows:
 | development-certificate  | Information about the [debug certificate](hapsigntool-guidelines.md).| Number   | Yes if **type** is set to **debug** and no otherwise  | No  |
 | distribution-certificate  | Information about the [release certificate](hapsigntool-guidelines.md).| Number   | Yes if **type** is set to **release** and no otherwise| No  |
 | bundle-name  | Bundle name of the application.| String   | Yes| No  |
-| apl  | [Ability privilege level (APL)](accesstoken-overview.md) of your application. The value can be **normal**, **system_basic**, or **system_core**.| String   | Yes| No  |
+| apl  | [Ability Privilege Level (APL)](AccessToken/access-token-overview.md) of the application. The predefined APLs includes normal, system_basic, and system_core.| String   | Yes| No  |
 | app-feature  | Type of your application. The value can be **hos_system_app** (system application) or **hos_normal_app** (normal application). Only system applications are allowed to call system APIs. If a normal application calls a system API, the call cannot be successful or the application may run abnormally.| String   | Yes| No  |
 
 
 ### Internal Structure of the acls Object
-The **acls** object contains the [ACL](accesstoken-overview.md) configured for your application. It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
+The **acls** object contains the permissions authorized via the [ACL](AccessToken/access-token-overview.md). It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| allowed-acls | [ACLs](../security/accesstoken-overview.md) configured for your application.| String array   | No| No  |
+| allowed-acls | Permissions authorized via the [ACL](AccessToken/access-token-overview.md).| String array   | No| No  |
 
 ### Internal Structure of the permissions Object
 The **permissions** object contains restricted permissions required for your application. Different from the ACLs set in the **acls** object, these permissions need user authorization during the running of your application. It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| restricted-permissions | [Restricted permissions](accesstoken-overview.md) required for your application.| String array   | No| No  |
+| restricted-permissions | [Restricted sensitive permissions](AccessToken/access-token-overview.md) that can be used.| String array   | No| No  |
 
 ### Internal Structure of the debug-info Object
 The **debug-info** object contains debugging information of your application, mainly device management and control information.
@@ -102,7 +102,7 @@ The **debug-info** object contains debugging information of your application, ma
 
 When a development project is created, the default application type is **hos_normal_app** and the default APL level is **normal**.
 
-To enable the application to use system APIs, you need to change the **app-feature** field to **hos_system_app** (system application). To apply for high-level permissions, you need to modify fields such as **apl** and **acl**. For details, see [Access Control Overview](accesstoken-overview.md).
+To enable the application to use system APIs, you need to change the **app-feature** field to **hos_system_app** (system application). To request high-level permissions, you need to modify fields such as **apl** and **acl**. For details, see [Access Control Overview](AccessToken/access-token-overview.md).
 
 
 To modify the HarmonyAppProvision configuration file, perform the following steps:

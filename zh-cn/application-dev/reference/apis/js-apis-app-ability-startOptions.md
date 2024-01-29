@@ -15,7 +15,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,7 +30,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
   import StartOptions from '@ohos.app.ability.StartOptions';
   import { BusinessError } from '@ohos.base';
 
@@ -62,21 +63,5 @@ import StartOptions from '@ohos.app.ability.StartOptions';
         let message = (err as BusinessError).message;
         console.error(`startAbility failed, code is ${code}, message is ${message}`);
       }
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
-      let id = missions[0].missionId;
-
-      let startOptions: StartOptions = {
-          windowMode : 101,
-          displayId: 0
-      };
-      missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log('moveMissionToFront is called');
-      });
-    });
-  } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message}`);
   }
   ```

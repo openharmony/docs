@@ -1,14 +1,18 @@
 # Using Neon Instructions
 
-ARM Neon is an advanced Single Instruction Multiple Data (SIMD) architecture extension for ARM processors. It supports parallel processing of multiple pieces of data by using one instruction. It is widely used in fields such as multimedia encoding/decoding and 2D/3D graphics to improve execution performance.
 
-The Neon extension is used since ARMv7. Currently, it is set as default in Cortex-A7, Cortex-A12, and Cortex-A15 processors, but is optional in other ARMv7 Cortex-A series processors. For details, see [Introducing NEON Development Article](https://developer.arm.com/documentation/dht0002/a/Introducing-NEON/What-is-SIMD-/ARM-SIMD-instructions?lang=en).
+Arm Neon is an advanced Single Instruction Multiple Data (SIMD) architecture extension for Arm processors. It supports parallel processing of multiple pieces of data by using one instruction. It is widely used in fields such as multimedia encoding/decoding and 2D/3D graphics to improve execution performance.
 
-The ARMv8-A CPU integrates the Neon extension by default, which is supported in both AArch64 and AArch32. For details, see [Learn the architecture - Introducing Neon](https://developer.arm.com/documentation/102474/0100/Fundamentals-of-Armv8-Neon-technology).
+
+The Neon extension is used since ARMv7. Currently, it is set as a default in Cortex-A7, Cortex-A12, and Cortex-A15 processors, but is optional in other ARMv7 Cortex-A series processors. For details, see [Introducing NEON Development Article](https://developer.arm.com/documentation/dht0002/a/Introducing-NEON/What-is-SIMD-/ARM-SIMD-instructions?lang=en).
+
+
+The ARMv8-A processors integrate the Neon extension by default, which is supported in both AArch64 and AArch32. For details, see [Learn the architecture - Introducing Neon](https://developer.arm.com/documentation/102474/0100/Fundamentals-of-Armv8-Neon-technology).
+
 
 ## Architecture Support in OpenHarmony
 
-In OpenHarmony, the Neon extension is enabled by default in arm64-v8a ABIs. It is disabled by default in armeabi-v7a ABIs, in order to support as many ARMv7-A devices as possible.
+In OpenHarmony, the Neon extension is enabled by default in the arm64-v8a ABI. It is disabled by default in the armeabi-v7a ABI, in order to support as many ARMv7-A devices as possible.
 
 In the LLVM toolchain of the OpenHarmony SDK, the armeabi-v7a ABI supports precompiled runtime libraries with many configurations. The directory structure is as follows. **native-root** is the root directory where the native package of the NDK is decompressed.
 
@@ -32,22 +36,25 @@ In the LLVM toolchain of the OpenHarmony SDK, the armeabi-v7a ABI supports preco
 
 **hard**, **soft**, and **softfp** are float-abi. If they are not specified, **softfp** is used by default. **neon-vfpv4** is the parameter type specified by **-mfpu**. The LLVM toolchain selects binary libraries that depend on different architecture configurations based on the compilation parameters.
 
+
 ## How to Use
+
 The Neon extension can be used in the following ways:
 
 - Use the Auto-Vectorization feature of LLVM. The compiler generates instructions. This feature is enabled by default and can be disabled by running **-fno-vectorize**. For details, see [Auto-Vectorization in LLVM](https://llvm.org/docs/Vectorizers.html).
 
-- Use the Neon intrinsics library. You can directly operate low-level Neon instructions.
+- Use the Neon intrinsics library, which gives you direct, low-level access to Neon instructions.
 
-- Manually write Neon assembly instructions.
+- Write Neon assembly instructions.
 
 For details, see [Arm Neon](https://developer.arm.com/Architectures/Neon).
 
-## Examples
+
+## Example
 
 The following example describes how to use Neon intrinsics in an armeabi-v7a OpenHarmony C++ project.
 
-1. Include the **arm_neon.h** header file in the source code. The Neon intrinsics feature is closely related to the CPU architecture. Therefore, you are advised to include this header file in macros such as **cpu_features_macros**.
+1. Include the **arm_neon.h** header file in the source code. The Neon intrinsics are closely related to the CPU architecture. Therefore, you are advised to include this header file in macros such as **cpu_features_macros**.
 
    ```c++
    #include "cpu_features_macros.h"
@@ -57,7 +64,7 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
       for (nn = 0; nn < width; nn++)
       {
            int mm, sum = 0;
-           int32x4_t sum_vec = vdupq_n_s32(0); // Neon instruction function
+           int32x4_t sum_vec = vdupq_n_s32(0); // Neon intrinsics
            for(mm = 0; mm < kernelSize/4; mm++)
            {
                int16x4_t  kernel_vec = vld1_s16(kernel + mm*4);
@@ -92,4 +99,6 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
    endif ()
    ```
 
-Now you can use Neon intrinsics in the project.
+Now you can use Neon intrinsics in your project.
+
+ <!--no_check--> 

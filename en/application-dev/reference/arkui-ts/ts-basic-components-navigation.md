@@ -39,12 +39,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                | Type                                    | Description                                      |
 | ---------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| title                              | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> \| [NavigationCommonTitle](#navigationcommontitle)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle)<sup>9+</sup> | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
+| title                              | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)\| [NavigationCommonTitle](#navigationcommontitle)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle)<sup>9+</sup> | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
 | subTitle<sup>(deprecated)</sup>    | string                                   | Subtitle of the page. If this attribute is not set, no subtitle is displayed. This attribute is deprecated since API version 9. You are advised to use **title** instead.|
-| menus                              | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu items in the upper right corner of the page. If this attribute is not set, no menu item is displayed. When the value type is Array<[NavigationMenuItem](#navigationmenuitem)&gt;, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, with excess icons (if any) placed under the automatically generated **More** icon.|
+| menus                              | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Menu items in the upper right corner of the page. If this attribute is not set, no menu item is displayed. When the value type is Array<[NavigationMenuItem](#navigationmenuitem)&gt;, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, with excess icons (if any) placed under the automatically generated **More** icon.|
 | titleMode                          | [NavigationTitleMode](#navigationtitlemode) | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
-| toolBar<sup>(deprecated)</sup>     | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: all items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).<br>This API is deprecated since API version 10. You are advised to use **toolbarConfiguration** instead.|
-| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10)<sup>10+</sup>&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**NOTE**<br>When the value type is Array<[ToolbarItem](#ToolbarItem>, the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array<[NavigationMenuItem](#navigationmenuitem)> of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
+| toolBar<sup>(deprecated)</sup>     | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8) | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: all items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).<br>This API is deprecated since API version 10. You are advised to use **toolbarConfiguration** instead.|
+| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**NOTE**<br>When the value type is Array<[ToolbarItem](#ToolbarItem>, the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array<[NavigationMenuItem](#navigationmenuitem)> of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
 | hideToolBar                        | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
 | hideTitleBar                       | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar.|
 | hideBackButton                     | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Show the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button works only when **titleMode** is set to **NavigationTitleMode.Mini**.|
@@ -52,10 +52,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.<br>**NOTE**<br>Available options are **Stack**, **Split**, and **Auto**.|
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar.<br>Default value: **false**|
-| navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
-| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar (valid in dual-column mode).<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
-| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | Minimum width of the navigation bar content area (valid in dual-column mode).<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
+| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar. If this parameter is set to **true**, the navigation bar, including the title bar, content area, and toolbar, is hidden. In this case, if the navigation destination page is in the navigation stack, it is moved to the top of the stack and displayed. Otherwise, a blank page is displayed. From API version 9 to API version 10, this attribute takes effect only in dual-column mode. Since API version 11, this attribute takes effect in single-column, dual-column, and auto modes.<br>Default value: **false**|
+| navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | Builder for a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
+| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar (valid in dual-column mode).<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If custom values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
+| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | Minimum width of the navigation bar content area (valid in dual-column mode).<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If custom values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
 
 ## Events
 
@@ -71,7 +71,7 @@ Implements a navigation stack.
 
 ### pushPath<sup>10+</sup>
 
-pushPath(info: NavPathInfo): void
+pushPath(info: NavPathInfo, animated?: boolean): void
 
 Pushes the navigation destination page specified by **info** to the navigation stack.
 
@@ -80,10 +80,11 @@ Pushes the navigation destination page specified by **info** to the navigation s
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | Yes   | Information about the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### pushPathByName<sup>10+</sup>
 
-pushPathByName(name: string, param: unknown): void
+pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 Pushes the navigation destination page specified by **name**, with the data specified by **param**, to the navigation stack.
 
@@ -93,10 +94,11 @@ Pushes the navigation destination page specified by **name**, with the data spec
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
 | param | unknown | Yes   | Detailed parameters of the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### replacePath<sup>11+</sup>
 
-replacePath(info: NavPathInfo): void
+replacePath(info: NavPathInfo, animated?: boolean): void
 
 Replaces the top of the navigation stack with the page specified by **info**.
 
@@ -105,10 +107,11 @@ Replaces the top of the navigation stack with the page specified by **info**.
 | Name  | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | Yes   | Parameters of the page to replace the top of the navigation stack.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
-### replacePathByName <sup>11+</sup>
+### replacePathByName<sup>11+</sup>
 
-replacePathByName(name: string, param: Object): void
+replacePathByName(name: string, param: Object, animated?: boolean): void
 
 Replaces the top of the navigation stack with the page specified by **name**.
 
@@ -118,12 +121,19 @@ Replaces the top of the navigation stack with the page specified by **name**.
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
 | param | Object | Yes   | Detailed parameters of the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### pop<sup>10+</sup>
 
-pop(): NavPathInfo | undefined
+pop(animated?: boolean): NavPathInfo | undefined
 
 Pops the top element out of the navigation stack.
+
+**Parameters**
+
+| Name  | Type                           | Mandatory  | Description                  |
+| ---- | ----------------------------- | ---- | -------------------- |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 **Return value**
 
@@ -134,7 +144,7 @@ Pops the top element out of the navigation stack.
 
 ### popToName<sup>10+</sup>
 
-popToName(name: string): number
+popToName(name: string, animated?: boolean): number
 
 Returns the navigation stack to the first navigation destination page that matches the value of **name**.
 
@@ -143,6 +153,7 @@ Returns the navigation stack to the first navigation destination page that match
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
 | name | string | Yes   | Name of the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 **Return value**
 
@@ -152,7 +163,7 @@ Returns the navigation stack to the first navigation destination page that match
 
 ### popToIndex<sup>10+</sup>
 
-popToIndex(index: number): void
+popToIndex(index: number, animated?: boolean): void
 
 Returns the navigation stack to the page specified by **index**.
 
@@ -161,10 +172,11 @@ Returns the navigation stack to the page specified by **index**.
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | Yes   | Index of the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### moveToTop<sup>10+</sup>
 
-moveToTop(name: string): number
+moveToTop(name: string, animated?: boolean): number
 
 Moves to the top of the navigation stack the first navigation destination page that matches the value of **name**.
 
@@ -173,6 +185,7 @@ Moves to the top of the navigation stack the first navigation destination page t
 | Name  | Type    | Mandatory  | Description                 |
 | ---- | ------ | ---- | ------------------- |
 | name | string | Yes   | Name of the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 **Return value**
 
@@ -182,7 +195,7 @@ Moves to the top of the navigation stack the first navigation destination page t
 
 ### moveIndexToTop<sup>10+</sup>
 
-moveIndexToTop(index: number): void
+moveIndexToTop(index: number, animated?: boolean): void
 
 Moves to the top of the navigation stack the navigation destination page that matches the value of **index**.
 
@@ -191,12 +204,19 @@ Moves to the top of the navigation stack the navigation destination page that ma
 | Name   | Type    | Mandatory  | Description                    |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | Yes   | Index of the navigation destination page.|
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### clear<sup>10+</sup>
 
-clear(): void
+clear(animated?: boolean): void
 
 Clears the navigation stack.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                    |
+| ----- | ------ | ---- | ---------------------- |
+| animated<sup>11+</sup> | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### getAllPathName<sup>10+</sup>
 
@@ -277,9 +297,21 @@ Obtains the stack size.
 | ------ | ------ |
 | number | Stack size.|
 
+### disableAnimation<sup>11+</sup>
+
+disableAnimation(value: boolean): void
+
+Disables or enables the transition animation in the **\<Navigation>** component.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                    |
+| ----- | ------ | ---- | ---------------------- |
+| value | boolean | No   | Whether to disable the transition animation.<br>Default value: **false**|
+
 ## NavPathInfo<sup>10+</sup>
 
-Describes the navigation page information.
+Provides the navigation page information.
 
 ### constructor
 
@@ -296,7 +328,7 @@ constructor(name: string, param: unknown)
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br>API version 10: invisible. |
+| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br> API version 10: invisible. |
 | icon   | string        | No   | Icon path of the menu item.|
 | action | () =&gt; void | No   | Callback invoked when the menu item is selected.  |
 
@@ -360,8 +392,8 @@ constructor(name: string, param: unknown)
 | Name | Description                                                        |
 | ----- | ------------------------------------------------------------ |
 | Stack | The navigation bar and content area are displayed independently of each other, which are equivalent to two pages.                    |
-| Split | The navigation bar and content area are displayed in different columns.<br>The values of **navBarWidthRange** are represented by [minNavBarWidth,maxNavBarWidth].<br>1. When the value of **navBarWidth** is beyond the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **navBarWidth** < Value of **minNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) > Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **maxNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) < Value of **minNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) is within the value range specified by **navBarWidthRange**: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>2. When the value of **navBarWidth** is within the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width: The value of **navBarWidth** is the set value. <br>3. When the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the navigation bar is shrunk until its width reaches the value defined by **minNavBarWidth**; if the component size is further decreased, the content area is further shrunk until it disappears, and then navigation bar is shrunk.<br>4. When the navigation bar is set to a fixed size and the component size is continuously decreased, the navigation bar is shrunk.<br>5. If only **navBarWidth** is set, the width of the navigation bar is fixed at the value of **navBarWidth**, and the divider cannot be dragged.|
-| Auto  | In API version 9 and earlier versions: When the window width is greater than or equal to 520 vp, the Split mode is used. In other cases, the Stack mode is used.<br>In API version 10 and later versions: When the window width is greater than or equal to 600 vp, the Split mode is used. In other cases, the Stack mode is used. 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp).|
+| Split | The navigation bar and content area are displayed in different columns.<br>The values of **navBarWidthRange** are represented by [minNavBarWidth,maxNavBarWidth].<br>1. When the value of **navBarWidth** is beyond the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **navBarWidth** < Value of **minNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] > Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **maxNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] < Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) is within the value range specified by **navBarWidthRange**: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>2. When the value of **navBarWidth** is within the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width: The value of **navBarWidth** is the set value. <br>3. When the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the navigation bar is shrunk until its width reaches the value defined by **minNavBarWidth**; if the component size is further decreased, the content area is further shrunk until it disappears, and then navigation bar is shrunk.<br>4. When the navigation bar is set to a fixed size and the component size is continuously decreased, the navigation bar is shrunk.<br>5. If only **navBarWidth** is set, the width of the navigation bar is fixed at the value of **navBarWidth**, and the divider cannot be dragged.|
+| Auto  | In API version 9 and earlier versions: If the window width is greater than or equal to 520 vp, the Split mode is used; otherwise, the Stack mode is used.<br>In API version 10 and later versions: If the window width is greater than or equal to 600 vp, the Split mode is used; otherwise, the Stack mode is used. 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp).|
 
 ## TitleHeight
 
@@ -445,7 +477,7 @@ struct NavigationExample {
                 .fontSize(16)
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: number) => item.toString())
         }
         .height(324)
@@ -486,9 +518,9 @@ struct NavigationExample {
 ### Example 2
 ```ts
 // Index.ets
-import { pageOneTmp } from './pageOne'
-import { pageTwoTmp } from './pageTwo'
-import { pages }  from './pageTwo'
+import { PageOneTmp } from './PageOne'
+import { pageTwoTmp } from './PageTwo'
+import { Pages }  from './PageTwo'
 
 @Entry
 @Component
@@ -498,9 +530,9 @@ struct NavigationExample {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneTmp()
+      PageOneTmp()
     } else if (name === 'pageTwo') {
-      pageTwoTmp({ names: name, values: this.pageInfos } as pages)
+      pageTwoTmp({ names: name, values: this.pageInfos } as Pages)
     }
   }
 
@@ -520,12 +552,12 @@ struct NavigationExample {
 }
 ```
 ```ts
-// pageOne.ets
-class tmpClass{
+// PageOne.ets
+class TmpClass{
   count:number=10
 }
 @Component
-export struct pageOneTmp {
+export struct PageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
 
   build() {
@@ -536,7 +568,7 @@ export struct pageOneTmp {
           .height(40)
           .margin(20)
           .onClick(() => {
-            let tmp = new tmpClass()
+            let tmp = new TmpClass()
             this.pageInfos.pushPathByName('pageTwo', tmp) // Push the navigation destination page specified by name to the navigation stack, with the data specified by param passed in.
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
@@ -593,23 +625,22 @@ export struct pageOneTmp {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfos.pop() // Pop the top element out of the navigation stack.
-      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
     })
   }
 }
 ```
 ```ts
-// pageTwo.ets
-
-export class pages {
+// PageTwo.ets
+export class Pages {
   names: string = ""
   values: NavPathStack | null = null
 }
 
 @Builder
-export function pageTwoTmp(info: pages) {
+export function pageTwoTmp(info: Pages) {
   NavDestination() {
     Column() {
       Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })

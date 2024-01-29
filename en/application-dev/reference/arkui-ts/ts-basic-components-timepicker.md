@@ -66,7 +66,7 @@ struct TimePickerExample {
   build() {
     Column() {
       Button ('Switch Time Format')
-        .margin({ top: 30 })
+        .margin(30)
         .onClick(() => {
           this.isMilitaryTime = !this.isMilitaryTime
         })

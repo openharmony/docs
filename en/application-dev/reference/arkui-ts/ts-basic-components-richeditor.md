@@ -11,7 +11,7 @@ The **\<RichEditor>** is a component that supports interactive text editing and 
 
 ## Child Components
 
-This component can contain the [\<Span>](ts-basic-components-span.md) and [\<ImageSpan>](ts-basic-components-imagespan.md) child components.
+Not supported
 
 
 ## APIs
@@ -35,11 +35,14 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 >
 >  The **align** attribute supports only the start, center, and end options.
 
-| Name                     | Type                                                    | Description                                                        |
-| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.|
-| bindSelectionMenu | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br>options?: [SelectionMenuOptions](#selectionmenuoptions11)<br>} | Custom context menu on text selection.<br> Default value: {<br>  spanType: RichEditorSpanType:TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>}|
-| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
+| Name                              | Type                                    | Description                                      |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| customKeyboard                   | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
+| bindSelectionMenu                | {<br>spantype: [RichEditorSpanType](#richeditorspantype),<br>content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br>options?: [SelectionMenuOptions](#selectionmenuoptions11)<br>} | Custom context menu on text selection.<br> Default value: {<br>  spanType: RichEditorSpanType.TEXT<br>responseType: ResponseType.LongPress<br>Other: null<br>} |
+| copyOptions                      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed for text content.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is not set to **CopyOptions.None**, long-pressing the text content displays the context menu. If a custom context menu is defined through **bindSelectionMenu** or other approaches, it will be displayed.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed.|
+| enableDataDetector<sup>11+</sup> | boolean                                  | Whether to enable text recognition.<br>Default value: **false**<br>**NOTE**<br>The recognized entity is in the following style settings:<br>fontColor: Color.Blue<br>decoration: {<br>type: TextDecorationType.Underline,<br>color: Color.Blue<br>}<br>For this API to work, the target device must provide the text recognition capability.<br>When **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities are recognized by default.<br>When **copyOptions** is set to **CopyOptions.None**, this API does not take effect.<br>This API does not work for the node text of **addBuilderSpan**.|
+| dataDetectorConfig<sup>11+</sup> | {<br>types: [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br>onDetectResultUpdate: (callback:(result: string) =&gt; void)<br>} | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} <br>**NOTE**<br>This API must be used together with **enableDataDetector**. It takes effect only when **enableDataDetector** is set to **true**.<br>**types**: types of entities that can be recognized from text. Values **null** and **[]** indicate that all types of entities can be recognized.<br> **onDetectResultUpdate**: callback invoked when text recognition succeeds.<br>**result**: text recognition result, in JSON format.|
+
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -230,7 +233,20 @@ Adds an image span.
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-Adds a builder span. This type of span cannot be obtained through [getSpans](#getspans).
+> **NOTE**
+>
+> - This API adds a builder span to take up space in the layout. It calls the system **measure** method to calculate the actual length, width, and position.
+> - You can use [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) to set the index of the builder in the **\<RichEditor>** component (with one character as the unit).
+> - The builder span is not focusable or draggable. It supports some universal attributes and can take up space in the layout or be deleted as an image span. Its length equals a character.
+> - The builder span does not allow for custom menus set through [bindSelectionMenu](#attributes).
+> - The information about the builder span cannot be obtained through [getSpans](#getspans), [getSelection](#getselection11), [onSelect](#events), or [aboutToDelete](#event).
+> - The builder span cannot be updated using [updateSpanStyle](#updatespanstyle) or [updateParagraphStyle](#updateparagraphstyle11).
+> - Copying or pasting the builder span does not take effect.
+> - The layout constraints of the builder span are passed in from the **\<RichEditor>** component. If the size of the outermost component in the builder span is not set, the size of the **\<RichEditor>** is used as the value of **maxSize**.
+> - The gesture event mechanism of the builder span is the same as the universal gesture event mechanism. If transparent transmission is not set in the builder, only the child components in the builder respond.
+
+The following universal attributes are supported: [size](ts-universal-attributes-size.md#size), [padding](ts-universal-attributes-size.md#padding), [margin](ts-universal-attributes-size.md#margin), [aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio), [borderStyle](ts-universal-attributes-border.md#borderstyle), [borderWidth](ts-universal-attributes-border.md#borderwidth), [borderColor](ts-universal-attributes-border.md#bordercolor), [borderRadius](ts-universal-attributes-border.md#borderradius), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9), [opacity](ts-universal-attributes-opacity.md), [blur](ts-universal-attributes-image-effect.md#blur), [backdropBlur](ts-universal-attributes-image-effect.md#backdropblur), [shadow](ts-universal-attributes-image-effect.md#shadow), [grayscale](ts-universal-attributes-image-effect.md#grayscale), [brightness](ts-universal-attributes-image-effect.md#brightness), [saturate](ts-universal-attributes-image-effect.md#saturate),
+[contrast](ts-universal-attributes-image-effect.md#contrast), [invert](ts-universal-attributes-image-effect.md#invert), [sepia](ts-universal-attributes-image-effect.md#sepia), [hueRotate](ts-universal-attributes-image-effect.md#huerotate), [colorBlend](ts-universal-attributes-image-effect.md#colorblend8), [sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect10), [lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect10), [pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect10), [linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur10), [clip](ts-universal-attributes-sharp-clipping.md#clip), [mask](ts-universal-attributes-sharp-clipping.md#mask), [foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle), [accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup), [accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext11), [accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription), [accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)
 
 **Parameters**
 
@@ -462,7 +478,7 @@ Describes the options for adding a text span.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | No  | Position of the text span to be added. If this parameter is left empty, the text span will be added to the end of all text strings.|
+| offset                       | number                                   | No   | Position of the text span to be added. If this parameter is left empty, the span will be added to the end of all text strings.<br>If the value is less than 0, the span will be placed at the beginning of the text strings. If the value is greater than the text string length, the span is placed at the end of the text strings.|
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | No  | Style of the text span to be added. If this parameter is left empty, the default text style will be used.|
 | paragraphStyle<sup>11+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)   | No  | Paragraph style.|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No  | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.|
@@ -488,7 +504,7 @@ Defines the options for adding an image span.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | No  | Position of the image span to be added. If this parameter is left empty, the image span will be added to the end of all text strings.|
+| offset                | number                                   | No   | Position of the image span to be added. If this parameter is left empty, the span will be added to the end of all text strings.<br>If the value is less than 0, the span will be placed at the beginning of the text strings. If the value is greater than the text string length, the span is placed at the end of the text strings.|
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | No  | Image style. If this parameter is left empty, the default image style will be used.|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No  | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.|
 
@@ -522,12 +538,12 @@ Provides the span range information.
 
 ## SelectionMenuOptions<sup>11+</sup>
 
-Provides the span range information.
+Provides the selection range information.
 
 | Name| Type| Mandatory| Description                              |
-| ------ | -------- | ---- | -------------------------------------- |
-| onAppear | ?(() => void) | No| Callback invoked when the custom selection menu is displayed.|
-| onDisappear | ?(() => void) | No| Callback invoked when the custom selection menu is closed.|
+| ----------- | ------------- | ---- | ------------- |
+| onAppear    | ?(() => void) | No   | Callback invoked when the custom context menu on selection is displayed.|
+| onDisappear | ?(() => void) | No   | Callback invoked when the custom context menu on selection is closed.|
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1639,7 +1655,7 @@ struct Index {
         .draggable(false)
 
       Column({ space: 5 }) {
-        Button ("Align left").onClick () => {
+        Button ("Align left").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Start,
@@ -1655,7 +1671,7 @@ struct Index {
           })
         })
 
-        Button ("Center").onClick ((). => {
+        Button ("Center").onClick (() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Center,
@@ -1699,12 +1715,12 @@ struct Index {
 import font from '@ohos.font'
 const canvasWidth = 1000
 const canvasHeight = 100
-const Indentation = 10
+const Indentation = 40
 class LeadingMarginCreator {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight);
-  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings);
-  public static instance: LeadingMarginCreator = new LeadingMarginCreator();
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
 
   public genStrMark(fontSize: number, str: string): PixelMap {
     this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
@@ -1983,3 +1999,358 @@ struct Index {
 ```
 
 ![TextshadowExample](figures/rich_editor_textshadow.png)
+
+### Example 9
+``` ts
+@Builder
+function placeholderBuilder2() {
+  Row({ space: 2 }) {
+    Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+    Text('okokokok').fontSize(10)
+  }.width('20%').height(50).padding(10).backgroundColor(Color.Red)
+}
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  option: RichEditorOptions = { controller: this.controller };
+  private start: number = 2;
+  private end: number = 4;
+  @State message: string = "[-1, -1]"
+  @State content: string = ""
+  private my_offset: number | undefined = undefined
+  private my_builder: CustomBuilder = undefined
+
+  @Builder
+  placeholderBuilder() {
+    Row({ space: 2 }) {
+      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+      Text('Custom Popup').fontSize(10)
+    }.width(100).height(50).padding(5)
+  }
+
+  @Builder
+  placeholderBuilder3() {
+    Text("hello").padding('20').borderWidth(1).width('100%')
+  }
+
+  @Builder
+  placeholderBuilder4() {
+    Column() {
+      Column({ space: 5 }) {
+        Text('direction:Row').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.Row }) { // The child components are arranged in the same direction as the main axis runs along the rows.
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+        }
+        .height(70)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('direction:RowReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.RowReverse }) { // The child components are arranged opposite to the Row direction.
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+        }
+        .height(70)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('direction:Column').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.Column }) { // The child components are arranged in the same direction as the main axis runs down the columns.
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+        }
+        .height(160)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('direction:ColumnReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.ColumnReverse }) { // The child components are arranged opposite to the Column direction.
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+        }
+        .height(160)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option 1" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "Menu option 2" })
+        .enabled(false)
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Text("selection range:").width("100%")
+        Text() {
+          Span(this.message)
+        }.width("100%")
+
+        Text("selection content:").width("100%")
+        Text() {
+          Span(this.content)
+        }.width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+
+      Row() {
+        Button ("Get Span Info").onClick () => {
+          console.info('getSpans='+JSON.stringify(this.controller.getSpans({ start:1, end:5 })))
+          console.info('getParagraphs='+JSON.stringify(this.controller.getParagraphs({ start:1, end:5 })))
+          this.content = ""
+          this.controller.getSpans({
+            start: this.start,
+            end: this.end
+          }).forEach(item => {
+            if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+              if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
+                console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " + (item as RichEditorImageSpanResult).imageStyle[0] + ", " + (item as RichEditorImageSpanResult).imageStyle[1])
+              } else {
+                console.info("image span " + (item as RichEditorImageSpanResult).valueResourceStr + ", index : " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range: " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " + (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " +
+                  (item as RichEditorImageSpanResult).imageStyle.size[0] + ", " + (item as RichEditorImageSpanResult).imageStyle.size[1])
+              }
+            } else {
+              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += "\n"
+              console.info("text span: " + (item as RichEditorTextSpanResult).value)
+            }
+          })
+        })
+        Button ("Get Selection").onClick () => {
+          this.content = "";
+          let select = this.controller.getSelection()
+          console.info("selection start " + select.selection[0] + " end " + select.selection[1])
+          select.spans.forEach(item => {
+            if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+              if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
+                console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " + (item as RichEditorImageSpanResult).imageStyle[0] + ", " + (item as RichEditorImageSpanResult).imageStyle[1])
+              } else {
+                console.info("image span " + (item as RichEditorImageSpanResult).valueResourceStr + ", index : " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range: " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " + (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " +
+                  (item as RichEditorImageSpanResult).imageStyle.size[0] + ", " + (item as RichEditorImageSpanResult).imageStyle.size[1])
+              }
+            } else {
+              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += "\n"
+              console.info("text span: " + (item as RichEditorTextSpanResult).value)
+            }
+          })
+        })
+        Button("Delete Selection").onClick(() => {
+          this.controller.deleteSpans({
+            start: this.start,
+            end: this.end
+          })
+        })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+
+      Column() {
+        RichEditor(this.option)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["57px", "57px"]
+                }
+              })
+          })
+          .onSelect((value: RichEditorSelection) => {
+            this.start = value.selection[0];
+            this.end = value.selection[1];
+            this.message = "[" + this.start + ", " + this.end + "]"
+            console.info("onSelect="+JSON.stringify(value))
+          })
+          .aboutToIMEInput((value: RichEditorInsertValue) => {
+            console.log("---------------------- aboutToIMEInput --------------------")
+            console.info("aboutToIMEInput="+JSON.stringify(value))
+            console.log("insertOffset:" + value.insertOffset)
+            console.log("insertValue:" + value.insertValue)
+            return true;
+          })
+          .onIMEInputComplete((value: RichEditorTextSpanResult) => {
+            console.log("---------------------- onIMEInputComplete --------------------")
+            console.info("onIMEInputComplete="+JSON.stringify(value))
+            console.log("spanIndex:" + value.spanPosition.spanIndex)
+            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]")
+            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]")
+            console.log("value:" + value.value)
+          })
+          .aboutToDelete((value: RichEditorDeleteValue) => {
+            value.richEditorDeleteSpans.forEach(item => {
+              console.log("---------------------- item --------------------")
+              console.info("spanIndex=" + item.spanPosition.spanIndex)
+              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
+              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
+              if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
+                  console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " + (item as RichEditorImageSpanResult).imageStyle[0] + ", " + (item as RichEditorImageSpanResult).imageStyle[1])
+                } else {
+                  console.info("image span " + (item as RichEditorImageSpanResult).valueResourceStr + ", index : " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range: " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " + (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " +
+                  (item as RichEditorImageSpanResult).imageStyle.size[0] + ", " + (item as RichEditorImageSpanResult).imageStyle.size[1])
+                }
+              } else {
+                console.info("delete text: " + (item as RichEditorTextSpanResult).value)
+              }
+            })
+            return true;
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("30%")
+
+        Button("add span")
+          .onClick(() => {
+            let num = this.controller.addBuilderSpan(this.my_builder, { offset: this.my_offset })
+            console.info('addBuilderSpan return ' + num)
+          })
+        Button("add image")
+          .onClick(() => {
+            let num = this.controller.addImageSpan($r("app.media.icon"), {
+              imageStyle: {
+                size: ["50px", "50px"],
+                verticalAlign: ImageSpanAlignment.BOTTOM,
+                layoutStyle: {
+                  borderRadius: undefined,
+                  margin: undefined
+                }
+              }
+            })
+            console.info('addImageSpan return' + num)
+          })
+        Row() {
+          Button('builder1').onClick(() => {
+            this.my_builder = () => {
+              this.placeholderBuilder()
+            }
+          })
+          Button('builder2').onClick(() => {
+            this.my_builder = placeholderBuilder2.bind(this)
+          })
+          Button('builder3').onClick(() => {
+            this.my_builder = () => {
+              this.placeholderBuilder3()
+            }
+          })
+          Button('builder4').onClick(() => {
+            this.my_builder = () => {
+              this.placeholderBuilder4()
+            }
+          })
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.png)
+
+### Example 10
+Example of using **enableDataDetector** and **dataDetectorConfig**
+
+```ts
+@Entry
+@Component
+struct TextExample7 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'www.********.com';
+  @State email: string = '***@example.com';
+  @State address: string = 'Street A, city B, state C';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('Phone number:' + this.phoneNumber + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('URL:' + this.url + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('Email:' + this.email + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('Address:' + this.address,
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+          })
+          .copyOptions(CopyOptions.InApp)
+          .enableDataDetector(this.enableDataDetector)
+          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .borderWidth(1)
+          .padding(10)
+          .width('100%')
+      }
+      .width('100%')
+    }
+  }
+}
+```

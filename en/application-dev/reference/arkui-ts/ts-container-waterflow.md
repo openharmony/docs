@@ -38,11 +38,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| columnsTemplate | string | Number of columns in the layout. If this attribute is not set, one column is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4. This attribute supports [auto-fill](#auto-fill).<br>Default value: **'1fr'**|
-| rowsTemplate | string | Number of rows in the layout. If this attribute is not set, one row is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4. This attribute supports [auto-fill](#auto-fill).<br>Default value: **'1fr'**|
+| columnsTemplate | string | Number of columns in the layout. If this attribute is not set, one column is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4.<br>You can use **columnsTemplate('repeat(auto-fill,track-size)')** to automatically calculate the number of columns based on the specified column width **track-size**. **repeat** and **auto-fill** are keywords. The units for **track-size** can be px, vp, %, or a valid number. For details, see Example 2.<br>Default value: **'1fr'**|
+| rowsTemplate | string | Number of rows in the layout. If this attribute is not set, one row is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4.<br>You can use **rowsTemplate('repeat(auto-fill,track-size)')** to automatically calculate the number of rows based on the specified row height **track-size**. **repeat** and **auto-fill** are keywords. The units for **track-size** can be px, vp, %, or a valid number.<br>Default value: **'1fr'**|
 | itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Size constraints of the child components during layout.              |
-| columnsGap | Length |Gap between columns.<br>Default value: **0**|
-| rowsGap | Length |Gap between rows.<br> Default value: **0**|
+| columnsGap | [Length](ts-types.md#length) |Gap between columns.<br>Default value: **0**|
+| rowsGap | [Length](ts-types.md#length) |Gap between rows.<br> Default value: **0**|
 | layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |Main axis direction of the layout.<br>Default value: **FlexDirection.Column**|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
@@ -78,25 +78,16 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onReachStart(event: () => void) | Triggered when the component reaches the start.|
 | onReachEnd(event: () => void)   | Triggered when the component reaches the end position.|
 | onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. This event is not triggered when the component rebounds or the scrolling controller is used.|
-| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the component starts to scroll.<br>- **scrollOffset**: scroll offset of each frame. The offset is positive when the component is scrolled up and negative when the list is scrolled down.<br>- [scrollState](ts-container-list.md#scrollstate): current scroll state.|
+| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate)) => void) | Triggered when the component starts to scroll.<br>- **scrollOffset**: scroll offset of each frame. The offset is positive when the component is scrolled up and negative when the list is scrolled down.<br>- **scrollState**: current scroll state.|
 | onScrollIndex<sup>11+</sup>(event: (first: number, last: number) => void) | Triggered when the first or last item displayed in the component changes. It is triggered once when the component is initialized.<br>- **first**: index of the first item of the component.<br>- **last**: index of the last item of the component.<br>This event is triggered when either of the preceding indexes changes.|
 | onScrollStart<sup>11+</sup>(event: () => void) | Triggered when the component starts scrolling initiated by the user's finger dragging the component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.|
 | onScrollStop<sup>11+</sup>(event: () => void)          | Triggered when the component stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.|
 
-## auto-fill
-
-The **columnsTemplate** and **rowsTemplate** attributes supports **auto-fill** in the following format:
-
-```css
-repeat(auto-fill, track-size)
-```
-
-Where, **repeat** and **auto-fill** are keywords, and **track-size** indicates the row height or column width. The supported units include px, vp, %, and digits. The value of **track-size** must contain at least one valid row height or column width.
-
 
 ## Example
 
-
+### Example 1
+Basic usage of **\<WaterFlow>**:
 ```ts
 // WaterFlowDataSource.ets
 
@@ -126,28 +117,28 @@ export class WaterFlowDataSource implements IDataSource {
   // Notify the controller of data addition.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
+      listener.onDataAdd(index)
     })
   }
 
   // Notify the controller of data changes.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
+      listener.onDataChange(index)
     })
   }
 
   // Notify the controller of data deletion.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDeleted(index)
+      listener.onDataDelete(index)
     })
   }
 
   // Notify the controller of the data location change.
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMoved(from, to)
+      listener.onDataMove(from, to)
     })
   }
 
@@ -172,43 +163,43 @@ export class WaterFlowDataSource implements IDataSource {
   }
 
   // Add data.
-  public Add1stItem(): void {
+  public add1stItem(): void {
     this.dataArray.splice(0, 0, this.dataArray.length)
     this.notifyDataAdd(0)
   }
 
   // Add an item to the end of the data.
-  public AddLastItem(): void {
+  public addLastItem(): void {
     this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
     this.notifyDataAdd(this.dataArray.length - 1)
   }
 
   // Add an item to the position corresponding to the specified index.
-  public AddItem(index: number): void {
+  public addItem(index: number): void {
     this.dataArray.splice(index, 0, this.dataArray.length)
     this.notifyDataAdd(index)
   }
 
   // Delete the first item.
-  public Delete1stItem(): void {
+  public delete1stItem(): void {
     this.dataArray.splice(0, 1)
     this.notifyDataDelete(0)
   }
 
   // Delete the second item.
-  public Delete2ndItem(): void {
+  public delete2ndItem(): void {
     this.dataArray.splice(1, 1)
     this.notifyDataDelete(1)
   }
 
   // Delete the last item.
-  public DeleteLastItem(): void {
+  public deleteLastItem(): void {
     this.dataArray.splice(-1, 1)
     this.notifyDataDelete(this.dataArray.length)
   }
 
   // Reload data.
-  public Reload(): void {
+  public reload(): void {
     this.dataArray.splice(1, 1)
     this.dataArray.splice(3, 2)
     this.notifyDataReload()
@@ -222,13 +213,13 @@ import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
-struct WaterflowDemo {
+struct WaterFlowDemo {
   @State minSize: number = 80
   @State maxSize: number = 180
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
   scroller: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -266,7 +257,7 @@ struct WaterflowDemo {
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
@@ -278,9 +269,9 @@ struct WaterflowDemo {
           }
           .onAppear(() => {
             // Add data in advance when scrolling is about to end.
-            if (item + 20 == this.datasource.totalCount()) {
+            if (item + 20 == this.dataSource.totalCount()) {
               for (let i = 0; i < 100; i++) {
-                this.datasource.AddLastItem()
+                this.dataSource.addLastItem()
               }
             }
           })
@@ -301,3 +292,65 @@ struct WaterflowDemo {
 ```
 
 ![en-us_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
+
+### Example 2
+Example of using **auto-fill**:
+```ts
+//index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // Calculate the width and height of a flow item.
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // Save the width and height of the flow item.
+  getItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.getItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      WaterFlow() {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            Column() {
+              Text("N" + item).fontSize(12).height('16')
+            }
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('repeat(auto-fill,80)')
+      .columnsGap(10)
+      .rowsGap(5)
+      .padding({left:5})
+      .backgroundColor(0xFAEEE0)
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)

@@ -5,6 +5,8 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 > **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -39,30 +41,39 @@ Navigation(pathInfos: NavPathStack)
 
 | 名称                                 | 参数类型                                     | 描述                                       |
 | ---------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| title                              | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)\| [NavigationCommonTitle](#navigationcommontitle类型说明)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle类型说明)<sup>9+</sup> | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
+| title                              | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)\| [NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
 | subTitle<sup>(deprecated)</sup>    | string                                   | 页面副标题。不设置时不显示副标题。从API Version 9开始废弃，建议使用title代替。 |
-| menus                              | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。 |
+| menus                              | Array<[NavigationMenuItem](#navigationmenuitem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem10类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。 |
 | titleMode                          | [NavigationTitleMode](#navigationtitlemode枚举说明) | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
 | toolBar<sup>(deprecated)</sup>     | [object](#object类型说明) \| [CustomBuilder](ts-types.md#custombuilder8) | 设置工具栏内容。不设置时不显示工具栏。<br/>items: 工具栏所有项。<br/>**说明：** <br/>items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。<br/>从API version 10开始，该接口不再维护，推荐使用toolbarConfiguration代替。 |
-| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 设置工具栏内容。不设置时不显示工具栏。<br/>**说明：** <br/>使用Array<[ToolbarItem](#ToolbarItem类型说明)>写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array<[NavigationMenuItem](#navigationmenuitem类型说明)>使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 设置工具栏内容。不设置时不显示工具栏。<br/>**说明：** <br/>使用Array<[ToolbarItem](#ToolbarItem类型说明)>写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array<[NavigationMenuItem](#navigationmenuitem10类型说明)>使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | hideToolBar                        | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
 | hideTitleBar                       | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
 | hideBackButton                     | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。<br/>**说明：** <br/>返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
 | navBarWidth<sup>9+</sup>           | [Length](ts-types.md#length)             | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
+| navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明-9)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
+| mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明-9)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。<br/>默认值：false |
+| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
-| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
-| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp<br/>规则：优先级规则详见说明。|
+| minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：优先级规则详见说明。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+
+>  **说明：**
+>
+>  1. 仅设置navBarWidth，不支持Navigation分割线拖拽。
+>
+>  2. navBarWidthRange指定分割线可以拖拽范围。如果不设置值，则按照默认值处理。拖拽范围需要满足navBarWidthRange设置的范围和minContentWidth限制。
+>
+>  3. Navigation显示范围缩小：a. 缩小内容区大小。如果不设置minContentWidth属性，则可以缩小内容区至0， 否则最小缩小至minContentWidth。b. 缩小导航栏大小，缩小时需要满足导航栏宽度大于navBarRange的下限。c. 对显示内容进行裁切。
+
 
 ## 事件
 
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
-| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | 导航栏显示状态切换时触发该回调。返回值isVisible为true时表示显示，为false时表示隐藏。 |
+| onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) <sup>9+</sup> | 导航栏显示状态切换时触发该回调。返回值isVisible为true时表示显示，为false时表示隐藏。 |
 | onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| 当Navigation首次显示或者单双栏状态发生变化时触发该回调。<br>NavigationMode.Split: 当前Navigation显示为双栏;<br>NavigationMode.Stack: 当前Navigation显示为单栏。|
 
 ## NavPathStack<sup>10+</sup>
@@ -139,7 +150,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 | 类型          | 说明                       |
 | ----------- | ------------------------ |
-| NavPathInfo | 返回栈顶NavDestination页面的信息。 |
+| [NavPathInfo](#navpathinfo10) | 返回栈顶NavDestination页面的信息。 |
 | undefined   | 当路由栈为空时返回undefined。      |
 
 ### popToName<sup>10+</sup>
@@ -322,9 +333,9 @@ constructor(name: string, param: unknown)
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 否    | NavDestination页面详细参数。 |
+| param | unknown | 是    | NavDestination页面详细参数。 |
 
-## NavigationMenuItem类型说明
+## NavigationMenuItem<sup>10+</sup>类型说明
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -362,32 +373,32 @@ constructor(name: string, param: unknown)
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。 |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口设置。 |
 | Mini | 固定为小标题模式。                                |
 | Full | 固定为大标题模式。                                |
 
-## NavigationCommonTitle类型说明
+## NavigationCommonTitle<sup>9+</sup>类型说明
 
 | 名称   | 类型     | 必填   | 描述     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
 
-## NavigationCustomTitle类型说明
+## NavigationCustomTitle<sup>9+</sup>类型说明
 
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](#titleheight枚举说明) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](#titleheight枚举说明-9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
 
-## NavBarPosition枚举说明
+## NavBarPosition枚举说明<sup>9+</sup>
 
 | 名称    | 描述               |
 | ----- | ---------------- |
 | Start | 双栏显示时，主列在主轴方向首部。 |
 | End   | 双栏显示时，主列在主轴方向尾部。 |
 
-## NavigationMode枚举说明
+## NavigationMode枚举说明<sup>9+</sup>
 
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
@@ -395,7 +406,7 @@ constructor(name: string, param: unknown)
 | Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
-## TitleHeight枚举说明
+## TitleHeight枚举说明<sup>9+</sup>
 
 | 名称          | 描述                         |
 | ----------- | -------------------------- |
@@ -443,10 +454,10 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
@@ -625,8 +636,8 @@ export struct PageOneTmp {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(this.pageInfos.pop()))
+      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
     })
   }

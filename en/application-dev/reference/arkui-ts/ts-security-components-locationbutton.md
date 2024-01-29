@@ -31,40 +31,40 @@ Creates a Location button that contains the specified elements.
 | -------- | -------- | -------- | -------- |
 | icon | [LocationIconStyle](#locationiconstyle) | No| Icon style of the Location button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
 | text | [LocationDescription](#locationdescription) | No| Text on the Location button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#ButtonType) | No| Background style of the Location button.<br>If this parameter is not specified, there is no background.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Location button.<br>If this parameter is not specified, there is no background.|
 
 
 ## LocationIconStyle
 
-| Name| Description|
-| -------- | -------- |
-| FULL_FILLED | Filled style icon.|
-| LINES | Line style icon.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| FULL_FILLED |  0 | Filled style icon.|
+| LINES | 1 | Line style icon.|
 
 
 ## LocationDescription
 
-| Name| Description|
-| -------- | -------- |
-| CURRENT_LOCATION | The text on the Location button is **Current location**.|
-| ADD_LOCATION | The text on the Location button is **Add location**.|
-| SELECT_LOCATION | The text on the Location button is **Select location**.|
-| SHARE_LOCATION | The text on the Location button is **Share location**.|
-| SEND_LOCATION | The text on the Location button is **Send location**.|
-| LOCATING | The text on the Location button is **Locate**.|
-| LOCATION | The text on the Location button is **Location**.|
-| SEND_CURRENT_LOCATION | The text on the Location button is **Send current location**.|
-| RELOCATION | The text on the Location button is **Relocate**.|
-| PUNCH_IN | The text on the Location button is **Punch in**.|
-| CURRENT_POSITION | The text on the Location button is **Current position**.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| CURRENT_LOCATION | 0 | The text on the Location button is **Current location**.|
+| ADD_LOCATION | 1 | The text on the Location button is **Add location**.|
+| SELECT_LOCATION | 2 | The text on the Location button is **Select location**.|
+| SHARE_LOCATION | 3 | The text on the Location button is **Share location**.|
+| SEND_LOCATION | 4 | The text on the Location button is **Send location**.|
+| LOCATING | 5 | The text on the Location button is **Locate**.|
+| LOCATION | 6 | The text on the Location button is **Location**.|
+| SEND_CURRENT_LOCATION | 7 | The text on the Location button is **Send current location**.|
+| RELOCATION | 8 | The text on the Location button is **Relocate**.|
+| PUNCH_IN | 9 | The text on the Location button is **Punch in**.|
+| CURRENT_POSITION | 10 | The text on the Location button is **Current position**.|
 
 
 ## LocationButtonOnClickResult
 
-| Name| Description|
-| -------- | -------- |
-| SUCCESS | The Location button is touched successfully.|
-| TEMPORARY_AUTHORIZATION_FAILED | Temporary authorization fails after the Location button is touched.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| SUCCESS | 0 | The Location button is touched successfully.|
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the Location button is touched.|
 
 
 ## Attributes
@@ -78,7 +78,7 @@ Only the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent)), result: [LocationButtonOnClickResult](#locationbuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result.<br>**event**: For details, see **ClickEvent**.|
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [LocationButtonOnClickResult](#locationbuttononclickresult)) =&gt; void) | Triggered when the component is touched.<br>**result**: authorization result.<br>**event**: For details, see **ClickEvent**.|
 
 
 ## Example

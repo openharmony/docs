@@ -46,15 +46,15 @@ interface IDataSource {
 
 ```ts
 interface DataChangeListener {
-    onDataReloaded(): void; // Invoked when data is reloaded.
-    onDataAdded(index: number): void; // Invoked when data is added.
-    onDataMoved(from: number, to: number): void; // Invoked when data is moved.
-    onDataDeleted(index: number): void; // Invoked when data is deleted.
-    onDataChanged(index: number): void; // Invoked when data is changed.
-    onDataAdd(index: number): void; // Invoked when data is added.
-    onDataMove(from: number, to: number): void; // Invoked when data is moved.
-    onDataDelete(index: number): void; // Invoked when data is deleted.
-    onDataChange(index: number): void; // Invoked when data is changed.
+    onDataReloaded(): void; // Invoked after data is reloaded.
+    onDataAdded(index: number): void; // Invoked after data is added.
+    onDataMoved(from: number, to: number): void; // Invoked after data is moved.
+    onDataDeleted(index: number): void; // Invoked after data is deleted.
+    onDataChanged(index: number): void; // Invoked after data is changed.
+    onDataAdd(index: number): void; // Invoked after data is added.
+    onDataMove(from: number, to: number): void; // Invoked after data is moved.
+    onDataDelete(index: number): void; // Invoked after data is deleted.
+    onDataChange(index: number): void; // Invoked after data is changed.
 }
 ```
 
@@ -85,7 +85,7 @@ interface DataChangeListener {
 
 During **LazyForEach** rendering, the system generates a unique, persistent key for each item to identify the owing component. When the key changes, the ArkUI framework considers that the array element has been replaced or modified and creates a new component based on the new key.
 
-**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generator, that is, **(item: any, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
+**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generation function, that is, **(item: any, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
 
 ## Component Creation Rules
 
@@ -111,7 +111,7 @@ class BasicDataSource implements IDataSource {
     return this.originDataArray[index];
   }
 
-  // This method is called by the framework to add a listener to the data source of the LazyForEach component.
+  // This method is called by the framework to add a listener to the LazyForEach data source.
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       console.info('add listener');
@@ -119,7 +119,7 @@ class BasicDataSource implements IDataSource {
     }
   }
 
-  // This method is called by the framework to remove the listener from the data source of the LazyForEach component.
+  // This method is called by the framework to remove the listener from the LazyForEach data source.
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -724,7 +724,7 @@ struct MyComponent {
 }
 ```
 
-When a child component of **LazyForEach** is clicked, the index of the data to be moved is stored in the **moved** member variable. When another child component of **LazyForEach** is clicked, the first child component clicked is moved here. The **moveData** method of the data source is called to move the data from the original location to the expected location, after which the **notifyDatMove** method is called. In the **notifyDataMove** method, the **listener.onDataMove** method is called to notify **LazyForEach** that data needs to be moved. **LazyForEach** then swaps data between the **from** and **to** positions.
+When a child component of **LazyForEach** is clicked, the index of the data to be moved is stored in the **moved** member variable. When another child component of **LazyForEach** is clicked, the first child component clicked is moved here. The **moveData** method of the data source is called to move the data from the original location to the expected location, after which the **notifyDatMove** method is called. In the **notifyDataMove** method, the **listener.onDataMove** method is called to notify **LazyForEach** that data needs to be moved.** LazyForEach** then swaps data between the **from** and **to** positions.
 
 The figure below shows the effect.
 

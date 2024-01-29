@@ -3,22 +3,26 @@
 An **ImageData** object stores pixel data rendered on a canvas.
 
 >  **NOTE**
-> 
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## APIs
 
+constructor(width: number, height: number, data?: Uint8ClampedArray);
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| width | number | Actual width of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| height | number | Actual height of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| data | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name    | Type               | Description                                      |
+| ------ | ----------------- | ---------------------------------------- |
+| width  | number            | Actual width of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number            | Actual height of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| data   | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 >  **NOTE**
-> 
-> You can use [px2vp](ts-pixel-units.md) to convert units.
+>
+>  You can use the [px2vp](ts-pixel-units.md#pixel-unit-conversion) API to convert the unit.
 
 **Example**
 

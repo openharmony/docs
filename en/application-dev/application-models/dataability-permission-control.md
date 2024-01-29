@@ -10,18 +10,22 @@ The DataAbility functions as the server. When being started, the DataAbility ver
 
 
 ```json
-"abilities": [{
-  "srcPath": "DataAbility",
-  "name": ".DataAbility",
-  "icon": "$media:icon",
-  "srcLanguage": "ets",
-  "description": "$string:description_dataability",
-  "type": "data",
-  "visible": true,
-  "uri": "dataability://ohos.samples.etsdataability.DataAbility",
-  "readPermission":"ohos.permission.READ_CONTACTS",
-  "writePermission":"ohos.permission.WRITE_CONTACTS"
-}]
+"abilities": [
+  ...
+  {
+    "name": ".DataAbility",
+    "srcLanguage": "ets",
+    "srcPath": "DataAbility",
+    "icon": "$media:icon",
+    "description": "$string:DataAbility_desc",
+    "type": "data",
+    "visible": true,
+    "uri": "dataability://com.samples.famodelabilitydevelop.DataAbility",
+    "readPermission": "ohos.permission.READ_CONTACTS",
+    "writePermission": "ohos.permission.WRITE_CONTACTS"
+  },
+  ...
+]
 ```
 
 The client permission is configured in **reqPermissions** under **module** in the **config.json** file. The following is an example:
@@ -29,15 +33,19 @@ The client permission is configured in **reqPermissions** under **module** in th
 
 ```json
 {
+  ...
   "module": {
-    "reqPermissions":{
+    ...
+    "reqPermissions": [
       {
-        "name":"ohos.permission.READ_CONTACTS"
+        "name": "ohos.permission.READ_CONTACTS"
       },
       {
-        "name":"ohos.permission.WRITE_CONTACTS"
-      }
-    }
+        "name": "ohos.permission.WRITE_CONTACTS"
+      },
+      ...
+    ],
+    ...
   }
 }
 ```

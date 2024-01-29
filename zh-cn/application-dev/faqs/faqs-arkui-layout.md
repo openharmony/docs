@@ -44,7 +44,7 @@
 
 **解决措施**
 
- 利用安全区域接口进行避让逻辑控制。
+ 键盘弹出时的避让可以利用安全区域接口expandSafeArea进行UI逻辑避让控制。
 
 **参考链接**
 
@@ -54,7 +54,7 @@
 
 **解决措施**
 
-1、如果做页面展示，可通过Text嵌套ImageSpan或者容器下嵌套Text&Image组件，前者更轻量级，后者实现功能更多。
+1、如果做页面展示，可通过Text嵌套ImageSpan或者容器组件如Row、Colunm下嵌套Text&Image组件，推荐前者；
 
 2、如果要进行编辑，可使用RichEditor控件。
 
@@ -86,8 +86,32 @@
 
 **解决措施**
 
-如果缺省keyGenerator，框架会自动基于item和index生成key， 如果函数缺省，框架默认的键值生成函数为(item: T, index: number) => { return index + '__' + JSON.stringify(item); }， 修改状态变量数据源时，要ForEach或LazyForEach会捕捉到key的变化，从而通过重建组件节点来刷新。
+如果缺省keyGenerator，框架会自动基于item和index生成key， 如果函数缺省，框架默认的键值生成函数为(item: T, index: number) => { return index + '__' + JSON.stringify(item); }， 修改状态变量数据源时，ForEach或LazyForEach会捕捉到key的变化，从而通过重建组件节点来刷新。
 
 **参考链接**
 
 [ForEach：循环渲染](../quick-start/arkts-rendering-control-foreach.md)
+
+## CustomDialog，Popup等弹窗如何与页面解耦，最佳实践是什么样的(API 10)
+
+**解决措施**
+
+弹框类组件需要绑定到对应组件上，由事件触发。对于内容可以使用全局builder，只需定义一次。
+
+全局builder：
+
+定义的语法：
+
+@Builder function MyGlobalBuilderFunction(){ ... }
+
+使用方法：
+
+MyGlobalBuilderFunction()
+
+全局的自定义构建函数可以被整个应用获取。如果不涉及组件状态变化，建议使用全局的自定义构建方法。
+
+**参考链接**
+
+1. [自定义弹窗（CustomDialog）](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+2. [Popup控制](../reference/arkui-ts/ts-universal-attributes-popup.md)
+3. [@Builder装饰器：自定义构建函数](../quick-start/arkts-builder.md)

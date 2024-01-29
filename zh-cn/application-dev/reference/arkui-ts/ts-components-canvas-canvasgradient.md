@@ -55,6 +55,6 @@ struct Page45 {
   }
 }
   ```
-  ![zh-cn_image_0000001194032516](figures/zh-cn_image_0000001194032516.png)
+  ![zh-cn_image_0000001194032516](figures/zh-cn_image_0000001194032516.jpeg)
 
  

@@ -3,12 +3,12 @@
 
 ## 场景介绍
 
-用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户希望有一个全局唯一存储的地方，可以采用用户首选项来进行存储。Preferences会将该数据缓存在内存中，当用户读取的时候，能够快速从内存中获取数据。Preferences会随着存放的数据量越多而导致应用占用的内存越大，因此，Preferences不适合存放过多的数据，适用的场景一般为应用保存用户的个性化设置（字体大小，是否开启夜间模式）等。
+用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户希望有一个全局唯一存储的地方，可以采用用户首选项来进行存储。Preferences会将该数据缓存在内存中，当用户读取的时候，能够快速从内存中获取数据，当需要持久化时可以使用flush接口将内存中的数据写入持久化文件中。Preferences会随着存放的数据量越多而导致应用占用的内存越大，因此，Preferences不适合存放过多的数据，适用的场景一般为应用保存用户的个性化设置（字体大小，是否开启夜间模式）等。
 
 
 ## 运作机制
 
-如图所示，用户程序通过JS接口调用用户首选项读写对应的数据文件。开发者可以将用户首选项持久化文件的内容加载到Preferences实例，每个文件唯一对应到一个Preferences实例，系统会通过静态容器将该实例存储在内存中，直到主动从内存中移除该实例或者删除该文件。
+如图所示，用户程序通过ArkTS接口调用用户首选项读写对应的数据文件。开发者可以将用户首选项持久化文件的内容加载到Preferences实例，每个文件唯一对应到一个Preferences实例，系统会通过静态容器将该实例存储在内存中，直到主动从内存中移除该实例或者删除该文件。
 
 应用首选项的持久化文件保存在应用沙箱内部，可以通过context获取其路径。具体可见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
 
@@ -65,14 +65,8 @@
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       try {
-         let options: dataPreferences.Options = { name: 'myStore' };
-         preferences = dataPreferences.getPreferencesSync(this.context, options);
-       } catch (err) {
-         let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message;
-         console.error(`Failed to get preferences. Code:${code},message:${message}`);
-       }
+       let options: dataPreferences.Options = { name: 'myStore' };
+       preferences = dataPreferences.getPreferencesSync(this.context, options);
      }
    }
    ```
@@ -86,16 +80,8 @@
    import { BusinessError } from '@ohos.base';
    
    let context = featureAbility.getContext();
-   let preferences: dataPreferences.Preferences | null = null;
-   
-   try {
-       let options: dataPreferences.Options =  { name: 'myStore' };
-       preferences = dataPreferences.getPreferencesSync(context, options);
-   } catch (err) {
-       let code = (err as BusinessError).code;
-     	let message = (err as BusinessError).message;
-     	console.error(`Failed to get preferences. Code is ${code},message:${message}`);
-   }
+   let options: dataPreferences.Options =  { name: 'myStore' };
+   let preferences: dataPreferences.Preferences = dataPreferences.getPreferencesSync(context, options);
    ```
 
 3. 写入数据。
@@ -110,18 +96,12 @@
 
    
    ```ts
-   try {
-     if (preferences.hasSync('startup')) {
-       console.info("The key 'startup' is contained.");
-     } else {
-       console.info("The key 'startup' does not contain.");
-       // 此处以此键值对不存在时写入数据为例
-       preferences.putSync('startup', 'auto');
-     }
-   } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error(`Failed to check the key 'startup'. Code:${code}, message:${message}`);
+   if (preferences.hasSync('startup')) {
+     console.info("The key 'startup' is contained.");
+   } else {
+     console.info("The key 'startup' does not contain.");
+     // 此处以此键值对不存在时写入数据为例
+     preferences.putSync('startup', 'auto');
    }
    ```
 
@@ -130,14 +110,7 @@
      使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。示例代码如下所示：
      
    ```ts
-   try {
-     let val = preferences.getSync('startup', 'default');
-     console.info(`Succeeded in getting value of 'startup'. val: ${val}.`);
-   } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error(`Failed to get value of 'startup'. Code:${code}, message:${message}`);
-   }
+   let val = preferences.getSync('startup', 'default');
    ```
 
 5. 删除数据。
@@ -146,13 +119,7 @@
 
    
    ```ts
-   try {
-     preferences.deleteSync('startup');
-   } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error(`Failed to delete the key 'startup'. Code:${code}, message:${message}`);
-   }
+   preferences.deleteSync('startup');
    ```
 
 6. 数据持久化。
@@ -160,19 +127,13 @@
      应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
      
    ```ts
-   try {
-     preferences.flush((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in flushing.');
-     })
-   } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error(`Failed to flush. Code:${code}, message:${message}`);
-   }
+   preferences.flush((err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
+       return;
+     }
+     console.info('Succeeded in flushing.');
+   })
    ```
 
 7. 订阅数据变更。
@@ -191,13 +152,15 @@
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     preferences.flush((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in flushing.');
-     })
+     if (preferences !== null) {
+       preferences.flush((err: BusinessError) => {
+         if (err) {
+           console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
+           return;
+         }
+         console.info('Succeeded in flushing.');
+       })
+     }
    })
    ```
 
@@ -215,20 +178,14 @@
 
    
    ```ts
-   try {
-       let options: dataPreferences.Options = { name: 'myStore' };
-       dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
-           if (err) {
-               console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-               return;
-           }
-           console.info('Succeeded in deleting preferences.');
-       })
-   } catch (err) {
-       let code = (err as BusinessError).code;
-       let message = (err as BusinessError).message;
-       console.error(`Failed to delete preferences. Code:${code}, message:${message}`);
-   }
+   let options: dataPreferences.Options = { name: 'myStore' };
+     dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+           return;
+       }
+       console.info('Succeeded in deleting preferences.');
+   })
    ```
 
 ## 相关实例

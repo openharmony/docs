@@ -6,12 +6,19 @@
 >
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## hoverEffect
 
-## 属性
+hoverEffect(value: HoverEffect)
 
-| 名称          | 参数类型                                               | 描述                                                |
-| ----------- | --------------------------------------------------| ------------------------------------------------ |
-| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8)  | 设置当前组件悬停态下的悬浮效果。<br>默认值：HoverEffect.Auto |
+设置组件的鼠标悬浮态显示效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                             | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [HoverEffect](ts-appendix-enums.md#hovereffect8) | 是   | 设置当前组件悬停态下的悬浮效果。<br/>默认值：HoverEffect.Auto |
 
 
 ## 示例

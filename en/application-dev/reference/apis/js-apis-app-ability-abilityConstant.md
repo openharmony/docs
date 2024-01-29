@@ -41,6 +41,7 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 | APP_RECOVERY           | 4    | The ability is automatically started when the application is restored from a fault.|
 | SHARE<sup>10+</sup>           | 5    | The ability is started by means of atomic service sharing.|
 | AUTO_STARTUP<sup>11+</sup>           | 8    | The ability is automatically started upon system boot.|
+| INSIGHT_INTENT<sup>11+</sup>           | 9    | The ability is started by the InsightIntent framework.|
 
 **Example**
 
@@ -252,15 +253,15 @@ Enumerates the mission continuation states of the application. It is used in the
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
-        console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
-        });
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+      console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+    });
+  }
 }
 ```

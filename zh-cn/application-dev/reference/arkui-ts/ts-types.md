@@ -148,8 +148,8 @@
 | 名称     | 描述              |
 | ------ | --------------- |
 | INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE| 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY| 设置控件背景阴影色为控件背景阴影区域的主色。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
 
 ## LengthConstrain
 
@@ -327,21 +327,21 @@
 
 Swiper组件动画相关信息集合。
 
-| 名称            | 类型定义                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
-| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
+| 名称            | 类型定义       | 必填            | 描述                                       |
+| ------------- | ---------------------- | ---------|------------------------------- |
+| currentOffset | number | 是 | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | 是 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| velocity | number | 是 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
 ## TabsAnimationEvent<sup>11+</sup>
 
 Tabs组件动画相关信息集合。
 
-| 名称            | 类型定义                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
+| 名称            | 类型定义      |  必填             | 描述                                       |
+| ------------- | ---------------------- | ----------------|------------------------ |
+| currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | 是 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
+| velocity | number | 是 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -386,17 +386,17 @@ Tabs组件动画相关信息集合。
 
 Tabs自定义切换动画相关信息。
 
-| 名称            | 类型定义                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| timeout | number | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 自定义切换动画具体内容。|
+| 名称            | 类型定义         | 必填          | 描述                                       |
+| ------------- | ---------------------- | ------------------|---------------------- |
+| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 是 | 自定义切换动画具体内容。|
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
 Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
 
-| 名称            | 类型定义                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| from | number | 自定义动画起始页面对应的index值。|
-| to | number | 自定义动画目标页面对应的index值。|
-| finishTransition() | void | 通知Tabs组件，此次自定义动画已结束。|
+| 名称            | 类型定义     |  必填              | 描述                                       |
+| ------------- | ---------------------- | ----------------------|------------------ |
+| from | number | 是 | 自定义动画起始页面对应的index值。|
+| to | number | 是 | 自定义动画目标页面对应的index值。|
+| finishTransition() | void | 是 | 通知Tabs组件，此次自定义动画已结束。|

@@ -89,6 +89,8 @@ async requestPermission(): Promise<void> {
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 
+@State deviceID: string = '';
+
 getRemoteDeviceId(): void {
   let dmClass: deviceManager.DeviceManager;
   dmClass = deviceManager.createDeviceManager('com.samples.famodelabilitydevelop');
@@ -124,6 +126,8 @@ getRemoteDeviceId(): void {
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
+
+@State deviceID: string = '';
 
 onStartRemoteAbility(): void {
   Logger.info(TAG, 'onStartRemoteAbility begin');

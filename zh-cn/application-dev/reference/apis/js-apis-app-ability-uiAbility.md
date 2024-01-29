@@ -18,14 +18,14 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility启动时的参数。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility最后请求时的参数。|
-| callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。|
+| callee | [Callee](#callee) | 否 | 是 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
 
@@ -40,7 +40,7 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
-| param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
 
 **示例：**
 
@@ -51,7 +51,7 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
   class MyUIAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log('onCreate, want: ${want.abilityName}');
+          console.log(`onCreate, want: ${want.abilityName}`);
       }
   }
   ```
@@ -138,7 +138,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 onDestroy(): void | Promise&lt;void&gt;
 
-UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -146,7 +146,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -300,7 +300,7 @@ onDump(params: Array\<string>): Array\<string>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array\<string> | 转储的客户端信息。 |
+| Array\<string> | 转储信息数组。|
 
 **示例：**
 
@@ -421,7 +421,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
           }
         }).catch((err: BusinessError)=>{
           // 异常处理
-          console.log('startAbilityForResult failed, err:' + JSON.stringify(err));
+          console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
           this.context.terminateSelf();
         })
 
@@ -460,11 +460,11 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回�
 
 通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
 
-## Caller.call
+### Caller.call
 
-call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-向通用组件服务端发送约定序列化数据。
+向通用组件服务端发送约定序列化数据。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -479,7 +479,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回应答。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -511,13 +511,13 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
     marshalling(messageSequence: rpc.MessageSequence) {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
-      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
     unmarshalling(messageSequence: rpc.MessageSequence) {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
   };
@@ -537,21 +537,21 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
             console.log('Caller call() called');
           })
           .catch((callErr: BusinessError) => {
-            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
+            console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
           });
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
 
-## Caller.callWithResult
+### Caller.callWithResult
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
+向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -566,7 +566,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise对象，返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -598,13 +598,13 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
     marshalling(messageSequence: rpc.MessageSequence) {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
-      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
     unmarshalling(messageSequence: rpc.MessageSequence) {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
+      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
   };
@@ -626,17 +626,17 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {
-            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
+            console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
           });
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
 
-## Caller.release
+### Caller.release
 
 release(): void
 
@@ -673,22 +673,28 @@ release(): void
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
+          console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
         }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.onRelease
+### Caller.onRelease
 
  onRelease(callback: OnReleaseCallback): void
 
-注册通用组件服务端Stub（桩）断开监听通知。
+注册通用组件服务端Stub（桩）断开监听通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -697,12 +703,6 @@ release(): void
 | 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **示例：**
 
@@ -723,23 +723,23 @@ release(): void
           caller = obj;
           try {
             caller.onRelease((str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
+            console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.onRemoteStateChange<sup>10+</sup>
+### Caller.onRemoteStateChange<sup>10+</sup>
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-注册协同场景下跨设备组件状态变化监听通知。
+注册协同场景下跨设备组件状态变化监听通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -747,7 +747,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 返回onRemoteStateChange回调结果。 |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 回调函数，返回onRemoteStateChange回调结果。 |
 
 **错误码：**
 
@@ -780,20 +780,20 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                  console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err: BusinessError) => {
-              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
+              console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }
   ```
 
-## Caller.on
+### Caller.on
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-注册通用组件服务端Stub（桩）断开监听通知。
+注册通用组件服务端Stub（桩）断开监听通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -802,7 +802,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -831,23 +831,23 @@ on(type: 'release', callback: OnReleaseCallback): void
           caller = obj;
           try {
             caller.on('release', (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.off
+### Caller.off
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -856,7 +856,7 @@ off(type: 'release', callback: OnReleaseCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回off回调结果。 |
 
 **示例：**
 
@@ -877,21 +877,21 @@ off(type: 'release', callback: OnReleaseCallback): void
           caller = obj;
           try {
             let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.off
+### Caller.off
 
 off(type: 'release'): void
 
@@ -924,15 +924,15 @@ off(type: 'release'): void
           caller = obj;
           try {
             let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {
-            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -942,7 +942,7 @@ off(type: 'release'): void
 
 通用组件服务端注册和解除客户端caller通知送信的callback接口。
 
-## Callee.on
+### Callee.on
 
 on(method: string, callback: CalleeCallback): void
 
@@ -969,7 +969,7 @@ on(method: string, callback: CalleeCallback): void
 **示例：**
 
   ```ts
-  import UIAbility, { CalleeCallback } from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
   import rpc from '@ohos.rpc';
@@ -985,19 +985,19 @@ on(method: string, callback: CalleeCallback): void
       marshalling(messageSequence: rpc.MessageSequence) {
           messageSequence.writeInt(this.num);
           messageSequence.writeString(this.str);
-          console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+          console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
           return true;
       }
       unmarshalling(messageSequence: rpc.MessageSequence) {
           this.num = messageSequence.readInt();
           this.str = messageSequence.readString();
-          console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
+          console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
           return true;
       }
   };
   let method = 'call_Function';
   function funcCallBack(pdata: rpc.MessageSequence) {
-      console.log('Callee funcCallBack is called ${pdata}');
+      console.log(`Callee funcCallBack is called ${pdata}`);
       let msg = new MyMessageAble('test', '');
       pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
@@ -1008,13 +1008,13 @@ on(method: string, callback: CalleeCallback): void
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }
   }
   ```
 
-## Callee.off
+### Callee.off
 
 off(method: string): void
 
@@ -1052,7 +1052,7 @@ off(method: string): void
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }
   }
@@ -1068,9 +1068,9 @@ off(method: string): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 可读 | 可写 | 类型 | 说明 |
+| 名称 | 只读 | 必填 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
+| (msg: string) | 否 | 是 | function | 调用者注册的侦听器函数接口的原型。 |
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
@@ -1080,9 +1080,9 @@ off(method: string): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 可读 | 可写 | 类型 | 说明 |
+| 名称 | 只读 | 必填 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | 是 | 否 | function | 调用者注册的协同场景下组件状态变化监听函数接口的原型。 |
+| (msg: string) | 否 | 是 | function | 调用者注册的协同场景下组件状态变化监听函数接口的原型。 |
 
 ## CalleeCallback
 
@@ -1092,6 +1092,6 @@ off(method: string): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 可读 | 可写 | 类型 | 说明 |
+| 名称 | 只读 | 必填 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 否 | 是 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |

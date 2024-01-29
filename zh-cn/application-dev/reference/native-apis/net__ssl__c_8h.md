@@ -7,7 +7,7 @@
 
 **库：** libnet_ssl.so
 
-**系统能力：** SystemCapability.Communication.Netstack
+**系统能力：** SystemCapability.Communication.NetStack
 
 **起始版本：** 11
 

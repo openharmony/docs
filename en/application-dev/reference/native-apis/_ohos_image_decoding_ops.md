@@ -5,15 +5,11 @@
 
 The **OhosImageDecodingOps** struct defines the options for decoding an image source. It is used in [OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap) and [OH_ImageSource_CreatePixelMapList](image.md#oh_imagesource_createpixelmaplist).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary

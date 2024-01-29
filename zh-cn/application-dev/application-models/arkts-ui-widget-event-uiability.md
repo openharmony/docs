@@ -1,7 +1,7 @@
 # 通过router或call事件刷新卡片内容
 
 
-在卡片页面中可以通过**postCardAction**接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
@@ -9,14 +9,14 @@
 
 ## 通过router事件刷新卡片内容
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发router事件拉起UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用[postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction)接口触发router事件拉起UIAbility。
   
   ```ts
-  let storageUpdtRouter = new LocalStorage();
+  let storageUpdateRouter = new LocalStorage();
   
-  @Entry(storageUpdtRouter)
+  @Entry(storageUpdateRouter)
   @Component
-  struct WidgetUpdtRouterCard {
+  struct WidgetUpdateRouterCard {
     @LocalStorageProp('routerDetail') routerDetail: ResourceStr = $r('app.string.init');
   
     build() {
@@ -92,7 +92,7 @@
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          routerDetail: message + 'UIAbility.', // 和卡片布局中对应
+          'routerDetail': message + 'UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -111,7 +111,7 @@
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          routerDetail: message + 'onNewWant UIAbility.', // 和卡片布局中对应
+          'routerDetail': message + 'onNewWant UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -147,7 +147,6 @@
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import type Want from '@ohos.app.ability.Want';
   
   export default class WidgetCalleeFormAbility extends FormExtensionAbility {
@@ -171,9 +170,9 @@
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
   
   ```ts
-  let storageUpdtCall = new LocalStorage();
+  let storageUpdateCall = new LocalStorage();
   
-  @Entry(storageUpdtCall)
+  @Entry(storageUpdateCall)
   @Component
   struct WidgetUpdateCallCard {
     @LocalStorageProp('formId') formId: string = '12400633174999288';
@@ -228,6 +227,7 @@
   
   ```ts
   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type Base from '@ohos.base';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
@@ -272,12 +272,12 @@
       let message: string = params.calleeDetail;
       hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
       let formData: Record<string, string> = {
-        calleeDetail: message
+        'calleeDetail': message
       };
       let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(curFormId, formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, `updateForm success. ${JSON.stringify(data)}`);
-      }).catch((error) => {
+      }).catch((error: Base.BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `updateForm failed: ${JSON.stringify(error)}`);
       });
     }

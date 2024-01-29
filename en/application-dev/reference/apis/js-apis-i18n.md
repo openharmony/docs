@@ -7,6 +7,9 @@ The [intl](js-apis-intl.md) module provides basic i18n capabilities through the 
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 >  - This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. For details about the basic I18N capabilities, see [intl](js-apis-intl.md).
+>
+>  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
+
 
 
 ## Modules to Import
@@ -106,7 +109,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-Obtains the list of system languages. For details about languages, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
+Obtains the list of system languages.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -132,7 +135,7 @@ Obtains the list of system languages. For details about languages, see [Instanti
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-Obtains the list of countries and regions supported for the specified language. For details about countries or regions, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
+Obtains the list of countries and regions supported for the specified language.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -213,7 +216,9 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static getSystemLanguage(): string
 
-Obtains the system language. For details about languages, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
+Obtains the system language.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -300,7 +305,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static getSystemRegion(): string
 
-Obtains the system region. For details about system regions, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
+Obtains the system region.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -364,7 +369,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 static getSystemLocale(): string
 
-Obtains the system locale. For details about system locales, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
+Obtains the system locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -429,6 +434,8 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 static is24HourClock(): boolean
 
 Checks whether the 24-hour clock is used.
+
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -748,7 +755,7 @@ Checks whether use of local digits is enabled.
   ```
 
 
-## I18n.isRTL<sup>7+</sup>
+## I18n.isRTL
 
 isRTL(locale: string): boolean
 
@@ -854,9 +861,9 @@ Recognizes entities in text.
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   let text1: string = " If you have any questions, call us by phone 12345678";
-  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
   let text2: string = "Let's have dinner on December 1, 2023."
-  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result[0].type = "date", result[0].begin = 2, result[0].end = 12
+  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -1735,7 +1742,7 @@ Checks whether the specified position of the text is a break point.
   ```
 
 
-## I18n.getTimeZone<sup>7+</sup>
+## I18n.getTimeZone
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1825,7 +1832,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
+| number | Offset between the time zone represented by a **TimeZone** object and the UTC time zone, in milliseconds.|
 
 **Example**
   ```ts
@@ -1846,7 +1853,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
-| date | number | No   | Date and time.|
+| date | number | No   | Time for calculating the offset, in milliseconds. The default value is the system time.|
 
 **Return value**
 
@@ -1916,7 +1923,7 @@ Obtains the localized representation of a time zone city in the specified locale
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | Locale ID.  |
+| locale | string | Yes   | Locale ID. |
 
 **Return value**
 
@@ -2757,7 +2764,7 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 ### isHoliday<sup>11+</sup>
 
-isHoliday(date?: Date): boolean;
+isHoliday(date?: Date): boolean
 
 Determines whether the specified date is a holiday.
 
@@ -3158,7 +3165,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### unitConvert<sup>(deprecated)</sup>
 
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 Converts one measurement unit into another and formats the unit based on the specified locale and style.
 
@@ -3188,7 +3195,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isDigit<sup>(deprecated)</sup>
 
-static isDigit(char: string): boolean
+isDigit(char: string): boolean
 
 Checks whether the input string is composed of digits.
 
@@ -3211,7 +3218,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-static isSpaceChar(char: string): boolean
+isSpaceChar(char: string): boolean
 
 Checks whether the input character is a space.
 
@@ -3234,7 +3241,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-static isWhitespace(char: string): boolean
+isWhitespace(char: string): boolean
 
 Checks whether the input character is a white space.
 
@@ -3257,7 +3264,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isRTL<sup>(deprecated)</sup>
 
-static isRTL(char: string): boolean
+isRTL(char: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
@@ -3280,7 +3287,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-static isIdeograph(char: string): boolean
+isIdeograph(char: string): boolean
 
 Checks whether the input character is an ideographic character.
 
@@ -3303,7 +3310,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isLetter<sup>(deprecated)</sup>
 
-static isLetter(char: string): boolean
+isLetter(char: string): boolean
 
 Checks whether the input character is a letter.
 
@@ -3326,7 +3333,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-static isLowerCase(char: string): boolean
+isLowerCase(char: string): boolean
 
 Checks whether the input character is a lowercase letter.
 
@@ -3349,7 +3356,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-static isUpperCase(char: string): boolean
+isUpperCase(char: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
@@ -3372,7 +3379,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### getType<sup>(deprecated)</sup>
 
-static getType(char: string): string
+getType(char: string): string
 
 Obtains the type of the input string.
 

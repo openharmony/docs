@@ -551,9 +551,9 @@
 
 ## AdaptiveColor<sup>10+</sup>
 
-| 名称      | 描述                        |
-| ------- | ------------------------- |
-| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
+| 名称    | 描述                                               |
+| ------- | -------------------------------------------------- |
+| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。       |
 | AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
@@ -667,13 +667,13 @@ Nullable\<T> {
 | ----        |  ----   |   ---- | --------------------------  |
 | grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
 
-## BackgroundBrightnessOptions<sup>11+<sup>
-背景光源参数。
- | 名称        |   类型         |   必填 |  说明                        |
+## BackgroundEffectOptions<sup>11+<sup>
+背景效果参数。
+| 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
 | saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
-| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       | 
+| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
@@ -706,7 +706,7 @@ Nullable\<T> {
 
 ## TextSpanType<sup>11+</sup>
 
-Span类型信息。
+[Span](ts-basic-components-span.md)类型信息。
 
 | 名称 | 说明 |
 | -------- | -------- |

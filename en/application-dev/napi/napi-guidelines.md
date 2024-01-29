@@ -3,17 +3,18 @@
 
 ## Lifecycle Management
 
-**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to manage **napi_value** so as to minimize the lifecycle and avoid memory leakage.
+**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leakage.
 
 
-Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, **napi_value** is automatically released.
+Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, its **napi_value** is automatically released.
+
 
 **Example (correct)**:
 
 
 ```
-// When the NAPI interface is frequently called to create JS objects in the for loop, add handle_scope to release resources that are no longer used in a timely manner.
-// In the following example, the lifecycle of the local variable res ends at the end of each loop. Therefore, scope needs to be added to release the JS object in time and prevent memory leakage.
+// When the Node-API interface is frequently called to create JS objects in the for loop, use handle_scope to release resources in a timely manner when they are no longer used.
+// In the following example, the lifecycle of the local variable res ends at the end of each loop. Therefore, scope is used to release the JS object in time and prevent memory leakage.
 for (int i = 0; i < 100000; i++) { 
     napi_handle_scope scope = nullptr;   
     napi_open_handle_scope(env, &scope); 
@@ -29,18 +30,19 @@ for (int i = 0; i < 100000; i++) {
 
 ## Context Sensitive
 
-**[Rule]** Do not access JS objects across engine instances using Node-API.
+**[Rule]** Do not use Node-API to access JS objects across engine instances.
 
 
-An engine instance is an independent running environment. Operations such as creating and access a JS object must be performed in the same engine instance. If an object is operated in different engine instances, the application may crash. An engine instance is represented as **napi_env** in APIs.
+An engine instance is an independent running environment. Operations such as creating and accessing a JS object must be performed in the same engine instance. If an object is operated in different engine instances, the application may crash. An engine instance is represented as a value of **napi_env** in APIs.
+
 
 **Example (incorrect)**:
 
 
 ```
-// Create a string object with value of bar in env1.
+// Create a string object with value of "bar" in env1.
 napi_create_string_utf8(env1, "bar", NAPI_AUTO_LENGTH, &string);
-// Create an object in env2 and set the previous string object to this object.
+// Create an object in env2 and set the string object to this object.
 napi_status status = napi_create_object(env2, &object); 
 if (status != napi_ok) { 
     napi_throw_error(env, ...); 
@@ -55,12 +57,12 @@ if (status != napi_ok) {
 ```
 
 
-JS objects belong to a specific napi_env. Therefore, you cannot set an object of env1 to an object of env2. If the object of env1 is accessed in env2, the application may crash.
+JS objects belong to a specific **napi_env**. Therefore, you cannot set an object of env1 to an object of env2. If the object of env1 is accessed in env2, the application may crash.
 
 
 ## Exception Handling
 
-**[Suggestion]** Any exception occurred in a Node-API should be handled in a timely manner. Otherwise, unexpected behavior may occur in your application.
+**[Suggestion]** Any exception occurred in a Node-API call should be handled in a timely manner. Otherwise, unexpected behavior may occur.
 
 
 **Example (correct)**:
@@ -73,13 +75,13 @@ if (status != napi_ok) {
     napi_throw_error(env, ...); 
     return;
 } 
-// 2. Create an attribute.
+// 2. Create a property.
 status = napi_create_string_utf8(env, "bar", NAPI_AUTO_LENGTH, &string); 
 if (status != napi_ok) { 
     napi_throw_error(env, ...); 
     return; 
 } 
-// 3. Set the result of step 2 to the value of the object attribute foo.
+// 3. Set the result of step 2 to the value of the object property foo.
 status = napi_set_named_property(env, object, "foo", string); 
 if (status != napi_ok) { 
     napi_throw_error(env, ...); 
@@ -93,10 +95,10 @@ In this example, if an exception occurs in step 1 or step 2, step 3 will not be 
 
 ## Asynchronous Tasks
 
-**[Rule]** When the **uv_queue_work** method is called to throw a task to a JS thread for execution, add **napi_handle_scope** to manage the lifecycle of **napi_value** created by the JS callback.
+**[Rule]** When the **uv_queue_work** method is called to throw a work to a JS thread for execution, use **napi_handle_scope** to manage the lifecycle of **napi_value** created by the JS callback.
 
 
-The Node-API framework will not be used when the **uv_queue_work** method is called. In this case, you need to use **napi_handle_scope** to manage the lifecycle of **napi_value**.
+The Node-API framework will not be used when the **uv_queue_work** method is called. In this case, you must use **napi_handle_scope** to manage the lifecycle of **napi_value**.
 
 
 **Example (correct)**:
@@ -139,7 +141,7 @@ void callbackTest(CallbackContext* context)
 
 ## Object Binding
 
-**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()** , you need to use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
+**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()** , use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
 
 The **napi_wrap** interface is defined as follows:
 
@@ -147,9 +149,9 @@ The **napi_wrap** interface is defined as follows:
 napi_wrap(napi_env env, napi_value js_object, void* native_object, napi_finalize finalize_cb, void* finalize_hint, napi_ref* result)
 ```
 
-When the last parameter **result** is not empty, the framework creates an **napi_ref** object pointing to **js_object**. You need to manage the lifecycle of **js_object**. Specifically, you need to use **napi_remove_wrap** to delete **napi_ref** at a proper time so that GC can release **js_object** and trigger the destructor **finalize_cb** bound to the C++ object **native_object**.
+When the last parameter **result** is not null, the Node-API framework creates an **napi_ref** object pointing to **js_object**. You need to manage the lifecycle of **js_object**. Specifically, use **napi_remove_wrap** to delete **napi_ref** at a proper time so that the garbage collector (GC) can release **js_object** and trigger the destructor **finalize_cb** bound to the C++ object **native_object**.
 
-Generally, the last parameter **result** can directly pass in **nullptr** based on service requirements.
+Generally, you can directly pass in **nullptr** for the last parameter **result**.
 
 **Example (correct)**:
 
@@ -168,7 +170,7 @@ napi_remove_wrap(env, jsobject, result1);
 
 ## Others
 
-**[Rule]** The third parameter **data** in the **napi_get_arraybuffer_info** interface is not allowed to release. The lifecycle of **data** is managed by the engine.
+**[Rule]** Manual release is not allowed for the third parameter **data** in **napi_get_arraybuffer_info**. Its lifecycle is managed by the engine.
 
 The **napi_get_arraybuffer_info** interface is defined as follows:
 
@@ -187,11 +189,11 @@ size_t createBufferSize = ARRAY_BUFFER_SIZE;
 napi_status verification = napi_create_arraybuffer(env, createBufferSize, &arrayBufferPtr, &arrayBuffer);
 size_t arrayBufferSize;
 napi_status result = napi_get_arraybuffer_info(env, arrayBuffer, &arrayBufferPtr, &arrayBufferSize);
-delete arrayBufferPtr; // This operation is not allowed. The lifecycle of the created arrayBufferPtr is managed by the engine and cannot be manually deleted. Deleting arrayBufferPtr may cause a double free of the buffer.
+delete arrayBufferPtr; // This operation is not allowed and may cause a double free of the buffer. The lifecycle of the created arrayBufferPtr is managed by the engine and cannot be manually deleted.
 ```
 
 **[Suggestion]** Properly use **napi_object_freeze** and **napi_object_seal**.
 
-**napi_object_freeze** is equivalent to **Object.freeze**. After an object is frozen, all its attributes are immutable. **napi_object_seal** is equivalent to **Object.seal**. After an object is sealed, no attributes can be added or deleted, but the attribute values are mutable.
+**napi_object_freeze** is equivalent to **Object.freeze**. After an object is frozen, all its properties are immutable. **napi_object_seal** is equivalent to **Object.seal**. After an object is sealed, no properties can be added or deleted, but the existing property values are mutable.
 
-Ensure that you know the difference between the preceding semantics. If the semantics are violated in strict mode (default), an error will be thrown.
+If the semantics are violated in strict mode (default), an error will be thrown.

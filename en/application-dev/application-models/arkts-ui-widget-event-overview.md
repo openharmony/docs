@@ -1,6 +1,7 @@
 # Widget Event Capability Overview
 
 For dynamic ATS widgets, the **postCardAction()** API is provided for interaction between the widget internal and the provider application. Currently, this API supports the router, message, and call events and can be called only in the widget.
+
 For static ATS widgets, the [FormLink](../reference/arkui-ts/ts-container-formlink.md) component is provided for interaction between the widget internal and the provider application.
 
 ## Dynamic Widget Event Capability
@@ -21,7 +22,7 @@ For static ATS widgets, the [FormLink](../reference/arkui-ts/ts-container-formli
 
 | Key | Value | Description|
 | -------- | -------- | -------- |
-| "action" | string | Action type.<br>- **"router"**: redirection to the specified UIAbility of the widget provider.<br>- **"message"**: custom message. If this type of action is triggered, the [onFormEvent()](../reference/apis/js-apis-app-form-formExtensionAbility.md#onformevent) lifecycle callback of the provider FormExtensionAbility is called.<br>- **"call"**: launch of the widget provider in the background. If this type of action is triggered, the specified UIAbility (whose [launch type](uiability-launch-type.md) must be singleton) of the widget provider is started in the background, but not displayed in the foreground. This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../security/permission-list.md#ohospermissionkeep_background_running) permission.|
+| "action" | string | Action type.<br>- **"router"**: redirection to the specified UIAbility of the widget provider.<br>- **"message"**: custom message. If this type of action is triggered, the [onFormEvent()](../reference/apis/js-apis-app-form-formExtensionAbility.md#onformevent) lifecycle callback of the provider FormExtensionAbility is called.<br>- **"call"**: launch of the widget provider in the background. If this type of action is triggered, the specified UIAbility (whose [launch type](uiability-launch-type.md) must be singleton) of the widget provider is started in the background, but not displayed in the foreground. This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running) permission.|
 | "bundleName" | string | Name of the target bundle when **action** is **"router"** or **"call"**. This parameter is optional.|
 | "moduleName" | string | Name of the target module when **action** is **"router"** or **"call"**. This parameter is optional.|
 | "abilityName" | string | Name of the target UIAbility when **action** is **"router"** or **"call"**. This parameter is mandatory.|
@@ -66,3 +67,4 @@ Button ('Start in Background')
 
 ## Static Widget Event Capability
 See [FormLink](../reference/arkui-ts/ts-container-formlink.md).
+<!--no_check-->

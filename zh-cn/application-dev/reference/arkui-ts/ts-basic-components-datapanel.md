@@ -16,20 +16,26 @@
 
 ## 接口
 
-DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
+DataPanel(options: DataPanelOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数:**
 
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| options |  [DataPanelOptions](#datapaneloptions对象说明)| 是 | 数据面板组件参数。 |
+
+## DataPanelOptions对象说明
+
 | 参数名            | 参数类型   | 必填  | 参数描述 |
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
 | max               | number     | 否    |   -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
-| type<sup>8+</sup> | [DataPanelType](#datapaneltype枚举说明) | 否 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
+| type<sup>8+</sup> | [DataPanelType](#datapaneltype8枚举说明) | 否 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
 
 
-## DataPanelType枚举说明
+## DataPanelType<sup>8+</sup>枚举说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -56,7 +62,7 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 ## DataPanelShadowOptions<sup>10+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：5<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
 | offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 | offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
