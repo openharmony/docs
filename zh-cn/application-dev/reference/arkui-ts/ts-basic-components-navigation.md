@@ -41,12 +41,12 @@ Navigation(pathInfos: NavPathStack)
 
 | 名称                                 | 参数类型                                     | 描述                                       |
 | ---------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| title                              | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)\| [NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
+| title                              | value: [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup>, options?: [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | **value:**<br/>必选参数，页面标题，使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。<br/>**options:**<br/>可选参数，标题选项。 |
 | subTitle<sup>(deprecated)</sup>    | string                                   | 页面副标题。不设置时不显示副标题。从API Version 9开始废弃，建议使用title代替。 |
 | menus                              | Array<[NavigationMenuItem](#navigationmenuitem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem10类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。 |
 | titleMode                          | [NavigationTitleMode](#navigationtitlemode枚举说明) | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
 | toolBar<sup>(deprecated)</sup>     | [object](#object类型说明) \| [CustomBuilder](ts-types.md#custombuilder8) | 设置工具栏内容。不设置时不显示工具栏。<br/>items: 工具栏所有项。<br/>**说明：** <br/>items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。<br/>从API version 10开始，该接口不再维护，推荐使用toolbarConfiguration代替。 |
-| toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | 设置工具栏内容。不设置时不显示工具栏。<br/>**说明：** <br/>使用Array<[ToolbarItem](#ToolbarItem10类型说明)>写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array<[NavigationMenuItem](#navigationmenuitem10类型说明)>使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| toolbarConfiguration<sup>10+</sup> | value:&nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) , options?: [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 设置工具栏内容。不设置时不显示工具栏。<br/>**value:**<br/>必选参数，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem10类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。<br/>**options:**<br/>可选参数，工具栏选项。 |
 | hideToolBar                        | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
 | hideTitleBar                       | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
 | hideBackButton                     | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。<br/>**说明：** <br/>返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
@@ -669,10 +669,19 @@ constructor(name: string, param: unknown)
 |POP | 本次转场为页面退场。|
 | REPLACE | 本次转场为页面替换。|
 
->  **说明：**
->
->  目前可滚动组件只支持List。
+## NavigationTitleOptions<sup>11+</sup>类型说明
 
+| 名称     | 类型            | 必填   | 描述              |
+| ------ | ------------- | ---- | --------------- |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色。 |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式。 |
+
+## NavigationToolbarOptions<sup>11+</sup>类型说明
+
+| 名称     | 类型            | 必填   | 描述              |
+| ------ | ------------- | ---- | --------------- |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色。 |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式。 |
 
 ## 示例
 
@@ -1400,3 +1409,79 @@ export function pageTwoTmp(info: Pages) {
 }
 ```
 ![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)
+
+### 示例5
+
+```ts
+@Entry
+@Component
+struct NavigationExample {
+  @State pathStack: NavPathStack = new NavPathStack();
+  @State switchColor: boolean = false;
+  @State switchBlur: boolean = false;
+
+  @Builder
+  BackgroundBuilder() {
+    Row() {
+      Column() {}
+      .layoutWeight(1)
+      .height('100%')
+      .backgroundColor(Color.Red)
+      Column() {}
+      .layoutWeight(1)
+      .height('100%')
+      .backgroundColor(Color.Green)
+      Column() {}
+      .layoutWeight(1)
+      .height('100%')
+      .backgroundColor(Color.Blue)
+    }
+    .height('100%')
+  }
+
+  build() {
+    Navigation(this.pathStack) {
+      Column() {
+        Button('switch color', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            console.log(`testTag switchColor`)
+            this.switchColor = !this.switchColor;
+          })
+        Button('switch blur', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            console.log(`testTag switchBlur`)
+            this.switchBlur = !this.switchBlur;
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    // 使用定制化的背景能够凸显背景模糊的效果
+    .background(this.BackgroundBuilder)
+    .width('100%')
+    .height('100%')
+    // 开发者可以设置标题栏的背景颜色和背景模糊效果
+    .title("NavTitle", {
+      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
+      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+    })
+    // 开发者可以设置工具栏的背景颜色和背景模糊效果
+    .toolbarConfiguration([
+      {value: 'a'},
+      {value: 'b'},
+      {value: 'c'},
+    ], {
+      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
+      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+    })
+  }
+}
+```
+![navigationColorBlur.gif](figures/navigationColorBlur.gif)
+
