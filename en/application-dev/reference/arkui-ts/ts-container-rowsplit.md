@@ -10,7 +10,9 @@ The **\<RowSplit>** lays out child components horizontally and inserts a vertica
 
 Supported
 
-This component limits the width of its child components. During initialization, the layout of the component is calculated based on the width of its child components. After initialization, changes to the width of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
+This component limits the height of its child components through dividers. During initialization, the divider positions are calculated based on the width of its child components. After initialization, changes to the width of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
+
+After initialization, if, due to dynamic changes to the **margin**, **border**, or **padding** attributes, the width of the child components is greater than the allowable distance between adjacent dividers, dividers cannot be dragged to adjust the width of the child components.
 ## APIs
 
 RowSplit()
@@ -20,7 +22,7 @@ RowSplit()
 
 | Name| Type| Description| 
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged.<br>Default value: **false**|
+| resizeable | boolean | Whether the divider can be dragged.<br>Default value: **false**| 
 
 >  **NOTE**
 >

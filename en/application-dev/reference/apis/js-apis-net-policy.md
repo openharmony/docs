@@ -1041,7 +1041,7 @@ Obtains the background network policy for the application specified by a given U
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: number) => {
+policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1088,7 +1088,7 @@ Obtains the background network policies configured for the specified application
 import { BusinessError } from '@ohos.base';
 policy
   .getBackgroundPolicyByUid(11111)
-  .then((data: number) => {
+  .then((data: policy.NetBackgroundPolicy) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {

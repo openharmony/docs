@@ -177,7 +177,7 @@ export default class EntryAbility extends UIAbility {
         try {
             if (listenerId !== -1) {
                 missionManager.off('mission', listenerId, (err: BusinessError) => {
-                    console.log('$(err.code)');
+                    console.log(`${err.code}`);
                 });
             }
         } catch (paramError) {
@@ -281,7 +281,7 @@ export default class EntryAbility extends UIAbility {
         try {
             if (listenerId !== -1) {
                 missionManager.off('mission', listenerId).catch((err: BusinessError) => {
-                    console.log('$(err.code)');
+                    console.log(`${err.code}`);
                 });
             }
         } catch (paramError) {
@@ -367,7 +367,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
             console.error(`error: ${code}, ${message} `);
         }
     })
-    .catch((err: BusinessError) => {console.log(`$(err.code)`);});
+    .catch((err: BusinessError) => {console.log(`${err.code}`);});
   ```
 
 ## missionManager.getMissionInfo

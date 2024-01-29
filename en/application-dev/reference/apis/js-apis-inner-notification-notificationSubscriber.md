@@ -5,14 +5,14 @@ The **NotificationSubscriber** module provides callbacks for receiving or removi
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
 ```js
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 ## onConsume
 
@@ -22,7 +22,7 @@ Called when a new notification is received.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -64,7 +64,7 @@ Called when a notification is canceled.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -106,7 +106,7 @@ Called when notification sorting is updated.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -144,7 +144,7 @@ Called when the subscription is complete.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -184,7 +184,7 @@ Called when unsubscription is complete.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -238,7 +238,7 @@ Called when the service is disconnected.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -271,7 +271,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
-onDoNotDisturbDateChange?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate8-deprecated)) => void
 
 Called when the DND time settings are changed.
 
@@ -281,19 +281,19 @@ Called when the DND time settings are changed.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | Yes| DND time setting updates.|
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate8-deprecated)) => void | Yes| DND time setting updates.|
 
 **Example**
 
 ```ts
 import Base from '@ohos.base';
-import NotificationManager from '@ohos.notificationManager';
+import Notification from '@ohos.notification';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {
@@ -303,7 +303,7 @@ let subscribeCallback = (err: Base.BusinessError) => {
   }
 };
 
-let onDoNotDisturbDateChangeCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+let onDoNotDisturbDateChangeCallback = (mode: Notification.DoNotDisturbDate) => {
   console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
@@ -363,7 +363,7 @@ Listens for the notification enabled status changes.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -405,7 +405,7 @@ Listens for the change of the notification badge number.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -437,11 +437,53 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+
+## onBatchCancel<sup>11+</sup>
+
+ onBatchCancel?:(data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void
+
+Called for batch deletion.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                      |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| onBatchCancel | (data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void | Yes  | Notification information of batch deletion.|
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
+};
+
+let onBatchCancelCallBack = (data: Array<notificationSubscribe.SubscribeCallbackData>) => {
+  console.info('===> onBatchCancel in test');
+  let req = data[0].request;
+  console.info('===> onBatchCancel callback req.id:' + req.id);
+};
+
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onBatchCancel: onBatchCancelCallBack
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
 ## SubscribeCallbackData
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name           | Type                                                                | Readable| Writable| Description    |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
@@ -456,7 +498,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name  | Type   | Readable| Writable| Description            |
 | ------ | ------- | ---- | --- | ---------------- |
@@ -469,7 +511,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type  | Readable| Writable| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |

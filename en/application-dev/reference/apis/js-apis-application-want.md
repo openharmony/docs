@@ -47,7 +47,7 @@ import Want from '@ohos.application.Want';
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
         this.context.startAbility(want, (error: BusinessError) => {
         // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-        console.error('error.code = ${error.code}');
+        console.error(`error.code = ${error.code}`);
         });
     }
     }
@@ -152,7 +152,7 @@ import Want from '@ohos.application.Want';
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
             this.context.startAbility(want, (error: BusinessError) => {
             // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-            console.error('error.code = ${error.code}');
+            console.error(`error.code = ${error.code}`);
             });
         }
         }

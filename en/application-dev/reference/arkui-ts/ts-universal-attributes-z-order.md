@@ -6,13 +6,21 @@ The **zIndex** attribute sets the z-order of a component in the stacking context
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## zIndex
 
-## Attributes
+zIndex(value: number)
 
+Sets the stack level of the component.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| zIndex | number | Hierarchy of sibling components in a container. A larger value indicates a higher display level.<br>Since API version 9, this API is supported in ArkTS widgets.|
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | Yes  | Stack level of the component relative to its sibling components in a container. The components with a larger z-index value cover those with a smaller one.|
 
 
 ## Example

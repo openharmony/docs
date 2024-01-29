@@ -90,7 +90,8 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
     
         return nullptr;
     }
-    EXTERN_C_START static napi_value Init(napi_env env, napi_value exports)
+    EXTERN_C_START 
+    static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
             {"nativeCall", nullptr, NativeCall, nullptr, nullptr, nullptr, napi_default, nullptr}};
@@ -130,25 +131,24 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
         napi_is_exception_pending((env), &isPending);
         if (!isPending && errorInfo != nullptr)
         {
-            const char *errorMessage = errorInfo->error_message != nullptr ? errorInfo->error_message : "empty error message";
+            const char *errorMessage = 
+                errorInfo->error_message != nullptr ? errorInfo->error_message : "empty error message";
             napi_throw_error((env), nullptr, errorMessage);
         }
     } while (0)
     
     #define NAPI_ASSERT_BASE(env, assertion, message, retVal)
-        do
-    {
+    do {
         if (!(assertion))
         {
             napi_throw_error((env), nullptr, "assertion(" #assertion ") failed : " message);
             return retVal;
         }
-    }
-    while (0)
+    } while (0)
     
     #define NAPI_ASSERT(env, assertion, message) NAPI_ASSERT_BASE(env, assertion, message, nullptr)
     
-    #define NAPI_ASSERT_RETURN_VOID(env, assertion, message) \
+    #define NAPI_ASSERT_RETURN_VOID(env, assertion, message) 
         NAPI_ASSERT_BASE(env, assertion, message, NAPI_RETVAL_NOTHING)
     
     #define NAPI_CALL_BASE(env, theCall, retVal)
@@ -165,14 +165,13 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
     
     #define NAPI_CALL_RETURN_VOID(env, theCall) NAPI_CALL_BASE(env, theCall, NAPI_RETVAL_NOTHING)
     
-            struct AsyncData
-        {
-            napi_deferred deferred;
-            napi_async_work work;
+    struct AsyncData{
+        napi_deferred deferred;
+        napi_async_work work;
     
-            int32_t arg;
-            double retVal;
-        };
+        int32_t arg;
+        double retVal;
+    };
     
     double DoSomething(int32_t val)
     {
@@ -185,13 +184,13 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
     
     void ExecuteCallback(napi_env env, void *data)
     {
-        AsyncData *asyncData = reinterpret_cast<AsyncData *>(data);
+        AsyncData* asyncData = reinterpret_cast<AsyncData*>(data);
         asyncData->retVal = DoSomething(asyncData->arg);
     }
     
     void CompleteCallback(napi_env env, napi_status status, void *data)
     {
-        AsyncData *asyncData = reinterpret_cast<AsyncData *>(data);
+        AsyncData* asyncData = reinterpret_cast<AsyncData*>(data);
     
         napi_value retVal;
         if (asyncData->retVal == 0)
@@ -233,7 +232,7 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
         napi_value workName;
         napi_create_string_utf8(env, "promise", NAPI_AUTO_LENGTH, &workName);
         NAPI_CALL(env, napi_create_async_work(env, nullptr, workName,
-                                              ExecuteCallback, CompleteCallback, data, &work));
+            ExecuteCallback, CompleteCallback, data, &work));
     
         data->work = work;
         NAPI_CALL(env, napi_queue_async_work(env, work));
@@ -245,7 +244,8 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            {"nativeCall", nullptr, NativeCall, nullptr, nullptr, nullptr, napi_default, nullptr}};
+            {"nativeCall", nullptr, NativeCall, nullptr, nullptr, nullptr, napi_default, nullptr}
+        };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
     }
@@ -284,3 +284,7 @@ libc++_shared.so被打包到应用目录下了，每个应用都有一份独立�
 **解决方案**
 
 采用napi_create_threadsafe_function在ArkTS线程创建可被任意线程调用的函数，在C++线程调用napi_call_threadsafe_function可以将结果回调给主线程。
+
+**参考链接**
+
+[使用Node-API接口进行线程安全开发](../napi/use-napi-thread-safety.md)

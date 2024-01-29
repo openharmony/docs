@@ -17,7 +17,7 @@
 | slotType<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype)    |   否  | 否  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
 | notificationSlotType<sup>11+</sup> | [SlotType](js-apis-notificationManager.md#slottype) |   否  | 否  | 通道类型。                        |
 | isOngoing                     | boolean                                                  |   否  | 否  | 是否进行时通知。                                                              |
-| isUnremovable                 | boolean                                                  |   否  | 否  | 是否可移除（应用于长时间通知任务上，比如地图、音乐播放；点击通知下方删除按钮无法删除，左滑点击单个删除按钮可删除）。            |
+| isUnremovable                 | boolean                                                  |   否  | 否  | 预留，暂不支持。            |
 | deliveryTime                  | number                                                   |   否  | 否  | 通知发送时间。                                                               |
 | tapDismissed                  | boolean                                                  |   否  | 否  | 通知是否自动清除。                                                             |
 | autoDeletedTime               | number                                                   |   否  | 否  | 自动清除的时间。                                                              |
@@ -49,7 +49,7 @@
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   否  | 否  | 分布式通知的选项。                                                             |
 | deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。                       |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 否  | 获取NotificationFlags。                                                  |
-| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。                                          |
+| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
 
 

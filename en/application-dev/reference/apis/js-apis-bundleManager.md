@@ -14,7 +14,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description           |
+| Permission                                      | APL    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
 | ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to obtain basic information about a bundle.  |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
@@ -22,7 +22,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | Permission to enable or disable an application or ability. |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Permission to read installed application list.|
 
-For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
 ## Enums
 
@@ -109,7 +109,7 @@ Enumerates the types of ExtensionAbilities.
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
-| BACKUP           |  9  | BackupExtensionAbility: provides APIs for backing up and restoring application data and public data. This ability is reserved.|
+| BACKUP           |  9  | [BackupExtensionAbility](js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
 | WINDOW           |  10 | [WindowExtensionAbility](js-apis-application-windowExtensionAbility.md): allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
@@ -224,7 +224,7 @@ Enumerates the bundle types.
 
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
-| APP            | 0    | The bundle is a common application.   |
+| APP            | 0    | The bundle is an application.   |
 | ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
 ### ProfileType<sup>11+</sup>
@@ -238,16 +238,6 @@ Enumerates the types of profiles (also called application files).
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
 | INTENT_PROFILE  | 1    | Profile of the InsightIntent framework.   |
-
-### ApplicationReservedFlag<sup>11+</sup>
-
-Enumerates the reserved flags of the application.
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-| Name          | Value  | Description           |
-| -------------- | ---- | --------------- |
-| ENCRYPTED_APPLICATION  | 0x00000001    | Whether the application is encrypted.   |
 
 ## APIs
 
@@ -274,10 +264,11 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain application info with metadataArray.
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
         hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -308,10 +299,11 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 **Example**
 
 ```ts
+// Obtain ability info with permissions.
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
     bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {

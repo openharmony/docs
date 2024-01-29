@@ -42,7 +42,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value in API version 9: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, this API follows the following rules:<br> If the parameter type is ResourceColor, the ring is of the monochrome type.<br> If the parameter type is LinearGradient, the ring is of the gradient type.<br> If the parameter type is array, the ring is of the gradient type.<br> A ring of the gradient type contains a maximum of nine color segments. If there are more than nine segments, the excess is not displayed.<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in black.|
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value in API version 9: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, this API follows the following rules:<br> If the parameter type is ResourceColor, the ring is of the monochrome type.<br> If the parameter type is LinearGradient, the ring is of the gradient type.<br> If the parameter type is array, the ring is of the gradient type.<br> A ring of the gradient type contains a maximum of nine color segments. If there are more than nine segments, the excess is not displayed.<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in the color of 0xFFE84026.|
 | strokeWidth | Length | Stroke width of the chart.<br>Default value: **4**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
 | description<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Description of the chart.<br>**NOTE**<br>You can customize the content in @Builder. The recommended content is text or imagery.<br>If the width and height of the custom content are in percentage, the reference range is a rectangle whose area is 44.4% x 25.4% of the ring diameter (28.6% x 28.6% for imagery), 0 vp away from the bottom of the ring, and centered horizontally.<br>If this parameter is set to null, no description is displayed.<br>If this parameter is not set, what's displayed is subject to the maximum and minimum value settings.<br>If either or both of the maximum and minimum values are set, they are displayed.<br>If neither maximum nor minimum values are set, no description is displayed.<br>The maximum and minimum values are displayed at the bottom of the ring and cannot be relocated. They may be blocked by the ring if the ring's start and end angles are not set properly.|
 | trackShadow<sup>11+</sup> | [GuageShadowOptions](#guageshadowoptions11) | Shadow style of the chart.<br>**NOTE**<br>The shadow color is the same as the ring color.<br>If this attribute is set to **null**, the shadow effect is disabled.|
@@ -56,7 +56,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Type            | Description                                                        |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10), number] | Gradient color stop. The first parameter indicates the color value. If it is set to a non-color value, the black color is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0.|
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10),&nbsp;number] | Gradient color stop. The first parameter indicates the color value. If it is set to a non-color value, the color of 0xFFE84026 is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0.|
 
 ## GuageShadowOptions<sup>11+</sup>
 | Name         | Type| Mandatory| Description|
@@ -78,7 +78,7 @@ This example sets the current value, description, and auxiliary text.
 @Entry
 @Component
 struct Gauge1 {
-  @Builder DescriptionBuilder() {
+  @Builder descriptionBuilder() {
     Text('Description')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -130,7 +130,7 @@ struct Gauge1 {
       .height('80%')
       .strokeWidth(18)
       .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .description(this.DescriptionBuilder)
+      .description(this.descriptionBuilder)
       .padding(18)
     }.margin({ top: 40 }).width('100%').height('100%')
   }
@@ -144,7 +144,7 @@ This example sets the current value and icon.
 @Entry
 @Component
 struct Gauge2 {
-  @Builder DescriptionBuilderImage() {
+  @Builder descriptionBuilderImage() {
     Image($r('sys.media.ohos_ic_public_clock')).width(72).height(72)
   }
 
@@ -170,7 +170,7 @@ struct Gauge2 {
       .width('80%')
       .height('80%')
       .strokeWidth(18)
-      .description(this.DescriptionBuilderImage)
+      .description(this.descriptionBuilderImage)
       .padding(18)
     }.margin({ top: 40 }).width('100%').height('100%')
   }
@@ -184,7 +184,7 @@ This example sets the current value and description.
 @Entry
 @Component
 struct Gauge3 {
-  @Builder DescriptionBuilder() {
+  @Builder descriptionBuilder() {
     Text('Description')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -226,7 +226,7 @@ struct Gauge3 {
         .width('80%')
         .height('80%')
         .strokeWidth(18)
-        .description(this.DescriptionBuilder)
+        .description(this.descriptionBuilder)
         .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
         .padding(18)
       }.margin({ top: 40 }).width('100%').height('100%')

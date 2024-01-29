@@ -1,6 +1,6 @@
 # @ohos.app.ability.EnvironmentCallback (EnvironmentCallback)
 
-EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated方法。
+EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力。
 
 > **说明：**
 > 
@@ -17,7 +17,7 @@ import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
 ## EnvironmentCallback.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(config: Configuration): void
 
 注册系统环境变化的监听后，在系统环境变化时触发回调。
 
@@ -31,7 +31,7 @@ onConfigurationUpdated(config: Configuration): void;
 
 ## EnvironmentCallback.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
@@ -60,7 +60,7 @@ export default class MyAbility extends UIAbility {
             },
 
             onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
+                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
             }
         };
         // 1.获取applicationContext

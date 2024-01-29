@@ -93,19 +93,22 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
 
 1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ActionExtAbility**.
 
-2. In the **ActionExtAbility** directory, right-click and choose **New > TypeScript File** to create a file named **ActionExtAbility.ts**.
+2. In the **ActionExtAbility** directory, right-click and choose **New > ArkTS File** to create a file named **ActionExtAbility.ets**.
 
     ```text
     ├── ets
     │ ├── ActionExtAbility
-    │ │   ├── ActionExtAbility.ts
+    │ │   ├── ActionExtAbility.ets
     └
     ```
 
-3. In the **ActionExtAbility.ts** file, import the ActionExtensionAbility module. Customize a class that inherits from ActionExtensionAbility and implement the lifecycle callbacks.
+3. In the **ActionExtAbility.ets** file, import the ActionExtensionAbility module. Customize a class that inherits from ActionExtensionAbility and implement the lifecycle callbacks.
 
    ```ts
    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
+   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
    const TAG: string = "[ActionExtAbility]";
 
    export default class ActionExtAbility extends ActionExtensionAbility {
@@ -123,18 +126,18 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
        console.info(TAG, `onBackground`);
      }
 
-     onSessionCreate(want, session) {
+     onSessionCreate(want: Want, session: UIExtensionContentSession) {
        console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-       this.message = want.parameters.shareMessages;
-       this.storage = new LocalStorage(
-        {
-          'session': session,
-          'messages': this.message
-        });
+       this.message = want.parameters.shareMessages.toString();
+       let localStorageData: Record<string, UIExtensionContentSession | string> = {
+         'session': session,
+         'messages': this.message
+       };
+       this.storage = new LocalStorage(localStorageData);
        session.loadContent('pages/Index', this.storage);
      }
 
-     onSessionDestroy(session) {
+     onSessionDestroy(session: UIExtensionContentSession) {
        console.info(TAG, `onSessionDestroy`);
      }
 
@@ -157,7 +160,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
            "description": "action",
            "type": "action",
            "exported": true,
-           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ts"
+           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ets"
          }
        ]
      }

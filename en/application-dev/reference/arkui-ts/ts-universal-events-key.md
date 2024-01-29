@@ -6,13 +6,19 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## onKeyEvent
 
+onKeyEvent(event: (event: KeyEvent) => void)
 
-## Events
+Triggered when a key event occurs.
 
-| Name                                      | Bubbling Supported| Description                                    |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes   | Triggered when a key event occurs. For details about **event**, see [KeyEvent](#keyevent).|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description              |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [KeyEvent](#keyevent) | No  | **KeyEvent** object.|
 
 
 ## KeyEvent
@@ -20,7 +26,7 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 | Name                                   | Type                                      | Description                        |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | Key type.                    |
-| [keyCode](../apis/js-apis-keycode.md) | number                                   | Key code.                    |
+| [keyCode](../apis/js-apis-keycode.md#keycode) | number                                   | Key code.                    |
 | keyText                               | string                                   | Key value.                    |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |

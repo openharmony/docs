@@ -14,7 +14,7 @@ This component can contain a single child component.
 
 ## APIs
 
-### GridItem<sup>11+</sup>
+### GridItem
 
 GridItem(value?: GridItemOptions)
 
@@ -22,14 +22,7 @@ GridItem(value?: GridItemOptions)
 
 | Name| Type                                     | Mandatory| Description                                                    |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [GridItemOptions](#griditemoptions11) | No  | Value of the grid item, containing the **style** parameter of the **GridItemStyle** enum type.|
-
-### GridItem<sup>(deprecated)</sup>
-
-GridItem()
-
-This API is deprecated since API version 11. You are advised to use **GridItem<sup>11+</sup>** instead.
-
+| value<sup>11+</sup>  | [GridItemOptions](#griditemoptions11) | No  | Parameters of the grid item, containing the **style** parameter of the [GridItemStyle](#griditemstyle11) enum type.|
 
 ## Attributes
 
@@ -41,7 +34,7 @@ This API is deprecated since API version 11. You are advised to use **GridItem<s
 | columnEnd | number | End column number of the component.|
 | forceRebuild<sup>(deprecated)</sup> | boolean | Whether to re-create the component when it is being built.<br>This API is deprecated since API version 9. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.<br>Default value: **false**|
 | selectable<sup>8+</sup> | boolean | Whether the grid item is selectable by the mouse.<br>> **NOTE**<br>> This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true**|
-| selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
+| selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.<br>Default value: **false**|
 
 >  **NOTE**
 >
@@ -71,10 +64,10 @@ This API is deprecated since API version 11. You are advised to use **GridItem<s
 
 ## GridItemStyle<sup>11+</sup>
 
-| Name | Description                    |
-| ----- | ------------------------ |
-| NONE  | No style.                |
-| PLAIN | Hover or press style.|
+| Name |Value| Description                    |
+| ----- |----| ------------------------ |
+| NONE  |  0 | No style.                |
+| PLAIN |  1 | Hover or press style.|
 
 > **NOTE**
 >
@@ -85,7 +78,7 @@ This API is deprecated since API version 11. You are advised to use **GridItem<s
 
 | Name| Description|
 | -------- | -------- |
-| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise.|
+| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise.|
 
 ## Example
 
@@ -149,13 +142,13 @@ This example shows how to use **GridItemOptions**.
 @Entry
 @Component
 struct GridItemExample {
-  @State Number: String[] = ['0', '1', '2']
+  @State numbers: String[] = ['0', '1', '2']
 
   build() {
     Column({ space: 5 }) {
       Grid() {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem({style:GridItemStyle.NONE}) {
               Text(day)
                 .fontSize(16)
@@ -178,8 +171,8 @@ struct GridItemExample {
       .padding('4vp')
 
       Grid() {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem({style:GridItemStyle.PLAIN}) {
               Text(day)
                 .fontSize(16)

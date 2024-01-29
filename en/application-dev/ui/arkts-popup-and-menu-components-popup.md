@@ -122,37 +122,3 @@ To place the popup in a specific position, set the **placement** parameter. The 
 
 
 ![en-us_other_0000001500900234](figures/en-us_other_0000001500900234.jpeg)
-
-
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State customPopup: boolean = false
-  // Define the popup content in the popup builder.
-  @Builder popupBuilder() {
-    Row({ space: 2 }) {
-      Image('/images/shengWhite.png').width(30).objectFit(ImageFit.Contain)
-      Column(){
-        Text('Savor Life').fontSize(14).fontWeight(900).fontColor(Color.White).width('100%')
-        Text('A treasure trove of sing-along songs').fontSize(12).fontColor('#ffeeeeee').width('100%')
-      }
-    }.width(230).height(80).padding(5)
-  }
-  build() {
-    Row() {
-      Text ('Sing along')
-      Image('/images/sheng.png').width(35).objectFit(ImageFit.Contain)
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup(this.customPopup, {
-          builder: this.popupBuilder,
-        })
-    }
-    .margin(20)
-    .height('100%')
-  }
-}
-```

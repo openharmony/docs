@@ -31,9 +31,9 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
-         console.log('prepare success');
+         console.info('prepare success');
        } else {
-         console.log('prepare failed and error is ' + err.message);
+         console.error('prepare failed and error is ' + err.message);
        }
      });
      let videoSurfaceId = await avRecorder.getInputSurface();
@@ -118,7 +118,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Stop video recording.
-   
+     
    Call **stop()** of the **AVRecorder** instance to stop recording, and then call **stop()** of the **VideoOutput** instance to stop the video output stream.
      
    ```ts

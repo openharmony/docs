@@ -1,6 +1,8 @@
 # @ohos.distributedHardware.deviceManager (Device Management)
 
-The **deviceManager** module provides APIs for distributed device management.
+The APIs of this module are deprecated. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
+
+The **distributedHardware.deviceManager** module provides APIs for distributed device management.
 
 System applications can call the APIs to do the following:
 
@@ -15,7 +17,6 @@ System applications can call the APIs to do the following:
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
-> - The APIs of this module are deprecated since API version 11. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
 
 
 ## Modules to Import
@@ -78,7 +79,7 @@ Defines device information.
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | [DeviceType](#devicetype) | Yes   | Device type.   |
 | networkId<sup>8+</sup> | string                    | Yes   | Network ID of the device. |
-| range<sup>9+</sup>     | number                    | Yes   | Distance between the device (discovered device) and the device that initiates device discovery. |
+| range<sup>9+</sup>     | number                    | Yes   | Distance between the discovered device and the device that initiates device discovery. |
 | authForm<sup>10+</sup> | [AuthForm](#authform)     | Yes   | Authentication type of the device. |
 
 ## DeviceType
@@ -275,7 +276,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -315,7 +316,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -362,7 +363,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -395,10 +396,11 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     dmInstance.getTrustedDeviceList((err: BusinessError, data: Array<deviceManager.DeviceInfo>) => {
       if (err) {
@@ -433,7 +435,7 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -473,7 +475,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -506,10 +508,11 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
+
 
   try {
     dmInstance.getLocalDeviceInfo((err: BusinessError, data: deviceManager.DeviceInfo) => {
@@ -545,7 +548,7 @@ Obtains local device information. This API uses a promise to return the result.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -578,7 +581,7 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -625,7 +628,7 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -668,15 +671,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   interface SubscribeInfo {
     subscribeId: number;
-    mode: number; // Active discovery
-    medium: number;  // Automatic. Multiple media can be used for device discovery.
-    freq: number;    // High frequency
+    mode: number, // Active discovery
+    medium: number,  // Automatic. Multiple media can be used for device discovery.
+    freq: number,    // High frequency
     isSameAccount: boolean;
     isWakeRemote: boolean;
     capability: number;
@@ -731,7 +734,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -741,15 +744,15 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
   }
 
   interface FilterOptions {
-    filter_op: string; // Optional. The default value is OR.
+    filter_op: string, // Optional. The default value is OR.
     filters: Filters[];
   }
 
   interface SubscribeInfo {
     subscribeId: number;
-    mode: number; // Active discovery
-    medium: number;  // Automatic. Multiple media can be used for device discovery.
-    freq: number;    // High frequency
+    mode: number, // Active discovery
+    medium: number,  // Automatic. Multiple media can be used for device discovery.
+    freq: number,    // High frequency
     isSameAccount: boolean;
     isWakeRemote: boolean;
     capability: number;
@@ -769,8 +772,8 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
   let filters: Filters[] = [
     {
-      type: "range",
-      value: 50 // Filter discovered devices based on the distance (in cm).
+        type: "range",
+        value: 50 // Filter discovered devices based on the distance (in cm).
     }
   ];
 
@@ -814,7 +817,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -857,16 +860,16 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   interface PublishInfo {
     publishId: number;
-    mode: number; // Active discovery
-    freq: number;    // High frequency
-    ranging: boolean; // Whether the device supports reporting the distance to the discovery initiator.
-  }
+    mode: number, // Active discovery
+    freq: number,    // High frequency
+    ranging: boolean // Whether the device supports reporting the distance to the discovery initiator.
+  };
 
   // Automatically generate a unique subscription ID.
   let publishId = Math.floor(Math.random() * 10000 + 1000);
@@ -913,7 +916,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -949,7 +952,7 @@ Authenticates a device.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -964,7 +967,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     deviceType: number;
     networkId: string;
     range: number;
-  }
+  };
 
   interface ExtraInfo {
     targetPkgName: string;
@@ -974,7 +977,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
   }
 
   interface AuthParam {
-    authType: number; //Authentication type. The value 1 means no account PIN authentication.
+    authType: number,// Authentication type. The value 1 means PIN authentication.
     extraInfo: ExtraInfo;
   }
 
@@ -1041,7 +1044,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1090,19 +1093,19 @@ Verifies authentication information.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
   interface ExtraInfo {
     authType: number;
-    token: number;
+    token: numbe;
   }
 
   interface AuthInfo {
     authType: number;
     token: number;
-    extraInfo: ExtraInfo;
+    extraInfo: ExtraInf;
   }
 
   class Data {
@@ -1126,7 +1129,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
         console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.info("verifyAuthInfo result:" + JSON.stringify(data));
+    console.info("verifyAuthInfo result:" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1155,7 +1158,7 @@ Sets a user operation.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1197,7 +1200,7 @@ Obtains the registration information of the credential.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1250,7 +1253,7 @@ Imports credential information.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1287,6 +1290,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
     authCode: "",
     peerDeviceId: ""
   };
+
 
   let credentialInfo: CredentialInfo = {
     processType: 1,
@@ -1334,7 +1338,7 @@ Deletes credential information.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1373,7 +1377,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
-Subscribes to UI status changes.
+Subscribes to UI state changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult).
 
@@ -1385,12 +1389,12 @@ Subscribes to UI status changes.
 
 | Name     | Type                            | Mandatory| Description                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates UI status changes. |
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
+| type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates UI state changes. |
+| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI state.       |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1419,7 +1423,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
-Unsubscribes from UI status changes.
+Unsubscribes from UI state changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult).
 
@@ -1431,12 +1435,12 @@ Unsubscribes from UI status changes.
 
 | Name     | Type                             | Mandatory| Description                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates UI status changes. |
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status change. |
+| type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates UI state changes. |
+| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1469,7 +1473,7 @@ Subscribes to device state changes.
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1513,11 +1517,11 @@ Unsubscribes from device state changes.
 | Name      | Type                                    | Mandatory  | Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.      |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for the device state change. |
+| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1560,12 +1564,12 @@ Subscribes to device discovery events.
 
 | Name      | Type                                    | Mandatory  | Description                        |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates discovery of a device. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the discovery of a device. |
+| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates that a device is discovered. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked when a device is discovered. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1608,12 +1612,12 @@ Unsubscribes from device discovery events.
 
 | Name      | Type                                    | Mandatory  | Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates discovery of a device. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for the device discovery event. |
+| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates that a device is discovered. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1657,11 +1661,11 @@ Subscribes to device discovery failures.
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to report a device discovery failure. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1697,11 +1701,11 @@ Unsubscribes from device discovery failures.
 | Name      | Type                                    | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1724,7 +1728,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
-Subscribes to device information publication success events.
+Subscribes to the **'publishSuccess'** event. The application will be notified when the information of a device is published.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1736,13 +1740,13 @@ Subscribes to device information publication success events.
 
 | Name    | Type                                | Mandatory| Description                      |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.|
+| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates that the information of a device is published |
 | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback invoked to return the publish ID.              |
 
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1764,7 +1768,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
-Unsubscribes from device information publication success events.
+Unsubscribes from the **'publishSuccess'** event.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1776,12 +1780,12 @@ Unsubscribes from device information publication success events.
 
 | Name    | Type                                | Mandatory| Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event of the success in publishing device information. |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback for the device information publication success event. |
+| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates that the information of a device is published |
+| callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1803,7 +1807,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-Subscribes to device information publication failures.
+Subscribes to the **'publishFail'** event. The application will be notified when the information of a device fails to be published.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1815,12 +1819,12 @@ Subscribes to device information publication failures.
 
 | Name    | Type                                             | Mandatory| Description                            |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates an event reported when publishing device information fails. |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked to report a publication failure. |
+| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates that the information of a device fails to be published. |
+| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked when the information of a device fails to be published. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1843,7 +1847,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-Unsubscribes from device information publication failures.
+Unsubscribes from the **'publishFail'** event.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1855,12 +1859,12 @@ Unsubscribes from device information publication failures.
 
 | Name    | Type                                             | Mandatory| Description               |
 | -------- | ----------------------------------------------------- | ---- | ----------------- |
-| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates a failure in publishing device information. |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback for the device information publication failure. |
+| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates that the information of a device fails to be published. |
+| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1883,7 +1887,7 @@ For details about the instance of `dmInstance`, see [deviceManager.createDeviceM
 
 on(type: 'serviceDie', callback: () =&gt; void): void
 
-Subscribes to dead events of the **DeviceManager** service.
+Subscribes to dead events of the **DeviceManager** service. The application will be notified when the **DeviceManager** service is terminated unexpectedly.
 
 > **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie).
 
@@ -1895,12 +1899,12 @@ Subscribes to dead events of the **DeviceManager** service.
 
 | Name      | Type                   | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates that the **DeviceManager** service is terminated unexpectedly. |
+| callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is terminated unexpectedly. |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1930,12 +1934,12 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 | Name      | Type                   | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates a dead event of the **DeviceManager** service. |
-| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback for the dead event of the **DeviceManager** service.                  |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates that the **DeviceManager** service is terminated unexpectedly. |
+| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.     |
 
 **Example**
 
-For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
+For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 

@@ -54,8 +54,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onStart(event: () =&gt; void)  | Triggered when the animation starts to play.<br>Since API version 10, this API is supported in ArkTS widgets.|
 | onPause(event: () =&gt; void)  | Triggered when the animation playback is paused.<br>Since API version 10, this API is supported in ArkTS widgets.|
 | onRepeat(event: () =&gt; void) | Triggered when the animation playback is repeated. |
-| onCancel(event: () =&gt; void) | Triggered when the animation playback is canceled.<br>Since API version 10, this API is supported in ArkTS widgets.|
-| onFinish(event: () =&gt; void) | Triggered when the animation playback is complete.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| onCancel(event: () =&gt; void) | Triggered when the animation playback returns to the initial state.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| onFinish(event: () =&gt; void) | Triggered when the animation playback is complete or stopped.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 
 ## Example

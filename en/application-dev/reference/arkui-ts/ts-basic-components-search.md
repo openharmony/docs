@@ -41,7 +41,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.<br>Default value:<br>{<br>width: '1.5vp',<br>color: '#007DFF'<br>} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.|
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
 | type<sup>11+</sup>                     | [SearchType](#searchtype11)     | Input box type.<br>Default value: **SearchType.Normal**       |
 | maxLength<sup>11+</sup>   | number                                                       | Maximum number of characters in the text input.<br>By default, no maximum number limit is imposed.<br>When the maximum number is reached, no more characters can be entered.|
 
@@ -94,7 +94,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onChange(callback: (value: string) => void)                  | Triggered when the input in the text box changes.<br> - **value**: current text input.|
 | onCopy(callback: (value: string) => void)                    | Triggered when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.|
 | onCut(callback: (value: string) => void)                     | Triggered when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.|
-| onPaste(callback: (value: string) => void)                   | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.|
+| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text pasted.<br> - **event**: custom paste event.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
 
@@ -126,7 +126,7 @@ Exits the editing state.
 
 ### getTextContentRect<sup>10+</sup>
 
-getTextContentRect(): [RectResult](#rectresult10)
+getTextContentRect(): RectResult
 
 Obtains the position of the edited text area relative to the component and its size. The unit of the return value is pixel.
 
@@ -240,7 +240,7 @@ struct SearchExample {
 // xxx.ets
 @Entry
 @Component
-struct SearchButtoonExample {
+struct SearchExample {
   @State submitValue: string = ''
 
   build() {

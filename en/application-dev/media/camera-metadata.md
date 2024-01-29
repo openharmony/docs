@@ -24,7 +24,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
      } catch (error) {
        let err = error as BusinessError;
-       console.info('Failed to createMetadataOutput, error code: '+ err.code);
+       console.error('Failed to createMetadataOutput, error code: '+ err.code);
      }
      return metadataOutput;
    }
@@ -37,7 +37,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      metadataOutput.start().then(() => {
        console.info('Callback returned with metadataOutput started.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to metadataOutput start, error code: '+ err.code);
+       console.error('Failed to metadataOutput start, error code: '+ err.code);
      });
    }
    ```
@@ -49,7 +49,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      metadataOutput.stop().then(() => {
        console.info('Callback returned with metadataOutput stopped.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to metadataOutput stop '+ err.code);
+       console.error('Failed to metadataOutput stop '+ err.code);
      });
    }
    ```

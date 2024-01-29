@@ -503,6 +503,8 @@ Enables listening for the input method subtype setting event. This API uses an a
 **Example**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+
 try {
   inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
     console.log('InputMethodAbility setSubtype.');
@@ -1951,10 +1953,10 @@ Describes the security mode.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value  | Description          |
-| ----- | ---- | -------------- |
-| BASIC | 0    | Basic access mode.|
-| FULL  | 3    | Full access mode.|
+| Name | Value  | Description                                        |
+| ----- | ---- | -------------------------------------------- |
+| BASIC | 0    | Basic access mode, where network access is restricted.|
+| FULL  | 1    | Full access mode, where network access is not restricted.      |
 
 ## ExtendAction<sup>10+</sup>
 

@@ -46,72 +46,94 @@ You can customize the page entrance and exit animations in the **pageTransition*
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type?: [RouteType](#routetype), progress?: number) =&gt; void) | Invoked once every animation frame until the entrance animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
-| onExit(event: (type?: [RouteType](#routetype), progress?: number) =&gt; void) | Invoked once every animation frame until the exit animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
+| onEnter(event: (type: [RouteType](#routetype), progress: number) =&gt; void) | Invoked once every animation frame until the entrance animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
+| onExit(event: (type: [RouteType](#routetype), progress: number) =&gt; void) | Invoked once every animation frame until the exit animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
 
 
 ## Example
 
-Example 1: Apply the entrance animation of fade-in and the exit animation of zoom-out.
+Example 1: Apply different exit and entry animations based on different exit and entry types.
 
 ```ts
 // index.ets
+import router from '@ohos.router'
+
 @Entry
 @Component
-struct PageTransitionExample1 {
+struct Index {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
-      Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%')    // Store the image in the media folder.
-      }
-    }.scale({ x: this.scale1 }).opacity(this.opacity1)
+      Image($r("app.media.transition_image1")).width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .scale({ x: this.scale1 })
+    .opacity(this.opacity1)
+    .onClick(() => {
+      router.pushUrl({ url: 'pages/Page1' })
+    })
   }
-  // Customize the transition process.
+
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type?: RouteType, progress?: number) => {
-        this.scale1 = 1
-        this.opacity1 = progress as number
-      }) // The onEnter callback is triggered frame by frame during the entrance process. The input parameter is the normalized progress of the animation (0% to 100%).
+      .onEnter((type: RouteType, progress: number) => {
+        if (type == RouteType.Push||type == RouteType.Pop) {
+          this.scale1 = progress
+          this.opacity1 = progress
+        }
+      })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type?: RouteType, progress?: number) => {
-        this.scale1 = 1 - (progress as number)
-        this.opacity1 = 1
-      }) // The onExit callback is triggered frame by frame during the exit process. The input parameter is the normalized progress of the animation (0% to 100%).
+      .onExit((type: RouteType, progress: number) => {
+        if (type == RouteType.Push) {
+          this.scale1 = 1 - progress
+          this.opacity1 = 1 - progress
+        }
+      })
   }
 }
 ```
 
 ```ts
 // page1.ets
+import router from '@ohos.router'
+
 @Entry
 @Component
-struct AExample {
+struct Page1 {
   @State scale2: number = 1
   @State opacity2: number = 1
 
   build() {
     Column() {
-      Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%')   // Store the image in the media folder.
-      }
-    }.width('100%').height('100%').scale({ x: this.scale2 }).opacity(this.opacity2)
+      Image($r("app.media.transition_image2")).width('100%').height('100%') // Store the image in the media folder.
+    }
+    .width('100%')
+    .height('100%')
+    .scale({ x: this.scale2 })
+    .opacity(this.opacity2)
+    .onClick(() => {
+      router.pushUrl({ url: 'pages/Index' })
+    })
   }
-  // Customize the transition process.
+
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type?: RouteType, progress?: number) => {
-        this.scale2 = 1
-        this.opacity2 = progress as number
-      }) // The onEnter callback is triggered frame by frame during the entrance process. The input parameter is the normalized progress of the animation (0% to 100%).
+      .onEnter((type: RouteType, progress: number) => {
+        if(type==RouteType.Push || type == RouteType.Pop)
+          this.scale2 = progress
+        this.opacity2 = progress
+
+      })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type?: RouteType, progress?: number) => {
-        this.scale2 = 1 - (progress as number)
-        this.opacity2 = 1
-      }) // The onExit callback is triggered frame by frame during the exit process. The input parameter is the normalized progress of the animation (0% to 100%).
+      .onExit((type: RouteType, progress: number) => {
+        if (type == RouteType.Pop) {
+          this.scale2 = 1 - progress
+          this.opacity2 = 1 - progress
+        }
+      })
   }
 }
 ```

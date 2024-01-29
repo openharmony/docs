@@ -1,6 +1,6 @@
 # TextClock
 
-The **\<TextClock>** component displays the current system time in text format for different time zones. The time is accurate to milliseconds.
+The **\<TextClock>** component displays the current system time in text format for different time zones. The time is accurate to seconds.
 
 >**NOTE**
 >

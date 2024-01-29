@@ -360,3 +360,97 @@ Enumerates the Phase 2 authentication methods.
 | PHASE2_SIM | 5 | SIM.|
 | PHASE2_AKA | 6 | AKA.|
 | PHASE2_AKA_PRIME | 7 | AKA Prime.|
+
+## wifiManager.isWifiDisabled<sup>11+</sup>
+
+isWifiDisabled(admin: Want): boolean
+
+Checks whether Wi-Fi is disabled through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| boolean | Returns **true** if Wi-Fi is disabled; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let result: boolean = wifiManager.isWifiDisabled(wantTemp);
+  console.info(`Succeeded in query the wifi is disabled or not, result : ${result}`);
+} catch (err) {
+  console.error(`Failed to query the wifi is disabled or not. Code: ${err.code}, message: ${err.message}`);
+};
+```
+
+## wifiManager.setWifiDisabled<sup>11+</sup>
+
+setWifiDisabled(admin: Want, isDisabled: boolean): void
+
+Sets the Wi-Fi policy through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                     |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------- |
+| admin      | [Want](js-apis-app-ability-want.md) | Yes  | Device administrator application.                           |
+| isDisabled | boolean                             | Yes  | Wi-Fi policy to set. The value **true** means to disable Wi-Fi; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  wifiManager.setWifiDisabled(wantTemp, true);
+  console.info('Succeeded in set the wifi disabled');
+} catch (err) {
+  console.error(`Failed to set the wifi disabled. Code: ${err.code}, message: ${err.message}`);
+};
+```

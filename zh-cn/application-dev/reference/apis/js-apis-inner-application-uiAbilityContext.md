@@ -3638,7 +3638,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   }
   context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
     console.log(`startAbilityByType success`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```

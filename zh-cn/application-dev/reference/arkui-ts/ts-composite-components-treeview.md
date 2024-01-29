@@ -92,6 +92,8 @@ buildDone(): void
 
 refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: ResourceStr): void
 
+更新树视图。调用该方法，更新当前节点的信息。
+
 **参数：**
 
 | 名称 | 参数类型 | 必填 | 说明 | 
@@ -105,14 +107,14 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| parentNodeId | number | 否 | 父亲节点。 | 
-| currentNodeId | number | 否 | 当前孩子节点。 | 
+| parentNodeId | number | 否 | 父节点。 | 
+| currentNodeId | number | 否 | 当前子节点。 | 
 | isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 | 
-| icon | ResourceStr | 否 | 图标。 | 
-| selectedIcon | ResourceStr | 否 | 选中图标。 | 
-| editIcon | ResourceStr | 否 | 编辑图标。 | 
-| primaryTitle | ResourceStr | 否 | 主标题。 | 
-| secondaryTitle | ResourceStr | 否 | 副标题。 | 
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 | 
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 | 
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 | 
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 | 
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 | 
 | container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 | 
 
 
@@ -123,14 +125,14 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ### getInstance
 
-getInstance(): TreeListenerManager
+getInstance(): [TreeListenerManager](#treelistenermanager)
 
 获取监听管理器单例对象
 
 
-### getTreeListener()
+### getTreeListener
 
-getTreeListener(): TreeListener
+getTreeListener(): [TreeListener](#treelistener)
 
 获取监听器
 
@@ -151,7 +153,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
 
 
 ### once
@@ -160,12 +162,13 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 注册一次监听
 
+
 **参数：**
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
 
 
 ### off
@@ -176,14 +179,13 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 取消监听
 
-
 **参数：**
 
 
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 | 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
 
 
 ## TreeListenType
@@ -201,9 +203,9 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| currentNodeId | number | 是 | 当前孩子节点。 | 
-| parentNodeId | number | 否 | 父亲节点表。 | 
-| childIndex:&nbsp;number | number | 否 | 孩子索引。 | 
+| currentNodeId | number | 是 | 当前子节点。 | 
+| parentNodeId | number | 否 | 父节点。 | 
+| childIndex | number | 否 | 子索引。 | 
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
@@ -219,18 +221,45 @@ struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
   @State clickNodeId: number = 0;
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
     this.treeListener.off(TreeListenType.NODE_ADD, undefined);
     this.treeListener.off(TreeListenType.NODE_DELETE, undefined);
+    this.treeListener.off(TreeListenType.NODE_MOVE, undefined);
+  }
+
+  @Builder menuBuilder1() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('新增').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.addNode();
+        })
+      Divider()
+      Text('删除').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.removeNode();
+        })
+      Divider()
+      Text('重命名').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.modifyNode();
+        })
+    }.width(100).border({width: 1, color: 0x80808a, radius: '16dp'})
   }
 
   aboutToAppear(): void {
-    this.treeListener.on(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
-    })
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+    })
+    this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+    })
+    this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+    })
+    this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
     })
 
     let normalResource: Resource = $r('app.media.ic_public_collect_normal');
@@ -257,14 +286,41 @@ struct TreeViewDemo {
       .addNode({ parentNodeId:33, currentNodeId: 34, isFolder: false, primaryTitle: "项目8" })
       .addNode({ parentNodeId:-1, currentNodeId: 36, isFolder: false, primaryTitle: "项目9" })
       .buildDone();
+    this.treeController.refreshNode(-1, "父节点", "子节点");
   }
 
   build() {
     Column(){
-      TreeView({ treeController: this.treeController })
+      SideBarContainer(SideBarContainerType.Embed)
+      {
+        TreeView({ treeController: this.treeController })
+        Row() {
+          Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
+          Column({ space: 30 }) {
+            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
+            Button('Add', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(90)
+              .onClick((event: ClickEvent) => {
+                this.treeController.addNode();
+              })
+            Button('Modify', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(90)
+              .onClick((event: ClickEvent) => {
+                this.treeController.modifyNode();
+              })
+            Button('Remove', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(120)
+              .onClick((event: ClickEvent) => {
+                this.treeController.removeNode();
+              })
+          }.height('100%').width('70%').alignItems(HorizontalAlign.Start).margin(10)
+        }
+      }
+      .focusable(true)
+      .showControlButton(false)
+      .showSideBar(true)
     }
-  }
-}
+  }}
 ```
 
 ![zh-cn_image_0000001664822257](figures/zh-cn_image_0000001664822257.png)

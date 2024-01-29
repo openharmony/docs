@@ -14,17 +14,25 @@
 
 ## 接口
 
-DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
+DatePicker(options?: DatePickerOptions)
 
 根据指定范围的Date创建可以选择日期的滑动选择器。
 
-**参数:**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型 | 必填 | 参数描述                                                     |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| start    | Date     | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
-| end      | Date     | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date     | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+**参数：** 
+
+| 参数名  | 类型                                            | 必填 | 描述                       |
+| ------- | ----------------------------------------------- | ---- | -------------------------- |
+| options | [DatePickerOptions](#datepickeroptions对象说明) | 否   | 配置日期选择器组件的参数。 |
+
+## DatePickerOptions对象说明
+
+| 名称     | 类型 | 必填 | 说明                                                         |
+| -------- | ---- | ---- | ------------------------------------------------------------ |
+| start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
+| end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 **异常情形说明:**
 

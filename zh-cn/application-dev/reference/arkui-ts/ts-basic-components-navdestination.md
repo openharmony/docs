@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -22,13 +24,13 @@ NavDestination()
 
 ## 属性
 
-仅支持[backgroundColor](ts-universal-attributes-background.md)通用属性。
+仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
 
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| title        | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle类型说明)&nbsp;\|&nbsp;[NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle类型说明) | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。 |
+| title        | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](ts-basic-components-navigation.md#9navigationcommontitle类型说明)&nbsp;\|&nbsp;[NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9类型说明) | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。 |
 | hideTitleBar | boolean                                                      | 是否显示标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
-| mode <sup>11+</sup> | [NavDestinationMode](#navdestinationmode枚举说明)                                                   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD|
+| mode <sup>11+</sup> | [NavDestinationMode](#navdestinationmode枚举说明-11)                                                   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD|
 | backButtonIcon<sup>11+</sup> |   [ResourceStr](ts-types.md#resourcestr)  \|  [PixelMap](../apis/js-apis-image.md#pixelmap7)       | 设置标题栏返回键图标。 |
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>

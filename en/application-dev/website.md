@@ -17,7 +17,7 @@
         - [Multi-HAP Development, Debugging, Release, and Deployment](quick-start/multi-hap-release-deployment.md)
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
-      - [Application Installation and Uninstallation](quick-start/application-package-install-uninstall.md)
+      - [Application Installation and Uninstall](quick-start/application-package-install-uninstall.md)
       - [Application Package Update](quick-start/application-package-update.md)
       - Shared Package
         - [Shared Package Overview](quick-start/shared-guide.md)
@@ -50,12 +50,14 @@
         - Custom Components
           - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
           - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
+          - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
         - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
         - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
         - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
         - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
         - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
+        - [\@Require Decorator: Validating Constructor Input Parameters](quick-start/arkts-require.md)
       - State Management
         - [State Management Overview](quick-start/arkts-state-management-overview.md)
         - Component State Management
@@ -77,6 +79,7 @@
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
+        - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -154,12 +157,13 @@
             - [Common Event Subscription Overview](application-models/common-event-subscription-overview.md)
             - [Subscribing to Common Events in Dynamic Mode](application-models/common-event-subscription.md)
             - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
-            - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
+            - [Unsubscribing from Common Events in Dynamic Mode](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
           - [Removing Sticky Common Events (for System Applications Only)](application-models/common-event-remove-sticky.md)
         - [Background Services](application-models/background-services.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-stage.md)
+        - [Using EventHub for Intra-Thread Communication](application-models/itc-with-eventHub.md)
       - Mission Management
         - [Mission Management Scenarios](application-models/mission-management-overview.md)
         - [Mission and Launch Type](application-models/mission-management-launch-type.md)
@@ -171,8 +175,8 @@
       - FA Model Application Components
         - [Application- or Component-Level Configuration](application-models/application-component-configuration-fa.md)
         - PageAbility Component Development
-          - [PageAbility Component Overview](application-models/pageability-overview.md)
-          - [PageAbility Component Configuration](application-models/pageability-configuration.md)
+          - [PageAbility Overview](application-models/pageability-overview.md)
+          - [PageAbility Configuration](application-models/pageability-configuration.md)
           - [PageAbility Lifecycle](application-models/pageability-lifecycle.md)
           - [PageAbility Launch Type](application-models/pageability-launch-type.md)
           - [Creating a PageAbility](application-models/create-pageability.md)
@@ -393,17 +397,21 @@
     - Concurrency
       - [Concurrency Overview](arkts-utils/concurrency-overview.md)
       - Using Asynchronous Concurrency for Development
-        - [Asynchronous Concurrency Overview](arkts-utils/async-concurrency-overview.md)
-        - [Single I/O Task Development](arkts-utils/single-io-development.md)
+        - [Asynchronous Concurrency Overview (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
+        - [Single I/O Task Development (Promise and Async/Await)](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
         - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
+        - [Worker Introduction](arkts-utils/worker-introduction.md)
         - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
         - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
         - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
         - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
       - Appendix
         - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
+        - [Serialization Types Supported by TaskPool and Worker](arkts-utils/serialization-support-types.md)
         - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
+        - [Precautions for Multithread Safe](arkts-utils/multi-thread-safety.md)
     - Container
       - [Container Overview](arkts-utils/container-overview.md)
       - [Linear Containers](arkts-utils/linear-container.md)
@@ -522,6 +530,7 @@
         - [PixelMap Data Processing (Native)](media/image-pixelmap-operation-native.md)
         - [Pixel Map Operation](media/image-pixelmap-operation.md)
       - [Image Encoding (ArkTS)](media/image-encoding.md)
+      - [Image Encoding (Native)](media/image-encoding-native.md)
       - [Image Tool](media/image-tool.md)
   - Security
     - Access Control
@@ -681,6 +690,42 @@
     - Log Analysis
       - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
       - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
+  - Internationalization and Localization
+    - [Overview of Internationalization and Localization](internationalization/i18n-l10n.md)
+    - Application Internationalization
+      - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
+      - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
+      - Language and User Preference Setting
+        - [System Language and Region Setting](internationalization/i18n-system-language-region.md)
+        - [Preferred Language Setting](internationalization/i18n-preferred-language.md)
+        - [User Preference Setting](internationalization/i18n-user-preferences.md)
+      - [Date and Time Formatting](internationalization/i18n-time-date.md)
+      - [Number and Unit of Measurement Formatting](internationalization/i18n-numbers-weights-measures.md)
+      - [Phone Number Formatting](internationalization/i18n-phone-numbers.md)
+      - [Calendar Setting](internationalization/i18n-calendar.md)
+      - Time Zone and DST Setting
+        - [Timezone Setting](internationalization/i18n-time-zone.md)
+        - [DST Transition](internationalization/i18n-dst-transition.md)
+      - Multilingual Sorting
+        - [Overview of Multilingual Sorting](internationalization/i18n-sorting-overview.md)
+        - [Sorting by Local Habits](internationalization/i18n-sorting-local.md)
+        - [Sorting by Indexes](internationalization/i18n-sorting-index.md)
+      - [Character Processing](internationalization/i18n-character-processing.md)
+      - Name Localization
+        - [Language and Locale Name Localization](internationalization/i18n-language-region-display.md)
+        - [Time Zone Name Localization](internationalization/i18n-time-zone-display.md)
+    - Application Localization
+      - [Multilingual Resource Provisioning](internationalization/l10n-multilingual-resources.md)
+      - Application Translation
+        - [Hard Coding and Concatenation Prevention](internationalization/l10n-hard-coding-concatenate.md)
+        - [Scene and Context Clarification for Translation](internationalization/l10n-translation-scene.md)
+        - [Singular/Plural Form Selection](internationalization/l10n-singular-plural.md)
+    - Localization Testing
+      - Pseudo-Localization Testing
+        - [Overview of Pseudo-Localization Testing](internationalization/pseudo-i18n-testing-overview.md)
+        - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
+        - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
+      - [Linguistic Testing](internationalization/linguistic-testing.md)
   - Application services
     - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
@@ -689,13 +734,31 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
+    - [Getting Started with the NDK](napi/ndk-development-overview.md)
+    - [Creating an NDK Project](napi/create-with-ndk.md)
+    - Building an NDK Project
+      - [NDK Project Building Overview](napi/build-with-ndk-overview.md)
+      - [Building an NDK Project with the DevEco Studio Template](napi/build-with-ndk-ide.md)
+      - [Building an NDK Project with the Command Line CMake](napi/build-with-ndk-cmake.md)
+      - [Building an NDK Project with Prebuilt Libraries](napi/build-with-ndk-prebuilts.md)
+    - Code Development
+      - [Development Overview](napi/develop-code-overview.md)
+      - Node-API Development
+        - [OpenHarmony Node-API Overview](napi/napi-introduction.md)
+        - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
+        - [Node-API Development Specifications](napi/napi-guidelines.md)
+        - [Node-API Development Process](napi/use-napi-process.md)
+        - Typical Scenarios
+            - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
+            - [Thread Safety Development Using Node-API](napi/use-napi-thread-safety.md)
+        - [OpenHarmony Node-API FAQs](napi/use-napi-faqs.md)
       - Graphics
         - [XComponent Development](napi/xcomponent-guidelines.md)
-        - [Drawing Development](napi/drawing-guidelines.md)
-        - [NativeBuffer Development](napi/native-buffer-guidelines.md)
-        - [NativeImage Development](napi/native-image-guidelines.md)
-        - [NativeVsync Development](napi/native-vsync-guidelines.md)
-        - [NativeWindow Development](napi/native-window-guidelines.md)
+        - [Using Drawing to Draw and Display Graphics](napi/drawing-guidelines.md)
+        - [Native Buffer Development](napi/native-buffer-guidelines.md)
+        - [Native Image Development](napi/native-image-guidelines.md)
+        - [Native Vsync Development](napi/native-vsync-guidelines.md)
+        - [Native Window Development](napi/native-window-guidelines.md)
         - [Vulkan Development](napi/vulkan-guidelines.md)
       - Resource Management
         - [Raw File Development](napi/rawfile-guidelines.md)
@@ -709,10 +772,16 @@
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
       - Device Management
         - [USB DDK Development](napi/usb-ddk-guidelines.md)
+        - [HID DDK Development](napi/hid-ddk-guidelines.md)
       - Data Management
-        - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+        - [Relational Store Development](napi/native-relational-store-guidelines.md)
       - Bundle Management
-        - [NativeBuffer Development](napi/native-bundle-guidelines.md)
+        - [Native Bundle Development](napi/native-bundle-guidelines.md)
+    - Debugging and Profiling
+      - [Overview of Debugging and Profiling](napi/debug-performance-profiling-overview.md)
+      - [Debugging in DevEco Studio](napi/debug-ide.md)
+      - [LLDB Debugger](napi/debug-lldb.md)
+      - [C/C++ Memory Error Detection](napi/debug-asan.md)
     - Hardware Compatibility
       - [Introduction to Hardware Compatibility](napi/hw-guide.md)
       - [OpenHarmony ABI](napi/ohos-abi.md)
@@ -749,6 +818,7 @@
     - Packing and Unpacking Tools
       - [Packing Tool](tools/packing-tool.md)
       - [Unpacking Tool](tools/unpacking-tool.md)
+    - [App Check Tool](tools/app-check-tool.md)
     - [Common Event Manager](tools/cem-tool.md)
     - [Advanced Notification Manager](tools/anm-tool.md)
     - [restool](tools/restool.md)
@@ -975,6 +1045,7 @@
       - [@ohos.promptAction (Prompt)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (Page Routing)](reference/apis/js-apis-router.md)
       - [@ohos.uiAppearance (UI Appearance)](reference/apis/js-apis-uiappearance.md)
+      - [getContext](reference/apis/js-apis-getContext.md)
     - Graphics
       - [@ohos.animation.windowAnimationManager (Window Animation Management)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1077,6 +1148,7 @@
       - [@ohos.net.statistics (Traffic Management)](reference/apis/js-apis-net-statistics.md)
       - [@ohos.net.vpn (VPN Management)](reference/apis/js-apis-net-vpn.md)
       - [@ohos.net.webSocket (WebSocket Connection)](reference/apis/js-apis-webSocket.md)
+      - [@ohos.net.networkSecurity (Network Security)](reference/apis/js-apis-networkSecurity.md)
       - [@ohos.request (Upload and Download)](reference/apis/js-apis-request.md)
     - Connectivity
       - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended)](reference/apis/js-apis-bluetooth-a2dp.md)
@@ -1089,6 +1161,9 @@
       - [@ohos.bluetooth.hid (Bluetooth hid Module) (Recommended)](reference/apis/js-apis-bluetooth-hid.md)
       - [@ohos.bluetooth.pan (Bluetooth pan Module) (Recommended)](reference/apis/js-apis-bluetooth-pan.md)
       - [@ohos.bluetooth.socket (Bluetooth socket Module) (Recommended)](reference/apis/js-apis-bluetooth-socket.md)
+      - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended)](reference/apis/js-apis-bluetooth-pbap.md)
+      - [@ohos.bluetooth.map (Bluetooth MAP Module) (Recommended)](reference/apis/js-apis-bluetooth-map.md)
+      - [@ohos.bluetooth.wearDetection (Bluetooth Wear Detection Module) (Recommended)](reference/apis/js-apis-bluetooth-wearDetection.md)
       - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (Active Tags)](reference/apis/js-apis-connectedTag.md)
@@ -2000,7 +2075,7 @@
         - [libc Symbols Not Exported](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [libc Symbols That May Fail to Call Due to Permission Control](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [EGL Symbols Exported](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [OpenGL ES 3.0 Symbols Exported](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [OpenGL ES 3.2 Symbols Exported](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
         - [Vulkan Symbols Exported](reference/native-lib/third_party_vulkan/vulkan-symbol.md)
 - FAQs
   - [Full SDK Compilation Guide](faqs/full-sdk-compile-guide.md)
@@ -2014,6 +2089,7 @@
     - [ArkUI Routing/Navigation Development (ArkTS)](faqs/faqs-arkui-route-nav.md)
     - [ArkUI Animation/Interaction Event Development (ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
   - [ArkUI Development (JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS Common Library Development](faqs/faqs-arkts-utils.md)
   - [Web Development](faqs/faqs-arkui-web.md)
   - [Bundle Management Development](faqs/faqs-bundle-management.md)
   - [Resource Manager Development](faqs/faqs-globalization.md)

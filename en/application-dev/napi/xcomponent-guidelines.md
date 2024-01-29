@@ -5,27 +5,27 @@
 **NativeXComponent** provides an instance for the **\<XComponent>** at the native layer, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. The provided APIs include those for obtaining a native window, obtaining the layout or event information of the **\<XComponent>**, registering the lifecycle callbacks of the **\<XComponent>**, and registering the callbacks for the touch, mouse, and key events of the **\<XComponent>**. You can use the provided APIs in the following scenarios:
 
 - Register the lifecycle and event callbacks of the **\<XComponent>**.
-- In these callbacks, you can initialize the environment, obtain the current state, and respond to various events.
+- Initialize the environment, obtain the current state, and respond to various events via these callbacks.
 - Use the native window and EGL APIs to develop custom drawing content, and apply for and submit buffers to the graphics queue.
 
 ## Available APIs
 
 | API| Description.|
 | -------- | -------- |
-|OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|Obtains the ID of the **\<XComponent>**.|
-|OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|Obtains the size of the surface held by the **\<XComponent>**.|
-|OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|Obtains the offset of the surface held by the **\<XComponent>** relative to the upper left corner of the window.|
-|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|Obtains the touch event triggered by the **\<XComponent>**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/native-apis/_o_h___native_x_component___touch_event.md).|
-|OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|Obtains the tool type of the **\<XComponent>** touch point.|
-|OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|Obtains the tilt angle of the **\<XComponent>** touch point relative to the x-axis.|
-|OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|Obtains the tilt angle of the **\<XComponent>** touch point relative to the y-axis.|
-|OH_NativeXComponent_GetMouseEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_MouseEvent* mouseEvent)|Obtains the mouse event triggered by the **\<XComponent>**.|
-|OH_NativeXComponent_RegisterCallback(OH_NativeXComponent* component, OH_NativeXComponent_Callback* callback)|Registers the lifecycle and touch event callback for this **OH_NativeXComponent** instance.|
-|OH_NativeXComponent_RegisterMouseEventCallback(OH_NativeXComponent* component, OH_NativeXComponent_MouseEvent_Callback* callback)|Registers the mouse event callback for this **OH_NativeXComponent** instance.|
-|OH_NativeXComponent_RegisterFocusEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the focus obtaining event callback function for this **OH_NativeXComponent** instance.|
-|OH_NativeXComponent_RegisterKeyEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the key event callback for this **OH_NativeXComponent** instance.|
-|OH_NativeXComponent_RegisterBlurEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the focus loss event callback for this **OH_NativeXComponent** instance.|
-|OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_NativeXComponent_KeyEvent\** keyEvent)|Obtains the key event triggered by the **\<XComponent>**.|
+|OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|Obtains the ID of an **\<XComponent>**.|
+|OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|Obtains the size of the surface held by an **\<XComponent>**.|
+|OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|Obtains the offset of the surface held by an **\<XComponent>** relative to the upper left corner of the window.|
+|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|Obtains the touch event triggered by an **\<XComponent>**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/native-apis/_o_h___native_x_component___touch_event.md).|
+|OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|Obtains the tool type of an **\<XComponent>** touch point.|
+|OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|Obtains the tilt of an **\<XComponent>** touch point relative to the x-axis.|
+|OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|Obtains the tilt of an **\<XComponent>** touch point relative to the y-axis.|
+|OH_NativeXComponent_GetMouseEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_MouseEvent* mouseEvent)|Obtains the mouse event triggered by an **\<XComponent>**.|
+|OH_NativeXComponent_RegisterCallback(OH_NativeXComponent* component, OH_NativeXComponent_Callback* callback)|Registers a lifecycle or touch event callback for an **OH_NativeXComponent** instance.|
+|OH_NativeXComponent_RegisterMouseEventCallback(OH_NativeXComponent* component, OH_NativeXComponent_MouseEvent_Callback* callback)|Registers the mouse event callback for an **OH_NativeXComponent** instance.|
+|OH_NativeXComponent_RegisterFocusEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the focus obtaining event callback for an **OH_NativeXComponent** instance.|
+|OH_NativeXComponent_RegisterKeyEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the key event callback for an **OH_NativeXComponent** instance.|
+|OH_NativeXComponent_RegisterBlurEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the focus loss event callback for an **OH_NativeXComponent** instance.|
+|OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_NativeXComponent_KeyEvent\** keyEvent)|Obtains the key event triggered by an **\<XComponent>**.|
 |OH_NativeXComponent_GetKeyEventAction(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyAction* action)|Obtains the action of a key event.|
 |OH_NativeXComponent_GetKeyEventCode(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyCode* code)|Obtains the key code value of a key event.|
 |OH_NativeXComponent_GetKeyEventSourceType(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_EventSourceType* sourceType)|Obtains the input source type of a key event.|
@@ -34,7 +34,7 @@
 
 ## Lifecycle Description
 
-You can use the **\<XComponent>** to develop EGL/OpenGL ES rendering by using the following code on the ArkTS side:
+You can use the **\<XComponent>** to develop EGL/OpenGL ES rendering by using the following ArkTS code:
 
 ```typescript
 @Builder
@@ -62,7 +62,7 @@ Trigger time: when the **\<XComponent>** is destroyed, in the same manner as tha
 ![onDestroy](./figures/onDestroy.png)
 
 ## How to Develop
-The following describes how to use the **\<XComponent>** to call the native APIs to create the EGL/GLES environment, draw graphics on the main page, and change graphics colors.
+The following describes how to use the **\<XComponent>** to call the native APIs to create the EGL/OpenGL ES environment, draw graphics on the main page, and change graphics colors.
 
 1. Define the **\<XComponent>** on the GUI.
 
@@ -103,15 +103,15 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     }
     ```
 
-2. Register the N-API module. For details, see [Using Native APIs in Application Projects](napi-guidelines.md).
+2. Register the Node-API module. For details, see [Node-API Development Specifications](napi-guidelines.md).
 
     ```c++
-    // In the napi_init.cpp file, use the Init method to register the target function to transfer the encapsulated C++ methods for the JS side to call.
+    // In the napi_init.cpp file, use the Init method to register the target function to pass in the encapsulated C++ methods for the JS method to call.
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
         // ...
-        // Expose the getContext() API to the JS side.
+        // Expose the getContext() API to the JS code.
         napi_property_descriptor desc[] = {
             { "getContext", nullptr, PluginManager::GetContext, nullptr, nullptr, nullptr, napi_default, nullptr }
         };
@@ -125,12 +125,12 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     }
     EXTERN_C_END
 
-    // Write the API description. You can modify the corresponding parameters as required.
+    // Write the API description. You can modify parameters as required.
     static napi_module nativerenderModule = {
         .nm_version = 1,
         .nm_flags = 0,
         .nm_filename = nullptr,
-        // Entry function
+        // Entry point function
         .nm_register_func = Init,
         // Module name
         .nm_modname = "nativerender",
@@ -138,13 +138,13 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         .reserved = { 0 }
     };
 
-    // The method decorated by __attribute__((constructor)) is automatically called by the system. The N-API napi_module_register() is used to transfer the module description for module registration.
+    // The method decorated by __attribute__((constructor)) is automatically called by the system. The Node-API napi_module_register() is used to pass in the module description for module registration.
     extern "C" __attribute__((constructor)) void RegisterModule(void)
     {
         napi_module_register(&nativerenderModule);
     }
 
-    // Use the napi_define_properties method in the N-APIs to expose the drawPattern() method to the JS side and call the drawPattern() method on the JS side to draw content.
+    // Use the napi_define_properties method to expose the drawPattern() method to the JS code and call the JS drawPattern() method to draw content.
     void PluginRender::Export(napi_env env, napi_value exports)
     {
         // ...
@@ -158,7 +158,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     }
     ```
 
-3. Register the **\<XComponent>** event callback and use the N-API to implement it.
+3. Register the **\<XComponent>** event callback and use Node-API to implement it.
 
    (1) Define the callbacks for the touch event of the **\<XComponent>** and for when a surface is successfully created, changed, or destroyed.
 
@@ -167,7 +167,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
    {
    	// ...
-   	// Obtain the ID of the <XComponent>, that is, the id parameter in the <XComponent> struct on the JS side.
+   	// Obtain the ID of the <XComponent>, that is, the id parameter in the <XComponent> struct in the JS code.
    	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
    	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
    	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -229,7 +229,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    	PluginRender::Release(id);
    }
    
-   // Define the DispatchTouchEventCB() function, which is triggered when a touch event is responded to.
+   // Define the DispatchTouchEventCB() function, which is triggered to respond to a touch event.
    void DispatchTouchEventCB(OH_NativeXComponent *component, void *window)
    {
    	// ...
@@ -389,9 +389,9 @@ The following describes how to use the **\<XComponent>** to call the native APIs
            OH_NativeXComponent_TouchPointToolType::OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN;
        // Obtain the tool type of the <XComponent> touch point.
        OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
-       // Obtain the tilt angle of the <XComponent> touch point relative to the x-axis.
+       // Obtain the tilt of the <XComponent> touch point relative to the x-axis.
        OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
-       // Obtain the tilt angle of the <XComponent> touch point relative to the y-axis.
+       // Obtain the tilt of the <XComponent> touch point relative to the y-axis.
        OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
            "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
@@ -449,14 +449,14 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         renderCallback_.OnSurfaceChanged = OnSurfaceChangedCB;
         // Set the callback of the component destruction event. When the component is destroyed, related operations are triggered to release the requested resources.
         renderCallback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
-        // Set the callback of the touch event. When the touch event is triggered, the N-API is called to call the original C++ method.
+        // Set the callback of the touch event. When the touch event is triggered, the Node-API is called to invoke the embedded C++ method.
         renderCallback_.DispatchTouchEvent = DispatchTouchEventCB;
         // Register OH_NativeXComponent_Callback with NativeXComponent.
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &renderCallback_);
         
-        // Set the callback of the mouse event. When the event is triggered, the N-API is called to call the original C++ method.
+        // Set the callback of the mouse event. When the event is triggered, the Node-API is called to call the original C++ method.
         mouseCallback_.DispatchMouseEvent = DispatchMouseEventCB;
-        // Set the callback of the mouse pointer hover event. When the event is triggered, the N-API is called to call the original C++ method.
+        // Set the callback of the mouse pointer hover event. When the event is triggered, the Node-API is called to call the original C++ method.
         mouseCallback_.DispatchHoverEvent = DispatchHoverEventCB;
         // Register OH_NativeXComponent_MouseEvent_Callback with NativeXComponent.
         OH_NativeXComponent_RegisterMouseEventCallback(nativeXComponent, &mouseCallback_);
@@ -470,7 +470,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     }
     ```
 
-   (3) Define the **NapiDrawPattern** method, which will be called by the **drawPattern()** method exposed to the JS side.
+   (3) Define the **NapiDrawPattern** method, which will be called by the **drawPattern()** method exposed to the JS code.
 
     ```c++
     napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info)
@@ -498,7 +498,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             return nullptr;
         }
        
-        // Obtain the ID of the XComponent instance.
+        // Obtain the ID of the XComponent.
         char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
         uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
         if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -668,7 +668,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     // End the drawing operation.
     bool EGLCore::FinishDraw()
     {
-        // Forcibly refresh the buffer.
+        // Forcibly flush the buffer.
         glFlush();
         glFinish();
         return eglSwapBuffers(eglDisplay_, eglSurface_);
@@ -881,7 +881,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         ${NATIVERENDER_ROOT_PATH}
         ${NATIVERENDER_ROOT_PATH}/include
     )
-    # Add the **nativerender** dynamic library, with the **libnativerender.so** library file. Add the .cpp file.
+    # Add the **nativerender** dynamic library, with the **libnativerender.so** library file. Add the .cpp files.
     add_library(nativerender SHARED
         render/egl_core.cpp
         render/plugin_render.cpp
@@ -918,7 +918,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
         libuv-lib
         uv
     )
-    # Add the library to be linked.
+    # Add the libraries to be linked.
     target_link_libraries(nativerender PUBLIC
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib})
     ```

@@ -14,6 +14,7 @@ The **NotificationFlags** module implements a **NotificationFlags** instance.
 | ---------------- | ---------------------- | ---- | --------------------------------- |
 | soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | No  | Whether to enable the sound alert for the notification.                 |
 | vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | No  | Whether to enable vibration for the notification.              |
+| reminderFlags<sup>11+</sup> | number| No  | Whether to enable the input information prompt features.<br>**System API**: This is a system API.<br>- Bit 0: sound alert. The value **0** means to enable the feature, and **1** means the opposite.<br>- Bit 1: locking the screen. The value **0** means to enable the feature, and **1** means the opposite.<br>- Bit 2: banner. The value **0** means to enable the feature, and **1** means the opposite.<br>- BIt 3: turning on the screen. The value **0** means to enable the feature, and **1** means the opposite.<br>- Bit 4: vibration. The value **0** means to enable the feature, and **1** means the opposite.|
 
 
 ## NotificationFlagStatus

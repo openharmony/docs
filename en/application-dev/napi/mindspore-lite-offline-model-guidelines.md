@@ -6,7 +6,7 @@
 
 - Neural Network Runtime (NNRt): a bridge that connects the upper-layer AI inference framework to the bottom-layer acceleration chip to implement cross-chip inference and computing of AI models.
 
-- Offline model: a model obtained using the offline model conversion tool of the AI hardware vendor. The hardware vendor is responsible for parsing and inference of AI models.
+- Offline model: a model obtained using the offline model conversion tool of the AI hardware vendor. The hardware vendor is responsible for parsing and inference of offline models.
 
 ## When to Use
 
@@ -27,7 +27,7 @@ The following sections describe the offline model inference and conversion proce
 
 ## Constraints
 
-- Offline model inference can only be implemented at the NNRt backend. The AI hardware needs to connect to NNRt and supports offline model inference.
+- Offline model inference can only be implemented at the NNRt backend. The AI hardware needs to connect to NNRt and support offline model inference.
 
 ## Offline Model Conversion
 

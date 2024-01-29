@@ -219,7 +219,7 @@ metadata对象示例：
 | targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
 | formsEnabled | 标识Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br/>true：支持卡片能力。<br/>false：不支持卡片能力。 | 布尔值 | 可缺省，缺省值为false。 |
 | forms | 标识服务卡片的属性。该标签仅当formsEnabled为"true"时，才能生效。 | 对象数组 | 可缺省，缺省值为空。 |
-| srcLanguage | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。 | 字符串 | 可缺省，缺省值为“js”。 |
+| srcLanguage | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。取值如下："js"、"ets"、"java"。 | 字符串 | 可缺省，缺省值为"js"。 |
 | srcPath | 该标签标识Ability对应的JS组件代码路径，该标签最大长度为127字节。 | 字符串 | 不可缺省。 |
 | uriPermission | 标识该Ability有权访问的应用程序数据。此属性由模式和路径子属性组成。此属性仅对类型提供者的能力有效。 | 对象 | 可缺省，缺省值为空。 |
 | startWindowIcon | 标识该Ability启动页面图标资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$media:icon。 | 字符串 | 可缺省，缺省值为空。 |
@@ -524,7 +524,7 @@ shortcuts示例：
 | name | 标识卡片的类名。字符串最大长度为127字节。 | 字符串 | 不可缺省。 |
 | description | 标识卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
 | isDefault | 标识该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br/>true：默认卡片。<br/>false：非默认卡片。 | 布尔值 | 不可缺省。 |
-| type | 标识卡片的类型。取值范围如下：<br/>JS：JS卡片。 | 字符串 | 不可缺省。 |
+| type | 标识卡片的类型。取值范围如下：<br/>JS：JS卡片。<br/>Java：Java卡片。 | 字符串 | 不可缺省。 |
 | colorMode | 标识卡片的主题样式，取值范围如下：<br/>auto：自适应。<br/>dark：深色主题。<br/>light：浅色主题。 | 字符串 | 可缺省，缺省值为"auto"。 |
 | supportDimensions | 标识卡片支持的外观规格，取值范围：<br/>1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>2&nbsp;\*&nbsp;1：表示2行1列的二宫格。<br/>2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 不可缺省。 |
 | defaultDimension | 标识卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串 | 不可缺省。 |
@@ -532,9 +532,9 @@ shortcuts示例：
 | scheduledUpdateTime | 标识卡片的定点刷新的时刻，采用24小时制，精确到分钟。 | 字符串 | 可缺省，缺省值为"0:0"。 |
 | updateDuration | 标识卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br/>当取值为0时，表示该参数不生效。<br/>当取值为正整数N时，表示刷新周期为30\*N分钟。 | 数值 | 可缺省，缺省值为"0"。 |
 | formConfigAbility | 标识用于调整卡片的设施或活动的名称。 | 字符串 | 可缺省，缺省值为空。 |
-| jsComponentName | 标识JS卡片的Component名称。字符串最大长度为127字节。仅当卡片类型为JS卡片时，需要配置该标签。 | 字符串 | 不可缺省。 |
+| jsComponentName | 标识JS卡片的Component名称。字符串最大长度为127字节。仅当卡片类型为JS卡片时，需要配置该标签。 | 字符串 | 可缺省，缺省值为空。 |
 | metaData | 标识卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
-| customizeData | 标识自定义的卡片信息。 | 对象数组 | 可缺省，缺省值为空。 |
+| formVisibleNotify | 标识是否允许卡片使用卡片可见性通知。<br/>true：允许。<br/>false：不允许。 | 布尔值 | 可缺省，缺省值为false。 |
 
 ## customizeData对象内部结构
 

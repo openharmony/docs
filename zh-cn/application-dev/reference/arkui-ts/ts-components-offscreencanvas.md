@@ -27,7 +27,7 @@ OffscreenCanvas(width: number, height: number)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+OffscreenCanvas支持以下属性：
 
 | 名称   | 类型   | 默认值 | 描述                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -162,7 +162,7 @@ struct OffscreenCanvasPage {
 
 ### getContext<sup>10+</sup>
 
-getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
+getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
 
 返回OffscreenCanvas组件的绘图上下文。
 
@@ -171,7 +171,7 @@ getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanva
 | 参数        | 类型                                                         | 必填 | 默认值 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
 | contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。                       |
-| option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | -      | 见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。 |
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | -      | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。 |
 
 **返回值：**
 
