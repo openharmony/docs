@@ -25,9 +25,9 @@
   struct Child {
     @Builder doNothingBuilder() {};
 
-    // 使用自定义组件的自定义构建函数初始化\@BuilderParam
+    // 使用自定义组件的自定义构建函数初始化@BuilderParam
     @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
-    // 使用全局自定义构建函数初始化\@BuilderParam
+    // 使用全局自定义构建函数初始化@BuilderParam
     @BuilderParam aBuilder1: () => void = GlobalBuilder0;
     build(){}
   }
@@ -38,7 +38,7 @@
   ```ts
   @Component
   struct Child {
-    // 使用父组件\@Builder装饰的方法初始化子组件\@BuilderParam
+    // 使用父组件@Builder装饰的方法初始化子组件@BuilderParam
     @BuilderParam aBuilder0: () => void;
 
     build() {
@@ -175,7 +175,7 @@ struct Parent {
 @Component
 struct CustomContainer {
   @Prop header: string;
-  // 使用父组件的尾随闭包{}(\@Builder装饰的方法)初始化子组件\@BuilderParam
+  // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam
   @BuilderParam closer: () => void
 
   build() {
