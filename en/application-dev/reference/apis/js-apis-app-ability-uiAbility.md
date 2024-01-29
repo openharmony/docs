@@ -20,12 +20,12 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | Yes| No| Context of the UIAbility.|
-| launchWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters for starting the UIAbility.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters used when the UIAbility was started last time.|
-| callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters used when the UIAbility was started last time.|
+| callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
 
@@ -40,7 +40,7 @@ Called to initialize the service logic when a UIAbility instance in the complete
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this UIAbility, including the ability name and bundle name.|
-| param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
 
 **Example**
 
@@ -51,7 +51,7 @@ Called to initialize the service logic when a UIAbility instance in the complete
 
   class MyUIAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log('onCreate, want: ${want.abilityName}');
+          console.log(`onCreate, want: ${want.abilityName}`);
       }
   }
   ```
@@ -138,9 +138,15 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 onDestroy(): void | Promise&lt;void&gt;
 
-Called when this UIAbility is destroyed to clear resources.
+Called when this UIAbility is destroyed to clear resources. This API returns the result synchronously or uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -290,6 +296,12 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | Yes| Parameters in the form of a command.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Array\<string> | Dumped information array.|
+
 **Example**
 
   ```ts
@@ -409,7 +421,7 @@ Called when this UIAbility is about to terminate in case that the system paramet
           }
         }).catch((err: BusinessError)=>{
           // Exception handling.
-          console.log('startAbilityForResult failed, err:' + JSON.stringify(err));
+          console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
           this.context.terminateSelf();
         })
 
@@ -448,11 +460,11 @@ Called when an operation of going back to a previous page is triggered on this U
 
 Implements sending of sequenceable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
 
-## Caller.call
+### Caller.call
 
-call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-Sends sequenceable data to the target ability.
+Sends sequenceable data to the target ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -467,7 +479,7 @@ Sends sequenceable data to the target ability.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return a response.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -499,13 +511,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     marshalling(messageSequence: rpc.MessageSequence) {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
-      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
     unmarshalling(messageSequence: rpc.MessageSequence) {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
   };
@@ -525,21 +537,21 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             console.log('Caller call() called');
           })
           .catch((callErr: BusinessError) => {
-            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
+            console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
           });
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
 
-## Caller.callWithResult
+### Caller.callWithResult
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
+Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -586,13 +598,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     marshalling(messageSequence: rpc.MessageSequence) {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
-      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
     unmarshalling(messageSequence: rpc.MessageSequence) {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
+      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
   };
@@ -614,17 +626,17 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {
-            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
+            console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
           });
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
 
-## Caller.release
+### Caller.release
 
 release(): void
 
@@ -661,22 +673,28 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
+          console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
         }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.onRelease
+### Caller.onRelease
 
  onRelease(callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected.
+Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -685,12 +703,6 @@ Called when the stub on the target ability is disconnected.
 | 16200001 | Caller released. The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -711,23 +723,23 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           caller = obj;
           try {
             caller.onRelease((str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
+            console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.onRemoteStateChange<sup>10+</sup>
+### Caller.onRemoteStateChange<sup>10+</sup>
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-Called when the remote ability state changes in the collaboration scenario.
+Called when the remote ability state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -768,20 +780,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                  console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err: BusinessError) => {
-              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
+              console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }
   ```
 
-## Caller.on
+### Caller.on
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected.
+Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -819,23 +831,23 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           caller = obj;
           try {
             caller.on('release', (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.off
+### Caller.off
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
+Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -865,21 +877,21 @@ Deregisters a callback that is invoked when the stub on the target ability is di
           caller = obj;
           try {
             let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
   ```
 
-## Caller.off
+### Caller.off
 
 off(type: 'release'): void
 
@@ -912,15 +924,15 @@ Deregisters a callback that is invoked when the stub on the target ability is di
           caller = obj;
           try {
             let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {
-            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -930,7 +942,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 Implements callbacks for caller notification registration and deregistration.
 
-## Callee.on
+### Callee.on
 
 on(method: string, callback: CalleeCallback): void
 
@@ -957,7 +969,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  import UIAbility, { CalleeCallback } from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
   import rpc from '@ohos.rpc';
@@ -973,19 +985,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       marshalling(messageSequence: rpc.MessageSequence) {
           messageSequence.writeInt(this.num);
           messageSequence.writeString(this.str);
-          console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+          console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
           return true;
       }
       unmarshalling(messageSequence: rpc.MessageSequence) {
           this.num = messageSequence.readInt();
           this.str = messageSequence.readString();
-          console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
+          console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
           return true;
       }
   };
   let method = 'call_Function';
   function funcCallBack(pdata: rpc.MessageSequence) {
-      console.log('Callee funcCallBack is called ${pdata}');
+      console.log(`Callee funcCallBack is called ${pdata}`);
       let msg = new MyMessageAble('test', '');
       pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
@@ -996,13 +1008,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }
   }
   ```
 
-## Callee.off
+### Callee.off
 
 off(method: string): void
 
@@ -1040,7 +1052,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }
   }
@@ -1056,9 +1068,9 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Readable| Writable| Type| Description|
+| Name| Read-only| Mandatory| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | Yes| No| function | Prototype of the listener function registered by the caller.|
+| (msg: string) | No| Yes| function | Prototype of the listener function registered by the caller.|
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
@@ -1068,9 +1080,9 @@ Defines the callback that is invoked when the remote ability state changes in th
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Readable| Writable| Type| Description|
+| Name| Read-only| Mandatory| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | Yes| No| function | Prototype of the ability state change listener function registered by the caller in the collaboration scenario.|
+| (msg: string) | No| Yes| function | Prototype of the ability state change listener function registered by the caller in the collaboration scenario.|
 
 ## CalleeCallback
 
@@ -1080,6 +1092,6 @@ Defines the callback of the registration message notification of the UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Readable| Writable| Type| Description|
+| Name| Read-only| Mandatory| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | No| Yes| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|

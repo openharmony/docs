@@ -13,22 +13,20 @@ The **AbilityConstant** module defines the ability-related enums, including the 
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
-## Attributes
-
 ## AbilityConstant.LaunchParam
 
 Defines the parameters for starting an ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| Yes| Yes| Ability launch reason, which is an enumerated type.|
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | Yes| Yes| Reason for the last exit, which is an enumerated type.|
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| No| Yes| Ability launch reason, which is an enumerated type.|
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | No| Yes| Reason for the last exit, which is an enumerated type.|
 
 ## AbilityConstant.LaunchReason
 
-Enumerates the initial ability launch reasons. You can use it together with [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
+Enumerates the initial ability launch reasons. You can use it together with the value of **launchParam.launchReason** in [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -46,6 +44,7 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -58,14 +57,14 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.LastExitReason
 
-Enumerates the reasons for the last exit. You can use it together with [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
+Enumerates the reasons for the last exit. You can use it together with the value of **launchParam.lastExitReason** in [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.|
-| ABILITY_NOT_RESPONDING | 1    | The ability does not respond. This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
+| ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | The ability does not respond.<br>**NOTE**<br>This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
 | NORMAL | 2    | The ability exits normally because the user closes the application.|
 | CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to abnormal signals on the local host.|
 | JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.|
@@ -79,6 +78,7 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -91,7 +91,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.OnContinueResult 
 
-Enumerates the ability continuation results. You can use it together with [onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
+Enumerates the ability continuation results. You can use it together with [onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -105,6 +105,7 @@ Enumerates the ability continuation results. You can use it together with [onCon
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
@@ -136,6 +137,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let want: Want = {
   bundleName: 'com.example.myapplication',
@@ -159,7 +161,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.MemoryLevel
 
-Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel) of [Ability](js-apis-app-ability-ability.md) to complete different operations.
+Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -173,6 +175,7 @@ Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
@@ -185,7 +188,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.OnSaveResult
 
-Enumerates the result types for the operation of saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
+Enumerates the result types for the operation of saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -202,6 +205,7 @@ Enumerates the result types for the operation of saving application data. You ca
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
@@ -212,7 +216,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.StateType
 
-Enumerates the scenarios for saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of [Ability](js-apis-app-ability-uiAbility.md) to complete different operations.
+Enumerates the scenarios for saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the UIAbility to complete different operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -225,6 +229,7 @@ Enumerates the scenarios for saving application data. You can use it in [onSaveS
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {

@@ -16,7 +16,7 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 ## Required Permissions
 
-| Permission                                      | Permission Level    | Description                |
+| Permission                                      | APL    | Description                |
 | ------------------------------------------ | ------------ | -------------------- |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
 
@@ -43,11 +43,11 @@ Describes the criteria for filtering business abilities.
 
 **System API**: This is a system API.
 
-| Name        | Type        | Readable| Writable| Description                                  |
+| Name        | Type        | Read-only| Mandatory| Description                                  |
 | ------------ | ------------ | ---- | ---- | -------------------------------------- |
-| businessType | BusinessType | Yes  | No  | Type of the business ability.          |
-| mimeType     | string       | Yes  | No  | MIME type supported by the business ability.|
-| uri          | string       | Yes  | No  | URI supported by the business ability.       |
+| businessType | [BusinessType](#businesstype) | No  | Yes  | Type of the business ability.          |
+| mimeType     | string       | No  | No  | MIME type supported by the business ability.|
+| uri          | string       | No  | No  | URI supported by the business ability.       |
 
 ## businessAbilityRouter.queryBusinessAbilityInfo
 
