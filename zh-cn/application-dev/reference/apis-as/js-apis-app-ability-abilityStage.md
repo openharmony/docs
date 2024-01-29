@@ -70,41 +70,6 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onNewProcessRequest<sup>11+</sup>
-
-onNewProcessRequest(want: Want): string
-
-在指定进程中启动UIAbility时回调。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-
-**返回值：**
-
-| 类型 | 说明 | 
-| -------- | -------- |
-| string | 返回一个进程字符串ID，如果之前此ID的进程已被创建，就让ability在此进程中运行，否则创建新的进程。 | 
-
-**示例：**
-    
-```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
-
-class MyAbilityStage extends AbilityStage {
-    onNewProcessRequest(want: Want) {
-        console.log('MyAbilityStage.onNewProcessRequest called');
-        return 'com.example.test';
-    }
-}
-```
-
-
 ## AbilityStage.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void

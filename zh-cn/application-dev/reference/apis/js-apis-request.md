@@ -1796,7 +1796,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## Mode<sup>10+</sup>  
-定义模式选项。
+定义模式选项。<br>
+前端任务在应用切换到后台一段时间后失败/暂停；后台任务不受影响。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1807,7 +1808,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ## Network<sup>10+</sup>  
 
-定义网络选项。
+定义网络选项。<br>
+网络不满足设置条件时，未执行的任务等待执行，执行中的任务失败/暂停。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1867,7 +1869,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | url | string | 是 | 资源地址，其最大长度为2048个字符。 |
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。 |
-| mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>-对于前端任务，有回调通知。<br/>-对于后台任务，有系统通知、检测网络连接、恢复、自动重试功能。 |
+| mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。 |
 | overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。 |
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
@@ -1997,7 +1999,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-订阅前端任务进度的事件，异步方法，使用callback形式返回结果。
+订阅任务进度的事件，异步方法，使用callback形式返回结果。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2068,7 +2070,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-订阅前端任务完成事件，异步方法，使用callback形式返回结果。
+订阅任务完成事件，异步方法，使用callback形式返回结果。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2139,7 +2141,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-订阅前端任务失败事件，异步方法，使用callback形式返回结果。
+订阅任务失败事件，异步方法，使用callback形式返回结果。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2411,7 +2413,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅前端任务进度事件。
+取消订阅任务进度事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2474,7 +2476,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
     task.on('progress', createOffCallback2);
     //表示取消createOffCallback1的订阅
     task.off('progress', createOffCallback1);
-    //表示取消订阅前端任务进度的所有回调
+    //表示取消订阅任务进度的所有回调
     task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
@@ -2490,7 +2492,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅前端任务完成事件。
+取消订阅任务完成事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2553,7 +2555,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
     task.on('completed', createOffCallback2);
     //表示取消createOffCallback1的订阅
     task.off('completed', createOffCallback1);
-    //表示取消订阅前端任务完成的所有回调
+    //表示取消订阅任务完成的所有回调
     task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
@@ -2569,7 +2571,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅前端任务失败事件。
+取消订阅任务失败事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2632,7 +2634,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
     task.on('failed', createOffCallback2);
     //表示取消createOffCallback1的订阅
     task.off('failed', createOffCallback1);
-    //表示取消订阅前端任务失败的所有回调
+    //表示取消订阅任务失败的所有回调
     task.off('failed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {

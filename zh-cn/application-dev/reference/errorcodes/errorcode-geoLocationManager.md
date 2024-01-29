@@ -60,6 +60,8 @@ Failed to obtain the geographical location.
 
 2.网络定位异常导致定位超时。
 
+3.系统无缓存位置，导致获取上一次位置失败。
+
 **处理步骤**
 
 请重新发起定位请求。

@@ -20,7 +20,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | width    | number                                   | 是    | 离屏画布的宽度，单位：vp。                        |
 | height   | number                                   | 是    | 离屏画布的高度，单位：vp。                        |
-| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否    | 见RenderingContextSettings接口描述。 |
+| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否    | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见RenderingContextSettings接口描述。 |
 
 
 ## 属性
@@ -940,8 +940,8 @@ fillRect(x: number, y: number, w: number, h: number): void
 | ------ | ------ | ---- | ---- | ------------- |
 | x      | number | 是    | 0    | 指定矩形左上角点的x坐标，单位：vp。 |
 | y      | number | 是    | 0    | 指定矩形左上角点的y坐标，单位：vp。 |
-| width  | number | 是    | 0    | 指定矩形的宽度，单位：vp。      |
-| height | number | 是    | 0    | 指定矩形的高度，单位：vp。      |
+| w      | number | 是    | 0    | 指定矩形的宽度，单位：vp。      |
+| h      | number | 是    | 0    | 指定矩形的高度，单位：vp。      |
 
  **示例：**
 
@@ -1198,25 +1198,7 @@ measureText(text: string): TextMetrics
 
 | 类型          | 说明                                       |
 | ----------- | ---------------------------------------- |
-| TextMetrics | 文本的尺寸信息<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-
-**TextMetrics类型描述:**
-
-| 属性                       | 类型     | 描述                                       |
-| ------------------------ | ------ | ---------------------------------------- |
-| width                    | number | 字符串的宽度，单位：vp。                                  |
-| height                   | number | 字符串的高度，单位：vp。                                  |
-| actualBoundingBoxAscent  | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界顶部的距离，当前值为0，单位：vp。 |
-| actualBoundingBoxDescent | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界底部的距离，当前值为0，单位：vp。 |
-| actualBoundingBoxLeft    | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界左侧的距离，当前值为0，单位：vp。 |
-| actualBoundingBoxRight   | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界右侧的距离，当前值为0，单位：vp。 |
-| alphabeticBaseline       | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 alphabetic 基线的距离，当前值为0，单位：vp。 |
-| emHeightAscent           | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块顶部的距离，当前值为0，单位：vp。 |
-| emHeightDescent          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块底部的距离，当前值为0，单位：vp。 |
-| fontBoundingBoxAscent    | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离，当前值为0，单位：vp。 |
-| fontBoundingBoxDescent   | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离，当前值为0，单位：vp。 |
-| hangingBaseline          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 hanging 基线的距离，当前值为0，单位：vp。 |
-| ideographicBaseline      | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 ideographic 基线的距离，当前值为0，单位：vp。 |
+| [TextMetrics](ts-canvasrenderingcontext2d.md#textmetrics) | 文本的尺寸信息。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
  **示例：**
 
@@ -1512,13 +1494,13 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 | 参数         | 类型                                       | 必填   | 默认值  | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图源对象，具体参考ImageBitmap对象。                  |
-| repetition | string                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'、'clamp'、'mirror'。 |
+| repetition | string \| null                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'、'clamp'、'mirror'。 |
 
 **返回值：**
 
 | 类型                                       | 说明                      |
 | ---------------------------------------- | ----------------------- |
-| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 通过指定图像和重复方式创建图片填充的模板对象。 |
+| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) \| null | 通过指定图像和重复方式创建图片填充的模板对象。 |
 
  **示例：**
 
@@ -1939,7 +1921,6 @@ fill(path: Path2D, fillRule?: CanvasFillRule): void
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | path     | [Path2D](ts-components-canvas-path2d.md)         | 是    |           | Path2D填充路径。                              |
 | fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | "nonzero" | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
-
 
 **示例:**   
 
@@ -2575,7 +2556,7 @@ createImageData(sw: number, sh: number): ImageData
 
 createImageData(imageData: ImageData): ImageData
 
-根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
+根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2657,16 +2638,7 @@ setPixelMap(value?: PixelMap): void
 
 | 参数   | 类型     | 必填   | 默认值  | 描述              |
 | ---- | ------ | ---- | ---- | --------------- |
-| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标，单位：vp。 |
-| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标，单位：vp。 |
-| sw   | number | 是    | 0    | 需要输出的区域的宽度，单位：vp。     |
-| sh   | number | 是    | 0    | 需要输出的区域的高度，单位：vp。     |
-
-**返回值：**
-
-| 类型                                       | 说明           |
-| ---------------------------------------- | ------------ |
-| [PixelMap](../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
+|  value  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否    |  null   | 包含像素值的PixelMap对象 |
 
 
 ### getImageData
@@ -2769,13 +2741,14 @@ putImageData(imageData: Object, dx: number | string, dy: number | string, dirtyX
           .backgroundColor('#ffff00')
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            let imageData = offContext.createImageData(100, 100)
-            for (let i = 0; i < imageData.data.length; i += 4) {
-              imageData.data[i + 0] = 255
-              imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
-              imageData.data[i + 3] = 255
+            let imageDataNum = offContext.createImageData(100, 100)
+            for (let i = 0; i < imageDataNum.data.length; i += 4) {
+              imageDataNum.data[i + 0] = 255
+              imageDataNum.data[i + 1] = 0
+              imageDataNum.data[i + 2] = 255
+              imageDataNum.data[i + 3] = 255
             }
+            let imageData = this.context.createImageData(imageDataNum)
             offContext.putImageData(imageData, 10, 10)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -3102,6 +3075,12 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
 | x1   | number | 是    | 0    | 终点的x轴坐标，单位：vp。 |
 | y1   | number | 是    | 0    | 终点的y轴坐标，单位：vp。 |
 
+**返回值：** 
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 新的CanvasGradient对象，用于在offscreenCanvas上创建渐变效果。 |
+
  **示例：** 
 
   ```ts
@@ -3159,6 +3138,12 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 | y1   | number | 是    | 0    | 终点圆的y轴坐标，单位：vp。         |
 | r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的，单位：vp。 |
 
+**返回值：** 
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 新的CanvasGradient对象，用于在offscreenCanvas上创建渐变效果。 |
+
   **示例：**  
 
   ```ts
@@ -3214,6 +3199,11 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 | -------- | ------------------------ |
 | [CanvasGradient](ts-components-canvas-canvasgradient.md) | 返回一个渐变对象。 |
 
+**返回值：** 
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 新的CanvasGradient对象，用于在offscreenCanvas上创建渐变效果。 |
 
 **示例：**
 

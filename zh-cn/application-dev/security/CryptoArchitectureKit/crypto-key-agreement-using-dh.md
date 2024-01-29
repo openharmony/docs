@@ -1,7 +1,7 @@
 # 使用DH进行密钥协商
 
 
-对应的算法规格请查看[签名验签算法规格：DH](crypto-key-agreement-overview.md#dh)。
+对应的算法规格请查看[密钥协商算法规格：DH](crypto-key-agreement-overview.md#dh)。
 
 
 ## 开发步骤

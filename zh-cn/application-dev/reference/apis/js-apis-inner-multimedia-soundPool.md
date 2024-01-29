@@ -26,8 +26,8 @@ import audio from '@ohos.multimedia.audio';
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#AudioRendererRate)。 |
-| leftVolume  | number | 否  | 设置左声道音量，设置范围（0~1）。                                    |
+| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#audiorendererrate8)。 |
+| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
 | rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
 | parallelPlayFlag | boolean | 否   | 是否和其它正在播放的音频并行播放的标识，true:不抢占音频焦点和其它正在播放的音频并行播放，false:抢占焦点打断其它正在播放的音频。<br/>此接口为系统接口。|
@@ -117,7 +117,7 @@ load(uri: string): Promise\<number>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<number> | 异步音频池资源的加载，返回资源的id，有效值大于0。 |
+| Promise\<number> | 以Promise方式异步加载音频池资源，返回资源的id，有效值大于0。 |
 
 **错误码：**
 
@@ -257,7 +257,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<number> | 获取回调的soundID，有效值大于0。 |
+| Promise\<number> | 以Promise方式获取返回的soundID，有效值大于0。 |
 
 **错误码：**
 
@@ -331,6 +331,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -395,6 +396,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -450,7 +452,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<number> | 获取回调的音频流ID，有效值大于0。 |
+| Promise\<number> | 以Promise方式获取返回的音频流ID，有效值大于0。 |
 
 **错误码：**
 
@@ -458,6 +460,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -521,6 +524,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -574,7 +578,7 @@ stop(streamID: number): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 返回值。 |
+| Promise\<void> | 以Promise方式返回，无返回值。 |
 
 **错误码：**
 
@@ -582,6 +586,7 @@ stop(streamID: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -627,7 +632,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| loop | number | 是   | 设置循环的次数，0为默认1次，小于0为一直循环。 |
+| loop | number | 是   | 设置循环的次数，0为默认1次，-1为一直循环。 |
 | callback | AsyncCallback\<void> | 是   | 异步setLoop的回调方法。 |
 
 **错误码：**
@@ -636,6 +641,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -685,7 +691,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| loop | number | 是   | 设置循环的次数，0为默认1次，小于0为一直循环。|
+| loop | number | 是   | 设置循环的次数，0为默认1次，-1为一直循环。|
 
 **返回值：**
 
@@ -699,6 +705,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -755,6 +762,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -818,6 +826,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -878,6 +887,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -944,6 +954,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -1001,6 +1012,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -1065,6 +1077,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
+| 401  | The parameter check failed. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -1497,12 +1510,12 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 
 | 错误码ID | 错误信息              | 说明                                                         |
 | -------- | --------------------- | ------------------------------------------------------------ |
-| 401      | Invalid Parameter:    | 入参错误，表示调用无效。                                     |
-| 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory:            | 内存不足。 |
-| 5400102  | Operation Not Allowed:   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error:             | I/O异常。 |
-| 5400105  | Service Died:         | 播放进程死亡，音频池依赖的service端发生异常。|
+| 401      | Invalid Parameter.    | 入参错误，表示调用无效。                                     |
+| 801      | Unsupport Capability. | 不支持该API能力，表示调用无效。                              |
+| 5400101  | No Memory.            | 内存不足。 |
+| 5400102  | Operation Not Allowed.   | 当前状态机不支持此操作，表示调用无效。                       |
+| 5400103  | IO Error.             | I/O异常。 |
+| 5400105  | Service Died.         | 播放进程死亡，音频池依赖的service端发生异常。|
 
 **示例：**
 
@@ -1523,8 +1536,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`createSoundPool success`)
     soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,and error message is :' + error.message)
-      console.info('error happened,and error code is :' + error.code)
+      console.error('error happened,and error message is :' + error.message)
+      console.error('error happened,and error code is :' + error.code)
     })
   }
 });

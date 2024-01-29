@@ -104,39 +104,54 @@
 ```
 
 Json文件共包含2个属性。
-1. "MetaData"属性中为文件头信息，可在如下属性中添加描述：<br>
-     - "Version"：必填项，文件格式的版本号，向前兼容，目前支持版本1.0；<br>
-     - "ChannelNumber"：必填项，表示马达振动的通道数，最大支持双马达通道；<br>
-     - "Create"：可选项，可记录文件创作时间；<br>
-     - "Description"：可选项，可指明振动效果、创建信息等附加说明。<br>
-2. "Channels"属性中为马达振动通道的相关信息。<br>
 
-"Channels"是Json数组，表示各个通道的信息，包含2个属性。
-1. "Parameters"属性中为通道参数。其中，"Index"表示通道编号，必填项，0表示全通道发送，1、2分别对应左右马达。<br>
-2. "Pattern"属性中为马达振动序列。<br>
+1. "MetaData"属性中为文件头信息，可在如下属性中添加描述：
 
-"Pattern"是Json数组，包含振动事件序列，每个"Event"属性代表1个振动事件，支持添加2种振动类型。
-1. "transient"类型，瞬态短振动，干脆有力；<br>
-2. "continuous"类型，稳态长振动，具备长时间输出强劲有力振动的能力。<br>
+   | 名称          | 必填项 | 说明                                          |
+   | ------------- | ------ | --------------------------------------------- |
+   | Version       | 是     | 文件格式的版本号，向前兼容，目前支持版本1.0。 |
+   | ChannelNumber | 是     | 表示马达振动的通道数，最大支持双马达通道。    |
+   | Create        | 否     | 可记录文件创作时间。                          |
+   | Description   | 否     | 可指明振动效果、创建信息等附加说明。          |
 
-"Event"表示一个振动事件，包含如下属性：<br>
-1. "Type"：振动事件类型，必填项，为"transient" 或"continuous"；<br>
-2. "StartTime"：振动的起始时间，必填项，单位ms，有效范围为[0, 1800,000];<br>
-3. "Duration"：振动持续时间，仅当类型为"continuous"时有效且为必填项，单位ms，有效范围为[0, 5000]；<br>
-4. "Parameters"：振动事件参数设置，必填项，可设置以下属性参数：<br>
-     - "Intensity"：振动事件强度，必填，有效范围为[0, 100]；<br>
-     - "Frequency"：振动事件频率，必填，有效范围为[0, 100]；<br>
-     - "Curve"：振动曲线，可选项，当振动事件类型为"continuous"时有效，为Json数组，支持设置一组调节点，调节点数量最大支持16个，最小为4个，每个调节点需包含如下属性：<br>
-         * "Time"：相对事件起始时间的偏移，最小为0，最大不能超过事件振动时长；<br>
-         * "Intensity"：相对事件振动强度的增益，范围为[0, 1]，此值乘上振动事件强度为对应时间点调节后的强度；<br>
-         * "Frequency"：相对事件振动频率的变化，范围为[-100, 100]，此值加上振动事件频率为对应时间点调节后的频率。<br>
+2. "Channels"属性中为马达振动通道的相关信息。
+
+   "Channels"是Json数组，表示各个通道的信息，包含2个属性。
+
+   | 名称       | 必填项 | 说明                                                         |
+   | ---------- | ------ | ------------------------------------------------------------ |
+   | Parameters | 是     | 为通道参数。其中"Index"表示通道编号，0表示全通道发送，1、2分别对应左右马达。 |
+   | Pattern    | 否     | 马达振动序列。                                               |
+
+   "Pattern"是Json数组，包含振动事件序列，每个"Event"属性代表1个振动事件，支持添加2种振动类型。
+
+   | 振动类型   | 说明                                           |
+   | ---------- | ---------------------------------------------- |
+   | transient  | 瞬态短振动，干脆有力。                         |
+   | continuous | 稳态长振动，具备长时间输出强劲有力振动的能力。 |
+
+   "Event"表示一个振动事件，包含如下属性：
+
+   | 名称      | 必填项 | 说明                                                         |
+   | --------- | ------ | ------------------------------------------------------------ |
+   | Type      | 是     | 振动事件类型，为"transient" 或"continuous"。                 |
+   | StartTime | 是     | 振动的起始时间，单位ms，有效范围为[0, 1800,000]。            |
+   | Duration  | 是     | 振动持续时间，仅当类型为"continuous"时有效，单位ms，有效范围为[0, 5000]。 |
+
+3. "Parameters"表示振动事件参数设置，必填项，可设置以下属性参数：
+
+   | 名称      | 必填项 | 说明                                                         |
+   | --------- | ------ | ------------------------------------------------------------ |
+   | Intensity | 是     | 振动事件强度，有效范围为[0, 100]。                           |
+   | Frequency | 是     | 振动事件频率，有效范围为[0, 100]。                           |
+   | Curve     | 否     | 振动曲线，当振动事件类型为"continuous"时有效，为Json数组，支持设置一组调节点，调节点数量最大支持16个，最小为4个，每个调节点需包含如下属性： "Time"：相对事件起始时间的偏移，最小为0，最大不能超过事件振动时长； "Intensity"：相对事件振动强度的增益，范围为[0, 1]，此值乘上振动事件强度为对应时间点调节后的强度； "Frequency"：相对事件振动频率的变化，范围为[-100, 100]，此值加上振动事件频率为对应时间点调节后的频率。 |
 
 其他要求：
 
 | 参数 | 要求                 |
 | -------- | ------------------------ |
-| 振动事件(event)的数量 | 不得超过128个 |
-| 振动配置文件长度 | 不得超过64KB |
+| 振动事件(event)的数量 | 不得超过128个。 |
+| 振动配置文件长度 | 不得超过64KB。 |
 
 
 ## 开发步骤
@@ -145,177 +160,177 @@ Json文件共包含2个属性。
 
 2. 根据指定振动效果和振动属性触发马达振动。
 
-- 情形一，按照指定持续时间触发马达振动：
+   情形一，按照指定持续时间触发马达振动：
 
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+   ```ts
+   import vibrator from '@ohos.vibrator';
+   import { BusinessError } from '@ohos.base';
+   
+   try {
+     // 触发马达振动
+     vibrator.startVibration({
+       type: 'time',
+       duration: 1000,
+     }, {
+       id: 0,
+       usage: 'alarm'
+     }, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in starting vibration');
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-try {
-  // 触发马达振动
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   情形二，按照预置振动效果触发马达振动，可先查询振动效果是否被支持，再调用振动接口：
 
-- 情形二，按照预置振动效果触发马达振动，可先查询振动效果是否被支持，再调用振动接口：
+   ```ts
+   import vibrator from '@ohos.vibrator';
+   import { BusinessError } from '@ohos.base';
+   
+   try {
+     // 查询是否支持'haptic.clock.timer'
+     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+       if (err) {
+         console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+         return;
+       }
+       console.info('Succeed in querying effect');
+       if (state) {
+         try {
+           // 触发马达振动
+           vibrator.startVibration({
+             type: 'preset',
+             effectId: 'haptic.clock.timer',
+             count: 1,
+           }, {
+             usage: 'unknown'
+           }, (error: BusinessError) => {
+             if (error) {
+               console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+             } else {
+               console.info('Succeed in starting vibration');
+             }
+           });
+         } catch (error) {
+           let e: BusinessError = error as BusinessError;
+           console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+         }
+       }
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+   情形三，按照自定义振动配置文件触发马达振动：
 
-try {
-  // 查询是否支持'haptic.clock.timer'
-  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
-    if (err) {
-      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeed in querying effect');
-    if (state) {
-      try {
-        // 触发马达振动
-        vibrator.startVibration({
-          type: 'preset',
-          effectId: 'haptic.clock.timer',
-          count: 1,
-        }, {
-          usage: 'unknown'
-        }, (error: BusinessError) => {
-          if (error) {
-            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-          } else {
-            console.info('Succeed in starting vibration');
-          }
-        });
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-      }
-    }
-  })
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-- 情形三，按照自定义振动配置文件触发马达振动：
-
-```ts
-import vibrator from '@ohos.vibrator';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
-
-const fileName: string = 'xxx.json';
-
-// 获取文件资源描述符
-let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
-
-// 触发马达振动
-try {
-  vibrator.startVibration({
-    type: "file",
-    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-
-// 关闭文件资源描述符
-getContext().resourceManager.closeRawFdSync(fileName);
-```
+   ```
+   import vibrator from '@ohos.vibrator';
+   import resourceManager from '@ohos.resourceManager';
+   import { BusinessError } from '@ohos.base';
+   
+   const fileName: string = 'xxx.json';
+   
+   // 获取文件资源描述符
+   let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+   
+   // 触发马达振动
+   try {
+     vibrator.startVibration({
+       type: "file",
+       hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+     }, {
+       id: 0,
+       usage: 'alarm'
+     }, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in starting vibration');
+     });
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   
+   // 关闭文件资源描述符
+   getContext().resourceManager.closeRawFdSync(fileName);
+   ```
 
 3. 停止马达的振动。
 
-- 方式一，按照指定模式停止对应的马达振动，自定义振动不支持此类停止方式：
+   方式一，按照指定模式停止对应的马达振动，自定义振动不支持此类停止方式：
 
-停止固定时长振动：
+   ​	停止固定时长振动：
 
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+   ```ts
+   import vibrator from '@ohos.vibrator';
+   import { BusinessError } from '@ohos.base';
+   
+   try {
+     // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-try {
-  // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   ​	停止预置振动：
 
-停止预置振动：
+   ```ts
+   import vibrator from '@ohos.vibrator';
+   import { BusinessError } from '@ohos.base';
+   
+   try {
+     // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
+     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+   方式二，停止所有模式的马达振动，包括自定义振动：
 
-try {
-  // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-- 方式二，停止所有模式的马达振动，包括自定义振动：
-
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
-
-try {
-  // 停止所有模式的马达振动
-  vibrator.stopVibration((error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+   ```ts
+   import vibrator from '@ohos.vibrator';
+   import { BusinessError } from '@ohos.base';
+   
+   try {
+     // 停止所有模式的马达振动
+     vibrator.stopVibration((error: BusinessError) => {
+       if (error) {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+         return;
+       }
+       console.info('Succeed in stopping vibration');
+     })
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 
 ## 相关实例

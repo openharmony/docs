@@ -15,7 +15,7 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
-   let keyAlias = 'dh_key_fingerprint_access';
+   let keyAlias = 'test_sm4_key_alias';
    let properties: Array<huks.HuksParam> = new Array();
    properties[0] = {
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,

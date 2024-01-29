@@ -44,7 +44,8 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    ```ts
    @Entry
    @Component
-   struct CustomDialogUser {dialogController: CustomDialogController = new CustomDialogController({
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
    
@@ -69,7 +70,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
 1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
 
-     ```ts
+   ```ts
    @CustomDialog
    struct CustomDialogExample {
      cancel?: () => void
@@ -83,18 +84,22 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
            Button('cancel')
              .onClick(() => {
                this.controller.close()
-               if(this.cancel) this.cancel()
+               if (this.cancel) {
+                 this.cancel()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
            Button('confirm')
              .onClick(() => {
                this.controller.close()
-               if(this.confirm) this.confirm()
+               if (this.confirm) {
+                 this.confirm()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Red)
          }.margin({ bottom: 10 })
        }
      }
    }
-     ```
+   ```
 
 2. 页面内需要在构造器内进行接收，同时创建相应的函数操作。
 
@@ -126,7 +131,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
        }.width('100%').margin({ top: 5 })
      }
    }
-     ```
+   ```
 
       ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
 
@@ -146,12 +151,16 @@ struct CustomDialogExample {
         Button('cancel')
           .onClick(() => {
             this.controller.close()
-            if (this.cancel) this.cancel()
+            if (this.cancel) {
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             this.controller.close()
-            if (this.confirm) this.confirm()
+            if (this.confirm) {
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }

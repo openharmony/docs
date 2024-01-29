@@ -6,45 +6,11 @@
 
 详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
 
-1. 导入image接口。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
+1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
-   ```ts
-   // ts侧需要导入image接口，通过ImageReceiver获取拍照的surfaceId
-   import image from '@ohos.multimedia.image';
-   private mReceiver: image.ImageReceiver = undefined
-   ```
-
-2. 获取SurfaceId。
-   
-   通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与拍照输出流相关联，获取拍照输出流的数据。
- 
-   ```ts
-   // 获取拍照的surfaceId （参考ndk demo：在modeSwitchPage.ets中调用）
-    async getPhotoSurfaceID() {
-        if(this.mReceiver) {
-        Logger.info(this.tag, 'imageReceiver has been created')
-        } else {
-        this.createImageReceiver()
-        }
-        this.photoSurfaceId = await this.mReceiver.getReceivingSurfaceId()
-        if(this.photoSurfaceId) {
-        Logger.info(this.tag, `createImageReceiver photoSurfaceId: ${this.photoSurfaceId} `)
-        } else {
-        Logger.info(this.tag, `Get photoSurfaceId failed `)
-        }
-    }
-   ```
-
-3. 在CMake脚本中链接Camera NDK动态库。
-   ```txt
-    target_link_libraries(PUBLIC libcamera_ndk.so)
-   ```
-
-
-4. 导入NDK接口。创建拍照输出数据、配置相机参数以及触发拍照流程，都需要用到系统提供的NDK接口能力，导入NDK接口的方法如下。
-
    ```c++
-    //导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
+    // 导入NDK接口头文件
+    #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
     #include "ohcamera/capture_session.h"
@@ -54,38 +20,56 @@
     #include "ohcamera/camera_manager.h"
    ```
 
-5. 创建拍照输出流。
+2. 在CMake脚本中链接相关动态库。
+
+   ```txt
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+   ```
+
+3. 获取SurfaceId。
    
-   通过OH_CameraManager_GetSupportedCameraOutputCapability方法，可获取当前设备支持的拍照输出流，通过OH_CameraManager_CreatePhotoOutput方法传入支持的某一个输出流及步骤二获取的SurfaceId创建拍照输出流。
+    通过image的createImageReceiver()方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId()方法获取SurfaceId。
+
+4. 创建拍照输出流。
+   
+   根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法，可获取当前设备支持的拍照输出流，通过OH_CameraManager_CreatePhotoOutput()方法传入支持的某一个输出流及步骤二获取的SurfaceId创建拍照输出流。
 
    ```c++
-    Camera_Manager* cameraManager = nullptr;
-    Camera_Device* cameras = nullptr;
-    Camera_CaptureSession* captureSession = nullptr;
-    Camera_OutputCapability* cameraOutputCapability = nullptr;
-    const Camera_Profile* previewProfile = nullptr;
-    const Camera_Profile* photoProfile = nullptr;
-    Camera_PreviewOutput* previewOutput = nullptr;
-    Camera_PhotoOutput* photoOutput = nullptr;
-    Camera_Input* cameraInput = nullptr;
-    uint32_t size = 0;
-    uint32_t cameraDeviceIndex = 0;
-
-    Camera_ErrorCode ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex], &cameraOutputCapability);
-    if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "GetSupportedCameraOutputCapability failed.");
-    }
-    photoProfile = cameraOutputCapability->photoProfiles[0];
-    if (photoProfile == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "Get photoProfiles failed.");
-    }
-    ret = OH_CameraManager_CreatePhotoOutput(cameraManager, photoProfile, photoSurfaceId, &photoOutput);
-    if (photoOutput == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutput failed.");
+    NDKCamera::NDKCamera(char *str)
+    {
+        Camera_Manager* cameraManager = nullptr;
+        Camera_Device* cameras = nullptr;
+        Camera_OutputCapability* cameraOutputCapability = nullptr;
+        Camera_PhotoOutput* photoOutput = nullptr;
+        Camera_CaptureSession* captureSession = nullptr;
+        const Camera_Profile* photoProfile = nullptr;
+        uint32_t size = 0;
+        uint32_t cameraDeviceIndex = 0;
+        char* photoSurfaceId = str;
+        Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
+        if (cameraManager == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+        }
+        ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+        }
+        ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex], &cameraOutputCapability);
+        if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "GetSupportedCameraOutputCapability failed.");
+        }
+        photoProfile = cameraOutputCapability->photoProfiles[0];
+        if (photoProfile == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "Get photoProfiles failed.");
+        }
+        ret = OH_CameraManager_CreatePhotoOutput(cameraManager, photoProfile, photoSurfaceId, &photoOutput);
+        if (photoOutput == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutput failed.");
+        }
     }
    ```
 
-6. 参数配置。
+5. 参数配置。
 
    配置相机的参数可以调整拍照的一些功能，包括闪光灯、变焦、焦距等。
 
@@ -93,6 +77,10 @@
     // 判断设备是否支持闪光灯
     Camera_FlashMode flashMode = FLASH_MODE_AUTO;
     bool hasFlash = false;
+    ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
+    if (captureSession == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
+    }
     ret = OH_CaptureSession_HasFlash(captureSession, &hasFlash);
     if (ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_HasFlash failed.");
@@ -177,34 +165,18 @@
     }
    ```
 
-7. 触发拍照。
+6. 触发拍照。
 
-   - 通过OH_PhotoOutput_Capture方法，执行拍照任务。该方法有一个参数，该参数为CreatePhotoOutput时的回调参Camera_PhotoOutput** photoOutput。
+    通过OH_PhotoOutput_Capture()方法，执行拍照任务。
 
-   ```c++
-    Camera_ErrorCode ret = OH_PhotoOutput_Capture(photoOutput);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
-    }
-   ```
-
-   - 通过OH_PhotoOutput_Capture_WithCaptureSetting方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
- 
-   ```c++
-    Camera_PhotoCaptureSetting* photoSetting = nullptr;
-    photoSetting->quality = QUALITY_LEVEL_HIGH; // 设置图片质量高
-    photoSetting->rotation = IMAGE_ROTATION_0; // 设置图片旋转角度0
-
-    // 使用当前拍照设置进行拍照
-    ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting success ");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture_WithCaptureSetting failed. %d ", ret);
-    }
-   ```
+     ```c++
+      ret = OH_PhotoOutput_Capture(photoOutput);
+      if (ret == CAMERA_OK) {
+          OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
+      } else {
+          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
+      }
+     ```
 
 ## 状态监听
 
@@ -213,9 +185,19 @@
 - 通过注册固定的onFrameStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，拍照第一次曝光时触发。
     
   ```c++
+    ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
+    if (ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterCallback failed.");
+    }
+  ```
+  ```c++
     void PhotoOutputOnFrameStart(Camera_PhotoOutput* photoOutput)
     {
         OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameStart");
+    }
+    void PhotoOutputOnFrameShutter(Camera_PhotoOutput* photoOutput, Camera_FrameShutterInfo* info)
+    {
+        OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameShutter");
     }
     PhotoOutput_Callbacks* GetPhotoOutputListener()
     {
@@ -226,10 +208,6 @@
             .onError = PhotoOutputOnError
         };
         return &photoOutputListener;
-    }
-    Camera_ErrorCode ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterCallback failed.");
     }
   ```
 
@@ -242,7 +220,7 @@
     }
   ```
 
-- 通过注册固定的onError回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[Camera_ErrorCode]。
+- 通过注册固定的onError回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[Camera_ErrorCode](../reference/native-apis/_o_h___camera.md#camera_errorcode-1)。
     
   ```c++
     void PhotoOutputOnError(Camera_PhotoOutput* photoOutput, Camera_ErrorCode errorCode)
@@ -250,8 +228,3 @@
         OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
     }
   ```
-
-## 相关实例
-
-针对拍照，有以下相关实例可供参考：
-- [拍照(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)

@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [min](#min) | 最小帧速率。 | 
-| [max](#max) | 最大帧速率。 | 
+| uint32_t [min](#min) | 最小帧速率。  | 
+| uint32_t [max](#max) | 最大帧速率。  | 
 
 
 ## 结构体成员变量说明
@@ -29,9 +29,7 @@
 ```
 uint32_t Camera_FrameRateRange::max
 ```
-
 **描述**
-
 最大帧速率。
 
 
@@ -40,7 +38,5 @@ uint32_t Camera_FrameRateRange::max
 ```
 uint32_t Camera_FrameRateRange::min
 ```
-
 **描述**
-
 最小帧速率。

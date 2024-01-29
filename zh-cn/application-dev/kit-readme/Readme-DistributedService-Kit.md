@@ -1,4 +1,4 @@
-## DistributedService Kit
+## Distributed Service Kit
 
-- [DistributedService Kit简介](../distributedservice/distributedservice-kit-intro.md)
-- [DistributedService Kit开发指南](../distributedservice/devicemanager-guidelines.md)
+- [Distributed Service Kit简介](../distributedservice/distributedservice-kit-intro.md)
+- [分布式设备管理开发指南](../distributedservice/devicemanager-guidelines.md)

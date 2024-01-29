@@ -14,15 +14,23 @@
 
 ## 接口
 
-Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
+Slider(options?: SliderOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+**参数：** 
+
+| 参数名  | 类型                                    | 必填 | 描述               |
+| ------- | --------------------------------------- | ---- | ------------------ |
+| options | [SliderOptions](#slideroptions对象说明) | 否   | 配置滑动条的参数。 |
+
+## SliderOptions对象说明
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：参数min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0的值时，按默认值显示。 |
@@ -50,14 +58,16 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#007dff'。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | showTips | value: boolean,<br/>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | value：设置滑动时是否显示气泡提示。<br/>默认值：false <br/>content：设置气泡提示的文本内容，默认显示当前百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距或者边距比较小时，tip会被截断。|
-| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于等于0的值时，取默认值。 |
-| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。<br/>**说明：** <br/>默认值：'#000000'。<br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderColor`可设置默认圆形滑块描边颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderColor`可设置自定义形状中线的颜色。 |
+| trackThickness<sup>8+</sup> | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于等于0的值时，取默认值。 |
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。<br/>**说明：** <br/>默认值：'#ffffff'。<br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderColor`可设置默认圆形滑块描边颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderColor`可设置自定义形状中线的颜色。 |
 | blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderWidth`可设置默认圆形滑块描边粗细；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderWidth`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderWidth`可设置自定义形状中线的粗细。 |
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。<br/>**说明：** <br/>默认值：'#19182431'。 |
 | trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。<br/>**说明：** <br/>默认值：'2vp'。 |
 | blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 <br/>**说明：** <br/>默认值：当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet 时为：{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为：{width: 12, height: 12}。<br/>当设置的bolckSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。|
 | blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10对象说明) | 设置滑块形状参数。<br/>**说明：** <br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
 | stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 <br/>**说明：** <br/>默认值：'4vp'。<br/>当值为0时，刻度点不显示，当值小于0时，取默认值。|
+| minLabel<sup>deprecated</sup> | string | 设置最小值。<br/>从APIversion9开始废弃，使用min替代。 |
+| maxLabel<sup>deprecated</sup> | string | 设置最大值。<br/>从APIversion9开始废弃，使用max替代。 |
 
 >  **说明：**
 >  - Slider无默认padding。

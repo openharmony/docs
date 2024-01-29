@@ -51,7 +51,7 @@ function certSample(): void {
   // 创建X509Cert实例
   certFramework.createX509Cert(encodingBlob, (err, x509Cert) => {
     if (err != null) {
-      // Failed to create the X509Cert instance.
+      // 创建X509Cert实例失败
       console.error(`createX509Cert failed, errCode:${err.code}, errMsg:${err.message}`);
       return;
     }

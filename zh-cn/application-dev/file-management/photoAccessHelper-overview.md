@@ -20,7 +20,6 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
 - [系统相册相关](photoAccessHelper-systemAlbum-guidelines.md)，包括：
   - 收藏夹
   - 视频相册
-  - 截屏和录屏相册
 - [媒体资源（图片、视频和相册）变更通知相关](photoAccessHelper-notify-guidelines.md)，包括：
   - 注册对指定URI的监听
   - 取消指定URI的监听
@@ -37,6 +36,7 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
   - 删除用户相册
   - 隐藏相册
   - 设置收藏和取消收藏
+  - 使用截屏和录屏相册
 
 ## 亮点/特征
 

@@ -22,10 +22,10 @@ import ability from '@ohos.ability.ability';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
-| 名称        |  类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| resultCode  | number               | 是   | 表示Ability被拉起并退出后返回的结果码。                                |
-| want  | [Want](./js-apis-app-ability-want.md)               | 否   | 表示Ability被拉起并退出后返回的数据。 |
+| 名称        |  类型                 | 只读 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| resultCode  | number               | 否   | 是   | 表示Ability被拉起并退出后返回的结果码。                                |
+| want  | [Want](./js-apis-app-ability-want.md)               | 否   | 否   | 表示Ability被拉起并退出后返回的数据。 |
 

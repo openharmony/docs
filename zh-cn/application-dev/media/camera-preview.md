@@ -14,10 +14,11 @@
    ```
 
 2. 创建Surface。
-     
+
     XComponent组件为预览流提供的Surface，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
 
-    **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推。
+    > **说明：**
+    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为1920:1080 = 16:9，则需要预览流中的分辨率的宽高比也为16:9，如分辨率选择640:360，或960:540，或1920:1080，以此类推。
 
    ```ets
    // xxx.ets
@@ -67,15 +68,15 @@
    }
    ```
 
-4. 使能。通过[start](../reference/apis/js-apis-camera.md#start-4)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start-4)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
-   function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
-     previewOutput.start().then(() => {
-       console.info('Callback returned with previewOutput started.');
-     }).catch((err: BusinessError) => {
-       console.error('Failed to previewOutput start '+ err.code);
-     });
+   async function startPreviewOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, session: camera.Session): Promise<void> {
+     session.beginConfig();
+     session.addInput(input);
+     session.addOutput(previewOutput);
+     await session.commitConfig();
+     await session.start();
    }
    ```
 

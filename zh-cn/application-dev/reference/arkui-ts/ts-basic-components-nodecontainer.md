@@ -1,6 +1,6 @@
-# NodeContanier
+# NodeContainer
 
-基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../apis/js-apis-arkui-node.md#nodecontroller)的实例接口。需要与[NodeController](../apis/js-apis-arkui-node.md#nodecontroller)组合使用。
+基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../apis/js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
 
 > **说明：**
 >
@@ -12,15 +12,15 @@
 
 ## 接口
 
-### NodeContanier
+### NodeContainer
 
-NodeContanier(controller: import('../api/@ohos.arkui.node').NodeController)
+NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 **参数：**
 
 | 参数名     | 参数类型                                                       | 必填 | 参数描述                                                                                   |
 | ---------- | -------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| controller | [NodeController](../apis/js-apis-arkui-node.md#nodecontroller) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
+| controller | [NodeController](../apis/js-apis-arkui-nodeController.md) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
 
 ## 属性
 
@@ -91,4 +91,4 @@ struct Index {
   }
 }
 ```
-![patternlock](figures/nodeContianer_sample.jpg)
+![patternlock](figures/nodeContainer_sample.jpg)

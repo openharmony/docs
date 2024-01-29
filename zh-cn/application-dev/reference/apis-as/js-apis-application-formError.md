@@ -49,5 +49,4 @@ SystemCapability.Ability.Form
 | ERR_SYSTEM_RESPONSES_FAILED        | 30    | 系统服务响应失败。   |
 | ERR_FORM_DUPLICATE_ADDED        | 31    | 重复添加卡片。   |
 | ERR_IN_RECOVERY    | 36    | 卡片数据覆盖失败。   |
-| ERR_DISTRIBUTED_SCHEDULE_FAILED<sup>9+</sup> | 37 | 分布式调度失败。<br/>**系统接口**: 此接口为系统接口。  |
 

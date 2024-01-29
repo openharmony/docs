@@ -42,8 +42,7 @@ once(type: string, callback: Callback\<void\>): void
 import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
-  console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
+  console.log("once example test")
 })
 
 @Entry
@@ -869,7 +868,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
-> 
+>
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 
@@ -2882,7 +2881,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  
+
   build() {
     Column() {
       Button('getUserAgent')
@@ -3511,7 +3510,7 @@ struct WebComponent {
             this.controller.slideScroll(500, 500);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`); 
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -4099,7 +4098,7 @@ struct WebComponent {
 }
 ```
 
-2.修改EntryAbility.ts。
+2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
@@ -4185,7 +4184,7 @@ struct WebComponent {
 }
 ```
 
-2.修改EntryAbility.ts。
+2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
@@ -4254,332 +4253,6 @@ struct WebComponent {
 }
 ```
 
-### getCertificate<sup>10+</sup>
-
-getCertificate(): Promise<Array<cert.X509Cert>>
-
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](./js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**返回值：**
-
-| 类型       | 说明                                          |
-| ---------- | --------------------------------------------- |
-| Promise<Array<cert.X509Cert>> | Promise实例，用于获取当前加载的https网站的X509格式证书数组。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-import cert from '@ohos.security.cert';
-
-function Uint8ArrayToString(dataArray:Uint8Array) {
-  let dataString = ''
-  for (let i = 0; i < dataArray.length; i++) {
-    dataString += String.fromCharCode(dataArray[i])
-  }
-  return dataString
-}
-
-function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
-  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
-  for (let i = 0; i < x509CertArray.length; i++) {
-    res += ', index = ' + i + ', issuer name = '
-    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
-    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
-    + x509CertArray[i].getNotBeforeTime()
-    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
-  }
-  return res
-}
-
-@Entry
-@Component
-struct Index {
-  // outputStr在UI界面显示调试信息
-  @State outputStr: string = ''
-  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Row() {
-      Column() {
-        List({space: 20, initialIndex: 0}) {
-          ListItem() {
-            Button() {
-              Text('load bad ssl')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              // 加载一个过期的证书网站，查看获取到的证书信息
-              this.webviewCtl.loadUrl('https://expired.badssl.com')
-            })
-            .height(50)
-          }
-
-          ListItem() {
-            Button() {
-              Text('load example')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              // 加载一个https网站，查看网站的证书信息
-              this.webviewCtl.loadUrl('https://www.example.com')
-            })
-            .height(50)
-          }
-
-          ListItem() {
-            Button() {
-              Text('getCertificate Promise')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              try {
-                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
-                  this.outputStr = ParseX509CertInfo(x509CertArray);
-                })
-              } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
-              }
-            })
-            .height(50)
-          }
-
-          ListItem() {
-            Button() {
-              Text('getCertificate AsyncCallback')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              try {
-                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
-                  if (error) {
-                    this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
-                  } else {
-                    this.outputStr = ParseX509CertInfo(x509CertArray);
-                  }
-                })
-              } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
-              }
-            })
-            .height(50)
-          }
-        }
-        .listDirection(Axis.Horizontal)
-        .height('10%')
-
-        Text(this.outputStr)
-          .width('100%')
-          .fontSize(10)
-
-        Web({ src: 'https://www.example.com', controller: this.webviewCtl })
-          .fileAccess(true)
-          .javaScriptAccess(true)
-          .domStorageAccess(true)
-          .onlineImageAccess(true)
-          .onPageEnd((e) => {
-            if(e) {
-              this.outputStr = 'onPageEnd : url = ' + e.url
-            }
-          })
-          .onSslErrorEventReceive((e) => {
-            // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
-            e.handler.handleConfirm()
-          })
-          .width('100%')
-          .height('70%')
-      }
-      .height('100%')
-    }
-  }
-}
-```
-
-### getCertificate<sup>10+</sup>
-
-getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
-
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](./js-apis-cert.md)），便于开发者展示网站证书信息。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名   | 类型                         | 必填 | 说明                                     |
-| -------- | ---------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<Array<cert.X509Cert>> | 是   | 通过AsyncCallback异步返回当前网站的X509格式证书。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-import cert from '@ohos.security.cert';
-
-function Uint8ArrayToString(dataArray:Uint8Array) {
-  let dataString = ''
-  for (let i = 0; i < dataArray.length; i++) {
-    dataString += String.fromCharCode(dataArray[i])
-  }
-  return dataString
-}
-
-function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
-  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
-  for (let i = 0; i < x509CertArray.length; i++) {
-    res += ', index = ' + i + ', issuer name = '
-    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
-    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
-    + x509CertArray[i].getNotBeforeTime()
-    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
-  }
-  return res
-}
-
-@Entry
-@Component
-struct Index {
-  // outputStr在UI界面显示调试信息
-  @State outputStr: string = ''
-  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Row() {
-      Column() {
-        List({space: 20, initialIndex: 0}) {
-          ListItem() {
-            Button() {
-              Text('load bad ssl')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              // 加载一个过期的证书网站，查看获取到的证书信息
-              this.webviewCtl.loadUrl('https://expired.badssl.com')
-            })
-            .height(50)
-          }
-
-          ListItem() {
-            Button() {
-              Text('load example')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              // 加载一个https网站，查看网站的证书信息
-              this.webviewCtl.loadUrl('https://www.example.com')
-            })
-            .height(50)
-          }
-
-          ListItem() {
-            Button() {
-              Text('getCertificate Promise')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              try {
-                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
-                  this.outputStr = ParseX509CertInfo(x509CertArray);
-                })
-              } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
-              }
-            })
-            .height(50)
-          }
-
-          ListItem() {
-            Button() {
-              Text('getCertificate AsyncCallback')
-                .fontSize(10)
-                .fontWeight(FontWeight.Bold)
-            }
-            .type(ButtonType.Capsule)
-            .onClick(() => {
-              try {
-                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
-                  if (error) {
-                    this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
-                  } else {
-                    this.outputStr = ParseX509CertInfo(x509CertArray);
-                  }
-                })
-              } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
-              }
-            })
-            .height(50)
-          }
-        }
-        .listDirection(Axis.Horizontal)
-        .height('10%')
-
-        Text(this.outputStr)
-          .width('100%')
-          .fontSize(10)
-
-        Web({ src: 'https://www.example.com', controller: this.webviewCtl })
-          .fileAccess(true)
-          .javaScriptAccess(true)
-          .domStorageAccess(true)
-          .onlineImageAccess(true)
-          .onPageEnd((e) => {
-            if (e) {
-              this.outputStr = 'onPageEnd : url = ' + e.url
-            }
-          })
-          .onSslErrorEventReceive((e) => {
-            // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
-            e.handler.handleConfirm()
-          })
-          .width('100%')
-          .height('70%')
-      }
-      .height('100%')
-    }
-  }
-}
-```
-
 ### setAudioMuted<sup>10+</sup>
 
 setAudioMuted(mute: boolean): void
@@ -4636,7 +4309,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **参数：**
 
-| 参数名             | 类型                             | 必填  | 说明                      |                            
+| 参数名             | 类型                             | 必填  | 说明                      |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | 是    | 预加载的url。|
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否    | url的附加HTTP请求头。|
@@ -5158,65 +4831,6 @@ struct WebComponent {
 }
 ```
 
-### createWebPrintDocumentAdapter<sup>11+</sup>
-
-createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
-
-创建web相关打印功能。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明                  |
-| ------- | ------ | ---- | :-------------------- |
-| jobName | string | 是   | 需要打印的文件名。      |
-
-**返回值：**
-
-| 类型                 | 说明                      |
-| -------------------- | ------------------------- |
-| print.printDocumentAdapter | 返回打印文档的适配器。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                                    |
-| -------- | -------------------------------------------------------------------------- |
-| 401 | Invalid input parameter.                                                        |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
-import print from '@ohos.print'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('createWebPrintDocumentAdapter')
-        .onClick(() => {
-          try {
-            let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, getContext());
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
 ### isIncognitoMode<sup>11+</sup>
 
 isIncognitoMode(): boolean
@@ -5297,7 +4911,7 @@ getSecurityLevel(): SecurityLevel
 import webview from '@ohos.web.webview'
 
 
-	
+
 @Entry
 @Component
 struct WebComponent {
@@ -5323,68 +4937,6 @@ struct WebComponent {
 > **说明：**
 >
 > 目前调用WebCookieManager下的方法，都需要先加载Web组件。
-
-### getCookie<sup>(deprecated)</sup>
-
-static getCookie(url: string): string
-
-获取指定url对应cookie的值。
-
-> **说明：**
->
-> 从API version9开始支持，从API version 11开始废弃。建议使用[fetchCookieSync](###fetchCookieSync11)替代
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                      |
-| ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
-
-**返回值：**
-
-| 类型   | 说明                      |
-| ------ | ------------------------- |
-| string | 指定url对应的cookie的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('getCookie')
-        .onClick(() => {
-          try {
-            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
-            console.log("value: " + value);
-          } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
 
 ### fetchCookieSync<sup>11+</sup>
 
@@ -5559,64 +5111,6 @@ struct WebComponent {
               .catch((error:business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(error));
               })
-          } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-
-### setCookie<sup>(deprecated)</sup>
-
-static setCookie(url: string, value: string): void
-
-为指定url设置单个cookie的值。
-
-> **说明：**
->
-> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync<sup>11+</sup>](#configcookiesync11)替代
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                      |
-| ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
-| value  | string | 是   | 要设置的cookie的值。      |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                               |
-| -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
-| 17100005 | Invalid cookie value.                                  |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('setCookie')
-        .onClick(() => {
-          try {
-            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -6109,41 +5603,6 @@ struct WebComponent {
 }
 ```
 
-### deleteEntireCookie<sup>(deprecated)</sup>
-
-static deleteEntireCookie(): void
-
-清除所有cookie。
-
-> **说明：**
->
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](#clearallcookiessync11)替代
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('deleteEntireCookie')
-        .onClick(() => {
-          web_webview.WebCookieManager.deleteEntireCookie();
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### clearAllCookiesSync<sup>11+</sup>
 
 static clearAllCookiesSync(incognito?: boolean): void
@@ -6270,41 +5729,6 @@ struct WebComponent {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### deleteSessionCookie<sup>(deprecated)</sup>
-
-static deleteSessionCookie(): void
-
-清除所有会话cookie。
-
-> **说明：**
->
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('deleteSessionCookie')
-        .onClick(() => {
-          web_webview.WebCookieManager.deleteSessionCookie();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -7183,7 +6607,7 @@ web组件地理位置权限管理对象。
 
 ### 需要权限
 
-访问地理位置时需添加权限：ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION、ohos.permission.LOCATION_IN_BACKGROUND，具体权限说明请参考[位置服务](./js-apis-geolocation.md)。
+访问地理位置时需添加权限：ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION、ohos.permission.LOCATION_IN_BACKGROUND。
 
 ### allowGeolocation
 

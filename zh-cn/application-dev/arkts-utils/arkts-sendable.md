@@ -1,10 +1,5 @@
 # \@Sendable装饰器：声明并校验Sendable类
 
-
-## SendableClass
-被@Sendable装饰器修饰的类为SendableClass。
-
-
 ## 简介
 在使用[TaskPool](../reference/apis/js-apis-taskpool.md)时，执行的并发函数若需要传输类对象且使用该类的内部方法，该类需要使用此装饰器修饰，否则无法使用此对象内的方法。SendableClass有以下两种行为：
 
@@ -18,6 +13,10 @@
 > 从API version 11开始，该装饰器支持在ArkTS卡片中使用。
 >
 > 当前该装饰器仅支持克隆拷贝，使用时需搭配[setCloneList](../reference/apis/js-apis-taskpool.md#setclonelist11)，否则会抛异常。
+
+## 基本概念
+
+ **SendableClass**：被@Sendable装饰器修饰的类为SendableClass。
 
 
 ## 装饰器说明

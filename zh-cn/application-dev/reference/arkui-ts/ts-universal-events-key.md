@@ -18,7 +18,7 @@ onKeyEvent(event: (event: KeyEvent) => void)
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [KeyEvent](#keyevent对象说明) | 否   | 获得KeyEvent对象。 |
+| event  | [KeyEvent](#keyevent对象说明) | 是   | 获得KeyEvent对象。 |
 
 
 ## KeyEvent对象说明
