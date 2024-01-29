@@ -27,7 +27,7 @@ Enumerates the window types.
 | Name                                 | Value| Description                                                                                    |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | Application subwindow.<br>**Model restriction**: This API can be used only in the FA model.                                                  |
-| TYPE_SYSTEM_ALERT                   | 1      | System alert window.                                                                             |
+| TYPE_SYSTEM_ALERT                   | 1      | System alert window.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 11.                               |
 | TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
 | TYPE_STATUS_BAR<sup>9+</sup>        | 3      | Status bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
 | TYPE_PANEL<sup>9+</sup>             | 4      | Notification panel.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                          |
@@ -46,6 +46,7 @@ Enumerates the window types.
 | TYPE_SCREENSHOT<sup>9+</sup>        | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                         |
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                |
+| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | Window used for global search.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
 ## Configuration<sup>9+</sup>
 
 Defines the parameters for creating a subwindow or system window.
@@ -296,9 +297,9 @@ Describes the translation parameters.
 
 | Name| Type| Readable| Writable| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, and the default value is **0.0**.|
-| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, and the default value is **0.0**.|
-| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, and the default value is **0.0**.|
+| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 
 ## WindowEventType<sup>10+</sup>
 
@@ -489,7 +490,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
+Obtains the top window of the current application. This API uses an asynchronous callback to return the result. If no subwindow is available, the main window of the application is returned.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -512,25 +513,29 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-try {
-  class BaseContext {
-      stageMode: boolean = false;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getLastWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
     }
-    let context: BaseContext = { stageMode: false };
-  window.getLastWindow(context, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-      return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  }
 }
 ```
 
@@ -538,7 +543,7 @@ try {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-Obtains the top window of the current application. This API uses a promise to return the result.
+Obtains the top window of the current application. This API uses a promise to return the result. If no subwindow is available, the main window of the application is returned.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -566,23 +571,27 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-class BaseContext {
-  stageMode: boolean = false;
-}
-let context: BaseContext = { stageMode: false };
-try {
-  let promise = window.getLastWindow(context);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let promise = window.getLastWindow(this.context);
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -1564,14 +1573,25 @@ Obtains the top window of the current application. This API uses a promise to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage){
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getTopWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if(errCode){
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return ;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch(error){
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    }
+  }
+}
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1598,14 +1618,25 @@ Obtains the top window of the current application. This API uses an asynchronous
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage){
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getTopWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if(errCode){
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return ;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch(error){
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    }
+  }
+}
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -1637,14 +1668,19 @@ Obtains the top window of the current application. This API uses a promise to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let promise = window.getTopWindow(this.context);
+    promise.then((data) => {
+      windowClass = data;
+      console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    });
+  }
+}
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -2178,8 +2214,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in pixels. The value must be an integer.|
-| height   | number                    | Yes| New height of the window, in pixels. The value must be an integer.|
+| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -2235,8 +2271,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in pixels. The value must be an integer.|
-| height | number | Yes| New height of the window, in pixels. The value must be an integer.|
+| width  | number | Yes| New width of the window, in px. The value must be an integer.|
+| height | number | Yes| New height of the window, in px. The value must be an integer.|
 
 **Return value**
 
@@ -3571,7 +3607,7 @@ Subscribes to the event indicating soft keyboard height changes in the input met
 | Name  | Type               | Mandatory| Description                                       |
 | -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height, which is an integer.                   |
+| callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height, which is an integer, in px.    |
 
 **Example**
 
@@ -3599,7 +3635,7 @@ Unsubscribes from the event indicating soft keyboard height changes in the input
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
-| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                              |
+| callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer, in px. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                              |
 
 **Example**
 
@@ -5415,41 +5451,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-(context: window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // Animation duration.
-    tempo: 0.5, // Playback speed.
-    curve: Curve.EaseInOut, // Animation curve.
-    delay: 0, // Animation delay.
-    iterations: 1, // Number of playback times.
-    playMode: PlayMode.Normal // Animation playback mode.
-    onFinish: () => {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
-    };
-    toWindow.translate(obj); // Set the transition animation.
-    console.info('toWindow translate end');
-  }
-  );
-  console.info('complete transition end');
-};
-windowClass.hideWithAnimation((err: BusinessError, data) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
-});
+let controller = windowClass.getTransitionController(); // Obtain the transition animation controller.
 ```
 
 ### setBlur<sup>9+</sup>
@@ -5466,7 +5468,7 @@ Blurs this window.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| radius | number | Yes       | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the window. |
+| radius | number | Yes       | Radius of the blur. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the blur is disabled for the window. |
 
 **Error codes**
 
@@ -5502,7 +5504,7 @@ Blurs the background of this window.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| radius | number | Yes       | Radius of the blur. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the blur is disabled for the background of the window. |
+| radius | number | Yes       | Radius of the blur. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the blur is disabled for the background of the window. |
 
 **Error codes**
 
@@ -5576,7 +5578,7 @@ Sets the shadow for the window borders.
 
 | Name    | Type   | Mandatory | Description                                                  |
 | ------- | ------ | --------- | ------------------------------------------------------------ |
-| radius  | number | Yes       | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, and the value **0.0** means that the shadow is disabled for the window borders. |
+| radius  | number | Yes       | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the shadow is disabled for the window borders. |
 | color   | string | No        | Color of the shadow. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | offsetX | number | No        | Offset of the shadow along the x-axis, in pixels. The value is a floating point number. |
 | offsetY | number | No        | Offset of the shadow along the y-axis, in pixels. The value is a floating point number. |
@@ -5616,7 +5618,7 @@ Sets the radius of the rounded corners for this window.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| radius | number | Yes       | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0. The value **0.0** means that the window does not use rounded corners. |
+| radius | number | Yes       | Radius of the rounded corners. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the window does not use rounded corners. |
 
 **Error codes**
 
@@ -6211,7 +6213,7 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 
 Implements different functionalities based on the caller:
 
-Minimizes the main window if the caller is a main window. The main window can be restored in the dock bar.
+Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
 
 Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
 
@@ -6785,7 +6787,6 @@ try {
 } catch (exception) {
   console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -6820,7 +6821,6 @@ windowClass.show((err: BusinessError) => {
   }
   console.info('Succeeded in showing the window.');
 });
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -6853,7 +6853,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -7033,8 +7032,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| width    | number                    | Yes       | New width of the window, in pixels. The value must be an integer. |
-| height   | number                    | Yes       | New height of the window, in pixels. The value must be an integer. |
+| width    | number                    | Yes       | New width of the window, in px. The value must be an integer. |
+| height   | number                    | Yes       | New height of the window, in px. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -7082,8 +7081,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| width  | number | Yes       | New width of the window, in pixels. The value must be an integer. |
-| height | number | Yes       | New height of the window, in pixels. The value must be an integer. |
+| width  | number | Yes       | New width of the window, in px. The value must be an integer. |
+| height | number | Yes       | New height of the window, in px. The value must be an integer. |
 
 **Return value**
 
@@ -9878,31 +9877,60 @@ Customizes the animation for the scenario when the window is shown.
 **Example**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context : window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // Animation duration.
-    tempo: 0.5, // Playback speed.
-    curve: Curve.EaseInOut, // Animation curve.
-    delay: 0, // Animation delay.
-    iterations: 1, // Number of playback times.
-    playMode: PlayMode.Normal // Animation playback mode.
-    onFinish: ()=> {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForShownCallFunc_: Function = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
+    this.animationForShownCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForShown = (context : window.TransitionContext)=> {
+      this.animationForShownCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.showWithAnimation(()=>{
+      console.info('Show with animation success');
+    })
   }
-  );
-  console.info('complete transition end');
-};
+}
+
+```
+
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // Obtain a system window.
+try {
+  animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // Animation duration.
+      tempo: 0.5, // Playback speed.
+      curve: Curve.EaseInOut, // Animation curve.
+      delay: 0, // Animation delay.
+      iterations: 1, // Number of playback times.
+      playMode: PlayMode.Normal // Animation playback mode.
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // Set the transition animation.
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
 
 ```
 
@@ -9925,29 +9953,57 @@ Customizes the animation for the scenario when the window is hidden.
 **Example**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context: window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // Animation duration.
-    tempo: 0.5, // Playback speed.
-    curve: Curve.EaseInOut, // Animation curve.
-    delay: 0, // Animation delay.
-    iterations: 1, // Number of playback times.
-    playMode: PlayMode.Normal // Animation playback mode.
-    onFinish: () => {
-      context.completeTransition(true)
+// xxx.ts
+export class AnimationConfig {
+  private animationForHiddenCallFunc_: Function = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
+    this.animationForHiddenCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForHidden = (context : window.TransitionContext)=> {
+      this.animationForHiddenCallFunc_(context);
     };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
+    windowClass.hideWithAnimation(()=>{
+      console.info('hide with animation success');
+    })
   }
-  )
-  console.info('complete transition end');
-};
+}
+```
+
+```ts
+// xxx.ets
+let animationConfig = new AnimationConfig();
+let systemTypeWindow = window.findWindow("systemTypeWindow"); // Obtain a system window.
+try {
+  animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
+    console.info('complete transition end');
+    let toWindow = context.toWindow;
+    animateTo({
+      duration: 1000, // Animation duration.
+      tempo: 0.5, // Playback speed.
+      curve: Curve.EaseInOut, // Animation curve.
+      delay: 0, // Animation delay.
+      iterations: 1, // Number of playback times.
+      playMode: PlayMode.Normal // Animation playback mode.
+      onFinish: () => {
+        console.info('onFinish in animation');
+        context.completeTransition(true)
+      }
+    }, () => {
+      let obj : window.TranslateOptions = {
+        x : 100.0,
+        y : 0.0,
+        z : 0.0
+      };
+      toWindow.translate(obj); // Set the transition animation.
+      console.info('toWindow translate end in animation');
+    });
+    console.info('complete transition end');
+  });
+} catch (error) {
+  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+}
 ```
