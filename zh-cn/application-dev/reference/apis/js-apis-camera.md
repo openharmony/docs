@@ -308,7 +308,7 @@ getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
 查询相机设备支持的输出能力，同步返回结果。
 
 > **说明：**
-> 从 API version 10开始支持，从API version 11开始废弃。建议使用[getSupportedOutputCapability<sup>11+</sup>](#getsupportedoutputcapability11)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[getSupportedOutputCapability](#getsupportedoutputcapability11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -590,7 +590,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 创建拍照输出对象，同步返回结果。
 
 > **说明：**
-> 从 API version 10开始支持，从API version 11开始废弃。建议使用[createPhotoOutput<sup>11+</sup>](#createphotooutput11)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[createPhotoOutput](#createphotooutput11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7237,7 +7237,7 @@ release(callback: AsyncCallback\<void\>): void
 释放会话资源，通过注册回调函数获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-1)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-2)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7278,7 +7278,7 @@ release(): Promise\<void\>
 释放会话资源，通过Promise获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-2)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-3)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
