@@ -69,14 +69,14 @@
 | velocityY<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。 |
 | velocity<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。 |
 
-## SourceType枚举说明
+## SourceType枚举说明<sup>9+</sup>
 | 名称 | 描述 |
 | -------- | -------- |
 | Unknown | 未知设备。 |
 | Mouse | 鼠标。 |
 | TouchScreen | 触摸屏。 |
 
-## FingerInfo对象说明
+## FingerInfo对象说明<sup>8+</sup>
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | id | number | 手指的索引编号。 |

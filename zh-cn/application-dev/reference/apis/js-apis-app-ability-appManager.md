@@ -87,7 +87,7 @@ appManager.isRunningInStabilityTest().then((flag) => {
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(): Promise\<boolean>;
+isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。
 
@@ -122,7 +122,7 @@ appManager.isRamConstrainedDevice().then((data) => {
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
+isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。
 
@@ -158,7 +158,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(): Promise\<number>;
+getAppMemorySize(): Promise\<number>
 
 获取应用程序的内存大小。
 
@@ -193,7 +193,7 @@ appManager.getAppMemorySize().then((data) => {
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(callback: AsyncCallback\<number>): void;
+getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取应用程序的内存大小。
 
@@ -229,7 +229,7 @@ appManager.getAppMemorySize((err, data) => {
 
 ## appManager.getRunningProcessInformation
 
-getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
 
@@ -266,7 +266,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 ## appManager.getRunningProcessInformation
 
-getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
 
@@ -304,7 +304,7 @@ appManager.getRunningProcessInformation((err, data) => {
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
-isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
+isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>
 
 检查共享库是否正在使用。使用Promise异步回调。
 
@@ -352,7 +352,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
-isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
+isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void
 
 检查共享库是否正在使用。使用callback异步回调。
 
@@ -396,7 +396,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 
 ## appManager.on
 
-on(type: 'applicationState', observer: ApplicationStateObserver): number;
+on(type: 'applicationState', observer: ApplicationStateObserver): number
 
 注册全部应用程序的状态观测器。
 
@@ -462,7 +462,7 @@ try {
 
 ## appManager.on
 
-on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 
 注册指定应用程序的状态观测器。
 
@@ -530,7 +530,7 @@ try {
 
 ## appManager.off
 
-off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
 
 取消注册应用程序状态观测器。
 
@@ -611,7 +611,7 @@ try {
 
 ## appManager.off
 
-off(type: 'applicationState', observerId: number): Promise\<void>;
+off(type: 'applicationState', observerId: number): Promise\<void>
 
 取消注册应用程序状态观测器。
 
@@ -693,7 +693,7 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
@@ -741,7 +741,7 @@ try {
 
 ## appManager.getForegroundApplications
 
-getForegroundApplications(): Promise\<Array\<AppStateData>>;
+getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
@@ -883,7 +883,7 @@ appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountC
 
 ## appManager.killProcessesByBundleName
 
-killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
+killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 通过Bundle名称终止进程。
 
@@ -933,7 +933,7 @@ try {
 
 ## appManager.killProcessesByBundleName
 
-killProcessesByBundleName(bundleName: string): Promise\<void>;
+killProcessesByBundleName(bundleName: string): Promise\<void>
 
 通过Bundle名称终止进程。
 
@@ -985,7 +985,7 @@ try {
 
 ## appManager.clearUpApplicationData
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 通过Bundle名称清除应用数据。
 
@@ -1035,7 +1035,7 @@ try {
 
 ## appManager.clearUpApplicationData
 
-clearUpApplicationData(bundleName: string): Promise\<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>
 
 通过Bundle名称清除应用数据。
 
@@ -1087,7 +1087,7 @@ try {
 
 ## appManager.getProcessMemoryByPid<sup>10+</sup>
 
-getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void;
+getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void
 
 通过pid查询对应进程占用的内存大小。
 
@@ -1135,7 +1135,7 @@ try {
 
 ## appManager.getProcessMemoryByPid<sup>10+</sup>
 
-getProcessMemoryByPid(pid: number): Promise\<number>;
+getProcessMemoryByPid(pid: number): Promise\<number>
 
 通过pid查询对应进程占用的内存大小。
 
@@ -1185,7 +1185,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 通过bundleName获取有关运行进程的信息。
 
@@ -1233,7 +1233,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessInformation>>
 
 通过bundleName获取有关运行进程的信息。
 
@@ -1283,7 +1283,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 通过bundleName和userId获取有关运行进程的信息。
 
@@ -1333,7 +1333,7 @@ try {
 
 ## appManager.getRunningProcessInfoByBundleName<sup>10+</sup>
 
-getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<Array\<ProcessInformation>>;
+getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<Array\<ProcessInformation>>
 
 通过bundleName和userId获取有关运行进程的信息。
 

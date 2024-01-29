@@ -15,6 +15,16 @@
 
 CalendarPicker(options?: CalendarOptions)
 
+日历选择器。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                        | 必填 | 描述                       |
+| ------- | ------------------------------------------- | ---- | -------------------------- |
+| options | [CalendarOptions](#calendaroptions对象说明) | 否   | 配置日历选择器组件的参数。 |
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -33,10 +43,10 @@ CalendarPicker(options?: CalendarOptions)
 
 ##  CalendarOptions对象说明
 
-| 参数名      | 参数类型       | 必填        | 参数描述                              |
+| 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | 否    | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形 |
-| selected | Date | 否    | 设置选中项的日期。<br/>默认值：当前系统日期。<br/> |
+| selected | Date | 否    | 设置选中项的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br/>默认值：当前系统日期。 |
 
 ## CalendarAlign枚举说明
 

@@ -16,7 +16,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 使用时通过ConfigurationConstant.ColorMode获取。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -29,7 +29,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 使用时通过ConfigurationConstant.Direction获取。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -42,14 +42,14 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 使用时通过ConfigurationConstant.ScreenDensity获取。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
 | SCREEN_DENSITY_NOT_SET | 0 | 未设置屏幕像素密度。 | 
-| SCREEN_DENSITY_SDPI | 120 | 屏幕像素密度为'sdpi'。 | 
-| SCREEN_DENSITY_MDPI | 160 | 屏幕像素密度为'mdpi'。 | 
-| SCREEN_DENSITY_LDPI | 240 | 屏幕像素密度为'ldpi'。 | 
-| SCREEN_DENSITY_XLDPI | 320 | 屏幕像素密度为'xldpi'。 | 
-| SCREEN_DENSITY_XXLDPI | 480 | 屏幕像素密度为'xxldpi'。 | 
-| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕像素密度为'xxxldpi'。 | 
+| SCREEN_DENSITY_SDPI | 120 | 屏幕像素密度为'SDPI'。 | 
+| SCREEN_DENSITY_MDPI | 160 | 屏幕像素密度为'MDPI'。 | 
+| SCREEN_DENSITY_LDPI | 240 | 屏幕像素密度为'LDPI'。 | 
+| SCREEN_DENSITY_XLDPI | 320 | 屏幕像素密度为'XLDPI'。 | 
+| SCREEN_DENSITY_XXLDPI | 480 | 屏幕像素密度为'XXLDPI'。 | 
+| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕像素密度为'XXXLDPI'。 | 
