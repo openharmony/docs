@@ -4269,7 +4269,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -5610,7 +5610,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -7169,7 +7169,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7260,7 +7260,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7356,7 +7356,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
@@ -7473,7 +7473,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
