@@ -14,17 +14,17 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 ![AudioRenderer status change](figures/audiorenderer-status-change.png)
 
-在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
+在进行应用开发的过程中，建议开发者通过[on('stateChange')](../reference/apis/js-apis-audio.md#onstatechange-8)方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
-- prepared状态： 通过调用createAudioRenderer()方法进入到该状态。
+- prepared状态： 通过调用[createAudioRenderer()](../reference/apis/js-apis-audio.md#audiocreateaudiorenderer8)方法进入到该状态。
 
-- running状态： 正在进行音频数据播放，可以在prepared状态通过调用start()方法进入此状态，也可以在paused状态和stopped状态通过调用start()方法进入此状态。
+- running状态： 正在进行音频数据播放，可以在prepared状态通过调用[start()](../reference/apis/js-apis-audio.md#start8)方法进入此状态，也可以在paused状态和stopped状态通过调用[start()](../reference/apis/js-apis-audio.md#start8)方法进入此状态。
 
-- paused状态： 在running状态可以通过调用pause()方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用start()方法继续音频数据播放。
+- paused状态： 在running状态可以通过调用[pause()](../reference/apis/js-apis-audio.md#pause8)方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用[start()](../reference/apis/js-apis-audio.md#start8)方法继续音频数据播放。
 
-- stopped状态： 在paused/running状态可以通过stop()方法停止音频数据的播放。
+- stopped状态： 在paused/running状态可以通过[stop()](../reference/apis/js-apis-audio.md#stop8)方法停止音频数据的播放。
 
-- released状态： 在prepared、paused、stopped等状态，用户均可通过release()方法释放掉所有占用的硬件和软件资源，并且不会再进入到其他的任何一种状态了。
+- released状态： 在prepared、paused、stopped等状态，用户均可通过[release()](../reference/apis/js-apis-audio.md#release8)方法释放掉所有占用的硬件和软件资源，并且不会再进入到其他的任何一种状态了。
 
 ### 开发步骤及注意事项
 
@@ -52,11 +52,11 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
     audio.createAudioRenderer(audioRendererOptions, (err, data) => {
       if (err) {
-      console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-      return;
+        console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+        return;
       } else {
-      console.info('Invoke createAudioRenderer succeeded.');
-      let audioRenderer = data;
+        console.info('Invoke createAudioRenderer succeeded.');
+        let audioRenderer = data;
       }
     });
     ```
