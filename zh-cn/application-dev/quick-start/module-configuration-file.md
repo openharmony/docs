@@ -189,6 +189,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引。| 字符串 | 该标签可缺省，缺省值为空。 |
 
+resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resource/base/profile目录下。例如$profile:shortcuts_config指定了/resource/base/profile/shortcuts_config.json文件。
 
 ```json
 {
