@@ -25,7 +25,11 @@
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
 | 大于等于9 | 同时申请ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
-如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
+如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
+
+应用如需使用后台位置权限，需要在设置界面由用户手动授予，具体授权方式请参考[程序访问子系统变更说明](../../release-notes/changelogs/OpenHarmony_4.1.5.3/changelogs-access_token.md)。
+
+长时任务申请可参考[长时任务](../task-management/continuous-task.md)。
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
@@ -346,7 +350,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
 
-并且在获取到WantAgent对象之后调用地理围栏接口添加围栏。
+并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 
    ```ts
    // 创建WantAgent
@@ -365,8 +369,6 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
        }
    });
    ```
-
-5. 当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 
 ## 相关实例
 

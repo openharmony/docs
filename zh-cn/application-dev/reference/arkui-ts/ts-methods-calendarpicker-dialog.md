@@ -24,10 +24,10 @@ show(options?: CalendarDialogOptions)
 
 ## CalendarDialogOptions对象说明
 
+继承自[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)。
+
 | 名称       | 类型                                            | 必填 | 描述                                                         |
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected   | Date                                            | 否   | 设置当前选中的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br />默认值：当前系统日期 |
-| hintRadius | number \|&nbsp;[Resource](ts-types.md#resource) | 否   | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形。 |
 | onAccept   | (value: Date) => void                           | 否   | 点击弹窗中的“确定”按钮时触发该回调。<br/>value：选中的日期值。 |
 | onCancel   | () => void                                      | 否   | 点击弹窗中的“取消”按钮时触发该回调。                         |
 | onChange   | (value: Date) => void                           | 否   | 选择弹窗中日期使当前选中项改变时触发该回调。<br/>value：选中的日期值。 |

@@ -120,4 +120,16 @@ Applicable to: stage model
 
 The files are stored in the **/storage/media/100/local/files** directory. The specific file path varies with the file type and source. To obtain the file path based on the file name, run the following command in the **/storage/media/100/local/files** directory:<br>-name [filename]
 
+**References** 
+
 For more information, see [Uploading and Downloading an Application File](../file-management/app-file-upload-download.md).
+
+## How do I listen for the changes of a file or folder? (API version 10)
+
+**Solution**
+
+You can use **fs.createWatcher** to listen for the changes of a file or folder with the registered callback.
+
+**References** 
+
+[@ohos.file.fs](../reference/apis/js-apis-file-fs.md#fscreatewatcher10)

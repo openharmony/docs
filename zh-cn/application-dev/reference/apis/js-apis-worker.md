@@ -423,15 +423,9 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | Worker退出的code。 |
 
 **错误码：**
 
@@ -463,15 +457,9 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Worker对象的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **错误码：**
 
@@ -498,15 +486,9 @@ workerInstance.onerror = (err: ErrorEvent) => {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明                   |
-| ------ | -------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvents](#messageevents9) | 是   | 收到的Worker消息数据。 |
 
 **错误码：**
 
@@ -535,15 +517,9 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明       |
-| ------ | -------------------------------- | ---- | ---------- |
-| event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **错误码：**
 
@@ -651,7 +627,7 @@ dispatchEvent(event: Event): boolean
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| boolean | 分发的结果，false表示分发失败。 |
+| boolean | 分发的结果，true表示分发成功，false表示分发失败。 |
 
 **错误码：**
 
@@ -1120,16 +1096,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                                                 | 必填 | 说明                     |
-| ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
 
 **错误码：**
 
@@ -1165,16 +1134,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明       |
-| ------ | -------------------------------- | ---- | ---------- |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **错误码：**
 
@@ -1264,15 +1226,9 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1681,18 +1637,12 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | Worker退出的code。 |
 
 **示例：**
 
@@ -1715,18 +1665,12 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Worker对象的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1744,18 +1688,12 @@ workerInstance.onerror = (err: ErrorEvent) => {
 
 onmessage?: (event: MessageEvent) =&gt; void
 
-Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                               | 必填 | 说明                   |
-| ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
@@ -1773,18 +1711,12 @@ workerInstance.onmessage = (e): void => {
 
 onmessageerror?: (event: MessageEvent) =&gt; void
 
-Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                               | 必填 | 说明       |
-| ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -2097,19 +2029,12 @@ parentPort.onmessage = (e): void => {
 
 onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数，DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明                     |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvent](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -2135,19 +2060,12 @@ parentPort.onmessage = (e): void => {
 
 onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvent](#dedicatedworkerglobalscopedeprecated)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明             |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| ev     | [MessageEvent](#messageeventt)                           | 是   | 异常数据。       |
 
 **示例：**
 
@@ -2271,18 +2189,12 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
+WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 

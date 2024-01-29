@@ -1,6 +1,6 @@
 # Introduction to Device Certificate Kit
 
-Device Certificate Kit provides the [Certificate Framework](#certificate-framework) and [Certificate Management](#certificate-management) capabilities.
+Device Certificate Kit provides the [certificate framework](#certificate-framework) and [certificate management](#certificate-management) capabilities for developers.
 
 ## Certificate Framework
 
@@ -44,5 +44,3 @@ During the use of the certificate management functionalities, certificates need 
 ## Constraints
 
 Device Certificate Kit does not provide the capabilities of generating or issuing certificates or CRLs. Such capabilities are implemented by a certificate authority (CA) rather than a single application.
-
-<!--no_check-->

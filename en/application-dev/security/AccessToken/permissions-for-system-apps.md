@@ -2041,7 +2041,7 @@ Allows an application to start modal system dialog boxes.
 
 **Valid since**: 11
 
-## ohos.permission.ACCESS_STATUSBAR_ICON
+### ohos.permission.ACCESS_STATUSBAR_ICON
 
 Allow an application to access the status bar icons.
 
@@ -2268,6 +2268,30 @@ Allows an application to write privacy push data to another application.
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.MANAGE_NEARLINK
+
+Allows an application to pair with a NearLink device and access the Contacts or messages of the device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.GET_NEARLINK_LOCAL_MAC
+
+Allows the application to obtain the NearLink MAC address of the local device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
 
 ## system_grant Permissions (Unavailable via ACL)
 

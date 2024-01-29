@@ -210,7 +210,7 @@ let result = hashSet.remove("sparrow");
 
 clear(): void
 
-清除HashSet中的所有元素,并把length置为0。
+清除HashSet中的所有元素，并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
 

@@ -458,7 +458,15 @@ Allows an application to exchange data with other devices.
 
 Allows an application running in the background to obtain the device location.
 
-**Prerequisites**: You need to request the [ohos.permission.LOCATION](#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) permissions before requesting this permission.
+For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, direct the user to manually grant this permission on the **Settings** screen.
+
+**Procedure**:
+
+1. Request the front-end location permissions in the dialog box. You can request either of the following permissions:
+   - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location).
+   - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) and [ohos.permission.LOCATION](#ohospermissionlocation).
+2. After the user grants the foreground location permissions, display a message to direct the user to go to the **Settings** screen to grant the ohos.permission.LOCATION_IN_BACKGROUND permission.
+3. The permission is granted to the application if the user selects **Always allow** on the **Settings** screen.
 
 **Permission level**: normal
 
@@ -566,3 +574,14 @@ Allows an application to read media files from and write media files into the us
 
 **Valid since**: 7
 
+### ohos.permission.ACCESS_NEARLINK
+
+Allows an application to use NearLink, such as device pairing and connecting to nearby devices.
+
+**Permission level**: normal
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 12

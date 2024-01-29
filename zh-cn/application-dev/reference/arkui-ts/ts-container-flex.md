@@ -16,7 +16,7 @@
 
 ## 接口
 
-Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
+Flex(value?: FlexOptions)
 
 标准Flex布局容器。具体指南请参考[弹性布局](../../ui/arkts-layout-development-flex-layout.md)。
 
@@ -24,6 +24,11 @@ Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: Fle
 
 **参数:**
 
+| 参数名            | 参数类型        | 必填   | 参数描述                                     |
+| -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
+| value      | [FlexOptions](#flexoptions对象说明) | 否    |  弹性布局子组件参数。               |
+
+## FlexOptions对象说明
 | 参数名            | 参数类型                                     | 必填   | 默认值               | 参数描述                                     |
 | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
 | direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | 否    | FlexDirection.Row | 子组件在Flex容器上排列的方向，即主轴的方向。                 |

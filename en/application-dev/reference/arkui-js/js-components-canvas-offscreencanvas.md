@@ -30,18 +30,27 @@ Obtains the **OffscreenCanvas** context. This API returns a 2D drawing object.
 | Name      | Type                                    | Mandatory  | Description                    |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | contextId | string                                   | Yes   | Context ID. The value can only be **"2d"**.        |
-| options   | [CanvasRenderingContext2DSettings](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | No   | 2D drawing object, which can be used to draw rectangles, images, and texts, on the **OffscreenCanvas**. |
+| options   | [CanvasRenderingContext2DSettings](#canvasrenderingcontext2dsettings) | No   | Whether to enable anti-aliasing. By default, anti-aliasing is disabled.|
 
 **Return value** 
 
 | Type                                      | Description                         |
 | ---------------------------------------- | --------------------------- |
-| [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts, on the **OffscreenCanvas**. |
+| [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts, on the **OffscreenCanvas**.|
 
+### CanvasRenderingContext2DSettings
+
+CanvasRenderingContext2DSettings(antialias?: boolean)
+
+Configures the settings of an **OffscreenCanvasRenderingContext2D** object, including whether to enable antialiasing.
+
+| Name      | Type     | Description                 |
+| --------- | ------- | ------------------- |
+| antialias | boolean | Whether to enable anti-aliasing. The default value is **false**.|
 
 ### toDataURL
 
-toDataURL(type?: string, quality?:number):
+toDataURL(type?: string, quality?:number): string
 
 Generates a URL containing image display information.
 

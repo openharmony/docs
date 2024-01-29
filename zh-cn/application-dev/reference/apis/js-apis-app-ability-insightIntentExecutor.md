@@ -19,9 +19,9 @@ import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | 是 | 否 | 意图调用执行上下文。 |
+| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | 否 | 是 | 意图调用执行上下文。 |
 
 ## InsightIntentExecutor.onExecuteInUIAbilityForegroundMode
 

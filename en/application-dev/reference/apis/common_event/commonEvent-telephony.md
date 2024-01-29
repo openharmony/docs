@@ -9,7 +9,7 @@ Indicates that the SIM card status has changed.
 - Value: usual.event.SIM_STATE_CHANGED
 - Required subscriber permissions: none
 
-When the there is a change in the SIM card status of the device, the event notification service is triggered to publish this event.
+When there is a change in the SIM card status of the device, the event notification service is triggered to publish this event.
 
 ## COMMON_EVENT_SMS_RECEIVED_COMPLETED
 
@@ -118,6 +118,24 @@ Indicates that the default primary SIM card of the device has been updated.
 - Required subscriber permissions: none
 
 When the default primary SIM card of the device is updated, the event notification service is triggered to publish this event.
+
+## COMMON_EVENT_SET_PRIMARY_SLOT_STATUS
+
+Indicates that the status of the action for setting the primary SIM card changes.
+
+- Value: usual.event.SET_PRIMARY_SLOT_STATUS
+- Required subscriber permissions: none
+
+When the status of the action for setting the primary SIM card changes (for example, when the status is updated to executing or completed), the event notification service is triggered to publish this event.
+
+## COMMON_EVENT_PRIMARY_SLOT_ROAMING
+
+Indicates that the roaming status of the default primary SIM card is updated.
+
+- Value: usual.event.PRIMARY_SLOT_ROAMING
+- Required subscriber permissions: none
+
+When the roaming status of the default primary SIM card changes, the event notification service is triggered to publish this event.
 
 ## COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED
 
