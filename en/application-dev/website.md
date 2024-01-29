@@ -45,6 +45,7 @@
           - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
         - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
+        - [wrapBuilder: Encapsulating a Global @Builder](quick-start/arkts-wrapBuilder.md)
         - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
         - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
         - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
@@ -2097,7 +2098,8 @@
   - [Startup Development](faqs/faqs-startup.md)
   - [Distributed Device Development](faqs/faqs-distributed-device-profile.md)
   - [SDK Usage](faqs/faqs-sdk.md)
+  - [NDK Usage](faqs/faqs-ndk.md)
   - [Compiler and Runtime Development](faqs/faqs-compiler-runtime.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
 
- <!--no_check--> 
+<!--no_check-->
