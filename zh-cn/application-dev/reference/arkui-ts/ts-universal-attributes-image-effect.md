@@ -134,7 +134,7 @@ invert(value: number | InvertOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>设置小于0的值时，按值为0处理。<br/>入参对象为 InvertOptions时 对比背景颜色和threshold，当背景颜色的的灰度值大于threshold时反色取high值，当背景颜色灰度值小于threshold时反色取low值。 |
+| value  | number&nbsp;\|&nbsp;[InvertOptions](#invertoptions11对象说明)<sup>11+</sup> | 是   | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>设置小于0的值时，按值为0处理。<br/>入参对象为 InvertOptions时，对比背景颜色灰度值和阈值区间，背景颜色灰度值小于阈值区间时反色取high值，当背景颜色灰度值大于阈值区间时反色取low值，背景颜色灰度值在阈值区间内取值由high线性渐变到low。 |
 
 ## sepia
 
@@ -379,10 +379,10 @@ useShadowBatching(value: boolean)
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
-| low            | number | 是    | 背景色小于二分插值时的取值。                  |
-| high           | number | 是    | 背景色大于等于二分插值时的取值。              |
-| threshold      | number | 是    | 二分插值。                                  |
-| thresholdRange | number | 是    | 二分差值智能取色范围。<br/>**说明：**<br/>二分差值上下偏移thresholdRange区间内取均色作为新的threshold。|
+| low            | number | 是    | 背景颜色灰度值大于阈值区间时的取值。                  |
+| high           | number | 是    | 背景颜色灰度值小于阈值区间时的取值。              |
+| threshold      | number | 是    | 灰度阈值。                                  |
+| thresholdRange | number | 是    | 阈值范围。<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
 ## 示例
 
