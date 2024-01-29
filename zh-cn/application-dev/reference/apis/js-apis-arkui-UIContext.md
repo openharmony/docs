@@ -281,7 +281,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 | 参数名 | 类型                                                         | 必填 | 描述                 |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetshow) | 是   | 配置列表弹窗的参数。 |
+| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetoptions对象说明) | 是   | 配置列表弹窗的参数。 |
 
 **示例：**
 
@@ -334,9 +334,9 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions对象说明) | 是   | 配置日期滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -370,9 +370,9 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions对象说明) | 是   | 配置时间滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -429,9 +429,9 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
 
 **示例：**
 

@@ -18,7 +18,7 @@ import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.ark
 
 ## CounterComponent
 
-CounterComponent({options:CounterOptions} )
+CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;} )
 
 定义计数器组件。
 
@@ -134,12 +134,12 @@ DateData定义Date通用属性和方法，如年、月、日。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型   | 必填 | 默认值 | 说明                         |
-| ---------- | ------ | ---- | ------ | ---------------------------- |
-| year       | number | 是   | 1      | 设置日期内联型初始年份。     |
-| month      | number | 是   | 1      | 设置日期内联型初始月份。     |
-| day        | number | 是   | 1      | 设置日期内联型初始日。       |
-| toString() | string | 是   | -      | 以字符串格式返回当前日期值。 |
+| 名称       | 类型   | 说明                         |
+| ---------- | ------ | ---------------------------- |
+| year       | number | 设置日期内联型初始年份。     |
+| month      | number | 设置日期内联型初始月份。     |
+| day        | number | 设置日期内联型初始日。       |
+| toString() | string | 以字符串格式返回当前日期值。 |
 
 ## 示例   
 
