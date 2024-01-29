@@ -11,11 +11,11 @@ If synchronous tasks are independent of each other, you are advised to use **Tas
 
 ## Using TaskPool to Process Independent Synchronous Tasks
 
-**TaskPool** is recommended for scheduling independent synchronous tasks. Typical independent synchronous tasks are those using static methods. If a unique handle or class object constructed using a singleton points to multiple tasks and these tasks can be used between different worker threads, you can also use **TaskPool**.
+**TaskPool** is recommended for scheduling independent tasks. Typical independent tasks are those using static methods. If a unique handle or class object constructed using a singleton points to multiple tasks and these tasks can be used between different worker threads, you can also use **TaskPool**.
 
 1. Define a concurrency function that internally calls the synchronous methods.
 
-2. Create a task, execute the task through **TaskPool**, and perform operations on the asynchronous result. Create a [task](../reference/apis/js-apis-taskpool.md#task) and call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute-1) to execute the task synchronously.
+2. Create a [task](../reference/apis/js-apis-taskpool.md#task), call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute-1) to execute the task, and perform operations on the result returned by the task.
 
 3. Perform concurrent operations.
 
@@ -33,8 +33,12 @@ export default class Handle {
     // Synchronous getter.
   }
 
-  static syncSet(num: number): void {
-    // Synchronous setter.
+  static syncSet(num: number): number {
+    // Simulate synchronization step 1.
+    console.info("taskpool: this is 1st print!");
+    // Simulate synchronization step 2.
+    console.info("taskpool: this is 2nd print!");
+    return num++;
   }
 }
 ```
@@ -60,8 +64,10 @@ function func(num: number): boolean {
 async function asyncGet(): Promise<void> {
   // Create a task and pass in the function func.
   let task: taskpool.Task = new taskpool.Task(func, 1);
-  // Execute the task and perform operations on the result after the synchronization logic is executed.
-  console.info(String(await taskpool.execute(task)));
+  // Execute the task.
+  let res: boolean = await taskpool.execute(task) as boolean;
+  // Print the task result.
+  console.info("taskpool: task res is: " + res);
 }
 
 @Entry
@@ -149,7 +155,7 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
     ```
     
     ```ts
-    // Worker.ts code
+    // MyWorker.ts code
     import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
     import Handle from './handle'  // Return a handle.
     
