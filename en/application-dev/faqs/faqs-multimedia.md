@@ -96,7 +96,7 @@ Music cannot be played in the background.
 
 **AVSession** controls media playback. When a third-party application switches to the background or encounters a screen lock event, media playback is forcibly paused and the application is unaware of the pause. To enable the application to continue the playback in the background, request a continuous task and access the AVSession capability, which allows Control Panel to control the playback behavior of third-party applications.
 
-**Reference**
+**References**
 
 [Continuous Task](../task-management/continuous-task.md)
 
@@ -188,13 +188,53 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
   console.log(`status: ${cameraStatusInfo.status}`);
 })
 ```
-CameraStatus: Enumerates the camera statuses.
+CameraStatus
+Enumerates the camera statuses.
+**CAMERA_STATUS_APPEAR** (0): A camera appears.
+**CAMERA_STATUS_DISAPPEAR** (1): The camera disappears.
+**CAMERA_STATUS_AVAILABLE** (2): The camera is available.
+**CAMERA_STATUS_UNAVAILABLE** (3): The camera is unavailable.
 
-- **CAMERA_STATUS_APPEAR** (0): A camera appears.
-- **CAMERA_STATUS_DISAPPEAR** (1): The camera disappears.
-- **CAMERA_STATUS_AVAILABLE** (2): The camera is available.
-- **CAMERA_STATUS_UNAVAILABLE** (3): The camera is unavailable.
-
-**Reference**
+**References**
 
 [CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
+
+## Does SoundPool support audio in WMV format? Which formats are supported? (API version 10)
+
+**Solution**
+
+Currently, WMV is not supported. The supported formats are AAC, MPEG (MP3), FLAC, and Vorbis.
+
+**References**
+
+The formats supported by **SoundPool** are the same as those supported by the bottom layer. For details about the supported formats, see [Audio Decoding](../media/audio-decoding.md).
+
+## How do I read the preview image of the camera? (API version 10)
+
+**Solution**
+
+You can call **ImageReceiver.readLatestImage** to obtain the preview image of the camera.
+
+**References**
+
+[readLatestImage](../reference/apis/js-apis-image.md#readlatestimage9)
+
+## How do I listen for recordings? (API version 10)
+
+**Solution**
+
+Audio-related listening of the system is implemented in **AudioStreamManager**. You can call **on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void** to listen for audio capturer changes.
+
+**References**
+
+[onaudiocapturerchange](../reference/apis/js-apis-audio.md#onaudiocapturerchange9)
+
+## In which audio processing scenarios are 3A algorithms (AEC, ANC, and AGC) embedded? If they are embedded, is there any API related to audio 3A processing? How do I call them? Are independent switches provided for the 3A algorithms? Does the system support 3A in recording scenarios? If not, what is the solution? For example, how do I ensure the sound quality of audio recording when playing music? (API version 10)
+
+**Solution**
+
+The embedded 3A processing is automatically enabled for the audio stream with the **STREAM_USAGE_VOICE_COMMUNICATION** configuration. Currently, an independent switch is not provided. 3A is supported in recording scenarios. You need to configure **AudioScene** and **SourceType** to enable 3A processing in recording scenarios.
+
+**References**
+
+[AudioCapturer](../reference/apis/js-apis-audio.md#audiocapturer8)
