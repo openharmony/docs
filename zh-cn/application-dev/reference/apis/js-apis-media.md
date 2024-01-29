@@ -2053,7 +2053,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Device
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -3141,8 +3141,6 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**系统接口：** 该接口为系统接口
-
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                        |
@@ -3156,7 +3154,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not permit. Return by callback. |
+| 5400102  | Operate not permit. Return by callback. |
 | 5400103  | IO error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
 
@@ -3187,8 +3185,6 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**系统接口：** 该接口为系统接口
-
 **返回值：**
 
 | 类型             | 说明                             |
@@ -3202,7 +3198,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 5400102  | Operation not permit. Return by promise. |
+| 5400102  | Operate not permit. Return by promise. |
 | 5400103  | IO error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
 
@@ -3328,14 +3324,6 @@ off(type: 'error'): void
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
-
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 6800101  | Input parameter value error. |
-
 **示例：**
 
 ```ts
@@ -3356,6 +3344,14 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
 | callback | function | 是   |  变化后的录音配置全量信息[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 401  | Input parameter type or number mismatch. |
 
 **示例：**
 
