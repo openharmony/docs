@@ -114,8 +114,8 @@ try {
 }
 ```
 
-## deviceManager.bindDeviceDriver
-function bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
+## deviceManager.bindDeviceDriver<sup>11+</sup>
+bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
   callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
 
 根据queryDevices()返回的设备信息绑定设备。
@@ -217,7 +217,7 @@ try {
   console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.bindDeviceDriver
+## deviceManager.bindDeviceDriver<sup>11+</sup>
 
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
@@ -392,7 +392,7 @@ USB设备信息。
 | ---- | --- | ------------- |
 | USB  | 1   | USB总线类型。 |
 
-## RemoteDeviceDriver
+## RemoteDeviceDriver<sup>11+</sup>
 
 远程设备驱动。
 
