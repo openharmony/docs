@@ -8,7 +8,7 @@
 
 ## 接口
 
-keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>, action?: () => void)
+keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?: () => void)
 
 **参数：**
 
@@ -49,8 +49,8 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>, acti
 | 场景                                       | 快捷键处理逻辑                            | 例子                                       |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
 | 所有支持onClick事件的组件                         | 支持自定义组合键                           | 无                                        |
-| 自定义组合键要求                                 | 控制键Ctrl，Shift，Alt及它们的组合加上其它可输入字符按键 | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL]) |
-| 多个不同组件设置相同组合键                            | 只响应结点树上的第一个组件、其它组件不响应快捷键。          | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('a',[ModifierKey.CTRL]) |
+| 自定义组合键要求                                 | 控制键Ctrl、Shift、Alt及它们的组合加上其它可输入字符按键 | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL]) |
+| 多个不同组件设置相同组合键                            | 只响应结点树上的第一个组件，其它组件不响应快捷键。          | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('a',[ModifierKey.CTRL]) |
 | 无论组件是否获得焦点                               | 只要窗口获焦快捷键就会响应                      | 无                                        |
 | 绑定单个快捷键时候，通过keyboardShortcut接口value值或者是keys值或两者都是空的情况下。<br />绑定多个快捷键的时候无法取消快捷键。 | 取消快捷键的设置                           | Button('button1').keyboardShortcut('',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('a',[l])<br />Button('button3').keyboardShortcut('',[]) |
 | 独立pipeline子窗口、主窗口共存的情况下                  | 获焦的窗口响应快捷键                         | 无                                        |

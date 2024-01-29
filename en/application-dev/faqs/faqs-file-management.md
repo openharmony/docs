@@ -34,7 +34,7 @@ Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Solution**
 
-After the buffer data of the file content is read, use **TextDecoder** of @ohos.util to decode the file content.
+After the buffer data of the file is read, use **TextDecoder** of @ohos.util to decode the file content.
 
 ```
 let filePath = getContext(this).filesDir + "/test0.txt";
@@ -46,7 +46,7 @@ let readString = textDecoder.decodeWithStream(new Uint8Array(buffer), { stream: 
 console.log ("File content read: "+ readString);
 ```
 
-## Why is an error reported when **fs.copyFile** is used to copy a **datashare://** file opened by **fs.open()**?
+## Why is an error reported when fs.copyFile is used to copy a datashare:// file opened by fs.open()?
 
 Applicable to: OpenHarmony 3.2 (API version 9)
 
@@ -63,7 +63,7 @@ fs.copyFile(file.fd, 'dstPath', 0).then(() => {
 })
 ```
 
-## How do I modify the specified content of a JSON file in the sandbox?
+## How do I modify the content of a JSON file in a sandbox directory?
 
 Applicable to: OpenHarmony 3.2 (API version 9)
 
@@ -91,7 +91,7 @@ let content = fs.readSync(basePath);
 obj.name = 'new name';
 ```
 
-4. Write the JSON file again.
+4. Use **fs.writeSync** to write the data to the JSON file.
 
 ```
 fs.writeSync(file.fd, JSON.stringify(obj));
@@ -99,14 +99,24 @@ fs.writeSync(file.fd, JSON.stringify(obj));
 
 For more information, see [@ohos.file.fs](../reference/apis/js-apis-file-fs.md).
 
-## What is the actual path corresponding to the file path obtained through the FileAccess module?
+## What is the real path corresponding to the file path obtained through the FileAccess module?
 
 Applicable to: OpenHarmony 3.2 (API version 9, stage model)
 
 **Solution**
 
-The files are stored in the **/storage/media/100/local/files** directory. The specific file path varies with the file type and source. To obtain the actual file path, run the following command in the **/storage/media/100/local/files** directory:
-
-**-name \[filename\]**
+The files are stored in the **/storage/media/100/local/files** directory. The specific file path varies with the file type and source. To obtain the file path based on the file name, run the following command in the **/storage/media/100/local/files** directory:<br>-name \[filename\]
 
 For more information, see [Uploading and Downloading an Application File](../file-management/app-file-upload-download.md).
+
+## How do I listen for the changes of a file or folder?
+
+Applicable to: OpenHarmony SDK 4.0 Release API 10
+
+**Solution**
+
+You can use **fs.createWatcher** to listen for the changes of a file or folder with the registered callback.
+
+**References**
+
+[@ohos.file.fs](../reference/apis/js-apis-file-fs.md#fscreatewatcher10)

@@ -12,8 +12,8 @@
 
 | 名称                                       | 支持冒泡 | 描述                                       |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onHover(event:&nbsp;(isHover?:&nbsp;boolean,&nbsp;event<sup>10+</sup>?:&nbsp;HoverEvent)&nbsp;=&gt;&nbsp;void) | 是    | 鼠标进入或退出组件时触发该回调。<br/>isHover: 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。<br/>event: 设置阻塞事件冒泡属性。 |
-| onMouse(event:&nbsp;(event?:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | 是    | 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调，event返回值包含触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
+| onHover(event:&nbsp;(isHover:&nbsp;boolean,&nbsp;event<sup>10+</sup>:&nbsp;HoverEvent)&nbsp;=&gt;&nbsp;void) | 是    | 鼠标进入或退出组件时触发该回调。<br/>isHover: 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。<br/>event: 设置阻塞事件冒泡属性。 |
+| onMouse(event:&nbsp;(event:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | 是    | 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调，event返回值包含触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
 
 
 ## MouseEvent对象说明

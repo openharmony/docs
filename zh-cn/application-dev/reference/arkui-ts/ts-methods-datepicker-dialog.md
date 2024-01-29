@@ -26,11 +26,10 @@ show(options?: DatePickerDialogOptions)
 
 ## DatePickerDialogOptions对象说明
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+继承自[DatePickerOptions](ts-basic-components-datepicker.md#datepickeroptions对象说明)。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| start | Date | 否 | 设置选择器的起始日期。<br>默认值：Date('1970-1-1') |
-| end | Date | 否 | 设置选择器的结束日期。<br/>默认值：Date('2100-12-31') |
-| selected | Date | 否 | 设置当前选中的日期。<br/>默认值：当前系统日期 |
 | lunar | boolean | 否 | 日期是否显示为农历，true表示显示农历，false表示不显示农历。<br/>默认值：false |
 | showTime<sup>10+</sup> | boolean | 否 | 是否展示时间项，true表示显示时间，false表示不显示时间。<br/>默认值：false |
 | useMilitaryTime<sup>10+</sup> | boolean | 否 | 展示时间是否为24小时制，true表示显示24小时制，false表示显示12小时制。<br/>默认值：false<br />**说明：** <br/>当展示时间为12小时制时，上下午与小时无联动关系。 |

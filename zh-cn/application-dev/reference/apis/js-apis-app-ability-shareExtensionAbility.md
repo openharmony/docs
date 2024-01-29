@@ -64,7 +64,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 ## ShareExtensionAbility.onForeground
 
-onForeground(): void;
+onForeground(): void
 
 ShareExtensionAbility生命周期回调，当ShareExtensionAbility从后台转到前台时触发。
 
@@ -72,7 +72,7 @@ ShareExtensionAbility生命周期回调，当ShareExtensionAbility从后台转�
 
 ## ShareExtensionAbility.onBackground
 
-onBackground(): void;
+onBackground(): void
 
 ShareExtensionAbility生命周期回调，当ShareExtensionAbility从前台转到后台时触发。
 
@@ -80,7 +80,7 @@ ShareExtensionAbility生命周期回调，当ShareExtensionAbility从前台转�
 
 ## ShareExtensionAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
