@@ -109,8 +109,8 @@ function printProperties(obj: any) {
 
 ```typescript
 function printProperties(obj: Record<string, Object>) {
-  console.log(obj.name);
-  console.log(obj.value);
+  console.log(obj.name as string);
+  console.log(obj.value as string);
 }
 ```
 
@@ -155,19 +155,19 @@ foo((value: string) => {
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = {
-  new (value: number): Controller;
+type ControllerConstructor = {
+  new (value: string): Controller;
 }
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
       return new this.controller(123);
@@ -184,18 +184,18 @@ console.log(t.createController()!.value);
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => {
-    return new Controller(123);
+  controller: ControllerConstructor = () => {
+    return new Controller('abc');
   }
 
   createController() {
@@ -291,22 +291,22 @@ class Person {
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-interface ControllerConstrucotr {
-  new (value: number): Controller;
+interface ControllerConstructor {
+  new (value: string): Controller;
 }
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('abc');
     }
     return null;
   }
@@ -320,18 +320,18 @@ console.log(t.createController()!.value);
 
 ```typescript
 class Controller {
-  value: number = 0
+  value: string = ''
 
-  constructor(value: number) {
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => {
-    return new Controller(123);
+  controller: ControllerConstructor = () => {
+    return new Controller('abc');
   }
 
   createController() {
@@ -550,7 +550,9 @@ let arr: Test[] = [
 ]
 ```
 
-### If **Record** is used to specify the object literal type, a string must be used as the key of the object literal.
+### Using a Key String for Object Literals of the Record Type
+
+If an object literal is of the Record type, a string must be used as the key of the object literal.
 
 **Before adaptation**
 
@@ -895,6 +897,31 @@ let t: C = { value: 123 };
 
 ## arkts-no-in
 
+### Using Object.keys to Determine Whether an Attribute Exists
+
+**Before adaptation**
+
+```typescript
+function test(str: string, obj: Record<string, Object>) {
+  return str in obj;
+}
+```
+
+**After adaptation**
+
+```typescript
+function test(str: string, obj: Record<string, Object>) {
+  for (let i of Object.keys(obj)) {
+    if (i == str) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+
+### Checking the Array Key
+
 **Before adaptation**
 
 ```typescript
@@ -1057,7 +1084,7 @@ function foo() {
   console.log(this.value);
 }
 
-let obj = { value: 123 };
+let obj = { value: 'abc' };
 foo.apply(obj);
 ```
 
@@ -1067,8 +1094,8 @@ Use the method of a class. If the method is used by multiple classes, consider u
 
 ```typescript
 class Test {
-  value: number = 0
-  constructor (value: number) {
+  value: string = ''
+  constructor (value: string) {
     this.value = value
   }
   
@@ -1077,7 +1104,7 @@ class Test {
   }
 }
 
-let obj: Test = new Test(123);
+let obj: Test = new Test('abc');
 obj.foo();
 ```
 
@@ -1091,10 +1118,10 @@ function foo(obj: Test) {
 }
 
 class Test {
-  value: number = 0
+  value: string = ''
 }
 
-let obj: Test = { value: 123 };
+let obj: Test = { value: 'abc' };
 foo(obj);
 ```
 
@@ -1102,15 +1129,15 @@ foo(obj);
 
 Pass the attribute as a parameter.
 ```typescript
-function foo(value: number) {
+function foo(value: string) {
   console.log(value);
 }
 
 class Test {
-  value: number = 0
+  value: string = ''
 }
 
-let obj: Test = { value: 123 };
+let obj: Test = { value: 'abc' };
 foo(obj.value);
 ```
 
@@ -1180,19 +1207,19 @@ Declare attributes within a class, not on a constructor.
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value
   }
 }
 
-type ControllerConstrucotr = new (value: number) => Controller;
+type ControllerConstructor = new (value: string) => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('abc');
     }
     return null;
   }
@@ -1206,16 +1233,16 @@ console.log(t.createController()!.value)
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value;
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => { return new Controller(123) }
+  controller: ControllerConstructor = () => { return new Controller('abc') }
   createController() {
     if (this.controller) {
       return this.controller();
@@ -1230,10 +1257,7 @@ console.log(t.createController()!.value);
 
 ## arkts-no-globalthis
 
-ArkTS does not support **globalThis** for two reasons:
-
-- A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.
-- Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
+ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br> (2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
 
 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 
@@ -1281,7 +1305,7 @@ export class Test {
 
 // file2.ts
 
-print(globalThis.value);
+globalThis.value;
 
 ```
 
@@ -1304,7 +1328,7 @@ export class Test {
 
 import { GlobalContext } from '../GlobalContext'
 
-console.log(GlobalContext.getContext().getObject('value'));
+GlobalContext.getContext().getObject('value');
 ```
 
 ## arkts-no-func-apply-bind-call
@@ -1331,12 +1355,12 @@ let str = String.fromCharCode(...Array.from(arr));
 
 ```typescript
 class A {
-  value: number = 0
+  value: string = ''
   foo: Function = () => {}
 }
 
 class Test {
-  value: number = 1234
+  value: string = '1234'
   obj: A = {
     value: this.value,
     foo: this.foo.bind(this)
@@ -1352,12 +1376,12 @@ class Test {
 
 ```typescript
 class A {
-  value: number = 0
+  value: string = ''
   foo: Function = () => {}
 }
 
 class Test {
-  value: number = 1234
+  value: string = '1234'
   obj: A = {
     value: this.value,
     foo: (): void => this.foo()
@@ -1373,12 +1397,12 @@ class Test {
 
 ```typescript
 class A {
-  value: number = 0
+  value: string = ''
   foo: Function = () => {}
 }
 
 class Test {
-  value: number = 1234
+  value: string = '1234'
   foo: () => void = () => {
     console.log(this.value);
   }
@@ -1395,8 +1419,8 @@ class Test {
 
 ```typescript
 class A {
-  value:number;
-  constructor (value:number) {
+  value: string;
+  constructor (value: string) {
     this.value = value;
   }
 
@@ -1405,8 +1429,8 @@ class A {
   }
 }
 
-let a1 = new A(1);
-let a2 = new A(2);
+let a1 = new A('1');
+let a2 = new A('2');
 
 a1.foo();
 a1.foo.apply(a2);
@@ -1416,8 +1440,8 @@ a1.foo.apply(a2);
 
 ```typescript
 class A {
-  value:number;
-  constructor (value:number) {
+  value: string;
+  constructor (value: string) {
     this.value = value;
   }
 
@@ -1430,14 +1454,45 @@ class A {
   }
 }
 
-let a1 = new A(1);
-let a2 = new A(2);
+let a1 = new A('1');
+let a2 = new A('2');
 
 a1.foo();
 a1.fooApply(a2);
 ```
 
 ## arkts-limited-stdlib
+
+### `Object.fromEntries()`
+
+**Before adaptation**
+
+```typescript
+let entries = new Map([
+  ['foo', 123],
+  ['bar', 456]
+]);
+
+let obj = Object.fromEntries(entries);
+```
+
+**After adaptation**
+
+```typescript
+let entries = new Map([
+  ['foo', 123],
+  ['bar', 456]
+]);
+
+let obj: Record<string, Object> = {};
+entries.forEach((value, key) => {
+  if (key != undefined && key != null) {
+    obj[key] = value;
+  }
+})
+```
+
+### Using Attributes and Methods of Number
 
 ArkTS does not allow the use of the following attributes and methods for global objects: **Infinity**, **NaN**, **isFinite**, **isNaN**, **parseFloat**, and **parseInt**
 
@@ -1446,17 +1501,17 @@ You can use them for **Number**.
 **Before adaptation**
 
 ```typescript
-console.log(NaN);
-console.log(isFinite(123));
-console.log(parseInt('123'));
+NaN;
+isFinite(123);
+parseInt('123');
 ```
 
 **After adaptation**
 
 ```typescript
-console.log(Number.NaN);
-console.log(Number.isFinite(123));
-console.log(Number.parseInt('123'));
+Number.NaN;
+Number.isFinite(123);
+Number.parseInt('123');
 ```
 
 ## arkts-strict-typing(StrictModeError)
@@ -1505,7 +1560,7 @@ class Test {
 }
 
 ```
-### Type `*** | null` is not assignable to type `***`
+### Type '*** | null' Not Assignable to type ''\*\*\*'
 
 **Before adaptation**
 
@@ -1557,7 +1612,7 @@ In a class, if an attribute is not initialized and is not assigned a value in th
 ```typescript
 //code with error
 class Test {
-  value: nameber
+  value: number
   flag: boolean
 }
 
@@ -1668,7 +1723,7 @@ In the first code segment, if strict null check is not enabled during compilatio
 
 ```typescript
 class Test {
-  handleClick: (action: string, externInfo?: DiaExternInfo) => void | null = null;
+  handleClick: (action: string, externInfo?: string) => void | null = null;
 }
 ```
 
@@ -1678,11 +1733,11 @@ In the original code, the return type of the function is parsed as **void | unde
 
 ```typescript
 class Test {
-  handleClick: ((action: string, externInfo?: DialogExternInfo) => void) | null = null;
+  handleClick: ((action: string, externInfo?: string) => void) | null = null;
 }
 ```
 
-### '***' is of type 'unknown'
+### '***' Is of Type 'unknown'
 
 **Before adaptation**
 
@@ -1706,7 +1761,7 @@ try {
 }
 ```
 
-### Type '*** | null' is not assignable to type '\*\*\*'
+### Type '*** | null' Not Assignable to Type '\*\*\*'
 
 **Before adaptation**
 
@@ -1778,7 +1833,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot invoke an object which possibly 'undefined'
+### Cannot Invoke an Object Which Is Possibly 'undefined'
 
 **Before adaptation**
 
@@ -1818,7 +1873,7 @@ if (a.foo) {
 
 In the original code definition, **foo** is an optional property and may be **undefined**. If **undefined** is called, an error is reported. You are advised to determine whether a property is optional based on the service logic. If defining an optional property is necessary, a null check is required for accessing the property.
 
-### Variable '***' is used before being assigned
+### Variable '***' Is Used Before Being Assigned
 
 **Before adaptation**
 
@@ -1863,7 +1918,7 @@ For primitive types, a value can be assigned based on the service logic, for exa
 
 For the object type, you can change the type to a union type consisting of **null** and assign **null** to the type. In this case, when using the object type, you need to perform the non-null check.
 
-### Function lacks ending return statement and return type does not include 'undefined'.
+### "Function lacks ending return statement and return type does not include 'undefined'" Error
 
 **Before adaptation**
 
@@ -1909,7 +1964,7 @@ let a: number = 123;
 
 ArkTS does not support the use of comments to bypass strict type checks. Delete the comment (**// @ts-nocheck** or **// @ts-ignore**), and then modify other code based on the error information.
 
-## Importing ArkTS files to JS and TS files is not allowed
+## Importing ArkTS Files to JS and TS Files Not Allowed
 
 ## arkts-no-tsdeps
 
@@ -1919,7 +1974,7 @@ In .ts and .js files, it is not allowed to import source code from an .ets file.
 
 Mode 1: Change the file name extension of the .ts file to .ets and adapt the code based on the ArkTS syntax rules.
 
-Mode 2: Extract the code that the .ts file depends on from the .ets file to the .ts file.
+Mode 2: Extract the code on which the .ts file depends from the .ets file to the .ts file.
 
 ## arkts-no-special-imports
 
@@ -1944,21 +1999,21 @@ import {A, B, C, D } from '***'
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value
   }
 }
 
-interface ControllerConstrucotr {
-  new (value: number): Controller;
+interface ControllerConstructor {
+  new (value: string): Controller;
 }
 
 class Menu {
-  controller: ControllerConstrucotr = Controller
+  controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('abc');
     }
     return null;
   }
@@ -1972,16 +2027,16 @@ console.log(t.createController()!.value);
 
 ```typescript
 class Controller {
-  value: number = 0
-  constructor(value: number) {
+  value: string = ''
+  constructor(value: string) {
     this.value = value
   }
 }
 
-type ControllerConstrucotr = () => Controller;
+type ControllerConstructor = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => { return new Controller(123); }
+  controller: ControllerConstructor = () => { return new Controller('abc'); }
   createController() {
     if (this.controller) {
       return this.controller();

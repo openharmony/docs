@@ -6,17 +6,25 @@ A focus event is triggered when the page focus moves between components. It can 
 >
 >  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - Currently, only the Tab button and arrow buttons on the external keyboard can be used to trigger the focus event.
+>  - Currently, only the Tab button and arrow buttons on the external keyboard can be used to trigger the focus event. Sequential keyboard navigation is not supported for nested scrollable components.
 >
 >  - Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a focus event. To enable a component to be focusable, set its **focusable** attribute to **true**.
 
+## onFocus
 
-## Events
+onFocus(event: () => void)
 
-| Name                                  | Bubbling Supported| Description       |
-| ---------------------------------------- | -------- | --------------- |
-| onFocus(event: () =&gt; void) | No  | Triggered when the current component obtains focus.|
-| onBlur(event:() =&gt; void)    | No       | Triggered when the current component loses focus.|
+Triggered when the current component obtains focus.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+## onBlur
+
+onBlur(event:() =&gt; void)
+
+Triggered when the current component loses focus.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ## Example

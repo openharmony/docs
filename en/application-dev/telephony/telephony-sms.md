@@ -31,20 +31,20 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback<void>): void              | Sends text or data SMS messages.                                                     |
-| createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | Creates an SMS message instance based on the PDU and the specified SMS protocol.|
-| getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | Obtains the ID of the default SIM card used to send SMS messages.                                               |
-| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | Sets the SMSC address based on the specified slot ID.               |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | Sends text or data SMS messages.                                                     |
+| createMessage(pdu: Array\<number\>, specification: string, callback: AsyncCallback\<ShortMessage\>): void | Creates an SMS message instance based on the PDU and the specified SMS protocol.|
+| getDefaultSmsSlotId(callback: AsyncCallback\<number\>): void   | Obtains the ID of the default SIM card used to send SMS messages.                                               |
+| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | Sets the SMSC address based on the specified slot ID.               |
 | getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | Obtains the SMSC address based on the specified slot ID.                                 |
 
 
 ## How to Develop
 
 1. Declare the required permission:
-   - To send SMS messages, call the **sendMessage** API and declare the **ohos.permission.SEND\_MESSAGES** permission. The permission is of the **system\_basic** level.
+   - To send SMS messages, call the **sendShortMessage** API and declare the **ohos.permission.SEND\_MESSAGES** permission. The permission is of the **system\_basic** level.
    - To set the SMSC address, call the** setSmscAddr** API and declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
    - To obtain the SMSC address, call the** getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
-   Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+   Before requesting the permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import the required modules.
 
@@ -71,3 +71,4 @@ sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
+

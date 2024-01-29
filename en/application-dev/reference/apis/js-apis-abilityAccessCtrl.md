@@ -50,7 +50,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | Permissions | Yes  | Permission to check. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -98,7 +98,7 @@ Verifies whether a permission is granted to an application. This API returns the
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
-| permissionName | Permissions | Yes  | Permission to verify. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -142,8 +142,8 @@ Grants a user_grant permission to an application. This API uses a promise to ret
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
-| permissionName | Permissions              | Yes  | Permission to grant. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
-| permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
+| permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
 
 **Return value**
 
@@ -200,8 +200,8 @@ Grants a user_grant permission to an application. This API uses an asynchronous 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions              | Yes  | Permission to grant. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
-| permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
+| permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Grants a user_grant permission to an application. If the permission is granted, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -255,8 +255,8 @@ Revokes a user_grant permission from an application. This API uses a promise to 
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
-| permissionName | Permissions              | Yes  | Permission to revoke. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
-| permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
+| permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
 
 **Return value**
 
@@ -313,8 +313,8 @@ Revokes a user_grant permission from an application. This API uses an asynchrono
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
-| permissionName | Permissions              | Yes  | Permission to revoke. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
-| permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed. |
+| permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionFlags  | number | Yes  | Permission flag.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **64**: The permission is granted to the user only this time. The authorization is revoked after the application switches to the background or exits.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -368,7 +368,7 @@ Obtains the permission flag of an application. This API uses a promise to return
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
-| permissionName | Permissions              | Yes  | Target permission. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions              | Yes  | Permission whose flag is to be obtained. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -443,7 +443,7 @@ Subscribes to permission state changes of the specified applications and permiss
 
 Multiple callbacks can be registered for the specified **tokenIDList** and **permissionList**.
 
-If **tokenIDList** and **permissionList** have common values with the  **tokenIDList** and **permissionList** of a callback registered, **callback** must be different.
+If **tokenIDList** and **permissionList** have common values with the **tokenIDList** and **permissionList** of a callback registered, **callback** must be different.
 
 **System API**: This is a system API.
 
@@ -455,9 +455,9 @@ If **tokenIDList** and **permissionList** have common values with the  **tokenID
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state change event. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs to observe. If this parameter is left empty, the permission grant state changes of all applications will be subscribed to. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. If this parameter is left empty, the grant state changes of all permissions will be subscribed to.              |
+| type               | string                | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state changes. |
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. If this parameter is left empty, this API subscribes to the permission grant state changes of all applications.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be subscribed to. If this parameter is left empty, this API subscribes to state changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | Yes| Callback invoked to return the permission grant state change.|
 
 **Error codes**
@@ -509,9 +509,9 @@ If no callback is passed in **atManager.off**, all callbacks for **tokenIDList**
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string         | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state change event. |
-| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. If this parameter is left empty, the permission grant state changes of all applications will be unsubscribed from. The value must be the same as that passed in **on()**.|
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from state changes of all permissions. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| type               | string         | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state changes. |
+| tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. The value must be the same as that passed in **on()**. If this parameter is left empty, this API unsubscribes from the permission grant state changes of all applications.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from state changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | No| Callback for the permission grant state change.|
 
 **Error codes**
@@ -559,7 +559,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | Permissions | Yes  | Permission to verify. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -605,7 +605,7 @@ Requests user authorization in a dialog box opened by a UIAbility. This API uses
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | Context | Yes| Context of the UIAbility.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
@@ -617,14 +617,16 @@ For details about the error codes, see [Access Control Error Codes](../errorcode
 | 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **Example**
+For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
 import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context = getContext(this);
+    let context: Context = getContext(this) as common.UIAbilityContext;
     atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
@@ -654,7 +656,7 @@ Requests user authorization in a dialog box opened by a UIAbility. This API uses
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | Context | Yes| Context of the UIAbility.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -671,14 +673,16 @@ For details about the error codes, see [Access Control Error Codes](../errorcode
 | 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **Example**
+For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
 import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context = getContext(this);
+    let context: Context = getContext(this) as common.UIAbilityContext;
     atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
@@ -708,7 +712,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | string | Yes  | Permission to verify. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionName | string | Yes  | Permission to verify. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -748,7 +752,7 @@ Checks whether a permission is granted to an application. This API returns the r
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
-| permissionName | Permissions | Yes  | Permission to check. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -812,4 +816,4 @@ Defines detailed information about the permission grant state change.
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | No  | Operation that triggers the permission grant state change.       |
 | tokenID        | number                    | Yes  | No  | Application token ID.|
-| permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |
+| permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md). |

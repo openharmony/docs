@@ -81,25 +81,25 @@ Uploads files. This API uses a promise to return the result. You can use [on('co
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400002 | bad file path. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400002 | bad file path. |
 
 **Example**
 
@@ -140,19 +140,19 @@ Uploads files. This API uses an asynchronous callback to return the result. You 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400002 | bad file path. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400002 | bad file path. |
 
 **Example**
 
@@ -200,15 +200,15 @@ Uploads files. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
 
 **Example**
 
@@ -247,10 +247,10 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
 **Example**
 
@@ -294,10 +294,10 @@ Subscribes to upload progress events. This API uses a callback to return the res
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
-| callback | function | Yes| Callback for the upload progress event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
+  | callback | function | Yes| Callback for the upload progress event.|
 
   Parameters of the callback function
 
@@ -328,10 +328,10 @@ Subscribes to HTTP header events for the upload task. This API uses a callback t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
-| callback | function | Yes| Callback for the HTTP Response Header event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
+  | callback | function | Yes| Callback for the HTTP Response Header event.|
 
   Parameters of the callback function
 
@@ -361,10 +361,10 @@ Subscribes to upload completion or failure events. This API uses a callback to r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
 
   Parameters of the callback function
 
@@ -403,10 +403,10 @@ Unsubscribes from upload progress events.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
 
 **Example**
 
@@ -438,10 +438,10 @@ This interface is used to unsubscribe from the HTTP header event of an upload ta
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -472,10 +472,10 @@ Unsubscribes from upload completion or failure events.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -530,9 +530,9 @@ Deletes this upload task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -557,9 +557,9 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -590,9 +590,9 @@ Removes this upload task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -621,9 +621,9 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -712,26 +712,26 @@ Downloads files. This API uses a promise to return the result. You can use [on('
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400001 | file operation error. |
-| 13400002 | bad file path. |
-| 13400003 | task service ability error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400001 | file operation error. |
+  | 13400002 | bad file path. |
+  | 13400003 | task service ability error. |
 
 **Example**
 
@@ -766,21 +766,21 @@ Downloads files. This API uses an asynchronous callback to return the result. Yo
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400001 | file operation error. |
-| 13400002 | bad file path. |
-| 13400003 | task service ability error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400001 | file operation error. |
+  | 13400002 | bad file path. |
+  | 13400003 | task service ability error. |
 
 **Example**
 
@@ -824,15 +824,15 @@ Downloads files. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
 
 **Example**
 
@@ -864,10 +864,10 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
 
 **Example**
 
@@ -904,10 +904,10 @@ Subscribes to download progress events. This API uses a callback to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
-| callback | function | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
+  | callback | function | Yes| Callback used to return the result.|
 
   Parameters of the callback function
 
@@ -939,10 +939,10 @@ Unsubscribes from download progress events.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
 
 **Example**
 
@@ -975,10 +975,10 @@ Subscribes to download events. This API uses a callback to return the result asy
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-| callback | function | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+  | callback | function | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1013,10 +1013,10 @@ Unsubscribes from download events.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -1075,10 +1075,10 @@ Subscribes to download failure events. This API uses a callback to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
-| callback | function | Yes| Callback for the download task failure event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
+  | callback | function | Yes| Callback for the download task failure event.|
 
   Parameters of the callback function
 
@@ -1109,10 +1109,10 @@ Unsubscribes from download failure events.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -1144,9 +1144,9 @@ Deletes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1172,9 +1172,9 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1202,9 +1202,9 @@ Obtains the information about this download task. This API uses a promise to ret
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  Promise used to return the download task information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  Promise used to return the download task information.|
 
 **Example**
 
@@ -1230,9 +1230,9 @@ Obtains the information about this download task. This API uses an asynchronous 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
 
 **Example**
 
@@ -1260,9 +1260,9 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1288,9 +1288,9 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1318,9 +1318,9 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1346,9 +1346,9 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1376,9 +1376,9 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1404,9 +1404,9 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1438,9 +1438,9 @@ Removes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1469,9 +1469,9 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1502,9 +1502,9 @@ Queries this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
 
 **Example**
 
@@ -1533,9 +1533,9 @@ Queries this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
 
 **Example**
 
@@ -1566,9 +1566,9 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1597,9 +1597,9 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1630,9 +1630,9 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1661,9 +1661,9 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1694,9 +1694,9 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1725,9 +1725,9 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1796,7 +1796,8 @@ Defines action options.
 
 
 ## Mode<sup>10+</sup>  
-Defines mode options.
+Defines mode options.<br>
+After an application is switched to the background for a period of time, background tasks are not affected but foreground tasks will fail or pause.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -1807,7 +1808,8 @@ Defines mode options.
 
 ## Network<sup>10+</sup>  
 
-Defines network options.
+Defines network options.<br>
+If the network does not meet the preset conditions, the tasks that have not been executed will await for execution, and the tasks that are being executed will fail or pause.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -1867,17 +1869,17 @@ Provides the configuration information of an upload or download task.
 | url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
 | title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.|
-| mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>- For a foreground task, a callback is used for notification.<br>- For a background task, the system notification and network connection features (detection, recovery, and automatic retry) are provided.|
+| mode | [Mode](#mode10) | No| Task mode. The default mode is background.|
 | overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.|
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.|
 | headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.|
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).|
-| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: The task is allowed on a metered connection.<br>- **false**: The task is not allowed on a metered connection.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: The task is allowed on a roaming network.<br>- **false**: The task is not allowed on a roaming network.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: Automatic retry is enabled for the task.<br>- **-false**: Automatic retry is not enabled for the task.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: Redirection is allowed.<br>- **false**: Redirection is not allowed.|
+| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a roaming network.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry enabled for the task.<br>- **-false**: automatic retry not enabled for the task.|
+| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.|
 | begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.|
 | ends | number | No| File end point of the task. It is usually used for resumable downloads. The default value is **-1**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the end position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the end of the upload.|
@@ -1947,7 +1949,7 @@ Defines the filter criteria.
 | after | number | No| Unix timestamp of the start time, in milliseconds. The default value is the invoking time minus 24 hours.|
 | state | [State](#state10) | No| Task state.|
 | action | [Action](#action10) | No| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
-| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**: Foreground tasks are queried.<br>- **BACKGROUND**: Background tasks are queried.<br>- No value: All tasks are queried.|
+| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**: foreground task.<br>- **BACKGROUND**: background task.<br>- No value: All tasks are queried.|
 
 ## TaskInfo<sup>10+</sup> 
 Defines the data structure of the task information for query. The fields available vary depending on the query type.
@@ -1964,8 +1966,8 @@ Defines the data structure of the task information for query. The fields availab
 | tid | string | Yes| Task ID.|
 | title | string | Yes| Task title.|
 | description | string | Yes| Task description.|
-| action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
-| mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**<br>- **BACKGROUND**|
+| action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**: upload task.<br>- **DOWNLOAD**: download task.|
+| mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**: foreground task.<br>- **BACKGROUND**: background task.|
 | priority<sup>11+</sup> | number | No| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
@@ -1997,24 +1999,24 @@ Task attributes include the task ID and task configuration.
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to foreground task progress changes. This API uses a callback to return the result asynchronously.
+Subscribes to task progress changes. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
+  | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2068,24 +2070,24 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the foreground task completion event. This API uses a callback to return the result asynchronously.
+Subscribes to task completion events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
+  | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2139,24 +2141,24 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the foreground task failure event. This API uses a callback to return the result asynchronously.
+Subscribes to task failure events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
+  | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2210,16 +2212,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the task pause event. This API uses a callback to return the result asynchronously.
+Subscribes to task pause events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
+  | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
@@ -2277,16 +2279,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the task resume event. This API uses a callback to return the result asynchronously.
+Subscribes to task resume events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
+  | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
@@ -2344,16 +2346,16 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the task removal event. This API uses a callback to return the result asynchronously.
+Subscribes to task removal events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
-| callback | function | Yes| Callback used to return the data structure of the task progress.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
+  | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
@@ -2411,24 +2413,24 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from foreground task progress changes.
+Unsubscribes from task progress events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2474,7 +2476,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     task.on('progress', createOffCallback2);
     // Unsubscribe from createOffCallback1.
     task.off('progress', createOffCallback1);
-    // Unsubscribe from all callbacks of foreground task progress changes.
+    // Unsubscribe from all callbacks of task progress changes.
     task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
@@ -2490,24 +2492,24 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task completion event.
+Unsubscribes from task completion events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2553,7 +2555,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     task.on('completed', createOffCallback2);
     // Unsubscribe from createOffCallback1.
     task.off('completed', createOffCallback1);
-    // Unsubscribe from all callbacks of the foreground task completion event.
+    // Unsubscribe from all callbacks of the task completion events.
     task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
@@ -2569,24 +2571,24 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task failure event.
+Unsubscribes from task failure events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -2632,7 +2634,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     task.on('failed', createOffCallback2);
     // Unsubscribe from createOffCallback1.
     task.off('failed', createOffCallback1);
-    // Unsubscribe from all callbacks of the foreground task failure event.
+    // Unsubscribe from all callbacks of the task failure events.
     task.off('failed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
@@ -2654,10 +2656,10 @@ Unsubscribes from the foreground task pause event.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2729,10 +2731,10 @@ Unsubscribes from the foreground task resume event.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2804,10 +2806,10 @@ Unsubscribes from the task removal event.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2881,18 +2883,18 @@ Starts this task. This API cannot be used to start an initialized task. This API
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -2957,10 +2959,10 @@ Starts this task. This API cannot be used to start an initialized task. This API
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3013,19 +3015,19 @@ Pauses this task. This API can be used to pause a background task that is waitin
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900005 | task mode error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3088,11 +3090,11 @@ Pauses this task. This API can be used to pause a background task that is waitin
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900005 | task mode error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3147,19 +3149,19 @@ Resumes this task. This API can be used to resume a paused background task. This
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900005 | task mode error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3225,11 +3227,11 @@ Resumes this task. This API can be used to resume a paused background task. This
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900005 | task mode error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3283,18 +3285,18 @@ Stops this task. This API can be used to stop a running, waiting, or retrying ta
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3354,10 +3356,10 @@ Stops this task. This API can be used to stop a running, waiting, or retrying ta
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900007 | task state error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
 
 **Example**
 
@@ -3409,22 +3411,22 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [Config](#config10) | Yes| Task configuration.|
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the configuration about the created task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [Config](#config10) | Yes| Task configuration.|
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the configuration about the created task.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400001 | file operation error. |
-| 13400003 | task service ability error. |
-| 21900004 | application task queue full error. |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400001 | file operation error. |
+  | 13400003 | task service ability error. |
+  | 21900004 | application task queue full error. |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3485,10 +3487,10 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [Config](#config10) | Yes| Task configuration.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [Config](#config10) | Yes| Task configuration.|
 
 **Return value**
 
@@ -3500,12 +3502,12 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400001 | file operation error. |
-| 13400003 | task service ability error. |
-| 21900004 | application task queue full error. |
-| 21900005 | task mode error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400001 | file operation error. |
+  | 13400003 | task service ability error. |
+  | 21900004 | application task queue full error. |
+  | 21900005 | task mode error. |
 
 **Example**
 
@@ -3561,11 +3563,11 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| id | string | Yes| Task ID.|
-| token | string | No| Token for task query.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | id | string | Yes| Task ID.|
+  | token | string | No| Token for task query.|
 
 **Return value**
 
@@ -3577,10 +3579,10 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3602,19 +3604,19 @@ Removes a specified task of the invoker. If the task is being executed, the task
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3639,9 +3641,9 @@ Removes a specified task of the invoker. If the task is being executed, the task
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
 
 **Return value**
 
@@ -3653,10 +3655,10 @@ Removes a specified task of the invoker. If the task is being executed, the task
 
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3679,18 +3681,18 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3715,9 +3717,9 @@ Queries a task details based on the task ID. This API uses a promise to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
 
 **Return value**
 
@@ -3728,10 +3730,10 @@ Queries a task details based on the task ID. This API uses a promise to return t
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3754,19 +3756,19 @@ Queries the task details based on the task ID and token. This API uses an asynch
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
-| token | string | Yes| Token for task query.|
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
+  | token | string | Yes| Token for task query.|
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3791,10 +3793,10 @@ Queries the task details based on the task ID and token. This API uses a promise
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
-| token | string | Yes| Token for task query.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
+  | token | string | Yes| Token for task query.|
 
 **Return value**
 
@@ -3805,10 +3807,10 @@ Queries the task details based on the task ID and token. This API uses a promise
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3830,16 +3832,16 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
 
 **Example**
 
@@ -3863,17 +3865,17 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| filter | [Filter](#filter10) | Yes| Filter criteria.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | filter | [Filter](#filter10) | Yes| Filter criteria.|
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
 
 **Example**
 
@@ -3903,9 +3905,9 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| filter | [Filter](#filter10) | No| Filter criteria.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | filter | [Filter](#filter10) | No| Filter criteria.|
 
 **Return value**
 
@@ -3916,9 +3918,9 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
 
 **Example**
 
@@ -3950,18 +3952,18 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -3990,9 +3992,9 @@ Queries a task details based on the task ID. This API uses a promise to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | Yes| Task ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | string | Yes| Task ID.|
 
 **Return value**
 
@@ -4003,10 +4005,10 @@ Queries a task details based on the task ID. This API uses a promise to return t
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
 
 **Example**
 
@@ -4018,4 +4020,4 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
   });
   ```
 
- <!--no_check--> 
+<!--no_check-->

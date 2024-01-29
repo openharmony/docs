@@ -34,7 +34,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 
@@ -104,7 +104,7 @@ get(id: string): Promise<image.PixelMap>
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -171,7 +171,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
 
@@ -262,7 +262,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 

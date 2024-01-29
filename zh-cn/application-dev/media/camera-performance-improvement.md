@@ -37,12 +37,12 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../applicatio
 import camera from '@ohos.multimedia.camera';
 import common from '@ohos.app.ability.common';
 
-async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
-  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
@@ -89,11 +89,11 @@ import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import common from '@ohos.app.ability.common';
 
-async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
+async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   // 创建PhotoSession实例
-  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   // 开始配置会话
   photoSession.beginConfig();
   // 把CameraInput加入到会话
@@ -101,7 +101,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, surfaceId: 
   cameraInput.open();
   photoSession.addInput(cameraInput);
   // 把PhotoOutPut加入到会话
-  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
+  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {

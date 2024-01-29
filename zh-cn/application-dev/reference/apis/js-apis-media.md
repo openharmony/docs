@@ -100,6 +100,8 @@ createAVPlayer(): Promise\<AVPlayer>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let avPlayer: media.AVPlayer;
 media.createAVPlayer().then((video: media.AVPlayer) => {
   if (video != null) {
@@ -143,6 +145,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let avRecorder: media.AVRecorder;
 
 media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
@@ -185,8 +188,9 @@ createAVRecorder(): Promise\<AVRecorder>
 **示例：**
 
 ```ts
-let avRecorder: media.AVRecorder;
+import { BusinessError } from '@ohos.base';
 
+let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
@@ -224,6 +228,8 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
   if (extractor != null) {
@@ -260,6 +266,8 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
   if (extractor != null) {
@@ -300,6 +308,8 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
   if (generator != null) {
@@ -338,6 +348,8 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
   if (generator != null) {
@@ -379,8 +391,9 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 **示例：**
 
 ```ts
-let videoRecorder: media.VideoRecorder;
+import { BusinessError } from '@ohos.base';
 
+let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
@@ -419,8 +432,9 @@ createVideoRecorder(): Promise\<VideoRecorder>
 **示例：**
 
 ```ts
-let videoRecorder: media.VideoRecorder;
+import { BusinessError } from '@ohos.base';
 
+let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder().then((video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
@@ -512,6 +526,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 
 ```js
 import audio from '@ohos.multimedia.audio'
+import { BusinessError } from '@ohos.base';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -537,18 +552,19 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称                       | 值      | 说明                                 |
-| :------------------------- | ------- | ------------------------------------ |
-| AVERR_OK                   | 0       | 表示操作成功。                       |
-| AVERR_NO_PERMISSION        | 201     | 表示无权限执行此操作。               |
-| AVERR_INVALID_PARAMETER    | 401     | 表示传入入参无效。                   |
-| AVERR_UNSUPPORT_CAPABILITY | 801     | 表示当前版本不支持该API能力。        |
-| AVERR_NO_MEMORY            | 5400101 | 表示系统内存不足或服务数量达到上限。 |
-| AVERR_OPERATE_NOT_PERMIT   | 5400102 | 表示当前状态不允许或无权执行此操作。 |
-| AVERR_IO                   | 5400103 | 表示数据流异常信息。                 |
-| AVERR_TIMEOUT              | 5400104 | 表示系统或网络响应超时。             |
-| AVERR_SERVICE_DIED         | 5400105 | 表示服务进程死亡。                   |
-| AVERR_UNSUPPORT_FORMAT     | 5400106 | 表示不支持当前媒体资源的格式。       |
+| 名称                                  | 值      | 说明                                 |
+| :------------------------------------ | ------- | ------------------------------------ |
+| AVERR_OK                              | 0       | 表示操作成功。                       |
+| AVERR_NO_PERMISSION                   | 201     | 表示无权限执行此操作。               |
+| AVERR_INVALID_PARAMETER               | 401     | 表示传入入参无效。                   |
+| AVERR_UNSUPPORT_CAPABILITY            | 801     | 表示当前版本不支持该API能力。        |
+| AVERR_NO_MEMORY                       | 5400101 | 表示系统内存不足或服务数量达到上限。 |
+| AVERR_OPERATE_NOT_PERMIT              | 5400102 | 表示当前状态不允许或无权执行此操作。 |
+| AVERR_IO                              | 5400103 | 表示数据流异常信息。                 |
+| AVERR_TIMEOUT                         | 5400104 | 表示系统或网络响应超时。             |
+| AVERR_SERVICE_DIED                    | 5400105 | 表示服务进程死亡。                   |
+| AVERR_UNSUPPORT_FORMAT                | 5400106 | 表示不支持当前媒体资源的格式。       |
+| AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | 表示音频焦点被抢占                   |
 
 ## MediaType<sup>8+</sup>
 
@@ -569,7 +585,12 @@ Codec MIME类型枚举。
 
 | 名称         | 值                    | 说明                     |
 | ------------ | --------------------- | ------------------------ |
+| VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
 | VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。       |
+| VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
+| VIDEO_MPEG4  | 'video/mpeg4'         | 表示视频/mpeg4类型。     |
+| AUDIO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
+| AUDIO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。      |
 | AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
@@ -615,7 +636,7 @@ Codec MIME类型枚举。
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
 | USER       | 1    | 表示用户行为造成的状态切换，由用户或客户端主动调用接口产生。 |
-| BACKGROUND | 2    | 表示系统行为造成的状态切换，比如应用未注册播控中心权限，退到后台时被系统强制暂停或停止。 |
+| BACKGROUND | 2    | 表示后台系统行为造成的状态切换，比如应用未注册播控中心权限，退到后台时被系统强制暂停或停止。 |
 
 ## AVPlayer<sup>9+</sup>
 
@@ -629,14 +650,14 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-av
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置，静态属性。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**备注：**<br>api 11 开始不支持webm。 |
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，只允许在**idle**状态下设置，静态属性。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**备注：**<br>api 11 开始不支持webm。 |
-| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置，静态属性。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**备注：**<br>api 11 开始不支持webm。 |
-| surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置，静态属性。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
+| url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>从API version 11开始不支持webm。 |
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。 |
+| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。 |
+| surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 |
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | 是   | 是   | 设置音频渲染信息，默认值usage为STREAM_USAGE_MUSIC，rendererFlags为0。<br/>只允许在**initialized**状态下设置 |
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>在第一次调用[play()](#play9)之前设置， 以便此后中断模式生效。 |
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | 是   | 是   | 设置音频渲染信息，默认值usage为STREAM_USAGE_MUSIC，rendererFlags为0。<br/>只允许在**initialized**状态下设置。<br/>在第一次调用[prepare()](#prepare9)之前设置，以便音频渲染器信息在之后生效。 |
 | audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | 是   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的usage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                       | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
@@ -726,7 +747,7 @@ avPlayer.off('stateChange')
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过reset()或者release()退出播放操作。
+监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -735,7 +756,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
+| callback | ErrorCallback | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
 
 **错误码：**
 
@@ -746,7 +767,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 201      | Permission denied     |
 | 401      | The parameter check failed. |
 | 801      | Capability not supported. |
-| 5400101  | No Memory.            |
+| 5400101  | No Memory. Return by callback. |
 | 5400102  | Operation not allowed.|
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
@@ -756,6 +777,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.on('error', (error: BusinessError) => {
   console.info('error happened,and error message is :' + error.message)
   console.info('error happened,and error code is :' + error.code)
@@ -808,6 +831,8 @@ prepare(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.prepare((err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
@@ -843,6 +868,8 @@ prepare(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.prepare().then(() => {
   console.info('prepare success');
 }, (err: BusinessError) => {
@@ -875,6 +902,8 @@ play(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.play((err: BusinessError) => {
   if (err == null) {
     console.info('play success');
@@ -909,6 +938,8 @@ play(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.play().then(() => {
   console.info('play success');
 }, (err: BusinessError) => {
@@ -941,6 +972,8 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success');
@@ -975,6 +1008,8 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.pause().then(() => {
   console.info('pause success');
 }, (err: BusinessError) => {
@@ -1007,6 +1042,8 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop success');
@@ -1041,6 +1078,8 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.stop().then(() => {
   console.info('stop success');
 }, (err: BusinessError) => {
@@ -1073,6 +1112,8 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset success');
@@ -1107,6 +1148,8 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.reset().then(() => {
   console.info('reset success');
 }, (err: BusinessError) => {
@@ -1139,6 +1182,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.release((err: BusinessError) => {
   if (err == null) {
     console.info('release success');
@@ -1173,6 +1218,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.release().then(() => {
   console.info('release success');
 }, (err: BusinessError) => {
@@ -1184,7 +1231,7 @@ avPlayer.release().then(() => {
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
-通过回调方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。
+通过回调方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。获取所有音视轨道信息，应在数据加载回调后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1205,6 +1252,8 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
     console.info('getTrackDescription success');
@@ -1239,6 +1288,8 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('getTrackDescription success');
 }).catch((error: BusinessError) => {
@@ -1440,7 +1491,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
+选择要播放的指定比特率，仅对**HLS协议网络流**有效，默认情况下，播放器会根据网络连接速度选择合适的比特率，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1527,7 +1578,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 
 off(type: 'availableBitrates'): void
 
-取消监听HLS协议流可用的比特率列表。
+取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1662,7 +1713,7 @@ avPlayer.off('volumeChange')
 
 on(type: 'endOfStream', callback: Callback\<void>): void
 
-监听资源播放至结尾的事件；如果用户设置**loop=1**，播放会跳转至开头重播；如果用户没有设置loop，会通过[stateChange](#onstatechange9)上报completed状态。
+监听资源播放至结尾的事件；如果用户设置[loop](#属性)=true，播放会跳转至开头重播；如果用户没有设置loop，会通过[stateChange](#onstatechange9)上报completed状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1979,6 +2030,12 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+**错误码：**
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | If input parameter type or number mismatch. |
 
 **示例：**
 
@@ -2005,6 +2062,13 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+**错误码：**
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | If input parameter type or number mismatch. |
+
 **示例：**
 
 ```ts
@@ -2019,15 +2083,15 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 |              名称               |  类型  | 说明                                                         |
 | :-----------------------------: | :----: | :----------------------------------------------------------- |
-|              idle               | string | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了reset()方法之后，进入Idle状态。<br/>首次创建createAVPlayer()，所有属性都为默认值。<br/>调用reset()方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
+|              idle               | string | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入Idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
 |           initialized           | string | 资源初始化，在Idle 状态设置 url<sup>9+</sup> 或 fdSrc<sup>9+</sup>属性，AVPlayer会进入initialized状态，此时可以配置窗口、音频等静态属性。 |
-|            prepared             | string | 已准备状态，在initialized状态调用prepare()方法，AVPlayer会进入prepared状态，此时播放引擎的资源已准备就绪。 |
-|             playing             | string | 正在播放状态，在prepared/paused/completed状态调用play()方法，AVPlayer会进入playing状态。 |
+|            prepared             | string | 已准备状态，在initialized状态调用[prepare()](#prepare9)方法，AVPlayer会进入prepared状态，此时播放引擎的资源已准备就绪。 |
+|             playing             | string | 正在播放状态，在prepared/paused/completed状态调用[play()](#play9)方法，AVPlayer会进入playing状态。 |
 |             paused              | string | 暂停状态，在playing状态调用pause方法，AVPlayer会进入paused状态。 |
-|            completed            | string | 播放至结尾状态，当媒体资源播放至结尾时，如果用户未设置循环播放（loop = 1），AVPlayer会进入completed状态，此时调用play()会进入playing状态和重播，调用stop()会进入stopped状态。 |
-|             stopped             | string | 停止状态，在prepared/playing/paused/completed状态调用stop()方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用prepare()重新准备，也可以调用reset()重置，或者调用release()彻底销毁。 |
-|            released             | string | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用release()方法后，会进入released状态，结束流程。 |
-| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../errorcodes/errorcode-media.md)），则会转换至当前状态，可以调用reset()重置，也可以调用release()销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用reset()重置或者release()销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
+|            completed            | string | 播放至结尾状态，当媒体资源播放至结尾时，如果用户未设置循环播放（loop = true），AVPlayer会进入completed状态，此时调用[play()](#play9)会进入playing状态和重播，调用[stop()](#stop9)会进入stopped状态。 |
+|             stopped             | string | 停止状态，在prepared/playing/paused/completed状态调用[stop()](#stop9)方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用[prepare()](#prepare9)重新准备，也可以调用[reset()](#reset9)重置，或者调用[release()](#release9)彻底销毁。 |
+|            released             | string | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用[release()](#release9)方法后，会进入released状态，结束流程。 |
+| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../errorcodes/errorcode-media.md)），则会转换至当前状态，可以调用[reset()](#reset9)重置，也可以调用[release()](#release9)销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用[reset()](#reset9)重置或者[release()](#release9)销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -2038,8 +2102,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](js-apis-resource-manager.md#getrawfd9)获取。     |
-| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
-| length | number | 否   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
+| offset | number | 否   | 资源偏移量，默认值为0，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
+| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
 ## AVDataSrcDescriptor<sup>10+</sup>
 
@@ -2050,7 +2114,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
-| callback | function | 是   | 用户设置的回调函数，用于填写数据。<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 |
+| callback | function | 是   | 用户设置的回调函数，用于填写数据，返回要填充的数据的长度。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 |
 
 
 ## SeekMode<sup>8+</sup>
@@ -2086,7 +2150,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 | 名称                      | 值   | 说明                                             |
 | ------------------------- | ---- | ------------------------------------------------ |
-| VIDEO_SCALE_TYPE_FIT      | 0    | 视频拉伸至与窗口等大。                           |
+| VIDEO_SCALE_TYPE_FIT      | 0    | 默认比例类型，视频拉伸至与窗口等大。              |
 | VIDEO_SCALE_TYPE_FIT_CROP | 1    | 保持视频宽高比拉伸至填满窗口，内容可能会有裁剪。 |
 
 ## MediaDescription<sup>8+</sup>
@@ -2102,6 +2166,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
@@ -2121,7 +2187,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
 
 ## AVRecorder<sup>9+</sup>
 
-音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过createAVRecorder()构建一个AVRecorder实例。
+音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
 
 音视频录制demo可参考：[音频录制开发指导](../../media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/video-recording.md)。
 
@@ -2172,6 +2238,8 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 配置参数以实际硬件设备支持的范围为准
 let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
@@ -2243,6 +2311,8 @@ prepare(config: AVRecorderConfig): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 配置参数以实际硬件设备支持的范围为准
 let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
@@ -2280,7 +2350,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-需在prepare()事件成功触发后，才能调用getInputSurface()方法。
+需在[prepare()](#prepare9-2)事件成功触发后，才能调用getInputSurface()方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2303,6 +2373,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
@@ -2324,7 +2395,7 @@ getInputSurface(): Promise\<string>
 
 应当注意，填入的视频数据需要携带时间戳（单位ns）和buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-需在prepare()事件成功触发后，才能调用getInputSurface方法。
+需在[prepare()](#prepare9-3)事件成功触发后，才能调用getInputSurface方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2347,6 +2418,7 @@ getInputSurface(): Promise\<string>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
 
 avRecorder.getInputSurface().then((surfaceId: string) => {
@@ -2363,7 +2435,7 @@ start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-纯音频录制需在prepare()事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在getInputSurface()事件成功触发后，才能调用start方法。
+纯音频录制需在[prepare()](#prepare9-2)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2386,6 +2458,8 @@ start(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start AVRecorder success');
@@ -2401,7 +2475,7 @@ start(): Promise\<void>
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-纯音频录制需在prepare()事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在getInputSurface()事件成功触发后，才能调用start方法。
+纯音频录制需在[prepare()](#prepare9-3)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9-1)事件成功触发后，才能调用start方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2424,6 +2498,8 @@ start(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.start().then(() => {
   console.info('start AVRecorder success');
 }).catch((err: BusinessError) => {
@@ -2437,7 +2513,7 @@ pause(callback: AsyncCallback\<void>): void
 
 异步方式暂停视频录制。通过注册回调函数获取返回值。
 
-需要start()事件成功触发后，才能调用pause方法，可以通过调用resume()接口来恢复录制。
+需要[start()](#start9)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2460,6 +2536,8 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause AVRecorder success');
@@ -2475,7 +2553,7 @@ pause(): Promise\<void>
 
 异步方式暂停视频录制。通过Promise获取返回值。
 
-需要start()事件成功触发后，才能调用pause方法，可以通过调用resume()接口来恢复录制。
+需要[start()](#start9-1)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9-1)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2498,6 +2576,8 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.pause().then(() => {
   console.info('pause AVRecorder success');
 }).catch((err: BusinessError) => {
@@ -2511,7 +2591,7 @@ resume(callback: AsyncCallback\<void>): void
 
 异步方式恢复视频录制。通过注册回调函数获取返回值。
 
-需要在pause()事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9-2)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2534,6 +2614,8 @@ resume(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume AVRecorder success');
@@ -2549,7 +2631,7 @@ resume(): Promise\<void>
 
 异步方式恢复视频录制。通过Promise获取返回值。
 
-需要在pause()事件成功触发后，才能调用resume方法。
+需要在[pause()](#pause9-3)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2572,6 +2654,8 @@ resume(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.resume().then(() => {
   console.info('resume AVRecorder success');
 }).catch((err: BusinessError) => {
@@ -2585,9 +2669,9 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要在start()或pause()事件成功触发后，才能调用stop方法。
+需要在[start()](#start9)或[pause()](#pause9-2)事件成功触发后，才能调用stop方法。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2610,6 +2694,8 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop AVRecorder success');
@@ -2625,9 +2711,9 @@ stop(): Promise\<void>
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要在start()或pause()事件成功触发后，才能调用stop方法。
+需要在[start()](#start9-1)或[pause()](#pause9-3)事件成功触发后，才能调用stop方法。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-3)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-3)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2650,6 +2736,8 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.stop().then(() => {
   console.info('stop AVRecorder success');
 }).catch((err: BusinessError) => {
@@ -2663,7 +2751,7 @@ reset(callback: AsyncCallback\<void>): void
 
 异步方式重置音视频录制。通过注册回调函数获取返回值。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2685,6 +2773,8 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset AVRecorder success');
@@ -2700,7 +2790,7 @@ reset(): Promise\<void>
 
 异步方式重置音视频录制。通过Promise获取返回值。
 
-纯音频录制时，需要重新调用prepare()接口才能重新录制。纯视频录制，音视频录制时，需要重新调用prepare()和getInputSurface()接口才能重新录制。
+纯音频录制时，需要重新调用[prepare()](#prepare9-3)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-3)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2722,6 +2812,8 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.reset().then(() => {
   console.info('reset AVRecorder success');
 }).catch((err: BusinessError) => {
@@ -2756,6 +2848,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release AVRecorder success');
@@ -2792,10 +2886,248 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.release().then(() => {
   console.info('release AVRecorder success');
 }).catch((err: BusinessError) => {
   console.error('release AVRecorder failed and catch error is ' + err.message);
+});
+```
+
+### getCurrentAudioCapturerInfo<sup>11+</sup>
+
+getCurrentAudioCapturerInfo(callback: AsyncCallback\<audio.AudioCapturerChangeInfo>): void
+
+异步方式获取当前音频采集参数。通过注册回调函数获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                 |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
+| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)> | 是   | 异步获取当前音频采集参数的回调方法。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let currentCapturerInfo: audio.AudioCapturerChangeInfo;
+
+avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
+  if (err == null) {
+    console.info('getCurrentAudioCapturerInfo success');
+    currentCapturerInfo = capturerInfo;
+  } else {
+    console.error('getCurrentAudioCapturerInfo failed and error is ' + err.message);
+  }
+});
+```
+
+### getCurrentAudioCapturerInfo<sup>11+</sup>
+
+getCurrentAudioCapturerInfo(): Promise\<audio.AudioCapturerChangeInfo>
+
+异步方式获取当前音频采集参数。通过Promise获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**返回值**：
+
+| 类型                                                         | 说明                                              |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| Promise\<[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)> | 异步方式获取当前音频采集参数方法的Promise返回值。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400102  | Operation not allowed.           |
+| 5400103  | I/O error.                       |
+| 5400105  | Service died. Return by promise. |
+
+**示例**：
+
+```ts
+let currentCapturerInfo: audio.AudioCapturerChangeInfo;
+
+avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturerChangeInfo) => {
+  console.info('getCurrentAudioCapturerInfo success');
+  currentCapturerInfo = capturerInfo;
+}).catch((err: BusinessError) => {
+  console.error('getCurrentAudioCapturerInfo failed and catch error is ' + err.message);
+});
+```
+
+### getAudioCapturerMaxAmplitude<sup>11+</sup>
+
+getAudioCapturerMaxAmplitude(callback: AsyncCallback\<number>): void
+
+异步方式获取当前音频最大振幅。通过注册回调函数获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+调用接口时，获取到的返回值是上一次获取最大振幅的时刻到当前这段区间内的音频最大振幅。即，如果在1s的时刻获取了一次最大振幅，在2s时再获取到的最大振幅时1-2s这个区间里面的最大值。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**参数**：
+
+| 参数名   | 类型                   | 必填 | 说明                                 |
+| -------- | ---------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback\<number> | 是   | 异步获取当前音频最大振幅的回调方法。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let maxAmplitude: number;
+
+avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
+  if (err == null) {
+    console.info('getAudioCapturerMaxAmplitude success');
+    maxAmplitude = amplitude;
+  } else {
+    console.error('getAudioCapturerMaxAmplitude failed and error is ' + err.message);
+  }
+});
+```
+
+### getAudioCapturerMaxAmplitude<sup>11+</sup>
+
+getAudioCapturerMaxAmplitude(): Promise\<number>
+
+异步方式获取当前音频最大振幅参数。通过Promise获取返回值。
+
+在prepare()成功触发后，才能调用此方法。在stop()成功触发后，调用此方法会报错。
+
+调用接口时，获取到的返回值是上一次获取最大振幅的时刻到当前这段区间内的音频最大振幅。即，如果在1s的时刻获取了一次最大振幅，在2s时再获取到的最大振幅时1-2s这个区间里面的最大值。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**返回值**：
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------- |
+| Promise\<number> | 异步方式获取当前音频最大振幅方法的Promise返回值。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400102  | Operation not allowed.           |
+| 5400105  | Service died. Return by promise. |
+
+**示例**：
+
+```ts
+let maxAmplitude: number;
+
+avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
+  console.info('getAudioCapturerMaxAmplitude success');
+  maxAmplitude = amplitude;
+}).catch((err: BusinessError) => {
+  console.error('getAudioCapturerMaxAmplitude failed and catch error is ' + err.message);
+});
+```
+
+### getAvailableEncoder<sup>11+</sup>
+
+getAvailableEncoder(callback: AsyncCallback\<Array\<EncoderInfo>>): void
+
+异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**参数**：
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback\<Array\<[EncoderInfo](#encoderinfo11)>> | 是   | 异步获取可用的编码器参数的回调方法。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400105  | Service died. Return by callback.          |
+
+**示例**：
+
+```ts
+let encoderInfo: media.EncoderInfo;
+
+avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => {
+  if (err == null) {
+    console.info('getAvailableEncoder success');
+    encoderInfo = info;
+  } else {
+    console.error('getAvailableEncoder failed and error is ' + err.message);
+  }
+});
+```
+
+### getAvailableEncoder<sup>11+</sup>
+
+getAvailableEncoder(): Promise\<Array\<EncoderInfo>>
+
+异步方式获取可用的编码器参数。通过注册回调函数获取返回值。
+
+**系统能力**：SystemCapability.Multimedia.Media.AVRecorder
+
+**返回值**：
+
+| 类型                                            | 说明                                            |
+| ----------------------------------------------- | ----------------------------------------------- |
+| Promise\<Array\<[EncoderInfo](#encoderinfo11)>> | 异步方式获取可用的编码参数方法的Promise返回值。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400102  | Operation not allowed.           |
+| 5400105  | Service died. Return by promise. |
+
+**示例**：
+
+```ts
+let encoderInfo: media.EncoderInfo;
+
+avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
+  console.info('getAvailableEncoder success');
+  encoderInfo = info;
+}).catch((err: BusinessError) => {
+  console.error('getAvailableEncoder failed and catch error is ' + err.message);
 });
 ```
 
@@ -2855,7 +3187,7 @@ avRecorder.off('stateChange');
 
 on(type: 'error', callback: ErrorCallback): void
 
-订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](#avrecorderstate9)也切至error状态，用户需要通过reset()或者release()退出录制操作。
+订阅AVRecorder的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVRecorderState](#avrecorderstate9)也切至error状态，用户需要通过[reset()](#reset9-2)或者[release()](#release9-2)退出录制操作。
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -2866,24 +3198,27 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                                            |
-| -------- | ------------------------------------------------   |
-| 5400101  | No memory. Return by callback.                     |
-| 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | I/O error. Return by callback.                     |
-| 5400104  | Time out. Return by callback.                      |
-| 5400105  | Service died. Return by callback.                  |
-| 5400106  | Unsupport format. Return by callback.              |
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400101  | No memory. Return by callback.             |
+| 5400102  | Operation not allowed. Return by callback. |
+| 5400103  | I/O error. Return by callback.             |
+| 5400104  | Time out. Return by callback.              |
+| 5400105  | Service died. Return by callback.          |
+| 5400106  | Unsupport format. Return by callback.      |
+| 5400107  | Audio interrupted. Return by callback.     |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avRecorder.on('error', (err: BusinessError) => {
   console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
@@ -2939,7 +3274,7 @@ avRecorder.off('error');
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
-| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。仅支持mp4格式。       |
 | location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
 ## AVRecorderProfile<sup>9+</sup>
@@ -2956,10 +3291,11 @@ avRecorder.off('error');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[1 - 3000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。    |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。        |
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
+| isHdr<sup>11+</sup>            | boolean                        | 否   | 视频HDR属性，选择视频录制时必填。                         | 
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3005,6 +3341,36 @@ avRecorder.off('error');
 | latitude  | number | 是   | 地理位置的纬度。 |
 | longitude | number | 是   | 地理位置的经度。 |
 
+## EncoderInfo<sup>11+</sup>
+
+编码器和规格参数
+
+系统能力：SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称       | 类型                             | 可读 | 可写 | 说明                                                         |
+| ---------- | -------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| mimeType   | [CodecMimeType](#codecmimetype8) | 是   | 否   | 编码器MIME类型名称                                           |
+| type       | string                           | 是   | 否   | 编码器类型，audio表示音频编码器，video表示视频编码器         |
+| bitRate    | [Range](#range11)                | 是   | 否   | 比特率，包含该编码器的最大和最小值                           |
+| frameRate  | [Range](#range11)                | 是   | 否   | 视频帧率，包含帧率的最大和最小值，仅视频编码器拥有           |
+| width      | [Range](#range11)                | 是   | 否   | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有       |
+| height     | [Range](#range11)                | 是   | 否   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有       |
+| channels   | [Range](#range11)                | 是   | 否   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有   |
+| sampleRate | Array<number>                    | 是   | 否   | 音频采样率，包含所有可以使用的音频采样率值，仅音频编码器拥有 |
+
+## Range<sup>11+</sup>
+
+表示一个类型的范围
+
+系统能力：SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称 | 类型   | 可读 | 可写 | 说明         |
+| ---- | ------ | ---- | ---- | ------------ |
+| min  | number | 是   | 否   | 范围的最小值 |
+| max  | number | 是   | 否   | 范围的最大值 |
+
+
+
 ## AVMetadataExtractor<sup>11+</sup>
 
 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
@@ -3046,6 +3412,8 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 获取元数据
 avMetadataExtractor.fetchMetadata((error: BusinessError, metadata) => {
   if (error) {
@@ -3082,6 +3450,8 @@ fetchMetadata(): Promise\<AVMetadata>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 获取元信息
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
   console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
@@ -3117,6 +3487,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 ```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 let pixel_map : image.PixelMap | undefined = undefined;
 
 //获取专辑封面
@@ -3156,6 +3527,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 ```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // 获取专辑封面
@@ -3191,6 +3563,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 //释放资源
 avMetadataExtractor.release((error: BusinessError) => {
   if (error) {
@@ -3226,6 +3600,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 //释放资源
 avMetadataExtractor.release().then(() => {
   console.info(`release success.`);
@@ -3309,6 +3685,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3370,6 +3747,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3419,6 +3797,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 //释放资源
 avImageGenerator.release((error: BusinessError) => {
   if (error) {
@@ -3456,6 +3836,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 //释放资源
 avImageGenerator.release().then(() => {
   console.info(`release success.`);
@@ -3579,9 +3961,9 @@ let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
-  url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限
   rotation : 0,
-  location : { latitude : 30, longitude : 130 },
+  location : { latitude : 30, longitude : 130 }
 }
 
 // asyncallback
@@ -3632,6 +4014,8 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 配置参数以实际硬件设备支持的范围为准
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
@@ -3650,9 +4034,9 @@ let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
-  url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限
   rotation : 0,
-  location : { latitude : 30, longitude : 130 },
+  location : { latitude : 30, longitude : 130 }
 }
 
 // promise
@@ -3671,7 +4055,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-只能在prepare()接口调用后调用。
+只能在[prepare()](#prepare9-4)接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3699,7 +4083,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 import { BusinessError } from '@ohos.base';
 
 // asyncallback
-let surfaceID: string;   // 传递给外界的surfaceID
+let surfaceID: string; // 传递给外界的surfaceID
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
@@ -3718,7 +4102,7 @@ getInputSurface(): Promise\<string>;
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
-只能在prepare()接口调用后调用。
+只能在[prepare()](#prepare9-5)接口调用后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3743,8 +4127,10 @@ getInputSurface(): Promise\<string>;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
-let surfaceID: string;                                               // 传递给外界的surfaceID
+let surfaceID: string; // 传递给外界的surfaceID
 videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
@@ -3759,7 +4145,7 @@ start(callback: AsyncCallback\<void>): void
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-在prepare()和getInputSurface()后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#prepare9-4)和[getInputSurface()](#getinputsurface9-2)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3784,6 +4170,8 @@ start(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
 videoRecorder.start((err: BusinessError) => {
   if (err == null) {
@@ -3800,7 +4188,7 @@ start(): Promise\<void>
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-在prepare()和getInputSurface()后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#prepare9-5)和[getInputSurface()](#getinputsurface9-3)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3825,6 +4213,8 @@ start(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
@@ -3839,7 +4229,7 @@ pause(callback: AsyncCallback\<void>): void
 
 异步方式暂停视频录制。通过注册回调函数获取返回值。
 
-在start()后调用。可以通过调用resume()接口来恢复录制。
+在[start()](#start9-2)后调用。可以通过调用[resume()](#resume9-2)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3864,6 +4254,8 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
@@ -3880,7 +4272,7 @@ pause(): Promise\<void>
 
 异步方式暂停视频录制。通过Promise获取返回值。
 
-在start()后调用。可以通过调用resume()接口来恢复录制。
+在[start()](#start9-3)后调用。可以通过调用[resume()](#resume9-3)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3905,6 +4297,8 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
@@ -3942,6 +4336,8 @@ resume(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
 videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
@@ -3981,6 +4377,8 @@ resume(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
@@ -3995,7 +4393,7 @@ stop(callback: AsyncCallback\<void>): void
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-4)和[getInputSurface()](#getinputsurface9-2)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4020,6 +4418,8 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
 videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
@@ -4036,7 +4436,7 @@ stop(): Promise\<void>
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-5)和[getInputSurface()](#getinputsurface9-3)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4061,6 +4461,8 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
@@ -4096,6 +4498,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
 videoRecorder.release((err: BusinessError) => {
   if (err == null) {
@@ -4133,6 +4537,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
@@ -4147,7 +4553,7 @@ reset(callback: AsyncCallback\<void>): void
 
 异步方式重置视频录制。通过注册回调函数获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-4)和[getInputSurface()](#getinputsurface9-2)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4171,6 +4577,8 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
 videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
@@ -4187,7 +4595,7 @@ reset(): Promise\<void>
 
 异步方式重置视频录制。通过Promise获取返回值。
 
-需要重新调用prepare()和getInputSurface()接口才能重新录制。
+需要重新调用[prepare()](#prepare9-5)和[getInputSurface()](#getinputsurface9-3)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -4211,6 +4619,8 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // promise
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
@@ -4234,7 +4644,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
@@ -4248,8 +4658,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error: BusinessError) => {   // 设置'error'事件回调
+videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
 })
 ```
@@ -4643,6 +5055,8 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
     console.info('audio getTrackDescription success');
@@ -4672,6 +5086,8 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('audio getTrackDescription success');
 }).catch((error: BusinessError) => {
@@ -4721,13 +5137,14 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 
 | 参数名   | 类型       | 必填 | 说明                                                         |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成play()调用，音频开始播放，触发该事件。<br>- 'pause'：完成pause()调用，音频暂停播放，触发该事件。<br>- 'stop'：完成stop()调用，音频停止播放，触发该事件。<br>- 'reset'：完成reset()调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成setVolume()调用，播放音量改变后触发该事件。 |
+| type     | string     | 是   | 播放事件回调类型，支持的事件包括：'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'。<br>- 'play'：完成[play()](#playdeprecated)调用，音频开始播放，触发该事件。<br>- 'pause'：完成[pause()](#pausedeprecated)调用，音频暂停播放，触发该事件。<br>- 'stop'：完成[stop()](#stopdeprecated)调用，音频停止播放，触发该事件。<br>- 'reset'：完成[reset()](#resetdeprecated)调用，播放器重置，触发该事件。<br>- 'dataLoad'：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br>- 'finish'：完成音频播放后触发该事件。<br>- 'volumeChange'：完成[setVolume()](#setvolumedeprecated)调用，播放音量改变后触发该事件。 |
 | callback | () => void | 是   | 播放事件回调方法。                                           |
 
 **示例：**
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
@@ -4763,8 +5180,8 @@ audioPlayer.on('finish', () => {               //设置'finish'事件回调
   console.info('audio play finish');
   audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
-audioPlayer.on('error', (error: BusinessError) => {           //设置'error'事件回调
-  console.info(`audio error called, error: ${error}`);
+audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
+  console.error(`audio error called, error: ${error}`);
 });
 
 // 用户选择音频设置fd(本地播放)
@@ -4813,6 +5230,31 @@ audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事�
 audioPlayer.play();    //开始播放后，自动触发时间戳更新事件
 ```
 
+### on('audioInterrupt')<sup>(deprecated)</sup>
+
+on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
+
+监听音频焦点变化事件，参考[audio.InterruptEvent](js-apis-audio.md#interruptevent9)。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                                                       | 是   | 音频焦点变化事件回调类型，支持的事件：'audioInterrupt'。 |
+| callback | function  | 是   | 音频焦点变化事件回调方法。                               |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
+  console.info('audioInterrupt success,and InterruptEvent info is:' + info)
+})
+```
+
 ### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -4829,13 +5271,15 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：音频播放中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
 ```ts
-audioPlayer.on('error', (error: BusinessError) => {      //设置'error'事件回调
-  console.info(`audio error called, error: ${error}`); 
+import { BusinessError } from '@ohos.base';
+
+audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
+  console.error(`audio error called, error: ${error}`);
 });
 audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
@@ -4870,10 +5314,10 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称                            | 类型                                                   | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx<br/>3. https网络播放: https\://xx<br/>4. hls网络播放路径：http\://xx或者https\://xx<br/>**备注：**<br>api 11 开始不支持webm。 |
+| url<sup>8+</sup>                | string                                                 | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx<br/>3. https网络播放: https\://xx<br/>4. hls网络播放路径：http\://xx或者https\://xx<br>5. file类型: file\://xx<br/>**说明：**<br>从API version 11开始不支持webm。 |
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | 是   | 是   | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/> |
 | loop<sup>8+</sup>               | boolean                                                | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
-| videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | 是   | 是   | 视频缩放模式。                                               |
+| videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | 是   | 是   | 视频缩放模式。默认值为VIDEO_SCALE_TYPE_FIT。                                               |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型。                                               |
 | currentTime<sup>8+</sup>        | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
 | duration<sup>8+</sup>           | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
@@ -4904,6 +5348,8 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
   if (err == null) {
@@ -4942,6 +5388,8 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
   console.info('setDisplaySurface success');
@@ -4970,6 +5418,8 @@ prepare(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.prepare((err: BusinessError) => {
   if (err == null) {
     console.info('prepare success!');
@@ -4999,6 +5449,8 @@ prepare(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.prepare().then(() => {
   console.info('prepare success');
 }).catch((error: BusinessError) => {
@@ -5026,6 +5478,8 @@ play(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.play((err: BusinessError) => {
   if (err == null) {
     console.info('play success!');
@@ -5055,6 +5509,8 @@ play(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.play().then(() => {
   console.info('play success');
 }).catch((error: BusinessError) => {
@@ -5082,6 +5538,8 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success!');
@@ -5111,6 +5569,8 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.pause().then(() => {
   console.info('pause success');
 }).catch((error: BusinessError) => {
@@ -5138,6 +5598,8 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop success!');
@@ -5167,6 +5629,8 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.stop().then(() => {
   console.info('stop success');
 }).catch((error: BusinessError) => {
@@ -5194,6 +5658,8 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset success!');
@@ -5223,6 +5689,8 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.reset().then(() => {
   console.info('reset success');
 }).catch((error: BusinessError) => {
@@ -5251,6 +5719,8 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
@@ -5293,6 +5763,8 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
@@ -5341,6 +5813,8 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
@@ -5387,6 +5861,8 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let vol: number = 0.5;
 videoPlayer.setVolume(vol, (err: BusinessError) => {
   if (err == null) {
@@ -5423,6 +5899,8 @@ setVolume(vol: number): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let vol: number = 0.5;
 videoPlayer.setVolume(vol).then(() => {
   console.info('setVolume success');
@@ -5451,6 +5929,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.release((err: BusinessError) => {
   if (err == null) {
     console.info('release success!');
@@ -5480,6 +5960,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.release().then(() => {
   console.info('release success');
 }).catch((error: BusinessError) => {
@@ -5507,6 +5989,8 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
     console.info('video getTrackDescription success');
@@ -5536,6 +6020,8 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
     console.info('video getTrackDescription success');
@@ -5549,7 +6035,7 @@ videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
 
 ### setSpeed<sup>(deprecated)</sup>
 
-setSpeed(speed:number, callback: AsyncCallback\<number>): void
+setSpeed(speed: number, callback: AsyncCallback\<number>): void
 
 通过回调方式设置播放速度。
 
@@ -5568,6 +6054,8 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
@@ -5591,7 +6079,7 @@ if (videoPlayer) {
 
 ### setSpeed<sup>(deprecated)</sup>
 
-setSpeed(speed:number): Promise\<number>
+setSpeed(speed: number): Promise\<number>
 
 通过Promise方式设置播放速度。
 
@@ -5615,6 +6103,8 @@ setSpeed(speed:number): Promise\<number>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
@@ -5650,7 +6140,7 @@ on(type: 'playbackCompleted', callback: Callback\<void>): void
 | 参数名   | 类型     | 必填 | 说明                                                        |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | type     | string   | 是   | 视频播放完成事件回调类型，支持的事件：'playbackCompleted'。 |
-| callback | function | 是   | 视频播放完成事件回调方法。                                  |
+| callback | Callback\<void> | 是   | 视频播放完成事件回调方法。                                  |
 
 **示例：**
 
@@ -5739,6 +6229,30 @@ videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
   console.info('video height is: ' + height);
 });
 ```
+### on('audioInterrupt')<sup>(deprecated)</sup>
+
+on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
+
+监听音频焦点变化事件，参考[audio.InterruptEvent](js-apis-audio.md#interruptevent9)。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                                                       | 是   | 音频焦点变化事件回调类型，支持的事件：'audioInterrupt'。 |
+| callback | function | 是   | 音频焦点变化事件回调方法。                               |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
+  console.info('audioInterrupt success,and InterruptEvent info is:' + info)
+})
+```
 
 ### on('error')<sup>(deprecated)</sup>
 
@@ -5756,13 +6270,15 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 播放错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
 ```ts
-videoPlayer.on('error', (error: BusinessError) => {      // 设置'error'事件回调
-  console.info(`video error called, error: ${error}`);
+import { BusinessError } from '@ohos.base';
+
+videoPlayer.on('error', (error: BusinessError) => {  // 设置'error'事件回调
+  console.error(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
 ```
@@ -5973,42 +6489,44 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 **示例：**
 
 ```ts
-let audioRecorder: media.AudioRecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
+import { BusinessError } from '@ohos.base';
+
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();  // 创建一个音频录制实例
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
-  uri : 'fd://xx',                                                            // 文件需先由调用者创建，并给予适当的权限
-  location : { latitude : 30, longitude : 130},
+  uri : 'fd://xx',  // 文件需先由调用者创建，并给予适当的权限
+  location : { latitude : 30, longitude : 130}
 }
-audioRecorder.on('error', (error: BusinessError) => {                                             // 设置'error'事件回调
-  console.info(`audio error called, error: ${error}`);
+audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调
+  console.error(`audio error called, error: ${error}`);
 });
-audioRecorder.on('prepare', () => {                                              // 设置'prepare'事件回调
+audioRecorder.on('prepare', () => {  // 设置'prepare'事件回调
   console.info('prepare success');
-  audioRecorder.start();                                                       // 开始录制，并触发'start'事件回调
+  audioRecorder.start();  // 开始录制，并触发'start'事件回调
 });
-audioRecorder.on('start', () => {                                                 // 设置'start'事件回调
+audioRecorder.on('start', () => {  // 设置'start'事件回调
   console.info('audio recorder start success');
 });
-audioRecorder.on('pause', () => {                                                 // 设置'pause'事件回调
+audioRecorder.on('pause', () => {  // 设置'pause'事件回调
   console.info('audio recorder pause success');
 });
-audioRecorder.on('resume', () => {                                                 // 设置'resume'事件回调
+audioRecorder.on('resume', () => {  // 设置'resume'事件回调
   console.info('audio recorder resume success');
 });
-audioRecorder.on('stop', () => {                                                 // 设置'stop'事件回调
+audioRecorder.on('stop', () => {  // 设置'stop'事件回调
   console.info('audio recorder stop success');
 });
-audioRecorder.on('release', () => {                                                 // 设置'release'事件回调
+audioRecorder.on('release', () => {  // 设置'release'事件回调
   console.info('audio recorder release success');
 });
-audioRecorder.on('reset', () => {                                                 // 设置'reset'事件回调
+audioRecorder.on('reset', () => {  // 设置'reset'事件回调
   console.info('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)                                        // 设置录制参数 ，并触发'prepare'事件回调      
+audioRecorder.prepare(audioRecorderConfig)  // 设置录制参数 ，并触发'prepare'事件回调
 ```
 
 ### on('error')<sup>(deprecated)</sup>
@@ -6027,24 +6545,26 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
-| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
-  uri : 'fd://xx',                                                     // 文件需先由调用者创建，并给予适当的权限
-  location : { latitude : 30, longitude : 130},
+  uri : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+  location : { latitude : 30, longitude : 130}
 }
-audioRecorder.on('error', (error: BusinessError) => {                                  // 设置'error'事件回调
-  console.info(`audio error called, error: ${error}`);
+audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调
+  console.error(`audio error called, error: ${error}`);
 });
-audioRecorder.prepare(audioRecorderConfig);                            // prepare不设置参数，触发'error'事件
+audioRecorder.prepare(audioRecorderConfig);  // prepare不设置参数，触发'error'事件
 ```
 
 ## AudioRecorderConfig<sup>(deprecated)</sup>
@@ -6065,7 +6585,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 | format                              | [AudioOutputFormat](#audiooutputformatdeprecated)      | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API version 8开始废弃，建议使用fileFormat替代。 |
 | location                            | [Location](#location)                        | 否   | 音频采集的地理位置。                                         |
 | uri                                 | string                                       | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
-| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式。                                               |
+| audioEncoderMime<sup>8+</sup>       | [CodecMimeType](#codecmimetype8)             | 否   | 容器编码格式。                                               |
 | fileFormat<sup>8+</sup>             | [ContainerFormatType](#containerformattype8) | 否   | 音频编码格式。                                               |
 
 ## AudioEncoder<sup>(deprecated)</sup>

@@ -28,7 +28,7 @@ AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储
 
 static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
-与AppStorage中对应的propName建立双向数据绑定。如果给定的propName在AppStorage中存在，返回与AppStorage中propName对应属性的双向绑定数据。
+与AppStorage中对应的propName建立双向数据绑定。如果给定的propName在AppStorage中存在，返回AppStorage中propName对应属性的双向绑定数据。
 
 双向绑定数据的修改会同步回AppStorage中，AppStorage会将变化同步到所有绑定该propName的数据和自定义组件中。
 
@@ -44,15 +44,15 @@ static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | 返回双向绑定的数据，如果AppStorage不存在对应的propName，则返回undefined。 |
+| 类型                                | 描述                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;T&gt; | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.link('PropA');
-let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // linkToPropA2.get() == 47
+let linkToPropA1: SubscribedAbstractProperty<number> = AppStorage.link('PropA');
+let linkToPropA2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
@@ -61,16 +61,16 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与Link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage创建和初始化propName，返回其双向绑定数据。
+与link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | 是    | AppStorage中的属性名。                         |
-| defaultValue | T      | 是    | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | AppStorage中的属性名。                                       |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
 
 **返回值：**
 
@@ -102,11 +102,12 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | 返回单向绑定的数据，如果AppStorage不存在对应的propName，则返回undefined。 |
+| 类型                                | 描述                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;T&gt; | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
+
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
@@ -119,16 +120,16 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与Prop接口类似。如果给定的propName在AppStorage存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage创建和初始化propName对应的属性，返回其单向绑定数据。
+与prop接口类似。如果给定的propName在AppStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | 是    | AppStorage中的属性名。                         |
-| defaultValue | T      | 是    | 当propName在AppStorage中不存在时，使用default在AppStorage中初始化对应的propName。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | AppStorage中的属性名。                                       |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
 
 **返回值：**
 
@@ -173,7 +174,7 @@ AppStorage.has('simpleProp');
 
 static get&lt;T&gt;(propName: string): T | undefined
 
-获取propName在AppStorage中对应的属性。如果不存在返回undefined。
+获取propName在AppStorage中对应的属性值。如果不存在则返回undefined。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -185,9 +186,9 @@ static get&lt;T&gt;(propName: string): T | undefined
 
 **返回值：**
 
-| 类型                       | 描述                                       |
-| ------------------------ | ---------------------------------------- |
-| T&nbsp;\|&nbsp;undefined | AppStorage中propName对应的属性，如果不存在返回undefined。 |
+| 类型                     | 描述                                                        |
+| ------------------------ | ----------------------------------------------------------- |
+| T&nbsp;\|&nbsp;undefined | AppStorage中propName对应的属性，如果不存在则返回undefined。 |
 
 **示例：**
 ```ts
@@ -213,9 +214,9 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果AppStorage不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功则返回true。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果AppStorage中不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功则返回true。 |
 
 **示例：**
 ```ts
@@ -231,6 +232,8 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 如果propName已经在AppStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
 如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个AppStorage的键值对，如果想创建多个AppStorage键值对，可以多次调用此方法。
+
+newValue不能为undefined或null。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -253,9 +256,9 @@ static delete(propName: string): boolean
 
 在AppStorage中删除propName对应的属性。
 
-在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。删除成功返回true。
+在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者为Link、Prop等接口绑定的propName，以及\@StorageLink('propName')和\@StorageProp('propName')。这就意味着如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者SubscribedAbstractProperty实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
+属性的订阅者为link、prop等接口绑定的propName，以及\@StorageLink('propName')和\@StorageProp('propName')。如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者SubscribedAbstractProperty实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -307,17 +310,17 @@ let keys: IterableIterator<string> = AppStorage.keys();
 
 static clear(): boolean
 
-清除AppStorage的所有的属性。在AppStorage中清除所有属性的前提是，已经没有任何订阅者。如果有，则什么都不做返回false；删除成功返回true。
+删除AppStorage中所有属性。删除所有属性的前提是，AppStorage已经没有任何订阅者。如果有订阅者，clear将不会生效并返回false。如果没有订阅者，则删除成功，并返回true。
 
-订阅者的含义和参考[delete](#delete10)。
+订阅者的含义参考[delete](#delete10)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果AppStorage中的属性已经没有订阅者，则清除成功，返回true。否则返回false。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果AppStorage中的属性已经没有订阅者则删除成功，返回true。否则返回false。 |
 
 **示例：**
 ```ts
@@ -372,13 +375,13 @@ static Link(propName: string): any
 
 | 类型                             | 描述                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
-| any | 返回双向绑定的数据，如果AppStorage不存在对应的propName，则返回undefined。 |
+| any | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.Link('PropA');
-let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // linkToPropA2.get() == 47
+let linkToPropA1: SubscribedAbstractProperty<number> = AppStorage.Link('PropA');
+let linkToPropA2: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
@@ -386,7 +389,7 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与Link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage创建和初始化propName，返回其双向绑定数据。
+与Link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其双向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[setAndLink10+](#setandlink10)替代。
@@ -395,10 +398,10 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | 是    | AppStorage中的属性名。                         |
-| defaultValue | T      | 是    | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | AppStorage中的属性名。                                       |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
 
 **返回值：**
 
@@ -436,13 +439,13 @@ static Prop(propName: string): any
 
 | 类型                             | 描述                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
-| any | 返回单向绑定的数据，如果AppStorage不存在对应的propName，则返回undefined。 |
+| any | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
-let prop2:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
+let prop1: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
+let prop2: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
 prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 ```
 
@@ -450,7 +453,7 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-与Prop接口类似。如果给定的propName在AppStorage存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage创建和初始化propName对应的属性，返回其单向绑定数据。
+与Prop接口类似。如果给定的propName在AppStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，且不能为undefined或null。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[setAndProp10+](#setandprop10)替代。
@@ -459,10 +462,10 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | 是    | AppStorage中的属性名。                         |
-| defaultValue | S      | 是    | 当propName在AppStorage中不存在时，使用default在AppStorage中初始化对应的propName。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | AppStorage中的属性名。                                       |
+| defaultValue | S      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
 
 **返回值：**
 
@@ -508,7 +511,7 @@ AppStorage.Has('simpleProp');
 
 static Get&lt;T&gt;(propName: string): T | undefined
 
-获取propName在AppStorage中对应的属性。如果不存在返回undefined。
+获取propName在AppStorage中对应的属性值。如果不存在则返回undefined。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[get10+](#get10)替代。
@@ -523,9 +526,9 @@ static Get&lt;T&gt;(propName: string): T | undefined
 
 **返回值：**
 
-| 类型                       | 描述                                       |
-| ------------------------ | ---------------------------------------- |
-| T&nbsp;\|&nbsp;undefined | AppStorage中propName对应的属性，如果不存在返回undefined。 |
+| 类型                     | 描述                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| T&nbsp;\|&nbsp;undefined | AppStorage中propName对应的属性值，如果不存在则返回undefined。 |
 
 **示例：**
 ```ts
@@ -553,9 +556,9 @@ static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果AppStorage不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功则返回true。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果AppStorage中不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功则返回true。 |
 
 **示例：**
 ```ts
@@ -569,6 +572,8 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 如果propName已经在AppStorage中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，值为newValue。
+
+newValue不能为undefined或null。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[setOrCreate10+](#setorcreate10)替代。
@@ -593,9 +598,9 @@ static Delete(propName: string): boolean
 
 在AppStorage中删除propName对应的属性。
 
-在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。删除成功返回true。
+在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者为Link、Prop等接口绑定的propName，以及\@StorageLink('propName')和\@StorageProp('propName')。这就意味着如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者SubscribedAbstractProperty实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
+属性的订阅者为Link、Prop等接口绑定的propName，以及\@StorageLink('propName')和\@StorageProp('propName')。如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者SubscribedAbstractProperty实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[delete10+](#delete10)替代。
@@ -675,9 +680,9 @@ let simple = AppStorage.staticClear();
 
 static Clear(): boolean
 
-清除AppStorage的所有的属性。在AppStorage中清除所有属性的前提是，已经没有任何订阅者。如果有，则什么都不做返回false；删除成功返回true。
+删除AppStorage中所有属性。删除所有属性的前提是，AppStorage已经没有任何订阅者。如果有订阅者，Clear将不会生效并返回false。如果没有订阅者且删除成功则返回true。
 
-订阅者的含义和参考[delete10+](#delete10)。
+订阅者的含义参考[delete](#delete10)。
 
 > **说明：**<br/>
 > 从API version 9 开始支持，从API version 10 开始废弃，推荐使用[clear10+](#clear10)替代。
@@ -686,9 +691,9 @@ static Clear(): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果AppStorage中的属性已经没有订阅者，则清除成功，返回true。否则返回false。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果AppStorage中的属性已经没有订阅者则删除成功，返回true。否则返回false。 |
 
 **示例：**
 ```typescript
@@ -776,7 +781,7 @@ constructor(initializingProperties?: Object)
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 ```
 
@@ -823,13 +828,13 @@ has(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果propName对应的属性在AppStorage中存在，则返回true。不存在则返回false。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果propName对应的属性在LocalStorage中存在，则返回true。不存在则返回false。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 storage.has('PropA'); // true
 ```
@@ -839,7 +844,7 @@ storage.has('PropA'); // true
 
 get&lt;T&gt;(propName: string): T | undefined
 
-获取propName在LocalStorage中对应的属性。
+获取propName在LocalStorage中对应的属性值。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -854,13 +859,13 @@ get&lt;T&gt;(propName: string): T | undefined
 
 **返回值：**
 
-| 类型                       | 描述                                       |
-| ------------------------ | ---------------------------------------- |
-| T&nbsp;\|&nbsp;undefined | LocalStorage中propName对应的属性，如果不存在返回undefined。 |
+| 类型                     | 描述                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| T&nbsp;\|&nbsp;undefined | LocalStorage中propName对应的属性值，如果不存在则返回undefined。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let value: number = storage.get('PropA') as number; // 47
 ```
@@ -886,13 +891,14 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果LocalStorage不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功返回true。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果LocalStorage中不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功返回true。 |
 
 **示例：**
+
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.set('PropA', 47); // true
 let res1: boolean = storage.set('PropB', 47); // false
@@ -920,17 +926,18 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果设置的newValue是undefined或者null，返回false。<br/>如果LocalStorage存在propName，则更新其值为newValue，返回true。<br/>如果LocalStorage不存在propName，则创建propName，并初始化其值为newValue，返回true。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果设置的newValue是undefined或者null，返回false。<br/>如果LocalStorage中存在propName，则更新其值为newValue，返回true。<br/>如果LocalStorage中不存在propName，则创建propName，并初始化其值为newValue，返回true。 |
 
 **示例：**
+
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-let res: boolean =storage.setOrCreate('PropA', 121); // true
-let res1: boolean =storage.setOrCreate('PropB', 111); // true
-let res2: boolean =storage.setOrCreate('PropB', null); // false
+let res: boolean = storage.setOrCreate('PropA', 121); // true
+let res1: boolean = storage.setOrCreate('PropB', 111); // true
+let res2: boolean = storage.setOrCreate('PropB', null); // false
 ```
 
 
@@ -957,13 +964,13 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，如果AppStorage不存在对应的propName，再返回undefined。 |
+| 类型                                | 描述                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let linkToPropA1: SubscribedAbstractProperty<number> = storage.link('PropA');
 let linkToPropA2: SubscribedAbstractProperty<number> = storage.link('PropA'); // linkToPropA2.get() == 47
@@ -975,7 +982,7 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与Link接口类似，如果给定的propName在LocalStorage存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage创建和初始化propName，返回其双向绑定数据。
+与link接口类似，如果给定的propName在LocalStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -984,20 +991,20 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | 是    | LocalStorage中的属性名。                       |
-| defaultValue | T      | 是    | 当propName在LocalStorage中不存在，使用default在LocalStorage中初始化对应的propName。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | LocalStorage中的属性名。                                     |
+| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，如果AppStorage不存在对应的propName，再返回undefined。 |
+| 类型                                | 描述                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let link1: SubscribedAbstractProperty<number> = storage.setAndLink('PropB', 49); // Create PropB 49
 let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50); // PropA exists, remains 47
@@ -1008,7 +1015,7 @@ let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50);
 
 prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
-如果给定的propName在LocalStorage存在，则返回与LocalStorage中propName对应属性的单向绑定数据。如果LocalStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回LocalStorage中。
+如果给定的propName在LocalStorage中存在，则返回与LocalStorage中propName对应属性的单向绑定数据。如果LocalStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回LocalStorage中。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -1023,13 +1030,13 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，如果AppStorage不存在对应的propName，在返回undefined。 |
+| 类型                                | 描述                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let prop1: SubscribedAbstractProperty<number> = storage.prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = storage.prop('PropA');
@@ -1041,7 +1048,7 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-propName在LocalStorage存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage创建和初始化propName对应的属性，返回其单向绑定数据。
+与prop接口类似。如果propName在LocalStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，且不能为undefined或null。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -1050,20 +1057,21 @@ propName在LocalStorage存在，则返回该propName对应的属性的单向绑�
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| propName     | string | 是    | LocalStorage中的属性名。                       |
-| defaultValue | S      | 是    | 当propName在AppStorage中不存在，使用default在AppStorage中初始化对应的propName。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | LocalStorage中的属性名。                                     |
+| defaultValue | S      | 是   | 当propName在LocalStorage中不存在，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
-| ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，和AppStorage中propName对应属性的单向绑定的数据。 |
+| 类型                                | 描述                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。 |
 
 **示例：**
+
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let prop: SubscribedAbstractProperty<number> = storage.setAndProp('PropB', 49); // PropA -> 47, PropB -> 49
 ```
@@ -1073,9 +1081,9 @@ let prop: SubscribedAbstractProperty<number> = storage.setAndProp('PropB', 49); 
 
 delete(propName: string): boolean
 
-在LocalStorage中删除propName对应的属性。删除属性的前提是该属性已经没有订阅者，如果有则返回false。删除成功则返回true。
+在LocalStorage中删除propName对应的属性。在LocalStorage中删除属性的前提是该属性已经没有订阅者，如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者是link，prop接口绑定的propName，以及\@LocalStorageLink('propName')和\@LocalStorageProp('propName')。如果自定义组件Component中使用或者SubscribedAbstractProperty（link和prop接口的返回类型）依旧有同步关系，则该属性不能从LocalStorage中删除。
+属性的订阅者为link，prop等接口绑定的propName，以及\@LocalStorageLink('propName')和\@LocalStorageProp('propName')。如果自定义组件中使用\@LocalStorageLink('propName')和\@LocalStorageProp('propName')或者SubscribedAbstractProperty实例（link和prop接口的返回类型）依旧对propName有同步关系，则该属性不能从LocalStorage中删除。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -1090,13 +1098,13 @@ delete(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果LocalStorage中有对应的属性，且该属性已经没有订阅者，则删除成功返回true。如果属性不存在，或者该属性还存在订阅者，则返回false。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果LocalStorage中有对应的属性，且该属性已经没有订阅者，则删除成功，返回true。如果属性不存在，或者该属性还存在订阅者，则返回false。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 storage.link<number>('PropA');
 let res: boolean = storage.delete('PropA'); // false, PropA still has a subscriber
@@ -1125,7 +1133,7 @@ keys(): IterableIterator&lt;string&gt;
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let keys: IterableIterator<string> = storage.keys();
 ```
@@ -1144,13 +1152,13 @@ size(): number
 
 **返回值：**
 
-| 类型     | 描述        |
-| ------ | --------- |
-| number | 返回键值对的数量。 |
+| 类型   | 描述                         |
+| ------ | ---------------------------- |
+| number | LocalStorage中属性的的数量。 |
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: number = storage.size(); // 1
 ```
@@ -1160,8 +1168,9 @@ let res: number = storage.size(); // 1
 
 clear(): boolean
 
+删除LocalStorage中所有的属性。删除所有属性的前提是已经没有任何订阅者。如果有订阅者，clear不会生效并返回false。如果没有订阅者则删除成功并返回true。
 
-清除LocalStorage的所有的属性。在LocalStorage中清除所有属性的前提是已经没有任何订阅者。如果有则返回false；清除成功返回true。
+订阅者的含义参考[delete](#delete9)
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -1171,14 +1180,14 @@ clear(): boolean
 **返回值：**
 
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果LocalStorage中的属性已经没有任何订阅者，则清除成功，返回true。否则返回false。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果LocalStorage中的属性已经没有任何订阅者，则删除成功，并返回true。否则返回false。 |
 
 
 **示例：**
 ```ts
-let para:Record<string,number> = { 'PropA': 47 };
+let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.clear(); // true, there are no subscribers
 ```
@@ -1233,7 +1242,7 @@ abstract get(): T
 **示例：**
 ```ts
 AppStorage.setOrCreate('PropA', 47); 
-let prop1:SubscribedAbstractProperty<number> = AppStorage.prop('PropA');    
+let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');    
 prop1.get(); //  prop1.get()=47
 ```
 
@@ -1242,7 +1251,7 @@ prop1.get(); //  prop1.get()=47
 
 abstract set(newValue: T): void
 
-设置AppStorage/LocalStorage同步属性的数据。
+设置AppStorage/LocalStorage同步属性的数据，newValue必须是T类型，不能为undefined或null。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -1253,15 +1262,15 @@ abstract set(newValue: T): void
 **参数：**
 
 
-| 参数名      | 类型   | 必填   | 参数描述    |
-| -------- | ---- | ---- | ------- |
-| newValue | T    | 是    | 要设置的数据。 |
+| 参数名   | 类型 | 必填 | 参数描述                              |
+| -------- | ---- | ---- | ------------------------------------- |
+| newValue | T    | 是   | 要设置的数据，不能为undefined或null。 |
 
 
 **示例：**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let prop1:SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
+let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); //  prop1.get()=1
 ```
 
@@ -1269,7 +1278,7 @@ prop1.set(1); //  prop1.get()=1
 
 abstract aboutToBeDeleted(): void
 
-取消SubscribedAbstractProperty实例对AppStorage/LocalStorage单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
+取消SubscribedAbstractProperty实例对AppStorage/LocalStorage的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1292,10 +1301,10 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 
 **参数：**
 
-| 参数名       | 类型                                 | 必填 | 参数描述                                                     |
-| ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| key          | string                               | 是   | 属性名。                                                     |
-| defaultValue | number \| string \|boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。不允许为undefined和null。 |
+| 参数名       | 类型                                  | 必填 | 参数描述                                                     |
+| ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| key          | string                                | 是   | 属性名。                                                     |
+| defaultValue | number \| string \| boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。不允许为undefined和null。 |
 
 
 ### persistProp<sup>10+</sup>
@@ -1310,7 +1319,7 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 
 2. 如果PersistentStorage文件中没有查询到key对应的属性，则在AppStorage中查找key对应的属性。如果找到key对应的属性，则将该属性持久化。
 
-3. 如果AppStorage也没查找到key对应的属性，则在AppStorage中创建key对应的属性。用defaultValue初始化其值，并将该属性持久化。
+3. 如果AppStorage中也没查找到key对应的属性，则在AppStorage中创建key对应的属性。用defaultValue初始化其值，并将该属性持久化。
 
 根据上述的初始化流程，如果AppStorage中有该属性，则会使用其值，覆盖掉PersistentStorage文件中的值。由于AppStorage是内存内数据，该行为会导致数据丧失持久化能力。
 
@@ -1318,10 +1327,10 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| key          | string | 是    | 属性名。                                     |
-| defaultValue | T      | 是    | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化初始化它。不允许为undefined和null。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| key          | string | 是   | 属性名。                                                     |
+| defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。不允许为undefined和null。 |
 
 
 **示例：**
@@ -1334,7 +1343,7 @@ persistProp具体使用，见[从AppStorage中访问PersistentStorage初始化�
 
 static deleteProp(key: string): void
 
-persistProp的逆向操作。将key对应的属性从PersistentStorage删除，后续AppStorage的操作，对PersistentStorage不会再有影响。
+persistProp的逆向操作。将key对应的属性从PersistentStorage中删除，后续AppStorage的操作，对PersistentStorage不会再有影响。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1374,15 +1383,15 @@ PersistentStorage.persistProps([{ key: 'highScore', defaultValue: '0' }, { key: 
 
 static keys(): Array&lt;string&gt;
 
-返回所有持久化属性的key的数组。
+返回所有持久化属性的属性名的数组。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
-| 类型                  | 描述                |
-| ------------------- | ----------------- |
-| Array&lt;string&gt; | 返回所有持久化属性的key的数组。 |
+| 类型                | 描述                               |
+| ------------------- | ---------------------------------- |
+| Array&lt;string&gt; | 返回所有持久化属性的属性名的数组。 |
 
 **示例：**
 ```ts
@@ -1414,10 +1423,10 @@ static PersistProp&lt;T&gt;(key: string, defaultValue: T): void
 
 **参数：**
 
-| 参数名          | 类型     | 必填   | 参数描述                                     |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| key          | string | 是    | 属性名。                                     |
-| defaultValue | T      | 是    | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化初始化它。不允许为undefined和null。 |
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| key          | string | 是   | 属性名。                                                     |
+| defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。不允许为undefined和null。 |
 
 
 **示例：**
@@ -1432,7 +1441,7 @@ PersistentStorage.PersistProp('highScore', '0');
 
 static DeleteProp(key: string): void
 
-PersistProp的逆向操作。将key对应的属性从PersistentStorage删除，后续AppStorage的操作，对PersistentStorage不会再有影响。
+PersistProp的逆向操作。将key对应的属性从PersistentStorage中删除，后续AppStorage的操作，对PersistentStorage不会再有影响。
 
 
 > **说明：**<br/>
@@ -1480,7 +1489,7 @@ PersistentStorage.PersistProps([{ key: 'highScore', defaultValue: '0' }, { key: 
 
 static Keys(): Array&lt;string&gt;
 
-返回所有持久化属性的key的数组。
+返回所有持久化属性的属性名的数组。
 
 > **说明：**<br/>
 > 从API version 10开始废弃，推荐使用[keys10+](#keys10-1)替代。
@@ -1489,9 +1498,9 @@ static Keys(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型                  | 描述                |
-| ------------------- | ----------------- |
-| Array&lt;string&gt; | 返回所有持久化属性的key的数组。 |
+| 类型                | 描述                               |
+| ------------------- | ---------------------------------- |
+| Array&lt;string&gt; | 返回所有持久化属性的属性名的数组。 |
 
 **示例：**
 ```ts
@@ -1510,36 +1519,36 @@ Environment具体使用说明，详见[Environment(设备环境查询)](../../qu
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
-| ------------ | ------ | ---- | ------------------------------------------------------------ |
-| key          | string | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
-| defaultValue | S      | 是   | 查询不到环境变量key，则使用defaultValue作为默认值存入AppStorage中。 |
+| 参数名       | 类型                        | 必填 | 参数描述                                                     |
+| ------------ | --------------------------- | ---- | ------------------------------------------------------------ |
+| key          | string                      | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
+| defaultValue | number \| string \| boolean | 是   | 查询不到环境变量key，则使用defaultValue作为默认值存入AppStorage中。 |
 
 
 ### envProp<sup>10+</sup>
 
 static envProp&lt;S&gt;(key: string, value: S): boolean
 
-将Environment的内置环境变量key存入AppStorage中。如果系统中未查询到Environment环境变量key的值，则使用默认值value，存入成功，返回true。如果AppStorage已经有对应的key，则返回false。
+将Environment的内置环境变量key存入AppStorage中。如果系统中未查询到Environment环境变量key的值，则使用默认值value，存入成功，返回true。如果AppStorage中已经有对应的key，则返回false。
 
 所以建议在程序启动的时候调用该接口。
 
-在没有调用envProp，就使用AppStorage读取环境变量是错误的。
+在没有调用envProp的情况下，就使用AppStorage读取环境变量是错误的。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名   | 类型     | 必填   | 参数描述                                    |
-| ----- | ------ | ---- | --------------------------------------- |
-| key   | string | 是    | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。    |
-| value | S      | 是    | 查询不到环境变量key，则使用value作为默认值存入AppStorage中。 |
+| 参数名 | 类型   | 必填 | 参数描述                                                     |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| key    | string | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
+| value  | S      | 是   | 查询不到环境变量key时，则使用value作为默认值存入AppStorage中。 |
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果key对应的属性在AppStorage中存在，则返回false。不存在则在AppStorage中创建key对应的属性，返回true。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果key对应的属性在AppStorage中存在，则返回false。不存在则在AppStorage中用value作为默认值创建key对应的属性，返回true。 |
 
 **示例：**
 
@@ -1599,11 +1608,11 @@ let keys: Array<string> = Environment.keys(); // accessibilityEnabled, languageC
 
 static EnvProp&lt;S&gt;(key: string, value: S): boolean
 
-将Environment的内置环境变量key存入AppStorage中。如果系统中未查询到Environment环境变量key的值，则使用默认值value，存入成功，返回true。如果AppStorage已经有对应的key，则返回false。
+将Environment的内置环境变量key存入AppStorage中。如果系统中未查询到Environment环境变量key的值，则使用默认值value，存入成功，返回true。如果AppStorage中已经有对应的key，则返回false。
 
 所以建议在程序启动的时候调用该接口。
 
-在没有调用EnvProp，就使用AppStorage读取环境变量是错误的。
+在没有调用EnvProp的情况下，就使用AppStorage读取环境变量是错误的。
 
 > **说明：**<br/>
 > 从API version 10开始废弃，推荐使用[envProp10+](#envprop10)替代。
@@ -1619,9 +1628,9 @@ static EnvProp&lt;S&gt;(key: string, value: S): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
-| ------- | ---------------------------------------- |
-| boolean | 如果key对应的属性在AppStorage中存在，则返回false。不存在则在AppStorage中创建key对应的属性，返回true。 |
+| 类型    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果key对应的属性在AppStorage中存在，则返回false。不存在则在AppStorage中用value作为默认值创建key对应的属性，返回true。 |
 
 **示例：**
 
@@ -1688,11 +1697,11 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 
 ## 内置环境变量说明
 
-| key                  | 类型              | 说明                                       |
-| -------------------- | --------------- | ---------------------------------------- |
-| accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。                             |
+| key                  | 类型            | 说明                                                         |
+| -------------------- | --------------- | ------------------------------------------------------------ |
+| accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
 | colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
-| fontScale            | number          | 字体大小比例。                                  |
-| fontWeightScale      | number          | 字重比例。                                    |
+| fontScale            | number          | 字体大小比例。                                               |
+| fontWeightScale      | number          | 字重比例。                                                   |
 | layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。 |
-| languageCode         | string          | 当前系统语言，小写字母，例如zh。                        |
+| languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |

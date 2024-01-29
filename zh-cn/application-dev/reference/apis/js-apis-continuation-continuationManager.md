@@ -1124,7 +1124,6 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
-  import { BusinessError } from '@ohos.base';
 
   let token: number = 1;
   try {
