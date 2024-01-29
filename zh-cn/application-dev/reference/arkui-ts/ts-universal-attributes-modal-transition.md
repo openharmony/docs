@@ -27,12 +27,12 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 | options | [ContentCoverOptions](#contentcoveroptions) | 否   | 配置全屏模态页面的可选属性。                                 |
 
 ## ContentCoverOptions
-| 名称              | 类型                                       | 必填   | 描述            |
-| --------------- | ---------------------------------------- | ---- | ------------- |
-| modalTransition | [ModalTransition](ts-types.md#modaltransition10) | 否    | 全屏模态页面的转场方式。  |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 全屏模态页面的背板颜色。  |
-| onAppear        | () => void                               | 否    | 全屏模态页面显示回调函数。 |
-| onDisappear     | () => void                               | 否    | 全屏模态页面回退回调函数。 |
+
+继承自[BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions)。
+
+| 名称            | 类型                                             | 必填 | 描述                     |
+| --------------- | ------------------------------------------------ | ---- | ------------------------ |
+| modalTransition | [ModalTransition](ts-types.md#modaltransition10) | 否   | 全屏模态页面的转场方式。 |
 
 ## 示例
 

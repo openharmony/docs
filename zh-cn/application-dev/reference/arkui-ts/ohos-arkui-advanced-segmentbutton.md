@@ -116,7 +116,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围                         | 说明                                          |
+| 类型                             | 说明                                          |
 | -------------------------------- | --------------------------------------------- |
 | [PX](ts-types.md#px10)           | 长度类型，用于描述以px像素单位为单位的长度。  |
 | [VP](ts-types.md#vp10)           | 长度类型，用于描述以vp像素单位为单位的长度。  |
