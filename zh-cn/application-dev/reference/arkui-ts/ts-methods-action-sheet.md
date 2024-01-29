@@ -12,11 +12,19 @@
 
 ## ActionSheet.show
 
-show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource, subtitle:&nbsp;Resource,&nbsp;message: string&nbsp;|&nbsp;Resource,&nbsp;confirm?: {enabled?: boolean, defaultFocus?: boolean, style?: DialogButtonStyle, value: string&nbsp;|&nbsp;Resource,&nbsp;action:() => void},&nbsp;cancel?:()=>void,&nbsp;sheets: Array&lt;SheetInfo&gt;,&nbsp;autoCancel?:boolean,&nbsp;alignment?: DialogAlignment,&nbsp;offset?: { dx: number | string | Resource; dy: number | string | Resource } })
+show(value: ActionSheetOptions)
 
 定义列表弹窗并弹出。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                              | 必填 | 描述                     |
+| ------ | ------------------------------------------------- | ---- | ------------------------ |
+| value  | [ActionSheetOptions](#actionsheetoptions对象说明) | 是   | 配置列表选择弹窗的参数。 |
+
+## ActionSheetOptions对象说明
 
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
