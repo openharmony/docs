@@ -7395,8 +7395,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
     try {
-    proxy.registerDeathRecipient(deathRecipient, 0);
-    proxy.unregisterDeathRecipient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorCode ' + e.code);
