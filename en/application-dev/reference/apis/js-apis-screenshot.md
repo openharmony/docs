@@ -37,10 +37,10 @@ Describes the region of the screen to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes  | Left boundary of the screen region to capture, in pixels. The value must be an integer.|
-| top    | number | Yes  | Top boundary of the screen region to capture, in pixels. The value must be an integer.|
-| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
-| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
+| left   | number | Yes  | Left boundary of the screen region to capture, in px. The value must be an integer.|
+| top    | number | Yes  | Top boundary of the screen region to capture, in px. The value must be an integer.|
+| width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer.|
 
 
 ## Size
@@ -51,8 +51,8 @@ Describes the size of the screen region to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
-| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
+| width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer.|
 
 ## screenshot.save
 
