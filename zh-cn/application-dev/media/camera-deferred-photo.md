@@ -32,37 +32,36 @@
 
 2. 确定拍照输出流。
 
-   通过CameraOutputCapability类中的photoProfiles()方法，可获取当前设备支持的拍照输出流，通过createPhotoOutput()方法创建拍照输出流。
+   通过[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../reference/apis/js-apis-camera.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
-   function getPhotoOutput(cameraManager: camera.CameraManager,
+   function getPhotoOutput(cameraManager: camera.CameraManager, 
                            cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
-   	let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-   	if (!photoProfilesArray) {
-   		console.error("createOutput photoProfilesArray == null || undefined");
-   	}
-   	let photoOutput: camera.PhotoOutput | undefined = undefined;
-   	try {
-   		photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
-   	} catch (error) {
-   		let err = error as BusinessError;
-   		console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
-   	}
-   	return photoOutput;
+     let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
+     if (!photoProfilesArray) {
+       console.error("createOutput photoProfilesArray == null || undefined");
+     }
+     let photoOutput: camera.PhotoOutput | undefined = undefined;
+     try {
+       photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+     }
+     return photoOutput;
    }
    ```
 
 3. 查询当前设备当前模式是否支持相应分段式能力。
 
    ```ts
-   function isDeferredImageDeliverySupported(photoOutput: camera.PhotoOutput,
-                                             deferredType: camera.DeferredDeliveryImageType): boolean {
-   	let res: boolean = false;
-       if (photoOutPut !== null) {
-   		res = photoOutPut.isDeferredImageDeliverySupported(camera.DeferredDeliveryImageType.PHOTO);
-       }
-       console.info(`isDeferredImageDeliverySupported res: ${res}`);
-       return res;
+   function isDeferredImageDeliverySupported(photoOutput: camera.PhotoOutput): boolean {
+     let isSupported: boolean = false;
+     if (photoOutput !== null) {
+       isSupported = photoOutput.isDeferredImageDeliverySupported(camera.DeferredDeliveryImageType.PHOTO);
+     }
+     console.info(`isDeferredImageDeliverySupported isSupported: ${isSupported}`);
+     return isSupported;
    }
    ```
 
@@ -70,21 +69,20 @@
 
    ```ts
    function EnableDeferredPhotoAbility(photoOutput: camera.PhotoOutput): void {
-   	photoOutPut.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
+     photoOutput.deferImageDelivery(camera.DeferredDeliveryImageType.PHOTO);
    }
    ```
 
 5. 查询是否已经成功使能分段式拍照。
 
    ```ts
-   function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutpu,
-                                           deferredType: camera.DeferredDeliveryImageType): boolean {
-   	let res: boolean = false;
-       if (photoOutPut !== null) {
-   		res = photoOutPut.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
-       }
-       console.info(`isDeferredImageDeliveryEnabled res: ${res}`);
-       return res;
+   function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutput): boolean {
+   	 let isEnabled: boolean = false;
+     if (photoOutput !== null) {
+   	   isEnabled = photoOutput.isDeferredImageDeliveryEnabled(camera.DeferredDeliveryImageType.PHOTO);
+     }
+     console.info(`isDeferredImageDeliveryEnabled isEnabled: ${isEnabled}`);
+     return isEnabled;
    }
    ```
 
@@ -98,19 +96,19 @@
 
    ```ts
    function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
-   	photoOutPut.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
-         if (err) {
-           console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
-           return;
-         }
-         console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-         // 获取缩略图 pixelMap
-         proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
-           AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
-         });
-         // 调用媒体库接口落盘缩略图，详细实现见2。
-         this.saveDeferredPhoto(proxyObj);
+     photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
+       if (err) {
+         console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+         return;
+       }
+       console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
+       // 获取缩略图 pixelMap
+       proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
+         AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
+       // 调用媒体库接口落盘缩略图，详细实现见2。
+       saveDeferredPhoto(proxyObj);
+     });
    }
    ```
 
@@ -124,18 +122,18 @@
    let context = getContext(this);
    
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
-       try {
-           // 创建 photoAsset
-   		let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-   		let testFileName = 'testFile' + Date.now() + '.jpg';
-   		let photoAsset = await photoAccessHelper.createAsset(testFileName);
-           // 将缩略图代理类传递给媒体库
-           let mediaRequest: photoAccessHelper.MediaChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
-           mediaRequest.AddResource(photoAccessHelper.ResourceTypeType.PHOTOT_PROXY, proxyObj);
-           let res = await photoAccessHelper.applyChanges(mediaRequest);
-   		console.info('saveDeferredPhoto success.');
-       } catch (err) {
-           console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
-       }
+     try {
+       // 创建 photoAsset
+       let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+       let testFileName = 'testFile' + Date.now() + '.jpg';
+       let photoAsset = await photoAccessHelper.createAsset(testFileName);
+       // 将缩略图代理类传递给媒体库
+       let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
+       let res = await photoAccessHelper.applyChanges(mediaRequest);
+       console.info('saveDeferredPhoto success.');
+     } catch (err) {
+       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+     }
    }
    ```
