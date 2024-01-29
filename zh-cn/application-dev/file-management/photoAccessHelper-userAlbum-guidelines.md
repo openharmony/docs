@@ -5,7 +5,7 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 > **说明：**
 >
 > 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> 文档中使用到photoAccessHelper的地方默认为使用相册管理模块开发概述中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
+> 文档中使用到photoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
 
 为了保证应用的运行效率，大部分PhotoAccessHelper接口调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis/js-apis-photoAccessHelper.md)。
 如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
