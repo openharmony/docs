@@ -78,7 +78,7 @@ changeRenderType(type: NodeRenderType): boolean
 
 | 类型 | 描述                   |
 | ---- | ---------------------- |
-| bool | 修改渲染类型是否成功。 |
+| boolean | 修改渲染类型是否成功。 |
 
 ## 示例
 

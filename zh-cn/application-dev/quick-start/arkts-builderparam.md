@@ -25,9 +25,9 @@
   struct Child {
     @Builder doNothingBuilder() {};
 
-    // 使用自定义组件的自定义构建函数初始化\@BuilderParam
+    // 使用自定义组件的自定义构建函数初始化@BuilderParam
     @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
-    // 使用全局自定义构建函数初始化\@BuilderParam
+    // 使用全局自定义构建函数初始化@BuilderParam
     @BuilderParam aBuilder1: () => void = GlobalBuilder0;
     build(){}
   }
@@ -39,7 +39,7 @@
   @Component
   struct Child {
     @Builder FunABuilder0() {}
-    // 使用父组件\@Builder装饰的方法初始化子组件\@BuilderParam
+    // 使用父组件@Builder装饰的方法初始化子组件@BuilderParam
     @BuilderParam aBuilder0: () => void = this.FunABuilder0;
 
     build() {
@@ -72,7 +72,7 @@
 
   以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。
 
-  
+
   ```ts
   @Component
   struct Child {
@@ -189,7 +189,7 @@ struct Parent {
 struct CustomContainer {
   @Prop header: string = '';
   @Builder CloserFun(){}
-  // 使用父组件的尾随闭包{}(\@Builder装饰的方法)初始化子组件\@BuilderParam
+  // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam
   @BuilderParam closer: () => void = this.CloserFun
 
   build() {

@@ -5371,3 +5371,44 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 参数名      | 参数类型                      | 参数描述              |
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
+
+## NativeEmbedStatus<sup>11+</sup>
+
+定义Embed标签生命周期。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| CREATE                        | 0 | Embed标签创建。   |
+| UPDATE                        | 1 | Embed标签更新。   |
+| DESTROY                       | 2 | Embed标签销毁。 |
+
+## NativeEmbedInfo<sup>11+</sup>
+
+提供Embed标签的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| id     | string             | 是    | Embed标签的id信息。 |
+| type  | string                              | 是    | Embed标签的type信息。  |
+| src | string                              | 是    | Embed标签的src信息。  |
+| width  | number  | 是    | Embed标签的宽。       |
+| height | number                              | 是    | Embed标签的高。  |
+| url | string                              | 是    | Embed标签的url信息。  |
+## NativeEmbedDataInfo<sup>11+</sup>
+
+提供Embed标签生命周期变化的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 是    | Embed标签生命周期状态。 |
+| surfaceId  | string                              | 是    | NativeImage的psurfaceid。  |
+| embedId | string                              | 是    | Embed标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 是    | Embed标签的详细信息。       |
+## NativeEmbedTouchInfo<sup>11+</sup>
+
+提供手指触摸到Embed标签的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| embedId     | string   | 是    | Embed标签的唯一id。 |
+| touchEvent  | TouchEvent  | 是    | 手指触摸动作信息。  |

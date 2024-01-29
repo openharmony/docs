@@ -15,7 +15,7 @@ import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateCh
 
 ## ApplicationStateChangeCallback.onApplicationForeground
 
-onApplicationForeground(): void;
+onApplicationForeground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从后台切换到前台时触发回调。
 
@@ -27,7 +27,7 @@ onApplicationForeground(): void;
 
 ## ApplicationStateChangeCallback.onApplicationBackground
 
-onApplicationBackground(): void;
+onApplicationBackground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从前台切换到后台时触发回调。
 

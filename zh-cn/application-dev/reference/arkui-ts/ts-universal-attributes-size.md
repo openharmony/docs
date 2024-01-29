@@ -132,7 +132,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [ConstraintSizeOptions](#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考[constraintSize取值对width/height影响](ts-universal-attributes-size.md#constraintsize取值对widthheight影响)。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
+| value | [ConstraintSizeOptions](#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
 
 **constraintSize取值对width/height影响** 
 
@@ -151,21 +151,21 @@ constraintSize(value: ConstraintSizeOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称     | 类型                           | 描述      |
-| ------ | ---------------------------- | ------- |
-| width  | [Length](ts-types.md#length) | 设置组件宽度。 |
-| height | [Length](ts-types.md#length) | 设置组件高度。 |
+| 参数名   | 类型                                       | 必填   | 说明                                       |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| width  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件宽度。 |
+| height | [Length](ts-types.md#length) | &nbsp;否 | 设置组件高度。 |
 
 ## ConstraintSizeOptions对象说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 类型                           | 描述        |
-| --------- | ---------------------------- | --------- |
-| minWidth  | [Length](ts-types.md#length) | 设置组件最小宽度。 |
-| maxWidth  | [Length](ts-types.md#length) | 设置组件最大宽度。 |
-| minHeight | [Length](ts-types.md#length) | 设置组件最小高度。 |
-| maxHeight | [Length](ts-types.md#length) | 设置组件最大高度。 |
+| 参数名   | 类型                                       | 必填   | 说明                                       |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| minWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最小宽度。 |
+| maxWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最大宽度。 |
+| minHeight | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最小高度。 |
+| maxHeight | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最大高度。 |
 
 >  **说明：**
 >
