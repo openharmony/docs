@@ -75,10 +75,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
+        wantAgent = data;
     }
 }
 try {
@@ -157,12 +157,12 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-    wantAgent = data;
-}).catch((err: BusinessError) => {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
-});
+        wantAgent = data;
+    }).catch((err: BusinessError) => {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    });
 } catch (err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -231,10 +231,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // getBundleName callback
     let getBundleNameCallback = (err: BusinessError, data: string) => {
@@ -327,10 +327,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getBundleName(wantAgent).then((data)=>{
@@ -414,10 +414,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.info(`getWantAgent failed ${JSON.stringify(err)}`);
+        wantAgent = data;
     }
     // getUid callback
     let getUidCallback = (err: BusinessError, data: number) => {
@@ -510,10 +510,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
@@ -599,10 +599,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // getWant callback
     let getWantCallback = (err: BusinessError, data: Want) => {
@@ -698,10 +698,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
@@ -785,10 +785,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // cancel callback
     let cancelCallback = (err: BusinessError, data: void) => {
@@ -881,10 +881,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.cancel(wantAgent).then((data)=>{
@@ -962,10 +962,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // trigger callback
     let triggerCallback = (err: BusinessError, data: WantAgent.CompleteData) => {
@@ -1046,11 +1046,13 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    } else {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     // equal callback
     let equalCallback = (err: BusinessError, data: boolean) => {
@@ -1136,11 +1138,13 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    } else {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
@@ -1223,10 +1227,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // getOperationTypeCallback callback
     let getOperationTypeCallback = (err: BusinessError, data: number) => {
@@ -1318,10 +1322,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getOperationType(wantAgent).then((data)=>{
@@ -1344,17 +1348,17 @@ try {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name               | Value            | Description                                                                    |
-| ------------------- | -------------- |------------------------------------------------------------------------|
-| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                                      |
-| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.                                    |
-| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                               |
-| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                              |
-| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                       |
-| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.     |
-| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.       |
-| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.             |
-| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.   |
+| Name               | Value            | Description                                                                     |
+| ------------------- | -------------- |-------------------------------------------------------------------------|
+| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                                       |
+| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.                                     |
+| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                                |
+| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                               |
+| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                        |
+| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.      |
+| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.        |
+| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.              |
+| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.    |
 | REPLACE_BUNDLE      | 9 | The **bundleName** attribute in the current Want can be replaced by the **bundleName** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.|
 
 
@@ -1380,7 +1384,7 @@ try {
 | Name          | Type                          | Mandatory| Description                   |
 | -------------- | ------------------------------ | ---- | ---------------------- |
 | info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
-| want           | Want                            | Yes  | An existing triggered Want.    |
+| want           | [Want](js-apis-app-ability-want.md#attributes)                           | Yes  | An existing triggered Want.    |
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | Yes  | Final data collected by the common event. |
-| extraInfo      | {[key: string]: any}            | No  | Extra information.              |
+| extraInfo      | Record\<string, Object>            | No  | Extra information.              |

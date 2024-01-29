@@ -21,11 +21,11 @@ Defines the quick fix information at the HAP file level.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Type                | Mandatory| Description                                                        |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| moduleName    | string               | Yes  | Name of the HAP file.                              |
-| originHapHash    | string               | Yes  | Hash value of the HAP file.                              |
-| quickFixFilePath    | string               | Yes  | Installation path of the quick fix patch file.                              |
+| Name       | Type                | Read-only| Mandatory| Description                                                        |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| moduleName    | string               | Yes|  Yes  | Name of the HAP file.                              |
+| originHapHash    | string            | Yes| Yes  | Hash value of the HAP file.                              |
+| quickFixFilePath    | string         | Yes| Yes  | Installation path of the quick fix patch file.                              |
 
 ## ApplicationQuickFixInfo
 
@@ -35,14 +35,14 @@ Defines the quick fix information at the application level.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Type                | Mandatory| Description                                                        |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | Yes  | Bundle name.                      |
-| bundleVersionCode    | number               | Yes  | Internal version number of the application.                              |
-| bundleVersionName    | string               | Yes  | Version number of the application that is shown to users.                              |
-| quickFixVersionCode    | number               | Yes  | Version code of the quick fix patch package.                              |
-| quickFixVersionName    | string               | Yes  | Text description of the version number of the quick fix patch package.                              |
-| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>      | Yes  | Quick fix information at the HAP file level.    |
+| Name       | Type                | Read-only| Mandatory| Description                                                        |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName    | string               | Yes| Yes  | Bundle name.                      |
+| bundleVersionCode    | number        | Yes| Yes  | Internal version number of the application.                              |
+| bundleVersionName    | string        | Yes| Yes  | Version number of the application that is shown to users.                              |
+| quickFixVersionCode    | number      | Yes| Yes  | Version code of the quick fix patch package.                              |
+| quickFixVersionName    | string      | Yes| Yes  | Text description of the version number of the quick fix patch package.                              |
+| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>   | Yes| Yes  | Quick fix information at the HAP file level.    |
 
 ## quickFixManager.applyQuickFix
 
@@ -93,7 +93,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
       }
     });
   } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
   }
 ```
 

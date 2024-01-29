@@ -31,6 +31,9 @@ import common from '@ohos.app.ability.common';
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | Level-2 module **AbilityStartCallback**.|
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
+| AutoFillExtensionContext   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | Level-2 module **AutoFillExtensionContext**.|
+| AutoStartupInfo   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | Level-2 module **AutoStartupInfo**.|
+| AutoStartupCallback   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | Level-2 module **AutoStartupCallback**.|
 
 **Example**
 ```ts
@@ -48,4 +51,7 @@ let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
+let autoFillExtensionContext: common.AutoFillExtensionContext;
+let autoStartupInfo: common.AutoStartupInfo;
+let autoStartupCallback: common.AutoStartupCallback;
 ```

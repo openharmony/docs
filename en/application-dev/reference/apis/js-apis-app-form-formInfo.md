@@ -14,7 +14,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 ## FormInfo
 
-Describes widget information.
+Defines the widget information.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -23,7 +23,7 @@ Describes widget information.
 | bundleName  | string               | Yes   | No    | Name of the bundle to which the widget belongs.                  |
 | moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
 | abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
-| name        | string               | Yes   | No    | Widget name.                                |
+| name        | string               | Yes   | No    | Name of an application or ability.                                |
 | description | string               | Yes   | No    | Description of the widget.  |
 | descriptionId<sup>10+</sup>      | number               | Yes   | No    | ID of the widget description.              |
 | type        | [FormType](#formtype)             | Yes   | No    | Type of the widget. Currently, JS and ArkTS widgets are supported.|
@@ -37,7 +37,7 @@ Describes widget information.
 | updateDuration        | number       | Yes   | No    | Update period of the widget.|
 | defaultDimension  | number | Yes   | No    | Default dimension of the widget.                                      |
 | supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).  |
-| customizeData    | {[key: string]: [value: string]}      | Yes   | No    | Custom data of the widget.        |
+| customizeData    | Record\<string, string>      | Yes   | No    | Custom data of the widget.        |
 | isDynamic<sup>10+</sup>      | boolean               | Yes   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.              |
 | transparencyEnabled<sup>11+</sup>      | boolean               | Yes   | No    | Whether the widget supports the setting of the background transparency.<br>For ArkTS widgets, the support for the background transparency setting depends on user configurations. For JS widgets, the background transparency setting is not supported.              |
 
@@ -122,7 +122,7 @@ Enumerates the widget dimensions.
 | Dimension_2_4      | 3   | 2 x 4.  |
 | Dimension_4_4      | 4   | 4 x 4.  |
 | Dimension_2_1      | 5   | 2 x 1.  |
-| Dimension_1_1      | 6   | 1 x 1.  |
+| DIMENSION_1_1<sup>11+</sup>   | 6   | 1 x 1.  |
 
 
 ## FormInfoFilter
@@ -162,7 +162,7 @@ Enumerates the usage statuses of widgets.
 
 ## RunningFormInfo<sup>10+</sup>
 
-Defines the information about the widget host.
+Defines the information about an added widget, which can be either in use or not.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -179,6 +179,7 @@ Defines the information about the widget host.
 | formName<sup>10+</sup>        | string               | Yes   | No    | Widget name.                                |
 | dimension | number               | Yes   | No    | Widget specifications.  |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
+| formDescription<sup>11+</sup> | string         | Yes   | No    | Description in the widget configuration file of the provider.  |
 
 ## formProviderFilter<sup>10+</sup>
 
