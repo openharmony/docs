@@ -5629,7 +5629,7 @@ IP多媒体系统调用模式。
 | DEVICE_SPEAKER       | 1    | 扬声器设备   |
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
-| DEVICE_DISTRIBUTED_AUTOMOTIVE<sup>11+</sup> | 4    |  |
+| DEVICE_DISTRIBUTED_AUTOMOTIVE<sup>11+</sup> | 4    | 分布式车机设备|
 
 ## AudioDeviceCallbackInfo<sup>10+</sup>
 
@@ -5734,8 +5734,8 @@ IP多媒体系统调用模式。
 | callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态   |
 | conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态       |
 | voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
-| crsType<sup>11+</sup> | number                             | 是   |          |
-| originalCallType<sup>11+</sup> | number                    | 是   |          |
+| crsType<sup>11+</sup> | number                             | 是   | 视频彩振类型|
+| originalCallType<sup>11+</sup> | number                    | 是   | 视频彩振原始呼叫类型|
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -5799,7 +5799,7 @@ VoIP通话信息。
 | TYPE_VIDEO_SEND_ONLY<sup>11+</sup>    | 1    | 视频通话只发送数据状态。 |
 | TYPE_VIDEO_RECEIVE_ONLY<sup>11+</sup> | 2    | 视频通话只接收数据状态。 |
 | TYPE_VIDEO                            | 3    | 视频状态。 |
-| TYPE_VIDEO_BIDIRECTIONAL<sup>11+</sup>| 4    |  |
+| TYPE_VIDEO_BIDIRECTIONAL<sup>11+</sup>| 4    | 视频通话接收发送数据状态。|
 
 ## DetailedCallState<sup>7+</sup>
 
