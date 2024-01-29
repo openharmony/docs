@@ -56,7 +56,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: S
 
 ## SelectDialog
 
-SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent?: Array&lt;SheetInfo&gt;})
+SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array&lt;SheetInfo&gt;})
 
 选择类弹出框，弹框中以列表或网格的形式提供可选的的内容。
 
@@ -73,7 +73,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
 | confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
 
 ## ConfirmDialog
@@ -101,7 +101,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, content?: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
 
@@ -134,7 +134,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 加载弹出框内容。 | 
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 | 
 
 
 ## ButtonOptions
