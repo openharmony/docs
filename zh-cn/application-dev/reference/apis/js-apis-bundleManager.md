@@ -2897,7 +2897,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
+以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -2907,9 +2907,9 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| moduleName   | string                        | 是   | 表示应用程序的moduleName。                                     |
-| abilityName  | string                        | 是   | 表示应用程序的abilityName。                                    |
-| metadataName | string                        | 是   | 表示应用程序的metadataName。                                  |
+| moduleName   | string                        | 是   | 表示Module名称。                                     |
+| abilityName  | string                        | 是   | 表示UIAbility组件的名称。                                    |
+| metadataName | string                        | 是   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name。                                  |
 | callback     | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -2932,7 +2932,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName, (err, data) => {
@@ -2952,7 +2952,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -2962,9 +2962,9 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 参数名       | 类型   | 必填 | 说明                       |
 | ------------ | ------ | ---- | -------------------------- |
-| moduleName   | string | 是   | 表示应用程序的moduleName。   |
-| abilityName  | string | 是   | 表示应用程序的abilityName。  |
-| metadataName | string | 否   | 表示应用程序的metadataName，默认值为空。 |
+| moduleName   | string | 是   | 表示Module名称。   |
+| abilityName  | string | 是   | 表示UIAbility组件的名称。  |
+| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -3011,7 +3011,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 try {
     bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
@@ -3028,7 +3028,7 @@ try {
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>
 
-以同步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+以同步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，返回对象为string数组。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -3038,9 +3038,9 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 | 参数名       | 类型   | 必填 | 说明                       |
 | ------------ | ------ | ---- | -------------------------- |
-| moduleName   | string | 是   | 表示应用程序的moduleName。   |
-| abilityName  | string | 是   | 表示应用程序的abilityName。  |
-| metadataName | string | 否   | 表示应用程序的metadataName，默认值为空。 |
+| moduleName   | string | 是   | 表示Module名称。   |
+| abilityName  | string | 是   | 表示UIAbility组件的名称。  |
+| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -3084,7 +3084,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName: string = 'entry';
 let abilityName: string = 'EntryAbility';
-let metadataName: string = 'com.example.myapplication.metadata';
+let metadataName: string = 'ability_metadata';
 try {
     let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
     hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
@@ -3098,7 +3098,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
+以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -3108,9 +3108,9 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 参数名                 | 类型                          | 必填 | 说明                                                         |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| moduleName           | string                        | 是   | 表示应用程序的moduleName。                                   |
-| extensionAbilityName | string                        | 是   | 表示应用程序的extensionAbilityName。                         |
-| metadataName         | string                        | 是   | 表示应用程序的metadataName。                                 |
+| moduleName           | string                        | 是   | 表示Module名称。                                   |
+| extensionAbilityName | string                        | 是   | 表示ExtensionAbility组件的名称。                         |
+| metadataName         | string                        | 是   | 表示ExtensionAbility组件的名称。组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name。                                 |
 | callback             | AsyncCallback<Array\<string>> | 是   | 回调函数，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -3132,7 +3132,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName, (err, data) => {
@@ -3152,7 +3152,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -3162,9 +3162,9 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 参数名                 | 类型   | 必填 | 说明                               |
 | -------------------- | ------ | ---- | ---------------------------------- |
-| moduleName           | string | 是   | 表示应用程序的moduleName。           |
-| extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
-| metadataName         | string | 否   | 表示应用程序的metadataName，默认值为空。         |
+| moduleName           | string | 是   | 表示Module名称。           |
+| extensionAbilityName | string | 是   | 表示ExtensionAbility组件的名称。 |
+| metadataName         | string | 否   | 表示ExtensionAbility组件的名称。组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name，默认值为空。         |
 
 **返回值：**
 
@@ -3191,7 +3191,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName).then((data) => {
@@ -3220,7 +3220,7 @@ try {
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>
 
-以同步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+以同步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，返回对象为string数组。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -3230,9 +3230,9 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 | 参数名                 | 类型   | 必填 | 说明                               |
 | -------------------- | ------ | ---- | ---------------------------------- |
-| moduleName           | string | 是   | 表示应用程序的moduleName。           |
-| extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
-| metadataName         | string | 否   | 表示应用程序的metadataName，默认值为空。         |
+| moduleName           | string | 是   | 表示Module名称。           |
+| extensionAbilityName | string | 是   | 表示ExtensionAbility组件的名称。 |
+| metadataName         | string | 否   | 表示ExtensionAbility组件的名称。组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name，默认值为空。         |
 
 **返回值：**
 
@@ -3259,7 +3259,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
-let metadataName = 'com.example.myapplication.metadata';
+let metadataName = 'ability_metadata';
 
 try {
     let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName);
@@ -3442,8 +3442,8 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 | 参数名      | 类型                   | 必填 | 说明                                                         |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                 | 是   | 表示应用程序的bundleName。                                     |
-| moduleName  | string                 | 是   | 表示应用程序的moduleName。                                     |
-| abilityName | string                 | 是   | 表示应用程序的abilityName。                                    |
+| moduleName  | string                 | 是   | 表示Module名称。                                     |
+| abilityName | string                 | 是   | 表示UIAbility组件的名称。                                    |
 | callback    | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获指定组件的Label值；否则为错误对象。 |
 
 **错误码：**
@@ -3499,8 +3499,8 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 | 参数名      | 类型   | 必填 | 说明                      |
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName。  |
-| moduleName  | string | 是   | 表示应用程序的moduleName。  |
-| abilityName | string | 是   | 表示应用程序的abilityName。 |
+| moduleName  | string | 是   | 表示Module名称。  |
+| abilityName | string | 是   | 表示UIAbility组件的名称。 |
 
 **返回值：**
 
@@ -3559,8 +3559,8 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 | 参数名      | 类型   | 必填 | 说明                      |
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName。  |
-| moduleName  | string | 是   | 表示应用程序的moduleName。  |
-| abilityName | string | 是   | 表示应用程序的abilityName。 |
+| moduleName  | string | 是   | 表示Module名称。  |
+| abilityName | string | 是   | 表示UIAbility组件的名称。 |
 
 **返回值：**
 
@@ -4463,7 +4463,7 @@ getJsonProfile(profileType: [ProfileType](#profiletype11), bundleName: string, m
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
 | bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
-| moduleName            | string                          | 否   | 表示要查询应用程序的moduleName，缺省时在入口模块中查找。            |
+| moduleName            | string                          | 否   | 表示要查询应用程序的module的名称，缺省时在入口模块中查找。            |
 
 **返回值：**
 
