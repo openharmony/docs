@@ -588,9 +588,9 @@ Codec MIME类型枚举。
 | VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
 | VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。       |
 | VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
-| VIDEO_MPEG4  | 'video/mpeg4'         | 表示视频/mpeg4类型。     |
-| AUDIO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
-| AUDIO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。      |
+| VIDEO_MPEG4  | 'video/mp4v-es'         | 表示视频/mpeg4类型。     |
+| VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
+| VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。|
 | AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
@@ -3133,9 +3133,9 @@ avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
 
 ### getAVRecorderConfig<sup>11+</sup>
 
-getAVRecorderConfig(callback: AsyncCallback\<config: AVRecorderConfig>): void
+getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
-通过回调的方式获取实时的配置参数。
+异步方式获取实时的配置参数。通过注册回调函数获取返回值。
 
 只能在[prepare()](#prepare9-4)接口调用后调用。
 
@@ -3156,8 +3156,8 @@ getAVRecorderConfig(callback: AsyncCallback\<config: AVRecorderConfig>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
+| 5400102  | Operation not permit. Return by callback. |
+| 5400103  | IO error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
 
 **示例：**
@@ -3179,9 +3179,9 @@ avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) =>
 
 ### getAVRecorderConfig<sup>11+</sup>
 
-getAVRecorderConfig(): Promise\<config: AVRecorderConfig>;
+getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
-通过回调的方式获取实时的配置参数。
+异步方式获取实时的配置参数。通过Promise获取返回值。
 
 只能在[prepare()](#prepare9-4)接口调用后调用。
 
@@ -3202,8 +3202,8 @@ getAVRecorderConfig(): Promise\<config: AVRecorderConfig>;
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
-| 5400103  | I/O error. Return by promise.             |
+| 5400102  | Operation not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
 
 **示例：**
@@ -3327,6 +3327,14 @@ off(type: 'error'): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 6800101  | Input parameter value error. |
 
 **示例：**
 
