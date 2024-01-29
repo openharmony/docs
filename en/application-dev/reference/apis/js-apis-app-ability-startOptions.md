@@ -1,6 +1,6 @@
 # @ohos.app.ability.StartOptions (StartOptions)
 
-**StartOptions** is used as an input parameter of [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) to specify the window mode of an ability.
+**StartOptions** is used as an input parameter of [startAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) to specify the window mode of an ability.
 
 > **NOTE**
 >
@@ -19,34 +19,45 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.|
-| displayId | number | No| Display ID. |
+| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode. |
+| displayId | number | No| Display ID mode. |
 
 **Example**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
 
-  try {
-    missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
-          console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
-            'error.message:' + JSON.stringify(error.message));
-          return;
-      }
-      console.log('size = ' + missions.length);
-      console.log('missions = ' + JSON.stringify(missions));
-      let id = missions[0].missionId;
+  export default class EntryAbility extends UIAbility {
 
-      let startOptions = {
-          windowMode : 101,
-          displayId: 0
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
       };
-      missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log('moveMissionToFront is called ');
-      });
-    });
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+      let options: StartOptions = {
+        windowMode: 0
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // Process service logic errors.
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // Process input parameter errors.
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
   }
   ```
