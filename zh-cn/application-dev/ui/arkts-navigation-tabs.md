@@ -324,46 +324,96 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
   **图11** 滑动切换时页签内容不联动  
 
-![最终效果11](figures/最终效果11.gif)
+![TabsChange1](figures/TabsChange1.gif)
 
 
 此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将当前活跃的index值传递给currentIndex，实现页签内容的切换。
 
 
 ```ts
-class Tmp{
-  currentIndex:number = 0;
-  foo(val:number){
-    this.currentIndex = val;
+//xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 2
+  private controller: TabsController = new TabsController()
+    
+  ...
+  
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('首页',0))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('发现',1))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('推荐',2))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('我的',3))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationDuration(0)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(600)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      .onContentWillChange((currentIndex, comingIndex) => {
+        if (comingIndex == 2) {
+          return false
+        }
+        return true
+      })
+
+      Button('动态修改index').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+        })
+
+      Button('changeIndex').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+          this.controller.changeIndex(this.currentIndex)
+        })
+    }.width('100%')
   }
 }
-Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('首页', 0))
-
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('发现', 1))
-
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('推荐', 2))
-
-  TabContent() {
-    ...
-  }
-  .tabBar(this.tabBuilder('我的', 3))
-}.onChange((index:number) => {
-  let cur:Tmp = new Tmp()
-  cur.foo(index)
-})
 ```
 
 
   **图12** 内容与页签联动 
 
-![最终效果](figures/最终效果.gif)
+![TabsChange2](figures/TabsChange2.gif)
+
+  **图13** 支持开发者自定义页面切换拦截事件 
+
+![TabsChange3](figures/TabsChange3.gif)
+
+开发者可以通过Tabs组件的onContentWillChange接口，设置自定义拦截回调函数。拦截回调函数在下一个页面即将展示时被调用，如果回调返回true，新页面可以展示；如果回调返回false，新页面不会展示，仍显示原来页面。
+
+```ts
+Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
+.onContentWillChange((currentIndex, comingIndex) => {
+  if (comingIndex == 2) {
+    return false
+  }
+  return true
+})
+
+```
 
 ## 相关实例
 
