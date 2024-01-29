@@ -259,9 +259,29 @@ startDrag(): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-  console.log("start drag Error:" + err.message);
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+    console.log("start drag Error:" + err.message);
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
+
 ```
 
 ### on('statusChange')<sup>11+</sup>
@@ -280,9 +300,28 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 
 **示例：**
 ```ts
-dragAction.on('statusChange', (dragAndDropInfo)=>{
-  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+    console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
 ```
 
 ### off('statusChange')<sup>11+</sup>
@@ -301,9 +340,28 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 
 **示例：**
 ```ts
-dragAction.off('statusChange', (dragAndDropInfo)=>{
-  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+    console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
 ```
 
 ## dragController.createDragAction<sup>11+</sup>
@@ -347,8 +405,8 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
-  private dragAction: dragController.DragAction|null = null;
+  @State pixmap: image.PixelMap | null = null
+  private dragAction: dragController.DragAction | null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
   @Builder DraggingBuilder() {
     Column() {
@@ -390,7 +448,7 @@ struct DragControllerPage {
               console.log("listener dragAction is null");
               return
             }
-            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
               if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
                 console.log("drag has start");
               } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
