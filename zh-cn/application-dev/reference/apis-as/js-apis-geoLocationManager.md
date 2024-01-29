@@ -251,7 +251,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -298,7 +298,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
   import BusinessError from "@ohos.base";
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -355,7 +355,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
           console.log('current location: ' + JSON.stringify(result));
       })  
       .catch((error:number) => {
-          console.log('promise, getCurrentLocation: error=' + JSON.stringify(error));
+          console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
