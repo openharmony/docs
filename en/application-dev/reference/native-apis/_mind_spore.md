@@ -92,7 +92,7 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_ContextAddDeviceInfo](#oh_ai_contextadddeviceinfo) (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info) | Attaches the custom device information to the inference context.|
 | [OH_AI_DeviceInfoCreate](#oh_ai_deviceinfocreate) (OH_AI_DeviceType device_type) | Creates a device information object.|
 | [OH_AI_DeviceInfoDestroy](#oh_ai_deviceinfodestroy) (OH_AI_DeviceInfoHandle \*device_info) | Destroys a device information object. Note: After the device information instance is added to the context, the caller does not need to destroy it manually.|
-| [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) (OH_AI_DeviceInfoHandle device_info, const char \*provider) | Sets the name of the provider.|
+| [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) (OH_AI_DeviceInfoHandle device_info, const char \*provider) | Sets the provider name.|
 | [OH_AI_DeviceInfoGetProvider](#oh_ai_deviceinfogetprovider) (const OH_AI_DeviceInfoHandle device_info) | Obtains the provider name.|
 | [OH_AI_DeviceInfoSetProviderDevice](#oh_ai_deviceinfosetproviderdevice) (OH_AI_DeviceInfoHandle device_info, const char \*device) | Sets the name of a provider device.|
 | [OH_AI_DeviceInfoGetProviderDevice](#oh_ai_deviceinfogetproviderdevice) (const OH_AI_DeviceInfoHandle device_info) | Obtains the name of a provider device.|
