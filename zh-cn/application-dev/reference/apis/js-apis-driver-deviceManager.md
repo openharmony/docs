@@ -400,5 +400,5 @@ USB设备信息。
 
 | 名称      | 类型   | 必填 | 说明                |
 | --------- | ------ | ---- | ------------------- |
-| deviceId  | number | 是   | 设备ID。  |
-| remote | [rpc.IRemoteObject](./js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
+| deviceId<sup>11+</sup>  | number | 是   | 设备ID。  |
+| remote<sup>11+</sup> | [rpc.IRemoteObject](./js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
