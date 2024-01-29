@@ -358,3 +358,35 @@ API 11及以后，添加isModal属性，默认值为true。isModal属性为true�
 **适配指导**
 
 新功能实现兼容原有功能，不涉及适配。
+
+## cl.Arkui.9 Popup高级组件接口修改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX能力增强
+
+**变更影响**
+
+@ohos.arkui.advanced.Popup（气泡组件）的PopupIconOptions数据结构中，image变量不可传入PixelMap与DrawableDescriptor数据类型。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.2开始。
+
+**变更的接口/组件**
+
+API 11前，无。
+
+API 11及以后，@ohos.arkui.advanced.Popup（气泡组件）的PopupIconOptions数据结构中，image变量只可传入ResourceStr数据类型。
+
+**适配指导**
+
+@ohos.arkui.advanced.Popup（气泡组件）的PopupIconOptions数据结构中，image变量传入ResourceStr数据类型。
