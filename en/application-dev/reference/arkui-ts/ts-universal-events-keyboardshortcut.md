@@ -8,7 +8,7 @@ You can set one or more custom keyboard shortcuts for a component. The behavior 
 
 ## APIs
 
-keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>)
+keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>, action?: () => void)
 
 **Parameters**
 
@@ -16,6 +16,7 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>)
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
 | value | string \| [FunctionKey](#functionkey) | Yes   | Character key (which can be entered through the keyboard) or [function key](#functionkey).<br>|
 | keys  | Array<[ModifierKey](#modifierkey)>    | Yes   | Modifier keys.<br>                              |
+| action  | () => void    | No   | Callback for a custom event after the keyboard shortcut is triggered.<br>                              |
 
 ## ModifierKey
 
@@ -65,15 +66,15 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>)
 | Keyboard Shortcut           | Component                                      |
 | -------------- | ---------------------------------------- |
 | Ctrl + C       | [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Ctrl+ A        | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Ctrl+ V        | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Ctrl+ X        | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Shift + arrow keys   | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Ctrl+ Shift+ Z | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Ctrl+ Z        | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Ctrl+ Y        | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Arrow keys and Enter key       | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
-| Tab key          | [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Ctrl+ A        |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Ctrl+ V        |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Ctrl+ X        |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Shift + arrow keys   |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Ctrl+ Shift+ Z |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Ctrl+ Z        |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Ctrl+ Y        |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Arrow keys and Enter key       |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
+| Tab key          |  [Image](ts-basic-components-image.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md)|
 
 ## Example
 

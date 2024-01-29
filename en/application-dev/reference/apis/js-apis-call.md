@@ -416,7 +416,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 | Type                  | Description                                   |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that a call is in progress, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -442,7 +442,7 @@ Checks whether a call is in progress.
 
 | Type                  | Description         |
 | ---------------------- |-------------|
-| boolean | Promise used to return the result.|
+| boolean | Promise used to return the result. The value **true** indicates that a call is in progress, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -652,7 +652,7 @@ Checks whether the called number is an emergency number based on the phone numbe
 
 | Type                  | Description                                               |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the called number is an emergency number, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -2547,7 +2547,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 import { BusinessError } from '@ohos.base';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
-    id (err) {
+    if (err) {
         console.error(`startDTMF fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`startDTMF success.`);
@@ -4653,7 +4653,7 @@ Checks whether the IMS service is enabled. This API uses an asynchronous callbac
 | Name  | Type                        | Mandatory| Description                                  |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the IMS service is enabled, and the value **false** indicates the opposite.  |
 
 **Error codes**
 
@@ -5107,7 +5107,7 @@ Checks whether the call forwarding time can be set. This API uses a promise to r
 
 | Type                  | Description                                         |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the call forwarding time can be set, and the value **false** indicates the opposite.|
 
 **Error codes**
 

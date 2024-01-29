@@ -47,12 +47,24 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | 否    | 在最小宽度类型设备上，栅格容器组件的栅格列数。    |
-| sm  | number | 否    | 在小宽度类型设备上，栅格容器组件的栅格列数。      |
-| md  | number | 否    | 在中等宽度类型设备上，栅格容器组件的栅格列数。    |
-| lg  | number | 否    | 在大宽度类型设备上，栅格容器组件的栅格列数。      |
-| xl  | number | 否    | 在特大宽度类型设备上，栅格容器组件的栅格列数。    |
-| xxl | number | 否    | 在超大宽度类型设备上，栅格容器组件的栅格列数。    |
+| xs  | number | 否    | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。    |
+| sm  | number | 否    | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。      |
+| md  | number | 否    | 在栅格大小为md的设备上，栅格容器组件的栅格列数。    |
+| lg  | number | 否    | 在栅格大小为lg的设备上，栅格容器组件的栅格列数。      |
+| xl  | number | 否    | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。    |
+| xxl | number | 否    | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
+
+**说明：**
+
+在GridRow栅格组件中，允许开发者使用breakpoints自定义修改[断点](../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)的取值范围，最多支持xs、sm、md、lg、xl、xxl六个断点，且名称不可修改。假设传入的数组是[n0, n1, n2, n3, n4]，各个断点取值如下：  
+|断点|取值范围|
+|---|-----------|
+|xs |[0, n0)    |
+|sm |[n0, n1)   |
+|md |[n1, n2)   |
+|lg |[n2, n3)   |
+|xl |[n3, n4)   |
+|xxl|[n4, INF)  |
 
 ## GridRowSizeOption
 
@@ -105,17 +117,6 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
 | RowReverse | 栅格元素按照逆序行方向排列。 |
-
-栅格最多支持xs、sm、md、lg、xl、xxl六个断点，且名称不可修改。假设传入的数组是[n0, n1, n2, n3, n4]，各个断点取值如下：  
-
-|断点|取值范围|
-|---|-----------|
-|xs |[0, n0)    |
-|sm |[n0, n1)   |
-|md |[n1, n2)   |
-|lg |[n2, n3)   |
-|xl |[n3, n4)   |
-|xxl|[n4, INF)  |
 
 **说明：**
 * 栅格元素仅支持Row/RowReverse排列，不支持column/ColumnReverse方向排列。

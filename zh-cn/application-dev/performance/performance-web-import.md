@@ -2,7 +2,7 @@
 
 ## 简介
 
-开发者实现在应用中跳转显示网页需要分为两个方面：使用@ohos.web.webview提供Web控制能力；使用Web组件提供网页显示的能力。在实际应用中往往由于各种原因导致首次跳转Web网页或Web组件内跳转时出现白屏、卡顿等情况。本文介绍提升Web首页加载与Web网页间跳转速度的几种方法。
+开发者实现在应用中跳转显示网页需要分为两个方面：使用@ohos.web.webview提供Web控制能力；使用Web组件提供网页显示的能力。在实际应用中往往由于各种原因导致首次跳转Web网页或Web组件内跳转时出现白屏、卡顿等情况。本文介绍提升Web首页加载与Web网页间跳转速度的几种方法，并提供[示例源码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/webPerformance)。
 
 ## 优化思路
 
@@ -33,7 +33,7 @@
 为了能提前初始化WebView实例，@ohos.web.webview提供了initializeWebEngine方法。该方法实现在Web组件初始化之前，通过接口加载Web引擎的动态库文件，从而提前进行Web组件动态库的加载和Web内核主进程的初始化，最终以提高启动性能，减少白屏时间。  
 使用方法如下：
 ```javascript
-// code/Performance/PerformanceLibrary/feature/webPerformance/src/main/ets/pages/WebInitialized.ets
+// ../src/main/ets/pages/WebInitialized.ets
 
 import webview from '@ohos.web.webview';
 
@@ -60,7 +60,7 @@ WebView在onAppear阶段进行预连接socket， 当Web内核真正发起请求�
 // 开启预连接需要先使用上述方法预加载WebView内核。
 webview.WebviewController.initializeWebEngine();
 // 启动预连接，连接地址为即将打开的网址。
-webview.WebviewController.prepareForPageLoad("https://www.openharmony.cn/mainPlay", true, 2);
+webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
 ```
 
 ### 预加载下一页
@@ -75,24 +75,24 @@ webview.WebviewController.prepareForPageLoad("https://www.openharmony.cn/mainPla
 
 使用方法如下：
 ```javascript
-// code/Performance/PerformanceLibrary/feature/webPerformance/src/main/ets/pages/WebBrowser.ets
+// ../src/main/ets/pages/WebBrowser.ets
 
 import webview from '@ohos.web.webview';
 ...
 
   controller: webview.WebviewController = new webview.WebviewController();
     ...
-    Web({ src: 'https://www.openharmony.cn/mainPlay', controller: this.controller })
+    Web({ src: 'https://www.example.com', controller: this.controller })
       .onPageEnd((event) => {
          ...
          // 在确定即将跳转的页面时开启预加载
-         this.controller.prefetchPage('https://www.openharmony.cn/download');
+         this.controller.prefetchPage('https://www.example.com/nextpage');
       })
     Button('下一页')
       .onClick(() => {
          ...
          // 跳转下一页
-         this.controller.loadUrl('https://www.openharmony.cn/download');
+         this.controller.loadUrl('https://www.example.com/nextpage');
       })
 ```
 
@@ -106,7 +106,7 @@ import webview from '@ohos.web.webview';
 
 入口页通过router实现跳转
 ```javascript
-// code/Performance/PerformanceLibrary/feature/webPerformance/src/main/ets/pages/WebUninitialized.ets
+// ../src/main/ets/pages/WebUninitialized.ets
 
 ...
 Button('进入网页')
@@ -117,10 +117,10 @@ Button('进入网页')
 ```
 Web页使用Web组件加载指定网页
 ```javascript
-// code/Performance/PerformanceLibrary/feature/webPerformance/src/main/ets/pages/WebBrowser.ets
+// ../src/main/ets/pages/WebBrowser.ets
 
 ...
-Web({ src: 'https://www.openharmony.cn/mainPlay', controller: this.controller })
+Web({ src: 'https://www.example.com', controller: this.controller })
   .domStorageAccess(true)
   .onPageEnd((event) => {
      if (event) {
@@ -134,7 +134,7 @@ Web({ src: 'https://www.openharmony.cn/mainPlay', controller: this.controller })
 入口页提前进行Web组件的初始化和预连接
 
 ```javascript
-// code/Performance/PerformanceLibrary/feature/webPerformance/src/main/ets/pages/WebInitialized.ets
+// ../src/main/ets/pages/WebInitialized.ets
 
 import webview from '@ohos.web.webview';
 
@@ -147,24 +147,24 @@ Button('进入网页')
 ...
 aboutToAppear() {
   webview.WebviewController.initializeWebEngine();
-  webview.WebviewController.prepareForPageLoad("https://www.openharmony.cn", true, 2);
+  webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
 }
 ```
 Web页加载的同时使用prefetchPage预加载下一页
 ```javascript
-// code/Performance/PerformanceLibrary/feature/webPerformance/src/main/ets/pages/WebBrowser.ets
+// ../src/main/ets/pages/WebBrowser.ets
 
 import webview from '@ohos.web.webview';
 
 ...
   controller: webview.WebviewController = new webview.WebviewController();
     ...
-    Web({ src: 'https://www.openharmony.cn/mainPlay', controller: this.controller })
+    Web({ src: 'https://www.example.com', controller: this.controller })
       .domStorageAccess(true)
       .onPageEnd((event) => {
          if (event) {
            hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
-           this.controller.prefetchPage('https://www.openharmony.cn/download');
+           this.controller.prefetchPage('https://www.example.com/nextpage');
          }
       })
 ```

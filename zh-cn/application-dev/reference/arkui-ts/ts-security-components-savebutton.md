@@ -32,37 +32,37 @@ SaveButton(option:{icon?: SaveIconStyle, text?: SaveDescription, buttonType?: Bu
 | -------- | -------- | -------- | -------- |
 | icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#ButtonType枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数表示没有背景。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数表示没有背景。 |
 
 
 ## SaveIconStyle枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| FULL_FILLED | 保存按钮展示填充样式图标。 |
-| LINES | 保存按钮展示线条样式图标。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
+| LINES | 1 | 保存按钮展示线条样式图标。 |
 
 
 ## SaveDescription枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| DOWNLOAD | 保存按钮的文字描述为“下载”。 |
-| DOWNLOAD_FILE | 保存按钮的文字描述为“下载文件”。 |
-| SAVE | 保存按钮的文字描述为“保存”。 |
-| SAVE_IMAGE | 保存按钮的文字描述为“保存图片”。 |
-| SAVE_FILE | 保存按钮的文字描述为“保存文件”。 |
-| DOWNLOAD_AND_SHARE | 保存按钮的文字描述为“下载分享”。 |
-| RECEIVE | 保存按钮的文字描述为“接收”。 |
-| CONTINUE_TO_RECEIVE | 保存按钮的文字描述为“继续接收”。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 |
+| DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 |
+| SAVE | 2 | 保存按钮的文字描述为“保存”。 |
+| SAVE_IMAGE | 3 | 保存按钮的文字描述为“保存图片”。 |
+| SAVE_FILE | 4 | 保存按钮的文字描述为“保存文件”。 |
+| DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 |
+| RECEIVE | 6 | 保存按钮的文字描述为“接收”。 |
+| CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 |
 
 
 ## SaveButtonOnClickResult枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| SUCCESS | 保存按钮点击成功。 |
-| TEMPORARY_AUTHORIZATION_FAILED | 保存按钮点击后权限授权失败。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| SUCCESS | 0 | 保存按钮点击成功。 |
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
 
 
 ## 属性
@@ -76,7 +76,7 @@ SaveButton(option:{icon?: SaveIconStyle, text?: SaveDescription, buttonType?: Bu
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明)), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：存储权限的授权结果，授权方式为5秒单次，即触发点击后，可以在5秒中之内调用媒体库接口一次，超出5秒或者调用次数超出一次都会鉴权失败。<br/>event：见ClickEvent对象说明。 |
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：存储权限的授权结果，授权方式为5秒单次，即触发点击后，可以在5秒中之内调用媒体库接口一次，超出5秒或者调用次数超出一次都会鉴权失败。<br/>event：见ClickEvent对象说明。 |
 
 
 ## 示例

@@ -31,40 +31,40 @@ LocationButton(option:{icon?: LocationIconStyle, text?: LocationDescription, but
 | -------- | -------- | -------- | -------- |
 | icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#ButtonType枚举说明) | 否 | 设置位置按钮的背景样式<br/>不传入该参数表示没有背景。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式<br/>不传入该参数表示没有背景。 |
 
 
 ## LocationIconStyle枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| FULL_FILLED | 位置按钮展示填充样式图标。 |
-| LINES | 位置按钮展示线条样式图标。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
+| LINES | 1 | 位置按钮展示线条样式图标。 |
 
 
 ## LocationDescription枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| CURRENT_LOCATION | 位置按钮的文字描述为“当前位置”。 |
-| ADD_LOCATION | 位置按钮的文字描述为“添加位置”。 |
-| SELECT_LOCATION | 位置按钮的文字描述为“选择位置”。 |
-| SHARE_LOCATION | 位置按钮的文字描述为“共享位置”。 |
-| SEND_LOCATION | 位置按钮的文字描述为“发送位置”。 |
-| LOCATING | 位置按钮的文字描述为“定位”。 |
-| LOCATION | 位置按钮的文字描述为“位置”。 |
-| SEND_CURRENT_LOCATION | 位置按钮的文字描述为“发送实时位置”。 |
-| RELOCATION | 位置按钮的文字描述为“重定位”。 |
-| PUNCH_IN | 位置按钮的文字描述为“打卡定位”。 |
-| CURRENT_POSITION | 位置按钮的文字描述为“所在位置”。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| CURRENT_LOCATION | 0 | 位置按钮的文字描述为“当前位置”。 |
+| ADD_LOCATION | 1 | 位置按钮的文字描述为“添加位置”。 |
+| SELECT_LOCATION | 2 | 位置按钮的文字描述为“选择位置”。 |
+| SHARE_LOCATION | 3 | 位置按钮的文字描述为“共享位置”。 |
+| SEND_LOCATION | 4 | 位置按钮的文字描述为“发送位置”。 |
+| LOCATING | 5 | 位置按钮的文字描述为“定位”。 |
+| LOCATION | 6 | 位置按钮的文字描述为“位置”。 |
+| SEND_CURRENT_LOCATION | 7 | 位置按钮的文字描述为“发送实时位置”。 |
+| RELOCATION | 8 | 位置按钮的文字描述为“重定位”。 |
+| PUNCH_IN | 9 | 位置按钮的文字描述为“打卡定位”。 |
+| CURRENT_POSITION | 10 | 位置按钮的文字描述为“所在位置”。 |
 
 
 ## LocationButtonOnClickResult枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| SUCCESS | 位置按钮点击成功。 |
-| TEMPORARY_AUTHORIZATION_FAILED | 位置按钮点击后位置权限授权失败。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| SUCCESS | 0 | 位置按钮点击成功。 |
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |
 
 
 ## 属性
@@ -78,7 +78,7 @@ LocationButton(option:{icon?: LocationIconStyle, text?: LocationDescription, but
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明)), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：位置权限的授权结果。<br/>event：见ClickEvent对象说明。 |
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：位置权限的授权结果。<br/>event：见ClickEvent对象说明。 |
 
 
 ## 示例

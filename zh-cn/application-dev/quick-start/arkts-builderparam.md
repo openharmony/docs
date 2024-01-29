@@ -25,7 +25,9 @@
   struct Child {
     @Builder doNothingBuilder() {};
 
+    // 使用自定义组件的自定义构建函数初始化@BuilderParam
     @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
+    // 使用全局自定义构建函数初始化@BuilderParam
     @BuilderParam aBuilder1: () => void = GlobalBuilder0;
     build(){}
   }
@@ -37,6 +39,7 @@
   @Component
   struct Child {
     @Builder FunABuilder0() {}
+    // 使用父组件@Builder装饰的方法初始化子组件@BuilderParam
     @BuilderParam aBuilder0: () => void = this.FunABuilder0;
 
     build() {
@@ -60,17 +63,15 @@
     }
   }
   ```
+  **图1** 示例效果图
 
-  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+  ![builderparam-demo1](figures/builderparam-demo1.png)
 
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。
 
-   >  **说明：**
-   >
-   >  开发者谨慎使用bind改变函数调用的上下文，可能会使this指向混乱。
 
   ```ts
   @Component
@@ -106,8 +107,9 @@
     }
   }
   ```
+ **图2** 示例效果图
 
-  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
+ ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## 使用场景
@@ -133,7 +135,7 @@ class Tmp{
 struct Child {
   label: string = 'Child'
   @Builder FunABuilder0() {}
-  // 无参数类，指向的componentBuilder也是无参数类型
+  // 无参数类型，指向的componentBuilder也是无参数类型
   @BuilderParam aBuilder0: () => void = this.FunABuilder0;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
   @BuilderParam aBuilder1: ($$ : Tmp) => void = GlobalBuilder1;
@@ -163,8 +165,9 @@ struct Parent {
   }
 }
 ```
+**图3** 示例效果图
 
-![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+![builderparam-demo3](figures/builderparam-demo3.png)
 
 
 ### 尾随闭包初始化组件
@@ -186,6 +189,7 @@ struct Parent {
 struct CustomContainer {
   @Prop header: string = '';
   @Builder CloserFun(){}
+  // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam
   @BuilderParam closer: () => void = this.CloserFun
 
   build() {
@@ -227,5 +231,6 @@ struct CustomContainerUser {
   }
 }
 ```
+**图4** 示例效果图
 
-![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)
+![builderparam-demo4](figures/builderparam-demo4.png)

@@ -1,9 +1,8 @@
-# @ohos.multimodalInput.keyCode (Key Code)
+# Keycode
 
-The **keyCode** module provides keycodes for a key device.
+The Keycode module provides keycodes for a key device.
 
-> **NOTE**
-> 
+>  **NOTE**
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -14,14 +13,14 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 
 ## KeyCode
 
-Enumerates keycodes.
+Keycode value.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name                              | Value  |  Description       |
 | -------------------------------- | ------ | --------------------------- |
 | KEYCODE_FN                       |  0 | Function (Fn) key                    |
-| KEYCODE_UNKNOWN                  |  -1 | Unknown key                       |
+| KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
 | KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key                 |
@@ -50,9 +49,9 @@ Enumerates keycodes.
 | KEYCODE_9                        |  2009 | Key 9                      |
 | KEYCODE_STAR                     |  2010 | Key *                      |
 | KEYCODE_POUND                    |  2011 | Key #                      |
-| KEYCODE_DPAD_UP                  |  2012 | Up key on D-pad                     |
-| KEYCODE_DPAD_DOWN                |  2013 | Down key on D-pad                     |
-| KEYCODE_DPAD_LEFT                |  2014 | Left key on D-pad                     |
+| KEYCODE_DPAD_UP                  |  2012 |  Up key on D-pad                     |
+| KEYCODE_DPAD_DOWN                |  2013 |  Down key on D-pad                     |
+| KEYCODE_DPAD_LEFT                |  2014 |  Left key on D-pad                     |
 | KEYCODE_DPAD_RIGHT               |  2015 | Right key on D-pad                     |
 | KEYCODE_DPAD_CENTER              |  2016 | Center key on D-pad                    |
 | KEYCODE_A                        |  2017 | Key A                      |
@@ -106,7 +105,7 @@ Enumerates keycodes.
 | KEYCODE_AT                       |  2065 | Key @                      |
 | KEYCODE_PLUS                     |  2066 | Key +                      |
 | KEYCODE_MENU                     |  2067 | Menu key                        |
-| KEYCODE_PAGE_UP                  |  2068 | Page Up key                      |
+| KEYCODE_PAGE_UP                  |  2068 |  Page Up key                      |
 | KEYCODE_PAGE_DOWN                |  2069 | Page Down key                      |
 | KEYCODE_ESCAPE                   |  2070 | ESC key                       |
 | KEYCODE_FORWARD_DEL              |  2071 | Delete key                        |
@@ -287,11 +286,10 @@ Enumerates keycodes.
 | KEYCODE_KBD_LAYOUT_NEXT          |  2723 | Next Keyboard Layout key                   |
 | KEYCODE_BRIGHTNESS_MIN           |  2724 | Min Brightness key                      |
 | KEYCODE_BRIGHTNESS_MAX           |  2725 | Max Brightness key                      |
-| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | Keyboard Input-assisted Previous key        |
-| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | Keyboard Input-assisted Next key            |
-| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | Keyboard Input-assisted Previous Group key        |
-| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Keyboard Input-assisted Next Group key            |
-| KEYCODE_KBDINPUTASSIST_ACCEPT    |  2730 | Keyboard Input-assisted Accept key          |
+| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | Assist_Previous key, used to view historical inputs.        |
+| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | Assist_Next key, used to view predictive inputs.          |
+| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | Assist_Previous_Group key, used to switch to the previous input method in the input group.        |
+| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Assist_Next_Group key, used to switch to the next input method in the input group.              |
 | KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | Keyboard Input-assisted Cancel key          |
 | KEYCODE_FRONT                    |  2800 | Front key, which is used to launch the windshield defogger                  |
 | KEYCODE_SETUP                    |  2801 | Setup key                        |

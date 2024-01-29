@@ -39,7 +39,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他[滚动类组件](ts-container-list.md)绑定同一个滚动控制对象。 |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | GridLayoutOptions | 否 | 滚动Grid布局选项。 |
 
 ### GridLayoutOptions<sup>10+</sup>
@@ -103,8 +103,8 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - 元素在layoutDirection方向上排布，列数由Grid的宽度、首个元素的宽度、minCount、maxCount、columnsGap共同决定。
 - 行数由Grid高度、首个元素高度、cellLength、rowsGap共同决定。超出行列容纳范围的元素不显示，也不能通过滚动进行展示。
 - 此模式下仅生效以下属性：layoutDirection、maxCount、minCount、cellLength、editMode、columnsGap、rowsGap。
-- 当前layoutDirection设置为Row时，先从左到右排列，排满一行再排一下一列。剩余高度不足时不再布局，整体内容顶部居中。
-- 当前layoutDirection设置为Column时，先从上到下排列，排满一列再排一下一列，剩余宽度度不足时不再。整体内容顶部居中。
+- 当前layoutDirection设置为Row时，先从左到右排列，排满一行再排下一行。剩余高度不足时不再布局，整体内容顶部居中。
+- 当前layoutDirection设置为Column时，先从上到下排列，排满一列再排下一列，剩余宽度不足时不再。整体内容顶部居中。
 
 ## GridDirection<sup>8+</sup>枚举说明
 
@@ -135,7 +135,7 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- scrollState: 当前滑动状态。 |
 | onReachStart<sup>10+</sup>(event: () => void)          | 网格到达起始位置时触发。<br/>**说明：** <br>Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Grid边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd<sup>10+</sup>(event: () => void)            | 网格到达末尾位置时触发。<br/>**说明：** <br/>Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
 | onScrollStart<sup>10+</sup>(event: () => void) | 网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
 | onScrollStop<sup>10+</sup>(event: () => void)          | 网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
 

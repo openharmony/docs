@@ -4,7 +4,7 @@
 Typically, a widget includes local images or online images downloaded from the network. To obtain local and online images, use the FormExtensionAbility. The following exemplifies how to show local and online images on a widget.
 
 
-1. For the widget to download online images, declare the **ohos.permission.INTERNET** permission for the widget. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md).
+1. For the widget to download online images, declare the **ohos.permission.INTERNET** permission for the widget. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md##declaring-permissions-in-the-configuration-file).
 
 2. Update local files in the **onAddForm** lifecycle callback of the EntryFormAbility.
 

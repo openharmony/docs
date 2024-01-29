@@ -1,6 +1,6 @@
 # @ohos.file.fileAccess (User File Access and Management)
 
-The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with file management services, such as the media library and external storage management service, and provides a set of unified interfaces for system applications to access and manage files. The media library service allows access to user files on local and distributed devices. The external storage management service allows access to the user files stored on devices, such as shared disks, USB flash drives, and SD cards.
+The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with a variety of file management services, such as the storage management service, and provides a set of unified file access and management interfaces for system applications. The storage management service manages both the directories of the built-in storage and resources on external devices, such as shared disks, USB flash drives, and SD cards.
 
 >**NOTE**
 >
@@ -1766,7 +1766,7 @@ Registers a callback to listen for a URI. URIs and callbacks can be in many-to-m
       // The URI is 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE', and the event type is NOTIFY_MOVE_SELF.
       const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1774,7 +1774,7 @@ Registers a callback to listen for a URI. URIs and callbacks can be in many-to-m
       // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'.
       const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1783,7 +1783,7 @@ Registers a callback to listen for a URI. URIs and callbacks can be in many-to-m
       // The notification expected to receive is about the NOTIFY_MOVED_FROM event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'.
       const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1817,7 +1817,7 @@ Example 2: Use the same **uri**, **notifyForDescendants**, and **callback** to r
       // The notification expected to receive is about the NOTIFY_ADD event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'.
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1847,7 +1847,7 @@ Example 3: Use the same **uri** and **callback** but different **notifyForDescen
       // No second return is expected.
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1895,7 +1895,7 @@ Unregisters a callback that is used to listen for the specified URI.
       // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1923,7 +1923,7 @@ Unregisters a callback that is used to listen for the specified URI.
       // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1954,7 +1954,7 @@ Unregisters a callback that is used to listen for the specified URI.
       // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'.
       const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1962,7 +1962,7 @@ Unregisters a callback that is used to listen for the specified URI.
       // No notification is expected to receive.
       const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }

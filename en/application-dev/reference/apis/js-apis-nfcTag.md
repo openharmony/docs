@@ -47,7 +47,7 @@ Before developing applications related to tag read and write, you must declare N
     }
 }
 ```
-> **CAUTION**
+> **NOTE**
 >
 > - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
 > - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
@@ -72,7 +72,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
     // Add other code here.
 
-    // Want is initialized by the NFC service and contains tagInfo.
+    // want is initialized by the NFC service and contains tagInfo.
     let tagInfo : tag.TagInfo | null = null;
     try {
       tagInfo = tag.getTagInfo(want);
@@ -109,7 +109,7 @@ export default class EntryAbility extends UIAbility {
       // Other code to read or write this tag.
     }
 
-    // Use getIsoDep APIs to access the found tag.
+    // use getIsoDep APIs to access the found tag.
     if (isIsoDepTag) {
       let isoDep : tag.IsoDepTag | null = null;
       try {
@@ -124,7 +124,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## tag.getNfcATag
+## tag.getNfcATag<sup>(deprecated)</sup>
 
 getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
@@ -139,7 +139,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#tagInfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -159,7 +159,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -175,7 +175,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 | -------- | ----------------------------------------- |
 | 3100201  | Tag running state is abnormal in service. |
 
-## tag.getNfcBTag
+## tag.getNfcBTag<sup>(deprecated)</sup>
 
 getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
@@ -190,7 +190,7 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -210,7 +210,7 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -226,7 +226,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 | -------- | ----------------------------------------- |
 | 3100201  | Tag running state is abnormal in service. |
 
-## tag.getNfcFTag
+## tag.getNfcFTag<sup>(deprecated)</sup>
 
 getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
@@ -241,7 +241,7 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -261,7 +261,7 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -277,7 +277,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 | -------- | ----------------------------------------- |
 | 3100201  | Tag running state is abnormal in service. |
 
-## tag.getNfcVTag
+## tag.getNfcVTag<sup>(deprecated)</sup>
 
 getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
@@ -292,7 +292,7 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -312,7 +312,7 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -340,7 +340,7 @@ Obtains an **IsoDepTag** object, which allows access to the tags that use the IS
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -368,7 +368,7 @@ Obtains an **NdefTag** object, which allows access to the tags in the NFC Data E
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -396,7 +396,7 @@ Obtains a **MifareClassicTag** object, which allows access to the tags that use 
 
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -423,7 +423,7 @@ Obtains a **MifareUltralightTag** object, which allows access to the tags that u
 **Parameters**
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
@@ -483,7 +483,7 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 
 ## tag.registerForegroundDispatch<sup>10+</sup>
 
-registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void;
+registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
 Registers listening for the card reading events of an NFC tag foreground application. You can set the supported tag technologies in **discTech**, and obtain the [TagInfo](#taginfo) read in a callback. <br>This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
 
@@ -495,7 +495,7 @@ Registers listening for the card reading events of an NFC tag foreground applica
 
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page. It must contain at least the **bundleName**, **abilityName**, and **moduleName**.         |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page, which must contain at least the bundle name and ability name.         |
 | discTech         |  number[]   | Yes  | Technologies supported by the foreground dispatch system. Each number indicates the constant value of the supported technology. Based on the value of **number**, the system sets tag technologies ([NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), and [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition)) for NFC card read polling and disable card emulation. If the **number** length is 0, both card read polling and card emulation will be disabled.|
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the card read event in the foreground.|
 
@@ -505,7 +505,7 @@ See the example of [tag.unregisterForegroundDispatch](#tagunregisterforegrounddi
 
 ## tag.unregisterForegroundDispatch<sup>10+</sup>
 
-unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void;
+unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void
 
 Unregisters the listening for card reading events of an NFC tag foreground application. The registered event listening must be unregistered before the page exits the foreground or the page is destroyed.
 
@@ -517,13 +517,13 @@ Unregisters the listening for card reading events of an NFC tag foreground appli
 
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page. It must contain at least the **bundleName**, **abilityName**, and **moduleName**.         |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | Yes  | Information about the application page, which must contain at least the bundle name and ability name.         |
 
 **Example**
 
 ```js
-import Want from '@ohos.app.ability.Want'
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
 import bundleManager from '@ohos.bundle.bundleManager';
@@ -580,13 +580,13 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // Override other lifecycle functions.
+  // override other lifecycle functions
 }
 ```
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
-makeUriRecord(uri: string): [NdefRecord](#ndefrecord9);
+makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 
 Creates an NDEF record based on the specified URI.
 
@@ -625,7 +625,7 @@ try {
 
 ## tag.ndef.makeTextRecord<sup>9+</sup>
 
-makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9);
+makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 
 Creates an NDEF record based on the specified text data and encoding type.
 
@@ -667,7 +667,7 @@ try {
 
 ## tag.ndef.makeMimeRecord<sup>9+</sup>
 
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9);
+makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 Creates an NDEF record based on the specified MIME data and type.
 
@@ -707,7 +707,7 @@ try {
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
 
-makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9);
+makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9)
 
 Creates an NDEF record based on application-specific data.
 
@@ -750,7 +750,7 @@ try {
 
 ## tag.ndef.messageToBytes<sup>9+</sup>
 
-messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): number[];
+messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): number[]
 
 Converts an NDEF message to bytes.
 
@@ -863,8 +863,8 @@ Defines the **TagInfo** object, which provides information about the tag technol
 | **Name**                     | **Type**                                                     | **Readable**| **Writable**| **Description**                                                                                    |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
 | uid<sup>9+</sup>              | number[]                                                      | Yes      | No      | Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.                                    |
-| technology<sup>9+</sup>       | number[]                                                      | Yes      | No      | Supported technologies. Each number is a constant indicating the supported technology.                                    |
-| supportedProfiles             | number[]                                                      | Yes      | No      | Supported profiles. This parameter is not supported since API version 9. Use [tag.TagInfo#technology](#tagtaginfo) instead.           |
+| technology<sup>9+</sup>       | number[]                                                      | Yes      | No      | Supported tag technologies. Each number is a constant indicating the supported technology.                                    |
+| supportedProfiles             | number[]                                                      | Yes      | No      | Supported profiles. This parameter is not supported since API version 9. Use [tag.TagInfo#technology](#taginfo) instead.           |
 | extrasData<sup>9+</sup>       | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | Yes      | No      | Extended attribute value of the tag technology.<br>**System API**: This is a system API.                           |
 | tagRfDiscId<sup>9+</sup>      | number                                                        | Yes      | No      | ID allocated when the tag is discovered.<br>**System API**: This is a system API.                                 |
 | remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject)               | Yes      | No      | Remote object of the NFC service process used for interface communication between the client and the service.<br>**System API**: This is a system API.|

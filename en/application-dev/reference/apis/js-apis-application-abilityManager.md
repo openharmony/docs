@@ -19,15 +19,15 @@ Enumerates the ability states.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
 | INITIAL | 0 | The ability is in the initial state.| 
-| FOREGROUND | 9 | The ability is in the foreground state. | 
-| BACKGROUND | 10 | The ability is in the background state. | 
-| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
+| FOREGROUND | 9 | The ability is running in the foreground. | 
+| BACKGROUND | 10 | The ability is running in the background. | 
+| FOREGROUNDING | 11 | The ability is being switched to the foreground. | 
+| BACKGROUNDING | 12 | The ability is being switched to the background. | 
 
 ## updateConfiguration
 
@@ -44,7 +44,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-application-configuration.md)   | Yes   | New configuration.|
-| callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the result. If the configuration is updated, **err** is undefined; otherwise, **err** is an error object.     |
 
 **Example**
 
@@ -71,6 +71,8 @@ Updates the configuration. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -81,7 +83,7 @@ Updates the configuration. This API uses a promise to return the result.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -111,18 +113,21 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the ability running information.     |
 
 **Example**
 
 ```ts
 import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getAbilityRunningInfos((err,data) => { 
+abilityManager.getAbilityRunningInfos((err: BusinessError, data) => { 
     console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
@@ -137,11 +142,13 @@ Obtains the ability running information. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the result.|
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the ability running information.|
 
 **Example**
 

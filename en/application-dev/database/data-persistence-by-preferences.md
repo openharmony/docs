@@ -3,7 +3,7 @@
 
 ## When to Use
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data. You can use **Preferences** when you want a unique storage for global data. **Preferences** caches data in the memory, which allows fast access when the data is required. **Preferences** is recommended for storing small amount of data, such as personalized settings (font size and whether to enable the night mode) of applications.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs. You can use **Preferences** when you want a unique storage for global data. **Preferences** caches data in the memory, which allows fast access when the data is required. **Preferences** is recommended for storing small amount of data, such as personalized settings (font size and whether to enable the night mode) of applications.
 
 
 ## Working Principles
@@ -32,11 +32,11 @@ The following table lists the APIs used for persisting user preference data. For
 
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
-| putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously.<br/>You can use **flush()** to persist the **Preferences** instance data. <br/>An asynchronous API is also provided. |
-| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
-| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
-| deleteSync(key: string): void                                | Deletes the KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br/>An asynchronous API is also provided. |
+| getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br>An asynchronous API is also provided.                   |
+| putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data. |
+| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br>An asynchronous API is also provided.|
+| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br>An asynchronous API is also provided.|
+| deleteSync(key: string): void                                | Deletes a KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br>An asynchronous API is also provided.|
 | flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence.|
 | on(type: 'change', callback: ( key : string ) => void): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.|
 | off(type: 'change', callback?: ( key : string ) => void): void | Unsubscribes from data changes.                                          |
@@ -127,9 +127,8 @@ The following table lists the APIs used for persisting user preference data. For
 
 4. Read data.
 
-   Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned. 
+     Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned. <br>Example:
      
-   Example:
    ```ts
    try {
      let val = preferences.getSync('startup', 'default');
@@ -143,9 +142,8 @@ The following table lists the APIs used for persisting user preference data. For
 
 5. Delete data.
 
-   Use **deleteSync()** to delete a KV pair.
+   Use **deleteSync()** to delete a KV pair.<br>Example:
 
-   Example:
    
    ```ts
    try {
@@ -159,9 +157,8 @@ The following table lists the APIs used for persisting user preference data. For
 
 6. Persist data.
 
-   You can use **flush()** to persist the data held in a **Preferences** instance to a file. 
+     You can use **flush()** to persist the data held in a **Preferences** instance to a file.<br>Example:
      
-   Example:
    ```ts
    try {
      preferences.flush((err: BusinessError) => {
@@ -180,13 +177,13 @@ The following table lists the APIs used for persisting user preference data. For
 
 7. Subscribe to data changes.
 
-   Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data. 
+     Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.<br>Example:
      
-   Example:
    ```ts
-   preferences.on('change', (key: string) => {
+   let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
-   });
+   }
+   preferences.on('change', observer);
    // The data is changed from 'auto' to 'manual'.
    preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {

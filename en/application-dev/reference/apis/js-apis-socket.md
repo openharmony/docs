@@ -12,7 +12,7 @@ The **socket** module implements data transfer over TCP, UDP, Web, and TLS socke
 import socket from '@ohos.net.socket';
 ```
 
-## socket.constructUDPSocketInstance<sup>7+</sup>
+## socket.constructUDPSocketInstance
 
 constructUDPSocketInstance(): UDPSocket
 
@@ -33,11 +33,11 @@ import socket from '@ohos.net.socket';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
 
-## UDPSocket<sup>7+</sup>
+## UDPSocket
 
 Defines a UDP socket connection. Before calling UDPSocket APIs, you need to call [socket.constructUDPSocketInstance](#socketconstructudpsocketinstance) to create a **UDPSocket** object.
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -81,7 +81,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 });
 ```
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -128,7 +128,7 @@ udp.bind(bindAddr).then(() => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -178,7 +178,7 @@ udp.send(sendOptions, (err: BusinessError) => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -231,7 +231,7 @@ udp.send(sendOptions).then(() => {
 });
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -263,7 +263,7 @@ udp.close((err: BusinessError) => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(): Promise\<void\>
 
@@ -293,7 +293,7 @@ udp.close().then(() => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -345,7 +345,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(): Promise\<SocketStateBase\>
 
@@ -389,7 +389,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 });
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -451,7 +451,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
@@ -516,7 +516,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### on('message')<sup>7+</sup>
+### on('message')
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -554,7 +554,7 @@ udp.on('message', (value: SocketInfo) => {
 });
 ```
 
-### off('message')<sup>7+</sup>
+### off('message')
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -598,7 +598,7 @@ udp.off('message', callback);
 udp.off('message');
 ```
 
-### on('listening' | 'close')<sup>7+</sup>
+### on('listening' | 'close')
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
@@ -627,7 +627,7 @@ udp.on('close', () => {
 });
 ```
 
-### off('listening' | 'close')<sup>7+</sup>
+### off('listening' | 'close')
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
@@ -667,7 +667,7 @@ udp.off('close', callback2);
 udp.off('close');
 ```
 
-### on('error')<sup>7+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -693,7 +693,7 @@ udp.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>7+</sup>
+### off('error')
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -726,7 +726,7 @@ udp.off('error', callback);
 udp.off('error');
 ```
 
-## NetAddress<sup>7+</sup>
+## NetAddress
 
 Defines the destination address.
 
@@ -738,7 +738,7 @@ Defines the destination address.
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
 | family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**.|
 
-## UDPSendOptions<sup>7+</sup>
+## UDPSendOptions
 
 Defines the parameters for sending data over the UDP socket connection.
 
@@ -746,10 +746,10 @@ Defines the parameters for sending data over the UDP socket connection.
 
 | Name | Type                              | Mandatory| Description          |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string \| ArrayBuffer<sup>7+</sup>                          | Yes  | Data to send.  |
+| data    | string \| ArrayBuffer                          | Yes  | Data to send.  |
 | address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
-## UDPExtraOptions<sup>7+</sup>
+## UDPExtraOptions
 
 Defines other properties of the UDP socket connection.
 
@@ -763,7 +763,7 @@ Defines other properties of the UDP socket connection.
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.     |
 | socketTimeout     | number  | No  | Timeout duration of the UDP socket connection, in ms. The default value is **0**.|
 
-## SocketStateBase<sup>7+</sup>
+## SocketStateBase
 
 Defines the status of the socket connection.
 
@@ -775,7 +775,7 @@ Defines the status of the socket connection.
 | isClose     | boolean | Yes  | Whether the connection is in the closed state.|
 | isConnected | boolean | Yes  | Whether the connection is in the connected state.|
 
-## SocketRemoteInfo<sup>7+</sup>
+## SocketRemoteInfo
 
 Defines information about the socket connection.
 
@@ -794,7 +794,7 @@ The UDP error code mapping is in the format of 2301000 + Linux kernel error code
 
 For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
 
-## socket.constructTCPSocketInstance<sup>7+</sup>
+## socket.constructTCPSocketInstance
 
 constructTCPSocketInstance(): TCPSocket
 
@@ -815,11 +815,11 @@ import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
 
-## TCPSocket<sup>7+</sup>
+## TCPSocket
 
 Defines a TCP socket connection. Before calling TCPSocket APIs, you need to call [socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance) to create a **TCPSocket** object.
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -827,8 +827,8 @@ Binds an IP address and a port number. The port number can be specified or rando
 
 > **NOTE**
 > If the bind operation fails due to a port conflict, the system will randomly allocate a port number.
-> The TCP client can call **tcp.bind** to explicitly bind the IP address and port number and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server.
-> If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server must be deployed on the same device.
+> The TCP client can call **tcp.bind** to explicitly bind the IP address and port number, and then call **tcp.connect** to connect to the server. Alternatively, the TCP client can directly call **tcp.connect** to automatically bind the IP address and port number to connect to the server.
+> If the IP address is **localhost** or **127.0.0.1**, only local loopback access is allowed; that is, the TCP client and the server are deployed on the same device.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -867,7 +867,7 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -918,7 +918,7 @@ tcp.bind(bindAddr).then(() => {
 });
 ```
 
-### connect<sup>7+</sup>
+### connect
 
 connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
@@ -968,7 +968,7 @@ tcp.connect(tcpconnectoptions, (err: BusinessError) => {
 })
 ```
 
-### connect<sup>7+</sup>
+### connect
 
 connect(options: TCPConnectOptions): Promise\<void\>
 
@@ -1021,7 +1021,7 @@ tcp.connect(tcpconnectoptions).then(() => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -1077,7 +1077,7 @@ tcp.connect(tcpconnectoptions, () => {
 })
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: TCPSendOptions): Promise\<void\>
 
@@ -1136,7 +1136,7 @@ tcp.connect(tcpconnectoptions, () => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -1174,7 +1174,7 @@ tcp.close((err: BusinessError) => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(): Promise\<void\>
 
@@ -1209,7 +1209,7 @@ tcp.close().then(() => {
 });
 ```
 
-### getRemoteAddress<sup>7+</sup>
+### getRemoteAddress
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
@@ -1260,7 +1260,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### getRemoteAddress<sup>7+</sup>
+### getRemoteAddress
 
 getRemoteAddress(): Promise\<NetAddress\>
 
@@ -1311,7 +1311,7 @@ tcp.connect(tcpconnectoptions).then(() => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -1362,7 +1362,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(): Promise\<SocketStateBase\>
 
@@ -1493,7 +1493,7 @@ tcp.getSocketFd().then((data: number) => {
 })
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -1555,7 +1555,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
@@ -1620,7 +1620,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### on('message')<sup>7+</sup>
+### on('message')
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1657,7 +1657,7 @@ tcp.on('message', (value: SocketInfo) => {
 });
 ```
 
-### off('message')<sup>7+</sup>
+### off('message')
 
 off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1701,7 +1701,7 @@ tcp.off('message', callback);
 tcp.off('message');
 ```
 
-### on('connect' | 'close')<sup>7+</sup>
+### on('connect' | 'close')
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1730,7 +1730,7 @@ tcp.on('close', () => {
 });
 ```
 
-### off('connect' | 'close')<sup>7+</sup>
+### off('connect' | 'close')
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
@@ -1770,7 +1770,7 @@ tcp.off('close', callback2);
 tcp.off('close');
 ```
 
-### on('error')<sup>7+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1796,7 +1796,7 @@ tcp.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>7+</sup>
+### off('error')
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -1829,7 +1829,7 @@ tcp.off('error', callback);
 tcp.off('error');
 ```
 
-## TCPConnectOptions<sup>7+</sup>
+## TCPConnectOptions
 
 Defines TCP socket connection parameters.
 
@@ -1840,7 +1840,7 @@ Defines TCP socket connection parameters.
 | address | [NetAddress](#netaddress) | Yes  | Bound IP address and port number.      |
 | timeout | number                             | No  | Timeout duration of the TCP socket connection, in ms.|
 
-## TCPSendOptions<sup>7+</sup>
+## TCPSendOptions
 
 Defines the parameters for sending data over the TCP socket connection.
 
@@ -1848,10 +1848,10 @@ Defines the parameters for sending data over the TCP socket connection.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string\| ArrayBuffer<sup>7+</sup>  | Yes  | Data to send.                                                |
+| data     | string\| ArrayBuffer  | Yes  | Data to send.                                                |
 | encoding | string | No  | Character encoding format. The options are as follows: **UTF-8**, **UTF-16BE**, **UTF-16LE**, **UTF-16**, **US-AECII**, and **ISO-8859-1**. The default value is **UTF-8**.|
 
-## TCPExtraOptions<sup>7+</sup>
+## TCPExtraOptions
 
 Defines other properties of the TCP socket connection.
 
@@ -1910,7 +1910,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 | Name  | Type                     | Mandatory| Description                                         |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
-| address  | [NetAddress](#netaddress7) | Yes  | Destination address.|
+| address  | [NetAddress](#netaddress) | Yes  | Destination address.|
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.                                   |
 
 **Error codes**
@@ -1962,7 +1962,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 | Name | Type                     | Mandatory| Description                                         |
 | ------- | ------------------------- | ---- | --------------------------------------------- |
-| address | [NetAddress](#netaddress7) | Yes  | Destination address.|
+| address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
 **Return value**
 
@@ -2017,7 +2017,7 @@ Obtains the status of the TCPSocketServer connection. This API uses an asynchron
 
 | Name  | Type                                              | Mandatory| Description      |
 | -------- | -------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase7)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2072,7 +2072,7 @@ Obtains the status of the TCPSocketServer connection. This API uses a promise to
 
 | Type                                        | Description                                      |
 | :------------------------------------------- | :----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase7)> | Promise used to return the result.|
+| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2124,7 +2124,7 @@ Sets other properties of the TCPSocketServer connection. This API uses an asynch
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TCPSocketServer connection.|
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCPSocketServer connection.|
 | callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2191,7 +2191,7 @@ Sets other properties of the TCPSocketServer connection. This API uses a promise
 
 | Name | Type                               | Mandatory| Description                                                        |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TCPSocketServer connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCPSocketServer connection.|
 
 **Return value**
 
@@ -2422,7 +2422,7 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions7) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
 | callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -2466,7 +2466,7 @@ Sends data over a **TCPSocketConnection** object. This API uses a promise to ret
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions7) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
+| options | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over the **TCPSocketConnection** object.|
 
 **Return value**
 
@@ -2597,7 +2597,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 | Name  | Type                                    | Mandatory| Description      |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress7)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<[NetAddress](#netaddress)> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2642,7 +2642,7 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 
 | Type                              | Description                                       |
 | :--------------------------------- | :------------------------------------------ |
-| Promise<[NetAddress](#netaddress7)> | Promise used to return the result.|
+| Promise<[NetAddress](#netaddress)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2680,7 +2680,7 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -2729,7 +2729,7 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.<br> **message**: received message.<br>**remoteInfo**: socket connection information.                               |
 
 **Error codes**
 
@@ -4472,7 +4472,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase7)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -4534,7 +4534,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | Type                                          | Description                                                        |
 | :--------------------------------------------- | :----------------------------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[SocketStateBase](#socketstatebase)> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -4593,7 +4593,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 | Name  | Type                                | Mandatory| Description                                            |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TLS socket server connection.                 |
+| options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TLS socket server connection.                 |
 | callback | AsyncCallback\<void\>                | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -4667,7 +4667,7 @@ Sets other properties of the TLS socket server connection upon successful listen
 
 | Name | Type                                | Mandatory| Description                           |
 | ------- | ------------------------------------ | ---- | ------------------------------- |
-| options | [TCPExtraOptions](#tcpextraoptions7) | Yes  | Other properties of the TLS socket server connection.|
+| options | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TLS socket server connection.|
 
 **Return value**
 
@@ -5501,7 +5501,7 @@ Obtains the remote address of a TLS socket server connection. This API uses an a
 
 | Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[NetAddress](#netaddress7)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5562,7 +5562,7 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 
 | Type                                | Description                                                        |
 | :----------------------------------- | :----------------------------------------------------------- |
-| Promise\<[NetAddress](#netaddress7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[NetAddress](#netaddress)> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5982,7 +5982,7 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | Yes  | Callback used to return the result.                               |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
 
@@ -6053,7 +6053,7 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Type of the event to subscribe to.<br/> **message**: message receiving event.|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | No  | Callback used to return the result.                               |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | No  | Callback used to return the result.                               |
 
 **Error codes**
 

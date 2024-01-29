@@ -249,10 +249,10 @@ Defines the device configuration.
 
 **Parameters**
 
-| Name       | Type                   | Readable  | Writable  | Description      |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
-| locale    | string                  | Yes   | No   | Current system language.  |
+| Name       | Type                   | Mandatory  |Description      |
+| --------- | ----------------------- | ---- |  -------- |
+| direction | [Direction](#direction) | Yes   |Screen direction of the device.|
+| locale    | string                  | Yes   | Current system language.  |
 
 
 ## DeviceCapability
@@ -263,10 +263,10 @@ Defines the device capability.
 
 **Parameters**
 
-| Name           | Type                           | Readable  | Writable  | Description      |
-| ------------- | ------------------------------- | ---- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
-| deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Device type.  |
+| Name           | Type                           | Mandatory  | Description      |
+| ------------- | ------------------------------- | ---- | -------- |
+| screenDensity | [ScreenDensity](#screendensity) | Yes   | Screen density of the device.|
+| deviceType    | [DeviceType](#devicetype)       | Yes   | Device type.  |
 
 
 ## RawFileDescriptor<sup>8+</sup>
@@ -310,7 +310,7 @@ Defines the capability of accessing application resources.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
 >
-> - You can specify whether to access intra-package resources in an application by resource ID or resource name. To access cross-package resources, you need to specify the [resource object](#resource9) or [context](../../application-models/application-context-stage.md#creating-context-of-another-application-or-module) of the corresponding packages. The service logic is similar to access to intra-package resources. You are advised to access cross-package resources by context.
+> - For resources within an application, you can use [getContext()](js-apis-ability-featureAbility.md#featureabilitygetcontext) or **this.context** to access a resource with the specified specific ID or name. For cross-package resources within an application, two methods are available for accessing a resource: by way of a resource object or by creating the context of the corresponding module and accessing the resource through the context.
 
 ### getStringSync<sup>9+</sup>
 
@@ -594,7 +594,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the string corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
@@ -605,7 +605,7 @@ Obtains the string corresponding to the specified resource ID. This API uses an 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | _AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -685,7 +685,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the string corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
@@ -698,7 +698,7 @@ Obtains the string corresponding to the specified resource object. This API uses
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+| callback | _AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -1313,7 +1313,7 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1361,7 +1361,7 @@ Obtains the singular-plural string corresponding to the specified resource objec
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1417,7 +1417,7 @@ Obtains the singular-plural string corresponding to the specified resource name 
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1465,7 +1465,7 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1514,7 +1514,7 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1566,7 +1566,7 @@ Obtains the singular-plural string corresponding to the specified resource objec
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1623,7 +1623,7 @@ Obtains the singular-plural string corresponding to the specified resource objec
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1681,6 +1681,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 Obtains the plural string corresponding to the specified resource name based on the specified number. This API uses an asynchronous callback to return the result.
 
+**NOTE**
+>
+> Singular and plural forms are available for English, but not Chinese.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1725,6 +1729,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 Obtains the plural string corresponding to the specified resource name based on the specified number. This API uses a promise to return the result.
+
+**NOTE**
+>
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4078,7 +4086,7 @@ Obtains the color value (decimal) corresponding to the specified resource name. 
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the color value corresponding to the resource name.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4611,11 +4619,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
-### getConfigurationSync
+### getConfigurationSync<sup>10+</sup>
 
 getConfigurationSync(): Configuration
 
-Obtains the device configuration. This API return the result synchronously.
+Obtains the device configuration. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4696,11 +4704,11 @@ Obtains the device configuration. This API uses a promise to return the result.
   }
   ```
 
-### getDeviceCapabilitySync
+### getDeviceCapabilitySync<sup>10+</sup>
 
 getDeviceCapabilitySync(): DeviceCapability
 
-Obtains the device capability. This API return the result synchronously.
+Obtains the device capability. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5331,7 +5339,7 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9) instead.
 
@@ -5372,7 +5380,7 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 
 **NOTE**
 >
->Singular and plural forms are available for English, but not Chinese.
+> Singular and plural forms are available for English, but not Chinese.
 
 This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1) instead.
 

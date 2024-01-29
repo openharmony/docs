@@ -1,4 +1,4 @@
-# Dual-Channel Preview
+# Dual-Channel Preview (ArkTS)
 
 The camera application controls the camera hardware to implement basic operations such as image display (preview), photo saving (photographing), and video recording. The camera model is developed on the surface model. That is, an application transfers data through the surface. Specifically, it obtains the photo stream through the surface of an **ImageReceiver** object and the preview stream through the surface of an **\<XComponent>** object.
 
@@ -39,7 +39,7 @@ The figure below shows the recommended API calling process of the dual-channel p
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
-       console.info('ImageReceiver is not ok');
+       console.error('ImageReceiver is not ok');
      }
      return ImageReceiverSurfaceId;
    }
@@ -122,7 +122,7 @@ The figure below shows the recommended API calling process of the dual-channel p
      captureSession.addInput(cameraInput);
    
      // Add preview stream 1 to the session.
-     captureSession.addOutput(previewOutput)
+     captureSession.addOutput(previewOutput);
    
      // Add preview stream 2 to the session.
      captureSession.addOutput(previewOutput2);
@@ -152,13 +152,11 @@ The figure below shows the recommended API calling process of the dual-channel p
            if (err || imgComponent === undefined) {
              return;
            }
-           let buffer: ArrayBuffer;
            if (imgComponent.byteBuffer as ArrayBuffer) {
-             buffer = imgComponent.byteBuffer;
+             // do something...
            } else {
              return;
            }
-           // do something...;
          })
        })
      })

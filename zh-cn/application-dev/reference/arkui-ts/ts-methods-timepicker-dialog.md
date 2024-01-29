@@ -26,10 +26,11 @@ show(options?: TimePickerDialogOptions)
 
 ## TimePickerDialogOptions对象说明
 
+继承自[TimePickerOptions](ts-basic-components-timepicker.md#timepickeroptions对象说明)。
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
 | useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false<br />**说明：**当展示时间为12小时制时，上下午与小时无联动关系。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |

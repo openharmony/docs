@@ -12,16 +12,26 @@
 
 ## 接口
 
-Checkbox(options?:&nbsp;{name?: string,  group?: string })
+Checkbox(options?: CheckboxOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+多选框组件。
 
-**参数:**
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 参数名  | 参数类型 | 必填  | 参数描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                        | 必填 | 描述               |
+| ------- | ------------------------------------------- | ---- | ------------------ |
+| options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
+
+## CheckboxOptions对象说明
+
+| 名称 | 类型 | 必填  | 说明 |
 | --------| --------| ------ | -------- |
-| name    | string | 否 | 用于指定多选框名称。 |
-| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
+| name    | [Length](ts-types.md#length) | 否 | 用于指定多选框名称。 |
+| group   | [Length](ts-types.md#length) | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
 
 ## 属性
 
@@ -31,7 +41,7 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | 名称          | 参数类型 | 描述 |
 | ------------- | ------- | -------- |
 | select        | boolean | 设置多选框是否选中。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>**说明：**<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框非选中状态边框颜色。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
 

@@ -42,8 +42,8 @@ once(type: string, callback: Callback\<void\>): void
 import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
-  console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
+  console.log("configCookieSync")
+  web_webview.WebCookieManager.configCookieSync("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -284,7 +284,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setNumber').margin({
@@ -302,7 +302,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setBoolean').margin({
@@ -319,7 +319,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArrayBuffer').margin({
@@ -336,7 +336,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArray').margin({
@@ -354,7 +354,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setError').margin({
@@ -373,7 +373,7 @@ struct WebComponent {
               this.nativePort.postMessageEventExt(this.message);
             }
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -1606,7 +1606,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`);
                   return;
                 }
                 if (result) {
@@ -1777,7 +1778,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`);
                   return;
                 }
                 if (result) {
@@ -3082,7 +3084,8 @@ struct WebComponent {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
               if (error) {
-                console.info(`save web archive error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`save web archive error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               if (filename != null) {
@@ -3154,7 +3157,7 @@ struct WebComponent {
                 }
               })
               .catch((error:business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3762,7 +3765,8 @@ struct WebComponent {
           try {
             this.controller.hasImage((error, data) => {
               if (error) {
-                console.info(`hasImage error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`hasImage error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.info("hasImage: " + data);
@@ -3887,7 +3891,7 @@ struct WebComponent {
 
 ### pageUp
 
-pageUp(top:boolean): void
+pageUp(top: boolean): void
 
 将Webview的内容向上滚动半个视框大小或者跳转到页面最顶部，通过top入参控制。
 
@@ -3938,7 +3942,7 @@ struct WebComponent {
 
 ### pageDown
 
-pageDown(bottom:boolean): void
+pageDown(bottom: boolean): void
 
 将Webview的内容向下滚动半个视框大小或者跳转到页面最底部，通过bottom入参控制。
 
@@ -4731,7 +4735,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理。
+设置自定义用户代理，会覆盖系统的用户代理。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4984,7 +4988,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.saveCookieAsync((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -5059,7 +5064,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
 
 **示例：**
 
@@ -5140,7 +5145,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
 
 **示例：**
 
@@ -5221,7 +5226,7 @@ static existCookie(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限。 |
+| boolean | true表示存在cookie，false表示不存在cookie。 |
 
 **示例：**
 
@@ -5319,7 +5324,7 @@ struct WebComponent {
 
 ### deleteOrigin
 
-static deleteOrigin(origin : string): void
+static deleteOrigin(origin: string): void
 
 清除指定源所使用的存储。
 
@@ -5417,7 +5422,7 @@ struct WebComponent {
 
 ### getOrigins
 
-static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -5456,7 +5461,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
@@ -5482,7 +5488,7 @@ struct WebComponent {
 
 ### getOrigins
 
-static getOrigins() : Promise\<Array\<WebStorageOrigin>>
+static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -5547,7 +5553,7 @@ struct WebComponent {
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -5588,7 +5594,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('quota: ' + quota);
@@ -5610,7 +5617,7 @@ struct WebComponent {
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string) : Promise\<number>
+static getOriginQuota(origin: string): Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -5678,7 +5685,7 @@ struct WebComponent {
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -5719,7 +5726,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('usage: ' + usage);
@@ -5741,7 +5749,7 @@ struct WebComponent {
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string) : Promise\<number>
+static getOriginUsage(origin: string): Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -6196,7 +6204,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('getAccessibleGeolocationAsync result: ' + result);
@@ -6262,7 +6271,7 @@ struct WebComponent {
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -6308,7 +6317,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${error.code},  Message: ${error.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -6361,7 +6370,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;

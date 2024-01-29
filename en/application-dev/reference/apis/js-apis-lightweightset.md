@@ -322,7 +322,7 @@ Obtains the position index of the element with the specified key in this contain
 
 | Type| Description|
 | -------- | -------- |
-| number | Position index of the element.|
+| number | Position index of the element. If the element does not exist, a negative value is returned. The negative value consists of a minus sign and the position where the element (if available) should be. The position starts from 1.|
 
 **Error codes**
 

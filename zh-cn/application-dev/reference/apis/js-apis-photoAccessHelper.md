@@ -16,7 +16,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-获取相册管理模块模块的实例，用于访问和修改相册中的媒体文件。
+获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -26,13 +26,13 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块模块的实例。 |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
 
 **错误码：**
 

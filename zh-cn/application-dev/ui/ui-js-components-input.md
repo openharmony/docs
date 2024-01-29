@@ -104,7 +104,7 @@ export default {
 
 > **说明：**
 >
-> 仅当input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
+> 仅当input类型为checkbox和radio时，当前组件选中的属性是checked才生效，默认值为false。
 
 
 ## 事件绑定

@@ -1,7 +1,7 @@
 # Enter/Exit Transition
 
 
-You can use [transition](../reference/arkui-ts/ts-transition-animation-component.md), a basic component transition API, to animate the appearance and disappearance of a component. You can even use it with [TransitionEffect](../reference/arkui-ts/ts-transition-animation-component.md#transitioneffect10) to up your animation game.
+You can use [transition](../reference/arkui-ts/ts-transition-animation-component.md), a basic component transition API, to animate the process in which a component enters or exits the view. You can even use it with [TransitionEffect](../reference/arkui-ts/ts-transition-animation-component.md#transitioneffect10) to up your animation game.
 
 
   **Table 1** Transition effect APIs
@@ -9,21 +9,21 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
 | API| Description| Animation|
 | -------- | -------- | -------- |
 | IDENTITY | Disables the transition effect.| None.|
-| OPACITY | Applies the default opacity transition effect.| The component appears by changing the opacity from 0 to 1 and disappears by changing the opacity from 1 to 0.|
-| SLIDE | Applies a sliding transition effect.| The component appears by sliding in from the left edge of the window and disappears by sliding out from the right edge of the window.|
-| translate | Applies a translation transition effect.| The component appears by moving from the position set by the **translate** API to the default position (value **0**), and disappears by moving from the default position (value **0**) to the position set by the **translate** API.|
-| rotate | Applies a rotation transition effect.| The component appears by rotating from the position set by the **rotate** API to the default position (value **0**), and disappears by rotating from the default position (value **0**) to the position set by the **rotate** API.|
-| opacity | Applies an opacity transition effect.| The component appears by changing the opacity from the set value to **1** (default value) and disappears by changing the opacity from **1** to the set value.|
-| move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/arkui-ts/ts-appendix-enums.md#transitionedge10).| The component appears by sliding in from the edge specified by **TransitionEdge** and disappears by sliding out of the same edge.|
-| asymmetric | Applies an asymmetric transition effect.<br>- **appear**: transition effect for appearance.<br>- **disappear**: transition effect for disappearance.| The component appears by applying the transition effect specified by **appear** and disappears by applying the transition effect specified by **disappear**.|
-| combine | Combines with other transition effects.| The component appears and disappears by combing with other transition effects.|
+| OPACITY | Applies the default opacity transition effect.| The component enters by changing the opacity from 0 to 1 and exits by changing the opacity from 1 to 0.|
+| SLIDE | Applies a sliding transition effect.| The component enters by sliding in from the left edge of the window and exits by sliding out from the right edge of the window.|
+| translate | Applies a translation transition effect.| The component enters by moving from the position set by the **translate** API to the default position (value **0**), and exits by moving from the default position (value **0**) to the position set by the **translate** API.|
+| rotate | Applies a rotation transition effect.| The component enters by rotating from the position set by the **rotate** API to the default position (value **0**), and exits by rotating from the default position (value **0**) to the position set by the **rotate** API.|
+| opacity | Applies an opacity transition effect.| The component enters by changing the opacity from the set value to **1** (default value) and exits by changing the opacity from **1** to the set value.|
+| move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/arkui-ts/ts-appendix-enums.md#transitionedge10).| The component enters by sliding in from the edge specified by **TransitionEdge** and exits by sliding out of the same edge.|
+| asymmetric | Applies an asymmetric transition effect.<br>- **appear**: enter transition effect.<br>- **disappear**: exit transition effect.| The component enters by applying the transition effect specified by **appear** and exits by applying the transition effect specified by **disappear**.|
+| combine | Combines with other transition effects.| The component enters and exits by combing with other transition effects.|
 | animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level .|
 
 
 1. Create a **TransitionEffect** object.
   
    ```ts
-   // The component appears by applying all transition effects for appearance and disappears by applying all transition effects for disappearance.
+   // The component enters by applying all enter transition effects and exits by applying all exit transition effects.
    // Define the animation settings for each transition effect.
    private effect: object =
      TransitionEffect.OPACITY // Apply an opacity transition effect. As the animation API is not called here, the animation settings of animateTo are used.
@@ -49,7 +49,7 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
 3. Add or delete the component to trigger transition.
   
    ```ts
-   @state isPresent: boolean = true;
+   @State isPresent: boolean = true;
    ...
    if (this.isPresent) {
      Text('test')
@@ -118,7 +118,7 @@ struct TransitionEffectDemo {
           color: Color.Black,
         })
 
-      // Step 3: Add or delete the component to trigger transition. Control the addition or deletion of the component.
+      // Step 3: Add or delete the component to trigger transition.
       Button('Click')
         .margin({ top: 320 })
         .onClick(() => {

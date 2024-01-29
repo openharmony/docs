@@ -23,7 +23,7 @@ Before authentication, you must specify the [authentication type](../reference/a
 | on(type: 'result', callback: IAuthCallback): void | Subscribes to the user authentication result.|
 | off(type: 'result', callback?: IAuthCallback): void | Unsubscribes from the user authentication result.|
 | start(): void | Starts user authentication.       |
-| cancel(): void | Cancels this user authentication.  |
+| cancel(): void | Cancels this user authentication.   |
 
 **Table 2** Authentication trust levels
 
@@ -44,33 +44,33 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 ### How to Develop
 
-1. Apply for the permission.<br>Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
+1. Apply for the required permission.<br>Add the **ohos.permission.ACCESS_BIOMETRIC** permission in the **requestPermissions** field in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
 
-2. Specify the [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8) and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8), and call [getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9) to check whether the current device supports the authentication capabilities.
+2. Call [getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9) to check whether the device supports the authentication of the specified [type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8) and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8).
 
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    // Check whether the authentication capabilities are supported.
+    // Check whether the authentication capability is supported. If the device has not enrolled related features, log information will be displayed indicating that the device does not support the authentication capability.
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
         console.info('current auth trust level is supported');
     } catch (error) {
-        console.info('current auth trust level is not supported, error = ' + error);
+        console.error('current auth trust level is not supported, error = ' + error);
     }
     ```
 
-## Performing Authentication and Subscribing to the Authentication Result
+## Initialing User Authentication and Subscribing to the Authentication Result
 
 ### How to Develop
 
-1. Apply for the permission.<br>Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
+1. Apply for the required permission.<br>Add the **ohos.permission.ACCESS_BIOMETRIC** permission in the **requestPermissions** field in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
 
 2. Specify the challenge, [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8), and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8) to obtain an authentication object.
 
 3. Call [on](../reference/apis/js-apis-useriam-userauth.md#on10) to subscribe to the authentication result.
 
-4. Call [start](../reference/apis/js-apis-useriam-userauth.md#start10) to start authentication and return the authentication result through the [callback](../reference/apis/js-apis-useriam-userauth.md#callback10).
+4. Call [start](../reference/apis/js-apis-useriam-userauth.md#start10) to start authentication and return the authentication result through [onResult](../reference/apis/js-apis-useriam-userauth.md#onresult10).
 
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -97,7 +97,7 @@ Before authentication, you must specify the [authentication type](../reference/a
       userAuthInstance.start();
       console.log('auth start success');
     } catch (error) {
-      console.log('auth catch error: ' + JSON.stringify(error));
+      console.error('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -126,7 +126,7 @@ Before authentication, you must specify the [authentication type](../reference/a
      });
      console.log('auth off success');
    } catch (error) {
-     console.log('auth catch error: ' + JSON.stringify(error));
+     console.error('auth catch error: ' + JSON.stringify(error));
    }
    ```
 
@@ -134,7 +134,7 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 ### How to Develop
 
-1. Apply for the permission.<br>Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
+1. Apply for the required permission.<br>Add the **ohos.permission.ACCESS_BIOMETRIC** permission in the **requestPermissions** field in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
 
 2. Specify the challenge, [authentication type](../reference/apis/js-apis-useriam-userauth.md#userauthtype8), and [authentication trust level](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8) to obtain an authentication object.
 
@@ -164,6 +164,6 @@ Before authentication, you must specify the [authentication type](../reference/a
       userAuthInstance.cancel();
       console.log('auth cancel success');
     } catch (error) {
-      console.log('auth catch error: ' + JSON.stringify(error));
+      console.error('auth catch error: ' + JSON.stringify(error));
     }
     ```

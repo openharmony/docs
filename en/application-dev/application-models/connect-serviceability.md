@@ -3,6 +3,7 @@
 
 If a ServiceAbility wants to interact with a PageAbility or a ServiceAbility in another application, you must first create a connection by calling **connectAbility()**. This method is defined in the **featureAbility** class for the PageAbility and in the **particleAbility** class for the ServiceAbility. For details about the connection rules, see [Component Startup Rules](component-startup-rules.md). When calling **connectAbility()**, you should pass in a **Want** object containing information about the target ServiceAbility and an **IAbilityConnection** object. **IAbilityConnection** provides the following APIs that you need to implement.
 
+
 **Table 1** IAbilityConnection APIs
 
 | API| Description|
@@ -20,15 +21,21 @@ import promptAction from '@ohos.promptAction'
 import featureAbility from '@ohos.ability.featureAbility'
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
-
+import promptAction from '@ohos.promptAction';
+import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+```
+```ts
+const LOG_TAG: string = '[Sample_FAModelAbilityDevelop]';
+const LOG_DOMAIN: number = 0xFF00;
 let option: common.ConnectOptions = {
   onConnect: (element, proxy) => {
-    console.info(`onConnectLocalService onConnectDone`)
+    hilog.info(LOG_DOMAIN, LOG_TAG, 'onConnectLocalService onConnectDone element:' + JSON.stringify(element));
     if (proxy === null) {
       promptAction.showToast({
-        message: "Connect service failed"
-      })
-      return
+        message: 'connect service failed'
+      });
+      return;
     }
     let data = rpc.MessageParcel.create()
     let reply = rpc.MessageParcel.create()
@@ -36,28 +43,29 @@ let option: common.ConnectOptions = {
     data.writeInterfaceToken("connect.test.token")
     proxy.sendRequest(0, data, reply, option)
     promptAction.showToast({
-      message: "Connect service success"
-    })
+      message: 'connect service success'
+    });
   },
   onDisconnect: (element) => {
-    console.info(`onConnectLocalService onDisconnectDone element:${element}`)
+    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onDisconnectDone element:${element}`);
     promptAction.showToast({
-      message: "Disconnect service success"
-    })
+      message: 'disconnect service success'
+    });
   },
   onFailed: (code) => {
-    console.info(`onConnectLocalService onFailed errCode:${code}`)
+    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onFailed errCode:${code}`);
     promptAction.showToast({
-      message: "Connect local service onFailed"
-    })
+      message: 'connect service failed'
+    });
   }
 };
 
 let request: Want = {
-  bundleName: "com.example.myapplication",
-  abilityName: "com.example.myapplication.ServiceAbility",
-}
-let connId = featureAbility.connectAbility(request, option)
+  bundleName: 'com.samples.famodelabilitydevelop',
+  abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+};
+let connId = featureAbility.connectAbility(request, option);
+hilog.info(LOG_DOMAIN, LOG_TAG, `connectAbility id:${connId}`);
 ```
 
 

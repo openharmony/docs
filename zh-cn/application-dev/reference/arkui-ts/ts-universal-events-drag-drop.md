@@ -22,7 +22,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长按触发时间 < 500ms，长按事件 > 拖拽事件<br> 其他： 拖拽事件 > 长按事件。 |
+| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。 |
 | onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
@@ -34,7 +34,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。                     |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。 |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
 
@@ -103,6 +103,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 ## 示例
 
 ```ts
+// xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
@@ -139,12 +140,11 @@ struct Index {
     }
   }
 
-  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
-    if(this.getDataFromUdmfRetry(event, callback)) {
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
+    if (this.getDataFromUdmfRetry(event, callback)) {
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
@@ -211,6 +211,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
+
       Column() {
         Text('Drag Target Area')
           .fontSize(20)
@@ -222,18 +223,18 @@ struct Index {
           .width(this.imageWidth)
           .height(this.imageHeight)
           .draggable(true)
-          .margin({left: 15})
-          .border({color: Color.Black, width: 1})
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent?: DragEvent)=> {
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({duration: 1000}, ()=>{
+              animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
@@ -245,18 +246,18 @@ struct Index {
         Text(this.targetText)
           .width('100%')
           .height(100)
-          .border({color: Color.Black, width: 1})
+          .border({ color: Color.Black, width: 1 })
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent?: DragEvent)=>{
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
-              let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
               this.targetText = plainText.textContent;
             })
           })
 
-        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
           .width('100%')
           .height(200)
           .controls(true)
@@ -265,10 +266,14 @@ struct Index {
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
-        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        }
+        .width('100%')
+        .height(100)
+        .margin(20)
+        .border({ color: Color.Black, width: 1 })
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent?: DragEvent)=>{
-          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+        .onDrop((dragEvent?: DragEvent) => {
+          this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
             let plainText: UDC.PlainText = records[0] as UDC.PlainText;
             this.abstractContent = plainText.abstract as string;
@@ -277,7 +282,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }

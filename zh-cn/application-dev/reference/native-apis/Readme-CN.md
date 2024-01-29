@@ -32,6 +32,7 @@
   - [Memory](memory.md)
   - [UsbDdk](_usb_ddk.md)
   - [Hitrace](_hitrace.md)
+  - [HiAppEvent](_hi_app_event.md)
   - [Vulkan](_vulkan.md)
   - [Bundle](_bundle.md)
 - 头文件
@@ -105,6 +106,10 @@
   - [usb_ddk_api.h](usb__ddk__api_8h.md)
   - [usb_ddk_types.h](usb__ddk__types_8h.md)
   - [trace.h](trace_8h.md)
+  - [hiappevent.h](hiappevent_8h.md)
+  - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
+  - [hiappevent_event.h](hiappevent__event_8h.md)
+  - [hiappevent_param.h](hiappevent__param_8h.md)
   - [vulkan_ohos.h](vulkan__ohos_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)

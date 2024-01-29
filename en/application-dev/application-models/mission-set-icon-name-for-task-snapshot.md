@@ -21,11 +21,12 @@ Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-applica
 
 ```ts
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 let context: common.UIAbilityContext = ...; // UIAbilityContext
-let pixelMap: PixelMap =...; // PixelMap information of the image.
+let pixelMap: PixelMap = ...; // PixelMap information of the image.
 
-context.setMissionIcon(pixelMap, (err) => {
+context.setMissionIcon(pixelMap, (err: BusinessError) => {
   if (err.code) {
     console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
   }

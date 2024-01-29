@@ -163,7 +163,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 返回一个第一个参数是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数是已解决的回调函数。 |
+| Function | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
 
 **示例：**
 
@@ -190,13 +190,13 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| original | Function | 是 | 异步函数。 |
+| original | Function | 是 | 回调函数中第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。  |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的函数。 |
+| Function | 返回一个&nbsp;Promise&nbsp;的函数。 |
 
 **示例：**
 
@@ -1350,8 +1350,8 @@ getCreateCount(): number
 **示例：**
 
 ```ts
-// 创建新类ChildLruBuffer继承LRUCache，重写createDefault方法，返回一个非undefined的值。
-class ChildLruBuffer extends util.LRUCache<number, number> {
+// 创建新类ChildLRUCache继承LRUCache，重写createDefault方法，返回一个非undefined的值。
+class ChildLRUCache extends util.LRUCache<number, number> {
   constructor() {
     super();
   }
@@ -1360,7 +1360,7 @@ class ChildLruBuffer extends util.LRUCache<number, number> {
     return key;
   }
 }
-let lru = new ChildLruBuffer();
+let lru = new ChildLRUCache();
 lru.put(2,10);
 lru.get(3);
 lru.get(5);
@@ -1631,21 +1631,23 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 **示例：**
 
 ```ts
-let arr : Object[] = [];
-class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-  constructor() {
-    super();
+class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
 
-  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-  {
-    if (isEvict === false) {
-      arr = [key, value, newValue];
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
     }
   }
 }
-let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
-lru.afterRemoval(false, 10, 30, 50);
+let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+lru.put(1, 1);
+lru.put(2, 2);
+lru.put(3, 3);
 ```
 
 ### contains<sup>9+</sup>
@@ -4207,25 +4209,25 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
 
-  ```ts
-  let arr : object = [];
-  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
-  {
-  	constructor()
-  	{
-  		super();
-  	}
-  	afterRemoval(isEvict : boolean, key : K, value : V, newValue : V)
-  	{
-  		if (isEvict === false)
-  		{
-  			arr = [key, value, newValue];
-  		}
-  	}
+```ts
+class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
-  let lru : ChildLruBuffer<number,number|null> = new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
+
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
+    }
+  }
+}
+let lru: ChildLruBuffer<number, number> = new ChildLruBuffer(2);
+lru.put(11, 1);
+lru.put(22, 2);
+lru.put(33, 3);
+```
 
 ### contains<sup>(deprecated)</sup>
 

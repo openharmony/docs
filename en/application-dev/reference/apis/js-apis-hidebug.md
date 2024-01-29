@@ -171,7 +171,7 @@ Obtains system service information.
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
+For details about the error codes, see [HiDebug Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -182,10 +182,10 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import fs from '@ohos.file.fs'
-import hidebug from '@ohos.hidebug'
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import fs from '@ohos.file.fs';
+import hidebug from '@ohos.hidebug';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export default class HidebugTest extends UIAbility {
   public testfunc() {
@@ -232,7 +232,7 @@ Starts the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` 
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -241,8 +241,8 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -270,8 +270,8 @@ Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` a
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -298,7 +298,7 @@ Exports the heap data.
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -307,8 +307,8 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.dumpJsHeapData("heapData");

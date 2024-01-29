@@ -39,7 +39,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 2. Create a decoder instance.
 
-   You can create a decoder by name or MIME type.
+   You can create a decoder by name or MIME type. In the code snippet below, the following variables are used:
+
+   - videoDec: pointer to the video decorder instance.
+   - capability: pointer to the codec capability instance.
+   - OH_AVCODEC_MIMETYPE_VIDEO_AVC: name of an AVC-format video stream.
 
    ``` c++
     // To create a decoder by name, call OH_AVCapability_GetName to obtain the codec names available and then call OH_VideoDecoder_CreateByName. If your application has special requirements, for example, expecting a decoder that supports a certain resolution, you can call OH_AVCodec_GetCapability to query the capability first.
@@ -160,7 +164,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // Set the parameters of the display window.
     int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the XComponent.
     bool isSurfaceMode = true;
-   ```
+   ```  
 
 6. (Optional) Configure the surface parameters of the decoder.
 

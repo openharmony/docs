@@ -154,7 +154,7 @@
             - [Common Event Subscription Overview](application-models/common-event-subscription-overview.md)
             - [Subscribing to Common Events in Dynamic Mode](application-models/common-event-subscription.md)
             - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
-            - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
+            - [Unsubscribing from Common Events in Dynamic Mode](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
           - [Removing Sticky Common Events (for System Applications Only)](application-models/common-event-remove-sticky.md)
         - [Background Services](application-models/background-services.md)
@@ -172,8 +172,8 @@
       - FA Model Application Components
         - [Application- or Component-Level Configuration](application-models/application-component-configuration-fa.md)
         - PageAbility Component Development
-          - [PageAbility Component Overview](application-models/pageability-overview.md)
-          - [PageAbility Component Configuration](application-models/pageability-configuration.md)
+          - [PageAbility Overview](application-models/pageability-overview.md)
+          - [PageAbility Configuration](application-models/pageability-configuration.md)
           - [PageAbility Lifecycle](application-models/pageability-lifecycle.md)
           - [PageAbility Launch Type](application-models/pageability-launch-type.md)
           - [Creating a PageAbility](application-models/create-pageability.md)
@@ -394,8 +394,8 @@
     - Concurrency
       - [Concurrency Overview](arkts-utils/concurrency-overview.md)
       - Using Asynchronous Concurrency for Development
-        - [Asynchronous Concurrency Overview](arkts-utils/async-concurrency-overview.md)
-        - [Single I/O Task Development](arkts-utils/single-io-development.md)
+        - [Asynchronous Concurrency Overview (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
+        - [Single I/O Task Development (Promise and Async/Await)](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
         - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
         - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
@@ -685,6 +685,41 @@
     - Log Analysis
       - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
       - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
+  - Internationalization and Localization
+    - [Overview of Internationalization and Localization](internationalization/i18n-l10n.md)
+    - Application Internalization
+      - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
+      - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
+      - Language and User Preference Setting
+        - [System Language and Region Setting](internationalization/i18n-system-language-region.md)
+        - [User Preference Setting](internationalization/i18n-user-preferences.md)
+      - [Date and Time Formatting](internationalization/i18n-time-date.md)
+      - [Number and Unit of Measurement Formatting](internationalization/i18n-numbers-weights-measures.md)
+      - [Phone Number Formatting](internationalization/i18n-phone-numbers.md)
+      - [Calendar Setting](internationalization/i18n-calendar.md)
+      - Time Zone and DST Setting
+        - [Timezone Setting](internationalization/i18n-time-zone.md)
+        - [DST Transition](internationalization/i18n-dst-transition.md)
+      - Multilingual Sorting
+        - [Overview of Multilingual Sorting](internationalization/i18n-sorting-overview.md)
+        - [Sorting by Local Habits](internationalization/i18n-sorting-local.md)
+        - [Sorting by Indexes](internationalization/i18n-sorting-index.md)
+      - [Character Processing](internationalization/i18n-character-processing.md)
+      - Name Localization
+        - [Language and Locale Name Localization](internationalization/i18n-language-region-display.md)
+        - [Time Zone Name Localization](internationalization/i18n-time-zone-display.md)
+    - Application Localization
+      - [Multilingual Resource Provisioning](internationalization/l10n-multilingual-resources.md)
+      - Application Translation
+        - [Hard Coding and Concatenation Prevention](internationalization/l10n-hard-coding-concatenate.md)
+        - [Scene and Context Clarification for Translation](internationalization/l10n-translation-scene.md)
+        - [Singular/Plural Form Selection](internationalization/l10n-singular-plural.md)
+    - Localization Testing
+      - Pseudo-Localization Testing
+        - [Overview of Pseudo-Localization Testing](internationalization/pseudo-i18n-testing-overview.md)
+        - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
+        - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
+      - [Linguistic Testing](internationalization/linguistic-testing.md)
   - Application services
     - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
@@ -693,13 +728,30 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
+    - [Getting Started with the NDK](napi/ndk-development-overview.md)
+    - [Creating an NDK Project](napi/create-with-ndk.md)
+    - Building an NDK Project
+      - [NDK Project Building Overview](napi/build-with-ndk-overview.md)
+      - [Building an NDK Project with the DevEco Studio Template](napi/build-with-ndk-ide.md)
+      - [Building an NDK Project with the Command Line CMake](napi/build-with-ndk-cmake.md)
+      - [Building an NDK Project with Prebuilt Libraries](napi/build-with-ndk-prebuilts.md)
+    - Code Development
+      - [Development Overview](napi/develop-code-overview.md)
+      - Node-API Development
+        - [OpenHarmony Node-API Overview](napi/napi-introduction.md)
+        - [Node-API Development Specifications](napi/napi-guidelines.md)
+        - [Node-API Development Process](napi/use-napi-process.md)
+        - Typical Scenarios
+            - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
+            - [Thread Safety Development Using Node-API](napi/use-napi-thread-safety.md)
+        - [OpenHarmony Node-API FAQs](napi/use-napi-faqs.md)
       - Graphics
         - [XComponent Development](napi/xcomponent-guidelines.md)
-        - [Drawing Development](napi/drawing-guidelines.md)
-        - [NativeBuffer Development](napi/native-buffer-guidelines.md)
-        - [NativeImage Development](napi/native-image-guidelines.md)
-        - [NativeVsync Development](napi/native-vsync-guidelines.md)
-        - [NativeWindow Development](napi/native-window-guidelines.md)
+        - [Using Drawing to Draw and Display Graphics](napi/drawing-guidelines.md)
+        - [Native Buffer Development](napi/native-buffer-guidelines.md)
+        - [Native Image Development](napi/native-image-guidelines.md)
+        - [Native Vsync Development](napi/native-vsync-guidelines.md)
+        - [Native Window Development](napi/native-window-guidelines.md)
         - [Vulkan Development](napi/vulkan-guidelines.md)
       - Resource Management
         - [Raw File Development](napi/rawfile-guidelines.md)
@@ -714,9 +766,14 @@
       - Device Management
         - [USB DDK Development](napi/usb-ddk-guidelines.md)
       - Data Management
-        - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+        - [Relational Store Development](napi/native-relational-store-guidelines.md)
       - Bundle Management
-        - [NativeBuffer Development](napi/native-bundle-guidelines.md)
+        - [Native Bundle Development](napi/native-bundle-guidelines.md)
+    - Debugging and Profiling
+      - [Overview of Debugging and Profiling](napi/debug-performance-profiling-overview.md)
+      - [Debugging in DevEco Studio](napi/debug-ide.md)
+      - [LLDB Debugger](napi/debug-lldb.md)
+      - [C/C++ Memory Error Detection](napi/debug-asan.md)
     - Hardware Compatibility
       - [Introduction to Hardware Compatibility](napi/hw-guide.md)
       - [OpenHarmony ABI](napi/ohos-abi.md)
@@ -979,6 +1036,7 @@
       - [@ohos.promptAction (Prompt)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (Page Routing)](reference/apis/js-apis-router.md)
       - [@ohos.uiAppearance (UI Appearance)](reference/apis/js-apis-uiappearance.md)
+      - [getContext](reference/apis/js-apis-getContext.md)
     - Graphics
       - [@ohos.animation.windowAnimationManager (Window Animation Management)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1481,24 +1539,24 @@
       - [PasteButton](reference/arkui-ts/ts-security-components-pastebutton.md)
       - [SaveButton](reference/arkui-ts/ts-security-components-savebutton.md)
     - Animation
-      - [Property Animation](reference/arkui-ts/ts-animatorproperty.md)
-      - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
+      - [Property Animation (animation)](reference/arkui-ts/ts-animatorproperty.md)
+      - [Explicit Animation (animateTo)](reference/arkui-ts/ts-explicit-animation.md)
       - Transition Animation
-        - [Page Transition](reference/arkui-ts/ts-page-transition-animation.md)
-        - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
-        - [Shared Element Transition](reference/arkui-ts/ts-transition-animation-shared-elements.md)
-        - [Implicit Shared Element Transition](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
-      - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
-      - [Particle Animation](reference/arkui-ts/ts-particle-animation.md)
+        - [Page Transition (pageTransition)](reference/arkui-ts/ts-page-transition-animation.md)
+        - [Component Transition (transition)](reference/arkui-ts/ts-transition-animation-component.md)
+        - [Shared Element Transition (sharedTransition)](reference/arkui-ts/ts-transition-animation-shared-elements.md)
+        - [Implicit Shared Element Transition (geometryTransition)](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
+      - [Motion Path Animation (motionPath)](reference/arkui-ts/ts-motion-path-animation.md)
+      - [Particle Animation (Particle)](reference/arkui-ts/ts-particle-animation.md)
     - Global UI Methods
       - Pop-up Window
-        - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
-        - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
-        - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
-        - [Calendar Picker Dialog Box](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
-        - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
-        - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
-        - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+        - [Alert Dialog Box (AlertDialog)](reference/arkui-ts/ts-methods-alert-dialog-box.md)
+        - [Action Sheet (ActionSheet)](reference/arkui-ts/ts-methods-action-sheet.md)
+        - [Custom Dialog Box (CustomDialog)](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [Calendar Picker Dialog Box (CalendarPickerDialog)](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
+        - [Date Picker Dialog Box (DatePickerDialog)](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box (TimePickerDialog)](reference/arkui-ts/ts-methods-timepicker-dialog.md)
+        - [Text Picker Dialog Box (TextPickerDialog)](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Custom Component Lifecycle](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [State Management with Application-level Variables](reference/arkui-ts/ts-state-management.md)

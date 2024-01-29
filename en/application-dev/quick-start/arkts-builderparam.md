@@ -60,8 +60,9 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
     }
   }
   ```
+  **Figure 1** Example effect
 
-  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+  ![builderparam-demo1](figures/builderparam-demo1.png)
 
 
 - **this** in the function body must point to the correct object.
@@ -106,8 +107,9 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
     }
   }
   ```
+ **Figure 2** Example effect
 
-  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
+ ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## Use Scenarios
@@ -163,8 +165,9 @@ struct Parent {
   }
 }
 ```
+**Figure 3** Example effect
 
-![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+![builderparam-demo3](figures/builderparam-demo3.png)
 
 
 ### Component Initialization Through Trailing Closure
@@ -173,7 +176,9 @@ In a custom component, the \@BuilderParam decorated attribute can be initialized
 
 > **NOTE**
 >
-> In this scenario, the custom component can have only one \@BuilderParam decorated attribute.
+>  - In this scenario, the custom component can have only one \@BuilderParam decorated attribute.
+> 
+>  - In this scenario, custom components do not support universal attributes.
 
 You can pass the content in the trailing closure to \@BuilderParam as an \@Builder decorated method. Example:
 
@@ -225,5 +230,6 @@ struct CustomContainerUser {
   }
 }
 ```
+**Figure 4** Example effect
 
-![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)
+![builderparam-demo4](figures/builderparam-demo4.png)

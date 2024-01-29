@@ -351,7 +351,7 @@ try {
 
 isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the passed effect ID is supported. This API uses an asynchronous callback to return the result.
+Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -360,7 +360,7 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 | Name  | Type                        | Mandatory| Description                                                  |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | Yes  | Vibration effect ID.                                            |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -408,7 +408,7 @@ try {
 
 isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
-Checks whether the passed effect ID is supported. This API uses a promise to return the result.
+Checks whether an effect ID is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -416,13 +416,13 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 | Name  | Type  | Mandatory| Description        |
 | -------- | ------ | ---- | ------------ |
-| effectId | string | Yes  | Describes the preset vibration effect ID.|
+| effectId | string | Yes  | Vibration effect ID.|
 
 **Return value**
 
 | Type                  | Description                                                     |
 | ---------------------- | --------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -463,13 +463,13 @@ try {
 
 ## EffectId
 
-Describes the preset vibration effect ID.
+Enumerates the preset vibration effect IDs.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 | Name              | Value                  | Description                            |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer.|
+| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect when a user adjusts the timer.|
 
 
 ## VibratorStopMode
@@ -491,7 +491,7 @@ Describes the vibration effect.
 
 | Type                            | Description                          |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9)     | Vibration with the specified duration.|
+| [VibrateTime](#vibratetime9) | Vibration with the specified duration.|
 | [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
 | [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
 
@@ -549,7 +549,7 @@ Describes the vibration attribute.
 
 | Name | Type| Mandatory| Description          |
 | ----- | ------ | ---- | -------------- |
-| id    | number      |  No| Vibrator ID. The default value is **0**.   |
+| id    | number      |  No| Vibrator ID. The default value is 0.    |
 | usage | [Usage](#usage9)      | Yes| Vibration scenario.|
 
 ## Usage<sup>9+</sup>

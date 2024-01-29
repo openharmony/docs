@@ -377,7 +377,7 @@ console.log(params.toString());
 
 ## URL
 
-用于解析、构造、编码对应的URL字符串。
+用于解析、构造、规范、编码对应的URL字符串。
 
 ### 属性
 
@@ -445,7 +445,7 @@ URL的无参构造函数。parseURL调用后返回一个URL对象，不单独使
 
 ### parseURL<sup>9+</sup>
 
-static parseURL(url : string, base?: string | URL): URL
+static parseURL(url: string, base?: string | URL): URL
 
 URL静态成员函数。
 
@@ -456,7 +456,7 @@ URL静态成员函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| base | string | URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
 
 **错误码：**
 

@@ -59,11 +59,16 @@ The following walks you through how to implement simple recording:
     After creating the builder for audio recording, set the parameters required.
 
     ```c++
-    OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
-    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
-    OH_AudioStreamBuilder_SetSampleFormat(builder, format);
-    OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
-    OH_AudioStreamBuilder_SetCapturerInfo(builder, sourceType);
+    // Set the audio sampling rate.
+    OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
+    // Set the number of audio channels.
+    OH_AudioStreamBuilder_SetChannelCount(builder, 2);
+    // Set the audio sampling format.
+    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)0);
+    // Set the encoding type of the audio stream.
+    OH_AudioStreamBuilder_SetEncodingType(builder, (OH_AudioStream_EncodingType)0);
+    // Set the usage scenario of the audio capturer.
+    OH_AudioStreamBuilder_SetCapturerInfo(builder, (OH_AudioStream_SourceType)0);
     ```
 
     Note that the audio data to record is written through callbacks. You must call **OH_AudioStreamBuilder_SetCapturerCallback** to implement the callbacks. For details about the declaration of the callback functions, see [OH_AudioCapturer_Callbacks](../reference/native-apis/_o_h_audio.md#oh_audiocapturer_callbacks).
@@ -71,6 +76,8 @@ The following walks you through how to implement simple recording:
 3. Set the callback functions.
 
     ```c++
+    // For details about the implementation, see the recording and playback instance.
+    OH_AudioCapturer_Callbacks callbacks;
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 
@@ -219,7 +226,7 @@ If the device supports the low-latency channel, you can use the low-latency mode
 
 The development process is similar to that in the common recording scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
 
-Code snippet:
+The code snippet is as follows:
 
 ```C
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;

@@ -170,7 +170,7 @@ Sets a trace ID. This API returns the result synchronously.
 
 ```ts
 // Obtain the trace ID of the current call chain.
-let traceId = hiTraceChain.GetId();
+let traceId = hiTraceChain.getId();
 // Set traceId to the obtained trace ID.
 hiTraceChain.setId(traceId);
 ```

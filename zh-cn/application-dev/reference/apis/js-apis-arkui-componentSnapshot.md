@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+>对于使用[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)的场景，例如：Video或者相机流媒体展示类组件，不建议使用组件截图相关接口，建议从[surface](js-apis-image.md#imagecreatepixelmapfromsurface11)直接获取图片。
+>
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
 
 
@@ -32,7 +34,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 
@@ -102,7 +104,7 @@ get(id: string): Promise<image.PixelMap>
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -139,6 +141,10 @@ struct SnapshotExample {
             console.log("error: " + err)
           })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }
     .width('80%')
     .margin({ left: 10, top: 5, bottom: 5 })
@@ -168,8 +174,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
-| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
 
@@ -226,6 +232,10 @@ struct OffscreenSnapshotExample {
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }
@@ -250,13 +260,13 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 | 参数名     | 类型                                       | 必填   | 说明         |
 | ------- | ---------------------------------------- | ---- | ---------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 
 **返回值：**
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 

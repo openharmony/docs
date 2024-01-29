@@ -91,7 +91,7 @@ try {
     eventType: hiSysEvent.EventType.FAULT,
     params: customizedParams
   };
-  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+  hiSysEvent.write(eventInfo, (err: BusinessError) => {
     // do something here.
   });
 } catch (err) {
@@ -398,7 +398,7 @@ try {
     eventType: hiSysEvent.EventType.FAULT,
     params: customizedParams
   };
-  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+  hiSysEvent.write(eventInfo, (err: BusinessError) => {
     // do something here.
   });
 
@@ -479,7 +479,7 @@ try {
     eventType: hiSysEvent.EventType.FAULT,
     params: customizedParams
   };
-  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+  hiSysEvent.write(eventInfo, (err: BusinessError) => {
     // do something here.
   });
 
@@ -507,7 +507,7 @@ try {
       }
     }
   }, 10000);
-} catch catch (err) {
+} catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```
@@ -574,7 +574,7 @@ try {
     eventType: hiSysEvent.EventType.FAULT,
     params: customizedParams
   };
-  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {
+  hiSysEvent.write(eventInfo, (err: BusinessError) => {
     // do something here.
   });
 
@@ -588,7 +588,7 @@ try {
       console.log("read file end, events is :" + JSON.stringify(events));
     }
   }, 10000);
-} catch catch (err) {
+} catch (err) {
   console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);
 }
 ```

@@ -16,31 +16,43 @@
 
 ### Button
 
-Button(options?: {type?: ButtonType, stateEffect?: boolean})
+Button(options: ButtonOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+创建可以包含单个子组件的按钮。
 
-**参数：**
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 参数名         | 参数类型       | 必填        | 参数描述                              |
-| ----------- | ---------- | ------| --------------------------------- |
-| type        | [ButtonType](#buttontype枚举说明) | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
-| stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                    | 必填 | 描述                 |
+| ------- | --------------------------------------- | ---- | -------------------- |
+| options | [ButtonOptions](#buttonoptions对象说明) | 是   | 配置按钮的显示样式。 |
 
 ### Button
 
-Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+Button(label: ResourceStr, options?: ButtonOptions)
 
 使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 参数类型                                | 必填   | 参数描述          |
+**参数：** 
+
+| 参数名     | 类型                                | 必填   | 描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
-| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见[Button](#button-1)参数说明。 |
+| options | [ButtonOptions](#buttonoptions对象说明) | 否    | 配置按钮的显示样式。 |
+
+## ButtonOptions对象说明
+
+| 名称        | 类型                              | 必填 | 说明                                                         |
+| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type        | [ButtonType](#buttontype枚举说明) | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule            |
+| stateEffect | boolean                           | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
 ## 属性
 
@@ -49,14 +61,12 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
 | type        | [ButtonType](#buttontype枚举说明) | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fontSize    | [Length](ts-types.md#length) | 设置文本显示字号。<br/>默认值：'16sp' |
+| fontSize    | [Length](ts-types.md#length) | 设置文本显示字号。<br/>默认值：'16fp' |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置文本显示颜色。<br/>默认值：'\#ffffff' |
 | fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 设置文本的字体样式。<br>默认值：FontStyle.Normal。 |
 | stateEffect | boolean     | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置Button组件label文本和字体的样式。 |
-| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 设置Button组件的样式和重要程度。<br>默认值:ButtonStyleMode.EMPHASIZED。 |
-| controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明) | 设置Button组件的尺寸。<br>默认值:ControlSize.NORMAL。 |
 
 ## ButtonType枚举说明
 

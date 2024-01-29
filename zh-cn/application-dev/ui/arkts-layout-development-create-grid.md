@@ -47,7 +47,7 @@ rowsTemplate和columnsTemplate属性值是一个由多个空格和'数字+fr'间
   **图3** 行列数量占比示例  
 ![zh-cn_image_0000001562820833](figures/zh-cn_image_0000001562820833.png)
 
-如上图所示，构建的是一个三行三列的的网格布局，其在垂直方向上分为三等份，每行占一份；在水平方向上分为四等份，第一列占一份，第二列占两份，第三列占一份。
+如上图所示，构建的是一个三行三列的网格布局，其在垂直方向上分为三等份，每行占一份；在水平方向上分为四等份，第一列占一份，第二列占两份，第三列占一份。
 
 只要将rowsTemplate的值为'1fr 1fr 1fr'，同时将columnsTemplate的值为'1fr 2fr 1fr'，即可实现上述网格布局。
 
@@ -67,13 +67,13 @@ Grid() {
 
 ### 设置子组件所占行列数
 
-除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，通过设置GridItem的rowStart、rowEnd、columnStart和columnEnd可以实现如图所示的单个网格横跨多行或多列的场景。
+除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，通过设置GridItem的rowStart、rowEnd、columnStart和columnEnd可以实现如图所示的单个网格横跨多行或多列的场景，rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1，更多起始行号、终点行号、起始列号、终点列号的生效规则请看[GridItem](../reference/arkui-ts/ts-container-griditem.md)。
 
   **图4** 不均匀网格布局 
 
 ![zh-cn_image_0000001511900480](figures/zh-cn_image_0000001511900480.png)
 
-例如计算器的按键布局就是常见的不均匀网格布局场景。如下图，计算器中的按键“0”和“=”，按键“0”横跨第一、二两列，按键“=”横跨第五、六两行。使用Grid构建的网格布局，其行列标号从1开始，依次编号。
+例如计算器的按键布局就是常见的不均匀网格布局场景。如下图，计算器中的按键“0”和“=”，按键“0”横跨第一、二两列，按键“=”横跨第五、六两行。使用Grid构建的网格布局，其行列标号从0开始，依次编号。
 
   **图5** 计算器  
 
@@ -81,7 +81,7 @@ Grid() {
 
 在单个网格单元中，rowStart和rowEnd属性表示指定当前元素起始行号和终点行号，columnStart和columnEnd属性表示指定当前元素的起始列号和终点列号。
 
-所以“0”按键横跨第一列和第二列，只要将“0”对应GridItem的columnStart和columnEnd设为1和2，将“=”对应GridItem的的rowStart和rowEnd设为5和6即可。
+所以“0”按键横跨第一列和第二列，只要将“0”对应GridItem的columnStart和columnEnd设为0和1，rowStart和rowEnd设为5和5，将“=”对应GridItem的rowStart和rowEnd设为4和5，columnStart和columnEnd设为4和4即可。
 
 
 ```ts
@@ -89,11 +89,13 @@ GridItem() {
   Text(key)
     ...
 }
-.columnStart(1)
-.columnEnd(2)
+.columnStart(0)
+.columnEnd(1)
+.rowStart(5)
+.rowEnd(5)
 ```
 
-“=”按键横跨第五行和第六行，只要将将“=”对应GridItem的的rowStart和rowEnd设为5和6即可。
+“=”按键横跨第五行和第六行，只要将“=”对应GridItem的rowStart和rowEnd设为4和5，columnStart和columnEnd设为4和4即可。
 
 
 ```ts
@@ -101,20 +103,22 @@ GridItem() {
   Text(key)
     ...
 }
-.rowStart(5)
-.rowEnd(6)
+.rowStart(4)
+.rowEnd(5)
+.columnStart(4)
+.columnEnd(4)
 ```
 
 
 ### 设置主轴方向
 
-使用Grid构建网格布局时，若没有设置行列数量与占比，可以通过layoutDirection可以设置网格布局的主轴方向，决定子组件的排列方式。此时可以结合minCount和maxCount属性来约束主轴方向上的网格数量。
+使用Grid构建网格布局时，若没有设置行列数量与占比，可以通过layoutDirection设置网格布局的主轴方向，决定子组件的排列方式。此时可以结合minCount和maxCount属性来约束主轴方向上的网格数量。
 
   **图6** 主轴方向示意图  
 
 ![zh-cn_image_0000001562700469](figures/zh-cn_image_0000001562700469.png)
 
-当前layoutDirection设置为Row时，先从左到右排列，排满一行再排一下一行。当前layoutDirection设置为Column时，先从上到下排列，排满一列再排一下一列，如上图所示。此时，将maxCount属性设为3，表示主轴方向上最大显示的网格单元数量为3。
+当前layoutDirection设置为Row时，先从左到右排列，排满一行再排下一行。当前layoutDirection设置为Column时，先从上到下排列，排满一列再排下一列，如上图所示。此时，将maxCount属性设为3，表示主轴方向上最大显示的网格单元数量为3。
 
 
 ```ts

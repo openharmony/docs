@@ -167,7 +167,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 ## 属性
 
-通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[bindContentCover](ts-universal-attributes-modal-transition.md#属性)、[bindContextMenu](ts-universal-attributes-menu.md#属性)、[bindMenu ](ts-universal-attributes-menu.md#属性)、[bindSheet](ts-universal-attributes-sheet-transition.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[border](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[constraintSize](ts-universal-attributes-size.md#属性)、[defaultFocus](ts-universal-attributes-focus.md#属性)、[focusable](ts-universal-attributes-focus.md#属性)、[tabIndex](ts-universal-attributes-focus.md#属性)、[groupDefaultFocus](ts-universal-attributes-focus.md#属性)、[focusOnTouch](ts-universal-attributes-focus.md#属性)、[displayPriority](ts-universal-attributes-layout-constraints.md#属性)、[draggable](ts-universal-attributes-drag-drop.md#属性)、[enabled](ts-universal-attributes-enable.md#属性)、[flexBasis](ts-universal-attributes-flex-layout.md#属性)、[flexGrow](ts-universal-attributes-flex-layout.md#属性)、[flexShrink](ts-universal-attributes-flex-layout.md#属性)、[layoutWeight](ts-universal-attributes-flex-layout.md#属性)、[id](ts-universal-attributes-component-id.md#属性)、[gridOffset](ts-universal-attributes-grid.md#属性)、[gridSpan](ts-universal-attributes-grid.md#属性)、[useSizeType](ts-universal-attributes-grid.md#属性)、[height](ts-universal-attributes-size.md#属性)、[touchable](ts-universal-attributes-click.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[markAnchor](ts-universal-attributes-location.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[offset](ts-universal-attributes-location.md#属性)、[width](ts-universal-attributes-size.md#属性)、[zIndex](ts-universal-attributes-z-order.md#属性)、[visibility](ts-universal-attributes-visibility.md#属性)、[rotate](ts-universal-attributes-transformation.md#属性)、[scale](ts-universal-attributes-transformation.md#属性)、[transform](ts-universal-attributes-transformation.md#属性)、[responseRegion](ts-universal-attributes-touch-target.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[size](ts-universal-attributes-size.md#属性)、[stateStyles](ts-universal-attributes-polymorphic-style.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[gesture](ts-gesture-settings.md#绑定手势识别)、[sharedTransition](ts-transition-animation-shared-elements.md#属性)、[transition](ts-transition-animation-component.md#属性)。
+通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[bindContentCover](ts-universal-attributes-modal-transition.md#属性)、[bindContextMenu](ts-universal-attributes-menu.md#属性)、[bindMenu ](ts-universal-attributes-menu.md#属性)、[bindSheet](ts-universal-attributes-sheet-transition.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[constraintSize](ts-universal-attributes-size.md#属性)、[defaultFocus](ts-universal-attributes-focus.md#属性)、[focusable](ts-universal-attributes-focus.md#属性)、[tabIndex](ts-universal-attributes-focus.md#属性)、[groupDefaultFocus](ts-universal-attributes-focus.md#属性)、[focusOnTouch](ts-universal-attributes-focus.md#属性)、[displayPriority](ts-universal-attributes-layout-constraints.md#属性)、[enabled](ts-universal-attributes-enable.md#属性)、[flexBasis](ts-universal-attributes-flex-layout.md#属性)、[flexGrow](ts-universal-attributes-flex-layout.md#属性)、[flexShrink](ts-universal-attributes-flex-layout.md#属性)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md#属性)、[gridOffset](ts-universal-attributes-grid.md#属性)、[gridSpan](ts-universal-attributes-grid.md#属性)、[useSizeType](ts-universal-attributes-grid.md#属性)、[height](ts-universal-attributes-size.md#属性)、[touchable](ts-universal-attributes-click.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[markAnchor](ts-universal-attributes-location.md#属性)、[offset](ts-universal-attributes-location.md#属性)、[width](ts-universal-attributes-size.md#属性)、[zIndex](ts-universal-attributes-z-order.md#属性)、[visibility](ts-universal-attributes-visibility.md#属性)、[scale](ts-universal-attributes-transformation.md#属性)、[transform](ts-universal-attributes-transformation.md#属性)、[responseRegion](ts-universal-attributes-touch-target.md#属性)、[size](ts-universal-attributes-size.md#属性)、[stateStyles](ts-universal-attributes-polymorphic-style.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[sharedTransition](ts-transition-animation-shared-elements.md#属性)、[transition](ts-transition-animation-component.md#属性)。
 
 ### domStorageAccess
 
@@ -206,7 +206,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问，默认启用。$rawfile(filepath/filename)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -731,7 +731,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](#cachemode9枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
 **示例：**
 
@@ -827,7 +827,7 @@ initialScale(percent: number)
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                          |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。|
 
 **示例：**
 
@@ -2221,7 +2221,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 | 参数名              | 参数类型                                     | 参数描述             |
 | ---------------- | ---------------------------------------- | ---------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason枚举说明) | 渲染进程进程异常退出的具体原因。 |
+| renderExitReason | [RenderExitReason](#renderexitreason9枚举说明) | 渲染进程异常退出的具体原因。 |
 
 **示例：**
 
@@ -2940,31 +2940,137 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import pasteboard from '@ohos.pasteboard'
+  const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    result: WebContextMenuResult | null = null;
+    private result: WebContextMenuResult | undefined = undefined;
+    @State linkUrl: string = '';
+    @State offsetX: number = 0;
+    @State offsetY: number = 0;
+    @State showMenu: boolean = false;
+    @Builder
+    //构建自定义菜单及触发功能接口
+    MenuBuilder(){
+      //以垂直列表形式显示的菜单。
+      Menu(){
+        //展示菜单Menu中具体的item菜单项。
+        MenuItem({
+          content: '复制图片',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copyImage();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '剪切',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.cut();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copy();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '粘贴',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.paste();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '复制链接',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
+            if(error){
+              return;
+            }
+          })
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: '全选',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.selectAll();
+          this.showMenu = false;
+        })
+      }
+      .width(150)
+      .height(300)
+    }
+
     build() {
       Column() {
-        Button('copyImage')
-        .onClick(() => {
-          if (this.result) {
-            this.result.copyImage()
-          }
-        })
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          //触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
+              this.result = event.result
               console.info("x coord = " + event.param.x())
               console.info("link url = " + event.param.getLinkUrl())
+              this.linkUrl = event.param.getLinkUrl()
             }
+            console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
+            this.showMenu = true;
+            this.offsetX = 250;
+            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true
+        })
+        .bindPopup(this.showMenu,
+        {
+          builder: this.MenuBuilder(),
+          enableArrow: false,
+          placement: Placement.LeftTop,
+          offset: { x: this.offsetX, y: this.offsetY},
+          mask: false,
+          onStateChange: (e) => {
+            if(!e.isVisible){
+              this.showMenu = false;
+              this.result!.closeContextMenu();
+            }
+          }
         })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <h1>onContextMenuShow</h1>
+    <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
+    //rawfile下放任意一张图片命名为example.png
+    <div><img src="example.png"></div>
+    <p>选中文字鼠标右键弹出菜单</p>
+  </body>
+  </html>
   ```
 
 ### onScroll<sup>9+</sup>
@@ -3499,7 +3605,7 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 ### onFaviconReceived<sup>9+</sup>
 
-onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
+onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 设置应用为当前页面接收到新的favicon时的回调函数。
 
@@ -3606,7 +3712,7 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
 
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
@@ -3614,7 +3720,7 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
+| data | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
 
 **返回值：**
 
@@ -3913,6 +4019,10 @@ handlePromptConfirm(result: string): void
 ## FullScreenExitHandler<sup>9+</sup>
 
 通知开发者Web组件退出全屏。示例代码参考[onFullScreenEnter事件](#onfullscreenenter9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
 
 ### exitFullScreen<sup>9+</sup>
 
@@ -4251,7 +4361,7 @@ getMode(): FileSelectorMode
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](#fileselectormode枚举说明) | 返回文件选择器的模式。 |
+| [FileSelectorMode](#fileselectormode9枚举说明) | 返回文件选择器的模式。 |
 
 ### getAcceptType<sup>9+</sup>
 
@@ -4289,7 +4399,7 @@ cancel(): void
 
 ### confirm<sup>9+</sup>
 
-confirm(userName: string, pwd: string): boolean
+confirm(userName: string, password: string): boolean
 
 使用用户名和密码进行HTTP认证操作。
 
@@ -4298,7 +4408,7 @@ confirm(userName: string, pwd: string): boolean
 | 参数名      | 参数类型   | 必填   | 默认值  | 参数描述       |
 | -------- | ------ | ---- | ---- | ---------- |
 | userName | string | 是    | -    | HTTP认证用户名。 |
-| pwd      | string | 是    | -    | HTTP认证密码。  |
+| password      | string | 是    | -    | HTTP认证密码。  |
 
 **返回值：**
 
@@ -4460,39 +4570,40 @@ grant(config: ScreenCaptureConfig): void
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
 
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
-| 名称        | 描述      |
-| --------- | ------- |
-| None      | 其他事件来源。 |
-| Mouse     | 鼠标事件。   |
-| LongPress | 长按事件。   |
+
+| 名称       | 值 | 描述         |
+| --------- | -- |------------ |
+| None      | 0 | 其他事件来源。 |
+| Mouse     | 1 | 鼠标事件。   |
+| LongPress | 2 | 长按事件。   |
 
 ## ContextMenuMediaType<sup>9+</sup>枚举说明
 
-| 名称    | 描述            |
-| ----- | ------------- |
-| None  | 非特殊媒体或其他媒体类型。 |
-| Image | 图片。           |
+| 名称    | 值 | 描述            |
+| ----- | -- | ------------- |
+| None  | 0 | 非特殊媒体或其他媒体类型。 |
+| Image | 1 | 图片。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>枚举说明
 
-| 名称        | 描述                          |
-| --------- | --------------------------- |
-| None      | 非输入框。                       |
-| PlainText | 纯文本类型，包括text、search、email等。 |
-| Password  | 密码类型。                       |
-| Number    | 数字类型。                       |
-| Telephone | 电话号码类型。                     |
-| Other     | 其他类型。                       |
+| 名称        | 值 | 描述                          |
+| --------- | -- | --------------------------- |
+| None      | 0 | 非输入框。                       |
+| PlainText | 1 | 纯文本类型，包括text、search、email等。 |
+| Password  | 2 | 密码类型。                       |
+| Number    | 3 | 数字类型。                       |
+| Telephone | 4 | 电话号码类型。                     |
+| Other     | 5 | 其他类型。                       |
 
 ## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
 
-| 名称             | 描述    |
-| -------------- | ----- |
-| NONE           | 不可编辑。 |
-| CAN_CUT        | 支持剪切。 |
-| CAN_COPY       | 支持拷贝。 |
-| CAN_PASTE      | 支持粘贴。 |
-| CAN_SELECT_ALL | 支持全选。 |
+| 名称            | 值 | 描述     |
+| -------------- | -- | -------- |
+| NONE           | 0 | 不可编辑。 |
+| CAN_CUT        | 1 | 支持剪切。 |
+| CAN_COPY       | 2 | 支持拷贝。 |
+| CAN_PASTE      | 4 | 支持粘贴。 |
+| CAN_SELECT_ALL | 8 | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -4702,94 +4813,97 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 ## MessageLevel枚举说明
 
-| 名称    | 描述    |
-| ----- | :---- |
-| Debug | 调试级别。 |
-| Error | 错误级别。 |
-| Info  | 消息级别。 |
-| Log   | 日志级别。 |
-| Warn  | 警告级别。 |
+| 名称    | 值 | 描述    |
+| ----- | -- | ---- |
+| Debug | 0 | 调试级别。 |
+| Error | 1 | 错误级别。 |
+| Info  | 2 | 消息级别。 |
+| Log   | 3 | 日志级别。 |
+| Warn  | 4 | 警告级别。 |
 
-## RenderExitReason枚举说明
+## RenderExitReason<sup>9+</sup>枚举说明
 
 onRenderExited接口返回的渲染进程退出的具体原因。
 
-| 名称                         | 描述                |
-| -------------------------- | ----------------- |
-| ProcessAbnormalTermination | 渲染进程异常退出。         |
-| ProcessWasKilled           | 收到SIGKILL，或被手动终止。 |
-| ProcessCrashed             | 渲染进程崩溃退出，如段错误。    |
-| ProcessOom                 | 程序内存不足。           |
-| ProcessExitUnknown         | 其他原因。             |
+| 名称                         | 值 | 描述                |
+| -------------------------- | -- | ----------------- |
+| ProcessAbnormalTermination | 0 | 渲染进程异常退出。         |
+| ProcessWasKilled           | 1 | 收到SIGKILL，或被手动终止。 |
+| ProcessCrashed             | 2 | 渲染进程崩溃退出，如段错误。    |
+| ProcessOom                 | 3 | 程序内存不足。           |
+| ProcessExitUnknown         | 4 | 其他原因。             |
 
 ## MixedMode枚举说明
 
-| 名称         | 描述                                 |
-| ---------- | ---------------------------------- |
-| All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-| Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
-| None       | 不允许加载HTTP和HTTPS混合内容。               |
+| 名称        | 值 | 描述                                 |
+| ---------- | -- | ---------------------------------- |
+| All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
+| None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
-## CacheMode枚举说明
-| 名称      | 描述                                   |
-| ------- | ------------------------------------ |
-| Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-| None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
-| Online  | 加载资源不使用cache，全部从网络中获取。               |
-| Only    | 只从cache中加载资源。                        |
+## CacheMode<sup>9+</sup>枚举说明
 
-## FileSelectorMode枚举说明
-| 名称                   | 描述         |
-| -------------------- | ---------- |
-| FileOpenMode         | 打开上传单个文件。  |
-| FileOpenMultipleMode | 打开上传多个文件。  |
-| FileOpenFolderMode   | 打开上传文件夹模式。 |
-| FileSaveMode         | 文件保存模式。    |
+| 名称      | 值 | 描述                                   |
+| ------- | -- | ------------------------------------ |
+| Default | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
+| None    | 1 | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
+| Online  | 2 | 加载资源不使用cache，全部从网络中获取。               |
+| Only    | 3 | 只从cache中加载资源。                        |
+
+## FileSelectorMode<sup>9+</sup>枚举说明
+
+| 名称                   | 值 | 描述         |
+| -------------------- | -- | ---------- |
+| FileOpenMode         | 0 | 打开上传单个文件。  |
+| FileOpenMultipleMode | 1 | 打开上传多个文件。  |
+| FileOpenFolderMode   | 2 | 打开上传文件夹模式。 |
+| FileSaveMode         | 3 | 文件保存模式。    |
 
  ## HitTestType枚举说明
 
-| 名称            | 描述                       |
-| ------------- | ------------------------ |
-| EditText      | 可编辑的区域。                  |
-| Email         | 电子邮件地址。                  |
-| HttpAnchor    | 超链接，其src为http。           |
-| HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
-| Img           | HTML::img标签。             |
-| Map           | 地理地址。                    |
-| Phone         | 电话号码。                    |
-| Unknown       | 未知内容。                    |
+| 名称            | 值 | 描述                       |
+| ------------- | -- | ------------------------ |
+| EditText      | 0 | 可编辑的区域。                  |
+| Email         | 1 | 电子邮件地址。                  |
+| HttpAnchor    | 2 | 超链接，其src为http。           |
+| HttpAnchorImg | 3 | 带有超链接的图片，其中超链接的src为http。 |
+| Img           | 4 | HTML::img标签。             |
+| Map           | 5 | 地理地址。                    |
+| Phone         | 6 | 电话号码。                    |
+| Unknown       | 7 | 未知内容。                    |
 
 ## SslError<sup>9+</sup>枚举说明
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
-| 名称           | 描述          |
-| ------------ | ----------- |
-| Invalid      | 一般错误。       |
-| HostMismatch | 主机名不匹配。     |
-| DateInvalid  | 证书日期无效。     |
-| Untrusted    | 证书颁发机构不受信任。 |
+| 名称           | 值 | 描述          |
+| ------------ | -- | ----------- |
+| Invalid      | 0 | 一般错误。       |
+| HostMismatch | 1 | 主机名不匹配。     |
+| DateInvalid  | 2 | 证书日期无效。     |
+| Untrusted    | 3 | 证书颁发机构不受信任。 |
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
-| 名称                          | 描述            | 备注                         |
-| --------------------------- | ------------- | -------------------------- |
-| MidiSysex                   | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | 音频捕获资源，例如麦克风。 |                            |
+| 名称                          | 值 | 描述            | 备注                         |
+| --------------------------- | --------------- | ------------- | -------------------------- |
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
-| 名称   | 描述           |
-| ---- | ------------ |
-| Off  | Web深色模式关闭。   |
-| On   | Web深色模式开启。   |
-| Auto | Web深色模式跟随系统。 |
+
+| 名称   | 值 | 描述           |
+| ---- | -- | ------------ |
+| Off  | 0 | Web深色模式关闭。   |
+| On   | 1 | Web深色模式开启。   |
+| Auto | 2 | Web深色模式跟随系统。 |
 
 ## WebCaptureMode<sup>10+</sup>枚举说明
 
-| 名称          | 描述      |
-| ----------- | ------- |
-| HOME_SCREEN | 主屏捕获模式。 |
+| 名称          | 值 | 描述      |
+| ----------- | -- | ------- |
+| HOME_SCREEN | 0 | 主屏捕获模式。 |
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -5250,7 +5364,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
 | 参数名     | 参数类型                       | 必填   | 默认值  | 参数描述           |
 | ------- | -------------------------- | ---- | ---- | -------------- |
-| url     | string                     | 是    | -    | 需要加载的 URL。     |
+| url     | string \| Resource                    | 是    | -    | 需要加载的 URL。     |
 | headers | Array\<[Header](#header)\> | 否    | []   | URL的附加HTTP请求头。 |
 
 **示例：**
@@ -5597,28 +5711,16 @@ clearHistory(): void
 
 ### setCookie<sup>(deprecated)</sup>
 
-setCookie(): boolean
+setCookie()
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
 
 从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
 
-**返回值：**
-
-| 类型      | 说明            |
-| ------- | ------------- |
-| boolean | 设置cookie是否成功。 |
-
 ### saveCookie<sup>(deprecated)</sup>
 
-saveCookie(): boolean
+saveCookie()
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
 
 从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
-
-**返回值：**
-
-| 类型      | 说明                   |
-| ------- | -------------------- |
-| boolean | 同步内存cookie到磁盘操作是否成功。 |

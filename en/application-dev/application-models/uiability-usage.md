@@ -34,6 +34,8 @@ export default class EntryAbility extends UIAbility {
 
 The UIAbility class has its own context, which is an instance of the [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) class. The UIAbilityContext class has attributes such as **abilityInfo** and **currentHapModuleInfo**. UIAbilityContext can be used to obtain the UIAbility configuration information, such as the bundle code path, bundle name, ability name, and environment status required by the application. It can also be used to obtain methods to operate the UIAbility instance, such as **startAbility()**, **connectServiceExtensionAbility()**, and **terminateSelf()**.
 
+To obtain the context of the current ability on the page, call [getContext](../reference/apis/js-apis-getContext.md#getcontext) to obtain the UIAbilityContext or ExtensionContext associated with the current page.
+
 - You can use **this.context** to obtain the context of a UIAbility instance.
   
   ```ts
@@ -100,3 +102,5 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
     }
   }
   ```
+
+ <!--no_check--> 

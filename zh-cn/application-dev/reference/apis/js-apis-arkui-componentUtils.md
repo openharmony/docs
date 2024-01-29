@@ -147,84 +147,41 @@ import componentUtils from '@ohos.arkui.componentUtils';
 
 @Entry
 @Component
-struct Utils{
-  private getComponentRect(key:string) {
-    console.info("Mode Key: " + key);
-    let modePosition = componentUtils.getRectangleById(key);
-
-    let localOffsetWidth = modePosition.size.width;
-    let localOffsetHeight = modePosition.size.height;
-    let localOffsetX = modePosition.localOffset.x;
-    let localOffsetY = modePosition.localOffset.y;
-
-    let windowOffsetX = modePosition.windowOffset.x;
-    let windowOffsetY = modePosition.windowOffset.y;
-
-    let screenOffsetX = modePosition.screenOffset.x;
-    let screenOffsetY = modePosition.screenOffset.y;
-
-    let translateX = modePosition.translate.x;
-    let translateY = modePosition.translate.y;
-    let translateZ = modePosition.translate.z;
-
-    let scaleX = modePosition.scale.x;
-    let scaleY = modePosition.scale.y;
-    let scaleZ = modePosition.scale.z;
-    let scaleCenterX = modePosition.scale.centerX;
-    let scaleCenterY = modePosition.scale.centerY;
-
-    let rotateX = modePosition.rotate.x;
-    let rotateY = modePosition.rotate.y;
-    let rotateZ = modePosition.rotate.z;
-    let rotateCenterX = modePosition.rotate.centerX;
-    let rotateCenterY = modePosition.rotate.centerY;
-    let rotateAngle = modePosition.rotate.angle;
-
-    let Matrix4_1 = modePosition.transform[0];
-    let Matrix4_2 = modePosition.transform[1];
-    let Matrix4_3 = modePosition.transform[2];
-    let Matrix4_4 = modePosition.transform[3];
-    let Matrix4_5 = modePosition.transform[4];
-    let Matrix4_6 = modePosition.transform[5];
-    let Matrix4_7 = modePosition.transform[6];
-    let Matrix4_8 = modePosition.transform[7];
-    let Matrix4_9 = modePosition.transform[8];
-    let Matrix4_10 = modePosition.transform[9];
-    let Matrix4_11 = modePosition.transform[10];
-    let Matrix4_12 = modePosition.transform[11];
-    let Matrix4_13 = modePosition.transform[12];
-    let Matrix4_14 = modePosition.transform[13];
-    let Matrix4_15 = modePosition.transform[14];
-    let Matrix4_16 = modePosition.transform[15];
-    console.info("[getRectangleById] current component obj is: " + modePosition );
-  }
+struct Utils {
   @State x: number = 120;
   @State y: number = 10;
   @State z: number = 100;
+  @State value: string = '';
   private matrix1 = matrix4.identity().translate({ x: this.x, y: this.y, z: this.z });
+
   build() {
     Column() {
-        Image($r("app.media.icon"))
-          .transform(this.matrix1)
-          .translate({ x: 100, y: 10, z: 50})
-          .scale({ x: 2, y: 0.5, z: 1 })
-          .rotate({
-            x: 1,
-            y: 1,
-            z: 1,
-            centerX: '50%',
-            centerY: '50%',
-            angle: 300
-          })
-          .width("40%")
-          .height(100)
-          .key("image_01")
+      Image($r("app.media.icon"))
+        .transform(this.matrix1)
+        .translate({ x: 100, y: 10, z: 50 })
+        .scale({ x: 2, y: 0.5, z: 1 })
+        .rotate({
+          x: 1,
+          y: 1,
+          z: 1,
+          centerX: '50%',
+          centerY: '50%',
+          angle: 300
+        })
+        .width("40%")
+        .height(100)
+        .key("image_01")
       Button() {
         Text('getRectangleById').fontSize(40).fontWeight(FontWeight.Bold);
-      }.margin({ top: 20 })
+      }.margin(20)
       .onClick(() => {
-        this.getComponentRect("image_01");
-      }).id('onClick');
+        this.value = JSON.stringify(componentUtils.getRectangleById("image_01"))
+      }).id('onClick')
+      Text(this.value)
+        .margin(20)
+        .width(300)
+        .height(400)
+        .borderWidth(2)
     }
   }
 }

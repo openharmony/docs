@@ -63,16 +63,22 @@ If this API is bound to a component, it is triggered when the mouse pointer ente
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200).height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse pointer is hovered over the button.
-          if(isHover){
-            this.isHovered = isHover;
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
@@ -101,10 +107,10 @@ onMouse(event: (event?: MouseEvent) => void)
 ```
 
 
-Triggered when a mouse event occurs. It is triggered each time an action by the mouse pointer (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for customized mouse behavior logic processing.
+Triggered when a mouse event occurs. It is triggered each time a mouse pointer action (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md#mouseevent) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for customized mouse behavior logic processing.
 
 
-You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**/**displayY**/**windowX**/**windowY**/**x**/**y**), button ([MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)), action ([MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/arkui-ts/ts-universal-events-click.md)), and event source ([SourceType](../reference/arkui-ts/ts-gesture-settings.md)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
+You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)), action ([MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
 
 
 >**NOTE**
@@ -118,28 +124,34 @@ You can use the **MouseEvent** object in the callback to obtain information abou
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
   @State buttonText: string = '';
   @State columnText: string = '';
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200)
         .height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => {
-          if(isHover){
-            this.isHovered = isHover
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
-       .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the button.
-          if(event){
+        .onMouse((event?: MouseEvent) => { // Set the onMouse callback for the button.
+          if (event) {
             this.buttonText = 'Button onMouse:\n' + '' +
-            'button = ' + event.button + '\n' +
-            'action = ' + event.action + '\n' +
-            'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-            'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')';
           }
         })
       Divider()
@@ -152,8 +164,8 @@ struct MouseExample {
     .justifyContent(FlexAlign.Center)
     .borderWidth(2)
     .borderColor(Color.Red)
-    .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the column.
-      if(event){
+    .onMouse((event?: MouseEvent) => { // Set the onMouse callback for the column.
+      if (event) {
         this.columnText = 'Column onMouse:\n' + '' +
           'button = ' + event.button + '\n' +
           'action = ' + event.action + '\n' +
@@ -334,6 +346,7 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('onKeyEvent')
+        .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the button.
           if(event){
@@ -375,7 +388,7 @@ struct KeyEventExample {
 ```
 
 
-In the preceding example, **onKeyEvent** is bound to the **\<Button>** component and its parent container **\<Column>**. After the application opens and loads a page, the first focusable non-container component in the component tree automatically obtains focus. As the application has only one **\<Button>** component, the component automatically obtains focus. Because the **\<Button>** component is a child node of the **\<Column>** component, the **\<Column>** component also obtains focus. For details about the focus obtaining mechanism, see [Focus Event](arkts-common-events-focus-event.md).
+In the preceding example, **onKeyEvent** is bound to the **\<Button>** component and its parent container **\<Column>**. After the application opens and loads a page, the first focusable non-container component in the component tree automatically obtains focus. Set the **\<Button>** component as the default focus of the current page. Because the **\<Button>** component is a child node of the **\<Column>** component, the **\<Column>** component also obtains focus. For details about the focus obtaining mechanism, see [Focus Event](arkts-common-events-focus-event.md).
 
 
 ![en-us_image_0000001511421324](figures/en-us_image_0000001511421324.gif)
@@ -406,6 +419,7 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('onKeyEvent')
+        .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => {
           // Use stopPropagation to prevent the key event from bubbling up.

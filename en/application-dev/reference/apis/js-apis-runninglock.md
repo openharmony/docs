@@ -107,12 +107,12 @@ Creates a **RunningLock** object.
 **Example**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then((lock: runningLock.RunningLock) => {
-    console.info('created running lock: ' + lock);
-})
-.catch((err: { code: number, message: string }) => {
-    console.error('create running lock failed, error: ' + err);
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
+    if (typeof err === 'undefined') {
+        console.info('created running lock: ' + lock);
+    } else {
+        console.error('create running lock failed, err: ' + err);
+    }
 });
 ```
 

@@ -11,7 +11,7 @@ A click event is triggered when a component is clicked.
 
 | Name                                      | Bubbling Supported| Description                             |
 | ---------------------------------------- | ---- | --------------------------------- |
-| onClick(event: (event?: ClickEvent) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onClick(event: (event?: [ClickEvent](#clickevent)) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## ClickEvent
 
@@ -19,15 +19,15 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name           | Type                                | Description                                                    |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | X coordinate of the click relative to the upper left corner of the component being clicked.                   |
-| y                   | number                               | Y coordinate of the click relative to the upper left corner of the component being clicked.                   |
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| x                   | number                               | X coordinate of the click relative to the upper left corner of the component being clicked.<br>Unit: vp                   |
+| y                   | number                               | Y coordinate of the click relative to the upper left corner of the component being clicked.<br>Unit: vp                 |
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns|
 | target<sup>8+</sup> | [EventTarget](#eventtarget8) | Display area of the object that triggers the event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
-| windowX<sup>10+</sup> | number                             | X coordinate of the click relative to the upper left corner of the application window.|
-| windowY<sup>10+</sup> | number                             | Y coordinate of the click relative to the upper left corner of the application window.|
-| displayX<sup>10+</sup> | number                            | X coordinate of the click relative to the upper left corner of the application screen.|
-| displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.|
+| windowX<sup>10+</sup> | number                             | X coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp|
+| windowY<sup>10+</sup> | number                             | Y coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp|
+| displayX<sup>10+</sup> | number                            | X coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp|
+| displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp|
 | screenX<sup>(deprecated)</sup> | number                    | X coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead. |
 | screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead. |
 

@@ -21,7 +21,7 @@
 
 ## 限制条件
 
-- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。
+- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
 
 - \@Prop装饰器不能在\@Entry装饰的自定义组件中使用。
 
@@ -33,7 +33,7 @@
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
 | 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>必须指定类型。<br/>**说明** ：<br/>不支持Length、ResourceStr、ResourceColor类型，Length，ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。<br/>在父组件中，传递给\@Prop装饰的值不能为undefined或者null，反例如下所示。<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
-| 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
+| 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。                                 |
 
 
@@ -67,7 +67,7 @@
   // 赋值的变化可以被观察到
   this.count = 1;
   // 复杂类型
-  @Prop count: Model;
+  @Prop title: Model;
   // 可以观察到赋值的变化
   this.title = new Model('Hi');
   ```
@@ -188,6 +188,10 @@ struct ParentComponent {
 2. 更新：
    1. 子组件\@Prop更新时，更新仅停留在当前子组件，不会同步回父组件；
    2. 当父组件的数据源更新时，子组件的\@Prop装饰的变量将被来自父组件的数据源重置，所有\@Prop装饰的本地的修改将被父组件的更新覆盖。
+
+> **说明：**
+>
+> \@Prop装饰的数据更新依赖其所属自定义组件的重新渲染，所以在应用进入后台后，\@Prop无法刷新，推荐使用\@Link代替。
 
 
 ## 使用场景
@@ -317,7 +321,7 @@ struct Index {
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
 
-如果点击界面上的“1”、“2”、“3”，将所有变量的本地取值都变为“7”。
+如果点击界面上的“1”六下、“2”五下、“3”四下，将所有变量的本地取值都变为“7”。
 
 
 
@@ -431,9 +435,9 @@ struct ReaderComp {
 
   build() {
     Row() {
-      Text(this.book.title).fontColor('#e6000000')
-      Text(` has ${this.book.pages} pages!`).fontColor('#e6000000')
-      Text(` ${this.book.readIt ? "I have read" : 'I have not read it'}`).fontColor('#e6000000')
+      Text(` ${this.book ? this.book.title : "Book is undefined"}`).fontColor('#e6000000')
+      Text(` has ${this.book ? this.book.pages : "Book is undefined"} pages!`).fontColor('#e6000000')
+      Text(` ${this.book ? this.book.readIt ? "I have read" : 'I have not read it' : "Book is undefined"}`).fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -494,7 +498,11 @@ struct Library {
         .margin(12)
         .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          this.allBooks.shift();
+          if (this.allBooks.length > 0){
+            this.allBooks.shift();
+          } else {
+            console.log("length <= 0")
+          }
         })
       Button("Mark read for everyone")
         .width(312)
@@ -637,7 +645,6 @@ class ClassB {
 以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
 
 ```ts
-
 @Entry
 @Component
 struct Parent {
@@ -662,7 +669,30 @@ struct Parent {
           .onClick(() => {
             this.votes.a.title = "wwwww"
           })
-        Child({ vote: this.votes })
+        Text(this.votes.name)
+          .fontSize(16)
+          .margin(12)
+          .width(312)
+          .height(40)
+          .backgroundColor('#ededed')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+          .fontColor('#e6000000')
+          .onClick(() => {
+            this.votes.name = 'Bye'
+          })
+        Text(this.votes.a.title)
+          .fontSize(16)
+          .margin(12)
+          .width(312)
+          .height(40)
+          .backgroundColor('#ededed')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.votes.a.title = "openHarmony"
+          })
+        Child1({ vote1: this.votes.a })
       }
 
     }
@@ -670,41 +700,6 @@ struct Parent {
   }
 }
 
-@Component
-struct Child {
-  @Prop vote: ClassB = new ClassB('', new ClassA(''));
-
-  build() {
-    Column() {
-
-      Text(this.vote.name)
-        .fontSize(16)
-        .margin(12)
-        .width(312)
-        .height(40)
-        .backgroundColor('#ededed')
-        .borderRadius(20)
-        .textAlign(TextAlign.Center)
-        .fontColor('#e6000000')
-        .onClick(() => {
-          this.vote.name = 'Bye'
-        })
-      Text(this.vote.a.title)
-        .fontSize(16)
-        .margin(12)
-        .width(312)
-        .height(40)
-        .backgroundColor('#ededed')
-        .borderRadius(20)
-        .textAlign(TextAlign.Center)
-        .onClick(() => {
-          this.vote.a.title = "openHarmony"
-        })
-      Child1({ vote1: this.vote.a })
-
-    }
-  }
-}
 
 @Component
 struct Child1 {

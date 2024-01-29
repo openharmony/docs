@@ -72,13 +72,13 @@ The **\<Video>** component supports both local and online videos.
 
 ### Loading a Video in the Application Sandbox
 
-To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
+To load a video in the application sandbox, use a string with the **file://data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
 
 ```ts
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videosrc: string = 'file://data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {

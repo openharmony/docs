@@ -31,7 +31,7 @@ Adapt your application code accordingly. To use these APIs in OpenHarmony 4.0.9.
 
 **Example**
 
-```js
+```ts
 import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
@@ -61,7 +61,7 @@ Applications that use the involved ArkTS APIs may have compatibility issues.
 
 Before change:
 
-```js
+```ts
 function on(type: 'formAdd', observerCallback: Callback<formInfo.RunningFormInfo>, bundleName?: string): void;
 function off(type: 'formAdd', observerCallback?: Callback<formInfo.RunningFormInfo>, bundleName?: string): void;
 
@@ -93,7 +93,7 @@ function off(
 
 After change:
 
-```js
+```ts
 function on(type: 'formAdd', observerCallback: Callback<formInfo.RunningFormInfo>): void;
 function on(type: 'formAdd', hostBundleName: string, observerCallback: Callback<formInfo.RunningFormInfo>): void;
 function off(type: 'formAdd', hostBundleName?: string, observerCallback?: Callback<formInfo.RunningFormInfo>): void;
@@ -133,8 +133,8 @@ Adapt your application code accordingly. In OpenHarmony 4.0.9.5 and later versio
 
 **Example**
 
-```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+```ts
+import formObserver from '@ohos.app.form.formObserver';
 
 let bundleName = 'ohos.samples.FormApplication';
 let callback = function(data) {

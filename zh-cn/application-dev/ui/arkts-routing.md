@@ -1,7 +1,7 @@
 # 页面路由（router）
 
 
-页面路由指在应用程序中实现不同页面之间的跳转和数据传递。OpenHarmony提供了Router模块，通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
+页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
 
 Router适用于[模块](../quick-start/application-package-structure-stage.md)间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
 
@@ -14,13 +14,13 @@ Router适用于[模块](../quick-start/application-package-structure-stage.md)�
 
 Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl()：目标页面不会替换当前页，而是压入[页面栈](../application-models/page-mission-stack.md)。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl()：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
 
 - router.replaceUrl()：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 
 >**说明：** 
 >
->- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md)配置第二个页面的路由。
+>- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)配置第二个页面的路由。
 >
 >
 >- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。
@@ -215,10 +215,21 @@ import router from '@ohos.router';
 - 方式二：返回到指定页面。
 
 
+  返回普通页面。
+
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
+  });
+  ```
+
+  返回命名路由页面。
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage' //myPage为返回的命名路由页面别名
   });
   ```
 
@@ -227,10 +238,24 @@ import router from '@ohos.router';
 - 方式三：返回到指定页面，并传递自定义参数信息。
 
 
+  返回到普通页面。
+
   ```ts
   import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
+    params: {
+      info: '来自Home页'
+    }
+  });
+  ```
+
+  返回命名路由页面。
+
+  ```ts
+  import router from '@ohos.router';
+  router.back({
+    url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
       info: '来自Home页'
     }
@@ -244,15 +269,23 @@ import router from '@ohos.router';
 
 ```ts
 import router from '@ohos.router';
-onPageShow() {
-  const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
-  const info:Object = params['']; // 获取info属性的值
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    const params: object = router.getParams(); // 获取传递过来的参数对象
+    console.log("params" + JSON.stringify(params));
+  }
+  ...
 }
 ```
 
 >**说明：**
 >
->当使用router.back()方法返回到指定页面时，该页面会被重新压入栈顶，而原栈顶页面（包括）到指定页面（不包括）之间的所有页面栈都将被销毁。
+>当使用router.back()方法返回到指定页面时，原栈顶页面（包括）到指定页面（不包括）之间的所有页面栈都将从栈中弹出并销毁。
 >
 > 另外，如果使用router.back()方法返回到原来的页面，原页面不会被重复创建，因此使用\@State声明的变量不会重复声明，也不会触发页面的aboutToAppear()生命周期回调。如果需要在原页面中使用返回页面传递的自定义参数，可以在需要的位置进行参数解析。例如，在onPageShow()生命周期回调中进行参数解析。
 
@@ -366,7 +399,11 @@ function onBackClick() {
 
 ## 命名路由
 
-在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute)来实现。
+在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10)来实现。
+
+  **图4** 命名路由跳转 
+
+![(figures/router-add-query-box-before-back.gif)](figures/namedroute-jump-to-mypage.gif)
 
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
@@ -380,9 +417,20 @@ import router from '@ohos.router';
 ```ts
 // library/src/main/ets/pages/Index.ets
 // library为新建共享包自定义的名字
-@Entry({ routeName : 'myPage' })
+@Entry({ routeName: 'myPage' })
 @Component
 export struct MyComponent {
+  build() {
+    Row() {
+      Column() {
+        Text('Library Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 
@@ -391,7 +439,7 @@ export struct MyComponent {
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index')  // 引入共享包中的命名路由页面
+const module = import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {

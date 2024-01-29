@@ -32,7 +32,6 @@ import audio from '@ohos.multimedia.audio';
 ```ts
 import audio from '@ohos.multimedia.audio';
 
-const localNetworkId = audio.LOCAL_NETWORK_ID;
 const defaultVolumeGroupId = audio.DEFAULT_VOLUME_GROUP_ID;
 const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
 ```
@@ -547,27 +546,27 @@ Enumerates the audio stream usage.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                                     |  Value   | Description                             |
-| ------------------------------------------| ------ |---------------------------------|
-| STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.                          |
+| Name                                     |  Value   | Description                                                                                                                                         |
+| ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
+| STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.                                                                                                                                      |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | Media.<br>This enumerated value is supported since API version 7 and deprecated since API version 10. You are advised to use **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** instead.|
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.                            |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.                          |
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.                          |
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.                            |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.                          |
-| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | Notification tone.<br>This enumerated value is deprecated since API version 10. You are advised to use **STREAM_USAGE_RINGTONE** instead.                         |
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | Ringtone.                            |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | Notification.                            |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | Accessibility.                           |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).<br>This is a system API.  |
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | Movie or video.                         |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | Game sound effect.                          |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | Audiobook.                          |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | Navigation.                            |
-| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.             |
-| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.     |
-| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic.<br>This is a system API.             |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.                                                                                                                                        |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.                                                                                                                                      |
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.                                                                                                                                      |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.                                                                                                                                        |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.                                                                                                                                      |
+| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | Notification tone.<br>This enumerated value is deprecated since API version 10. You are advised to use **STREAM_USAGE_RINGTONE** instead.                                                                         |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | Ringtone.                                                                                                                                        |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | Notification.                                                                                                                                        |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | Accessibility.                                                                                                                                       |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).<br>This is a system API.                                                                                                              |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | Movie or video.                                                                                                                                     |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | Gaming.                                                                                                                                      |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | Audiobook.                                                                                                                                      |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | Navigation.                                                                                                                                        |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.                                                                                                                         |
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.                                                                                                                 |
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic (currently provided only for MSDP).<br>This is a system API.                                                                                                           |
 
 
 ## InterruptRequestType<sup>9+</sup>
@@ -681,7 +680,7 @@ Describes audio renderer information.
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttypedeprecated) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
-| rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means a common audio renderer, and **1** means a low-latency audio renderer. Currently, the JS APIs do not support the low-latency audio renderer.|
+| rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means a common audio renderer, and **1** means a low-latency audio renderer. Currently, the ArkTS APIs do not support the low-latency audio renderer.|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -831,7 +830,7 @@ Describes audio capturer information.
 | Name         | Type                     | Mandatory| Description            |
 | :------------ | :------------------------ | :--- | :--------------- |
 | source        | [SourceType](#sourcetype) | Yes  | Audio source type.      |
-| capturerFlags | number                    | Yes  | Audio capturer flags.|
+| capturerFlags | number                    | Yes  | Audio capturer flags.<br>The value **0** means a common audio capturer, and **1** means a low-latency audio capturer. Currently, the ArkTS APIs do not support the low-latency audio capturer.|
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
@@ -2479,9 +2478,9 @@ Obtains the volume group manager. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| groupId    | number                                    | Yes  | Volume group ID.    |
+| Name    | Type                                                        | Mandatory| Description                                                       |
+| ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
+| groupId    | number                                    | Yes  | Volume group ID. The default value is **LOCAL_VOLUME_GROUP_ID**.                         |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the volume group manager obtained; otherwise, **err** is an error object.|
 
 **Example**
@@ -2510,9 +2509,9 @@ Obtains the volume group manager. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description             |
-| ---------- | ---------------------------------------- | ---- | ---------------- |
-| groupId    | number                                   | Yes  | Volume group ID.    |
+| Name    | Type                                     | Mandatory| Description                              |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| groupId    | number                                   | Yes  | Volume group ID. The default value is **LOCAL_VOLUME_GROUP_ID**.|
 
 **Return value**
 
@@ -2543,9 +2542,9 @@ Obtains the volume group manager. This API returns the result synchronously.
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description             |
-| ---------- | ---------------------------------------- | ---- | ---------------- |
-| groupId    | number                                   | Yes  | Volume group ID.    |
+| Name    | Type                                     | Mandatory| Description                              |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| groupId    | number                                   | Yes  | Volume group ID. The default value is **LOCAL_VOLUME_GROUP_ID**.|
 
 **Return value**
 
@@ -3861,11 +3860,9 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, A
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -3908,11 +3905,9 @@ async function getCurrentAudioRendererInfoArray(){
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -3930,7 +3925,6 @@ async function getCurrentAudioRendererInfoArray(){
   });
 }
 ```
-
 ### getCurrentAudioRendererInfoArraySync<sup>10+</sup>
 
 getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
@@ -3957,11 +3951,9 @@ try {
     for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
       let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
       console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
       console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
       console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
       console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-      console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
       for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4007,10 +3999,8 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, A
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
         console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4037,8 +4027,8 @@ Obtains the information about the current audio capturer. This API uses a promis
 
 **Return value**
 
-| Type                                                         | Description                                            |
-| ------------------------------------------------------------ | ------------------------------------------------------ |
+| Type                                                         | Description                                      |
+| ------------------------------------------------------------ | ------------------------------------------------ |
 | Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Promise used to return the audio capturer information. |
 
 **Example**
@@ -4052,10 +4042,8 @@ async function getCurrentAudioCapturerInfoArray(){
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
         console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4073,7 +4061,6 @@ async function getCurrentAudioCapturerInfoArray(){
   });
 }
 ```
-
 ### getCurrentAudioCapturerInfoArraySync<sup>10+</sup>
 
 getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
@@ -4099,10 +4086,8 @@ try {
   if (audioCapturerChangeInfoArray != null) {
     for (let i = 0; i < audioCapturerChangeInfoArray.length; i++) {
       console.info(`StreamId for ${i} is: ${audioCapturerChangeInfoArray[i].streamId}`);
-      console.info(`ClientUid for ${i} is: ${audioCapturerChangeInfoArray[i].clientUid}`);
       console.info(`Source for ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.source}`);
       console.info(`Flag  ${i} is: ${audioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-      console.info(`State for ${i} is: ${audioCapturerChangeInfoArray[i].capturerState}`);
       for (let j = 0; j < audioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${audioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4152,11 +4137,9 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: aud
     let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
     console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
     console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-    console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);
     for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -4230,10 +4213,8 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4246,7 +4227,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
     }
   }
 });
-
 ```
 
 ### off('audioCapturerChange')<sup>9+</sup>
@@ -4277,7 +4257,6 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
-
 ```
 
 ### isActive<sup>9+</sup>
@@ -4307,7 +4286,6 @@ if (err) {
 }
   console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
 });
-
 ```
 
 ### isActive<sup>9+</sup>
@@ -4336,7 +4314,6 @@ Checks whether a stream is active. This API uses a promise to return the result.
 audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
 });
-
 ```
 
 ### isActiveSync<sup>10+</sup>
@@ -4776,6 +4753,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 Sets a communication device to the active state. This API uses an asynchronous callback to return the result.
 
+This API will be deprecated in a later version due to function design changes. You are not advised to use it.
+
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
 **Parameters**
@@ -4805,6 +4784,8 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
 Sets a communication device to the active state. This API uses a promise to return the result.
+
+This API will be deprecated in a later version due to function design changes. You are not advised to use it.
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -5587,17 +5568,14 @@ import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
-let resultFlag = false;
 
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
-    console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfoArray[i].clientUid}`);
     console.info(`Content for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.content}`);
     console.info(`Stream for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags}`);
-    console.info(`State for ${i} is: ${AudioRendererChangeInfoArray[i].rendererState}`);
     let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
@@ -5608,10 +5586,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
       console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
       console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-    if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
-      resultFlag = true;
-      console.info(`ResultFlag for ${i} is: ${resultFlag}`);
     }
   }
 });
@@ -5646,15 +5620,12 @@ import audio from '@ohos.multimedia.audio';
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
 
-let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StrId for  ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`CUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Src for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
     let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
@@ -5665,10 +5636,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
       console.info(`SR: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
       console.info(`C ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
       console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-    if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
-      resultFlag = true;
-      console.info(`ResultFlag for element ${i} is: ${resultFlag}`);
     }
   }
 });
@@ -5698,7 +5665,7 @@ Describes an audio device.
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates. |
 | channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported. |
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks. |
-| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.e |
+| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device. |
 | networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API. |
 | interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API. |
 | volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API. |
@@ -7596,6 +7563,8 @@ Subscribes to audio output device change events. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
 | ID      | Error Message            |
 | ------- | ------------------------ |
 | 6800101 | if input parameter value error.              |
@@ -7625,6 +7594,8 @@ Unsubscribes from audio output device change events. This API uses an asynchrono
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used to return the output device descriptor of the current audio stream. |
 
 **Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
 | ID      | Error Message            |
 | ------- | ------------------------ |
@@ -7813,6 +7784,7 @@ audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
 }).catch((err: BusinessError) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
+
 ```
 
 ### getStreamInfoSync<sup>10+</sup>

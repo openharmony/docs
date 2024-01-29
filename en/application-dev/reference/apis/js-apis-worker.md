@@ -6,7 +6,7 @@ With the **Worker** module, you can provide a multithreading environment for an 
 
 The **Context** object of the worker thread is different from that of the main thread. The worker thread does not support UI operations.
 
-For details about the precautions for using **Worker**, see [Precautions for Worker](../../arkts-utils/taskpool-vs-worker.md#precautions-for-worker).
+For details about the precautions for using **Worker**, see [Precautions for Worker](../../arkts-utils/worker-introduction.md#precautions-for-worker).
 
 > **NOTE**
 >

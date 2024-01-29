@@ -160,7 +160,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
 
    当LinkChild中的\@Link testNum更改时。
 
-   1. 更改首先同步到其父组件Parent，然后更改从Parent同步到Siling。
+   1. 更改首先同步到其父组件Parent，然后更改从Parent同步到Sibling。
 
    2. LinkChild中的\@Link testNum更改也同步给子组件LinkLinkChild和PropLinkChild。
 
@@ -599,7 +599,7 @@ struct Parent {
 
 如果要观察嵌套类的内部对象的变化，可以使用\@ObjectLink或\@Prop。优先考虑\@ObjectLink，其通过嵌套对象内部属性的引用初始化自身。\@Prop会对嵌套在内部的对象的深度拷贝来进行初始化，以实现单向同步。在性能上\@Prop的深度拷贝比\@ObjectLink的引用拷贝慢很多。
 
-\@ObjectLink或\@Prop可以用来存储嵌套内部的类对象，该类必须用\@Observed类装饰器装饰，否则类的属性改变并不会触发更新UI并不会刷新。\@Observed为其装饰的类实现自定义构造函数，此构造函数创建了一个类的实例，并使用ES6代理包装（由ArkUI框架实现），拦截修饰class属性的所有“get”和“set”。“set”观察属性值，当发生赋值操作时，通知ArkUI框架更新。“get”收集哪些UI组件依赖该状态变量，实现最小化UI更新。
+\@ObjectLink或\@Prop可以用来存储嵌套内部的类对象，该类必须用\@Observed类装饰器装饰，否则类的属性改变并不会触发更新，UI并不会刷新。\@Observed为其装饰的类实现自定义构造函数，此构造函数创建了一个类的实例，并使用ES6代理包装（由ArkUI框架实现），拦截修饰class属性的所有“get”和“set”。“set”观察属性值，当发生赋值操作时，通知ArkUI框架更新。“get”收集哪些UI组件依赖该状态变量，实现最小化UI更新。
 
 如果嵌套场景中，嵌套数据内部是数组或者class时，需根据以下场景使用\@Observed类装饰器。
 
@@ -757,7 +757,7 @@ struct ViewA {
 }
 ```
 
-与用\@ObjectLink修饰不同，用\@ObjectLink修饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
+与用\@Prop修饰不同，用\@ObjectLink修饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
 
 \@Prop是单向数据同步，ViewA内的Button只会触发Button自身的刷新，不会传播到其他的ViewA实例中。在ViewA中的ClassA只是一个副本，并不是其父组件中\@State arrA : Array&lt;ClassA&gt;中的对象，也不是其他ViewA的ClassA，这使得数组的元素和ViewA中的元素表面是传入的同一个对象，实际上在UI上渲染使用的是两个互不相干的对象。
 
@@ -781,11 +781,11 @@ struct ViewA {
 
 - 显示联系人和设备（"Me"）电话号码 。
 
-- 选中联系人时，进入可编辑态”Edit“，可以更新该联系人详细信息，包括电话号码，住址。
+- 选中联系人时，进入可编辑态“Edit”，可以更新该联系人详细信息，包括电话号码，住址。
 
 - 在更新联系人信息时，只有在单击保存“Save Changes”之后，才会保存更改。
 
-- 可以点击删除联系人”Delete Contact“，可以在联系人列表删除该联系人。
+- 可以点击删除联系人“Delete Contact”，可以在联系人列表删除该联系人。
 
 
 ViewModel需要包括：

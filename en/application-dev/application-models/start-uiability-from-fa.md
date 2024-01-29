@@ -11,18 +11,19 @@ A PageAbility starts a UIAbility in the same way as it starts another PageAbilit
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[EntryAbility]';
 
-featureAbility.startAbility(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "EntryAbility"
-        }
-    }
-).then((code) => {
-    console.info('Ability verify code: ' + JSON.stringify(code));
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+featureAbility.startAbility({ want }).then((code) => {
+  Logger.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
+  console.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -37,17 +38,19 @@ A PageAbility starts a UIAbility through **startAbilityForResult()** in the same
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[EntryAbility]';
 
-featureAbility.startAbilityForResult(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "com.ohos.stage.EntryAbility"
-        }
-    }).then((result) => {
-    console.info('Ability verify result: ' + JSON.stringify(result));
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+featureAbility.startAbilityForResult({ want }).then((result) => {
+  Logger.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
+  console.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -60,17 +63,20 @@ A ServiceAbility or DataAbility starts a UIAbility in the same way as it starts 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[ServiceAbility]';
 
-particleAbility.startAbility(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "com.ohos.stage.EntryAbility"
-        }
-    }
-).then(() => {
-    console.info('Start Ability successfully.');
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+particleAbility.startAbility({ want }).then(() => {
+  hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Start Ability successfully.');
+  console.info(TAG, 'StartUIAbility Start Ability successfully.');
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
+  console.error(TAG, 'StartUIAbility Ability failed: ' + JSON.stringify(error));
 });
+hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility ServiceAbility onStart');
+console.info(TAG, 'StartUIAbility ServiceAbility onStart');
 ```

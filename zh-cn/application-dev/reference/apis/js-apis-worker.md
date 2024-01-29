@@ -60,12 +60,6 @@ ThreadWorker构造函数。
 | scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
-**返回值：**
-
-| 类型         | 说明                                                         |
-| ------------ | ------------------------------------------------------------ |
-| ThreadWorker | 执行ThreadWorker构造函数生成的ThreadWorker对象，失败则返回undefined。 |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
@@ -241,7 +235,7 @@ on(type: string, listener: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                   |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
-| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。 |
 
 **错误码：**
 
@@ -275,7 +269,7 @@ once(type: string, listener: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                   |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | 是   | 监听的事件类型。       |
-| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 是 | 回调的事件。 |
 
 **错误码：**
 
@@ -309,7 +303,7 @@ off(type: string, listener?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的事件类型。         |
-| listener | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
+| listener | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调事件。 |
 
 **错误码：**
 
@@ -357,15 +351,9 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | Worker退出的code。 |
 
 **错误码：**
 
@@ -380,7 +368,7 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
  console.log("onexit");
 }
 
@@ -397,15 +385,9 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Worker对象的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **错误码：**
 
@@ -419,9 +401,11 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 **示例：**
 
 ```ts
+import worker, { ErrorEvent } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onerror = () => {
-    console.log("onerror");
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.log("onerror" + err.message);
 }
 ```
 
@@ -430,15 +414,9 @@ workerInstance.onerror = () => {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明                   |
-| ------ | -------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvents](#messageevents9) | 是   | 收到的Worker消息数据。 |
 
 **错误码：**
 
@@ -467,15 +445,9 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (event: MessageEvents) =&gt; void
 
-Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明       |
-| ------ | -------------------------------- | ---- | ---------- |
-| event  | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **错误码：**
 
@@ -489,9 +461,11 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 **示例：**
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessageerror= () => {
-    console.log("onmessageerror");
+workerInstance.onmessageerror = (err: MessageEvents) => {
+  console.log("onmessageerror");
 }
 ```
 
@@ -542,7 +516,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调事件。 |
 
 **错误码：**
 
@@ -581,7 +555,7 @@ dispatchEvent(event: Event): boolean
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| boolean | 分发的结果，false表示分发失败。 |
+| boolean | 分发的结果，true表示分发成功，false表示分发失败。 |
 
 **错误码：**
 
@@ -721,7 +695,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 参数名   | 类型                                         | 必填 | 说明                         |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | 是   | 需要删除的监听事件类型。     |
-| callback | [WorkerEventListener](#workereventlistener9) | 否 | 回调的事件。删除的回调事件。 |
+| callback | [WorkerEventListener](#workereventlistener9) | 否 | 删除监听事件后所执行的回调事件。 |
 
 **错误码：**
 
@@ -866,7 +840,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。 |
 
 **错误码：**
@@ -914,7 +888,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **错误码：**
@@ -990,16 +964,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                                                 | 必填 | 说明                     |
-| ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvents](#messageevents9)                     | 是   | 收到宿主线程发送的数据。 |
 
 **错误码：**
 
@@ -1035,16 +1002,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                             | 必填 | 说明       |
-| ------ | -------------------------------- | ---- | ---------- |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvents](#messageevents9) | 是   | 异常数据。 |
 
 **错误码：**
 
@@ -1065,12 +1025,14 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 // worker.ts
 import worker from '@ohos.worker';
 
 const workerPort = worker.workerPort;
-workerPort.onmessageerror = () => {
-    console.log("worker.ts onmessageerror")
+workerPort.onmessageerror = (err: MessageEvents) => {
+    console.log("worker.ts onmessageerror");
 }
 ```
 
@@ -1108,7 +1070,7 @@ workerPort.onmessageerror = () => {
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -1132,15 +1094,9 @@ Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#wor
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -1153,11 +1109,11 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort
-workerPort.onerror = () => {
-    console.log("worker.ts onerror")
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ts onerror" + err.message)
 }
 ```
 
@@ -1196,12 +1152,6 @@ Worker构造函数。
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
-
-**返回值：**
-
-| 类型   | 说明                                                      |
-| ------ | --------------------------------------------------------- |
-| Worker | 执行Worker构造函数生成的Worker对象，失败则返回undefined。 |
 
 **示例：**
 
@@ -1351,7 +1301,7 @@ on(type: string, listener: EventListener): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.on("alert", ()=>{
+workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -1401,7 +1351,7 @@ off(type: string, listener?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                 |
 | -------- | ----------------------------------------- | ---- | -------------------- |
 | type     | string                                    | 是   | 需要删除的事件类型。 |
-| listener | [EventListener](#eventlistenerdeprecated) | 否   | 删除的回调事件。     |
+| listener | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调事件。 |
 
 **示例：**
 
@@ -1435,24 +1385,18 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onexit<sup>9+</sup>](#onexit9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | Worker退出的code。 |
-
 **示例：**
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
     console.log("onexit");
 }
 
@@ -1469,25 +1413,21 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Worker对象的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onerror<sup>9+</sup>](#onerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
-
 **示例：**
 
 ```ts
+import worker, { ErrorEvent } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onerror = function() {
-    console.log("onerror");
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.log("onerror" + err.message);
 }
 ```
 
@@ -1496,26 +1436,20 @@ workerInstance.onerror = function() {
 
 onmessage?: (event: MessageEvent) =&gt; void
 
-Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessage<sup>9+</sup>](#onmessage9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                               | 必填 | 说明                   |
-| ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
-
 **示例：**
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onmessage = (e: MessageEvents): void => {
+workerInstance.onmessage = (e): void => {
     console.log("onmessage");
 }
 ```
@@ -1525,24 +1459,20 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (event: MessageEvent) =&gt; void
 
-Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
+回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**参数：**
-
-| 参数名 | 类型                               | 必填 | 说明       |
-| ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
-
 **示例：**
 
 ```ts
+import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onmessageerror= () => {
+workerInstance.onmessageerror = (err) => {
     console.log("onmessageerror");
 }
 ```
@@ -1574,7 +1504,7 @@ addEventListener(type: string, listener: EventListener): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -1596,13 +1526,13 @@ removeEventListener(type: string, callback?: EventListener): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 需要删除的监听事件类型。 |
-| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除的回调事件。         |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除监听事件后所执行的回调事件。 |
 
 **示例：**
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
@@ -1743,28 +1673,28 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject  | Object        | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。 |
 
 **示例：**
 
 ```ts
 // main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e: MessageEvents): void => {
+workerInstance.onmessage = (e): void => {
     // let data = e.data;
     console.log("receive data from worker.ts");
 }
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
 const workerPort = worker.workerPort;
-workerPort.onmessage = (e: MessageEvents): void => {
+workerPort.onmessage = (e): void => {
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
     workerPort.postMessage(buffer, [buffer]);
@@ -1786,28 +1716,28 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用。<br/>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到宿主线程。 |
 
 **示例：**
 
 ```ts
 // main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e: MessageEvents): void => {
+workerInstance.onmessage = (e): void => {
     // let data = e.data;
     console.log("receive data from worker.ts");
 }
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e: MessageEvents): void => {
+parentPort.onmessage = (e): void => {
     // let data = e.data;
     parentPort.postMessage("receive data from main thread");
 }
@@ -1834,10 +1764,10 @@ const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import workerfrom '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e: MessageEvents): void => {
+parentPort.onmessage = (e): void => {
     parentPort.close()
 }
 ```
@@ -1847,19 +1777,12 @@ parentPort.onmessage = (e: MessageEvents): void => {
 
 onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+回调函数，DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated)，ev类型为[MessageEvent](#messageeventt)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明                     |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvent](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -1872,10 +1795,10 @@ workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e: MessageEvents): void => {
+parentPort.onmessage = (e): void => {
     console.log("receive main thread message");
 }
 ```
@@ -1885,19 +1808,12 @@ parentPort.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[DedicatedWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvent](#dedicatedworkerglobalscopedeprecated)，表示收到的Worker消息数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明             |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| ev     | [MessageEvent](#messageeventt)                           | 是   | 异常数据。       |
 
 **示例：**
 
@@ -1912,7 +1828,7 @@ const workerInstance = new worker.Worker("workers/worker.ts");
 import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessageerror = () => {
+parentPort.onmessageerror = (e) => {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -1968,7 +1884,7 @@ parentPort.onmessageerror = () => {
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -2021,18 +1937,12 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
+WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型                      | 必填 | 说明       |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | 是   | 异常数据。 |
 
 **示例：**
 
@@ -2044,11 +1954,11 @@ const workerInstance = new worker.Worker("workers/worker.ts")
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { ErrorEvent } from '@ohos.worker';
 
 const parentPort = worker.parentPort
-parentPort.onerror = () => {
-    console.log("worker.ts onerror")
+parentPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ts onerror" + err.message)
 }
 ```
 
@@ -2076,7 +1986,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
 class MyModel {
@@ -2106,8 +2016,8 @@ workerPort.onmessage = (d: MessageEvents): void => {
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror");
 }
-workerPort.onerror = () => {
-    console.log("worker.ts onerror");
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ts onerror" + err.message);
 }
 ```
 
@@ -2142,7 +2052,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 }
 
 // 在调用terminate后，执行回调onexit
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
     console.log("main thread terminate");
 }
 
@@ -2152,7 +2062,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
 const workerPort = worker.workerPort
@@ -2168,8 +2078,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
 }
 
 // worker线程发生error的回调
-workerPort.onerror= () => {
-    console.log("worker.ts onerror");
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ts onerror" + err.message);
 }
 ```
 build-profile.json5 配置 :
@@ -2203,7 +2113,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
     workerInstance.terminate();
 }
 // 在调用terminate后，执行onexit
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
     console.log("main thread terminate");
 }
 
@@ -2213,7 +2123,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 ```
 ```ts
 // worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
 const workerPort = worker.workerPort
@@ -2229,7 +2139,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 }
 
 // worker线程发生error的回调
-workerPort.onerror= () => {
+workerPort.onerror = (err: ErrorEvent) => {
     console.log("worker.ts onerror");
 }
 ```

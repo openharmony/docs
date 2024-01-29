@@ -126,36 +126,42 @@
   \@State装饰的对象为Model类型数组时。
 
   ```ts
+  // 数组类型
   @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   数组自身的赋值可以观察到。
 
   ```ts
+  // 数组赋值
   this.title = [new Model(2)];
   ```
 
   数组项的赋值可以观察到。
 
   ```ts
+  // 数组项赋值
   this.title[0] = new Model(2);
   ```
 
   删除数组项可以观察到。
 
   ```ts
+  // 数组项更改
   this.title.pop();
   ```
 
   新增数组项可以观察到。
 
   ```ts
+  // 数组项更改
   this.title.push(new Model(12));
   ```
 
   数组项中属性的赋值观察不到。
 
   ```ts
+  // 嵌套的属性赋值观察不到
   this.title[0].value = 6;
   ```
 
@@ -260,7 +266,8 @@ struct EntryComponent {
     Column() {
       // 此处指定的参数都将在初始渲染时覆盖本地定义的默认值，并不是所有的参数都需要从父组件初始化
       MyComponent({ count: 1, increaseBy: 2 })
-      MyComponent({ title: new Model('Hello, World 2'), count: 7 })
+        .width(300)
+      MyComponent({ title: new Model('Hello World 2'), count: 7 })
     }
   }
 }
@@ -274,20 +281,28 @@ struct MyComponent {
   build() {
     Column() {
       Text(`${this.title.value}`)
-      Button(`Click to change title`).onClick(() => {
-        // @State变量的更新将触发上面的Text组件内容更新
-        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
-      })
+        .margin(10)
+      Button(`Click to change title`)
+        .onClick(() => {
+          // @State变量的更新将触发上面的Text组件内容更新
+          this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
+        })
+        .width(300)
+        .margin(10)
 
-      Button(`Click to increase count=${this.count}`).onClick(() => {
-        // @State变量的更新将触发该Button组件的内容更新
-        this.count += this.increaseBy;
-      })
+      Button(`Click to increase count = ${this.count}`)
+        .onClick(() => {
+          // @State变量的更新将触发该Button组件的内容更新
+          this.count += this.increaseBy;
+        })
+        .width(300)
+        .margin(10)
     }
   }
 }
 ```
 
+![Video-state](figures/Video-state.gif)
 
 从该示例中，我们可以了解到\@State变量首次渲染的初始化流程：
 
@@ -401,3 +416,108 @@ struct PlayDetailPage {
   }
 }
 ```
+
+### 状态变量的修改放在构造函数内未生效
+
+在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者把状态变量的修改放在构造函数里时，此修改不会经过代理（因为是直接对数据源中的值进行修改），即使修改成功执行，也无法观测UI的刷新。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model
+
+  constructor() {
+    this.model = new Model(()=>{
+      this.isSuccess = true
+      console.log(`this.isSuccess: ${this.isSuccess}`)
+    })
+  }
+  query() {
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: ()=>void
+
+  constructor(cb: ()=>void) {
+    this.callback = cb
+  }
+  query(){
+      this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在构造函数内，界面开始时显示“failed”，点击后日志打印“this.isSuccess: true”说明修改成功，但界面依旧显示“failed”，未实现刷新。
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model = new Model(() => {
+  })
+
+  query() {
+    this.model = new Model(() => {
+      this.isSuccess = true
+    })
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: () => void
+
+  constructor(cb: () => void) {
+    this.callback = cb
+  }
+
+  query() {
+    this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在类的普通方法中，界面开始时显示“failed”，点击后显示“success”。

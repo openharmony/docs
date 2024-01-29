@@ -19,9 +19,15 @@
 
 ## 接口
 
-ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string, style?: ListItemGroupStyle})
+ListItemGroup(options?: ListItemGroupOptions)
 
 **参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 是 | 列表item分组组件参数。 |
+
+## ListItemGroupOptions对象说明：
 
 | 参数名              | 参数类型                                            | 必填 | 参数描述                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -38,10 +44,10 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 
-| 名称 | 描述               |
-| ---- | ------------------ |
-| NONE | 无样式。           |
-| CARD | 显示默认卡片样式。 |
+| 名称 | 枚举值  | 描述               |
+| ---- | ---- | ------------------ |
+| NONE | 0 | 无样式。           |
+| CARD | 1 | 显示默认卡片样式。 |
 
 > **说明：** 
 >
@@ -175,7 +181,7 @@ struct ListItemGroupExample2 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // 浅蓝色的List
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })

@@ -112,7 +112,7 @@ Span位置信息。
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 是 | 字体样式。 |
 | fontWeight |  number | 是 | 字体粗细。 |
 | fontFamily  |  string | 是 | 字体列表。 |
-| decoration  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是 | 文本装饰线样式及其颜色。 |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
 
 
 ## RichEditorImageSpanResult
@@ -224,7 +224,7 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
 
 
 ### getSpans
@@ -275,7 +275,7 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | start | number   | 否 | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
+| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是 | 文本样式。 |
 
 
@@ -286,7 +286,7 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | start | number   | 否 | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
+| end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示无穷大。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
 
@@ -296,7 +296,7 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
+| offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。|
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
 
 ## RichEditorTextStyle
@@ -306,10 +306,10 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/> 默认值：Color.Black。 |
-| fontSize | [Length](ts-types.md#length) | 否 | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fontSize                 | [Length](ts-types.md#length) \| number            | 否    | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否 | 字体样式。<br/>默认值：FontStyle.Normal。 |
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | 否 | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../apis/js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。|
+| fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../apis/js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
 | decoration  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否 | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 
 
@@ -319,7 +319,7 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。 |
+| offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。|
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | 否   | 图片样式信息。省略时，使用系统默认图片信息。|
 
 ## RichEditorImageSpanStyle
@@ -339,7 +339,7 @@ deleteSpans(value?: RichEditorRange): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | start | number   | 否 | 起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 结束位置，省略或者超出文本范围时表示到结尾。 |
+| end | number | 否 | 结束位置，省略或者超出文本范围时表示无穷大。 |
 
 
 ## 示例
