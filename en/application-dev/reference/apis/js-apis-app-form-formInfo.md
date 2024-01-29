@@ -14,7 +14,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 ## FormInfo
 
-Describes widget information.
+Defines the widget information.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -163,7 +163,7 @@ Enumerates the usage statuses of widgets.
 
 ## RunningFormInfo<sup>10+</sup>
 
-Defines the information about the widget host.
+Defines the information about an added widget, which can be either in use or not.
 
 **System capability**: SystemCapability.Ability.Form
 
