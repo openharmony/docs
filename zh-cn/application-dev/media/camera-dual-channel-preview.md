@@ -8,7 +8,7 @@
 
 ## 约束与限制
 
-- 暂不支持动态添加流，即不能在没有调用[session.stop](../reference/apis/js-apis-camera.md#stop-4)的情况下，调用[addOutput](../reference/apis/js-apis-camera.md#addoutput)添加流。
+- 暂不支持动态添加流，即不能在没有调用[session.stop](../reference/apis/js-apis-camera.md#stop11)的情况下，调用[addOutput](../reference/apis/js-apis-camera.md#addoutput11)添加流。
 - 对ImageReceiver组件获取到的图像数据处理后，需要将对应的图像Buffer释放，确保Surface的BufferQueue正常轮转。
 
 ## 调用流程
