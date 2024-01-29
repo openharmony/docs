@@ -17,7 +17,7 @@ import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
 ## EnvironmentCallback.onConfigurationUpdated
 
-onConfigurationUpdated(config: Configuration): void;
+onConfigurationUpdated(config: Configuration): void
 
 注册系统环境变化的监听后，在系统环境变化时触发回调。
 

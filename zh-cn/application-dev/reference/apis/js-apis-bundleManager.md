@@ -29,7 +29,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 包信息标志，指示需要获取的包信息的内容。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                                      | 值         | 说明                                                         |
 | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -48,7 +48,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 应用信息标志，指示需要获取的应用信息的内容。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
  **系统接口：** 此接口为系统接口。
 
@@ -63,7 +63,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
  **系统接口：** 此接口为系统接口。
 
@@ -80,7 +80,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 扩展组件信息标志，指示需要获取的扩展组件信息的内容。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
  **系统接口：** 此接口为系统接口。
 
@@ -95,7 +95,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 指示扩展组件的类型。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
@@ -126,7 +126,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 指示权限授予状态。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -137,7 +137,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识该组件所支持的窗口模式。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -149,7 +149,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 指示组件的启动方式。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -163,19 +163,19 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
  **模型约束：** 仅可在FA模型下使用
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 |  名称   | 值   |                            说明                            |
 | :-----: | ---- | :--------------------------------------------------------: |
-|  PAGE   | 1    |     表示基于Page模板开发的FA，用于提供与用户交互的能力。     |
-| SERVICE | 2    |  表示基于Service模板开发的PA，用于提供后台运行任务的能力。   |
+| PAGE    | 1    | UI界面类型的Ability。表示基于Page模板开发的FA，用于提供与用户交互的能力。        |
+| SERVICE | 2    | 后台服务类型的Ability，无UI界面。表示基于Service模板开发的PA，用于提供后台运行任务的能力。  |
 |  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。 |
 
 ### DisplayOrientation
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
 |:----------------------------------|---|---|
@@ -197,7 +197,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识共享库的版本兼容类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                   | 值   | 说明                             |
 | ---------------------- | ---- | -------------------------------- |
@@ -207,7 +207,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识模块类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称    | 值   | 说明                 |
 | ------- | ---- | -------------------- |
@@ -219,7 +219,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识应用的类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称           | 值   | 说明            |
 | -------------- | ---- | --------------- |
@@ -230,7 +230,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 标识配置文件类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+ **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
  **系统接口：** 此接口为系统接口。
 

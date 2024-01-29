@@ -48,7 +48,7 @@ try {
 
 onException?(errObject: Error): void;
 
-将在应用运行异常时调用。
+将在js运行时引发用户未捕获的异常时调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
