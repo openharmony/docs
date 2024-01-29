@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> In this document, DevEco Studio 4.0 Release is used. You can download it [here](../../release-notes/OpenHarmony-v4.0-release.md#version-mapping).
+> In this document, DevEco Studio 4.1 Beta1 is used. You can download it [here](../../release-notes/OpenHarmony-v4.1-beta1.md#version-mapping).
 
 ## Creating an ArkTS Project
 
@@ -13,21 +13,13 @@
 
    ![createProject](figures/createProject.png)
 
-3. On the project configuration page, set **Compile SDK** to **10** and retain the default values for other parameters.
+3. On the project configuration page, set **Compile SDK** to **11** and retain the default values for other parameters.
 
    The **Node** parameter sets the Node.js version to use for the project. You can use an existing version or download a new one.
 
    ![chooseStageModel](figures/chooseStageModel.png)
 
-   > **NOTE**
-   > You can use the low-code development mode apart from the traditional coding approach.
-   >
-   > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
-   >
-   > To use the low-code development mode, turn on **Enable Super Visual** on the page shown above.
-
 4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
-
 
 
 ## ArkTS Project Directory Structure (Stage Model)
@@ -319,3 +311,4 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
    ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
 
 Congratulations! You have finished developing your OpenHarmony application in ArkTS in the stage model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).
+<!--no_check-->
