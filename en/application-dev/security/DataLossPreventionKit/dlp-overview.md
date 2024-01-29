@@ -1,6 +1,6 @@
-# Introduction to DLP Kit
+# DLP Overview
 
-Data Loss Prevention (DLP) Kit is a system solution provided to prevent data disclosure. It provides capabilities of file access management, encrypted storage, and access authorization. The data owner can grant the permission (read only, edit, or full control) on a confidential file based on account authentication. The confidential file is encrypted and stored in ciphertext. Only the user who has passed the device-cloud synergy authentication using a DLP-capable device can access or modify the file.
+Data Loss Prevention (DLP) is a system solution provided to prevent data disclosure. It provides capabilities of file access management, encrypted storage, and access authorization. The data owner can grant the permission (read only, edit, or full control) on a confidential file based on account authentication. The confidential file is encrypted and stored in ciphertext. Only the user who has passed the device-cloud synergy authentication using a DLP-capable device can access or modify the file.
 
 DLP is a system solution. You can implement complete DLP capabilities with little or no adaptation.
 

@@ -1,6 +1,6 @@
-# Crypto Architecture Kit (Crypto Architecture Kit)
+# Crypto Framework
 
-- [Introduction to Crypto Architecture Kit](crypto-architecture-kit-intro.md)
+- [Crypto Framework Overview](crypto-architecture-kit-intro.md)
 - Key Generation and Conversion
   - [Key Generation and Conversion Overview](crypto-key-generation-conversion-overview.md)
   - Key Generation and Conversion Specifications
