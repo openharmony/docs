@@ -659,6 +659,7 @@ IUsbInterface::ReleaseInterface ([in] struct UsbDev dev, [in] unsigned char inte
 IUsbInterface::ManageInterface ([in] struct UsbDev dev, [in] unsigned char interfaceid, [in] bool disable )
 ```
 **描述:**
+
 设置USB设备接口启动状态。
 
 **参数:**
