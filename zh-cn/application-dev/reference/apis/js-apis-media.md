@@ -3145,8 +3145,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| config   | [AVRecorderConfig](#avrecorderconfig9) | 是   | 音视频录制的相关参数。            |
-| callback | AsyncCallback\<config: AVRecorderConfig> | 是   | 异步获得实时配置参数的回调方法。 |
+| callback | AsyncCallback\<[AVRecorderConfig](#avrecorderconfig9)> | 是   | 异步获得实时配置参数的回调方法。 |
 
 **错误码：**
 
@@ -3189,8 +3188,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| config   | [AVRecorderConfig](#avrecorderconfig9) | 音视频录制的相关参数。 |
-| Promise\<config: AVRecorderConfig> | 异步获得实时配置参数的回调方法。 |
+| Promise\<[AVRecorderConfig](#avrecorderconfig9)> | 异步获得实时配置参数的回调方法。 |
 
 **错误码：**
   
@@ -3334,7 +3332,9 @@ avRecorder.off('error');
 
 on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo>): void
 
-订阅录音配置变化的回调，任意录音配置的变化会触发变化后的录音配置全量信息回调，当用户重复订阅时，以最后一次订阅的回调接口为准。
+订阅录音配置变化的回调，任意录音配置的变化会触发变化后的录音配置全量信息回调。
+
+当用户重复订阅时，以最后一次订阅的回调接口为准。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3343,7 +3343,7 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录音配置变化的回调类型，支持的事件：'audioCapturerChange'。 |
-| callback | function | 是   |  变化后的录音配置全量信息[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)。|
+| callback | Callback<[audio.AudioCapturerChangeInfo](js-apis-audio.md#audiocapturerchangeinfo9)> | 是 | 变化后的录音配置全量信息。|
 
 **错误码：**
 
