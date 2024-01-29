@@ -26,7 +26,7 @@ For details about how to use AppStorage on the UI, see [AppStorage: Application-
 
 ### link<sup>10+</sup>
 
-static link&lt;T&lt;(propName: string): SubscribedAbstractProperty&lt;T&lt;
+static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 Establishes two-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned.
 
@@ -34,6 +34,7 @@ Any update of the data is synchronized back to AppStorage, which then synchroniz
 
 If the given attribute does not exist in AppStorage, **undefined** is returned.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -47,7 +48,7 @@ If the given attribute does not exist in AppStorage, **undefined** is returned.
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.link('PropA');
@@ -62,6 +63,8 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name         | Type    | Mandatory  | Description                                    |
@@ -75,7 +78,7 @@ Works in a way similar to the **Link** API. If the given attribute exists in App
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let link1: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropB', 49); // Create PropB 49
@@ -89,9 +92,7 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 Establishes one-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
 
->**NOTE**
->
-> Prop supports only simple types.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -105,7 +106,7 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
@@ -120,6 +121,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 Works in a way similar to the **Prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -134,7 +136,7 @@ Works in a way similar to the **Prop** API. If the given attribute exists in App
 | ----------------------------------- | --------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;**.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let prop: SubscribedAbstractProperty<number> = AppStorage.setAndProp('PropB', 49); // PropA -> 47, PropB -> 49
@@ -146,6 +148,8 @@ let prop: SubscribedAbstractProperty<number> = AppStorage.setAndProp('PropB', 49
 static has(propName: string): boolean
 
 Checks whether the attribute with the specified attribute name exists in AppStorage.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -159,7 +163,7 @@ Checks whether the attribute with the specified attribute name exists in AppStor
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the attribute with the specified attribute name exists in AppStorage; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.has('simpleProp');
 ```
@@ -170,6 +174,8 @@ AppStorage.has('simpleProp');
 static get&lt;T&gt;(propName: string): T | undefined
 
 Obtains the attribute with the specified attribute name in AppStorage. If the attribute does not exist, **undefined** is returned.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -183,7 +189,7 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 | ------------------------ | ---------------------------------------- |
 | T \| undefined | Returns the attribute with the specified attribute name in AppStorage; returns **undefined** if the attribute does not exist.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let value: number = AppStorage.get('PropA') as number; // 47
@@ -195,6 +201,8 @@ let value: number = AppStorage.get('PropA') as number; // 47
 static set&lt;T&gt;(propName: string, newValue: T): boolean
 
 Sets the value for the attribute with the specified attribute name in AppStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -209,7 +217,7 @@ Sets the value for the attribute with the specified attribute name in AppStorage
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 48);
 let res: boolean = AppStorage.set('PropA', 47) // true
@@ -224,6 +232,8 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
 If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute. This **setOrCreate** method creates only one AppStorage key-value pair. To create multiple key-value pairs, call this method multiple times.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name     | Type    | Mandatory  | Description                  |
@@ -231,7 +241,7 @@ If the new value is the same as the existing value of the attribute with the spe
 | propName | string | Yes   | Attribute name in AppStorage.      |
 | newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('simpleProp', 121);
 ```
@@ -241,9 +251,13 @@ AppStorage.setOrCreate('simpleProp', 121);
 
 static delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage
+
+under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -257,7 +271,7 @@ The subscribers of the attribute are attributes with the same name bound to APIs
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 AppStorage.link<number>('PropA');
@@ -274,13 +288,15 @@ static keys(): IterableIterator&lt;string&gt;
 
 Obtains all attribute names in AppStorage.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                            | Description                |
 | ------------------------------ | ------------------ |
 | IterableIterator&lt;string&gt; | All attribute names in AppStorage.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropB', 48);
 let keys: IterableIterator<string> = AppStorage.keys();
@@ -293,7 +309,9 @@ static clear(): boolean
 
 Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
-For details about the subscriber, see [Delete](#delete10).
+For details about the subscriber, see [delete](#delete10).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -301,7 +319,7 @@ For details about the subscriber, see [Delete](#delete10).
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let res: boolean = AppStorage.clear(); // true, there are no subscribers
@@ -314,13 +332,15 @@ static size(): number
 
 Obtains the number of attributes in AppStorage.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type    | Description                 |
 | ------ | ------------------- |
 | number | Number of attributes in AppStorage.|
 
-
+**Example:**
 ```ts
 AppStorage.setOrCreate('PropB', 48);
 let res: number = AppStorage.size(); // 1
@@ -337,8 +357,10 @@ Any update of the data is synchronized back to AppStorage, which then synchroniz
 
 If the given attribute does not exist in AppStorage, **undefined** is returned.
 
-This API is deprecated since API version 10. You are advised to use [link10+](#link10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [link10+](#link10) instead.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -348,11 +370,11 @@ This API is deprecated since API version 10. You are advised to use [link10+](#l
 
 **Return value**
 
-| Type  | Description                                      |
-| ---- | ---------------------------------------- |
-| any  | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| Type                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| any | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.Link('PropA');
@@ -360,14 +382,16 @@ let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); 
 linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
-
 ### SetAndLink<sup>(deprecated)</sup>
 
 static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with <b class="+ topic/ph hi-d/b " id="b537113298389">defaultValue</b> in AppStorage, and two-way bound data is returned.
+Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned.
 
-This API is deprecated since API version 10. You are advised to use [setAndLink10+](#setandlink10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [setAndLink10+](#setandlink10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -382,12 +406,13 @@ This API is deprecated since API version 10. You are advised to use [setAndLink1
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 let link1: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropB', 49); // Create PropB 49
 let link2: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 50); // PropA exists, remains 47
 ```
+
 
 ### Prop<sup>(deprecated)</sup>
 
@@ -395,9 +420,11 @@ static Prop(propName: string): any
 
 Establishes one-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
 
->**NOTE**
+> **NOTE**<br>
 > Prop supports only simple types.
-> This API is deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -407,11 +434,11 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 **Return value**
 
-| Type  | Description                                      |
-| ---- | ---------------------------------------- |
-| any  | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| Type                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| any | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
@@ -419,14 +446,16 @@ let prop2:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
 prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 ```
 
-
 ### SetAndProp<sup>(deprecated)</sup>
 
 static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
 Works in a way similar to the **Prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned.
 
-This API is deprecated since API version 10. You are advised to use [setAndProp10+](#setandprop10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [setAndProp10+](#setandprop10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -441,12 +470,11 @@ This API is deprecated since API version 10. You are advised to use [setAndProp1
 | ----------------------------------- | --------------------------------------- |
 | SubscribedAbstractProperty&lt;S&gt; | Instance of **SubscribedAbstractProperty&lt;S&gt;**.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 let prop: SubscribedAbstractProperty<number> = AppStorage.SetAndProp('PropB', 49); // PropA -> 47, PropB -> 49
 ```
-
 
 ### Has<sup>(deprecated)</sup>
 
@@ -454,7 +482,10 @@ static Has(propName: string): boolean
 
 Checks whether the attribute with the specified attribute name exists in AppStorage.
 
-This API is deprecated since API version 10. You are advised to use [has10+](#has10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [has10+](#has10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -468,11 +499,10 @@ This API is deprecated since API version 10. You are advised to use [has10+](#ha
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the attribute with the specified attribute name exists in AppStorage; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.Has('simpleProp');
 ```
-
 
 ### Get<sup>(deprecated)</sup>
 
@@ -480,7 +510,10 @@ static Get&lt;T&gt;(propName: string): T | undefined
 
 Obtains the attribute with the specified attribute name in AppStorage. If the attribute does not exist, **undefined** is returned.
 
-This API is deprecated since API version 10. You are advised to use [get10+](#get10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [get10+](#get10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -494,12 +527,11 @@ This API is deprecated since API version 10. You are advised to use [get10+](#ge
 | ------------------------ | ---------------------------------------- |
 | T \| undefined | Returns the attribute with the specified attribute name in AppStorage; returns **undefined** if the attribute does not exist.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 let value: number = AppStorage.Get('PropA') as number; // 47
 ```
-
 
 ### Set<sup>(deprecated)</sup>
 
@@ -507,7 +539,10 @@ static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
 Sets the value for the attribute with the specified attribute name in AppStorage.
 
-This API is deprecated since API version 10. You are advised to use [set10+](#set10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [set10+](#set10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -522,13 +557,12 @@ This API is deprecated since API version 10. You are advised to use [set10+](#se
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 48);
 let res: boolean = AppStorage.Set('PropA', 47) // true
 let res1: boolean = AppStorage.Set('PropB', 47) // false
 ```
-
 
 ### SetOrCreate<sup>(deprecated)</sup>
 
@@ -536,7 +570,10 @@ static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
 
-This API is deprecated since API version 10. You are advised to use [setOrCreate10+](#setorcreate10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [setOrCreate10+](#setorcreate10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -545,21 +582,25 @@ This API is deprecated since API version 10. You are advised to use [setOrCreate
 | propName | string | Yes   | Attribute name in AppStorage.      |
 | newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('simpleProp', 121);
 ```
-
 
 ### Delete<sup>(deprecated)</sup>
 
 static Delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage
+
+under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
-This API is deprecated since API version 10. You are advised to use [delete10+](#delete10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [delete10+](#delete10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -573,7 +614,7 @@ This API is deprecated since API version 10. You are advised to use [delete10+](
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 AppStorage.Link('PropA');
@@ -583,14 +624,16 @@ AppStorage.SetOrCreate('PropB', 48);
 let res1: boolean = AppStorage.Delete('PropB'); // true, PropB is deleted from AppStorage successfully
 ```
 
-
 ### Keys<sup>(deprecated)</sup>
 
 static Keys(): IterableIterator&lt;string&gt;
 
 Obtains all attribute names in AppStorage.
 
-This API is deprecated since API version 10. You are advised to use [keys10+](#keys10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [keys10+](#keys10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -598,7 +641,7 @@ This API is deprecated since API version 10. You are advised to use [keys10+](#k
 | ------------------------------ | ------------------ |
 | IterableIterator&lt;string&gt; | All attribute names in AppStorage.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropB', 48);
 let keys: IterableIterator<string> = AppStorage.Keys();
@@ -611,7 +654,10 @@ static staticClear(): boolean
 
 Deletes all attributes.
 
-This API is deprecated since API version 9. You are advised to use [Clear9+](#clear9) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [clear10+](#clear10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -619,7 +665,7 @@ This API is deprecated since API version 9. You are advised to use [Clear9+](#cl
 | ------- | --------------------------------- |
 | boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
 
-
+**Example:**
 ```ts
 let simple = AppStorage.staticClear();
 ```
@@ -631,9 +677,12 @@ static Clear(): boolean
 
 Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
-For details about the subscriber, see [Delete](#deletedeprecated).
+For details about the subscriber, see [delete](#delete10).
 
-This API is deprecated since API version 10. You are advised to use [clear10+](#clear10) instead.
+> **NOTE**<br>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [clear10+](#clear10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -641,7 +690,7 @@ This API is deprecated since API version 10. You are advised to use [clear10+](#
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-
+**Example:**
 ```typescript
 AppStorage.SetOrCreate('PropA', 47);
 let res: boolean = AppStorage.Clear(); // true, there are no subscribers
@@ -654,7 +703,10 @@ static IsMutable(propName: string): boolean
 
 Checks whether the given attribute in AppStorage name is mutable.
 
-This API is deprecated since API version 10.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -668,7 +720,7 @@ This API is deprecated since API version 10.
 | ------- | -------------------------------- |
 | boolean | Whether the given attribute in AppStorage name is mutable.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
 let res: boolean = AppStorage.IsMutable('simpleProp');
@@ -681,7 +733,10 @@ static Size(): number
 
 Obtains the number of attributes in AppStorage.
 
-This API is deprecated since API version 10. You are advised to use [size10+](#size10) instead.
+> **NOTE**<br>
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [size10+](#size10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -689,7 +744,7 @@ This API is deprecated since API version 10. You are advised to use [size10+](#s
 | ------ | ------------------- |
 | number | Number of attributes in AppStorage.|
 
-
+**Example:**
 ```ts
 AppStorage.SetOrCreate('PropB', 48);
 let res: number = AppStorage.Size(); // 1
@@ -708,7 +763,10 @@ constructor(initializingProperties?: Object)
 
 Creates a **LocalStorage** instance and initializes it using the attributes and values returned by **Object.keys(initializingProperties)**.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -716,7 +774,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ---------------------- | ------ | ---- | ---------------------------------------- |
 | initializingProperties | Object | No   | Attributes and values used to initialize the **LocalStorage** instance. The value cannot be **undefined**.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -729,7 +787,10 @@ static getShared(): LocalStorage
 
 Obtains the **LocalStorage** instance shared by the current stage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -739,8 +800,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------------------------------ | ----------------- |
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
-
-For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+**Example:**
+For details about how to use **getShared**, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ### has<sup>9+</sup>
@@ -749,7 +810,10 @@ has(propName: string): boolean
 
 Checks whether the attribute with the specified attribute name exists in LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -763,7 +827,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the attribute with the specified attribute name exists in AppStorage; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -777,7 +841,10 @@ get&lt;T&gt;(propName: string): T | undefined
 
 Obtains the attribute with the specified attribute name in LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -791,7 +858,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------------------------ | ---------------------------------------- |
 | T \| undefined | Returns the attribute with the specified attribute name in LocalStorage; returns **undefined** if the attribute does not exist.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -805,7 +872,10 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 
 Sets a value for the attribute with the specified attribute name in LocalStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -820,7 +890,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in LocalStorage, or the value to set is **undefined** or **null**.  |
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -836,7 +906,10 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
 If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute. This **setOrCreate** method creates only one LocalStorage key-value pair. To create multiple key-value pairs, call this method multiple times.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -851,7 +924,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------- | ---------------------------------------- |
 | boolean | Returns **false** if **newValue** is set to **undefined** or **null**.<br>Updates the target attribute with the new value and returns **true** if the attribute exists in LocalStorage.<br>Creates an attribute with the specified attribute name and default value if the attribute does not exist in LocalStorage.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -871,7 +944,10 @@ Any update of the data is synchronized back to LocalStorage, which then synchron
 
 If the given attribute does not exist in LocalStorage, **undefined** is returned.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -885,7 +961,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Returns the **SubscribedAbstractProperty<T>** instance if the given attribute exists in AppStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -901,7 +977,10 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 Works in a way similar to the **Link** API. If the given attribute exists in LocalStorage, the two-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and two-way bound data is returned.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -916,7 +995,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;T&gt; | Returns the **SubscribedAbstractProperty<T>** instance if the given attribute exists in AppStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -931,7 +1010,10 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 Establishes one-way data binding with the given attribute in this **LocalStorage** instance. If the given attribute exists, the one-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist in LocalStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -945,7 +1027,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;S&gt; | Returns the **SubscribedAbstractProperty&lt;S&gt;** instance if the given attribute exists in LocalStorage; returns **undefined** otherwise.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -961,7 +1043,10 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 
 Establishes one-way data binding with the given attribute in this **LocalStorage** instance. If the given attribute exists, the one-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and one-way bound data is returned.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -976,7 +1061,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ----------------------------------- | ---------------------------------------- |
 | SubscribedAbstractProperty&lt;S&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and one-way bound data of the given attribute in LocalStorage.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -992,7 +1077,10 @@ Deletes the attribute with the specified attribute name from LocalStorage under 
 
 The subscribers of the attribute are attributes with the same name bound to the **Link** and **Prop** APIs, **\@LocalStorageLink('propName')**, and **\@LocalStorageProp('propName')**. This means that if **\@LocalStorageLink('propName')** and **\@LocalStorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance (return type of the **link** and **prop** APIs) in sync with the attribute, the attribute cannot be deleted from LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1006,7 +1094,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -1024,7 +1112,10 @@ keys(): IterableIterator&lt;string&gt;
 
 Obtains all attribute names in LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -1032,7 +1123,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------------------------------ | -------------------- |
 | IterableIterator&lt;string&gt; | All attribute names in LocalStorage.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -1046,7 +1137,10 @@ size(): number
 
 Obtains the number of attributes in LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -1054,7 +1148,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------ | --------- |
 | number | Number of attributes in LocalStorage.|
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -1069,7 +1163,10 @@ clear(): boolean
 
 Deletes all attributes from LocalStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -1079,7 +1176,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
-
+**Example:**
 ```ts
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
@@ -1093,9 +1190,11 @@ static GetShared(): LocalStorage
 
 Obtains the **LocalStorage** instance shared by the current stage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+> This API is deprecated since API version 10. You are advised to use [getShared10+](#getshared10) instead.
 
-This API is deprecated since API version 10. You are advised to use [getShared10+](#getshared10) instead.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1105,7 +1204,7 @@ This API is deprecated since API version 10. You are advised to use [getShared10
 | ------------------------------ | ----------------- |
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
-
+**Example:**
 ```ts
 let storage: LocalStorage = LocalStorage.GetShared();
 ```
@@ -1120,7 +1219,10 @@ abstract get(): T
 
 Obtains attribute data synchronized from AppStorage or LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -1128,10 +1230,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ---- | ------------------------------- |
 | T    | Attribute data synchronized from AppStorage or LocalStorage.|
 
-
+**Example:**
 ```ts
-AppStorage.SetOrCreate('PropA', 47); 
-let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');    
+AppStorage.setOrCreate('PropA', 47); 
+let prop1:SubscribedAbstractProperty<number> = AppStorage.prop('PropA');    
 prop1.get(); //  prop1.get()=47
 ```
 
@@ -1142,7 +1244,10 @@ abstract set(newValue: T): void
 
 Sets the attribute data synchronized from AppStorage or LocalStorage.
 
-Since API version 9, this API is supported in ArkTS widgets.
+> **NOTE**<br>
+> Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 **Parameters**
@@ -1153,10 +1258,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | newValue | T    | Yes   | Data to set.|
 
 
-
+**Example:**
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
-let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
+AppStorage.setOrCreate('PropA', 47);
+let prop1:SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); //  prop1.get()=1
 ```
 
@@ -1164,14 +1269,15 @@ prop1.set(1); //  prop1.get()=1
 
 abstract aboutToBeDeleted(): void
 
-Cancels one-way or two-way synchronization between the **SubscribedAbstractProperty** instance and AppStorage or LocalStorage.
+Cancels one-way or two-way synchronization between the **SubscribedAbstractProperty** instance and AppStorage or LocalStorage, and invalidates the **SubscribedAbstractProperty** instance. After this API is called, the **SubscribedAbstractProperty** instance cannot be used to call the setter or getter.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Example:**
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
-let link = AppStorage.SetAndLink('PropB', 49); // PropA -> 47, PropB -> 49
+AppStorage.setOrCreate('PropA', 47);
+let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
-link.set(50); // PropB -> 49, link.get() --> undefined
 ```
 
 
@@ -1180,13 +1286,16 @@ link.set(50); // PropB -> 49, link.get() --> undefined
 
 For details about how to use PersistentStorage on the UI, see [PersistentStorage: Application State Persistence](../../quick-start/arkts-persiststorage.md).
 
-
 ### PersistPropsOptions
 
-| Name      | Type                   | Mandatory| Description                                                    |
-| ------------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key          | string                  | Yes  | Attribute name.                                                    |
-| defaultValue | number\|string\|boolean | Yes  | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type                                | Mandatory| Description                                                    |
+| ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| key          | string                               | Yes  | Attribute name.                                                    |
+| defaultValue | number \| string \|boolean \| Object | Yes  | Default value used to initialize the created attribute when the corresponding attribute is not found in PersistentStorage and AppStorage. The value cannot be **undefined** or **null**.|
 
 
 ### persistProp<sup>10+</sup>
@@ -1203,7 +1312,9 @@ The sequence of determining the type and value of an attribute is as follows:
 
 3. If no matching attribute is found in AppStorage, it is created in AppStorage, initialized with the value of **defaultValue**, and persisted.
 
-According to the preceding initialization process, if AppStorage contains the matching attribute, the value of this attribute is used to overwrite the value in the PersistentStorage file. Because AppStorage stores data in the memory, the attribute value becomes impersistent.
+According to the preceding initialization process, if AppStorage contains the matching attribute, the value of this attribute is used to overwrite the value in the PersistentStorage file. Because AppStorage stores data in the memory, the attribute value becomes nonpersistent.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1223,7 +1334,9 @@ For details about how to use persistProp, see [Accessing PersistentStorage Initi
 
 static deleteProp(key: string): void
 
-Performs the reverse operation of **PersistProp**. Specifically, this API deletes the attribute corresponding to the key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
+Performs the reverse operation of **persistProp**. Specifically, this API deletes the attribute corresponding to the key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1231,7 +1344,7 @@ Performs the reverse operation of **PersistProp**. Specifically, this API delete
 | ---- | ------ | ---- | ----------------------- |
 | key  | string | Yes   | Attribute name in PersistentStorage.|
 
-
+**Example:**
 ```ts
 PersistentStorage.deleteProp('highScore');
 ```
@@ -1241,7 +1354,9 @@ PersistentStorage.deleteProp('highScore');
 
 static persistProps(props: PersistPropsOptions[]): void
 
-Works in a way similar to the **PersistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
+Works in a way similar to the **persistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1249,7 +1364,7 @@ Works in a way similar to the **PersistProp** API, with the difference that it a
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | props | [PersistPropsOptions](#persistpropsoptions)[] | Yes| Array of persistent attributes.|
 
-
+**Example:**
 ```ts
 PersistentStorage.persistProps([{ key: 'highScore', defaultValue: '0' }, { key: 'wightScore', defaultValue: '1' }]);
 ```
@@ -1261,13 +1376,15 @@ static keys(): Array&lt;string&gt;
 
 Obtains an array of keys for all persistent attributes.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                 | Description               |
 | ------------------- | ----------------- |
 | Array&lt;string&gt; | Array of keys of all persistent attributes.|
 
-
+**Example:**
 ```ts
 let keys: Array<string> = PersistentStorage.keys();
 ```
@@ -1287,9 +1404,13 @@ The sequence of determining the type and value of an attribute is as follows:
 
 3. If no matching attribute is found in AppStorage, it is created in AppStorage, initialized with the value of **defaultValue**, and persisted.
 
-According to the preceding initialization process, if AppStorage contains the matching attribute, the value of this attribute is used to overwrite the value in the PersistentStorage file. Because AppStorage stores data in the memory, the attribute value becomes impersistent.
+According to the preceding initialization process, if AppStorage contains the matching attribute, the value of this attribute is used to overwrite the value in the PersistentStorage file. Because AppStorage stores data in the memory, the attribute value becomes nonpersistent.
 
-This API is deprecated since API version 10. You are advised to use [persistProp10+](#persistprop10) instead.
+
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [persistProp10+](#persistprop10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1313,7 +1434,11 @@ static DeleteProp(key: string): void
 
 Performs the reverse operation of **PersistProp**. Specifically, this API deletes the attribute corresponding to the key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
 
-This API is deprecated since API version 10. You are advised to use [deleteProp10+](#deleteprop10) instead.
+
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [deleteProp10+](#deleteprop10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1321,7 +1446,7 @@ This API is deprecated since API version 10. You are advised to use [deleteProp1
 | ---- | ------ | ---- | ----------------------- |
 | key  | string | Yes   | Attribute name in PersistentStorage.|
 
-
+**Example:**
 ```ts
 PersistentStorage.DeleteProp('highScore');
 ```
@@ -1333,14 +1458,18 @@ static PersistProps(properties: {key: string, defaultValue: any;}[]): void
 
 Works in a way similar to the **PersistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
 
-This API is deprecated since API version 10. You are advised to use [persistProps10+](#persistprops10) instead.
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [persistProps10+](#persistprops10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                                                    |
-| ---------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name    | Type                              | Mandatory| Description                                                    |
+| ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | properties | {key: string, defaultValue: any}[] | Yes  | Array of attributes to persist.<br>**key**: attribute name.<br>**defaultValue**: default value. The rules are the same as those of **PersistProp**.|
 
+**Example:**
 
 ```ts
 PersistentStorage.PersistProps([{ key: 'highScore', defaultValue: '0' }, { key: 'wightScore', defaultValue: '1' }]);
@@ -1353,7 +1482,10 @@ static Keys(): Array&lt;string&gt;
 
 Obtains an array of keys for all persistent attributes.
 
-This API is deprecated since API version 10. You are advised to use [keys10+](#keys10-1) instead.
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [keys10+](#keys10-1) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -1361,7 +1493,7 @@ This API is deprecated since API version 10. You are advised to use [keys10+](#k
 | ------------------- | ----------------- |
 | Array&lt;string&gt; | Array of keys of all persistent attributes.|
 
-
+**Example:**
 ```ts
 let keys: Array<string> = PersistentStorage.Keys();
 ```
@@ -1372,13 +1504,16 @@ let keys: Array<string> = PersistentStorage.Keys();
 
 For details about how to use Environment, see [Environment: Device Environment Query](../../quick-start/arkts-environment.md).
 
-
 ### EnvPropsOptions
 
-| Name      | Type                   | Mandatory| Description                                                    |
-| ------------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key          | string                  | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
-| defaultValue | number\|string\|boolean | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| key          | string | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
+| defaultValue | S      | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
 
 
 ### envProp<sup>10+</sup>
@@ -1389,7 +1524,9 @@ Saves the built-in environment variable key in environment to AppStorage. If the
 
 You are advised to call this API when the application is started.
 
-It is incorrect to use AppStorage to read environment variables without invoking **EnvProp**.
+It is incorrect to use AppStorage to read environment variables without invoking **envProp**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1414,7 +1551,9 @@ For details about how to use **envProp**, see [Accessing Environment Parameters 
 
 static envProps(props: EnvPropsOptions[]): void
 
-Works in a way similar to the **EnvProp** API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
+Works in a way similar to the [envProp](#envprop10) API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -1422,7 +1561,7 @@ Works in a way similar to the **EnvProp** API, with the difference that it allow
 | ------ | --------------------------------------------- | ---- | ------------------------------------ |
 | props  | [EnvPropsOptions](#envpropsoptions)[] | Yes  | Array of key-value pairs consisting of system environment variables and default values.|
 
-
+**Example:**
 ```ts
 Environment.envProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, {
   key: 'languageCode',
@@ -1437,13 +1576,15 @@ static keys(): Array&lt;string&gt;
 
 Array of keys of environment variables.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                 | Description         |
 | ------------------- | ----------- |
 | Array&lt;string&gt; | Returns an array of associated system attributes.|
 
-
+**Example:**
 ```ts
 Environment.envProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, {
   key: 'languageCode',
@@ -1464,14 +1605,17 @@ You are advised to call this API when the application is started.
 
 It is incorrect to use AppStorage to read environment variables without invoking **EnvProp**.
 
-This API is deprecated since API version 10. You are advised to use [envProp10+](#envprop10) instead.
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [envProp10+](#envprop10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description                                   |
-| ----- | ------ | ---- | --------------------------------------- |
-| key   | string | Yes   | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).   |
-| value | S      | Yes   | Default value used if the value of the environment variable key is not found in AppStorage.|
+| Name| Type  | Mandatory| Description                                                    |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| key    | string | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
+| value  | S      | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
 
 **Return value**
 
@@ -1491,17 +1635,20 @@ Environment.EnvProp('accessibilityEnabled', 'default');
 
 static EnvProps(props: {key: string; defaultValue: any;}[]): void
 
-Works in a way similar to the **EnvProp** API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
+Works in a way similar to the [EnvProp](#envpropdeprecated) API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
 
-This API is deprecated since API version 10. You are advised to use [envProps10+](#envprops10) instead.
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [envProps10+](#envprops10) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory  | Description              |
-| ----- | ---------------------------------------- | ---- | ------------------ |
-| props | {key: string, defaultValue: any}[] | Yes   | Array of key-value pairs consisting of system environment variables and default values.|
+| Name| Type                                             | Mandatory| Description                            |
+| ------ | ------------------------------------------------- | ---- | ------------------------------------ |
+| props  | {key: string, defaultValue: any}[] | Yes  | Array of key-value pairs consisting of system environment variables and default values.|
 
-
+**Example:**
 ```ts
 Environment.EnvProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, {
   key: 'languageCode',
@@ -1516,7 +1663,10 @@ static Keys(): Array&lt;string&gt;
 
 Array of keys of environment variables.
 
-This API is deprecated since API version 10. You are advised to use [keys10+](#keys10-2) instead.
+> **NOTE**<br>
+> This API is deprecated since API version 10. You are advised to use [keys10+](#keys10-2) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -1524,6 +1674,7 @@ This API is deprecated since API version 10. You are advised to use [keys10+](#k
 | ------------------- | ----------- |
 | Array&lt;string&gt; | Returns an array of associated system attributes.|
 
+**Example:**
 
 ```ts
 Environment.EnvProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, {

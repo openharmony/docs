@@ -44,7 +44,8 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
    ```ts
    @Entry
    @Component
-   struct CustomDialogUser {dialogController: CustomDialogController = new CustomDialogController({
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
    
@@ -69,7 +70,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
 
 1. Add buttons in the \@CustomDialog decorator structure and add data functions.
 
-     ```ts
+   ```ts
    @CustomDialog
    struct CustomDialogExample {
      cancel?: () => void
@@ -83,18 +84,22 @@ Custom dialog boxes can be used for data interactions to complete a series of re
            Button('cancel')
              .onClick(() => {
                this.controller.close()
-               if(this.cancel) this.cancel()
+               if (this.cancel) {
+                 this.cancel()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
            Button('confirm')
              .onClick(() => {
                this.controller.close()
-               if(this.confirm) this.confirm()
+               if (this.confirm) {
+                 this.confirm()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Red)
          }.margin({ bottom: 10 })
        }
      }
    }
-     ```
+   ```
 
 2. Receive the page in the builder and create corresponding function operations.
 
@@ -126,7 +131,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
        }.width('100%').margin({ top: 5 })
      }
    }
-     ```
+   ```
 
       ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
 
@@ -146,12 +151,16 @@ struct CustomDialogExample {
         Button('cancel')
           .onClick(() => {
             this.controller.close()
-            if (this.cancel) this.cancel()
+            if (this.cancel) {
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             this.controller.close()
-            if (this.confirm) this.confirm()
+            if (this.confirm) {
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }
@@ -178,7 +187,7 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button('Click Me')
+      Button('Click Me)
         .onClick(() => {
           this.dialogController.open()
         })
