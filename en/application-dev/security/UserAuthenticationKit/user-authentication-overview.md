@@ -1,54 +1,27 @@
-# Introduction to User Authentication Kit
+# User Authentication Overview
 
-User Authentication Kit provides the user authentication capabilities based on the lock screen password, facial characteristics, and fingerprint registered with a device.
 
-User Authentication Kit provides system-level identity authentication and a system-level user authentication widget, which provides unified user authentication across devices with diversified authentication modes (facial, fingerprint, and PIN authentication).
+The user authentication framework provides system-level identity authentication and a system-level user authentication widget, which provides unified user authentication across devices with diversified authentication modes (facial, fingerprint, and PIN authentication).
+
 
 Before accessing personal data or performing sensitive operations upon a user request, the application or system service invokes the user authentication widget to authenticate the user identity. The data can be accessed or the sensitive operation can be performed only when the authentication is successful.
 
+
 User identity authentication can be used in authentication scenarios, such as in-app login and payment.
+
 
 ![en_image_0000001742639520](figures/user_authentication.png)
 
-## Features
-
-- Unified authentication interface
-
-    Unified APIs are provided to perform user authentication based on the lock screen password, facial characteristics, and fingerprint.
-
-    The same set of APIs provides a combination of facial, fingerprint, and lock screen password authentication modes.
-
-    The same set of APIs provides a combination of facial authentication, fingerprint authentication, and custom authentication.
-
-- Awareness of different authentication trust levels
-
-    The expected authentication trust level can be specified to prevent the use of the lower-security authentication capability (such as the 2D facial authentication) in user authentication scenarios with higher risks (such as payment).
-
-- Support for custom authentication modes
-
-    The authentication page with a navigation button is provided for the user to switch to a page for custom authentication.
-
-- Reuse of the device unlock authentication result within a short period of time
-
-    The system supports reuse of the authentication result within the specified duration (max. 5 minutes) regardless of the authentication mode. This feature eliminates repeated authentication within a given period of time after a successful authentication.
-
-    The system also supports reuse of the authentication result for a specific authentication mode within the specified duration. This feature eliminates repeated authentication of a specific mode within a given period of time after a successful authentication.
-
-- System-level user authentication UX
-
-    The caller can customize the title of the authentication page and the text on the navigation button.
-
-    The user authentication widget automatically adjusts the display mode based on the device screen status.
 
 ## Working Mechanism
 
-The following figure shows the architecture of the unified user authentication framework.
+The following figure shows the architecture of the user authentication framework.
 
 ![](figures/unified_auth_architecture.png)
 
 The unified user authentication framework consists of the following:
 
-1. Unified user authentication APIs: provide unified APIs for implementing user authentication capabilities. The APIs shield the differences between authentication modes to simplify your app experience.
+1. Unified user authentication APIs: provide unified APIs for implementing user authentication capabilities.
 
 2. Unified user authentication framework: consists of authentication SAs and drivers. The framework schedules various identity authentication capabilities and the user authentication widget to complete user authentication requests initiated by services through the unified user authentication APIs.
 
@@ -58,7 +31,8 @@ The unified user authentication framework consists of the following:
 
 If the user authentication is successful, the unified user authentication framework issues an AuthToken in the trusted execution environment (TEE) of the device.
 
-User authentication can also be used to control the access to the keys in HUKS. For the keys that can be accessed only with user authentication, the application needs to provide a key invocation request with the obtained AuthToken to the [HUKS](../UniversalKeystoreKit/huks-overview.md). After verifying the validity and validity of the AuthToken in the TEE, the HUKS service responds to the service request and performs the related key operation.
+User authentication can also be used to control the access to the keys in the HUKS. For the keys that can be accessed only with user authentication, the application needs to provide a key invocation request with the obtained AuthToken to the [HUKS](../UniversalKeystoreKit/huks-overview.md). After verifying the validity and validity of the AuthToken in the TEE, the HUKS service responds to the service request and performs the related key operation.
+
 
 ### AuthToken Struct
 
@@ -91,6 +65,8 @@ Tag
 | iv | Initialization vector (IV) used to encrypt the ciphertext.| uint8[12] | Random IV used for AES-GCM encryption.|
 | sign | Signature of the AuthToken| uint8[32] | Signature used to protect the integrity of the AuthToken.|
 
+
+
 ### Authentication Trust Levels
 
 The system uses the following metrics to measure the authentication trust level (**AuthTrustLevel**). The following table lists the authentication trust levels supported by the system.
@@ -109,7 +85,3 @@ The lower the FAR, the higher the FRR. In other words, the more secure the authe
 | ATL3 | When FRR = 10%, FAR ≤ 0.002%, SAR ≤ 7%| The authentication can accurately identify individual users and provides strong liveness detection capabilities. For example, 2D facial authentication with special security hardening.| Device unlocking|
 | ATL2 | When FRR = 10%, FAR ≤ 0.002%, 7% < SAR ≤ 20%| The authentication can accurately identify individual users and provides regular liveness detection capabilities. For example, 2D facial authentication using common a camera to collect images.| Maintaining the unlocked state of a device|
 | ATL1 | When FRR = 10%, FAR ≤ 1%, 7% < SAR ≤ 20%| The authentication can identify individual users and provides limited liveness detection capabilities. For example, voiceprint authentication.| Service risk control, targeted recommendations, and personalized services|
-
-## Constraints
-
-When a third-party application needs to use the local authentication capability of the system, the built-in user authentication widget must be used.

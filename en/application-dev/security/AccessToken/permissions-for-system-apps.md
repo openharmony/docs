@@ -1909,6 +1909,18 @@ Allows a system application to set auto boot options for other applications.
 
 **Valid since**: 11
 
+### ohos.permission.START_ABILITY_WITH_ANIMATION
+
+Allows an application to disable the ability startup animation.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 11
+
 ### ohos.permission.ACCESS_DDK_HID
 
 Allows extended peripheral drivers to access the HID DDK interfaces to implement development of HID extended peripheral drivers.

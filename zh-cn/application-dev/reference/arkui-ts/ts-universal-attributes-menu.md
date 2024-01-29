@@ -25,7 +25,7 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 | content | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                         |
 
-## bindMenu
+## bindMenu<sup>11+</sup>
 
 bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 
@@ -88,6 +88,8 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | onDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单消失时的事件回调。                                       |
 | aboutToAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单显示动效前的事件回调。                                       |
 | aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
+| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
+| backgroundBlurStyle<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 
@@ -194,7 +196,7 @@ struct MenuExample {
 
 ### 示例3
 
-菜单(右键触发显示)
+菜单(长按触发显示)
 
 ```ts
 // xxx.ets
@@ -219,14 +221,16 @@ struct ContextMenuExample {
   
   build() {
     Column() {
-      Text('rightclick for menu')
+      Text('LongPress for menu')
     }
     .width('100%')
     .margin({ top: 5 })
-    .bindContextMenu(this.MenuBuilder, ResponseType.RightClick)
+    .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
   }
 }
 ```
+
+![longMenu](figures/longMenu.gif)
 
 ### 示例4
 

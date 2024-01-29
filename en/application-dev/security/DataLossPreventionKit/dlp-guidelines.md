@@ -1,6 +1,6 @@
 # DLP Kit Development
 
-Data Loss Prevention (DLP) Kit is a system solution provided to prevent data disclosure. It provides a file format called DLP. The DLP file name is in the *original_file_name.file_name extension*.dlp format, for example, **test.docx.dlp**. Each DLP file consists of the authorization credential and the original file in ciphertext.
+Data Loss Prevention (DLP) is a system solution provided to prevent data disclosure. It provides a file format called DLP. The DLP file name is in the *original_file_name.file_name extension*.dlp format, for example, **test.docx.dlp**. Each DLP file consists of the authorization credential and the original file in ciphertext.
 
 The DLP file can be accessed only after a device-cloud synergy authentication (network connection required) is successful. The authorized user can have any of the following permissions on the file:
 

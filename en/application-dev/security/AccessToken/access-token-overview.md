@@ -3,6 +3,7 @@
 
 Applications can access limited system resources by default. However, to provide extended features, an application may need to access excess system data (or personal data) or functions. The system must also provide explicit APIs to share data or functions.
 
+
 To prevent improper or malicious use of data or functions, the system provides a variety of access control mechanisms, including the application sandbox, application permissions, and system components.
 
 
@@ -15,7 +16,7 @@ The application sandbox directory specifies the data range visible to an applica
 
 ## Application Permissions
 
-The system sets process domain and data domain labels based on the [Ability Privilege Level (APL)](app-permission-mgmt-overview.md#apl) of each application, and uses the access control mechanism to restrict the data accessible to each application.
+The system has process domain and data domain labels set based on the [Ability Privilege Level (APL)](app-permission-mgmt-overview.md#apl) of an application, and uses the access control mechanism to restrict the data accessible to each application.
 
 Applications of different APLs can apply for different levels of permissions, and different system resources (such as the Contacts) or system capabilities (such as the capability for accessing a camera or a microphone) are protected by different application permissions. Strict hierarchical permission protection effectively defends against malicious attacks and ensures system security and reliability.
 
@@ -37,4 +38,3 @@ The system also provides temporary authorization methods, such as system Pickers
   Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the \<**LocationButton**> component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. <br>The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.
 
   Currently, the following security components are available: [<**PasteButton**>](pastebutton.md), [<**SaveButton**>](savebutton.md), and [<**LocationButton**>](locationbutton.md).
-
