@@ -29,7 +29,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
-setKeyboardAvoidMode(value: KeyboardAvoidMode)
+setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 控制虚拟键盘抬起时页面的避让模式。
 
@@ -39,7 +39,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 否   | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
+| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 是   | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
 
 ## getKeyboardAvoidMode
 
@@ -59,7 +59,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 ### 示例1
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -82,7 +82,8 @@ struct SafeAreaExample1 {
 
 ### 示例2
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SafeAreaExample {
@@ -118,6 +119,7 @@ struct SafeAreaExample {
 ### 示例3
 
 ```ts
+// EntryAbility.ts
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -135,6 +137,7 @@ import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
     });
   }
 
+// xxx.ets
 @Entry
 @Component
 struct KeyboardAvoidExample {
@@ -153,6 +156,7 @@ struct KeyboardAvoidExample {
 ### 示例4
 
 ```ts
+// EntryAbility.ts
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -170,6 +174,7 @@ import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
     });
   }
 
+// xxx.ets
 @Entry
 @Component
 struct KeyboardAvoidExample {
