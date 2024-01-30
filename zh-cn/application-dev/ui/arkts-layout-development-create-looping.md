@@ -24,21 +24,21 @@ Swiper作为一个容器组件，如果设置了自身尺寸属性，则在轮�
 private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -54,21 +54,21 @@ Swiper(this.swiperController) {
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -89,21 +89,21 @@ autoPlay为true时，会自动切换播放子组件，子组件与子组件之�
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -128,21 +128,21 @@ Swiper提供了默认的导航点样式，导航点默认显示在Swiper下方�
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -160,21 +160,21 @@ Swiper(this.swiperController) {
 ```ts
 let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -209,19 +209,19 @@ struct SwiperDemo {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text("0")
+        Text('0')
           .width(250)
           .height(250)
           .backgroundColor(Color.Gray)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("1")
+        Text('1')
           .width(250)
           .height(250)
           .backgroundColor(Color.Green)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("2")
+        Text('2')
           .width(250)
           .height(250)
           .backgroundColor(Color.Pink)
@@ -290,25 +290,25 @@ Swiper支持在一个页面内同时显示多个子组件，通过[displayCount]
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width(250)
     .height(250)
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("1")
+  Text('1')
     .width(250)
     .height(250)
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("2")
+  Text('2')
     .width(250)
     .height(250)
     .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("3")
+  Text('3')
     .width(250)
     .height(250)
     .backgroundColor(Color.Blue)
