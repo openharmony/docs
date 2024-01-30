@@ -46,13 +46,13 @@ Specifies whether to set the component as the default focus of the container.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to set the component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to set the component as the default focus of the page. This parameter takes effect only when the page is new and accessed for the first time.<br>Default value: **false**<br>**NOTE**<br><br>The value **true** means to set the component as the default focus, and the value **false** has no effect.<br>If **defaultFocus(true)** is not set for any component on the page, the default focus is the root container.<br>If **defaultFocus(true)** is set for multiple components on the page, the first component found in the component tree in-depth traversal is used as the default focus.|
 
 ## groupDefaultFocus<sup>9+</sup>
 
 groupDefaultFocus(value: boolean)
 
-Whether to set the component as the default focus of the container.
+Specifies whether to set the component as the default focus of the container.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +60,7 @@ Whether to set the component as the default focus of the container.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This attribute takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains focus for the first time.|
+| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This parameter takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br><br>This parameter must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus(true)** is set for a child in the container or for the container itself, then when the container obtains focus for the first time through sequential Tab navigation, the focus automatically moves to the specified component. If **groupDefaultFocus(true)** is set for multiple components in the container (including the container itself), the first component found in the component tree in-depth traversal receives the focus.|
 
 ## focusOnTouch<sup>9+</sup>
 
@@ -74,7 +74,7 @@ Whether the component is focusable on touch.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
+| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable or clickable.|
 
 ## focusControl<sup>9+</sup>
 

@@ -25,55 +25,61 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## ElementAttributeValues
 
-| key            | value            | Description                 |
-| ------------- | ------------- | ------------------- |
-| accessibilityFocused | boolean          |   Accessibility focus status.  |
-| bundleName | string          | Bundle name.|
-| checkable    | boolean          | Whether the element is checkable.|
-| checked  | boolean          | Whether the element is checked.|
-| children  | Array<AccessibilityElement>          | All child elements.|
-| clickable  | boolean          | Whether the element is clickable.|
-| componentId  | number          | ID of the component to which the element belongs.|
-| componentType  | string          | Type of the component to which the element belongs.|
-| contents  | Array<string>          | Content.|
-| currentIndex  | number          | Index of the current item.|
-| description  | string          | Description of the element.|
-| editable  | boolean          | Whether the element is editable.|
-| endIndex  | number          | Index of the last list item displayed on the screen.|
-| error  | string          | Error status.|
-| focusable  | boolean          | Whether the element is focusable.|
-| hintText  | string          | Hint text.|
-| inputType  | number          | Type of the input text.|
-| inspectorKey  | string          | Inspector key.|
-| isActive  | boolean          | Whether the element is active.|
-| isEnable  | boolean          | Whether the element is enabled.|
-| isHint  | boolean          | Whether the element is in the hint state.|
-| isFocused  | boolean          | Whether the element is focused.|
-| isPassword  | boolean          | Whether the element is a password.|
-| isVisible  | boolean          | Whether elements are visible.|
-| itemCount  | number          | Total number of items.|
-| lastContent  | string          | Last content.|
-| layer  | number          | Display layer of the element.|
-| longClickable  | boolean          | Whether the element can be long pressed.|
-| pageId  | number          | Page ID.|
-| parent  | AccessibilityElement          | Parent element of the element.|
-| pluralLineSupported  | boolean          | Whether the element supports multiple lines of text.|
-| rect  | Rect          | Area of the element.|
-| resourceName  | string          | Resource name of the element.|
-| rootElement  | AccessibilityElement          | Root element of the window element.|
-| screenRect  | Rect          | Display area of the element.|
-| scrollable  | boolean          | Whether the element is scrollable.|
-| selected  | boolean          | Whether the element is selected.|
-| startIndex  | number          | Index of the first list item on the screen.|
-| text  | string          | Text of the element.|
-| textLengthLimit  | string          | Maximum text length of the element.|
-| textMoveUnit  | accessibility.TextMoveUnit          | Unit of movement when the text is read.|
-| triggerAction  | accessibility.Action          | Action that triggers the element event.|
-| type  | WindowType          | Window type of the element.|
-| valueMax  | number          | Maximum value.|
-| valueMin  | number          | Minimum value.|
-| valueNow  | number          | Current value.|
-| windowId  | number          | Window ID.|
+Provides attribute names and value types of a node element.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+### Attributes
+
+| Name                  | Type                                                               | Description                 |
+|----------------------|-------------------------------------------------------------------| ------------------- |
+| accessibilityFocused | boolean                                                           |   Accessibility focus status.  |
+| bundleName           | string                                                            | Bundle name.|
+| checkable            | boolean                                                           | Whether the element is checkable.|
+| checked              | boolean                                                           | Whether the element is checked.|
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;       | All child elements.|
+| clickable            | boolean                                                           | Whether the element is clickable.|
+| componentId          | number                                                            | ID of the component to which the element belongs.|
+| componentType        | string                                                            | Type of the component to which the element belongs.|
+| contents             | Array&lt;string&gt;                                               | Content.|
+| currentIndex         | number                                                            | Index of the current item.|
+| description          | string                                                            | Description of the element.|
+| editable             | boolean                                                           | Whether the element is editable.|
+| endIndex             | number                                                            | Index of the last list item displayed on the screen.|
+| error                | string                                                            | Error status.|
+| focusable            | boolean                                                           | Whether the element is focusable.|
+| hintText             | string                                                            | Hint text.|
+| inputType            | number                                                            | Type of the input text.|
+| inspectorKey         | string                                                            | Inspector key.|
+| isActive             | boolean                                                           | Whether the element is active.|
+| isEnable             | boolean                                                           | Whether the element is enabled.|
+| isHint               | boolean                                                           | Whether the element is in the hint state.|
+| isFocused            | boolean                                                           | Whether the element is focused.|
+| isPassword           | boolean                                                           | Whether the element is a password.|
+| isVisible            | boolean                                                           | Whether the element is visible.|
+| itemCount            | number                                                            | Total number of items.|
+| lastContent          | string                                                            | Last content.|
+| layer                | number                                                            | Display layer of the element.|
+| longClickable        | boolean                                                           | Whether the element is long-clickable.|
+| pageId               | number                                                            | Page ID.|
+| parent               | [AccessibilityElement](#accessibilityelement9)                    | Parent element of the element.|
+| pluralLineSupported  | boolean                                                           | Whether the element supports multiple lines of text.|
+| rect                 | [Rect](#rect)                                                     | Area of the element.|
+| resourceName         | string                                                            | Resource name of the element.|
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                    | Root element of the window element.|
+| screenRect           | [Rect](#rect)                                                     | Display area of the element.|
+| scrollable           | boolean                                                           | Whether the element is scrollable.|
+| selected             | boolean                                                           | Whether the element is selected.|
+| startIndex           | number                                                            | Index of the first list item on the screen.|
+| text                 | string                                                            | Text of the element.|
+| textLengthLimit      | string                                                            | Maximum text length of the element.|
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Unit of movement when the text is read.|
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)           | Action that triggers the element event.|
+| type                 | [WindowType](#windowtype)                                         | Window type of the element.|
+| valueMax             | number                                                            | Maximum value.|
+| valueMin             | number                                                            | Minimum value.|
+| valueNow             | number                                                            | Current value.|
+| windowId             | number                                                            | Window ID.|
 
 
 
@@ -139,7 +145,7 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 | Name        | Type                 | Mandatory  | Description      |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | Yes   | Name of the target bundle.|
+| targetNames | Array&lt;string&gt; | Yes   | Bundles name of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
 
 **Return value**
 
@@ -172,7 +178,7 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 
 | Name        | Type                       | Mandatory  | Description                                      |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
-| targetNames | Array&lt;string&gt;       | Yes   | Name of the target bundle.                                |
+| targetNames | Array&lt;string&gt;       | Yes   | Bundle names of the concerned target applications. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.                                |
 | callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
@@ -181,13 +187,17 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 import { BusinessError } from '@ohos.base';
 
 let targetNames = ['com.ohos.xyz'];
-axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
-  if (err) {
-    console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
-});
+try {
+  axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
+    if (err && err.code) {
+      console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
+  });
+} catch (error) {
+  console.error(`failed to set target bundle names, Because ${JSON.stringify(error)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
@@ -900,10 +910,10 @@ Performs an action based on the specified action name. This API uses a promise t
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
+| Name        | Type                                    | Mandatory  | Description                                                      |
+| ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
-| parameters | object | No   | Parameters required for performing the target action. Empty by default. Not supported currently.    |
+| parameters | object | No   | Parameters required for performing the target action. Empty by default. Not supported currently.                            |
 
 **Return value**
 
@@ -984,11 +994,11 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 **Parameters**
 
-| Name       | Type                       | Mandatory  | Description                                      |
-| ---------- | ------------------------- | ---- | ---------------------------------------- |
+| Name       | Type                       | Mandatory  | Description                                                      |
+| ---------- | ------------------------- | ---- |----------------------------------------------------------|
 | actionName | string                    | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
-| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                 |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                       |
+| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                            |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                                       |
 
 **Error codes**
 
