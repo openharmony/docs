@@ -8,7 +8,7 @@
 
 ## keyboardShortcut
 
-keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?: () => void)
+keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?: () => void)
 
 设置组件的自定义组合键。
 
