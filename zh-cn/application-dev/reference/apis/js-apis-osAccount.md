@@ -6789,7 +6789,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
       console.log('auth result = ' + result)
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
-    onAcquireInfo: (module: number, acquire: number, extraInfo: account_osAccount.RequestResult) => {
+    onAcquireInfo: (module: number, acquire: number, extraInfo: Uint8Array) => {
       console.log('auth module = ' + module);
       console.log('auth acquire = ' + acquire);
       console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -6855,7 +6855,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
       console.log('callback result = ' + result)
       console.log('callback onResult = ' + JSON.stringify(extraInfo));
     },
-    onAcquireInfo: (module: number, acquire: number, extraInfo: Object) => {
+    onAcquireInfo: (module: number, acquire: number, extraInfo: Uint8Array) => {
       console.log('callback module = ' + module);
       console.log('callback acquire = ' + acquire);
       console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
