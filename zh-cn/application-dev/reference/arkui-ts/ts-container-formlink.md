@@ -19,14 +19,7 @@
 
 ## 接口
 
-FormLink(value: {
-  action: string;
-  moduleName?: string;
-  bundleName?: string;
-  abilityName?: string;
-  uri?: string;
-  params?: Object;
-})
+FormLink(options: FormLinkOptions)
 
 **参数：**
 
