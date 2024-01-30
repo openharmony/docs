@@ -85,7 +85,7 @@ createWebSocket(): WebSocket
 
 | 类型                                | 说明                                                         |
 | :---------------------------------- | :----------------------------------------------------------- |
-| [WebSocket](#websocket) | 返回一个WebSocket对象，里面包括connect、send、close、on和off方法。 |
+| [WebSocket](#websocket6) | 返回一个WebSocket对象，里面包括connect、send、close、on和off方法。 |
 
 **示例：**
 
@@ -95,7 +95,7 @@ let ws = webSocket.createWebSocket();
 
 ## WebSocket<sup>6+</sup>
 
-在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
+在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket6)创建一个WebSocket。
 
 ### connect<sup>6+</sup>
 
@@ -546,7 +546,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
-| callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
+| callback | AsyncCallback\<string \>| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
 
@@ -577,7 +577,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
-| callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
+| callback | AsyncCallback\<string \>|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
 
 **示例：**
 
