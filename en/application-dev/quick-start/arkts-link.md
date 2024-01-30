@@ -25,7 +25,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Decorator parameters                                                  | None.                                                          |
 | Synchronization type                                                    | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
-| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date, Map, and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Link a: string \| undefined**. The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
+| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Link a: string \| undefined**. The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
 | Initial value for the decorated variable                                          | Forbidden.                                        |
 
 
@@ -33,7 +33,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink:&nbsp;$aState})** syntax is also supported.|
+| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({ aLink: this.aState })** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink: $aState})** syntax is also supported.|
 | Child component initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | Private, accessible only within the component.                          |
 
@@ -291,7 +291,11 @@ As described above, the ArkUI framework can observe the addition, deletion, and 
 
 ### Decorating Variables of the Map Type
 
-In this example, \@Link is used to decorate the **value** variable of the Map\<number, string\> type. When the button is clicked, the value of **value** changes, and the UI is re-rendered.
+> **NOTE**
+>
+> Since API version 11, \@Link supports the Map type.
+
+In this example, the **value** variable is of the Map<number, string> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component
@@ -344,7 +348,11 @@ struct MapSample2 {
 
 ### Decorating Variables of the Set Type
 
-In this example, \@Link is used to decorate the **message** variable of the Set\<number> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+> **NOTE**
+>
+> Since API version 11, \@Link supports the Set type.
+
+In this example, the **message** variable is of the Set\<number\> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component

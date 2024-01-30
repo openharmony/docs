@@ -45,14 +45,15 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same. |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.|
 | Initial value for the decorated variable     | Mandatory.                                   |
+| Support for the **allowOverride** parameter         | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter).|
 
 | \@Consume Decorator| Description                                      |
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Consume a: string \| undefined. The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Consume a: string \| undefined.<br>The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
 | Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
 
 
@@ -156,6 +157,10 @@ struct CompA {
 }
 ```
 
+- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+
+- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
+
 ### Framework Behavior
 
 1. Initial render:
@@ -227,7 +232,125 @@ struct CompA {
 }
 ```
 
-## Union Type @Provide and @Consume
+### Decorating Variables of the Map Type
+
+> **NOTE**
+>
+> Since API version 11, \@Provide and \@Consume support the Map type.
+
+In this example, the **message** variable is of the Map<number, string> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+
+```ts
+@Component
+struct Child {
+  @Consume message: Map<number, string>
+
+  build() {
+    Column(){
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('Consume init map').onClick(() =>{
+        this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+      })
+      Button('Consume set new one').onClick(() =>{
+        this.message.set(4, "d")
+      })
+      Button('Consume clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('Consume replace the first item').onClick(() =>{
+        this.message.set(0, "aa")
+      })
+      Button('Consume delete the first item').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+  }
+}
+
+
+@Entry
+@Component
+struct MapSample {
+  @Provide message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        Button('Provide init map').onClick(() =>{
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### Decorating Variables of the Set Type
+
+> **NOTE**
+>
+> Since API version 11, \@Provide and \@Consume support the Set type.
+
+In this example, the **message** variable is of the Set\<number\> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+
+```ts
+@Component
+struct Child {
+  @Consume message: Set<number>
+
+  build() {
+    Column() {
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('Consume init set').onClick(() =>{
+        this.message = new Set([0, 1, 2 ,3,4 ])
+      })
+      Button('Consume set new one').onClick(() =>{
+        this.message.add(5)
+      })
+      Button('Consume clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('Consume delete the first one').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+    .width('100%')
+  }
+}
+
+
+
+@Entry
+@Component
+struct SetSample {
+  @Provide message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        Button('Provide init set').onClick(() =>{
+          this.message = new Set([0, 1, 2 ,3, 4, 5 ])
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### Support for Union Type
 
 @Provide and @Consume support **undefined**, **null**, and union types. In the following example, the type of **count** is string | undefined. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
 
@@ -272,4 +395,144 @@ struct Ancestors {
 }
 ```
 
- <!--no_check--> 
+### Support for the allowOverride Parameter
+
+**allowOverride** allows you to override an existing \@Provide decorated variable.
+
+> **NOTE**
+>
+> This API is supported since API version 11.
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| allowOverride | string | No| Enables overriding for \@Provide. When you define an \@Provide decorated variable, use this parameter to override the existing variable with the same name (if any) in the same component tree. If this parameter is not used, defining a variable whose name is already in use will return an error.|
+
+```ts
+@Component
+struct MyComponent {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+}
+```
+
+```ts
+@Component
+struct GrandSon {
+  // The @Consume decorated variable is bound to the @Provide decorated variable in its ancestor component under the same attribute name.
+  @Consume("reviewVotes") reviewVotes: number;
+
+  build() {
+    Column() {
+      Text(`reviewVotes(${this.reviewVotes})`) // The <Text> component displays 10.
+      Button(`reviewVotes(${this.reviewVotes}), give +1`)
+        .onClick(() => this.reviewVotes += 1)
+    }
+    .width('50%')
+  }
+}
+
+@Component
+struct Child {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+  build() {
+    Row({ space: 5 }) {
+      GrandSon()
+    }
+  }
+}
+
+@Component
+struct Parent {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 20;
+  build() {
+    Child()
+  }
+}
+
+@Entry
+@Component
+struct GrandParent {
+  @Provide("reviewVotes") reviewVotes: number = 40;
+
+  build() {
+    Column() {
+      Button(`reviewVotes(${this.reviewVotes}), give +1`)
+        .onClick(() => this.reviewVotes += 1)
+      Parent()
+    }
+  }
+}
+```
+
+In the preceding example:
+- The **@Provide("reviewVotes") reviewVotes: number = 40** variable is declared in **GrandParent**.
+- In **Parent**, a child component of **GrandParent**, **allowOverride** is declared for **@Provide** to override the **@Provide("reviewVotes") reviewVotes: number = 40** variable of **GrandParent**. If **allowOverride** is not declared, a runtime error is thrown to indicate that the @Provide decorated variable is already in use. The same case applies to **Child**.
+- The @Consume decorated variable of **GrandSon** is initialized from the @Provide decorated variable of its nearest ancestor under the same attribute name.
+- In this example, **GrandSon** finds in the ancestor **Child** the @Provide decorated variable with the same attribute name. Therefore, the initial value of **@Consume("reviewVotes") reviewVotes: number** is **10**. If an @Provide decorated variable with the same attribute name is not defined in **Child**, **GrandSon**continues its search until it finds the one with the same attribute name.
+- If no such a variable is found when **GrandSon** has reached the root node, an error is thrown to indicate that @Provide could not be found for @Consume initialization.
+
+
+## FAQs
+
+### \@Provide Not Defined Error in the Case of a \@BuilderParam Trailing Closure
+
+In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuidlerParam.
+
+Nonexample:
+
+```ts
+class Tmp {
+  a: string = ''
+}
+@Entry
+@Component
+struct HomePage {
+
+  @Builder
+  builder2($$: Tmp) {
+    Text(`${$$.a}Test`)
+  }
+
+  build() {
+    Column() {
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+
+@Component
+struct CustomWidget {
+  @Provide('a') a: string='abc';
+  @BuilderParam
+  builder: () => void;
+
+  build() {
+    Column() {
+      Button('Hello').onClick((x) => {
+        if (this.a == 'ddd') {
+          this.a = 'abc';
+        }
+        else {
+          this.a = 'ddd';
+        }
+
+      })
+      this.builder()
+    }
+  }
+}
+
+@Component
+struct CustomWidgetChild {
+  @Consume('a') a: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+
+  build() {
+    Column() {
+      this.builder({ a: this.a })
+    }
+  }
+}
+```

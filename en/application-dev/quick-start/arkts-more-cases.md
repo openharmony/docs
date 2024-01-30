@@ -550,7 +550,9 @@ let arr: Test[] = [
 ]
 ```
 
-### If **Record** is used to specify the object literal type, a string must be used as the key of the object literal.
+### Using a Key String for Object Literals of the Record Type
+
+If an object literal is of the Record type, a string must be used as the key of the object literal.
 
 **Before adaptation**
 
@@ -895,6 +897,31 @@ let t: C = { value: 123 };
 
 ## arkts-no-in
 
+### Using Object.keys to Determine Whether an Attribute Exists
+
+**Before adaptation**
+
+```typescript
+function test(str: string, obj: Record<string, Object>) {
+  return str in obj;
+}
+```
+
+**After adaptation**
+
+```typescript
+function test(str: string, obj: Record<string, Object>) {
+  for (let i of Object.keys(obj)) {
+    if (i == str) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+
+### Checking the Array Key
+
 **Before adaptation**
 
 ```typescript
@@ -1230,10 +1257,7 @@ console.log(t.createController()!.value);
 
 ## arkts-no-globalthis
 
-ArkTS does not support **globalThis** for two reasons:
-
-- A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.
-- Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
+ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br> (2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
 
 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 
@@ -1439,7 +1463,7 @@ a1.fooApply(a2);
 
 ## arkts-limited-stdlib
 
-### Object.fromEntries()
+### `Object.fromEntries()`
 
 **Before adaptation**
 
@@ -1452,7 +1476,7 @@ let entries = new Map([
 let obj = Object.fromEntries(entries);
 ```
 
-**Before adaptation**
+**After adaptation**
 
 ```typescript
 let entries = new Map([
@@ -1468,11 +1492,11 @@ entries.forEach((value, key) => {
 })
 ```
 
-### Using Number in Attributes and Methods
+### Using Attributes and Methods of Number
 
 ArkTS does not allow the use of the following attributes and methods for global objects: **Infinity**, **NaN**, **isFinite**, **isNaN**, **parseFloat**, and **parseInt**
 
-You can use **Number** for them.
+You can use them for **Number**.
 
 **Before adaptation**
 
@@ -1536,7 +1560,7 @@ class Test {
 }
 
 ```
-### Type `*** | null` is not assignable to type `***`
+### Type '*** | null' Not Assignable to type ''\*\*\*'
 
 **Before adaptation**
 
@@ -1713,7 +1737,7 @@ class Test {
 }
 ```
 
-### '***' is of type 'unknown'
+### '***' Is of Type 'unknown'
 
 **Before adaptation**
 
@@ -1737,7 +1761,7 @@ try {
 }
 ```
 
-### Type '*** | null' is not assignable to type '\*\*\*'
+### Type '*** | null' Not Assignable to Type '\*\*\*'
 
 **Before adaptation**
 
@@ -1809,7 +1833,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot invoke an object which possibly 'undefined'
+### Cannot Invoke an Object Which Is Possibly 'undefined'
 
 **Before adaptation**
 
@@ -1849,7 +1873,7 @@ if (a.foo) {
 
 In the original code definition, **foo** is an optional property and may be **undefined**. If **undefined** is called, an error is reported. You are advised to determine whether a property is optional based on the service logic. If defining an optional property is necessary, a null check is required for accessing the property.
 
-### Variable '***' is used before being assigned
+### Variable '***' Is Used Before Being Assigned
 
 **Before adaptation**
 
@@ -1894,7 +1918,7 @@ For primitive types, a value can be assigned based on the service logic, for exa
 
 For the object type, you can change the type to a union type consisting of **null** and assign **null** to the type. In this case, when using the object type, you need to perform the non-null check.
 
-### Function lacks ending return statement and return type does not include 'undefined'.
+### "Function lacks ending return statement and return type does not include 'undefined'" Error
 
 **Before adaptation**
 
@@ -1940,7 +1964,7 @@ let a: number = 123;
 
 ArkTS does not support the use of comments to bypass strict type checks. Delete the comment (**// @ts-nocheck** or **// @ts-ignore**), and then modify other code based on the error information.
 
-## Importing ArkTS files to JS and TS files is not allowed
+## Importing ArkTS Files to JS and TS Files Not Allowed
 
 ## arkts-no-tsdeps
 
@@ -1950,7 +1974,7 @@ In .ts and .js files, it is not allowed to import source code from an .ets file.
 
 Mode 1: Change the file name extension of the .ts file to .ets and adapt the code based on the ArkTS syntax rules.
 
-Mode 2: Extract the code that the .ts file depends on from the .ets file to the .ts file.
+Mode 2: Extract the code on which the .ts file depends from the .ets file to the .ts file.
 
 ## arkts-no-special-imports
 
