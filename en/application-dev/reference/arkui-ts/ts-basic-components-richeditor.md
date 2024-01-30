@@ -207,7 +207,7 @@ Adds an image span.
 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
-| value  | [PixelMap](../apis/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#ResourceStr)   | Yes  | Image content.|
+| value  | [PixelMap](../apis/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)   | Yes  | Image content.|
 | options  | [RichEditorImageSpanOptions](#richeditorimagespanoptions)   | No  | Image options.|
 
 **Return value**
@@ -354,10 +354,10 @@ Provides the span range information.
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  private start: number = -1;
-  private end: number = -1;
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  private start: number = -1
+  private end: number = -1
   @State message: string = "[-1, -1]"
   @State content: string = ""
 
@@ -396,10 +396,10 @@ struct Index {
             end: this.end
           }).forEach(item => {
             if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
-              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr
               this.content += "\n"
             } else {
-              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += (item as RichEditorTextSpanResult).value
               this.content += "\n"
             }
           })
@@ -409,8 +409,8 @@ struct Index {
             start: this.start,
             end: this.end
           })
-          this.start = -1;
-          this.end = -1;
+          this.start = -1
+          this.end = -1
           this.message = "[" + this.start + ", " + this.end + "]"
         })
       }
@@ -447,15 +447,15 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            this.start = value.selection[0];
-            this.end = value.selection[1];
+            this.start = value.selection[0]
+            this.end = value.selection[1]
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
             console.log("---------------------- aboutToIMEInput ----------------------")
             console.log("insertOffset:" + value.insertOffset)
             console.log("insertValue:" + value.insertValue)
-            return true;
+            return true
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
             console.log("---------------------- onIMEInputComplete ---------------------")
@@ -480,7 +480,7 @@ struct Index {
                 console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
-            return true;
+            return true
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")

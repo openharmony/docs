@@ -26,7 +26,7 @@ RowSplit()
 >
 > The divider of **\<RowSplit>** can change the width of the left and right child components, but only to the extent that the resultant width falls within the maximum and minimum widths of the child components.
 >
-> Universal attributes such as **clip** and **margin** are supported. If **clip** is not set, the default value **true** is used.
+> Universal attributes such as [clip](ts-universal-attributes-sharp-clipping.md) and [margin](ts-universal-attributes-size.md) are supported. If **clip** is not set, the default value **true** is used.
 
 
 ## Example

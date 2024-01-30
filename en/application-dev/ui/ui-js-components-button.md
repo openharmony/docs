@@ -93,7 +93,7 @@ Sample code for declaring the **ohos.permission.INTERNET** permission in the **c
 
 ## Showing the Download Progress
 
-Add the **progress** method to the **\<button>** component to display the download progress in real time.
+Add the **setProgress** method to the **\<button>** component to display the download progress in real time.
 
 ```html
 <!-- xxx.hml -->
@@ -239,7 +239,7 @@ Switch between the button types for different types of text.
   color: #ffffff;
 }
 .color-3 {
-  background-color: #0598db;;
+  background-color: #0598db;
 }
 ```
 

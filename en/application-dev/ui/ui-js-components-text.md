@@ -42,7 +42,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
       This is a passage
     </text>
-    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
+    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;text-align: center">
       This is a passage
     </text>
   </div> 
@@ -51,6 +51,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
   ```css
   /* xxx.css */
   .container {
+    display: flex;
     width: 100%;
     height: 100%;
     flex-direction: column;

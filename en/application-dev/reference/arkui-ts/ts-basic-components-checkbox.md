@@ -12,16 +12,26 @@ Not supported
 
 ## APIs
 
-Checkbox(options?: {name?: string,  group?: string })
+Checkbox(options?: CheckboxOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Creates a check box.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
+| Name | Type                                       | Mandatory| Description              |
+| ------- | ------------------------------------------- | ---- | ------------------ |
+| options | [CheckboxOptions](#checkboxoptions) | No  | Check box parameters.|
+
+## CheckboxOptions
+
 | Name | Type| Mandatory | Description|
 | --------| --------| ------ | -------- |
-| name    | string | No| Name of the check box.|
-| group   | string | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [CheckboxGroup](ts-basic-components-checkboxgroup.md) component.|
+| name    | [Length](ts-types.md#length) | No| Name of the check box.|
+| group   | [Length](ts-types.md#length) | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [CheckboxGroup](ts-basic-components-checkboxgroup.md) component.|
 
 ## Attributes
 
@@ -31,7 +41,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name         | Type| Description|
 | ------------- | ------- | -------- |
 | select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the check box when it is not selected.|
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10) | Internal icon style of the check box.|
 
