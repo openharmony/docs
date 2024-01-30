@@ -132,6 +132,42 @@ getFullDirectoryUri(): string
   }
   ```
 
+### isRemoteUri<sup>12+</sup>
+
+isRemoteUri(): boolean
+
+判断当前URI是否是远端URI。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**返回值：**
+
+| 类型                  | 说明                                |
+| --------------------- |-----------------------------------|
+| boolean | - 返回true，表示当前FileUri指向远端文件或目录，如`xxx/example.txt?networkid=xxx`。<br>- 返回false，表示当前FileUri指向本地的文件或目录。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息                      |
+| ---------------------------- |---------------------------|
+| 13900042 | Unknown error             |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  function isRemoteUriExample() {
+    let uri = "file://com.example.demo/data/stroage/el2/base/test.txt?networkid=xxxx";//?networkid设备id，远端URI的标识
+    let fileUriObject = new fileUri.FileUri(uri);
+    let ret = fileUriObject.isRemoteUri();
+    if (ret) {
+        console.log(`It is a remote uri.`);
+    }
+  }
+  ```
+
 ## fileUri.getUriFromPath
 
 getUriFromPath(path: string): string
