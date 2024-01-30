@@ -85,7 +85,7 @@ createWebSocket(): WebSocket
 
 | 类型                                | 说明                                                         |
 | :---------------------------------- | :----------------------------------------------------------- |
-| [WebSocket](#websocket) | 返回一个WebSocket对象，里面包括connect、send、close、on和off方法。 |
+| [WebSocket](#websocket6) | 返回一个WebSocket对象，里面包括connect、send、close、on和off方法。 |
 
 **示例：**
 
@@ -95,7 +95,7 @@ let ws = webSocket.createWebSocket();
 
 ## <span name="websocket">WebSocket<sup>6+</sup></span>
 
-在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
+在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket6)创建一个WebSocket。
 
 ### <span name="connected">connect<sup>6+</sup></span>
 
