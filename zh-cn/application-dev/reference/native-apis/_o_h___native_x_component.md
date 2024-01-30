@@ -1213,7 +1213,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 ### OH_NativeXComponent_RegisterOnFrameCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp) callback )
+int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent * component, void (*callback)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp))
 ```
 **描述**
 
