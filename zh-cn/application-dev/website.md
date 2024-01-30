@@ -844,6 +844,7 @@
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
       - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
       - [常用trace使用指导](performance/common-trace-using-instructions.md)
+      - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
