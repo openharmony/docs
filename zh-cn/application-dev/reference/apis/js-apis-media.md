@@ -1756,7 +1756,7 @@ avPlayer.off('endOfStream')
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-监听资源播放当前时间，单位为毫秒（ms），用于刷新进度条当前位置，默认间隔1s时间上报，因用户操作(seek)产生的时间变化会立刻上报。
+监听资源播放当前时间，单位为毫秒（ms），用于刷新进度条当前位置，默认间隔100ms时间上报，因用户操作(seek)产生的时间变化会立刻上报。
 注：直播场景不支持timeUpdate上报。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
