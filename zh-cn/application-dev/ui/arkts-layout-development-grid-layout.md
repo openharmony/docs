@@ -263,7 +263,6 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
-  GridCol(){}.offset(2)
   GridCol(){}.offset(Goffset) 
   ```
 
