@@ -37,11 +37,11 @@ In the following example, when a user clicks the **runJavaScript** button on the
   
     build() {
       Column() {
-        Web({ src: $rawfile('index.html'), controller: this.webviewController})
         Button('runJavaScript')
           .onClick(() => {
              this.webviewController.runJavaScript('htmlTest()');
           })
+        Web({ src: $rawfile('index.html'), controller: this.webviewController})
       }
     }
   }

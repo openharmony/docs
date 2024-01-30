@@ -16,31 +16,43 @@ This component can contain only one child component.
 
 ### Button
 
-Button(options?: {type?: ButtonType, stateEffect?: boolean})
+Button(options: ButtonOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Creates a button that contains a single child component.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name        | Type      | Mandatory       | Description                             |
 | ----------- | ---------- | ------| --------------------------------- |
-| type        | [ButtonType](#buttontype) | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
-| stateEffect | boolean    | No   | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.|
+| options        | [ButtonOptions](#buttonoptions) | Yes   | Button type.                          |
 
 ### Button
 
-Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+Button(label: ResourceStr, options?: ButtonOptions)
 
 Creates a button component based on text content. In this case, the component cannot contain child components.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type                               | Mandatory  | Description         |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | No   | Button text.|
-| options | { type?: ButtonType, stateEffect?: boolean }   | No   | For details, see [Button](#button-1).|
+| options | [ButtonOptions](#buttonoptions)   | No   | For details, see [Button](#button-1).|
+
+## ButtonOptions
+
+| Name    | Type                               | Mandatory  | Description         |
+| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type        | [ButtonType](#buttontype)         | No   | Button type.<br>Default value: **ButtonType.Capsule**|
+| stateEffect | boolean                           | No   | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.|
 
 ## Attributes
 
@@ -49,6 +61,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name         | Type          | Description                               |
 | ----------- | ----------- | --------------------------------- |
 | type        | [ButtonType](#buttontype) | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fontSize    | [Length](ts-types.md#length) | Font size of the button.<br>Default value: **'16sp'**|
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | Font color of the button.<br>Default value: **'\#ffffff'**|
+| fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| FontWeight.Normal |
+| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | Font style of the button.<br>Default value: **FontStyle.Normal**|
 | stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label style of the button.|
 
@@ -73,12 +89,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. Text is clipped at the transition between words. To clip text in the middle of a word, add zero-width spaces between characters.|
-| maxLines             | number                                                       | No  | Maximum number of lines in the label text. By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **overflow** to specify how it is displayed.|
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. Text is clipped at the transition between words. To clip text in the middle of a word, add zero-width spaces between characters.<br>Default value: **TextOverflow.Ellipsis**|
+| maxLines             | number                                                       | No  | Maximum number of lines in the label text. By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **overflow** to specify how it is displayed.<br>Default value: **1**|
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.|
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.|
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text.                             |
-| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.                                     |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text.                            |
+| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.<br>Default value: See [Font](ts-types.md#font).    |
 ## Events
 
 The [universal events](ts-universal-events-click.md) are supported.

@@ -35,13 +35,14 @@ The following table describes the APIs for notification publishing. You specify 
 
 ## How to Develop
 
-1. [Enable notification](notification-enable.md). An application can use the notification feature only after being authorized by the user.
+1. [Request notification authorization](notification-enable.md). Your application can send notifications only after obtaining user authorization. 
 
 2. Import the module.
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. Create a **NotificationRequest** object and publish a progress notification.
@@ -62,10 +63,10 @@ The following table describes the APIs for notification publishing. You specify 
       
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -75,7 +76,7 @@ The following table describes the APIs for notification publishing. You specify 
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 2,
         content: {
           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
           longText: {
@@ -92,10 +93,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -105,14 +106,14 @@ The following table describes the APIs for notification publishing. You specify 
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 3,
         content: {
           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
           multiLine: {
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'longTitle',
+            longTitle: 'test_longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -121,10 +122,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -150,7 +151,7 @@ The following table describes the APIs for notification publishing. You specify 
       
       if (imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {
-          id: 1,
+          id: 4,
           content: {
             contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
             picture: {
@@ -167,10 +168,10 @@ The following table describes the APIs for notification publishing. You specify 
         // Publish the notification.
         notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
           if (err) {
-            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
             return;
           }
-          console.info('Succeeded in publishing notification.');
+          logger.info('Succeeded in publishing notification.');
         });
       }
       ```

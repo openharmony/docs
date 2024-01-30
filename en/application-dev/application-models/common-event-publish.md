@@ -31,11 +31,11 @@ Common events that do not carry information can be published only as unordered c
    import Base from '@ohos.base';
    ```
 
-2. Pass in the common event name and callback, and publish the event.
+2. Pass in the common event name and callback, and publish the event. In this example, the **custom_event** event is published.
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err: Base.BusinessError) => {
+   commonEventManager.publish("custom_event", (err: Base.BusinessError) => {
        if (err) {
            console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
        } else {
@@ -70,7 +70,7 @@ Common events that carry information can be published as unordered, ordered, and
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err: Base.BusinessError) => {
+   commonEventManager.publish("custom_event", options, (err: Base.BusinessError) => {
        if (err) {
            console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
        } else {

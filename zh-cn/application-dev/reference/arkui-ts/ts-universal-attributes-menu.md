@@ -135,7 +135,7 @@ struct MenuExample {
 
 ### 示例3
 
-菜单(右键触发显示)
+菜单(长按触发显示)
 
 ```ts
 // xxx.ets
@@ -160,14 +160,16 @@ struct ContextMenuExample {
   
   build() {
     Column() {
-      Text('rightclick for menu')
+      Text('LongPress for menu')
     }
     .width('100%')
     .margin({ top: 5 })
-    .bindContextMenu(this.MenuBuilder, ResponseType.RightClick)
+    .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
   }
 }
 ```
+
+![longMenu](figures/longMenu.gif)
 
 ### 示例4
 

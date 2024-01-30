@@ -19,7 +19,7 @@ import common from '@ohos.app.ability.common';
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
-on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
+on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 注册监听应用内生命周期
 
@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback\<void>): void
+off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
 取消监听应用内生命周期
 
@@ -144,6 +144,12 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
 | type | 'abilityLifecycle' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
 ```ts
@@ -162,7 +168,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
 
-on(type: 'environment', callback: EnvironmentCallback): **number**;
+on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。
 
@@ -211,7 +217,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
+off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -248,7 +254,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): **void**;
+off(type: 'environment', callbackId: number): Promise\<void\>
 
 取消对系统环境变化的监听。
 
@@ -261,6 +267,12 @@ off(type: 'environment', callbackId: **number**): **void**;
 | type | 'environment' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
 | callback      | AsyncCallback\<void> | 是  | 取消对系统环境变化监听的回调方法。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

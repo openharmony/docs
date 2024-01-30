@@ -1,6 +1,6 @@
 # Image
 
-The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, BMP, SVG, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
 
 > **NOTE**
 >
@@ -199,68 +199,33 @@ struct ImageExample2 {
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-}
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
-  @State widthValue: number = 0;
-  @State heightValue: number = 0;
-  private on: Resource = $r('app.media.image_on');
-  private off: Resource = $r('app.media.image_off');
-  private on2off: Resource = $r('app.media.image_on2off');
-  private off2on: Resource = $r('app.media.image_off2on');
-  @State src: Resource = this.on;
+  private imageOne: Resource = $r('app.media.earth');
+  private imageTwo: Resource = $r('app.media.star');
+  private imageThree: Resource = $r('app.media.moveStar');
+  @State src: Resource = this.imageOne
+  @State src2: Resource = this.imageThree
+  build(){
+    Column(){
+      // Add a click event so that a specific image is loaded upon clicking.
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          this.src = this.imageTwo
+        })
 
-  build() {
-    Column() {
-      Row({ space: 20 }) {
-        Column() {
-          Image($r('app.media.img_example1'))
-            .alt($r('app.media.ic_public_picture'))
-            .sourceSize({
-              width: 900,
-              height: 900
-            })
-            .objectFit(ImageFit.Cover)
-            .height(180).width(180)
-            // Obtain the size of an image after the image loading is complete.
-            .onComplete(msg => {
-              if(msg){
-                this.widthValue = msg.width
-                this.heightValue = msg.height
-              }
-            })
-            .onError(() => {
-              console.log('load image fail')
-            })
-            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
-              align: Alignment.Bottom,
-              offset: { x: 0, y: 20 }
-            })
-        }
-        // Add a click event so that a specific image is loaded upon clicking.
-        Image(this.src)
-          .width(120).height(120)
-          .onClick(() => {
-            if (this.src == this.on || this.src == this.off2on) {
-              this.src = this.on2off
-            } else {
-              this.src = this.off2on
-            }
-          })
-          .onFinish(() => {
-            if (this.src == this.off2on) {
-              this.src = this.on
-            } else {
-              this.src = this.off
-            }
-          })
-      }
-    }.width('100%')
+      // When the image to be loaded is in SVG format:
+      Image(this.src2)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          // Load another image when the SVG image has finished its animation.
+          this.src2 = this.imageOne
+        })
+    }.width('100%').height('100%')
   }
 }
 ```

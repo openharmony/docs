@@ -1,4 +1,4 @@
-# Developing Audio Call
+# Developing Audio Call (ArkTS)
 
 During an audio call, audio output (playing the peer voice) and audio input (recording the local voice) are carried out simultaneously. You can use the AudioRenderer to implement audio output and the AudioCapturer to implement audio input.
 
@@ -161,6 +161,8 @@ async function release() {
 
 This process is similar to the process of [using AudioCapturer to develop audio recording](using-audiocapturer-for-recording.md). The key differences lie in the **audioCapturerInfo** parameter and audio data stream direction. In the **audioCapturerInfo** parameter used for audio calling, **source** must be set to **SOURCE_TYPE_VOICE_COMMUNICATION**.
 
+You must request the **ohos.permission.MICROPHONE** permission for all recording tasks.
+ 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';

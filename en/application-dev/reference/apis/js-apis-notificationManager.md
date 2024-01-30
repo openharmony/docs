@@ -1316,7 +1316,6 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
         console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 ```
 
@@ -1447,7 +1446,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let userId: number = 1;
-
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -1646,7 +1644,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -4359,7 +4356,7 @@ Unsubscribes from notification events.
 | Name| Type                                                                                                                     | Mandatory| Description          |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
 | type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Callback used to return the result. This parameter is left empty by default.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4377,7 +4374,7 @@ import Base from '@ohos.base';
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4404,7 +4401,7 @@ try{
 | TYPE_NONE    | 0 | Non-DND.                          |
 | TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
 | TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
-| TYPE_CLEARLY | 3 | DND at the specified time segment (considering the year, month, day, hour, and minute).    |
+| TYPE_CLEARLY | 3 | DND at the specified time segment (with the hour, day, and month specified).    |
 
 
 ## ContentType
@@ -4413,11 +4410,11 @@ try{
 
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- |------------------|
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | Normal text notification.         |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.        |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.         |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification (not supported currently).|
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.       |
+| NOTIFICATION_CONTENT_BASIC_TEXT   | 0          | Normal text notification.         |
+| NOTIFICATION_CONTENT_LONG_TEXT    | 1          | Long text notification.        |
+| NOTIFICATION_CONTENT_PICTURE      | 2          | Picture-attached notification.         |
+| NOTIFICATION_CONTENT_CONVERSATION | 3          | Conversation notification (not supported currently).|
+| NOTIFICATION_CONTENT_MULTILINE    | 4          | Multi-line text notification.       |
 
 ## SlotLevel
 

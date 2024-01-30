@@ -57,7 +57,11 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
 2. Create an encoder instance.
 
-   You can create an encoder by name or MIME type.
+   You can create an encoder by name or MIME type. In the code snippet below, the following variables are used:
+
+   - videoEnc: pointer to the video encoder instance.
+   - capability: pointer to the codec capability instance.
+   - OH_AVCODEC_MIMETYPE_VIDEO_AVC: name of an AVC-format video stream.
 
    ```c++
    // To create an encoder by MIME type, call OH_VideoEncoder_CreateByMime. The system creates the most appropriate encoder based on the MIME type.
@@ -260,7 +264,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
 9. Notify the encoder of EOS.
 
-   In the code snippet below, **index** specifies the index of the data queue, which is passed in by the callback function **OnNeedInputData**. The API **OH_VideoEncoder_PushInputData** is used to notify the encoder of EOS. This API is also used in step 7 to push the stream to the input queue for encoding. Therefore, in the current step, you must pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
+   In the code snippet below, **index** specifies the index of the data queue, which is passed in by the callback function **OnNeedInputData**.  The API **OH_VideoEncoder_PushInputData** is used to notify the encoder of EOS. This API is also used in step 8 to push the stream to the input queue for encoding. Therefore, in the current step, you must pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
 
    ```c++
    int32_t ret;
@@ -556,7 +560,8 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
 
 9. Write the stream to encode.
 
-   In step 5, you have configured the **OHNativeWindow*** variable type returned by **OH_VideoEncoder_GetSurface**. The data required for encoding is continuously input by the surface. Therefore, you do not need to process the **OnNeedInputData** callback function or use **OH_VideoEncoder_PushInputData** to input data.
+   In step 6, you have configured the **OHNativeWindow*** variable type returned by **OH_VideoEncoder_GetSurface**. The data required for encoding is continuously input by the surface. Therefore, you do not need to process the **OnNeedInputData** callback function or use **OH_VideoEncoder_PushInputData** to input data.
+
 10. Call **OH_VideoEncoder_NotifyEndOfStream()** to notify the encoder of EOS.
 
     ```c++
@@ -587,4 +592,4 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
     }
     ```
 
-The subsequent processes (including refreshing, resetting, stopping, and destroying the encoder) are the same as those in buffer input mode. For details, see steps 9-12 in [Buffer Input](#buffer-input).
+The subsequent processes (including refreshing, resetting, stopping, and destroying the encoder) are the same as those in buffer input mode. For details, see steps 11-14 in [Buffer Input](#buffer-input).

@@ -5,7 +5,7 @@ The **<Web\>** component can be used to display web pages. It can be used with t
 > **NOTE**
 >
 > - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-> - You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> - You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ## Required Permissions
 To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
@@ -87,84 +87,88 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
   Example of loading local resource files in the sandbox:
 
-  1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
+1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+   ```ts
+     // GlobalContext.ts
+     export class GlobalContext {
+       private constructor() {}
+       private static instance: GlobalContext;
+       private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+       public static getContext(): GlobalContext {
+         if (!GlobalContext.instance) {
+           GlobalContext.instance = new GlobalContext();
+         }
+         return GlobalContext.instance;
+       }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+       getObject(value: string): Object | undefined {
+         return this._objects.get(value);
+       }
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext.ts'
+       setObject(key: string, objectClass: Object): void {
+         this._objects.set(key, objectClass);
+       }
+     }
+   ```
 
-  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   ```ts
+    // xxx.ets
+     import web_webview from '@ohos.web.webview'
+     import { GlobalContext } from '../GlobalContext.ts'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // Load the files in the sandbox.
-        Web({ src: url, controller: this.controller })
-      }
-    }
-  }
-  ```
+     let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
-  2. Modify the **EntryAbility.ts** file.
-  The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
-  ```ts
-  // xxx.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview';
-  import { GlobalContext } from '../GlobalContext'
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: web_webview.WebviewController = new web_webview.WebviewController()
+       build() {
+         Column() {
+           // Load the files in the sandbox.
+           Web({ src: url, controller: this.controller })
+         }
+       }
+     }
+   ```
 
-  export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
-          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-      }
-  }
-  ```
+2. Modify the **EntryAbility.ets** file.
+
+   The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+
+   ```ts
+     // xxx.ts
+     import UIAbility from '@ohos.app.ability.UIAbility';
+     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import Want from '@ohos.app.ability.Want';
+     import web_webview from '@ohos.web.webview';
+     import { GlobalContext } from '../GlobalContext'
+
+     export default class EntryAbility extends UIAbility {
+         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+             // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
+             GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+             console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+         }
+     }
+   ```
 
   HTML file to be loaded:
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+
+   ```html
+     <!-- index.html -->
+     <!DOCTYPE html>
+     <html>
+         <body>
+             <p>Hello World</p>
+         </body>
+     </html>
+   ```
 
 ## Attributes
 
-The following universal attributes are supported: [aspectRatio](ts-universal-attributes-layout-constraints.md#attributes), [backdropBlur](ts-universal-attributes-image-effect.md#attributes), [backgroundColor](ts-universal-attributes-attribute-modifier.md#attributes), [bindContentCover](ts-universal-attributes-modal-transition.md#attributes), [bindContextMenu](ts-universal-attributes-menu.md#attributes), [bindMenu](ts-universal-attributes-menu.md#attributes), [bindSheet](ts-universal-attributes-sheet-transition.md#attributes), [blur](ts-universal-attributes-image-effect.md#attributes), [border](ts-universal-attributes-border.md#attributes), [borderColor](ts-universal-attributes-border.md#attributes), [borderRadius](ts-universal-attributes-border.md#attributes), [borderStyle](ts-universal-attributes-border.md#attributes), [borderWidth](ts-universal-attributes-border.md#attributes), [clip](ts-universal-attributes-sharp-clipping.md#attributes), [constraintSize](ts-universal-attributes-size.md#attributes), [defaultFocus](ts-universal-attributes-focus.md#attributes), [focusable](ts-universal-attributes-focus.md#attributes), [tabIndex](ts-universal-attributes-focus.md#attributes), [groupDefaultFocus](ts-universal-attributes-focus.md#attributes), [focusOnTouch](ts-universal-attributes-focus.md#attributes), [displayPriority](ts-universal-attributes-layout-constraints.md#attributes), [draggable](ts-universal-attributes-drag-drop.md#attributes), [enabled](ts-universal-attributes-enable.md#attributes), [flexBasis](ts-universal-attributes-flex-layout.md#attributes), [flexGrow](ts-universal-attributes-flex-layout.md#attributes), [flexShrink](ts-universal-attributes-flex-layout.md#attributes), [layoutWeight](ts-universal-attributes-flex-layout.md#attributes), [id](ts-universal-attributes-component-id.md#attributes), [gridOffset](ts-universal-attributes-grid.md#attributes), [gridSpan](ts-universal-attributes-grid.md#attributes), [useSizeType](ts-universal-attributes-grid.md#attributes), [height](ts-universal-attributes-size.md#attributes), [touchable](ts-universal-attributes-click.md#attributes), [margin](ts-universal-attributes-size.md#attributes), [markAnchor](ts-universal-attributes-location.md#attributes), [mask](ts-universal-attributes-sharp-clipping.md#attributes), [offset](ts-universal-attributes-location.md#attributes), [width](ts-universal-attributes-size.md#attributes), [zIndex](ts-universal-attributes-z-order.md#attributes), [visibility](ts-universal-attributes-visibility.md#attributes), [rotate](ts-universal-attributes-transformation.md#attributes), [scale](ts-universal-attributes-transformation.md#attributes), [transform](ts-universal-attributes-transformation.md#attributes), [responseRegion](ts-universal-attributes-touch-target.md#attributes), [padding](ts-universal-attributes-size.md#attributes), [size](ts-universal-attributes-size.md#attributes), [stateStyles](ts-universal-attributes-polymorphic-style.md#attributes), [opacity](ts-universal-attributes-opacity.md#attributes), [shadow](ts-universal-attributes-image-effect.md#attributes), [gesture](ts-gesture-settings.md#binding gesture recognition), [sharedTransition](ts-transition-animation-shared-elements.md#attributes), and [transition](ts-transition-animation-component.md#attributes).
+The following universal attributes are supported: [aspectRatio](ts-universal-attributes-layout-constraints.md#attributes), [backdropBlur](ts-universal-attributes-image-effect.md#attributes), [bindContentCover](ts-universal-attributes-modal-transition.md#attributes), [bindContextMenu](ts-universal-attributes-menu.md#attributes), [bindMenu](ts-universal-attributes-menu.md#attributes), [bindSheet](ts-universal-attributes-sheet-transition.md#attributes), [borderColor](ts-universal-attributes-border.md#attributes), [borderRadius](ts-universal-attributes-border.md#attributes), [borderStyle](ts-universal-attributes-border.md#attributes), [borderWidth](ts-universal-attributes-border.md#attributes), [clip](ts-universal-attributes-sharp-clipping.md#attributes), [constraintSize](ts-universal-attributes-size.md#attributes), [defaultFocus](ts-universal-attributes-focus.md#attributes), [focusable](ts-universal-attributes-focus.md#attributes), [tabIndex](ts-universal-attributes-focus.md#attributes), [groupDefaultFocus](ts-universal-attributes-focus.md#attributes), [focusOnTouch](ts-universal-attributes-focus.md#attributes), [displayPriority](ts-universal-attributes-layout-constraints.md#attributes), [enabled](ts-universal-attributes-enable.md#attributes), [flexBasis](ts-universal-attributes-flex-layout.md#attributes), [flexGrow](ts-universal-attributes-flex-layout.md#attributes), [flexShrink](ts-universal-attributes-flex-layout.md#attributes), [layoutWeight](ts-universal-attributes-flex-layout.md#attributes), [id](ts-universal-attributes-component-id.md#attributes), [gridOffset](ts-universal-attributes-grid.md#attributes), [gridSpan](ts-universal-attributes-grid.md#attributes), [useSizeType](ts-universal-attributes-grid.md#attributes), [height](ts-universal-attributes-size.md#attributes), [touchable](ts-universal-attributes-click.md#attributes), [margin](ts-universal-attributes-size.md#attributes), [markAnchor](ts-universal-attributes-location.md#attributes), [offset](ts-universal-attributes-location.md#attributes), [width](ts-universal-attributes-size.md#attributes), [zIndex](ts-universal-attributes-z-order.md#attributes), [visibility](ts-universal-attributes-visibility.md#attributes), [rotate](ts-universal-attributes-transformation.md#attributes), [transform](ts-universal-attributes-transformation.md#attributes), [responseRegion](ts-universal-attributes-touch-target.md#attributes), [size](ts-universal-attributes-size.md#attributes), [stateStyles](ts-universal-attributes-polymorphic-style.md#attributes), [opacity](ts-universal-attributes-opacity.md#attributes), [shadow](ts-universal-attributes-image-effect.md#attributes), [sharedTransition](ts-transition-animation-shared-elements.md#attributes), and [transition](ts-transition-animation-component.md#attributes).
 
 ### domStorageAccess
 
@@ -824,7 +828,7 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 | Name    | Type  | Mandatory  | Default Value | Description                         |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.<br>Value range: 1 to 100|
+| percent | number | Yes   | 100  | Scale factor of the entire page.|
 
 **Example**
 
@@ -2679,147 +2683,149 @@ Called when an SSL client certificate request is received.
   This example shows two-way authentication when interconnection with certificate management is supported.
 
   1. Construct the singleton object **GlobalContext**.
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+   ```ts
+   // GlobalContext.ts
+     export class GlobalContext {
+       private constructor() {}
+       private static instance: GlobalContext;
+       private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+       public static getContext(): GlobalContext {
+         if (!GlobalContext.instance) {
+           GlobalContext.instance = new GlobalContext();
+         }
+         return GlobalContext.instance;
+       }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+       getObject(value: string): Object | undefined {
+         return this._objects.get(value);
+       }
+
+       setObject(key: string, objectClass: Object): void {
+         this._objects.set(key, objectClass);
+       }
+     }
+   ```
 
   2. Implement two-way authentication.
-  ```ts
-  // xxx.ets API10
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview'
-  import { BusinessError } from '@ohos.base';
-  import bundleManager from '@ohos.bundle.bundleManager'
-  import { GlobalContext } from '../GlobalContext'
 
-  let uri = "";
+   ```ts
+   // xxx.ets API10
+     import common from '@ohos.app.ability.common';
+     import Want from '@ohos.app.ability.Want';
+     import web_webview from '@ohos.web.webview'
+     import { BusinessError } from '@ohos.base';
+     import bundleManager from '@ohos.bundle.bundleManager'
+     import { GlobalContext } from '../GlobalContext'
 
-  export default class CertManagerService {
-    private static sInstance: CertManagerService;
-    private authUri = "";
-    private appUid = "";
+     let uri = "";
 
-    public static getInstance(): CertManagerService {
-      if (CertManagerService.sInstance == null) {
-        CertManagerService.sInstance = new CertManagerService();
-      }
-      return CertManagerService.sInstance;
-    }
+     export default class CertManagerService {
+       private static sInstance: CertManagerService;
+       private authUri = "";
+       private appUid = "";
 
-    async grantAppPm(callback: (message: string) => void) {
-      let message = '';
-      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-      // Note: Replace com.example.myapplication with the actual application name.
-      try {
-        bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-          this.appUid = data.appInfo.uid.toString();
-        }).catch((err: BusinessError) => {
-          console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-        });
-      } catch (err) {
-        let message = (err as BusinessError).message;
-        console.error('getBundleInfoForSelf failed: %{public}s', message);
-      }
+       public static getInstance(): CertManagerService {
+         if (CertManagerService.sInstance == null) {
+           CertManagerService.sInstance = new CertManagerService();
+         }
+         return CertManagerService.sInstance;
+       }
 
-      // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
-      let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-      await abilityContext.startAbilityForResult(
-        {
-          bundleName: "com.ohos.certmanager",
-          abilityName: "MainAbility",
-          uri: "requestAuthorize",
-          parameters: {
-            appUid: this.appUid, // Pass the UID of the requesting application.
-          }
-        } as Want)
-        .then((data: common.AbilityResult) => {
-          if (!data.resultCode && data.want) {
-            if (data.want.parameters) {
-              this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
-            }
-          }
-        })
-      message += "after grantAppPm authUri: " + this.authUri;
-      uri = this.authUri;
-      callback(message)
-    }
-  }
+       async grantAppPm(callback: (message: string) => void) {
+         let message = '';
+         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+         // Note: Replace com.example.myapplication with the actual application name.
+         try {
+           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+             this.appUid = data.appInfo.uid.toString();
+           }).catch((err: BusinessError) => {
+             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+           });
+         } catch (err) {
+           let message = (err as BusinessError).message;
+           console.error('getBundleInfoForSelf failed: %{public}s', message);
+         }
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State message: string ='Hello World' // message is used for debugging and observation.
-    certManager = CertManagerService.getInstance();
+         // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
+         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+         await abilityContext.startAbilityForResult(
+           {
+             bundleName: "com.ohos.certmanager",
+             abilityName: "MainAbility",
+             uri: "requestAuthorize",
+             parameters: {
+               appUid: this.appUid, // Pass the UID of the requesting application.
+             }
+           } as Want)
+           .then((data: common.AbilityResult) => {
+             if (!data.resultCode && data.want) {
+               if (data.want.parameters) {
+                 this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
+               }
+             }
+           })
+         message += "after grantAppPm authUri: " + this.authUri;
+         uri = this.authUri;
+         callback(message)
+       }
+     }
 
-    build() {
-      Row() {
-        Column() {
-          Row() {
-            // Step 1: Perform authorization to obtain the URI.
-            Button('GrantApp')
-              .onClick(() => {
-                this.certManager.grantAppPm((data) => {
-                  this.message = data;
-                });
-              })
-            // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
-            Button("ClientCertAuth")
-              .onClick(() => {
-                this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
-              })
-          }
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: web_webview.WebviewController = new web_webview.WebviewController();
+       @State message: string = 'Hello World' // message is used for debugging and observation.
+       certManager = CertManagerService.getInstance();
 
-          Web({ src: 'https://www.example1.com', controller: this.controller })
-            .fileAccess(true)
-            .javaScriptAccess(true)
-            .domStorageAccess(true)
-            .onlineImageAccess(true)
+       build() {
+         Row() {
+           Column() {
+             Row() {
+               // Step 1: Perform authorization to obtain the URI.
+               Button('GrantApp')
+                 .onClick(() => {
+                   this.certManager.grantAppPm((data) => {
+                     this.message = data;
+                   });
+                 })
+               // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
+               Button("ClientCertAuth")
+                 .onClick(() => {
+                   this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
+                 })
+             }
 
-          .onClientAuthenticationRequest((event) => {
-            AlertDialog.show({
-              title: 'ClientAuth',
-              message: 'Text',
-              confirm: {
-                value: 'Confirm',
-                action: () => {
-                  event.handler.confirm(uri);
-                }
-              },
-              cancel: () => {
-                event.handler.cancel();
-              }
-            })
-          })
-        }
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
+             Web({ src: 'https://www.example1.com', controller: this.controller })
+               .fileAccess(true)
+               .javaScriptAccess(true)
+               .domStorageAccess(true)
+               .onlineImageAccess(true)
+
+             .onClientAuthenticationRequest((event) => {
+               AlertDialog.show({
+                 title: 'ClientAuth',
+                 message: 'Text',
+                 confirm: {
+                   value: 'Confirm',
+                   action: () => {
+                     event.handler.confirm(uri);
+                   }
+                 },
+                 cancel: () => {
+                   event.handler.cancel();
+                 }
+               })
+             })
+           }
+         }
+         .width('100%')
+         .height('100%')
+       }
+     }
+   ```
 
 ### onPermissionRequest<sup>9+</sup>
 
@@ -2907,7 +2913,7 @@ Called when a permission request is received.
   </script>
   </body>
   </html>
-  ```
+ ```
 
 ### onContextMenuShow<sup>9+</sup>
 
@@ -2933,24 +2939,137 @@ Called when a context menu is displayed after the user clicks the right mouse bu
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import pasteboard from '@ohos.pasteboard'
+  const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private result: WebContextMenuResult | undefined = undefined;
+    @State linkUrl: string = '';
+    @State offsetX: number = 0;
+    @State offsetY: number = 0;
+    @State showMenu: boolean = false;
+    @Builder
+    // Build and trigger a custom menu.
+    MenuBuilder(){
+      // A component that is used to present a vertical list of items to the user.
+      Menu(){
+        // A component that is used to represent an item in a menu.
+        MenuItem({
+          content: 'Copy Image',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copyImage();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Cut',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.cut();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Copy',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.copy();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Paste',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.paste();
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Copy Link',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
+            if(error){
+              return;
+            }
+          })
+          this.showMenu = false;
+        })
+        MenuItem({
+          content: 'Select All',
+        })
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          this.result?.selectAll();
+          this.showMenu = false;
+        })
+      }
+      .width(150)
+      .height(300)
+    }
+
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          // Trigger a custom dialog box.
           .onContextMenuShow((event) => {
             if (event) {
+              this.result = event.result
               console.info("x coord = " + event.param.x())
               console.info("link url = " + event.param.getLinkUrl())
+              this.linkUrl = event.param.getLinkUrl()
             }
+            console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
+            this.showMenu = true;
+            this.offsetX = 250;
+            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true
+        })
+        .bindPopup(this.showMenu,
+        {
+          builder: this.MenuBuilder(),
+          enableArrow: false,
+          placement: Placement.LeftTop,
+          offset: { x: this.offsetX, y: this.offsetY},
+          mask: false,
+          onStateChange: (e) => {
+            if(!e.isVisible){
+              this.showMenu = false;
+              this.result!.closeContextMenu();
+            }
+          }
         })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+    <h1>onContextMenuShow</h1>
+    <a href="http://www.example.com" style="font-size:27px">URL www.example.com</a>
+    // Place any image in the rawfile directory and name it example.png.
+    <div><img src="example.png"></div>
+    <p>Right-click text to display the context menu</p>
+  </body>
+  </html>
   ```
 
 ### onScroll<sup>9+</sup>
@@ -3038,34 +3157,23 @@ Called when a request to obtain the geolocation information is received.
   ```
 
   HTML file to be loaded:
- ```html
-  <!-- index.html -->
+  ```html
   <!DOCTYPE html>
   <html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
   <body>
-  <p id="demo">Click to obtain your current coordinates (which may take some time): </p>
-  <button onclick="getLocation()">Click Me</button>
+  <p id="locationInfo">Location information</p>
+  <button onclick="getLocation()">Get Location</button>
   <script>
-    var x=document.grtElementByld("demo");
-    function getLocation()
-    {
-      if (navigator.geolocation)
-      {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      }
-      else
-      {
-        x.innerHTML="Cannot obtain geographical location with the current browser.";
-      }
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- Access to the device location by the frontend page -->
+      navigator.geolocation.getCurrentPosition(showPosition);
     }
-
-    function showPosition(position)
-    {
-      x.innerHTML="Latitude:" + position.coords.latitude + "Longitude:" + position.coords.longitude;
-    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
   </script>
   </body>
   </html>
@@ -3385,7 +3493,7 @@ Called when the web form data is resubmitted.
     </form>
   </body>
   </html>
-  ```
+ ```
 
 ### onPageVisible<sup>9+</sup>
 
@@ -3603,7 +3711,7 @@ Called when the web page content is first rendered.
 
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
 Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 
@@ -3611,7 +3719,7 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 | Name | Type                                    | Description     |
 | ------- | ---------------------------------------- | --------- |
-| request | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
+| data | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
 
 **Return value**
 
@@ -3911,6 +4019,10 @@ Notifies the **\<Web>** component of the user's confirm operation in the dialog 
 
 Implements a **FullScreenExitHandler** object for listening for exiting full screen mode. For the sample code, see [onFullScreenEnter](#onfullscreenenter9).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
 ### exitFullScreen<sup>9+</sup>
 
 exitFullScreen(): void
@@ -3967,7 +4079,7 @@ Implements the **WebResourceRequest** object. For the sample code, see [onErrorR
 
 ### getRequestHeader
 
-getResponseHeader() : Array\<Header\>
+getRequestHeader(): Array\<Header\>
 
 Obtains the information about the resource request header.
 
@@ -4295,7 +4407,7 @@ Performs HTTP authentication with the user name and password provided by the use
 | Name     | Type  | Mandatory  | Default Value | Description      |
 | -------- | ------ | ---- | ---- | ---------- |
 | userName | string | Yes   | -    | HTTP authentication user name.|
-| pwd      | string | Yes   | -    | HTTP authentication password. |
+| password      | string | Yes   | -    | HTTP authentication password. |
 
 **Return value**
 
@@ -4457,39 +4569,40 @@ Grants the screen capture permission.
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
 
 ## ContextMenuSourceType<sup>9+</sup>
-| Name                  | Description        |
-| -------------------- | ---------- |
-| None        | Other event sources. |
-| Mouse       | Mouse event. |
-| LongPress   | Long press event. |
+
+| Name      | Value| Description        |
+| --------- | -- |------------ |
+| None      | 0 | Other event sources.|
+| Mouse     | 1 | Mouse event.  |
+| LongPress | 2 | Long press event.  |
 
 ## ContextMenuMediaType<sup>9+</sup>
 
-| Name          | Description         |
-| ------------ | ----------- |
-| None      | Non-special media or other media types.|
-| Image     | Image.    |
+| Name   | Value| Description           |
+| ----- | -- | ------------- |
+| None  | 0 | Non-special media or other media types.|
+| Image | 1 | Image.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
-| Name          | Description         |
-| ------------ | ----------- |
-| None      | Non-input field.      |
-| PlainText | Plain text field, such as the text, search, or email field.  |
-| Password  | Password field.    |
-| Number    | Numeric field.    |
-| Telephone | Phone number field.|
-| Other     | Field of any other type.    |
+| Name       | Value| Description                         |
+| --------- | -- | --------------------------- |
+| None      | 0 | Non-input field.                      |
+| PlainText | 1 | Plain text field, such as the text, search, or email field.|
+| Password  | 2 | Password field.                      |
+| Number    | 3 | Numeric field.                      |
+| Telephone | 4 | Phone number field.                    |
+| Other     | 5 | Field of any other type.                      |
 
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
-| Name        | Description        |
-| ------------ | ----------- |
-| NONE         | Editing is not allowed.  |
-| CAN_CUT      | The cut operation is allowed.  |
-| CAN_COPY     | The copy operation is allowed.  |
-| CAN_PASTE    | The paste operation is allowed.  |
-| CAN_SELECT_ALL  | The select all operation is allowed.|
+| Name           | Value| Description    |
+| -------------- | -- | -------- |
+| NONE           | 0 | Editing is not allowed.|
+| CAN_CUT        | 1 | The cut operation is allowed.|
+| CAN_COPY       | 2 | The copy operation is allowed.|
+| CAN_PASTE      | 4 | The paste operation is allowed.|
+| CAN_SELECT_ALL | 8 | The select all operation is allowed.|
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -4699,94 +4812,97 @@ Sets the geolocation permission status of a web page.
 
 ## MessageLevel
 
-| Name   | Description   |
-| ----- | :---- |
-| Debug | Debug level.|
-| Error | Error level.|
-| Info  | Information level.|
-| Log   | Log level.|
-| Warn  | Warning level. |
+| Name   | Value| Description   |
+| ----- | -- | ---- |
+| Debug | 0 | Debug level.|
+| Error | 1 | Error level.|
+| Info  | 2 | Information level.|
+| Log   | 3 | Log level.|
+| Warn  | 4 | Warning level.|
 
-## RenderExitReason
+## RenderExitReason<sup>9+</sup>
 
 Enumerates the reasons why the rendering process exits.
 
-| Name                        | Description               |
-| -------------------------- | ----------------- |
-| ProcessAbnormalTermination | The rendering process exits abnormally.        |
-| ProcessWasKilled           | The rendering process receives a SIGKILL message or is manually terminated.|
-| ProcessCrashed             | The rendering process crashes due to segmentation or other errors.   |
-| ProcessOom                 | The program memory is running low.          |
-| ProcessExitUnknown         | Other reason.            |
+| Name                        | Value| Description               |
+| -------------------------- | -- | ----------------- |
+| ProcessAbnormalTermination | 0 | The rendering process exits abnormally.        |
+| ProcessWasKilled           | 1 | The rendering process receives a SIGKILL message or is manually terminated.|
+| ProcessCrashed             | 2 | The rendering process crashes due to segmentation or other errors.   |
+| ProcessOom                 | 3 | The program memory is running low.          |
+| ProcessExitUnknown         | 4 | Other reason.            |
 
 ## MixedMode
 
-| Name        | Description                                |
-| ---------- | ---------------------------------- |
-| All        | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
-| Compatible | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
-| None       | HTTP and HTTPS hybrid content cannot be loaded.              |
+| Name       | Value| Description                                |
+| ---------- | -- | ---------------------------------- |
+| All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
+| Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
+| None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
-## CacheMode
-| Name     | Description                                  |
-| ------- | ------------------------------------ |
-| Default | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
-| None    | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
-| Online  | The cache is not used to load the resources. All resources are obtained from the Internet.              |
-| Only    | The cache alone is used to load the resources.                       |
+## CacheMode<sup>9+</sup>
 
-## FileSelectorMode
-| Name                  | Description        |
-| -------------------- | ---------- |
-| FileOpenMode         | Open and upload a file. |
-| FileOpenMultipleMode | Open and upload multiple files. |
-| FileOpenFolderMode   | Open and upload a folder.|
-| FileSaveMode         | Save a file.   |
+| Name     | Value| Description                                  |
+| ------- | -- | ------------------------------------ |
+| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
+| None    | 1 | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
+| Online  | 2 | The cache is not used to load the resources. All resources are obtained from the Internet.              |
+| Only    | 3 | The cache alone is used to load the resources.                       |
+
+## FileSelectorMode<sup>9+</sup>
+
+| Name                  | Value| Description        |
+| -------------------- | -- | ---------- |
+| FileOpenMode         | 0 | Open and upload a file. |
+| FileOpenMultipleMode | 1 | Open and upload multiple files. |
+| FileOpenFolderMode   | 2 | Open and upload a folder.|
+| FileSaveMode         | 3 | Save a file.   |
 
  ## HitTestType
 
-| Name           | Description                      |
-| ------------- | ------------------------ |
-| EditText      | Editable area.                 |
-| Email         | Email address.                 |
-| HttpAnchor    | Hyperlink whose **src** is **http**.          |
-| HttpAnchorImg | Image with a hyperlink, where **src** is **http**.|
-| Img           | HTML::img tag.            |
-| Map           | Geographical address.                   |
-| Phone         | Phone number.                   |
-| Unknown       | Unknown content.                   |
+| Name           | Value| Description                      |
+| ------------- | -- | ------------------------ |
+| EditText      | 0 | Editable area.                 |
+| Email         | 1 | Email address.                 |
+| HttpAnchor    | 2 | Hyperlink whose **src** is **http**.          |
+| HttpAnchorImg | 3 | Image with a hyperlink, where **src** is **http**.|
+| Img           | 4 | HTML::img tag.            |
+| Map           | 5 | Geographical address.                   |
+| Phone         | 6 | Phone number.                   |
+| Unknown       | 7 | Unknown content.                   |
 
 ## SslError<sup>9+</sup>
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
-| Name          | Description         |
-| ------------ | ----------- |
-| Invalid      | Minor error.      |
-| HostMismatch | The host name does not match.    |
-| DateInvalid  | The certificate has an invalid date.    |
-| Untrusted    | The certificate issuer is not trusted.|
+| Name          | Value| Description         |
+| ------------ | -- | ----------- |
+| Invalid      | 0 | Minor error.      |
+| HostMismatch | 1 | The host name does not match.    |
+| DateInvalid  | 2 | The certificate has an invalid date.    |
+| Untrusted    | 3 | The certificate issuer is not trusted.|
 
 ## ProtectedResourceType<sup>9+</sup>
 
-| Name       | Description           | Remarks                        |
-| --------- | ------------- | -------------------------- |
-| MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
-| VIDEO_CAPTURE<sup>10+</sup> | Video capture resource, such as a camera.| |
-| AUDIO_CAPTURE<sup>10+</sup> | Audio capture resource, such as a microphone.| |
+| Name                         | Value| Description           | Remarks                        |
+| --------------------------- | --------------- | ------------- | -------------------------- |
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|                            |
 
 ## WebDarkMode<sup>9+</sup>
-| Name     | Description                                  |
-| ------- | ------------------------------------ |
-| Off     | The web dark mode is disabled.                    |
-| On      | The web dark mode is enabled.                    |
-| Auto    | The web dark mode setting follows the system settings.                |
+
+| Name  | Value| Description          |
+| ---- | -- | ------------ |
+| Off  | 0 | The web dark mode is disabled.  |
+| On   | 1 | The web dark mode is enabled.  |
+| Auto | 2 | The web dark mode setting follows the system settings.|
 
 ## WebCaptureMode<sup>10+</sup>
 
-| Name       | Description           |
-| --------- | ------------- |
-| HOME_SCREEN | Capture of the home screen.|
+| Name         | Value| Description     |
+| ----------- | -- | ------- |
+| HOME_SCREEN | 0 | Capture of the home screen.|
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -5247,7 +5363,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 
 | Name    | Type                      | Mandatory  | Default Value | Description          |
 | ------- | -------------------------- | ---- | ---- | -------------- |
-| url     | string                     | Yes   | -    | URL to load.    |
+| url     | string \| Resource                     | Yes   | -    | URL to load.    |
 | headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL.|
 
 **Example**
@@ -5497,15 +5613,15 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          if (e) {
-            console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
           }
         })
       }
@@ -5594,17 +5710,11 @@ Manages behavior of cookies in **\<Web>** components. All **\<Web>** components 
 
 ### setCookie<sup>(deprecated)</sup>
 
-setCookie(): boolean
+setCookie()
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
 This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie) instead.
-
-**Return value**
-
-| Type     | Description           |
-| ------- | ------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 ### saveCookie<sup>(deprecated)</sup>
 
@@ -5613,9 +5723,3 @@ saveCookie(): boolean
 Saves the cookies in the memory to the drive. This API returns the result synchronously.
 
 This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync) instead.
-
-**Return value**
-
-| Type     | Description                  |
-| ------- | -------------------- |
-| boolean | Operation result.|

@@ -12,6 +12,10 @@ After an application switches to the background or an application process is ter
 
 - Alarm: reminders based on alarm clocks
 
+> **NOTE**
+> 
+> Currently, only banner notifications are displayed for alarm-based reminders. No sound is played.
+> 
 ### Constraints
 
 - **Quantity limit**: A third-party application supports a maximum of 30 valid reminders. A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders. (A reminder is considered valid as long as it is published.)

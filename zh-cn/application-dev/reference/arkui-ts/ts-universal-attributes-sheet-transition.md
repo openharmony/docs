@@ -22,16 +22,23 @@
 > 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
 ## SheetOptions
 
+继承自[BindOptions](#bindoptions)。
+
 | 名称              | 类型                                       | 必填   | 描述              |
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条，默认显示。   |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 半模态页面的背板颜色。     |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。 |
-| onAppear        | () => void                               | 否    | 半模态页面显示回调函数。    |
-| onDisappear     | () => void                               | 否    | 半模态页面回退回调函数。    |
 
-## SheetSize
+## BindOptions
+
+| 名称            | 类型                                       | 必填 | 说明                     |
+| --------------- | ------------------------------------------ | ---- | ------------------------ |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色。   |
+| onAppear        | () => void                                 | 否   | 半模态页面显示回调函数。 |
+| onDisappear     | () => void                                 | 否   | 半模态页面回退回调函数。 |
+
+## SheetSize枚举说明
 
 | 名称     | 参数描述            |
 | ------ | --------------- |

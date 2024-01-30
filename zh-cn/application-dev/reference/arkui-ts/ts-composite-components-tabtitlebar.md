@@ -46,7 +46,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 是 | 是否启用。默认启用。true：启用，false：禁用。 | 
+| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 | 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
 
 
@@ -75,15 +75,11 @@ class tabItem {
     this.icon = icon
   }
 }
-class menuItem{
+
+interface menuItem {
   value: ResourceStr;
   isEnabled?: boolean;
-  action?: ()=>void;
-  constructor(value: ResourceStr,isEnabled?: boolean,action?: ()=>void) {
-    this.value = value;
-    this.isEnabled = isEnabled;
-    this.action = action;
-  }
+  action?: () => void
 }
 
 @Entry
@@ -130,12 +126,21 @@ struct Index {
 
   private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('页签4')]
   private  readonly menuItems: Array<menuItem> = [
-    new menuItem($r('app.media.ic_public_reduce'),true,
-      () => promptAction.showToast({ message: "on item click! index 0" })),
-    new menuItem($r('app.media.ic_public_edit'),true,
-      () => promptAction.showToast({ message: "on item click! index 1" })),
-    new menuItem($r('app.media.ic_public_save'),true,
-      () => promptAction.showToast({ message: "on item click! index 2" }))
+    {
+      value: $r('app.media.ic_public_reduce'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 0" })
+    },
+    {
+      value: $r('app.media.ic_public_edit'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 1" })
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "on item click! index 2" })
+    },
   ]
 
   build() {

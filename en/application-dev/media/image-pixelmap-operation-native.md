@@ -195,7 +195,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
 **Calling APIs on the JS Side**
 
-1. Open the **src\main\ets\pages\index.ets** file, import **libentry.so**, and modify the **libentry.so** file as follows:
+1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
 
     ```js
     import image from '@ohos.multimedia.image'
@@ -203,8 +203,8 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     export const createPixelMapTest: () => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
     ```
-    
-2. Call the native APIs and pass in the JS resource object. The sample code is as follows:
+
+2. Open **src\main\ets\pages\index.ets**, import ***libentry*.so** (where **libentry** varies according to the project name), call the native APIs, and pass in the JS resource object. The sample code is as follows:
 
     ```js
     import testNapi from 'libentry.so'

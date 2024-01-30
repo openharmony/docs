@@ -51,10 +51,18 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 ## DragEvent说明
 
+### 属性
+
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使用系统默认落入动画。 |
-| setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义动效。<br/>当不配置或设置为false时，系统默认落位动效生效，此情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
+
+### 方法
+
+| 名称     | 返回值类型                            | 描述                           |
+| ----------- | ------------------------------- | ------------------------------ |
+| setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | 向DragEvent中设置拖拽相关数据。 |
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。 |
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
 | setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
@@ -69,7 +77,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
-|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
+
 
 **错误码：**
 
@@ -103,6 +111,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 ## 示例
 
 ```ts
+// xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
@@ -139,12 +148,11 @@ struct Index {
     }
   }
 
-  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
-    if(this.getDataFromUdmfRetry(event, callback)) {
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
+    if (this.getDataFromUdmfRetry(event, callback)) {
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
@@ -211,6 +219,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
+
       Column() {
         Text('Drag Target Area')
           .fontSize(20)
@@ -222,18 +231,18 @@ struct Index {
           .width(this.imageWidth)
           .height(this.imageHeight)
           .draggable(true)
-          .margin({left: 15})
-          .border({color: Color.Black, width: 1})
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent?: DragEvent)=> {
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({duration: 1000}, ()=>{
+              animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
@@ -245,18 +254,18 @@ struct Index {
         Text(this.targetText)
           .width('100%')
           .height(100)
-          .border({color: Color.Black, width: 1})
+          .border({ color: Color.Black, width: 1 })
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent?: DragEvent)=>{
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
-              let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
               this.targetText = plainText.textContent;
             })
           })
 
-        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
           .width('100%')
           .height(200)
           .controls(true)
@@ -265,10 +274,14 @@ struct Index {
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
-        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        }
+        .width('100%')
+        .height(100)
+        .margin(20)
+        .border({ color: Color.Black, width: 1 })
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent?: DragEvent)=>{
-          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+        .onDrop((dragEvent?: DragEvent) => {
+          this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
             let plainText: UDC.PlainText = records[0] as UDC.PlainText;
             this.abstractContent = plainText.abstract as string;
@@ -277,7 +290,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }

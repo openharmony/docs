@@ -241,6 +241,18 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
+class TestObj {
+  test(str: string): ArrayBuffer {
+    let buf = new ArrayBuffer(str.length);
+    let buff = new Uint8Array(buf);
+
+    for (let i = 0; i < str.length; i++) {
+      buff[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+}
+
 // Example of sending messages between an application and a web page: Use the init_web_messageport channel to receive messages from the web page on the application side through port 0 and receive messages from the application on the web page side through port 1.
 @Entry
 @Component
@@ -251,22 +263,115 @@ struct WebComponent {
   @State msg1: string = "";
   @State msg2: string = "";
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  @State testObjtest: TestObj = new TestObj();
 
   build() {
     Column() {
       Text(this.msg1).fontSize(16)
       Text(this.msg2).fontSize(16)
-      Button('SendToH5')
+      Button('SendToH5 setString').margin({
+        right: 800,
+      })
         .onClick(() => {
           // Use the local port to send messages to HTML5.
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setString("helloFromEts");
+              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setNumber').margin({
+        top: 10,
+        right: 800,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setNumber(12345);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setBoolean').margin({
+        top: -90,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setBoolean(true);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArrayBuffer').margin({
+        top: 10,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArray').margin({
+        top: -90,
+        left: 800,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArray([1,2,3]);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setError').margin({
+        top: 10,
+        left: 800,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            throw new ReferenceError("ReferenceError");
+          }
+          catch (error) {
+            if (this.nativePort) {
+              this.message.setError(error);
+              this.nativePort.postMessageEventExt(this.message);
+            }
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
@@ -956,7 +1061,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1047,7 +1152,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1092,7 +1197,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1136,7 +1241,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1193,7 +1298,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1240,7 +1345,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1291,7 +1396,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1345,7 +1450,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1354,21 +1459,31 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
-  test(): string {
-    console.log('ArkUI Web Component');
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
   }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol);
+    return testBol;
+  }
 }
 
-class webObj {
+class WebObj {
   constructor() {
   }
 
@@ -1386,8 +1501,8 @@ class webObj {
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
-  @State webTestObj: webObj = new webObj();
+  @State testObjtest: TestObj = new TestObj();
+  @State webTestObj: WebObj = new WebObj();
   build() {
     Column() {
       Button('refresh')
@@ -1402,7 +1517,7 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -1430,7 +1545,9 @@ HTML file to be loaded:
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
-      let str=objName.test();
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -1464,7 +1581,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1554,7 +1671,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1633,7 +1750,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1759,7 +1876,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1870,7 +1987,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **Example**
@@ -1880,7 +1997,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -1897,7 +2014,7 @@ class testObj {
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
   @State name: string = 'objName';
   build() {
     Column() {
@@ -1975,7 +2092,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **Example**
@@ -2029,7 +2146,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2092,7 +2209,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2145,7 +2262,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2192,7 +2309,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2237,7 +2354,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2390,7 +2507,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2467,7 +2584,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -3624,7 +3741,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -3681,7 +3798,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -3770,7 +3887,7 @@ struct WebComponent {
 
 ### pageUp
 
-pageUp(top:boolean): void
+pageUp(top: boolean): void
 
 Scrolls the page up by half the viewport or jumps to the top of the page.
 
@@ -3821,7 +3938,7 @@ struct WebComponent {
 
 ### pageDown
 
-pageDown(bottom:boolean): void
+pageDown(bottom: boolean): void
 
 Scrolls the page down by half the viewport or jumps to the bottom of the page.
 
@@ -4320,7 +4437,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -4519,7 +4636,7 @@ Prefetches resources in the background for a page that is likely to be accessed 
 
 **Parameters**
 
-| Name            | Type                            | Mandatory | Description                     |                            
+| Name            | Type                            | Mandatory | Description                     |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | Yes   | URL to be preloaded.|
 | additionalHeaders | Array\<[WebHeader](#webheader)> | No   | Additional HTTP headers of the URL.|
@@ -4600,12 +4717,12 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
         // Replace 'https://www.example.com' with a real URL for the API to work.
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        AppStorage.setOrCreate("abilityWant", want)
-        console.log("EntryAbility onCreate done")
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
     }
 }
 ```
@@ -4614,7 +4731,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-Sets a custom user agent.
+Sets a custom user agent, which will overwrite the default user agent.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4942,7 +5059,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 | Name| Type   | Mandatory| Description                                |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive cookies.<br>Default value: **true**|
 
 **Example**
 
@@ -5023,7 +5140,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.<br>Default value: **false**|
 
 **Example**
 
@@ -5104,7 +5221,7 @@ Checks whether cookies exist.
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Whether cookies exist.|
+| boolean | Whether cookies exist. The value **true** means that cookies exist, and **false** means the opposite.|
 
 **Example**
 
@@ -5202,7 +5319,7 @@ Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web 
 
 ### deleteOrigin
 
-static deleteOrigin(origin : string): void
+static deleteOrigin(origin: string): void
 
 Deletes all data in the specified origin.
 
@@ -5300,7 +5417,7 @@ HTML file to be loaded:
 
 ### getOrigins
 
-static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 Obtains information about all origins that are currently using the Web SQL Database. This API uses an asynchronous callback to return the result.
 
@@ -5365,7 +5482,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOrigins
 
-static getOrigins() : Promise\<Array\<WebStorageOrigin>>
+static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 Obtains information about all origins that are currently using the Web SQL Database. This API uses a promise to return the result.
 
@@ -5430,7 +5547,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 Obtains the storage quota of an origin in the Web SQL Database, in bytes. This API uses an asynchronous callback to return the result.
 
@@ -5493,7 +5610,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string) : Promise\<number>
+static getOriginQuota(origin: string): Promise\<number>
 
 Obtains the storage quota of an origin in the Web SQL Database, in bytes. This API uses a promise to return the result.
 
@@ -5561,7 +5678,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 Obtains the storage usage of an origin in the Web SQL Database, in bytes. This API uses an asynchronous callback to return the result.
 
@@ -5624,7 +5741,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string) : Promise\<number>
+static getOriginUsage(origin: string): Promise\<number>
 
 Obtains the storage usage of an origin in the Web SQL Database, in bytes. This API uses a promise to return the result.
 
@@ -6191,7 +6308,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -6244,7 +6361,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -6305,14 +6422,16 @@ Describes the request/response header returned by the **\<Web>** component.
 
 ## WebHitTestType
 
+The [getHitTest](#gethittest) API is used to indicate a cursor node.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 | Name         | Value| Description                                     |
 | ------------- | -- |----------------------------------------- |
 | EditText      | 0 |Editable area.                           |
 | Email         | 1 |Email address.                           |
-| HttpAnchor    | 2 |Hyperlink whose **src** is **http**.                    |
-| HttpAnchorImg | 3 |Image with a hyperlink, where **src** is **http**.|
+| HttpAnchor    | 2 |Hyperlink, where **src** is **http**.                    |
+| HttpAnchorImg | 3 |Image with a hyperlink, where **src** is http + HTML::img.|
 | Img           | 4 |HTML::img tag.                          |
 | Map           | 5 |Geographical address.                               |
 | Phone         | 6 |Phone number.                               |
@@ -6320,7 +6439,7 @@ Describes the request/response header returned by the **\<Web>** component.
 
 ##  HitTestValue
 
-Provides the element information of the area being clicked. For details about the sample code, see **getHitTestValue**.
+Provides the element information of the area being clicked. For details about the sample code, see [getHitTestValue](#gethittestvalue).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6379,7 +6498,7 @@ Implements the **JsMessageExt** data object that is returned after script execut
 
 getType(): JsMessageType
 
-Obtains the type of the data object.
+Obtains the type of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6652,7 +6771,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 setType(type: WebMessageType): void
 
-Sets the type for the data object.
+Sets the type for the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6663,6 +6782,8 @@ Sets the type for the data object.
 | type  | [WebMessageType](#webmessagetype10) | Yes  | Data type supported by the [webMessagePort](#webmessageport) API.|
 
 **Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
@@ -6684,6 +6805,8 @@ Sets the string-type data of the data object. For the complete sample code, see 
 
 **Error codes**
 
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -6703,6 +6826,8 @@ Sets the number-type data of the data object. For the complete sample code, see 
 | message  | number | Yes  | Data of the number type.|
 
 **Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
@@ -6724,6 +6849,8 @@ Sets the Boolean-type data for the data object. For the complete sample code, se
 
 **Error codes**
 
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -6743,6 +6870,8 @@ Sets the raw binary data for the data object. For the complete sample code, see 
 | message  | ArrayBuffer | Yes  | Raw binary data.|
 
 **Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
@@ -6764,6 +6893,8 @@ Sets the array-type data for the data object. For the complete sample code, see 
 
 **Error codes**
 
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -6783,6 +6914,8 @@ Sets the error-object-type data for the data object. For the complete sample cod
 | message  | Error | Yes  | Data of the error object type.|
 
 **Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |

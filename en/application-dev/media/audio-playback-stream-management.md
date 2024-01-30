@@ -1,4 +1,4 @@
-# Audio Playback Stream Management
+# Audio Playback Stream Management (ArkTS)
 
 An audio playback application must notice audio stream state changes and perform corresponding operations. For example, when detecting that an audio stream is being played or paused, the application must change the UI display of the **Play** button.
 
@@ -9,6 +9,8 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Check the [state](../reference/apis/js-apis-audio.md#attributes) of the AudioRenderer.
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
   ```
@@ -16,6 +18,8 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Register **stateChange** to listen for state changes of the AudioRenderer.
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
   });
@@ -47,7 +51,6 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 
    ```ts
    import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -96,6 +99,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
