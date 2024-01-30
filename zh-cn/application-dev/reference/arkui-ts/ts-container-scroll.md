@@ -146,7 +146,7 @@ currentOffset(): OffsetResult
 
 | 类型  | 描述 |
 | -------- | -------- |
-|  [OffsetResult<sup>11+</sup>](#offsetresult11) | 返回当前的滚动偏移量。 |
+|  [OffsetResult<sup>11+</sup>](#offsetresult11) | 返回当前的滚动偏移量。<br/>**说明：**<br/>当scroller控制器未绑定容器组件或者容器组件被异常释放时，currentOffset的返回值为空。|
 
 ### scrollToIndex
 
