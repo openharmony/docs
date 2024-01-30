@@ -1099,13 +1099,13 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
   interface ExtraInfo {
     authType: number;
-    token: numbe;
+    token: number;
   }
 
   interface AuthInfo {
     authType: number;
     token: number;
-    extraInfo: ExtraInf;
+    extraInfo: ExtraInfo;
   }
 
   class Data {
