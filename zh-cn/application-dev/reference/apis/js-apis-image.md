@@ -1591,7 +1591,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 ```ts
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-let imageSource: image.ImageSource = image.createImageSource('test.png', sourceOptions);
+let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
