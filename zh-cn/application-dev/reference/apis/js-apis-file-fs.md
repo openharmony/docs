@@ -379,7 +379,8 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 **示例：**
 
 ```ts
-import fs, { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 import fileUri from '@ohos.file.fileuri';
 
 let srcDirPathLocal: string = pathDir + "/src";
@@ -787,7 +788,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
 
 **错误码：**
 
@@ -2518,13 +2519,6 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
   | path | string | 是    | 文件夹的应用沙箱路径。 |
   | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
 
-**options参数说明：**
-
-  | 参数名    | 类型     | 必填   | 说明                          |
-  | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
-  | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **返回值：**
 
@@ -2544,12 +2538,12 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
-    filter: {}
+    filter: {
+      suffix: [".png", ".jpg", ".jpeg"],
+      displayName: ["*abc", "efg*"],
+      fileSizeOver: 1024
+    }
   }
-  listFileOption.filter.suffix = [".png", ".jpg", ".jpeg"];
-  listFileOption.filter.displayName = ["*abc", "efg*"];
-  listFileOption.filter.fileSizeOver = 1024;
-  listFileOption.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, listFileOption).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
@@ -2575,13 +2569,6 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
   | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
   | callback | AsyncCallback&lt;string[]&gt; | 是    | 异步列出文件名数组之后的回调。              |
 
-**options参数说明：**
-
-  | 参数名    | 类型     | 必填   | 说明                          |
-  | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。|
-  | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **错误码：**
 
@@ -2595,12 +2582,12 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
-    filter: {}
+    filter: {
+      suffix: [".png", ".jpg", ".jpeg"],
+      displayName: ["*abc", "efg*"],
+      fileSizeOver: 1024
+    }
   };
-  listFileOption.filter.suffix = [".png", ".jpg", ".jpeg"];
-  listFileOption.filter.displayName = ["*abc", "efg*"];
-  listFileOption.filter.fileSizeOver = 1024;
-  listFileOption.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, listFileOption, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2628,13 +2615,6 @@ listFileSync(path: string, options?: ListFileOptions): string[]
   | path | string | 是    | 文件夹的应用沙箱路径。 |
   | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
 
-**options参数说明：**
-
-  | 参数名    | 类型     | 必填   | 说明                          |
-  | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
-  | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **返回值：**
 
@@ -2653,12 +2633,12 @@ listFileSync(path: string, options?: ListFileOptions): string[]
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
-    filter: {}
+    filter: {
+      suffix: [".png", ".jpg", ".jpeg"],
+      displayName: ["*abc", "efg*"],
+      fileSizeOver: 1024
+    }
   };
-  listFileOption.filter.suffix = [".png", ".jpg", ".jpeg"];
-  listFileOption.filter.displayName = ["*abc", "efg*"];
-  listFileOption.filter.fileSizeOver = 1024;
-  listFileOption.filter.lastModifiedAfter = new Date().getTime();
   let filenames = fs.listFileSync(pathDir, listFileOption);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
@@ -2840,7 +2820,7 @@ moveDirSync(src: string, dest: string, mode?: number): void
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
-  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles10)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
 
 **错误码：**
 

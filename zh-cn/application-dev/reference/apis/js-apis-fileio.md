@@ -326,7 +326,7 @@ accessSync(path: string, mode?: number): void
   let filePath = pathDir + "/test.txt";
   try {
     fileio.accessSync(filePath);
-  } catch(eror) {
+  } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.info("accessSync failed with error:" + err);
   }
@@ -2978,9 +2978,9 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  fileio.createWatcher(filePath, 1, (err, event) => {
+  fileio.createWatcher(filePath, 1, (err: BusinessError, event: number) => {
     console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   ```
@@ -3228,9 +3228,9 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (err, event) => {
+  let watcher = fileio.createWatcher(filePath, 1, (err: BusinessError, event: number) => {
     console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   watcher.stop().then(() => {
@@ -3255,9 +3255,9 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (err, event) => {
+  let watcher = fileio.createWatcher(filePath, 1, (err: BusinessError, event: number) => {
     console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   watcher.stop(() => {
