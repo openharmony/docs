@@ -1242,5 +1242,3 @@ Enumerates HTTP protocol versions.
 | :-------- | :----------- |
 | HTTP1_1   |  HTTP1.1 |
 | HTTP2     |  HTTP2   |
-
-<!--no_check-->

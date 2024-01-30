@@ -21,7 +21,7 @@ The local time of different countries and regions varies according to their long
    
    // Obtain the TimeZone object corresponding to the city ID.
    let timezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
-   timezone.getID(); // Pacific/Auckland
+   timezone.getID();// Pacific/Auckland
    
    // Localized time zone name
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // Brasilia Standard Time
@@ -36,25 +36,31 @@ The local time of different countries and regions varies according to their long
    let offset = timezone.getOffset(1234567890);// -10800000
    
    // List of time zone IDs supported by the system
-   let ids = I18n.TimeZone.getAvailableIDs(); // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
+   let ids = I18n.TimeZone.getAvailableIDs() // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
    
    // List of time zone city IDs supported by the system
    let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
    // Traverse the list of time zone city IDs.
-   let timezoneList = []; // Time zone list presented to the user
+   let timezoneList: Array<object> = []; // Time zone list displayed to the user
+   class Item {
+       cityDisplayName : string = "";
+       timezoneId : string = "";
+       offset : string = "";
+       cityId : string = ""
+   }
    for (let i =0 ; i < cityIdArray.length ; i++) {
        let cityId = cityIdArray[i];
-       let timezone = I18n.TimeZone.getTimezoneFromCity(cityID: string); //: TimeZone object corresponding to the city ID
-       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityID: string, locale: string); // Localized city name
+       let timezone = I18n.TimeZone.getTimezoneFromCity(cityId); // TimeZone object corresponding to the city ID
+       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // Localized city name
        let timestamp = (new Date()).getTime()
-       let item = {
-           cityDisplayName : cityDisplayName ,
+       let item : Item = {
+           cityDisplayName : cityDisplayName,
            timezoneId : timezone.getID(),
            offset : 'GMT'+ (timezone.getOffset(timestamp) / 3600*1000),
            cityId : cityId 
        }
        timezoneList.push(item);
-    }
+   }
    
    // TimeZone object array corresponding to the specified geographical coordinates
    let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
@@ -65,7 +71,7 @@ The local time of different countries and regions varies according to their long
 
 ### Dual-Clock Application
 
-1. Import the **i18n** and **intl** modules.
+1. Import the **i18n** module.
    ```ts
    import I18n from '@ohos.i18n';
    import Intl from '@ohos.intl';

@@ -1,19 +1,18 @@
 # Sandbox Management
 
 ## Overview
-### Function
+### Function Introduction
 OpenHarmony supports two types of sandbox, namely, system sandbox and chipset sandbox.
 
-The system sandbox and chipset sandbox are created in the init module. Native services choose to enter the system sandbox or chipset sandbox based on their functions. 
-
-Sandbox components can be isolated through the **mount** attribute if **mount-bind-paths** or **mount-bind-files** is set for them in configuration files such as **system-sandbox.json** and **chipset-sandbox.json**. In addition, a sandbox debugging tool is provided to facilitate sandbox debugging, verification, and optimization. For details about commands, see [Description of begetctl Commands](subsys-boot-init-plugin.md#parameters).
+### Basic Concepts
+The system sandbox and chipset sandbox are created in the init module. Native services choose to enter the system sandbox or chipset sandbox based on their functions. Sandbox components can be isolated through the **mount** attribute if **mount-bind-paths** or **mount-bind-files** is set for them in configuration files such as **system-sandbox.json** and **chipset-sandbox.json**. In addition, a sandbox debugging tool is provided to facilitate sandbox debugging, verification, and optimization. For details about commands, see [Description of begetctl Commands](subsys-boot-init-plugin.md#parameters).
 
 ### Constraints
 
 The sandbox management module is available only for the standard system.
 
 ## How to Develop
-### Parameters
+### Parameter Description
   **Table 1** Parameters in the sandbox configuration file
 
   | JSON Prefix| Description|
@@ -24,7 +23,7 @@ The sandbox management module is available only for the standard system.
   | src-path | Source path of the directory or file to mount.|
   | sandbox-path | Target path in the sandbox.|
   | sandbox-flags | Mount flag. The default value is **bind rec**.|
-  | ignore | Whether to ignore a mounting failure. If the value is set to 1, the system ignores the mounting failure and proceeds with the subsequent step. |
+  | ignore | Whether to ignore a mounting failure. If the value is set to **1**, the system ignores the mounting failure and proceeds with the subsequent step.|
   | target-name | Directory to link.|
   | link-name | Target link in the sandbox.|
 
@@ -51,10 +50,10 @@ typedef struct {
     char *rootPath;            // /mnt/sandbox/system|vendor|xxx
     char name[MAX_BUFFER_LEN]; // name of sandbox. i.e system, chipset etc.
     bool isCreated;            // sandbox already created or not
-    int ns;                    // namespace                                // namespace
+    int ns;                    // namespace
 } sandbox_t;
 ```
-### How to Develop
+### Procedure
 1. Create a sandbox.
       - Create a system or chipset sandbox and configure the corresponding **system-sandbox.json** or **chipset-sandbox.json** file. For details about how to configure the JSON file, see [Sandbox JSON File Configuration](#sandbox).
       - By default, the sandbox function of a service is enabled. If you do not want to move the service to the sandbox, set **sandbox** to **0** in the **.cfg** file. Otherwsie, set **sandbox** to **1**.
@@ -68,7 +67,7 @@ typedef struct {
     - Modify the sandbox configuration files in the **base/startup/init/interfaces/innerkits/sandbox** directory. After that, restart the system.
 
 ### Development Example
-Sandbox JSON File Configuration
+JSON file configuration of the sandbox:
 
 ```json
 {

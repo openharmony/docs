@@ -520,7 +520,9 @@ Defines the configuration mode of the Ethernet connection.
 
 **System capability**: SystemCapability.Communication.NetManager.Ethernet
 
-| Name                 | Value  | Description                  |
-| ------------------------ | ---- | ---------------------- |
-| STATIC | 0 | Static configuration.|
-| DHCP   | 1 | Dynamic configuration.|
+| Name                 | Value  | Description                       |
+| --------------------- | ---- | -------------------------- |
+| STATIC                | 0    | Static configuration.|
+| DHCP                  | 1    | Dynamic configuration.|
+| LAN_STATIC            | 2    | Static network configuration for a LAN connection.   |
+| LAN_DHCP              | 3    | Dynamic network configuration for a LAN connection.   |
