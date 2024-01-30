@@ -31,7 +31,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。
+UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。同步接口，不支持异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -178,7 +178,7 @@ class MyUIAbility extends UIAbility {
 
 onForeground(): void
 
-UIAbility生命周期回调，当应用从后台转到前台时触发。
+UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -199,7 +199,7 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发。
+UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -384,7 +384,7 @@ class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
+UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。同步接口，不支持异步回调。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -434,7 +434,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 onBackPressed(): boolean
 
-UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。
+UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。同步接口，不支持异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
