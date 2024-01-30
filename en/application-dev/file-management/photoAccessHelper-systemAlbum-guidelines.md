@@ -4,8 +4,8 @@ The **photoAccessHelper** module provides APIs for managing system albums, inclu
 
 > **NOTE**
 >
-> - Before you start, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
-> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for permissions required for album management. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
@@ -45,7 +45,7 @@ async function example() {
 }
 ```
 
-### Favoriting an Image or Video
+### Favoriting an Image or Video (for System Applications Only)
 
 Use [PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1) to add an image or video to **Favorites**.
 
@@ -135,7 +135,7 @@ async function example() {
 }
 ```
 
-### Unfavoriting an Image or Video
+### Unfavoriting an Image or Video (for System Applications Only)
 
 Use [PhotoAsset.setFavorite](../reference/apis/js-apis-photoAccessHelper.md#setfavorite-1) to remove an image or video from **Favorites**.
 
@@ -232,7 +232,7 @@ Example: Obtain a video in **Videos**.
 
 **How to Develop**
 
-1. [Obtain a videos object](#obtaining-a-videos-object).
+1. [Obtain a **Videos** object](#obtaining-a-videos-object).
 2. Set **fetchOptions** for obtaining the video.
 3. Call **Album.getAssets** to obtain video assets.
 4. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first video.
@@ -266,13 +266,13 @@ async function example() {
 }
 ```
 
-## Screenshots
+## Screenshots (for System Applications Only)
 
 **Screenshots** is a system album that holds user's screenshots and screen recording files.
 
 ### Obtaining a Screenshots Object
 
-Use [getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2) to obtain a **Screenshots** object.
+Use [PhotoAccessHelper.getAlbums](../reference/apis/js-apis-photoAccessHelper.md#getalbums-2) to obtain a **Screenshots** object.
 
 **Prerequisites**
 

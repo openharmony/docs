@@ -4,8 +4,8 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> - Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
-> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for permissions required for album management. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most **PhotoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 
@@ -177,7 +177,7 @@ Use [PhotoAccessHelper.createAsset](../reference/apis/js-apis-photoAccessHelper.
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the **ohos.permission.WRITE_IMAGEVIDEO** permission.
 
-### Creating an Image or Video Asset
+### Creating an Image or Video Asset (for System Applications Only)
 
 Example: Create an image asset.
 
@@ -263,9 +263,7 @@ struct Index {
 
 ## Renaming a Media Asset
 
-Obtain the media asset using [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult), set the **PhotoAsset.displayName** attribute to modify the file name (including the file name extension) displayed, and use [PhotoAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-1) to save the modification to the database.
-
-
+Obtain the media asset using [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult), set the **PhotoAsset.displayName** attribute to modify the file name (including the file name extension) displayed, and use [PhotoAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-1) to save the modification to the database. 
 
 **Prerequisites**
 
@@ -311,11 +309,11 @@ async function example() {
 }
 ```
 
-## Moving a Media Asset to the Trash
+## Moving a Media Asset to the Trash (for System Applications Only)
 
 You can use [PhotoAccessHelper.deleteAssets](../reference/apis/js-apis-photoAccessHelper.md#deleteassets-1) to move a file to the trash.
 
-The file moved to the trash will be retained for 30 days before being deleted permanently. Before a file is deleted permanently from the trash, the user can restore it through the system application **Files** or **Gallery**.
+The file moved to the trash will be retained for 30 days before being deleted permanently. Before a file is deleted permanently from the trash, the user can restore it using the system application **Files** or **Gallery**.
 
 **Prerequisites**
 
