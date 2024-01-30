@@ -736,10 +736,11 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
+import { BusinessError } from '@ohos.base';
+
   try {
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-      downloadTask = data;
+       let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
     })
@@ -785,7 +786,8 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
+import { BusinessError } from '@ohos.base';
+
   try {
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
@@ -795,7 +797,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      downloadTask = data;
+      let downloadTask: request.DownloadTask = data;
     });
   } catch (err) {
     console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
@@ -919,11 +921,21 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let progressCallback = (receivedSize: number, totalSize: number) => {
-    console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-  };
-  downloadTask.on('progress', progressCallback);
+import { BusinessError } from '@ohos.base';
+
+  try {
+    request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let progressCallback = (receivedSize: number, totalSize: number) => {
+        console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+      };
+      downloadTask.on('progress', progressCallback);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -947,19 +959,29 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let progressCallback1 = (receivedSize: number, totalSize: number) => {
-    console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-  };
-  let progressCallback2 = (receivedSize: number, totalSize: number) => {
-    console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-  };
-  downloadTask.on('progress', progressCallback1);
-  downloadTask.on('progress', progressCallback2);
-  //表示取消progressCallback1的订阅
-  downloadTask.off('progress', progressCallback1);
-  //表示取消订阅下载任务进度事件的所有回调
-  downloadTask.off('progress');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let progressCallback1 = (receivedSize: number, totalSize: number) => {
+      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+    };
+    let progressCallback2 = (receivedSize: number, totalSize: number) => {
+      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+    };
+    downloadTask.on('progress', progressCallback1);
+    downloadTask.on('progress', progressCallback2);
+    //表示取消progressCallback1的订阅
+    downloadTask.off('progress', progressCallback1);
+    //表示取消订阅下载任务进度事件的所有回调
+    downloadTask.off('progress');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -983,21 +1005,31 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let completeCallback = () => {
-    console.info('Download task completed.');
-  };
-  downloadTask.on('complete', completeCallback);
+import { BusinessError } from '@ohos.base';
 
-  let pauseCallback = () => {
-    console.info('Download task pause.');
-  };
-  downloadTask.on('pause', pauseCallback);
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let completeCallback = () => {
+      console.info('Download task completed.');
+    };
+    downloadTask.on('complete', completeCallback);
 
-  let removeCallback = () => {
-    console.info('Download task remove.');
-  };
-  downloadTask.on('remove', removeCallback);
+    let pauseCallback = () => {
+      console.info('Download task pause.');
+    };
+    downloadTask.on('pause', pauseCallback);
+
+    let removeCallback = () => {
+      console.info('Download task remove.');
+    };
+    downloadTask.on('remove', removeCallback);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1021,45 +1053,56 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let completeCallback1 = () => {
-    console.info('Download delete complete notification.');
-  };
-  let completeCallback2 = () => {
-    console.info('Download delete complete notification.');
-  };
-  downloadTask.on('complete', completeCallback1);
-  downloadTask.on('complete', completeCallback2);
-  //表示取消completeCallback1的订阅
-  downloadTask.off('complete', completeCallback1);
-  //表示取消订阅下载任务完成的所有回调
-  downloadTask.off('complete');
+import { BusinessError } from '@ohos.base';
 
-  let pauseCallback1 = () => {
-    console.info('Download delete pause notification.');
-  };
-  let pauseCallback2 = () => {
-    console.info('Download delete pause notification.');
-  };
-  downloadTask.on('pause', pauseCallback1);
-  downloadTask.on('pause', pauseCallback2);
-  //表示取消pauseCallback1的订阅
-  downloadTask.off('pause', pauseCallback1);
-  //表示取消订阅下载任务暂停的所有回调
-  downloadTask.off('pause');
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let completeCallback1 = () => {
+      console.info('Download delete complete notification.');
+    };
+    let completeCallback2 = () => {
+      console.info('Download delete complete notification.');
+    };
+    downloadTask.on('complete', completeCallback1);
+    downloadTask.on('complete', completeCallback2);
+    //表示取消completeCallback1的订阅
+    downloadTask.off('complete', completeCallback1);
+    //表示取消订阅下载任务完成的所有回调
+    downloadTask.off('complete');
 
-  let removeCallback1 = () => {
-    console.info('Download delete remove notification.');
-  };
-  let removeCallback2 = () => {
-    console.info('Download delete remove notification.');
-  };
-  downloadTask.on('remove', removeCallback1);
-  downloadTask.on('remove', removeCallback2);
-  //表示取消removeCallback1的订阅
-  downloadTask.off('remove', removeCallback1);
-  //表示取消订阅下载任务移除的所有回调
-  downloadTask.off('remove');
+    let pauseCallback1 = () => {
+      console.info('Download delete pause notification.');
+    };
+    let pauseCallback2 = () => {
+      console.info('Download delete pause notification.');
+    };
+    downloadTask.on('pause', pauseCallback1);
+    downloadTask.on('pause', pauseCallback2);
+    //表示取消pauseCallback1的订阅
+    downloadTask.off('pause', pauseCallback1);
+    //表示取消订阅下载任务暂停的所有回调
+    downloadTask.off('pause');
+
+    let removeCallback1 = () => {
+      console.info('Download delete remove notification.');
+    };
+    let removeCallback2 = () => {
+      console.info('Download delete remove notification.');
+    };
+    downloadTask.on('remove', removeCallback1);
+    downloadTask.on('remove', removeCallback2);
+    //表示取消removeCallback1的订阅
+    downloadTask.off('remove', removeCallback1);
+    //表示取消订阅下载任务移除的所有回调
+    downloadTask.off('remove');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
+  
   ```
 
 
@@ -1089,11 +1132,21 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let failCallback = (err: number) => {
-    console.error(`Failed to download the task. Code: ${err}`);
-  };
-  downloadTask.on('fail', failCallback);
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let failCallback = (err: number) => {
+      console.error(`Failed to download the task. Code: ${err}`);
+    };
+    downloadTask.on('fail', failCallback);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1117,19 +1170,29 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let failCallback1 = (err: number) => {
-    console.error(`Failed to download the task. Code: ${err}`);
-  };
-  let failCallback2 = (err: number) => {
-    console.error(`Failed to download the task. Code: ${err}`);
-  };
-  downloadTask.on('fail', failCallback1);
-  downloadTask.on('fail', failCallback2);
-  //表示取消failCallback1的订阅
-  downloadTask.off('fail', failCallback1);
-  //表示取消订阅下载任务失败的所有回调
-  downloadTask.off('fail');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let failCallback1 = (err: number) => {
+      console.error(`Failed to download the task. Code: ${err}`);
+    };
+    let failCallback2 = (err: number) => {
+      console.error(`Failed to download the task. Code: ${err}`);
+    };
+    downloadTask.on('fail', failCallback1);
+    downloadTask.on('fail', failCallback2);
+    //表示取消failCallback1的订阅
+    downloadTask.off('fail', failCallback1);
+    //表示取消订阅下载任务失败的所有回调
+    downloadTask.off('fail');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 ### delete<sup>9+</sup>
@@ -1151,12 +1214,22 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.delete().then((result: boolean) => {
-    console.info('Succeeded in removing the download task.');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.delete().then((result: boolean) => {
+      console.info('Succeeded in removing the download task.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1179,14 +1252,24 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.delete((err: BusinessError, result: boolean) => {
-    if (err) {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in removing the download task.');
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.delete((err: BusinessError, result: boolean) => {
+      if (err) {
+        console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in removing the download task.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1209,12 +1292,22 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
-    console.info('Succeeded in querying the download task')
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
+      console.info('Succeeded in querying the download task')
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+} 
   ```
 
 
@@ -1237,14 +1330,24 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
-    if (err) {
-      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('Succeeded in querying the download mimeType');
-    }
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+      if (err) {
+        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('Succeeded in querying the download mimeType');
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1267,12 +1370,22 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskMimeType().then((data: string) => {
-    console.info('Succeeded in querying the download MimeType');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskMimeType().then((data: string) => {
+      console.info('Succeeded in querying the download MimeType');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1295,14 +1408,24 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
-    if (err) {
-      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('Succeeded in querying the download mimeType');
-    }
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+      if (err) {
+        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('Succeeded in querying the download mimeType');
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1325,12 +1448,22 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.suspend().then((result: boolean) => {
-    console.info('Succeeded in pausing the download task.');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.suspend().then((result: boolean) => {
+      console.info('Succeeded in pausing the download task.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1353,14 +1486,24 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.suspend((err: BusinessError, result: boolean) => {
-    if (err) {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in pausing the download task.');
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.suspend((err: BusinessError, result: boolean) => {
+      if (err) {
+        console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in pausing the download task.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1383,12 +1526,22 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.restore().then((result: boolean) => {
-    console.info('Succeeded in resuming the download task.')
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.restore().then((result: boolean) => {
+      console.info('Succeeded in resuming the download task.')
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1411,14 +1564,24 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.restore((err: BusinessError, result: boolean) => {
-    if (err) {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in resuming the download task.');
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.restore((err: BusinessError, result: boolean) => {
+      if (err) {
+        console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in resuming the download task.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
