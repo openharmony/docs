@@ -18,7 +18,7 @@
 
 > **说明：**
 >
-> 当组件同时设置了rotate和scale属性时，centerX和centerY的取值会发生冲突，此时centerX和centerY的值以后设定属性的值为准。
+> 当组件同时设置了rotate和scale属性时，centerX和centerY的取值会发生冲突，此时centerX和centerY的值以最后设定的属性的值为准。
 
 ## 示例
 
