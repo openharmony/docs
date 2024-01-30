@@ -546,7 +546,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
-| callback | AsyncCallback\<string \>| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
+| callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
 
@@ -577,7 +577,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
-| callback | AsyncCallback\<string \>|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
+| callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
 
 **示例：**
 
