@@ -74,7 +74,7 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
 });
 ```
 
-## <span name="websocketcreatewebsocket">webSocket.createWebSocket<sup>6+</sup></span>
+## webSocket.createWebSocket<sup>6+</sup>
 
 createWebSocket(): WebSocket
 
@@ -94,11 +94,11 @@ createWebSocket(): WebSocket
 let ws: webSocket = webSocket.createWebSocket();
 ```
 
-## <span name="websocket">WebSocket<sup>6+</sup></span>
+## WebSocket<sup>6+</sup>
 
 在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
 
-### <span name="connected">connect<sup>6+</sup></span>
+### connect<sup>6+</sup>
 
 connect(url: string, callback: AsyncCallback\<boolean\>): void
 
@@ -240,7 +240,7 @@ promise.then((value: boolean) => {
 });
 ```
 
-### <span name="send">send<sup>6+</sup></span>
+### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
@@ -330,7 +330,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
-### <span name="close">close<sup>6+</sup></span>
+### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
 
@@ -463,7 +463,7 @@ promise.then((value: boolean) => {
 });
 ```
 
-### <span name="onopen">on('open')<sup>6+</sup></span>
+### on('open')<sup>6+</sup>
 
 on(type: 'open', callback: AsyncCallback\<Object\>): void
 
@@ -531,7 +531,7 @@ ws.on('open', callback1);
 ws.off('open', callback1);
 ```
 
-### <span name="onmessage">on('message')<sup>6+</sup></spam>
+### on('message')<sup>6+</sup>
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
@@ -589,7 +589,7 @@ let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
-### <span name="onclose">on('close')<sup>6+</sup></span>
+### on('close')<sup>6+</sup>
 
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
@@ -643,7 +643,7 @@ let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
-### <span name="onerror">on('error')<sup>6+</sup></span>
+### on('error')<sup>6+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
