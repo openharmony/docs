@@ -171,7 +171,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate: this.parentSelectedDate })
     }
 
   }
@@ -286,36 +286,38 @@ struct Child {
   build() {
     Text(`${this.value}`)
       .fontSize(50)
-      .onClick(()=>{this.value++})
+      .onClick(() => {
+        this.value++
+      })
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State arr: number[] = [1,2,3];
+  @State arr: number[] = [1, 2, 3];
 
   build() {
     Row() {
       Column() {
-        Child({value: this.arr[0]})
-        Child({value: this.arr[1]})
-        Child({value: this.arr[2]})
+        Child({ value: this.arr[0] })
+        Child({ value: this.arr[1] })
+        Child({ value: this.arr[2] })
 
         Divider().height(5)
 
-        ForEach(this.arr, 
+        ForEach(this.arr,
           (item: number) => {
-            Child({value: item})
-          }, 
+            Child({ value: item })
+          },
           (item: string) => item.toString()
         )
         Text('replace entire arr')
-        .fontSize(50)
-        .onClick(()=>{
-          // 两个数组都包含项“3”。
-          this.arr = this.arr[0] == 1 ? [3,4,5] : [1,2,3];
-        })
+          .fontSize(50)
+          .onClick(() => {
+            // 两个数组都包含项“3”。
+            this.arr = this.arr[0] == 1 ? [3, 4, 5] : [1, 2, 3];
+          })
       }
     }
   }
@@ -744,25 +746,25 @@ struct Child {
   @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('child init map').onClick(() =>{
+      Button('child init map').onClick(() => {
         this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('child set new one').onClick(() =>{
+      Button('child set new one').onClick(() => {
         this.value.set(4, "d")
       })
-      Button('child clear').onClick(() =>{
+      Button('child clear').onClick(() => {
         this.value.clear()
       })
-      Button('child replace the first one').onClick(() =>{
+      Button('child replace the first one').onClick(() => {
         this.value.set(0, "aa")
       })
-      Button('child delete the first one').onClick(() =>{
+      Button('child delete the first one').onClick(() => {
         this.value.delete(0)
       })
     }
@@ -778,7 +780,7 @@ struct MapSample2 {
   build() {
     Row() {
       Column() {
-        Child({value:this.message})
+        Child({ value: this.message })
       }
       .width('100%')
     }
@@ -798,7 +800,7 @@ struct MapSample2 {
 ```ts
 @Component
 struct Child {
-  @Prop message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @Prop message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Column() {
@@ -806,16 +808,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('set new one').onClick(() =>{
+      Button('set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('clear').onClick(() =>{
+      Button('clear').onClick(() => {
         this.message.clear()
       })
-      Button('delete the first one').onClick(() =>{
+      Button('delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -824,16 +826,15 @@ struct Child {
 }
 
 
-
 @Entry
 @Component
 struct SetSample11 {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Child({message:this.message})
+        Child({ message: this.message })
       }
       .width('100%')
     }
@@ -983,6 +984,7 @@ struct PropChild1 {
       })
   }
 }
+
 @Component
 struct PropChild2 {
   @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
@@ -1006,7 +1008,7 @@ struct Parent {
         .onClick(() => {
           this.testNum[0].c += 1;
         })
-        
+
       // @PropChild1本地没有初始化，必须从父组件初始化
       PropChild1({ testNum: this.testNum[0] })
       // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
