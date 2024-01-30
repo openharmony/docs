@@ -24,7 +24,7 @@ Defines and shows the action sheet.
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box.|
 | message    | [Resource](ts-types.md#resource) \| string | Yes    | Content of the dialog box. |
 | autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**<br>The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.|
-| confirm    | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Information about the confirm button.<br>**enabled**: whether to respond when the button is clicked. The value **true** means to respond when the button is clicked, and **false** means the opposite.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus. The value **true** means that the button is the default focus, and **false** means the opposite.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: button text.<br>**action**: callback upon button clicking.|
+| confirm    | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Information about the confirm button.<br>**enabled**: whether the button responds to clicks. The value **true** means that the button responds to clicks, and **false** means the opposite.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus. The value **true** means that the button is the default focus, and **false** means the opposite.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: button text.<br>**action**: Button: callback upon button clicking.|
 | cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
 | offset     | {<br>dx: [Length](ts-types.md#length),<br>dy: [Length](ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
@@ -41,7 +41,7 @@ Defines and shows the action sheet.
 
 ## DialogButtonStyle<sup>10+</sup>
 
-| Name     | Description.                             |
+| Name     | Description                             |
 | --------- | --------------------------------- |
 | DEFAULT   | Blue text on white background (black background under the dark theme).|
 | HIGHLIGHT | White text on blue background.                       |
