@@ -1089,7 +1089,7 @@ taskGroup.addTask(task);
 
 ## SequenceRunner <sup>11+</sup>
 
-表示串行队列的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
+表示串行队列的任务。使用[constructor](#constructor11-2)方法构造SequenceRunner。
 
 ### constructor<sup>11+</sup>
 
