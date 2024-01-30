@@ -19,15 +19,15 @@
 
 ## 接口
 
-FormLink(value: {
-  action: string;
-  moduleName?: string;
-  bundleName?: string;
-  abilityName: string;
-  params: Object;
-})
+FormLink(options: FormLinkOptions)
 
 **参数：**
+
+| 参数名       | 参数类型                            | 必填   | 参数描述   |
+| --------- | ------------------------------- | ---- | ------ |
+| options | [FormLinkOptions](#formlinkoptions10类型说明) | 是    | 定义卡片信息 |
+
+## FormLinkOptions<sup>10+</sup>类型说明
 
 | 参数名      | 参数类型 | 必填 | 参数描述                                                     |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
