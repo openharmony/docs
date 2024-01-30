@@ -5040,7 +5040,7 @@ struct WebComponent {
       Button('enableSafeBrowsing')
         .onClick(() => {
           try {
-            web_webview.WebviewController.enableSafeBrowsing(true);
+            this.controller.enableSafeBrowsing(true);
             console.log("enableSafeBrowsing: true");
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -5082,7 +5082,7 @@ struct WebComponent {
     Column() {
       Button('isSafeBrowsingEnabled')
         .onClick(() => {
-          let result = web_webview.WebviewController.isSafeBrowsingEnabled();
+          let result = this.controller.isSafeBrowsingEnabled();
           console.log("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
