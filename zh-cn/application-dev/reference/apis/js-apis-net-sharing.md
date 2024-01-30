@@ -1153,13 +1153,11 @@ sharing.off('sharingUpstreamChange', (data: object) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.NetSharing
 
-### 属性
-
-| 参数名   | 类型                      | 必填 | 说明                             |
-| -------- | ------------------------- | ---- | -------------------------------- |
-| type     | [SharingIfaceType](#sharingifacetype)                    | 是   | 网络共享类型。                       |
-| iface | string               | 是   | 指定的共享网络名称。 |
-| state | [SharingIfaceState](#sharingifacestate)          | 是   | 网卡共享状态。 |
+| 名称     | 类型                                              | 必填 | 说明                 |
+| -------- | ------------------------------------------------- | ---- | ------------------- |
+| type     | [SharingIfaceType](#sharingifacetype)             | 是   | 网络共享类型。       |
+| iface    | string                                            | 是   | 指定的共享网络名称。 |
+| state    | [SharingIfaceState](#sharingifacestate)           | 是   | 网卡共享状态。       |
 
 ## SharingIfaceState
 
