@@ -27,7 +27,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+The following attributes are supported.
 
 | Name  | Type  | Default Value| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -162,7 +162,7 @@ struct OffscreenCanvasPage {
 
 ### getContext<sup>10+</sup>
 
-getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
+getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
 
 Obtains the drawing context of the offscreen canvas.
 
@@ -171,7 +171,7 @@ Obtains the drawing context of the offscreen canvas.
 | Name       | Type                                                        | Mandatory| Default Value| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
 | contextType | string                                                       | Yes  | "2d"   | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.                      |
-| option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No  | -      | For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).|
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No  | -      | For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).|
 
 **Return value**
 

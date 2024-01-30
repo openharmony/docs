@@ -42,6 +42,9 @@ There are two types of shared data provided by the data provider:
 
 The update-through-proxy configuration varies by the type of shared data.
 
+## Data Provider Development
+
+For details, see [Data Management](../database/share-data-by-silent-access.md).
 
 ## Widget Provider Development (Ephemeral Data)
 
@@ -145,7 +148,7 @@ The update-through-proxy configuration varies by the type of shared data.
   }
   ```
 
-- Add a subscription template ([addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)) to the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format.
+- Add a subscription template ([addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)) to the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format. When the subscribed persistent data is updated, the system automatically updates the widget data.
 
   > **NOTE**
   >

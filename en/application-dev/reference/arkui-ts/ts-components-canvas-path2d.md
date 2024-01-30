@@ -3,8 +3,8 @@
 **Path2D** allows you to describe a path through an existing path. This path can be drawn through the **stroke** or **fill** API of **Canvas**.
 
 >  **NOTE**
-> 
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 
@@ -18,11 +18,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | path | path2D | Yes| - | Path to be added to this path.| 
-  | transform | Matrix2D | No| null | Transformation matrix of the new path.| 
-  
+| Name       | Type      | Mandatory  | Default Value | Description             |
+| --------- | -------- | ---- | ---- | --------------- |
+| path      | [path2D](ts-components-canvas-path2d.md)   | Yes   | -    | Path to be added to this path. Unit: px.|
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | No   | null | Transformation matrix of the new path.   |
+
 
 **Example**
 
@@ -109,10 +109,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes| 0 | X-coordinate of the target point.| 
-  | y | number | Yes| 0 | Y-coordinate of the target point.| 
+| Name  | Type    | Mandatory  | Default Value | Description      |
+| ---- | ------ | ---- | ---- | -------- |
+| x    | number | Yes   | 0    | X coordinate of the target point, in vp.|
+| y    | number | Yes   | 0    | Y coordinate of the target point, in vp.|
 
 **Example**
 
@@ -158,10 +158,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes| 0 | X-coordinate of the target point.| 
-  | y | number | Yes| 0 | Y-coordinate of the target point.| 
+| Name  | Type    | Mandatory  | Default Value | Description      |
+| ---- | ------ | ---- | ---- | -------- |
+| x    | number | Yes   | 0    | X coordinate of the target point, in vp.|
+| y    | number | Yes   | 0    | Y coordinate of the target point, in vp.|
 
 **Example**
 
@@ -202,20 +202,20 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
-Draws a cubic bezier curve on the canvas.
+Draws a cubic Bezier curve on the canvas.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | cp1x | number | Yes| 0 | X-coordinate of the first parameter of the bezier curve.| 
-  | cp1y | number | Yes| 0 | Y-coordinate of the first parameter of the bezier curve.| 
-  | cp2x | number | Yes| 0 | X-coordinate of the second parameter of the bezier curve.| 
-  | cp2y | number | Yes| 0 | Y-coordinate of the second parameter of the bezier curve.| 
-  | x | number | Yes| 0 | X-coordinate of the end point on the bezier curve.| 
-  | y | number | Yes| 0 | Y-coordinate of the end point on the bezier curve.| 
+| Name  | Type    | Mandatory  | Default Value | Description            |
+| ---- | ------ | ---- | ---- | -------------- |
+| cp1x | number | Yes   | 0    | X coordinate of the first parameter of the Bezier curve, in vp.|
+| cp1y | number | Yes   | 0    | Y coordinate of the first parameter of the Bezier curve, in vp.|
+| cp2x | number | Yes   | 0    | X coordinate of the second parameter of the Bezier curve, in vp.|
+| cp2y | number | Yes   | 0    | Y coordinate of the second parameter of the Bezier curve, in vp.|
+| x    | number | Yes   | 0    | X coordinate of the end point on the Bezier curve, in vp.   |
+| y    | number | Yes   | 0    | Y coordinate of the end point on the Bezier curve, in vp.   |
 
 **Example**
 
@@ -259,12 +259,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | cpx | number | Yes| 0 | X-coordinate of the bezier curve parameter.| 
-  | cpy | number | Yes| 0 | Y-coordinate of the bezier curve parameter.| 
-  | x | number | Yes| 0 | X-coordinate of the end point on the bezier curve.| 
-  | y | number | Yes| 0 | Y-coordinate of the end point on the bezier curve.| 
+| Name  | Type    | Mandatory  | Default Value | Description         |
+| ---- | ------ | ---- | ---- | ----------- |
+| cpx  | number | Yes   | 0    | X coordinate of the Bezier curve parameter, in vp.|
+| cpy  | number | Yes   | 0    | Y coordinate of the Bezier curve parameter, in vp.|
+| x    | number | Yes   | 0    | X coordinate of the end point on the Bezier curve, in vp.|
+| y    | number | Yes   | 0    | Y coordinate of the end point on the Bezier curve, in vp.|
 
 **Example**
 
@@ -308,14 +308,14 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes| 0 | X-coordinate of the center point of the arc.| 
-  | y | number | Yes| 0 | Y-coordinate of the center point of the arc.| 
-  | radius | number | Yes| 0 | Radius of the arc.| 
-  | startAngle | number | Yes| 0 | Start radian of the arc.| 
-  | endAngle | number | Yes| 0 | End radian of the arc.| 
-  | counterclockwise | boolean | No| false | Whether to draw the arc counterclockwise.| 
+| Name              | Type     | Mandatory  | Default Value  | Description        |
+| ---------------- | ------- | ---- | ----- | ---------- |
+| x                | number  | Yes   | 0     | X coordinate of the center point of the arc, in vp.|
+| y                | number  | Yes   | 0     | Y coordinate of the center point of the arc, in vp.|
+| radius           | number  | Yes   | 0     | Radius of the arc, in vp.   |
+| startAngle       | number  | Yes   | 0     | Start radian of the arc.  |
+| endAngle         | number  | Yes   | 0     | End radian of the arc.  |
+| counterclockwise | boolean | No   | false | Whether to draw the arc counterclockwise.|
 
 **Example**
 
@@ -358,13 +358,13 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x1 | number | Yes| 0 | X-coordinate of the first point on the arc.| 
-  | y1 | number | Yes| 0 | Y-coordinate of the first point on the arc.| 
-  | x2 | number | Yes| 0 | X-coordinate of the second point on the arc.| 
-  | y2 | number | Yes| 0 | Y-coordinate of the second point on the arc.| 
-  | radius | number | Yes| 0 | Radius of the arc.| 
+| Name    | Type    | Mandatory  | Default Value | Description             |
+| ------ | ------ | ---- | ---- | --------------- |
+| x1     | number | Yes   | 0    | X coordinate of the first point on the arc, in vp.|
+| y1     | number | Yes   | 0    | Y coordinate of the first point on the arc, in vp.|
+| x2     | number | Yes   | 0    | X coordinate of the second point on the arc, in vp.|
+| y2     | number | Yes   | 0    | Y coordinate of the second point on the arc, in vp.|
+| radius | number | Yes   | 0    | Radius of the arc, in vp.|
 
 **Example**
 
@@ -407,16 +407,16 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes| 0 | X-coordinate of the ellipse center.| 
-  | y | number | Yes| 0 | Y-coordinate of the ellipse center.| 
-  | radiusX | number | Yes| 0 | Ellipse radius on the x-axis.| 
-  | radiusY | number | Yes| 0 | Ellipse radius on the y-axis.| 
-  | rotation | number | Yes| 0 | Rotation angle of the ellipse. The unit is radian.| 
-  | startAngle | number | Yes| 0 | Angle of the start point for drawing the ellipse. The unit is radian.| 
-  | endAngle | number | Yes| 0 | Angle of the end point for drawing the ellipse. The unit is radian.| 
-  | counterclockwise | boolean | No| false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise.| 
+| Name              | Type     | Mandatory  | Default Value  | Description                                      |
+| ---------------- | ------- | ---- | ----- | ---------------------------------------- |
+| x                | number  | Yes   | 0     | X coordinate of the ellipse center, in vp.|
+| y                | number  | Yes   | 0     | Y coordinate of the ellipse center, in vp.|
+| radiusX          | number  | Yes   | 0     | Ellipse radius on the x-axis, in vp.|
+| radiusY          | number  | Yes   | 0     | Ellipse radius on the y-axis, in vp.|
+| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse, in radians.                          |
+| startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse, in radians.                       |
+| endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse, in radians.                       |
+| counterclockwise | boolean | No   | false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise.|
 
 **Example**
 
@@ -459,12 +459,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | Yes| 0 | X-coordinate of the upper left corner of the rectangle.| 
-  | y | number | Yes| 0 | Y-coordinate of the upper left corner of the rectangle.| 
-  | w | number | Yes| 0 | Width of the rectangle.| 
-  | h | number | Yes| 0 | Height of the rectangle.| 
+| Name  | Type    | Mandatory  | Default Value | Description           |
+| ---- | ------ | ---- | ---- | ------------- |
+| x    | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
+| y    | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
+| w    | number | Yes   | 0    | Width of the rectangle, in vp.|
+| h    | number | Yes   | 0    | Height of the rectangle, in vp.|
 
 **Example**
 

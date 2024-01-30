@@ -25,7 +25,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 >  **NOTE**
 >  
->  You can use the [px2vp](ts-pixel-units.md) API to convert the unit.
+>  You can use the [px2vp](ts-pixel-units.md#pixel-unit-conversion) API to convert the unit.
 
 ### scaleX
 
