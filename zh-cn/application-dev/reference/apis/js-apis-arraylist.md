@@ -798,9 +798,9 @@ for (let item of arrayList) {
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-    console.log(`value:${temp}`);
-    temp = iter.next().value;
+let temp = iter.next();
+while(!temp.done) {
+  console.log(`value:${temp.value}`);
+  temp = iter.next();
 }
 ```

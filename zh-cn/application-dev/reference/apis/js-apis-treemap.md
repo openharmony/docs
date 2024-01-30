@@ -714,10 +714,10 @@ for (let item of treeMap) {
 
 // 使用方法二：
 let iter = treeMap[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value[0]);
+  console.log("value:" + temp.value[1]);
+  temp = iter.next();
 }
 ```
