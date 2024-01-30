@@ -49,10 +49,10 @@ CounterOptions定义Counter的类型及具体式样参数。
 
 | counter类型             | counter式样        |
 | ----------------------- | ------------------ |
-| CounterTyle.LIST        | NumberStyleOptions |
-| CounterTyle.COMPACT     | NumberStyleOptions |
-| CounterTyle.INLINE      | InlineStyleOptions |
-| CounterTyle.INLINE_DATE | DateStyleOptions   |
+| CounterType.LIST        | NumberStyleOptions |
+| CounterType.COMPACT     | NumberStyleOptions |
+| CounterType.INLINE      | InlineStyleOptions |
+| CounterType.INLINE_DATE | DateStyleOptions   |
 
 ## CounterType
 
