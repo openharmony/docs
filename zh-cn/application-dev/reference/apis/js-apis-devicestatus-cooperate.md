@@ -479,10 +479,10 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                      | 类型           | 可读 | 可写 | 说明                     |
-| ------------------------- | -------------- | ---- | ---- | ------------------------ |
-| networkId<sup>(11+)</sup> | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
-| state<sup>(11+)</sup>     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
+| 名称      | 类型           | 可读 | 可写 | 说明                     |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| networkId | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
+| state     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
 
 
 
@@ -492,16 +492,16 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                                           | 类型   | 可读 | 可写 | 说明                   |
-| ---------------------------------------------- | ------ | ---- | ---- | ---------------------- |
-| COOPERATE_PREPARE<sup>(11+)</sup>              | number | 是   | 否   | 表示准备键鼠穿越。     |
-| COOPERATE_UNPREPARE<sup>(11+)</sup>            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
-| COOPERATE_ACTIVATE<sup>(11+)</sup>             | number | 是   | 否   | 表示启动键鼠穿越。     |
-| COOPERATE_ACTIVATE_SUCCESS<sup>(11+)</sup>     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAILURE<sup>(11+)</sup>     | number | 是   | 否   | 表示键鼠穿越启动失败。 |
-| COOPERATE_DEACTIVATE_SUCCESS<sup>(11+)</sup>   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAILURE<sup>(11+)</sup>   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
-| COOPERATE_SESSION_DISCONNECTED<sup>(11+)</sup> | number | 是   | 否   | 表示键鼠穿越会话断开。 |
+| 名称                           | 类型   | 可读 | 可写 | 说明                   |
+| ------------------------------ | ------ | ---- | ---- | ---------------------- |
+| COOPERATE_PREPARE              | number | 是   | 否   | 表示准备键鼠穿越。     |
+| COOPERATE_UNPREPARE            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
+| COOPERATE_ACTIVATE             | number | 是   | 否   | 表示启动键鼠穿越。     |
+| COOPERATE_ACTIVATE_SUCCESS     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
+| COOPERATE_ACTIVATE_FAILURE     | number | 是   | 否   | 表示键鼠穿越启动失败。 |
+| COOPERATE_DEACTIVATE_SUCCESS   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
+| COOPERATE_DEACTIVATE_FAILURE   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
+| COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
 
 
 
@@ -1021,7 +1021,7 @@ try {
 | COOPERATE_UNPREPARE |  1  |  表示取消键鼠穿越准备。  |
 | COOPERATE_ACTIVATE |  2   |  表示启动键鼠穿越。  |
 | COOPERATE_ACTIVATE_SUCCESS | 3 | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAIL | 4 | 表示键鼠穿越启动失败。 |
+| COOPERATE_ACTIVATE_FAILURE | 4 | 表示键鼠穿越启动失败。 |
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAIL | 6 | 表示键鼠穿越停止失败。 |
+| COOPERATE_DEACTIVATE_FAILURE | 6 | 表示键鼠穿越停止失败。 |
 | COOPERATE_SESSION_DISCONNECTED | 7 | 表示键鼠穿越会话断开。 |
