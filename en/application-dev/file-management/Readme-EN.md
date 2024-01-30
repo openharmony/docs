@@ -1,6 +1,6 @@
 # File Management
 
-- [File Management Overview](file-management-overview.md)
+- [File Management Overview](core-file-kit-intro.md)
 - Application Files
   - [Application File Overview](app-file-overview.md)
   - [Application Sandbox](app-sandbox-directory.md)
@@ -14,6 +14,7 @@
     - [Application Data Backup and Restore Overview](app-file-backup-overview.md)
     - [Accessing Backup and Restore](app-file-backup-extension.md)
     - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
+  - [Authorizing Access to Application Files](app-file-authorization.md)
 - User Files
   - [User File Overview](user-file-overview.md)
   - [User File URI](user-file-uri-intro.md)
@@ -32,3 +33,4 @@
   - [Distributed File System Overview](distributed-fs-overview.md)
   - [Setting the Security Level of a Distributed File](set-security-label.md)
   - [Accessing Files Across Devices](file-access-across-devices.md)
+  - [Copying Files Across Devices](file-copy-across-devices.md)
