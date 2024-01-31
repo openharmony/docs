@@ -118,7 +118,7 @@ writeRemoteObject(object: IRemoteObject): void
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
     data.writeRemoteObject(testRemoteObject);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
@@ -165,7 +165,7 @@ readRemoteObject(): IRemoteObject
     data.writeRemoteObject(testRemoteObject);
     let proxy = data.readRemoteObject();
     hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObject is ' + proxy);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
@@ -203,7 +203,7 @@ writeInterfaceToken(token: string): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeInterfaceToken("aaa");
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorMessage ' + e.message);
@@ -243,7 +243,7 @@ class Stub extends rpc.RemoteObject {
     try {
       let interfaceToken = data.readInterfaceToken();
       hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorMessage ' + e.message);
@@ -325,7 +325,7 @@ setSize(size: number): void
   data.writeString('Hello World');
   try {
     data.setSize(16);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorMessage ' + e.message);
@@ -363,7 +363,7 @@ setCapacity(size: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.setCapacity(100);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorMessage ' + e.message);
@@ -502,7 +502,7 @@ rewindRead(pos: number): void
   hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
   try {
     data.rewindRead(0);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorMessage ' + e.message);
@@ -535,7 +535,7 @@ rewindWrite(pos: number): void
   data.writeInt(4);
   try {
     data.rewindWrite(0);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorMessage ' + e.message);
@@ -576,7 +576,7 @@ writeByte(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeByte(2);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
@@ -614,7 +614,7 @@ readByte(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeByte(2);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
@@ -622,7 +622,7 @@ readByte(): number
   try {
     let ret = data.readByte();
     hilog.info(0x0000, 'testTag', 'RpcClient: readByte is: ' +  ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorMessage ' + e.message);
@@ -660,7 +660,7 @@ writeShort(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeShort(8);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
@@ -698,7 +698,7 @@ readShort(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeShort(8);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
@@ -706,7 +706,7 @@ readShort(): number
   try {
     let ret = data.readShort();
     hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read short fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read short fail, errorMessage ' + e.message);
@@ -744,7 +744,7 @@ writeInt(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeInt(10);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
@@ -782,7 +782,7 @@ readInt(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeInt(10);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
@@ -790,7 +790,7 @@ readInt(): number
   try {
     let ret = data.readInt();
     hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read int fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read int fail, errorMessage ' + e.message);
@@ -828,7 +828,7 @@ writeLong(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeLong(10000);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
@@ -866,7 +866,7 @@ readLong(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeLong(10000);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
@@ -874,7 +874,7 @@ readLong(): number
   try {
     let ret = data.readLong();
     hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read long fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read long fail, errorMessage ' + e.message);
@@ -912,7 +912,7 @@ writeFloat(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeFloat(1.2);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
@@ -950,7 +950,7 @@ readFloat(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeFloat(1.2);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
@@ -958,7 +958,7 @@ readFloat(): number
   try {
     let ret = data.readFloat();
     hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read float fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read float fail, errorMessage ' + e.message);
@@ -996,7 +996,7 @@ writeDouble(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeDouble(10.2);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
@@ -1034,7 +1034,7 @@ readDouble(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeDouble(10.2);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
@@ -1042,7 +1042,7 @@ readDouble(): number
   try {
     let ret = data.readDouble();
     hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' +  ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read double fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read double fail, errorMessage ' + e.message);
@@ -1080,7 +1080,7 @@ writeBoolean(val: boolean): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeBoolean(false);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
@@ -1118,7 +1118,7 @@ readBoolean(): boolean
   let data = rpc.MessageSequence.create();
   try {
     data.writeBoolean(false);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
@@ -1126,7 +1126,7 @@ readBoolean(): boolean
   try {
     let ret = data.readBoolean();
     hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorMessage ' + e.message);
@@ -1164,7 +1164,7 @@ writeChar(val: number): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeChar(97);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
@@ -1202,7 +1202,7 @@ readChar(): number
   let data = rpc.MessageSequence.create();
   try {
     data.writeChar(97);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
@@ -1210,7 +1210,7 @@ readChar(): number
   try {
     let ret = data.readChar();
     hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read char fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read char fail, errorMessage ' + e.message);
@@ -1248,7 +1248,7 @@ writeString(val: string): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeString('abc');
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
@@ -1286,7 +1286,7 @@ readString(): string
   let data = rpc.MessageSequence.create();
   try {
     data.writeString('abc');
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
@@ -1294,7 +1294,7 @@ readString(): string
   try {
     let ret = data.readString();
     hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read string fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read string fail, errorMessage ' + e.message);
@@ -1351,7 +1351,7 @@ writeParcelable(val: Parcelable): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeParcelable(parcelable);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorMessage ' + e.message);
@@ -1411,7 +1411,7 @@ readParcelable(dataIn: Parcelable): void
   let ret = new MyParcelable(0, "");
   try {
     data.readParcelable(ret);
-  }catch(error) {
+  }catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorMessage ' + e.message);
@@ -1450,7 +1450,7 @@ writeByteArray(byteArray: number[]): void
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
     data.writeByteArray(ByteArrayVar);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
@@ -1489,7 +1489,7 @@ readByteArray(dataIn: number[]): void
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
     data.writeByteArray(ByteArrayVar);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
@@ -1497,7 +1497,7 @@ readByteArray(dataIn: number[]): void
   try {
     let array: Array<number> = new Array(5);
     data.readByteArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
@@ -1536,7 +1536,7 @@ readByteArray(): number[]
   let byteArrayVar = [1, 2, 3, 4, 5];
   try {
     data.writeByteArray(byteArrayVar);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
@@ -1544,7 +1544,7 @@ readByteArray(): number[]
   try {
     let array = data.readByteArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' +  array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
@@ -1582,7 +1582,7 @@ writeShortArray(shortArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeShortArray([11, 12, 13]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
@@ -1620,7 +1620,7 @@ readShortArray(dataIn: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeShortArray([11, 12, 13]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
@@ -1628,7 +1628,7 @@ readShortArray(dataIn: number[]): void
   try {
     let array: Array<number> = new Array(3);
     data.readShortArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
@@ -1666,7 +1666,7 @@ readShortArray(): number[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeShortArray([11, 12, 13]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
@@ -1674,7 +1674,7 @@ readShortArray(): number[]
   try {
     let array = data.readShortArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
@@ -1712,7 +1712,7 @@ writeIntArray(intArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeIntArray([100, 111, 112]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
@@ -1750,7 +1750,7 @@ readIntArray(dataIn: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeIntArray([100, 111, 112]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
@@ -1758,7 +1758,7 @@ readIntArray(dataIn: number[]): void
   let array: Array<number> = new Array(3);
   try {
     data.readIntArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
@@ -1796,7 +1796,7 @@ readIntArray(): number[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeIntArray([100, 111, 112]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
@@ -1804,7 +1804,7 @@ readIntArray(): number[]
   try {
     let array = data.readIntArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
@@ -1842,7 +1842,7 @@ writeLongArray(longArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeLongArray([1111, 1112, 1113]);
-  }catch(error){
+  }catch (error){
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
@@ -1880,7 +1880,7 @@ readLongArray(dataIn: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeLongArray([1111, 1112, 1113]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
@@ -1888,7 +1888,7 @@ readLongArray(dataIn: number[]): void
   let array: Array<number> = new Array(3);
   try {
     data.readLongArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
@@ -1926,7 +1926,7 @@ readLongArray(): number[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeLongArray([1111, 1112, 1113]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
@@ -1934,7 +1934,7 @@ readLongArray(): number[]
   try {
     let array = data.readLongArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
@@ -1972,7 +1972,7 @@ writeFloatArray(floatArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeFloatArray([1.2, 1.3, 1.4]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
@@ -2010,7 +2010,7 @@ readFloatArray(dataIn: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeFloatArray([1.2, 1.3, 1.4]);
-  }catch(error){
+  }catch (error){
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
@@ -2018,7 +2018,7 @@ readFloatArray(dataIn: number[]): void
   let array: Array<number> = new Array(3);
   try {
     data.readFloatArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
@@ -2056,7 +2056,7 @@ readFloatArray(): number[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeFloatArray([1.2, 1.3, 1.4]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
@@ -2064,7 +2064,7 @@ readFloatArray(): number[]
   try {
     let array = data.readFloatArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
@@ -2102,7 +2102,7 @@ writeDoubleArray(doubleArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeDoubleArray([11.1, 12.2, 13.3]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
@@ -2140,7 +2140,7 @@ readDoubleArray(dataIn: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeDoubleArray([11.1, 12.2, 13.3]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
@@ -2148,7 +2148,7 @@ readDoubleArray(dataIn: number[]): void
   let array: Array<number> = new Array(3);
   try {
     data.readDoubleArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
@@ -2186,7 +2186,7 @@ readDoubleArray(): number[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeDoubleArray([11.1, 12.2, 13.3]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
@@ -2194,7 +2194,7 @@ readDoubleArray(): number[]
   try {
     let array = data.readDoubleArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
@@ -2232,7 +2232,7 @@ writeBooleanArray(booleanArray: boolean[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeBooleanArray([false, true, false]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
@@ -2270,7 +2270,7 @@ readBooleanArray(dataIn: boolean[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeBooleanArray([false, true, false]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
@@ -2278,7 +2278,7 @@ readBooleanArray(dataIn: boolean[]): void
   let array: Array<boolean> = new Array(3);
   try {
     data.readBooleanArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
@@ -2316,7 +2316,7 @@ readBooleanArray(): boolean[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeBooleanArray([false, true, false]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
@@ -2324,7 +2324,7 @@ readBooleanArray(): boolean[]
   try {
     let array = data.readBooleanArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
@@ -2362,7 +2362,7 @@ writeCharArray(charArray: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeCharArray([97, 98, 88]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
@@ -2400,7 +2400,7 @@ readCharArray(dataIn: number[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeCharArray([97, 98, 88]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
@@ -2408,7 +2408,7 @@ readCharArray(dataIn: number[]): void
   let array: Array<number> = new Array(3);
   try {
     data.readCharArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
@@ -2446,7 +2446,7 @@ readCharArray(): number[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeCharArray([97, 98, 88]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
@@ -2454,7 +2454,7 @@ readCharArray(): number[]
   try {
     let array = data.readCharArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
@@ -2492,7 +2492,7 @@ writeStringArray(stringArray: string[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeStringArray(["abc", "def"]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
@@ -2530,7 +2530,7 @@ readStringArray(dataIn: string[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeStringArray(["abc", "def"]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
@@ -2538,7 +2538,7 @@ readStringArray(dataIn: string[]): void
   let array: Array<string> = new Array(2);
   try {
     data.readStringArray(array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
@@ -2576,7 +2576,7 @@ readStringArray(): string[]
   let data = rpc.MessageSequence.create();
   try {
     data.writeStringArray(["abc", "def"]);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
@@ -2584,7 +2584,7 @@ readStringArray(): string[]
   try {
     let array = data.readStringArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
@@ -2622,7 +2622,7 @@ writeNoException(): void
         hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteMessageRequest called');
         try {
           reply.writeNoException();
-        } catch(error) {
+        } catch (error) {
           let e: BusinessError = error as BusinessError;
           hilog.error(0x0000, 'testTag', 'rpc write no exception fail, errorCode ' + e.code);
           hilog.error(0x0000, 'testTag', 'rpc write no exception fail, errorMessage ' + e.message);
@@ -2705,7 +2705,7 @@ readException(): void
           hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
           try {
             result.reply.readException();
-          } catch(error) {
+          } catch (error) {
             let e: BusinessError = error as BusinessError;
             hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorCode ' + e.code);
             hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
@@ -2778,7 +2778,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeParcelableArray(a);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorMessage ' + e.message);
@@ -2841,7 +2841,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
   let b = [new MyParcelable(0, ""), new MyParcelable(0, ""), new MyParcelable(0, "")];
   try {
     data.readParcelableArray(b);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorMessage ' + e.message);
@@ -2890,10 +2890,10 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
   let data = rpc.MessageSequence.create();
   try {
     data.writeRemoteObjectArray(a);
-  } catch(error) {
-     let e: BusinessError = error as BusinessError;
-     hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorCode ' + e.code);
-     hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorMessage ' + e.message);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2941,7 +2941,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   let b: Array<rpc.IRemoteObject> = new Array(3);
   try {
     data.readRemoteObjectArray(b);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
@@ -2992,7 +2992,7 @@ readRemoteObjectArray(): IRemoteObject[]
   try {
     let b = data.readRemoteObjectArray();
     hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
@@ -3024,7 +3024,7 @@ static closeFileDescriptor(fd: number): void
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
     rpc.MessageSequence.closeFileDescriptor(file.fd);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorMessage ' + e.message);
@@ -3070,7 +3070,7 @@ static dupFileDescriptor(fd: number) :number
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
     rpc.MessageSequence.dupFileDescriptor(file.fd);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorMessage ' + e.message);
@@ -3103,7 +3103,7 @@ containFileDescriptors(): boolean
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
@@ -3111,7 +3111,7 @@ containFileDescriptors(): boolean
   try {
     let containFD = sequence.containFileDescriptors();
     hilog.info(0x0000, 'testTag', 'RpcTest: sequence after write fd containFd result is ' + containFD);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorMessage ' + e.message);
@@ -3152,7 +3152,7 @@ writeFileDescriptor(fd: number): void
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
@@ -3193,7 +3193,7 @@ readFileDescriptor(): number
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
@@ -3201,7 +3201,7 @@ readFileDescriptor(): number
   try {
     let readFD = sequence.readFileDescriptor();
     hilog.info(0x0000, 'testTag', 'RpcClient: readFileDescriptor is ' + readFD);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorMessage ' + e.message);
@@ -3242,12 +3242,12 @@ writeAshmem(ashmem: Ashmem): void
     ashmem = rpc.Ashmem.create("ashmem", 1024);
     try {
       sequence.writeAshmem(ashmem);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
     }
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
@@ -3288,19 +3288,19 @@ readAshmem(): Ashmem
     ashmem = rpc.Ashmem.create("ashmem", 1024);
     try {
       sequence.writeAshmem(ashmem);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
     }
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
   }
   try {
     sequence.readAshmem();
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorMessage ' + e.message);
@@ -3364,7 +3364,7 @@ writeRawData(rawData: number[], size: number): void
   let arr = [1, 2, 3, 4, 5];
   try {
     sequence.writeRawData(arr, arr.length);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
@@ -3409,7 +3409,7 @@ readRawData(size: number): number[]
   let arr = [1, 2, 3, 4, 5];
   try {
     sequence.writeRawData(arr, arr.length);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
@@ -3417,7 +3417,7 @@ readRawData(size: number): number[]
   try {
     let result = sequence.readRawData(5);
     hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + result);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
@@ -6928,7 +6928,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   if (proxy != undefined) {
     try {
       proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
@@ -7092,7 +7092,7 @@ getLocalInterface(interface: string): IRemoteBroker
     try {
     let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
     hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
@@ -7241,7 +7241,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   if (proxy != undefined) {
     try {
       proxy.registerDeathRecipient(deathRecipient, 0);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorMessage ' + e.message);
@@ -7395,13 +7395,13 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   let deathRecipient = new MyDeathRecipient();
   if (proxy != undefined) {
     try {
-    proxy.registerDeathRecipient(deathRecipient, 0);
-    proxy.unregisterDeathRecipient(deathRecipient, 0);
-  } catch(error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorMessage ' + e.message);
-  }
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorMessage ' + e.message);
+    }
   }
   ```
 
@@ -7547,7 +7547,7 @@ getDescriptor(): string
     try {
       let descriptor: string = proxy.getDescriptor();
       hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
-    } catch(error) {
+    } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorCode ' + e.code);
       hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorMessage ' + e.message);
@@ -7688,7 +7688,7 @@ isObjectDead(): boolean
   | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
   | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
   | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 4 (0x4)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
+  | TF_WAIT_TIME  | 8 (0x8)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
 
 ### constructor<sup>9+</sup>
 
@@ -8129,7 +8129,7 @@ static flushCmdBuffer(object: IRemoteObject): void
   let remoteObject = new TestRemoteObject("aaa");
   try {
     rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorMessage ' + e.message);
@@ -8932,7 +8932,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
     testRemoteObject.getLocalInterface("testObject");
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
@@ -9044,7 +9044,7 @@ getDescriptor(): string
   try {
     let descriptor = testRemoteObject.getDescriptor();
     hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is ' + descriptor);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
@@ -9127,7 +9127,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
       super(descriptor);
       try {
         this.modifyLocalInterface(this, descriptor);
-      } catch(error) {
+      } catch (error) {
         let e: BusinessError = error as BusinessError;
         hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorCode ' + e.code);
         hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorMessage ' + e.message);
@@ -9244,7 +9244,7 @@ static create(name: string, size: number): Ashmem
     ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
     let size = ashmem.getAshmemSize();
     hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem + ' size is ' + size);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc creat ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc creat ashmem  fail, errorMessage ' + e.message);
@@ -9315,7 +9315,7 @@ static create(ashmem: Ashmem): Ashmem
     let ashmem2 = rpc.Ashmem.create(ashmem);
     let size = ashmem2.getAshmemSize();
     hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem2 + ' size is ' + size);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorMessage ' + e.message);
@@ -9440,7 +9440,7 @@ mapTypedAshmem(mapType: number): void
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
     ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorMessage ' + e.message);
@@ -9504,7 +9504,7 @@ mapReadWriteAshmem(): void
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
     ashmem.mapReadWriteAshmem();
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
@@ -9562,7 +9562,7 @@ mapReadonlyAshmem(): void
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
     ashmem.mapReadonlyAshmem();
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
@@ -9626,7 +9626,7 @@ setProtectionType(protectionType: number): void
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
     ashmem.setProtection(ashmem.PROT_READ);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorMessage ' + e.message);
@@ -9700,7 +9700,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
     ashmem.writeAshmem(ByteArrayVar, 5, 0);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
@@ -9786,7 +9786,7 @@ readAshmem(size: number, offset: number): number[]
   try {
     let readResult = ashmem.readAshmem(5, 0);
     hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readResult);
-  } catch(error) {
+  } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);

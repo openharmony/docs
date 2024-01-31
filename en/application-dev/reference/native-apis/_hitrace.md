@@ -122,7 +122,7 @@ This API is called to implement performance trace in asynchronous manner. The st
 
 | Name| Description| 
 | -------- | -------- |
-| name | Name of an asynchronous trace.| 
+| name | Name of the asynchronous trace.| 
 | taskId | ID of the asynchronous trace. The start and end of an asynchronous trace task do not occur in sequence. Therefore, the start and end of an asynchronous trace need to be matched based on the task name and the unique task ID together.| 
 
 **Since**

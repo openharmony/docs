@@ -26,4 +26,52 @@ import common from '@ohos.app.ability.common';
 | extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | 是 | 否 | 所属Extension的信息。<br>(详见SDK目录下的 `api\bundle\extensionAbilityInfo.d.ts`) |
 
 ## 使用场景
-ExtensionContext主要用于查询所属Extension的信息、Module的配置信息以及Hap包的信息，开发者可根据自身业务需求使用对应的信息。
+ExtensionContext主要用于查询所属Extension的信息、Module的配置信息以及HAP包的信息，开发者可根据自身业务需求使用对应的信息。
+
+**示例：**
+
+```ts
+// 单例对象 GlobalContext.ts
+export class GlobalContext {
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  private constructor() {
+  }
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+}
+```
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import formBindingData from '@ohos.app.form.formBindingData';
+import { GlobalContext } from '../GlobalContext';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
+    let dataObj1: Record<string, string> = {
+      'temperature': '11c',
+      'time': '11:00'
+    };
+    GlobalContext.getContext().setObject("ExtensionContext", this.context);
+    let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+    return obj1;
+  }
+};
+```

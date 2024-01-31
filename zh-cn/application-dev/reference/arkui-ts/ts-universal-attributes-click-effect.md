@@ -12,8 +12,6 @@ clickEffect(value: ClickEffect | null)
 
 设置当前组件点击回弹效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

@@ -36,6 +36,11 @@ Before using the Native APIs provided by MindSpore Lite for development, you nee
 (1). Read model files.
 
 ```C++
+#define LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+#define LOGD(...) ((void)OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+#define LOGW(...) ((void)OH_LOG_Print(LOG_APP, LOG_WARN, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+#define LOGE(...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+
 void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::string &modelName, size_t *modelSize) {
     auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
     if (rawFile == nullptr) {
@@ -49,7 +54,7 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
     }
     int ret = OH_ResourceManager_ReadRawFile(rawFile, modelBuffer, fileSize);
     if (ret == 0) {
-        LOGI("Read model file failed");
+        LOGE("Read model file failed");
         OH_ResourceManager_CloseRawFile(rawFile);
         return nullptr;
     }
@@ -253,29 +258,27 @@ const TAG = 'MSLiteNativeDemo'
 @Entry
 @Component
 struct Index {
-    @State message: string = 'MindSpore Lite Demo'
-    build() {
-        Row() {
-            Column() {
-                Text(this.message)
-                    .fontSize(30)
-                    .fontWeight(FontWeight.Bold)
-                    .onClick(() => {
-                        resManager.getResourceManager().then(mgr => {
-                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-                            let ret: number = 0;
-                            ret = msliteNapi.runDemo("", mgr); // Call runDemo() to perform AI model inference.
-                            if (ret == -1) {
-                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
-                            }
-                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-                        })
-                    })
-            }
-            .width('100%')
-        }
-        .height('100%')
+  @State message: string = 'MindSpore Lite Demo'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+            .onClick(async () => {
+              hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+              let ret: number = 0;
+              ret = msliteNapi.runDemo("", getContext(this).resourceManager); // Call runDemo() to perform AI model inference.
+              if (ret == -1) {
+                hilog.error(0x0000, TAG, 'Error when running MSLite Demo!');
+              }
+              hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+            })
+      }
+      .width('100%')
     }
+    .height('100%')
+  }
 }
 ```
 

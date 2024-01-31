@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [captureId](#captureid) | 捕获id。 | 
-| [timestamp](#timestamp) | 帧的时间戳。 | 
+| int32_t [captureId](#captureid) | 捕获id。  | 
+| uint64_t [timestamp](#timestamp) | 帧的时间戳。  | 
 
 
 ## 结构体成员变量说明
@@ -29,9 +29,7 @@
 ```
 int32_t Camera_FrameShutterInfo::captureId
 ```
-
 **描述**
-
 捕获id。
 
 
@@ -40,7 +38,5 @@ int32_t Camera_FrameShutterInfo::captureId
 ```
 uint64_t Camera_FrameShutterInfo::timestamp
 ```
-
 **描述**
-
 帧的时间戳。

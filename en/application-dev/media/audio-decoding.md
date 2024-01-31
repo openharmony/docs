@@ -1,6 +1,6 @@
 # Audio Decoding (C/C++)
 
-You can call the native APIs provided by the **AudioDecoder** module to decode audio, that is, to decode media data into PCM streams.
+You can call the native APIs provided by the audio codec module to decode audio, that is, to decode media data into PCM streams.
 
 Currently, the following decoding capabilities are supported:
 
@@ -12,6 +12,8 @@ Currently, the following decoding capabilities are supported:
 | ogg      | Vorbis                       |
 | aac      | AAC                          |
 | mp3      | MPEG (MP3)                    |
+| amr      | AMR (AMR-NB and AMR-WB)           |
+| raw      | G711mu                       |
 
 **Usage Scenario**
 
@@ -27,7 +29,7 @@ Currently, the following decoding capabilities are supported:
 
 ## How to Develop
 
-Read [AudioDecoder](../reference/native-apis/_audio_decoder.md) for the API reference.
+Read [Audio Codec](../reference/native-apis/_audio_codec.md) for the API reference.
 
 Refer to the code snippet below to complete the entire audio decoding process, including creating a decoder, setting decoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the decoder.
 
@@ -35,29 +37,30 @@ During application development, you must call the APIs in the defined sequence. 
 
 The figure below shows the call relationship of audio decoding.
 
-![Call relationship of audio decoding](figures/audio-decode.png)
+![Call relationship of audio decoding](figures/audio-codec.png)
 
 ### Linking the Dynamic Library in the CMake Script
 
-``` cmake
+```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
-target_link_libraries(sample PUBLIC libnative_media_adec.so)
+target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 ```
 
 ### How to Develop
 
 1. Add the header files.
 
-   ```cpp
-   #include <multimedia/player_framework/native_avcodec_audiodecoder.h>
-   #include <multimedia/player_framework/avcodec_audio_channel_layout.h>
-   #include <multimedia/player_framework/native_avcapability.h>
-   #include <multimedia/player_framework/native_avcodec_base.h>
-   #include <multimedia/player_framework/native_avformat.h>
-   ```
+    ```cpp
+    #include <multimedia/player_framework/native_avcodec_audiocodec.h>
+    #include <multimedia/native_audio_channel_layout.h>
+    #include <multimedia/player_framework/native_avcapability.h>
+    #include <multimedia/player_framework/native_avcodec_base.h>
+    #include <multimedia/player_framework/native_avformat.h>
+    #include <multimedia/player_framework/native_avbuffer.h>
+    ```
 
-2. Create a decoder instance.
+2. Create a decoder instance. In the code snippet below, **OH_AVCodec *** is the pointer to the decoder instance created.
 
     ```cpp
     // Namespace of the C++ standard library.
@@ -65,138 +68,143 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     // Create a decoder by name.
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, false);
     const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *audioDec = OH_AudioDecoder_CreateByName(name);
+    OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByName(name);
     ```
 
     ```cpp
+    // Specify whether encoding is used. The value **false** means decoding.
+    bool isEncoder = false;
     // Create a decoder by MIME type.
-    OH_AVCodec *audioDec = OH_AudioDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_MPEG);
+    OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, isEncoder);
     ```
 
     ```cpp
     // Initialize the queues.
-    class ADecSignal {
+    class ADecBufferSignal {
     public:
-        mutex inMutex_;
-        mutex outMutex_;
-        mutex startMutex_;
-        condition_variable inCond_;
-        condition_variable outCond_;
-        condition_variable startCond_;
-        queue<uint32_t> inQueue_;
-        queue<uint32_t> outQueue_;
-        queue<OH_AVMemory *> inBufferQueue_;
-        queue<OH_AVMemory *> outBufferQueue_;
-        queue<OH_AVCodecBufferAttr> attrQueue_;
+        std::mutex inMutex_;
+        std::mutex outMutex_;
+        std::mutex startMutex_;
+        std::condition_variable inCond_;
+        std::condition_variable outCond_;
+        std::condition_variable startCond_;
+        std::queue<uint32_t> inQueue_;
+        std::queue<uint32_t> outQueue_;
+        std::queue<OH_AVBuffer *> inBufferQueue_;
+        std::queue<OH_AVBuffer *> outBufferQueue_;
     };
-    ADecSignal *signal_;
+    ADecBufferSignal *signal_;
     ```
-
-3. Call **OH_AudioDecoder_SetCallback()** to set callback functions.
-
-   Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
    
-   - **OH_AVCodecOnError**, a callback used to report a codec operation error
-   - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
-   - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the decoder is ready for receiving data
-   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that decoding is complete
-   
+3. Call **OH_AudioCodec_RegisterCallback()** to register callback functions. 
+   Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
+
+    - **OH_AVCodecOnError**, a callback used to report a codec operation error
+    - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
+    - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required, which means that the decoder is ready for receiving data
+    - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that decoding is complete
+
    You need to process the callback functions to ensure that the decoder runs properly.
-   
+
     ```cpp
-   // Implement the OH_AVCodecOnError callback function.
-   static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
-   {
-       (void)codec;
-       (void)errorCode;
-       (void)userData;
-   }
-   // Implement the OH_AVCodecOnStreamChanged callback function.
-   static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void*userData)
-   {
-       (void)codec;
-       (void)format;
-       (void)userData;
-   }
-   // Implement the OH_AVCodecOnNeedInputData callback function.
-   static void onNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, void *userData)
-   {
-       (void)codec;
-       ADecSignal *signal = static_cast<ADecSignal *>(userData);
-       unique_lock<mutex> lock(signal->inMutex_);
-       signal->inQueue_.push(index);
-       signal->inBufferQueue_.push(data);
-       signal->inCond_.notify_all();
-       // The input stream is sent to the InputBuffer queue.
-   }
-   // Implement the OH_AVCodecOnNewOutputData callback function.
-   static void onNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory*data, OH_AVCodecBufferAttr *attr,
-                                           void *userData)
-   {
-       (void)codec;
-       ADecSignal *signal = static_cast<ADecSignal *>(userData);
-       unique_lock<mutex> lock(signal->outMutex_);
-       signal->outQueue_.push(index);
-       signal->outBufferQueue_.push(data);
-       if (attr) {
-           signal->attrQueue_.push(*attr);
-       }
-       signal->outCond_.notify_all();
-       // The index of the output buffer is sent to OutputQueue_.
-       // The decoded data is sent to the OutputBuffer queue.
-   }
-   signal_ = new ADecSignal();
-   OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &onNeedInputData, &onNeedOutputData};
-   // Set the asynchronous callbacks.
-   int32_t ret = OH_AudioDecoder_SetCallback(audioDec, cb, signal_);
+    // Implement the OH_AVCodecOnError callback function.
+    static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
+    {
+        (void)codec;
+        (void)errorCode;
+        (void)userData;
+    }
+    // Implement the OH_AVCodecOnStreamChanged callback function.
+    static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
+    {
+        (void)codec;
+        (void)format;
+        (void)userData;
+    }
+    // Implement the OH_AVCodecOnNeedInputBuffer callback function.
+    static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)
+    {
+        (void)codec;
+        ADecBufferSignal *signal = static_cast<ADecBufferSignal *>(userData);
+        unique_lock<mutex> lock(signal->inMutex_);
+        signal->inQueue_.push(index);
+        signal->inBufferQueue_.push(data);
+        signal->inCond_.notify_all();
+        // The input stream is sent to inBufferQueue_.
+    }
+    // Implement the OH_AVCodecOnNewOutputBuffer callback function.
+    static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)
+    {
+        (void)codec;
+        ADecBufferSignal *signal = static_cast<ADecBufferSignal *>(userData);
+        unique_lock<mutex> lock(signal->outMutex_);
+        signal->outQueue_.push(index);
+        signal->outBufferQueue_.push(data);
+        signal->outCond_.notify_all();
+        // The index of the output buffer is sent to outQueue_.
+        // The decoded data is sent to outBufferQueue_.
+    }
+    signal_ = new ADecSignal();
+    OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
+    int32_t ret = OH_AudioCodec_RegisterCallback(audioDec_, cb_, signal_);
+    if (ret != AVCS_ERR_OK) {
+        // Exception handling.
+    }
+    ```
+   
+4. Call **OH_AudioCodec_Configure()** to configure the decoder.
+
+   Key values of configuration options are described as follows:
+
+   |                              |                             Description                            |                AAC                 | FLAC|               Vorbis               | MPEG |       G711mu        |          AMR (AMR-NB and AMR-WB)        |
+   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            Sampling rate.                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            Number of audio channels.                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |
+   | OH_MD_KEY_MAX_INPUT_SIZE     |                         Maximum input size.                        |                Optional               | Optional|                Optional                | Optional|        Optional          |               Optional               |
+   | OH_MD_KEY_AAC_IS_ADTS        |                           ADTS or not.                          |        Optional. The default value is 1 latm.        |  -   |                 -                  |  -   |         -             |               -                  |
+   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        Output audio stream format.                       | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|   -   | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|  -   | Optional (default: SAMPLE_S16LE)| Optional (SAMPLE_S16LE, SAMPLE_F32LE)|
+   | MD_KEY_BITRATE               |                             Optional                            |                Optional               | Optional|                Optional               | Optional|         Optional          |              Optional                |
+   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                  |
+   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                 |
+   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header stitching|                 -                  |      |   Mandatory (Either this parameter or the combination of **MD_KEY_IDENTIFICATION_HEADER** and **MD_KEY_SETUP_HEADER** must be selected.)   |  -   |           -            |                -                 |
+   
+   ```cpp
+   // Set the decoding resolution.
+   int32_t ret;
+   // (Mandatory) Configure the audio sampling rate.
+   constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
+   // (Mandatory) Configure the audio bit rate.
+   constexpr uint32_t DEFAULT_BITRATE = 32000;
+   // (Mandatory) Configure the number of audio channels.
+   constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
+   // (Optional) Configure the maximum input length.
+   constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
+   // Configure whether to use ADTS decoding (ACC).
+   constexpr uint32_t DEFAULT_AAC_TYPE = 1;
+   OH_AVFormat *format = OH_AVFormat_Create();
+   // Set the format.
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SMAPLERATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AAC_IS_ADTS, DEFAULT_AAC_TYPE);
+   // Configure the decoder.
+   ret = OH_AudioCodec_Configure(audioDec_, format);
    if (ret != AV_ERR_OK) {
        // Exception handling.
    }
-    ```
-   
-4. Call **OH_AudioDecoder_Configure()** to configure the decoder.
-   
-   The following options are mandatory: sampling rate, bit rate, and number of audio channels. The maximum input length is optional.
-   
-   For AAC decoding, the parameter that specifies whether the data type is Audio Data Transport Stream (ADTS) must be specified. If this parameter is not specified, the data type is considered as Low Overhead Audio Transport Multiplex (LATM).
-   
-   ```cpp
-    // Set the decoding resolution.
-    int32_t ret;
-    // (Mandatory) Configure the audio sampling rate.
-    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
-    // (Mandatory) Configure the audio bit rate.
-    constexpr uint32_t DEFAULT_BITRATE = 32000;
-    // (Mandatory) Configure the number of audio channels.
-    constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // (Optional) Configure the maximum input length.
-    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
-    // Configure whether to use ADTS decoding (ACC).
-    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // Set the format.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SMAPLERATE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITRATE,DEFAULT_BITRATE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE,DEFAULT_MAX_INPUT_SIZE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AAC_IS_ADTS, DEFAULT_AAC_TYPE);
-    // Configure the decoder.
-    ret = OH_AudioDecoder_Configure(audioDec, format);
-    if (ret != AV_ERR_OK) {
-        // Exception handling.
-    }
    ```
    
-5. Call **OH_AudioDecoder_Prepare()** to prepare internal resources for the decoder.
+5. Call **OH_AudioCodec_Prepare()** to prepare internal resources for the decoder.
 
-    ```cpp
-    ret = OH_AudioDecoder_Prepare(audioDec);
-    if (ret != AV_ERR_OK) {
-        // Exception handling.
-    }
-    ```
-
-6. Call **OH_AudioDecoder_Start()** to start the decoder.
+   ```cpp
+   ret = OH_AudioCodec_Prepare(audioDec_);
+   if (ret != AV_ERR_OK) {
+       // Exception handling.
+   }
+   ```
+   
+6. Call **OH_AudioCodec_Start()** to start the decoder.
 
     ```c++
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
@@ -206,118 +214,121 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     // Configure the path of the output file.
     outFile_->open(outputFilePath.data(), ios::out | ios::binary);
     // Start decoding.
-    ret = OH_AudioDecoder_Start(audioDec);
+    ret = OH_AudioCodec_Start(audioDec_);
     if (ret != AV_ERR_OK) {
-    // Exception handling.
+        // Exception handling.
     }
     ```
-
-7. Call **OH_AudioDecoder_PushInputData()** to write the data to decode.
+   
+7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to decode.
 
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
 
     ```c++
-    // Configure the buffer information.
-    OH_AVCodecBufferAttr info;
-    // Set the size, offset, and timestamp.
+    uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
     int64_t size;
     int64_t pts;
     inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
+    inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
+    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    OH_AVCodecBufferAttr attr = {0};
     if (inputFile_->eof()) {
-        size = 0;
-        info.flags = AVCODEC_BUFFER_FLAGS_EOS;
+        attr.size = 0;
+        attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
     } else {
-        inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-        inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
-        info.flags = AVCODEC_BUFFER_FLAGS_CODEC_DATA;
+        attr.size = size;
+        attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
     }
-    info.size = size;
-    info.offset = 0;
-    info.pts = pts;
-    uint32_t index = signal_->inQueue_.front();
-    // Send the data to the input queue for decoding. The index is the subscript of the queue.
-    int32_t ret = OH_AudioDecoder_PushInputData(audioDec, index, info);
+    OH_AVBuffer_SetBufferAttr(buffer, &attr);
+    int32_t ret = OH_AudioCodec_PushInputBuffer(audioDec_, index);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     ```
-
-8. Call **OH_AudioDecoder_FreeOutputData()** to output decoded PCM streams.
+   
+8. Call **OH_AudioCodec_FreeOutputBuffer()** to output decoded PCM streams.
 
     ```c++
-    OH_AVCodecBufferAttr attr = signal_->attrQueue_.front();
-    OH_AVMemory *data = signal_->outBufferQueue_.front();
     uint32_t index = signal_->outQueue_.front();
+    OH_AVBuffer *data = signal_->outBufferQueue_.front();
+    // Obtain the buffer attributes.
+    OH_AVCodecBufferAttr attr = {0};
+    ret = OH_AVBuffer_GetBufferAttr(data, &attr);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
     // Write the decoded data (specified by data) to the output file.
-    outFile_->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), attr.size);
-    // Free the buffer that stores the data.
-    ret = OH_AudioDecoder_FreeOutputData(audioDec, index);
+    pcmOutputFile_.write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)), attr.size);
+    ret = OH_AudioCodec_FreeOutputBuffer(audioDec_, index);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    if (attr.flags == AVCODEC_BUFFER_FLAGS_EOS) {
+        // End
+    }
+    ```
+   
+9. (Optional) Call **OH_AudioCodec_Flush()** to refresh the decoder.
+
+   After **OH_AudioCodec_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioCodec_Start()** again.
+
+   You need to call **OH_AudioCodec_Start()** in the following cases:
+   
+    * The EOS of the file is reached.
+    * An error with **OH_AudioCodec_IsValid** set to **true** (indicating that the execution can continue) occurs.
+   
+    ```c++
+    // Refresh the decoder.
+    ret = OH_AudioCodec_Flush(audioDec_);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Start decoding again.
+    ret = OH_AudioCodec_Start(audioDec_);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     ```
+   
+10. (Optional) Call **OH_AudioCodec_Reset()** to reset the decoder.
 
-9. (Optional) Call **OH_AudioDecoder_Flush()** to refresh the decoder.
-
-    After **OH_AudioDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioDecoder_Start()** again.
-
-    You need to call **OH_AudioDecoder_Start()** in the following cases:
-    
-    * The EOS of the file is reached.
-    * An error with **OH_AudioDecoder_IsValid** set to **true** (indicating that the execution can continue) occurs.
-    
-    ```c++
-        // Refresh the decoder.
-        ret = OH_AudioDecoder_Flush(audioDec);
-        if (ret != AV_ERR_OK) {
-            // Exception handling.
-        }
-        // Start decoding again.
-        ret = OH_AudioDecoder_Start(audioDec);
-        if (ret != AV_ERR_OK) {
-            // Exception handling.
-        }
-    ```
-    
-10. (Optional) Call **OH_AudioDecoder_Reset()** to reset the decoder.
-
-    After **OH_AudioDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_AudioDecoder_Configure()** and then **OH_AudioDecoder_Start()**.
+    After **OH_AudioCodec_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_AudioCodec_Configure()** and then **OH_AudioCodec_Start()**.
 
     ```c++
     // Reset the decoder.
-    ret = OH_AudioDecoder_Reset(audioDec);
+    ret = OH_AudioCodec_Reset(audioDec_);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     // Reconfigure the decoder.
-    ret = OH_AudioDecoder_Configure(audioDec, format);
+    ret = OH_AudioCodec_Configure(audioDec_, format);
     if (ret != AV_ERR_OK) {
     // Exception handling.
     }
     ```
 
-11. Call **OH_AudioDecoder_Stop()** to stop the decoder.
+11. Call **OH_AudioCodec_Stop()** to stop the decoder.
 
-      ```c++
-      // Stop the decoder.
-      ret = OH_AudioDecoder_Stop(audioDec);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      }
-      ```
+     ```c++
+     // Stop the decoder.
+     ret = OH_AudioCodec_Stop(audioDec_);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+     ```
 
-12. Call **OH_AudioDecoder_Destroy()** to destroy the decoder instance and release resources.
+12. Call **OH_AudioCodec_Destroy()** to destroy the decoder instance and release resources.
 
-      **NOTE**: You only need to call this API once.
+     **NOTE**: You only need to call this API once.
 
-      ```c++
-      // Call OH_AudioDecoder_Destroy to destroy the decoder.
-      ret = OH_AudioDecoder_Destroy(audioDec);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      } else {
-          audioDec = NULL; // The decoder cannot be destroyed repeatedly.
-      }
-      ```
+     ```c++
+     // Call OH_AudioCodec_Destroy to destroy the decoder.
+     ret = OH_AudioCodec_Destroy(audioDec_);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     } else {
+         audioDec_ = NULL; // The decoder cannot be destroyed repeatedly.
+     }
+     ```
 

@@ -39,7 +39,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 8. 注销服务端socket。
 9. 注销客户端socket。
 10. 示例代码：
-```
+```ts
 import socket from '@ohos.bluetooth.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -119,7 +119,7 @@ console.info('sppCloseClientSocket success');
 4. 开启ble扫描，获取对端设备mac地址。
 5. 连接对端设备。
 6. 示例代码：
-```
+```ts
 import socket from '@ohos.bluetooth.socket';
 import { BusinessError } from '@ohos.base';
 

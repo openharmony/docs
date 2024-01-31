@@ -2575,7 +2575,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 createImageData(imageData: ImageData): ImageData
 
-Creates an **[ImageData](ts-components-canvas-imagedata.md)** object by copying an existing **ImageData** object.
+Creates an **[ImageData](ts-components-canvas-imagedata.md)** object by copying an existing **ImageData** object. The example is the same as that of **putImageData**.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -2769,13 +2769,14 @@ Since API version 9, this API is supported in ArkTS widgets.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            let imageData = offContext.createImageData(100, 100)
-            for (let i = 0; i < imageData.data.length; i += 4) {
-              imageData.data[i + 0] = 255
-              imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
-              imageData.data[i + 3] = 255
+            let imageDataNum = offContext.createImageData(100, 100)
+            for (let i = 0; i < imageDataNum.data.length; i += 4) {
+              imageDataNum.data[i + 0] = 255
+              imageDataNum.data[i + 1] = 0
+              imageDataNum.data[i + 2] = 255
+              imageDataNum.data[i + 3] = 255
             }
+            let imageData = this.context.createImageData(imageDataNum)
             offContext.putImageData(imageData, 10, 10)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)

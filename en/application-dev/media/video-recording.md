@@ -21,7 +21,7 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
-   
+     
    ```ts
    import media from '@ohos.multimedia.media';
    
@@ -34,10 +34,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description|
+   | Event Type| Description| 
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
-   | error | Mandatory; used to listen for AVRecorder errors.|
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
+   | error | Mandatory; used to listen for AVRecorder errors.| 
 
    ```ts
    import media from '@ohos.multimedia.media';
@@ -60,7 +60,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    > - In pure video recording scenarios, set only video-related parameters in **avConfig** of **prepare()**.
    >   If audio-related parameters are configured, the system regards it as audio and video recording.
    > 
-   > - The [recording specifications](avplayer-avrecorder-overview.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
+   > - The [recording specifications]((media-kit-intro.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
    > 
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
 
@@ -71,7 +71,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
-     videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
+     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
      videoFrameWidth: 640, // Video frame width.
      videoFrameHeight: 480, // Video frame height.
      videoFrameRate: 30 // Video frame rate.
@@ -94,7 +94,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
 
    The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
-   
+     
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -128,7 +128,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
-
+  
 ```ts
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
@@ -140,7 +140,7 @@ export class VideoRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
+    videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.

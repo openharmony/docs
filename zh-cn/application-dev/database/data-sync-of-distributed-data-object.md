@@ -193,7 +193,7 @@
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-       let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+       let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
      }
    }
@@ -228,7 +228,7 @@
      }
    }
    let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-   let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+   let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
    // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
    let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
@@ -246,7 +246,7 @@
    // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
    let remoteSource: SourceObject = new SourceObject(undefined, undefined, undefined, undefined);
    let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
-   // 收到status上线后remoteObject同步数据，即name变成jack,age是18
+   // 收到status上线后remoteObject同步数据，即name变成jack，age变成18
    remoteObject.setSessionId(sessionId);
    ```
 

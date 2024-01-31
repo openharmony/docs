@@ -42,8 +42,8 @@ once(type: string, callback: Callback\<void\>): void
 import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
-  console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
+  console.log("configCookieSync")
+  web_webview.WebCookieManager.configCookieSync("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -284,7 +284,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setNumber').margin({
@@ -302,7 +302,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setBoolean').margin({
@@ -319,7 +319,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArrayBuffer').margin({
@@ -336,7 +336,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArray').margin({
@@ -354,7 +354,7 @@ struct WebComponent {
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setError').margin({
@@ -373,7 +373,7 @@ struct WebComponent {
               this.nativePort.postMessageEventExt(this.message);
             }
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -1606,7 +1606,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`);
                   return;
                 }
                 if (result) {
@@ -1777,7 +1778,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
                   return;
                 }
                 if (result) {
@@ -3082,7 +3084,8 @@ struct WebComponent {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
               if (error) {
-                console.info(`save web archive error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`save web archive error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               if (filename != null) {
@@ -3090,7 +3093,7 @@ struct WebComponent {
               }
             });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
+            let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
@@ -3154,7 +3157,7 @@ struct WebComponent {
                 }
               })
               .catch((error:business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3762,7 +3765,8 @@ struct WebComponent {
           try {
             this.controller.hasImage((error, data) => {
               if (error) {
-                console.info(`hasImage error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`hasImage error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.info("hasImage: " + data);
@@ -4099,7 +4103,7 @@ struct WebComponent {
 }
 ```
 
-2.修改EntryAbility.ts。
+2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
@@ -4185,7 +4189,7 @@ struct WebComponent {
 }
 ```
 
-2.修改EntryAbility.ts。
+2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
@@ -5488,7 +5492,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               if (cookie) {
@@ -5557,7 +5562,7 @@ struct WebComponent {
                 console.log("fetchCookie cookie = " + cookie);
               })
               .catch((error:business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -5727,7 +5732,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.configCookie('https://www.example.com', "a=b", (error) => {
               if (error) {
-                console.log("error: " + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -5840,7 +5846,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.saveCookieAsync((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6214,7 +6221,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.clearAllCookies((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6376,7 +6384,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.clearSessionCookie((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6586,7 +6595,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
@@ -6718,7 +6728,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('quota: ' + quota);
@@ -6849,7 +6860,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                console.log('error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('usage: ' + usage);
@@ -7335,7 +7347,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.log('getAccessibleGeolocationAsync result: ' + result);
@@ -7402,7 +7415,7 @@ struct WebComponent {
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -7449,6 +7462,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
                 console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
@@ -7508,7 +7522,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;

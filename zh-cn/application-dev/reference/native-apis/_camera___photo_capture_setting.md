@@ -17,10 +17,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [quality](#quality) | 拍照图像质量。 | 
-| [rotation](#rotation) | 拍照旋转角度。 | 
-| [location](#location) | 拍照位置。 | 
-| [mirror](#mirror) | 设置镜像拍照功能开关，默认为false。 | 
+| [Camera_QualityLevel](_o_h___camera.md#camera_qualitylevel) [quality](#quality) | 拍照图像质量。  | 
+| [Camera_ImageRotation](_o_h___camera.md#camera_imagerotation) [rotation](#rotation) | 拍照旋转角度。  | 
+| [Camera_Location](_camera___location.md) \* [location](#location) | 拍照位置。  | 
+| bool [mirror](#mirror) | 设置镜像拍照功能开关，默认为false。  | 
 
 
 ## 结构体成员变量说明
@@ -31,9 +31,7 @@
 ```
 Camera_Location* Camera_PhotoCaptureSetting::location
 ```
-
 **描述**
-
 拍照位置。
 
 
@@ -42,9 +40,7 @@ Camera_Location* Camera_PhotoCaptureSetting::location
 ```
 bool Camera_PhotoCaptureSetting::mirror
 ```
-
 **描述**
-
 设置镜像拍照功能开关，默认为false。
 
 
@@ -53,9 +49,7 @@ bool Camera_PhotoCaptureSetting::mirror
 ```
 Camera_QualityLevel Camera_PhotoCaptureSetting::quality
 ```
-
 **描述**
-
 拍照图像质量。
 
 
@@ -64,7 +58,5 @@ Camera_QualityLevel Camera_PhotoCaptureSetting::quality
 ```
 Camera_ImageRotation Camera_PhotoCaptureSetting::rotation
 ```
-
 **描述**
-
 拍照旋转角度。

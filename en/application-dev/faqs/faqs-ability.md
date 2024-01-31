@@ -435,7 +435,7 @@ To start a continuous task in the background, you must configure the permission 
 
 [ServiceAbility Configuration Items - backgroundModes](../application-models/serviceability-configuration.md)
 
-[Continuous Task Permission](../security/permission-list.md#ohospermissionkeep_background_running)
+[Continuous Task Permissions](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)
 
 
 ## How do FA widgets exchange data? (API version 9)
@@ -445,3 +445,7 @@ The widget interacts with the widget provider through the **postCardAction** API
 **References**
 
 [Widget Development in the FA Model](../application-models/widget-development-fa.md)
+
+## Can I create a shortcut entry for an application on the home screen to directly open a specified page? (API version 10)
+
+This feature is not supported yet.

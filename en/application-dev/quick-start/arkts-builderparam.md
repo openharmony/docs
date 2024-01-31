@@ -25,7 +25,9 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   struct Child {
     @Builder doNothingBuilder() {};
 
+    // Use the custom builder function of the custom component for \@BuilderParam initialization.
     @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
+    // Use the global custom builder function for \@BuilderParam initialization.
     @BuilderParam aBuilder1: () => void = GlobalBuilder0;
     build(){}
   }
@@ -37,6 +39,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   @Component
   struct Child {
     @Builder FunABuilder0() {}
+    // Use the \@Builder decorated method in the parent component for \@BuilderParam initialization.
     @BuilderParam aBuilder0: () => void = this.FunABuilder0;
 
     build() {
@@ -67,12 +70,9 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
 
 - **this** in the function body must point to the correct object.
 
-  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. With **\@BuilderParam aBuilder0** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.aBuilder0()**, **this** points to the label of the child component, that is, **Child**. For **\@BuilderParam aBuilder1**, when **this.componentBuilder** is passed to **aBuilder1**, **bind** is called to bind **this**. Therefore, **this.label** points to the label of the **Parent** component.
+  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. With **\@BuilderParam aBuilder0** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.aBuilder0()**, **this** points to the label of the child component, that is, **Child**.
 
-   >  **NOTE**
-   >
-   >  Exercise caution when using **bind** to change the context of function invoking, which may cause **this** to point to an incorrect object.
-
+  
   ```ts
   @Component
   struct Child {
@@ -189,6 +189,7 @@ You can pass the content in the trailing closure to \@BuilderParam as an \@Build
 struct CustomContainer {
   @Prop header: string = '';
   @Builder CloserFun(){}
+  // Use the trailing closure {} (\@Builder decorated method) of the parent component for \@BuilderParam initialization.
   @BuilderParam closer: () => void = this.CloserFun
 
   build() {

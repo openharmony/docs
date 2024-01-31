@@ -48,8 +48,6 @@ For an application in the DLP sandbox state, the permissions granted to the appl
 
 ## How to Develop
 
-Procedure
-
 1. Import the [dlpPermission](../../reference/apis/js-apis-dlppermission.md) module.
 
    ```ts
@@ -192,6 +190,7 @@ Procedure
    ```
 
 9. Obtain information about the DLP sandbox applications in the retention state.
+
     ```ts
     async getRetentionSandboxList() {
       try {
@@ -204,6 +203,7 @@ Procedure
     ```
 
 10. Set sandbox application configuration.
+
     ```ts
     async setSandboxAppConfig() {
       try {
@@ -215,6 +215,7 @@ Procedure
     ```
 
 11. Clean the sandbox application configuration.
+
     ```ts
     async cleanSandboxAppConfig() {
       try {
@@ -226,6 +227,7 @@ Procedure
     ```
 
 12. Obtain the sandbox application configuration.
+
     ```ts
     async getSandboxAppConfig() {
       try {

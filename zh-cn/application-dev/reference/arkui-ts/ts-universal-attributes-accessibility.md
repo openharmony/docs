@@ -87,12 +87,9 @@ struct Index {
   @Builder customAccessibilityNode() {
     Column() {
       Text(`virtual node`)
-        .fontSize(10)
-        .backgroundColor(Color.Red)
-        .width(10)
-        .height(10)
-        .align(Alignment.Center)
     }
+    .width(10)
+    .height(10)
   }
 
   build() {

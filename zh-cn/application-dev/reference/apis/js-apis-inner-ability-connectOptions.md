@@ -18,9 +18,9 @@ import common from '@ohos.app.ability.common';
 
 |    名称      | 类型       | 必填   | 说明                        |
 | ------------ | -------- | ---- | ------------------------- |
-| onConnect<sup>7+</sup>    | function | 是    | 建立连接时的回调函数。      |
-| onDisconnect<sup>7+</sup> | function | 是    | 断开连接时的回调函数。           |
-| onFailed<sup>7+</sup>     | function | 是    | 连接失败时的回调函数。 |
+| onConnect    | function | 是    | 建立连接时的回调函数。      |
+| onDisconnect | function | 是    | 断开连接时的回调函数。           |
+| onFailed     | function | 是    | 连接失败时的回调函数。 |
 
 **示例：**
 

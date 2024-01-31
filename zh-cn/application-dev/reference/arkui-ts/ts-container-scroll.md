@@ -28,7 +28,7 @@ Scroll(scroller?: Scroller)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称             | 参数类型                                     | 描述        |
+| 名称             | 参数类型                                    | 描述        |
 | -------------- | ---------------------------------------- | --------- |
 | scrollable     | [ScrollDirection](#scrolldirection枚举说明)                        | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。 |
@@ -50,12 +50,12 @@ Scroll(scroller?: Scroller)
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
 ## ScrollSnapOptions<sup>10+</sup>
-| 名称       | 参数类型       | 描述       |
-| ---------- | ---------------------------------------- | -------- |
-| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 设置Scroll组件限位滚动时的对其方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
-| snapPagination | [Dimension](ts-types.md#dimension)&nbsp;\|&nbsp;Array\<Dimension\> | 设置Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量。<br/>**说明：** <br/>1.当属性为Dimension时，表示每页的大小，系统会按照该大小来自动计算每个限位点的位置：如当Dimension为500时，实际的限位点即为[0,500,1000,1500,...]。<br/>2.当属性为Array\<Dimension\>时，每个Dimension代表限位点的位置。每个Dimension的范围为[0,可滑动距离]，0和可滑动距离的底部自动成为限位点。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
-| enableSnapToStart | boolean   | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在开头和第一个限位点间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
-| enableSnapToEnd | boolean   | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在最后一个限位点和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| 名称       | 参数类型    | 必填   | 描述       |
+| ---------- | --------------------|-------------------- | -------- |
+| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对其方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
+| snapPagination | [Dimension](ts-types.md#dimension)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量。<br/>**说明：** <br/>1.当属性为Dimension时，表示每页的大小，系统会按照该大小来自动计算每个限位点的位置：如当Dimension为500时，实际的限位点即为[0,500,1000,1500,...]。<br/>2.当属性为Array\<Dimension\>时，每个Dimension代表限位点的位置。每个Dimension的范围为[0,可滑动距离]，0和可滑动距离的底部自动成为限位点。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
+| enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在开头和第一个限位点间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在最后一个限位点和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 
 ## 事件
 
@@ -115,34 +115,38 @@ scrollEdge(value: Edge): void
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
 
+### scrollPage<sup>9+</sup>
 
-### scrollPage
+scrollPage(value: { next: boolean }): void
+
+滚动到下一页或者上一页。
+
+**参数：**
+
+| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
+
+### scrollPage<sup>(deprecated)</sup>
 
 scrollPage(value: { next: boolean, direction?: Axis }): void
 
-滚动到下一页或者上一页。
+滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用 [scrollPage<sup>9+</sup>](#scrollpage9)   。
 
 **参数：**
 
 | 参数名       | 参数类型    | 必填   | 参数描述                           |
 | --------- | ------- | ---- | ------------------------------ |
 | next      | boolean | 是    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
-| direction<sup>(deprecated) </sup> | [Axis](ts-appendix-enums.md#axis)    | 否    | 设置滚动方向为水平或竖直方向。<br/> 从API version 9开始废弃                |
-
+| direction | [Axis](ts-appendix-enums.md#axis)    | 否    | 设置滚动方向为水平或竖直方向。               |
 
 ### currentOffset
 
-currentOffset(): { xOffset: number, yOffset: number }
+currentOffset(): OffsetResult
 
-
-返回当前的滚动偏移量。
-
-**返回值**
-
-| 类型                                                       | 描述                                                         |
-| ---------------------------------------------------------- | ------------------------------------------------------------ |
-| {<br/>xOffset:&nbsp;number,<br/>yOffset:&nbsp;number<br/>} | xOffset:&nbsp;水平滑动偏移;<br/>yOffset:&nbsp;竖直滑动偏移。<br/>**说明：** <br/>返回值单位为vp。 |
-
+| 类型  | 描述 |
+| -------- | -------- |
+|  [OffsetResult<sup>11+</sup>](#offsetresult11) | 返回当前的滚动偏移量。<br/>**说明：**<br/>当scroller控制器未绑定容器组件或者容器组件被异常释放时，currentOffset的返回值为空。|
 
 ### scrollToIndex
 
@@ -181,8 +185,8 @@ scrollBy(dx: Length, dy: Length): void
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
 | ----- | ------ | ---- | ----------------- |
-| dx | Length | 是    | 水平方向滚动距离，不支持百分比形式。 |
-| dy | Length | 是    | 竖直方向滚动距离，不支持百分比形式。 |
+| dx |  [Length](ts-types.md#length) | 是    | 水平方向滚动距离，不支持百分比形式。 |
+| dy |  [Length](ts-types.md#length) | 是    | 竖直方向滚动距离，不支持百分比形式。 |
 
 ### isAtEnd<sup>10+</sup>
 
@@ -225,7 +229,14 @@ getItemRect(index: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
+| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
+
+## OffsetResult<sup>11+</sup>
+
+| 名称 | 类型                                                       | 描述                                                         |
+| --------------|-------------------------------------------- | ------------------------------------------------------------ |
+| xOffset | number | 水平滑动偏移;<br/>返回值单位为vp。 |
+| yOffset | number | 竖直滑动偏移。<br/>返回值单位为vp。 |
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
@@ -237,10 +248,10 @@ getItemRect(index: number): RectResult
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
 ## NestedScrollOptions<sup>10+ </sup>对象说明
-| 名称   | 类型   | 描述              |
-| ----- | ------ | ----------------- |
-| scrollForward | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | NestedScrollMode |  可滚动组件往起始端滚动时的嵌套滚动选项。 |
+| 名称   | 类型  | 必填 | 描述              |
+| ----- | ------ | ------ | ----------------- |
+| scrollForward | NestedScrollMode | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | NestedScrollMode | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>10+ </sup>枚举说明
 | 名称     | 描述                             |
@@ -251,9 +262,9 @@ getItemRect(index: number): RectResult
 | PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## EdgeEffectOptions<sup>11+ </sup>对象说明
-| 参数名   | 类型   | 描述              |
-| ----- | ------ | ----------------- |
-| alwaysEnabled | boolean | 组件内容大小小于组件自身时，设置是否开启滑动效果|
+| 参数名   | 类型  | 必填 | 描述              |
+| ----- | ------| ------- | ----------------- |
+| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
 
 ## 示例

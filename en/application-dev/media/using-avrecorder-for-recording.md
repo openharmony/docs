@@ -19,8 +19,8 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
    > **NOTE**
    >
-   > Perform the subsequent operations after the AV recorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
-   
+   > Perform the subsequent operations after the AVRecorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
+     
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -34,11 +34,11 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description|
+   | Event Type| Description| 
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
    | error | Mandatory; used to listen for AVRecorder errors.|
-   
+     
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -61,10 +61,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    > - In pure audio recording scenarios, set only audio-related parameters in **avConfig** of **prepare()**.
    > - If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
    > 
-   > - The [recording formats](avplayer-avrecorder-overview.md#supported-formats) in use must be those supported by the system.
+   > - The [recording formats](media-kit-intro.md#supported-formats) in use must be those supported by the system.
    > 
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
-
+ 
    ```ts
    import media from '@ohos.multimedia.media';
    import { BusinessError } from '@ohos.base';
@@ -134,7 +134,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 ## Sample Code
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
-
+  
 ```ts
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';

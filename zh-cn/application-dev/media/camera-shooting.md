@@ -18,7 +18,7 @@
 
 2. 创建拍照输出流。
 
-   通过[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../reference/apis/js-apis-camera.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
+   通过[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../reference/apis/js-apis-camera.md#createphotooutput11)方法传入支持的某一个输出流及步骤一获取的SurfaceId创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
@@ -45,13 +45,15 @@
    let context = getContext(this);
 
    async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-     let photoAccessHelper: PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-     let photoAsset: PhotoAsset = await photoAccessHelper.createAsset(testFileName);
+     let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+     let options: PhotoAccessHelper.CreateOptions = {
+       title: Date.now().toString()
+     };
+     let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
      //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
-     const fd = await photoAsset.open('rw');
-     fs.write(fd, buffer);
-     await photoAsset.close(fd);
+     let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+     await fs.write(file.fd, buffer);
+     fs.closeSync(file);
      img.release(); 
    }
 
@@ -160,7 +162,7 @@
 
 5. 触发拍照。
 
-   通过photoOutput类的[capture](../reference/apis/js-apis-camera.md#capture)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
+   通过photoOutput类的[capture](../reference/apis/js-apis-camera.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
@@ -188,8 +190,8 @@
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
-    photoOutput.on('captureStartWithInfo', (err: BusinessError, captureId: number) => {
-      console.info(`photo capture started, captureId : ${captureId}`);
+    photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo) => {
+      console.info(`photo capture started, captureId : ${captureStartInfo.captureId}`);
     });
   }
   ```

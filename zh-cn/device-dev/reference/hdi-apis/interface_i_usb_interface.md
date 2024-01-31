@@ -30,6 +30,7 @@
 | [GetConfig](#getconfig)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[out]&nbsp;unsigned&nbsp;char&nbsp;configIndex) | 获取USB设备当前的配置信息。&nbsp; | 
 | [ClaimInterface](#claiminterface)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[in]&nbsp;unsigned&nbsp;char&nbsp;interfaceid,&nbsp;[in]&nbsp;unsigned&nbsp;char&nbsp;force) | 打开USB设备的接口并声明独占，必须在数据传输前执行。&nbsp; | 
 | [ReleaseInterface](#releaseinterface)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[in]&nbsp;unsigned&nbsp;char&nbsp;interfaceid) | 在停止数据传输后关闭占用的USB设备接口，并释放相关资源。&nbsp; | 
+| [ManageInterface](#manageinterface)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[in]&nbsp;unsigned&nbsp;char&nbsp;interfaceid,&nbsp;[in]&nbsp;bool&nbsp;disable) | 设置USB设备接口启动状态。&nbsp; |
 | [SetInterface](#setinterface)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[in]&nbsp;unsigned&nbsp;char&nbsp;interfaceid,&nbsp;[in]&nbsp;unsigned&nbsp;char&nbsp;altIndex) | 设置USB设备指定接口的备选设置，用于在具有相同ID但不同备用设置的两个接口之间进行选择。&nbsp; | 
 | [BulkTransferRead](#bulktransferread)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[in]&nbsp;struct&nbsp;[UsbPipe](_usb_pipe.md)&nbsp;pipe,&nbsp;[in]&nbsp;int&nbsp;timeout,&nbsp;[out]&nbsp;unsigned&nbsp;char[]&nbsp;data) | 在USB设备指定端点方向为读取时，执行批量数据读取。&nbsp; | 
 | [BulkTransferWrite](#bulktransferwrite)&nbsp;([in]&nbsp;struct&nbsp;[UsbDev](_usb_dev.md)&nbsp;dev,&nbsp;[in]&nbsp;struct&nbsp;[UsbPipe](_usb_pipe.md)&nbsp;pipe,&nbsp;[in]&nbsp;int&nbsp;timeout,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;data) | 在USB设备指定端点方向为写入时，执行批量数据写入。&nbsp; | 
@@ -643,6 +644,31 @@ IUsbInterface::ReleaseInterface ([in] struct UsbDev dev, [in] unsigned char inte
 | -------- | -------- |
 | dev | USB设备地址信息，详见[UsbDev](_usb_dev.md)。&nbsp; | 
 | interfaceid | USB设备接口ID。 | 
+
+**返回:**
+
+0 表示操作成功。
+
+非零值 表示操作失败。
+
+
+### ManageInterface()
+
+  
+```
+IUsbInterface::ManageInterface ([in] struct UsbDev dev, [in] unsigned char interfaceid, [in] bool disable )
+```
+**描述:**
+
+设置USB设备接口启动状态。
+
+**参数:**
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| dev | USB设备地址信息，详见[UsbDev](_usb_dev.md)。&nbsp; | 
+| interfaceid | USB设备接口ID。 | 
+| disable | USB设备接口是否禁用，true表示禁用，false表示不禁用。 | 
 
 **返回:**
 

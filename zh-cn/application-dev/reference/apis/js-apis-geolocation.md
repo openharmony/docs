@@ -30,7 +30,11 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
-如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
+如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
+
+应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
+
+长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -571,9 +575,9 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#locationdeprecated)&gt; |[Location](#locationdeprecated)|NA| 返回位置信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  |[Location](#locationdeprecated)| 返回位置信息。 |
 
 
 **示例**
@@ -637,9 +641,9 @@ getLastLocation(): Promise&lt;Location&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#locationdeprecated)&gt; | [Location](#locationdeprecated)|NA|返回上次位置信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  |  [Location](#locationdeprecated)|返回上次位置信息。 |
 
 
 **示例**
@@ -701,9 +705,9 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用的状态。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean|返回位置服务是否可用的状态。 |
 
 **示例**
 
@@ -764,9 +768,9 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; | boolean|NA|返回位置服务是否可用。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean|返回位置服务是否可用。 |
 
 **示例**
 
@@ -827,9 +831,9 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| 返回地理编码服务是否可用的状态。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  |boolean| 返回地理编码服务是否可用的状态。 |
 
 **示例**
 
@@ -898,9 +902,9 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|返回地理描述信息。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|返回地理描述信息。 |
 
 **示例**
 
@@ -970,9 +974,9 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|设置接收地理编码请求的回调参数。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|设置接收地理编码请求的回调参数。 |
 
 **示例**
 
@@ -1036,9 +1040,9 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;number&gt; | number|NA|返回GNSS缓存位置的个数。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number|返回GNSS缓存位置的个数。 |
 
 **示例**
 
@@ -1101,9 +1105,9 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| 清空所有GNSS缓存位置是否成功。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  |boolean| 清空所有GNSS缓存位置是否成功。 |
 
 **示例**
 
@@ -1174,9 +1178,9 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **返回值**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| 表示命令发送成功或失败。 |
+  | 类型 | 说明 |
+  | -------- | -------- |
+  |boolean| 表示命令发送成功或失败。 |
 
 **示例**
 

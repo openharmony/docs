@@ -15,12 +15,16 @@
 
 
 ## 接口
-GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
+GridRow(option?: GridRowOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
+| 参数名 |类型|必填|说明|
+|-----|-----|----|----|
+| option | [GridRowOptions](#gridrowoptions对象说明) | 否  | 栅格布局子组件参数。 |
 
+## GridRowOptions对象说明
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 |columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。|

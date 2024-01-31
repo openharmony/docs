@@ -4,11 +4,11 @@ You can call the native APIs provided by the **VideoDecoder** module to decode v
 
 Currently, the following decoding capabilities are supported:
 
-| Container Specification| Video Hardware Decoding Type      | Video Software Decoding Type  |
-| -------- | --------------------- | ---------------- |
-| mp4      | AVC (H.264), HEVC (H.265)|AVC (H.264) |
+| Video Hardware Decoding Type      | Video Software Decoding Type  |
+| --------------------- | ---------------- |
+| AVC (H.264), HEVC (H.265)|AVC (H.264) |
 
-Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, only H.264 (video/avc) is supported for software decoding, and H.264 (video/avc) and H.265 (video/hevc) are supported for hardware decoding.
+Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, only H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) is supported for software decoding, and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC) are supported for hardware decoding.
 
 ## How to Develop
 
@@ -35,11 +35,16 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avbuffer.h>
    ```
 
 2. Create a decoder instance.
 
-   You can create a decoder by name or MIME type.
+   You can create a decoder by name or MIME type. In the code snippet below, the following variables are used:
+
+   - videoDec: pointer to the video decorder instance.
+   - capability: pointer to the codec capability instance.
+   - OH_AVCODEC_MIMETYPE_VIDEO_AVC: name of an AVC-format video stream.
 
    ``` c++
     // To create a decoder by name, call OH_AVCapability_GetName to obtain the codec names available and then call OH_VideoDecoder_CreateByName. If your application has special requirements, for example, expecting a decoder that supports a certain resolution, you can call OH_AVCodec_GetCapability to query the capability first.
@@ -66,21 +71,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
        std::condition_variable outCond_;
        std::queue<uint32_t> inQueue_;
        std::queue<uint32_t> outQueue_;
-       std::queue<OH_AVMemory *> inBufferQueue_;
-       std::queue<OH_AVMemory *> outBufferQueue_;
-       std::queue<OH_AVCodecBufferAttr> attrQueue_;
+       std::queue<OH_AVBuffer *> inBufferQueue_;
+       std::queue<OH_AVBuffer *> outBufferQueue_;
    };
    VDecSignal *signal_;
    ```
 
-3. Call **OH_VideoDecoder_SetCallback()** to set callback functions.
+3. Call **OH_VideoDecoder_RegisterCallback()** to set callback functions.
 
-   Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
+   Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
    - **OH_AVCodecOnError**, a callback used to report a codec operation error
    - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, stream width or height change.
    - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the decoder is ready for receiving data
-   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that decoding is complete (Note: The **data** parameter in the callback function is empty in surface output mode.)
+   - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that decoding is complete (Note: The **buffer** parameter in the callback function is empty in surface output mode.)
 
    You need to process the callback functions to ensure that the decoder runs properly.
 
@@ -101,8 +105,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         (void)userData;
     }
 
-    // Implement the OH_AVCodecOnNeedInputData callback function.
-    static void OnNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
+    // Implement the OH_AVCodecOnNeedInputBuffer callback function.
+    static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
@@ -110,27 +114,25 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // The ID of the input frame is sent to inQueue_.
         signal_->inQueue_.push(index);
         // The input frame data is sent to inBufferQueue_.
-        signal_->inBufferQueue_.push(data);
+        signal_->inBufferQueue_.push(buffer);
         signal_->inCond_.notify_all();
     }
 
-    // Implement the OH_AVCodecOnNewOutputData callback function.
-    static void OnNeedOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr,
-                                        void *userData)
+    // Implement the OH_AVCodecOnNewOutputBuffer callback function.
+    static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
         std::unique_lock<std::mutex> lock(signal_->outMutex_);
         // The index of the output buffer is sent to outQueue_.
         signal_->outQueue_.push(index);
-        // The decoded data (specified by data) is sent to outBufferQueue_. (Note: data is empty in surface output mode.)
-        signal_->outBufferQueue_.push(data);
-        signal_->attrQueue_.push(*attr);
+        // The decoded data (specified by data) is sent to outBufferQueue_. (Note: buffer is empty in surface output mode.)
+        signal_->outBufferQueue_.push(buffer);
         signal_->outCond_.notify_all();
     }
-    OH_AVCodecAsyncCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputData, &OnNeedOutputData};
+    OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // Set the asynchronous callbacks.
-    int32_t ret = OH_VideoDecoder_SetCallback(videoDec, cb, signal_);
+    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, signal_);
    ```
 
 4. Call **OH_VideoDecoder_Configure()** to configure the decoder.
@@ -193,7 +195,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_Start(videoDec);
    ```
 
-8. Call **OH_VideoDecoder_PushInputData()** to push the stream to the input queue for decoding.
+8. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input queue for decoding.
 
    ``` c++
     // Configure the buffer information.
@@ -205,21 +207,32 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     info.offset = 0;
     info.pts = pkt->pts;
     info.flags = AVCODEC_BUFFER_FLAGS_NONE;
-    // Send the data to the input queue for decoding. The index is the subscript of the queue.
-    int32_t ret = OH_VideoDecoder_PushInputData(videoDec, index, info);
+   // Write info information to the buffer.
+   ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+   if (ret != AV_ERR_OK) {
+       // Exception handling.
+   }
+   // Send the data to the input queue for decoding. The index is the subscript of the queue.
+   int32_t ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
    ```
 
-9. In surface display mode, call **OH_VideoDecoder_RenderOutputData()** to display and release the decoded frames. In the surface no display mode or buffer mode, call **OH_VideoDecoder_FreeOutputData()** to the release decoded frames.
+9. In surface display mode, call **OH_VideoDecoder_RenderOutputBuffer()** to display and release the decoded frames. In the surface no display mode or buffer mode, call **OH_VideoDecoder_FreeOutputBuffer()** to the release decoded frames.
 
    ``` c++
     int32_t ret;
+    // Obtain the decoded information.
+    OH_AVCodecBufferAttr attr;
+    ret = OH_AVBuffer_GetBufferAttr(buffer, &attr);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
     // Write the decoded data (specified by data) to the output file.
-    outFile->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), data.size);
+    outFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), attr.size);
     // Free the buffer that stores the output data. The index is the subscript of the surface/buffer queue.
     if (isSurfaceMode && isRender) {
-        ret = OH_VideoDecoder_RenderOutputData(videoDec, index);
+        ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
     } else {
-        ret = OH_VideoDecoder_FreeOutputData(videoDec, index);
+        ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
     }
     if (ret != AV_ERR_OK) {
         // Exception handling.

@@ -630,7 +630,7 @@ OH_AVErrCode OH_AVPlayer_Pause (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Pause**添加到任务队列中，否则返回在**native_averrors.h**中定义的错误代码。
+如果成功将**Pause**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在**native_averrors.h**中定义的错误代码。
 
 
 ### OH_AVPlayer_Play()
@@ -684,7 +684,7 @@ OH_AVErrCode OH_AVPlayer_Prepare (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将{}添加到任务队列中，则返回**AV_ERR_OK**；否则返回在**native_averrors.h**中定义的错误代码
+如果成功将**Prepare**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在**native_averrors.h**中定义的错误代码
 
 
 ### OH_AVPlayer_Release()
@@ -765,7 +765,7 @@ OH_AVErrCode OH_AVPlayer_Reset (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**reset**添加到任务队列，否则返回在**native_averrors.h**中定义的错误代码。
+如果成功将**reset**添加到任务队列，则返回**AV_ERR_OK**；否则返回在**native_averrors.h**中定义的错误代码。
 
 
 ### OH_AVPlayer_Seek()
