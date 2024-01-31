@@ -42,7 +42,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 ### 开发步骤
 
-适用于Stage模型。
+适用于Stage应用模型。
 
 1. 在module.json5配置文件中配置分布式数据同步权限ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -71,7 +71,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
     import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
   ```
 
-3. 这个权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
+3. 分布式数据同步权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
 
   ```ts
   let context = getContext(this) as common.UIAbilityContext;
