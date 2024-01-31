@@ -170,7 +170,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate: this.parentSelectedDate })
     }
 
   }
@@ -281,36 +281,38 @@ struct Child {
   build() {
     Text(`${this.value}`)
       .fontSize(50)
-      .onClick(()=>{this.value++})
+      .onClick(() => {
+        this.value++
+      })
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State arr: number[] = [1,2,3];
+  @State arr: number[] = [1, 2, 3];
 
   build() {
     Row() {
       Column() {
-        Child({value: this.arr[0]})
-        Child({value: this.arr[1]})
-        Child({value: this.arr[2]})
+        Child({ value: this.arr[0] })
+        Child({ value: this.arr[1] })
+        Child({ value: this.arr[2] })
 
         Divider().height(5)
 
-        ForEach(this.arr, 
+        ForEach(this.arr,
           (item: number) => {
-            Child({value: item})
-          }, 
+            Child({ value: item })
+          },
           (item: string) => item.toString()
         )
         Text('replace entire arr')
-        .fontSize(50)
-        .onClick(()=>{
-          // 两个数组都包含项“3”。
-          this.arr = this.arr[0] == 1 ? [3,4,5] : [1,2,3];
-        })
+          .fontSize(50)
+          .onClick(() => {
+            // 两个数组都包含项“3”。
+            this.arr = this.arr[0] == 1 ? [3, 4, 5] : [1, 2, 3];
+          })
       }
     }
   }
@@ -797,6 +799,7 @@ struct PropChild1 {
       })
   }
 }
+
 @Component
 struct PropChild2 {
   @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
@@ -820,7 +823,7 @@ struct Parent {
         .onClick(() => {
           this.testNum[0].c += 1;
         })
-        
+
       // @PropChild1本地没有初始化，必须从父组件初始化
       PropChild1({ testNum: this.testNum[0] })
       // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
