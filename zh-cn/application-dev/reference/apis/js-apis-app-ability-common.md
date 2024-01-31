@@ -32,10 +32,11 @@ import common from '@ohos.app.ability.common';
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | AbilityStartCallback二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
 | AutoFillExtensionContext   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | AutoFillExtensionContext二级模块。 |
-| AutoStartupInfo   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。 |
-| AutoStartupCallback   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | AutoStartupCallback二级模块。 |
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。 |
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | AutoStartupCallback二级模块。 |
 
 **示例：**
+
 ```ts
 import common from '@ohos.app.ability.common';
 
@@ -52,6 +53,4 @@ let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let autoFillExtensionContext: common.AutoFillExtensionContext;
-let autoStartupInfo: common.AutoStartupInfo;
-let autoStartupCallback: common.AutoStartupCallback;
 ```
