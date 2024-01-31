@@ -67,7 +67,8 @@ typedef struct {
     - Modify the sandbox configuration files in the **base/startup/init/interfaces/innerkits/sandbox** directory. After that, restart the system.
 
 ### Development Example
-JSON file configuration of the sandbox:
+
+JSON file configuration of the sandbox:<a name = "sandbox"></a>
 
 ```json
 {

@@ -151,7 +151,7 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 | Name  | Type                                           | Mandatory | Description        |
 | -------- | ----------------------------------------------- | ----- | ------------ |
 | iface    | string                                          | Yes   | Interface name.|
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration)> | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
@@ -207,7 +207,7 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 
 | Type                             | Description                              |
 | --------------------------------- | ---------------------------------- |
-| Promise\<[InterfaceConfiguration](#interfaceconfiguration)>   | Promise used to return the result.       |
+| Promise\<[InterfaceConfiguration](#interfaceconfiguration9)>   | Promise used to return the result.       |
 
 **Error codes**
 
@@ -504,7 +504,7 @@ Defines the network configuration for the Ethernet connection.
 
 | Name         | Type                   | Mandatory| Description                                                        |
 | ------------ | ----------------------- | ---|------------------------------------------------------------ |
-| mode         | [IPSetMode](#ipsetmode) | Yes| Configuration mode of the Ethernet connection.|
+| mode         | [IPSetMode](#ipsetmode9) | Yes| Configuration mode of the Ethernet connection.|
 | ipAddr       | string                  | Yes| Static IP address of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in Dynamic Host Configuration Protocol (DHCP) mode.|
 | route        | string                  | Yes| Route of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | gateway      | string                  | Yes| Gateway of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
