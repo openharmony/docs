@@ -92,9 +92,9 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 下面以新增媒体类文件类型场景为例，说明如何自定义UTD标准化数据类型。
 
-1. 当前应用在entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd_adt.json文件。
+1. 当前应用在entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd.json5文件。
 
-2. 在当前应用的utd_adt.json配置文件内新增所需的自定义数据类型。
+2. 在当前应用的utd.json5配置文件内新增所需的自定义数据类型。
    ```json
    {
         "UniformDataTypeDeclarations": [
@@ -126,9 +126,9 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    }
    ```
 
-3. 如果其他应用要直接使用当前应用内的自定义数据类型，需要在其应用的entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd_adt.json文件。
+3. 如果其他应用要直接使用当前应用内的自定义数据类型，需要在其应用的entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd.json5文件。
 
-   然后在utd_adt.json配置文件中进行以下声明：
+   然后在utd.json5配置文件中进行以下声明：
 
    ```json
    {
@@ -145,7 +145,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    }
    ```
 
-4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd_adt.json配置文件示例如下：
+4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd.json5配置文件示例如下：
 
    ```json
    {
