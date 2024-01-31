@@ -4,13 +4,13 @@ The **photoAccessHelper** module provides APIs for user album management, includ
 
 > **NOTE**
 >
-> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
-> Unless otherwise specified, the examples in this document use the **PhotoAccessHelper** instance described in [photoAccessHelper Overview](photoAccessHelper-overview.md). If the code for obtaining the **PhotoAccessHelper** instance is missing, an error is reported to indicate that **photoAccessHelper** is not defined.
+> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for permissions required for album management. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most **PhotoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
-## Creating a User Album
+## Creating a User Album (for System Applications Only)
 
 Use [PhotoAccessHelper.createAlbum](../reference/apis/js-apis-photoAccessHelper.md#createalbum-1) to create a user album.
 
@@ -94,13 +94,11 @@ async function example() {
 
 ## Renaming a User Album
 
-Modify the **Albums.albumName** attribute of the album,
-
-and use [Album.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-3) to synchronize the modification to the database.
+Modify the **Albums.albumName** attribute of the album, and use [Album.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-3) to update the modification to the database.
 
 Before renaming a user album, you need to obtain an album object. You can use the [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult) APIs to obtain the user album of the specified location.
 
-The new user album names must also comply with the album name requirements in [Creating a User Album](#creating-a-user-album).
+The new user album names must also comply with the album name requirements in [Creating a User Album](#creating-a-user-album-for-system-applications-only).
 
 **Prerequisites**
 
@@ -319,7 +317,7 @@ async function example() {
 }
 ```
 
-## Deleting a User Album
+## Deleting a User Album (for System Applications Only)
 
 [Obtain the user album](##obtaining-a-user-album), and then call [PhotoAccessHelper.deleteAlbums](../reference/apis/js-apis-photoAccessHelper.md#deletealbums-1) to delete it.
 
