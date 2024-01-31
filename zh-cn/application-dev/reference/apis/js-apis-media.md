@@ -5376,6 +5376,9 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
 监听音频焦点变化事件，参考[audio.InterruptEvent](js-apis-audio.md#interruptevent9)。
 
+> **说明：**
+> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](#onaudiointerrupt9)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 **参数：**
@@ -6374,6 +6377,9 @@ videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
 on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
 监听音频焦点变化事件，参考[audio.InterruptEvent](js-apis-audio.md#interruptevent9)。
+
+> **说明：**
+> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](#onaudiointerrupt9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
