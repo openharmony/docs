@@ -428,7 +428,7 @@
        - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
        - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
        - [HiSysEvent查询指导](subsystems/subsys-dfx-hisysevent-query.md)
-       - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-to
+       - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-tool.md)
      - [HiAppEvent数据处理者lib库概述](subsystems/subsys-dfx-hiappevent-extend-so.md)
      - [HiDumper开发指导](subsystems/subsys-dfx-hidumper.md)
      - [HiChecker开发指导](subsystems/subsys-dfx-hichecker.md)
