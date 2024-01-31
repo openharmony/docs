@@ -107,30 +107,30 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    @Entry
    @Component
    struct CustomDialogUser {
-     dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({
-         cancel: this.onCancel,
-         confirm: this.onAccept,
-       }),
-     })
+       dialogController: CustomDialogController = new CustomDialogController({
+         builder: CustomDialogExample({
+           cancel: this.onCancel,
+           confirm: this.onAccept,
+         }),
+       })
    
-     onCancel() {
-       console.info('Callback when the first button is clicked')
-     }
+       onCancel() {
+         console.info('Callback when the first button is clicked')
+       }
    
-     onAccept() {
-       console.info('Callback when the second button is clicked')
-     }
+       onAccept() {
+         console.info('Callback when the second button is clicked')
+       }
    
-     build() {
-       Column() {
-         Button('click me')
-           .onClick(() => {
-             this.dialogController.open()
-           })
-       }.width('100%').margin({ top: 5 })
+       build() {
+         Column() {
+           Button('click me')
+             .onClick(() => {
+               this.dialogController.open()
+            })
+         }.width('100%').margin({ top: 5 })
+       }
      }
-   }
    ```
 
       ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
