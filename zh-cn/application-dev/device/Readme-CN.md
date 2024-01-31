@@ -4,7 +4,8 @@
   - [USB服务开发概述](usb-overview.md)
   - [USB服务开发指导](usb-guidelines.md)
 - 位置
-  - [位置服务开发指南](location-guidelines.md)
+  - [位置服务简介](location-kit-intro.md)
+  - [位置服务开发指导](location-kit-guidelines.md)
 - 传感器
   - [传感器开发概述](sensor-overview.md)
   - [传感器开发指导](sensor-guidelines.md)

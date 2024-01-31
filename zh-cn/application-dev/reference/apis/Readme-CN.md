@@ -265,6 +265,7 @@
 - 媒体
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](js-apis-app-ability-MediaControlExtensionAbility.md)
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
+  - [@ohos.multimedia.audioHaptic (音振协同)](js-apis-audioHaptic.md)
   - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
@@ -275,6 +276,7 @@
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
     - [soundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
+    - [systemTonePlayer (系统提示音播放器)](js-apis-inner-multimedia-systemTonePlayer.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
@@ -537,7 +539,9 @@
 - 应用服务
   - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
   - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)
+  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](js-apis-adcomponent.md)
   - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)](js-apis-adsserviceextensionability.md)
+  - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](js-apis-autoadcomponent.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

@@ -1,6 +1,6 @@
-# Location Kit简介
+# 位置服务简介
 
-## Location Kit开发概述
+## 开发概述
 
 移动终端设备已经深入人们日常生活的方方面面，如查看所在城市的天气、新闻轶事、出行打车、旅行导航、运动记录。这些习以为常的活动，都离不开定位用户终端设备的位置。
 
@@ -8,11 +8,11 @@
 
 当应用在实现基于设备位置的功能时，如：驾车导航，记录运动轨迹等，可以调用该模块的API接口，完成位置信息的获取。
 
-### Location Kit简介
+### 简介
 
 位置子系统使用多种定位技术提供服务，如GNSS定位、基站定位、WLAN/蓝牙定位（基站定位、WLAN/蓝牙定位后续统称“网络定位技术”）；通过这些定位技术，无论用户设备在室内或是户外，都可以准确地确定设备位置。
 
-Location Kit除了提供基础的定位服务之外，还提供了地理围栏、地理编码、逆地理编码、国家码等功能和接口。
+位置服务除了提供基础的定位服务之外，还提供了地理围栏、地理编码、逆地理编码、国家码等功能和接口。
 
 - **坐标**<br/>
   系统以1984年世界大地坐标系统为参考，使用经度、纬度数据描述地球上的一个位置。
@@ -38,6 +38,6 @@ Location Kit除了提供基础的定位服务之外，还提供了地理围栏�
 
 ### 相关实例
 
-针对Location Kit，有以下相关实例可供参考：
+针对位置服务，有以下相关实例可供参考：
 
-- [`Location`：Location Kit（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)
+- [`Location`：位置信息（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)
