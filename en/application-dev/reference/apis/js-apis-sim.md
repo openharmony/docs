@@ -926,11 +926,11 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 Obtains account information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -973,11 +973,11 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 Obtains account information of the SIM card in the specified slot. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1026,11 +1026,11 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 Obtains the list of activated SIM card accounts. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1046,6 +1046,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1070,11 +1071,11 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 
 Obtains the list of activated SIM card accounts. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -3521,7 +3522,7 @@ Queries contact numbers of the SIM card in the specified slot. This API uses a p
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -3580,7 +3581,7 @@ Adds contact numbers to the SIM card in the specified slot. This API uses an asy
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -3639,7 +3640,7 @@ Adds contact numbers to the SIM card in the specified slot. This API uses a prom
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -3703,7 +3704,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -3763,7 +3764,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -3827,7 +3828,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses an
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -3887,7 +3888,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 
 >**NOTE**
 >
->A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache first. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
 >
 
 **System API**: This is a system API.
@@ -4342,12 +4343,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpKey(0);
+sim.getOpKey(0).then((data: string) => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpKey failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpKeySync<sup>10+</sup>
@@ -4465,12 +4465,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpName(0);
+sim.getOpName(0).then((data: string) => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpName failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpName failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpNameSync<sup>10+</sup>

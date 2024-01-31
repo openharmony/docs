@@ -58,7 +58,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DataObject = distributedObject.create(context, source);
 ```
 
@@ -86,7 +86,7 @@ class SourceObject {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-        let source: SourceObject = new SourceObject("amy", 18, false);
+        let source: SourceObject = new SourceObject("jack", 18, false);
         g_object = distributedObject.create(this.context, source);
     }
 }
@@ -581,7 +581,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 ```
 
@@ -631,7 +631,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId());
@@ -674,7 +674,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
@@ -721,7 +721,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // 删除数据变更回调changeCallback
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
@@ -771,7 +771,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 
 g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
@@ -815,7 +815,7 @@ class SourceObject {
     }
 }
 
-let source: SourceObject = new SourceObject("amy", 18, false);
+let source: SourceObject = new SourceObject("jack", 18, false);
 let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
 // 删除上下线回调changeCallback
 g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {

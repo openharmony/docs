@@ -435,7 +435,7 @@ struct Index {
         Text(this.viewModel.isSuccess ? 'success' : 'failed')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             this.viewModel.query()
           })
       }.width('100%')
@@ -448,24 +448,26 @@ export class TestModel {
   model: Model
 
   constructor() {
-    this.model = new Model(()=>{
+    this.model = new Model(() => {
       this.isSuccess = true
       console.log(`this.isSuccess: ${this.isSuccess}`)
     })
   }
+
   query() {
     this.model.query()
   }
 }
 
 export class Model {
-  callback: ()=>void
+  callback: () => void
 
-  constructor(cb: ()=>void) {
+  constructor(cb: () => void) {
     this.callback = cb
   }
-  query(){
-      this.callback()
+
+  query() {
+    this.callback()
   }
 }
 ```

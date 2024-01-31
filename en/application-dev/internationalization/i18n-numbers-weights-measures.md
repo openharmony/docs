@@ -225,8 +225,8 @@ Assume that **fromUnit** is **cup** (US unit), **toUnit** is **liter** (SI unit)
 import I18n from '@ohos.i18n'
 
 // Set the fromUnit and toUnit.
-let fromUnit = {unit: 'cup', measureSystem: 'US'};
-let toUnit = {unit: 'liter', measureSystem: 'SI'};
+let fromUnit: I18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
+let toUnit: I18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // Convert the unit based on the locale en-US.
 let convertedUnit1 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L

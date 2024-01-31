@@ -330,7 +330,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id，该参数应为整数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **示例：**
 
@@ -636,7 +636,7 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'foldStatusChange'，表示折叠设备折叠状态发生变化。 |
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | 否   | 回调函数。表示折叠设备的折叠状态。 |
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | 否   | 需要取消注册的回调函数。若无此参数，则取消注册折叠状态变化监听的所有回调函数。 |
 
 **错误码：**
 
@@ -707,7 +707,7 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'foldDisplayModeChange'，表示折叠设备屏幕显示模式发生变化。 |
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | 否   | 回调函数。表示折叠设备屏幕显示模式。 |
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | 否   | 需要取消注册的回调函数。若无此参数，则取消注册屏幕显示模式变化监听的所有回调函数。 |
 
 **错误码：**
 

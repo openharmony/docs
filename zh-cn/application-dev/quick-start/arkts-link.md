@@ -103,7 +103,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate:this.parentSelectedDate })
     }
   }
 }

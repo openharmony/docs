@@ -104,7 +104,6 @@
 ```ts
 @Component
 struct CompD {
-
   @Consume selectedDate: Date;
 
   build() {
@@ -130,7 +129,6 @@ struct CompD {
 @Entry
 @Component
 struct CompA {
-
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -240,6 +238,7 @@ struct CompA {
 class Tmp {
   a: string = ''
 }
+
 @Entry
 @Component
 struct HomePage {
@@ -257,7 +256,7 @@ struct HomePage {
 }
 @Component
 struct CustomWidget {
-  @Provide('a') a: string='abc';
+  @Provide('a') a: string = 'abc';
   @BuilderParam
   builder: () => void;
   build() {

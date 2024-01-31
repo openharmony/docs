@@ -31,8 +31,10 @@
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [利用native的方式实现跨线程调用](native-threads-call-js.md)
+    - [Web组件开发性能提升指导](performance-web-import.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
     - [性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)
     - [常用trace使用指导](common-trace-using-instructions.md)
+    - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
