@@ -626,8 +626,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  domainName.DEVICE_SHARED);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.enableAirplaneMode
