@@ -3854,7 +3854,7 @@ Defines a contact's email.
 
 | Name            | Value  | Description            |
 | ---------------- | ---- | ---------------- |
-| CUSTOM_LABEL     | 0    | Custom mailbox type.|
+| CUSTOM_LABEL     | 10000    | Custom mailbox type.|
 | EMAIL_HOME       | 1    | Home mailbox.  |
 | EMAIL_WORK       | 2    | Work mailbox.  |
 | EMAIL_OTHER      | 3    | Other mailbox.  |
@@ -3910,6 +3910,8 @@ Defines an application that creates the contact.
 
 ```js
 let holder: contact.Holder = {
+  bundleName: "com.ohos.contacts",
+  displayName: "displayName",
   holderId: 0
 };
 ```
@@ -3932,7 +3934,7 @@ Defines a contact's event.
 
 | Name             | Value  | Description              |
 | ----------------- | ---- | ------------------ |
-| CUSTOM_LABEL      | 0    | Custom event.  |
+| CUSTOM_LABEL      | 10000    | Custom event.  |
 | EVENT_ANNIVERSARY | 1    | Anniversary event.|
 | EVENT_OTHER       | 2    | Other event.    |
 | EVENT_BIRTHDAY    | 3    | Birthday event.    |
@@ -4007,14 +4009,15 @@ Enumerates IM addresses.
 
 | Name            | Value  | Description                |
 | ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | -1   | Custom IM|
-| IM_AIM           | 0    | AIM   |
-| IM_MSN           | 1    | MSN   |
-| IM_YAHOO         | 2    | Yahoo |
-| IM_SKYPE         | 3    | Skype |
-| IM_QQ            | 4    | QQ    |
-| IM_ICQ           | 6    | ICQ   |
-| IM_JABBER        | 7    | JABBER|
+| CUSTOM_LABEL     | 10000   | Custom IM|
+| IM_AIM           | 1    | AIM   |
+| IM_MSN           | 2    | MSN   |
+| IM_YAHOO         | 3    | Yahoo |
+| IM_SKYPE         | 4    | Skype |
+| IM_QQ            | 5    | QQ    |
+| IM_HANGOUTS      | 6    | HANGOUTS|
+| IM_ICQ           | 7    | ICQ   |
+| IM_JABBER        | 8    | JABBER|
 | INVALID_LABEL_ID | -2   | Invalid IM|
 
 
@@ -4186,27 +4189,15 @@ Defines a contact's phone number.
 
 | Name            | Value  | Description                                            |
 | ---------------- | ---- | ------------------------------------------------ |
-| CUSTOM_LABEL     | 0    | Custom phone type.                                |
-| NUM_HOME         | 1    | Home phone.                                  |
-| NUM_MOBILE       | 2    | Mobile phone.                                  |
+| CUSTOM_LABEL     | 10000    | Custom phone type.                                |
+| NUM_MOBILE       | 1    | Mobile phone.                                  |
+| NUM_HOME         | 2    | Home phone.                                  |
 | NUM_WORK         | 3    | Work phone.                                  |
 | NUM_FAX_WORK     | 4    | Work fax.                              |
 | NUM_FAX_HOME     | 5    | Family fax.                              |
 | NUM_PAGER        | 6    | Pager.                                |
 | NUM_OTHER        | 7    | Other phone type.                                  |
-| NUM_CALLBACK     | 8    | Callback phone.                                  |
-| NUM_CAR          | 9    | Car phone.                                  |
-| NUM_COMPANY_MAIN | 10   | Company phone.                                  |
-| NUM_ISDN         | 11   | Integrated Services Digital Network (ISDN) phone.                |
 | NUM_MAIN         | 12   | Main phone.                                    |
-| NUM_OTHER_FAX    | 13   | Other fax phone.                                  |
-| NUM_RADIO        | 14   | Wireless phone.                                  |
-| NUM_TELEX        | 15   | Telex phone.                                  |
-| NUM_TTY_TDD      | 16   | Teletypewriter (TTY) or Test Driven Development (TDD) phone.|
-| NUM_WORK_MOBILE  | 17   | Work mobile phone.                              |
-| NUM_WORK_PAGER   | 18   | Work pager.                            |
-| NUM_ASSISTANT    | 19   | Assistant phone.                                  |
-| NUM_MMS          | 20   | MMS phone.                                  |
 | INVALID_LABEL_ID | -1   | Invalid phone type.                                  |
 
 
@@ -4277,7 +4268,7 @@ Defines a contact's postal address.
 
 | Name            | Value  | Description                |
 | ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 0    | Custom postal address type.|
+| CUSTOM_LABEL     | 10000    | Custom postal address type.|
 | ADDR_HOME        | 1    | Home address.      |
 | ADDR_WORK        | 2    | Work address.      |
 | ADDR_OTHER       | 3    | Other addresses.      |
@@ -4306,7 +4297,8 @@ Defines a contact's postal address.
 
 ```js
 let postalAddress: contact.PostalAddress = {
-    city: "city"
+    city: "city",
+    postalAddress: "postalAddress"
 };
 ```
 
@@ -4315,6 +4307,7 @@ let postalAddress: contact.PostalAddress = {
 ```js
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
+postalAddress.postalAddress = "postalAddress";
 ```
 
 
@@ -4328,17 +4321,17 @@ Defines a contact's relationship.
 
 | Name                     | Value  | Description              |
 | ------------------------- | ---- | ------------------ |
-| CUSTOM_LABEL              | 0    | Custom relationship.  |
+| CUSTOM_LABEL              | 10000    | Custom relationship.  |
 | RELATION_ASSISTANT        | 1    | Assistant.    |
 | RELATION_BROTHER          | 2    | Sibling.    |
 | RELATION_CHILD            | 3    | Child.    |
-| RELATION_DOMESTIC_PARTNER | 4    | Domestic partner.|
+| RELATION_PARTNER          | 4    | Partner.|
 | RELATION_FATHER           | 5    | Father.    |
 | RELATION_FRIEND           | 6    | Friend.    |
 | RELATION_MANAGER          | 7    | Manager.  |
 | RELATION_MOTHER           | 8    | Mother.    |
 | RELATION_PARENT           | 9    | Parent.    |
-| RELATION_PARTNER          | 10   | Partner.|
+| RELATION_DOMESTIC_PARTNER | 10   | Domestic partner.|
 | RELATION_REFERRED_BY      | 11   | Referrer.  |
 | RELATION_RELATIVE         | 12   | Relative.    |
 | RELATION_SISTER           | 13   | Sister.    |
@@ -4385,7 +4378,7 @@ Defines a contact's SIP address.
 
 | Name            | Value  | Description                               |
 | ---------------- | ---- | ----------------------------------- |
-| CUSTOM_LABEL     | 0    | Custom SIP address.|
+| CUSTOM_LABEL     | 10000    | Custom SIP address.|
 | SIP_HOME         | 1    | Home SIP address.  |
 | SIP_WORK         | 2    | Work SIP address.  |
 | SIP_OTHER        | 3    | Other SIP address.  |

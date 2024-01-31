@@ -450,7 +450,7 @@ observer.on('callStateChange', (value: Value) => {
 
 ## observer.on('callStateChange')
 
-on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state:CallState, number: string }>): void
+on(type: 'callStateChange', options: { slotId: number }, callback: Callback\<{ state: CallState, number: string }\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
@@ -497,7 +497,7 @@ observer.on('callStateChange', id, (value: Value) => {
 
 ## observer.off('callStateChange')
 
-off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: string }>): void
+off(type: 'callStateChange', callback?: Callback\<{ state: CallState, number: string }\>): void
 
 Unregisters the observer for call status change events. This API uses an asynchronous callback to return the execution result.
 

@@ -2,23 +2,23 @@
 
 ## Scenarios
 
-You can use the Native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
+You can use the native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
 
-## Basic Concepts
+## Basic concepts
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of Native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
+- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of native APIs used to build JavaScript components. N-APIs can be used to encapsulate libraries developed using C/C++ into JavaScript modules.
 
-## Setting Up the Environment
+## Preparing the Environment
 
 - Install DevEco Studio 3.1.0.500 or later, and update the SDK to API version 10 or later.
 
 ## How to Develop
 
-### 1. Create a Native C++ project.
+### 1. Create a native C++ project.
 
-Open DevEco Studio, choose **File** > **New** > **Create Project** to create a Native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
+Open DevEco Studio, choose **File** > **New** > **Create Project** to create a native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
 
-### 2. Write the inference code in C++.
+### 2. Compile the C++ inference code.
 
 Assume that you have prepared a model in the **.ms** format.
 
@@ -36,6 +36,11 @@ Before using the Native APIs provided by MindSpore Lite for development, you nee
 (1). Read model files.
 
 ```C++
+#define LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+#define LOGD(...) ((void)OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+#define LOGW(...) ((void)OH_LOG_Print(LOG_APP, LOG_WARN, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+#define LOGE(...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
+
 void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::string &modelName, size_t *modelSize) {
     auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
     if (rawFile == nullptr) {
@@ -49,7 +54,7 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
     }
     int ret = OH_ResourceManager_ReadRawFile(rawFile, modelBuffer, fileSize);
     if (ret == 0) {
-        LOGI("Read model file failed");
+        LOGE("Read model file failed");
         OH_ResourceManager_CloseRawFile(rawFile);
         return nullptr;
     }
@@ -122,7 +127,7 @@ void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
     }
 }
 
-// Fill data to input tensors.
+// fill data to inputs tensor
 int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
     for (size_t i = 0; i < inputs.handle_num; i++) {
         FillTensorWithRandom(inputs.handle_list[i]);
@@ -219,7 +224,7 @@ target_link_libraries(mslite_napi PUBLIC ace_napi.z)
 ```
 
 
-### 3. Use N-APIs to encapsulate the C++ dynamic library into a JavaScript module.
+### 3. Use N-APIs to encapsulate C++ dynamic libraries into JavaScript modules.
 
 
 Create the **libmslite_api/** subdirectory in **entry/src/main/cpp/types/**, and create the **index.d.ts** file in the subdirectory. The file content is as follows:
@@ -253,29 +258,27 @@ const TAG = 'MSLiteNativeDemo'
 @Entry
 @Component
 struct Index {
-    @State message: string = 'MindSpore Lite Demo'
-    build() {
-        Row() {
-            Column() {
-                Text(this.message)
-                    .fontSize(30)
-                    .fontWeight(FontWeight.Bold)
-                    .onClick(() => {
-                        resManager.getResourceManager().then(mgr => {
-                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-                            let ret: number = 0;
-                            ret = msliteNapi.runDemo("", mgr); // Call runDemo() to perform AI model inference.
-                            if (ret == -1) {
-                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
-                            }
-                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-                        })
-                    })
-            }
-            .width('100%')
-        }
-        .height('100%')
+  @State message: string = 'MindSpore Lite Demo'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+            .onClick(async () => {
+              hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+              let ret: number = 0;
+              ret = msliteNapi.runDemo("", getContext(this).resourceManager); // Call runDemo() to perform AI model inference.
+              if (ret == -1) {
+                hilog.error(0x0000, TAG, 'Error when running MSLite Demo!');
+              }
+              hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+            })
+      }
+      .width('100%')
     }
+    .height('100%')
+  }
 }
 ```
 
