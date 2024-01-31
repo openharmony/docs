@@ -47,8 +47,10 @@ import Want from '@ohos.app.ability.Want';
   };
 
   context.startAbility(want, (err: BusinessError) => {
-    // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-    console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+    if (err.code) {
+      // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
+      console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -70,7 +72,9 @@ import Want from '@ohos.app.ability.Want';
         };
 
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * Number
@@ -89,8 +93,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want: BusinessError, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want: Want, (err) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * Boolean
@@ -109,7 +115,9 @@ import Want from '@ohos.app.ability.Want';
         };
 
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * Object
@@ -133,7 +141,9 @@ import Want from '@ohos.app.ability.Want';
         };
 
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * Array
@@ -155,7 +165,9 @@ import Want from '@ohos.app.ability.Want';
         };
 
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * FD
@@ -186,7 +198,9 @@ import Want from '@ohos.app.ability.Want';
         };
 
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
     - Usage of **parameter**:
@@ -205,7 +219,9 @@ import Want from '@ohos.app.ability.Want';
           abilityName: 'ServiceExtensionAbility',
         };
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
 
@@ -225,7 +241,9 @@ import Want from '@ohos.app.ability.Want';
         };
 
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
 
@@ -250,7 +268,9 @@ import Want from '@ohos.app.ability.Want';
           },
         };
         context.startAbility(want, (err: BusinessError) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
 
@@ -261,8 +281,8 @@ import Want from '@ohos.app.ability.Want';
         import Want from '@ohos.app.ability.Want';
 
         class UIAbilityB extends UIAbility {
-            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-                console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
-            }
+          onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+            console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
+          }
         }
       ```
