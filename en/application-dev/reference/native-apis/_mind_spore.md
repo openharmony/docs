@@ -69,7 +69,7 @@ Provides APIs related to MindSpore Lite model inference.
 | -------- | -------- |
 | [OH_AI_DataType](#oh_ai_datatype-1) {<br>OH_AI_DATATYPE_UNKNOWN = 0,<br>OH_AI_DATATYPE_OBJECTTYPE_STRING = 12,<br>OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, <br>OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14, <br>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, <br>OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29,<br>OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30,<br>OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32, <br>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, <br>OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, <br>OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, <br>OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37, <br>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38,<br>OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, <br>OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, <br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42, <br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, <br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44,<br>OH_AI_DATATYPE_NUMBERTYPE_END = 46,<br>OH_AI_DataTypeInvalid = INT32_MAX } | Declares data types supported by MSTensor.|
 | [OH_AI_Format](#oh_ai_format-1) {<br>OH_AI_FORMAT_NCHW = 0,<br>OH_AI_FORMAT_NHWC = 1,<br>OH_AI_FORMAT_NHWC4 = 2,<br>OH_AI_FORMAT_HWKC = 3,<br>OH_AI_FORMAT_HWCK = 4,<br>OH_AI_FORMAT_KCHW = 5,<br>OH_AI_FORMAT_CKHW = 6,<br>OH_AI_FORMAT_KHWC = 7,<br>OH_AI_FORMAT_CHWK = 8,<br>OH_AI_FORMAT_HW = 9,<br>OH_AI_FORMAT_HW4 = 10,<br>OH_AI_FORMAT_NC = 11,<br>OH_AI_FORMAT_NC4 = 12,<br>OH_AI_FORMAT_NC4HW4 = 13,<br>OH_AI_FORMAT_NCDHW = 15,<br>OH_AI_FORMAT_NWC = 16,<br>OH_AI_FORMAT_NCW = 17 } | Declares data formats supported by MSTensor.|
-| [OH_AI_CompCode](#oh_ai_compcode) {<br>OH_AI_COMPCODE_CORE = 0x00000000u,<br>OH_AI_COMPCODE_LITE = 0xF0000000u } | Defines MindSpore component codes. |
+| [OH_AI_CompCode](#oh_ai_compcode) {<br>OH_AI_COMPCODE_CORE = 0x00000000u, <br>OH_AI_COMPCODE_MD = 0x10000000u, <br>OH_AI_COMPCODE_ME = 0x20000000u, <br>OH_AI_COMPCODE_MC = 0x30000000u, <br>OH_AI_COMPCODE_LITE = 0xF0000000u<br>  } | Defines MindSpore component codes. |
 | [OH_AI_Status](#oh_ai_status-1) {<br>OH_AI_STATUS_SUCCESS = 0,<br>OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, <br>OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), <br>OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3),<br>OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4),<br>OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5),<br>OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7),<br>OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8),<br>OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9),<br>OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE, <br>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR,<br>OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102),<br>OH_AI_STATUS_LITE_GRAPH_FILE_ERROR,<br>OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),   OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301),<br>OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302),<br>OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE,<br>OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500),<br>OH_AI_STATUS_LITE_INFER_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -501),<br>OH_AI_STATUS_LITE_INPUT_PARAM_INVALID } | Defines MindSpore status codes.|
 | [OH_AI_ModelType](#oh_ai_modeltype-1) {<br>OH_AI_MODELTYPE_MINDIR = 0,<br>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | Defines model file types.|
 | [OH_AI_DeviceType](#oh_ai_devicetype-1) {<br>OH_AI_DEVICETYPE_CPU = 0,<br>OH_AI_DEVICETYPE_KIRIN_GPU,<br>OH_AI_DEVICETYPE_KIRIN_NPU,<br>OH_AI_DEVICETYPE_NNRT = 60,<br>OH_AI_DEVICETYPE_INVALID = 100 } | Defines the supported device types.|
@@ -310,6 +310,9 @@ Defines MindSpore component codes.
 | Value| Description|
 | -------- | -------- |
 | OH_AI_COMPCODE_CORE | MindSpore Core code|
+| OH_AI_COMPCODE_MD   | MindSpore MindData code.|
+| OH_AI_COMPCODE_ME   | MindSpore MindExpression code.|
+| OH_AI_COMPCODE_MC   | MindSpore code.|
 | OH_AI_COMPCODE_LITE | MindSpore Lite code|
 
 
@@ -772,7 +775,7 @@ OH_AI_API int OH_AI_DeviceInfoGetFrequency (const OH_AI_DeviceInfoHandle device_
 
 **Description**
 
-Obtains the NPU frequency type. This API is available only for NPU devices.
+Obtains the NPU frequency type. This function is available only for NPU devices.
 
 **Parameters**
 
@@ -876,7 +879,7 @@ OH_AI_API void OH_AI_DeviceInfoSetProvider (OH_AI_DeviceInfoHandle device_info, 
 
 **Description**
 
-Sets the provider name.
+Sets the name of the provider.
 
 **Parameters**
 
