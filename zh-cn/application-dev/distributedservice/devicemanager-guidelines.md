@@ -67,10 +67,16 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 2. 这个权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
 
-  ```ts
-  import common from '@ohos.app.ability.common';
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+  导入common和abilityAccessCtrl模块：
   
+  ```ts
+    import common from '@ohos.app.ability.common';
+    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+  ```
+
+  示例：
+
+  ```ts
   let context = getContext(this) as common.UIAbilityContext;
   let atManager = abilityAccessCtrl.createAtManager();
   try {
