@@ -15,7 +15,7 @@ import radio from '@ohos.telephony.radio';
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networkradiotech11)\>\): void
+getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
 
 Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -28,7 +28,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkRadioTech](#networkradiotech11)\> | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -49,7 +49,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
+class Tech {
+    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+}
+radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
     if (err) {
         console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
         return;
@@ -61,7 +65,7 @@ radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) =>
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
+getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
 
 Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -79,7 +83,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 | Type                                                        | Description                                           |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| Promise\<[NetworkRadioTech](#networkradiotech11)\> | Promise used to return the result.|
+| Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}>  | Promise used to return the result.|
 
 **Error codes**
 
@@ -100,7 +104,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
+class Tech {
+    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
+}
+radio.getRadioTech(slotId).then((data: Tech) => {
     console.log(`getRadioTech success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getRadioTech failed, promise: err->${JSON.stringify(err)}`);
@@ -447,8 +455,6 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let countryISO: string = radio.getISOCountryCodeForNetworkSync(slotId);
 console.log(`the country ISO is:` + countryISO);
@@ -646,8 +652,6 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
 console.log(`signal information size is:` + signalInfo.length);
@@ -657,7 +661,7 @@ console.log(`signal information size is:` + signalInfo.length);
 
 isNrSupported\(\): boolean
 
-Checks whether the current SIM card supports 5G \(NR\).
+Checks whether the SIM card supports 5G \(NR\).
 
 > **NOTE**
 >
@@ -715,7 +719,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(\): boolean
 
-Checks whether the current SIM card supports 5G \(NR\).
+Checks whether the SIM card supports 5G \(NR\).
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1013,8 +1017,6 @@ Obtains the carrier name of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let operatorName: string = radio.getOperatorNameSync(slotId);
 console.log(`operator name is:` + operatorName);
@@ -2860,8 +2862,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
@@ -2907,8 +2907,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
@@ -3482,17 +3480,6 @@ radio.factoryReset(slotId).then(() => {
 });
 ```
 
-## NetworkRadioTech<sup>11+</sup>
-
-Defines the radio access technology for the packet switched (PS) or circuit switched (CS) network.
-
-**System capability**: SystemCapability.Telephony.CoreService
-
-|      Name      |           Type             | Mandatory|      Description         |
-| --------------- | --------------------------- | ---- | ------------------ |
-| psRadioTech     | [RadioTechnology](#radiotechnology) | Yes  | PS.|
-| csRadioTech     | [RadioTechnology](#radiotechnology) | Yes  | CS.|
-
 ## RadioTechnology
 
 Enumerates radio access technologies.
@@ -3565,7 +3552,7 @@ Defines the network status.
 
 ## RegState
 
-Defines the network registration status.
+Defines the network registration status of the device.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -3714,7 +3701,7 @@ LTE cell information.
 | bandwidth     | number  |  Yes | Bandwidth.                 |
 | mcc           | string  |  Yes | Mobile country code.           |
 | mnc           | string  |  Yes | Mobile network code.             |
-| isSupportEndc | boolean |  Yes | Support for New Radio Dual Connectivity (NR-DC).|
+| isSupportEndc | boolean |  Yes | Whether New Radio Dual Connectivity (NR-DC) is supported.|
 
 ## NrCellInformation<sup>8+</sup>
 

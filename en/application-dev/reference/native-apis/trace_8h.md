@@ -5,7 +5,7 @@
 
 Defines APIs of the HiTraceMeter module for performance trace.
 
-Example
+**Examples**
 
 Synchronous time slice trace event:
 
@@ -65,7 +65,7 @@ Output:
 ## Summary
 
 
-### Functions
+### Function
 
 | Name| Description| 
 | -------- | -------- |

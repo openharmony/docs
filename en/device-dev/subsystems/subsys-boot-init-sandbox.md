@@ -90,9 +90,9 @@ JSON file configuration of the sandbox:
 ```
 
 ## FAQs
-- **Cause Analysis**
+- Cause analysis
      Related services cannot access required resource files such as **.so** file.
-- **Solution**
+- Solution
     Check the hilog information, analyze the failure cause, enter the path of the corresponding **.so** file on the device, and modify the **BUILD.gn** file as appropriate. The operation procedure is as follows:
 
     - Search for keyword **failed** or **.so** in hilog.

@@ -532,7 +532,7 @@ Deletes this upload task. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -559,7 +559,7 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -592,7 +592,7 @@ Removes this upload task. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -623,7 +623,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1146,7 +1146,7 @@ Deletes this download task. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1174,7 +1174,7 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1440,7 +1440,7 @@ Removes this download task. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the task removal result.|
+  | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1471,7 +1471,7 @@ Removes this download task. This API uses an asynchronous callback to return the
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1874,10 +1874,10 @@ Provides the configuration information of an upload or download task.
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.|
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).|
-| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: The task is allowed on a metered connection.<br>- **false**: The task is not allowed on a metered connection.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: The task is allowed on a roaming network.<br>- **false**: The task is not allowed on a roaming network.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: Automatic retry is enabled for the task.<br>- **-false**: Automatic retry is not enabled for the task.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: Redirection is allowed.<br>- **false**: Redirection is not allowed.|
+| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a roaming network.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry enabled for the task.<br>- **-false**: automatic retry not enabled for the task.|
+| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.|
 | begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.|
 | ends | number | No| File end point of the task. It is usually used for resumable downloads. The default value is **-1**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the end position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the end of the upload.|
@@ -1947,7 +1947,7 @@ Defines the filter criteria.
 | after | number | No| Unix timestamp of the start time, in milliseconds. The default value is the invoking time minus 24 hours.|
 | state | [State](#state10) | No| Task state.|
 | action | [Action](#action10) | No| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
-| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**: Foreground tasks are queried.<br>- **BACKGROUND**: Background tasks are queried.<br>- No value: All tasks are queried.|
+| mode | [Mode](#mode10) | No| Task mode.<br>- **FOREGROUND**: foreground task.<br>- **BACKGROUND**: background task.<br>- No value: All tasks are queried.|
 
 ## TaskInfo<sup>10+</sup> 
 Defines the data structure of the task information for query. The fields available vary depending on the query type.
@@ -1965,7 +1965,7 @@ Defines the data structure of the task information for query. The fields availab
 | title | string | Yes| Task title.|
 | description | string | Yes| Task description.|
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
-| mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**<br>- **BACKGROUND**|
+| mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**: foreground task.<br>- **BACKGROUND**: background task.|
 | priority<sup>11+</sup> | number | No| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
@@ -2068,7 +2068,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the foreground task completion event. This API uses a callback to return the result asynchronously.
+Subscribes to foreground task completion events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2139,7 +2139,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the foreground task failure event. This API uses a callback to return the result asynchronously.
+Subscribes to foreground task failure events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2210,7 +2210,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the task pause event. This API uses a callback to return the result asynchronously.
+Subscribes to task pause events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2277,7 +2277,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the task resume event. This API uses a callback to return the result asynchronously.
+Subscribes to task resume events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2344,7 +2344,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to the task removal event. This API uses a callback to return the result asynchronously.
+Subscribes to task removal events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2490,7 +2490,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task completion event.
+Unsubscribes from foreground task completion events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2569,7 +2569,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task failure event.
+Unsubscribes from foreground task failure events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 

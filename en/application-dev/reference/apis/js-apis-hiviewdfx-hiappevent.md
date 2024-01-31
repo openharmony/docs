@@ -84,7 +84,7 @@ Description of events that can be reported by the data processor.
 | Name        | Type   | Mandatory| Description                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
 | domain      | string  | No  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name        | string  | No  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.|
+| name        | string  | No  | Event name. It is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | isRealTime  | boolean | No  | Whether to report events in real time. The value **true** means to report events, and the value **false** means the opposite.|
 
 ## hiAppEvent.removeProcessor<sup>11+</sup>
@@ -241,9 +241,9 @@ Defines parameters for an **AppEventInfo** object.
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | domain    | string                  | Yes  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name      | string                  | Yes  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.|
+| name      | string                  | Yes  | Event name. It is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
-| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
+| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
 
 ## hiAppEvent.configure
 
@@ -292,7 +292,7 @@ Provides configuration options for application event logging.
 | Name      | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | No  | Whether to enable the event logging function. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite.|
-| maxStorage | string  | No  | Quota for the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.<br>The quota value must meet the following requirements:<br>- The quota value consists of only digits and a unit (which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb], which are case insensitive.)<br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left empty, **b** (that is, byte) is used by default.|
+| maxStorage | string  | No  | Maximum size of the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.<br>The quota value must meet the following requirements:<br>- The quota value consists of only digits and a unit (which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb], which are case insensitive.)<br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left empty, **b** (that is, byte) is used by default.|
 
 ## hiAppEvent.setUserId<sup>11+</sup>
 
@@ -589,7 +589,7 @@ Defines parameters for a **Watcher** object.
 
 | Name            | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| name             | string                                                       | Yes  | Unique name of a watcher.                            |
+| name             | string                                                       | Yes  | Unique name of the watcher.                            |
 | triggerCondition | [TriggerCondition](#triggercondition)                        | No  | Subscription callback triggering condition. This parameter takes effect only when it is passed together with **onTrigger**.          |
 | appEventFilters  | [AppEventFilter](#appeventfilter)[]                          | No  | Subscription filtering condition. This parameter is passed only when subscription events need to be filtered.              |
 | onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | No  | Subscription callback. This parameter takes effect only when it is passed together with **triggerCondition**. The input arguments are described as follows:<br>**curRow**: total number of subscription events when the callback is triggered.<br>**curSize**: total size of subscribed events when the callback is triggered, in bytes.<br>**holder**: subscription data holder, which can be used to process subscribed events.|
@@ -759,7 +759,7 @@ Defines the domain name of predefined events.
 
 ## event
 
-Defines the names of predefined events.
+Provides constants that define the names of all predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -774,7 +774,7 @@ Defines the names of predefined events.
 
 ## param
 
-Defines the names of predefined event parameters.
+Provides constants that define the names of all predefined event parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
