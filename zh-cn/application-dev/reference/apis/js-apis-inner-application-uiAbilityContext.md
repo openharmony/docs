@@ -166,7 +166,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -253,7 +253,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -422,7 +422,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -515,7 +515,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -700,7 +700,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -800,7 +800,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -1991,7 +1991,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
 
 **错误码：**
 
@@ -2257,7 +2257,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -2350,7 +2350,7 @@ export default class EntryAbility extends UIAbility {
     };
     let accountId = 100;
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -2720,7 +2720,7 @@ isTerminating(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| bool | true：ability当前处于terminating状态；false：不处于terminating状态。 |
+| boolean | true：ability当前处于terminating状态；false：不处于terminating状态。 |
 
 **错误码：**
 
@@ -3045,7 +3045,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0
+      displayId: 0
     };
 
     try {
@@ -3128,7 +3128,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      windowMode: 0,
+      displayId: 0,
     };
 
     try {
@@ -3549,7 +3549,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
@@ -3601,7 +3601,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: Object} | 是 | 表示扩展参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
 
 **返回值：**
@@ -3664,7 +3664,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
 
 **返回值：**
 
@@ -3743,7 +3743,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当拉起UIExtension成功，err为undefined，否则为错误对象。 |
 
 **错误码：**

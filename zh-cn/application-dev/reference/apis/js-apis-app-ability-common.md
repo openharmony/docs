@@ -25,7 +25,7 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | Context二级模块。 |
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | ExtensionContext二级模块。 |
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | FormExtensionContext二级模块。 |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。<br>**系统接口**: 此接口为系统接口。|
 | VpnExtensionContext<sup>11+<sup> | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | VpnExtensionContext二级模块。 |
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | PacMap二级模块。 |
@@ -48,13 +48,11 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
-let VpnExtensionContext: common.VpnExtensionContext;
+let vpnExtensionContext: common.VpnExtensionContext;
 let eventHub: common.EventHub;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let autoFillExtensionContext: common.AutoFillExtensionContext;
-let autoStartupInfo: common.AutoStartupInfo;
-let autoStartupCallback: common.AutoStartupCallback;
 ```

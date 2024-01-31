@@ -587,7 +587,7 @@ Codec MIME类型枚举。
 | VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
 | VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。       |
 | VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
-| VIDEO_MPEG4  | 'video/mpeg4'         | 表示视频/mpeg4类型。     |
+| VIDEO_MPEG4  | 'video/mp4v-es'       | 表示视频/mpeg4类型。     |
 | AUDIO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
 | AUDIO_HEVC<sup>11+</sup>    | 'video/hevc'          | 表示视频/H265类型。      |
 | AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
@@ -1644,7 +1644,7 @@ avPlayer.off('endOfStream')
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-监听资源播放当前时间，单位为毫秒（ms），用于刷新进度条当前位置，默认间隔1s时间上报，因用户操作(seek)产生的时间变化会立刻上报。
+监听资源播放当前时间，单位为毫秒（ms），用于刷新进度条当前位置，默认间隔100ms时间上报，因用户操作(seek)产生的时间变化会立刻上报。
 注：直播场景不支持timeUpdate上报。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1918,12 +1918,11 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
-
 **错误码：**
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | If input parameter type or number mismatch. |
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error. Return by callback.       |
 
 **示例：**
 
@@ -1941,7 +1940,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Device
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1950,12 +1949,11 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
-
 **错误码：**
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | If input parameter type or number mismatch. |
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error. Return by callback.       |
 
 **示例：**
 
@@ -2002,7 +2000,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
-| callback | function | 是   | 用户设置的回调函数，用于填写数据，返回要填充的数据的长度。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 |
+| callback | function | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
 
 
 ## SeekMode<sup>8+</sup>
@@ -2055,6 +2053,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -2062,13 +2061,22 @@ function printfItemDescription(obj: media.MediaDescription, key: string) {
   console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
 }
 
-avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-  if (arrList != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
-    }
+let avPlayer: media.AVPlayer | undefined = undefined;
+media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
+  if(player != null) {
+    avPlayer = player;
+    console.info(`createAVPlayer success`);
+    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+      if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+          printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
+        }
+      } else {
+        console.error(`audio getTrackDescription fail, error:${error}`);
+      }
+    });
   } else {
-    console.error(`audio getTrackDescription fail, error:${error}`);
+    console.error(`createAVPlayer fail, error message:${err.message}`);
   }
 });
 ```
@@ -2925,7 +2933,7 @@ avRecorder.off('error');
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
-| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。仅支持mp4格式。       |
+| rotation        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。       |
 | location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
 ## AVRecorderProfile<sup>9+</sup>
@@ -2946,7 +2954,7 @@ avRecorder.off('error');
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
-| isHdr<sup>11+</sup> | boolean                       | 否   | 视频HDR属性，选择视频录制时必填。                         | 
+| isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3034,15 +3042,26 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 
 // 获取元数据
-avMetadataExtractor.fetchMetadata((error: BusinessError, metadata) => {
-  if (error) {
-    console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
-    return;
+media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if(extractor != null){
+    avMetadataExtractor = extractor;
+    console.error(`createAVMetadataExtractor success`);
+    avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
+      if (error) {
+        console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
+        return;
+      }
+      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
+    });
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
   }
-  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
-})
+});
 ```
 
 ### fetchMetadata<sup>11+</sup>
@@ -3072,12 +3091,23 @@ fetchMetadata(): Promise\<AVMetadata>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 
 // 获取元信息
-avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
-}).catch((error: BusinessError) => {
-  console.error(`fetchMetadata catchCallback, error message:${error.message}`);
+media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if(extractor != null){
+    avMetadataExtractor = extractor;
+    console.error(`createAVMetadataExtractor success`);
+    avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
+      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
+    }).catch((error: BusinessError) => {
+      console.error(`fetchMetadata catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+  }
 });
 ```
 
@@ -3147,15 +3177,26 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import image from '@ohos.multimedia.image';
+
+let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // 获取专辑封面
-avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
-  pixel_map = pixelMap;
-}).catch((error: BusinessError) => {
-  console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
+media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if(extractor != null){
+    avMetadataExtractor = extractor;
+    console.error(`createAVMetadataExtractor success`);
+    avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
+      pixel_map = pixelMap;
+    }).catch((error: BusinessError) => {
+      console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+  };
 });
 ```
 
@@ -3185,15 +3226,26 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 
 //释放资源
-avMetadataExtractor.release((error: BusinessError) => {
-  if (error) {
-    console.error(`release failed, err = ${JSON.stringify(error)}`);
-    return;
-  }
-  console.info(`release success.`);
-})
+media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if(extractor != null){
+    avMetadataExtractor = extractor;
+    console.error(`createAVMetadataExtractor success`);
+    avMetadataExtractor.release((error: BusinessError) => {
+      if (error) {
+        console.error(`release failed, err = ${JSON.stringify(error)}`);
+        return;
+      }
+      console.info(`release success.`);
+    });
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+  };
+});
 ```
 
 ### release<sup>11+</sup>
@@ -3222,12 +3274,23 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 
 //释放资源
-avMetadataExtractor.release().then(() => {
-  console.info(`release success.`);
-}).catch((error: BusinessError) => {
-  console.error(`release catchCallback, error message:${error.message}`);
+media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if(extractor != null){
+    avMetadataExtractor = extractor;
+    console.error(`createAVMetadataExtractor success`);
+    avMetadataExtractor.release().then(() => {
+      console.info(`release success.`);
+    }).catch((error: BusinessError) => {
+      console.error(`release catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+  };
 });
 ```
 
@@ -3305,9 +3368,11 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import image from '@ohos.multimedia.image';
 
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // 初始化入参
@@ -3322,13 +3387,21 @@ let param: media.PixelMapParams = {
 }
 
 // 获取缩略图
-avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
-  if (error) {
-    console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
-    return
-  }
-  pixel_map = pixelMap;
-})
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.error(`createAVImageGenerator success`);
+    avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
+      if (error) {
+        console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
+        return
+      }
+      pixel_map = pixelMap;
+    });
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+  };
+});
 ```
 
 ### fetchFrameByTime<sup>11+</sup>
@@ -3367,9 +3440,11 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import image from '@ohos.multimedia.image';
 
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // 初始化入参
@@ -3384,10 +3459,18 @@ let param: media.PixelMapParams = {
 }
 
 // 获取缩略图
-avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
-  pixel_map = pixelMap;
-}).catch((error: BusinessError) => {
-  console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.error(`createAVImageGenerator success`);
+    avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
+      pixel_map = pixelMap;
+    }).catch((error: BusinessError) => {
+      console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+  };
 });
 ```
 
@@ -3419,15 +3502,26 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
 //释放资源
-avImageGenerator.release((error: BusinessError) => {
-  if (error) {
-    console.error(`release failed, err = ${JSON.stringify(error)}`);
-    return;
-  }
-  console.info(`release success.`);
-})
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.error(`createAVImageGenerator success`);
+    avImageGenerator.release((error: BusinessError) => {
+      if (error) {
+        console.error(`release failed, err = ${JSON.stringify(error)}`);
+        return;
+      }
+      console.info(`release success.`);
+    });
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+  };
+});
 ```
 
 ### release<sup>11+</sup>
@@ -3458,12 +3552,23 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
 //释放资源
-avImageGenerator.release().then(() => {
-  console.info(`release success.`);
-}).catch((error: BusinessError) => {
-  console.error(`release catchCallback, error message:${error.message}`);
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.error(`creatAVImageGenerator success`);
+    avImageGenerator.release().then(() => {
+      console.info(`release success.`);
+    }).catch((error: BusinessError) => {
+      console.error(`release catchCallback, error message:${error.message}`);
+    });
+  } else {
+    console.error(`creatAVImageGenerator fail, error message:${err.message}`);
+  };
 });
 ```
 
@@ -4857,6 +4962,9 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
 监听音频焦点变化事件，参考[audio.InterruptEvent](js-apis-audio.md#interruptevent9)。
 
+> **说明：**
+> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](#onaudiointerrupt9)替代。
+
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 **参数：**
@@ -5855,6 +5963,9 @@ videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
 on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
 监听音频焦点变化事件，参考[audio.InterruptEvent](js-apis-audio.md#interruptevent9)。
+
+> **说明：**
+> 从API version 9开始支持，从API version 9开始废弃，建议使用[AVPlayer.on('audioInterrupt')](#onaudiointerrupt9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 

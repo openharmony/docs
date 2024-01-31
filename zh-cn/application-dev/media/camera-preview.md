@@ -68,7 +68,7 @@
    }
    ```
 
-4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start-4)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start10)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    async function startPreviewOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, session: camera.Session): Promise<void> {

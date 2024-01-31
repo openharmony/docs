@@ -701,7 +701,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
-临时启动BLE广播。
+临时停止BLE广播。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -802,7 +802,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
-开始发送BLE广播。
+临时停止BLE广播。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
