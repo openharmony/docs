@@ -427,6 +427,7 @@ struct TextInputExample {
 @Entry
 @Component
 struct ClearNodeExample {
+  @State text: string = ''
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -441,6 +442,9 @@ struct ClearNodeExample {
             src: $r('app.media.icon'),
             color: Color.Blue
           }
+        })
+        .onChange((value: string) => {
+          this.text = value
         })
     }
   }
@@ -471,6 +475,9 @@ struct TextInputExample {
 		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
         //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
         //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+        .onChange((value: string) => {
+          this.text = value
+        })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
