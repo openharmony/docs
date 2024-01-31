@@ -262,7 +262,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
    ```ts
    try {
      let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-     dmInstance.on('deviceStateChange', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
+     dmInstance.on('deviceStateChange', data => console.log('deviceStateChange on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
