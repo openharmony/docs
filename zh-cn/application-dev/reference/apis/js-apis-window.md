@@ -387,8 +387,9 @@ import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
-  name: "alertWindow",
-  windowType: window.WindowType.TYPE_SYSTEM_ALERT
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -444,8 +445,9 @@ import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
-  name: "alertWindow",
-  windowType: window.WindowType.TYPE_SYSTEM_ALERT
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
 };
 try {
   let promise = window.createWindow(config);
@@ -493,7 +495,7 @@ findWindow(name: string): Window
 ```ts
 let windowClass: window.Window | undefined = undefined;
 try {
-  windowClass = window.findWindow('alertWindow');
+  windowClass = window.findWindow('test');
 } catch (exception) {
   console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
 }
@@ -1523,7 +1525,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
-window.find('alertWindow', (err: BusinessError, data) => {
+window.find('test', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
@@ -1564,7 +1566,7 @@ find(id: string): Promise&lt;Window&gt;
 import { BusinessError } from '@ohos.base';
 
 let windowClass: window.Window | undefined = undefined;
-let promise = window.find('alertWindow');
+let promise = window.find('test');
 promise.then((data) => {
   windowClass = data;
   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
