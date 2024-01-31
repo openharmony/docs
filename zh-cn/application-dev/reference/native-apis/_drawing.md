@@ -4747,7 +4747,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **描述**
 
-获取最长行。
+获取最长行，建议实际使用时将返回值向上取整。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
