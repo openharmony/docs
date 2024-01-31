@@ -15,3 +15,4 @@
 - [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
 - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+- [同层渲染绘制Video和Button组件](web-same-layer.md)
