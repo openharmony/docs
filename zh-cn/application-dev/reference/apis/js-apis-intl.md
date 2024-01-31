@@ -835,7 +835,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称              | 类型     | 必填   |说明                                       |
-| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| --------------- | ------ | ---- | ---------------------------------------- |
 | locale          | string | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。             |
 | numeric         | string | 是    | 输出消息的格式，取值包括："always",&nbsp;"auto"。      |
 | style           | string | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
