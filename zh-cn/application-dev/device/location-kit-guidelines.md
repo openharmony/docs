@@ -1,10 +1,10 @@
-# Location Kit开发指南
+# 位置服务开发指导
 
 ## 申请位置权限开发指导
 
 ### 场景概述
 
-应用在使用Location Kit系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限。
+应用在使用位置服务的系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限。
 
 系统提供的定位权限有：
 
@@ -33,7 +33,7 @@
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
-Location Kit每个接口需要申请哪些权限可以参见如下文档：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+每个接口需要申请哪些权限可以参见[API参考](../reference/apis/js-apis-geoLocationManager.md)。
 
 ### 开发步骤
 
@@ -50,7 +50,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 ### 接口说明
 
-获取设备的位置信息所使用的接口如下，详细说明参见：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+获取设备的位置信息所使用的接口如下，详细说明参见：[API参考](../reference/apis/js-apis-geoLocationManager.md)。
 
 **表2** 获取设备的位置信息接口介绍
 
@@ -193,7 +193,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 ### 接口说明
 
-进行坐标和地理编码信息的相互转化，所使用的接口说明如下，详细信息参见：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+进行坐标和地理编码信息的相互转化，所使用的接口说明如下，详细信息参见：[API参考](../reference/apis/js-apis-geoLocationManager.md)。
 
 **表3** （逆）地理编码转化接口介绍
 
@@ -247,7 +247,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
       }
       ```
 
-      参考接口API说明[Location Kit](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
+      参考[接口API说明](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
    - 调用getAddressesFromLocationName位置描述转化坐标。
      
       ```ts
@@ -265,7 +265,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
       }
       ```
 
-      参考接口API说明[Location Kit](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
+      参考[接口API说明](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
 
       如果需要查询的位置描述可能出现多地重名的请求，可以设置GeoCodeRequest，通过设置一个经纬度范围，以高效地获取期望的准确结果。
 
@@ -282,7 +282,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 ### 接口说明
 
-地理围栏所使用的接口如下，详细说明参见：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+地理围栏所使用的接口如下，详细说明参见：[API参考](../reference/apis/js-apis-geoLocationManager.md)。
 
 **表4** 地理围栏接口介绍
 
