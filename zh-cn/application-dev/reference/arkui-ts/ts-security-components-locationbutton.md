@@ -29,7 +29,7 @@ LocationButton(option:LocationButtonOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| option | LocationButtonOptions | 否 | 创建包含指定元素的位置按钮。 |
+| option | [LocationButtonOptions](#locationbuttonoptions) | 否 | 创建包含指定元素的位置按钮。 |
 
 ## LocationButtonOptions
 
