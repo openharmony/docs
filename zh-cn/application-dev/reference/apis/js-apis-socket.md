@@ -808,7 +808,7 @@ constructMulticastSocketInstance(): MulticastSocket
 
 | 类型                               | 说明                    |
 | ----------------------------------- | ----------------------------- |
-| [MulticastSocket](#MulticastSocket) | 返回一个MulticastSocket对象。 |
+| [MulticastSocket](#MulticastSocket11) | 返回一个MulticastSocket对象。 |
 
 **示例：**
 
@@ -818,7 +818,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 ```
 ## MulticastSocket<sup>11+</sup>
 
-MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[socket.constructMulticastSocketInstance](#socket.constructmulticastsocketinstance)创建MulticastSocket对象。
+MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[socket.constructMulticastSocketInstance](#socket.constructmulticastsocketinstance11)创建MulticastSocket对象。
 
 ### addMembership<sup>11+</sup>
 
@@ -3657,7 +3657,7 @@ constructLocalSocketInstance(): LocalSocket
 
 | 类型                               | 说明                    |
   | :--------------------------------- | :---------------------- |
-| [LocalSocket](#LocalSocket) | 返回一个LocalSocket对象。 |
+| [LocalSocket](#LocalSocket11) | 返回一个LocalSocket对象。 |
 
 **示例：**
 
