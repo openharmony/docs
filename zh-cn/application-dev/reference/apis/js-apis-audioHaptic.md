@@ -227,10 +227,14 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 import { BusinessError } from '@ohos.base';
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
+let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
 
-let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer =
-  await audioHapticManagerInstance.createPlayer(id, options);
-console.info(`Create the audio haptic player successfully.`);
+audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
+  audioHapticPlayerInstance = value;
+  console.info(`Create the audio haptic player successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to create the audio haptic player. ${err}`);
+});
 ```
 
 ## AudioHapticType
