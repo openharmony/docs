@@ -79,12 +79,12 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
   let atManager = abilityAccessCtrl.createAtManager();
   try {
     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-      console.log('data: ${JSON.stringify(data)}');
+      console.log('data: ' + JSON.stringify(data));
     }).catch((err: object) => {
-      console.log('err: ${JSON.stringify(err)}');
+      console.log('err: ' + JSON.stringify(err));
     })
   } catch (err) {
-    console.log('catch err->${JSON.stringify(err)}');
+    console.log('catch err->' + JSON.stringify(err));
   }
   ```
 
@@ -121,9 +121,9 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
-     dmInstance.on('discoverSuccess', data => console.log("discoverSuccess on:" + JSON.stringify(data)));
-     dmInstance.on('discoverFailure', data => console.log("discoverFailure on:" + JSON.stringify(data)));
+     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
+     dmInstance.on('discoverFailure', data => console.log('discoverFailure on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
@@ -265,8 +265,8 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
-     dmInstance.on('deviceStateChange', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
+     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     dmInstance.on('deviceStateChange', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
