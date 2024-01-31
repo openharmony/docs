@@ -43,6 +43,7 @@
   - [Audio](driver-peripherals-audio-des.md)
   - [Camera](driver-peripherals-camera-des.md)
   - [Codec](driver-peripherals-codec-des.md)
+  - [Display VDI](driver-peripherals-display-vdi-des.md)
   - [Face_auth](driver-peripherals-face_auth-des.md)
   - [Fingerprint_auth](driver-peripherals-fingerprint_auth-des.md)
   - [LCD](driver-peripherals-lcd-des.md)
