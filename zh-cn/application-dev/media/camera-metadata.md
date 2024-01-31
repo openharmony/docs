@@ -31,7 +31,8 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    ```
 
 3. 调用[Session.start](../reference/apis/js-apis-camera.md#start10)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
-（previewOutput获取方式请参考[相机预览开发步骤](./camera-preview.md#开发步骤)）。
+
+   previewOutput获取方式请参考[相机预览开发步骤](camera-preview.md#开发步骤)。
    ```ts
    async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
      let cameraArray: Array<camera.CameraDevice> = [];
