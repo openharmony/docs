@@ -18,7 +18,7 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| modifier | AttributeModifier\<T> | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 <br/> 当前仅支持Button组件的backgroundColor属性。 |
+| modifier | AttributeModifier\<T> | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
 
 ## AttributeModifier\<T>
 
@@ -63,7 +63,7 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件。
+不支持入参为[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
 
 ## 示例
 
