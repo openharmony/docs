@@ -46,31 +46,27 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 1. 在module.json5配置文件中配置分布式数据同步权限ohos.permission.DISTRIBUTED_DATASYNC。
 
-示例：
-
-```ts
-{
-  "module" : {
-    "requestPermissions":[
-      {
-        "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
-        "reason": "$string:distributed_permission",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "inuse"
+  ```ts
+  {
+    "module" : {
+      "requestPermissions":[
+        {
+          "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
+          "reason": "$string:distributed_permission",
+          "usedScene": {
+            "abilities": [
+              "MainAbility"
+            ],
+            "when": "inuse"
+          }
         }
-      }
-    ]
+      ]
+    }
   }
-}
-```
+  ```
 
 2. 这个权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
 
-示例：
-  
   ```ts
   import common from '@ohos.app.ability.common';
   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
