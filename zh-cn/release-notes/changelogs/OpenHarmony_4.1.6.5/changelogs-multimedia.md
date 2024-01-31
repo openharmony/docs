@@ -16,7 +16,7 @@
 
 **废弃发生版本**
 
-从OpenHarmony SDK 4.1.5.3开始。
+从OpenHarmony SDK 4.1.6.5开始。
 
 **废弃的接口**
 
@@ -44,48 +44,7 @@ mainKey与原接口参数key保持一致，kvpairs是原有value字符串内多�
 
 废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划。
 
-
-## c1.multimedia.2 ohos.multimedia.audio AudioRenderer接口setRenderRate/getRenderRate废弃
-
-**访问级别**
-
-公开接口
-
-**废弃原因**
-
-被功能更全面的新接口SetSpeed/GetSpeed替代
-
-**废弃影响**
-
-非兼容性变更，需要开发者进行适配。
-
-**废弃发生版本**
-
-从OpenHarmony SDK 4.1.5.3开始。
-
-**废弃的接口**
-
-接口属于AudioRenderer
-
-setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;
-
-setRenderRate(rate: AudioRendererRate): Promise<void>;
-
-getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;
-
-getRenderRate(): Promise<AudioRendererRate>;
-
-**适配指导**
-
-根据废弃接口提示，使用AudioRenderer内的新接口即可，新接口支持通过浮点数调节播放速度，而非固定倍数。
-
-setSpeed(speed: number): void;
-
-getSpeed(): number;
-
-废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划
-
-## c1.multimedia.3 ohos.multimedia.audio AudioVolumeGroupManager接口setMicrophoneMute废弃
+## c1.multimedia.2 ohos.multimedia.audio AudioVolumeGroupManager接口setMicrophoneMute废弃
 
 **访问级别**
 
@@ -102,7 +61,7 @@ getSpeed(): number;
 
 **废弃发生版本**
 
-从OpenHarmony SDK 4.1.5.3开始。
+从OpenHarmony SDK 4.1.6.5开始。
 
 **废弃的接口**
 
@@ -122,7 +81,7 @@ setMicMute(mute: boolean): Promise<void>;
 
 废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划。
 
-## c1.multimedia.4 ohos.multimedia.audio CaptureFilterOptions属性usages行为变更
+## c1.multimedia.3 ohos.multimedia.audio CaptureFilterOptions属性usages行为变更
 
 **访问级别**
 
@@ -140,25 +99,29 @@ setMicMute(mute: boolean): Promise<void>;
 
 **变更发生版本**
 
-从OpenHarmony SDK 4.1.5.3开始。
+从OpenHarmony SDK 4.1.6.5开始。
 
 **变更的接口/组件**
 
 变更前：
+```
 /**
  * Filter by stream usages. If you want to capture voice streams, additional permission is needed.
  * @permission ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
  * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
  * @since 10
  */
+ ```
 接口允许调用者筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，但需要获取ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO权限。
 
 变更后：
+```
 /**
  * Filter by stream usages. But not allow to capture voice streams.
  * @syscap SystemCapability.Multimedia.Audio.PlaybackCapture
  * @since 11
  */
+ ```
 接口不再允许调用者筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，权限声明删除。
 
 **适配指导**
@@ -167,7 +130,7 @@ setMicMute(mute: boolean): Promise<void>;
 
 系统应用，即使拥有ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO权限，也不再能够筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，需将此类型从筛选中删除。
 
-## c1.multimedia.5 ohos.multimedia.audio AudioManager订阅事件interrupt接口废弃
+## c1.multimedia.4 ohos.multimedia.audio AudioManager订阅事件interrupt接口废弃
 
 **访问级别**
 
@@ -184,7 +147,7 @@ SDK10时OpenHarmony已全面使用内置焦点模式，见开发指南中的[多
 
 **废弃发生版本**
 
-从OpenHarmony SDK 4.1.5.3开始。
+从OpenHarmony SDK 4.1.6.5开始。
 
 **废弃的接口**
 
@@ -198,7 +161,7 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptA
 
 根据内置焦点模式实现多音频并发策略控制，参考[多音频播放的并发策略](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio-playback-concurrency.md)
 
-## c1.multimedia.6 ohos.multimedia.audio AudioRenderer接口write/AudioCapturer接口read废弃
+## c1.multimedia.5 ohos.multimedia.audio AudioRenderer接口write/AudioCapturer接口read废弃
 
 **访问级别**
 
@@ -215,7 +178,7 @@ AudioRenderer/AudioCapturer新增了writeData, readData订阅接口，通过回�
 
 **废弃发生版本**
 
-从OpenHarmony SDK 4.1.5.3开始。
+从OpenHarmony SDK 4.1.6.5开始。
 
 **废弃的接口**
 
@@ -252,3 +215,139 @@ off(type: 'readData', callback?: Callback<ArrayBuffer>): void;
 通过订阅方式，收到Callback时，应用需要从ArrayBuffer内取出录音数据，Callback结束后，系统会把后续录音数据填入ArrayBuffer，准备触发下次回调。
 
 废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划
+
+## c1.multimedia.6 ohos.multimedia.audio 内录类型获取偏好录音设备行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在使用内录场景进行录音时，实际并不需要使用到麦克风录音设备，需要返回正确的设备类型
+
+**变更影响**
+
+兼容性变更，开发无需做任何适配
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+AudioRoutingManager接口:
+
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback<AudioDeviceDescriptors>): void;
+
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<AudioDeviceDescriptors>;
+
+变更前：
+
+当输入类型为SOURCE_TYPE_PLAYBACK_CAPTURE时，会返回设备类型为DeviceType.MIC的AudioDeviceDescriptor
+
+变更后：
+
+当输入类型为SOURCE_TYPE_PLAYBACK_CAPTURE时，会返回设备类型为DeviceType.INVALID的AudioDeviceDescriptor
+
+**适配指导**
+
+内录场景下的返回值结果修正，无需适配
+
+## c1.multimedia.7 ohos.multimedia.audio AudioManager系列订阅接口行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+历史版本的订阅接口，实现不符合通用的订阅接口规范，并且可能导致应用订阅的回调被覆盖问题，需要整改
+
+**变更影响**
+
+如应用使用了多次订阅，预期应为订阅事件发生时，所有订阅过的回调函数会被遍历依次调用，而非仅回调最后一次订阅的
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+AudioVolumeManager接口:
+
+on(type: 'volumeChange', callback: Callback<VolumeEvent>): void;
+
+AudioVolumeGroupManager接口:
+
+on(type: 'ringerModeChange', callback: Callback<AudioRingMode>): void;
+
+on(type: 'micStateChange', callback: Callback<MicStateChangeEvent>): void;
+
+AudioRoutingManager接口:
+
+on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction>): void;
+
+AudioStreamManager接口:
+
+on(type: 'audioRendererChange', callback: Callback<AudioRendererChangeInfoArray>): void;
+
+on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void;
+
+变更前：
+
+当同一个事件被重复订阅多次，仅最后订阅的回调函数能收到事件发生的通知
+
+变更后：
+
+当同一个事件被重复订阅多次，所有未去订阅的回调函数，都能收到事件发生的通知
+
+**适配指导**
+
+一个事件仅订阅一次，无需适配
+
+一个事件被多次订阅，但预期是会被遍历回调，无需适配
+
+一个事件被多次订阅，但预期是仅有最后一个被回调，需要添加off去订阅，将不需要的回调函数从订阅列表删除
+
+## c1.multimedia.8 ohos.multimedia.audio availableDevice系统接口添加错误码
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+系统接口添加相应错误码
+
+**变更影响**
+
+兼容性变更，开发无需做任何适配
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+AudioRoutingManager接口:
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors;
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction>): void;
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction>): void;
+
+变更前：
+
+三方应用调用系统接口时，返回默认结果，订阅不生效
+
+变更后：
+
+三方应用调用系统接口时，抛出通用错误码202
+
+**适配指导**
+
+系统应用使用，无需适配
+
+三方应用，不应该使用系统接口
