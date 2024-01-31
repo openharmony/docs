@@ -960,13 +960,13 @@ async function createTonePlayerBefore(){
 
 **需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-当应用指定录制的StreamUsage值中包含SOURCE_TYPE_VOICE_COMMUNICATION的播放音频流时，需要校验应用是否拥有该权限。
+在API 10时，支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO。从API 11开始，直接不再支持此枚举，所以当前接口不再涉及此枚举值或对应权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称   | 类型                               | 必填 | 说明                                                         |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的播放音频流的[StreamUsage](#streamusage)类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MEDIA的播放音频流。 |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -4127,7 +4127,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
 | 类型                                                                         | 说明                                 |
 | -----------------------------------------------------------------------------| ----------------------------------- |
-| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频渲染器信息。  |
+| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频采集器信息。  |
 
 **示例：**
 
@@ -9332,8 +9332,8 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-if (deviceDescriptors[0].encodingTypes) {
-  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (info.deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
 }
 ```
 
