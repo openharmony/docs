@@ -30,6 +30,7 @@
     - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
+    - [Web组件开发性能提升指导](performance-web-import.md)
   - [减小应用包大小](reduce-package-size.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
