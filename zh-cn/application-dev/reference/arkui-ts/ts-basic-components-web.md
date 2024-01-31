@@ -4361,8 +4361,10 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onSafeBrowsingCheckResult((details: OnSafeBrowsingCheckResultCallback) => {
-            console.log("onSafeBrowsingCheckResult: [threatType]= " + details.threatType);
+        .onSafeBrowsingCheckResult((callback) => {
+            let jsonData = JSON.stringify(callback)
+            let json:OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData)
+            console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
         })
       }
     }
