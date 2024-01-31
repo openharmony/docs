@@ -29,7 +29,7 @@ constructor(context: common.Context);
 
 | **参数名** | **类型** | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | common.[Context](js-apis-inner-application-context.md) | 否 | ability或application的上下文环境。 |
+| context | common.[Context](js-apis-inner-application-context.md) | 是 | ability或application的上下文环境。 |
 
 **示例：**
 
@@ -206,8 +206,8 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| ad | advertising.[Advertisement](#advertisement) | 是 | 广告对象。 | 
-| options | advertising.[AdDisplayOptions](#addisplayoptions) | 是 | 广告展示参数。 | 
+| ad | [Advertisement](#advertisement) | 是 | 广告对象。 | 
+| options | [AdDisplayOptions](#addisplayoptions) | 是 | 广告展示参数。 | 
 | context | common.[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境。 | 
 
 
