@@ -54,4 +54,5 @@ let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
+let autoFillExtensionContext: common.AutoFillExtensionContext;
 ```
