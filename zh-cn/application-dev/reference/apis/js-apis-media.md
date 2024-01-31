@@ -587,7 +587,7 @@ Codec MIME类型枚举。
 | VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
 | VIDEO_AVC    | 'video/avc'           | 表示视频/avc类型。       |
 | VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
-| VIDEO_MPEG4  | 'video/mpeg4'         | 表示视频/mpeg4类型。     |
+| VIDEO_MPEG4  | 'video/mp4v-es'       | 表示视频/mpeg4类型。     |
 | AUDIO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
 | AUDIO_HEVC<sup>11+</sup>    | 'video/hevc'          | 表示视频/H265类型。      |
 | AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
@@ -1941,7 +1941,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Device
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
