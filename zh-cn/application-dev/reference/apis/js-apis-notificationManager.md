@@ -1970,7 +1970,7 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.getSlotFlagsByBundle(bundle).then(() => {
+notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
@@ -2521,7 +2521,7 @@ let filter: notificationManager.NotificationFilter = {
     notificationKey: notificationKey,
     extraInfoKeys: ['event']
 }
-notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
+notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);

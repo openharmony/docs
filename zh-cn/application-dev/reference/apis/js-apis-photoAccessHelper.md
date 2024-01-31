@@ -4158,6 +4158,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   try {
@@ -4222,6 +4223,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   try {
@@ -4285,6 +4287,7 @@ cancelPhotoRequest(requestId: string): void
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
 
 async function example() {
   try {
@@ -6937,13 +6940,17 @@ addResource(type: ResourceType, proxy: PhotoProxy): void
 **示例：**
 
 ```ts
+class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
+  // 应用实现PhotoProxy
+}
+
 async function example() {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
     let extension: string = 'jpg';
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
-    let photoProxy: PhotoProxy;
+    let photoProxy: PhotoProxyImpl = new PhotoProxyImpl();
     assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, photoProxy);
     await phAccessHelper.applyChanges(assetChangeRequest);
     console.info('addResourceByPhotoProxy successfully');
@@ -8091,6 +8098,8 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image'
+
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
     onDataPrepared(data: image.ImageSource) {
         console.info('on image data prepared');
@@ -8203,6 +8212,8 @@ T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类�
 
 **示例**
 ```ts
+import image from '@ohos.multimedia.image'
+
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
   onDataPrepared(data: image.ImageSource) {
     // 自定义对ImageSource的处理逻辑

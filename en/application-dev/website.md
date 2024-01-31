@@ -378,7 +378,7 @@
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
           - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
           - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
-        - JS Animation
+        - JavaScript Animation
           - [Component Animation](ui/ui-js-animate-component.md)
           - Interpolator Animation
             - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)

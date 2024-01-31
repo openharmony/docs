@@ -345,9 +345,9 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
   ```ts
   let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').backgroundColor(0xF5DEB3)  
+    Text('2').width('33%').backgroundColor(0xD2B48C)  
+    Text('3').width('33%').backgroundColor(0xF5DEB3)
   }
   .size(SWh)
   .padding(10)
@@ -376,7 +376,7 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 ### Setting Alignment on the Cross Axis for Child Elements
 
-Use the [alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#attributes) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
+Use the [alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#alignself) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The child elements are aligned with the center of the container.
@@ -523,13 +523,13 @@ Use the [alignContent](../reference/arkui-ts/ts-container-flex.md#apis) paramete
 
 When the size of the flex container is not large enough, the following attributes of the child element can be used to achieve adaptive layout:
 
-- **flexBasis**: base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the value of width/height.
+- **flexBasis**: base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the result of width/height.
 
 
   ```ts
   Flex() {
     Text('flexBasis("auto")')
-      .flexBasis('auto') // When width is not set and flexBasis is set to auto, the content is loose.
+      .flexBasis('auto') // When width is not set and flexBasis is set to auto, the content is at its own width.
       .height(100)
       .backgroundColor(0xF5DEB3)
     Text('flexBasis("auto")'+' width("40%")')

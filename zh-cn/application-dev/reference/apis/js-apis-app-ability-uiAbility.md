@@ -146,7 +146,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回结果或无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -694,7 +694,7 @@ release(): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -703,12 +703,6 @@ release(): void
 | 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
 
 **示例：**
 
@@ -808,7 +802,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回on回调结果。 |
 
 **错误码：**
 

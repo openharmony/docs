@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```ts
-import faultLogger from '@ohos.faultLogger'
+import faultLogger from '@ohos.faultLogger';
 ```
 
 ## FaultType

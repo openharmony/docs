@@ -27,7 +27,7 @@ import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher'
 
 ## SwipeRefresher
 
-SwipeRefresher ({content: string, isLoading: boolean})
+SwipeRefresher ({content?: string, isLoading: boolean})
 
 **装饰器类型：**\@Component
 
@@ -38,7 +38,7 @@ SwipeRefresher ({content: string, isLoading: boolean})
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | content | string | 否 | \@Prop | 内容加载时显示的文本。 | 
-| isLoading | boolean | 是 | \@Prop | 当前是否正在加载。 | 
+| isLoading | boolean | 是 | \@Prop | 当前是否正在加载。<br> isLoading为true时，表示正在加载。<br> isLoading为false时，表示未在加载。 | 
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -54,13 +54,16 @@ struct Index {
     Column() {
       SwipeRefresher({
         content: '正在加载中',
-        isLoading: true })
+        isLoading: true
+      })
       SwipeRefresher({
         content: '',
-        isLoading: true })
+        isLoading: true
+      })
       SwipeRefresher({
         content: '正在加载中',
-        isLoading: false })
+        isLoading: false
+      })
     }
   }
 }

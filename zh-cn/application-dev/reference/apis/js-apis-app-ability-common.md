@@ -48,13 +48,11 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
-let VpnExtensionContext: common.VpnExtensionContext;
+let vpnExtensionContext: common.VpnExtensionContext;
 let eventHub: common.EventHub;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let autoFillExtensionContext: common.AutoFillExtensionContext;
-let autoStartupInfo: common.AutoStartupInfo;
-let autoStartupCallback: common.AutoStartupCallback;
 ```

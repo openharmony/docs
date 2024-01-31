@@ -281,7 +281,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 | 参数名 | 类型                                                         | 必填 | 描述                 |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetshow) | 是   | 配置列表弹窗的参数。 |
+| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetoptions对象说明) | 是   | 配置列表弹窗的参数。 |
 
 **示例：**
 
@@ -334,9 +334,9 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions对象说明) | 是   | 配置日期滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -370,9 +370,9 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions对象说明) | 是   | 配置时间滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -429,9 +429,9 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
-| ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogshow) | 是   | 配置列表弹窗的参数。 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -966,6 +966,55 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 import { UIObserver } from '@ohos.arkui.UIContext';
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
+```
+
+### on('routerPageUpdate')<sup>11+</sup>
+
+on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
+
+监听router中page页面的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 是   | 回调函数。携带pageInfo，返回当前的page页面状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('routerPageUpdate', (info) => {
+    console.info('RouterPage state updated, called by ' + `${info.name}`);
+});
+```
+
+### off('routerPageUpdate')<sup>11+</sup>
+
+off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
+
+取消监听router中page页面的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+// callBackFunc is defined and used before
+observer.off('routerPageUpdate', callBackFunc);
 ```
 
 ## MediaQuery

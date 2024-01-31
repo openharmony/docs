@@ -30,7 +30,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-3. 调用[Session.start](../reference/apis/js-apis-camera.md#start-4)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+3. 调用[Session.start](../reference/apis/js-apis-camera.md#start11)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    async function startMetadataOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, session: camera.Session): Promise<void> {
@@ -43,7 +43,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-4. 调用[Session.stop](../reference/apis/js-apis-camera.md#stop-4)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 调用[Session.stop](../reference/apis/js-apis-camera.md#stop11)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    function stopMetadataOutput(session: camera.Session): void {

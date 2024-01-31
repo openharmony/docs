@@ -109,7 +109,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
       GridCol() {
         Row() {
-            Text(`${index + 1}`)
+            Text(`${index}`)
         }.width('100%').height('50')
       }.backgroundColor(item)
     })
@@ -119,7 +119,6 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
   ![en-us_image_0000001563060709](figures/en-us_image_0000001563060709.png)
 
 - When **columns** is set to a number, the responsive grid layout is divided into the specified number of columns regardless of the screen size. The following example sets the number of grid layout columns to 4 and 8 in sequence, where a child component occupies one column by default.
-
 
   ```ts
   class CurrTmp{
@@ -135,13 +134,11 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
   Row() {
     GridRow({ columns: 4 }) {
       ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
-          GridCol() {
-            Row() {
-              Text(`${index.toString() + 1}`)
-            }.width('100%').height('50')
-          }.backgroundColor(item)
-        }
+        GridCol() {
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
       })
     }
     .width('100%').height('100%')
@@ -153,17 +150,15 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
   .height(160)
   .border(BorderWH)
   .width('90%')
-
+  
   Row() {
     GridRow({ columns: 8 }) {
       ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-        if(index){
           GridCol() {
             Row() {
-              Text(`${index.toString() + 1}`)
+              Text(`${index}`)
             }.width('100%').height('50')
           }.backgroundColor(item)
-        }
       })
     }
     .width('100%').height('100%')
@@ -177,27 +172,24 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
   .width('90%')
   ```
 
-  ![en-us_image_0000001511421268](figures/en-us_image_0000001511421268.png)
+    ![en-us_image_0000001511421268](figures/en-us_image_0000001511421268.png)
 
 - When **columns** is set to a value of the **GridRowColumnOption** type, you can assign values specific to the screen size (xs, sm, md, lg, xl, xxl).
-
 
   ```ts
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
-        GridCol() {
-          Row() {
-            Text(`${index.toString() + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
-      }
+      GridCol() {
+        Row() {
+          Text(`${index}`)
+        }.width('100%').height('50')
+      }.backgroundColor(item)
     })
   }
   ```
 
-  ![en-us_image_0000001563060689](figures/en-us_image_0000001563060689.gif)
+    ![en-us_image_0000001563060689](figures/en-us_image_0000001563060689.gif)
 
   If **columns** is only set for the sm and md screen size types, screen sizes smaller than sm use the default value **12**, and screen sizes larger than md (lg, xl, and xxl) use the value of **columns** of the md type.
 

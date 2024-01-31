@@ -625,7 +625,7 @@ statistics.getUidTxBytes(20010038).then((stats: number) => {
 
 ## statistics.on('netStatsChange')<sup>10+</sup>
 
-on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void
+on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 
 Subscribes to traffic change events.
 
@@ -640,7 +640,7 @@ Subscribes to traffic change events.
 | Name  | Type                                       | Mandatory| Description                                                              |
 | -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                                |
-| callback | Callback\<{ iface: string, uid?: number }\> | Yes  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
+| callback | Callback\<[NetStatsChangeInfo](#netstatschangeinfo11)\> | Yes  | Callback invoked when the traffic changes.|
 
 **Error codes**
 
@@ -670,7 +670,7 @@ statistics.on('netStatsChange', (data: IFace) => {
 
 ## statistics.off('netStatsChange')<sup>10+</sup>
 
-off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;
+off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
 
 Unsubscribes from traffic change events.
 
@@ -685,7 +685,7 @@ Unsubscribes from traffic change events.
 | Name  | Type                                       | Mandatory| Description                                                              |
 | -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                            |
-| callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
+| callback | Callback\<[NetStatsChangeInfo](#netstatschangeinfo11)\> | No  | Callback invoked when the traffic changes.|
 
 **Error codes**
 
@@ -1172,3 +1172,18 @@ Defines the historical traffic information.
 | txBytes   | number | Yes  | Uplink traffic, in bytes.|
 | rxPackets | number | Yes  | Number of downlink packets.         |
 | txPackets | number | Yes  | Number of uplink packets.         |
+
+## NetStatsChangeInfo<sup>11+</sup>
+
+Defines the NIC status and usage of an application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+### Attributes
+
+| Name     | Type  | Mandatory| Description                     |
+| --------- | ------ | ---- | ------------------------ |
+| iface   | string | Yes  | NIC name.|
+| uid   | number | No  | Application UID.|

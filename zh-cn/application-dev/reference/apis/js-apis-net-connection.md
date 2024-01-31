@@ -133,7 +133,7 @@ getDefaultNetSync(): NetHandle
 
 | 类型      | 说明                               |
 | --------- | ---------------------------------- |
-| NetHandle | 以同步方式返回默认激活的数据网络。 |
+| [NetHandle](#nethandle) | 以同步方式返回默认激活的数据网络。 |
 
 **错误码：**
 
@@ -330,7 +330,7 @@ connection.setGlobalHttpProxy({
 });
 ```
 
-## connection.setAppHttpProxy<sup>10+</sup>
+## connection.setAppHttpProxy<sup>11+</sup>
 
 setAppHttpProxy(httpProxy: HttpProxy): void;
 
@@ -346,14 +346,10 @@ setAppHttpProxy(httpProxy: HttpProxy): void;
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
+| 错误码ID | 错误信息                       |
 | ------- | -----------------------------  |
-| 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 202     | Non-system applications use system APIs.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+| 2100001 | Invalid http proxy.            |
 
 **示例：**
 

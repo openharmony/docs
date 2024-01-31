@@ -1181,9 +1181,7 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-### 属性
-
-| 名称      | 类型   | 必填 | 说明                      |
-| --------- | ------ | ---- | ------------------------ |
-| iface   | string | 是   | 网卡名称。 |
-| uid   | number | 否   | 应用UID。 |
+| 名称      | 类型   | 必填 | 说明       |
+| --------- | ------ | ---- | --------- |
+| iface     | string | 是   | 网卡名称。 |
+| uid       | number | 否   | 应用UID。  |

@@ -25,6 +25,18 @@
 
 **起始版本**：7
 
+### ohos.permission.ALLOW_UPGRADE_GUIDE_ACCESS
+
+允许系统应用获取应用的升级引导数据或拉起应用的升级引导组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 允许应用代理请求卡片。
