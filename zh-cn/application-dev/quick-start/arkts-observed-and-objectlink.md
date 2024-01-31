@@ -276,19 +276,21 @@ struct ViewC {
             console.log('this.c.c:' + this.c.c)
           })
       }
-    .width(300)
+      .width(300)
+    }
   }
-}
 }
 
 @Entry
 @Component
 struct ViewB {
   @State b: ClassB = new ClassB(new ClassA(0));
-  @State child : ClassD = new ClassD(new ClassC(0));
+  @State child: ClassD = new ClassD(new ClassC(0));
+
   build() {
     Column() {
-      ViewC({ label: 'ViewC #3', c: this.child.c})
+      ViewC({ label: 'ViewC #3',
+        c: this.child.c })
       Button(`ViewC: this.child.c.c add 10`)
         .backgroundColor('#ff7fcf58')
         .onClick(() => {
@@ -369,7 +371,7 @@ struct ViewB {
         })
       Button(`ViewB: shift`)
         .onClick(() => {
-          if (this.arrA.length > 0){
+          if (this.arrA.length > 0) {
             this.arrA.shift()
           } else {
             console.log("length <= 0")
@@ -698,25 +700,35 @@ struct MyView {
 ```ts
 class ClassA {
   a: number;
+
   constructor(a: number) {
     this.a = a;
   }
-  getA() : number {
-    return this.a; }
-  setA( a: number ) : void {
-    this.a = a; }
+
+  getA(): number {
+    return this.a;
+  }
+
+  setA(a: number): void {
+    this.a = a;
+  }
 }
 
 @Observed
 class ClassC {
   c: number;
+
   constructor(c: number) {
     this.c = c;
   }
-  getC() : number {
-    return this.c; }
-  setC(c : number) : void {
-    this.c = c; }
+
+  getC(): number {
+    return this.c;
+  }
+
+  setC(c: number): void {
+    this.c = c;
+  }
 }
 
 class ClassB extends ClassA {
@@ -729,57 +741,64 @@ class ClassB extends ClassA {
     this.c = new ClassC(c);
   }
 
-  getB() : number {
-    return this.b; }
-  setB(b : number) : void {
-    this.b = b; }
-  getC() : number {
-    return this.c.getC(); }
-  setC(c : number) : void {
-    return this.c.setC(c); }
+  getB(): number {
+    return this.b;
+  }
+
+  setB(b: number): void {
+    this.b = b;
+  }
+
+  getC(): number {
+    return this.c.getC();
+  }
+
+  setC(c: number): void {
+    return this.c.setC(c);
+  }
 }
 
 @Component
 struct ViewClassC {
+  @ObjectLink c: ClassC;
 
-    @ObjectLink c : ClassC;
-    build() {
-        Column({space:10}) {
-            Text(`c: ${this.c.getC()}`)
-            Button("Change C")
-                .onClick(() => {
-                    this.c.setC(this.c.getC()+1);
-                })
-        }
+  build() {
+    Column({ space: 10 }) {
+      Text(`c: ${this.c.getC()}`)
+      Button("Change C")
+        .onClick(() => {
+          this.c.setC(this.c.getC() + 1);
+        })
     }
+  }
 }
 
 @Entry
 @Component
 struct MyView {
-    @State b : ClassB = new ClassB(10, 20, 30);
+  @State b: ClassB = new ClassB(10, 20, 30);
 
-    build() {
-        Column({space:10}) {
-            Text(`a: ${this.b.a}`)
-             Button("Change ClassA.a")
-            .onClick(() => {
-                this.b.a +=1;
-            })
+  build() {
+    Column({ space: 10 }) {
+      Text(`a: ${this.b.a}`)
+      Button("Change ClassA.a")
+        .onClick(() => {
+          this.b.a += 1;
+        })
 
-            Text(`b: ${this.b.b}`)
-            Button("Change ClassB.b")
-            .onClick(() => {
-                this.b.b += 1;
-            })
+      Text(`b: ${this.b.b}`)
+      Button("Change ClassB.b")
+        .onClick(() => {
+          this.b.b += 1;
+        })
 
-            ViewClassC({c: this.b.c})   // Text(`c: ${this.b.c.c}`)的替代写法
-            Button("Change ClassB.ClassC.c")
-            .onClick(() => {
-                this.b.c.c += 1;
-            })
-        }
-     }
+      ViewClassC({ c: this.b.c }) // Text(`c: ${this.b.c.c}`)的替代写法
+      Button("Change ClassB.ClassC.c")
+        .onClick(() => {
+          this.b.c.c += 1;
+        })
+    }
+  }
 }
 ```
 
@@ -1295,20 +1314,23 @@ class RenderClass {
   waitToRender: boolean = false;
 
   constructor() {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.waitToRender = true;
       console.log("change waitToRender to " + this.waitToRender);
-    },1000)
+    }, 1000)
   }
 }
+
 @Entry
 @Component
 struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
   @State textColor: Color = Color.Black;
+
   renderClassChange() {
     console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
   }
+
   build() {
     Row() {
       Column() {
@@ -1340,19 +1362,23 @@ class RenderClass {
   constructor() {
   }
 }
+
 @Entry
 @Component
 struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
+
   renderClassChange() {
     console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
   }
+
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
       console.log("change waitToRender to " + this.renderClass.waitToRender);
-    },1000)
+    }, 1000)
   }
+
   build() {
     Row() {
       Column() {
