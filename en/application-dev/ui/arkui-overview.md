@@ -1,4 +1,4 @@
-# ArkUI Overview
+# Introduction to ArkUI
 
 
 ArkUI provides a comprehensive infrastructure for UI development of applications, including simple UI syntax, a diverse array of UI features (components, layouts, animations, and interaction events), and a powerful previewer.
@@ -27,7 +27,7 @@ The declarative development paradigm is a better choice for building new applica
 
 - **Future proof**: The declarative development paradigm will continue to develop as the preferred development paradigm in OpenHarmony, providing increasingly more diverse and powerful capabilities.
 
-  **Figure 1** ArkUI framework 
+  **Figure 1** Ark UI framework
 
   ![arkui-framework](figures/arkui-framework.png)
 
