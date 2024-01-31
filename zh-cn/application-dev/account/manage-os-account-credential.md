@@ -44,7 +44,7 @@
 3. 创建凭据管理对象。
 
    ```ts
-   let userIDM = new account_osAccount.UserIDM();
+   let userIDM: account_osAccount.UserIDM = new account_osAccount.UserIDM();
    ```
 
 ## 打开会话
@@ -119,13 +119,14 @@
 
    ```ts
    let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let authType: account_osAccount.AuthType.PIN;
-   let authTrustLevel: account_osAccount.AuthTrustLevel;
+   let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
    ```
 
 2. 调用[auth](../reference/apis/js-apis-osAccount.md#auth8)接口进行认证。
 
    ```ts
+   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
        console.log('pin auth result = ' + result);
@@ -195,13 +196,14 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let authType: account_osAccount.AuthType.FACE;
-   let authTrustLevel: account_osAccount.AuthTrustLevel;
+   let authType: account_osAccount.AuthType = account_osAccount.AuthType.FACE;
+   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
    ```
 
 2. 调用auth接口进行认证。
 
    ```ts
+   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
        console.log('face auth result = ' + result);
@@ -267,7 +269,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    let credInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo(account_osAccount.AuthType.Fingerprint);
-   let credentialId = 0;
+   let credentialId: number = 0;
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;
    }
