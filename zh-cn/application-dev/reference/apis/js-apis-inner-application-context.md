@@ -295,6 +295,8 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 
 **系统接口**：此接口为系统接口。
 
+**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **参数：**
 
 | 参数名       | 类型                     | 必填   | 说明            |
