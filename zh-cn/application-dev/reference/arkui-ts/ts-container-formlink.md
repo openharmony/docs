@@ -25,9 +25,9 @@ FormLink(options: FormLinkOptions)
 
 | 参数名       | 参数类型                            | 必填   | 参数描述   |
 | --------- | ------------------------------- | ---- | ------ |
-| options<sup>10+</sup> | [FormLinkOptions](#formlinkoptions10类型说明) | 是    | 定义卡片信息 |
+| options | [FormLinkOptions](#formlinkoptions类型说明) | 是    | 定义卡片信息 |
 
-## FormLinkOptions<sup>10+</sup>类型说明
+## FormLinkOptions类型说明
 
 | 参数名      | 参数类型 | 必填 | 参数描述                                                     |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
