@@ -58,13 +58,13 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_CallBackParam](#oh_ai_callbackparam)                  | Defines the operator information passed in a callback.                        |
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback) | Defines the pointer to a callback.                                    |
 | [OH_AI_Status](#oh_ai_status)                                | Defines MindSpore status codes.                                |
-| [OH_AI_TensorHandle](#oh_ai_tensorhandle)                    | Defines the handle of a tensor object.                                |
-| [OH_AI_ModelType](#oh_ai_modeltype)                          | Defines model file types.                                  |
+| [OH_AI_TensorHandle](#oh_ai_tensorhandle)                    | Handle of a tensor object.                                |
+| [OH_AI_ModelType](#oh_ai_modeltype)                          | Model file types.                                  |
 | [OH_AI_DeviceType](#oh_ai_devicetype)                        | Defines the supported device types.          |
 | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype)                | Defines NNRt device types.                            |
 | [OH_AI_PerformanceMode](#oh_ai_performancemode)              | Defines performance modes of the NNRt device.                            |
 | [OH_AI_Priority](#oh_ai_priority)                            | Defines NNRt inference task priorities.                                |
-| [NNRTDeviceDesc](#nnrtdevicedesc)                            | Defines the NNRt device information, including the device ID and device name.    |
+| [NNRTDeviceDesc](#nnrtdevicedesc)                            | Defines NNRt device information, including the device ID and device name.    |
 
 
 ### Enums
@@ -73,13 +73,13 @@ Provides APIs related to MindSpore Lite model inference.
 | ------------------------------------------------------------ | ---------------------------------------- |
 | [OH_AI_DataType](#oh_ai_datatype-1) {<br>OH_AI_DATATYPE_UNKNOWN = 0, <br>OH_AI_DATATYPE_OBJECTTYPE_STRING = 12, <br>OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, <br>OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14,<br>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, <br>OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29,<br> OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30,<br> OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32,<br>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, <br>OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, <br>OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, <br>OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37,<br>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38, <br>OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39,<br> OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, <br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42,<br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, <br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44, <br>OH_AI_DATATYPE_NUMBERTYPE_END = 46,<br> OH_AI_DataTypeInvalid = INT32_MAX<br>} | Declares data types supported by MSTensor.          |
 | [OH_AI_Format](#oh_ai_format-1) {<br>OH_AI_FORMAT_NCHW = 0,<br> OH_AI_FORMAT_NHWC = 1, <br>OH_AI_FORMAT_NHWC4 = 2, <br>OH_AI_FORMAT_HWKC = 3,<br>OH_AI_FORMAT_HWCK = 4, <br>OH_AI_FORMAT_KCHW = 5, <br>OH_AI_FORMAT_CKHW = 6,<br> OH_AI_FORMAT_KHWC = 7,<br>OH_AI_FORMAT_CHWK = 8,<br> OH_AI_FORMAT_HW = 9, <br>OH_AI_FORMAT_HW4 = 10,<br> OH_AI_FORMAT_NC = 11,<br>OH_AI_FORMAT_NC4 = 12, <br>OH_AI_FORMAT_NC4HW4 = 13, <br>OH_AI_FORMAT_NCDHW = 15,<br> OH_AI_FORMAT_NWC = 16,<br>OH_AI_FORMAT_NCW = 17<br>} | Declares data formats supported by MSTensor.      |
-| [OH_AI_CompCode](#oh_ai_compcode) { <br>OH_AI_COMPCODE_CORE = 0x00000000u, <br>OH_AI_COMPCODE_LITE = 0xF0000000u<br> } | Defines MindSpore component codes.                 |
+| [OH_AI_CompCode](#oh_ai_compcode) { <br>OH_AI_COMPCODE_CORE = 0x00000000u, <br>OH_AI_COMPCODE_MD = 0x10000000u, <br>OH_AI_COMPCODE_ME = 0x20000000u, <br>OH_AI_COMPCODE_MC = 0x30000000u, <br>OH_AI_COMPCODE_LITE = 0xF0000000u<br>} | Defines MindSpore component codes.                 |
 | [OH_AI_Status](#oh_ai_status-1) {<br>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br>} | Defines MindSpore status codes.                      |
-| [OH_AI_ModelType](#oh_ai_modeltype-1) { <br>OH_AI_MODELTYPE_MINDIR = 0, <br>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF <br>} | Defines model file types.                        |
+| [OH_AI_ModelType](#oh_ai_modeltype-1) { <br>OH_AI_MODELTYPE_MINDIR = 0, <br>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF <br>} | Model file types.                        |
 | [OH_AI_DeviceType](#oh_ai_devicetype-1) {<br>OH_AI_DEVICETYPE_CPU = 0, <br>OH_AI_DEVICETYPE_GPU, <br>OH_AI_DEVICETYPE_KIRIN_NPU, <br>OH_AI_DEVICETYPE_NNRT = 60,<br>OH_AI_DEVICETYPE_INVALID = 100<br>} | Defines the supported device types.|
-| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype-1) { <br>OH_AI_NNRTDEVICE_OTHERS = 0, <br>OH_AI_NNRTDEVICE_CPU = 1, <br>OH_AI_NNRTDEVICE_GPU = 2, <br>OH_AI_NNRTDEVICE_ACCELERATOR = 3<br> } | Defines NNRt device types.                |
-| [OH_AI_PerformanceMode](#oh_ai_performancemode-1) {<br>OH_AI_PERFORMANCE_NONE = 0, <br>OH_AI_PERFORMANCE_LOW = 1, <br>OH_AI_PERFORMANCE_MEDIUM = 2,<br> OH_AI_PERFORMANCE_HIGH = 3,<br>OH_AI_PERFORMANCE_EXTREME = 4<br>} | Defines performance modes of the NNRt device.                |
-| [OH_AI_Priority](#oh_ai_priority-1) { <br>OH_AI_PRIORITY_NONE = 0, <br>OH_AI_PRIORITY_LOW = 1, <br>OH_AI_PRIORITY_MEDIUM = 2, <br>OH_AI_PRIORITY_HIGH = 3 <br>} | Defines NNRt inference task priorities.                    |
+| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype-1) { <br>OH_AI_NNRTDEVICE_OTHERS = 0, <br>OH_AI_NNRTDEVICE_CPU = 1, <br>OH_AI_NNRTDEVICE_GPU = 2, <br>OH_AI_NNRTDEVICE_ACCELERATOR = 3<br> } | NNRt device types.                |
+| [OH_AI_PerformanceMode](#oh_ai_performancemode-1) {<br>OH_AI_PERFORMANCE_NONE = 0, <br>OH_AI_PERFORMANCE_LOW = 1, <br>OH_AI_PERFORMANCE_MEDIUM = 2,<br> OH_AI_PERFORMANCE_HIGH = 3,<br>OH_AI_PERFORMANCE_EXTREME = 4<br>} | Performance modes of the NNRt device.                |
+| [OH_AI_Priority](#oh_ai_priority-1) { <br>OH_AI_PRIORITY_NONE = 0, <br>OH_AI_PRIORITY_LOW = 1, <br>OH_AI_PRIORITY_MEDIUM = 2, <br>OH_AI_PRIORITY_HIGH = 3 <br>} | NNRt inference task priorities.                    |
 
 
 ### Functions
@@ -99,7 +99,7 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_ContextAddDeviceInfo](#oh_ai_contextadddeviceinfo) ([OH_AI_ContextHandle](#oh_ai_contexthandle) context, [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Attaches the custom device information to the inference context.                                          |
 | [OH_AI_DeviceInfoCreate](#oh_ai_deviceinfocreate) ([OH_AI_DeviceType](#oh_ai_devicetype) device_type) | Creates a device information object.                                      |
 | [OH_AI_DeviceInfoDestroy](#oh_ai_deviceinfodestroy) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) \*device_info) | Destroys a device information object. Note: After the device information instance is added to the context, the caller does not need to destroy it manually.                                          |
-| [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*provider) | Sets the provider name.                                          |
+| [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*provider) | Sets the name of the provider.                                          |
 | [OH_AI_DeviceInfoGetProvider](#oh_ai_deviceinfogetprovider) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the provider name.                                          |
 | [OH_AI_DeviceInfoSetProviderDevice](#oh_ai_deviceinfosetproviderdevice) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*device) | Sets the name of a provider device.                                      |
 | [OH_AI_DeviceInfoGetProviderDevice](#oh_ai_deviceinfogetproviderdevice) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | Obtains the name of a provider device.                                      |
@@ -178,7 +178,7 @@ typedef struct NNRTDeviceDesc NNRTDeviceDesc
 
 **Description**
 
-Defines the NNRt device information, including the device ID and device name.
+Defines NNRt device information, including the device ID and device name.
 
 **Since**
 
@@ -364,7 +364,7 @@ typedef void* OH_AI_TensorHandle
 
 **Description**
 
-Defines the handle of a tensor object.
+Handle of a tensor object.
 
 
 ### OH_AI_TensorHandleArray
@@ -395,8 +395,11 @@ Defines MindSpore component codes.
 
 | Value             | Description                 |
 | ------------------- | --------------------- |
-| OH_AI_COMPCODE_CORE | MindSpore Core code|
-| OH_AI_COMPCODE_LITE | MindSpore Lite code|
+| OH_AI_COMPCODE_CORE | MindSpore Core code.|
+| OH_AI_COMPCODE_MD   | MindSpore MindData code.|
+| OH_AI_COMPCODE_ME   | MindSpore MindExpression code.|
+| OH_AI_COMPCODE_MC   | MindSpore code.|
+| OH_AI_COMPCODE_LITE | MindSpore Lite code.|
 
 
 ### OH_AI_DataType
@@ -448,10 +451,10 @@ Defines the supported device types.
 | Value                    | Description                                   |
 | -------------------------- | --------------------------------------- |
 | OH_AI_DEVICETYPE_CPU       | Device type: CPU                        |
-| OH_AI_DEVICETYPE_GPU       | Device type: GPU Reserved   |
-| OH_AI_DEVICETYPE_KIRIN_NPU | Device type: Kirin NPU Reserved|
+| OH_AI_DEVICETYPE_GPU       | Device type: GPU (reserved)   |
+| OH_AI_DEVICETYPE_KIRIN_NPU | Device type: Kirin NPU (reserved)|
 | OH_AI_DEVICETYPE_NNRT      | Device type: NNRt OHOS device range: [60, 80)|
-| OH_AI_DEVICETYPE_INVALID   | Invalid device type                         |
+| OH_AI_DEVICETYPE_INVALID   | Invalid device type.                         |
 
 
 ### OH_AI_Format
@@ -708,7 +711,7 @@ Obtains the list of bound CPU cores.
 
 **Returns**
 
-Specifies the CPU core binding list. This list is managed by [OH_AI_ContextHandle](#oh_ai_contexthandle). The caller does not need to destroy it manually.
+CPU core binding list. This list is managed by [OH_AI_ContextHandle](#oh_ai_contexthandle). The caller does not need to destroy it manually.
 
 
 ### OH_AI_ContextGetThreadAffinityMode()
@@ -1252,7 +1255,7 @@ OH_AI_API void OH_AI_DeviceInfoSetProvider (OH_AI_DeviceInfoHandle device_info, 
 
 **Description**
 
-Sets the provider name.
+Sets the name of the provider.
 
 **Parameters**
 
@@ -1634,7 +1637,7 @@ Clones a tensor.
 
 **Returns**
 
-Defines the handle of a tensor object.
+Handle of a tensor object.
 
 
 ### OH_AI_TensorCreate()
@@ -1661,7 +1664,7 @@ Creates a tensor object.
 
 **Returns**
 
-Defines the handle of a tensor object.
+Handle of a tensor object.
 
 
 ### OH_AI_TensorDestroy()
@@ -1823,7 +1826,7 @@ OH_AI_API const char* OH_AI_TensorGetName (const OH_AI_TensorHandle tensor)
 
 **Description**
 
-Obtains the name of a tensor.
+Obtains the tensor name.
 
 **Parameters**
 
@@ -1887,7 +1890,7 @@ OH_AI_API void OH_AI_TensorSetDataType (OH_AI_TensorHandle tensor, OH_AI_DataTyp
 
 **Description**
 
-Sets the tensor data type.
+Sets the data type of a tensor.
 
 **Parameters**
 

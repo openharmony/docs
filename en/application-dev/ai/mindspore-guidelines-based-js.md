@@ -17,9 +17,9 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 
 | API       | Description       |
 | ------------------ | ----------------- |
-|loadModelFromFile(model: string, options: Context): Promise&lt;Model&gt;|Loads a model from a file.|
+|loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;|Loads a model from a file.|
 |getInputs(): MSTensor[]|Obtains the model input.|
-|predict(inputs: MSTensor[]): Promise&lt;MSTensor&gt;|Performs model inference.|
+|predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;|Performs model inference.|
 | getData(): ArrayBuffer                 | Obtains tensor data.|
 | setData(inputArray: ArrayBuffer): void | Sets the tensor data.|
 

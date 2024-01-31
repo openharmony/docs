@@ -2862,8 +2862,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
@@ -2909,8 +2907,6 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
