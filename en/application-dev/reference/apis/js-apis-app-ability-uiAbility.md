@@ -40,7 +40,7 @@ Called to initialize the service logic when a UIAbility instance in the complete
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this UIAbility, including the ability name and bundle name.|
-| param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
 
 **Example**
 
@@ -51,7 +51,7 @@ Called to initialize the service logic when a UIAbility instance in the complete
 
   class MyUIAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log('onCreate, want: ${want.abilityName}');
+          console.log(`onCreate, want: ${want.abilityName}`);
       }
   }
   ```
@@ -409,7 +409,7 @@ Called when this UIAbility is about to terminate in case that the system paramet
           }
         }).catch((err: BusinessError)=>{
           // Exception handling.
-          console.log('startAbilityForResult failed, err:' + JSON.stringify(err));
+          console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
           this.context.terminateSelf();
         })
 
@@ -499,13 +499,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     marshalling(messageSequence: rpc.MessageSequence) {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
-      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
     unmarshalling(messageSequence: rpc.MessageSequence) {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
   };
@@ -525,10 +525,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             console.log('Caller call() called');
           })
           .catch((callErr: BusinessError) => {
-            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
+            console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
           });
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -586,13 +586,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     marshalling(messageSequence: rpc.MessageSequence) {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
-      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
     unmarshalling(messageSequence: rpc.MessageSequence) {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
-      console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
+      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
       return true;
     }
   };
@@ -614,10 +614,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {
-            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
+            console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
           });
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -661,10 +661,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
+          console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
         }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -711,13 +711,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           caller = obj;
           try {
             caller.onRelease((str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
+            console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -768,10 +768,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                  console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err: BusinessError) => {
-              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
+              console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }
@@ -819,13 +819,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           caller = obj;
           try {
             caller.on('release', (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -865,15 +865,15 @@ Deregisters a callback that is invoked when the stub on the target ability is di
           caller = obj;
           try {
             let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -912,15 +912,15 @@ Deregisters a callback that is invoked when the stub on the target ability is di
           caller = obj;
           try {
             let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(' Caller OnRelease CallBack is called ${str}');
+                console.log(`Caller OnRelease CallBack is called ${str}`);
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {
-            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
           }
       }).catch((err: BusinessError) => {
-        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
+        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
       });
     }
   }
@@ -957,7 +957,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  import UIAbility, { CalleeCallback } from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
   import rpc from '@ohos.rpc';
@@ -973,19 +973,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       marshalling(messageSequence: rpc.MessageSequence) {
           messageSequence.writeInt(this.num);
           messageSequence.writeString(this.str);
-          console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
+          console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
           return true;
       }
       unmarshalling(messageSequence: rpc.MessageSequence) {
           this.num = messageSequence.readInt();
           this.str = messageSequence.readString();
-          console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
+          console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
           return true;
       }
   };
   let method = 'call_Function';
   function funcCallBack(pdata: rpc.MessageSequence) {
-      console.log('Callee funcCallBack is called ${pdata}');
+      console.log(`Callee funcCallBack is called ${pdata}`);
       let msg = new MyMessageAble('test', '');
       pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
@@ -996,7 +996,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }
   }
@@ -1040,7 +1040,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }
   }

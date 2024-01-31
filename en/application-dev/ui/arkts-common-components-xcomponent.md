@@ -145,8 +145,8 @@ Based on the NativeXComponent pointer obtained by [parsing the NativeXComponent 
     // Parse the NativeXComponent instance.
 
     OH_NativeXComponent_Callback callback;
-    callback->OnSurfaceCreated = OnSurfaceCreatedCB; // Invoked when a surface is successfully created. You can obtain the handle to the native window from this event.
-    callback->OnSurfaceChanged = OnSurfaceChangedCB; // Invoked when the surface changes. You can obtain the native window handle and XComponent change information from this event.
+    callback->OnSurfaceCreated = OnSurfaceCreatedCB; // Invoked when a surface is successfully created. You can obtain the handle to the NativeWindow instance from this event.
+    callback->OnSurfaceChanged = OnSurfaceChangedCB; // Invoked when the surface changes. You can obtain the NativeWindow handle and XComponent change information from this event.
     callback->OnSurfaceDestroyed = OnSurfaceDestroyedCB; // Invoked when the surface is destroyed. You can release resources in this event.
     callback->DispatchTouchEvent = DispatchTouchEventCB; // Invoked when a touch event occurs. You can obtain the touch event information from this event.
 
@@ -190,18 +190,19 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 - **libraryname**: name of the loaded module, which must be the same as the value of **nm_modname** used when the Napi module is registered on the native side.
 
-  > **NOTE**
+  >**NOTE**
   >
-  > An application loads modules to implement cross-language invoking in either of the following modes:
+  >An application loads modules to implement cross-language invoking in either of the following modes:
   >
-  > 1. Use the **import** mode of the NAPI.
+  >- Use the **import** mode of the NAPI.
   >
-  > ```ts
-  > import nativerender from "libnativerender.so"
-  > ```
+  >   ```ts
+  >   import nativerender from "libnativerender.so"
+  >   ```
   >
-  > 2. Use the **\<XComponent>**.
-  >    While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
+  >- Use the **\<XComponent>**.
+  >
+  >   While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
 
 - **onLoad** event
   - Trigger time: when the surface of the **\<XComponent>** is ready.

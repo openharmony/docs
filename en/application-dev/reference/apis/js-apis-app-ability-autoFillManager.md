@@ -1,6 +1,6 @@
 # @ohos.app.ability.autoFillManager (autoFillManager)
 
-The autoFillManager module provides APIs for manually saving accounts and passwords.
+The autoFillManager module provides APIs for saving accounts and passwords.
 
 > **NOTE**
 > 
@@ -15,13 +15,13 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 ## AutoSaveCallback
 
-Implements callbacks triggered when manual saving is complete.
+Implements callbacks triggered when saving is complete.
 
 ### AutoSaveCallback.onSuccess
 
 onSuccess(): void
 
-Called when manual saving is successful.
+Called when saving is successful.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -33,64 +33,49 @@ See [AutoSaveCallback.onFailure](#autosavecallbackonfailure).
 
 onFailure(): void
 
-Called when manual saving fails.
+Called when saving fails.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
   ```ts
-  // Custom page displayed for auto saving.
+  // Index.ets, a page containing components such as the account and password text boxes.
   import autoFillManager from '@ohos.app.ability.autoFillManager';
+  import { UIContext } from '@ohos.arkui.UIContext';
+  import Base from '@ohos.base';
 
-  @Entry
-  @Component
-  struct SavePage {
-    private storage = LocalStorage.getShared();
-    private callback = this.storage.get<autoFillManager.AutoSaveCallback>('callback')
-    @State message: string = 'Save Account?'
-
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(35)
-            .fontWeight(FontWeight.Bold)
-          Row() {
-            Button("OK")
-              .type(ButtonType.Capsule)
-              .fontSize(20)
-              .margin({ top:30 ,right: 30})
-              .onClick(()=>{
-                // In this example, the onFailure callback is triggered manually and the saving operation is canceled. Write the code based on your service logic.
-                this.callback.onSuccess();
-              })
-            Button("No")
-              .type(ButtonType.Capsule)
-              .fontSize(20)
-              .margin({ top:30 ,left:30})
-              .onClick(()=>{
-                // In this example, the onFailure callback is triggered manually and the saving operation is canceled. Write the code based on your service logic.
-                this.callback.onFailure();
-              })
-          }
-        }
-        .width('100%')
-      }
-      .height('100%')
+  let uiContext = AppStorage.get<UIContext>("uiContext");
+  let callback : autoFillManager.AutoSaveCallback = {
+    onSuccess: () => {
+      console.log("save request on success");
+    },
+    onFailure: () => {
+      console.log("save request on failure");
     }
   }
+  ...
+  Button('requestAutoSave')
+    .onClick(() => {
+      try {
+        // Initiate a saving request.
+        autoFillManager.requestAutoSave(uiContext, callback);
+      } catch (error) {
+        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+      }
+  }
+  ...
   ```
 
 > **NOTE**
 >
-> In the example, the AutoSaveCallback obtained from the Local Storage is obtained from the OnSaveRequest lifecycle in the AutoFillAbility (customized AutoFillExtensionAbility) and stored in the Local Storage. For details, see [SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#saverequestcallbackonsuccess).
+> In the example, the UiContext obtained from the AppStorage is obtained from the **OnWindowStageCreate** lifecycle of the EntryAbility (ability that starts the page) and stored in the AppStorage. For details, see [requestAutoSave](#requestautosave).
 
 ## requestAutoSave
 
 requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
-Triggers a manual saving request. This API uses an asynchronous callback to return the result.
+Initiates a saving request. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -99,7 +84,7 @@ Triggers a manual saving request. This API uses an asynchronous callback to retu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [UIContext](js-apis-arkui-UIContext.md) | Yes| UI context in which the saving operation will be performed.|
-| callback | [AutoSaveCallback](#autosavecallback)  | No| Callback used for the manual saving request.|
+| callback | [AutoSaveCallback](#autosavecallback)  | No| Callback used for the saving request.|
 
 **Error codes**
 
@@ -110,7 +95,7 @@ Triggers a manual saving request. This API uses an asynchronous callback to retu
 **Example**
 
   ```ts
-  // EntryAbility.ts
+  // EntryAbility.ets
   import UIAbility from '@ohos.app.ability.UIAbility';
   import hilog from '@ohos.hilog';
   import window from '@ohos.window';
@@ -172,7 +157,7 @@ Triggers a manual saving request. This API uses an asynchronous callback to retu
             let uiContext = AppStorage.get<UIContext>("uiContext");
             console.log("uiContext: ", JSON.stringify(uiContext));
             try {
-              // Pass in the UIContext and onSuccess and onFailure callbacks to trigger a manual saving request.
+              // Initiate a saving request.
               autoFillManager.requestAutoSave(uiContext, {
                 onSuccess: () => {
                   console.log("save request on success");

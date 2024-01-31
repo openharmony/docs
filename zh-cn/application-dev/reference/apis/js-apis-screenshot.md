@@ -83,6 +83,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -97,12 +98,12 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
   "displayId": 0
 };
 try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap) => {
+  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
     if (err) {
       console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
       return;
     }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // PixelMap使用完后及时释放内存
   });
 } catch (exception) {
@@ -130,14 +131,15 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 try {
-  screenshot.save((err: BusinessError, pixelMap) => {
+  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
     if (err) {
       console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
       return;
     }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // PixelMap使用完后及时释放内存
   });
 } catch (exception) {
@@ -171,6 +173,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -186,8 +189,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
 };
 try {
   let promise = screenshot.save(screenshotOptions);
-  promise.then((pixelMap) => {
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  promise.then((pixelMap: image.PixelMap) => {
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err: BusinessError) => {
     console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));

@@ -20,7 +20,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| displayId | number | No| Display ID. The default value is **0**, indicating the current display.|
+| displayId | number | No| Display ID mode. The default value is **0**, indicating the current display.|
 | withAnimation<sup>11+</sup> | boolean | No| Whether the ability has the animation effect.|
 | windowLeft<sup>11+</sup> | number | No| Left position of the window.|
 | windowTop<sup>11+</sup> | number | No| Top position of the window.|
@@ -30,31 +30,39 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 **Example**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
   import StartOptions from '@ohos.app.ability.StartOptions';
   import { BusinessError } from '@ohos.base';
 
-  try {
-    missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error) {
-          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-          return;
-      }
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
-      let id = missions[0].missionId;
+  export default class EntryAbility extends UIAbility {
 
-      let startOptions: StartOptions = {
-          windowMode : 101,
-          displayId: 0
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
       };
-      missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log('moveMissionToFront is called');
-      });
-    });
-  } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message}`);
+      let options: StartOptions = {
+        windowMode: 0
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // Process service logic errors.
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // Process input parameter errors.
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
   }
   ```

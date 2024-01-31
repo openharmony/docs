@@ -478,7 +478,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>): void
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。以Callback形式返回。
 

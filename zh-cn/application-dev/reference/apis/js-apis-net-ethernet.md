@@ -520,12 +520,10 @@ ethernet.off('interfaceStateChange');
 
 **系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
-### 属性
-
-| 名称          | 类型                    | 必填 | 说明                                                         |
-| ------------ | ----------------------- | ---|------------------------------------------------------------ |
-| iface         | string                  |  是 | 以太网卡名称。 |
-| active       | boolean                  | 是 | 以太网卡是否处于激活状态（true：激活；false：未激活）。 |
+| 名称         | 类型                    | 必填 | 说明                                                 |
+| ------------ | ----------------------- | --- | ---------------------------------------------------- |
+| iface        | string                  |  是 | 以太网卡名称。                                        |
+| active       | boolean                 |  是 | 以太网卡是否处于激活状态（true：激活；false：未激活）。 |
 
 ## IPSetMode<sup>9+</sup>
 

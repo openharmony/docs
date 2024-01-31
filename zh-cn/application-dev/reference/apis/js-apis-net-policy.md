@@ -1957,12 +1957,10 @@ policy.off('netBackgroundPolicyChange', callback);
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-### 属性
-
-| 名称              | 类型                          | 必填 | 说明                                                                                     |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
-| uid    | number                        | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN。 |
-| rule      | [NetUidRule](#netuidrule10)                 | 是   | 规定一个UID访问计量网络还是非计量网络。                                                                     |
+| 名称              | 类型                           | 必填 | 说明                                      |
+| ----------------- | ----------------------------- | ---- | ----------------------------------------- |
+| uid               | number                        | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN。 |
+| rule              | [NetUidRule](#netuidrule10)   | 是   | 规定一个UID访问计量网络还是非计量网络。     |
 
 ## NetUidPolicyInfo<sup>11+</sup>
 
@@ -1972,12 +1970,10 @@ policy.off('netBackgroundPolicyChange', callback);
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-### 属性
-
-| 名称              | 类型                          | 必填 | 说明                                                                                     |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
-| uid    | number                        | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN |
-| policy      | [NetUidPolicy](#netuidpolicy10)                 | 是   | UID指定了在后台模式下网络访问的策略。                                    |
+| 名称              | 类型                            | 必填 | 说明                                    |
+| ----------------- | ------------------------------- | ---- | -------------------------------------- |
+| uid               | number                          | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN |
+| policy            | [NetUidPolicy](#netuidpolicy10) | 是   | UID指定了在后台模式下网络访问的策略。    |
 
 ## RemindType<sup>10+</sup>
 

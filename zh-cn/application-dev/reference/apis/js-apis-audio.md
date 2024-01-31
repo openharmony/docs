@@ -1022,13 +1022,16 @@ async function createTonePlayerBefore(){
 
 管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](#audiogetaudiomanager)创建实例。
 
-### setAudioParameter
+### setAudioParameter<sup>(deprecated)</sup>
 
 setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 音频参数设置，使用callback方式异步返回结果。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[setExtraParameters](#setextraparameters11)替代。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1056,13 +1059,16 @@ audioManager.setAudioParameter('key_example', 'value_example', (err: BusinessErr
 });
 ```
 
-### setAudioParameter
+### setAudioParameter<sup>(deprecated)</sup>
 
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[setExtraParameters](#setextraparameters11)替代。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -1089,13 +1095,16 @@ audioManager.setAudioParameter('key_example', 'value_example').then(() => {
 });
 ```
 
-### getAudioParameter
+### getAudioParameter<sup>(deprecated)</sup>
 
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取指定音频参数值，使用callback方式异步返回结果。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[getExtraParameters](#getextraparameters11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1120,13 +1129,16 @@ audioManager.getAudioParameter('key_example', (err: BusinessError, value: string
 });
 ```
 
-### getAudioParameter
+### getAudioParameter<sup>(deprecated)</sup>
 
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 获取指定音频参数值，使用Promise方式异步返回结果。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[getExtraParameters](#getextraparameters11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1147,6 +1159,99 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 ```ts
 audioManager.getAudioParameter('key_example').then((value: string) => {
   console.info(`Promise returned to indicate that the value of the audio parameter is obtained ${value}.`);
+});
+```
+
+### setExtraParameters<sup>11+</sup>
+
+setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&lt;void&gt;
+
+音频扩展参数设置，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| mainKey | string | 是   | 被设置的音频参数的主键。 |
+| kvpairs | Record<string, string\> | 是   | 被设置的音频参数的子键值对。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let kvpairs = {} as Record<string, string>;
+kvpairs = {
+  key_example: 'value_example'
+}
+audioManager.setExtraParameters('key_example', kvpairs).then(() => {
+  console.info('Promise returned to indicate a successful setting of the extra parameters.');
+}).catch ((err: BusinessError) => {
+    console.error(`Failed to set the audio extra parameters ${err}`);
+});
+```
+
+### getExtraParameters<sup>11+</sup>
+
+getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<string, string>>
+
+获取指定音频参数值，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ |--| ---------------------- |
+| mainKey | string | 是 | 待获取的音频参数的主键。 |
+| subKeys | Array\<string> | 否 | 待获取的音频参数的子键。 |
+
+**返回值：**
+
+| 类型                  | 说明                                |
+| --------------------- | ----------------------------------- |
+| Promise\<Record\<string, string>> | Promise对象，返回获取的音频参数的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let subKeys: Array<String> = ['key_example'];
+audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
+  console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
+}).catch ((err: BusinessError) => {
+    console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
 
@@ -2407,13 +2512,16 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 audioManager.off('deviceChange');
 ```
 
-### on('interrupt')
+### on('interrupt')<sup>(deprecated)</sup>
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序），使用callback方式返回结果。
 
 与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[on('audioInterrupt')](#onaudiointerrupt10)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2447,11 +2555,14 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.Interr
 });
 ```
 
-### off('interrupt')
+### off('interrupt')<sup>(deprecated)</sup>
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 取消监听音频打断事件（删除监听事件，取消打断），使用callback方式返回结果。
+
+> **说明：**
+> 从 API version 7 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[off('audioInterrupt')](#offaudiointerrupt10)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7269,6 +7380,40 @@ audioRenderer.drain().then(() => {
 });
 ```
 
+### flush<sup>11+</sup>
+
+flush(): Promise\<void>
+
+清空缓冲区（[AudioState](#audiostate8)为STATE_RUNNING、STATE_PAUSED、STATE_STOPPED状态下可用）。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+audioRenderer.flush().then(() => {
+  console.info('Renderer flushed successfully');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
 ### stop<sup>8+</sup>
 
 stop(callback: AsyncCallback\<void>): void
@@ -7377,11 +7522,14 @@ audioRenderer.release().then(() => {
 });
 ```
 
-### write<sup>8+</sup>
+### write<sup>8+(deprecated)</sup>
 
 write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
 写入缓冲区。使用callback方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7437,11 +7585,14 @@ audioRenderer.getBufferSize().then((data: number)=> {
 
 ```
 
-### write<sup>8+</sup>
+### write<sup>8+(deprecated)</sup>
 
 write(buffer: ArrayBuffer): Promise\<number>
 
 写入缓冲区。使用Promise方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7662,11 +7813,14 @@ try {
 }
 ```
 
-### setRenderRate<sup>8+</sup>
+### setRenderRate<sup>8+(deprecated)</sup>
 
 setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
 设置音频渲染速率。使用callback方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[setSpeed](#setspeed11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7691,11 +7845,14 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: Bu
 });
 ```
 
-### setRenderRate<sup>8+</sup>
+### setRenderRate<sup>8+(deprecated)</sup>
 
 setRenderRate(rate: AudioRendererRate): Promise\<void>
 
 设置音频渲染速率。使用Promise方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[setSpeed](#setspeed11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7723,11 +7880,42 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 });
 ```
 
-### getRenderRate<sup>8+</sup>
+### setSpeed<sup>11+</sup>
+
+setSpeed(speed: number): void
+
+设置播放倍速。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明                   |
+| ------ | ---------------------------------------- | ---- |----------------------|
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.setSpeed(1.5);
+```
+
+### getRenderRate<sup>8+(deprecated)</sup>
 
 getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
 获取当前渲染速率。使用callback方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[getSpeed](#getspeed11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7747,11 +7935,14 @@ audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRenderer
 });
 ```
 
-### getRenderRate<sup>8+</sup>
+### getRenderRate<sup>8+(deprecated)</sup>
 
 getRenderRate(): Promise\<AudioRendererRate>
 
 获取当前渲染速率。使用Promise方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[getSpeed](#getspeed11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7773,11 +7964,14 @@ audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
 });
 ```
 
-### getRenderRateSync<sup>10+</sup>
+### getRenderRateSync<sup>10+(deprecated)</sup>
 
 getRenderRateSync(): AudioRendererRate
 
 获取当前渲染速率，同步返回结果。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[getSpeed](#getspeed11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7799,6 +7993,26 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
+```
+
+### getSpeed<sup>11+</sup>
+
+getSpeed(): number
+
+获取播放倍速。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明        |
+| ------------------------------------------------- |-----------|
+| number | 返回播放的倍速值。 |
+
+**示例：**
+
+```ts
+let speed = audioRenderer.getSpeed();
 ```
 
 ### setInterruptMode<sup>9+</sup>
@@ -8727,6 +8941,93 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
 });
 ```
 
+### on('writeData')<sup>11+</sup>
+
+on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
+
+订阅监听音频数据写入回调，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                         |
+| :------- |:-----------------------| :--- |:---------------------------|
+| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回待写入的数据缓冲区。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+
+let bufferSize: number = 0;
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let writeDataCallback = (buffer: ArrayBuffer) => {
+  let path = getContext().cacheDir;
+  //确保该路径下存在该资源
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  }
+  fs.readSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
+}
+
+audioRenderer.on('writeData', writeDataCallback);
+audioRenderer.start().then(() => {
+  console.info('Renderer started');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### off('writeData')<sup>11+</sup>
+
+off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
+
+取消订阅监听音频数据写入回调，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                         |
+| :------- |:-----------------------| :--- |:-------------------------------------------|
+| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。                 |
+| callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回待写入的数据缓冲区。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error. |
+
+**示例：**
+
+```ts
+audioRenderer.off('writeData', (data: ArrayBuffer) => {
+    console.info(`write data: ${data}`);
+});
+```
+
 ## AudioCapturer<sup>8+</sup>
 
 提供音频采集的相关接口。在调用AudioCapturer的接口前，需要先通过[createAudioCapturer](#audiocreateaudiocapturer8)创建实例。
@@ -9188,11 +9489,14 @@ audioCapturer.release().then(() => {
 });
 ```
 
-### read<sup>8+</sup>
+### read<sup>8+(deprecated)</sup>
 
 read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\>): void
 
 读入缓冲区。使用callback方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[on('readData')](#onreaddata11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -9223,11 +9527,14 @@ audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) =
 });
 ```
 
-### read<sup>8+</sup>
+### read<sup>8+(deprecated)</sup>
 
 read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 
 读入缓冲区。使用Promise方式异步返回结果。
+
+> **说明：**
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[on('readData')](#onreaddata11)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -9490,8 +9797,8 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-if (deviceDescriptors[0].encodingTypes) {
-  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (info.deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
 }
 ```
 
@@ -9841,6 +10148,93 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
   if (state == 2) {
     console.info('audio capturer state is: STATE_RUNNING');
   }
+});
+```
+
+### on('readData')<sup>11+</sup>
+
+on(type: 'readData', callback: Callback\<ArrayBuffer>): void
+
+订阅监听音频数据读入回调，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                        |
+| :------- |:-----------------------| :--- |:--------------------------|
+| type     | string                 | 是   | 事件回调类型，支持的事件为：'readData'。 |
+| callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回读到的数据缓冲区。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+
+let bufferSize: number = 0;
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let readDataCallback = (buffer: ArrayBuffer) => {
+  let path = getContext().cacheDir;
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  }
+  fs.writeSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
+}
+audioCapturer.on('readData', readDataCallback);
+audioCapturer.start((err: BusinessError) => {
+  if (err) {
+    console.error('Capturer start failed.');
+  } else {
+    console.info('Capturer start success.');
+  }
+});
+```
+
+### off('readData')<sup>11+</sup>
+
+off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
+
+取消订阅监听音频数据读入回调，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                         |
+| :------- |:-----------------------| :--- |:-------------------------------------------|
+| type     | string                 | 是   | 事件回调类型，支持的事件为：'readData'。                 |
+| callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回读到的数据缓冲区。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error. |
+
+**示例：**
+
+```ts
+audioCapturer.off('readData', (data: ArrayBuffer) => {
+    console.info(`read data: ${data}`);
 });
 ```
 

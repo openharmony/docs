@@ -43,6 +43,7 @@
     - [Click Effect](ts-universal-attributes-click-effect.md)
     - [Accessibility](ts-universal-attributes-accessibility.md)
     - [Attribute Modifier](ts-universal-attributes-attribute-modifier.md)
+    - [Outline](ts-universal-attributes-outline.md)
     - Touch Interactions
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
@@ -107,6 +108,7 @@
   - [Span](ts-basic-components-span.md)
   - [Stepper](ts-basic-components-stepper.md)
   - [StepperItem](ts-basic-components-stepperitem.md)
+  - [SymbolSpan](ts-basic-components-symbolSpan.md)
   - [Text](ts-basic-components-text.md)
   - [TextArea](ts-basic-components-textarea.md)
   - [TextClock](ts-basic-components-textclock.md)
@@ -171,6 +173,8 @@
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - Advanced Components
+  - [@ohos.advertising.AdComponent (Non-Full-Screen Ad Component)](../apis/js-apis-adcomponent.md)
+  - [@ohos.advertising.AutoAdComponent (Carousel Ad Component)](../apis/js-apis-autoadcomponent.md)
   - [@ohos.arkui.advanced.Chip (Chip)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (List)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (One- or Two-Row Title Bar with Profile Picture)](ts-composite-components-composetitlebar.md)
@@ -216,6 +220,7 @@
     - [Text Picker Dialog Box (TextPickerDialog)](ts-methods-textpicker-dialog.md)
   - [Menu](ts-methods-menu.md)
 - [Custom Component Lifecycle](ts-custom-component-lifecycle.md)
+- [Custom Component Built-in APIs](ts-custom-component-api.md)
 - [State Management with Application-level Variables](ts-state-management.md)
 - [Pixel Units](ts-pixel-units.md)
 - [Enums](ts-appendix-enums.md)
