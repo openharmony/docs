@@ -116,6 +116,7 @@
         - [HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)
         - [HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)
         - [HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md)
+    - [HiAppEvent数据处理者lib库概述](subsys-dfx-hiappevent-extend-so.md)
     - [HiChecker开发指导](subsys-dfx-hichecker.md)
     - [Faultlogger开发指导](subsys-dfx-faultlogger.md)
     - [Hiview开发指导](subsys-dfx-hiview.md)
