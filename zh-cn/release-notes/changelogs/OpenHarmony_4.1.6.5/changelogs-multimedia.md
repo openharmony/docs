@@ -351,3 +351,72 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction>): voi
 系统应用使用，无需适配
 
 三方应用，不应该使用系统接口
+
+## c1.multimedia.9 ohos.multimedia.audioHaptic createPlayer权限声明
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+AudioHapticPlayer内包含震动功能，这部分功能生效依赖ohos.permission.VIBRATE权限
+
+**变更影响**
+
+非兼容性变更，应用可按业务需要添加权限
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+AudioHapticManager接口:
+
+createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise<AudioHapticPlayer>;
+
+变更前：
+
+```
+/**
+ * Create an audio haptic player. This method uses a promise to return the result.
+ * @param { number } id - Source id.
+ * @param { AudioHapticPlayerOptions } options - Options when creating audio haptic player.
+ * @returns { Promise<AudioHapticPlayer> } Promise used to return the result.
+ * @throws { BusinessError } 401 - The parameter check failed.
+ * @throws { BusinessError } 5400102 - Operation not allowed.
+ * @throws { BusinessError } 5400103 - I/O error.
+ * @throws { BusinessError } 5400106 - Unsupport format.
+ * @syscap SystemCapability.Multimedia.AudioHaptic.Core
+ * @since 11
+ */
+```
+
+无权限声明，但若不申请权限，播放无法使能震动，仅音频播放
+
+变更后：
+
+```
+/**
+ * Create an audio haptic player. This method uses a promise to return the result. If haptics is needed, caller
+ * should have the permission of ohos.permission.VIBRATE.
+ * @permission ohos.permission.VIBRATE
+ * @param { number } id - Source id.
+ * @param { AudioHapticPlayerOptions } options - Options when creating audio haptic player.
+ * @returns { Promise<AudioHapticPlayer> } Promise used to return the result.
+ * @throws { BusinessError } 201 - Permission denied.
+ * @throws { BusinessError } 401 - The parameter check failed.
+ * @throws { BusinessError } 5400102 - Operation not allowed.
+ * @throws { BusinessError } 5400103 - I/O error.
+ * @throws { BusinessError } 5400106 - Unsupport format.
+ * @syscap SystemCapability.Multimedia.AudioHaptic.Core
+ * @since 11
+ */
+```
+
+含ohos.permission.VIBRATE权限声明和权限用途注释说明
+
+**适配指导**
+
+接口行为与修改前一致，如果应用需要使用震动能力，需要申请ohos.permission.VIBRATE权限
