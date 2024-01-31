@@ -24,18 +24,13 @@
 ```ts
 import autoStartupManager from '@ohos.app.ability.autoStartupManager';
 import common from '@ohos.app.ability.common';
-import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MyAbility extends UIAbility {
-  onBackground() {
-    autoStartupManager.setApplicationAutoStartup({
-      bundleName: 'com.example.autostartupapp',
-      moduleName: 'entry',
-      abilityName: 'EntryAbility',
-      abilityTypeName: 'ServiceExtension'
-    } as common.AutoStartupInfo , (err, data) => {
-      console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-    });
-  }
-}
+autoStartupManager.setApplicationAutoStartup({
+  bundleName: 'com.example.autostartupapp',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility',
+  abilityTypeName: 'ServiceExtension'
+} as common.AutoStartupInfo , (err, data) => {
+  console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+});
 ```
