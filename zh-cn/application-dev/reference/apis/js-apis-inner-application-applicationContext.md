@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): Prominse\<void\>
+off(type: 'environment', callbackId: **number**): Promise\<void\>
 
 取消对系统环境变化的监听。
 
@@ -466,7 +466,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>): void
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。以Callback形式返回。
 

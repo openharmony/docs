@@ -2326,6 +2326,8 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 设置卡片可回收。使用callback异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2344,7 +2346,6 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
@@ -2373,6 +2374,8 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 设置卡片可回收。使用Promise异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2396,7 +2399,6 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
@@ -2424,6 +2426,8 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 
 恢复卡片。使用callback异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2442,7 +2446,6 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
@@ -2464,5 +2467,3 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
-
-## 

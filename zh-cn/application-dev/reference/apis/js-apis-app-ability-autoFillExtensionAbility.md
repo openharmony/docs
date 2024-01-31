@@ -131,7 +131,7 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
                   callback : autoFillManager.SaveRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
-        let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
+        let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.SaveRequestCallback |
           autoFillManager.ViewData | common.AutoFillExtensionContext> = {
           'session': session,
           'message': "AutoFill Page",
