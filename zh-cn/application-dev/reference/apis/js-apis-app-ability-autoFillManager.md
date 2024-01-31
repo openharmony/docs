@@ -64,7 +64,7 @@ onFailure(): void
       } catch (error) {
         console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
       }
-  }
+  })
   ...
   ```
 

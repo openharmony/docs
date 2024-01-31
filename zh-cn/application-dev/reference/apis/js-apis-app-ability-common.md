@@ -25,16 +25,16 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | Context二级模块。 |
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | ExtensionContext二级模块。 |
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | FormExtensionContext二级模块。 |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。<br>**系统接口**: 此接口为系统接口。|
-| VpnExtensionContext | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | VpnExtensionContext二级模块。 |
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
+| VpnExtensionContext<sup>11+<sup> | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | VpnExtensionContext二级模块。 |
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | PacMap二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | AbilityStartCallback二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
-| AutoFillExtensionContext   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | AutoFillExtensionContext二级模块。 |
-| AutoStartupInfo   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。<br>**系统接口**: 此接口为系统接口。 |
-| AutoStartupCallback   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)              | AutoStartupCallback二级模块。<br>**系统接口**: 此接口为系统接口。 |
+| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
 
 **示例：**
 
