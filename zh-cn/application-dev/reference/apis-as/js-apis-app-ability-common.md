@@ -14,7 +14,7 @@ import common from '@ohos.app.ability.common';
 ```
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称        | 类型                 | 说明                                                         |
 | ----------- | -------------------- | ------------------------------------------------------------ |
@@ -28,7 +28,6 @@ import common from '@ohos.app.ability.common';
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | AbilityStartCallback二级模块。 |
-| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
 
 
 **示例：**

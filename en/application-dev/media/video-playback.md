@@ -48,11 +48,11 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    > 
    > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
-   > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
+   > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../security/AccessToken/declare-permissions.md).
    > 
    > - You can also use **ResourceManager.getRawFd** to obtain the file descriptor of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
    > 
-   > - The [playback formats and protocols](avplayer-avrecorder-overview.md#supported-formats-and-protocols) in use must be those supported by the system.
+   > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
 
 4. Obtain and set the surface ID of the window to display the video.
    The application obtains the surface ID from the XComponent. For details about the process, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).

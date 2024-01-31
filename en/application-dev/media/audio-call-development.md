@@ -161,6 +161,8 @@ async function release() {
 
 This process is similar to the process of [using AudioCapturer to develop audio recording](using-audiocapturer-for-recording.md). The key differences lie in the **audioCapturerInfo** parameter and audio data stream direction. In the **audioCapturerInfo** parameter used for audio calling, **source** must be set to **SOURCE_TYPE_VOICE_COMMUNICATION**.
 
+You must request the **ohos.permission.MICROPHONE** permission for all recording tasks. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+ 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';

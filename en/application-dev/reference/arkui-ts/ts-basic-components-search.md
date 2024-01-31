@@ -140,7 +140,7 @@ Obtains the position of the edited text area relative to the component and its s
 >
 > - The returned position information is the offset of the first character relative to the search icon in the **\<Search>** component.
 > - If no text is entered, the return value contains the position information, but the size is 0.
-> -  
+
 
 ### RectResult<sup>10+</sup>
 

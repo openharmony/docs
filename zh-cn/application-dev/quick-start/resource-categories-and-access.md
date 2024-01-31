@@ -8,7 +8,7 @@
 
 ## 资源分类
 
-应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。资源目录的示例如下所示，base目录、限定词目录、rawfile目录称为资源目录，element、media、profile称为资源组目录。
+应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。资源目录的示例如下所示，base目录、限定词目录、rawfile目录、resfile目录称为资源目录，element、media、profile称为资源组目录。
 
 > **说明**
 >
@@ -46,6 +46,7 @@ resources
 |   |---profile
 |   |   |---test_profile.json
 |---rawfile // 其他类型文件，原始文件形式保存，不会被集成到resources.index文件中。文件名可自定义。
+|---resfile // 其他类型文件，原始文件形式保存，不会被集成到resources.index文件中。文件名可自定义。
 ```
 ### 资源目录
 
@@ -83,7 +84,11 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 #### rawfile目录
 
-支持创建多层子目录，目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。通过指定文件路径和文件名引用。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。通过指定文件路径和文件名引用。
+
+#### resfile目录
+
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。应用安装后，resfile资源会被解压到应用沙箱路径，通过Context属性[resourceDir](../reference/apis/js-apis-inner-application-context.md#属性)获取到resfile资源目录后，可通过文件路径访问。
 
 ### 资源组目录
 
@@ -235,6 +240,8 @@ plural.json文件的内容如下：
 - 对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
 - 对于rawfile目录的descriptor，可通过资源管理的[getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9)接口引用，其返回值descriptor.fd为hap包的fd。此时，访问rawfile文件需要结合{fd, offset, length}一起使用。
+
+- 对于resfile目录资源，只提供资源目录获取，可直接通过资源路径操作文件。
 
 > **说明：**
 > 

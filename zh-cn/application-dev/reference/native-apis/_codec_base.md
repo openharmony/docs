@@ -575,7 +575,7 @@ enum AudioChannelLayout : uint64_t
 | CH_10POINT2 | 10.2布局 | 
 | CH_22POINT2 | 22.2布局 | 
 | OCTAGONAL | 八边形布局 | 
-| HEXADECAGONAL | 六边形布局 | 
+| HEXADECAGONAL | 十六边形布局 | 
 | STEREO_DOWNMIX | 立体声下混布局 | 
 | HOA_FIRST | 高阶立体声一阶布局 | 
 | HOA_SECOND | 高阶立体声二阶布局 | 
@@ -751,7 +751,7 @@ enum OH_BitsPerSample
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | SAMPLE_U8 | 8位无符号整数采样。 | 
-| SAMPLE_S16LE | 16位有符号整数交样。 | 
+| SAMPLE_S16LE | 16位有符号整数采样。 | 
 | SAMPLE_S24LE | 24位有符号整数采样。 | 
 | SAMPLE_S32LE | 32位有符号整数采样。 | 
 | SAMPLE_F32LE | 32位浮点采样。 | 

@@ -48,25 +48,35 @@ import font from '@ohos.font';
 @Entry
 @Component
 struct FontExample {
-  @State message: string = '你好，世界'
+  @State message: string = 'Hello World'
+
+  // iconFont示例，假设0000为指定icon的Unicode，实际需要开发者从注册的iconFont的ttf文件里面获取Unicode
+  @State unicode: string = '\u0000'
+  @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
     // familyName和familySrc都支持string
     font.registerFont({
       familyName: 'medium',
-      familySrc: '/font/medium.ttf' // font文件与pages目录同级
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
     })
 
     // familyName和familySrc都支持系统Resource
     font.registerFont({
-      familyName: $r('app.string.mediumFamilyName'),
-      familySrc: $r('app.string.mediumFamilySrc')
+      familyName: $r('app.string.font_name'),
+      familySrc: $r('app.string.font_src')
     })
 
     // familySrc支持RawFile
     font.registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
+    })
+
+    // 注册iconFont
+    font.registerFont({
+      familyName: 'iconFont',
+      familySrc: '/font/iconFont.ttf'
     })
   }
 
@@ -76,7 +86,16 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
-        .height('100%')
+      
+      // 使用iconFont的两种方式
+      Text(this.unicode)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('iconFont')
+      Text(this.codePoint)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('iconFont')
     }.width('100%')
   }
 }
@@ -205,7 +224,7 @@ getUIFontConfig() : UIFontConfig
 | -------------- | ------- | ------------------------- | ------------------------- |
 | fontDir        | Array\<string>  | 是 | 系统字体文件所在的路径。      |
 | generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | 是 | 系统所支持的通用字体集列表。 |
-| fallbackGroups       | Array\<[UIFallbackGroupInfo](#uifallbackgroupinfo11)>  | 是 | 备用字体集。           |
+| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 是 | 备用字体集。           |
 
 ## UIFontGenericInfo<sup>11+</sup>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -215,7 +234,7 @@ getUIFontConfig() : UIFontConfig
 | alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | 是 | 别名列表。 |
 | adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 否 | 字体原本的weight值对应需显示的值。 |
 
-## UIFallbackGroupInfo<sup>11+</sup>
+## UIFontFallbackGroupInfo<sup>11+</sup>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -240,8 +259,8 @@ getUIFontConfig() : UIFontConfig
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| language       | number  | 是 | 字体集所支持的语言类型，语言格式为bcp47。    |
-| family         | number  | 是 | 字体集名，字体文件中指定的"family"值。 |
+| language       | string  | 是 | 字体集所支持的语言类型，语言格式为bcp47。    |
+| family         | string  | 是 | 字体集名，字体文件中指定的"family"值。 |
 
 **示例：**
 

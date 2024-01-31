@@ -5,6 +5,8 @@ The **\<Navigation>** component is the root view container for navigation. It ty
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 
 
 ## Child Components
@@ -64,7 +66,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Called when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Called when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
 | onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| Called when the **\<Navigation>** component is displayed for the first time or its display mode switches between single-column and dual-column.<br>**NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
-| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation-11)): [NavigationAnimatedTransition](#navigationanimatedtransition11)<sup>11+</sup> | Callback of the custom transition animation.<br>**from**: parameters of the exit destination page.<br> **to**: parameters of the enter destination page.<br> **operation**: transition type.|
+| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation11)): [NavigationAnimatedTransition](#navigationanimatedtransition11)<sup>11+</sup> | Callback of the custom transition animation.<br>**from**: parameters of the exit destination page.<br> **to**: parameters of the enter destination page.<br> **operation**: transition type.|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -371,7 +373,7 @@ Provides the destination information.
 |-------|-------|------|-------|
 | name | string | No| Name of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 | index | number | Yes| Index of the navigation destination in the navigation stack. If the view is a root view (**NavBar**), the return value is **-1**.|
-| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
+| mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode11) | No| Mode of the navigation destination. If the view is a root view (**NavBar**), the return value is **undefined**.|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -524,10 +526,10 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/ic_public_add.svg')
+      Image('resources/base/media/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
@@ -781,7 +783,7 @@ struct NavigationExample {
       console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
       console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
       console.log(`operation: ${operation}`)
-      if (from.index === -1) {
+      if (from.index === -1 || to.index === -1) {
         return undefined;
       }
       let customAnimation: NavigationAnimatedTransition = {
@@ -795,7 +797,9 @@ struct NavigationExample {
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.name);
           fromParam.start(operation == NavigationOperation.PUSH, true);
           toParam.start(operation == NavigationOperation.PUSH, false);
-          animateTo({duration: toParam.timeout, onFinish: ()=>{
+          animateTo({duration: 400, onFinish: ()=>{
+            fromParam.onFinish(operation === NavigationOperation.PUSH, true);
+            toParam.onFinish(operation === NavigationOperation.PUSH, true);
             transitionProxy.finishTransition();
           }}, ()=>{
             fromParam.finish(operation === NavigationOperation.PUSH, true)
@@ -820,16 +824,13 @@ export struct pageOneTmp {
   @State scaleVal: number = 1
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageOne', (isPush: boolean, isExit: boolean) => {
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=> {
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200);
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -850,6 +851,13 @@ export struct pageOneTmp {
       console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
     })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageOne')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageOne')
+    })
     .translate({x: this.x, y: 0, z: 0})
     .backgroundColor(Color.White)
   }
@@ -865,17 +873,14 @@ export struct PageTwoTemp {
   @State x: number = 300
 
   aboutToAppear() {
-
     CustomTransition.getInstance().registerNavParam('pageTwo', (isPush: boolean, isExit: boolean)=>{
       console.log("current page is pageOne")
       this.x = isExit ? 0 : 300;
     }, (isPush: boolean, isExit: boolean)=>{
       this.x = isExit ? -300 : 0;
+    }, (isPush: boolean, isExit: boolean) => {
+      this.x = 0;
     }, 200)
-  }
-
-  aboutToDisappear() {
-    CustomTransition.getInstance().unRegisterNavParam('pageOne')
   }
 
   build() {
@@ -890,11 +895,17 @@ export struct PageTwoTemp {
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
-    .backgroundColor(Color.White)
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop() // Pops the top element out of the navigation stack.
       console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
       return true
+    })
+    .onDisAppear(()=>{
+      let names = this.pageInfos.getAllPathName();
+      if (names.includes('pageTwo')) {
+        return;
+      }
+      CustomTransition.getInstance().unRegisterNavParam('pageTwo')
     })
     .translate({x: this.x})
     .backgroundColor(Color.White)
@@ -906,6 +917,7 @@ export struct PageTwoTemp {
 export interface AnimateCallback {
   finish: (isPush: boolean, isExit: boolean) => void;
   start: (isPush: boolean, isExit: boolean) => void;
+  onFinish: (isPush: boolean, isExit: boolean) => void
   timeout: number;
 }
 const customTransitionMap: Map<string, AnimateCallback> = new Map()
@@ -921,16 +933,18 @@ export class CustomTransition {
   }
 
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void, timeout: number): void {
+                   endCallback:(operation: boolean, isExit: boolean) => void,
+                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
       param.start = startCallback;
       param.finish = endCallback;
       param.timeout = timeout;
+      param.onFinish = onFinish;
       return;
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback};
+    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
     customTransitionMap.set(name, params);
   }
 
@@ -942,7 +956,8 @@ export class CustomTransition {
     let result: AnimateCallback = {
       start: customTransitionMap.get(name).start,
       finish: customTransitionMap.get(name).finish,
-      timeout: customTransitionMap.get(name).timeout
+      timeout: customTransitionMap.get(name).timeout,
+      onFinish: customTransitionMap.get(name).onFinish
     };
     return result;
   }

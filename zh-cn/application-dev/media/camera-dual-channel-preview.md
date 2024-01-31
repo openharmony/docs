@@ -8,7 +8,7 @@
 
 ## 约束与限制
 
-- 暂不支持动态添加流，即不能在没有调用[session.stop](../reference/apis/js-apis-camera.md#stop-4)的情况下，调用[addOutput](../reference/apis/js-apis-camera.md#addoutput)添加流。
+- 暂不支持动态添加流，即不能在没有调用[session.stop](../reference/apis/js-apis-camera.md#stop11)的情况下，调用[addOutput](../reference/apis/js-apis-camera.md#addoutput11)添加流。
 - 对ImageReceiver组件获取到的图像数据处理后，需要将对应的图像Buffer释放，确保Surface的BufferQueue正常轮转。
 
 ## 调用流程
@@ -26,16 +26,21 @@
    ```ts
    import image from '@ohos.multimedia.image';
    ```
-
-2. 创建ImageReceiver组件Surface。
+2. 创建ImageReceiver对象。
+   ```ts
+   let size: image.Size = {
+       width: 640,
+       height: 480
+     }
+   let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+   ```
+3. 获取ImageReceiver组件的SurfaceId。
 
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
-     let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
-     console.info('before ImageReceiver check');
+   async function getImageReceiverSurfaceId(receiver: image.ImageReceiver): Promise<string | undefined> {
      let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
-       console.info('createImageReceiver success');
+       console.info('receiver is not undefined');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
@@ -45,7 +50,7 @@
    }
    ```
 
-3. 创建XComponent组件Surface。
+4. 创建XComponent组件Surface。
 
    可参考[相机预览指导文档](camera-preview.md)。
 
@@ -79,7 +84,7 @@
    }
    ```
 
-4. 实现双路预览。
+5. 实现双路预览。
 
    将步骤2、3生成的两路SurfaceId通过[createPreviewOutput](../reference/apis/js-apis-camera.md#createpreviewoutput)方法传递到相机服务，创建两路预览流，其余流程按照正常预览流程开发。
 
@@ -122,7 +127,7 @@
      await cameraInput.open();
 
      // 会话流程
-     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+     let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
 
      // 开始配置会话
      photoSession.beginConfig();
@@ -144,7 +149,7 @@
    }
    ```
 
-5. 通过ImageReceiver实时获取预览图像。
+6. 通过ImageReceiver实时获取预览图像。
 
    通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../reference/apis/js-apis-image.md)。
 

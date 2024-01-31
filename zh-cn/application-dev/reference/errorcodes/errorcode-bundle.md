@@ -714,6 +714,21 @@ Not app gallery call.
 **处理步骤**<br/>
 请检查调用者是否是应用市场。
 
+## 17700054 权限校验失败导致应用安装失败
+**错误信息**<br/>
+Failed to install the HAP because the HAP requests wrong permissions.
+
+**错误描述**<br/>
+待安装的应用申请了错误的权限，导致安装失败。
+
+**可能原因**<br/>
+1. 非MDM应用申请了MDM类型的权限。
+2. 应用的权限级别比其申请权限的权限级别低。
+
+**处理步骤**<br/>
+1. 排查是否申请了[MDM类型的权限](../../security/AccessToken/permissions-for-mdm-apps.md)，MDM类型的权限仅针对应用类型为MDM的应用开放。
+2. 排查申请的权限的[权限级别](../../security/AccessToken/permissions-for-all.md)是否比[应用的权限级别](../../security/app-provision-structure.md#bundle-info对象内部结构)高。由于默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.

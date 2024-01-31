@@ -30,12 +30,16 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
+EventHub不是全局的事件中心，不同的context对象拥有不同的EventHub对象，事件的订阅、取消订阅、触发都作用在某一个具体的EventHub对象上，因此不能用于虚拟机间或者进程间的事件传递。
 
 ## EventHub.on
 
 on(event: string, callback: Function): void;
 
 订阅指定事件。
+> **说明：**
+>
+>  callback被emit触发时，调用方是EventHub对象，如果要修改callback中this的指向，可以使用箭头函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,20 +56,22 @@ on(event: string, callback: Function): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
     onForeground() {
         this.context.eventHub.on('myEvent', this.eventFunc);
         // 支持使用匿名函数订阅事件
         this.context.eventHub.on('myEvent', () => {
-            console.log('call anonymous eventFunc');
+            console.log(`anonymous eventFunc is called, value: ${this.value}`);
         });
         // 结果：
-        // eventFunc is called
-        // call anonymous eventFunc
-        this.context.eventHub.emit('myEvent'); 
+        // eventFunc is called, value: undefined
+        // anonymous eventFunc is called, value: 12
+        this.context.eventHub.emit('myEvent');
     }
 
     eventFunc() {
-        console.log('eventFunc is called');
+        console.log(`eventFunc is called, value: ${this.value}`);
     }
 }
 ```

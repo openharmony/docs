@@ -8,372 +8,294 @@
 
 ![Recording Development Process](figures/recording-ndk-development-process.png)
 
-
 ## 完整示例
 
-```ts
-// ts侧需要导入media接口
-import media from '@ohos.multimedia.media';
-// 配置参数以实际硬件设备支持的范围为准
-let videoConfig: media.AVRecorderConfig = {
-  audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-  videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile: {
-    audioBitrate: 48000,
-    audioChannels: 2,
-    audioCodec: media.CodecMimeType.AUDIO_AAC,
-    audioSampleRate: 48000,
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4,
-    videoBitrate: 512000,
-    videoCodec: media.CodecMimeType.VIDEO_AVC,
-    videoFrameWidth: 640,
-    videoFrameHeight: 480,
-    videoFrameRate: 30
-  },
-  url: '',
-  rotation: 0
-};
-private photoRotationMap = {
-  rotation0: 0,
-  rotation90: 90,
-  rotation180: 180,
-  rotation270: 270,
-};
-// 获取video的surfaceID
-async getVideoSurfaceID(){
-  this.videoRecorder = await media.createAVRecorder()
-  this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.VIDEO)
-  this.fd = await this.mediaUtil.getFdPath(this.fileAsset)
-  this.videoConfig.url = `fd://${this.fd}`
+1. 在CMake脚本中链接相关动态库。
+    ```txt
+        target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+    ```
 
-  if (deviceInfo.deviceType == 'default') {
-    Logger.info(this.tag, `deviceType = default`)
-    this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
-  }
-  if (deviceInfo.deviceType == 'phone') {
-    Logger.info(this.tag, `deviceType = phone`)
-    this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
-    if (this.cameraDeviceIndex == 1) {
-      this.videoConfig.rotation = this.photoRotationMap.rotation270;
-    } else {
-      this.videoConfig.rotation = this.photoRotationMap.rotation90;
+2. cpp侧导入NDK接口，并根据传入的SurfaceId进行录像。
+    ```c++
+    #include "hilog/log.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
+
+    void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
+    {
+        OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
     }
-  }
-  if (deviceInfo.deviceType == 'tablet') {
-    Logger.info(this.tag, `deviceType = tablet`)
-    this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-  }
 
-  this.videoConfig.profile.videoFrameWidth = 640;
-  this.videoConfig.profile.videoFrameHeight = 480;
-  this.videoConfig.profile.videoFrameRate = 30;
+    CameraInput_Callbacks* GetCameraInputListener(void)
+    {
+        static CameraInput_Callbacks cameraInputCallbacks = {
+            .onError = OnCameraInputError
+        };
+        return &cameraInputCallbacks;
+    }
 
-  await this.videoRecorder.prepare(this.videoConfig)
-  this.videoSurfaceId = await this.videoRecorder.getInputSurface()
-}
+    void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)
+    {
+        OH_LOG_INFO(LOG_APP, "CaptureSessionOnFocusStateChange");
+    }
 
-// 开始录像
-try {
-  await avRecorder.start();
-} catch (error) {
-  console.error(`avRecorder start error: ${JSON.stringify(err)}`);
-}
-// 停止录像
-try {
-  await avRecorder.stop();
-} catch (error) {
-  console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
-}
-```
+    void CaptureSessionOnError(Camera_CaptureSession* session, Camera_ErrorCode errorCode)
+    {
+        OH_LOG_INFO(LOG_APP, "CaptureSessionOnError = %{public}d", errorCode);
+    }
 
-```c++
-// c++侧需要导入NDK接口
-#include "ohcamera/camera.h"
-#include "ohcamera/camera_input.h"
-#include "ohcamera/capture_session.h"
-#include "ohcamera/photo_output.h"
-#include "ohcamera/preview_output.h"
-#include "ohcamera/video_output.h"
-#include "ohcamera/camera_manager.h"
+    CaptureSession_Callbacks* GetCaptureSessionRegister(void)
+    {
+        static CaptureSession_Callbacks captureSessionCallbacks = {
+            .onFocusStateChange = CaptureSessionOnFocusStateChange,
+            .onError = CaptureSessionOnError
+        };
+        return &captureSessionCallbacks;
+    }
 
+    void VideoOutputOnFrameStart(Camera_VideoOutput* videoOutput)
+    {
+        OH_LOG_INFO(LOG_APP, "VideoOutputOnFrameStart");
+    }
 
-void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
-{
-    OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
-}
+    void VideoOutputOnFrameEnd(Camera_VideoOutput* videoOutput, int32_t frameCount)
+    {
+        OH_LOG_INFO(LOG_APP, "VideoOutput frameCount = %{public}d", frameCount);
+    }
 
-CameraInput_Callbacks* GetCameraInputListener(void)
-{
-    static CameraInput_Callbacks cameraInputCallbacks = {
-        .onError = OnCameraInputError
-    };
-    return &cameraInputCallbacks;
-}
+    void VideoOutputOnError(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)
+    {
+        OH_LOG_INFO(LOG_APP, "VideoOutput errorCode = %{public}d", errorCode);
+    }
 
-void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)
-{
-    OH_LOG_INFO(LOG_APP, "CaptureSessionOnFocusStateChange");
-}
+    VideoOutput_Callbacks* GetVideoOutputListener(void)
+    {
+        static VideoOutput_Callbacks videoOutputListener = {
+            .onFrameStart = VideoOutputOnFrameStart,
+            .onFrameEnd = VideoOutputOnFrameEnd,
+            .onError = VideoOutputOnError
+        };
+        return &videoOutputListener;
+    }
 
-void CaptureSessionOnError(Camera_CaptureSession* session, Camera_ErrorCode errorCode)
-{
-    OH_LOG_INFO(LOG_APP, "CaptureSessionOnError = %{public}d", errorCode);
-}
+    void CameraManagerStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
+    {
+        OH_LOG_INFO(LOG_APP, "CameraManagerStatusCallback is called");
+    }
 
-CaptureSession_Callbacks* GetCaptureSessionRegister(void)
-{
-    static CaptureSession_Callbacks captureSessionCallbacks = {
-        .onFocusStateChange = CaptureSessionOnFocusStateChange,
-        .onError = CaptureSessionOnError
-    };
-    return &captureSessionCallbacks;
-}
+    CameraManager_Callbacks* GetCameraManagerListener()
+    {
+        static CameraManager_Callbacks cameraManagerListener = {
+            .onCameraStatus = CameraManagerStatusCallback
+        };
+        return &cameraManagerListener;
+    }
 
-void VideoOutputOnFrameStart(Camera_VideoOutput* videoOutput)
-{
-    OH_LOG_INFO(LOG_APP, "VideoOutputOnFrameStart");
-}
+    NDKCamera::NDKCamera(char *previewId, char *videoId)
+    {
+        Camera_Manager* cameraManager = nullptr;
+        Camera_Device* cameras = nullptr;
+        Camera_CaptureSession* captureSession = nullptr;
+        Camera_OutputCapability* cameraOutputCapability = nullptr;
+        Camera_VideoOutput* videoOutput = nullptr;
+        const Camera_Profile* previewProfile = nullptr;
+        const Camera_Profile* photoProfile = nullptr;
+        const Camera_VideoProfile* videoProfile = nullptr;
+        Camera_PreviewOutput* previewOutput = nullptr;
+        Camera_PhotoOutput* photoOutput = nullptr;
+        Camera_Input* cameraInput = nullptr;
+        uint32_t size = 0;
+        uint32_t cameraDeviceIndex = 0;
+        char* videoSurfaceId = videoId;
+        char* previewSurfaceId = previewId;
+        // 创建CameraManager对象
+        Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
+        if (cameraManager == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
+        }
+        // 监听相机状态变化
+        ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
+        }
 
-void VideoOutputOnFrameEnd(Camera_VideoOutput* videoOutput, int32_t frameCount)
-{
-    OH_LOG_INFO(LOG_APP, "VideoOutput frameCount = %{public}d", frameCount);
-}
+        // 获取相机列表
+        ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+        if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+        }
 
-void VideoOutputOnError(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)
-{
-    OH_LOG_INFO(LOG_APP, "VideoOutput errorCode = %{public}d", errorCode);
-}
+        for (int index = 0; index < size; index++) {
+            OH_LOG_ERROR(LOG_APP, "cameraId  =  %{public}s ", cameras[index].cameraId);              // 获取相机ID
+            OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // 获取相机位置
+            OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // 获取相机类型
+            OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // 获取相机连接类型
+        }
 
-VideoOutput_Callbacks* GetVideoOutputListener(void)
-{
-    static VideoOutput_Callbacks videoOutputListener = {
-        .onFrameStart = VideoOutputOnFrameStart,
-        .onFrameEnd = VideoOutputOnFrameEnd,
-        .onError = VideoOutputOnError
-    };
-    return &videoOutputListener;
-}
+        // 获取相机设备支持的输出流能力
+        ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
+                                                                &cameraOutputCapability);
+        if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+        }
 
-void CameraManagerStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
-{
-    OH_LOG_INFO(LOG_APP, "CameraManagerStatusCallback is called");
-}
+        if (cameraOutputCapability->previewProfilesSize < 0) {
+            OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+        }
+        previewProfile = cameraOutputCapability->previewProfiles[0];
 
-CameraManager_Callbacks* GetCameraManagerListener()
-{
-    static CameraManager_Callbacks cameraManagerListener = {
-        .onCameraStatus = CameraManagerStatusCallback
-    };
-    return &cameraManagerListener;
-}
+        if (cameraOutputCapability->photoProfilesSize < 0) {
+            OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
+        }
+        photoProfile = cameraOutputCapability->photoProfiles[0];
 
-int main()
-{
-  Camera_Manager* cameraManager = nullptr;
-  Camera_Device* cameras = nullptr;
-  Camera_CaptureSession* captureSession = nullptr;
-  Camera_OutputCapability* cameraOutputCapability = nullptr;
-  const Camera_Profile* previewProfile = nullptr;
-  const Camera_Profile* photoProfile = nullptr;
-  Camera_PreviewOutput* previewOutput = nullptr;
-  Camera_PhotoOutput* photoOutput = nullptr;
-  Camera_Input* cameraInput = nullptr;
-  uint32_t size = 0;
-  uint32_t cameraDeviceIndex = 0;
-  // 创建CameraManager对象
-  Camera_ErrorCode ret = OH_Camera_GetCameraMananger(&cameraManager);
-  if (cameraManager == nullptr || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
-  }
-  // 监听相机状态变化
-  ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
-  }
+        if (cameraOutputCapability->videoProfilesSize < 0) {
+            OH_LOG_ERROR(LOG_APP, "videorofilesSize == null");
+        }
+        videoProfile = cameraOutputCapability->videoProfiles[0];
 
-  // 获取相机列表
-  ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-  if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
-  }
+        // 创建VideoOutput对象
+        ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
+        if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
+        }
 
-  for (int index = 0; index < size; index++) {
-    OH_LOG_ERROR(LOG_APP, "cameraId  =  %{public}s ", cameras[index].cameraId);              // 获取相机ID
-    OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // 获取相机位置
-    OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // 获取相机类型
-    OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // 获取相机连接类型
-  }
+        // 监听视频输出错误信息
+        ret = OH_VideoOutput_RegisterCallback(videoOutput, GetVideoOutputListener());
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_RegisterCallback failed.");
+        }
 
-  // 获取相机设备支持的输出流能力
-  ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
-                                                               &cameraOutputCapability);
-  if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
-  }
-  
-  if (cameraOutputCapability->previewProfilesSize < 0) {
-    console.error("previewProfilesSize == null");
-  }
-  previewProfile = cameraOutputCapability->previewProfiles[0];
+        //创建会话
+        ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
+        if (captureSession == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
+        }
+        // 监听session错误信息
+        ret = OH_CaptureSession_RegisterCallback(captureSession, GetCaptureSessionRegister());
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RegisterCallback failed.");
+        }
 
-  if (cameraOutputCapability->photoProfilesSize < 0) {
-    console.error("photoProfilesSize == null");
-  }
-  photoProfile = cameraOutputCapability->photoProfiles[0];
+        // 开始配置会话
+        ret = OH_CaptureSession_BeginConfig(captureSession);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_BeginConfig failed.");
+        }
 
-  if (cameraOutputCapability->videorofilesSize < 0) {
-    console.error("videorofilesSize == null");
-  }
-  videoProfile = cameraOutputCapability->videoProfiles[0];
+        // 创建相机输入流
+        ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
+        if (cameraInput == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
+        }
 
-  // 调用ts侧 getVideoSurfaceID()
+        // 监听cameraInput错误信息
+        ret = OH_CameraInput_RegisterCallback(cameraInput, GetCameraInputListener());
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_RegisterCallback failed.");
+        }
 
-  // 创建VideoOutput对象
-  ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
-  if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
-  }
+        // 打开相机
+        ret = OH_CameraInput_Open(cameraInput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Open failed.");
+        }
 
-  // 监听视频输出错误信息
-  ret = OH_VideoOutput_RegisterCallback(videoOutput_, GetVideoOutputListener());
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_RegisterCallback failed.");
-  }
+        // 向会话中添加相机输入流
+        ret = OH_CaptureSession_AddInput(captureSession, cameraInput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
+        }
 
-  //创建会话
-  ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
-  if (captureSession == nullptr || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
-  }
-  // 监听session错误信息
-  ret = OH_CaptureSession_RegisterCallback(captureSession, GetCaptureSessionRegister());
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_RegisterCallback failed.");
-  }
+        // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
+        ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, 0, &previewOutput);
+        if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
+        }
 
-  // 开始配置会话
-  ret = OH_CaptureSession_BeginConfig(captureSession);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_BeginConfig failed.");
-  }
+        // 向会话中添加预览输入流
+        ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
+        }
 
-  // 创建相机输入流
-  ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
-  if (cameraInput == nullptr || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
-  }
+        // 向会话中添加录像输出流
+        ret = OH_CaptureSession_AddVideoOutput(captureSession, videoOutput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddVideoOutput failed.");
+        }
 
-  // 监听cameraInput错误信息
-  ret = OH_CameraInput_RegisterCallback(cameraInput, GetCameraInputListener());
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraInput_RegisterCallback failed.");
-  }
+        // 提交会话配置
+        ret = OH_CaptureSession_CommitConfig(captureSession);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_CommitConfig failed.");
+        }
 
-  // 打开相机
-  ret = OH_CameraInput_Open(cameraInput);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Open failed.");
-  }
+        // 启动会话
+        ret = OH_CaptureSession_Start(captureSession);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
+        }
 
-  // 向会话中添加相机输入流
-  ret = OH_CaptureSession_AddInput(captureSession, cameraInput);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
-  }
+        // 启动录像输出流
+        ret = OH_VideoOutput_Start(videoOutput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Start failed.");
+        }
 
-  // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
-  ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
-  if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
-  }
+        // 开始录像 ts侧调用avRecorder.start()
 
-  // 向会话中添加预览输入流
-  ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
-  }
+        // 停止录像输出流
+        ret = OH_VideoOutput_Stop(videoOutput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Stop failed.");
+        }
 
-  // 向会话中添加录像输出流
-  ret = OH_CaptureSession_AddVideoOutput(captureSession, videoOutput);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddVideoOutput failed.");
-  }
+        // 停止录像 ts侧调用avRecorder.stop()
 
-  // 提交会话配置
-  ret = OH_CaptureSession_CommitConfig(captureSession);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_CommitConfig failed.");
-  }
+        // 停止当前会话
+        ret = OH_CaptureSession_Stop(captureSession);
+        if (ret == CAMERA_OK) {
+            OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Stop success ");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed. %d ", ret);
+        }
 
-  // 启动会话
-  ret = OH_CaptureSession_Start(captureSession);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
-  }
+        // 释放相机输入流
+        ret = OH_CameraInput_Close(cameraInput);
+        if (ret == CAMERA_OK) {
+            OH_LOG_INFO(LOG_APP, "OH_CameraInput_Close success ");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Close failed. %d ", ret);
+        }
 
-  // 启动录像输出流
-  ret = OH_VideoOutput_Start(videoOutput);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Start failed.");
-  }
+        // 释放预览输出流
+        ret = OH_PreviewOutput_Release(previewOutput);
+        if (ret == CAMERA_OK) {
+            OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_Release success ");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Release failed. %d ", ret);
+        }
 
-  // 开始录像 ts侧调用avRecorder.start()
+        // 释放录像输出流
+        ret = OH_VideoOutput_Release(videoOutput);
+        if (ret == CAMERA_OK) {
+            OH_LOG_INFO(LOG_APP, "OH_VideoOutput_Release success ");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Release failed. %d ", ret);
+        }
 
-  // 停止录像输出流
-  ret = OH_VideoOutput_Stop(videoOutput);
-  if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Stop failed.");
-  }
-
-  // 停止录像 ts侧调用avRecorder.stop()
-
-  // 停止当前会话
-  ret = OH_CaptureSession_Stop(captureSession);
-  if (ret == CAMERA_OK) {
-      OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Stop success ");
-  } else {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed. %d ", ret);
-  }
-
-  // 释放相机输入流
-  ret = OH_CameraInput_Close(cameraInput);
-  if (ret == CAMERA_OK) {
-      OH_LOG_INFO(LOG_APP, "OH_CameraInput_Close success ");
-  } else {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Close failed. %d ", ret);
-  }
-
-  // 释放预览输出流
-  ret = OH_PreviewOutput_Release(previewOutput);
-  if (ret == CAMERA_OK) {
-      OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_Release success ");
-  } else {
-      OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Release failed. %d ", ret);
-  }
-
-
-  // 释放录像输出流
-  ret = OH_VideoOutput_Release(videoOutput);
-  if (ret == CAMERA_OK) {
-      OH_LOG_INFO(LOG_APP, "OH_VideoOutput_Release success ");
-  } else {
-      OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Release failed. %d ", ret);
-  }
-
-
-  // 释放会话
-  ret = OH_CaptureSession_Release(captureSession);
-  if (ret == CAMERA_OK) {
-      OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Release success ");
-  } else {
-      OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. %d ", ret);
-  }
-
-}
-```
-
-## 相关实例
-
-针对录像实现方案，有以下相关实例可供参考：
-- [录像实现方案(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)
+        // 释放会话
+        ret = OH_CaptureSession_Release(captureSession);
+        if (ret == CAMERA_OK) {
+            OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Release success ");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. %d ", ret);
+        }
+    }
+    ```

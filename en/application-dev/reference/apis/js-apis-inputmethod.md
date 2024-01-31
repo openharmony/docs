@@ -165,9 +165,11 @@ let inputMethodSetting = inputMethod.getSetting();
 
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
-Switches to another input method. This API can be called by system applications only. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+Switches to another input method. This API uses an asynchronous callback to return the result.
+> **NOTE**
+>
+>  - In API versions 9 and 10, this API can only be called by system applications granted the **ohos.permission.CONNECT_IME_ABILITY** permission.
+>  - Since API version 11, this API can only be called by the current input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -212,9 +214,11 @@ try{
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
-Switches to another input method. This API can be called by system applications only. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+Switches to another input method. This API uses a promise to return the result.
+> **NOTE**
+>
+>  - In API versions 9 and 10, this API can only be called by system applications granted the **ohos.permission.CONNECT_IME_ABILITY** permission.
+>  - Since API version 11, this API can only be called by the current input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -260,6 +264,66 @@ try {
 }
 ```
 
+## inputMethod.switchInputMethod<sup>11+</sup>
+switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
+
+Switches to another input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  |bundleName |  string| Yes| Bundle name of the target input method.|
+  |subtypeId |  string| No| Input method subtype.|
+
+**Return value**
+
+  | Type          | Description                    |
+  | -------------- | ----------------------- |
+  | Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let currentIme = inputMethod.getCurrentInputMethod();
+try {
+  inputMethod.switchInputMethod(currentIme.name).then(() => {
+    console.log('Succeeded in switching inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  })
+} catch (err) {
+  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+}
+let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
+try {
+  inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
+    console.log('Succeeded in switching inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+  })
+} catch (err) {
+  console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
+}
+```
+
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
 getCurrentInputMethod(): InputMethodProperty
@@ -288,9 +352,9 @@ Switches to another subtype of this input method. This API uses an asynchronous 
 
 > **NOTE**
 >
-> In API version 9, this API can be called by system applications only. Since API version 10, this API can be called by system applications and the current input method.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+>  - In API version 9 , this API can only be called by system applications granted the **ohos.permission.CONNECT_IME_ABILITY** permission.
+>  - In API version 10, this API can only be called by system applications and the current input method application, and the **ohos.permission.CONNECT_IME_ABILITY** permission is required.
+>  - Since API version 11, this API can only be called by the current input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -351,9 +415,9 @@ Switches to another subtype of this input method. This API uses a promise to ret
 
 > **NOTE**
 >
-> In API version 9, this API can be called by system applications only. Since API version 10, this API can be called by system applications and the current input method.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+>  - In API version 9 , this API can only be called by system applications granted the **ohos.permission.CONNECT_IME_ABILITY** permission.
+>  - In API version 10, this API can only be called by system applications and the current input method application, and the **ohos.permission.CONNECT_IME_ABILITY** permission is required.
+>  - Since API version 11, this API can only be called by the current input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -437,9 +501,8 @@ Switches to a specified subtype of a specified input method. This API uses an as
 
 > **NOTE**
 >
-> In API versions 9 and 10, this API can be called only by system applications. Since API version 11, calling this API requires the **ohos.permission.CONNECT_IME_ABILITY** permission; the input method application that calls this API must be the one in use.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+>  - In API versions 9 and 10, this API can only be called by system applications granted the **ohos.permission.CONNECT_IME_ABILITY** permission.
+>  - Since API version 11, this API can only be called by the current input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -492,9 +555,8 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 
 > **NOTE**
 >
-> In API versions 9 and 10, this API can be called only by system applications. Since API version 11, calling this API requires the **ohos.permission.CONNECT_IME_ABILITY** permission; the input method application that calls this API must be the one in use.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+>  - In API versions 9 and 10, this API can only be called by system applications granted the **ohos.permission.CONNECT_IME_ABILITY** permission.
+>  - Since API version 11, this API can only be called by the current input method application.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

@@ -1,6 +1,6 @@
 # @ohos.arkui.UIContext (UIContext)
 
-在Stage模型中，WindowStage/Window可以通过loadContent接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
+在Stage模型中，WindowStage/Window可以通过[loadContent](./js-apis-window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
 @ohos.window在API version 10 新增[getUIContext](./js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
 
@@ -12,7 +12,7 @@
 
 ## UIContext
 
-以下API需先使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。本文中UIContext对象以uiContext表示。
+以下API需先使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](../arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
 ### getFont
 
@@ -277,26 +277,11 @@ showActionSheet(value: ActionSheetOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**ActionSheetOptions参数：**
+**参数：** 
 
-| 参数名        | 类型                                       | 必填   | 说明                                       |
-| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗标题。                                    |
-| message    | [Resource](../arkui-ts/ts-types.md#resource)&nbsp;\|&nbsp;string | 是    | 弹窗内容。                                    |
-| autoCancel | boolean                                  | 否    | 点击遮障层时，是否关闭弹窗。<br>默认值：true               |
-| confirm    | {<br/>value:&nbsp;[ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
-| cancel     | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层关闭dialog时的回调。                       |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
-| offset     | {<br/>dx:&nbsp;[Length](../arkui-ts/ts-types.md#length),<br/>dy:&nbsp;[Length](../arkui-ts/ts-types.md#length)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
-| sheets     | Array&lt;SheetInfo&gt;                   | 是    | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。             |
-
-**SheetInfo接口说明：**
-
-| 参数名    | 类型                                       | 必填   | 说明             |
-| ------ | ---------------------------------------- | ---- | -------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是    | 选项的文本内容。       |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 否    | 选项的图标，默认无图标显示。 |
-| action | ()=&gt;void                              | 是    | 选项选中的回调。       |
+| 参数名 | 类型                                                         | 必填 | 描述                 |
+| ------ | ------------------------------------------------------------ | ---- | -------------------- |
+| value  | [ActionSheetOptions](../arkui-ts/ts-methods-action-sheet.md#actionsheetoptions对象说明) | 是   | 配置列表弹窗的参数。 |
 
 **示例：**
 
@@ -347,22 +332,11 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**DatePickerDialogOptions参数：**
+**参数：** 
 
-| 参数名                | 类型                                       | 必填   | 说明                                     |
-| ------------------ | ---------------------------------------- | ---- | -------------------------------------- |
-| start              | Date                                     | 否    | 设置选择器的起始日期。<br/>默认值：Date('1970-1-1')   |
-| end                | Date                                     | 否    | 设置选择器的结束日期。<br/>默认值：Date('2100-12-31') |
-| selected           | Date                                     | 否    | 设置当前选中的日期。<br/>默认值：当前系统日期              |
-| lunar              | boolean                                  | 否    | 日期是否显示为农历。<br/>默认值：false               |
-| showTime           | boolean                                  | 否    | 是否展示时间项。<br/>默认值：false                 |
-| useMilitaryTime    | boolean                                  | 否    | 展示时间是否为24小时制。<br/>默认值：false            |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。         |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。     |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                    |
-| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                    |
-| onCancel           | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                    |
-| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult对象说明)) => void | 否    | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。             |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [DatePickerDialogOptions](../arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions对象说明) | 是   | 配置日期滑动选择器弹窗的参数。 |
 
 **示例：**
 
@@ -394,45 +368,55 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**TimePickerDialogOptions参数：**
+**参数：** 
 
-| 参数名                | 类型                                       | 必填   | 说明                                   |
-| ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
-| selected           | Date                                     | 否    | 设置当前选中的时间。<br/>默认值：当前系统时间            |
-| useMilitaryTime    | boolean                                  | 否    | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。       |
-| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。   |
-| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                  |
-| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                  |
-| onCancel           | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                  |
-| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。            |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TimePickerDialogOptions](../arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions对象说明) | 是   | 配置时间滑动选择器弹窗的参数。 |
 
 **示例：**
 
 ```ts
-class sethours{
+// xxx.ets
+
+class SelectTime{
   selectTime: Date = new Date('2020-12-25T08:30:00')
   hours(h:number,m:number){
     this.selectTime.setHours(h,m)
   }
 }
-uiContext.showTimePickerDialog({
-  selected: this.selectTime,
-  onAccept: (value: TimePickerResult) => {
-    // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
-    let time = new sethours()
-    if(value.hour&&value.minute){
-      time.hours(value.hour, value.minute)
-    }
-    console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TimePickerDialog:onCancel()")
-  },
-  onChange: (value: TimePickerResult) => {
-    console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+
+@Entry
+@Component
+struct TimePickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+
+  build() {
+    Column() {
+      Button('showTimePickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTimePickerDialog({
+            selected: this.selectTime,
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              let time = new SelectTime()
+              if(value.hour&&value.minute){
+                time.hours(value.hour, value.minute)
+              }
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TimePickerDialog:onCancel()")
+            },
+            onChange: (value: TimePickerResult) => {
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### showTextPickerDialog
@@ -443,56 +427,63 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**TextPickerDialogOptions参数：**
+**参数：** 
 
-| 参数名                     | 类型                                       | 必填   | 说明                                       |
-| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| range                   | string[]&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10类型说明)[] | 是    | 设置文本选择器的选择范围。不可设置为空数组，若设置为空数组，则不弹出弹窗。    |
-| selected                | number                                   | 否    | 设置选中项的索引值。<br>默认值：0                      |
-| value                   | string                                   | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。 |
-| defaultPickerItemHeight | number \| string                         | 否    | 设置选择器中选项的高度。                             |
-| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。           |
-| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。       |
-| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否    | 设置选中项的文本颜色、字号、字体粗细。                      |
-| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 点击弹窗中的“确定”按钮时触发该回调。                      |
-| onCancel                | () => void                               | 否    | 点击弹窗中的“取消”按钮时触发该回调。                      |
-| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult对象说明)) => void | 否    | 滑动弹窗中的选择器使当前选中项改变时触发该回调。                 |
+| 参数名  | 类型                                                         | 必填 | 描述                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| options | [TextPickerDialogOptions](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
 
 **示例：**
 
 ```ts
-{ class setvalue{
+// xxx.ets
+
+class SelectedValue{
   select: number = 2
   set(val:number){
     this.select = val
   }
 }
-class setvaluearr{
+class SelectedArray{
   select: number[] = []
   set(val:number[]){
     this.select = val
   }
 }
-let fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-uiContext.showTextPickerDialog({
-  range: this.fruits,
-  selected: this.select,
-  onAccept: (value: TextPickerResult) => {
-    // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-    let setv = new setvalue()
-    let setvarr = new setvaluearr()
-    if(value.index){
-      value.index instanceof Array?setvarr.set(value.index) : setv.set(value.index)
-    }
-    console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-  },
-  onCancel: () => {
-    console.info("TextPickerDialog:onCancel()")
-  },
-  onChange: (value: TextPickerResult) => {
-    console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+@Entry
+@Component
+struct TextPickerDialogExample {
+  @State selectTime: Date = new Date('2023-12-25T08:30:00');
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select : number  = 0;
+  build() {
+    Column() {
+      Button('showTextPickerDialog')
+        .margin(30)
+        .onClick(() => {
+          uiContext.showTextPickerDialog({
+            range: this.fruits,
+            selected: this.select,
+            onAccept: (value: TextPickerResult) => {
+              // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+              let selectedVal = new SelectedValue()
+              let selectedArr = new SelectedArray()
+              if(value.index){
+                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              }
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("TextPickerDialog:onCancel()")
+            },
+            onChange: (value: TextPickerResult) => {
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%').margin({ top: 5 })
   }
-})
+}
 ```
 
 ### createAnimator
@@ -519,17 +510,29 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
-let options:AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0
-};
-uiContext.createAnimator(options);
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options:AnimatorOptions = {
+      duration: 1500,
+      easing: "friction",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 3,
+      begin: 200.0,
+      end: 400.0
+    };
+    uiContext.createAnimator(options);
+  });
+}
 ```
 
 ### runScopedTask
@@ -636,9 +639,9 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 **返回值：**
 
-|类型|说明|
-|----|----|
-|Nullable<[AtomicServiceBar](#atomicservicebar)>| 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。|
+| 类型                                              | 说明                                                         |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Nullable<[AtomicServiceBar](#atomicservicebar11)> | 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。 |
 
 **示例：**
 
@@ -688,17 +691,13 @@ getDragPreview(): dragController.DragPreview
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值：**
+**返回值：** 
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401      | Invalid input parameter |
+**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcodes/errorcode-universal.md)。
 
 **示例：**
 
@@ -787,9 +786,9 @@ getFontByName(fontName: string): font.FontInfo
 
 **返回值：** 
 
-| 类型                                   | 说明      |
-| ------------------------------------ | ------- |
-| [FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
+| 类型                                      | 说明           |
+| ----------------------------------------- | -------------- |
+| [font.FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
 
 **示例：** 
 
@@ -855,9 +854,9 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 **返回值：** 
 
-| 类型                                       | 说明                        |
-| ---------------------------------------- | ------------------------- |
-| [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
+| 类型                                                         | 说明                                               |
+| ------------------------------------------------------------ | -------------------------------------------------- |
+| [inspector.ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：**
 
@@ -969,6 +968,55 @@ let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
+### on('routerPageUpdate')<sup>11+</sup>
+
+on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
+
+监听router中page页面的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 是   | 回调函数。携带pageInfo，返回当前的page页面状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('routerPageUpdate', (info) => {
+    console.info('RouterPage state updated, called by ' + `${info.name}`);
+});
+```
+
+### off('routerPageUpdate')<sup>11+</sup>
+
+off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
+
+取消监听router中page页面的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
+| callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+// callBackFunc is defined and used before
+observer.off('routerPageUpdate', callBackFunc);
+```
+
 ## MediaQuery
 
 以下API需先使用UIContext中的[getMediaQuery()](#getmediaquery)方法获取到MediaQuery对象，再通过该对象调用对应方法。
@@ -989,9 +1037,9 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 **返回值：**
 
-| 类型                 | 说明                     |
-| ------------------ | ---------------------- |
-| MediaQueryListener | 媒体事件监听句柄，用于注册和去注册监听回调。 |
+| 类型                                                         | 说明                                         |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：**
 
@@ -1146,10 +1194,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushUrl({
     url: 'pages/routerpage2',
@@ -1200,10 +1248,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushUrl({
   url: 'pages/routerpage2',
   params: {
@@ -1355,10 +1403,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceUrl({
     url: 'pages/detail',
@@ -1405,10 +1453,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } 
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceUrl({
   url: 'pages/detail',
   params: {
@@ -1565,10 +1613,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.pushNamedRoute({
     name: 'myPage',
@@ -1619,10 +1667,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.pushNamedRoute({
   name: 'myPage',
   params: {
@@ -1775,10 +1823,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 try {
   routerF.replaceNamedRoute({
     name: 'myPage',
@@ -1825,10 +1873,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 import router from '@ohos.router';
 let routerF:Router = uiContext.getRouter();
-class routerTmp{
+class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
-let rtm:routerTmp = new routerTmp()
+let rtm:RouterTmp = new RouterTmp()
 routerF.replaceNamedRoute({
   name: 'myPage',
   params: {
@@ -2086,7 +2134,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
+class ButtonsModel {
   text: string = ""
   color: string = ""
 }
@@ -2099,11 +2147,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as buttonsMoabl,
+      } as ButtonsModel,
       {
         text: 'button2',
         color: '#000000'
-      } as buttonsMoabl
+      } as ButtonsModel
     ]
   }, (err, data) => {
     if (err) {
@@ -2285,13 +2333,7 @@ try {
         color: '#000000'
       }
     ]
-  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.info('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
+  }, { index:0 });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -2374,7 +2416,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/>**说明：** 不支持全局builder。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -2382,7 +2424,6 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -2464,7 +2505,6 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -2562,7 +2602,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
 | customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                 | 是   | 拖拽信息。                       |
 
 **返回值：**
 
@@ -2574,7 +2614,6 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -2724,7 +2763,7 @@ struct DragControllerPage {
 
 ## AtomicServiceBar<sup>11+</sup>
 
-以下接口需要先使用UIContext中的getAtomicServiceBar方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
+以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
 
 ### setVisible<sup>11+</sup>
 

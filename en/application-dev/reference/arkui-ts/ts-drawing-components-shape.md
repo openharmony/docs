@@ -13,7 +13,7 @@ The **\<Shape>** component is the parent component of the drawing components. Th
 
 ## Child Components
 
-The following child components are supported: **[\<Rect>](ts-drawing-components-rect.md)**, **[\<Path>](ts-drawing-components-path.md)**, **[\<Circle>](ts-drawing-components-circle.md)**, **[\<Ellipse>](ts-drawing-components-ellipse.md)**, **[\<Polyline>](ts-drawing-components-polyline.md)**, **[\<Polygon>](ts-drawing-components-polygon.md)**, **[\<Image>](ts-basic-components-image.md)**, **[\<Text>](ts-basic-components-text.md)**, **[\<Column>](ts-container-column.md)**, and **[\<Row>](ts-container-row.md)**.
+The following child components are supported: [\<Rect>](ts-drawing-components-rect.md), [\<Path>](ts-drawing-components-path.md), [\<Circle>](ts-drawing-components-circle.md), [\<Ellipse>](ts-drawing-components-ellipse.md), [\<Polyline>](ts-drawing-components-polyline.md), [\<Polygon>](ts-drawing-components-polygon.md), [\<Image>](ts-basic-components-image.md), [\<Text>](ts-basic-components-text.md), [\<Column>](ts-container-column.md), [\<Row>](ts-container-row.md), \<Shape>
 
 
 ## APIs
@@ -37,9 +37,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | -------- | -------- | -------- | -------- |
 | viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | View port of the shape.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If of the string type, the value cannot be a percentage.<br>An invalid value is handled as the default value.|
 | fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | Color of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| fillOpacity | [Length](ts-types.md#length) | 1 | Opacity of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| fillOpacity | [Length](ts-types.md#length) | 1 | Opacity of the fill area.<br>The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | stroke | [ResourceColor](ts-types.md#resourcecolor) | - | Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If the value is invalid, no stroke will be drawn.|
-| strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | Stroke dashes.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | Stroke dashes.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>Line segments may overlap when they intersect. An invalid value is handled as the default value.|
 | strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>An invalid value is handled as the default value.|
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|

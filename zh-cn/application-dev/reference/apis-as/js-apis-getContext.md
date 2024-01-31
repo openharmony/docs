@@ -25,7 +25,7 @@ getContext(component?: Object):Context
 在UIAbility中通过windowStage.loadContent加载具体页面。
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';

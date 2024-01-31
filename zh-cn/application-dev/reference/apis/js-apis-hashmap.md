@@ -165,7 +165,7 @@ let result = hashMap.hasValue(123);
 
 get(key: K): V
 
-获取指定key所对应的value。
+获取指定key所对应的value，不存在返回undefined。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -237,7 +237,7 @@ hashMap.setAll(newHashMap);
 
 set(key: K, value: V): Object
 
-向HashMap中添加一组数据。
+向HashMap中添加或更新一组数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -245,8 +245,8 @@ set(key: K, value: V): Object
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | K | 是 | 添加成员数据的键名。 |
-| value | V | 是 | 添加成员数据的值。 |
+| key | K | 是 | 添加或更新成员数据的键名。 |
+| value | V | 是 | 添加或更新成员数据的值。 |
 
 **返回值：**
 
@@ -312,7 +312,7 @@ let result = hashMap.remove("sparrow");
 
 clear(): void
 
-清除HashMap中的所有元素,并把length置为0。
+清除HashMap中的所有元素，并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -375,7 +375,7 @@ while(!temp.done) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中包含的键值的新迭代器对象。
+返回包含此映射中包含的键对应的值的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -427,7 +427,7 @@ replace(key: K, newValue: V): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 是否成功对已有数据进行替换 |
+| boolean | 是否成功对已有数据进行替换，成功返回true，失败返回false。 |
 
 **错误码：**
 
@@ -530,7 +530,7 @@ while(!temp.done) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
 
 > **说明：**
 >
@@ -566,11 +566,11 @@ for (let key of keys) {
 }
 
 // 使用方法二：
-let iter = hashMap[Symbol.iterator]();
-let temp: IteratorResult<Object[]> = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
-}
+ let iter = hashMap[Symbol.iterator]();
+ let temp: IteratorResult<Object[]> = iter.next();
+ while(!temp.done) {
+   console.log("key:" + temp.value[0]);
+   console.log("value:" + temp.value[1]);
+   temp = iter.next();
+ }
 ```

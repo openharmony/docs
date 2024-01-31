@@ -24,19 +24,19 @@
 2. 调用cameraManager类中的[createSession](../reference/apis/js-apis-camera.md#createsession11)方法创建一个会话。
      
    ```ts
-   function getPhotoSession(cameraManager: camera.CameraManager): camera.PhotoSession | undefined {
-     let photoSession: camera.PhotoSession | undefined = undefined;
+   function getSession(cameraManager: camera.CameraManager): camera.Session | undefined {
+     let session: camera.Session | undefined = undefined;
      try {
-       photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+       session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the photoSession instance. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
      }
-     return photoSession;
+     return session;
    }
    ```
 
-3. 调用PhotoSession类中的[beginConfig](../reference/apis/js-apis-camera.md#beginconfig)方法配置会话。
+3. 调用PhotoSession类中的[beginConfig](../reference/apis/js-apis-camera.md#beginconfig11)方法配置会话。
      
    ```ts
    function beginConfig(photoSession: camera.PhotoSession): void {
@@ -49,10 +49,8 @@
    }
    ```
 
-4. 使能。向会话中添加相机的输入流和输出流，调用[photoSession.addInput](../reference/apis/js-apis-camera.md#addinput)添加相机的输入流；调用[photoSession.addOutput](../reference/apis/js-apis-camera.md#addoutput)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
-
-     调用photoSession类中的[commitConfig](../reference/apis/js-apis-camera.md#commitconfig)和[start](../reference/apis/js-apis-camera.md#start-4)方法提交相关配置，并启动会话。
-     
+4. 使能。向会话中添加相机的输入流和输出流，调用[addInput](../reference/apis/js-apis-camera.md#addinput11)添加相机的输入流；调用[addOutput](../reference/apis/js-apis-camera.md#addoutput11)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
+     调用PhotoSession类中的[commitConfig](../reference/apis/js-apis-camera.md#commitconfig11)和[start](../reference/apis/js-apis-camera.md#start11)方法提交相关配置，并启动会话。
    ```ts
    async function startSession(photoSession: camera.PhotoSession, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {
      try {
@@ -89,7 +87,7 @@
    }
    ```
 
-5. 会话控制。调用photoSession类中的[stop](../reference/apis/js-apis-camera.md#stop-4)方法可以停止当前会话。调用[removeOutput](../reference/apis/js-apis-camera.md#removeoutput)和[addOutput](../reference/apis/js-apis-camera.md#addoutput)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
+5. 会话控制。调用PhotoSession类中的[stop](../reference/apis/js-apis-camera.md#stop11)方法可以停止当前会话。调用[removeOutput](../reference/apis/js-apis-camera.md#removeoutput11)和[addOutput](../reference/apis/js-apis-camera.md#addoutput11)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
      
    ```ts
    async function switchOutput(photoSession: camera.PhotoSession, videoOutput: camera.VideoOutput, photoOutput: camera.PhotoOutput): Promise<void> {

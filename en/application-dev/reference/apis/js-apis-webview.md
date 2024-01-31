@@ -12,7 +12,7 @@ The **Webview** module provides APIs for web control. It can be used with the [<
 
 ## Required Permissions
 
-**ohos.permission.INTERNET**, required for accessing online web pages. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+**ohos.permission.INTERNET**, required for accessing online web pages. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 ## Modules to Import
 
@@ -241,6 +241,18 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
+class TestObj {
+  test(str: string): ArrayBuffer {
+    let buf = new ArrayBuffer(str.length);
+    let buff = new Uint8Array(buf);
+
+    for (let i = 0; i < str.length; i++) {
+      buff[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+}
+
 // Example of sending messages between an application and a web page: Use the init_web_messageport channel to receive messages from the web page on the application side through port 0 and receive messages from the application on the web page side through port 1.
 @Entry
 @Component
@@ -251,22 +263,115 @@ struct WebComponent {
   @State msg1: string = "";
   @State msg2: string = "";
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  @State testObjtest: TestObj = new TestObj();
 
   build() {
     Column() {
       Text(this.msg1).fontSize(16)
       Text(this.msg2).fontSize(16)
-      Button('SendToH5')
+      Button('SendToH5 setString').margin({
+        right: 800,
+      })
         .onClick(() => {
           // Use the local port to send messages to HTML5.
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setString("helloFromEts");
+              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setNumber').margin({
+        top: 10,
+        right: 800,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setNumber(12345);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setBoolean').margin({
+        top: -90,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setBoolean(true);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArrayBuffer').margin({
+        top: 10,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArray').margin({
+        top: -90,
+        left: 800,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArray([1,2,3]);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setError').margin({
+        top: 10,
+        left: 800,
+      })
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+            console.log("In ArkTS side send true start");
+            throw new ReferenceError("ReferenceError");
+          }
+          catch (error) {
+            if (this.nativePort) {
+              this.message.setError(error);
+              this.nativePort.postMessageEventExt(this.message);
+            }
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
@@ -775,7 +880,6 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
 
 **Example**
 
@@ -956,7 +1060,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1047,7 +1151,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1092,7 +1196,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1136,7 +1240,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1193,7 +1297,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1240,7 +1344,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1291,7 +1395,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1335,7 +1439,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 
 | Name    | Type      | Mandatory| Description                                       |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods can be declared, but not attributes. The parameters and return values of the methods can only be of the string, number, or Boolean type.|
+| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods can be declared, but not attributes.<br> The parameters and return values of the methods can be of the following types:<br>- String, number, or Boolean type<br>- Dictionary or Array type, with a maximum of 10 nested layers, and each layer containing 10,000 data records<br>- Object type, to which you need to add the **methodNameListForJsProxy:[fun1, fun2]** attribute, where *fun1* and *fun2* are methods that can be called<br>The parameters can be a function or promise, but its callback cannot have any return value.<br>The return value can be a promise, but its callback cannot have any return value. For more examples, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 | name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string> | Yes  | Methods of the JavaScript object to be registered at the application side.                      |
 
@@ -1345,7 +1449,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1354,21 +1458,31 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
-  test(): string {
-    console.log('ArkUI Web Component');
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
   }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol);
+    return testBol;
+  }
 }
 
-class webObj {
+class WebObj {
   constructor() {
   }
 
@@ -1386,8 +1500,8 @@ class webObj {
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
-  @State webTestObj: webObj = new webObj();
+  @State testObjtest: TestObj = new TestObj();
+  @State webTestObj: WebObj = new WebObj();
   build() {
     Column() {
       Button('refresh')
@@ -1402,7 +1516,7 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -1430,7 +1544,9 @@ HTML file to be loaded:
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
-      let str=objName.test();
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -1442,6 +1558,7 @@ HTML file to be loaded:
 </script>
 </html>
 ```
+For more examples, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).
 
 ### runJavaScript
 
@@ -1464,7 +1581,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1554,7 +1671,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1633,7 +1750,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1759,7 +1876,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1870,7 +1987,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **Example**
@@ -1880,7 +1997,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -1897,7 +2014,7 @@ class testObj {
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
   @State name: string = 'objName';
   build() {
     Column() {
@@ -1975,7 +2092,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **Example**
@@ -2029,7 +2146,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2092,7 +2209,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2145,7 +2262,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2192,7 +2309,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2237,7 +2354,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -3624,7 +3741,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -3681,7 +3798,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -3770,7 +3887,7 @@ struct WebComponent {
 
 ### pageUp
 
-pageUp(top:boolean): void
+pageUp(top: boolean): void
 
 Scrolls the page up by half the viewport or jumps to the top of the page.
 
@@ -3821,7 +3938,7 @@ struct WebComponent {
 
 ### pageDown
 
-pageDown(bottom:boolean): void
+pageDown(bottom: boolean): void
 
 Scrolls the page down by half the viewport or jumps to the bottom of the page.
 
@@ -4320,7 +4437,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -4519,7 +4636,7 @@ Prefetches resources in the background for a page that is likely to be accessed 
 
 **Parameters**
 
-| Name            | Type                            | Mandatory | Description                     |                            
+| Name            | Type                            | Mandatory | Description                     |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | Yes   | URL to be preloaded.|
 | additionalHeaders | Array\<[WebHeader](#webheader)> | No   | Additional HTTP headers of the URL.|
@@ -4614,7 +4731,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-Sets a custom user agent.
+Sets a custom user agent, which will overwrite the default user agent.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4643,14 +4760,15 @@ import business_error from '@ohos.base'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State userAgent: string = 'test'
+  @State customUserAgent: string = 'test'
 
   build() {
     Column() {
       Button('setCustomUserAgent')
         .onClick(() => {
           try {
-            this.controller.setCustomUserAgent(this.userAgent);
+            let userAgent = this.controller.getUserAgent() + this.customUserAgent;
+            this.controller.setCustomUserAgent(userAgent);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -4764,7 +4882,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -4879,9 +4997,101 @@ struct WebComponent {
 }
 ```
 
+
+
+### enableSafeBrowsing<sup>11+</sup>
+
+enableSafeBrowsing(enable: boolean): void
+
+Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  enable | boolean | Yes  | Whether to enable the safe browsing feature.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('enableSafeBrowsing')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.enableSafeBrowsing(true);
+            console.log("enableSafeBrowsing: true");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isSafeBrowsingEnabled<sup>11+</sup>
+
+isSafeBrowsingEnabled(): boolean
+
+Checks whether the safe browsing feature is enabled for this web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| boolean | Whether the safe browsing feature is enabled. The default value is **false**.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isSafeBrowsingEnabled')
+        .onClick(() => {
+          let result = web_webview.WebviewController.isSafeBrowsingEnabled();
+          console.log("result: " + result);
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### postUrl<sup>11+</sup>
 
-static postUrl(url: string, postData: ArrayBuffer): void
+postUrl(url: string, postData: ArrayBuffer): void
 
 Loads the specified URL with **postData** using the POST method. If **url** is not a network URL, it will be loaded with [loadUrl](#loadurl) instead, and the **postData** parameter will be ignored.
 
@@ -4891,8 +5101,8 @@ Loads the specified URL with **postData** using the POST method. If **url** is n
 
 | Name | Type            | Mandatory| Description                 |
 | ------- | ---------------- | ---- | :-------------------- |
-| url     | string \| Resource | Yes  | URL to load.     |
-| postData | ArrayBuffer | No  | Data to transfer using the POST method. The request must be encoded in "application/x-www-form-urlencoded" format.|
+| url     | string | Yes  | URL to load.     |
+| postData | ArrayBuffer | Yes  | Data to transfer using the POST method. The request must be encoded in "application/x-www-form-urlencoded" format.|
 
 **Error codes**
 
@@ -4910,7 +5120,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview'
 import business_error from '@ohos.base'
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -4929,7 +5139,7 @@ class testObj {
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
 
   build() {
     Column() {
@@ -4945,6 +5155,164 @@ struct WebComponent {
           }
         })
       Web({ src: '', controller: this.controller })
+    }
+  }
+}
+```
+
+### createWebPrintDocumentAdapter<sup>11+</sup>
+
+createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
+
+Creates a **PrintDocumentAdapter** instance to provide content for printing.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                 |
+| ------- | ------ | ---- | :-------------------- |
+| jobName | string | Yes  | Name of the file to print.     |
+
+**Return value**
+
+| Type                | Description                     |
+| -------------------- | ------------------------- |
+| print.printDocumentAdapter | **PrintDocumentAdapter** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                                   |
+| -------- | -------------------------------------------------------------------------- |
+| 401 | Invalid input parameter.                                                        |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+import print from '@ohos.print'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('createWebPrintDocumentAdapter')
+        .onClick(() => {
+          try {
+            let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
+            print.print('example_jobid', webPrintDocadapter, null, getContext());
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+### isIncognitoMode<sup>11+</sup>
+
+isIncognitoMode(): boolean
+
+Checks whether this Webview is in incognito mode.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                | Description                     |
+| -------------------- | ------------------------- |
+| boolean              | Whether the Webview is in incognito mode.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                                   |
+| -------- | -------------------------------------------------------------------------- |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isIncognitoMode')
+        .onClick(() => {
+          try {
+             let result = this.controller.isIncognitoMode();
+             console.log('isIncognitoMode' + result);
+            } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getSecurityLevel<sup>11+</sup>
+
+getSecurityLevel(): SecurityLevel
+
+Obtains the security level of this web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                               | Description                       |
+| ----------------------------------- | --------------------------- |
+| [SecurityLevel](#securitylevel11) | Security level of the web page. The value can be **NONE**, **SECURE**, **WARNING**, or **DANGEROUS**.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+import webview from '@ohos.web.webview'
+
+
+	
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onPageEnd((event) => {
+          if (event) {
+            let securityLevel = this.controller.getSecurityLevel()
+            console.info('securityLevel: ', securityLevel)
+          }
+        })
     }
   }
 }
@@ -4966,7 +5334,7 @@ Obtains the cookie corresponding to the specified URL.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [fetchCookieSync](###fetchCookieSync11) instead.
+> This API is supported since API version 9 and deprecated since API version 11. You are advised to use [fetchCookieSync](###fetchCookieSync11) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5022,7 +5390,7 @@ struct WebComponent {
 
 ### fetchCookieSync<sup>11+</sup>
 
-static fetchCookieSync(url: string): string
+static fetchCookieSync(url: string, incognito?: boolean): string
 
 Obtains the cookie corresponding to the specified URL.
 
@@ -5033,6 +5401,7 @@ Obtains the cookie corresponding to the specified URL.
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
@@ -5212,7 +5581,7 @@ Sets a cookie for the specified URL.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [configCookieSync](###configCookieSync11+) instead.
+> This API is supported since API version 9 and deprecated since API version 11. You are advised to use [configCookieSync<sup>11+</sup>](#configcookiesync11) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5263,7 +5632,7 @@ struct WebComponent {
 
 ### configCookieSync<sup>11+</sup>
 
-static configCookieSync(url: string, value: string): void
+static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 Sets a cookie for the specified URL.
 
@@ -5275,6 +5644,7 @@ Sets a cookie for the specified URL.
 | ------ | ------ | ---- | :------------------------ |
 | url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
+| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
@@ -5392,7 +5762,7 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| Promise\<string> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -5547,7 +5917,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 | Name| Type   | Mandatory| Description                                |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive cookies.<br>Default value: **true**|
 
 **Example**
 
@@ -5628,7 +5998,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.<br>Default value: **false**|
 
 **Example**
 
@@ -5699,17 +6069,23 @@ struct WebComponent {
 
 ### existCookie
 
-static existCookie(): boolean
+static existCookie(incognito?: boolean): boolean
 
 Checks whether cookies exist.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                      |
+| ------ | ------- | ---- | :----------------------------------------- |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to check for cookies in incognito mode. The value **true** means to check for cookies in incognito mode, and **false** means the opposite.|
+
 **Return value**
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Whether cookies exist.|
+| boolean | Whether cookies exist. The value **true** means that cookies exist, and **false** means the opposite.|
 
 **Example**
 
@@ -5743,7 +6119,7 @@ Deletes all cookies.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [clearAllCookiesSync](###clearAllCookiesSync11+) instead.
+> This API is supported since API version 9 and deprecated since API version 11. You are advised to use [clearAllCookiesSync](#clearallcookiessync11) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5772,11 +6148,17 @@ struct WebComponent {
 
 ### clearAllCookiesSync<sup>11+</sup>
 
-static clearAllCookiesSync(): void
+static clearAllCookiesSync(incognito?: boolean): void
 
 Deletes all cookies.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                      |
+| ------ | ------- | ---- | :----------------------------------------- |
+| incognito    | boolean | No  | Whether to delete all cookies in incognito mode. The value **true** means to delete all cookies in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -5905,7 +6287,7 @@ Deletes all session cookies.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [clearSessionCookiesync](###clearSessionCookieSync11+) instead.
+> This API is supported since API version 9 and deprecated since API version 11. You are advised to use [clearSessionCookiesync](#clearsessioncookiesync11) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6069,7 +6451,7 @@ Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web 
 
 ### deleteOrigin
 
-static deleteOrigin(origin : string): void
+static deleteOrigin(origin: string): void
 
 Deletes all data in the specified origin.
 
@@ -6163,11 +6545,11 @@ HTML file to be loaded:
   <div id="status" name="status">Status</div>
   </body>
   </html>
-  ```
+ ```
 
 ### getOrigins
 
-static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 Obtains information about all origins that are currently using the Web SQL Database. This API uses an asynchronous callback to return the result.
 
@@ -6232,7 +6614,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOrigins
 
-static getOrigins() : Promise\<Array\<WebStorageOrigin>>
+static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 Obtains information about all origins that are currently using the Web SQL Database. This API uses a promise to return the result.
 
@@ -6297,7 +6679,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 Obtains the storage quota of an origin in the Web SQL Database, in bytes. This API uses an asynchronous callback to return the result.
 
@@ -6360,7 +6742,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string) : Promise\<number>
+static getOriginQuota(origin: string): Promise\<number>
 
 Obtains the storage quota of an origin in the Web SQL Database, in bytes. This API uses a promise to return the result.
 
@@ -6428,7 +6810,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 Obtains the storage usage of an origin in the Web SQL Database, in bytes. This API uses an asynchronous callback to return the result.
 
@@ -6491,7 +6873,7 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string) : Promise\<number>
+static getOriginUsage(origin: string): Promise\<number>
 
 Obtains the storage usage of an origin in the Web SQL Database, in bytes. This API uses a promise to return the result.
 
@@ -6559,11 +6941,17 @@ For details about the HTML file loaded, see the HTML file loaded using the [dele
 
 ### deleteAllData
 
-static deleteAllData(): void
+static deleteAllData(incognito?: boolean): void
 
 Deletes all data in the Web SQL Database.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to delete all data in the Web SQL Database in incognito mode. The value **true** means to delete all data in the Web SQL Database in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -6801,7 +7189,7 @@ Implements a **GeolocationPermissions** object.
 
 ### allowGeolocation
 
-static allowGeolocation(origin: string): void
+static allowGeolocation(origin: string, incognito?: boolean): void
 
 Allows the specified origin to use the geolocation information.
 
@@ -6812,6 +7200,7 @@ Allows the specified origin to use the geolocation information.
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
 | origin | string | Yes  |Index of the origin.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to allow the specified origin to use the geolocation information in incognito mode. The value **true** means to allow the specified origin to use the geolocation information in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
@@ -6853,7 +7242,7 @@ struct WebComponent {
 
 ### deleteGeolocation
 
-static deleteGeolocation(origin: string): void
+static deleteGeolocation(origin: string, incognito?: boolean): void
 
 Clears the geolocation permission status of a specified origin.
 
@@ -6864,6 +7253,7 @@ Clears the geolocation permission status of a specified origin.
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
 | origin | string | Yes  | Index of the origin.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to clear the geolocation permission status of a specified origin in incognito mode. The value **true** means to clear the geolocation permission status of a specified origin in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
@@ -6905,7 +7295,7 @@ struct WebComponent {
 
 ### getAccessibleGeolocation
 
-static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean>): void
+static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean>, incognito?: boolean): void
 
 Obtains the geolocation permission status of the specified origin. This API uses an asynchronous callback to return the result.
 
@@ -6917,6 +7307,7 @@ Obtains the geolocation permission status of the specified origin. This API uses
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | origin   | string                 | Yes  | Index of the origin.                                          |
 | callback | AsyncCallback\<boolean> | Yes  | Callback used to return the geolocation permission status of the specified origin. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified origin is not found.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of the specified origin in incognito mode. The value **true** means to obtain the geolocation permission status of the specified origin in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
@@ -6964,7 +7355,7 @@ struct WebComponent {
 
 ### getAccessibleGeolocation
 
-static getAccessibleGeolocation(origin: string): Promise\<boolean>
+static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<boolean>
 
 Obtains the geolocation permission status of the specified origin. This API uses a promise to return the result.
 
@@ -6975,6 +7366,7 @@ Obtains the geolocation permission status of the specified origin. This API uses
 | Name| Type| Mandatory| Description            |
 | ------ | -------- | ---- | -------------------- |
 | origin | string   | Yes  | Index of the origin.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of the specified origin in incognito mode. The value **true** means to obtain the geolocation permission status of the specified origin in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
@@ -7027,7 +7419,7 @@ struct WebComponent {
 
 ### getStoredGeolocation
 
-static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>): void
+static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?: boolean): void
 
 Obtains the geolocation permission status of all origins. This API uses an asynchronous callback to return the result.
 
@@ -7038,6 +7430,7 @@ Obtains the geolocation permission status of all origins. This API uses an async
 | Name  | Type                        | Mandatory| Description                                    |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<Array\<string>> | Yes  | Callback used to return the geolocation permission status of all origins.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of all origins in incognito mode. The value **true** means to obtain the geolocation permission status of all origins in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -7058,7 +7451,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -7077,11 +7470,17 @@ struct WebComponent {
 
 ### getStoredGeolocation
 
-static getStoredGeolocation(): Promise\<Array\<string>>
+static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
 Obtains the geolocation permission status of all origins. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                    |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of all origins in incognito mode. The value **true** means to obtain the geolocation permission status of all origins in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
@@ -7111,7 +7510,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -7126,11 +7525,17 @@ struct WebComponent {
 
 ### deleteAllGeolocation
 
-static deleteAllGeolocation(): void
+static deleteAllGeolocation(incognito?: boolean): void
 
 Clears the geolocation permission status of all sources.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                    |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to clear the geolocation permission status of all sources in incognito mode. The value **true** means to clear the geolocation permission status of all sources in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -7161,6 +7566,7 @@ struct WebComponent {
 }
 ```
 ## WebHeader
+
 Describes the request/response header returned by the **\<Web>** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
@@ -7172,22 +7578,37 @@ Describes the request/response header returned by the **\<Web>** component.
 
 ## WebHitTestType
 
+The [getHitTest](#gethittest) API is used to indicate a cursor node.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 | Name         | Value| Description                                     |
 | ------------- | -- |----------------------------------------- |
 | EditText      | 0 |Editable area.                           |
 | Email         | 1 |Email address.                           |
-| HttpAnchor    | 2 |Hyperlink whose **src** is **http**.                    |
-| HttpAnchorImg | 3 |Image with a hyperlink, where **src** is **http**.|
+| HttpAnchor    | 2 |Hyperlink, where **src** is **http**.                    |
+| HttpAnchorImg | 3 |Image with a hyperlink, where **src** is http + HTML::img.|
 | Img           | 4 |HTML::img tag.                          |
 | Map           | 5 |Geographical address.                               |
 | Phone         | 6 |Phone number.                               |
 | Unknown       | 7 |Unknown content.                               |
 
+## SecurityLevel<sup>11+</sup>
+
+Defines the security level of the web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| NONE          | 0 |The web page is neither absolutely secure nor insecure, that is, neutral. A typical example is a web page whose URL scheme is not HTTP or HTTPS.|
+| SECURE        | 1 |The web page is secure, using the HTTPS protocol and a trusted certificate.|
+| WARNING       | 2 |The web page is possibly compromised. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version.|
+| DANGEROUS     | 3 |The web page is insecure. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats.|
+
 ##  HitTestValue
 
-Provides the element information of the area being clicked. For details about the sample code, see **getHitTestValue**.
+Provides the element information of the area being clicked. For details about the sample code, see [getHitTestValue](#gethittestvalue).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7246,7 +7667,7 @@ Implements the **JsMessageExt** data object that is returned after script execut
 
 getType(): JsMessageType
 
-Obtains the type of the data object.
+Obtains the type of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7374,7 +7795,7 @@ Data object received and sent by the [webMessagePort](#webmessageport) interface
 
 getType(): WebMessageType
 
-Obtains the type of the data object.
+Obtains the type of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7455,6 +7876,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 getArrayBuffer(): ArrayBuffer
 
 Obtains raw binary data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
@@ -7519,7 +7941,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 setType(type: WebMessageType): void
 
-Sets the type for the data object.
+Sets the type for the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7611,6 +8033,8 @@ Sets the raw binary data for the data object. For the complete sample code, see 
 
 **Error codes**
 
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -7631,6 +8055,8 @@ Sets the array-type data for the data object. For the complete sample code, see 
 
 **Error codes**
 
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -7650,6 +8076,8 @@ Sets the error-object-type data for the data object. For the complete sample cod
 | message  | Error | Yes  | Data of the error object type.|
 
 **Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
@@ -7885,7 +8313,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -7952,7 +8380,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8019,7 +8447,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8086,7 +8514,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8153,7 +8581,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8167,7 +8595,7 @@ struct WebComponent {
 
 ### getLastErrorCode<sup>11+</sup>
 
-getLastErrorCode(): number
+getLastErrorCode(): WebDownloadErrorCode
 
 Obtains the download error code.
 
@@ -8221,7 +8649,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8288,7 +8716,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8355,7 +8783,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8422,7 +8850,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8489,7 +8917,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8557,7 +8985,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8625,7 +9053,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8663,7 +9091,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8681,7 +9109,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8695,7 +9123,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8717,9 +9145,9 @@ Deserializes the serialized byte array into a **WebDownloadItem** object.
 
 **Parameters**
 
-| Type  | Description                     |
-| ------ | ------------------------- |
-| Uint8Array | Byte array into which the download is serialized.|
+| Name             | Type   | Mandatory  |  Description|
+| ------------------ | ------- | ---- | ------------- |
+| serializedData | Uint8Array | Yes  | Byte array into which the download is serialized.|
 
 **Return value**
 
@@ -8739,7 +9167,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8757,7 +9185,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8771,7 +9199,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8780,7 +9208,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8802,9 +9230,9 @@ Starts a download. This API must be used in the **onBeforeDownload** callback of
 
 **Parameters**
 
-| Type  | Description                     |
-| ------ | ------------------------- |
-| string | Path (including the file name) of the file to download.|
+| Name| Type                  | Mandatory| Description                            |
+| ------ | ---------------------- | ---- | ------------------------------|
+| downloadPath   | string     | Yes | Path (including the file name) of the file to download.|
 
 **Example**
 
@@ -8818,7 +9246,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8836,7 +9264,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8850,7 +9278,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8859,7 +9287,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8891,8 +9319,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8911,7 +9339,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8925,7 +9353,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8934,7 +9362,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8983,8 +9411,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9003,7 +9431,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9017,7 +9445,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9026,7 +9454,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9084,8 +9512,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9104,7 +9532,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9118,7 +9546,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9127,7 +9555,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9172,7 +9600,7 @@ struct WebComponent {
 
 ### onBeforeDownload<sup>11+</sup>
 
-onBeforeDownload(): void
+onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 Invoked to notify users before the download starts. **WebDownloadItem.start("xxx")** must be called in this API, with a download path provided. Otherwise, the download remains in the PENDING state.
 
@@ -9190,8 +9618,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9210,7 +9638,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9224,7 +9652,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9233,7 +9661,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9274,7 +9702,7 @@ struct WebComponent {
 
 ### onDownloadUpdated<sup>11+</sup>
 
-onDownloadUpdated(): void
+onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 Invoked when the download progress is updated.
 
@@ -9292,8 +9720,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9312,7 +9740,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9326,7 +9754,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9335,7 +9763,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9376,7 +9804,7 @@ struct WebComponent {
 
 ### onDownloadFinish<sup>11+</sup>
 
-onDownloadFinish(): void
+onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 Invoked when the download is complete.
 
@@ -9394,8 +9822,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9414,7 +9842,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9428,7 +9856,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9437,7 +9865,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9496,8 +9924,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9516,7 +9944,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9530,7 +9958,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9539,7 +9967,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9608,8 +10036,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9628,7 +10056,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9642,7 +10070,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9651,7 +10079,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9724,8 +10152,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9744,7 +10172,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9758,7 +10186,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9767,7 +10195,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9805,3 +10233,4 @@ struct WebComponent {
   }
 }
 ```
+

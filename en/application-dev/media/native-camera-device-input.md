@@ -10,13 +10,13 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
    ```c++
     // Include the NDK header files in camera_manager.cpp.
-    #include "multimedia/camera_framework/camera.h"
-    #include "multimedia/camera_framework/camera_input.h"
-    #include "multimedia/camera_framework/capture_session.h"
-    #include "multimedia/camera_framework/photo_output.h"
-    #include "multimedia/camera_framework/preview_output.h"
-    #include "multimedia/camera_framework/video_output.h"
-    #include "multimedia/camera_framework/camera_manager.h"
+    #include "ohcamera/camera.h"
+    #include "ohcamera/camera_input.h"
+    #include "ohcamera/capture_session.h"
+    #include "ohcamera/photo_output.h"
+    #include "ohcamera/preview_output.h"
+    #include "ohcamera/video_output.h"
+    #include "ohcamera/camera_manager.h"
    ```
 
 2. Link the camera NDK dynamic library in the CMake script.
@@ -116,7 +116,7 @@ Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
 
 Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **Camera_StatusInfo** parameter. For details about the parameter, see [Camera_StatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo).
-
+  
 ```c++
    void CameraManagerStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
    {

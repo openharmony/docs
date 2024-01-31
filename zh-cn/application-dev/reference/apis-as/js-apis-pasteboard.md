@@ -73,7 +73,6 @@ createData(mimeType: string, value: ValueType): PasteData
  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
-
 ## pasteboard.createRecord<sup>9+</sup>
 
 createRecord(mimeType: string, value: ValueType):PasteDataRecord;
@@ -141,252 +140,6 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 | LOCALDEVICE | 1 | 表示允许在此设备中任何应用内粘贴。 |
 | CROSSDEVICE | 2 | 表示允许跨设备在任何应用内粘贴。  |
 
-## pasteboard.createHtmlData<sup>(deprecated)</sup>
-
-createHtmlData(htmlText: string): PasteData
-
-构建一个HTML剪贴板内容对象。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| htmlText | string | 是 | HTML内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteData](#pastedata) | 剪贴板内容对象。 |
-
-**示例：**
-
-```ts
-let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let pasteData: pasteboard.PasteData = pasteboard.createHtmlData(html);
-```
-
-## pasteboard.createWantData<sup>(deprecated)</sup>
-
-createWantData(want: Want): PasteData
-
-构建一个Want剪贴板内容对象。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteData](#pastedata) | 剪贴板内容对象。 |
-
-**示例：**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let object: Want = {
-    bundleName: "com.example.aafwk.test",
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-let pasteData: pasteboard.PasteData = pasteboard.createWantData(object);
-```
-
-## pasteboard.createPlainTextData<sup>(deprecated)</sup>
-
-createPlainTextData(text: string): PasteData
-
-构建一个纯文本剪贴板内容对象。
-> **说明：**
->
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | 纯文本内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteData](#pastedata) | 剪贴板内容对象。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
-```
-
-## pasteboard.createUriData<sup>(deprecated)</sup>
-
-createUriData(uri: string): PasteData
-
-构建一个URI剪贴板内容对象。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri | string | 是 | URI内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteData](#pastedata) | 剪贴板内容对象。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
-```
-## pasteboard.createHtmlTextRecord<sup>(deprecated)</sup>
-
-createHtmlTextRecord(htmlText: string): PasteDataRecord
-
-创建一条HTML内容的条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| htmlText | string | 是 | HTML内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的HTML内容条目。 |
-
-**示例：**
-
-```ts
-let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let record: pasteboard.PasteDataRecord = pasteboard.createHtmlTextRecord(html);
-```
-
-## pasteboard.createWantRecord<sup>(deprecated)</sup>
-
-createWantRecord(want: Want): PasteDataRecord
-
-创建一条Want内容条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的Want内容条目。 |
-
-**示例：**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let object: Want = {
-    bundleName: "com.example.aafwk.test",
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-let record: pasteboard.PasteDataRecord = pasteboard.createWantRecord(object);
-```
-
-## pasteboard.createPlainTextRecord<sup>(deprecated)</sup>
-
-createPlainTextRecord(text: string): PasteDataRecord
-
-创建一条纯文本内容条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | 纯文本内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的纯文本内容条目。 |
-
-**示例：**
-
-```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createPlainTextRecord('hello');
-```
-
-## pasteboard.createUriRecord<sup>(deprecated)</sup>
-
-createUriRecord(uri: string): PasteDataRecord
-
-创建一条URI内容的条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord](#pasteboardcreaterecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri | string | 是 | URI内容。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的URI内容条目。 |
-
-**示例：**
-
-```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
-```
-
-
 ## PasteDataProperty<sup>7+</sup>
 
 定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
@@ -443,14 +196,15 @@ let data: string = record.toPlainText();
 console.info(`Succeeded in converting to text. Data: ${data}`);
 ```
 
-### convertToText<sup>(deprecated)</sup>
+## PasteData
 
-convertToText(callback: AsyncCallback&lt;string&gt;): void
+剪贴板内容对象。
 
-将一个PasteData中的内容强制转换为文本内容，使用callback异步回调。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
+### addRecord<sup>7+</sup>
+
+addRecord(record: PasteDataRecord): void
+
+向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -458,31 +212,55 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，当转换成功，err为undefined，data为强制转换的文本内容；否则返回错误信息。 |
+| record | [PasteDataRecord](#pastedatarecord7) | 是 | 待添加的条目。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
-record.convertToText((err: BusinessError, data: string) => {
-    if (err) {
-        console.error(`Failed to convert to text. Cause: ${err.message}`);
-        return;
-    }
-    console.info(`Succeeded in converting to text. Data: ${data}`);
-});
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let textRecord: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let html: string = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let htmlRecord: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, html);
+pasteData.addRecord(textRecord);
+pasteData.addRecord(htmlRecord);
 ```
 
-### convertToText<sup>(deprecated)</sup>
+### addRecord<sup>9+</sup>
 
-convertToText(): Promise&lt;string&gt;
+addRecord(mimeType: string, value: ValueType): void
 
-将一个PasteData中的内容强制转换为文本内容，使用Promise异步回调。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
+向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900002 | The number of record exceeds the maximum limit. |
+
+**示例：**
+
+  ```ts
+  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+  let dataXml = new ArrayBuffer(256);
+  pasteData.addRecord('app/xml', dataXml);
+  ```
+
+### getMimeTypes<sup>7+</sup>
+
+getMimeTypes(): Array&lt;string&gt;
+
+获取剪贴板中[PasteDataProperty](#pastedataproperty7)的mimeTypes列表，当剪贴板内容为空时，返回列表为空。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -490,48 +268,13 @@ convertToText(): Promise&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise对象，返回强制转换的文本内容。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
-record.convertToText().then((data: string) => {
-    console.info(`Succeeded in converting to text. Data: ${data}`);
-}).catch((err: BusinessError) => {
-    console.error(`Failed to convert to text. Cause: ${err.message}`);
-});
-```
-
-## PasteData
-
-剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
-
-在调用PasteData的接口前，需要先通过[createData()](#pasteboardcreatedata9)或[getData()](#getdata9)获取一个PasteData对象。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-### getPrimaryText
-
-getPrimaryText(): string
-
-获取首个条目的纯文本内容。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 纯文本内容。 |
+| Array&lt;string&gt; | 剪贴板内容条目的数据类型，非重复的类型列表。 |
 
 **示例：**
 
 ```ts
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let plainText: string = pasteData.getPrimaryText();
+let types: string[] = pasteData.getMimeTypes();
 ```
 
 ### getPrimaryHtml<sup>7+</sup>
@@ -581,6 +324,48 @@ let object: Want = {
 };
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_WANT, object);
 let want: Want = pasteData.getPrimaryWant();
+```
+
+### getPrimaryMimeType<sup>7+</sup>
+
+getPrimaryMimeType(): string
+
+获取剪贴板内容中首个条目的数据类型。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 首个条目的数据类型。 |
+
+**示例：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let type: string = pasteData.getPrimaryMimeType();
+```
+
+### getPrimaryText
+
+getPrimaryText(): string
+
+获取首个条目的纯文本内容。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 纯文本内容。 |
+
+**示例：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let plainText: string = pasteData.getPrimaryText();
 ```
 
 ### getPrimaryUri<sup>7+</sup>
@@ -636,103 +421,6 @@ image.createPixelMap(buffer, opt).then((pixelMap: image.PixelMap) => {
     let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_PIXELMAP, pixelMap);
     let PixelMap: image.PixelMap = pasteData.getPrimaryPixelMap();
 });
-```
-
-### addRecord<sup>7+</sup>
-
-addRecord(record: PasteDataRecord): void
-
-向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| record | [PasteDataRecord](#pastedatarecord7) | 是 | 待添加的条目。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let textRecord: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let html: string = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-let htmlRecord: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, html);
-pasteData.addRecord(textRecord);
-pasteData.addRecord(htmlRecord);
-```
-### addRecord<sup>9+</sup>
-
-addRecord(mimeType: string, value: ValueType): void
-
-向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 自定义数据的MIME类型。 |
-| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900002 | The number of record exceeds the maximum limit. |
-
-**示例：**
-
-  ```ts
-  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-  let dataXml = new ArrayBuffer(256);
-  pasteData.addRecord('app/xml', dataXml);
-  ```
-
-### getMimeTypes<sup>7+</sup>
-
-getMimeTypes(): Array&lt;string&gt;
-
-获取剪贴板中[PasteDataProperty](#pastedataproperty7)的mimeTypes列表，当剪贴板内容为空时，返回列表为空。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Array&lt;string&gt; | 剪贴板内容条目的数据类型，非重复的类型列表。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let types: string[] = pasteData.getMimeTypes();
-```
-
-### getPrimaryMimeType<sup>7+</sup>
-
-getPrimaryMimeType(): string
-
-获取剪贴板内容中首个条目的数据类型。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 首个条目的数据类型。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
-let type: string = pasteData.getPrimaryMimeType();
 ```
 
 ### getProperty<sup>7+</sup>
@@ -990,290 +678,118 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 pasteData.replaceRecord(0, record);
 ```
-### addHtmlRecord<sup>(deprecated)</sup>
-
-addHtmlRecord(htmlText: string): void
-
-向当前剪贴板内容中添加一条HTML内容条目，并将MIMETYPE_TEXT_HTML添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| htmlText | string | 是 | HTML内容。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let html: string = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-pasteData.addHtmlRecord(html);
-```
-
-### addWantRecord<sup>(deprecated)</sup>
-
-addWantRecord(want: Want): void
-
-向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want对象内容。 |
-
-**示例：**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let object: Want = {
-    bundleName: "com.example.aafwk.test",
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-pasteData.addWantRecord(object);
-```
-
-### addTextRecord<sup>(deprecated)</sup>
-
-addTextRecord(text: string): void
-
-向当前剪贴板内容中添加一条纯文本条目，并将MIME_TEXT_PLAIN添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| text | string | 是 | 纯文本内容。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-pasteData.addTextRecord('good');
-```
-
-### addUriRecord<sup>(deprecated)</sup>
-
-addUriRecord(uri: string): void
-
-向当前剪贴板内容中添加一条URI条目，并将MIMETYPE_TEXT_URI添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord](#addrecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri | string | 是 | URI内容。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-pasteData.addUriRecord('dataability:///com.example.myapplication1/user.txt');
-```
-### getRecordAt<sup>(deprecated)</sup>
-
-getRecordAt(index: number): PasteDataRecord
-
-获取剪贴板内容中指定下标的条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getRecord](#getrecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定条目的下标。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 指定下标的条目。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let record: pasteboard.PasteDataRecord = pasteData.getRecordAt(0);
-```
-
-### hasMimeType<sup>(deprecated)</sup>
-
-hasMimeType(mimeType: string): boolean
-
-检查剪贴板内容中是否有指定的数据类型。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasType](#hastype9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 待查询的数据类型。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 有指定的数据类型返回true，否则返回false。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let hasType: boolean = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
-```
-### removeRecordAt<sup>(deprecated)</sup>
-
-removeRecordAt(index: number): boolean
-
-移除剪贴板内容中指定下标的条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[removeRecord](#removerecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定的下标。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 成功移除返回true，失败返回false。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let isRemove: boolean = pasteData.removeRecordAt(0);
-```
-### replaceRecordAt<sup>(deprecated)</sup>
-
-replaceRecordAt(index: number, record: PasteDataRecord): boolean
-
-替换剪贴板内容中指定下标的条目。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[replaceRecord](#replacerecord9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定的下标。 |
-| record | [PasteDataRecord](#pastedatarecord7) | 是 | 替换后的条目。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 成功替换返回true，失败返回false。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
-let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
-let isReplace: boolean = pasteData.replaceRecordAt(0, record);
-```
 
 ## SystemPasteboard
 
-系统剪贴板对象。
+系统剪贴板对象。在调用SystemPasteboard的接口前，需要先通过[getSystemPasteboard](#pasteboardgetsystempasteboard)获取系统剪贴板。
 
-在调用SystemPasteboard的接口前，需要先通过[getSystemPasteboard](#pasteboardgetsystempasteboard)获取系统剪贴板。
+### isRemoteData<sup>11+</sup>
 
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-```
+isRemoteData(): boolean
 
-### on('update')<sup>7+</sup>
-
-on(type:  'update', callback: () =&gt;void ): void
-
-订阅系统剪贴板内容变化事件，当系统剪贴板中内容变化时触发用户程序的回调。
+判断剪贴板中的数据是否来自其他设备。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-**参数：**
+**返回值：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 |
-| callback | function | 是 | 剪贴板中内容变化时触发的用户程序的回调。 |
+| 类型    | 说明                                  |
+| ------- | ------------------------------------- |
+| boolean | 是来自其他设备返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-let listener = () => {
-    console.info('The system pasteboard has changed.');
+try {
+    let result: boolean = systemPasteboard.isRemoteData();
+    console.info(`Succeeded in checking the RemoteData. Result: ${result}`);
+} catch (err) {
+    console.error('Failed to check the RemoteData. Cause:' + err.message);
 };
-systemPasteboard.on('update', listener);
 ```
 
-### off('update')<sup>7+</sup>
+### getDataSource<sup>11+</sup>
 
-off(type:  'update', callback?: () =&gt;void ): void
+getDataSource(): string
 
-取消订阅系统剪贴板内容变化事件。
+获取数据来源。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-**参数：**
+**返回值：**
 
-| 参数名 | 类型 | 必填 | 说明                                                      |
-| -------- | -------- | -------- |---------------------------------------------------------|
-| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。                              |
-| callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。如果此参数未填，表明清除本应用的所有监听回调，否则表示清除指定监听回调。|
+| 类型   | 说明   |
+| ------ | ------ |
+| string | 数据来源。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
 
 **示例：**
 
 ```ts
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-let listener = () => {
-    console.info('The system pasteboard has changed.');
+try {
+    let result: string = systemPasteboard.getDataSource();
+    console.info(`Succeeded in getting DataSource. Result: ${result}`);
+} catch (err) {
+    console.error('Failed to get DataSource. Cause:' + err.message);
 };
-systemPasteboard.off('update', listener);
+```
+
+### hasDataType<sup>11+</sup>
+
+hasDataType(mimeType: string): boolean
+
+检查剪贴板内容中是否有指定类型的数据。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明               |
+| -------- | ------ | ---- | ------------------ |
+| mimeType | string | 是   | 数据类型。 |
+
+**返回值：**
+
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
+| boolean | 有指定类型的数据返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Type is not string. |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
+    console.info(`Succeeded in checking the DataType. Result: ${result}`);
+} catch (err) {
+    console.error('Failed to check the DataType. Cause:' + err.message);
+};
 ```
 
 ### clearData<sup>9+</sup>
@@ -1328,6 +844,228 @@ systemPasteboard.clearData().then((data: void) => {
 }).catch((err: BusinessError) => {
     console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
 });
+```
+
+### clearDataSync<sup>11+</sup>
+
+clearDataSync(): void
+
+清空系统剪贴板内容, 此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    systemPasteboard.clearDataSync();
+    console.info('Succeeded in clearing the pasteboard.');
+} catch (err) {
+    console.error('Failed to clear the pasteboard. Cause:' + err.message);
+};
+```
+
+### getData<sup>9+</sup>
+
+getData(callback: AsyncCallback&lt;PasteData&gt;): void
+
+读取系统剪贴板内容，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数。当读取成功，err为undefined，data为返回的系统剪贴板数据；否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900003 | Another copy or paste is in progress. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+});
+```
+
+### getData<sup>9+</sup>
+
+getData(): Promise&lt;PasteData&gt;
+
+读取系统剪贴板内容，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[PasteData](#pastedata)&gt; | Promise对象，返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900003 | Another copy or paste is in progress. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
+}).catch((err: BusinessError) => {
+    console.error('Failed to get PasteData. Cause: ' + err.message);
+});
+```
+
+### getDataSync<sup>11+</sup>
+
+getDataSync(): PasteData
+
+读取系统剪贴板内容, 此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型                    | 说明                 |
+| ----------------------- | -------------------- |
+| [PasteData](#pastedata) | 返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: pasteboard.PasteData = systemPasteboard.getDataSync();
+    console.info('Succeeded in getting PasteData.');
+} catch (err) {
+    console.error('Failed to get PasteData. Cause:' + err.message);
+};   
+```
+
+### hasData<sup>9+</sup>
+
+hasData(callback:  AsyncCallback&lt;boolean&gt;): void
+
+判断系统剪贴板中是否有内容，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.hasData((err: BusinessError, data: boolean) => {
+    if (err) {
+        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
+        return;
+    }
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
+});
+```
+
+### hasData<sup>9+</sup>
+
+hasData(): Promise&lt;boolean&gt;
+
+判断系统剪贴板中是否有内容，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.hasData().then((data: boolean) => {
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
+}).catch((err: BusinessError) => {
+    console.error(`Failed to check the PasteData. Cause: ${err.message}`);
+});
+```
+
+### hasDataSync<sup>11+</sup>
+
+hasDataSync(): boolean
+
+判断系统剪贴板中是否有内容, 此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型    | 说明                                                                    |
+| ------- | ----------------------------------------------------------------------- |
+| boolean | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: boolean = systemPasteboard.hasDataSync();
+    console.info(`Succeeded in checking the PasteData. Result: ${result}`);
+} catch (err) {
+    console.error('Failed to check the PasteData. Cause:' + err.message);
+};
 ```
 
 ### setData<sup>9+</sup>
@@ -1411,556 +1149,6 @@ systemPasteboard.setData(pasteData).then((data: void) => {
 });
 ```
 
-### getData<sup>9+</sup>
-
-getData( callback: AsyncCallback&lt;PasteData&gt;): void
-
-读取系统剪贴板内容，使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数。当读取成功，err为undefined，data为返回的系统剪贴板数据；否则返回错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
-    if (err) {
-        console.error('Failed to get PasteData. Cause: ' + err.message);
-        return;
-    }
-    let text: string = pasteData.getPrimaryText();
-});
-```
-
-### getData<sup>9+</sup>
-
-getData(): Promise&lt;PasteData&gt;
-
-读取系统剪贴板内容，使用Promise异步回调。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[PasteData](#pastedata)&gt; | Promise对象，返回系统剪贴板数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
-    let text: string = pasteData.getPrimaryText();
-}).catch((err: BusinessError) => {
-    console.error('Failed to get PasteData. Cause: ' + err.message);
-});
-```
-
-### hasData<sup>9+</sup>
-
-hasData(callback:  AsyncCallback&lt;boolean&gt;): void
-
-判断系统剪贴板中是否有内容，使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.hasData((err: BusinessError, data: boolean) => {
-    if (err) {
-        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
-        return;
-    }
-    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
-});
-```
-
-### hasData<sup>9+</sup>
-
-hasData(): Promise&lt;boolean&gt;
-
-判断系统剪贴板中是否有内容，使用Promise异步回调。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;boolean&gt; | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.hasData().then((data: boolean) => {
-    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
-}).catch((err: BusinessError) => {
-    console.error(`Failed to check the PasteData. Cause: ${err.message}`);
-});
-```
-
-### clear<sup>(deprecated)</sup>
-
-clear(callback: AsyncCallback&lt;void&gt;): void
-
-清空系统剪贴板内容，使用callback异步回调。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当成功清空时，err为undefined；否则为错误对象。 |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.clear((err, data) => {
-    if (err) {
-        console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
-        return;
-    }
-    console.info('Succeeded in clearing the PasteData.');
-});
-```
-
-### clear<sup>(deprecated)</sup>
-
-clear(): Promise&lt;void&gt;
-
-清空系统剪贴板内容，使用Promise异步回调。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9-1)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.clear().then((data) => {
-    console.info('Succeeded in clearing the PasteData.');
-}).catch((err: BusinessError) => {
-    console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
-});
-```
-
-### getPasteData<sup>(deprecated)</sup>
-
-getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
-
-读取系统剪贴板内容，使用callback异步回调。
-> **说明：**
->
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[getData](#getdata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数。当读取成功，err为undefined，data为返回的系统剪贴板数据；否则返回错误对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
-    if (err) {
-        console.error('Failed to get PasteData. Cause: ' + err.message);
-        return;
-    }
-    let text: string = pasteData.getPrimaryText();
-});
-```
-
-### getPasteData<sup>(deprecated)</sup>
-
-getPasteData(): Promise&lt;PasteData&gt;
-
-读取系统剪贴板内容，使用Promise异步回调。
-> **说明：**
->
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[getData](#getdata9-1)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[PasteData](#pastedata)&gt; | Promise对象，返回系统剪贴板数据。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
-    let text: string = pasteData.getPrimaryText();
-}).catch((err: BusinessError) => {
-    console.error('Failed to get PasteData. Cause: ' + err.message);
-});
-```
-
-### hasPasteData<sup>(deprecated)</sup>
-
-hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
-
-判断系统剪贴板中是否有内容，使用callback异步回调。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasData](#hasdata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
-    if (err) {
-        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
-        return;
-    }
-    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
-});
-```
-
-### hasPasteData<sup>(deprecated)</sup>
-
-hasPasteData(): Promise&lt;boolean&gt;
-
-判断系统剪贴板中是否有内容，使用Promise异步回调。
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasData](#hasdata9-1)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;boolean&gt; | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.hasPasteData().then((data: boolean) => {
-    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
-}).catch((err: BusinessError) => {
-    console.error(`Failed to check the PasteData. Cause: ${err.message}`);
-});
-```
-
-### setPasteData<sup>(deprecated)</sup>
-
-setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
-
-将数据写入系统剪贴板，使用callback异步回调。
-> **说明：**
->
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| data | [PasteData](#pastedata) | 是 | PasteData对象。 |
-| callback | AsyncCallback&lt;void> | 是 | 回调函数。当写入成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-
-```ts
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setPasteData(pasteData, (err, data) => {
-    if (err) {
-        console.error('Failed to set PasteData. Cause: ' + err.message);
-        return;
-    }
-    console.info('Succeeded in setting PasteData.');
-});
-```
-### setPasteData<sup>(deprecated)</sup>
-
-setPasteData(data: PasteData): Promise&lt;void&gt;
-
-将数据写入系统剪贴板，使用Promise异步回调。
-> **说明：**
->
-> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9-1)替代。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| data | [PasteData](#pastedata) | 是 | PasteData对象。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setPasteData(pasteData).then((data: void) => {
-    console.info('Succeeded in setting PasteData.');
-}).catch((err: BusinessError) => {
-    console.error('Failed to set PasteData. Cause: ' + err.message);
-});
-```
-### isRemoteData<sup>11+</sup>
-
-isRemoteData(): boolean
-
-判断剪贴板中的数据是否来自其他设备。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型    | 说明                                  |
-| ------- | ------------------------------------- |
-| boolean | 是来自其他设备返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: boolean = systemPasteboard.isRemoteData();
-    console.info(`Succeeded in checking the RemoteData. Result: ${result}`);
-} catch (err) {
-    console.error('Failed to check the RemoteData. Cause:' + err.message);
-};
-```
-
-### getDataSource<sup>11+</sup>
-
-getDataSource(): string
-
-获取数据来源。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型   | 说明   |
-| ------ | ------ |
-| string | 数据来源。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: string = systemPasteboard.getDataSource();
-    console.info(`Succeeded in getting DataSource. Result: ${result}`);
-} catch (err) { 
-    console.error('Failed to get DataSource. Cause:' + err.message);
-};
-```
-
-### hasDataType<sup>11+</sup>
-
-hasDataType(mimeType: string): boolean
-
-检查剪贴板内容中是否有指定类型的数据。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明               |
-| -------- | ------ | ---- | ------------------ |
-| mimeType | string | 是   | 数据类型。 |
-
-**返回值：**
-
-| 类型    | 说明                                        |
-| ------- | ------------------------------------------- |
-| boolean | 有指定类型的数据返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Type is not string. |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
-    console.info(`Succeeded in checking the DataType. Result: ${result}`);
-} catch (err) {
-    console.error('Failed to check the DataType. Cause:' + err.message);
-};
-```
-
-### clearDataSync<sup>11+</sup>
-
-clearDataSync(): void
-
-清空系统剪贴板内容, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    systemPasteboard.clearDataSync();
-    console.info('Succeeded in clearing the pasteboard.');
-} catch (err) {
-    console.error('Failed to clear the pasteboard. Cause:' + err.message);
-};
-```
-
-### getDataSync<sup>11+</sup>
-
-getDataSync(): PasteData
-
-读取系统剪贴板内容, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型                    | 说明                 |
-| ----------------------- | -------------------- |
-| [PasteData](#pastedata) | 返回系统剪贴板数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: pasteboard.PasteData = systemPasteboard.getDataSync();
-    console.info('Succeeded in getting PasteData.');
-} catch (err) {
-    console.error('Failed to get PasteData. Cause:' + err.message);
-};   
-```
-
 ### setDataSync<sup>11+</sup>
 
 setDataSync(data: PasteData): void
@@ -1994,39 +1182,5 @@ try {
     console.info('Succeeded in setting PasteData.');
 } catch (err) {
     console.error('Failed to set PasteData. Cause:' + err.message);
-};  
-```
-
-### hasDataSync<sup>11+</sup>
-
-hasDataSync(): boolean
-
-判断系统剪贴板中是否有内容, 此接口为同步接口。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型    | 说明                                                                    |
-| ------- | ----------------------------------------------------------------------- |
-| boolean | 返回true表示系统剪贴板中有内容，返回false表示系统剪贴板中没有内容。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: boolean = systemPasteboard.hasDataSync();
-    console.info(`Succeeded in checking the PasteData. Result: ${result}`);
-} catch (err) {
-    console.error('Failed to check the PasteData. Cause:' + err.message);
-};    
+};
 ```

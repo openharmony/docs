@@ -27,7 +27,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** 不支持全局builder。 |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](../arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](../arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -233,7 +233,7 @@ struct DragControllerPage {
 
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| status       | DragStatus                                                 | 是   | 当前拖拽状态（启动和结束）。         |
+| status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
 | event        | [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明) | 否   | 当前状态所对应的拖拽事件。               |
 | extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
 
@@ -259,14 +259,34 @@ startDrag(): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-  console.log("start drag Error:" + err.message);
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+    console.log("start drag Error:" + err.message);
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
+
 ```
 
 ### on('statusChange')<sup>11+</sup>
 
-on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
 
 注册监听拖拽状态改变事件。
 
@@ -276,18 +296,37 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 | 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态。|
 
 **示例：**
 ```ts
-dragAction.on('statusChange', (dragAndDropInfo)=>{
-  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo);
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+    console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
 ```
 
 ### off('statusChange')<sup>11+</sup>
 
- off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
 
 取消注册监听拖拽状态改变事件。
 
@@ -297,13 +336,32 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 | 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态， 不设置取消所有监听。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo11)组件状态， 不设置取消所有监听。|
 
 **示例：**
 ```ts
-dragAction.off('statusChange', (dragAndDropInfo)=>{
-  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo)
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+    console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
 ```
 
 ## dragController.createDragAction<sup>11+</sup>
@@ -347,8 +405,8 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
-  private dragAction: dragController.DragAction|null = null;
+  @State pixmap: image.PixelMap | null = null
+  private dragAction: dragController.DragAction | null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
   @Builder DraggingBuilder() {
     Column() {
@@ -390,7 +448,7 @@ struct DragControllerPage {
               console.log("listener dragAction is null");
               return
             }
-            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
               if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
                 console.log("drag has start");
               } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
@@ -498,6 +556,7 @@ let localStorage: LocalStorage = new LocalStorage('uiContext');
 
 export default class EntryAbility extends UIAbility {
   storage: LocalStorage = localStorage;
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -515,8 +574,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-      windowStage.getMainWindow((err, data) =>
-      {
+      windowStage.getMainWindow((err, data) => {
         if (err.code) {
           hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
           return;
@@ -527,14 +585,14 @@ export default class EntryAbility extends UIAbility {
       })
     });
   }
+}
   ```
 2.在Index.ets中通过LocalStorage.getShared()获取UI上下文，进而获取DragController对象实施后续操作。
   ```ts
 
 import UDC from '@ohos.data.unifiedDataChannel';
 import hilog from '@ohos.hilog';
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import dragController from "@ohos.arkui.dragController";
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';

@@ -12,7 +12,7 @@
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libimage_ndk.z.so libimage_receiver_ndk.z.so libnative_image.so)
 ```
 
-**添加接口映射**
+### 添加接口映射
 
 打开src/main/cpp/hello.cpp文件，在Init函数中添加接口映射如下：
 
@@ -30,7 +30,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-**添加权限申请**
+### 添加权限申请
 
 开启调试功能需要在DevEco Studio应用工程的src\main\module.json5文件中增加权限, 配置文件个字段含义详见[module.json5配置文件](../quick-start/module-configuration-file.md)：
 
@@ -42,7 +42,7 @@ EXTERN_C_END
     ]
    ```
 
-**JS侧调用**
+### JS侧调用
 
 1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
 
@@ -129,7 +129,7 @@ EXTERN_C_END
     ```
 
 
-**Native接口调用**
+### Native接口调用
 
 具体接口说明请参考[API文档](../reference/native-apis/image.md)
 
@@ -137,7 +137,7 @@ EXTERN_C_END
 
 **添加引用文件**
 
-    ```c++
+   ```c++
 
       #include <multimedia/image_framework/image_mdk.h>
       #include <multimedia/image_framework/image_receiver_mdk.h>
@@ -191,4 +191,4 @@ EXTERN_C_END
          ret = OH_Image_Receiver_Release(imgReceiver_c);
          return nextImage;
       }
-    ```
+   ```

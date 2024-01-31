@@ -1,12 +1,14 @@
 # @ohos.arkui.componentSnapshot (Component Snapshot)
 
-The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Note that a component snapshot does not contain content drawn outside of the area of the owning component or the parent component.
+The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Note that a component snapshot does not contain content drawn outside the area of the owning component or the parent component.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+>In scenarios where [\<XComponent>](../arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](js-apis-image.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
+>
+> You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 
 ## Modules to Import

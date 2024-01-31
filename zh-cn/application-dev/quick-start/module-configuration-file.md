@@ -189,6 +189,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引。| 字符串 | 该标签可缺省，缺省值为空。 |
 
+resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resource/base/profile目录下。例如$profile:shortcuts_config指定了/resource/base/profile/shortcuts_config.json文件。
 
 ```json
 {
@@ -325,8 +326,8 @@ abilities示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| actions | 标识能够接收的[Action值集合](../application-models/actions-entities.md)，取值通常为系统预定义的action值，也允许自定义。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| entities | 标识能够接收的[Entity值的集合](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| actions | 标识能够接收的Action值集合，取值通常为系统预定义的action值，也允许自定义。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| entities | 标识能够接收的Entity值的集合。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 

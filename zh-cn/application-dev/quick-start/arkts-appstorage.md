@@ -176,21 +176,25 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage.setOrCreate('PropA',48);
+storage.setOrCreate('PropA', 48);
 
 @Entry(storage)
 @Component
 struct CompA {
-  @StorageLink('PropA') storLink: number = 1;
-  @LocalStorageLink('PropA') localStorLink: number = 1;
+  @StorageLink('PropA') storageLink: number = 1;
+  @LocalStorageLink('PropA') localStorageLink: number = 1;
 
   build() {
     Column({ space: 20 }) {
-      Text(`From AppStorage ${this.storLink}`)
-        .onClick(() => this.storLink += 1)
+      Text(`From AppStorage ${this.storageLink}`)
+        .onClick(() => {
+          this.storageLink += 1
+        })
 
-      Text(`From LocalStorage ${this.localStorLink}`)
-        .onClick(() => this.localStorLink += 1)
+      Text(`From LocalStorage ${this.localStorageLink}`)
+        .onClick(() => {
+          this.localStorageLink += 1
+        })
     }
   }
 }
@@ -282,6 +286,10 @@ export struct TapImage {
 ```
 
 相比借助@StorageLink的双向同步机制实现事件通知，开发者可以使用emit订阅某个事件并接收事件回调的方式来减少开销，增强代码的可读性。
+
+> **说明：**
+>
+> emit接口不支持在Previewer预览器中使用。
 
 
 ```ts
@@ -390,7 +398,7 @@ export struct TapImage {
 
 以上通知事件逻辑简单，也可以简化成三元表达式。
 
-```
+```ts
 // xxx.ets
 class ViewData {
   title: string;

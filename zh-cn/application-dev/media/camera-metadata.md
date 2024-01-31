@@ -14,7 +14,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 调用[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的supportedMetadataObjectTypes方法，获取当前设备支持的元数据类型，并通过[createMetadataOutput](../reference/apis/js-apis-camera.md#createmetadataoutput)方法创建元数据输出流。
+2. 调用[CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability)类中的supportedMetadataObjectTypes属性，获取当前设备支持的元数据类型，并通过[createMetadataOutput](../reference/apis/js-apis-camera.md#createmetadataoutput)方法创建元数据输出流。
      
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
@@ -30,26 +30,27 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-3. 调用[start](../reference/apis/js-apis-camera.md#start-3)方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+3. 调用[Session.start](../reference/apis/js-apis-camera.md#start11)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
-   function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
-     metadataOutput.start().then(() => {
-       console.info('Callback returned with metadataOutput started.');
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to metadataOutput start, error code: ${err.code}`);
-     });
+   async function startMetadataOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, session: camera.Session): Promise<void> {
+     session.beginConfig();
+     session.addInput(input);
+     session.addOutput(previewOutput);
+     session.addOutput(metadataOutput);
+     await session.commitConfig();
+     await session.start();
    }
    ```
 
-4. 调用[stop](../reference/apis/js-apis-camera.md#stop-3)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+4. 调用[Session.stop](../reference/apis/js-apis-camera.md#stop11)方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
-   function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
-     metadataOutput.stop().then(() => {
-       console.info('Callback returned with metadataOutput stopped.');
+   function stopMetadataOutput(session: camera.Session): void {
+     session.stop().then(() => {
+       console.info('Callback returned with session stopped.');
      }).catch((err: BusinessError) => {
-       console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
+       console.error(`Failed to session stop, error code: ${err.code}`);
      });
    }
    ```

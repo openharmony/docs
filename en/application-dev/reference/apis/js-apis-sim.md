@@ -990,11 +990,11 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 Obtains account information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1037,11 +1037,11 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 Obtains account information of the SIM card in the specified slot. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1090,11 +1090,11 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 Obtains the list of activated SIM card accounts. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1135,11 +1135,11 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 
 Obtains the list of activated SIM card accounts. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 >**NOTE**
 >
->If you do not have the **GET_TELEPHONY_STATE** permission, the ICCID and number information is empty.
-
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+>The **GET_TELEPHONY_STATE** permission is required only when you need to obtain the ICCID and phone number. Such information is sensitive and not open to third-party applications. When this API is called, the returned ICCID and phone number are empty.
 
 **System capability**: SystemCapability.Telephony.CoreService
 

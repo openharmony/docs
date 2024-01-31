@@ -49,7 +49,7 @@ Obtains the request information from Want.
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
@@ -142,7 +142,7 @@ Obtains the request callback from Want.
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
@@ -221,7 +221,7 @@ Defines the request information, which is used as an input parameter for binding
 
 | Name     | Type      | Mandatory  | Description    |
 | ------------ | ------------------| ------ | ---------------------- |
-| windowRect<sup>10+</sup>            | windowRect    | No  | Location attributes of a modal dialog box.         |
+| windowRect<sup>10+</sup>            | [WindowRect](#windowrect10)    | No  | Location attributes of a modal dialog box.         |
 
 **Example**
 
@@ -242,7 +242,7 @@ Defines the request information, which is used as an input parameter for binding
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();
@@ -386,7 +386,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         super(des);
       }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
         if (code === REQUEST_VALUE) {
           let optFir = data.readInt();
           let optSec = data.readInt();

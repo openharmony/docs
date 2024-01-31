@@ -3,7 +3,7 @@
 The **\<Canvas>** component can be used to customize drawings.
 
 > **NOTE**
-> 
+>
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
@@ -18,9 +18,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory  | Default Value | Description                        |
-| ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | No   | -    | For details, see **CanvasRenderingContext2D**. A **CanvasRenderingContext2D** object cannot be shared by multiple **Canvas** objects.|
+| Name    | Type                                    | Mandatory  | Description                                    |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | No   | For details, see **CanvasRenderingContext2D**. A **CanvasRenderingContext2D** object cannot be shared by multiple **Canvas** objects.|
 
 ## Attributes
 
@@ -30,9 +30,9 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                           | Parameter  | Description                  |
-| ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | -   | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name                        | Description                                      |
+| -------------------------- | ---------------------------------------- |
+| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 

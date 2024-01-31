@@ -27,7 +27,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+The following attributes are supported.
 
 | Name  | Type  | Default Value| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -233,7 +233,15 @@ struct OffscreenCanvasExamplePage {
 
 ## Concurrent Thread Drawing
 
-Since API version 11, the application can use the worker thread to support multithread concurrency. It can use **postMessage** to pass an **OffscreenCanvas** instance to the worker thread for drawing, and use **onmessage** to receive the drawing result sent by the worker thread for display.
+Since API version 11, an application can call **postMessage** to pass an **OffscreenCanvas** instance to a worker thread for drawing, and call **onmessage** to receive the drawing result for display.
+
+> **NOTE**
+>
+> After the **OffscreenCanvas** instance uses **getContext** to obtain the drawing context, it cannot be passed to other threads through **postMessage**. Otherwise, an exception is thrown.
+>
+> After an **OffscreenCanvas** object is passed to a thread through **postMessage**, it cannot use the **getContext** or **transferToImageBitmap** APIs. Otherwise, an exception is thrown.
+>
+> After an **OffscreenCanvas** object is passed to a thread through **postMessage**, it cannot be passed to any other thread through **postMessage**. Otherwise, an exception is thrown.
 
 **Example**
 

@@ -5,7 +5,6 @@
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
 The error codes of the file management subsystem include the following:
-
 - [Basic File IO Error Codes](#basic-file-io-error-codes)
 - [User Data Management Error Codes](#user-data-management-error-codes)
 - [User File Access Error Codes](#user-file-access-error-codes)
@@ -124,11 +123,13 @@ Bad file descriptor
 
 **Possible Causes**
 
-This file descriptor is closed.
+1. This file descriptor is closed.
+2. The read and write permissions on the file do not match the settings.
 
 **Solution**
 
-Check whether the file descriptor is closed.
+1. Check whether the file descriptor is closed.
+2. Check that the permissions on the file match the settings.
 
 ### 13900009 Child Process Not Exist
 

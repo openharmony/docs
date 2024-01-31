@@ -20,7 +20,7 @@ onTouch(event: (event: TouchEvent) => void)
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [TouchEvent](#touchevent对象说明) | 否   | 获得TouchEvent对象。 |
+| event  | [TouchEvent](#touchevent对象说明) | 是   | 获得TouchEvent对象。 |
 
 ## TouchEvent对象说明
 

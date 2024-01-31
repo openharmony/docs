@@ -66,7 +66,7 @@ The default viewport size of a mobile device is 980 px. This default value ensur
 
 ## Example
 
-You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ```ts
 // xxx.ets

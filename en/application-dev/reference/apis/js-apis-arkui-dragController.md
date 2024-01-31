@@ -7,7 +7,7 @@ The **dragController** module provides APIs for initiating drag actions. When re
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 > Since API version 10, you can use the [getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11) API in **UIContext** to obtain the **DragController** object associated with the current UI context.
-> You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ## Modules to Import
 
@@ -27,7 +27,7 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 | Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported.|
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported. If the [\<Image>](../arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](../arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.         |
 
@@ -568,7 +568,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button ('Drag Here').onDragEnter(() => {
+      Button('Drag Here').onDragEnter(() => {
           try {
             let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
             let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();

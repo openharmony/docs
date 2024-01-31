@@ -77,9 +77,7 @@ struct IndexComponent {
   }
 }
 ```
-
-![zh-cn_image_0000001563060749](figures/zh-cn_image_0000001563060749.png)
-
+![zh-cn_image_lifecycle](figures/zh-cn_image_lifecycle.gif)
 
 ## onLayout<sup>(deprecated)</sup>
 
@@ -195,6 +193,7 @@ struct Child {
   @State message: Message = new Message('AboutToReuse');
 
   aboutToReuse(params: Record<string, ESObject>) {
+    console.info("Recycle Child")
     this.message = params.message as Message
   }
 
@@ -363,9 +362,10 @@ struct CustomLayout {
 >
 >- 自定义布局暂不支持LazyForEach写法。
 >- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法。
->- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息。
+>- 子组件设置的尺寸信息，除aspectRatio之外，优先级小于onMeasureSize设置的尺寸信息。
+>- 子组件设置的位置信息，除offset、position之外，优先级小于onPlaceChildren设置的位置信息。
 >- 使用自定义布局方法时，如未调用子组件的measure和layout方法，将不显示布局。
->- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如margin、align等。
+>- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如align等。
 
 ```
 // xxx.ets

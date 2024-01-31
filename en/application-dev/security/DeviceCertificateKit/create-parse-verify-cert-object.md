@@ -1,7 +1,7 @@
 # Certificate Development
 
 
-This topic walks you through on how to create a certificate instance, obtain information about the certificate, and check the validity period of the certificate.
+This topic walks you through on how to create a certificate object, obtain information about the certificate, and check the validity period of the certificate.
 
 
 ## How to Develop
@@ -11,7 +11,7 @@ This topic walks you through on how to create a certificate instance, obtain inf
    import certFramework from '@ohos.security.cert';
    ```
 
-2. Use [cryptoCert.createX509Cert](../../reference/apis/js-apis-cert.md#cryptocertcreatex509cert) to create an **X509Cert** instance based on the existing X.509 certificate data.
+2. Use [cryptoCert.createX509Cert](../../reference/apis/js-apis-cert.md#cryptocertcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.
 
 3. Obtain certificate information.
    
@@ -51,14 +51,14 @@ function certSample(): void {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  // Create an X509Cert instance.
+  // Create an X509Cert object.
   certFramework.createX509Cert(encodingBlob, (err, x509Cert) => {
     if (err != null) {
-      // Failed to create the X509Cert instance.
+      // The X509Cert object fails to be created.
       console.error(`createX509Cert failed, errCode:${err.code}, errMsg:${err.message}`);
       return;
     }
-    // The X509Cert instance is created.
+    // The X509Cert object is created.
     console.log('createX509Cert success');
 
     // Obtain the certificate version.
@@ -66,7 +66,7 @@ function certSample(): void {
     let serial = x509Cert.getCertSerialNumber();
     console.log(`X509 version: ${version} , X509 serial:${serial}`);
 
-    // Use the getPublicKey() method of the upper-level certificate instance or the self-signed certificate instance to obtain the public key instance.
+    // Use the getPublicKey() method of the upper-level certificate object or the self-signed certificate object to obtain the public key object.
     try {
       let pubKey = x509Cert.getPublicKey();
       // Verify the certificate signature.

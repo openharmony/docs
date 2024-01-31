@@ -99,7 +99,7 @@ async function example() {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -148,7 +148,7 @@ async function example() {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
-      console.error('createAsset failed, message = ', err);
+      console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
     }
   });
 }
@@ -206,10 +206,201 @@ async function example() {
     console.info('createAsset uri' + uri);
     console.info('createAsset successfully');
   } catch (err) {
-    console.error('createAsset failed, message = ', err);
+    console.error(`createAsset failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
+
+### applyChanges<sup>11+</sup>
+
+applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
+
+提交媒体变更请求，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mediaChangeRequest  | [MediaChangeRequest](#mediachangerequest11)  | 是  |  媒体变更请求，支持资产变更请求和相册变更请求。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401   | if parameter is invalid.   |
+| 14000011  | System inner fail.     |
+
+**示例：**
+
+该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)中的接口示例。
+
+## MediaAssetChangeRequest<sup>11+</sup>
+
+资产变更请求。
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, photoType: PhotoType, extension: string, options?: CreateOptions): MediaAssetChangeRequest
+
+指定待创建的文件类型和扩展名，创建资产变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
+| extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
+| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如：{title: 'testPhoto'}。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetRequestDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let options: photoAccessHelper.CreateOptions = {
+      title: 'testPhoto'
+    }
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension, options);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply createAssetRequest successfully');
+  } catch (err) {
+    console.error(`createAssetRequestDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, fileUri: string): void
+
+通过fileUri从应用沙箱添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
+| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 13900002      |  No such file.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByFileUriDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    // 需要确保fileUri对应的资源存在
+    let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByFileUri successfully');
+  } catch (err) {
+    console.error(`addResourceByFileUriDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, data: ArrayBuffer): void
+
+通过ArrayBuffer数据添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
+| data | ArrayBuffer | 是   | 待添加资源的数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('addResourceByArrayBufferDemo');
+  try {
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, photoType, extension);
+    let buffer: ArrayBuffer = new ArrayBuffer(2048);
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, buffer);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('addResourceByArrayBuffer successfully');
+  } catch (err) {
+    console.error(`addResourceByArrayBufferDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ## PhotoType
 
@@ -236,3 +427,22 @@ title参数规格为：
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title           | string | 否  | 图片或者视频的标题。  |
+
+## MediaChangeRequest<sup>11+</sup>
+
+媒体变更请求，资产变更请求和相册变更请求的父类型。
+
+**注意**：媒体变更请求需要在调用[applyChanges](#applychanges11)后才会提交生效。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+## ResourceType<sup>11+</sup>
+
+枚举，写入资源的类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| IMAGE_RESOURCE |  1 |  表示图片资源。 |
+| VIDEO_RESOURCE |  2 |  表示视频资源。 |

@@ -17,9 +17,9 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 
 | API       | Description       |
 | ------------------ | ----------------- |
-|loadModelFromFile(model: string, options: Context): Promise&lt;Model&gt;|Loads a model from a file.|
+|loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;|Loads a model from a file.|
 |getInputs(): MSTensor[]|Obtains the model input.|
-|predict(inputs: MSTensor[]): Promise&lt;MSTensor&gt;|Performs model inference.|
+|predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;|Performs model inference.|
 | getData(): ArrayBuffer                 | Obtains tensor data.|
 | setData(inputArray: ArrayBuffer): void | Sets tensor data.|
 
@@ -72,7 +72,7 @@ let inputBuffer : ArrayBuffer | null = null;
 let inputName: string = 'mnet_caffemodel_nhwc.bin';
 
 globalContext.resourceManager.getRawFileContent(inputName).then((buffer : Uint8Array) => {
-  inputBuffer = buffer.buffer as object as ArrayBuffer;
+  inputBuffer = buffer.buffer as object as ArrayBuffer ;
   console.log('=========input bin byte length: ' + buffer.byteLength)
 })
 // 1. Create a context.

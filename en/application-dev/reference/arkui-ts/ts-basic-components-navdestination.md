@@ -5,6 +5,8 @@
 > **NOTE**
 >
 > This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 
 
 ## Child Components
@@ -45,7 +47,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | onShown(callback: () =&gt; void)<sup>10+</sup>          | Called when the navigation destination page is displayed.    |
 | onHidden(callback: () =&gt; void)<sup>10+</sup>         | Called when the navigation destination page is hidden.       |
-| onBackPressed(callback: () =&gt; boolean)<sup>10+</sup> | Called when the back button is pressed.<br>The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed. |
+| onBackPressed(callback: () =&gt; boolean)<sup>10+</sup> | Called when the back button is pressed.<br>This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component.<br/>The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed. |
 
 ## Example
 
