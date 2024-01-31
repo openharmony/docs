@@ -4761,7 +4761,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **返回：**
 
-返回最长行。
+返回最长行，建议实际使用时将返回值向上取整。
 
 
 ### OH_Drawing_TypographyGetMaxIntrinsicWidth()
