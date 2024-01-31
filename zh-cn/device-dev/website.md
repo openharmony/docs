@@ -314,6 +314,7 @@
        - [Audio](driver/driver-peripherals-audio-des.md)
        - [Camera](driver/driver-peripherals-camera-des.md)
        - [Codec](driver/driver-peripherals-codec-des.md)
+       - [Display VDI](driver/driver-peripherals-display-vdi-des.md)
        - [Face_auth](driver/driver-peripherals-face_auth-des.md)
        - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)
@@ -427,7 +428,8 @@
        - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
        - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
        - [HiSysEvent查询指导](subsystems/subsys-dfx-hisysevent-query.md)
-       - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-tool.md)
+       - [HiSysEvent工具使用指导](subsystems/subsys-dfx-hisysevent-to
+     - [HiAppEvent数据处理者lib库概述](subsystems/subsys-dfx-hiappevent-extend-so.md)
      - [HiDumper开发指导](subsystems/subsys-dfx-hidumper.md)
      - [HiChecker开发指导](subsystems/subsys-dfx-hichecker.md)
      - [Faultlogger开发指导](subsystems/subsys-dfx-faultlogger.md)
