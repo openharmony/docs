@@ -6939,7 +6939,7 @@ getCapturerInfo(): Promise<AudioCapturerInfo\>
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| Promise<[AudioCapturerInfo](#audiocapturerinfo)\> | Promise对象，返回采集器信息。 |
+| Promise<[AudioCapturerInfo](#audiocapturerinfo8)\> | Promise对象，返回采集器信息。 |
 
 **示例：**
 
