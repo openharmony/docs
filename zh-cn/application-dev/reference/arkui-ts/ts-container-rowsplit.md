@@ -18,9 +18,9 @@ RowSplit()
 
 ## 属性
 
-| 名称 | 参数类型 | 描述 | 
+| 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| resizeable | boolean | 分割线是否可拖拽，默认为false。 | 
+| resizeable | boolean | 分割线是否可拖拽，默认为false。 |
 
 >  **说明：**
 >
