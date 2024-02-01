@@ -90,12 +90,12 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
    // 具体参数需要根据音频文件格式进行适配
    SLDataFormat_PCM format_pcm = {
        SL_DATAFORMAT_PCM,           // 输入的音频格式
-       1,                                              // 单声道
+       1,                           // 单声道
        SL_SAMPLINGRATE_44_1,        // 采样率: 44100HZ
-       SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式,小尾数，带符号的16位整数
-       0,
-       0,
-       0
+       SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式, 小端, 带符号的16位整数
+       16,
+       SL_SPEAKER_FRONT_LEFT,
+       SL_BYTEORDER_LITTLEENDIAN
    };
    SLDataSink audioSink = {
        &buffer_queue,
@@ -152,4 +152,5 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
    ```c++
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_STOPPED);
    (*pcmCapturerObject)->Destroy(pcmCapturerObject);
+   (*engineObject)->Destroy(engineObject);
    ```

@@ -89,7 +89,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
    ```c++
    SLDataLocator_BufferQueue slBufferQueue = {
        SL_DATALOCATOR_BUFFERQUEUE,
-       0
+       1
    };
    
    // 具体参数需要根据音频文件格式进行适配
@@ -98,13 +98,22 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
        2,                           // 通道数
        SL_SAMPLINGRATE_48,          // 采样率
        SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式
-       0,
-       0,
-       0
+       16,
+       SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT,
+       SL_BYTEORDER_LITTLEENDIAN
    };
-   SLDataSource slSource = {&slBufferQueue, &pcmFormat};
+   SLDataSource slSource = {
+      &slBufferQueue,
+      &pcmFormat
+   };
    SLObjectItf pcmPlayerObject = nullptr;
-   (*engineEngine)->CreateAudioPlayer(engineEngine, &pcmPlayerObject, &slSource, nullptr, 0, nullptr, nullptr);
+   (*engineEngine)->CreateAudioPlayer(engineEngine,
+                                      &pcmPlayerObject,
+                                      &slSource,
+                                      &slSink,
+                                      0,
+                                      nullptr,
+                                      nullptr);
    (*pcmPlayerObject)->Realize(pcmPlayerObject, SL_BOOLEAN_FALSE);
    ```
 
