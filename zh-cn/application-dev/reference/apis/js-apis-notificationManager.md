@@ -2447,6 +2447,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 ```ts
 import Base from '@ohos.base';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -2508,6 +2509,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 ```ts
 import Base from '@ohos.base';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -4712,30 +4714,17 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 ```ts
 import Base from '@ohos.base';
 
-public static async check(checkInfo : notificationManager.NotificationCheckInfo): Promise<NotificationCheckResult> {
-    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
-    const { contentType, slotType, bundleName, userId, extraInfos } = checkInfo;
-    if(contentType != NOTIFICATION_CONTENT_LIVE_VIEW){
-        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "INVALID_PARAMETERS"};
-        return result;
-    } else {
-        let result: notificationManager.NotificationCheckResult =  { code: 0, message: "SUCCESS"};
-        return result;
-    }
-}
-
-try {
-    notificationManager.on(
-      "checkNotification",
-      {
-        contentType: ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
-        slotType: SlotType.LIVE_VIEW ,
-        extraInfoKeys: ["event"],
-      },
-      check
-    );
+try{
+  notificationManager.on('checkNotification',{
+    contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+    slotType: notificationManager.SlotType.LIVE_VIEW ,
+    extraKeys: ["event"],
+  },
+    async (checkInfo)=>{
+      return { code: 1, message: "INVALID_PARAMETERS"};
+  },);
 } catch (error) {
-    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+  console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
