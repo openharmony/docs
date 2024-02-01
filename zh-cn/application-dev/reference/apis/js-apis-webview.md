@@ -582,6 +582,20 @@ struct WebComponent {
 
 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
+### constructor<sup>11+</sup>
+
+constructor(webTag?: string)
+
+用于创建 WebviewController 对象的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| webTag   | string | 否   | 指定了 Web 组件的名称，默认为 Empty。 |
+
 ### initializeWebEngine
 
 static initializeWebEngine(): void
@@ -1142,6 +1156,7 @@ struct WebComponent {
 onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
+<br />激活状态是应用与用户互动的状态。应用会保持这种状态，直到发生某些事件（例如收到来电或设备屏幕关闭）时将焦点从应用移开。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1186,7 +1201,7 @@ struct WebComponent {
 
 onInactive(): void
 
-调用此接口通知Web组件进入未激活状态。
+调用此接口通知Web组件进入未激活状态。开发者可以在此回调中实现应用失去焦点时应表现的恰当行为。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
