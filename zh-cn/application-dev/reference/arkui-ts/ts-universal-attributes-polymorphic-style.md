@@ -15,7 +15,7 @@
 
 ## StateStyles接口说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用。只支持[通用属性](ts-universal-attributes-size.md)。
 
 | 状态名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |

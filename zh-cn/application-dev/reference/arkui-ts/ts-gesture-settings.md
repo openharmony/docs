@@ -44,7 +44,7 @@
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction((event?:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
+| onAction((event:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## GestureEvent对象说明
 | 名称 | 类型 | 描述 |
@@ -57,10 +57,10 @@
 | pinchCenterX | number | 捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | pinchCenterY | number | 捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | speed<sup>8+</sup> | number | 滑动手势速度，即所有手指滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于手势触发场景。 |
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明8)[] | 触发事件的所有手指信息，用于手势触发场景。 |
 | timestamp<sup>8+</sup> | number | 事件时间戳。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
-| source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
+| source<sup>8+</sup> | [SourceType](#sourcetype枚举说明9) | 事件输入设备。 |
 | pressure<sup>9+</sup> | number | 按压的压力大小。 |
 | tiltX<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。 |
 | tiltY<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。 |
