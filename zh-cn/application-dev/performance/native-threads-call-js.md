@@ -28,7 +28,7 @@ napi_threadsafe_function 提供了接口来创建一个可以在多线程间共�
 ### 延长生命周期
 在JavaScript层面传递给native层的函数引用，其生命周期仅限于它所在的作用域内。若要确保在超出该作用域后仍能继续使用这个函数引用，需要采取适当的方法来延长其生命周期。  
 可以通过调用napi_create_reference为JavaScript对象创建一个引用（reference）。这样可以避免对象因垃圾回收机制而被提前释放，从而有效地延长它的生命周期。然而，在创建引用之后，务必牢记要在不再需要该引用时，调用napi_delete_reference来释放引用，以防止内存泄漏问题的发生。  
-深入理解并妥善管理JavaScript与native接口之间对象的生命周期，对于编写高效且无内存泄漏隐患的代码至关重要。建议开发者进一步研究[生命周期管理](./develop-Native-modules-using-NAPI-safely-and-efficiently.md/%E3%80%81)相关文档和最佳实践，以便更好地掌握。
+深入理解并妥善管理JavaScript与native接口之间对象的生命周期，对于编写高效且无内存泄漏隐患的代码至关重要。建议开发者进一步研究[生命周期管理](./develop-Native-modules-using-NAPI-safely-and-efficiently.md)相关文档和最佳实践，以便更好地掌握。
 
 ### libuv
 
