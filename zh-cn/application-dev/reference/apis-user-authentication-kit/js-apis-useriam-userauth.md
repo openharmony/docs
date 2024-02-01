@@ -97,7 +97,7 @@ try {
 ## UserAuthInstance<sup>10+</sup>
 
 用于执行用户身份认证，并支持使用统一用户身份认证控件。
-使用以下接口前，都需要先通过[getUserAuthInstance](#getuserauthinstance10)方法获取UserAuthInstance对象。
+使用以下接口前，都需要先通过[getUserAuthInstance](#userauthgetuserauthinstance10)方法获取UserAuthInstance对象。
 
 ### on<sup>10+</sup>
 
@@ -678,6 +678,7 @@ cancel : () => void
 取消认证。
 
 > **说明：**
+>
 > - 从 API version 9 开始支持，从 API version 10 开始废弃。
 > - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
 
@@ -720,7 +721,8 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 获取AuthInstance对象，用于执行用户身份认证。
 
 > **说明：**
-> - 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+>
+> - 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#userauthgetuserauthinstance10)替代。
 > - 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
 

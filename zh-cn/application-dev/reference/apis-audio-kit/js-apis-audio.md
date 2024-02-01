@@ -757,10 +757,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                                | 类型                                                      | 必填 | 说明                                                         |
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
-| capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
+| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig10) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 
-## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
+## AudioCapturerInfo<sup>8+</sup>
 
 描述音频采集器信息。
 
@@ -783,7 +783,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
+## AudioPlaybackCaptureConfig<sup>10+</sup>
 
 播放音频流录制（内录）的配置信息。
 
@@ -791,9 +791,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称          | 类型                                          | 必填 | 说明                             |
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
-| filterOptions | [CaptureFilterOptions](#capturefilteroptions) | 是   | 需要录制的播放音频流的筛选信息。 |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptions10) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup><a name="capturefilteroptions"></a>
+## CaptureFilterOptions<sup>10+</sup>
 
 待录制的播放音频流的筛选信息。
 
@@ -831,7 +831,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[setExtraParameters](#setextraparameters11)替代。
+> 从 API version 7 开始支持，从 API version 11 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -868,7 +868,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[setExtraParameters](#setextraparameters11)替代。
+> 从 API version 7 开始支持，从 API version 11 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -904,7 +904,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[getExtraParameters](#getextraparameters11)替代。
+> 从 API version 7 开始支持，从 API version 11 开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -938,7 +938,7 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 11 开始废弃。建议使用AudioManager中的[getExtraParameters](#getextraparameters11)替代。
+> 从 API version 7 开始支持，从 API version 11 开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1379,7 +1379,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 设置指定音量流静音，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[mute](#mute9)替代，替代接口能力仅对系统应用开放。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1412,7 +1412,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 设置指定音量流静音，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[mute](#mute9)替代，替代接口能力仅对系统应用开放。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1571,7 +1571,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 设置铃声模式，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代，替代接口能力仅对系统应用开放。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1607,7 +1607,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 设置铃声模式，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代，替代接口能力仅对系统应用开放。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
@@ -1890,7 +1890,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 设置麦克风静音状态，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -1924,7 +1924,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 设置麦克风静音状态，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setMicrophoneMute](#setmicrophonemute9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.MICROPHONE
 
@@ -2795,7 +2795,7 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
 });
 ```
 
-### setMicrophoneMute<sup>9+(deprecated)</sup>
+### setMicrophoneMute<sup>(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2803,7 +2803,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
+> 从 API version 9开始支持，从API version 11 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -2830,7 +2830,7 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
 });
 ```
 
-### setMicrophoneMute<sup>9+(deprecated)</sup>
+### setMicrophoneMute<sup>(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
@@ -2838,7 +2838,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 11 开始废弃，建议使用AudioVolumeGroupManager中的[setMicMute](#setmicmute11)替代。
+> 从 API version 9开始支持，从API version 11 开始废弃。替代接口仅面向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -6441,7 +6441,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件，使用callback方式返回结果。
 
-与[on('interrupt')](#oninterrupt)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -6908,7 +6908,7 @@ getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
 | 参数名   | 类型                              | 必填 | 说明                                 |
 | :------- | :-------------------------------- | :--- | :----------------------------------- |
-| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo)\> | 是   | 回调函数。当获取采集器信息成功，err为undefined，data为获取到的采集器信息；否则为错误对象。 |
+| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo8)\> | 是   | 回调函数。当获取采集器信息成功，err为undefined，data为获取到的采集器信息；否则为错误对象。 |
 
 **示例：**
 
@@ -6972,7 +6972,7 @@ getCapturerInfoSync(): AudioCapturerInfo
 
 | 类型                                              | 说明                                |
 | :------------------------------------------------ | :---------------------------------- |
-| [AudioCapturerInfo](#audiocapturerinfo) | 返回采集器信息。 |
+| [AudioCapturerInfo](#audiocapturerinfo8) | 返回采集器信息。 |
 
 **示例：**
 
@@ -7656,7 +7656,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件，使用callback方式返回结果。
 
-与[on('interrupt')](#oninterrupt)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 

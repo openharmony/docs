@@ -26,17 +26,17 @@ AVCastPicker()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | normalColor | Color &#124; number &#124; string | 指正常状态下投播组件的颜色 |
 | activeColor | Color &#124; number &#124; string | 指设备切换成功状态下投播组件的颜色 |
-| onStateChange | (state: [AVCastPickerState](../apis/js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
+| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](../arkui-ts/ts-universal-events-click.md)。
 
 ## 示例
 

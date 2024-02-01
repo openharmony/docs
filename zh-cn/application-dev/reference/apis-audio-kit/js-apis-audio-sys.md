@@ -1094,7 +1094,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 参数名     | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| deviceUsage| [DeviceUsage](js-apis-audio.md#deviceusage) | 是   | 设备的usage。 |
+| deviceUsage| [DeviceUsage](#deviceusage11) | 是   | 设备的usage。 |
 
 **返回值：**
 
@@ -1139,7 +1139,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
-| deviceUsage | [DeviceUsage](js-apis-audio.md#deviceusage)                       | 是   | 设备的usage。     |
+| deviceUsage | [DeviceUsage](#deviceusage11)                       | 是   | 设备的usage。     |
 | callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
@@ -1206,7 +1206,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输入设备类。               |
+| inputAudioDevices           | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 输入设备类。               |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当选择音频输入设备成功，err为undefined，否则为错误对象。 |
 
 **示例：**

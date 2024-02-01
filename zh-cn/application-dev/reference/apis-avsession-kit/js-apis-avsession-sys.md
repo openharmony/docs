@@ -401,7 +401,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | 参数名        | 类型           | 必填 | 说明 |
 | ------------ | -------------- |------|------|
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
 
 **返回值：**
 
@@ -463,7 +463,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | 参数名       | 类型                                         | 必填 | 说明                                                         |
 | ------------ |--------------------------------------------| ---- | ------------------------------------------------------------ |
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
 | callback     | AsyncCallback\<void>     | 是   | 回调函数。当投播成功，err为undefined，否则返回错误对象。      |
 
 **错误码：**
@@ -856,7 +856,7 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| event    | [KeyEvent](js-apis-keyevent.md) | 是   | 按键事件。                            |
+| event    | [KeyEvent](../apis/js-apis-keyevent.md) | 是   | 按键事件。                            |
 | callback | AsyncCallback\<void>                                         | 是   | 回调函数。当事件发送成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -902,7 +902,7 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 参数名 | 类型                            | 必填 | 说明       |
 | ------ | ------------------------------- | ---- | ---------- |
-| event  | [KeyEvent](js-apis-keyevent.md) | 是   | 按键事件。 |
+| event  | [KeyEvent](../apis/js-apis-keyevent.md) | 是   | 按键事件。 |
 
 **返回值：**
 
@@ -2008,7 +2008,7 @@ aVCastController.off('videoSizeChange');
 | sessionId    | string    | 会话ID      |
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 会话类型    |
 | sessionTag   | string             | 会话的自定义名称    |
-| elementName  | [ElementName](js-apis-bundle-ElementName.md)  | 会话所属应用的信息（包含bundleName、abilityName等） |
+| elementName  | [ElementName](../apis/js-apis-bundle-ElementName.md)  | 会话所属应用的信息（包含bundleName、abilityName等） |
 | isActive     | boolean             | 会话是否被激活                                      |
 | isTopSession | boolean             | 会话是否为最新的会话                                |
 | outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 分布式设备相关信息   |
