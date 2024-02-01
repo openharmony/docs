@@ -7,7 +7,7 @@
 
 **起始版本：** 11
 
-**相关模块：**[马达](_vibrator.md)
+**相关模块：**[Vibrator](_vibrator.md)
 
 
 ## 汇总
