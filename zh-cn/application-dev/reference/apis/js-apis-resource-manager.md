@@ -4940,7 +4940,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error: BusinessError, value: string) => {
+      mgr.getString($r('app.string.test').id, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5007,7 +5007,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
+      mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5074,7 +5074,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
+      mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5140,7 +5140,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, ((error: BusinessError, value: string) => {
+      mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5253,7 +5253,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5284,7 +5284,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt", (error: BusinessError, value: Uint8Array) => {
+      mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5353,7 +5353,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
   import resourceManager from '@ohos.resourceManager';
 
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
+      mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5414,6 +5414,8 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：** 
 
+
+
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | 是    | rawfile文件路径 |
@@ -5422,7 +5424,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt", (error: BusinessError) => {
+      mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
           if (error != null) {
               console.error("error is " + error);
           }
