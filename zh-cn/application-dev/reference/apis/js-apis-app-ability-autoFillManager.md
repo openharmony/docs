@@ -41,46 +41,31 @@ onFailure(): void
 **示例：**
 
   ```ts
-  // 自定义的AutoSave拉起页面
+  // Index.ets, 含有账号、密码框等组件的页面
   import autoFillManager from '@ohos.app.ability.autoFillManager';
+  import { UIContext } from '@ohos.arkui.UIContext';
+  import Base from '@ohos.base';
 
-  @Entry
-  @Component
-  struct SavePage {
-    private storage = LocalStorage.getShared();
-    private callback = this.storage.get<autoFillManager.AutoSaveCallback>('callback')
-    @State message: string = 'Save Account?'
-
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(35)
-            .fontWeight(FontWeight.Bold)
-          Row() {
-            Button("OK")
-              .type(ButtonType.Capsule)
-              .fontSize(20)
-              .margin({ top:30 ,right: 30})
-              .onClick(()=>{
-                // 本例中采用手动方式触发失败回调，取消保存。请根据实际业务逻辑进行处理。
-                this.callback.onSuccess();
-              })
-            Button("No")
-              .type(ButtonType.Capsule)
-              .fontSize(20)
-              .margin({ top:30 ,left:30})
-              .onClick(()=>{
-                // 本例中采用手动方式触发失败回调，取消保存。请根据实际业务逻辑进行处理。
-                this.callback.onFailure();
-              })
-          }
-        }
-        .width('100%')
-      }
-      .height('100%')
+  let uiContext = AppStorage.get<UIContext>("uiContext");
+  let callback : autoFillManager.AutoSaveCallback = {
+    onSuccess: () => {
+      console.log("save request on success");
+    },
+    onFailure: () => {
+      console.log("save request on failure");
     }
   }
+  ...
+  Button('requestAutoSave')
+    .onClick(() => {
+      try {
+        // 发起保存请求
+        autoFillManager.requestAutoSave(uiContext, callback);
+      } catch (error) {
+        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+      }
+  })
+  ...
   ```
 
 > **说明：**

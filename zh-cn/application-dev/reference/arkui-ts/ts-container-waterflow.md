@@ -16,7 +16,7 @@
 
 >  **说明：**
 >
->  WaterFlow子组件的visibility属性设置为None时不显示，但该子组件周围的gap还会生效。
+>  WaterFlow子组件的visibility属性设置为None时不显示，但该子组件周围的columnsGap、rowsGap、margin仍会生效。
 
 ## 接口
 
@@ -45,8 +45,8 @@ WaterFlow(options?: WaterFlowOptions)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前瀑布流组件布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br>可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，使用方法参见示例2。<br>默认值：'1fr' |
-| rowsTemplate | string | 设置当前瀑布流组件布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br>可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字。<br/>默认值：'1fr' |
+| columnsTemplate | string | 设置当前瀑布流组件布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br>可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。<br>默认值：'1fr' |
+| rowsTemplate | string | 设置当前瀑布流组件布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br>可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。<br/>默认值：'1fr' |
 | itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
 | columnsGap | [Length](ts-types.md#length) |设置列与列的间距。 <br>默认值：0|
 | rowsGap | [Length](ts-types.md#length) |设置行与行的间距。<br> 默认值：0|
@@ -230,14 +230,14 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
-  // 计算flow item宽/高
+  // 计算FlowItem宽/高
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
   }
 
-  // 保存flow item宽/高
-  getItemSizeArray() {
+  // 设置FlowItem的宽/高数组
+  setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
@@ -245,7 +245,7 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
-    this.getItemSizeArray()
+    this.setItemSizeArray()
   }
 
   @Builder
@@ -316,14 +316,14 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
-  // 计算flow item宽/高
+  // 计算FlowItem宽/高
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
   }
 
-  // 保存flow item宽/高
-  getItemSizeArray() {
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
@@ -331,7 +331,7 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
-    this.getItemSizeArray()
+    this.setItemSizeArray()
   }
 
   build() {

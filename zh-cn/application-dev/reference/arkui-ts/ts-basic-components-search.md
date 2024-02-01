@@ -241,12 +241,13 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
+  @State changeValue: string = ''
   @State submitValue: string = ''
 
   build() {
     Column() {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
-      Search({ placeholder: 'Type to search...' })
+      Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
           src: $r('app.media.search')
@@ -266,6 +267,9 @@ struct SearchExample {
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
           this.submitValue = value
+        })
+        .onChange((value: string) => {
+          this.changeValue = value
         })
         .margin(20)
     }.width('100%')

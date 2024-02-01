@@ -32,9 +32,9 @@ import common from '@ohos.app.ability.common';
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | AbilityStartCallback二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | AutoFillExtensionContext二级模块。<br>**系统接口**: 此接口为系统接口。 |
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。<br>**系统接口**: 此接口为系统接口。 |
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | AutoStartupCallback二级模块。<br>**系统接口**: 此接口为系统接口。 |
+| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)               | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)               | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)               | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
 
 **示例：**
 

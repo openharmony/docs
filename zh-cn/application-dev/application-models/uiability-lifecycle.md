@@ -91,8 +91,7 @@ export default class EntryAbility extends UIAbility {
 >
 > WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
 
-对应于`onWindowStageCreate()`回调。在UIAbility实例销毁之前，则会先进入`onWindowStageDestroy()`回调，可以在该回调中释放UI资源。例如在`onWindowStageDestroy()`中注销获焦/失焦等WindowStage事件。
-
+对应于`onWindowStageCreate()`回调。在UIAbility实例销毁之前，则会先进入`onWindowStageDestroy()`回调，可以在该回调中释放UI资源。
 
 ```ts
 import Logger from '../utils/Logger';
@@ -111,16 +110,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // 释放UI资源
-    // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
-    try {
-      if (this.windowStage) {
-        this.windowStage.off('windowStageEvent');
-      }
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      Logger.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    };
   }
 }
 ```
