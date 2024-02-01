@@ -23,7 +23,7 @@ onApplicationForeground(): void
 
 **示例：**
 
-参见[onApplicationForeground](#applicationstatechangecallbackonapplicationbackground)。
+参见[onApplicationBackground](#applicationstatechangecallbackonapplicationbackground)。
 
 ## ApplicationStateChangeCallback.onApplicationBackground
 
