@@ -2565,7 +2565,7 @@
 
 ### ohos.permission.ACCESS_PROTOCOL_DFX_DATA
 
-允许系統应用读取通讯故障及系统统计信息等数据。
+允许系统应用读取通讯故障及系统统计信息等数据。
 
 **权限级别**：system_basic
 
