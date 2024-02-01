@@ -574,7 +574,7 @@ particleAbility.disconnectAbility(connId).then(() => {
 
 Enumerates the error codes that may be returned when an ability is started.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |

@@ -16,14 +16,14 @@ import Configuration from '@ohos.app.ability.Configuration';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| language | string | Yes| Yes| Language of the application, for example, **zh**.|
-| colorMode | [ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes| Yes| Color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.|
-| direction | [Direction](js-apis-app-ability-configurationConstant.md#configurationconstantdirection) | Yes| No| Screen orientation. The options are as follows:<br>- **DIRECTION_NOT_SET**: The screen orientation is not set.<br>- **DIRECTION_HORIZONTAL**: horizontal direction.<br>- **DIRECTION_VERTICAL**: vertical direction.|
-| screenDensity  | [ScreenDensity](js-apis-app-ability-configurationConstant.md#configurationconstantscreendensity) | Yes| No| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.|
-| displayId  | number | Yes| No| ID of the display where the application is located.|
-| hasPointerDevice  | boolean | Yes| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.|
+| language | string | No| No| Language of the application, for example, **zh**.|
+| colorMode | [ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | No| No| Color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.|
+| direction | [Direction](js-apis-app-ability-configurationConstant.md#configurationconstantdirection) | No| No| Screen orientation. The options are as follows:<br>- **DIRECTION_NOT_SET**: The screen orientation is not set.<br>- **DIRECTION_HORIZONTAL**: horizontal direction.<br>- **DIRECTION_VERTICAL**: vertical direction.|
+| screenDensity  | [ScreenDensity](js-apis-app-ability-configurationConstant.md#configurationconstantscreendensity) | No| No| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.|
+| displayId  | number | No| No| ID of the display where the application is located.|
+| hasPointerDevice  | boolean | No| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.|
 
 For details about the fields, see the **ohos.app.ability.Configuration.d.ts** file.
 
@@ -47,17 +47,18 @@ export default class EntryAbility extends UIAbility {
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
             },
-            onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${level}');
+            onMemoryLevel(level) {
+                console.log(`onMemoryLevel level: ${level}`);
             }
         };
         try {
             let applicationContext = this.context.getApplicationContext();
             let callbackId = applicationContext.on('environment', envCallback);
-            console.log('callbackId: ${callbackId}');
+            console.log(`callbackId: ${callbackId}`);
         } catch (paramError) {
             console.error(`error: ${paramError.code}, ${paramError.message}`);
         }
     }
 }
   ```
+

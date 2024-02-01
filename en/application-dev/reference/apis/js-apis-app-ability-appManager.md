@@ -264,7 +264,7 @@ appManager.getRunningProcessInformation().then((data) => {
 });
 ```
 
-## appManager.getRunningProcessInformation<sup>9+</sup>
+## appManager.getRunningProcessInformation
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
@@ -740,7 +740,7 @@ try {
 
 ## appManager.off<sup>11+</sup>
 
-off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
 Deregisters the observer used to listen for application start or exit events.
 
@@ -770,30 +770,30 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: appManager.AppForegroundStateObserver;
 // 1. Register an observer to listen for application start or exit events.
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData: appManager.AppStateData) {
+    console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+  },
 };
 try {
-    appManager.on('appForegroundState', observer);
-    // Save the observer object.
-    observer_ = observer;
+  appManager.on('appForegroundState', observer);
+  // Save the observer object.
+  observer_ = observer;
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 
 // 2. Deregister the observer.
 try {
-    appManager.off('appForegroundState',  observer_);
+  appManager.off('appForegroundState',  observer_);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -905,7 +905,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Error codes**
 
@@ -958,7 +958,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | bundleName | string | Yes| Bundle name.| 
-  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
+  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).| 
   | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**

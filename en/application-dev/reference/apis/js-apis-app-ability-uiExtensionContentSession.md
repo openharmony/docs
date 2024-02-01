@@ -525,7 +525,7 @@ Sets whether the window is in privacy mode. This API uses an asynchronous callba
 | isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
 | callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                             |
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void;
@@ -541,7 +541,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | {[key: string]: any} | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
-| callback | AsyncCallback<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -555,7 +555,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>;
@@ -576,7 +576,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Type| Description|
 | -------- | -------- |
-| Promise<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 

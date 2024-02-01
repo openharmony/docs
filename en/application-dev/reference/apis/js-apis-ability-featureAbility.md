@@ -866,14 +866,14 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 Enumerates the error codes that may be returned when an ability is started.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR         | 0    | No error.  |
-| INVALID_PARAMETER | -1   | Invalid parameter.|
-| ABILITY_NOT_FOUND | -2   | The ability is not found.|
-| PERMISSION_DENY   | -3   | Permission denied.  |
+| NO_ERROR<sup>7+</sup> | 0    | No error.  |
+| INVALID_PARAMETER<sup>7+</sup> | -1   | Invalid parameter.|
+| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | The ability is not found.|
+| PERMISSION_DENY<sup>7+</sup> | -3   | Permission denied.  |
 
 ## DataAbilityOperationType
 
