@@ -26,13 +26,21 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 - start
   用于启动一个应用组件，目标组件可以是FA模型的PageAbility和ServiceAbility组件，也可以是Stage模型的UIAbility和ServiceExtensionAbility组件，且目标组件相应配置文件中的exported标签不能配置为false。
 
-  | 参数 | 参数说明 |
-  | -------- | -------- |
-  | -h/--help | 帮助信息。 |
-  | -d | 可选参数，deviceId。 |
-  | -a | 必选参数，abilityName。 |
-  | -b | 必选参数，bundleName。 |
-  | -D | 可选参数，调试模式。 |
+  | 参数 | 参数说明              |
+  | -------- |-------------------|
+  | -h/--help | 帮助信息。             |
+  | -d | 可选参数，deviceId。    |
+  | -a | 可选参数，abilityName。 |
+  | -b | 可选参数，bundleName。  |
+  | -U  | 可选参数，URI          |
+  | -A  | 可选参数，action     |
+  | -e  | 可选参数，entity     |
+  | -t  | 可选参数，type       |
+  | --pi  | 可选参数，整形类型键值对  |
+  | --pb  | 可选参数，布尔类型键值对  |
+  | --ps  | 可选参数，字符串类型键值对 |
+  | --psn | 可选参数，空字符串关键字  |
+  | -D | 可选参数，调试模式。        |
 
   **返回值**：
 
@@ -42,7 +50,13 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 
   
   ```bash
-  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D]
+  # 显示启动ability
+  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D] [--pi <key> <integer-value>] \
+    [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
+  
+  # 隐式启动ability 注意：以下选项如果都不提供会导致启动失败
+  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] \
+    [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
   ```
 
 - stop-service
