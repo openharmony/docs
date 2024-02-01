@@ -18,7 +18,7 @@ import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.ark
 
 ## CounterComponent
 
-CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;} )
+CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 定义计数器组件。
 
