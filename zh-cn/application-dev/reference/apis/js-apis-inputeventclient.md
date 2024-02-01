@@ -87,7 +87,12 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   }
-  let eventDown: inputEventClient.KeyEventData = { KeyEvent: backKeyDown }
+
+  class EventDown {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventDown: EventDown = { KeyEvent: backKeyDown }
   inputEventClient.injectKeyEvent(eventDown);
 
   let backKeyUp: inputEventClient.KeyEvent = {
@@ -96,7 +101,12 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   };
-  let eventUp: inputEventClient.KeyEventData = { KeyEvent: backKeyUp }
+
+  class EventUp {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectKeyEvent(eventUp);
 } catch (error) {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);

@@ -31,11 +31,34 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    ```
 
 3. 调用[Session.start](../reference/apis/js-apis-camera.md#start11)方法开启metadata数据输出，再通过监听事件metadataObjectsAvailable回调拿到数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
-     
+
+   previewOutput获取方式请参考[相机预览开发步骤](camera-preview.md#开发步骤)。
    ```ts
-   async function startMetadataOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, session: camera.Session): Promise<void> {
+   async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
+     let cameraArray: Array<camera.CameraDevice> = [];
+     cameraArray = cameraManager.getSupportedCameras();
+     if (cameraArray.length == 0) {
+       console.error('no camera.');
+       return;
+     }
+     // 获取支持的模式类型
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+     let cameraInput: camera.CameraInput | undefined = undefined;
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     if (cameraInput === undefined) {
+       console.error('cameraInput is undefined');
+       return;
+     }
+     // 打开相机
+     await cameraInput.open();
+     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();
-     session.addInput(input);
+     session.addInput(cameraInput);
      session.addOutput(previewOutput);
      session.addOutput(metadataOutput);
      await session.commitConfig();

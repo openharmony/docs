@@ -136,7 +136,7 @@ import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {
-    let want: Want = ...; // Obtain the want information sent from the application that shares the file.
+    let want: Want = {}; // The value should be the want information passed by the application that shares the file.
 
     // Obtain the uri field from the want information.
     let uri = want.uri;
@@ -158,3 +158,4 @@ function getShareFile() {
   }
 }
 ```
+

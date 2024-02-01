@@ -3,8 +3,8 @@
 UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -63,7 +63,7 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
-setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
+setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Record<string, Object>): void
 
 设置从UIExtensionComponent控件接收数据带返回值的回调方法。使用callback异步回调。
 
@@ -718,4 +718,67 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
+
+getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
+
+获取当前UIExtension对应的窗口对象，用于通知宽高、位置、避让信息等。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| uiExtensionHost.UIExtensionHostWindowProxy | 窗口对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[UIExtAbility]'
+export default class UIExtAbility extends UIExtensionAbility {
+
+  onCreate() {
+    console.log(TAG, `UIExtAbility onCreate`)
+  }
+
+  onForeground() {
+    console.log(TAG, `UIExtAbility onForeground`)
+  }
+
+  onBackground() {
+    console.log(TAG, `UIExtAbility onBackground`)
+  }
+
+  onDestroy() {
+    console.log(TAG, `UIExtAbility onDestroy`)
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    let extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    let storage: LocalStorage = new LocalStorage({
+        'session': session,
+        'extensionHostWindow': extensionHostWindow
+    });
+    session.loadContent('pages/extension', storage);
+  }
+
+  onSessionDestroy(session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionDestroy`)
+  }
+}
+```
 错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。

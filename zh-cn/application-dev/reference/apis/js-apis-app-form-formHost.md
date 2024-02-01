@@ -2326,6 +2326,8 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 设置卡片可回收。使用callback异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2341,9 +2343,6 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permissions denied.                                          |
-| 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2375,6 +2374,8 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 设置卡片可回收。使用Promise异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2395,9 +2396,6 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permissions denied.                                          |
-| 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2428,6 +2426,8 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 
 恢复卡片。使用callback异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2443,9 +2443,6 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permissions denied.                                          |
-| 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2472,7 +2469,7 @@ try {
 ```
 ## recoverForms<sup>11+</sup>
 
-recoverForms(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
+recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 恢复被回收的卡片，并将它的状态更新为不可回收，如果卡片未被回收则只更新状态为不可回收。使用Promise异步回调。
 
@@ -2497,9 +2494,6 @@ recoverForms(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permissions denied.                                          |
-| 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2524,5 +2518,4 @@ try {
   console.info(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
-
 ## 

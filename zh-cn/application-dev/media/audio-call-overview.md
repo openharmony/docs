@@ -1,9 +1,9 @@
 # 音频通话开发概述
 
-常用的音频通话模式包括VOIP通话和蜂窝通话。
+常用的音频通话模式包括VoIP通话和蜂窝通话。
 
-- VOIP通话：
-  VOIP（Voice over Internet Protocol）通话是指基于互联网协议（IP）进行通讯的一种语音通话技术。VOIP通话会将通话信息打包成数据包，通过网络进行传输，因此VOIP通话对网络要求较高，通话质量与网络连接速度紧密相关。
+- VoIP通话：
+  VoIP（Voice over Internet Protocol）通话是指基于互联网协议（IP）进行通讯的一种语音通话技术。VoIP通话会将通话信息打包成数据包，通过网络进行传输，因此VoIP通话对网络要求较高，通话质量与网络连接速度紧密相关。
 
 - 蜂窝通话（仅对系统应用开放）
   蜂窝通话是指传统的电话功能，由运营商提供服务，目前仅对系统应用开放，未向第三方应用提供开发接口。
@@ -24,7 +24,7 @@
 
 - AUDIO_SCENE_PHONE_CALL：蜂窝通话音频场景，蜂窝通话时使用，仅对系统应用开放。
 
-- AUDIO_SCENE_VOICE_CHAT：语音聊天音频场景，VOIP通话时使用。
+- AUDIO_SCENE_VOICE_CHAT：语音聊天音频场景，VoIP通话时使用。
 
 应用可通过[AudioManager](../reference/apis/js-apis-audio.md#audiomanager)的getAudioScene来获取当前的音频场景模式。当应用开始或结束使用音频通话相关功能时，可通过此方法检查系统是否已切换为合适的音频场景模式。
 
