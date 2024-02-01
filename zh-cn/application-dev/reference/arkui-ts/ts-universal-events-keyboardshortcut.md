@@ -8,7 +8,7 @@
 
 ## keyboardShortcut
 
-keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?: () => void)
+keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?: () => void)
 
 设置组件的自定义组合键。
 
@@ -19,7 +19,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?:
 | 参数名   | 参数类型                                  | 必填   | 参数描述                                     |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
 | value | string \| [FunctionKey](#functionkey) | 是    | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](#functionkey)。<br/> |
-| keys  | Array<[ModifierKey](#modifierkey)>    | 是    | 热键组合。<br/>                               |
+| keys  | Array\<[ModifierKey](#modifierkey)>    | 是    | 热键组合。<br/>                               |
 | action  | () => void    | 否    | 组合快捷键触发成功后的自定义事件回调。<br/>                               |
 
 ## ModifierKey

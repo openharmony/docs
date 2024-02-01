@@ -42,20 +42,49 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 ### 开发步骤
 
-1. 导入featureAbility模块，相关窗口的API都是通过该模块提供。
-  
+适用于Stage应用模型。
+
+1. 在module.json5配置文件中配置分布式数据同步权限ohos.permission.DISTRIBUTED_DATASYNC。
+
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
-   ``` 
-  
-2. 调用窗口API拉起用户授权弹框。
-  
+   {
+     "module" : {
+       "requestPermissions":[
+         {
+           "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
+           "reason": "$string:distributed_permission",
+           "usedScene": {
+             "abilities": [
+               "MainAbility"
+             ],
+             "when": "inuse"
+           }
+         }
+       ]
+     }
+   }
+   ```
+2. 导入common和abilityAccessCtrl模块，用于获取权限申请的能力。
+
    ```ts
-   let context = featureAbility.getContext();
-   context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 000, function(err, result){
-     console.log("reqPermission" + JSON.stringify(err));
-     console.log("reqPermission" + JSON.stringify(result));
-   });
+   import common from '@ohos.app.ability.common';
+   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+   ```
+
+3. 分布式数据同步权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
+
+   ```ts
+   let context = getContext(this) as common.UIAbilityContext;
+   let atManager = abilityAccessCtrl.createAtManager();
+   try {
+     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
+       console.log('data: ' + JSON.stringify(data));
+     }).catch((err: object) => {
+       console.log('err: ' + JSON.stringify(err));
+     })
+   } catch (err) {
+     console.log('catch err->' + JSON.stringify(err));
+   }
    ```
 
 ## 设备发现开发指导
@@ -91,9 +120,9 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
-     dmInstance.on('discoverSuccess', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
-     dmInstance.on('discoverFail', data => this.log("discoverFail on:" + JSON.stringify(data)));
+     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
+     dmInstance.on('discoverFailure', data => console.log('discoverFailure on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
@@ -235,8 +264,8 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
-     dmInstance.on('deviceStateChange', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
+     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     dmInstance.on('deviceStateChange', data => console.log('deviceStateChange on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);

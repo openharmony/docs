@@ -2326,6 +2326,8 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 设置卡片可回收。使用callback异步回调。
 
+**模型约束**: 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
@@ -2371,6 +2373,8 @@ try {
 setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 设置卡片可回收。使用Promise异步回调。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2421,6 +2425,8 @@ try {
 recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 恢复卡片。使用callback异步回调。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 

@@ -33,20 +33,20 @@
    }
 
    // 获取待拷贝文件uri
-   let fileUri = fileUri.getUriFromPath(filePath);
+   let srcUri = fileUri.getUriFromPath(filePath);
    
    // 将待拷贝的沙箱文件，拷贝到分布式目录下
    let destUri: string = fileUri.getUriFromPath(distributedPathDir + '/src.txt');
 
    try {
     // 将沙箱路径下的文件拷贝到分布式路径下
-    fs.copy(fileUri, destUri).then(()=>{
+    fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
-      console.info("src: " + fileUri + "dest: " + destUri);
+      console.info("src: " + srcUri + "dest: " + destUri);
     }).catch((err: BusinessError)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err: BusinessError) {
+   } catch (err) {
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -83,11 +83,11 @@
     // 将分布式路径下的文件拷贝到其他沙箱路径下
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
-      console.info("src: " + fileUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
+      console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
     }).catch((err: BusinessError)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err: BusinessError) {
+   } catch (err) {
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
    ```

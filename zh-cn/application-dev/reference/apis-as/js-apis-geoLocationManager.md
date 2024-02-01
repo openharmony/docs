@@ -1,6 +1,6 @@
 # @ohos.geoLocationManager (位置服务)
 
-位置服务提供GNSS定位、网络定位、地理编码、逆地理编码、国家码和地理围栏等基本功能。
+位置服务提供GNSS定位、网络定位等基本功能。
 
 > **说明：**
 >
@@ -32,7 +32,7 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 
 如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
 
-应用如需使用后台位置权限，需要在设置界面由用户手动授予，具体授权方式请参考[程序访问子系统变更说明](../../../release-notes/changelogs/OpenHarmony_4.1.5.3/changelogs-access_token.md)。
+应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
 
 长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 

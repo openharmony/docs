@@ -25,7 +25,7 @@ TextInput(value?: TextInputOptions)
 | 参数名                     | 参数类型                                     | 必填   | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置无输入时的提示文本。      |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。</br>当组件设置[stateStyles](ts-universal-attributes-polymorphic-style.md)等刷新属性时，建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。 |
 
 ## 属性
@@ -57,7 +57,7 @@ TextInput(value?: TextInputOptions)
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>**说明：**<br/>取值范围：(0, +∞)。|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件，针对系统键盘的enterKeyType属性设置将无效。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
 | enableAutoFill<sup>11+<sup> | boolean | 设置是否启用自动填充。true表示启用，false表示不启用。默认值为true。 |
-| passwordRules<sup>11+<sup> | string | 定义生成密码的规则。 |
+| passwordRules<sup>11+<sup> | string | 定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。 |
 | cancelButton<sup>11+</sup> | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />}<br />不支持内联模式。 |
 | selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false<br />不支持内联模式。 |
 | showCounter<sup>11+</sup> | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符超过最大字符数时，边框将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。 |
@@ -96,12 +96,12 @@ TextInput(value?: TextInputOptions)
 | 名称                 | 描述            |
 | ------------------ | ------------- |
 | Normal   | 基本输入模式，无特殊限制。 |
-| Password | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
+| Password | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
 | Email    | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
-| USER_NAME<sup>11+<sup> | 用户名输入模式。 |
-| NEW_PASSWORD<sup>11+<sup> | 新密码输入模式。 |
+| USER_NAME<sup>11+<sup> | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| NEW_PASSWORD<sup>11+<sup> | 新密码输入模式。在已启用密码保险箱的情况下，支持自动生成新密码。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
 | SCREEN_LOCK_PASSWORD<sup>11+</sup> | 锁屏应用密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 <br>**系统接口：** 此接口为系统接口。 |
 | NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。 |
@@ -434,6 +434,7 @@ struct TextInputExample {
 @Entry
 @Component
 struct ClearNodeExample {
+  @State text: string = ''
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -448,6 +449,9 @@ struct ClearNodeExample {
             src: $r('app.media.icon'),
             color: Color.Blue
           }
+        })
+        .onChange((value: string) => {
+          this.text = value
         })
     }
   }
@@ -478,6 +482,9 @@ struct TextInputExample {
 		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
         //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
         //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+        .onChange((value: string) => {
+          this.text = value
+        })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }

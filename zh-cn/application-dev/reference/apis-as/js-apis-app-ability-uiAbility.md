@@ -134,7 +134,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 onDestroy(): void | Promise&lt;void&gt;
 
-UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
+UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -142,7 +142,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回结果或无返回结果的Promise对象。 |
 
 **示例：**
 

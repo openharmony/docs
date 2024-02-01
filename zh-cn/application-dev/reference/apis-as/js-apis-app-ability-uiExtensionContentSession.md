@@ -28,8 +28,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数，返回接口调用是否成功。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -58,13 +58,13 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: Object} | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象无返回值。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
