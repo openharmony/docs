@@ -14,16 +14,26 @@ Not supported
 
 ## APIs
 
-Checkbox(options?: {name?: string,  group?: string })
+Checkbox(options?: CheckboxOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Creates a check box.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
+| Name | Type                                       | Mandatory| Description              |
+| ------- | ------------------------------------------- | ---- | ------------------ |
+| options | [CheckboxOptions](#checkboxoptions) | No  | Check box parameters.|
+
+## CheckboxOptions
 
 | Name | Type| Mandatory | Description|
 | --------| --------| ------ | -------- |
 | name    | string | No| Name of the check box.|
-| group   | string | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [\<CheckboxGroup>](ts-basic-components-checkboxgroup.md) component.|
+| group   | string | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [CheckboxGroup](ts-basic-components-checkboxgroup.md) component.|
 
 ## Attributes
 
@@ -51,8 +61,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | Name       | Type                                      | Mandatory| Default Value     | Description                                                        |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | strokeColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.White | Color of the internal mark.                                              |
-| size        | number \| string                 | No  | -           | Size of the internal mark, in vp. The default size is the same as the width of the check box.<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
-| strokeWidth | number \| string                 | No  | 2           | Stroke width of the internal mark, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
+| size        | [Length](ts-types.md#length)               | No  | -           | Size of the internal mark, in vp. The default size is the same as the width of the check box.<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
+| strokeWidth | [Length](ts-types.md#length)               | No  | 2           | Stroke width of the internal mark, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
 
 ## CheckBoxShape<sup>11+</sup>
 

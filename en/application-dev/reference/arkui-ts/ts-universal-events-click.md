@@ -20,7 +20,7 @@ Called when a click event occurs.
 
 | Name| Type                             | Mandatory| Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent) | No  | [ClickEvent](#clickevent) object.|
+| event  | [ClickEvent](#clickevent) | Yes  | [ClickEvent](#clickevent) object.|
 
 ## ClickEvent
 
