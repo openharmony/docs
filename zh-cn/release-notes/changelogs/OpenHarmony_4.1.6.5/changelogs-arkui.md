@@ -180,3 +180,87 @@ struct Child {
 **适配指导**
 
 子组件使用了装饰器@Link/@ObjectLink，父组件使用带有装饰器@Link/@ObjectLink的自定义组件时，父组件必须给@Link/@ObjectLink修饰的变量传值。
+## cl.arkui.5  bindmenu使用isShow时点击事件变更 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在bindMenu使用isShow时，只允许isShow控制menu的开启。
+
+**变更影响**
+
+该变更为非兼容性变更，变更后在bindMenu使用isShow的情况下，点击父组件不会弹出menu。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+**示例：**
+
+```
+@Entry
+@Component
+struct MenuExample {
+  @State listData: number[] = [0, 0, 0]
+  @State isShow: boolean = false
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      ForEach(this.listData, (item:number, index) => {
+        Column() {
+          Row() {
+            Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
+            Text(`Menu${index as number + 1}`).fontSize(20)
+          }
+          .width('100%')
+          .height(30)
+          .justifyContent(FlexAlign.Center)
+          .align(Alignment.Center)
+          .onClick(() => {
+            console.info(`Menu${index as number + 1} Clicked!`)
+          })
+
+          if (index != this.listData.length - 1) {
+            Divider().height(10).width('80%').color('#ccc')
+          }
+        }.padding(5).height(40)
+      })
+    }.width(100)
+  }
+
+  build() {
+    Column() {
+      Text('click for menu')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .onClick(()=>{
+          this.isShow = true
+        })
+        .bindMenu(this.isShow, this.MenuBuilder,
+          {
+            onDisappear: ()=>{
+              this.isShow = false
+            }
+          }
+        )
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#f0f0f0')
+  }
+}
+```
+
+**变更的接口/组件**
+
+bindMenu
+
+**适配指导**
+
+使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等。
