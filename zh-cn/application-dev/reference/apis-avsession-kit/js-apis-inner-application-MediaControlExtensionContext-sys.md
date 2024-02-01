@@ -1,4 +1,4 @@
-# MediaControlExtensionContext (播控扩展能力上下文)
+# MediaControlExtensionContext (播控扩展能力上下文)(系统接口)
 
 MediaControlExtensionContext是[MediaControlExtensionAbility](js-apis-app-ability-MediaControlExtensionAbility.md)的上下文环境，继承自[UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)，提供MediaControlExtensionAbility的相关配置信息以及操作UIAbility的方法，如启动UIAbility等。
 

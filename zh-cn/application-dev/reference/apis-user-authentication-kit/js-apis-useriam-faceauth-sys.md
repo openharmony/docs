@@ -1,4 +1,4 @@
-# @ohos.userIAM.faceAuth (人脸认证)
+# @ohos.userIAM.faceAuth (人脸认证)(系统接口)
 
 提供人脸录入相关接口。
 

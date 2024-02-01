@@ -1,4 +1,4 @@
-# @ohos.userIAM.userAuth (用户认证)
+# @ohos.userIAM.userAuth (用户认证)(系统接口)
 
 提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
 
