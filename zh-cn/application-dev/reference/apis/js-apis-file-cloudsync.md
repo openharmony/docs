@@ -465,7 +465,7 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](#downloadprogress), 返回值为void|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](#downloadprogress11), 返回值为void|
 
 **错误码：**
 
@@ -505,7 +505,7 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](#downloadprogress), 返回值为void|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](#downloadprogress11), 返回值为void|
 
 **错误码：**
 
@@ -1111,7 +1111,7 @@ getLastSyncTime(): Promise&lt;number&gt;
   import { BusinessError } from '@ohos.base';
   let fileSync = new cloudSync.FileSync();
 
-  fileSync.getLastSyncTime.then((timeStamp: number) => {
+  fileSync.getLastSyncTime().then((timeStamp: number) => {
     let date = new Date(timeStamp);
     console.info("get last sync time successfully:"+ date);
   }).catch((err: BusinessError) => {
@@ -1204,7 +1204,7 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）|
-| callback | Callback\<[DownloadProgress](#downloadprogress)> | 是   | 云文件下载过程事件回调。 |
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | 是   | 云文件下载过程事件回调。 |
 
 **错误码：**
 
@@ -1239,7 +1239,7 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | Callback\<[DownloadProgress](#downloadprogress)> | 否   | 云文件下载过程事件回调。 |
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | 否   | 云文件下载过程事件回调。 |
 
 **错误码：**
 
@@ -1500,7 +1500,8 @@ cleanCache(uri: string): void;
 
   try {
     fileCache.cleanCache(uri);
-  } catch (err: BusinessError) {
+  } catch (err) {
+    let error:BusinessError = err as BusinessError;
     console.info("clean cache failed with error message: " + err.message + ", error code: " + err.code);
   } 
 
@@ -1550,7 +1551,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
-    for(var i = 0, len = syncStates.length; i < len; i++){
+    for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
     }
   }).catch((err: BusinessError) => {
@@ -1601,7 +1602,7 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
     if (err) {
       console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
     } else {
-      for(var i = 0, len = syncStates.length; i < len; i++){
+      for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
     }
     }
