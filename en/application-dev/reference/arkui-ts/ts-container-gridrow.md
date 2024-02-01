@@ -15,12 +15,16 @@ This component can contain the **\<GridCol>** child component.
 
 
 ## APIs
-GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
+GridRow(option?: GridRowOptions)
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
+| Name|Type|Mandatory|Description|
+|-----|-----|----|----|
+| option | [GridRowOptions](#gridrowoptions) | No | Child component options of the grid layout.|
 
+## GridRowOptions
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
 |columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.|
@@ -41,18 +45,30 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## GridRowColumnOption
 
-Describes the numbers of grid columns for different device width types.
+Describes the numbers of grid columns for devices with different grid sizes.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | No   | Number of grid columns for minimum device width.   |
-| sm  | number | No   | Number of grid columns for small device width.     |
-| md  | number | No   | Number of grid columns for medium device width.   |
-| lg  | number | No   | Number of grid columns for large device width.     |
-| xl  | number | No   | Number of grid columns for extra large device width.   |
-| xxl | number | No   | Number of grid columns for extra extra large device width.   |
+| xs  | number | No   | Number of grid columns on the device where the grid size is xs.   |
+| sm  | number | No   | Number of grid columns on the device where the grid size is sm.     |
+| md  | number | No   | Number of grid columns on the device where the grid size is md.   |
+| lg  | number | No   | Number of grid columns on the device where the grid size is lg.     |
+| xl  | number | No   | Number of grid columns on the device where the grid size is xl.   |
+| xxl | number | No   | Number of grid columns on the device where the grid size is xxl.   |
+
+**NOTE**
+
+In the **\<GridRow>** component, you can define the value range of [breakpoints](../../ui/arkts-layout-development-grid-layout.md#grid-breakpoints). A maximum of six breakpoints are supported, which are xs, sm, md, lg, xl, and xxl. The breakpoint names cannot be modified. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
+|Breakpoint|Value Range|
+|---|-----------|
+|xs |[0, n0)    |
+|sm |[n0, n1)   |
+|md |[n1, n2)   |
+|lg |[n2, n3)   |
+|xl |[n3, n4)   |
+|xxl|[n4, INF)  |
 
 ## GridRowSizeOption
 
@@ -105,17 +121,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- |
 | Row | Grid elements are arranged in the row direction.|
 | RowReverse | Grid elements are arranged in the reverse row direction.|
-
-A grid supports a maximum of six breakpoints: xs, sm, md, lg, xl and xxl, whose names cannot be changed. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
-
-|Breakpoint|Value Range|
-|---|-----------|
-|xs |[0, n0)    |
-|sm |[n0, n1)   |
-|md |[n1, n2)   |
-|lg |[n2, n3)   |
-|xl |[n3, n4)   |
-|xxl|[n4, INF)  |
 
 **NOTE**
 * Grid elements can be arranged only in the **Row** or **RowReverse** direction, but not in the **Column** or **ColumnReverse** direction.
