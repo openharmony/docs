@@ -114,11 +114,14 @@ isWifiActive(): boolean
 	}
 ```
 
-## wifiManager.scan<sup>9+</sup>
+## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
 
 启动WLAN扫描。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.startScan](#wifimanagerstartscan10)代替。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -175,11 +178,14 @@ startScan(): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-## wifiManager.getScanResults<sup>9+</sup>
+## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 获取扫描结果，使用Promise异步回调。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.getScanInfoList](#wifimanagergetscaninfolist10)代替。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或(ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -199,11 +205,14 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 | -------- | -------- |
 | 2501000  | Operation failed.|
 
-## wifiManager.getScanResults<sup>9+</sup>
+## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 获取扫描结果，使用callback异步回调。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.getScanInfoList](#wifimanagergetscaninfolist10)代替。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
 
@@ -267,11 +276,14 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
   });
 ```
 
-## wifiManager.getScanResultsSync<sup>9+</sup>
+## wifiManager.getScanResultsSync<sup>9+</sup><sup>(deprecated)</sup>
 
 getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 
 获取扫描结果，使用同步方式返回结果。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。建议使用[wifiManager.getScanInfoList](#wifimanagergetscaninfolist10)代替。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 (ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION))
 
