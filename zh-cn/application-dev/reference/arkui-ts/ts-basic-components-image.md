@@ -133,7 +133,7 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 | contentOffsetY<sup>10+</sup> | number | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
-### onError
+### onError<sup>9+</sup>
 
 onError(callback: [ImageErrorCallback](#imageerrorcallback9))
 
