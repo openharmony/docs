@@ -122,7 +122,7 @@ setMicMute(mute: boolean): Promise&lt;void&gt;;
  * @since 11
  */
  ```
-接口不再允许调用者筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，权限声明删除。
+接口不再允许调用者筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，权限声明删除。当无权限，但选择STREAM_USAGE_VOICE_COMMUNICATION作为录制目标时，无法创建AudioCapturer对象，返回ERROR_SYSTEM错误。
 
 **适配指导**
 
