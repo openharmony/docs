@@ -1162,7 +1162,7 @@ avSession.sendSystemControlCommand(avcommand).then(() => {
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 <br> **系统接口：** 该接口为系统接口。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
 | TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式 <br> **系统接口：** 该接口为系统接口。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 
@@ -1476,6 +1476,8 @@ avSession.on('deviceOffline', (deviceId: string) => {
 off(type: 'deviceOffline', callback?: (deviceId: string) => void): void
 
 取消设备下线回调的监听。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3009,9 +3011,8 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- |---------------------------------------|
-| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.           |
-| 6600109  | The remote connection does not exist. |
+| 6600110  | The remote connection does not exist. |
 
 **示例：**
 
@@ -3047,9 +3048,8 @@ getAVCastController(): Promise\<AVCastController>
 
 | 错误码ID | 错误信息 |
 | -------- | --------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist.           |
-| 6600109  | The remote connection does not exist. |
+| 6600102  | The session does not exist. |
+| 6600110  | The remote connection does not exist. |
 
 **示例：**
 
@@ -6249,15 +6249,15 @@ aVCastController.off('error')
 
 **系统接口：** 该接口为系统接口。
 
-| 名称          | 类型              | 说明  |
-| --------------| ---------------- |------|
-| sessionId    | string    | 会话ID      |
-| type         | [AVSessionType](#avsessiontype10)   | 会话类型    |
-| sessionTag   | string             | 会话的自定义名称    |
-| elementName  | [ElementName](js-apis-bundle-ElementName.md)  | 会话所属应用的信息（包含bundleName、abilityName等） |
-| isActive     | boolean             | 会话是否被激活                                      |
-| isTopSession | boolean             | 会话是否为最新的会话                                |
-| outputDevice | [OutputDeviceInfo](#outputdeviceinfo10)    | 分布式设备相关信息   |
+| 名称          | 类型              | 可读 | 可写 | 说明  |
+| --------------| ---------------- | ---------------- | ---------------- |------|
+| sessionId    | string    | 是 | 是  | 会话ID      |
+| type         | [AVSessionType](#avsessiontype10)   | 是 | 是 | 会话类型    |
+| sessionTag   | string             | 是 | 是 | 会话的自定义名称    |
+| elementName  | [ElementName](js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等） |
+| isActive     | boolean             | 是 | 是 | 会话是否被激活                                      |
+| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话                                |
+| outputDevice | [OutputDeviceInfo](#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息   |
 
 ## AVSessionController<sup>10+</sup>
 
@@ -6684,8 +6684,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 600101  | Session service exception. |
+| 600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -6719,8 +6719,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| 600101  | Session service exception. |
+| 600103  | The session controller does not exist. |
 
 **示例：**
 
@@ -6756,11 +6756,11 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600106  | The session is not activated. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
+| 600103  | The session controller does not exist. |
+| 600105  | Invalid session command. |
+| 600106  | The session is not activated. |
 
 **返回值：**
 
@@ -6805,11 +6805,11 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
-| 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600106  | The session is not activated. |
+| 600101  | Session service exception. |
+| 600102  | The session does not exist. |
+| 600103  | The session controller does not exist. |
+| 600105  | Invalid session command. |
+| 600106  | The session is not activated. |
 
 **示例：**
 
