@@ -1395,3 +1395,66 @@ struct Index {
 上文的示例代码将定时器修改移入到组件内，此时界面显示时会先显示“Render Class Change waitToRender is false”。待定时器触发时，界面刷新显示“Render Class Change waitToRender is true”。
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
+
+### 在@Observed装饰的类内使用static方法进行初始化
+
+在@Observed装饰的类内，尽量避免使用static方法进行初始化，在创建时会绕过Observed的实现，导致无法被代理，UI不刷新。
+
+```ts
+@Entry
+@Component
+struct MainPage {
+  @State viewModel: ViewModel = ViewModel.build();
+
+  build() {
+    Column() {
+      Button("Click")
+        .onClick((event) => {
+          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
+        })
+      SubComponent({ viewModel: this.viewModel.subViewModel })
+    }
+    .padding({ top: 60 })
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+
+@Component
+struct SubComponent {
+  @ObjectLink viewModel: SubViewModel;
+
+  build() {
+    Column() {
+      if (this.viewModel.isShow) {
+        Text("click to take effect");
+      }
+    }
+  }
+}
+
+class ViewModel {
+  subViewModel: SubViewModel = SubViewModel.build(); //内部静态方法创建
+
+  static build() {
+    console.log("ViewModel build()")
+    return new ViewModel();
+  }
+}
+
+@Observed
+class SubViewModel {
+  isShow?: boolean = false;
+
+  static build() {
+    //只有在SubViewModel内部的静态方法创建对象，会影响关联
+    console.log("SubViewModel build()")
+    let viewModel = new SubViewModel();
+    return viewModel;
+  }
+}
+```
+
+上文的示例中，在自定义组件ViewModel中使用static方法进行初始化，此时点击Click按钮，页面中并不会显示click to take effect。
+
+因此，不推荐开发者在自定义的类装饰器内使用static方法进行初始化。
