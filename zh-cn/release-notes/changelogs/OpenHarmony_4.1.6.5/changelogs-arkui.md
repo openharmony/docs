@@ -66,7 +66,7 @@ OpenHarmony SDK 4.1.6.5及以后，Gauge组件的默认阴影模糊半径为20vp
 
 **适配指导**
 
-默认阴影效果变更，不涉及适配。
+默认阴影效果变更，可以通过设置trackShadow({ radius: 5 })还原为变更前的效果。
 
 ## cl.arkui.3 getItemRect, getItemRectInGroup接口返回值单位变更
 
