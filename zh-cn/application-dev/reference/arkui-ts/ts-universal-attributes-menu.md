@@ -70,10 +70,10 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 继承自[ContextMenuOptions](#contextmenuoptions10)。
 
-| 名称                          | 类型    | 必填 | 描述                                                         |
-| ----------------------------- | ------- | ---- | ------------------------------------------------------------ |
-| title                         | string  | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| showInSubWindow<sup>11+</sup> | boolean | 否   | 是否在子窗口显示菜单。<br/>默认值：false |
+| 名称                          | 类型                                   | 必填 | 描述                                                         |
+| ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：false                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 
