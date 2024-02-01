@@ -185,7 +185,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 否 | 节点信息。 | 
 
 
 ## TreeListenType
