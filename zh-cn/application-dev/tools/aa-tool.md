@@ -32,14 +32,14 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | -d | 可选参数，deviceId。    |
   | -a | 可选参数，abilityName。 |
   | -b | 可选参数，bundleName。  |
-  | -U  | 可选参数，URI          |
-  | -A  | 可选参数，action     |
-  | -e  | 可选参数，entity     |
-  | -t  | 可选参数，type       |
-  | --pi  | 可选参数，整形类型键值对  |
-  | --pb  | 可选参数，布尔类型键值对  |
-  | --ps  | 可选参数，字符串类型键值对 |
-  | --psn | 可选参数，空字符串关键字  |
+  | -U  | 可选参数，URI。         |
+  | -A  | 可选参数，action。      |
+  | -e  | 可选参数，entity。      |
+  | -t  | 可选参数，type。        |
+  | --pi  | 可选参数，整形类型键值对。     |
+  | --pb  | 可选参数，布尔类型键值对。     |
+  | --ps  | 可选参数，字符串类型键值对。    |
+  | --psn | 可选参数，空字符串关键字。     |
   | -D | 可选参数，调试模式。        |
 
   **返回值**：
@@ -50,11 +50,11 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 
   
   ```bash
-  # 显示启动ability
+  # 显示启动Ability
   aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D] [--pi <key> <integer-value>] \
     [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
   
-  # 隐式启动ability 注意：以下选项如果都不提供会导致启动失败
+  # 隐式启动Ability。如果命中的参数都不填，会导致启动失败。
   aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] \
     [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
   ```
