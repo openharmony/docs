@@ -1,4 +1,4 @@
-# \@Concurrent Decorator: Verifying Concurrent Functions
+# \@Concurrent Decorator: Declaring and Verifying Concurrent Functions
 
 To pass function verification, the concurrent functions executed in a [TaskPool](../reference/apis/js-apis-taskpool.md) must be decorated using \@Concurrent.
 
