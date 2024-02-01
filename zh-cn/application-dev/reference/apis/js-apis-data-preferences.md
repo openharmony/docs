@@ -1914,36 +1914,17 @@ on(type: 'change', callback: ( key : string ) => void): void
 
 ```ts
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-try {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('change', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-            }
-            console.info("Succeeded in putting the value of 'startup'.");
-
-            preferences.flush((err: BusinessError) => {
-            if (err) {
-                console.error("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in flushing.");
-            })
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+preferences.on('change', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
+})
 ```
 
 ### on('multiProcessChange')<sup>10+</sup>
@@ -1971,109 +1952,21 @@ on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 | -------- | -------------------------------------- |
 | 15500019 | Failed to obtain subscription service. |
 
-**示例1：**
+**示例：**
 
 ```ts
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in putting the value of 'startup'.");
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Succeeded in flushing.");
-            })
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
-```
-
-**示例2：**
-
-```ts
-let options: dataPreferences.Options = { name: 'myStore' };
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-    try {
-        dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                return;
-            }
-            preferences = null;
-            console.info("Succeeded in removing preferences.");
-        })
-    } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-    }
-
-    try {
-        dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-            if (err) {
-                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-                return;
-            }
-            preferences = val;
-            console.info("Succeeded in getting preferences.");
-        })
-    } catch (err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error("Failed to get preferences. code =" + code + ", message =" + message);
-    }
-}
-try {
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences = val;
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'manual', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in putting the value of 'startup'.");
-
-            if (preferences != null) {
-                preferences.flush((err: BusinessError) => {
-                    if (err) {
-                        console.error("Failed to flush. Cause: " + err);
-                        return;
-                    }
-                    console.info("Succeeded in flushing.");
-                })
-            }
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
+})
 ```
 
 ### off('change')
@@ -2095,37 +1988,18 @@ off(type: 'change', callback?: ( key : string ) => void): void
 
 ```ts
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-try {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('change', observer);
-        preferences.put('startup', 'auto', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in putting the value of 'startup'.");
-
-            preferences.flush((err: BusinessError) =>{
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Succeeded in flushing.");
-            })
-            preferences.off('change', observer);
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+preferences.on('change', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
+})
+preferences.off('change', observer);
 ```
 
 ### off('multiProcessChange')<sup>10+</sup>
@@ -2147,38 +2021,18 @@ off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 
 ```ts
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-try {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences.");
-            return;
-        }
-        preferences.on('multiProcessChange', observer);
-        preferences.put('startup', 'auto', (err: BusinessError) => {
-            if (err) {
-                console.error("Failed to put the value of 'startup'. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in putting the value of 'startup'.");
-
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Succeeded in flushing.");
-            })
-            preferences.off('multiProcessChange', observer);
-        })
-    })
-} catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error("Failed to flush. code =" + code + ", message =" + message);
-}
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
+})
+preferences.off('multiProcessChange', observer);
 ```
 ## ValueType
 
