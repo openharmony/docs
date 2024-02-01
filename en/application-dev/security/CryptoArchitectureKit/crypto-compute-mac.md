@@ -40,7 +40,7 @@ The following provides examples of HMAC operations with different data passing m
 
 3. Use [Mac.init](../../reference/apis/js-apis-cryptoFramework.md#init-6) to initialize the **Mac** instance using the shared symmetric key (**SymKey**).
 
-4. Use [Mac.update](../../reference/apis/js-apis-cryptoFramework.md#update-8) to pass in the full data. The data to be passed in by a single **update()** operation is not size-bound.
+4. Use [Mac.update](../../reference/apis/js-apis-cryptoFramework.md#update-8) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
 
 5. Use [Mac.doFinal](../../reference/apis/js-apis-cryptoFramework.md#dofinal-2) to generate a MAC.
 
@@ -67,7 +67,7 @@ async function doHmac() {
   let message = 'hmacTestMessgae'; // Message to be HMACed.
   let mac = cryptoFramework.createMac(macAlgName);
   await mac.init(key);
-  // If the data to be processed is short, use update() to pass in the full data at a time. The data to be passed in by a single **update()** operation is not size-bound.
+  // If the data to be processed is short, use update() to pass in the full data at a time. The data to be passed in by a single **update()** operation is not size bound.
   await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let macResult = await mac.doFinal();
   console.info('HMAC result:' + macResult.data);
