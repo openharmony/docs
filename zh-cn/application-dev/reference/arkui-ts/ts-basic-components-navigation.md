@@ -51,8 +51,8 @@ Navigation(pathInfos: NavPathStack)
 | hideTitleBar                       | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
 | hideBackButton                     | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。<br/>**说明：** <br/>返回键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
 | navBarWidth<sup>9+</sup>           | [Length](ts-types.md#length)             | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明-9)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
-| mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明-9)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
+| navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明9)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
+| mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明9)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
 | hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。设置为true时，隐藏Navigation的导航栏，包括标题栏、内容区和工具栏。如果此时路由栈中存在NavDestination页面，则直接显示栈顶NavDestination页面，反之显示空白。从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。<br/>默认值：false |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
@@ -75,7 +75,7 @@ Navigation(pathInfos: NavPathStack)
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | 当titleMode为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。 |
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) <sup>9+</sup> | 导航栏显示状态切换时触发该回调。返回值isVisible为true时表示显示，为false时表示隐藏。 |
 | onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| 当Navigation首次显示或者单双栏状态发生变化时触发该回调。<br>NavigationMode.Split: 当前Navigation显示为双栏;<br>NavigationMode.Stack: 当前Navigation显示为单栏。|
-| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation枚举说明-11)): [NavigationAnimatedTransition](#navigationanimatedtransition11) \| undefined <sup>11+</sup> | 自定义转场动画回调。<br>from: 退场Destination的页面参数; <br> to: 进场Destination的页面参数; <br> operation: 转场类型; <br> undefined: 返回未定义，执行默认转场动效。|
+| customNavContentTransition(delegate(from: [NavContentInfo](#navcontentinfo11), to: [NavContentInfo](#navcontentinfo11), operation: [NavigationOperation](#navigationoperation枚举说明11)): [NavigationAnimatedTransition](#navigationanimatedtransition11) \| undefined <sup>11+</sup> | 自定义转场动画回调。<br>from: 退场Destination的页面参数; <br> to: 进场Destination的页面参数; <br> operation: 转场类型; <br> undefined: 返回未定义，执行默认转场动效。|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -519,6 +519,18 @@ disableAnimation(value: boolean): void
 | ----- | ------ | ---- | ---------------------- |
 | value | boolean | 否    | 是否关闭转场动画，默认值：false。 |
 
+### getParent<sup>11+</sup>
+
+getParent(): NavPathStack | null
+
+获取父NavPathStack。<br/>当出现Navigation嵌套Navigation的情况时（可以是直接嵌套，也可以是间接嵌套），内部Navigation的NavPathStack能够获取到外层Navigation的NavPathStack。
+
+**返回值：**
+
+| 类型     | 说明     |
+| ------ | ------ |
+| [NavPathStack](#navpathstack10) \| null | 如果当前NavPathStack所属Navigation的外层有另外的一层Navigation，则能够获取到外层Navigation的NavPathStack。否则获取不到NavPathStack，返回null。 |
+
 ## NavPathInfo<sup>10+</sup>
 
 路由页面信息。
@@ -638,7 +650,7 @@ constructor(name: string, param: unknown)
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](#titleheight枚举说明-9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](#titleheight枚举说明9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
 
 ## NavBarPosition枚举说明<sup>9+</sup>
 
@@ -1413,6 +1425,7 @@ export function pageTwoTmp(info: Pages) {
 ### 示例5
 
 ```ts
+// 该示例主要演示设置Navigation的标题栏和工具栏的背景颜色和背景模糊效果。
 @Entry
 @Component
 struct NavigationExample {
@@ -1485,3 +1498,232 @@ struct NavigationExample {
 ```
 ![navigationColorBlur.gif](figures/navigationColorBlur.gif)
 
+### 示例6
+
+```ts
+// 该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
+@Entry
+@Component
+struct NavigationExample1 {
+  @State childNavStack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    NavDestination() {
+      Text("this is " + name)
+    }
+    .title(name)
+  }
+
+  build() {
+    Navigation() {
+      Stack({alignContent: Alignment.Center}) {
+        Navigation(this.childNavStack) {
+          Button('push Path to parent Navigation', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              // 可以获取父NavPathStack
+              let parentStack = this.childNavStack.getParent();
+              parentStack?.pushPath({ name: "pageOne"})
+            })
+        }
+        .clip(true)
+        .navDestination(this.PageMap)
+        .backgroundColor(Color.Orange)
+        .width('80%')
+        .height('80%')
+        .title('ChildNavigation')
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .backgroundColor(Color.Green)
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageMap)
+    .title('ParentNavigation')
+  }
+}
+```
+![navPathStackGetParent.gif](figures/navPathStackGetParent.gif)
+
+### 示例7
+
+```ts
+// 该示例主要演示如下两点功能：
+// 1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能；
+// 2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
+class PageParam {
+  constructor(num_: number) {
+    this.num = num_;
+  }
+  num: number = 0;
+}
+
+@Component
+struct PageOne {
+  private stack: NavPathStack | null = null;
+  private name: string = "";
+  private paramNum: number = 0;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text("NavPathInfo: name: " + this.name + ", paramNum: " + this.paramNum)
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            if (this.stack) {
+              let p = new PageParam(this.paramNum + 1);
+              this.stack.pushPath({name: "pageOne", param: p});
+            }
+          })
+        Button('pop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.stack?.pop()
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .title('pageOne')
+    .onReady((ctx: NavDestinationContext) => {
+      // 在NavDestination中能够拿到传来的NavPathInfo和当前所处的NavPathStack
+      try {
+        this.name = ctx?.pathInfo?.name;
+        this.paramNum = (ctx?.pathInfo?.param as PageParam)?.num;
+        this.stack = ctx.pathStack;
+      } catch (e) {
+        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`)
+      }
+    })
+  }
+}
+
+@Entry
+@Component
+struct NavigationExample2 {
+  private stack : NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      PageOne()
+    }
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Stack({alignContent: Alignment.Center}) {
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            let p = new PageParam(1);
+            this.stack.pushPath({ name: "pageOne", param: p })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageMap)
+    .title('Navigation')
+  }
+}
+```
+![navigationOnReady1.gif](figures/navigationOnReady1.gif)
+
+### 示例8
+
+```ts
+// 该示例演示NavDestination的生命周期时序。
+@Component
+struct PageOneComponent {
+  private stack: NavPathStack | null = null;
+  @State eventStr: string = "";
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text("event: " + this.eventStr)
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            if (this.stack) {
+              this.stack.pushPath({name: "pageOne"});
+            }
+          })
+        Button('pop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.stack?.pop()
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .title('pageOne')
+    .onAppear(() => { this.eventStr += "<onAppear>"; })
+    .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
+    .onShown(() => { this.eventStr += "<onShown>"; })
+    .onHidden(() => { this.eventStr += "<onHidden>"; })
+    // onReady会在onAppear之前调用
+    .onReady((ctx: NavDestinationContext) => {
+      try {
+        this.eventStr += "<onReady>";
+        this.stack = ctx.pathStack;
+      } catch (e) {
+        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`)
+      }
+    })
+  }
+}
+
+@Entry
+@Component
+struct NavigationExample3 {
+  private stack : NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      PageOneComponent()
+    }
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Stack({alignContent: Alignment.Center}) {
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.stack.pushPath({ name: "pageOne" })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageMap)
+    .title('Navigation')
+  }
+}
+```
+![navigationOnReady2.gif](figures/navigationOnReady2.gif)

@@ -22,7 +22,7 @@ import taskpool from '@ohos.taskpool';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-Places the function to be executed in the internal task queue of the task pool. The function will be distributed to the worker thread for execution. The function to be executed in this mode cannot be canceled.
+Places the function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution. The function to be executed in this mode cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -58,7 +58,7 @@ function printArgs(args: number): number {
     return args;
 }
 
-taskpool.execute(printArgs, 100).then((value: number) => { // 100: test number
+taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
   console.info("taskpool result: " + value);
 });
 ```
@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: number) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal task queue of the task pool. The task will be distributed to the worker thread for execution. The task to be executed in this mode can be canceled.
+Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. The task to be executed in this mode can be canceled. The task cannot be a task in a task group or queue.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -104,7 +104,7 @@ function printArgs(args: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.execute(task).then((value: number) => {
+taskpool.execute(task).then((value: Object) => {
   console.info("taskpool result: " + value);
 });
 ```
@@ -113,7 +113,7 @@ taskpool.execute(task).then((value: number) => {
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-Places a task group in the internal task queue of the task pool. The task group will be distributed to the worker thread for execution.
+Places a task group in the internal queue of the task pool. The task group will be distributed to the worker thread for execution.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -159,10 +159,10 @@ let task3: taskpool.Task = new taskpool.Task(printArgs, 300); // 300: test numbe
 taskGroup2.addTask(task1);
 taskGroup2.addTask(task2);
 taskGroup2.addTask(task3);
-taskpool.execute(taskGroup1).then((res: Array<number>) => {
+taskpool.execute(taskGroup1).then((res: Array<Object>) => {
   console.info("taskpool execute res is:" + res);
 });
-taskpool.execute(taskGroup2).then((res: Array<number>) => {
+taskpool.execute(taskGroup2).then((res: Array<Object>) => {
   console.info("taskpool execute res is:" + res);
 });
 ```
@@ -171,7 +171,7 @@ taskpool.execute(taskGroup2).then((res: Array<number>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-Executes a task after a given delay.
+Executes a task after a given delay. The task cannot be a task in a task group or queue.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -201,6 +201,9 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 @Concurrent
+// import BusinessError
+import { BusinessError } from '@ohos.base'
+
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
 }
@@ -246,7 +249,7 @@ Since API version 10, error code 10200016 is not reported when this API is calle
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -256,7 +259,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -270,7 +273,7 @@ let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test n
 let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
 let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
 let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: number)=>{
+taskpool.execute(task1).then((res: Object)=>{
   console.info("taskpool test result: " + res);
 });
 taskpool.execute(task2);
@@ -323,10 +326,10 @@ let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup1.addTask(printArgs, 10); // 10: test number
 let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
 taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<number>)=>{
+taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
   console.info("taskGroup1 res is:" + res);
 });
-taskpool.execute(taskGroup2).then((res: Array<number>)=>{
+taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
   console.info("taskGroup2 res is:" + res);
 });
 setTimeout(()=>{
@@ -386,15 +389,15 @@ let mediumCount = 0;
 let lowCount = 0;
 let allCount = 100;
 for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+  taskpool.execute(task, taskpool.Priority.LOW).then((res: Object) => {
     lowCount++;
     console.info("taskpool lowCount is :" + lowCount);
   });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: Object) => {
     mediumCount++;
     console.info("taskpool mediumCount is :" + mediumCount);
   });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+  taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
     highCount++;
     console.info("taskpool highCount is :" + highCount);
   });
@@ -516,7 +519,7 @@ function inspectStatus(arg: number): number {
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -526,7 +529,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -535,7 +538,7 @@ function inspectStatus(arg: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res: number)=>{
+taskpool.execute(task).then((res: Object)=>{
   console.info("taskpool test result: " + res);
 }).catch((err: string) => {
   console.error("taskpool test occur error: " + err);
@@ -571,6 +574,13 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+@Concurrent
+function testTransfer(arg1: ArrayBuffer, arg2: ArrayBuffer): number {
+  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
+  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
+  return 100;
+}
+
 let buffer: ArrayBuffer = new ArrayBuffer(8);
 let view: Uint8Array = new Uint8Array(buffer);
 let buffer1: ArrayBuffer = new ArrayBuffer(16);
@@ -578,15 +588,10 @@ let view1: Uint8Array = new Uint8Array(buffer1);
 
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
-@Concurrent
-function testTransfer(arg1: ArrayBuffer, arg2: ArrayBuffer): number {
-  console.info("testTransfer arg1 byteLength: " + arg1.byteLength);
-  console.info("testTransfer arg2 byteLength: " + arg2.byteLength);
-  return 100;
-}
+
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res: number)=>{
+taskpool.execute(task).then((res: Object)=>{
   console.info("test result: " + res);
 }).catch((e: string)=>{
   console.error("test catch: " + e);
@@ -611,7 +616,7 @@ Sets the task clone list. Before using this API, you must create a **Task** inst
 
 | Name   | Type                     | Mandatory| Description                                         |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [SendableClass](../../arkts-utils/arkts-sendable.md#sendableclass) or ArrayBuffer.<br>- For **SendableClass** instances or **ArrayBuffer** objects held by all objects passed in to the clone list, the inter-thread transmission behavior changes to the clone operation. This means that any modification to the transmitted objects does not affect the original objects.|
+| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [SendableClass](../../arkts-utils/arkts-sendable.md#basic-concepts) or ArrayBuffer.<br>- For **SendableClass** instances or **ArrayBuffer** objects held by all objects passed in to the clone list, the inter-thread transmission behavior changes to the clone operation. This means that any modification to the transmitted objects does not affect the original objects.|
 
 **Error codes**
 
@@ -679,7 +684,7 @@ class DeriveClass extends BaseClass {
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
-  let baseInstance1: BaseClass = arr[0];
+  let baseInstance1 = arr[0];
   console.info("sendable: str1 is: " + baseInstance1.str1);
   baseInstance1.SetNum = 100;
   console.info("sendable: num1 is: " + baseInstance1.GetNum);
@@ -812,10 +817,13 @@ function pringLog(data: number): void {
 }
 
 async function testFunc(): Promise<void> {
-  let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
-  task.onReceiveData(pringLog);
-  let ret: number = await taskpool.execute(task) as number;
-  console.info("taskpool: result is: " + ret);
+  try {
+    let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
+    task.onReceiveData(pringLog);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.info(`taskpool: error code: ${e.code}, info: ${e.message}`);
+  }
 }
 
 testFunc();
@@ -825,7 +833,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-Adds dependent tasks for this task. Before using this API, you must create a **Task** instance.
+Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task cannot be a task in a task group or queue, or a task that has been executed.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -858,17 +866,6 @@ function delay(args: number): number {
 let task1:taskpool.Task = new taskpool.Task(delay, 100);
 let task2:taskpool.Task = new taskpool.Task(delay, 200);
 let task3:taskpool.Task = new taskpool.Task(delay, 200);
-
-console.info("dependency: start execute first")
-taskpool.execute(task1).then(()=>{
-  console.info("dependency: first task1 success")
-})
-taskpool.execute(task2).then(()=>{
-  console.info("dependency: first task2 success")
-})
-taskpool.execute(task3).then(()=>{
-  console.info("dependency: first task3 success")
-})
 
 console.info("dependency: add dependency start");
 task1.addDependency(task2);
@@ -961,7 +958,7 @@ taskpool.execute(task3).then(() => {
 
 ## TaskGroup<sup>10+</sup>
 
-Implements a task group. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
+Implements a task group, in which all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
 
 ### constructor<sup>10+</sup>
 
@@ -994,7 +991,7 @@ A constructor used to create a **TaskGroup** instance, with the task group name 
 **Example**
 
 ```ts
-let taskGroupName = "groupName";
+let taskGroupName: string = "groupName";
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup(taskGroupName);
 let name: string = taskGroup.name;
 ```
@@ -1003,7 +1000,7 @@ let name: string = taskGroup.name;
 
 addTask(func: Function, ...args: Object[]): void
 
-Adds the function to be executed to this task group. Before using this API, you must create a **TaskGroup** instance.
+Adds the function to be executed to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, and tasks that have been executed cannot be added to the task group.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1107,7 +1104,7 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 execute(task: Task): Promise\<Object>
 
-Adds a task to the queue for execution. Before using this API, you must create a **SequenceRunner** instance.
+Adds a task to the queue for execution. Before using this API, you must create a **SequenceRunner** instance. Tasks in another task group or queue, dependent tasks, and tasks that have been executed cannot be added to the queue.
 
 > **NOTE**
 >
@@ -1322,6 +1319,8 @@ taskpoolExecute();
 
 ```ts
 // c.ets
+import taskpool from '@ohos.taskpool';
+
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
@@ -1337,7 +1336,7 @@ export async function func1(): Promise<void> {
 export async function func2(): Promise<void> {
   console.info("taskpoolTest2 start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
-  taskpool.execute(strSort, strArray).then((result: Array<string>) => {
+  taskpool.execute(strSort, strArray).then((result: Object) => {
     console.info("func2 result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1346,7 +1345,7 @@ export async function func2(): Promise<void> {
 ```
 
 ```ts
-// a.ets (in the same directory as c.ets)
+// index.ets
 import { func1, func2 } from "./c";
 
 func1();
@@ -1359,7 +1358,7 @@ func2();
 // Success in canceling a task
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -1369,7 +1368,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -1379,7 +1378,7 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
+  taskpool.execute(task).then((res: Object)=>{
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1398,7 +1397,7 @@ taskpoolCancel();
 // Failure to cancel a task that has been executed
 @Concurrent
 function inspectStatus(arg: number): number {
-  // Check the cancellation status and return the result.
+  // Check whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     return arg + 2;
   }
@@ -1407,7 +1406,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 500) {
     continue;
   }
-  // Check the cancellation status again and return the result.
+  // Check again whether the task has been canceled and respond accordingly.
   if (taskpool.Task.isCanceled()) {
     return arg + 3;
   }
@@ -1416,7 +1415,7 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
+  taskpool.execute(task).then((res: Object)=>{
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1460,12 +1459,12 @@ async function taskpoolGroupCancelTest(): Promise<void> {
   taskGroup2.addTask(task1);
   taskGroup2.addTask(task2);
   taskGroup2.addTask(task3);
-  taskpool.execute(taskGroup1).then((res: Array<number>) => {
+  taskpool.execute(taskGroup1).then((res: Array<Object>) => {
     console.info("taskpool execute res is:" + res);
   }).catch((e: string) => {
     console.error("taskpool execute error is:" + e);
   });
-  taskpool.execute(taskGroup2).then((res: Array<number>) => {
+  taskpool.execute(taskGroup2).then((res: Array<Object>) => {
     console.info("taskpool execute res is:" + res);
   }).catch((e: string) => {
     console.error("taskpool execute error is:" + e);
@@ -1545,5 +1544,3 @@ for(let taskInfo of taskIS) {
   console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
 }
 ```
-
- <!--no_check--> 

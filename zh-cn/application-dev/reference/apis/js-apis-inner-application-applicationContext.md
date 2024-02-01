@@ -300,7 +300,7 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | string                                     | 是   | 监听事件类型，必须为'applicationStateChange'。 |
+| type     | 'applicationStateChange'                                     | 是   | 监听事件类型。 |
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
@@ -342,7 +342,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| type   | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。 |
+| type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
@@ -478,7 +478,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>): void
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。以Callback形式返回。
 
