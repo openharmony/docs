@@ -17,7 +17,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js
 
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备 |
+| hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备。 |
 | requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求软件包的临时权限以访问设备。使用Promise异步回调。                        |
 | removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
 | connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
