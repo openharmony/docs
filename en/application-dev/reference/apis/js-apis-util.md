@@ -445,7 +445,7 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 | Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
-| options  | Object | No  | Encoding-related options, which include **fatal** and **ignoreBOM**.|
+| options  | Object | No  | Decoding-related options, which include **fatal** and **ignoreBOM**. |
 
 **Table 1.1** options
 
@@ -521,7 +521,7 @@ A constructor used to create a **TextDecoder** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | encoding | string | No| Encoding format. The default format is **'utf-8'**.|
-| options | Object | No| Encoding-related options, which include **fatal** and **ignoreBOM**.|
+| options | Object | No| Decoding-related options, which include **fatal** and **ignoreBOM**. |
 
   **Table 1** options
 
