@@ -5339,10 +5339,6 @@ struct WebComponent {
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
 
-> **说明：**
->
-> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
-
 ### getCookie<sup>(deprecated)</sup>
 
 static getCookie(url: string): string
