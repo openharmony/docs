@@ -62,7 +62,7 @@ libhid.z.so
        .hidMiscellaneous = mscEventArray
     };
     // 创建设备并获取到deviceId
-    int32_t deviceId = OH_Hid_CreateDevice(hidDevice, &hidEventProp);
+    int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
     ```
 
 2. **向指定deviceId的HID设备发送事件**。使用 **hid_ddk_api.h** 的 **OH_Hid_EmitEvent** 向指定的deviceId的设备发送事件。
