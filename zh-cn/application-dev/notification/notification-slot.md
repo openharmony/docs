@@ -1,4 +1,4 @@
-# 通知渠道
+# 管理通知渠道
 系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，可以选择适合自己的通知渠道，并对通知渠道进行管理（支持创建、查询、删除等操作）。
 
 ## 通知渠道类型说明
@@ -38,8 +38,6 @@
 2. 创建指定类型的通知渠道。
 
     ```ts
-    import Base from '@ohos.base';
-
     // addslot回调
     let addSlotCallBack = (err: Base.BusinessError): void => {
         if (err) {
