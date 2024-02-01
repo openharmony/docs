@@ -98,7 +98,7 @@ isSupported(feature: number): boolean
 
 | 参数名     | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretype)枚举值。 |
+| feature | number | 是    | 卡模拟类型值，详细请见[FeatureType](#featuretypedeprecated)枚举值。 |
 
 **返回值：**
 
@@ -294,10 +294,8 @@ on(type: "hceCmd", callback: AsyncCallback\<number[]>): void
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
-import window from '@ohos.window';
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from './basic';
-import { BusinessError } from './basic';
+import { AsyncCallback } from '@ohos.base';
 import { ElementName } from './bundleManager/ElementName'
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
@@ -378,7 +376,7 @@ transmit(response: number[]): Promise\<void>
 **示例：**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
@@ -420,7 +418,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 **示例：**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
