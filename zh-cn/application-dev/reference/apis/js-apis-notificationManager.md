@@ -2447,6 +2447,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 ```ts
 import Base from '@ohos.base';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
@@ -2512,6 +2513,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 ```ts
 import Base from '@ohos.base';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 
 let bundleOption: notificationManager.BundleOption = {
   bundle: "bundleName1",
