@@ -444,7 +444,7 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+以下错误码的详细介绍请参见[音频错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -519,7 +519,7 @@ off(type: 'audioInterrupt'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+以下错误码的详细介绍请参见[音频错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

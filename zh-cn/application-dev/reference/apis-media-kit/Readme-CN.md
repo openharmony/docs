@@ -5,9 +5,7 @@
   - [@ohos.multimedia.media (媒体服务)(系统接口)](js-apis-media-sys.md)
   - multimedia
     - [SoundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
-    - [ringtonePlayer (铃声播放器)(系统接口)](js-apis-inner-multimedia-ringtonePlayer-sys.md)
     - [SoundPool (音频池)(系统接口)](js-apis-inner-multimedia-soundPool-sys.md)
-    - [systemTonePlayer (系统提示音播放器)(系统接口)](js-apis-inner-multimedia-systemTonePlayer-sys.md)
 - C API
   - 模块
     - [AVPlayer](_a_v_player.md)

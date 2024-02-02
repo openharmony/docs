@@ -2,7 +2,7 @@
 
 系统提示音播放器提供了短信提示音、通知提示音的播放、配置、获取信息等功能。
 
-systemTonePlayer需要和[@ohos.multimedia.systemSoundManager](apis-audio-kit/js-apis-systemSoundManager-sys.md)配合使用，才能完成管理系统提示音的功能。
+systemTonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager-sys.md)配合使用，才能完成管理系统提示音的功能。
 
 > **说明：**
 >
@@ -31,7 +31,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 ## SystemTonePlayer
 
-系统提示音播放器提供了短信提示音、通知提示音的播放、配置、获取信息等功能。在调用SystemTonePlayer的接口前，需要先通过[getSystemTonePlayer](apis-audio-kit/js-apis-systemSoundManager-sys.md#getsystemtoneplayer11)创建实例。
+系统提示音播放器提供了短信提示音、通知提示音的播放、配置、获取信息等功能。在调用SystemTonePlayer的接口前，需要先通过[getSystemTonePlayer](js-apis-systemSoundManager-sys.md#getsystemtoneplayer11)创建实例。
 
 ### getTitle
 
@@ -51,7 +51,7 @@ getTitle(): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -87,7 +87,7 @@ prepare(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -132,7 +132,7 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -180,7 +180,7 @@ stop(id: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
