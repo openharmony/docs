@@ -5322,7 +5322,7 @@ struct WebComponent {
 
 ### setScrollable<sup>12+</sup>
 
-setScrollable(boolean enable): void
+setScrollable(enable: boolean): void
 
 设置网页是否允许滚动。
 
