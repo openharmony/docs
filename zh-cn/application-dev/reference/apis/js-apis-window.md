@@ -4649,7 +4649,7 @@ setWindowBackgroundColor(color: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
 
 private SetUIContent(windowClass: window.Window) {
     windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
