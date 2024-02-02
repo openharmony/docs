@@ -856,7 +856,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
@@ -902,7 +902,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **示例：**
@@ -943,7 +943,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **返回值：**
@@ -987,7 +987,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **示例：**
@@ -1028,7 +1028,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。 |
 
 **返回值：**
 
@@ -1782,7 +1782,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber.md#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
@@ -3144,7 +3144,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 | 参数名   | 类型                               | 必填 | 说明                       |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | 是   | 获取通知提醒方式的回调函数。 |
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8-deprecated)\> | 是   | 获取通知提醒方式的回调函数。 |
 
 **示例：**
 
@@ -3178,7 +3178,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise方式返回获取通知提醒方式的结果。 |
+| Promise\<[DeviceRemindType](#deviceremindtype8-deprecated)\> | Promise方式返回获取通知提醒方式的结果。 |
 
 **示例：**
 
@@ -3225,7 +3225,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)替代
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DoNotDisturbDate](js-apis-notificationManager-sys.md#donotdisturbdate)替代
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -3240,7 +3240,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DoNotDisturbType](js-apis-notificationManager.md#donotdisturbtype)替代
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DoNotDisturbType](js-apis-notificationManager-sys.md#donotdisturbtype)替代
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
@@ -3294,7 +3294,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe.md#notificationkey)替代
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey)替代
 
 | 名称  | 类型   | 可读 | 可写 | 说明     |
 | ----- | ------ | ---- | --- | -------- |
@@ -3324,7 +3324,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | 名称      | 类型                                            | 可读 | 可写 | 说明                      |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
 | title     | string                                          | 是  | 是  | 按钮标题。                  |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | 是  | 是  | 点击按钮时触发的WantAgent。 |
+| wantAgent | [WantAgent](../apis/js-apis-app-ability-wantAgent.md)   | 是  | 是  | 点击按钮时触发的WantAgent。 |
 | extras    | { [key: string]: any }                          | 是  | 是  | 按钮扩展信息。              |
 | userInput<sup>8+</sup> | [NotificationUserInput](#notificationuserinput8) | 是  | 是  | 用户输入对象实例。          |
 
@@ -3387,7 +3387,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | additionalText | string         | 是  | 是  | 通知附加内容，是对通知内容的补充。 |
 | briefText      | string         | 是  | 是  | 通知概要内容，是对通知内容的总结。 |
 | expandedTitle  | string         | 是  | 是  | 通知展开时的标题。                 |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知的图片内容。                   |
+| picture        | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是  | 是  | 通知的图片内容。                   |
 
 
 ## NotificationContent
@@ -3448,7 +3448,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | deliveryTime          | number                                        | 是  | 是  | 通知发送时间。               |
 | tapDismissed          | boolean                                       | 是  | 是  | 通知是否自动清除。           |
 | autoDeletedTime       | number                                        | 是  | 是  | 自动清除的时间。             |
-| wantAgent             | [WantAgent](js-apis-app-ability-wantAgent.md) | 是  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
+| wantAgent             | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
 | extraInfo             | {[key: string]: any}                          | 是  | 是  | 扩展参数。                   |
 | color                 | number                                        | 是  | 是  | 通知背景颜色。预留能力，暂未支持。 |
 | colorEnabled          | boolean                                       | 是  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。 |
@@ -3460,8 +3460,8 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | badgeIconStyle        | number                                        | 是  | 是  | 通知角标类型。               |
 | showDeliveryTime      | boolean                                       | 是  | 是  | 是否显示分发时间。           |
 | actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 是  | 是  | 通知按钮，最多两个按钮。     |
-| smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知小图标。可选字段，大小不超过30KB。 |
-| largeIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知大图标。可选字段，大小不超过30KB。 |
+| smallIcon             | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是  | 是  | 通知小图标。可选字段，大小不超过30KB。 |
+| largeIcon             | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是  | 是  | 通知大图标。可选字段，大小不超过30KB。 |
 | creatorBundleName     | string                                        | 是  | 否  | 创建通知的包名。             |
 | creatorUid            | number                                        | 是  | 否  | 创建通知的UID。              |
 | creatorPid            | number                                        | 是  | 否  | 创建通知的PID。              |
@@ -3475,7 +3475,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | 是  | 是  | 分布式通知的选项。          |
 | deviceId<sup>8+</sup> | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
 | notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | 是  | 否  | 获取NotificationFlags。          |
-| removalWantAgent<sup>9+</sup> | [WantAgent](js-apis-app-ability-wantAgent.md) | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
+| removalWantAgent<sup>9+</sup> | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
 | badgeNumber<sup>9+</sup> | number                    | 是  | 是  | 应用程序图标上显示的通知数。          |
 
 ## DistributedOptions<sup>8+</sup>
@@ -3587,7 +3587,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DeviceRemindType](js-apis-notificationManager.md#deviceremindtype)替代
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.DeviceRemindType](js-apis-notificationManager-sys.md#deviceremindtype)替代
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -3604,7 +3604,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.SourceType](js-apis-notificationManager.md#sourcetype)替代
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[notificationManager.SourceType](js-apis-notificationManager-sys.md#sourcetype)替代
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
@@ -3619,7 +3619,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason)替代
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.RemoveReason](js-apis-notificationSubscribe-sys.md#removereason)替代
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |

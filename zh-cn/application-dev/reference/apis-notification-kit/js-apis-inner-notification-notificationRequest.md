@@ -21,7 +21,7 @@
 | deliveryTime                  | number                                                   |   否  | 否  | 通知发送时间。                                                               |
 | tapDismissed                  | boolean                                                  |   否  | 否  | 通知是否自动清除。                                                             |
 | autoDeletedTime               | number                                                   |   否  | 否  | 自动清除的时间。                                                              |
-| wantAgent                     | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | WantAgent封装了应用的行为意图，点击通知时触发该行为。                                       |
+| wantAgent                     | [WantAgent](../apis/js-apis-app-ability-wantAgent.md)            |   否  | 否  | WantAgent封装了应用的行为意图，点击通知时触发该行为。                                       |
 | extraInfo                     | {[key: string]: any}                                     |   否  | 否  | 扩展参数。                                                                 |
 | color                         | number                                                   |   否  | 否  | 通知背景颜色。预留能力，暂未支持。                                                     |
 | colorEnabled                  | boolean                                                  |   否  | 否  | 通知背景颜色是否使能。预留能力，暂未支持。                                                 |
@@ -33,8 +33,8 @@
 | badgeIconStyle                | number                                                   |   否  | 否  | 通知角标类型。预留能力，暂未支持。                                                     |
 | showDeliveryTime              | boolean                                                  |   否  | 否  | 是否显示分发时间。                                                             |
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 否  | 通知按钮，最多三个按钮。                                                          |
-| smallIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知小图标。可选字段，大小不超过30KB。                                                 |
-| largeIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知大图标。可选字段，大小不超过30KB。                                                 |
+| smallIcon                     | [image.PixelMap](../apis/js-apis-image.md#pixelmap7)             |   否  | 否  | 通知小图标。可选字段，大小不超过30KB。                                                 |
+| largeIcon                     | [image.PixelMap](../apis/js-apis-image.md#pixelmap7)             |   否  | 否  | 通知大图标。可选字段，大小不超过30KB。                                                 |
 | creatorBundleName             | string                                                   |   是  | 否  | 创建通知的包名。                                                              |
 | creatorUid                    | number                                                   |   是  | 否  | 创建通知的UID。                                                             |
 | creatorPid                    | number                                                   |   是  | 否  | 创建通知的PID。                                                             |
@@ -44,7 +44,7 @@
 | template<sup>8+<sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 否  | 通知模板。                                                                 |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   否  | 否  | 分布式通知的选项。                                                             |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 否  | 获取NotificationFlags。                                                  |
-| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
+| removalWantAgent<sup>9+<sup>  | [WantAgent](../apis/js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
 
 

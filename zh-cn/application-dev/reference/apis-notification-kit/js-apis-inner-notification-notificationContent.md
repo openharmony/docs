@@ -78,7 +78,7 @@
 | additionalText | string                                       |  否  | 否  | 通知附加内容，是对通知内容的补充。    |
 | briefText      | string                                       |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
 | expandedTitle  | string                                       |  否  | 是  | 通知展开时的标题（不可为空字符串）。    |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|
+| picture        | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|
 
 
 ## NotificationSystemLiveViewContent
@@ -108,7 +108,7 @@
 | 名称            | 类型                                          | 只读 | 必填 | 说明                            |
 | --------------- | -------------------------------------------- | --- | --- | -------------------------------- |
 | title           | string                                       | 否  | 否  | 胶囊标题。                        |
-| icon            | [image.PixelMap](js-apis-image.md#pixelmap7) | 否  | 否  | 胶囊图片。                        |
+| icon            | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 否  | 否  | 胶囊图片。                        |
 | backgroundColor | string                                       | 否  | 否  | 背景颜色。                        |
 
 
@@ -121,7 +121,7 @@
 | 名称  | 类型                                                   | 只读 | 必填 | 说明             |
 | ----- | ----------------------------------------------------- | --- | --- | ----------------- |
 | names | Array\<string\>                                       | 否  |  否 | 按钮名称（最多支持3个）。   |
-| icons | Array\<[image.PixelMap](js-apis-image.md#pixelmap7)\> | 否  |  否 | 按钮图片（最多支持3个）。   |
+| icons | Array\<[image.PixelMap](../apis/js-apis-image.md#pixelmap7)\> | 否  |  否 | 按钮图片（最多支持3个）。   |
 
 
 ## NotificationTime<sup>11+</sup>

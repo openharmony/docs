@@ -29,7 +29,7 @@
 | status         | [LiveViewStatus](#liveviewstatus11)                                | 否  | 是  | 通知状态。                  |
 | version        | number                                                             | 否  | 否  | 通知版本号（如果数据库存储版本号为0xffffffff，则本次更新和结束不校验版本号大小，否则需要校验本次版本号>数据库存储版本号）。不填默认为0xffffffff。|
 | extraInfo      | [key: string] object                                               | 否  | 否  | 实况通知附加内容。           |
-| pictureInfo    | [key: string] Array\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否  | 否  | 实况通知附加内容中的图片信息。|
+| pictureInfo    | [key: string] Array\<[image.PixelMap](../apis/js-apis-image.md#pixelmap7)> | 否  | 否  | 实况通知附加内容中的图片信息。|
 
 ## LiveViewStatus<sup>11+</sup>
 

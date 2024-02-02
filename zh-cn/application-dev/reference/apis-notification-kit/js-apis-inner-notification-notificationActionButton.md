@@ -13,6 +13,6 @@
 | 名称      | 类型                                            | 只读 | 必填 | 说明                      |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
 | title     | string                                          | 否  | 是  | 按钮标题。                  |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | 否  | 是  | 点击按钮时触发的WantAgent。 |
+| wantAgent | [WantAgent](../apis/js-apis-app-ability-wantAgent.md)   | 否  | 是  | 点击按钮时触发的WantAgent。 |
 | extras    | { [key: string]: any }                          | 否  | 否  | 按钮扩展信息。              |
 | userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | 否  | 否  | 用户输入对象实例。          |

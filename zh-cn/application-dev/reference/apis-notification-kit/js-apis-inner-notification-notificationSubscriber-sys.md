@@ -1,6 +1,6 @@
 # NotificationSubscriber(系统接口)
 
-作为订阅通知接口[subscribe](js-apis-notificationSubscribe.md)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
+作为订阅通知接口[subscribe](../apis/js-apis-notificationSubscribe.md)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
 
 > **说明：**
 >
@@ -277,7 +277,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 > **说明：**
 >
-> 此接口从API version 8开始支持，从API version 11开始不再维护，建议使用[onDoNotDisturbChanged](js-apis-inner-notification-notificationSubscriber.md#ondonotdisturbchanged11)代替。
+> 此接口从API version 8开始支持，从API version 11开始不再维护，建议使用[onDoNotDisturbChanged](js-apis-inner-notification-notificationSubscriber-sys.md#ondonotdisturbchanged11)代替。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -316,7 +316,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onDoNotDisturbChanged<sup>11+</sup>
 
-onDoNotDisturbChanged?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbChanged?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager-sys.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
 
@@ -328,7 +328,7 @@ onDoNotDisturbChanged?:(mode: notificationManager.[DoNotDisturbDate](js-apis-not
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbChanged | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbChanged | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager-sys.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -488,7 +488,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | 名称            | 类型                                                                 | 可读 | 可写 | 说明     |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
 | request         | [NotificationRequest](js-apis-notification.md#notificationrequest) | 是  | 否  | 通知内容。 |
-| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | 是  | 否  | 通知排序信息。 |
+| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | 是  | 否  | 通知排序信息。 |
 | reason          | number                                                             | 是  | 否  | 删除原因（1:点击通知后删除通知，2:用户删除通知） 。|
 | sound           | string                                                             | 是  | 否  | 通知声音。 |
 | vibrationValues | Array\<number\>                                                    | 是  | 否  | 通知震动。 |

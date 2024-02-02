@@ -1376,7 +1376,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
 | callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
 
 **错误码：**
@@ -1433,7 +1433,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
 
 **返回值：**
 
@@ -2702,7 +2702,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 参数名   | 类型                          | 必填 | 说明                   |
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
-| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
+| type     | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 指定渠道类型。         |
 | enable   | boolean                       | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。 |
 
@@ -2755,7 +2755,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 参数名   | 类型                          | 必填 | 说明                     |
 | -------- | ----------------------------- | ---- | ----------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。|
-| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。           |
+| type     | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 指定渠道类型。           |
 | enable   | boolean                       | 是   | 使能状态。               |
 | isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。 |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。    |
@@ -2810,7 +2810,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
-| type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
+| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 渠道类型。 |
 | enable | boolean                       | 是   | 使能状态（true：使能，false：禁止）。     |
 | isForceControl<sup>11+</sup> | boolean               | 否   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。默认为false。     |
 
@@ -2859,7 +2859,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | 参数名   | 类型                          | 必填 | 说明                   |
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
-| type     | [SlotType](#slottype)         | 是   | 渠道类型。         |
+| type     | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 渠道类型。         |
 | callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
@@ -2910,7 +2910,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
-| type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
+| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | 是   | 渠道类型。 |
 
 **返回值：**
 
@@ -3205,7 +3205,7 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 | 参数名 | 类型                                                                                                             | 必填 | 说明           |
 | ------ |-----------------------------------------------------------------------------------------------------------------| ---- | -------------- |
 | type | string                                                                                                            | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest.md#notificationcheckrequest11)    | 是   | 通知请求验证内容。 |
+| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationcheckrequest11)    | 是   | 通知请求验证内容。 |
 | callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | 是   | 消息验证函数指针。 |
 
 **错误码：**
@@ -3453,9 +3453,9 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | bundleName                   | string                       | 是   | Bundle名称。    |
 | notificationId               | number                       | 是   | 通知ID。        |
 | label<sup>11+</sup>          | string                       | 否   | 通知标签。      |
-| contentType                  | [ContentType](#contenttype)  | 是   | 通知类型。      |
+| contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | 是   | 通知类型。      |
 | creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
-| slotType<sup>11+</sup>       | [SlotType](#slottype)        | 是   | 渠道类型。      |
+| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md./js-apis-notificationManager.md#slottype)        | 是   | 渠道类型。      |
 | extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>
