@@ -6,9 +6,8 @@ ringtonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSound
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口为系统接口。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -41,7 +40,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 | 名称  | 类型                        | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state | [media.AVPlayerState](js-apis-media.md#avplayerstate9) | 是   | 否   | 音频渲染器的状态。 |
+| state | [media.AVPlayerState](../apis-media-kit/js-apis-media.md#avplayerstate9) | 是   | 否   | 音频渲染器的状态。 |
 
 **示例：**
 
