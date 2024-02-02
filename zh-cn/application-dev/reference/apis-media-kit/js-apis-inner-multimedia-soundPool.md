@@ -26,7 +26,7 @@ import audio from '@ohos.multimedia.audio';
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#audiorendererrate8)。 |
+| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](apis-audio-kit/js-apis-audio.md#audiorendererrate8)。 |
 | leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
 | rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
@@ -878,7 +878,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| rate | [audio.AudioRendererRate](js-apis-audio.md#audiorendererrate8) | 是   | 音频rate相关参数。 |
+| rate | [audio.AudioRendererRate](apis-audio-kit/js-apis-audio.md#audiorendererrate8) | 是   | 音频rate相关参数。 |
 | callback | AsyncCallback\<void> | 是   | 异步音频池setRate方法的回调方法。 |
 
 **错误码：**
@@ -940,7 +940,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | 是   | 音频流ID，通过play方法获取。 |
-| rate | [audio.AudioRendererRate](js-apis-audio.md#audiorendererrate8) | 是   | 音频rate相关参数。 |
+| rate | [audio.AudioRendererRate](apis-audio-kit/js-apis-audio.md#audiorendererrate8) | 是   | 音频rate相关参数。 |
 
 **返回值：**
 

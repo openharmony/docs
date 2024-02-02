@@ -1232,7 +1232,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](../apis/js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
@@ -1285,7 +1285,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioSourceType | [AudioSourceType](js-apis-media.md#audiosourcetype9)           | 否   | 视频录制的音频源类型，选择音频录制时必填。                      |
 | videoSourceType | [VideoSourceType](js-apis-media.md#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
-| profile         | [VideoRecorderProfile](js-apis-media.md#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
+| profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
 | location        | [Location](js-apis-media.md#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
 | url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |

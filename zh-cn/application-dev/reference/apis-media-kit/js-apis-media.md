@@ -2047,7 +2047,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](../apis/js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis/js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2115,7 +2115,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis/js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
