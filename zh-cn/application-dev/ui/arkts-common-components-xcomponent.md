@@ -119,7 +119,7 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
     // ...
     napi_status status;
     napi_value exportInstance = nullptr;
-    OH_NativeXComponent *nativeXComponent = nullptr;
+    OH_NativeXComponent* nativeXComponent = nullptr;
     // 用来解析出被wrap了NativeXComponent指针的属性
     status = napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
     if (status != napi_ok) {
@@ -141,10 +141,10 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
 ```c++
 {
     ...
-    OH_NativeXComponent *nativeXComponent = nullptr;
+    OH_NativeXComponent* nativeXComponent = nullptr;
     // 解析出NativeXComponent实例
 
-    OH_NativeXComponent_Callback callback;
+    OH_NativeXComponent_Callback* callback;
     callback->OnSurfaceCreated = OnSurfaceCreatedCB; // surface创建成功后触发，开发者可以从中获取native window的句柄
     callback->OnSurfaceChanged = OnSurfaceChangedCB; // surface发生变化后触发，开发者可以从中获取native window的句柄以及XComponent的变更信息
     callback->OnSurfaceDestroyed = OnSurfaceDestroyedCB; // surface销毁时触发，开发者可以在此释放资源
