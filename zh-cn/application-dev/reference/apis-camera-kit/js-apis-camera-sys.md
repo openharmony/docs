@@ -51,7 +51,7 @@ import camera from '@ohos.multimedia.camera';
 
 ## CameraManager
 
-相机管理器类，使用前需要通过[getCameraManager](#cameragetcameramanager)获取相机管理实例。
+相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
 
 ### isCameraMuteSupported
 
@@ -307,7 +307,7 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](#profile) | 是 | 相机预览流的配置文件。 |
+| profile | [Profile](js-apis-camera.md#profile) | 是 | 相机预览流的配置文件。 |
 
 **返回值：**
 
@@ -423,7 +423,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 ## PreviewOutput
 
-预览输出类。继承[CameraOutput](#cameraoutput)。
+预览输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### addDeferredSurface
 

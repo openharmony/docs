@@ -24,7 +24,7 @@ getCameraManager(context: Context): CameraManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
+| context  | [Context](../apis/js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -246,6 +246,7 @@ function getSupportedCameras(cameraManager: camera.CameraManager): Array<camera.
   return cameras;
 }
 ```
+
 ### getSupportedSceneModes<sup>11+</sup>
 
 getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
@@ -480,7 +481,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
 
 **返回值：**
 
@@ -531,7 +532,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
 | profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string            | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的surfaceId。|
+| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)获取的surfaceId。|
 
 **返回值：**
 
@@ -624,7 +625,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | 参数名     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
 | profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。 |
-| surfaceId| string          | 是   | 从[AVRecorder](js-apis-media.md#avrecorder9)获取的surfaceId。|
+| surfaceId| string          | 是   | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。|
 
 **返回值：**
 
@@ -1748,7 +1749,7 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| main<sup>11+</sup> | [image.Image](js-apis-image.md#image9) |        是       | 全质量图Image。 |
+| main<sup>11+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9) |        是       | 全质量图Image。 |
 
 ### release<sup>11+</sup>
 
