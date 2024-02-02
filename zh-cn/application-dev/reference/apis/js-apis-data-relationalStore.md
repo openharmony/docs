@@ -313,7 +313,7 @@ class EntryAbility extends UIAbility {
 
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | 是   | 数据库文件名。                                            |
+| name          | string        | 是   |  数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
 
