@@ -24,6 +24,6 @@
     - [NotificationSubscriber(系统接口)](./js-apis-inner-notification-notificationSubscriber-sys.md)
 
  - 已停止维护的模块
-  - [@ohos.notification (Notification模块)(待停用)](./js-apis-notification.md)
+   - [@ohos.notification (Notification模块)(待停用)](./js-apis-notification.md)
 - 错误码
- - [通知错误码](./errorcode-notification.md)
+   - [通知错误码](./errorcode-notification.md)
