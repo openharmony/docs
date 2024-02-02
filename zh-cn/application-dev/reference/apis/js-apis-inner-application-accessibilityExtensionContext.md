@@ -233,7 +233,10 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getFocusElement().then((data: AccessibilityElement) => {
+  rootElement = data;
   console.log(`Succeeded in get focus element,${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
@@ -268,11 +271,14 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
   if (err) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
 });
 ```
@@ -307,12 +313,14 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let isAccessibilityFocus = true;
+let rootElement: AccessibilityElement;
 
 axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: AccessibilityElement)=> {
   if (err) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
 });
 ```
@@ -351,7 +359,10 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getWindowRootElement().then((data: AccessibilityElement) => {
+  rootElement = data;
   console.log(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
@@ -386,11 +397,14 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
+let rootElement: AccessibilityElement;
+
 axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) => {
   if (err) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 });
 ```
@@ -425,12 +439,14 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let windowId = 10;
+let rootElement: AccessibilityElement;
 
 axContext.getWindowRootElement(windowId, (err: BusinessError, data: AccessibilityElement) => {
   if (err) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
+  rootElement = data;
   console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
 });
 ```
@@ -716,8 +732,7 @@ attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
   console.log(`Succeeded in get attribute names, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -745,8 +760,7 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
   if (err) {
     console.error(`failed to get attribute names, Code is ${err.code}, message is ${err.message}`);
@@ -793,8 +807,8 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.attributeValue(attributeName).then((data: string) => {
   console.log(`Succeeded in get attribute value by name, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -833,8 +847,8 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => {
   if (err) {
     console.error(`failed to get attribute value, Code is ${err.code}, message is ${err.message}`);
@@ -863,8 +877,7 @@ actionNames(): Promise\<Array\<string>>;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.actionNames().then((data: string[]) => {
   console.log(`Succeeded in get action names, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -889,8 +902,7 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 **示例：**
 
 ```ts
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
-
+// rootElement是AccessibilityElement的实例
 rootElement.actionNames((err: BusinessError, data: string[]) => {
   if (err) {
     console.error(`failed to get action names, Code is ${err.code}, message is ${err.message}`);
@@ -935,8 +947,8 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName).then(() => {
   console.info(`Succeeded in perform action,actionName is ${actionName}`);
 }).catch((err: BusinessError) => {
@@ -973,8 +985,8 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName, (err: BusinessError) => {
   if (err) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
@@ -1015,8 +1027,8 @@ import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
 let parameters: object = [];
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName, parameters, (err: BusinessError) => {
   if (err) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
@@ -1053,8 +1065,8 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1084,8 +1096,8 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('content', condition, (err: BusinessError, data: AccessibilityElement[])=>{
   if (err) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
@@ -1123,8 +1135,8 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element,${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1155,8 +1167,8 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusType', condition, (err: BusinessError, data: AccessibilityElement)=>{
   if (err) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
@@ -1194,8 +1206,8 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -1226,8 +1238,8 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
+// rootElement是AccessibilityElement的实例
 rootElement.findElement('focusDirection', condition, (err: BusinessError, data: AccessibilityElement) =>{
   if (err) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
