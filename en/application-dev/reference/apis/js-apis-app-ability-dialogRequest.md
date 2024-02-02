@@ -37,73 +37,21 @@ Obtains the request information from Want.
 **Example**
 
 ```ts
-   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
-   import dialogRequest from '@ohos.app.ability.dialogRequest';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
 
-    const REQUEST_VALUE = 1;
-
-    class StubTest extends rpc.RemoteObject {
-      constructor(des: string) {
-        super(des);
-      }
-
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
-        if (code === REQUEST_VALUE) {
-          let optFir = data.readInt();
-          let optSec = data.readInt();
-          reply.writeInt(optFir + optSec);
-        }
-        return true;
-      }
-
-      getInterfaceDescriptor() {
-        return "";
-      }
-
-      getCallingPid() {
-        return REQUEST_VALUE;
-      }
-
-      getCallingUid() {
-        return REQUEST_VALUE;
-      }
-
-      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
-      }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      let requestInfo = dialogRequest.getRequestInfo(want);
+    } catch (err) {
+      console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
     }
-
-    let TAG = "getRequestInfoTest";
-
-    export default class ServiceExtAbility extends ServiceExtensionAbility {
-      onCreate(want: Want) {
-        console.info(TAG, `onCreate, want: ${want.abilityName}`);
-      }
-
-      onRequest(want: Want, startId: number) {
-        console.info(TAG, `onRequest, want: ${want.abilityName}`);
-        try {
-          let requestInfo = dialogRequest.getRequestInfo(want);
-        } catch (err) {
-          console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
-        }
-      }
-
-      onConnect(want: Want) {
-        console.info(TAG, `onConnect, want: ${want.abilityName}`);
-        return new StubTest("test");
-      }
-
-      onDisconnect(want: Want) {
-        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
-      }
-
-      onDestroy() {
-        console.info(TAG, `onDestroy`);
-      }
-    }
-   ```
+  }
+}
+```
 
 ## dialogRequest.getRequestCallback
 
@@ -128,73 +76,21 @@ Obtains the request callback from Want.
 **Example**
 
 ```ts
-   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
-   import dialogRequest from '@ohos.app.ability.dialogRequest';
-   
-   let TAG = "getRequestCallbackTest";
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
 
-   const REQUEST_VALUE = 1;
-
-    class StubTest extends rpc.RemoteObject {
-      constructor(des: string) {
-        super(des);
-      }
-
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
-        if (code === REQUEST_VALUE) {
-          let optFir = data.readInt();
-          let optSec = data.readInt();
-          reply.writeInt(optFir + optSec);
-        }
-        return true;
-      }
-
-      getInterfaceDescriptor() {
-        return "";
-      }
-
-      getCallingPid() {
-        return REQUEST_VALUE;
-      }
-
-      getCallingUid() {
-        return REQUEST_VALUE;
-      }
-
-      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
-      }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      let requestCallback = dialogRequest.getRequestCallback(want);
+    } catch(err) {
+      console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
     }
-
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want: Want) {
-       console.info(TAG, `onCreate, want: ${want.abilityName}`);
-     }
-
-     onRequest(want: Want, startId: number) {
-       console.info(TAG, `onRequest, want: ${want.abilityName}`);
-       try {
-            let requestCallback = dialogRequest.getRequestCallback(want);
-        } catch(err) {
-            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
-        }
-     }
-
-     onConnect(want: Want) {
-       console.info(TAG, `onConnect, want: ${want.abilityName}`);
-       return new StubTest("test");
-     }
-
-     onDisconnect(want: Want) {
-       console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
-
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
-   ```
+  }
+}
+```
 
 ## WindowRect<sup>10+</sup>
 
@@ -206,10 +102,10 @@ Defines the location attributes of a modal dialog box.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| left  | number | No  | X-coordinate of the upper left corner of the dialog box.|
-| top  | number | No  | Y-coordinate of the upper left corner of the dialog box.|
-| width  | number | No  | Width of the dialog box.|
-| height  | number | No  | Height of the dialog box.|
+| left  | number | Yes | X-coordinate of the upper left corner of the dialog box.|
+| top  | number | Yes | Y-coordinate of the upper left corner of the dialog box.|
+| width  | number | Yes | Width of the dialog box.|
+| height  | number | Yes | Height of the dialog box.|
 
 ## RequestInfo
 
@@ -221,98 +117,27 @@ Defines the request information, which is used as an input parameter for binding
 
 | Name     | Type      | Mandatory  | Description    |
 | ------------ | ------------------| ------ | ---------------------- |
-| windowRect<sup>10+</sup>            | windowRect    | No  | Location attributes of a modal dialog box.         |
+| windowRect<sup>10+</sup>            | [WindowRect](#windowrect10)    | No  | Location attributes of a modal dialog box.         |
 
 **Example**
 
 ```ts
-   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
-   import rpc from '@ohos.rpc';
-   import dialogRequest from '@ohos.app.ability.dialogRequest';
-   import window from '@ohos.window';
-   
-   let TAG = "RequestInfoTest";
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
 
-   const REQUEST_VALUE = 1;
-
-    class StubTest extends rpc.RemoteObject {
-      constructor(des: string) {
-        super(des);
-      }
-
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
-        if (code === REQUEST_VALUE) {
-          let optFir = data.readInt();
-          let optSec = data.readInt();
-          reply.writeInt(optFir + optSec);
-        }
-        return true;
-      }
-
-      getInterfaceDescriptor() {
-        return "";
-      }
-
-      getCallingPid() {
-        return REQUEST_VALUE;
-      }
-
-      getCallingUid() {
-        return REQUEST_VALUE;
-      }
-
-      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
-      }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      let requestInfo = dialogRequest.getRequestInfo(want);
+      console.info(`getRequestInfo windowRect=, ${JSON.stringify(requestInfo.windowRect)}` );
+    } catch(err) {
+      console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
     }
-
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want: Want) {
-       console.info(TAG, `onCreate, want: ${want.abilityName}`);
-     }
-
-     onRequest(want: Want, startId: number) {
-       console.info(TAG, `onRequest, want: ${want.abilityName}`);
-       let windowClass: window.Window | undefined = undefined;
-       let config: window.Configuration = {name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context};
-       try {
-            let requestInfo = dialogRequest.getRequestInfo(want);
-            window.createWindow(config, (err, data) => {
-              if (err.code) {
-                  console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
-                  return;
-              }
-              windowClass = data;
-              windowClass.bindDialogTarget(requestInfo, () => {
-                console.info('Dialog Window Need Destroy.');
-              }, (err: BusinessError) => {
-                  if (err.code) {
-                      console.error(`Failed to bind dialog target. Cause: ${JSON.stringify(err)}`);
-                      return;
-                  }
-                  console.info('Succeeded in binding dialog target.');
-              });
-            });
-        } catch(err) {
-            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
-        }
-     }
-
-     onConnect(want: Want) {
-       console.info(TAG, `onConnect, want: ${want.abilityName}`);
-       return new StubTest("test");
-     }
-
-     onDisconnect(want: Want) {
-       console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
-
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
-   ```
+  }
+}
+```
 
 ## ResultCode
 
@@ -334,10 +159,10 @@ Defines the result of the request for the modal dialog box. It contains **Result
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only | Mandatory | Description|
 | -------- | -------- | -------- | -------- | -------- |
-| result | [ResultCode](#resultcode) | Yes| Yes| Result code of the request.|
-| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | Yes| Yes| Want information, such as the ability name and bundle name.|
+| result | [ResultCode](#resultcode) | No | Yes| Result code of the request.|
+| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | No | No | Want information, such as the ability name and bundle name.|
 
 ## RequestCallback
 
@@ -347,7 +172,7 @@ Provides a callback for setting the modal dialog box request result.
 
 ### RequestCallback.setRequestResult
 
-setRequestResult(result: RequestResult): void;
+setRequestResult(result: RequestResult): void
 
 Sets the result of the request for the modal dialog box.
 
@@ -372,74 +197,22 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
-   import dialogRequest from '@ohos.app.ability.dialogRequest';
-   
-   let TAG = "setRequestResultTest";
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
 
-      const REQUEST_VALUE = 1;
-
-    class StubTest extends rpc.RemoteObject {
-      constructor(des: string) {
-        super(des);
-      }
-
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
-        if (code === REQUEST_VALUE) {
-          let optFir = data.readInt();
-          let optSec = data.readInt();
-          reply.writeInt(optFir + optSec);
-        }
-        return true;
-      }
-
-      getInterfaceDescriptor() {
-        return "";
-      }
-
-      getCallingPid() {
-        return REQUEST_VALUE;
-      }
-
-      getCallingUid() {
-        return REQUEST_VALUE;
-      }
-
-      attachLocalInterface(localInterface: rpc.IRemoteBroker, descriptor: string) {
-      }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      let requestCallback = dialogRequest.getRequestCallback(want);
+      let myResult: dialogRequest.RequestResult = {
+        result : dialogRequest.ResultCode.RESULT_CANCEL,
+      };
+      requestCallback.setRequestResult(myResult);
+    } catch(err) {
+      console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
     }
-
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want: Want) {
-       console.info(TAG, `onCreate, want: ${want.abilityName}`);
-     }
-
-     onRequest(want: Want, startId: number) {
-       console.info(TAG, `onRequest, want: ${want.abilityName}`);
-       try {
-            let requestCallback = dialogRequest.getRequestCallback(want);
-            let myResult: dialogRequest.RequestResult = {
-                result : dialogRequest.ResultCode.RESULT_CANCEL,
-            };
-            requestCallback.setRequestResult(myResult);
-        } catch(err) {
-            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
-        }
-     }
-
-     onConnect(want: Want) {
-       console.info(TAG, `onConnect, want: ${want.abilityName}`);
-       return new StubTest("test");
-     }
-
-     onDisconnect(want: Want) {
-       console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
-
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
-  ```
+  }
+}
+```

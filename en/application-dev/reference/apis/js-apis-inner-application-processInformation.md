@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## How to Use
 
-The process information is obtained by calling [getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9) of the **appManager** module.
+The process information is obtained by calling [getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) of the **appManager** module.
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';

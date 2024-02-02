@@ -75,10 +75,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
+        wantAgent = data;
     }
 }
 try {
@@ -157,12 +157,12 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-    wantAgent = data;
-}).catch((err: BusinessError) => {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
-});
+        wantAgent = data;
+    }).catch((err: BusinessError) => {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    });
 } catch (err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -231,10 +231,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // getBundleName callback
     let getBundleNameCallback = (err: BusinessError, data: string) => {
@@ -327,10 +327,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getBundleName(wantAgent).then((data)=>{
@@ -414,10 +414,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.info(`getWantAgent failed ${JSON.stringify(err)}`);
+        wantAgent = data;
     }
     // getUid callback
     let getUidCallback = (err: BusinessError, data: number) => {
@@ -510,10 +510,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
@@ -599,10 +599,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // getWant callback
     let getWantCallback = (err: BusinessError, data: Want) => {
@@ -698,10 +698,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
@@ -785,10 +785,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // cancel callback
     let cancelCallback = (err: BusinessError, data: void) => {
@@ -881,10 +881,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.cancel(wantAgent).then((data)=>{
@@ -962,10 +962,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // trigger callback
     let triggerCallback = (err: BusinessError, data: WantAgent.CompleteData) => {
@@ -1046,11 +1046,11 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    } else {
         wantAgent1 = data;
         wantAgent2 = data;
-    } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     // equal callback
     let equalCallback = (err: BusinessError, data: boolean) => {
@@ -1136,11 +1136,11 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    } else {
         wantAgent1 = data;
         wantAgent2 = data;
-    } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
@@ -1161,7 +1161,7 @@ try {
 
 ## WantAgent.getOperationType
 
-getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
+getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
 Obtains the operation type of a **WantAgent** object. This API uses an asynchronous callback to return the result.
 
@@ -1223,10 +1223,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     // getOperationTypeCallback callback
     let getOperationTypeCallback = (err: BusinessError, data: number) => {
@@ -1251,7 +1251,7 @@ try {
 
 ## WantAgent.getOperationType
 
-getOperationType(agent: WantAgent): Promise\<number>;
+getOperationType(agent: WantAgent): Promise\<number>
 
 Obtains the operation type of a **WantAgent** object. This API uses a promise to return the result.
 
@@ -1318,10 +1318,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getOperationType(wantAgent).then((data)=>{
@@ -1377,10 +1377,10 @@ try {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name          | Type                          | Mandatory| Description                   |
-| -------------- | ------------------------------ | ---- | ---------------------- |
-| info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
-| want           | Want                            | Yes  | An existing triggered Want.    |
-| finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
-| finalData      | string                          | Yes  | Final data collected by the common event. |
-| extraInfo      | {[key: string]: any}            | No  | Extra information.              |
+| Name          | Type                          | Description                   |
+| -------------- | ------------------------------ | ---------------------- |
+| info           | WantAgent                       | A triggered **WantAgent** object.      |
+| want           | [Want](js-apis-app-ability-want.md#attributes)                           | An existing triggered Want.    |
+| finalCode      | number                          | Request code that triggers the **WantAgent** object.|
+| finalData      | string                          | Final data collected by the common event. |
+| extraInfo      | Record\<string, Object>            | Extra information.              |

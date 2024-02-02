@@ -14,7 +14,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 ## FormInfo
 
-Describes widget information.
+Defines the widget information.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -23,7 +23,7 @@ Describes widget information.
 | bundleName  | string               | Yes   | No    | Name of the bundle to which the widget belongs.                  |
 | moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
 | abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
-| name        | string               | Yes   | No    | Widget name.                                |
+| name        | string               | Yes   | No    | Name of the widget.                                |
 | description | string               | Yes   | No    | Description of the widget.  |
 | descriptionId<sup>10+</sup>      | number               | Yes   | No    | ID of the widget description.              |
 | type        | [FormType](#formtype)             | Yes   | No    | Type of the widget. Currently, JS and ArkTS widgets are supported.|
@@ -146,7 +146,7 @@ Enumerates the visibility types of the widget.
 
 ## RunningFormInfo<sup>10+</sup>
 
-Defines the information about the widget host.
+Defines the information about an added widget, which can be either in use or not.
 
 **System capability**: SystemCapability.Ability.Form
 
