@@ -14,7 +14,7 @@ The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distrib
 import a2dp from '@ohos.bluetooth.a2dp';
 ```
 
-## a2dp.createA2dpSrcProfile<a name="createA2dpSrcProfile"></a>
+## a2dp.createA2dpSrcProfile
 
 createA2dpSrcProfile(): A2dpSourceProfile
 
@@ -46,7 +46,7 @@ try {
 Provides APIs for using the A2DP. Before using any API of **A2dpSourceProfile**, you need to create an instance of this class by using **createA2dpSrcProfile()**.
 
 
-### connect<a name="a2dp-connect"></a>
+### connect
 
 connect(deviceId: string): void
 
@@ -88,7 +88,7 @@ try {
 ```
 
 
-### disconnect<a name="a2dp-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -150,7 +150,7 @@ Obtains the playing state of a device.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [PlayingState](#PlayingState) | Playing state of the remote device obtained.|
+| [PlayingState](#playingstate) | Playing state of the remote device obtained.|
 
 **Error codes**
 
@@ -175,7 +175,7 @@ try {
 }
 ```
 
-### isAbsoluteVolumeSupported<sup>11+</sup><a name="isAbsoluteVolumeSupported"></a>
+### isAbsoluteVolumeSupported<sup>11+</sup>
 
 isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-### isAbsoluteVolumeEnabled<sup>11+</sup><a name="isAbsoluteVolumeEnabled"></a>
+### isAbsoluteVolumeEnabled<sup>11+</sup>
 
 isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
@@ -570,7 +570,7 @@ Obtains the current codec information.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [CodecInfo](#CodecInfo)| Codec information obtained.|
+| [CodecInfo](#codecinfo11)| Codec information obtained.|
 
 **Error codes**
 
@@ -611,7 +611,7 @@ Sets the current codec information.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| codecInfo | [CodecInfo](#codecinfo) | Yes   | Codec information to set.|
+| codecInfo | [CodecInfo](#codecinfo11) | Yes   | Codec information to set.|
 
 **Error codes**
 
@@ -641,7 +641,7 @@ try {
 }
 ```
 
-## PlayingState<a name="PlayingState"></a>
+## PlayingState
 
 Enumerates the A2DP playing states.
 
@@ -653,7 +653,7 @@ Enumerates the A2DP playing states.
 | STATE_PLAYING     | 0x0001 | Playing.|
 
 
-## CodecInfo<sup>11+</sup><a name="CodecInfo"></a>
+## CodecInfo<sup>11+</sup>
 
 Defines the codec information.
 
@@ -661,13 +661,13 @@ Defines the codec information.
 
 | Name       | Type                   | Readable  | Writable  | Description                                    |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType<sup>11+</sup>           | [CodecType](#codectype)      | Yes   | Yes   | Codec type. The default value is **CODEC_TYPE_SBC**.|
-| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample)  | Yes   | Yes   | Number of bits of each sample. The default value is **SCAN_MODE_LOW_POWER**.|
-| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode) | Yes   | Yes   | Channel mode of the codec. The default value is **CODEC_CHANNEL_MODE_NONE**.|
-| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate) | Yes   | Yes   | Sampling rate of the codec. The default value is **CODEC_BITS_PER_SAMPLE_NONE**.|
+| codecType<sup>11+</sup>           | [CodecType](#codectype11)      | Yes   | Yes   | Codec type. The default value is **CODEC_TYPE_SBC**.|
+| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample11)  | Yes   | Yes   | Number of bits of each sample. The default value is **SCAN_MODE_LOW_POWER**.|
+| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode11) | Yes   | Yes   | Channel mode of the codec. The default value is **CODEC_CHANNEL_MODE_NONE**.|
+| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate11) | Yes   | Yes   | Sampling rate of the codec. The default value is **CODEC_BITS_PER_SAMPLE_NONE**.|
 
 
-## CodecType<sup>11+</sup><a name="CodecType"></a>
+## CodecType<sup>11+</sup>
 
 Enumerates the Bluetooth codec types.
 
@@ -675,13 +675,13 @@ Enumerates the Bluetooth codec types.
 
 | Name               | Value   | Description     |
 | ----------------- | ------ | ------- |
-| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | Invalid type. |
+| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | Unknown type. |
 | CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC.|
 | CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC.|
 | CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC.|
 
 
-## CodecChannelMode<sup>11+</sup><a name="CodecChannelMode"></a>
+## CodecChannelMode<sup>11+</sup>
 
 Enumerates the channel modes of the Bluetooth codec.
 
@@ -694,7 +694,7 @@ Enumerates the channel modes of the Bluetooth codec.
 | CODEC_CHANNEL_MODE_STEREO<sup>11+</sup> | 2 | Stereo. |
 
 
-## CodecBitsPerSample<sup>11+</sup><a name="CodecBitsPerSample"></a>
+## CodecBitsPerSample<sup>11+</sup>
 
 Enumerates the number of bits per sample for the Bluetooth codec.
 
@@ -708,7 +708,7 @@ Enumerates the number of bits per sample for the Bluetooth codec.
 | CODEC_BITS_PER_SAMPLE_32<sup>11+</sup>   | 3 | 32 bits per sample.|
 
 
-## CodecSampleRate<sup>11+</sup><a name="CodecSampleRate"></a>
+## CodecSampleRate<sup>11+</sup>
 
 Enumerates the sampling rates of the Bluetooth codec.
 
