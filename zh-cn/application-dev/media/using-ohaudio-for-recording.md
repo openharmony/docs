@@ -59,21 +59,23 @@ OH_AudioStreamBuilder_Destroy(builder);
     创建音频录制构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
     ```c++
-    //设置音频采样率
+    // 设置音频采样率
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
-    //设置音频声道
+    // 设置音频声道
     OH_AudioStreamBuilder_SetChannelCount(builder, 2);
-    //设置音频采样格式
+    // 设置音频采样格式
     OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
-    //设置音频流的编码类型
+    // 设置音频流的编码类型
     OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
-    //设置输入音频流的工作场景
+    // 设置输入音频流的工作场景
     OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
     ```
 
     同样，音频录制的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) 。
 
 3. 设置音频回调函数
+
+    多音频并发处理可参考[多音频播放的并发策略](audio-playback-concurrency.md)，仅接口语言差异。
 
     ```c++
     // 自定义写入数据函数
@@ -102,7 +104,7 @@ OH_AudioStreamBuilder_Destroy(builder);
     callbacks.OH_AudioCapturer_OnReadData = MyOnReadData;
     callbacks.OH_AudioCapturer_OnInterruptEvent = MyOnInterruptEvent;
 
-    //设置音频输入流的回调
+    // 设置音频输入流的回调
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     ```
 
