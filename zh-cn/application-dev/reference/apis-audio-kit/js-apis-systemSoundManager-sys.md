@@ -248,7 +248,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 | -------- | -----------------------------------------| ---- | --------------------------- |
 | context  | Context                                  | 是   | 当前应用的上下文。            |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
-| callback | AsyncCallback&lt;[RingtonePlayer](../apis-media-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
+| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -293,7 +293,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](../apis-media-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -429,7 +429,7 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](../apis-media-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
 
 **示例：**
 
