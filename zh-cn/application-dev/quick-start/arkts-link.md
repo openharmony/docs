@@ -271,7 +271,7 @@ struct Parent {
       Child({ items: $arr })
         .margin(12)
       ForEach(this.arr,
-        (item: void) => {
+        (item: number) => {
           Button(`${item}`)
             .margin(12)
             .width(312)
