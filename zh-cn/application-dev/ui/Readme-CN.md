@@ -71,6 +71,7 @@
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
+      - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
 - UI开发（兼容JS的类Web开发范式）
   - [UI开发（兼容JS的类Web开发范式）概述](ui-js-overview.md)
   - 框架说明
