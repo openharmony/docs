@@ -80,7 +80,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
 | networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
 | range<sup>9+</sup>     | number                    | 是    | 发现设备的距离。  |
-| authForm<sup>10+</sup> | [AuthForm](#authform)     | 是    | 设备认证类型  |
+| authForm<sup>10+</sup> | [AuthForm](#authform10)     | 是    | 设备认证类型  |
 
 ## DeviceType
 
@@ -847,7 +847,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
   | 参数名          | 类型                        | 必填 | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
-  | publishInfo   | [PublishInfo](#publishinfo)     | 是   | 发布设备发现信息。 |
+  | publishInfo   | [PublishInfo](#publishinfo9)     | 是   | 发布设备发现信息。 |
 
 **错误码：**
 
