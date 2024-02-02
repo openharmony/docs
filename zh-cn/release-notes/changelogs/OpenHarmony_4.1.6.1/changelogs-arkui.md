@@ -14,7 +14,11 @@ OpenHarmony 4.1.6.1 版本相较于OpenHarmony 之前的版本，Navigation、Na
 
 变更前：Navigation、NavDestination组件的expandSafeArea属性默认为[SafeAreaExpandType.NONE, SafeAreaExpandEdges.NONE]。
 
+![stack](../../figures/navigation_unexpandSafeArea.jpg)
+
 变更后：Navigation、NavDestination组件的expandSafeArea属性默认为[SafeAreaExpandType.SYSTEM, SafeAreaExpandEdges.BOTTOM, SafeAreaEdge.TOP]，背景色延伸到顶部状态栏和底部导航栏。
+
+![stack](../../figures/navigation_expandSafeArea.jpg )
 
 **API Level**
 
