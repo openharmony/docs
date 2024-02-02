@@ -5077,7 +5077,7 @@ release(callback: AsyncCallback\<void\>): void
 释放会话资源，通过注册回调函数获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-2)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-1)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5118,7 +5118,7 @@ release(): Promise\<void\>
 释放会话资源，通过Promise获取结果。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-3)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Session.release](#release11-2)替代。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

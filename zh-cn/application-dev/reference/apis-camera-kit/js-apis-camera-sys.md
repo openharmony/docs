@@ -429,7 +429,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 addDeferredSurface(surfaceId: string): void
 
-配置延迟预览的Surface，可以在[Session.commitConfig](#commitconfig11-1)配流和[Session.start](#start11-1)启流之后运行。
+配置延迟预览的Surface，可以在[Session.commitConfig](js-apis-camera.md#commitconfig11-1)配流和[Session.start](js-apis-camera.md#start11-1)启流之后运行。
 
 **系统接口：** 此接口为系统接口。
 
@@ -736,7 +736,7 @@ release(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **示例：**
 
@@ -748,7 +748,7 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 ## PhotoOutput
 
-拍照会话中使用的输出信息，继承[CameraOutput](#cameraoutput)。
+拍照会话中使用的输出信息，继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### confirmCapture<sup>11+</sup>
 
@@ -979,7 +979,7 @@ isQuickThumbnailSupported(): boolean
 
 是否支持输出快速缩略图。
 
-在[addOutput](#addoutput11)、[addInput](#addinput11)之后，[commitConfig](#commitconfig11-1)之前生效。
+在[addOutput](js-apis-camera.md#addoutput11)、[addInput](js-apis-camera.md#addinput11)之后，[commitConfig](js-apis-camera.md#commitconfig11-1)之前生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1029,7 +1029,7 @@ enableQuickThumbnail(enabled: boolean): void
 
 启用/禁用快速缩略图。
 
-在[addOutput](#addoutput11)、[addInput](#addinput11)之后，[commitConfig](#commitconfig11-1)之前生效。
+在[addOutput](js-apis-camera.md#addoutput11)、[addInput](js-apis-camera.md#addinput11)之后，[commitConfig](js-apis-camera.md#commitconfig11-1)之前生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1100,7 +1100,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 是 | 回调返回PixelMap。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 是 | 回调返回PixelMap。 |
 
 **示例：**
 
@@ -1163,7 +1163,7 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有就是匹配on('quickThumbnail') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有就是匹配on('quickThumbnail') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -2214,14 +2214,14 @@ function setPhysicalAperture(session: camera.PortraitPhotoSession, physicalApert
 
 ## CaptureSession<sup>(deprecated)</sup>
 
-拍照会话类，保存一次相机运行所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)，并向相机设备申请完成相机功能(录像，拍照)。
+拍照会话类，保存一次相机运行所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)，并向相机设备申请完成相机功能(录像，拍照)。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[PhotoSession](#photosession11)、[VideoSession](#videosession11)替代。
 
 ### getSupportedBeautyTypes<sup>(deprecated)</sup>
 
-getSupportedBeautyTypes(): Array<[BeautyType](#beautytype)>
+getSupportedBeautyTypes(): Array\<BeautyType>
 
 获取当前支持的美颜效果列表。
 
@@ -2407,7 +2407,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro
 
-提供给系统应用的VideoSession，普通拍照模式会话类，继承自[Session](#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
+提供给系统应用的VideoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2417,7 +2417,7 @@ PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, M
 
 PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom
 
-普通拍照模式会话类，继承自[Session](#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
+普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('macroStatusChanged')<sup>11+</sup>
 
@@ -2479,7 +2479,7 @@ function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
 
-提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
+提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2489,7 +2489,7 @@ VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, M
 
 VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization
 
-普通录像模式会话类，继承自[Session](#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
+普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('macroStatusChanged')<sup>11+</sup>
 
@@ -2551,7 +2551,7 @@ function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
 
 PortraitPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, Beauty, ColorEffect, ColorManagement, Portrait, Aperture
 
-人像拍照模式会话类，继承自[Session](#session11)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
+人像拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('error')<sup>11+</sup>
 
@@ -2567,8 +2567,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig11)，[commitConfig](#commitconfig11-1)，[addInput](#addinput11)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
 
 **示例：**
 
@@ -2624,7 +2624,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
 
@@ -2655,7 +2655,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -2680,7 +2680,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **示例：**
 
@@ -2711,7 +2711,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -2725,7 +2725,7 @@ function unregisterSmoothZoomInfo(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-夜景拍照模式会话类，继承自[Session](#session11)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
+夜景拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 ### on('error')<sup>11+</sup>
 
@@ -2741,8 +2741,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig11)，[commitConfig](#commitconfig11-1)，[addInput](#addinput11)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **示例：**
 
@@ -2798,7 +2798,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
 
@@ -2829,7 +2829,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -2854,7 +2854,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **示例：**
 
@@ -2885,7 +2885,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
