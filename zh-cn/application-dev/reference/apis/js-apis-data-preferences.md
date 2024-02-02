@@ -1035,6 +1035,8 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
     if (err) {
         console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1069,6 +1071,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.get('startup', 'default');
 promise.then((data: dataPreferences.ValueType) => {
     console.info("Succeeded in getting value of 'startup'. Data: " + data);
@@ -1121,6 +1125,8 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
 function getObjKeys(obj: Object): string[] {
@@ -1157,6 +1163,8 @@ getAll(): Promise&lt;Object&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
 function getObjKeys(obj: Object): string[] {
@@ -1223,6 +1231,8 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.put('startup', 'auto', (err: BusinessError) => {
     if (err) {
         console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1257,6 +1267,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.put('startup', 'auto');
 promise.then(() => {
     console.info("Succeeded in putting value of 'startup'.");
@@ -1306,6 +1318,8 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.has('startup', (err: BusinessError, val: boolean) => {
     if (err) {
         console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1343,6 +1357,8 @@ has(key: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.has('startup');
 promise.then((val: boolean) => {
     if (val) {
@@ -1406,6 +1422,8 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.delete('startup', (err: BusinessError) => {
     if (err) {
         console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1439,6 +1457,8 @@ delete(key: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.delete('startup');
 promise.then(() => {
     console.info("Succeeded in deleting the key 'startup'.");
@@ -1486,6 +1506,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.flush((err: BusinessError) => {
     if (err) {
         console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
@@ -1513,6 +1535,8 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.flush();
 promise.then(() => {
     console.info("Succeeded in flushing.");
@@ -1539,6 +1563,8 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.clear((err: BusinessError) =>{
     if (err) {
         console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
@@ -1566,6 +1592,8 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.clear();
 promise.then(() => {
     console.info("Succeeded in clearing.");
@@ -1608,6 +1636,8 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
@@ -1627,8 +1657,6 @@ preferences.flush((err: BusinessError) => {
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
-
-此方法可以配合[removePreferencesFromCache](#datapreferencesremovepreferencesfromcache)使用，当监听到有进程更新了文件时，在回调方法中更新当前的Preferences实例，如下示例2。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1650,6 +1678,8 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
@@ -1682,6 +1712,8 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
@@ -1715,6 +1747,8 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
