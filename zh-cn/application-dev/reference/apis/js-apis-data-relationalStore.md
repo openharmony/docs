@@ -3507,8 +3507,6 @@ commit():void
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3542,8 +3540,6 @@ rollBack():void
 
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
-
-let context = getContext(this);
 
 let key1 = "name";
 let key2 = "age";
