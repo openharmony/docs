@@ -4649,13 +4649,23 @@ setWindowBackgroundColor(color: string): void
 **示例：**
 
 ```ts
-let color: string = '#00ff33';
-let windowClass: window.Window = window.findWindow("test");
-try {
-  windowClass.setWindowBackgroundColor(color);
-} catch (exception) {
-  console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-}
+import { BusinessError } from '@kit.BasicServicesKit';
+
+  private SetUIContent(windowClass: window.Window) {
+    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      let color: string = '#00ff33';
+      try {
+        windowClass.setWindowBackgroundColor(color);
+      } catch (exception) {
+        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+      };
+    });
+  }
 ```
 
 ### setWindowBrightness<sup>9+</sup>
