@@ -4651,7 +4651,7 @@ setWindowBackgroundColor(color: string): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-  private SetUIContent(windowClass: window.Window) {
+private SetUIContent(windowClass: window.Window) {
     windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
       if (err.code) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
@@ -4665,7 +4665,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
         console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
       };
     });
-  }
+}
 ```
 
 ### setWindowBrightness<sup>9+</sup>
