@@ -12,9 +12,13 @@
 
 **变更影响**
 
-API version 11变更前：输入框使用默认圆角， 设置padding为0，光标超出文本组件圆角部分未被截断。
+API version 11变更前：输入框使用默认圆角， 设置padding为0，光标超出输入框组件圆角的部分未被截断。
 
-API version 11变更后：输入框使用默认圆角， 设置padding为0，光标超出文本组件圆角部分会被截断。
+![Alt text](figures/textinputcursorexceednotclip.png)
+
+API version 11变更后：输入框使用默认圆角， 设置padding为0，光标超出输入框组件圆角的部分会被截断。
+
+![Alt text](figures/textinputcursorexceedclip.png)
 
 **API Level**
 
