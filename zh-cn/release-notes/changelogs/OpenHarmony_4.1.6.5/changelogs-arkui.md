@@ -263,4 +263,4 @@ bindMenu
 
 **适配指导**
 
-使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等。
+使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等，如果出现修改isShow的值后，菜单无法弹出，可以在isShow修改前后加上日志打印该值，判断isShow是否有变化, 如果没有变化，需要检查是不是在menu消失的时候没有在onDisappear里更新isShow的值为false，或者初始情况下将isShow设置为了true。
