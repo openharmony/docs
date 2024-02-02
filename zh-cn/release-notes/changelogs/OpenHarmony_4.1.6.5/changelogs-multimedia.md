@@ -433,7 +433,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 **变更影响**
 
-声明无变更，开发者无需适配
+声明无变更，遵循接口定义的开发者无需适配
 
 **变更发生版本**
 
@@ -465,4 +465,6 @@ isMute(volumeType: AudioVolumeType): Promise<boolean>;
 
 **适配指导**
 
-声明无变更，错误码本来就声明的就是number，开发者无需适配
+声明无变更，错误码本来就声明的就是number类型。
+
+如开发者根据历史接口实际返回结果主动发现返回的错误码不符合定义，而直接使用字符串校验，需要根据原有API定义适配，使用AudioErrors数字错误码。
