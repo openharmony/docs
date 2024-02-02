@@ -27,7 +27,7 @@ Components support dynamic rotation, translation, and scaling effects. These eff
 | ------------- | -------------------------------------- | ------------------------------------------------------------ |
 | none<sup>6+</sup>        | -                                      | Does not perform any transformation. |
 | matrix<sup>6+</sup>      | \<number>                              | Defines a matrix of six values, which represent scaleX, skewY, skewX, scaleY, translateX, translateY. |
-| matrix3d<sup>6+</sup>    | \<number>                              | Defines a 4x4 matrix of 16 values.                          |
+| matrix3d<sup>6+</sup>    | \<number>                              | Defines a 4 x 4 matrix of 16 values.                          |
 | translate     | \<length> \| \<percent>                | Moves an element in 2D space.      |
 | translate3d<sup>6+</sup> | \<length> \| \<percent>                | Moves an element in 3D space. There are three input parameters, indicating the translation distance of the x-axis, y-axis, and z-axis, respectively. |
 | translateX    | \<length> \| \<percent>                | Moves an element along the x-axis.                           |
