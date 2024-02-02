@@ -52,6 +52,7 @@ export let calendarMgr : calendarManager.CalendarManager | null = null;
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     mContext = this.context;
+    // 在此函数调用前确保已获取日历所需权限
     calendarMgr = calendarManager.getCalendarManager(mContext);
   }
 }
@@ -1325,16 +1326,16 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 | 名称           | 类型                              | 只读 | 必填 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| id             | number                            | 是   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。 |
+| id             | number                            | 否   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。 |
 | type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。                                                   |
 | title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串。                             |
 | location       | [Location](#location)             | 否   | 否   | 日程地点。不填时，默认为null。                               |
-| startTime      | number                            | 否   | 是   | 日程开始时间。                                               |
-| endTime        | number                            | 否   | 是   | 日程结束时间。                                               |
+| startTime      | number                            | 否   | 是   | 日程开始时间，需要13位时间戳。                                               |
+| endTime        | number                            | 否   | 是   | 日程结束时间，需要13位时间戳。                                               |
 | isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。 |
 | attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。                             |
 | timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](js-apis-system-date-time.md#systemdatetimegettimezone)获取当前系统时区。 |
-| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间。不填时，默认为不提醒。                           |
+| reminderTime   | number[]                          | 否   | 否   | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。                           |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。                           |
 | description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。                             |
 | service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。                           |
