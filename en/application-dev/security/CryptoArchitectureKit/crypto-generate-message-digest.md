@@ -40,7 +40,7 @@ The following provides examples of MD operations with different data passing met
 
 1. Use [cryptoFramework.createMd](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
-2. Use [Md.update](../../reference/apis/js-apis-cryptoFramework.md#update-6) to pass in the full data. The data to be passed in by a single **update()** operation is not size-bound.
+2. Use [Md.update](../../reference/apis/js-apis-cryptoFramework.md#update-6) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
 
 3. Use [Md.digest](../../reference/apis/js-apis-cryptoFramework.md#digest) to generate an MD.
 
@@ -56,7 +56,7 @@ async function doMd() {
   let mdAlgName = "SHA256"; // Algorithm to use.
   let message = "mdTestMessgae"; // Message to be digested.
   let md = cryptoFramework.createMd(mdAlgName);
-  // If the data to be processed is short, use update() to pass in the full data at a time. The data to be passed in by a single **update()** operation is not size-bound.
+  // If the data to be processed is short, use update() to pass in the full data at a time. The data to be passed in by a single **update()** operation is not size bound.
   await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let mdResult = await md.digest();
   console.info('Md result:' + mdResult.data);
