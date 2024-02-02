@@ -112,8 +112,6 @@ export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
 
 广告请求回调。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.Advertising.Ads
 
 **起始版本：** 11
