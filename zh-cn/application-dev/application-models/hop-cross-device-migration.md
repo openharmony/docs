@@ -406,7 +406,9 @@ export default class MigrationAbility extends UIAbility {
 
 当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis/js-apis-data-distributedobject.md)进行数据迁移。
 
-首先，在源端`onContinue()`接口中，创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中。然后调用[`genSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。最后调用[`save()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
+1. 首先，在源端`onContinue()`接口中，创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中。
+2. 然后调用[`genSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。
+3. 最后调用[`save()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
 
 使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
 
