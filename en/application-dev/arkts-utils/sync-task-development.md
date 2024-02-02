@@ -151,7 +151,7 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
      }
    }
 
-   // Worker.ts code
+   // MyWorker.ts code
    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
    import Handle from './handle.ts' // Return a handle.
 
