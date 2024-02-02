@@ -1,4 +1,4 @@
-# ringtonePlayer (铃声播放器)
+# ringtonePlayer (铃声播放器)(系统接口)
 
 铃声播放器提供了系统铃声的播放、配置、获取信息等功能。
 
@@ -500,11 +500,14 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
   }
 });
 ```
+
 ### off('audioInterrupt') <sup>10+</sup>
 
 off(type: 'audioInterrupt'): void
 
 取消订阅音频中断事件。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
