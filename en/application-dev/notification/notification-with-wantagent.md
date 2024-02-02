@@ -13,7 +13,7 @@ Below you can see the process of adding a **WantAgent** object to a notification
 
 For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
 
-| API | Description|
+| Name | Description|
 | -------- | -------- |
 | getWantAgent(info: WantAgentInfo, callback: AsyncCallback&lt;WantAgent&gt;): void | Creates a **WantAgent** object.|
 | trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback&lt;CompleteData&gt;): void | Triggers a **WantAgent** object.|
@@ -24,7 +24,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
 
 ## How to Develop
 
-1. [Enable notification](notification-enable.md). An application can use the notification feature only after being authorized by the user.
+1. [Request notification authorization](notification-enable.md). Your application can send notifications only after obtaining user authorization. 
 
 2. Import the modules.
 
@@ -33,7 +33,6 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    import wantAgent from '@ohos.app.ability.wantAgent';
    import { WantAgent } from '@ohos.app.ability.wantAgent';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. Create a **WantAgentInfo** object.
@@ -87,10 +86,10 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
-       logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info('Succeeded in getting want agent.');
+     console.info('Succeeded in getting want agent.');
      wantAgentObj = data;
    });
    ```
@@ -115,10 +114,10 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info('Succeeded in publishing notification.');
+     console.info('Succeeded in publishing notification.');
    });
    ```
 

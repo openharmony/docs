@@ -9,7 +9,7 @@ Popup是用于显示特定样式气泡。
 ## 导入模块
 
 ```
-import { Popup , PopupOptions,PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
 ```
 
 ##  子组件
@@ -41,7 +41,7 @@ PopupOptions定义Popup的具体式样参数。
 | icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 设置popup图标。<br />**说明：**<br />当size设置异常值或0时不显示。 |
 | title     | [PopupTextOptions](#popuptextoptions)                        | 否   | 设置popup标题文本。                  |
 | message   | [PopupTextOptions](#popuptextoptions)                        | 是   | 设置popup内容文本。<br />**说明：**<br />message不支持设置fontWeight。 |
-| showClose | boolean\| [Resource](ts-types.md#resource)                 | 否   | 设置popup关闭按钮。                  |
+| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。                  |
 | onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。          |
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
 
@@ -56,7 +56,7 @@ PopupTextOptions设置文本样式。
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置文本内容。     |
 | fontSize   | number \| string \| [Resource](ts-types.md#resource)         | 否   | 设置文本字体大小。 |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置文本字体颜色。 |
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight)\| string | 否   | 设置文本字体粗细。 |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本字体粗细。 |
 
 ## PopupButtonOptions
 
@@ -79,17 +79,17 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 | 名称         | 类型                                                         | 必填 | 描述                               |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| image        | [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是   | 设置图标内容。                     |
+| image        | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置图标内容。                     |
 | width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP。 |
 | height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。<br />默认值：32VP。 |
 | fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。                 |
-| borderRadius | [Length](ts-types.md#length)\| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：12VP   |
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：12VP   |
 
 ## 示例   
 
 ```ts
 // xxx.ets
-import { Popup , PopupOptions,PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
 
 @Entry
 @Component

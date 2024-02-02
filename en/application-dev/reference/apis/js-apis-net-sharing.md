@@ -999,8 +999,7 @@ sharing.off('sharingStateChange', (data: boolean) => {
 
 ## sharing.on('interfaceSharingStateChange')
 
-on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
-SharingIfaceState }>): void
+on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStateInfo\>): void
 
 Subscribes to network sharing state changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -1012,10 +1011,10 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 
 **Parameters**
 
-| Name  | Type                                                                                                                        | Mandatory| Description                                 |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                                                                                       | Yes  | Event name.                           |
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: [SharingIfaceState](#sharingifacestate) }> | Yes  | Callback invoked when the network sharing state of the specified NIC changes.|
+| Name  | Type                                                                  | Mandatory| Description                                 |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------- |
+| type     | string                                                                | Yes  | Event name.                           |
+| callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | Yes  | Callback used to return the result. It is called when the network sharing state of a specified NIC changes.|
 
 **Error codes**
 
@@ -1037,8 +1036,7 @@ sharing.on('interfaceSharingStateChange', (data: object) => {
 
 ## sharing.off('interfaceSharingStateChange')
 
-off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
-SharingIfaceState }>): void
+off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingStateInfo\>): void
 
 Unsubscribes from network sharing status changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -1050,10 +1048,10 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 
 **Parameters**
 
-| Name  | Type                                                                                                                        | Mandatory| Description                                    |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                                                                                                       | Yes  | Event name.                              |
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: [SharingIfaceState](#sharingifacestate) }> | No  | Callback used to return the result.|
+| Name  | Type                                                                       | Mandatory| Description                                    |
+| -------- | --------------------------------------------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                                                     | Yes  | Event name.                              |
+| callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | No  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1146,6 +1144,22 @@ sharing.off('sharingUpstreamChange', (data: object) => {
   console.log(JSON.stringify(data));
 });
 ```
+
+## InterfaceSharingStateInfo<sup>11+</sup>
+
+Wakes up the listener for network sharing state changes of an NIC.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
+
+### Attributes
+
+| Name  | Type                     | Mandatory| Description                            |
+| -------- | ------------------------- | ---- | -------------------------------- |
+| type     | [SharingIfaceType](#sharingifacetype)                    | Yes  | Enumerates the network sharing types of an NIC.                      |
+| iface | string               | Yes  | NIC name.|
+| state | [SharingIfaceState](#sharingifacestate)          | Yes  | Network sharing state of the NIC.|
 
 ## SharingIfaceState
 

@@ -11,12 +11,16 @@
 可以包含单个子组件。
 ## 接口
 
-GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
+GridCol(option?: GridColOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| option   | [GridColOptions](#gridcoloptions对象说明) | 否   | 栅格布局子组件参数。 |
 
+## GridColOptions对象说明
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件占用栅格容器组件的列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>默认值：1。 |
@@ -34,6 +38,7 @@ GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColC
 |order  |20 |20 |20 |3  |3  |3  |
 
 ## 属性
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |

@@ -25,7 +25,6 @@
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
    import promptAction from '@ohos.promptAction';
-   import Logger from '../utils/Logger';
 
    const TAG: string = 'ProcessModel';
    ```

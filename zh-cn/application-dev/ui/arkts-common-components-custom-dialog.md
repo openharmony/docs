@@ -44,7 +44,8 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    ```ts
    @Entry
    @Component
-   struct CustomDialogUser {dialogController: CustomDialogController = new CustomDialogController({
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
    
@@ -69,7 +70,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
 1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
 
-     ```ts
+   ```ts
    @CustomDialog
    struct CustomDialogExample {
      cancel?: () => void
@@ -83,18 +84,22 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
            Button('cancel')
              .onClick(() => {
                this.controller.close()
-               if(this.cancel) this.cancel()
+               if (this.cancel) {
+                 this.cancel()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
            Button('confirm')
              .onClick(() => {
                this.controller.close()
-               if(this.confirm) this.confirm()
+               if (this.confirm) {
+                 this.confirm()
+               }
              }).backgroundColor(0xffffff).fontColor(Color.Red)
          }.margin({ bottom: 10 })
        }
      }
    }
-     ```
+   ```
 
 2. 页面内需要在构造器内进行接收，同时创建相应的函数操作。
 
@@ -102,33 +107,94 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    @Entry
    @Component
    struct CustomDialogUser {
-     dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({
-         cancel: this.onCancel,
-         confirm: this.onAccept,
-       }),
-     })
+       dialogController: CustomDialogController = new CustomDialogController({
+         builder: CustomDialogExample({
+           cancel: this.onCancel,
+           confirm: this.onAccept,
+         }),
+       })
    
-     onCancel() {
-       console.info('Callback when the first button is clicked')
-     }
+       onCancel() {
+         console.info('Callback when the first button is clicked')
+       }
    
-     onAccept() {
-       console.info('Callback when the second button is clicked')
-     }
+       onAccept() {
+         console.info('Callback when the second button is clicked')
+       }
    
-     build() {
-       Column() {
-         Button('click me')
-           .onClick(() => {
-             this.dialogController.open()
-           })
-       }.width('100%').margin({ top: 5 })
+       build() {
+         Column() {
+           Button('click me')
+             .onClick(() => {
+               this.dialogController.open()
+             })
+         }.width('100%').margin({ top: 5 })
+       }
      }
-   }
-     ```
+   ```
 
       ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
+
+## 弹窗的动画
+
+弹窗通过定义openAnimation控制弹窗出现动画的持续时间，速度等参数。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State textValue: string = ''
+  @State inputValue: string = 'click me'
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    openAnimation: {
+      duration: 1200,
+      curve: Curve.Friction,
+      delay: 500,
+      playMode: PlayMode.Alternate,
+      onFinish: () => {
+        console.info('play end')
+      }
+    },
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false,
+    backgroundColor: 0xd9ffffff,
+    cornerRadius: 10,
+  })
+
+  // 在自定义组件即将析构销毁时将dialogControlle置空
+  aboutToDisappear() {
+    this.dialogController = null // 将dialogController置空
+  }
+
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![openAnimator](figures/openAnimator.gif)
 
 ## 完整示例
 
@@ -146,12 +212,16 @@ struct CustomDialogExample {
         Button('cancel')
           .onClick(() => {
             this.controller.close()
-            if (this.cancel) this.cancel()
+            if (this.cancel) {
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             this.controller.close()
-            if (this.confirm) this.confirm()
+            if (this.confirm) {
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }

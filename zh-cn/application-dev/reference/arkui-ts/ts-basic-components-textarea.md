@@ -16,14 +16,18 @@
 
 ## 接口
 
-TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
+TextArea(value?: TextAreaOptions)
 
 **参数：**
+| 参数名 |类型|必填|说明|
+|-----|-----|----|----|
+| value | [TextAreaOptions](#textareaoptions对象说明) | 否  | TextArea组件参数。 |
 
+## TextAreaOptions对象说明
 | 参数名                     | 参数类型                                     | 必填   | 参数描述           |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>当组件设置[stateStyles](ts-universal-attributes-polymorphic-style.md)等刷新属性时，建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -51,7 +55,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | enterKeyType<sup>11+</sup>  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 设置输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
 >  **说明：**
 >
->  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }  <br>从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
+>  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }  <br>从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ## 事件
 
@@ -151,15 +155,6 @@ getTextContentLineCount(): number
 | ----- | -------- |
 | number| 已编辑文本内容行数。 |
 
-## TextAreaType<sup>11+</sup>枚举说明
-
-| 名称                 | 描述            |
-| ------------------ | ------------- |
-| Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| Email    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
-| Number   | 纯数字输入模式。      |
-| PhoneNumber | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
-
 ### getCaretOffset<sup>11+</sup>
 
 getCaretOffset(): CaretOffset
@@ -175,6 +170,15 @@ getCaretOffset(): CaretOffset
 > **说明：**
 >
 > - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+
+## TextAreaType<sup>11+</sup>枚举说明
+
+| 名称                 | 描述            |
+| ------------------ | ------------- |
+| NORMAL   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
+| EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
+| NUMBER   | 纯数字输入模式。      |
+| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 
 ## 示例
 
@@ -330,6 +334,9 @@ struct TextAreaExample {
 		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
         //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
         //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+        .onChange((value: string) => {
+          this.text = value
+        })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }

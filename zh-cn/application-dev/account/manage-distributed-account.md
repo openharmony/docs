@@ -1,6 +1,6 @@
 # 管理分布式帐号（仅对系统应用开放）
 
-OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-account.md#)将自有帐号与本地系统帐号建立关联关系。
+OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-account.md)将自有帐号与本地系统帐号建立关联关系。
 
 ## 开发准备
 

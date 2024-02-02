@@ -597,11 +597,24 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | 否 | 表示文件列表副本 |
-| pageRange | PrinterRange | 否 | 表示待打印文件的范围 |
+| pageRange | PrintPageRange | 否 | 表示待打印文件的范围 |
 | pageSize | PrintPageSize \| PrintPageType | 否 | 表示代打印文件的页面大小 |
 | directionMode | PrintDirectionMode | 否 | 表示待打印文件的方向 |
 | colorMode | PrintColorMode | 否 | 表示待打印文件的色彩模式 |
 | duplexMode | PrintDuplexMode | 否 | 表示待打印文件的单双面模式 |
+
+## PrintPageRange<sup>11+</sup>
+
+定义打印范围的接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**属性：**
+| **名称** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| startPage | number | 否 | 表示起始页 |
+| endPage | number | 否 | 表示结束页 |
+| pages | Array&lt;number&gt; | 否 | 表示离散页面 |
 
 ## PrintMargin
 
@@ -619,9 +632,11 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | left | number | 否 | 表示页面左边距 |
 | right | number | 否 | 表示页面右边距 |
 
-## PrinterRange<sup>11+</sup>
+## PrinterRange
 
 定义打印范围的接口。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -2396,7 +2411,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-print.queryPrintJobById(jobId, (err: BusinessError, printJob : PrintJob) => {
+print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) => {
     if (err) {
         console.log('queryPrintJobById failed, because : ' + JSON.stringify(err));
     } else {
@@ -2434,7 +2449,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-print.queryPrintJobById(jobId).then((printJob : PrintJob) => {
+print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
     console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
 }).catch((error: BusinessError) => {
     console.log('queryPrintJobById error : ' + JSON.stringify(error));
@@ -2470,14 +2485,14 @@ import { BusinessError } from '@ohos.base';
 let jobId : string= '1';
 class MyPrintAttributes implements print.PrintAttributes {
     copyNumber?: number;
-    pageRange?: print.PrinterRange;
+    pageRange?: print.PrintPageRange;
     pageSize?: print.PrintPageSize | print.PrintPageType;
     directionMode?: print.PrintDirectionMode;
     colorMode?: print.PrintColorMode;
     duplexMode?: print.PrintDuplexMode;
 }
 
-class MyPrinterRange implements print.PrinterRange {
+class MyPrintPageRange implements print.PrintPageRange {
     startPage?: number;
     endPage?: number;
     pages?: Array<number>;
@@ -2492,7 +2507,7 @@ class MyPrintPageSize implements print.PrintPageSize {
 
 let printAttributes = new MyPrintAttributes();
 printAttributes.copyNumber = 2;
-printAttributes.pageRange = new MyPrinterRange();
+printAttributes.pageRange = new MyPrintPageRange();
 printAttributes.pageRange.startPage = 0;
 printAttributes.pageRange.endPage = 5;
 printAttributes.pageRange.pages = [1, 3];
@@ -2504,6 +2519,41 @@ printAttributes.duplexMode = print.PrintDuplexMode.DUPLEX_MODE_NONE;
 let fd : number = 1;
 print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileCreationState) => {
     console.log('onFileStateChanged success, data : ' + JSON.stringify(state));
+})
+```
+
+## notifyPrintService<sup>11+</sup>
+
+notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started', callback: AsyncCallback&lt;void&gt;): void
+
+将spooler关闭信息通知打印服务，使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步将spooler关闭信息通知打印服务之后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '1';
+print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessError, data : void) => {
+    if (err) {
+        console.log('notifyPrintService failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('notifyPrintService success, data : ' + JSON.stringify(data));
+    }
 })
 ```
 
@@ -2538,8 +2588,8 @@ import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
 print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
-    console.log('queryPrintJobById data : ' + JSON.stringify(data));
+    console.log('notifyPrintService data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('queryPrintJobById error : ' + JSON.stringify(error));
+    console.log('notifyPrintService error : ' + JSON.stringify(error));
 })
 ```

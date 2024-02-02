@@ -9,7 +9,8 @@
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
    ```c++
-    // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
+    // 导入NDK接口头文件
+    #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
     #include "ohcamera/capture_session.h"
@@ -19,38 +20,51 @@
     #include "ohcamera/camera_manager.h"
    ```
 
-2. 在CMake脚本中链接Camera NDK动态库。
+2. 在CMake脚本中链接相关动态库。
 
    ```txt
-    target_link_libraries(PUBLIC libohcamera.so)
+    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
 3. 获取SurfaceId。
    
-   通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与预览输出流相关联，获取预览输出流的数据。
- 
-   ```ts
-   async function getPreviewSurfaceId(): Promise<string | undefined> {
-     let previewSurfaceId: string | undefined = undefined;
-     let previewReceiver: image.ImageReceiver = image.createImageReceiver(320, 240, 2000, 8);
-     console.info('before ImageReceiver check');
-     if (previewReceiver !== undefined) {
-       console.info('ImageReceiver is ok');
-       previewSurfaceId = await previewReceiver.getReceivingSurfaceId();
-       console.info(`ImageReceived id: ${JSON.stringify(previewSurfaceId)}`);
-     } else {
-       console.info('ImageReceiver is not ok');
-     }
-     return previewSurfaceId;
-   }
-   ```
+   通过image的createImageReceiver()方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId()方法获取SurfaceId。
 
-4. 通过OH_CameraManager_GetSupportedCameraOutputCapability方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针
+4. 根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput()方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput()方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针。
      
    ```c++
-    ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
-    if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
+    NDKCamera::NDKCamera(char *str)
+    {
+      Camera_Manager *cameraManager = nullptr;
+      Camera_Device* cameras = nullptr;
+      Camera_OutputCapability* cameraOutputCapability = nullptr;
+      Camera_PreviewOutput* previewOutput = nullptr;
+      const Camera_Profile* previewProfile = nullptr;
+      uint32_t size = 0;
+      uint32_t cameraDeviceIndex = 0;
+      char* previewSurfaceId = str;
+      Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
+      if (cameraManager == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+      }
+      ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+      if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+      }
+      ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
+                                                                      &cameraOutputCapability);
+      if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+      }
+      if (cameraOutputCapability->previewProfilesSize < 0) {
+        OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+      }
+      previewProfile = cameraOutputCapability->previewProfiles[0];
+      
+      ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
+      if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
+      }
     }
    ```
 
@@ -79,6 +93,12 @@
 - 通过注册固定的frameStart回调函数获取监听预览启动结果，previewOutput创建成功时即可监听，预览第一次曝光时触发，有该事件返回结果则认为预览流已启动。
     
   ```c++
+    ret = OH_PreviewOutput_RegisterCallback(previewOutput, GetPreviewOutputListener());
+    if (ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_RegisterCallback failed.");
+    }
+  ```
+  ```c++
     void PreviewOutputOnFrameStart(Camera_PreviewOutput* previewOutput)
     {
         OH_LOG_INFO(LOG_APP, "PreviewOutputOnFrameStart");
@@ -91,10 +111,6 @@
             .onError = PreviewOutputOnError
         };
         return &previewOutputListener;
-    }
-    ret = OH_PreviewOutput_RegisterCallback(previewOutput_, GetPreviewOutputListener());
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_RegisterCallback failed.");
     }
   ```
 

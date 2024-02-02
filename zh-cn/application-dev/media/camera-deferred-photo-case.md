@@ -25,37 +25,42 @@ import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
 let context = getContext(this);
 
 // 写文件方式落盘真图
-async function savePicture(img: image.Image) {
+async function savePicture(photoObj: camera.Photo): Promise<void> {
   let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
   let testFileName = 'testFile' + Date.now() + '.jpg';
   //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
   let photoAsset = await photoAccessHelper.createAsset(testFileName);
-  let buffer: ArrayBuffer;
-  img.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+  const fd = await photoAsset.open('rw');
+  let buffer: ArrayBuffer | undefined = undefined;
+  photoObj.main.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
     if (errCode || component === undefined) {
+      console.error('getComponent failed');
       return;
     }
     if (component.byteBuffer) {
       buffer = component.byteBuffer;
     } else {
+      console.error('byteBuffer is null');
       return;
     }
   });
-  fs.write(fd, buffer);
+  if (buffer) {
+    await fs.write(fd, buffer);
+  }
   await photoAsset.close(fd);
-  img.release(); 
+  await photoObj.release(); 
 }
 
 // 调用媒体库方式落盘缩略图
-async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
+async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
   try {
     // 创建 photoAsset
     let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
     let testFileName = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await photoAccessHelper.createAsset(testFileName);
     // 将缩略图代理类传递给媒体库
-    let mediaRequest: photoAccessHelper.MediaChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
-    mediaRequest.AddResource(photoAccessHelper.ResourceTypeType.PHOTOT_PROXY, proxyObj);
+    let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
     let res = await photoAccessHelper.applyChanges(mediaRequest);
     console.info('saveDeferredPhoto success.');
   } catch (err) {
@@ -112,7 +117,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   await cameraInput.open();
 
   // 获取支持的模式类型
-  let modes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+  let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
   let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
   if (!isSupportPhotoMode) {
     console.error('photo mode not support');
@@ -165,7 +170,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   //创建会话
   let photoSession: camera.PhotoSession | undefined = undefined;
   try {
-    photoSession = cameraManager.createSession(camera.SceneMode..NORMAL_PHOTO);
+    photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to create the photoSession instance. errorCode = ' + err.code);
@@ -216,7 +221,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
       console.info(`photoAvailable error: ${JSON.stringify(err)}.`);
       return;
     }
-    this.savePicture(photoObj).then(() => {
+    savePicture(photoObj).then(() => {
       // 落盘完成后，释放photo对象。
       photoObj.release();
     });
@@ -234,7 +239,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
       AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
     });
     // 调用媒体库接口落盘缩略图
-    this.saveDeferredPhoto(proxyObj).then(() => {
+    saveDeferredPhoto(proxyObj).then(() => {
       // 落盘完成后，释放代理类对象。
       proxyObj.release();
     });

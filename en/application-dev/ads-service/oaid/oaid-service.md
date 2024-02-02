@@ -2,9 +2,7 @@
 
 ## When to Use
 
-The Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service provides personalized ads for users while protecting their personal data privacy. It can also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
-
-No matter whether you are running a media application, an ad platform, or a tracking platform, you can obtain OAID information from devices. The OAID information can be used to recommend personalized ads to users and attribute ad conversions.
+The Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
 
 
 ## Available APIs
@@ -18,7 +16,7 @@ No matter whether you are running a media application, an ad platform, or a trac
 
 ## How to Develop
 
-1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/permission-list.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
+1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
    ```
    {
      "module": {
@@ -31,7 +29,7 @@ No matter whether you are running a media application, an ad platform, or a trac
     }
    ```
 
-2. Request authorization from the user by displaying a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
+2. Request authorization from the user in a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
    ```
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
@@ -77,7 +75,7 @@ No matter whether you are running a media application, an ad platform, or a trac
    }
    ```
    
-4. Call **setOAID()** (a system API) to reset the OAID information. The sample code is as follows:
+4. Call **setOAID()** (a system API) to reset the OAID. The sample code is as follows:
    ```
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 

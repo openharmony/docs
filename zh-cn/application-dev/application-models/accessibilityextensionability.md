@@ -1,6 +1,6 @@
 # AccessibilityExtensionAbility
 
-Accessibility Kit通过基于ExtensionAbility框架的AccessibilityExtensionAbility提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的扩展服务，协助用户完成一些快捷的交互过程。
+Accessibility Kit（无障碍开发服务）通过基于ExtensionAbility框架的AccessibilityExtensionAbility提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的扩展服务，协助用户完成一些快捷的交互过程。
 
 ## 如何创建一个无障碍扩展服务
 
@@ -47,9 +47,9 @@ export default AccessibilityExtAbility;
 
 | 接口 | 描述 |
 | ---- | ---- |
-| onConnect(): void | 当扩展服务连接时回调 |
-| onDisconnect(): void | 当扩展服务断开时回调 |
-| onAccessibilityEvent(event: AccessibilityEvent): void | 当无障碍事件发生时回调 |
+| onConnect(): void | 当扩展服务连接时回调。 |
+| onDisconnect(): void | 当扩展服务断开时回调。 |
+| onAccessibilityEvent(event: AccessibilityEvent): void | 当无障碍事件发生时回调。 |
 
 创建AccessibilityManager.ets文件，用于存放业务逻辑代码：
 ```ts

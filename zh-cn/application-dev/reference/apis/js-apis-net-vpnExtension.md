@@ -19,6 +19,8 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名 | 类型                                | 必填 | 说明               |
@@ -87,6 +89,8 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 停止同一应用程序中的服务。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -165,6 +169,8 @@ setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名     | 类型    | 必填 | 说明                                                    |
@@ -238,6 +244,8 @@ isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                                    |
@@ -310,6 +318,8 @@ updateVpnAuthorizedState(bundleName: string): boolean
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                             |
@@ -377,6 +387,8 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 创建一个 三方VPN 连接对象。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -644,7 +656,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |
 | isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。      |
 | isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 flase。     |
-| isLegacy            | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 flase。   |
+| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 flase。   |
 | isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 flase。       |
 | trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
 | blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |

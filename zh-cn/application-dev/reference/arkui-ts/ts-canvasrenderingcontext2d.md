@@ -18,7 +18,7 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 | 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
+| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
 
 
 ### RenderingContextSettings
@@ -866,8 +866,8 @@ fillRect(x: number, y: number, w: number, h: number): void
 | ------ | ------ | ---- | ---- | ------------- |
 | x      | number | 是    | 0    | 指定矩形左上角点的x坐标，单位：vp。 |
 | y      | number | 是    | 0    | 指定矩形左上角点的y坐标，单位：vp。 |
-| width  | number | 是    | 0    | 指定矩形的宽度，单位：vp。 |
-| height | number | 是    | 0    | 指定矩形的高度，单位：vp。 |
+| w      | number | 是    | 0    | 指定矩形的宽度，单位：vp。 |
+| h      | number | 是    | 0    | 指定矩形的高度，单位：vp。 |
 
 **示例：**
 
@@ -1104,28 +1104,7 @@ measureText(text: string): TextMetrics
 
 | 类型          | 说明                                       |
 | ----------- | ---------------------------------------- |
-| TextMetrics | 文本的尺寸信息。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-
-**TextMetrics类型描述:**
-
-| 属性                       | 类型     | 描述                                       |
-| ------------------------ | ------ | ---------------------------------------- |
-| width                    | number | 字符串的宽度，单位：vp。                                  |
-| height                   | number | 字符串的高度，单位：vp。                                  |
-| actualBoundingBoxAscent  | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界顶部的距离，当前值为0，单位：vp。 |
-| actualBoundingBoxDescent | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的矩形边界底部的距离，当前值为0，单位：vp。 |
-| actualBoundingBoxLeft    | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界左侧的距离，当前值为0，单位：vp。 |
-| actualBoundingBoxRight   | number | 平行于基线，从CanvasRenderingContext2D.textAlign 属性确定的对齐点到文本矩形边界右侧的距离，当前值为0，单位：vp。 |
-| alphabeticBaseline       | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 alphabetic 基线的距离，当前值为0，单位：vp。 |
-| emHeightAscent           | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块顶部的距离，当前值为0，单位：vp。 |
-| emHeightDescent          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框中 em 方块底部的距离，当前值为0，单位：vp。 |
-| fontBoundingBoxAscent    | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离，当前值为0，单位：vp。 |
-| fontBoundingBoxDescent   | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离，当前值为0，单位：vp。 |
-| hangingBaseline          | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 hanging 基线的距离，当前值为0，单位：vp。 |
-| ideographicBaseline      | number | 从CanvasRenderingContext2D.textBaseline 属性标明的水平线到线框的 ideographic 基线的距离，当前值为0，单位：vp。 |
-
-  
-
+| [TextMetrics](#textmetrics) | 文本的尺寸信息。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **示例：**
 
@@ -1397,13 +1376,13 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 | 参数         | 类型                                       | 必填   | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | 图源对象，具体参考ImageBitmap对象。                  |
-| repetition | string                                   | 是    | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
+| repetition | string \| null                            | 是    | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
 
 **返回值：**
 
 | 类型                                       | 说明                      |
 | ---------------------------------------- | ----------------------- |
-| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 通过指定图像和重复方式创建图片填充的模板对象。 |
+| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) \| null | 通过指定图像和重复方式创建图片填充的模板对象。 |
 
 **示例：**
 
@@ -2388,7 +2367,7 @@ createImageData(sw: number, sh: number): ImageData
 
 createImageData(imageData: ImageData): ImageData
 
-创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
+创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagedata.md)。createImageData示例同putImageData。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2552,13 +2531,14 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            let imageData = this.context.createImageData(100, 100)
-            for (let i = 0; i < imageData.data.length; i += 4) {
-              imageData.data[i + 0] = 255
-              imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
-              imageData.data[i + 3] = 255
+            let imageDataNum = this.context.createImageData(100, 100)
+            for (let i = 0; i < imageDataNum.data.length; i += 4) {
+              imageDataNum.data[i + 0] = 255
+              imageDataNum.data[i + 1] = 0
+              imageDataNum.data[i + 2] = 255
+              imageDataNum.data[i + 3] = 255
             }
+            let imageData = this.context.createImageData(imageDataNum)
             this.context.putImageData(imageData, 10, 10)
           })
       }
@@ -2874,6 +2854,12 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
 | x1   | number | 是    | 0    | 终点的x轴坐标，单位：vp。 |
 | y1   | number | 是    | 0    | 终点的y轴坐标，单位：vp。 |
 
+**返回值：** 
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 新的CanvasGradient对象，用于在canvas上创建渐变效果。 |
+
 **示例：**
 
   ```ts
@@ -2927,6 +2913,12 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 | y1   | number | 是    | 0    | 终点圆的y轴坐标，单位：vp。 |
 | r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的，单位：vp。 |
 
+**返回值：** 
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 新的CanvasGradient对象，用于在canvas上创建渐变效果。 |
+
 **示例：**
 
   ```ts
@@ -2976,10 +2968,9 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 **返回值：** 
 
-| 类型       | 说明                       |
-| -------- | ------------------------ |
-| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 返回一个渐变对象。 |
-
+| 类型     | 说明        |
+| ------ | --------- |
+| [CanvasGradient](ts-components-canvas-canvasgradient.md) | 新的CanvasGradient对象，用于在canvas上创建渐变效果。 |
 
 **示例：**
 
@@ -3088,3 +3079,21 @@ struct CanvasExample {
 | low    | 低画质  |
 | medium | 中画质  |
 | high   | 高画质  |
+
+## TextMetrics
+
+| 属性                       | 类型     | 描述                                       |
+| ------------------------ | ------ | ---------------------------------------- |
+| width                    | number | 只读属性，字符串的宽度。                                  |
+| height                   | number | 只读属性，字符串的高度。                                  |
+| actualBoundingBoxAscent  | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离，当前值为0。 |
+| actualBoundingBoxDescent | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离，当前值为0。 |
+| actualBoundingBoxLeft    | number | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离，当前值为0。 |
+| actualBoundingBoxRight   | number | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界右侧的距离，当前值为0。 |
+| alphabeticBaseline       | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 alphabetic 基线的距离，当前值为0。 |
+| emHeightAscent           | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块顶部的距离，当前值为0。 |
+| emHeightDescent          | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块底部的距离，当前值为0。 |
+| fontBoundingBoxAscent    | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离，当前值为0。 |
+| fontBoundingBoxDescent   | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离，当前值为0。 |
+| hangingBaseline          | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 hanging 基线的距离，当前值为0。 |
+| ideographicBaseline      | number | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 ideographic 基线的距离，当前值为0。 |

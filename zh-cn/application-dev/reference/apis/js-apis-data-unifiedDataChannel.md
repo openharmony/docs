@@ -114,7 +114,7 @@ for (let i = 0; i < records.length; i++) {
 
 | 名称      | 类型                      | 可读 | 可写 | 说明                                                                                |
 | --------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------|
-| summary   | { [key: string]: number } | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
+| summary   | Record<string, number> | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
 | totalSize | number                    | 是   | 否   | 统一数据对象内记录总大小（单位：Byte）。                                                                     |
 
 ## UnifiedRecord
@@ -161,7 +161,7 @@ if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
 
 | 名称    | 类型                      | 可读 | 可写 | 说明                                                                                                                                                  |
 | ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | 是   | 是   | 是一个字典类型对象，key和value都是string类型，用于描述文本内容。例如，可生成一个details内容为<br />{<br />"title":"标题",<br />"content":"内容"<br />}<br />的数据对象，用于描述一篇文章。非必填字段，默认值为空字典对象。 |
+| details | Record<string, string> | 是   | 是   | 是一个字典类型对象，key和value都是string类型，用于描述文本内容。例如，可生成一个details内容为<br />{<br />"title":"标题",<br />"content":"内容"<br />}<br />的数据对象，用于描述一篇文章。非必填字段，默认值为空字典对象。 |
 
 **示例：**
 
@@ -239,7 +239,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 
 | 名称      | 类型                        | 可读 | 可写 | 说明                                                                                                                                                   |
 |---------|---------------------------| ---- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | 是   | 是   | 是一个字典类型对象，key和value都是string类型，用于描述文件相关信息。例如，可生成一个details内容为<br />{<br />"name":"文件名",<br />"type":"文件类型"<br />}<br />的数据对象，用于描述一个文件。非必填字段，默认值为空字典对象。 |
+| details | Record<string, string> | 是   | 是   | 是一个字典类型对象，key和value都是string类型，用于描述文件相关信息。例如，可生成一个details内容为<br />{<br />"name":"文件名",<br />"type":"文件类型"<br />}<br />的数据对象，用于描述一个文件。非必填字段，默认值为空字典对象。 |
 | uri     | string                    | 是   | 是   | 文件数据uri。                                                                                                                                             |
 
 **示例：**
@@ -327,9 +327,9 @@ SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmo
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型                       | 可读 | 可写 | 说明                                                         |
-| ------- |--------------------------| ---- | ---- | ------------------------------------------------------------ |
-| details | { [key: string]: number \| string \| Uint8Array } | 是   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
+| 名称    | 类型                     | 可读       | 可写 | 说明                                                         |
+| ------- |------------------------|----------| ---- | ------------------------------------------------------------ |
+| details | Record<string, number \| string \| Uint8Array> | 是   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
 
 **示例：**
 

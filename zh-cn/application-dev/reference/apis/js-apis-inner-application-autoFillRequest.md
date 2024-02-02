@@ -84,12 +84,12 @@ onSuccess(response: FillResponse): void
                   callback: autoFillManager.FillRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
       try {
-        let storage_fill = new LocalStorage(
-          {
-            'fillCallback': callback,
-            'message': "AutoFill Page",
-            'viewData': request.viewData,
-          });
+        let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
+          'fillCallback': callback,
+          'message': "AutoFill Page",
+          'viewData': request.viewData,
+        }
+        let storage_fill = new LocalStorage(storageData);
         if (session) {
           session.loadContent('pages/AutoFillPage', storage_fill);
         } else {
@@ -126,14 +126,16 @@ onSuccess(response: FillResponse): void
   
         Button('onSuccess')
           .onClick(() => {
-            viewData.pageNodeInfos[0].value = "user1";
-            viewData.pageNodeInfos[1].value = "user1 password";
-            viewData.pageNodeInfos[2].value = "user1 generate new password";
-            hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
-            try {
-              fillCallback.onSuccess({ viewData: viewData });
-            } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+            if (viewData) {
+              viewData.pageNodeInfos[0].value = "user1";
+              viewData.pageNodeInfos[1].value = "user1 password";
+              viewData.pageNodeInfos[2].value = "user1 generate new password";
+              hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
+              try {
+                fillCallback?.onSuccess({ viewData: viewData });
+              } catch (error) {
+                console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              }
             }
           })
           .width('100%')
@@ -172,12 +174,12 @@ onFailure(): void
                   callback : autoFillManager.FillRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
       try {
-        let storage_fill = new LocalStorage(
-          {
-            'fillCallback': callback,
-            'message': "AutoFill Page",
-            'viewData': request.viewData,
-          });
+        let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
+          'fillCallback': callback,
+          'message': "AutoFill Page",
+          'viewData': request.viewData,
+        }
+        let storage_fill = new LocalStorage(storageData);
         if (session) {
           session.loadContent('pages/AutoFill Page', storage_fill);
         } else {
@@ -214,10 +216,9 @@ onFailure(): void
           .onClick(() => {
             hilog.info(0x0000, 'testTag', 'autofill failure');
             try {
-              fillCallback.onFailure();
+              fillCallback?.onFailure();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                            message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
             }
           })
         .width('100%')
@@ -256,12 +257,12 @@ onCancel(): void
                   callback: autoFillManager.FillRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
       try {
-        let storage_fill = new LocalStorage(
-          {
-            'fillCallback': callback,
-            'message': "AutoFill Page",
-            'viewData': request.viewData,
-          });
+        let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
+          'fillCallback': callback,
+          'message': "AutoFill Page",
+          'viewData': request.viewData,
+        }
+        let storage_fill = new LocalStorage(storageData);
         if (session) {
           session.loadContent('pages/AutoFillPage', storage_fill);
         } else {
@@ -299,10 +300,9 @@ onCancel(): void
           .onClick(() => {
             hilog.info(0x0000, 'testTag', 'autofill cancel');
             try {
-              fillCallback.onCancel();
+              fillCallback?.onCancel();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                            message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')
@@ -345,12 +345,12 @@ onSuccess(): void
                   callback: autoFillManager.SaveRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
-        let storage_save = new LocalStorage(
-          {
-            'message': "AutoFill Page",
-            'saveCallback': callback,
-            'viewData': request.viewData
-          });
+        let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
+          'message': "AutoFill Page",
+          'saveCallback': callback,
+          'viewData': request.viewData
+        }
+        let storage_save = new LocalStorage(storageData);
         if (session) {
           session.loadContent('pages/SavePage', storage_save);
         } else {
@@ -388,7 +388,7 @@ onSuccess(): void
           .onClick(() => {
             hilog.info(0x0000, 'testTag', 'autosave success');
             try {
-              saveCallback.onSuccess();
+              saveCallback?.onSuccess();
             } catch (error) {
               console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
             }
@@ -429,12 +429,12 @@ onFailure(): void
                   callback: autoFillManager.SaveRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
-        let storage_save = new LocalStorage(
-          {
-            'message': "AutoFill Page",
-            'saveCallback': callback,
-            'viewData': request.viewData
-          });
+        let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
+          'message': "AutoFill Page",
+          'saveCallback': callback,
+          'viewData': request.viewData
+        }
+        let storage_save = new LocalStorage(storageData);
         if (session) {
           session.loadContent('pages/SavePage', storage_save);
         } else {
@@ -471,7 +471,7 @@ onFailure(): void
           .onClick(() => {
             hilog.info(0x0000, 'testTag', 'autofill failure');
             try {
-              saveCallback.onFailure();
+              saveCallback?.onFailure();
             } catch (error) {
               console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
             }

@@ -11,4 +11,3 @@
   - [hapsigner Guide](hapsigntool-guidelines.md)
   - [HarmonyAppProvision File](app-provision-structure.md)
 
-<!--no_check-->

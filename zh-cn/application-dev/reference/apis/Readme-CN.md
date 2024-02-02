@@ -1,4 +1,4 @@
-# 接口 
+# 接口
 
 - [开发说明](development-intro.md)
 
@@ -249,6 +249,7 @@
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
+  - [@ohos.uiExtensionHost (UIExtensionComponent宿主窗口信息)](js-apis-uiExtensionHost.md)
   - [getContext](js-apis-getContext.md)
   - [postCardAction](js-apis-postCardAction.md)
   - arkui
@@ -277,8 +278,12 @@
 - 媒体
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](js-apis-app-ability-MediaControlExtensionAbility.md)
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
+  - [@ohos.multimedia.audioHaptic (音振协同)](js-apis-audioHaptic.md)
   - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)
+  - [@ohos.multimedia.avCastPickerParam (投播组件参数)](js-apis-avCastPickerParam.md)
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
+  - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
+  - [@ohos.multimedia.drm (数字版权保护)](js-apis-drm.md)
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
   - [@ohos.multimedia.systemSoundManager (系统声音管理)](js-apis-systemSoundManager.md)
@@ -287,6 +292,7 @@
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
     - [soundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
+    - [systemTonePlayer (系统提示音播放器)](js-apis-inner-multimedia-systemTonePlayer.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
@@ -450,7 +456,7 @@
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
 
 - 设备管理
-  - [@ohos.app.ability.DriverExtensionAbility (DriverExtensionAbility)](js-apis-app-ability-driverExtensionAbility.md)
+  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (耗电统计)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
@@ -548,9 +554,11 @@
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
 
 - 应用服务
-  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
   - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)
+  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](js-apis-adcomponent.md)
   - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)](js-apis-adsserviceextensionability.md)
+  - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](js-apis-autoadcomponent.md)
+  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

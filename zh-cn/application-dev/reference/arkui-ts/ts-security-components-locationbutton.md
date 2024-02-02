@@ -21,13 +21,19 @@ LocationButton()
 默认创建带有图标、文本、背景的位置按钮。
 
 ### LocationButton
-LocationButton(option:{icon?: LocationIconStyle, text?: LocationDescription, buttonType?: ButtonType})
+LocationButton(option:LocationButtonOptions)
 
 创建包含指定元素的位置按钮。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| option | [LocationButtonOptions](#locationbuttonoptions) | 否 | 创建包含指定元素的位置按钮。 |
+
+## LocationButtonOptions
+
+| 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |

@@ -42,7 +42,7 @@ Invoked each time the page is hidden, for example, during page redirection or wh
 
 onBackPress?(): void | boolean
 
-Invoked when the user clicks the Back button. It works only for the custom components decorated by **@Entry**.
+Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic instead of the , and **false** (default) means that the default return logic is used.
 
 
 ```ts
@@ -93,12 +93,12 @@ This API is supported since API version 9 and deprecated since API version 10. Y
 
 | Name       | Type                                                        | Description              |
 |------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchild(deprecated))&gt;                  | Child component layout information.        |
+| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | Child component layout information.        |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Size constraint information of the parent component.|
 
 ## onPlaceChildren<sup>10+</sup>
 
-onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt, constraint: ConstraintSizeOptions):void
+onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
 
 Invoked when the custom component lays out its child components. Through this callback the component receives its child component size constraint from the ArkUI framework. The state variable cannot be changed in the **onPlaceChildren** callback.
 
@@ -118,18 +118,18 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 
 Invoked when the custom component needs to determine its size. Through this callback the component receives its child component layout information and size constraint from the ArkUI framework. The state variable cannot be changed in the **onMeasure** callback.
 
-This API is supported since API version 9 and deprecated since API version 10. You are advised to use [onMeasureSize](#onmeasuresize10+) instead.
+This API is supported since API version 9 and deprecated since API version 10. You are advised to use [onMeasureSize](#onmeasuresize10) instead.
 
 **Parameters**
 
 | Name       | Type                                                        | Description              |
 |------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchild(deprecated))&gt;                  | Child component layout information.        |
+| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | Child component layout information.        |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Size constraint information of the parent component.|
 
 ## onMeasureSize<sup>10+</sup>
 
-onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt, constraint: ConstraintSizeOptions):MeasureResult
+onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions):[SizeResult](#sizeresult10)
 
 Invoked when the custom component needs to determine its size. Through this callback the component receives its child component layout information and size constraint from the ArkUI framework. The state variable cannot be changed in the **onMeasureSize** callback.
 
@@ -159,22 +159,29 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 ```ts
 // xxx.ets
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value
+  }
+}
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
   @State switch: boolean = true
 
   build() {
     Column() {
-      Button(this.message)
+      Button('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.switch = !this.switch
         })
       if (this.switch) {
-        Child()
+        Child({ message: new Message('Child') })
       }
     }
     .height("100%")
@@ -185,13 +192,15 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params: Object) {
-    console.info("Recycle Child")
+  @State message: Message = new Message('AboutToReuse');
+
+  aboutToReuse(params: Record<string, ESObject>) {
+    this.message = params.message as Message
   }
 
   build() {
     Column() {
-      Text("Child Component")
+      Text(this.message.value)
         .fontSize(20)
     }
     .borderWidth(2)
@@ -207,15 +216,15 @@ Child component layout information.
 This API is supported since API version 9 and deprecated since API version 10. It is supported in ArkTS widgets.
 
 
-| Parameter        | Type                                                              | Description                 |
+| Name        | Type                                                              | Description                 |
 |------------|--------------------------------------------------------------------|---------------------|
 | name       | string                                                             | Name of the child component.             |
 | id         | string                                                             | ID of the child component.             |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)         | Constraint size of the child component.           |
-| borderInfo | [LayoutBorderInfo](#layoutborderinfo(deprecated))                             | Provides the border information of the child component.       |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)                             | Provides the border information of the child component.       |
 | position   | [Position](ts-types.md#position8)                                   | Position coordinates of the child component.           |
-| measure    | (childConstraint:) =&gt; void                            | Method called to apply the size constraint to the child component.|
-| layout     | (LayoutInfo:  [LayoutInfo](#layoutinfo(deprecated))) =&gt; void| Method called to apply the layout information to the child component.|
+| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)) =&gt; void                            | Method called to apply the size constraint to the child component.|
+| layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated)) =&gt; void | Method called to apply the layout information to the child component.|
 
 ## LayoutBorderInfo<sup>(deprecated)</sup>
 
@@ -223,7 +232,7 @@ Provides the border information of the child component.
 
 This API is supported since API version 9 and deprecated since API version 10. It is supported in ArkTS widgets.
 
-| Parameter         | Type                                | Description                     |
+| Name         | Type                                | Description                     |
 |-------------|--------------------------------------|-------------------------|
 | borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | Edge widths in different directions of the component.|
 | margin      | [Margin](ts-types.md#margin)         | Margins in different directions of the component.  |
@@ -235,7 +244,7 @@ Provides the layout information of the child component.
 
 This API is supported since API version 9 and deprecated since API version 10. It is supported in ArkTS widgets.
 
-| Parameter        | Type                                                      | Description      |
+| Name        | Type                                                      | Description      |
 |------------|------------------------------------------------------------|----------|
 | position   | [Position](ts-types.md#position8)                           | Position coordinates of the child component.|
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Constraint size of the child component.|
@@ -297,13 +306,13 @@ Layout information of the parent component.
 
 This API is supported since API version 10 and is supported in ArkTS widgets.
 
-| Parameter         | Type     | Description                 |
+| Name         | Type     | Description                 |
 |-------------|-----------|---------------------|
 | borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | Border width of the parent component.<br>Unit: vp           |
 | margin      | [Margin](ts-types.md#margin)       | Margin of the parent component.<br>Unit: vp      |
 | padding     | [Padding](ts-types.md#padding)   | Padding of the parent component.<br>Unit: vp|
-| width  | Number | Width obtained from the measurement result.<br>Unit: vp<br> **NOTE**<br>If the value is empty, the component width in percentage is returned.|
-| height | Number | Height obtained from the measurement result.<br>Unit: vp<br> **NOTE**<br>If the value is empty, the component height in percentage is returned.|
+| width  | number | Width obtained from the measurement result.<br>Unit: vp<br> **NOTE**<br>If the value is empty, the component width in percentage is returned.|
+| height | number | Height obtained from the measurement result.<br>Unit: vp<br> **NOTE**<br>If the value is empty, the component height in percentage is returned.|
 
 
 ## Layoutable<sup>10+</sup>
@@ -312,10 +321,10 @@ Provides the child component layout information.
 
 This API is supported since API version 10 and is supported in ArkTS widgets.
 
-| Parameter        | Type                                                   | Description                 |
+| Name        | Type                                                   | Description                 |
 |------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10+)      | Measurement result of the child component.<br>Unit: vp    |
-| layout     | ([Position](ts-types.md#position8)) =&gt; void | Method called to apply the layout information to the child component.|
+| measureResult| [MeasureResult](#measureresult10)      | Measurement result of the child component.<br>Unit: vp    |
+| layout     | (position: [Position](ts-types.md#position8)) =&gt; void | Method called to apply the layout information to the child component.|
 
 ## Measurable<sup>10+</sup>
 
@@ -323,9 +332,9 @@ Provides the child component location information.
 
 This API is supported since API version 10 and is supported in ArkTS widgets.
 
-| Parameter        | Type                                                                            | Description                                   |
+| Name        | Type                                                                            | Description                                   |
 |------------|----------------------------------------------------------------------------------|---------------------------------------|
-| measure    | (childConstraint:) =&gt; [MeasureResult](#measureresult10+) | Method called to apply the size constraint to the child component.<br>Return value: measurement result of the child component.|
+| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)) =&gt; [MeasureResult](#measureresult10) | Method called to apply the size constraint to the child component.<br>Return value: measurement result of the child component.|
 
 ## MeasureResult<sup>10+</sup>
 
@@ -333,10 +342,10 @@ Provides the measurement result of the component.
 
 Since API version 10, this API is supported in ArkTS widgets.
 
-| Parameter    | Type  | Description   |
+| Name    | Type  | Description   |
 |--------|--------|-------|
-| width  | Number | Width obtained from the measurement result.<br>Unit: vp|
-| height | Number | Height obtained from the measurement result.<br>Unit: vp|
+| width  | number | Width obtained from the measurement result.<br>Unit: vp|
+| height | number | Height obtained from the measurement result.<br>Unit: vp|
 
 
 ## SizeResult<sup>10+</sup>
@@ -345,10 +354,10 @@ Provides the component size information.
 
 Since API version 10, this API is supported in ArkTS widgets.
 
-| Parameter    | Type  | Description   |
+| Name    | Type  | Description   |
 |--------|--------|-------|
-| width  | Number | Width obtained from the measurement result.<br>Unit: vp|
-| height | Number | Height obtained from the measurement result.<br>Unit: vp|
+| width  | number | Width obtained from the measurement result.<br>Unit: vp|
+| height | number | Height obtained from the measurement result.<br>Unit: vp|
 
 > **NOTE**
 >

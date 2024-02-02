@@ -301,7 +301,7 @@ typedef struct OH_Cursor OH_Cursor
 ### OH_OrderType
 
 ```
-typedef enum OH_OrderTypeOH_OrderType
+typedef enum OH_OrderType OH_OrderType
 ```
 
 **描述**
@@ -314,7 +314,7 @@ typedef enum OH_OrderTypeOH_OrderType
 ### OH_Predicates
 
 ```
-typedef struct OH_PredicatesOH_Predicates
+typedef struct OH_Predicates OH_Predicates
 ```
 
 **描述**
@@ -327,7 +327,7 @@ typedef struct OH_PredicatesOH_Predicates
 ### OH_Rdb_ErrCode
 
 ```
-typedef enum OH_Rdb_ErrCodeOH_Rdb_ErrCode
+typedef enum OH_Rdb_ErrCode OH_Rdb_ErrCode
 ```
 
 **描述**
@@ -340,7 +340,7 @@ typedef enum OH_Rdb_ErrCodeOH_Rdb_ErrCode
 ### OH_Rdb_SecurityLevel
 
 ```
-typedef enum OH_Rdb_SecurityLevelOH_Rdb_SecurityLevel
+typedef enum OH_Rdb_SecurityLevel OH_Rdb_SecurityLevel
 ```
 
 **描述**
@@ -353,7 +353,7 @@ typedef enum OH_Rdb_SecurityLevelOH_Rdb_SecurityLevel
 ### OH_VBucket
 
 ```
-typedef struct OH_VBucketOH_VBucket
+typedef struct OH_VBucket OH_VBucket
 ```
 
 **描述**
@@ -366,7 +366,7 @@ typedef struct OH_VBucketOH_VBucket
 ### OH_VObject
 
 ```
-typedef struct OH_VObjectOH_VObject
+typedef struct OH_VObject OH_VObject
 ```
 
 **描述**
@@ -379,7 +379,7 @@ typedef struct OH_VObjectOH_VObject
 ### Rdb_ChangeInfo
 
 ```
-typedef struct Rdb_ChangeInfoRdb_ChangeInfo
+typedef struct Rdb_ChangeInfo Rdb_ChangeInfo
 ```
 
 **描述**
@@ -392,7 +392,7 @@ typedef struct Rdb_ChangeInfoRdb_ChangeInfo
 ### Rdb_ChangeType
 
 ```
-typedef enum Rdb_ChangeTypeRdb_ChangeType
+typedef enum Rdb_ChangeType Rdb_ChangeType
 ```
 
 **描述**
@@ -405,7 +405,7 @@ typedef enum Rdb_ChangeTypeRdb_ChangeType
 ### Rdb_DistributedConfig
 
 ```
-typedef struct Rdb_DistributedConfigRdb_DistributedConfig
+typedef struct Rdb_DistributedConfig Rdb_DistributedConfig
 ```
 
 **描述**
@@ -418,7 +418,7 @@ typedef struct Rdb_DistributedConfigRdb_DistributedConfig
 ### Rdb_DistributedType
 
 ```
-typedef enum Rdb_DistributedTypeRdb_DistributedType
+typedef enum Rdb_DistributedType Rdb_DistributedType
 ```
 
 **描述**
@@ -431,7 +431,7 @@ typedef enum Rdb_DistributedTypeRdb_DistributedType
 ### Rdb_KeyInfo
 
 ```
-typedef struct Rdb_KeyInfoRdb_KeyInfo
+typedef struct Rdb_KeyInfo Rdb_KeyInfo
 ```
 
 **描述**
@@ -444,7 +444,7 @@ typedef struct Rdb_KeyInfoRdb_KeyInfo
 ### Rdb_Progress
 
 ```
-typedef enum Rdb_ProgressRdb_Progress
+typedef enum Rdb_Progress Rdb_Progress
 ```
 
 **描述**
@@ -457,7 +457,7 @@ typedef enum Rdb_ProgressRdb_Progress
 ### Rdb_ProgressCode
 
 ```
-typedef enum Rdb_ProgressCodeRdb_ProgressCode
+typedef enum Rdb_ProgressCode Rdb_ProgressCode
 ```
 
 **描述**
@@ -470,7 +470,7 @@ typedef enum Rdb_ProgressCodeRdb_ProgressCode
 ### Rdb_ProgressDetails
 
 ```
-typedef struct Rdb_ProgressDetailsRdb_ProgressDetails
+typedef struct Rdb_ProgressDetails Rdb_ProgressDetails
 ```
 
 **描述**
@@ -483,7 +483,7 @@ typedef struct Rdb_ProgressDetailsRdb_ProgressDetails
 ### Rdb_SecurityArea
 
 ```
-typedef enum Rdb_SecurityAreaRdb_SecurityArea
+typedef enum Rdb_SecurityArea Rdb_SecurityArea
 ```
 
 **描述**
@@ -496,7 +496,7 @@ typedef enum Rdb_SecurityAreaRdb_SecurityArea
 ### Rdb_Statistic
 
 ```
-typedef struct Rdb_StatisticRdb_Statistic
+typedef struct Rdb_Statistic Rdb_Statistic
 ```
 
 **描述**
@@ -509,7 +509,7 @@ typedef struct Rdb_StatisticRdb_Statistic
 ### Rdb_SubscribeType
 
 ```
-typedef enum Rdb_SubscribeTypeRdb_SubscribeType
+typedef enum Rdb_SubscribeType Rdb_SubscribeType
 ```
 
 **描述**
@@ -545,7 +545,7 @@ typedef void(* Rdb_SyncCallback) (Rdb_ProgressDetails *progressDetails)
 ### Rdb_SyncMode
 
 ```
-typedef enum Rdb_SyncModeRdb_SyncMode
+typedef enum Rdb_SyncMode Rdb_SyncMode
 ```
 
 **描述**
@@ -558,7 +558,7 @@ typedef enum Rdb_SyncModeRdb_SyncMode
 ### Rdb_TableDetails
 
 ```
-typedef struct Rdb_TableDetailsRdb_TableDetails
+typedef struct Rdb_TableDetails Rdb_TableDetails
 ```
 
 **描述**

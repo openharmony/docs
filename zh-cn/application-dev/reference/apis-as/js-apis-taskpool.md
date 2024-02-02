@@ -684,7 +684,7 @@ class DeriveClass extends BaseClass {
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
-  let baseInstance1: BaseClass = arr[0];
+  let baseInstance1 = arr[0];
   console.info("sendable: str1 is: " + baseInstance1.str1);
   baseInstance1.SetNum = 100;
   console.info("sendable: num1 is: " + baseInstance1.GetNum);
@@ -969,7 +969,7 @@ taskpool.execute(task3).then(() => {
 
 ## TaskGroup<sup>10+</sup>
 
-表示任务组。使用[constructor](#constructor10)方法构造TaskGroup。
+表示任务组，一次执行一组任务，如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
 
 ### constructor<sup>10+</sup>
 
@@ -1089,7 +1089,7 @@ taskGroup.addTask(task);
 
 ## SequenceRunner <sup>11+</sup>
 
-表示串行队列的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
+表示串行队列的任务。使用[constructor](#constructor11-2)方法构造SequenceRunner。
 
 ### constructor<sup>11+</sup>
 

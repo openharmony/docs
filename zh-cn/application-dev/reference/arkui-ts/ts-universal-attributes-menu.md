@@ -25,7 +25,7 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 | content | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                         |
 
-## bindMenu
+## bindMenu<sup>11+</sup>
 
 bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 
@@ -61,7 +61,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 | 名称                  | 类型                                   | 必填 | 描述                                                         |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | string                                 | 是   | 菜单项文本。                                                 |
+| value                 | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单项文本。                                                 |
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。                                                 |
 | enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。 |
 | action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。                                       |
@@ -70,13 +70,10 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 继承自[ContextMenuOptions](#contextmenuoptions10)。
 
-| 名称        | 类型                                         | 必填 | 描述                                                         |
-| ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| title       | string                                       | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| offset      | [Position](ts-types.md#position8)            | 否   | 菜单弹出位置的偏移量，不会导致菜单显示超出屏幕范围。<br/>**说明：**<br />菜单类型为相对⽗组件区域弹出时，⾃动根据菜单位置属性 (placement)将区域的宽或⾼计⼊偏移量中。<br/>当菜单相对父组件出现在上侧时（placement设置为Placement.TopLeft，Placement.Top，Placement.TopRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向上进行偏移。<br/>当菜单相对父组件出现在下侧时（placement设置为Placement.BottomLeft，Placement.Bottom，Placement.BottomRight），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在左侧时（placement设置为Placement.LeftTop，Placement.Left，Placement.LeftBottom），x为正值，菜单相对组件向左进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>当菜单相对父组件出现在右侧时（placement设置为Placement.RightTop，Placement.Right，Placement.RightBottom），x为正值，菜单相对组件向右进行偏移，y为正值，菜单相对组件向下进行偏移。<br/>如果菜单调整了显示位置（与placement初始值主方向不⼀致），则偏移值 (offset) 失效。 |
-| placement   | [Placement](ts-appendix-enums.md#placement8) | 否   | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按默认值[BottomLeft](ts-appendix-enums.md#placement8)处理，相对父组件区域弹出。 |
-| onAppear    | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单弹出时的事件回调。                                       |
-| onDisappear | ()&nbsp;=&gt;&nbsp;void                      | 否   | 菜单消失时的事件回调。                                       |
+| 名称                          | 类型                                   | 必填 | 描述                                                         |
+| ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：false                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 
@@ -200,7 +197,7 @@ struct MenuExample {
 
 ### 示例3
 
-菜单(右键触发显示)
+菜单(长按触发显示)
 
 ```ts
 // xxx.ets
@@ -222,17 +219,19 @@ struct ContextMenuExample {
         .textAlign(TextAlign.Center)
     }.width(100)
   }
-  
+
   build() {
     Column() {
-      Text('rightclick for menu')
+      Text('LongPress for menu')
     }
     .width('100%')
     .margin({ top: 5 })
-    .bindContextMenu(this.MenuBuilder, ResponseType.RightClick)
+    .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
   }
 }
 ```
+
+![longMenu](figures/longMenu.gif)
 
 ### 示例4
 

@@ -5,7 +5,8 @@ autoFillManager模块提供手动保存账号密码等功能。
 > **说明：**
 > 
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在Stage模型下使用。
+> 本模块接口仅可在Stage模型下使用。  
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -63,7 +64,7 @@ onFailure(): void
       } catch (error) {
         console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
       }
-  }
+    })
   ...
   ```
 
@@ -92,10 +93,12 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
   ```ts
-  // EntryAbility.ts
+  // EntryAbility.ets
   import UIAbility from '@ohos.app.ability.UIAbility';
   import hilog from '@ohos.hilog';
   import window from '@ohos.window';

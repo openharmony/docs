@@ -92,6 +92,8 @@ buildDone(): void
 
 refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: ResourceStr): void
 
+更新树视图。调用该方法，更新当前节点的信息。
+
 **参数：**
 
 | 名称 | 参数类型 | 必填 | 说明 | 
@@ -105,14 +107,14 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| parentNodeId | number | 否 | 父亲节点。 | 
-| currentNodeId | number | 否 | 当前孩子节点。 | 
+| parentNodeId | number | 否 | 父节点。 | 
+| currentNodeId | number | 否 | 当前子节点。 | 
 | isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 | 
-| icon | ResourceStr | 否 | 图标。 | 
-| selectedIcon | ResourceStr | 否 | 选中图标。 | 
-| editIcon | ResourceStr | 否 | 编辑图标。 | 
-| primaryTitle | ResourceStr | 否 | 主标题。 | 
-| secondaryTitle | ResourceStr | 否 | 副标题。 | 
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 | 
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 | 
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 | 
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 | 
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 | 
 | container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 | 
 
 
@@ -123,14 +125,14 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ### getInstance
 
-getInstance(): TreeListenerManager
+getInstance(): [TreeListenerManager](#treelistenermanager)
 
 获取监听管理器单例对象
 
 
 ### getTreeListener
 
-getTreeListener(): TreeListener
+getTreeListener(): [TreeListener](#treelistener)
 
 获取监听器
 
@@ -151,7 +153,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
 
 
 ### once
@@ -166,7 +168,7 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
 
 
 ### off
@@ -183,7 +185,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 |
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 否 | 节点信息。 | 
 
 
 ## TreeListenType
@@ -201,9 +203,9 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| currentNodeId | number | 是 | 当前孩子节点。 | 
-| parentNodeId | number | 否 | 父亲节点表。 | 
-| childIndex:&nbsp;number | number | 否 | 孩子索引。 | 
+| currentNodeId | number | 是 | 当前子节点。 | 
+| parentNodeId | number | 否 | 父节点。 | 
+| childIndex | number | 否 | 子索引。 | 
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)

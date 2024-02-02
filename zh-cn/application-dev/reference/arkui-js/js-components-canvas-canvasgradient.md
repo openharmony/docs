@@ -31,16 +31,16 @@ addColorStop(offset: number, color: string): void
   ```js
 // xxx.js
 export default {
-  onShow() {
-    const el =this.$refs.canvas;
-    const ctx = el.getContext('2d');
-    const gradient = ctx.createLinearGradient(50,0,300,100);
-    gradient.addColorStop(0.0, '#ff0000')
-    gradient.addColorStop(0.5, '#ffffff')
-    gradient.addColorStop(1.0, '#00ff00')
-    ctx.fillStyle = gradient
-    ctx.fillRect(0, 0, 300, 300)
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        const ctx = el.getContext('2d');
+        const gradient = ctx.createLinearGradient(50, 0, 300, 100);
+        gradient.addColorStop(0.0, '#ff0000')
+        gradient.addColorStop(0.5, '#ffffff')
+        gradient.addColorStop(1.0, '#00ff00')
+        ctx.fillStyle = gradient
+        ctx.fillRect(0, 0, 300, 300)
+    }
 }
   ```
 

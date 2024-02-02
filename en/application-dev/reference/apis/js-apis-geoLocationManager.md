@@ -32,7 +32,7 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, 
 
 If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
-You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../../security/accesstoken-guidelines.md).
+You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 
 ## Modules to Import
@@ -87,17 +87,17 @@ Defines a geographic location.
 | placeName | string | Yes| No | Landmark of the location.|
 | countryCode | string | Yes| No | Country code.|
 | countryName | string| Yes| No| Country name.|
-| administrativeArea | string | Yes| No| Administrative region name.|
-| subAdministrativeArea | string | Yes| No| Sub-administrative region name.|
-| locality | string | Yes| No| Locality information.|
-| subLocality | string | Yes| No| Sub-locality information.|
-| roadName | string | Yes| No|Road name.|
+| administrativeArea | string | Yes| No| Level-1 administrative region, which is generally is a province or state.|
+| subAdministrativeArea | string | Yes| No| Level-2 administrative region, which is generally is a city.|
+| locality | string | Yes| No| Locality information, which is usually a city.|
+| subLocality | string | Yes| No| Sub-locality information, which is usually a district or county.|
+| roadName | string | Yes| No| Road name.|
 | subRoadName | string | Yes| No| Auxiliary road information.|
-| premises | string| Yes| No|House information.|
+| premises | string| Yes| No| House information.|
 | postalCode | string | Yes| No| Postal code.|
 | phoneNumber | string | Yes| No| Phone number.|
 | addressUrl | string | Yes| No| Website URL.|
-| descriptions | Array&lt;string&gt; | Yes| No| Additional descriptions.|
+| descriptions | Array&lt;string&gt; | Yes| No| Additional description. It contains **cityCode** (the array subscript is **0**) and **adminCode** (the array subscript is **1**), for example, **["025","320114001"]**.|
 | descriptionsSize | number | Yes| No| Total number of additional descriptions. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 | isFromMock | Boolean | Yes| No| Whether the geographical name is from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 

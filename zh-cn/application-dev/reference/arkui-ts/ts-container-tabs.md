@@ -20,7 +20,7 @@
 
 ## 接口
 
-Tabs(value?: {barPosition?: [BarPosition](#barposition枚举说明), index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
 
 **参数：**
 
@@ -49,11 +49,12 @@ Tabs(value?: {barPosition?: [BarPosition](#barposition枚举说明), index?: num
 | barMode                          | [BarMode](#barmode枚举说明),[ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | TabBar布局模式，BarMode为必选项，ScrollableBarModeOptions为可选项，具体描述见BarMode枚举说明、ScrollableBarModeOptions对象说明。从API version 10开始，支持ScrollableBarModeOptions参数。其中ScrollableBarModeOptions参数仅Scrollable模式下有效，非必填参数。<br/>默认值：BarMode.Fixed |
 | barWidth                         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
 | barHeight                        | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>**说明：** <br/>设置为小于0或大于Tabs高度值时，按默认值显示。 |
-| animationDuration                | number                                   | 点击TabBar页签切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性时，默认值为0ms，即点击TabBar页签切换TabContent无动画。设置为小于0的异常值时，默认值为300ms。<br/>API version 11及以后，不设置该属性或设置为小于0的异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0ms。设置TabBar为其他样式时，默认值为300ms。<br/>**说明：** <br/>该参数不支持百分比设置。 |
+| animationDuration                | number                                   | 点击TabBar页签切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0ms，即点击TabBar页签切换TabContent无动画。设置为小于0或undefined时，默认值为300ms。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0ms。设置TabBar为其他样式时，默认值为300ms。<br/>**说明：**<br/>该参数不支持百分比设置。 |
 | divider<sup>10+</sup>            | [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
 | fadingEdge<sup>10+</sup>         | boolean                                  | 设置页签超过容器宽度时是否渐隐消失。<br />默认值：true <br/>**说明：** <br/>建议配合barBackgroundColor属性一起使用，如果barBackgroundColor属性没有定义，会默认显示页签末端为白色的渐隐效果。 |
 | barOverlap<sup>10+</sup>         | boolean                                  | 设置TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
 | barBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置TabBar的背景颜色。<br />默认值：透明               |
+| barBackgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 设置TabBar的背景模糊材质。<br />默认值：NONE              |
 | barGridAlign<sup>10+</sup> | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。              |
 
 ## DividerStyle<sup>10+</sup>对象说明
@@ -101,14 +102,16 @@ Tabs(value?: {barPosition?: [BarPosition](#barposition枚举说明), index?: num
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。<br>-&nbsp;index：当前显示的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>1、TabContent支持滑动时，组件触发滑动时触发。<br/>2、通过[控制器](#tabscontroller)API接口调用。<br/>3、通过[状态变量](../../quick-start/arkts-state.md)构造的属性值进行修改。<br/>4、通过页签处点击触发。 |
 | onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | Tab页签点击后触发的事件。<br>-&nbsp;index：被点击的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>通过页签处点击触发。 |
 | onAnimationStart<sup>11+</sup>(handler: (index: number, targetIndex: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;targetIndex:切换动画目标元素的索引。<br/>-&nbsp;event:动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值）。 |
 | onAnimationEnd<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。<br/>**说明：** <br/>当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。 |
 | onGestureSwipe<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 在页面跟手滑动过程中，逐帧触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 | customContentTransition<sup>11+</sup>(delegate: (from: number, to: number) => [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition11) \| undefined) | 自定义Tabs页面切换动画。其中，from和to参数为返回给开发者使用的值，代表的含义如下：<br> -&nbsp;from:动画开始时，当前页面的index值。<br/>-&nbsp;to:动画开始时，目标页面的index值。<br> 使用说明：<br>  1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br> 2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br> 3、当前自定义切换动画不支持打断。<br> 4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br> 5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br> 6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br> 7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。 <br/> |
+| onContentWillChange<sup>12+</sup>(handler: (currentIndex: number, comingIndex: number) => boolean) | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。<br>-&nbsp;currentIndex: 当前显示页面的index索引，索引从0开始计算。<br>-&nbsp;comingIndex: 将要显示的新页面的index索引。<br>回调函数handler接收currentIndex和comingIndex两个入参，返回true或false。<br>当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。<br>触发该回调的条件:<br>1、TabContent支持滑动时，滑动组件切换新页面时触发。<br>2、通过TabsController.changeIndex接口切换新页面时触发。<br>3、通过动态修改index属性值切换新页面时触发。<br>4、通过点击TabBar页签切换新页面时触发。<br>5、TabBar页签获焦后，通过键盘左右方向键等切换新页面时触发。<br> |
+
 
 ## TabsController
 
@@ -136,6 +139,8 @@ changeIndex(value: number): void
 ## 示例
 
 ### 示例1
+
+本示例通过onChange实现切换时自定义tabBar和TabContent的联动。
 
 ```ts
 // xxx.ets
@@ -201,6 +206,8 @@ struct TabsExample {
 ![tabs2](figures/tabs2.gif)
 
 ### 示例2
+
+本示例通过divider实现了分割线各种属性的展示。
 
 ```ts
 // xxx.ets
@@ -309,6 +316,8 @@ struct TabsDivider1 {
 ![tabs3](figures/tabs3.gif)
 
 ### 示例3
+
+本示例通过fadingEdge实现了切换子页签渐隐和不渐隐。
 
 ```ts
 // xxx.ets
@@ -422,6 +431,8 @@ struct TabsOpaque {
 
 ### 示例4
 
+本示例通过barOverlap实现了TabBar是否背后变模糊并叠加在TabContent之上。
+
 ```ts
 // xxx.ets
 @Entry
@@ -486,8 +497,9 @@ struct barBackgroundColorTest {
 
 ![tabs5](figures/tabs5.gif)
 
-
 ### 示例5
+
+本示例通过barGridAlign实现了以栅格化方式设置TabBar的可见区域。
 
 ```ts
 // xxx.ets
@@ -591,6 +603,8 @@ struct TabsExample5 {
 ![tabs5](figures/tabs6.gif)
 
 ### 示例6
+
+本示例实现了barMode的ScrollableBarModeOptions参数，该参数仅在Scrollable模式下有效。
 
 ```ts
 // xxx.ets
@@ -707,6 +721,8 @@ struct TabsExample6 {
 ![tabs5](figures/tabs7.gif)
 
 ### 示例7
+
+本示例通过customContentTransition实现了自定义Tabs页面的切换动画。
 
 ```ts
 // xxx.ets
@@ -863,3 +879,223 @@ struct TabsCustomAnimationExample {
 ```
 
 ![tabs5](figures/tabs8.gif)
+### 示例8
+
+本示例通过onContentWillChange实现了自定义页面手势滑动切换拦截。
+
+```ts
+//xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 2
+  private controller: TabsController = new TabsController()
+  @Builder tabBuilder(title: string,targetIndex: number) {
+    Column(){
+      Text(title).fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+    }.width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+  }
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        TabContent() {
+          Column(){
+            Text('首页的内容')
+          }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('首页',0))
+
+        TabContent() {
+          Column(){
+            Text('发现的内容')
+          }.width('100%').height('100%').backgroundColor('#007DFF').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('发现',1))
+
+        TabContent() {
+          Column(){
+            Text('推荐的内容')
+          }.width('100%').height('100%').backgroundColor('#FFBF00').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('推荐',2))
+
+        TabContent() {
+          Column(){
+            Text('我的内容')
+          }.width('100%').height('100%').backgroundColor('#E67C92').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('我的',3))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationDuration(0)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(600)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      .onContentWillChange((currentIndex, comingIndex) => {
+        if (comingIndex == 2) {
+          return false
+        }
+        return true
+      })
+
+      Button('动态修改index').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+        })
+
+      Button('changeIndex').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+          this.controller.changeIndex(this.currentIndex)
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs9](figures/tabs9.gif)
+### 示例9
+
+本示例通过onChange、onAnimationStart、onAnimationEnd、onGestureSwipe等接口实现了自定义TabBar的切换动画。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 0
+  @State animationDuration: number = 300
+  @State indicatorLeftMargin: number = 0
+  @State indicatorWidth: number = 0
+  private tabsWidth: number = 0
+
+  @Builder
+  tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontSize(16)
+        .fontColor(this.currentIndex === index ? '#007DFF' : '#182431')
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .id(index.toString())
+        .onAreaChange((oldValue: Area,newValue: Area) => {
+          if (this.currentIndex === index && (this.indicatorLeftMargin === 0 || this.indicatorWidth === 0)){
+            if (newValue.position.x != undefined) {
+              let positionX = Number.parseFloat(newValue.position.x.toString())
+              this.indicatorLeftMargin = Number.isNaN(positionX) ? 0 : positionX
+            }
+            let width = Number.parseFloat(newValue.width.toString())
+            this.indicatorWidth = Number.isNaN(width) ? 0 : width
+          }
+        })
+    }.width('100%')
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Tabs({ barPosition: BarPosition.Start }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.tabBuilder(0, 'green'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar(this.tabBuilder(1, 'blue'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(2, 'yellow'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar(this.tabBuilder(3, 'pink'))
+      }
+      .onAreaChange((oldValue: Area,newValue: Area)=> {
+        let width = Number.parseFloat(newValue.width.toString())
+        this.tabsWidth = Number.isNaN(width) ? 0 : width
+      })
+      .barWidth('100%')
+      .barHeight(56)
+      .width('100%')
+      .height(296)
+      .backgroundColor('#F1F3F5')
+      .animationDuration(this.animationDuration)
+      .onChange((index: number) => {
+        this.currentIndex = index  // 监听索引index的变化，实现页签内容的切换。
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
+        this.currentIndex = targetIndex
+        let targetIndexInfo = this.getTextInfo(targetIndex)
+        this.startAnimateTo(this.animationDuration, targetIndexInfo.left, targetIndexInfo.width)
+      })
+      .onAnimationEnd((index: number,event: TabsAnimationEvent) => {
+        // 切换动画结束时触发该回调。下划线动画停止。
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
+        this.startAnimateTo(0,currentIndicatorInfo.left,currentIndicatorInfo.width)
+      })
+      .onGestureSwipe((index: number,event: TabsAnimationEvent) => {
+        // 在页面跟手滑动过程中，逐帧触发该回调。
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
+        this.currentIndex = currentIndicatorInfo.index
+        this.indicatorLeftMargin = currentIndicatorInfo.left
+        this.indicatorWidth = currentIndicatorInfo.width
+      })
+
+      Column()
+        .height(2)
+        .width(this.indicatorWidth)
+        .margin({ left: this.indicatorLeftMargin, top:48})
+        .backgroundColor('#007DFF')
+    }.width('100%')
+  }
+
+  private getTextInfo(index: number): Record<string, number> {
+    let strJson = getInspectorByKey(index.toString())
+    try {
+      let obj: Record<string, string> = JSON.parse(strJson)
+      let rectInfo: number[][] = JSON.parse('[' + obj.$rect + ']')
+      return { 'left': px2vp(rectInfo[0][0]), 'width': px2vp(rectInfo[1][0] - rectInfo[0][0]) }
+    } catch (error) {
+      return { 'left': 0, 'width': 0 }
+    }
+  }
+
+  private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
+    let nextIndex = index
+    if (index > 0 && event.currentOffset > 0) {
+      nextIndex--
+    } else if (index < 3 && event.currentOffset < 0) {
+      nextIndex++
+    }
+    let indexInfo = this.getTextInfo(index)
+    let nextIndexInfo = this.getTextInfo(nextIndex)
+    let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth)
+    let currentIndex = swipeRatio > 0.5 ? nextIndex : index  // 页面滑动超过一半，tabBar切换到下一页。
+    let currentLeft = indexInfo.left + (nextIndexInfo.left - indexInfo.left) * swipeRatio
+    let currentWidth = indexInfo.width + (nextIndexInfo.width - indexInfo.width) * swipeRatio
+    return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
+  }
+
+  private startAnimateTo(duration: number, leftMargin: number, width: number) {
+    animateTo({
+      duration: duration, // 动画时长
+      curve: Curve.Linear, // 动画曲线
+      iterations: 1, // 播放次数
+      playMode: PlayMode.Normal, // 动画模式
+      onFinish: () => {
+        console.info('play end')
+      }
+    }, () => {
+      this.indicatorLeftMargin = leftMargin
+      this.indicatorWidth = width
+    })
+  }
+}
+```
+
+![tabs10](figures/tabs10.gif)

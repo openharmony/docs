@@ -143,7 +143,7 @@ Obtains the context of an **\<XComponent>** object. This API works only when **t
 
 ## Example
 
-You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
 
 ```ts
 // xxx.ets

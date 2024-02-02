@@ -1,4 +1,4 @@
-# NNRt Access Adaptation
+# Neural Network Runtime Device Access
 
 ## Overview
 

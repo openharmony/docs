@@ -84,4 +84,4 @@ The certificate framework provides the following classes.
 | Certificate and CRL collection| [CertCRLCollection](../../reference/apis/js-apis-cert.md#certcrlcollection11) | Provides APIs for obtaining information about the certificate and CRL collection.|
 | X.509 certificate chain| [X509CertChain](../../reference/apis/js-apis-cert.md#x509certchain11) | Provides APIs for obtaining the certificate list and validating a certificate chain.|
 
-<!--no_check-->
+

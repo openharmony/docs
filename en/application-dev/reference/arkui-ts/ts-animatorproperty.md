@@ -25,9 +25,9 @@ animation(value: {duration?: number, tempo?: number, curve?: string | Curve | IC
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | No   | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.<br>For details about the restrictions, see **Notes about PlayMode**.|
 | onFinish   | () => void                               | No   | Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This callback is not invoked when **iterations** is set to **-1**.|
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | No   | Type of the **onFinish** callback.<br>Default value: **FinishCallbackType.REMOVED**<br>Since API version 11, this API is supported in ArkTS widgets.|
-| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange-11) | No|Expected frame rate range of the animation.|
+| expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | No|Expected frame rate range of the animation.|
 
-## ExpectedFrameRateRange <sup>11+</sup>
+## ExpectedFrameRateRange<sup>11+</sup>
 | Name | Type    | Description     |
 |-----|--------|---------|
 | min | number | Expected minimum frame rate.|

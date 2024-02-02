@@ -579,7 +579,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(): Promise\<void\>
 
-Clears up the data of the application itself. This API uses a promise to return the result.
+Clears up the application data and revokes the permissions that the application has requested from users. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -615,7 +615,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
-Clears up the data of the application itself. This API uses an asynchronous callback to return the result.
+Clears up the application data and revokes the permissions that the application has requested from users. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

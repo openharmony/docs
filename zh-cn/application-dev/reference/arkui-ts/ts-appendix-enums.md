@@ -631,7 +631,7 @@ Nullable\<T> {
 ## WordBreak<sup>11+</sup>
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
-| NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行,而Non-CJK文本（如英文等）只能在空白符处断行。|
+| NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
@@ -669,11 +669,11 @@ Nullable\<T> {
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
- | 名称        |   类型         |   必填 |  说明                        |
+| 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
 | saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
-| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       | 
+| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       |
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
@@ -706,7 +706,7 @@ Nullable\<T> {
 
 ## TextSpanType<sup>11+</sup>
 
-Span类型信息。
+[Span](ts-basic-components-span.md)类型信息。
 
 | 名称 | 说明 |
 | -------- | -------- |
@@ -750,3 +750,33 @@ Span类型信息。
 | SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
 | MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。 |
 |  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
+
+## BlendApplyType<sup>11+</sup>
+
+指示如何将指定的混合模式应用于视图的内容。
+
+| 名称           | 描述                                                             |
+| ---------------| ---------------------------------------------------------------- |
+| FAST           |   在目标图像上按顺序混合视图的内容。                        |
+| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
+
+## ChainStyle<sup>11+</sup>
+
+定义链的风格。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| SPREAD | 组件在约束锚点间均匀分布。 |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。                 |
+| PACKED  | 链内子组件无间隙。                      |
+
+## BarrierDirection<sup>11+</sup>
+
+定义屏障线的方向。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最左侧。    |
+| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最右侧。   |
+| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最上方。    |
+| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最下方。 |

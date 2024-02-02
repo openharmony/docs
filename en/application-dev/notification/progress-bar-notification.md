@@ -5,9 +5,10 @@ The progress notification is a commonly used notification type, mainly used to d
 
 In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
-**Figure 1** Example of a progress notification
+**Figure 1** Progress notification
 
 ![en-us_image_0000001416903138](figures/en-us_image_0000001416903138.png)
+
 
 ## Available APIs
 
@@ -20,30 +21,28 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
 
 ## How to Develop
 
-1. [Enable notification](notification-enable.md). An application can use the notification feature only after being authorized by the user.
+1. [Request notification authorization](notification-enable.md). Your application can send notifications only after obtaining user authorization. 
 
 2. Import the module.
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. Check whether a specific template is supported. In this example, the template of the **downloadTemplate** type is checked.
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     logger.info(`[ANS] isSupportTemplate success`);
-     logger.info('Succeeded in supporting download template notification.');
+     console.info(`[ANS] isSupportTemplate success`);
+     console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
    }).catch((err:Base.BusinessError) => {
-     logger.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
+     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
    
    > **NOTE**
-   >
    > Proceed with the step below only when the specified template is supported.
    
 4. Create a **NotificationRequest** object and publish a progress notification.
@@ -69,9 +68,9 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    // Publish the notification.
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info('Succeeded in publishing notification.');
+     console.info('Succeeded in publishing notification.');
    });
    ```

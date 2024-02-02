@@ -1,4 +1,4 @@
-# Sample Implementation of Camera Photographing (C/C++)
+# Camera Photographing Sample (C/C++)
 
 This topic provides sample code that covers the complete photographing process and the API calling sequence. For details about a single process (such as device input, session management, and photographing), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
@@ -60,13 +60,13 @@ struct XComponentPage {
 
 ```c++
 // Import the NDK on the C++ side.
-#include "multimedia/camera_framework/camera.h"
-#include "multimedia/camera_framework/camera_input.h"
-#include "multimedia/camera_framework/capture_session.h"
-#include "multimedia/camera_framework/photo_output.h"
-#include "multimedia/camera_framework/preview_output.h"
-#include "multimedia/camera_framework/video_output.h"
-#include "multimedia/camera_framework/camera_manager.h"
+#include "ohcamera/camera.h"
+#include "ohcamera/camera_input.h"
+#include "ohcamera/capture_session.h"
+#include "ohcamera/photo_output.h"
+#include "ohcamera/preview_output.h"
+#include "ohcamera/video_output.h"
+#include "ohcamera/camera_manager.h"
 
 
 void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)

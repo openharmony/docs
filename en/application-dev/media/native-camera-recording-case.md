@@ -1,4 +1,4 @@
-# Sample Implementation of Camera Recording (C/C++)
+# Camera Recording Sample (C/C++)
 
 This topic provides sample code that covers the complete recording process and the API calling sequence. For details about a single process (such as device input, session management, and recording), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
@@ -53,7 +53,7 @@ async getVideoSurfaceID(){
   if (deviceInfo.deviceType == 'phone') {
     Logger.info(this.tag, `deviceType = phone`)
     this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+    this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
     if (this.cameraDeviceIndex == 1) {
       this.videoConfig.rotation = this.photoRotationMap.rotation270;
     } else {
@@ -89,13 +89,13 @@ try {
 
 ```c++
 // Import the NDK on the C++ side.
-#include "multimedia/camera_framework/camera.h"
-#include "multimedia/camera_framework/camera_input.h"
-#include "multimedia/camera_framework/capture_session.h"
-#include "multimedia/camera_framework/photo_output.h"
-#include "multimedia/camera_framework/preview_output.h"
-#include "multimedia/camera_framework/video_output.h"
-#include "multimedia/camera_framework/camera_manager.h"
+#include "ohcamera/camera.h"
+#include "ohcamera/camera_input.h"
+#include "ohcamera/capture_session.h"
+#include "ohcamera/photo_output.h"
+#include "ohcamera/preview_output.h"
+#include "ohcamera/video_output.h"
+#include "ohcamera/camera_manager.h"
 
 
 void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)

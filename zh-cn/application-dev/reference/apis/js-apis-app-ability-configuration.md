@@ -14,7 +14,7 @@ import Configuration from '@ohos.app.ability.Configuration';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -47,7 +47,7 @@ export default class EntryAbility extends UIAbility {
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
             },
-            onMemoryLevel(level){
+            onMemoryLevel(level) {
                 console.log('onMemoryLevel level: ${level}');
             }
         };

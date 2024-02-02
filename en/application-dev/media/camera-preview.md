@@ -51,7 +51,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-3. Call **previewProfiles()** in the **CameraOutputCapability** class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call **createPreviewOutput()** to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
+3. Call **previewProfiles()** in the [CameraOutputCapability](../reference/apis/js-apis-camera.md#cameraoutputcapability) class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../reference/apis/js-apis-camera.md#createpreviewoutput) to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
@@ -67,7 +67,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-4. Call **start()** to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+4. Call [start](../reference/apis/js-apis-camera.md#start-4) to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
      
    ```ts
    function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
@@ -109,7 +109,7 @@ During camera application development, you can listen for the preview output str
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {
     previewOutput.on('error', (previewOutputError: BusinessError) => {
-      console.info(`Preview output error code: ${previewOutputError.code}`);
+      console.error(`Preview output error code: ${previewOutputError.code}`);
     });
   }
   ```

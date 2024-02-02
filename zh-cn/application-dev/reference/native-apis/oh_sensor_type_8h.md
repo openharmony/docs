@@ -65,7 +65,7 @@
 | [OH_Sensor_DestroySubscriptionAttribute](_sensor.md#oh_sensor_destroysubscriptionattribute) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) \*attribute) | 销毁[Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute)实例并回收内存。  |
 | [OH_SensorSubscriptionAttribute_SetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_setsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) \*attribute, const int64_t samplingInterval) | 设置传感器数据报告间隔。  |
 | [OH_SensorSubscriptionAttribute_GetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_getsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) \*attribute, int64_t \*samplingInterval) | 获取传感器数据报告间隔。  |
-|                                                              | 创建一个[Sensor_Subscriber](_sensor.md#sensor_subscriber)实例。 |
+| [OH_Sensor_CreateSubscriber](_sensor.md#oh_sensor_createsubscriber) (void) | 创建一个[Sensor_Subscriber](_sensor.md#sensor_subscriber)实例。 |
 | [OH_Sensor_DestroySubscriber](_sensor.md#oh_sensor_destroysubscriber) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) \*subscriber) | 销毁[Sensor_Subscriber](_sensor.md#sensor_subscriber)实例并回收内存。  |
 | [OH_SensorSubscriber_SetCallback](_sensor.md#oh_sensorsubscriber_setcallback) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) \*subscriber, const [Sensor_EventCallback](_sensor.md#sensor_eventcallback) callback) | 设置一个回调函数来报告传感器数据。  |
 | [OH_SensorSubscriber_GetCallback](_sensor.md#oh_sensorsubscriber_getcallback) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) \*subscriber, [Sensor_EventCallback](_sensor.md#sensor_eventcallback) \*callback) | 获取用于报告传感器数据的回调函数。                           |

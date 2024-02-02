@@ -20,7 +20,7 @@ HML是一套类HTML的标记语言，通过组件，事件构建出页面的内�
 
 ```html
 <!-- xxx.hml -->
-<div onclick="changeText">
+<div class="container" onclick="changeText">
   <text> {{content[1]}} </text>
 </div>
 ```

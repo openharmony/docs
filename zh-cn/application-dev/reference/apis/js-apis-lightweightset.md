@@ -137,6 +137,12 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 | -------- | -------- | -------- | -------- |
 | set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的lightWeightSet。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 成功添加元素返回true，否则返回false。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
@@ -398,7 +404,7 @@ removeAt(index: number): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 确认是否成功删除元素 |
+| boolean | 确认是否成功删除元素，成功删除元素返回true，否则返回false。 |
 
 **错误码：**
 
