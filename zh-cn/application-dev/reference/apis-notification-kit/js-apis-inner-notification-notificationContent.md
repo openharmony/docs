@@ -18,7 +18,7 @@
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
-| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 系统实况窗类型通知内容（仅对系统应用开放）。|
+| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 系统实况窗类型通知内容。（预留能力，暂未支持）。|
 
 ## NotificationBasicContent
 
@@ -83,7 +83,7 @@
 
 ## NotificationSystemLiveViewContent
 
-描述系统实况窗通知内容（仅对系统应用开放）。
+描述系统实况窗通知内容。（预留能力，暂未支持）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -101,7 +101,7 @@
 
 ## NotificationCapsule<sup>11+</sup>
 
-描述通知胶囊。
+描述通知胶囊。（预留能力，暂未支持）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -114,7 +114,7 @@
 
 ## NotificationButton<sup>11+</sup>
 
-描述通知按钮。
+描述通知按钮。（预留能力，暂未支持）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -126,7 +126,7 @@
 
 ## NotificationTime<sup>11+</sup>
 
-描述通知时间。
+描述通知时间。（预留能力，暂未支持）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -140,7 +140,7 @@
 
 ## NotificationProgress<sup>11+</sup>
 
-描述通知进度。
+描述通知进度。（预留能力，暂未支持）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 

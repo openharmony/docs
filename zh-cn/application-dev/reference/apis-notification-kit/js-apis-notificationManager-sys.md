@@ -3455,7 +3455,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | label<sup>11+</sup>          | string                       | 否   | 通知标签。      |
 | contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | 是   | 通知类型。      |
 | creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
-| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md./js-apis-notificationManager.md#slottype)        | 是   | 渠道类型。      |
+| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | 是   | 渠道类型。      |
 | extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>

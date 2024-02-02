@@ -3231,7 +3231,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 | 名称  | 类型                                   | 可读 | 可写 | 说明                   |
 | ----- | -------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype8) | 是   | 是   | 免打扰设置的时间类型。 |
+| type  | [DoNotDisturbType](./js-apis-notificationManager-sys.md#donotdisturbtype) | 是   | 是   | 免打扰设置的时间类型。 |
 | begin | Date                                   | 是   | 是   | 免打扰设置的起点时间。 |
 | end   | Date                                   | 是   | 是   | 免打扰设置的终点时间。 |
 
