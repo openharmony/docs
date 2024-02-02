@@ -133,9 +133,9 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 >**NOTE**
 >
-> - When the **vertical** attribute is set to **true**, the tab bar takes up the whole screen width by default. You need to set **barWidth** to a proper value.
+> - When the **vertical** attribute is set to **false**, the tab bar takes up the whole screen width by default. Set **barWidth** to a proper value.
 >
-> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. You need to set **barWidth** to a proper value.
+> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. Set **barWidth** to a proper value.
 
 
 ## Restricting the Scrolling of the Navigation Bar

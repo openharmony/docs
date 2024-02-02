@@ -16,9 +16,9 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
      controller: CustomDialogController
      build() {
        Column() {
-         Text ('I am content')
-         .fontSize(20)
-         .margin({ top: 10, bottom: 10 })
+         Text('I am content')
+           .fontSize(20)
+           .margin({ top: 10, bottom: 10 })
        }
      }
    }
@@ -28,7 +28,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
   
    ```ts
    dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({}),
+     builder: CustomDialogExample({}),
    })
    ```
 
@@ -83,18 +83,18 @@ Custom dialog boxes can be used for data interactions to complete a series of re
   
    ```ts
    dialogController: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({
-         cancel: this.onCancel,
-         confirm: this.onAccept,
-       }),
-       alignment: DialogAlignment.Default,  // Set the alignment mode of the dialog box. By default, the dialog box is displayed at the bottom.
-     })
-     onCancel() {
-       console.info('Callback when the first button is clicked')
-     }
-     onAccept() {
-       console.info('Callback when the second button is clicked')
-     }
+     builder: CustomDialogExample({
+       cancel: this.onCancel,
+       confirm: this.onAccept,
+     }),
+     alignment: DialogAlignment.Default,  // Set the alignment mode of the dialog box. By default, the dialog box is displayed at the bottom.
+   })
+   onCancel() {
+     console.info('Callback when the first button is clicked')
+   }
+   onAccept() {
+     console.info('Callback when the second button is clicked')
+   }
    ```
 
    ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)

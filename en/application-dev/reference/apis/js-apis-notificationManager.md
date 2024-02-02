@@ -3870,7 +3870,7 @@ let enable = true;
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
+    console.error('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
 });
 ```
 
@@ -3964,7 +3964,7 @@ let userId = 100;
 Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
     console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err) => {
-    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
+    console.error('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
 ```
 
@@ -3996,7 +3996,7 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 | TYPE_NONE    | 0 | Non-DND.                          |
 | TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
 | TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
-| TYPE_CLEARLY | 3 | DND at the specified time segment (considering the year, month, day, hour, and minute).    |
+| TYPE_CLEARLY | 3 | DND at the specified time segment (with the hour, day, and month specified).    |
 
 
 ## ContentType
@@ -4005,11 +4005,11 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | Normal text notification.    |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.  |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.    |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification.    |
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.|
+| NOTIFICATION_CONTENT_BASIC_TEXT   | 0          | Normal text notification.         |
+| NOTIFICATION_CONTENT_LONG_TEXT    | 1          | Long text notification.        |
+| NOTIFICATION_CONTENT_PICTURE      | 2          | Picture-attached notification.         |
+| NOTIFICATION_CONTENT_CONVERSATION | 3          | Conversation notification.|
+| NOTIFICATION_CONTENT_MULTILINE    | 4          | Multi-line text notification.       |
 
 ## SlotLevel
 

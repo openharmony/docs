@@ -5,12 +5,18 @@ The progress notification is a commonly used notification type, mainly used to d
 
 In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
+**Figure 1** Progress notification
+
+![en-us_image_0000001416903138](figures/en-us_image_0000001416903138.png)
+
 
 ## Available APIs
 
+ 
+
 | Name| Description|
 | -------- | -------- |
-| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result.<br>Only the progress-type template is supported.|
+| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. For details, see [isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationissupporttemplate).<br>Only the progress-type template is supported.|
 
 
 ## How to Develop
@@ -20,18 +26,18 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
 2. Import the module.
    
    ```ts
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    ```
 
 3. Check whether a specific template is supported. In this example, the template of the **downloadTemplate** type is checked.
    
    ```ts
-   NotificationManager.isSupportTemplate('downloadTemplate').then((data) => {
+   notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
      console.info(`[ANS] isSupportTemplate success`);
+     console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
-     // ...
    }).catch((err) => {
-     console.error(`[ANS] isSupportTemplate failed, error[${err}]`);
+     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -41,10 +47,10 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
 4. Create a **NotificationRequest** object and publish a progress notification.
    
    ```ts
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
      id: 1,
      content: {
-       contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'test_title',
          text: 'test_text',
@@ -59,11 +65,11 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    }
    
    // Publish the notification.
-   NotificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err) => {
      if (err) {
-       console.error(`[ANS] failed to publish, error[${err}]`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`[ANS] publish success `);
+     console.info('Succeeded in publishing notification.');
    });
    ```

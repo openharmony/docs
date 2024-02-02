@@ -617,7 +617,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -704,7 +704,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -747,7 +747,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -789,7 +789,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -844,7 +844,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -889,7 +889,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -938,7 +938,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -990,7 +990,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1077,7 +1077,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1163,7 +1163,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1237,7 +1237,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **Example**
@@ -1288,7 +1288,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **Example**
@@ -1340,7 +1340,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1388,7 +1388,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1437,7 +1437,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1480,7 +1480,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1523,7 +1523,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -1615,8 +1615,8 @@ Sends a web message to an HTML5 window.
 
 | Name| Type                  | Mandatory| Description                            |
 | ------ | ---------------------- | ---- | :------------------------------- |
-| name   | string                 | Yes  | Message to send, including the data and message port.|
-| ports  | Array\<WebMessagePort> | Yes  | Ports for receiving the message.               |
+| name   | string                 | Yes  | Name of the message to send.           |
+| ports  | Array\<WebMessagePort> | Yes  | Message ports for sending the message.           |
 | uri    | string                 | Yes  | URI for receiving the message.               |
 
 **Error codes**
@@ -1665,7 +1665,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -1740,7 +1740,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2856,7 +2856,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -2911,7 +2911,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 

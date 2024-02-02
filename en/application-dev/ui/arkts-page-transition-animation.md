@@ -1,8 +1,15 @@
 # Page Transition Animation
 
 
-During page redirection, one page disappears and the other page appears. You can customize the [page transition effects](../reference/arkui-ts/ts-page-transition-animation.md) for these pages through the **pageTransition** API. Specifically, **PageTransitionEnter** defines the page entrance animation, while **PageTransitionExit** defines the page exit animation.
+During page redirection, one page enters and the other page exits. You can customize the page transition effects for these pages through the **pageTransition** function. Specifically, **PageTransitionEnter** defines the page entrance animation, while **PageTransitionExit** defines the page exit animation.
+The **pageTransition** function is as follows:
 
+```
+pageTransition() {
+  PageTransitionEnter()
+  PageTransitionExit()
+}
+```
 
 API of **PageTransitionEnter**:
 
@@ -65,10 +72,10 @@ Assume that the page stack is in the multi-instance mode, that is, duplicate pag
 
 | Route Operation                        | Page A Transition Effect                           | Page B Transition Effect                           |
 | ---------------------------- | ---------------------------------- | ---------------------------------- |
-| **router.pushUrl** – redirection from page A to new page B.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
-| **router.back** – redirection from page B back to page A.      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
-| **router.pushUrl** – redirection from page B to new page A.| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
-| **router.back** – redirection from page A back to page B.      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.pushUrl** – redirection from page A to new page B| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.back** – redirection from page B back to page A      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.pushUrl** – redirection from page B to new page A| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.back** – redirection from page A back to page B      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
 
 
 If you want the page accessed by **router.pushUrl** to always slide in from the right and the page exited by **router.back** to always slide out from the right, the third and fourth cases in the preceding table do not meet the requirements. In this case, you need to define four page transition effects.
@@ -152,9 +159,7 @@ You can disable the transition animation of a page by setting the page transitio
 
 ## Example
 
-In the following example, page transition animations are defined for all four page transition scenarios.
-
-
+In the following example, page transition animations are defined using [router.pushUrl](../reference/apis/js-apis-router.md#routerpushurl9) for all the page transition scenarios.
 
 ```ts
 // PageTransitionSrc1

@@ -17,7 +17,7 @@ The border attributes are used to set border styles for components.
 | borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup> | Border style.<br>Default value: **BorderStyle.Solid**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | Border width. The percentage format is not supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | Border color.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Border radius. The percentage format is not supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Border radius. The percentage format is not supported. The radius is restricted by the component size. The maximum value is half of the component width or height.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## EdgeWidths<sup>9+</sup>
 

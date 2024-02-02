@@ -52,7 +52,7 @@ When a custom component is initialized, the \@LocalStorageProp(key)/\@LocalStora
 > Since API version 9, this decorator is supported in ArkTS widgets.
 
 
-By decorating a variable with \@LocalStorageProp(key), a one-way data synchronization is established from the attribute with the given key in LocalStorage to the variable. This means that, local changes will not be synchronized to LocalStorage, and an update to the attribute with the given key in LocalStorage will overwrite local changes.
+By decorating a variable with \@LocalStorageProp(key), a one-way data synchronization is established from the attribute with the given key in LocalStorage to the variable. This means that, local changes (if any) will not be synchronized to LocalStorage, and an update to the attribute with the given key in LocalStorage – for example, a change made with the **set **API – will overwrite local changes.
 
 
 ### Rules of Use
@@ -400,7 +400,7 @@ windowStage.loadContent('pages/Index', this.storage);
 >
 > On the page, call the **GetShared** API to obtain the LocalStorage instance shared through **loadContent**.
 >
-> **LocalStorage.GetShared** works only on emulators and real devices, not in DevEco Studio Previewer.
+> **LocalStorage.GetShared()** works only on emulators and real devices, not in DevEco Studio Previewer.
 
 In the following example, **propA** on the **Index** page uses the **GetShared()** API to obtain the shared LocalStorage instance. Click the button to go to the **Page** page. Click **Change propA** and then return to the **Index** page. It can be observed that the value of **propA** on the page is changed.
 

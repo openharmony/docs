@@ -15,8 +15,8 @@ TapGesture(value?: { count?: number, fingers?: number })
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| count | number | No| Number of consecutive taps. If the value is less than 1 or is not set, the default value is used.<br>Default value: **1**<br>**NOTE**<br>If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms.|
-| fingers | number | No| Number of fingers required to trigger a tap. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value is used.<br>Default value: **1**<br>**NOTE**<br>1. When multi-finger is configured, if the number of fingers used for tap does not reach the specified number within 300 ms after the first finger is tapped, the gesture fails to be recognized.<br>2. Gesture recognition fails if the number of fingers used for tap exceeds the configured number.|
+| count | number | No| Number of consecutive taps. If the value is less than 1 or is not set, the default value is used.<br>Default value: **1**<br>**NOTE**<br>1. If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms.<br>2. If the distance between the last tapped position and the current tapped position exceeds 60 px, gesture recognition fails.|
+| fingers | number | No| Number of fingers required to trigger a tap. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value is used.<br>Default value: **1**<br>**NOTE**<br>1. If the value is greater than 1, the tap gesture will fail to be recognized when the number of fingers pressing the screen within 300 ms of the first finger's being pressed is less than the required number.<br>2. When the number of fingers touching the screen exceeds the set value, the gesture cannot be recognized.|
 
 
 ## Events

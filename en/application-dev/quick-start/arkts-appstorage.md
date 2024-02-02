@@ -126,9 +126,9 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 **Framework Behavior**
 
 
-1. When the value change of the \@StorageLink(key) decorated variable is observed, the change is synchronized to the attribute with the give key value in AppStorage.
+1. When the value change of the \@StorageLink(key) decorated variable is observed, the change is synchronized to the attribute with the given key in AppStorage.
 
-2. Once the attribute with the given key in AppStorage is updated, all the data (including \@StorageLink and \@StorageProp decorated variables) bound to the attribute key is changed synchronously.
+2. Once the attribute with the given key in AppStorage is updated, all the data (including \@StorageLink and \@StorageProp decorated variables) bound to the key is changed synchronously.
 
 3. When the data decorated by \@StorageLink(key) is a state variable, its change is synchronized to AppStorage, and the owning custom component is re-rendered.
 
@@ -194,9 +194,11 @@ struct CompA {
 
 ### Unrecommended: Using @StorageLink to Implement Event Notification
 
-Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is expensive and therefore not recommended. This is because AppStorage stores UI-related data, and its changes will cause costly UI re-rendering.
+Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is expensive in two aspects: (1) Variables in AppStorage may be bound to components on different pages, but the event notifications may not need to be sent to all these components; (2) Any change to the @StorageLink decorated variables may cause costly UI re-rendering.
 
-In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified to refresh the UI.  
+In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified of the change. After @Watch observes the change to **tapIndex**, the state variable **tapColor** is updated, and the UI is re-rendered. (Because **tapIndex** is not directly bound to the UI, its change does not directly trigger UI re-rendering.)
+
+To use the preceding mechanism to implement event notification, ensure that variables in AppStorage are not directly bound to the UI and the @Watch decorated function is as simple as possible. (If the @Watch decorated function takes a long time to execute, the UI re-rendering efficiency will be affected.)
 
 
 ```ts
@@ -275,7 +277,11 @@ export struct TapImage {
 }
 ```
 
-To implement event notification with less overhead, use **emit** instead, with which you can subscribe to an event and receive an event callback.
+Compared with the use of @StorageLink, the use of **emit** implements event notification with less overhead, by allowing you to subscribe to an event and receive an event callback.
+
+> **NOTE**
+>
+> The **emit** API is not available in DevEco Studio Previewer.
 
 
 ```ts
