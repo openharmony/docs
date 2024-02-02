@@ -18,29 +18,29 @@
 ## 接口
 
 ```typescript
-function Particle
-<
-  PARTICLE extends ParticleType,
-  COLOR_UPDATER extends ParticleUpdater,
-  OPACITY_UPDATER extends ParticleUpdater,
-  SCALE_UPDATER extends ParticleUpdater,
-  ACC_SPEED_UPDATER extends ParticleUpdater,
-  ACC_ANGLE_UPDATER extends ParticleUpdater,
-  SPIN_UPDATER extends ParticleUpdater
->(value: {
-  particles: Array<
+interface ParticleInterface {
+  <
+    PARTICLE extends ParticleType,
+    COLOR_UPDATER extends ParticleUpdater,
+    OPACITY_UPDATER extends ParticleUpdater,
+    SCALE_UPDATER extends ParticleUpdater,
+    ACC_SPEED_UPDATER extends ParticleUpdater,
+    ACC_ANGLE_UPDATER extends ParticleUpdater,
+    SPIN_UPDATER extends ParticleUpdater
+  >(value: {
+    particles: Array<
     ParticleOptions<
-      PARTICLE, 
-      COLOR_UPDATER, 
-      OPACITY_UPDATER, 
-      SCALE_UPDATER, 
-      ACC_SPEED_UPDATER, 
-      ACC_ANGLE_UPDATER, 
-      SPIN_UPDATER
+    PARTICLE,
+    COLOR_UPDATER,
+    OPACITY_UPDATER,
+    SCALE_UPDATER,
+    ACC_SPEED_UPDATER,
+    ACC_ANGLE_UPDATER,
+    SPIN_UPDATER
     >
-  >
-})
-
+    >;
+  }): ParticleAttribute;
+}
 ```
 
 **参数：**
@@ -57,6 +57,31 @@ function Particle
 
 ## ParticleOptions
 
+```typescript
+interface ParticleOptions<
+  PARTICLE extends ParticleType,
+  COLOR_UPDATER extends ParticleUpdater,
+  OPACITY_UPDATER extends ParticleUpdater,
+  SCALE_UPDATER extends ParticleUpdater,
+  ACC_SPEED_UPDATER extends ParticleUpdater,
+  ACC_ANGLE_UPDATER extends ParticleUpdater,
+  SPIN_UPDATER extends ParticleUpdater
+> {
+  emitter: EmitterOptions<PARTICLE>;
+  color?: ParticleColorPropertyOptions<COLOR_UPDATER>;
+  opacity?: ParticlePropertyOptions<number, OPACITY_UPDATER>;
+  scale?: ParticlePropertyOptions<number, SCALE_UPDATER>;
+  velocity?: {
+    speed: [number, number];
+    angle: [number, number];
+  };
+  acceleration?: {
+    speed?: ParticlePropertyOptions<number, ACC_SPEED_UPDATER>;
+    angle?: ParticlePropertyOptions<number, ACC_ANGLE_UPDATER>;
+  };
+  spin?: ParticlePropertyOptions<number, SPIN_UPDATER>;
+}
+```
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
