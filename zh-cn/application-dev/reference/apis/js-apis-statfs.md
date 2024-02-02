@@ -60,13 +60,16 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function (err, number) {
-          console.info("getFreeBytes callback successfully:" + number);
-      });
+  ```ts
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
+  statfs.getFreeBytes(path, (err: BusinessError, freeBytes:Number) => {
+      if (err) {
+          console.error('getFreeBytes callback failed');
+      } else {
+          console.info('getFreeBytes callback success' + freeBytes);
+      }
   });
   ```
 
@@ -119,13 +122,16 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number) {
-          console.info("getTotalBytes callback successfully:" + number);
-      });
+   ```ts
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
+  statfs.getTotalBytes(path, (err: BusinessError, totalBytes:Number) => {
+      if (err) {
+          console.error('getTotalBytes callback failed');
+      } else {
+          console.info('getTotalBytes callback success' + totalBytes);
+      }
   });
   ```
 
