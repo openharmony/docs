@@ -1061,37 +1061,49 @@ off(method: string): void
 ## OnReleaseCallback
 
 
-(msg: string): void
-
 注册通用组件服务端Stub（桩）断开监听通知的回调函数类型。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 只读 | 必填 | 类型 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | 否 | 是 | function | 调用者注册的侦听器函数接口的原型。 |
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | ----- | --- | -------- |
+| msg | string | 是 | 用于传递释放消息。 | 
+
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-(msg: string): void
 
 注册协同场景下跨设备组件状态变化监听通知的回调函数类型。
 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 只读 | 必填 | 类型 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | 否 | 是 | function | 调用者注册的协同场景下组件状态变化监听函数接口的原型。 |
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | ----- | --- | -------- |
+| msg | string | 是 | 用于传递释放消息。 | 
+
 
 ## CalleeCallback
 
-(indata: rpc.MessageSequence): rpc.Parcelable;
 
 通用组件服务端注册消息通知的回调函数类型。
 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 只读 | 必填 | 类型 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 否 | 是 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | ----- | --- | -------- |
+| indata | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | 是 | 发送需传递的数据。 |
+
+**返回值：**
+
+| 类型   | 说明                                  |
+| ------------ | ------------------------------------- |
+| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 返回的数据对象。 |
