@@ -18,7 +18,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | Array<[TouchTestInfo>](#touchtestinfo说明) | 否   | 包含子节点信息的数组。 |
+| value  | Array<[TouchTestInfo>](#touchtestinfo说明) | 是   | 包含子节点信息的数组。 |
 
 **返回值：** 
 
@@ -47,7 +47,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | --------- | ---- |--------------------------------------- |
-| strategy  | [TouchTestStrategy](##TouchTestStrategy枚举说明) | 是    | 事件派发策略。                     |
+| strategy  | [TouchTestStrategy](#touchteststrategy枚举说明) | 是    | 事件派发策略。                     |
 | id ?   | string | 否    | 通过id属性设置的组件id。<br>当strategy为TouchTestStrategy.DEFUALT时，id是可选的；当strategy是TouchTestStrategy.FORWARD_COMPEITION或TouchTestStrategy.FORWARD时，id是必需的（如果没有返回id，则当成TouchTestStrategy.DEFAULT处理）。 |
 
 ## TouchTestStrategy枚举说明
