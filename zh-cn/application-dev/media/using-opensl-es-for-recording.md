@@ -19,6 +19,14 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
 以下列表列举了OpenHarmony上已实现的OpenSL ES的接口，具体说明请参考[OpenSL ES](https://www.khronos.org/opensles/)规范：
 
+- **OpenHarmony上支持的SLInterfaceID**：
+
+  | SLInterfaceID | 说明 |
+  | -------- | -------- |
+  | SL_IID_ENGINE | 通用引擎，提供创建录音对象接口 |
+  | SL_IID_RECORD | 提供录音状态接口 |
+  | SL_IID_OH_BUFFERQUEUE | 提供音频录制流数据回调注册接口 |
+
 - **OpenHarmony上支持的Engine接口：**
   - SLresult (\*CreateAudioPlayer) (SLEngineItf self, SLObjectItf \* pPlayer, SLDataSource \*pAudioSrc, SLDataSink \*pAudioSnk, SLuint32 numInterfaces, const SLInterfaceID \* pInterfaceIds, const SLboolean \* pInterfaceRequired)
   - SLresult (\*CreateAudioRecorder) (SLEngineItf self, SLObjectItf \* pRecorder, SLDataSource \*pAudioSrc, SLDataSink \*pAudioSnk, SLuint32 numInterfaces, const SLInterfaceID \* pInterfaceIds, const SLboolean \* pInterfaceRequired)
