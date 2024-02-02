@@ -21,6 +21,8 @@
 
 ## 开发模式
 
+将音频业务根据使用步骤分类对比介绍，代码展示以音频播放场景为例，音频录制实现类似，不再赘述。
+
 ### 构造实例
 
 OpenSL ES:
@@ -111,7 +113,7 @@ OpenSL ES:
 基于扩展的OHBufferQueue接口，
 
 ```c++
-static void BufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
+static void MyBufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
 {
     SLuint8 *buffer = nullptr;
     SLuint32 bufferSize;
@@ -128,16 +130,30 @@ SLOHBufferQueueItf bufferQueueItf;
 (*playerObject)->GetInterface(playerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
 // 可传入自定义的上下文信息，会在Callback内收到
 void *pContext;
-(*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, pContext);
+(*bufferQueueItf)->RegisterCallback(bufferQueueItf, MyBufferQueueCallback, pContext);
 ```
 
 OHAudio:
 
-统一使用回调模式，
+统一使用回调模式，在构造时注册数据输入回调，实现自定义的数据填充函数，在播放过程中会跟随系统调度和时延配置情况，自动在合适时机触发数据请求回调。
 
 ```c++
-// 释放播放对象资源
-(*playerObject)->Destroy(playerObject);
+static int32_t MyOnWriteData(
+    OH_AudioRenderer *renderer,
+    void *userData,
+    void *buffer,
+    int32_t bufferLen)
+{
+    // 将待播放数据按照请求的bufferLen长度，填入buffer
+    // 函数返回后，系统会自动从buffer取出数据输出
+}
+
+OH_AudioRenderer_Callbacks callbacks;
+callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+
+// 设置输出音频流的回调，在生成音频播放对象时自动注册
+void *userData = nullptr;
+OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, userData);
 ```
 
 ### 资源释放
