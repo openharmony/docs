@@ -274,7 +274,7 @@ import { BusinessError } from '@ohos.base';
 let rootElement: AccessibilityElement;
 
 axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -316,7 +316,7 @@ let isAccessibilityFocus = true;
 let rootElement: AccessibilityElement;
 
 axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: AccessibilityElement)=> {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -400,7 +400,7 @@ import { BusinessError } from '@ohos.base';
 let rootElement: AccessibilityElement;
 
 axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -442,7 +442,7 @@ let windowId = 10;
 let rootElement: AccessibilityElement;
 
 axContext.getWindowRootElement(windowId, (err: BusinessError, data: AccessibilityElement) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -521,7 +521,7 @@ import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -560,7 +560,7 @@ import { BusinessError } from '@ohos.base';
 
 let displayId = 10;
 axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -762,7 +762,7 @@ import { BusinessError } from '@ohos.base';
 
 // rootElement是AccessibilityElement的实例
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get attribute names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -850,7 +850,7 @@ let attributeName: ElementAttributeKeys = 'bundleName';
 
 // rootElement是AccessibilityElement的实例
 rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get attribute value, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -904,7 +904,7 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 ```ts
 // rootElement是AccessibilityElement的实例
 rootElement.actionNames((err: BusinessError, data: string[]) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to get action names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -988,7 +988,7 @@ let actionName = 'action';
 
 // rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName, (err: BusinessError) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1030,7 +1030,7 @@ let parameters: object = [];
 
 // rootElement是AccessibilityElement的实例
 rootElement.performAction(actionName, parameters, (err: BusinessError) => {
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1099,7 +1099,7 @@ let condition = 'keyword';
 
 // rootElement是AccessibilityElement的实例
 rootElement.findElement('content', condition, (err: BusinessError, data: AccessibilityElement[])=>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1170,7 +1170,7 @@ let condition: FocusType = 'normal';
 
 // rootElement是AccessibilityElement的实例
 rootElement.findElement('focusType', condition, (err: BusinessError, data: AccessibilityElement)=>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
@@ -1241,7 +1241,7 @@ let condition: FocusDirection = 'up';
 
 // rootElement是AccessibilityElement的实例
 rootElement.findElement('focusDirection', condition, (err: BusinessError, data: AccessibilityElement) =>{
-  if (err) {
+  if (err && err.code) {
     console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
     return;
   }
