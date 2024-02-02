@@ -1219,6 +1219,8 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
         if (err) {
@@ -1259,6 +1261,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.get('startup', 'default');
     promise.then((data: dataPreferences.ValueType) => {
@@ -1324,6 +1328,8 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
 function getObjKeys(obj: Object): string[] {
@@ -1366,6 +1372,8 @@ getAll(): Promise&lt;Object&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
 function getObjKeys(obj: Object): string[] {
@@ -1444,6 +1452,8 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.put('startup', 'auto', (err: BusinessError) => {
         if (err) {
@@ -1484,6 +1494,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.put('startup', 'auto');
     promise.then(() => {
@@ -1545,6 +1557,8 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.has('startup', (err: BusinessError, val: boolean) => {
         if (err) {
@@ -1588,6 +1602,8 @@ has(key: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.has('startup');
     promise.then((val: boolean) => {
@@ -1663,6 +1679,8 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.delete('startup', (err: BusinessError) => {
         if (err) {
@@ -1702,6 +1720,8 @@ delete(key: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.delete('startup');
     promise.then(() => {
@@ -1761,6 +1781,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.flush((err: BusinessError) => {
         if (err) {
@@ -1794,6 +1816,8 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.flush();
     promise.then(() => {
@@ -1826,6 +1850,8 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     preferences.clear((err: BusinessError) =>{
         if (err) {
@@ -1859,6 +1885,8 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 try {
     let promise = preferences.clear();
     promise.then(() => {
@@ -1913,6 +1941,8 @@ on(type: 'change', callback: ( key : string ) => void): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
@@ -1932,8 +1962,6 @@ preferences.flush((err: BusinessError) => {
 on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
-
-此方法可以配合[removePreferencesFromCache](#datapreferencesremovepreferencesfromcache)使用，当监听到有进程更新了文件时，在回调方法中更新当前的Preferences实例，如下示例2。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1955,6 +1983,8 @@ on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
@@ -1987,6 +2017,8 @@ off(type: 'change', callback?: ( key : string ) => void): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
@@ -2020,6 +2052,8 @@ off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
