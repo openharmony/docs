@@ -18,29 +18,29 @@
 ## 接口
 
 ```typescript
-function Particle
-<
-  PARTICLE extends ParticleType,
-  COLOR_UPDATER extends ParticleUpdater,
-  OPACITY_UPDATER extends ParticleUpdater,
-  SCALE_UPDATER extends ParticleUpdater,
-  ACC_SPEED_UPDATER extends ParticleUpdater,
-  ACC_ANGLE_UPDATER extends ParticleUpdater,
-  SPIN_UPDATER extends ParticleUpdater
->(value: {
-  particles: Array<
+interface ParticleInterface {
+  <
+    PARTICLE extends ParticleType,
+    COLOR_UPDATER extends ParticleUpdater,
+    OPACITY_UPDATER extends ParticleUpdater,
+    SCALE_UPDATER extends ParticleUpdater,
+    ACC_SPEED_UPDATER extends ParticleUpdater,
+    ACC_ANGLE_UPDATER extends ParticleUpdater,
+    SPIN_UPDATER extends ParticleUpdater
+  >(value: {
+    particles: Array<
     ParticleOptions<
-      PARTICLE, 
-      COLOR_UPDATER, 
-      OPACITY_UPDATER, 
-      SCALE_UPDATER, 
-      ACC_SPEED_UPDATER, 
-      ACC_ANGLE_UPDATER, 
-      SPIN_UPDATER
+    PARTICLE,
+    COLOR_UPDATER,
+    OPACITY_UPDATER,
+    SCALE_UPDATER,
+    ACC_SPEED_UPDATER,
+    ACC_ANGLE_UPDATER,
+    SPIN_UPDATER
     >
-  >
-})
-
+    >;
+  }): ParticleAttribute;
+}
 ```
 
 **参数：**

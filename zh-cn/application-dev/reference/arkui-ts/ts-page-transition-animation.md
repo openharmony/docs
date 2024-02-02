@@ -28,7 +28,7 @@ PageTransitionEnter(value: PageTransitionOptions)
 
 | 参数名 | 类型                                                   | 必填 | 说明                 |
 | ------ | ------------------------------------------------------ | ---- | -------------------- |
-| value  | [PageTransitionOptions](pagetransitionoptions对象说明) | 是   | 配置入场动效的参数。 |
+| value  | [PageTransitionOptions](#pagetransitionoptions对象说明) | 是   | 配置入场动效的参数。 |
 
 ## PageTransitionExit
 
@@ -42,7 +42,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 | 参数名 | 类型                                                   | 必填 | 说明                 |
 | ------ | ------------------------------------------------------ | ---- | -------------------- |
-| value  | [PageTransitionOptions](pagetransitionoptions对象说明) | 是   | 配置入场动效的参数。 |
+| value  | [PageTransitionOptions](#pagetransitionoptions对象说明) | 是   | 配置入场动效的参数。 |
 
 ## PageTransitionOptions对象说明
 
