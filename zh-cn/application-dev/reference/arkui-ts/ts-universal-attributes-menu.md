@@ -57,6 +57,22 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。             |
 | options      | [MenuOptions](#menuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
 
+## bindContextMenu<sup>12+</sup>
+
+bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions)
+
+给组件绑定菜单，触发方式为控制绑定的isShown；isShown为true，弹出菜单；isShown为false，隐藏菜单；弹出菜单项需要自定义。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型                                               | 必填 | 说明                                         |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| isShown<sup>12+</sup> | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false，menu弹窗必须等待页面全部构建才能展示，因此不能在页面构建中设置为true，否则会导致显示位置及形状错误，当前不支持双向绑定。             |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
+| options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
+
 ## MenuElement
 
 | 名称                  | 类型                                   | 必填 | 描述                                                         |
@@ -83,7 +99,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | placement             | [Placement](ts-appendix-enums.md#placement8)                 | 否   | 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>**说明：**<br />placement值设置为undefined、null或没有设置此选项时，按未设置placement处理，菜单跟随点击位置弹出。 |
 | enableArrow           | boolean                                                      | 否   | 是否显示箭头。如果菜单的大小和位置不足以放置箭头时，不会显示箭头。 <br/>默认值：false, 不显示箭头。<br/>**说明：**<br />enableArrow为true时，placement未设置或者值为非法值，默认在目标物上方显示，否则按照placement的位置优先显示。当前位置显示不下时，会自动调整位置，enableArrow为undefined时，不显示箭头。 |
 | arrowOffset           | [Length](ts-types.md#length)                                 | 否   | 箭头在菜单处的偏移。箭头在菜单水平方向时，偏移量为箭头至最左侧的距离，默认居中。箭头在菜单竖直方向时，偏移量为箭头至最上侧的距离，默认居中。偏移量必须合法且转换为具体数值时大于0才会生效，另外该值生效时不会导致箭头超出菜单四周的安全距离。根据配置的placement来计算是在水平还是竖直方向上偏移。 |
-| preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 长按悬浮菜单的预览内容样式，可以为目标组件的截图，也可以为用户自定义的内容。<br/>默认值：MenuPreviewMode.NONE, 无预览内容。<br/>**说明：**<br />- 仅支持responseType为ResponseType.LongPress时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。<br />- 当未设置preview参数或preview参数设置为MenuPreviewMode.NONE时，enableArrow参数生效。<br />- 当preview参数设置为MenuPreviewMode.IMAGE或CustomBuilder时，enableArrow为true时也不显示箭头。 |
+| preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 长按悬浮菜单的预览内容样式，可以为目标组件的截图，也可以为用户自定义的内容。<br/>默认值：MenuPreviewMode.NONE, 无预览内容。<br/>**说明：**<br />- 不支持responseType为ResponseType.RightClick时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。<br />- 当未设置preview参数或preview参数设置为MenuPreviewMode.NONE时，enableArrow参数生效。<br />- 当preview参数设置为MenuPreviewMode.IMAGE或CustomBuilder时，enableArrow为true时也不显示箭头。 |
 | previewAnimationOptions<sup>11+</sup> | [ContextMenuAnimationOptions](#contextmenuanimationoptions11) | 否    | 控制长按预览显示动画开始倍率和结束倍率（相对预览原图比例）。<br/>默认值：{scale: [0.95, 1.1]}。<br/>**说明：**<br />-倍率设置参数小于等于0时，不生效。<br />-当前只在preview设置为MenuPreviewMode.IMAGE模式时生效。 |
 | onAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单弹出时的事件回调。                                       |
 | onDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单消失时的事件回调。                                       |
@@ -372,3 +388,60 @@ struct Index {
 
 ![preview-builder](figures/preview-builder.png)
 
+### 示例7
+
+通过绑定isShown控制菜单（自定义预览内容）
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+  @State isShown: boolean = false
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
+    }
+  }
+
+  @Builder
+  MyPreview() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(200)
+        .height(200)
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-builder')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.isShown, this.MyMenu,
+              {
+                preview: this.MyPreview,
+                onDisappear: ()=>{
+                    this.isShown = false;
+                }
+              })
+          Button('click')
+            .onClick(()=>{
+                this.isShown = true;
+             })
+        }
+      }.width('100%')
+    }
+  }
+}
+```
