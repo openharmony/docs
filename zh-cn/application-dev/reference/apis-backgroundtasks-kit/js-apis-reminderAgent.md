@@ -22,7 +22,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
-发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder)替代。
@@ -57,7 +57,7 @@ reminderAgent.publishReminder(timer, (err: BusinessError, reminderId: number) =>
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
+发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder-1)替代。
