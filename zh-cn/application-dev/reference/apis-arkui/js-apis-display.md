@@ -132,7 +132,7 @@ getDefaultDisplaySync(): Display
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -167,7 +167,7 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -207,7 +207,7 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -299,7 +299,7 @@ isFoldable(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -348,7 +348,7 @@ getFoldStatus(): FoldStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -381,7 +381,7 @@ getFoldDisplayMode(): FoldDisplayMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -414,7 +414,7 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -449,7 +449,7 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -487,7 +487,7 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -520,7 +520,7 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -558,7 +558,7 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -749,7 +749,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -791,7 +791,7 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |

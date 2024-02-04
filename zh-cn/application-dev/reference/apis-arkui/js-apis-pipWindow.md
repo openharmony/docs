@@ -202,7 +202,7 @@ startPiP(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
 | 错误码ID      | 错误信息                                                   |
 |------------|--------------------------------------------------------|
@@ -238,7 +238,7 @@ stopPiP(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
 | 错误码ID   | 错误信息                             |
 |---------|----------------------------------|

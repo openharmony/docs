@@ -30,7 +30,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -69,7 +69,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -163,7 +163,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -220,7 +220,7 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -268,7 +268,7 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -316,7 +316,7 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -357,7 +357,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -407,7 +407,7 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -448,7 +448,7 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -496,7 +496,7 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -538,7 +538,7 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -604,7 +604,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -661,7 +661,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
@@ -709,7 +709,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
@@ -752,7 +752,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -804,7 +804,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -1015,7 +1015,7 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -1082,7 +1082,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -1142,7 +1142,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -1210,7 +1210,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -1271,7 +1271,7 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -1339,7 +1339,7 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |

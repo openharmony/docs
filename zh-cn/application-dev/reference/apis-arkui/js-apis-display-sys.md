@@ -38,7 +38,7 @@ hasPrivateWindow(displayId: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -148,7 +148,7 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -189,7 +189,7 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -239,7 +239,7 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -284,7 +284,7 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -328,7 +328,7 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -371,7 +371,7 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
