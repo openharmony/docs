@@ -1605,7 +1605,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | localId     | number | 是   |  要查询的系统帐号ID |
 | constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统帐号约束列表)名称 |
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](#系统帐号约束列表)来源信息；否则为错误对象。                      |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](js-apis-osAccount.md#系统帐号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
 
