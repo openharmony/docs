@@ -688,3 +688,25 @@ getAppMemoryLimit() : MemoryLimit
 | CAMERA                   | number  |  相机模块tag                         |
 | IMAGE                    | number  |  图像模块tag                         |
 | MEDIA                    | number  |  媒体模块tag                         |
+
+## hidebug.getSystemCpuUsage<sup>12+</sup>
+
+getSystemCpuUsage() : number
+
+获取系统的CPU资源占用情况.
+
+例如, 当系统资源CPU占用为 **50%**, 将返回**0.5**.
+
+**系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**
+
+| 类型     | 说明           |
+|--------|--------------|
+| number | 系统Cpu资源占用情况. |
+
+
+**示例**
+  ```ts
+  let cpuUsage: number = hidebug.getSystemCpuUsage();
+  ```

@@ -691,3 +691,25 @@ Tag type constant describing trace
 | CAMERA                   | number  |  Camera module tag                        |
 | IMAGE                    | number  |  Image module tag                         |
 | MEDIA                    | number  |  Media module tag                         |
+
+## hidebug.getSystemCpuUsage<sup>12+</sup>
+
+getSystemCpuUsage() : number
+
+Obtains the CPU usage of a system.
+
+For example, if the CPU usage is **50%**, **0.5** is returned.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | CPU usage of the system.|
+
+
+**Example**
+  ```ts
+  let cpuUsage: number = hidebug.getSystemCpuUsage();
+  ```
