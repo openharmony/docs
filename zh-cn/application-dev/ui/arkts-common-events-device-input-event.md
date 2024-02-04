@@ -41,7 +41,7 @@
 
 
 ```ts
-onHover(event: (isHover?: boolean) => void)
+onHover(event: (isHover: boolean) => void)
 ```
 
 
