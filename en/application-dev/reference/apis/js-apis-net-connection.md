@@ -133,7 +133,7 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 
 | Type     | Description                              |
 | --------- | ---------------------------------- |
-| NetHandle | Handle of the default active data network.|
+| [NetHandle](#nethandle) | Handle of the default active data network.|
 
 **Error codes**
 
@@ -330,7 +330,7 @@ connection.setGlobalHttpProxy({
 });
 ```
 
-## connection.setAppHttpProxy<sup>10+</sup>
+## connection.setAppHttpProxy<sup>11+</sup>
 
 setAppHttpProxy(httpProxy: HttpProxy): void;
 
@@ -346,14 +346,10 @@ Sets the application-level HTTP proxy configuration of the network.
 
 **Error codes**
 
-| ID| Error Message                       |
+| ID| Error Message                      |
 | ------- | -----------------------------  |
-| 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 202     | Non-system applications use system APIs.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+| 2100001 | Invalid http proxy.            |
 
 **Example**
 

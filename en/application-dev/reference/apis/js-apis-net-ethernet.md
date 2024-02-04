@@ -520,12 +520,10 @@ Listens for status changes of an Ethernet NIC.
 
 **System capability**: SystemCapability.Communication.NetManager.Ethernet
 
-### Name
-
-| Name         | Type                   | Mandatory| Description                                                        |
-| ------------ | ----------------------- | ---|------------------------------------------------------------ |
-| iface         | string                  |  Yes| Name of the Ethernet NIC.|
-| active       | boolean                  | Yes| Whether the Ethernet NIC is activated. The value **true** indicates the NIC is activated, and the value **false** indicates the opposite.|
+| Name        | Type                   | Mandatory| Description                                                |
+| ------------ | ----------------------- | --- | ---------------------------------------------------- |
+| iface        | string                  |  Yes| Name of the Ethernet NIC.                                       |
+| active       | boolean                 |  Yes| Whether the Ethernet NIC is activated. The value **true** indicates the NIC is activated, and the value **false** indicates the opposite.|
 
 ## IPSetMode<sup>9+</sup>
 

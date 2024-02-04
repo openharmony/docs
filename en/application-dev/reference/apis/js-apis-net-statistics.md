@@ -1181,9 +1181,7 @@ Defines the NIC status and usage of an application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-### Attributes
-
-| Name     | Type  | Mandatory| Description                     |
-| --------- | ------ | ---- | ------------------------ |
-| iface   | string | Yes  | NIC name.|
-| uid   | number | No  | Application UID.|
+| Name     | Type  | Mandatory| Description      |
+| --------- | ------ | ---- | --------- |
+| iface     | string | Yes  | NIC name.|
+| uid       | number | No  | Application UID. |

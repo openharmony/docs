@@ -700,7 +700,7 @@ Obtains a string based on the specified resource object. This API uses an asynch
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -805,7 +805,7 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1123,7 +1123,7 @@ Obtains a string array based on the specified resource object. This API uses an 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resource | [Resource](#resource9)                   | Yes   | Resource object.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1228,7 +1228,7 @@ Obtains a string array based on the specified resource name. This API uses an as
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | Yes   | Resource name.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2133,7 +2133,7 @@ Obtains the content of a media file based on the specified resource object. This
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2185,7 +2185,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2343,7 +2343,7 @@ Obtains the content of a media file based on the specified resource name. This A
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2387,7 +2387,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2866,7 +2866,7 @@ Obtains the Base64 code of an image based on the specified resource object. This
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2918,7 +2918,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3076,7 +3076,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3120,7 +3120,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3323,7 +3323,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource object.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3387,7 +3387,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource name.|
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3957,7 +3957,7 @@ Obtains a color value based on the specified resource object. This API uses an a
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource object.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -5129,7 +5129,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error: BusinessError, value: string) => {
+      mgr.getString($r('app.string.test').id, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5196,7 +5196,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
+      mgr.getStringArray($r('app.strarray.test').id, (error: Error, value: Array<string>) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5263,7 +5263,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
+      mgr.getMedia($r('app.media.test').id, (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5329,7 +5329,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, ((error: BusinessError, value: string) => {
+      mgr.getMediaBase64($r('app.media.test').id, ((error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5442,7 +5442,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5473,7 +5473,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt", (error: BusinessError, value: Uint8Array) => {
+      mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5542,7 +5542,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
   import resourceManager from '@ohos.resourceManager';
 
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
+      mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5603,6 +5603,8 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 
 **Parameters**
 
+
+
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
@@ -5611,7 +5613,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 **Example**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt", (error: BusinessError) => {
+      mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
           if (error != null) {
               console.error("error is " + error);
           }

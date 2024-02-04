@@ -479,10 +479,10 @@ Defines a screen hopping status change event.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| Name                     | Type          | Readable| Writable| Description                    |
-| ------------------------- | -------------- | ---- | ---- | ------------------------ |
-| networkId<sup>(11+)</sup> | string         | Yes  | No  | Descriptor of the target device for screen hopping.|
-| state<sup>(11+)</sup>     | CooperateState | Yes  | No  | Screen hopping status.        |
+| Name     | Type          | Readable| Writable| Description                    |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| networkId | string         | Yes  | No  | Descriptor of the target device for screen hopping.|
+| state     | CooperateState | Yes  | No  | Screen hopping status.        |
 
 
 
@@ -492,16 +492,16 @@ Defines the screen hopping status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| Name                                          | Type  | Readable| Writable| Description                  |
-| ---------------------------------------------- | ------ | ---- | ---- | ---------------------- |
-| COOPERATE_PREPARE<sup>(11+)</sup>              | number | Yes  | No  | The preparation for screen hopping is finished.    |
-| COOPERATE_UNPREPARE<sup>(11+)</sup>            | number | Yes  | No  | The preparation for screen hopping is cancelled.|
-| COOPERATE_ACTIVATE<sup>(11+)</sup>             | number | Yes  | No  | Screen hopping starts.    |
-| COOPERATE_ACTIVATE_SUCCESS<sup>(11+)</sup>     | number | Yes  | No  | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAILURE<sup>(11+)</sup>     | number | Yes  | No  | Starting screen hopping fails.|
-| COOPERATE_DEACTIVATE_SUCCESS<sup>(11+)</sup>   | number | Yes  | No  | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAILURE<sup>(11+)</sup>   | number | Yes  | No  | Stopping screen hopping fails.|
-| COOPERATE_SESSION_DISCONNECTED<sup>(11+)</sup> | number | Yes  | No  | The screen hopping session is disconnected.|
+| Name                          | Type  | Readable| Writable| Description                  |
+| ------------------------------ | ------ | ---- | ---- | ---------------------- |
+| COOPERATE_PREPARE              | number | Yes  | No  | The preparation for screen hopping is finished.    |
+| COOPERATE_UNPREPARE            | number | Yes  | No  | The preparation for screen hopping is cancelled.|
+| COOPERATE_ACTIVATE             | number | Yes  | No  | Screen hopping starts.    |
+| COOPERATE_ACTIVATE_SUCCESS     | number | Yes  | No  | Starting screen hopping succeeds.|
+| COOPERATE_ACTIVATE_FAILURE     | number | Yes  | No  | Starting screen hopping fails.|
+| COOPERATE_DEACTIVATE_SUCCESS   | number | Yes  | No  | Stopping screen hopping succeeds.|
+| COOPERATE_DEACTIVATE_FAILURE   | number | Yes  | No  | Stopping screen hopping fails.|
+| COOPERATE_SESSION_DISCONNECTED | number | Yes  | No  | The screen hopping session is disconnected.|
 
 
 
@@ -1021,7 +1021,7 @@ Represents a screen hopping message notification.
 | COOPERATE_UNPREPARE |  1  |  The preparation for screen hopping is cancelled. |
 | COOPERATE_ACTIVATE |  2   |  Screen hopping starts. |
 | COOPERATE_ACTIVATE_SUCCESS | 3 | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAIL | 4 | Starting screen hopping fails.|
+| COOPERATE_ACTIVATE_FAILURE | 4 | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAIL | 6 | Stopping screen hopping fails.|
+| COOPERATE_DEACTIVATE_FAILURE | 6 | Stopping screen hopping fails.|
 | COOPERATE_SESSION_DISCONNECTED | 7 | The screen hopping session is disconnected.|

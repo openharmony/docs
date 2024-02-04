@@ -30,9 +30,13 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, 
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
-If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
 
-You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+
+For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
+
+You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 
 ## Modules to Import
@@ -580,7 +584,7 @@ Subscribes to cached GNSS location reports. This API is supported only by certai
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsChange** indicates reporting of cached GNSS locations.|
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | Yes| Request for reporting cached GNSS location.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback used to receive cached GNSS locations.|
+  | callback | Callback&lt;Array&lt;Location&gt;&gt; | Yes| Callback used to receive cached GNSS locations.|
 
 **Error codes**
 
@@ -624,7 +628,7 @@ Unsubscribes from cached GNSS location reports. This API is supported only by ce
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsChange** indicates reporting of cached GNSS locations.|
-  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;Array&lt;Location&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -1154,7 +1158,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -1201,7 +1205,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import BusinessError from "@ohos.base";
   let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
           console.log('locationChanger: location=' + JSON.stringify(location));
@@ -1233,9 +1237,9 @@ Obtains the current location. This API uses a promise to return the result.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt;  | [Location](#location) | NA | Promise used to return the current location.|
+  | Type| Description|
+  | -------- | -------- |
+  | [Location](#location) | Promise used to return the current location.|
 
 **Error codes**
 
@@ -1258,7 +1262,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
           console.log('current location: ' + JSON.stringify(result));
       })  
       .catch((error:number) => {
-          console.log('promise, getCurrentLocation: error=' + JSON.stringify(error));
+          console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1278,9 +1282,9 @@ Obtains the last location.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Location  | [Location](#location) | NA | Location information.|
+  | Type| Description|
+  | -------- | -------- |
+  | [Location](#location) | Location information.|
 
 **Error codes**
 
@@ -1315,9 +1319,9 @@ Checks whether the location service is enabled.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | Result indicating whether the location service is enabled.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Result indicating whether the location service is enabled.|
 
 **Error codes**
 
@@ -1372,9 +1376,9 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.enableLocation((err, data) => {
+      geoLocationManager.enableLocation((err) => {
           if (err) {
-              console.log('enableLocation: err=' + JSON.stringify(err));
+              console.error('enableLocation: err=' + JSON.stringify(err));
           }
       });
   } catch (err) {
@@ -1397,9 +1401,9 @@ Enables the location service. This API uses a promise to return the result.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | Promise used to return the error message.|
+  | Type| Description|
+  | -------- | -------- |
+  | void | No value is returned.|
 
 **Error codes**
 
@@ -1415,11 +1419,11 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.enableLocation().then((result) => {
+      geoLocationManager.enableLocation().then(() => {
           console.log('promise, enableLocation succeed');
       })
       .catch((error:number) => {
-          console.log('promise, enableLocation: error=' + JSON.stringify(error));
+          console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1492,7 +1496,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
           if (err) {
-              console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
+              console.error('getAddressesFromLocation: err=' + JSON.stringify(err));
           }
           if (data) {
               console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
@@ -1520,9 +1524,9 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt;  | Array&lt;[GeoAddress](#geoaddress)&gt; | NA | Promise used to return the reverse geocoding result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddress)&gt; | Promise used to return the reverse geocoding result.|
 
 **Error codes**
 
@@ -1544,7 +1548,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
       })
       .catch((error:number) => {
-          console.log('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
+          console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1585,7 +1589,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
           if (err) {
-              console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
+              console.error('getAddressesFromLocationName: err=' + JSON.stringify(err));
           }
           if (data) {
               console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
@@ -1613,9 +1617,9 @@ Converts geographic description into coordinates through geocoding. This API use
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt;  | Array&lt;[GeoAddress](#geoaddress)&gt; | NA | Promise used to return the geocoding result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddress)&gt; | Promise used to return the geocoding result.|
 
 **Error codes**
 
@@ -1637,7 +1641,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
       .catch((error:number) => {
-          console.log('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
+          console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1654,9 +1658,9 @@ Obtains the (reverse) geocoding service status.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | Result indicating whether the (reverse) geocoding service is available.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Result indicating whether the (reverse) geocoding service is available.|
 
 **Error codes**
 
@@ -1712,7 +1716,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
-              console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
+              console.error('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
           }
           if (size) {
               console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
@@ -1736,9 +1740,9 @@ Obtains the number of cached GNSS locations. This API is supported only by certa
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;number&gt;  | number | NA | Promise used to return the number of cached GNSS locations.|
+  | Type| Description|
+  | -------- | -------- |
+  | number | Promise used to return the number of cached GNSS locations.|
 
 **Error codes**
 
@@ -1759,7 +1763,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
           console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
       .catch((error:number) => {
-          console.log('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
+          console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1799,9 +1803,9 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.flushCachedGnssLocations((err, result) => {
+      geoLocationManager.flushCachedGnssLocations((err) => {
           if (err) {
-              console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
+              console.error('flushCachedGnssLocations: err=' + JSON.stringify(err));
           }
       });
   } catch (err) {
@@ -1822,9 +1826,9 @@ Obtains all cached GNSS locations and clears the GNSS cache queue. This API is s
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | Promise used to receive the error code.|
+  | Type| Description|
+  | -------- | -------- |
+  | void | No value is returned.|
 
 **Error codes**
 
@@ -1842,11 +1846,11 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
   try {
-      geoLocationManager.flushCachedGnssLocations().then((result) => {
+      geoLocationManager.flushCachedGnssLocations().then(() => {
           console.log('promise, flushCachedGnssLocations success');
       })
       .catch((error:number) => {
-          console.log('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
+          console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1884,9 +1888,9 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import BusinessError from "@ohos.base";
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
-      geoLocationManager.sendCommand(requestInfo, (err, result) => {
+      geoLocationManager.sendCommand(requestInfo, (err) => {
           if (err) {
-              console.log('sendCommand: err=' + JSON.stringify(err));
+              console.error('sendCommand: err=' + JSON.stringify(err));
           }
       });
   } catch (err) {
@@ -1911,9 +1915,9 @@ Sends an extended command to the location subsystem.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;void&gt;  | void | NA | Promise used to receive the error code.|
+  | Type| Description|
+  | -------- | -------- |
+  | void | No value is returned.|
 
 **Error codes**
 
@@ -1930,11 +1934,11 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   import BusinessError from "@ohos.base";
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
-      geoLocationManager.sendCommand(requestInfo).then((result) => {
+      geoLocationManager.sendCommand(requestInfo).then(() => {
           console.log('promise, sendCommand success');
       })  
       .catch((error:number) => {
-          console.log('promise, sendCommand: error=' + JSON.stringify(error));
+          console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -1973,7 +1977,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
-              console.log('getCountryCode: err=' + JSON.stringify(err));
+              console.error('getCountryCode: err=' + JSON.stringify(err));
           }
           if (result) {
               console.log('getCountryCode: result=' + JSON.stringify(result));
@@ -1995,9 +1999,9 @@ Obtains the current country code.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[CountryCode](#countrycode)&gt; | [CountryCode](#countrycode) | NA | Promise used to receive the country code.|
+  | Type| Description|
+  | -------- | -------- |
+  | [CountryCode](#countrycode) | Callback used to receive the country code.|
 
 **Error codes**
 
@@ -2019,7 +2023,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
           console.log('promise, getCountryCode: result=' + JSON.stringify(result));
       })
       .catch((error:number) => {
-          console.log('promise, getCountryCode: error=' + JSON.stringify(error));
+          console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
@@ -2267,9 +2271,9 @@ Checks whether a user agrees with the privacy statement of the location service.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | Whether the user agrees with the privacy statement.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Whether the user agrees with the privacy statement.|
 
 **Error codes**
 
@@ -2352,9 +2356,9 @@ Obtains the required data of the location service. This API uses a promise to re
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | Promise used to receive the required data of the location service, such as the Wi-Fi and Bluetooth scanning information.|
+  | Type| Description|
+  | -------- | -------- |
+  | [LocatingRequiredData](#locatingrequireddata10) | Promise used to receive the required data of the location service, such as the Wi-Fi and Bluetooth scanning information.|
 
 **Error codes**
 
@@ -2375,7 +2379,7 @@ For details about the error codes, see [Location Error Codes](../errorcodes/erro
           console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
       .catch((error:number) => {
-          console.log('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
+          console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
