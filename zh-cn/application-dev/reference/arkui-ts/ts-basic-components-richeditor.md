@@ -134,6 +134,18 @@ Span类型信息。
 
 ## RichEditorImageSpanResult
 
+后端返回的图片信息。
+
+| 名称               | 类型                                                                | 必填  | 描述               |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。          |
+| valuePixelMap    | [PixelMap](../apis/js-apis-image.md#pixelmap7)                    | 否   | 图片内容。            |
+| valueResourceStr | [ResourceStr](ts-types.md#resourcestr)                            | 否   | 图片资源id。          |
+| imageStyle       | [RichEditorImageSpanStyleResult](#richeditorimagespanstyleresult) | 是   | 图片样式。            |
+| offsetInSpan     | [number, number]                                                  | 是   | Span里图片的起始和结束位置。 |
+
+## RichEditorImageSpanStyleResult
+
 后端返回的图片样式信息。
 
 | 名称            | 类型                                       | 必填   | 描述        |
@@ -141,7 +153,6 @@ Span类型信息。
 | size          | [number, number]                         | 是    | 图片的宽度和高度。 |
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 |
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | 是    | 图片缩放类型。   |
-
 
 ## RichEditorOptions
 
@@ -255,7 +266,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - builder的手势相关事件机制与通用手势事件相同，如果builder中未设置透传，则仅有builder中的子组件响应。
 
 通用属性仅支持[size](ts-universal-attributes-size.md#size)、[padding](ts-universal-attributes-size.md#padding)、[margin](ts-universal-attributes-size.md#margin)、[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)、[opacity](ts-universal-attributes-opacity.md)、[blur](ts-universal-attributes-image-effect.md#blur)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[grayscale](ts-universal-attributes-image-effect.md#grayscale)、[brightness](ts-universal-attributes-image-effect.md#brightness)、[saturate](ts-universal-attributes-image-effect.md#saturate)、
-[contrast](ts-universal-attributes-image-effect.md#contrast)、[invert](ts-universal-attributes-image-effect.md#invert)、[sepia](ts-universal-attributes-image-effect.md#sepia)、[hueRotate](ts-universal-attributes-image-effect.md#huerotate)、[colorBlend](ts-universal-attributes-image-effect.md#colorblend8)、[sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect10)、[lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect10)、[pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect10)、[linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur10)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)、[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup)、[accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext11)、[accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription)、[accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)。
+[contrast](ts-universal-attributes-image-effect.md#contrast)、[invert](ts-universal-attributes-image-effect.md#invert)、[sepia](ts-universal-attributes-image-effect.md#sepia)、[hueRotate](ts-universal-attributes-image-effect.md#huerotate)、[colorBlend](ts-universal-attributes-image-effect.md#colorblend7)、[sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect10)、[lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect10)、[pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect10)、[linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur10)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)、[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup)、[accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext)、[accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription)、[accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)。
 
 **参数：**
 
