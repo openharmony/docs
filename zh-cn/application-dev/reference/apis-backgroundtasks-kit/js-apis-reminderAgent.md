@@ -501,7 +501,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#maxscreenWantagent)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#maxscreenwantagent)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
