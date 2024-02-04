@@ -476,7 +476,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | 是   | 表示数据库的同步模式。                   |
 | predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.mddetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
 | callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
 **示例：**
