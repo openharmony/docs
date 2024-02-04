@@ -197,7 +197,7 @@ cancel(task: Task): void
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 第一时间检查取消并回复
+  // 第一次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -207,7 +207,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // 第二次检查取消并作出响应
+  // 第二次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -215,24 +215,32 @@ function inspectStatus(arg: number): number {
   return arg + 1;
 }
 
-let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
-let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
-let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
-let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
-let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: number)=>{
-  console.info("taskpool test result: " + res);
-});
-taskpool.execute(task2);
-taskpool.execute(task3);
-taskpool.execute(task4);
-taskpool.execute(task5);
-taskpool.execute(task6);
-// 1s后取消task
-setTimeout(()=>{
-  taskpool.cancel(task1);
-}, 1000);
+function concurrntFunc() {
+  let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
+  let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
+  let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
+  let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
+  let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
+  taskpool.execute(task1).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  });
+  taskpool.execute(task2);
+  taskpool.execute(task3);
+  taskpool.execute(task4);
+  taskpool.execute(task5);
+  taskpool.execute(task6);
+  // 1s后取消task
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(task1);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
@@ -270,23 +278,27 @@ function printArgs(args: number): number {
   return args;
 }
 
-let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup1.addTask(printArgs, 10); // 10: test number
-let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<number>)=>{
-  console.info("taskGroup1 res is:" + res);
-});
-taskpool.execute(taskGroup2).then((res: Array<number>)=>{
-  console.info("taskGroup2 res is:" + res);
-});
-setTimeout(()=>{
-  try {
-    taskpool.cancel(taskGroup2);
-  } catch (e) {
-    console.error("taskGroup.cancel occur error:" + e);
-  }
-}, 1000);
+function concurrntFunc() {
+  let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup2.addTask(printArgs, 100); // 100: test number
+  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+    console.info("taskGroup1 res is:" + res);
+  });
+  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+    console.info("taskGroup2 res is:" + res);
+  });
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(taskGroup2);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 
@@ -1150,7 +1162,7 @@ func2();
 // 任务取消成功
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 第一时间检查取消并回复
+  // 第一次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled before 2s sleep.");
     return arg + 2;
@@ -1160,7 +1172,7 @@ function inspectStatus(arg: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  // 第二次检查取消并作出响应
+  // 第二次检查任务是否已经取消并作出响应
   if (taskpool.Task.isCanceled()) {
     console.info("task has been canceled after 2s sleep.");
     return arg + 3;
@@ -1170,14 +1182,19 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: number)=>{
+  taskpool.execute(task).then((res: Object)=>{
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
   // 1s后取消task
   setTimeout(()=>{
-    taskpool.cancel(task);}, 1000);
+    try {
+      taskpool.cancel(task);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
 }
 
 taskpoolCancel();
