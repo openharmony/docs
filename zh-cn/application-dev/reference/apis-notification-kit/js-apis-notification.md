@@ -171,6 +171,8 @@ Notification.cancel(0).then(() => {
 });
 ```
 
+
+
 ## Notification.cancel
 
 cancel(id: number, callback: AsyncCallback\<void\>): void
@@ -201,6 +203,8 @@ let cancelCallback = (err: Base.BusinessError) => {
 }
 Notification.cancel(0, cancelCallback);
 ```
+
+
 
 ## Notification.cancelAll
 
@@ -1174,3 +1178,25 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | lightColor           | number                | 是  | 是  | 通知灯颜色。                 |
 | vibrationValues      | Array\<number\>       | 是  | 是  | 通知振动样式。                |
 | enabled<sup>9+</sup> | boolean               | 是  | 否  | 此通知插槽中的启停状态。           |
+
+## NotificationTemplate<sup>8+</sup>
+
+通知模板。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称 | 类型                    | 可读 | 可写 | 说明       |
+| ---- | ---------------------- | ---- | ---- | ---------- |
+| name | string                 | 是   | 是   | 模板名称。 |
+| data | {[key:string]: Object} | 是   | 是   | 模板数据。 |
+
+
+## NotificationUserInput<sup>8+</sup>
+
+保存用户输入的通知消息。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+| 名称     | 类型   | 可读 | 可写 | 说明                          |
+| -------- | ------ | --- | ---- | ----------------------------- |
+| inputKey | string | 是  | 是  | 用户输入时用于标识此输入的key。 |

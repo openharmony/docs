@@ -16,7 +16,7 @@ import notificationSubscribe from '@ohos.notificationSubscribe';
 
 ## onConsume
 
-onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
+onConsume?: (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void
 
 接收到新通知的回调函数。
 
@@ -28,7 +28,7 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecall
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onConsume | (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void | 是 | 新接收到的通知信息。 |
+| onConsume | (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void | 是 | 新接收到的通知信息。 |
 
 **示例：**
 
@@ -58,7 +58,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onCancel
 
-onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
+onCancel?:(data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void
 
 取消通知的回调函数。
 
@@ -70,7 +70,7 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallba
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onCancel | (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void | 是 | 需要取消的通知信息。 |
+| onCancel | (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void | 是 | 需要取消的通知信息。 |
 
 **示例：**
 
@@ -100,7 +100,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onUpdate
 
-onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
+onUpdate?:(data: [NotificationSortingMap](js-apis-notification-sys.md#notificationsortingmap)) => void
 
 更新通知排序的回调函数。
 
@@ -112,7 +112,7 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationso
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onUpdate | (data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void | 是 | 最新的通知排序列表。 |
+| onUpdate | (data: [NotificationSortingMap](js-apis-notification-sys.md#notificationsortingmap)) => void | 是 | 最新的通知排序列表。 |
 
 **示例：**
 
@@ -271,7 +271,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate)) => void
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
 
@@ -287,7 +287,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -357,7 +357,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification-sys.md#enablednotificationcallbackdata8)) => void
 
 监听应用通知使能变化。
 
@@ -369,7 +369,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 | 参数名 | 类型                                                                                                           | 必填 | 说明 |
 | ------------ |--------------------------------------------------------------------------------------------------------------| ---- | -------------------------- |
-| onEnabledNotificationChanged | (callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void | 是 | 回调返回监听到的应用信息。 |
+| onEnabledNotificationChanged | (callbackData: [EnabledNotificationCallbackData](js-apis-notification-sys.md#enablednotificationcallbackdata8)) => void | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -440,7 +440,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onBatchCancel<sup>11+</sup>
 
- onBatchCancel?:(data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void
+ onBatchCancel?:(data: Array<[SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)>) => void
 
 批量删除的回调函数。
 
@@ -452,7 +452,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 | 参数名   | 类型                                                         | 必填 | 说明                       |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| onBatchCancel | (data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void | 是   | 批量删除的通知信息。 |
+| onBatchCancel | (data: Array<[SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)>) => void | 是   | 批量删除的通知信息。 |
 
 **示例：**
 

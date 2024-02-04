@@ -135,7 +135,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](#notificationslot)       | 是   | 要创建的通知通道对象。 |
+| slot     | [NotificationSlot](./js-apis-notification.md#notificationslot)       | 是   | 要创建的通知通道对象。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
@@ -175,7 +175,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 参数名 | 类型             | 必填 | 说明                 |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](#notificationslot) | 是   | 要创建的通知通道对象。 |
+| slot | [NotificationSlot](./js-apis-notification.md#notificationslot) | 是   | 要创建的通知通道对象。 |
 
 **返回值：**
 
@@ -216,7 +216,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+| slots    | Array\<[NotificationSlot](./js-apis-notification.md#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
 | callback | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法。     |
 
 **示例：**
@@ -260,7 +260,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+| slots | Array\<[NotificationSlot](./js-apis-notification.md#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
 
 **返回值：**
 
@@ -900,7 +900,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
-| slot     | [NotificationSlot](#notificationslot)      | 是   | 通知通道。             |
+| slot     | [NotificationSlot](./js-apis-notification.md#notificationslot)      | 是   | 通知通道。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知通道回调函数。 |
 
 **示例：**
@@ -942,7 +942,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slot   | [NotificationSlot](#notificationslot) | 是   | 通知通道。 |
+| slot   | [NotificationSlot](./js-apis-notification.md#notificationslot) | 是   | 通知通道。 |
 
 **返回值：**
 
@@ -986,7 +986,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | 是   | 获取通知通道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](./js-apis-notification.md#notificationslot)>> | 是   | 获取通知通道回调函数。 |
 
 **示例：**
 
@@ -1029,7 +1029,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](#notificationslot)>> | 以Promise形式返回获取指定应用的通知通道。 |
+| Promise\<Array\<[NotificationSlot](./js-apis-notification.md#notificationslot)>> | 以Promise形式返回获取指定应用的通知通道。 |
 
 **示例：**
 
@@ -1142,7 +1142,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 参数名            | 类型                                | 必填 | 说明                 |
 | --------------- |   ----------------------------------| ---- | -------------------- |
 | bundle          | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)       | 是   | 指定应用的包信息。           |
-| notificationKey | [NotificationKey](#notificationkeydeprecated) | 是   | 通知键值。             |
+| notificationKey | [NotificationKey](./js-apis-notification.md#notificationkeydeprecated) | 是   | 通知键值。             |
 | reason          | [RemoveReason](#removereason-deprecated)      | 是   | 通知删除原因。         |
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
@@ -1186,7 +1186,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 参数名            | 类型            | 必填 | 说明       |
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | 是   | 指定应用的包信息。 |
-| notificationKey | [NotificationKey](#notificationkeydeprecated) | 是   | 通知键值。   |
+| notificationKey | [NotificationKey](./js-apis-notification.md#notificationkeydeprecated) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason-deprecated) | 是   | 通知删除原因。         |
 
 **返回值：**
@@ -2387,7 +2387,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 | 名称     | 类型                                  | 可读 | 可写 | 说明         |
 | -------- | ------------------------------------- | ---- | --- | ------------ |
-| slot     | [NotificationSlot](#notificationslot) | 是  | 否  | 通知通道内容。 |
+| slot     | [NotificationSlot](./js-apis-notification.md#notificationslot) | 是  | 否  | 通知通道内容。 |
 | hashCode | string                                | 是  | 否  | 通知唯一标识。 |
 | ranking  | number                                | 是  | 否  | 通知排序序号。 |
 
