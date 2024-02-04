@@ -38,7 +38,7 @@ Sets the media query condition. This API returns the corresponding media query l
 
 | Type              | Description                                        |
 | ------------------ | -------------------------------------------- |
-| MediaQueryListener | Media query listener, which is used to register or deregister the listening callback.|
+| [MediaQueryListener](#mediaquerylistener) | Media query listener, which is used to register or deregister the listening callback.|
 
 **Example**
 
@@ -95,7 +95,7 @@ Deregisters a media query listener, so that no callback is triggered when the me
 | Name  | Type                            | Mandatory| Description                                                      |
 | -------- | -------------------------------- | ---- | ---------------------------------------------------------- |
 | type     | string                           | Yes  | Listener type. The value is fixed at **'change'**.                                  |
-| callback | Callback&lt;MediaQueryResult&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
+| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
 
 **Example**
 

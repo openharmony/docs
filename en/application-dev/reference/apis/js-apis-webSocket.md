@@ -5,11 +5,11 @@
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the <span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span> API to create a <span name="WebSocket">[WebSocket](#websocket)</span> object and then use the <span name="connect">[connect](#connected)</span> API to connect to the server.
-If the connection is successful, the client will receive a callback of the <span name="open">[open](#onopen)</span> event. Then, the client can communicate with the server using the <span name="sended">[send](#send)</span> API.
-When the server sends a message to the client, the client will receive a callback of the <span name="message">[message](#onmessage)</span> event. If the client no longer needs this connection, it can call the <span name="closed">[close](#close)</span> API to disconnect from the server. Then, the client will receive a callback of the <span name="closes">[close](#onclose)</span> event.
+You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the [createWebSocket](#websocketcreatewebsocket6) API to create a [WebSocket](#websocket6) object and then use the [connect](#connect6) API to connect to the server.
+If the connection is successful, the client will receive a callback of the [open](#onopen6) event. Then, the client can communicate with the server using the [send](#send6) API.
+When the server sends a message to the client, the client will receive a callback of the [message](#onmessage6) event. If the client no longer needs this connection, it can call the [close](#close6) API to disconnect from the server. Then, the client will receive a callback of the [close](#onclose6) event.
 
-If an error occurs in any of the preceding steps, the client will receive a callback of the <span name="error">[error](#onerror)</span> event.
+If an error occurs in any of the preceding processes, the client will receive a callback of the [error](#onerror6) event.
 
 ## Modules to Import
 
@@ -74,7 +74,7 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
 });
 ```
 
-## <span name="websocketcreatewebsocket">webSocket.createWebSocket<sup>6+</sup></span>
+## webSocket.createWebSocket<sup>6+</sup>
 
 createWebSocket(): WebSocket
 
@@ -86,7 +86,7 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 
 | Type                               | Description                                                        |
 | :---------------------------------- | :----------------------------------------------------------- |
-| [WebSocket](#websocket) | A **WebSocket** object, which contains the **connect**, **send**, **close**, **on**, or **off** method.|
+| [WebSocket](#websocket6) | A **WebSocket** object, which contains the **connect**, **send**, **close**, **on**, or **off** method.|
 
 **Example**
 
@@ -94,11 +94,11 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 let ws: webSocket = webSocket.createWebSocket();
 ```
 
-## <span name="websocket">WebSocket<sup>6+</sup></span>
+## WebSocket<sup>6+</sup>
 
-Defines a **WebSocket** object. Before invoking WebSocket APIs, you need to call [webSocket.createWebSocket](#websocketcreatewebsocket) to create a **WebSocket** object.
+Defines a **WebSocket** object. Before invoking WebSocket APIs, you need to call [webSocket.createWebSocket](#websocketcreatewebsocket6) to create a **WebSocket** object.
 
-### <span name="connected">connect<sup>6+</sup></span>
+### connect<sup>6+</sup>
 
 connect(url: string, callback: AsyncCallback\<boolean\>): void
 
@@ -240,7 +240,7 @@ promise.then((value: boolean) => {
 });
 ```
 
-### <span name="send">send<sup>6+</sup></span>
+### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
@@ -330,7 +330,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
-### <span name="close">close<sup>6+</sup></span>
+### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
 
@@ -463,7 +463,7 @@ promise.then((value: boolean) => {
 });
 ```
 
-### <span name="onopen">on('open')<sup>6+</sup></span>
+### on('open')<sup>6+</sup>
 
 on(type: 'open', callback: AsyncCallback\<Object\>): void
 
@@ -531,7 +531,7 @@ ws.on('open', callback1);
 ws.off('open', callback1);
 ```
 
-### <span name="onmessage">on('message')<sup>6+</sup></spam>
+### on('message')<sup>6+</sup>
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
@@ -589,7 +589,7 @@ let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
-### <span name="onclose">on('close')<sup>6+</sup></span>
+### on('close')<sup>6+</sup>
 
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
@@ -643,7 +643,7 @@ let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
-### <span name="onerror">on('error')<sup>6+</sup></span>
+### on('error')<sup>6+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 

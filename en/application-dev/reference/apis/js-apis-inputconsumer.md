@@ -186,6 +186,6 @@ Enumerates key shielding modes.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
-| Shielding Mode                         | Value   | Description            |
-| ------------------------------ | ----------- | ---------------- |
-| FACTORY_MODE | 0 | Factory mode, which means to shield all shortcut keys.|
+| Name                       | Type | Readable| Writable| Description          |
+| ------------------------------ | ----------- | ---------------- | ---------------- | ---------------- |
+| FACTORY_MODE | number | Yes| No| Factory mode, which means to shield all shortcut keys.|

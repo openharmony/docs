@@ -31,8 +31,8 @@ Defines a rotate event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
-| angle        | number      | Yes   | No   | Angle of rotation.                            |
+| type | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
+| angle | number      | Yes   | No   | Angle of rotation.                            |
 
 ## ThreeFingersSwipe
 
@@ -64,8 +64,8 @@ Defines a three-finger tap event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name| Type                     | Readable| Writable| Description            |
-| ---- | ------------------------- | ---- | ---- | ---------------- |
+| Name              | Type                     | Readable| Writable| Description            |
+| ------------------ | ------------------------- | ---- | ---- | ---------------- |
 | type | [ActionType](#actiontype) | Yes  | No  | Three-finger tap event type.|
 
 ## ActionType
