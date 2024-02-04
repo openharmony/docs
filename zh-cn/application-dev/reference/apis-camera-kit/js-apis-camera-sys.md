@@ -1775,7 +1775,7 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| Array<[colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
+| Array<[colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
 
 **错误码：**
 
@@ -1811,7 +1811,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 | 参数名         | 类型                 | 必填 | 说明                      |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
 
 **错误码：**
 
@@ -1856,7 +1856,7 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
+| [colorSpaceManager.ColorSpace](../apis/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
 
 **错误码：**
 

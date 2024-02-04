@@ -879,7 +879,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 > **说明：**
 >
 > - title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
-> - orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](../apis-image-kit/js-apis-image.md#modifyimageproperty9)接口。
+> - orientation字段部分设备可能不支持修改，建议使用[ImageSource.modifyImageProperty](../apis-image-kit/js-apis-image.md#modifyimagepropertydeprecated)接口。
 > - 此接口从API version 9开始废弃。请使用[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)替代。
 
 ### 属性
