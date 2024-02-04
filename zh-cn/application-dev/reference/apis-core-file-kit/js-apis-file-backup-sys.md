@@ -21,7 +21,7 @@ import backup from '@ohos.file.backup';
 
 | 名称       | 类型   | 必填 | 说明                                                                                                |
 | ---------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
-| bundleName | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
+| bundleName | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](../apis/js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
 | uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称      |
 
 ## FileData
@@ -59,7 +59,7 @@ import backup from '@ohos.file.backup';
 
 | 名称                | 类型   | 必填 | 说明                                                                                                |
 | ------------------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
-| bundleName          | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
+| bundleName          | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](../apis/js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
 | lastIncrementalTime | number | 是   | 最后一次的增量备份时间                                                                              |
 
 ## BackupParams<sup>12+</sup>

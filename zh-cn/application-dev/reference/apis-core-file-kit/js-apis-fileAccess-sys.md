@@ -44,7 +44,7 @@ getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 表示当前系统配置fileAccess的所有文件管理类服务 |
+| Promise&lt;Array&lt;[Want](../apis/js-apis-app-ability-want.md)&gt;&gt; | 表示当前系统配置fileAccess的所有文件管理类服务 |
 
 **错误码：**
 
@@ -83,7 +83,7 @@ getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
+| callback | AsyncCallback&lt;Array&lt;[Want](../apis/js-apis-app-ability-want.md)&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
 
 **错误码：**
 
@@ -126,8 +126,8 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| context | [Context](js-apis-inner-application-context.md) | 是 | 代表ability的上下文的能力 |
-| wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | 是 | Want是一种基本通信组件，主要用于服务拉起 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是 | 代表ability的上下文的能力 |
+| wants | Array&lt;[Want](../apis/js-apis-app-ability-want.md)&gt; | 是 | Want是一种基本通信组件，主要用于服务拉起 |
 
 **返回值：**
 
@@ -184,7 +184,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| context | [Context](js-apis-inner-application-context.md) | 是 | ability的上下文的能力 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是 | ability的上下文的能力 |
 
 **返回值：**
 

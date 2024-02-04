@@ -2,7 +2,7 @@
 
 本模块接口提供接口，可以查询、还原或彻底删除最近删除（回收站）里的文件/文件夹。当前仅支持本地文件目录。
 
-应用可通过FileAccess的删除操作将文件/文件夹移动到回收站，具体可参考[@ohos.file.fileAccess](js-apis-fileAccess.md)。
+应用可通过FileAccess的删除操作将文件/文件夹移动到回收站，具体可参考[@ohos.file.fileAccess](js-apis-fileAccess-sys.md)。
 
 >**说明：**
 >
