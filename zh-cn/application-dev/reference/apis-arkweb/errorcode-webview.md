@@ -1,0 +1,359 @@
+# Webview错误码
+
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
+
+## 17100001 WebviewController没有和具体的Web组件关联
+
+**错误信息**
+
+Init error. The WebviewController must be associated with a Web compoent.
+
+**错误描述**
+
+WebviewController还没有和具体的Web组件关联，无法进行相应的操作。
+
+**处理步骤**
+
+请检查WebviewController对象是否已与Web组件关联。
+
+
+## 17100002 Url格式错误
+
+**错误信息**
+
+Invalid url.
+
+**错误描述**
+
+Url格式错误。
+
+**处理步骤**
+
+请检查输入的url是否正确。
+
+
+## 17100003 resource路径错误
+
+**错误信息**
+
+Invalid resource path or file type.
+
+**错误描述**
+
+resource路径错误。
+
+**可能原因**
+
+资源路径下文件不存在或无法访问。
+
+**处理步骤**
+
+请检查输入的resource路径是否正确。
+
+
+## 17100004 功能开关未打开
+
+**错误信息**
+
+Function not enable.
+
+**错误描述**
+
+功能开关未打开。
+
+**处理步骤**
+
+请检查相关功能开关是否已配置打开，如该功能对应的XXXAccess是否配置为true。
+
+
+## 17100005 cookie value格式错误
+
+**错误信息**
+
+Invalid cookie value.
+
+**错误描述**
+
+cookie value格式错误。
+
+**可能原因**
+
+不支持的cookie value类型。
+
+**处理步骤**
+
+请检查输入的value是否正确。
+
+
+## 17100006 无法注册message port回调
+
+**错误信息**
+
+Can not register message event using this port.
+
+**错误描述**
+
+无法注册message port回调。
+
+**可能原因**
+
+port可能已经关闭。
+
+**处理步骤**
+
+请检查port是否关闭。
+
+
+## 17100007 无效的前进后退操作
+
+**错误信息**
+
+Invalid back or forward operation.
+
+**错误描述**
+
+无效的前进后退操作。
+
+**可能原因**
+
+1. 浏览历史记录被清除。
+
+2. 没有前进或后退对应的浏览操作。
+
+**处理步骤**
+
+1. 是否调用clearHistory。
+
+2. 实际操作中是否有浏览对应跳转的网页数。
+
+
+## 17100008 删除不存在的javaScriptProxy
+
+**错误信息**
+
+Cannot delete JavaScriptProxy.
+
+**错误描述**
+
+删除不存在的javaScriptProxy。
+
+**可能原因**
+
+传入的javaScriptProxy之前没有注册。
+
+**处理步骤**
+
+检查传入的javaScriptProxy是否注册成功。
+
+
+## 17100009 上一次的zoomin/out操作缩放失败
+
+**错误信息**
+
+Cannot zoom in or zoom out.
+
+**错误描述**
+
+上一次的zoomin/out操作缩放失败。
+
+**可能原因**
+
+已经达到最大或者最小缩放比例。
+
+**处理步骤**
+
+检查当前的页面比例是否已经达到最大或者最小的缩放尺寸。
+
+
+## 17100010 无法使用该端口发送消息
+
+**错误信息**
+
+Cannot post message using this port.
+
+**错误描述**
+
+无法使用该端口发送消息。
+
+**可能原因**
+
+该端口已关闭，或者对端端口已关闭。
+
+**处理步骤**
+
+1. 请确认本端端口是否调用了close接口。
+
+2. 请确认本端是否设置了port的onMessageEvent回调。
+
+
+## 17100011 输入参数origin错误
+
+**错误信息**
+
+Invalid origin.
+
+**错误描述**
+
+输入参数origin错误。
+
+**可能原因**
+
+1. 参数origin为空。
+
+2. 参数origin不合法。
+
+**处理步骤**
+
+检查输入的参数。
+
+
+## 17100012 无可获取的webstorage源
+
+**错误信息**
+
+Invalid web storage origin.
+
+**错误描述**
+
+无可获取的webstorage源。
+
+**可能原因**
+
+没有使用相关的JS数据库API。
+
+**处理步骤**
+
+1. 检查是否有使用JS数据库API。
+
+2. 如果已经使用，检查调用失败原因，如databaseAccess开关是否打开。
+
+
+## 17100013 预连接时，输入socket数目无效
+
+**错误信息**
+
+The number of preconnect sockets is invalid.
+
+**错误描述**
+
+预连接时，输入socket的数目是无效的。
+
+**可能原因**
+
+预连接时，输入socket的数目小于等于0，或者大于6。
+
+**处理步骤**
+
+检查输入的socket的数目范围是否大于0且小于等于6。
+
+
+## 17100014 类型和值不匹配
+
+**错误信息**
+
+The type does not match with the value of the message.
+
+**错误描述**
+
+消息的类型和值不匹配。
+
+**可能原因**
+
+获取消息的值和消息本身的类型不匹配。
+
+**处理步骤**
+
+需要根据消息的类型调用相应的接口来获取消息的值。举例：如获取到的类型是BOOLEAN，则需要调用GetBoolean接口来获取布尔值。
+
+
+## 17100015 申请内存失败
+
+**错误信息**
+
+New failed, out of memeory.
+
+**错误描述**
+
+申请失败，内存不足。
+
+**可能原因**
+
+需要发送的数据过大，导致申请内存失败。
+
+**处理步骤**
+
+检查需要发送的数据的长度。
+
+## 17100016 下载任务没有处于暂停状态
+
+**错误信息**
+
+The download is not paused.
+
+**错误描述**
+
+下载任务没有处于暂停状态。
+
+**可能原因**
+
+在下载没有暂停的情况下调用了WebDownloadItem.resume。
+
+**处理步骤**
+
+下载并没有被暂停，不需要恢复。
+
+## 17100017 当前的WebviewController是无效的
+
+**错误信息**
+
+No valid WebviewController is associated.
+
+**错误描述**
+
+当前的WebviewController是无效的。
+
+**可能原因**
+
+当前的WebviewController没有关联一个有效的Web组件。
+
+**处理步骤**
+
+使用关联有效web的WebviewController。
+
+## 17100018 没有设置一个委托类来接收下载状态
+
+**错误信息**
+
+No WebDownloadDelegate has been set yet.
+
+**错误描述**
+
+没有设置一个委托类来接收下载状态。
+
+**可能原因**
+
+没有设置委托类就调用了WebDownloadManager.resumeDownload。
+
+**处理步骤**
+
+先通过WebDownloadManager.setDownloadDelegate设置一个委托类。
+
+## 17100019 下载还没开始
+
+**错误信息**
+
+The download has not been started yet.
+
+**错误描述**
+
+下载任务还未开始。
+
+**可能原因**
+
+下载任务还没开始，此时调用pause/resume是无效的。
+
+**处理步骤**
+
+需要在WebDownloadDelegate.onBeforeDownload中调用start('xxx')并指定下载路径。
