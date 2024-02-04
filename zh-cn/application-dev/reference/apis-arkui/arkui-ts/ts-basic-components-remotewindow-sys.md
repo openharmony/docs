@@ -1,4 +1,4 @@
-# RemoteWindow
+# RemoteWindow(系统接口)
 
 远程控制窗口组件，可以通过此组件控制应用窗口，提供启动退出过程中控件动画和应用窗口联动动画的能力。
 
@@ -6,7 +6,7 @@
 >  
 >  该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该组件为系统接口。
+>  本模块为系统接口。
 
 ## 子组件
 
@@ -56,7 +56,7 @@ RemoteWindow(target: WindowAnimationTarget)
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
-RemoteWindow需要接收由[windowAnimationManager](../apis/js-apis-windowAnimationManager.md)设置的WindowAnimationController对象传入对应窗口WindowAnimationTarget对象，可以创建一个RemoteWindowExample.ets作为示例组件将RemoteWindow组件和传入的WindowAnimationTarget对象关联封装起来。
+RemoteWindow需要接收由[windowAnimationManager](../../apis/js-apis-windowAnimationManager.md)设置的WindowAnimationController对象传入对应窗口WindowAnimationTarget对象，可以创建一个RemoteWindowExample.ets作为示例组件将RemoteWindow组件和传入的WindowAnimationTarget对象关联封装起来。
 由于RemoteWindow只能用于系统应用程序Launcher中，可以将RemoteWindowExample组件放置于Launcher的EntryView.ets页面的build函数中，编译Launcher, 然后推送Launcher安装包到设备系统中运行。
 
 ```ts

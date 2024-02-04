@@ -1,6 +1,6 @@
 # NodeContainer
 
-基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../apis/js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
+基础组件，不支持尾随添加子节点。组件接受一个[NodeController](../../apis/js-apis-arkui-nodeController.md)的实例接口。需要NodeController组合使用。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 | 参数名     | 参数类型                                                       | 必填 | 参数描述                                                                                   |
 | ---------- | -------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| controller | [NodeController](../apis/js-apis-arkui-nodeController.md) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
+| controller | [NodeController](../../apis/js-apis-arkui-nodeController.md) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
 
 ## 属性
 

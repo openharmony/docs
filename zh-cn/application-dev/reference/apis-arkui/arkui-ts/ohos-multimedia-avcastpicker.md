@@ -20,7 +20,7 @@ AVCastPicker()
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
-该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md)。
+该组件为自定义组件，开发者在使用前需要先了解[@Component](../../../quick-start/arkts-create-custom-components.md)。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -32,7 +32,7 @@ AVCastPicker()
 | -------- | -------- | -------- |
 | normalColor | Color &#124; number &#124; string | 指正常状态下投播组件的颜色 |
 | activeColor | Color &#124; number &#124; string | 指设备切换成功状态下投播组件的颜色 |
-| onStateChange | (state: [AVCastPickerState](../apis/js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
+| onStateChange | (state: [AVCastPickerState](../../apis/js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
 
 ## 事件
 

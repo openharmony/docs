@@ -1,13 +1,16 @@
-# FormComponent
+# FormComponent(系统接口)
 
 提供卡片组件，实现卡片的显示功能。
 
 >  **说明：**
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->- 该组件为卡片组件的使用方，对应提供方的使用参考文档[JS服务卡片UI组件](../js-service-widget-ui/js-service-widget-file.md)。
+>
+> - 该组件为卡片组件的使用方，对应提供方的使用参考文档[JS服务卡片UI组件](../js-service-widget-ui/js-service-widget-file.md)。
+>
 > - 该组件使用需要具有系统签名。
-> - 本组件为系统接口。
+>
+> - 本模块为系统接口。
 
 ## 权限
 
@@ -45,7 +48,7 @@ FormComponent(value: {
 | module    | string                          | 是   | 卡片模块名称。                                                          |
 | dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
 | temporary | boolean                         | 否   | 卡片是否为临时卡片。                                                    |
-| renderingMode<sup>11+</sup> | [FormRenderingMode](#formrenderingmode) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
+| renderingMode<sup>11+</sup> | [FormRenderingMode](#formrenderingmode11) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
 
 ## FormDimension
 
@@ -80,7 +83,7 @@ FormComponent(value: {
 | 名称                                                                                                                | 功能描述                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)                          | 获取到卡片后触发，返回卡片的id.                                                                                |
-| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。<br/>具体可参考[卡片错误码说明文档](../errorcodes/errorcode-form.md)  |
+| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。<br/>具体可参考[卡片错误码说明文档](../../errorcodes/errorcode-form.md)  |
 | onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)                                                      | 组件路由事件回调,返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
 | onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)                         | 组件卸载回调，返回卸载卡片的id.                                                                                |
 

@@ -30,7 +30,7 @@ TimePicker(options?: TimePickerOptions)
 
 | 名称                 | 类型                                          | 必填 | 说明                                                         |
 | -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                          | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected             | Date                                          | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat枚举说明) | 否   | 指定需要显示的TimePicker的格式。                             |
 
 ## TimePickerFormat枚举说明

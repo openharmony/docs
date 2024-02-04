@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
 >  - 子组件个数：必须且仅包含2个子组件。
 >  - 子组件个数异常时：3个或以上子组件，显示第一个和第二个。1个子组件，显示侧边栏，内容区为空白。
 
@@ -42,7 +42,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| showSideBar | boolean | 设置是否显示侧边栏。<br/>true：显示侧边栏<br/>false：不显示侧边栏<br/>默认值：true<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| showSideBar | boolean | 设置是否显示侧边栏。<br/>true：显示侧边栏<br/>false：不显示侧边栏<br/>默认值：true<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controlButton | [ButtonStyle](#buttonstyle对象说明) | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>true：显示控制按钮<br/>false：不显示控制按钮<br/>默认值：true |
 | sideBarWidth | number&nbsp;\|&nbsp;[Length](ts-types.md#length)<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：240vp<br/>单位：vp<br/>**说明：** <br/>API version 9及以下版本默认值为200vp，API version 10的默认值为240vp。<br/>设置为小于0的值时按默认值显示。<br/>受最小宽度和最大宽度限制，不在限制区域内取最近的点。<br/>sideBarWidth优先于侧边栏子组件width，sideBarWidth未设置时默认值优先级高于侧边栏子组件width。 |
