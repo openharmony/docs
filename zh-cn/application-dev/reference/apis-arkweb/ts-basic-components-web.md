@@ -1,6 +1,6 @@
 # Web
 
-提供具有网页显示能力的Web组件，[@ohos.web.webview](../../apis/js-apis-webview.md)提供web控制能力。
+提供具有网页显示能力的Web组件，[@ohos.web.webview](js-apis-webview.md)提供web控制能力。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
-访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
+访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 ## 子组件
 
@@ -27,8 +27,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
-| controller | [WebviewController<sup>9+</sup>](../../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
@@ -155,7 +155,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 2. 修改EntryAbility.ets。
 
-   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../../application-models/application-context-stage.md#获取应用文件路径)。
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
    ```ts
    // xxx.ts
@@ -188,7 +188,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 ## 属性
 
-通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](ts-universal-attributes-menu.md#bindmenu)、[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](ts-universal-attributes-size.md#constraintsize)、[defaultFocus](ts-universal-attributes-focus.md#defaultfocus9)、[focusable](ts-universal-attributes-focus.md#focusable)、[tabIndex](ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](ts-universal-attributes-enable.md#enabled)、[flexBasis](ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md)、[gridOffset](ts-universal-attributes-grid.md)、[gridSpan](ts-universal-attributes-grid.md)、[useSizeType](ts-universal-attributes-grid.md)、[height](ts-universal-attributes-size.md#height)、[touchable](ts-universal-attributes-click.md)、[margin](ts-universal-attributes-size.md#margin)、[markAnchor](ts-universal-attributes-location.md#markanchor)、[offset](ts-universal-attributes-location.md#offset)、[width](ts-universal-attributes-size.md#width)、[zIndex](ts-universal-attributes-z-order.md#zindex)、[visibility](ts-universal-attributes-visibility.md#visibility)、[scale](ts-universal-attributes-transformation.md#scale)、[translate](ts-universal-attributes-transformation.md#translate)、[responseRegion](ts-universal-attributes-touch-target.md#responseregion)、[size](ts-universal-attributes-size.md#size)、[stateStyles](ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](ts-universal-attributes-opacity.md#opacity)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](ts-transition-animation-shared-elements.md)、[transition](ts-transition-animation-component.md)。
+通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[stateStyles](../apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
 
 ### domStorageAccess
 
@@ -227,7 +227,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -289,7 +289,7 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](../../apis/js-apis-webview.md#registerjavascriptproxy)。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -298,7 +298,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
-| controller | [WebviewController<sup>9+</sup>](../../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -815,7 +815,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
 
 **示例：**
 
@@ -939,7 +939,7 @@ userAgent(userAgent: string)
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](../../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup>替代。
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](js-apis-webview.md#setcustomuseragent10)<sup>10+</sup>替代。
 
 **参数：**
 
@@ -1778,7 +1778,7 @@ enableNativeEmbedMode(mode: boolean)
 
 ## 事件
 
-通用事件仅支持[onAppear](ts-universal-events-show-hide.md#onappear)、[onDisAppear](ts-universal-events-show-hide.md#ondisappear)、[onBlur](ts-universal-focus-event.md#onblur)、[onFocus](ts-universal-focus-event.md#onfocus)、[onDragEnd](ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](ts-universal-events-drag-drop.md#ondragleave)、[onDrop](ts-universal-events-drag-drop.md#ondrop)、[onHover](ts-universal-mouse-key.md#onhover)、[onMouse](ts-universal-mouse-key.md#onmouse)、[onKeyEvent](ts-universal-events-key.md#onkeyevent)、[onTouch](ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
+通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
 ### onAlert
 
@@ -2482,7 +2482,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 | 参数名         | 参数类型    | 参数描述                                     |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | 访问的url。                                  |
-| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](../../apis/js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
+| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
 
 **示例：**
 
@@ -3888,7 +3888,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 | 参数名   | 参数类型                                     | 参数描述           |
 | ----- | ---------------------------------------- | -------------- |
-| event | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
+| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
 
 **返回值：**
 
@@ -3963,7 +3963,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述                      |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
 
 **示例：**
 
@@ -4224,7 +4224,7 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 onControllerAttached(callback: () => void)
 
 当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
-因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../../apis/js-apis-webview.md#zoomin)、[zoomOut](../../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../../apis/js-apis-webview.md#loadurl)、[getWebId](../../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
+因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 **示例：**
 
@@ -4585,7 +4585,7 @@ setWebController(controller: WebviewController): void
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](../../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
@@ -4786,7 +4786,7 @@ setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 | 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -5350,7 +5350,7 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | 是    | -    | 指定源的字符串索引。                               |
 | allow  | boolean | 是    | -    | 设置的地理位置权限状态。                             |
-| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](../../apis/js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
+| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
 
 ## MessageLevel枚举说明
 
@@ -5559,7 +5559,7 @@ cancel(): void
 
 通过WebController可以控制Web组件各种行为。一个WebController对象只能控制一个Web组件，且必须在Web组件和WebController绑定后，才能调用WebController上的方法。
 
-从API version 9开始不再维护，建议使用[WebviewController<sup>9+</sup>](../../apis/js-apis-webview.md#webviewcontroller)代替。
+从API version 9开始不再维护，建议使用[WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)代替。
 
 ### 创建对象
 
@@ -5573,7 +5573,7 @@ getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
 
-从API version 9开始不再维护，建议使用[getCookie](../../apis/js-apis-webview.md#getcookiedeprecated)代替。
+从API version 9开始不再维护，建议使用[getCookie](js-apis-webview.md#getcookiedeprecated)代替。
 
 **返回值：**
 
@@ -5608,7 +5608,7 @@ requestFocus()
 
 使当前web页面获取焦点。
 
-从API version 9开始不再维护，建议使用[requestFocus<sup>9+</sup>](../../apis/js-apis-webview.md#requestfocus)代替。
+从API version 9开始不再维护，建议使用[requestFocus<sup>9+</sup>](js-apis-webview.md#requestfocus)代替。
 
 **示例：**
 
@@ -5637,7 +5637,7 @@ accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
 
-从API version 9开始不再维护，建议使用[accessBackward<sup>9+</sup>](../../apis/js-apis-webview.md#accessbackward)代替。
+从API version 9开始不再维护，建议使用[accessBackward<sup>9+</sup>](js-apis-webview.md#accessbackward)代替。
 
 **返回值：**
 
@@ -5673,7 +5673,7 @@ accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
 
-从API version 9开始不再维护，建议使用[accessForward<sup>9+</sup>](../../apis/js-apis-webview.md#accessforward)代替。
+从API version 9开始不再维护，建议使用[accessForward<sup>9+</sup>](js-apis-webview.md#accessforward)代替。
 
 **返回值：**
 
@@ -5709,7 +5709,7 @@ accessStep(step: number): boolean
 
 当前页面是否可前进或者后退给定的step步。
 
-从API version 9开始不再维护，建议使用[accessStep<sup>9+</sup>](../../apis/js-apis-webview.md#accessstep)代替。
+从API version 9开始不再维护，建议使用[accessStep<sup>9+</sup>](js-apis-webview.md#accessstep)代替。
 
 **参数：**
 
@@ -5752,7 +5752,7 @@ backward(): void
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
 
-从API version 9开始不再维护，建议使用[backward<sup>9+</sup>](../../apis/js-apis-webview.md#backward)代替。
+从API version 9开始不再维护，建议使用[backward<sup>9+</sup>](js-apis-webview.md#backward)代替。
 
 **示例：**
 
@@ -5781,7 +5781,7 @@ forward(): void
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
 
-从API version 9开始不再维护，建议使用[forward<sup>9+</sup>](../../apis/js-apis-webview.md#forward)代替。
+从API version 9开始不再维护，建议使用[forward<sup>9+</sup>](js-apis-webview.md#forward)代替。
 
 **示例：**
 
@@ -5810,7 +5810,7 @@ deleteJavaScriptRegister(name: string)
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refreshdeprecated)接口。
 
-从API version 9开始不再维护，建议使用[deleteJavaScriptRegister<sup>9+</sup>](../../apis/js-apis-webview.md#deletejavascriptregister)代替。
+从API version 9开始不再维护，建议使用[deleteJavaScriptRegister<sup>9+</sup>](js-apis-webview.md#deletejavascriptregister)代替。
 
 **参数：**
 
@@ -5846,7 +5846,7 @@ getHitTest(): HitTestType
 
 获取当前被点击区域的元素类型。
 
-从API version 9开始不再维护，建议使用[getHitTest<sup>9+</sup>](../../apis/js-apis-webview.md#gethittest)代替。
+从API version 9开始不再维护，建议使用[getHitTest<sup>9+</sup>](js-apis-webview.md#gethittest)代替。
 
 **返回值：**
 
@@ -5886,7 +5886,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 
 当baseUrl为“http/https"协议时，编码后的data字符串将被Web组件以类似loadUrl的方式以非编码字符串处理。
 
-从API version 9开始不再维护，建议使用[loadData<sup>9+</sup>](../../apis/js-apis-webview.md#loaddata)代替。
+从API version 9开始不再维护，建议使用[loadData<sup>9+</sup>](js-apis-webview.md#loaddata)代替。
 
 **参数：**
 
@@ -5933,7 +5933,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
 而通过registerJavaScriptProxy注入的对象，在loadUrl导航到新的页面也会有效。
 
-从API version 9开始不再维护，建议使用[loadUrl<sup>9+</sup>](../../apis/js-apis-webview.md#loadurl)代替。
+从API version 9开始不再维护，建议使用[loadUrl<sup>9+</sup>](js-apis-webview.md#loadurl)代替。
 
 **参数：**
 
@@ -5969,7 +5969,7 @@ onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
 
-从API version 9开始不再维护，建议使用[onActive<sup>9+</sup>](../../apis/js-apis-webview.md#onactive)代替。
+从API version 9开始不再维护，建议使用[onActive<sup>9+</sup>](js-apis-webview.md#onactive)代替。
 
 **示例：**
 
@@ -5998,7 +5998,7 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
 
-从API version 9开始不再维护，建议使用[onInactive<sup>9+</sup>](../../apis/js-apis-webview.md#oninactive)代替。
+从API version 9开始不再维护，建议使用[onInactive<sup>9+</sup>](js-apis-webview.md#oninactive)代替。
 
 **示例：**
 
@@ -6026,7 +6026,7 @@ zoom(factor: number): void
 
 调整当前网页的缩放比例。
 
-从API version 9开始不再维护，建议使用[zoom<sup>9+</sup>](../../apis/js-apis-webview.md#zoom)代替。
+从API version 9开始不再维护，建议使用[zoom<sup>9+</sup>](js-apis-webview.md#zoom)代替。
 
 **参数：**
 
@@ -6062,7 +6062,7 @@ refresh()
 
 调用此接口通知Web组件刷新网页。
 
-从API version 9开始不再维护，建议使用[refresh<sup>9+</sup>](../../apis/js-apis-webview.md#refresh)代替。
+从API version 9开始不再维护，建议使用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)代替。
 
 **示例：**
 
@@ -6091,7 +6091,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refreshdeprecated)接口生效。
 
-从API version 9开始不再维护，建议使用[registerJavaScriptProxy<sup>9+</sup>](../../apis/js-apis-webview.md#registerjavascriptproxy)代替。
+从API version 9开始不再维护，建议使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)代替。
 
 **参数：**
 
@@ -6166,7 +6166,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-从API version 9开始不再维护，建议使用[runJavaScript<sup>9+</sup>](../../apis/js-apis-webview.md#runjavascript)代替。
+从API version 9开始不再维护，建议使用[runJavaScript<sup>9+</sup>](js-apis-webview.md#runjavascript)代替。
 
 **参数：**
 
@@ -6228,7 +6228,7 @@ stop()
 
 停止页面加载。
 
-从API version 9开始不再维护，建议使用[stop<sup>9+</sup>](../../apis/js-apis-webview.md#stop)代替。
+从API version 9开始不再维护，建议使用[stop<sup>9+</sup>](js-apis-webview.md#stop)代替。
 
 **示例：**
 
@@ -6257,7 +6257,7 @@ clearHistory(): void
 
 删除所有前进后退记录。
 
-从API version 9开始不再维护，建议使用[clearHistory<sup>9+</sup>](../../apis/js-apis-webview.md#clearhistory)代替。
+从API version 9开始不再维护，建议使用[clearHistory<sup>9+</sup>](js-apis-webview.md#clearhistory)代替。
 
 **示例：**
 
@@ -6290,7 +6290,7 @@ setCookie()
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
 
-从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../../apis/js-apis-webview.md#setcookie)代替。
+从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](js-apis-webview.md#setcookie)代替。
 
 ### saveCookie<sup>(deprecated)</sup>
 
@@ -6298,7 +6298,7 @@ saveCookie()
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
 
-从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../../apis/js-apis-webview.md#savecookieasync)代替。
+从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](js-apis-webview.md#savecookieasync)代替。
 
 ## ScriptItem<sup>11+</sup>
 
@@ -6403,4 +6403,4 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
-| touchEvent  | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |

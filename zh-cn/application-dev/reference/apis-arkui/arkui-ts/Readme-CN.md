@@ -121,7 +121,6 @@
   - [TextTimer](ts-basic-components-texttimer.md)
   - [TimePicker](ts-basic-components-timepicker.md)
   - [Toggle](ts-basic-components-toggle.md)
-  - [Web](ts-basic-components-web.md)
   - [XComponent](ts-basic-components-xcomponent.md)
   - [Component3D(系统接口)](ts-basic-components-component3d-sys.md)
   - [FormComponent(系统接口)](ts-basic-components-formcomponent-sys.md)
