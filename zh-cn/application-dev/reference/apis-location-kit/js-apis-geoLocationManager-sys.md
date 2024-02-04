@@ -78,7 +78,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
+| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
 | geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
 
 

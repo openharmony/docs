@@ -10,4 +10,5 @@
     - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](js-apis-autoadcomponent.md)
 - 错误码
     - [广告服务框架错误码](errorcode-ads.md)
+    - [广告标识服务错误码](errorcode-oaid.md)
 
