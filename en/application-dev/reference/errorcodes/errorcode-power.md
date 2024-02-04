@@ -12,7 +12,7 @@ Operation failed. Cannot connect to service.
 
 **Description**
 
-This error code is reported for a service connection failure.
+This error code is reported if a service connection failure occurs.
 
 **Possible Causes**
 
