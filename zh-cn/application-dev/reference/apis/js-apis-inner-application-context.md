@@ -15,7 +15,7 @@ import common from '@ohos.app.ability.common';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                  | 类型     | 只读   | 必填   | 说明                                                               |
 |---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
@@ -38,11 +38,11 @@ createBundleContext(bundleName: string): Context
 
 根据Bundle名称创建安装包的上下文。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -108,7 +108,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('entry');
     } catch (error) {
-      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -122,9 +122,9 @@ createModuleContext(bundleName: string, moduleName: string): Context
 
 根据Bundle名称和模块名称创建上下文。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**：该接口为系统接口。
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -152,7 +152,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('com.example.test', 'entry');
     } catch (error) {
-      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -185,7 +185,7 @@ export default class EntryAbility extends UIAbility {
     try {
       applicationContext = this.context.getApplicationContext();
     } catch (error) {
-      console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -235,7 +235,7 @@ export default class EntryAbility extends UIAbility {
         console.log("getGroupDir result:" + data);
       })
     } catch (error) {
-      console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }
@@ -291,11 +291,11 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 
 为指定Moudle创建资源管理对象。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
 **系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -323,7 +323,7 @@ export default class EntryAbility extends UIAbility {
     try {
       ModuleResourceManager = this.context.createModuleResourceManager('com.example.test', 'entry');
     } catch (error) {
-      console.error('createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }

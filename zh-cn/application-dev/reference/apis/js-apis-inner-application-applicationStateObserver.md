@@ -1,6 +1,6 @@
-# ApplicationStateObserver
+# ApplicationStateObserver (系统接口)
 
-定义应用状态监听，可以作为[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)的入参监听当前应用的生命周期变化。
+定义应用状态监听，可以作为[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver)的入参监听当前应用的生命周期变化。
 
 > **说明：**
 > 
@@ -14,9 +14,9 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**：该接口为系统接口，三方应用不支持调用。
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                             | 类型                    | 可读 | 可写 | 说明   |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |

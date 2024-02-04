@@ -203,7 +203,7 @@ export default class EntryAbility extends UIAbility {
                 console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
             },
             onMemoryLevel(level){
-                console.log('onMemoryLevel level: ${level}');
+                console.log(`onMemoryLevel level: ${level}`);
             }
         };
         // 1.获取applicationContext
