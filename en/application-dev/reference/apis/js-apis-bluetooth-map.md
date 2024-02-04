@@ -15,7 +15,7 @@ import map from '@ohos.bluetooth.map';
 ```
 
 
-## map.createMapMseProfile<a name="createMapMseProfile"></a>
+## map.createMapMseProfile
 
 createMapMseProfile(): MapMseProfile
 
@@ -44,10 +44,10 @@ try {
 
 ## mapMseProfile
 
-Provides APIs for exchaning messages between devices using the Bluetooth Message Access Profile (MAP). Before using any API of **mapMseProfile**, you need to create an instance of this class by using **createMapMseProfile()**.
+Provides APIs for exchanging messages between devices using the Bluetooth Message Access Profile (MAP). Before using any API of **mapMseProfile**, you need to create an instance of this class by using **createMapMseProfile()**.
 
 
-### disconnect<a name="MapMseProfile-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-### setMessageAccessAuthorization<a name="MapMseProfile-setMessageAccessAuthorization"></a>
+### setMessageAccessAuthorization
 
 setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
@@ -138,7 +138,7 @@ try {
 }
 ```
 
-### getMessageAccessAuthorization<a name="MapMseProfile-getMessageAccessAuthorization"></a>
+### getMessageAccessAuthorization
 
 getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
