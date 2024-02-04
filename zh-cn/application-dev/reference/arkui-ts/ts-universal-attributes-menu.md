@@ -55,7 +55,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。             |
-| options      | [MenuOptions](#menuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
+| options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
 
 ## MenuElement
 
@@ -72,8 +72,8 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 | 名称                          | 类型                                   | 必填 | 描述                                                         |
 | ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：** <br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。                                       |
+| title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：**<br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：false。                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 
