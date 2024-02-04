@@ -20,6 +20,10 @@ The size attributes set the width, height, and margin of a component.
 | layoutWeight   | number \| string                                   | Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
 | constraintSize | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | Constraint size of the component, which is used to limit the size range during component layout. **constraintSize** takes precedence over **width** and **height**. Learn [how the value of this attribute affects the width and height](#impact-of-constraintsize-on-widthheight).<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
 
+>  **NOTE**
+>
+>  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+
 ## Impact of constraintSize on width/height
 
 | Default Value                                  | Result                |
@@ -27,11 +31,11 @@ The size attributes set the width, height, and margin of a component.
 | / | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height))       |
 | maxWidth/maxHeight | max(minWidth/minHeight, width/height) |
 | minWidth/minHeight | min(maxWidth/maxHeight, width/height)       |
-|width/height|In the case of maxWidth/maxHeight > minWidth/minHeight, the layout logic of the component is used,<br>and the result is between maxWidth/maxHeight and minWidth/minHeight.<br> In other cases, the result is max(minWidth/minHeight, maxWidth/maxHeight).|
+|width/height|In the case of maxWidth/maxHeight > minWidth/minHeight, the layout logic of the component is used, and the result is between maxWidth/maxHeight and minWidth/minHeight.<br> In other cases, the result is max(minWidth/minHeight, maxWidth/maxHeight).|
 |maxWidth/maxHeight && width/height| minWidth/minHeight |
 |minWidth/minHeight && width/height| The layout logic of the component is used. The final result does not exceed maxWidth/maxHeight.|
 |maxWidth/maxHeight && minWidth/minHeight| Width/Height, which may be stretched or compressed based on other layout attributes.|
-maxWidth/maxHeight && minWidth/minHeight && width/height|The layout restrictions passed by the parent container are used for layout.|
+|maxWidth/maxHeight && minWidth/minHeight && width/height|The layout restrictions passed by the parent container are used for layout.|
 
 ## Example
 

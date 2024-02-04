@@ -45,10 +45,10 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 
 ## EditableLeftIconType
 
-| Name| Description| 
-| -------- | -------- |
-| Back | Back.| 
-| Cancel | Cancel.| 
+| Name| Value| Description| 
+| -------- | -------- | -------- |
+| Back | 0 | Back.| 
+| Cancel | 1 | Cancel.| 
 
 
 ## EditableTitleBarMenuItem
@@ -56,7 +56,7 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| isEnabled | boolean | Yes| Whether to enable the item. The item is enabled by default.| 
+| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> **true**: The item is enabled.<br> **false**: The item is disabled.| 
 | action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform.| 
 
 ## Events
@@ -99,9 +99,6 @@ struct Index {
               }
             }
           ],
-          onCancel: () => {
-            promptAction.showToast({ message: "on cancel" })
-          },
           onSave: () => {
             promptAction.showToast({ message: "on save" })
           }
