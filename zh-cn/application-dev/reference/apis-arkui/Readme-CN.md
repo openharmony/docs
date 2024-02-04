@@ -1,7 +1,7 @@
 # ArkUI API参考 
 
 - ArkTS API
-  - [UI界面]
+  - UI界面
     - [@ohos.animator (动画)](js-apis-animator.md)
     - [@ohos.arkui.componentSnapshot (组件截图)](js-apis-arkui-componentSnapshot.md)
     - [@ohos.arkui.componentUtils (componentUtils)](js-apis-arkui-componentUtils.md)
@@ -53,7 +53,7 @@
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
 - 错误码
-  - [UI界面]
+  - UI界面
     - [动画错误码](errorcode-animator.md)
     - [弹窗错误码](errorcode-promptAction.md)
     - [页面路由错误码](errorcode-router.md)
