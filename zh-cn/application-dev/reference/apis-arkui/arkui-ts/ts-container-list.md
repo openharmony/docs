@@ -5,6 +5,7 @@
 > **说明：**
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > - 该组件内容区小于一屏时，默认没有回弹效果。需要回弹效果，可以通过edgeEffect属性的options参数进行设置。
 
 
@@ -58,7 +59,6 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | editMode<sup>(deprecated)</sup>       | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃不再使用，无替代接口。<br/>可参考[示例3](#示例3)实现删除选中的list项。<br/>默认值：false |
 | edgeEffect                            | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br/>options?:[EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明)<sup>11+</sup>   | 设置边缘滑动效果。<br/>\- value：设置List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | chainAnimation                        | boolean                                  | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>链式动效生效后，List的分割线不显示。<br>链式动效生效需要满足以下前提条件：<br> -&nbsp; List边缘效果为Spring类型<br> -&nbsp; List没有启用多列模式 |
-| chainAnimationOptions<sup>10+</sup>   | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 设置链式联动动效参数。<br>**系统API：** 此接口为系统接口。      |
 | multiSelectable<sup>8+</sup>          | boolean                                  | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | lanes<sup>9+</sup>                    | number \| [LengthConstrain](ts-types.md#lengthconstrain),<br/>gutter<sup>10+</sup>?:[Dimension](ts-types.md#dimension10) | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局。<br/>默认值：1<br/>规则如下：<br/>-&nbsp;lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。<br/>-&nbsp;lanes设置了{minLength，maxLength}，如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算<br/>-&nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。<br/>gutter为列间距，当列数大于1时生效。<br />默认值为 0<br/>该接口支持在ArkTS卡片中使用。 |
 | alignListItem<sup>9+</sup>            | [ListItemAlign](#listitemalign9枚举说明)     | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为首部对齐。<br/>默认值：ListItemAlign.Start<br/>该接口支持在ArkTS卡片中使用。 |
@@ -91,35 +91,6 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | None   | 0 | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | 1 | ListItemGroup的header吸顶，footer不吸底。  |
 | Footer | 2 | ListItemGroup的footer吸底，header不吸顶。  |
-
-## ChainEdgeEffect<sup>10+</sup>枚举说明
-
-设置链式动效边缘效果。
-
-**系统API：** 此接口为系统接口
-
-| 名称      |  枚举值  | 描述                                       |
-| ------- | ------ | ---------------------------------------- |
-| DEFAULT | 0 | 默认效果，列表滚动到边缘以后继续拖动，拖拽方向上的列表项间距缩小，<br/>拖拽反方向上的列表项间距扩大。 |
-| STRETCH | 1 | 列表滚动到边缘以后继续拖动，所有列表项间距扩大。                 |
-
-## chainAnimationOptions<sup>10+</sup>对象说明
-
-链式联动动效属性集合，用于设置List最大间距、最小间距、动效强度、传导系数和边缘效果。
-
-**系统API：** 此接口为系统接口
-
-| 名称           | 类型                                       | 必填   | 说明                                       |
-| ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| minSpace     | [Length](ts-types.md#length)             | 是    | 设置链式联动动效最小间距。                            |
-| maxSpace     | [Length](ts-types.md#length)             | 是    | 设置链式联动动效最大间距。                            |
-| conductivity | number                                   | 否    | 设置链式联动动效传导系数。取值范围[0,1]，数值越大，动效传导范围越远。<br/>默认为0.7。 |
-| intensity    | number                                   | 否    | 设置链式联动动效效果强度。取值范围[0,1]，数值越大，动效效果越明显。<br/>默认为0.3。 |
-| edgeEffect   | [ChainEdgeEffect](#chainedgeeffect10枚举说明) | 否    | 设置链式联动动效边缘效果。<br/>默认为ChainEdgeEffect.DEFAULT。 |
-
-> **说明：** 
->
-> List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ## ScrollSnapAlign<sup>10+</sup>枚举说明
 
