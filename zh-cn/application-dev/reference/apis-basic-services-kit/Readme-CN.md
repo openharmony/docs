@@ -1,6 +1,36 @@
 # Basic Services Kit API参考 
 
 - ArkTS API 
-- C API
+    - 公共事件
+        - [@ohos.commonEventManager (公共事件模块)](./js-apis-commonEventManager.md)
+        - [系统公共事件定义](./commonEventManager-definitions.md)
+        - [@ohos.commonEventManager (公共事件模块)(系统应用)](./js-apis-commonEventManager-sys.md)
+        - [系统公共事件定义 (系统应用)](./commonEventManager-definitions-sys.md)
+    - commonEvent
+        - [CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)
+        - [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md)
+        - [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)
+        - [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+- 公共事件定义
+    - [元能力子系统公共事件定义](./common_event/commonEvent-ability.md)
+    - [包管理子系统公共事件定义](./common_event/commonEvent-bundleManager.md)
+    - [通知服务公共事件定义](./common_event/commonEvent-ans.md)
+    - [资源调度子系统公共事件定义](./common_event/commonEvent-resourceschedule.md)
+    - [窗口管理子系统公共事件定义](./common_event/commonEvent-window.md)
+    - [网络管理子系统公共事件定义](./common_event/commonEvent-netmanager.md)
+    - [短信应用公共事件定义](./common_event/commonEvent-mms.md)
+    - [电话服务子系统公共事件定义](./common_event/commonEvent-telephony.md)
+    - [电源管理子系统公共事件定义](./common_event/commonEvent-powermgr.md)
+    - [NFC子系统公共事件定义](./common_event/commonEvent-nfc.md)
+    - [Wifi子系统公共事件定义](./common_event/commonEvent-wifi.md)
+    - [USB子系统公共事件定义](./common_event/commonEvent-usb.md)
+    - [文件管理子系统公共事件定义](./common_event/commonEvent-filemanagement.md)
+    - [主题框架子系统-锁屏管理公共事件定义](./common_event/commonEvent-screenlock.md)
+    - [时间时区子系统公共事件定义](./common_event/commonEvent-time.md)
+    - [帐号子系统公共事件定义](./common_event/commonEvent-account.md)
+- 待停用
+    - [系统公共事件定义](./commonEvent-definitions.md)
+    - [@ohos.commonEvent (公共事件模块)](./js-apis-commonEvent.md)
+    - [@ohos.commonEvent (公共事件模块)(系统应用)](./js-apis-commonEvent-sys.md)
 - 错误码
-
+    - [事件错误码](./errorcode-CommonEventService.md)
