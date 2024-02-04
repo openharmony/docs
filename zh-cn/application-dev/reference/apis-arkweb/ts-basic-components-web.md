@@ -8,7 +8,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
-访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
+访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 ## 子组件
 
@@ -155,7 +155,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 2. 修改EntryAbility.ets。
 
-   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../../application-models/application-context-stage.md#获取应用文件路径)。
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
    ```ts
    // xxx.ts
@@ -227,7 +227,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 
@@ -3963,7 +3963,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述                      |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
 
 **示例：**
 

@@ -3,7 +3,7 @@
 - ArkTS API 
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
 - ArkTS 组件
-  - [Web](../apis-arkui/arkui-ts/ts-basic-components-web.md)
+  - [Web](ts-basic-components-web.md)
 - C API
   - [OHWebJSBridge](native_interface_arkweb.md)
 - 错误码

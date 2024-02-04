@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](../apis-arkui/arkui-ts/ts-basic-components-web.md)组件提供网页显示的能力。
+@ohos.web.webview提供web控制能力，[web](ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -851,7 +851,7 @@ struct WebComponent {
 }
 ```
 
-3.通过沙箱路径加载本地文件，可以参考[web](../apis-arkui/arkui-ts/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
+3.通过沙箱路径加载本地文件，可以参考[web](ts-basic-components-web.md#web)加载沙箱路径的示例代码。
 
 加载的html文件。
 ```html
@@ -2093,7 +2093,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例，[zoomAccess](../apis-arkui/arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
+调整当前网页的缩放比例，[zoomAccess](ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2147,7 +2147,7 @@ struct WebComponent {
 
 searchAllAsync(searchString: string): void
 
-异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](../apis-arkui/arkui-ts/ts-basic-components-web.md#onsearchresultreceive9)异步返回。
+异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](ts-basic-components-web.md#onsearchresultreceive9)异步返回。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
