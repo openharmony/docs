@@ -4,8 +4,9 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](../apis/js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口。
+> 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.application.appManager (appManager)](js-apis-app-ability-wantConstant.md)。
 
 ## 导入模块
 

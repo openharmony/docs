@@ -4,8 +4,9 @@ missionManager模块提供系统任务管理能力，包括对系统任务执行
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.missionManager](../apis/js-apis-app-ability-missionManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口。
+> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.missionManager](js-apis-app-ability-missionManager-sys.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 

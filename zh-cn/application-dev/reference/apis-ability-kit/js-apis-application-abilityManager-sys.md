@@ -4,7 +4,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.abilityManager](../apis/js-apis-app-ability-abilityManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 8开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.abilityManager](js-apis-app-ability-abilityManager-sys.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
@@ -43,7 +43,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](../apis/js-apis-application-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 | callback  | AsyncCallback\<void>                   | 是    | 回调函数，当通过修改配置来更新配置成功，err为undefined，否则为错误对象。      |
 
 **示例**：
@@ -77,7 +77,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](../apis/js-apis-application-configuration.md)   | 是    | 新的配置项。 |
+| config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
 
 **返回值：**
 

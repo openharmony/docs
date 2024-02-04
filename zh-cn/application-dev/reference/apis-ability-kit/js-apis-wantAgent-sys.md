@@ -4,8 +4,9 @@ WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantAgent](../apis/js-apis-app-ability-wantAgent.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口。
+> 本模块首批接口从API version 7开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantAgent](js-apis-app-ability-wantAgent.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)。
 
 ## 导入模块
 
@@ -27,7 +28,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
-| agent     | [WantAgent](../apis/js-apis-wantAgent.md)              | 是   | WantAgent信息。           |
+| agent     | [WantAgent](js-apis-wantAgent-sys.md)              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<Want\> | 是   | 获取WantAgent中的Want的回调方法。 |
 
 **示例：**
@@ -99,7 +100,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 参数名 | 类型          | 必填 | 说明          |
 | ---- | ------------- | ---- | ------------- |
-| agent | [WantAgent](../apis/js-apis-wantAgent.md) | 是   | WantAgent信息。 |
+| agent | [WantAgent](js-apis-wantAgent-sys.md) | 是   | WantAgent信息。 |
 
 **返回值：**
 

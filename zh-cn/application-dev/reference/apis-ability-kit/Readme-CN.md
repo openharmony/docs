@@ -1,6 +1,29 @@
 # Ability Kit API参考
 
 - ArkTS API
+  - FA模型能力的接口
+      - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
+      - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
+      - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
+  - 通用能力的接口(推荐)
+      - [@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)
+      - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
+      - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
+      - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)
+      - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
+      - [@ohos.app.ability.dialogRequest (dialogRequest模块)](js-apis-app-ability-dialogRequest.md)
+      - [@ohos.app.ability.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
+      - [@ohos.app.ability.Want (Want)](js-apis-app-ability-want.md)
+      - [@ohos.app.ability.wantAgent (WantAgent模块)](js-apis-app-ability-wantAgent.md)
+      - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
+      - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](js-apis-app-ability-abilityManager-sys.md)
+      - [@ohos.app.ability.appManager (appManager)(系统接口)](js-apis-app-ability-appManager-sys.md)
+      - [@ohos.app.ability.missionManager (missionManager)(系统接口)](js-apis-app-ability-missionManager-sys.md)
+      - [@ohos.app.ability.quickFixManager (quickFixManager)(系统接口)](js-apis-app-ability-quickFixManager-sys.md)
+      - [@ohos.app.ability.wantAgent (WantAgent模块)(系统接口)](js-apis-app-ability-wantAgent-sys.md)
+      - [@ohos.app.ability.wantConstant (wantConstant)(系统接口)](js-apis-app-ability-wantConstant-sys.md)
+      - [@ohos.app.businessAbilityRouter (业务路由模块)(系统接口)](js-apis-businessAbilityRouter-sys.md)
+      - [@ohos.application.uriPermissionManager (URI权限管理)(系统接口)](js-apis-uripermissionmanager-sys.md)
   - 接口依赖的元素及定义
     - ability
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
@@ -67,6 +90,21 @@
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
+
+  - 已停止维护接口
+      - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-ability-dataUriUtils.md)
+      - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
+      - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
+      - [@ohos.application.appManager (appManager)](js-apis-application-appManager.md)
+      - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
+      - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
+      - [@ohos.application.Want (Want)](js-apis-application-want.md)
+      - [@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)
+      - [@ohos.ability.wantConstant (wantConstant)(系统接口)](js-apis-ability-wantConstant-sys.md)
+      - [@ohos.application.abilityManager (AbilityManager)(系统接口)](js-apis-application-abilityManager-sys.md)
+      - [@ohos.application.appManager (appManager)(系统接口)](js-apis-application-appManager-sys.md)
+      - [@ohos.application.missionManager (missionManager)(系统接口)](js-apis-application-missionManager-sys.md)
+      - [@ohos.wantAgent (WantAgent模块)(系统接口)](js-apis-wantAgent-sys.md)
 - C API
 - 错误码
   - [元能力子系统错误码](errorcode-ability.md)

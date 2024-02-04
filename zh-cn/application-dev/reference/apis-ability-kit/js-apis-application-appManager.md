@@ -4,7 +4,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](../apis/js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -184,7 +184,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 获取有关运行进程的信息。使用Promise异步回调。
 
-> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](../apis/js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
+> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -215,7 +215,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 获取有关运行进程的信息。使用callback异步回调。
 
-> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](../apis/js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
+> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
