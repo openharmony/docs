@@ -1502,7 +1502,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 ```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
-connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
+connection.getAddressesByName("www.example.com", (error: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1544,7 +1544,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 ```ts
 import connection from '@ohos.net.connection';
-connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+connection.getAddressesByName("www.example.com").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -2392,7 +2392,7 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -2438,7 +2438,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.log(JSON.stringify(data));
   });
