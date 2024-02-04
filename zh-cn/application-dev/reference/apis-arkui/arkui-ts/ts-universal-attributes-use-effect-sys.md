@@ -24,4 +24,4 @@ useEffect(value: boolean)
 
 ## 示例
 
-示例请参考[EffectComponent](ts-container-effectcomponent.md)
+示例请参考[EffectComponent](ts-container-effectcomponent-sys.md)
