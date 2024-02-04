@@ -26,7 +26,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
@@ -799,7 +799,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **示例：**
 
-该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)、[MediaAssetsChangeRequest](#mediaassetschangerequest11)和[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的接口示例。
+该接口依赖于[MediaChangeRequest](#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](#mediaassetchangerequest11)和[MediaAlbumChangeRequest](#mediaalbumchangerequest11)中的接口示例。
 
 ### release
 
@@ -1358,7 +1358,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **错误码：**
 
@@ -1410,8 +1410,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](js-apis-image.md#size) | 是    | 缩略图尺寸。            |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | 是    | 缩略图尺寸。            |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **错误码：**
 
@@ -1465,13 +1465,13 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](js-apis-image.md#size) | 否    | 缩略图尺寸。 |
+| size | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否    | 缩略图尺寸。 |
 
 **返回值：**
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
 
 **错误码：**
 
@@ -2811,7 +2811,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 创建图片资产变更请求。
 
-通过fileUri指定待创建资产的数据来源，可参考[FileUri](js-apis-file-fileuri.md)。
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](../apis/js-apis-file-fileuri.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2819,7 +2819,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。 |
 
 **返回值：**
@@ -2861,7 +2861,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 创建视频资产变更请求。
 
-通过fileUri指定待创建资产的数据来源，可参考[FileUri](js-apis-file-fileuri.md)。
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](../apis/js-apis-file-fileuri.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2869,7 +2869,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。 |
 
 **返回值：**
@@ -2917,7 +2917,7 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
 | options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如：{title: 'testPhoto'}。              |
@@ -2974,7 +2974,7 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待删除的媒体文件数组。 |
 
 **返回值：**
@@ -3030,7 +3030,7 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
 
 **返回值：**
@@ -3570,10 +3570,10 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
-| context        | [Context](js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| context        | [Context](../apis/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
 | asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。       
-| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
 
 **错误码：**
 
@@ -3633,7 +3633,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| context | [Context](js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的Context。 |
 | asset | [PhotoAsset](#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
 | requestOptions  | [RequestOptions](#requestoptions11)                                  | 是   | 图片请求策略模式配置项。       
 | dataHandler  | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。
@@ -3691,7 +3691,7 @@ async function example() {
 onDataPrepared(data: T): void
 
 媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
-T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。
+T支持ArrayBuffer与[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)两种数据类型。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3699,7 +3699,7 @@ T支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类�
 
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | 是   | 泛型，支持ArrayBuffer与[ImageSource](js-apis-image.md#imagesource)两种数据类型。 |
+| data | T | 是   | 泛型，支持ArrayBuffer与[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)两种数据类型。 |
 
 **示例**
 ```ts
@@ -3825,7 +3825,7 @@ title参数规格为：
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## RequestOptions<sup>11+</sup>
 

@@ -517,8 +517,8 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
-| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项  |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 是   |  检索选项  |
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -575,7 +575,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -651,13 +651,13 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
-| options  | [FetchOptions](#fetchoptions)         | 否   |  检索选项，不填时默认根据隐藏文件显示模式检索。      |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 否   |  检索选项，不填时默认根据隐藏文件显示模式检索。      |
 
 **返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。
+| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。
 
 **示例：**
 
@@ -867,7 +867,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
-| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
 | callback | AsyncCallback&lt;number&gt;| 是   | callback返回相册中资源的索引。 |
 
 **错误码：**
@@ -940,7 +940,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
-| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
 
 **返回值：**
 
@@ -1614,7 +1614,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-此接口中获取的Exif标签信息是由[image](js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -1674,7 +1674,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-此接口中获取的Exif标签信息是由[image](js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -2389,7 +2389,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 
 提交编辑数据以及编辑后的图片或视频，该方法使用callback形式来返回结果。
 
-通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](js-apis-file-fileuri.md)。
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](../apis/js-apis-file-fileuri.md)。
 
 **注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
 
@@ -2454,7 +2454,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 提交编辑数据以及编辑后的图片或视频，该方法使用promise形式来返回结果。
 
-通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](js-apis-file-fileuri.md)。
+通过uri将编辑后的文件传递给媒体库，uri是编辑后的文件在应用沙箱下的FileUri，可参考[FileUri](../apis/js-apis-file-fileuri.md)。
 
 **注意**：新的编辑数据提交后，将覆盖掉原来的编辑数据。
 
@@ -2644,7 +2644,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
 
 **返回值：**
 
@@ -2709,7 +2709,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
 
 **返回值：**
 
@@ -3371,7 +3371,7 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | displayName  | string        | 是   | 待创建的图片或者视频文件名。              |
 | options  | [PhotoCreateOptions](#photocreateoptions)        | 否   | 图片或视频的创建选项。              |
 
@@ -3957,7 +3957,7 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | name | string | 是   | 待创建相册的名称。|
 
 **返回值：**
@@ -4010,7 +4010,7 @@ static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;vo
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](../apis/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | albums  |  Array&lt;[Album](#album)&gt;          | 是   | 待删除的相册数组。         |
 
 **返回值：**
@@ -4669,7 +4669,7 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| size           | [image.Size](js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
+| size           | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
 | requestPhotoType    | [RequestPhotoType](#requestphototype11) | 否  | 获取的操作类型。  |
 
 ## RequestOptions<sup>11+</sup>

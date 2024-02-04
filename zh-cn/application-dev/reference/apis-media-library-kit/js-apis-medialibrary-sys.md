@@ -20,7 +20,7 @@ deleteAsset(uri: string): Promise\<void>
 
 删除媒体文件资源。
 
-调用该接口彻底删除文件前，需要先调用[FileAsset.trash](#trash8)将文件放入回收站，否则文件会删除失败。
+调用该接口彻底删除文件前，需要先调用[FileAsset.trash](js-apis-medialibrary.md#trash8)将文件放入回收站，否则文件会删除失败。
 
 > **说明：**
 >
@@ -77,7 +77,7 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 删除媒体文件资源。
 
-调用该接口彻底删除文件前，需要先调用[FileAsset.trash](#trash8)将文件放入回收站，否则文件会删除失败。
+调用该接口彻底删除文件前，需要先调用[FileAsset.trash](js-apis-medialibrary.md#trash8)将文件放入回收站，否则文件会删除失败。
 
 > **说明：**
 >

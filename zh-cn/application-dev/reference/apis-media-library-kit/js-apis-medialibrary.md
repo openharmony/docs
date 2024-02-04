@@ -586,7 +586,7 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 > **说明：**
 >
 > - 此接口为API version 6开始支持，只支持FA模型使用。
-> - 此接口从API version 9开始废弃。请使用[save](js-apis-file-picker.md#save-1)接口替代。
+> - 此接口从API version 9开始废弃。请使用[save](../apis/js-apis-file-picker.md#save-1)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -624,7 +624,7 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 > **说明：**
 >
 > - 此接口为API version 6开始支持，只支持FA模型使用。
-> - 此接口从API version 9开始废弃。请使用[save](js-apis-file-picker.md#save)接口替代。
+> - 此接口从API version 9开始废弃。请使用[save](../apis/js-apis-file-picker.md#save)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -802,7 +802,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 > **说明：**
 >
 > - 此接口为API version 6开始支持，只支持FA模型使用。
-> - 此接口从API version 9开始废弃。请使用[select](js-apis-file-picker.md#select-1)接口替代。
+> - 此接口从API version 9开始废弃。请使用[select](../apis/js-apis-file-picker.md#select-1)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -839,7 +839,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 > **说明：**
 >
 > - 此接口为API version 6开始支持，只支持FA模型使用。
-> - 此接口从API version 9开始废弃。请使用[select](js-apis-file-picker.md#select)接口替代。
+> - 此接口从API version 9开始废弃。请使用[select](../apis/js-apis-file-picker.md#select)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -879,7 +879,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 > **说明：**
 >
 > - title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
-> - orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](js-apis-image.md#modifyimageproperty9)接口。
+> - orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](../apis-image-kit/js-apis-image.md#modifyimageproperty9)接口。
 > - 此接口从API version 9开始废弃。请使用[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)替代。
 
 ### 属性
@@ -2683,7 +2683,7 @@ async function example() {
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[image.Size](js-apis-image.md#size)替代。
+> 此接口从API version 9开始废弃。请使用[image.Size](../apis-image-kit/js-apis-image.md#size)替代。
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 

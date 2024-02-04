@@ -106,7 +106,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -201,7 +201,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1166,7 +1166,7 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1198,7 +1198,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1233,7 +1233,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
@@ -1284,7 +1284,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
@@ -1326,7 +1326,7 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1413,7 +1413,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1922,7 +1922,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2083,7 +2083,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2374,7 +2374,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2432,7 +2432,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2485,7 +2485,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2545,7 +2545,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2591,7 +2591,7 @@ getDelayTimeList(): Promise<Array\<number>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2635,7 +2635,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2680,7 +2680,7 @@ getFrameCount(): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3180,7 +3180,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3509,7 +3509,7 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
