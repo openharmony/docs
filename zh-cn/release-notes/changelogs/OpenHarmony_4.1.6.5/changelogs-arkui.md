@@ -264,3 +264,33 @@ bindMenu
 **适配指导**
 
 使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等，如果出现修改isShow的值后，菜单无法弹出，可以在isShow修改前后加上日志打印该值，判断isShow是否有变化, 如果没有变化，需要检查是不是在menu消失的时候没有在onDisappear里更新isShow的值为false，或者初始情况下将isShow设置为了true。
+
+## cl.arkui.6 OffscreenCanvas类声明式继承错误删除
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+OffscreenCanvas类声明时父类关系继承错误会导致DevEco Studio错误联想出非OffscreenCanvas本身的方法和属性。
+
+**变更影响**
+
+该变更为兼容性变更，变更后OffscreenCanvas类的方法和属性在DevEco studio中可正确联想，先前因OffscreenCanvas类声明时父类继承错误导致的非OffscreenCanvas本身的方法和属性不再被联想出来。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**变更的接口/组件**
+
+OffscreenCanvas
+
+**适配指导**
+
+DevEco Studio中OffscreenCanvas代码编辑联想功能，不涉及适配。
