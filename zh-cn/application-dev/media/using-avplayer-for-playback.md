@@ -160,6 +160,7 @@ export class AVPlayerDemo {
     let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
     // 为fdSrc赋值触发initialized状态机上报
     this.avPlayer.fdSrc = fileDescriptor;
+    this.isSeek = false; // 不支持seek操作
   }
 }
 ```
