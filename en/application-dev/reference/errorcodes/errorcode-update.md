@@ -18,7 +18,7 @@ This error code is reported if an exception is thrown during an IPC call.
 
 An IPC API call failed.
 
-**Solution**
+**Procedure**
 
 1. Check whether the update system ability has started. If not, start it.
 2. Check whether IPC data conversion is normal. If not, check the conversion process.

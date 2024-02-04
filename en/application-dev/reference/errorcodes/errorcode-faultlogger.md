@@ -18,6 +18,6 @@ This error code is reported when the service is not started or an unknown error 
 
 The hiview service is not started.
 
-**Solution**
+**Procedure**
 
 Retry the operation.

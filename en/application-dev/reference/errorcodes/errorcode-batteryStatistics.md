@@ -12,7 +12,7 @@ Operation failed. Cannot connect to service.
 
 **Description**
 
-This error code is reported for a service connection failure.
+This error code is reported if a service connection failure occurs.
 
 **Possible Causes**
 
@@ -20,7 +20,7 @@ This error code is reported for a service connection failure.
 
 2. The internal communication of system services is abnormal.
 
-**Solution**
+**Procedure**
 
 Check whether the system services are running properly.
 

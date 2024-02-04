@@ -14,7 +14,7 @@ Failed to operate the input device.
 
 This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.
 
-**Possible Cause**
+**Possible Causes**
 
 1. When screen hopping is initiated, the local device is in the hopped state.
 2. When screen hopping is disabled, the local device is in the free state.

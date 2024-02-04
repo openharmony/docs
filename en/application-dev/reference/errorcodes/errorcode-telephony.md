@@ -14,11 +14,11 @@ The input parameter value is out of range.
 
 This error code is reported if the value of the input parameter (for example, **slotId**) is not within the valid range. In this case, the API call will fail and the corresponding operation cannot be performed.
 
-**Cause**
+**Possible Causes**
 
 The input parameter value is invalid.
 
-**Solution**
+**Procedure**
 
 Enter a valid parameter value.
 
@@ -34,11 +34,11 @@ Operation failed. Cannot connect to service.
 
 This error code is reported if the attempt to connect to a service fails.
 
-**Cause**
+**Possible Causes**
 
 Service startup or IPC connection has failed.
 
-**Solution**
+**Procedure**
 
 Operation error. Try again later.
 
@@ -52,13 +52,13 @@ System internal error.
 
 **Description**
 
-This error code is reported if an internal error has occurred.
+This error code is reported if an internal system error occurs.
 
-**Cause**
+**Possible Causes**
 
 The possible cause is that data read/write has failed because the network is abnormal.
 
-**Solution**
+**Procedure**
 
 Operation error. Try again later.
 
@@ -73,11 +73,11 @@ Do not have sim card.
 
 This error code is reported if no SIM card is detected.
 
-**Cause**
+**Possible Causes**
 
 No SIM card is inserted or the SIM card is not properly inserted.
 
-**Solution**
+**Procedure**
 
 Insert the SIM card or remove and insert the SIM card again.
 
@@ -92,11 +92,11 @@ Unknown error code.
 
 This error code is reported if an unknown error occurs.
 
-**Cause**
+**Possible Causes**
 
 An unexpected error occurs in the system. The possible cause is that error codes of the bottom layer are not within the processing range.
 
-**Solution**
+**Procedure**
 
 Operation error. Try again later.
 
@@ -111,11 +111,11 @@ SIM card is not activated.
 
 This error code is reported if the SIM card is not activated.
 
-**Cause**
+**Possible Causes**
 
 The SIM card is not activated.
 
-**Solution**
+**Procedure**
 
 Activate the SIM card.
 
@@ -130,11 +130,11 @@ SIM card operation error.
 
 This error code is reported if the attempt to read or update SIM card data has failed.
 
-**Cause**
+**Possible Causes**
 
 The SIM card does not support the operation, or the SIM card is damaged.
 
-**Solution**
+**Procedure**
 
 Contact the SIM card supplier, or replace the SIM card.
 
@@ -149,11 +149,11 @@ Operator config error.
 
 This error code is reported if the SIM card configuration is incorrect.
 
-**Cause**
+**Possible Causes**
 
 The configuration file delivered with the SIM card is not properly preconfigured.
 
-**Solution**
+**Procedure**
 
 Check whether the correct SIM card is inserted.
 
@@ -167,10 +167,10 @@ UT is not connected.
 
 This error code is reported if the UT is not connected.
 
-**Cause**
+**Possible Causes**
 
-The current carrier does not support sending of UT requests over a Wi-Fi network, but the device is connected to the Wi-Fi network.
+The current carrier does not support sending of UT requests over a Wi-Fi network, but the phone is actually connected to the Wi-Fi network.
 
-**Solution**
+**Procedure**
 
 Disconnect the Wi-Fi connection, and send a new UT request.
