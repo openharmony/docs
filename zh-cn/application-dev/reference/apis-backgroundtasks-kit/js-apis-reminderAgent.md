@@ -35,7 +35,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
+  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | 是 | 需要发布的提醒实例。 |
   | callback | AsyncCallback\<number> | 是 | 异步回调，返回当前发布的提醒的id。 |
 
 **示例**：
@@ -69,7 +69,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
+  | reminderReq | [ReminderRequest](#reminderrequestdeprecated) | 是 | 需要发布的提醒实例。 |
 
 **返回值**：
   | 类型 | 说明 |
@@ -104,7 +104,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
+| reminderId | number | 是 | 目标reminder的id号。 |
 | callback | AsyncCallback\<void> | 是 | 异步回调。 |
 
 **示例**：
@@ -133,7 +133,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
+| reminderId | number | 是 | 目标reminder的id号。 |
 
 **返回值**：
 
@@ -164,7 +164,7 @@ getValidReminders(callback: AsyncCallback\<Array\<ReminderRequest>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 异步回调，返回当前应用已设置的所有有效（未过期）的提醒。 |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | 是 | 异步回调，返回当前应用已设置的所有有效（未过期）的提醒。 |
 
 **示例**：
 
@@ -214,7 +214,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | 返回当前应用已设置的所有有效（未过期）的提醒。 |
+| Promise\<Array\<[ReminderRequest](#reminderrequestdeprecated)>> | 返回当前应用已设置的所有有效（未过期）的提醒。 |
 
 **示例**：
 
@@ -478,7 +478,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮显示的标题。 |
-| type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
+| type | [ActionButtonType](#actionbuttontypedeprecated) | 是 | 按钮的类型。 |
 
 
 ## WantAgent<sup>(deprecated)</sup>
@@ -501,7 +501,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#MaxScreenWantAgent)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.MaxScreenWantAgent](js-apis-reminderAgentManager.md#maxscreenWantagent)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -522,10 +522,10 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
-| wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
+| reminderType | [ReminderType](#remindertypedeprecated) | 是 | 指明提醒类型。 |
+| actionButton | [ActionButton](#actionbuttondeprecated) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
+| wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagentdeprecated) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），默认0秒。 |
@@ -549,7 +549,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| dateTime | [LocalDateTime](#localdatetime) | 是 | 指明提醒的目标时间。 |
+| dateTime | [LocalDateTime](#localdatetimedeprecated) | 是 | 指明提醒的目标时间。 |
 | repeatMonths | Array\<number> | 否 | 指明重复提醒的月份。 |
 | repeatDays | Array\<number> | 否 | 指明重复提醒的日期。 |
 
