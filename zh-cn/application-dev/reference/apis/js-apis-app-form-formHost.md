@@ -2467,3 +2467,55 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
+## recoverForms<sup>11+</sup>
+
+recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
+
+恢复被回收的卡片，并将它的状态更新为不可回收，如果卡片未被回收则只更新状态为不可回收。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明           |
+| ------- | ------------------- | ---- | -------------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识数组。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**参数：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.recoverForms(formIds).then(() => {
+    console.info('recover forms success');
+  }).catch((err: Base.BusinessError) => {
+    console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e: Base.BusinessError) {
+  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+}
+```
+## 

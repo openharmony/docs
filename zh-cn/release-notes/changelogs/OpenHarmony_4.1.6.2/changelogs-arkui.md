@@ -32,7 +32,9 @@ b) 设置subtitle为超长文本显示
 
 **API Level** 
 
-11
+AlertDialog的title从API Version 7开始支持，subtitle从API Version 10开始支持。
+
+ActionSheet的title从API Version 8开始支持，subtitle从API Version 10开始支持。
 
 **变更发生版本**
 
@@ -70,7 +72,7 @@ promptAction.showDialog支持通过设置title参数显示主标题：
 
 **API Level** 
 
-11
+9
 
 **变更发生版本**
 

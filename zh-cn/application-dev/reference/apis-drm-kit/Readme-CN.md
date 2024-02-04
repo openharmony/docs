@@ -1,6 +1,28 @@
-# Digital Right Management Kit API参考 
+# DRM Kit API参考
 
-- ArkTS API 
+- ArkTS API
+  - [@ohos.multimedia.drm (数字版权保护)](js-apis-drm.md)
 - C API
+  - 模块
+    - [Drm](_drm.md)
+  - 头文件
+    - [native_drm_common.h](native__drm__common_8h.md)
+    - [native_drm_err.h](native__drm__err_8h.md)
+    - [native_mediakeysession.h](native__mediakeysession_8h.md)
+    - [native_mediakeysystem.h](native__mediakeysystem_8h.md)
+  - 结构体
+    - [DRM_CharBuffer](_d_r_m___char_buffer.md)
+    - [DRM_CharBufferPair](_d_r_m___char_buffer_pair.md)
+    - [DRM_KeysInfo](_d_r_m___keys_info.md)
+    - [DRM_MediaKeyDescription](_d_r_m___media_key_description.md)
+    - [DRM_MediakeyIdArray](_d_r_m___mediakey_id_array.md)
+    - [DRM_MediaKeyRequest](_d_r_m___media_key_request.md)
+    - [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md)
+    - [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md)
+    - [DRM_PsshInfo](_d_r_m___pssh_info.md)
+    - [DRM_Statistics](_d_r_m___statistics.md)
+    - [DRM_Uint8Buffer](_d_r_m___uint8_buffer.md)
+    - [DRM_Uint8CharBufferPair](_d_r_m___uint8_char_buffer_pair.md)
+    - [MediaKeySession_Callback](_media_key_session___callback.md)
 - 错误码
-
+  - [DRM错误码](errorcode-drm.md)

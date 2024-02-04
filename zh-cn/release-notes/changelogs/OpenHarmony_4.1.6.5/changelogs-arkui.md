@@ -66,7 +66,7 @@ OpenHarmony SDK 4.1.6.5及以后，Gauge组件的默认阴影模糊半径为20vp
 
 **适配指导**
 
-默认阴影效果变更，不涉及适配。
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
 ## cl.arkui.3 getItemRect, getItemRectInGroup接口返回值单位变更
 
@@ -263,4 +263,4 @@ bindMenu
 
 **适配指导**
 
-使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等。
+使用isShow后，需要在其他事件中将isShow从false改成true，menu才会弹出，例如点击事件、手势事件以及hover等，如果出现修改isShow的值后，菜单无法弹出，可以在isShow修改前后加上日志打印该值，判断isShow是否有变化, 如果没有变化，需要检查是不是在menu消失的时候没有在onDisappear里更新isShow的值为false，或者初始情况下将isShow设置为了true。

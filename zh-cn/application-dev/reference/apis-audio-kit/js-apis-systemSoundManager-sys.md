@@ -4,9 +4,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口为系统接口。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -86,7 +85,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | Context                                  | 是   | 当前应用的上下文。           |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis/js-apis-media.md#avplayer9)。 |
+| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。     |
 | callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回设置成功或失败。     |
 
@@ -126,7 +125,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | Context                                  | 是   | 当前应用的上下文。         |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis/js-apis-media.md#avplayer9)。 |
+| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
@@ -249,7 +248,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 | -------- | -----------------------------------------| ---- | --------------------------- |
 | context  | Context                                  | 是   | 当前应用的上下文。            |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
-| callback | AsyncCallback&lt;[RingtonePlayer](../apis/js-apis-inner-multimedia-ringtonePlayer.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
+| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -294,7 +293,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](../apis/js-apis-inner-multimedia-ringtonePlayer.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -328,7 +327,7 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | BaseContext                                  | 是   | 当前应用的上下文。         |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis/js-apis-media.md#avplayer9)。 |
+| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
@@ -430,7 +429,7 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](../apis/js-apis-inner-multimedia-ringtonePlayer.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
 
 **示例：**
 
@@ -465,7 +464,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- |-------------------------------------| ---- | ------------------------ |
 | context  | BaseContext                         | 是   | 当前应用的上下文。         |
-| uri      | string                              | 是   | 被设置的系统提示音的uri，资源支持可参考[media.AVPlayer](../apis/js-apis-media.md#avplayer9)。 |
+| uri      | string                              | 是   | 被设置的系统提示音的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 被设置的系统提示音的类型。   |
 
 **返回值：**
@@ -567,7 +566,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 | 类型                                                                                               | 说明                            |
 |--------------------------------------------------------------------------------------------------| ------------------------------- |
-| Promise&lt;[SystemTonePlayer](../apis/js-apis-inner-multimedia-systemTonePlayer.md#systemtoneplayer)&gt; | Promise回调返回获取的系统提示音播放器。 |
+| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise回调返回获取的系统提示音播放器。 |
 
 **示例：**
 

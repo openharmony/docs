@@ -46,11 +46,14 @@
    - 如果是想获取短信服务中心地址，则调用getSmscAddr接口，需要配置ohos.permission.GET_TELEPHONY_STATE权限，权限级别为system_basic。
    在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)声明对应权限。
 
-2. import需要的模块。
+2. 但是通常情况下，第三方应用无法获取上述权限，若需要在应用内实现跳转到短信编辑的功能，并且需要携带编辑内容和收件人号码，可以通过调用元能力 startAbility 接口指定号码并跳转到发送短信页面的方式实现，参考示例代码二。
 
-3. 发送SMS消息。
+3. import需要的模块。
+
+4. 发送SMS消息。
 
 ```ts
+// 示例代码一：
 import sms from '@ohos.telephony.sms';
 import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
@@ -70,6 +73,66 @@ let options: sms.SendMessageOptions = {slotId, content, destinationHost, service
 sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
+
+
+// 示例代码二：
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+
+const MMS_BUNDLE_NAME = "com.ohos.mms";
+const MMS_ABILITY_NAME = "com.ohos.mms.MainAbility";
+const MMS_ENTITIES = "entity.system.home";
+
+export class Contact {
+    contactsName: string;
+    telephone: number;
+
+    constructor(contactsName: string, telephone: number) {
+        this.contactsName = contactsName;
+        this.telephone = telephone;
+    }
+}
+
+@Entry
+@Component
+struct JumpMessage {
+    private context = getContext(this) as common.UIAbilityContext;
+
+    startMMSAbilityExplicit() {
+        // 这里完善联系人和号码；姓名主要是通过手机号来查询实际联系人名称，因此这种方式还是以手机号码为主。
+        let params: Array<Object> = [new Contact("张三", 13344556677)];
+
+        let want: Want = {
+            bundleName: "com.ohos.mms",
+            abilityName: "com.ohos.mms.MainAbility",
+            parameters: {
+                contactObjects: JSON.stringify(params),
+                pageFlag: "conversation",
+                // 这里填写短信内容。
+                content: "我是短信具体内容"
+            }
+        };
+
+        this.context.startAbilityForResult(want).then((data) => {
+            console.log("Success" + JSON.stringify(data));
+        }).catch(() => {
+            console.log("error");
+        });
+    }
+
+    build() {
+        Row() {
+            Column() {
+                Button('发送短信')
+                  .onClick(() => {
+                      this.startMMSAbilityExplicit();
+                  })
+            }
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
 

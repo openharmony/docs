@@ -5335,13 +5335,215 @@ struct WebComponent {
 }
 ```
 
+### setScrollable<sup>12+</sup>
+
+setScrollable(enable: boolean): void
+
+设置网页是否允许滚动。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动，true表示设置为允许滚动，false表示禁止滚动。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  401 | Invalid input parameter. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setScrollable')
+        .onClick(() => {
+          try {
+            this.controller.setScrollable(true);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getScrollable<sup>12+</sup>
+
+getScrollable(): boolean
+
+获取当前网页是否允许滚动。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| boolean | 当前网页是否允许滚动，true为允许滚动，false为禁止滚动。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getScrollable')
+        .onClick(() => {
+          try {
+            let scrollEnabled= this.controller.getScrollable();
+            console.log("scrollEnabled: " + scrollEnabled);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setPrintBackground<sup>12+</sup>
+
+setPrintBackground(enable: boolean): void
+
+设置是否打印网页背景。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| enable | boolean | 是   | 表示是否打印网页背景，true表示设置为打印网页背景，false表示取消网页背景打印。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setPrintBackground')
+        .onClick(() => {
+          try {
+            this.controller.setPrintBackground(false);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getPrintBackground<sup>12+</sup>
+
+getPrintBackground(): boolean
+
+查询webview是否打印网页背景。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| boolean              | 返回Webview是否打印网页背景。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setPrintBackground')
+        .onClick(() => {
+          try {
+            let enable = this.controller.getPrintBackground();
+            console.log("getPrintBackground: " + enable);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
-
-> **说明：**
->
-> 目前调用WebCookieManager下的方法，都需要先加载Web组件。
 
 ### getCookie<sup>(deprecated)</sup>
 

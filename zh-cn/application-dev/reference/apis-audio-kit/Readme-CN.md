@@ -5,6 +5,9 @@
   - [@ohos.multimedia.audioHaptic (音振协同)](js-apis-audioHaptic.md)
   - [@ohos.multimedia.audio (音频管理)(系统接口)](js-apis-audio-sys.md)
   - [@ohos.multimedia.systemSoundManager (系统声音管理)(系统接口)](js-apis-systemSoundManager-sys.md)
+  - multimedia
+    - [ringtonePlayer (铃声播放器)(系统接口)](js-apis-inner-multimedia-ringtonePlayer-sys.md)
+    - [systemTonePlayer (系统提示音播放器)(系统接口)](js-apis-inner-multimedia-systemTonePlayer-sys.md)
 - C API
   - 模块
     - [OHAudio](_o_h_audio.md)

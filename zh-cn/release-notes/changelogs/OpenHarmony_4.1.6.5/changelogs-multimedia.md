@@ -22,21 +22,21 @@
 
 接口属于AudioManager
 
-setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void;
+setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void;
 
-setAudioParameter(key: string, value: string): Promise<void>;
+setAudioParameter(key: string, value: string): Promise&lt;void&gt;;
 
-getAudioParameter(key: string, callback: AsyncCallback<string>): void;
+getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void;
 
-getAudioParameter(key: string): Promise<string>;
+getAudioParameter(key: string): Promise&lt;string&gt;;
 
 **适配指导**
 
 对于系统应用，根据废弃接口提示，使用替代接口：
 
-setExtraParameters(mainKey: string, kvpairs: Record<string, string>): Promise<void>;
+setExtraParameters(mainKey: string, kvpairs: Record&lt;string, string&gt;): Promise&lt;void&gt;;
 
-getExtraParameters(mainKey: string, subKeys?: Array<string>): Promise<Record<string, string>>;
+getExtraParameters(mainKey: string, subKeys?: Array&lt;string&gt;): Promise&lt;Record&lt;string, string&gt;&gt;;
 
 mainKey与原接口参数key保持一致，kvpairs是原有value字符串内多个key-value配对的拆分写法。
 
@@ -67,15 +67,15 @@ mainKey与原接口参数key保持一致，kvpairs是原有value字符串内多�
 
 接口属于AudioVolumeGroupManager
 
-setMicrophoneMute(mute: boolean, callback: AsyncCallback<void>): void;
+setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
-setMicrophoneMute(mute: boolean): Promise<void>;
+setMicrophoneMute(mute: boolean): Promise&lt;void&gt;;
 
 **适配指导**
 
 系统应用，根据废弃接口提示，使用替代接口，功能完全一致：
 
-setMicMute(mute: boolean): Promise<void>;
+setMicMute(mute: boolean): Promise&lt;void&gt;;
 
 三方应用，由于原本就无法获取ohos.permission.MANAGE_AUDIO_CONFIG权限授权，原接口处于无效状态，因此对三方应用无实际影响。
 
@@ -122,7 +122,7 @@ setMicMute(mute: boolean): Promise<void>;
  * @since 11
  */
  ```
-接口不再允许调用者筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，权限声明删除。
+接口不再允许调用者筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，权限声明删除。当无权限，但选择STREAM_USAGE_VOICE_COMMUNICATION作为录制目标时，无法创建AudioCapturer对象，返回ERROR_SYSTEM错误。
 
 **适配指导**
 
@@ -153,9 +153,9 @@ SDK10时OpenHarmony已全面使用内置焦点模式，见开发指南中的[多
 
 接口属于AudioManager
 
-on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback<InterruptAction>): void;
+on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback&lt;InterruptAction&gt;): void;
 
-off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptAction>): void;
+off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback&lt;InterruptAction&gt;): void;
 
 **适配指导**
 
@@ -184,15 +184,15 @@ AudioRenderer/AudioCapturer新增了writeData, readData订阅接口，通过回�
 
 接口属于AudioRenderer
 
-write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;
+write(buffer: ArrayBuffer, callback: AsyncCallback&lt;number&gt;): void;
 
-write(buffer: ArrayBuffer): Promise<number>;
+write(buffer: ArrayBuffer): Promise&lt;number&gt;;
 
 接口属于AudioCapturer
 
-read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;
+read(size: number, isBlockingRead: boolean, callback: AsyncCallback&lt;ArrayBuffer&gt;): void;
 
-read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;
+read(size: number, isBlockingRead: boolean): Promise&lt;ArrayBuffer&gt;;
 
 **适配指导**
 
@@ -200,17 +200,17 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;
 
 AudioRenderer新接口：
 
-on(type: 'writeData', callback: Callback<ArrayBuffer>): void;
+on(type: 'writeData', callback: Callback&lt;ArrayBuffer&gt;): void;
 
-off(type: 'writeData', callback?: Callback<ArrayBuffer>): void;
+off(type: 'writeData', callback?: Callback&lt;ArrayBuffer&gt;): void;
 
 通过订阅方式，收到Callback时，应用需要填写播放数据到ArrayBuffer内，Callback结束后，系统会自动从ArrayBuffer内取走数据进行输出。
 
 AudioCapturer新接口：
 
-on(type: 'readData', callback: Callback<ArrayBuffer>): void;
+on(type: 'readData', callback: Callback&lt;ArrayBuffer&gt;): void;
 
-off(type: 'readData', callback?: Callback<ArrayBuffer>): void;
+off(type: 'readData', callback?: Callback&lt;ArrayBuffer&gt;): void;
 
 通过订阅方式，收到Callback时，应用需要从ArrayBuffer内取出录音数据，Callback结束后，系统会把后续录音数据填入ArrayBuffer，准备触发下次回调。
 
@@ -238,9 +238,9 @@ off(type: 'readData', callback?: Callback<ArrayBuffer>): void;
 
 AudioRoutingManager接口:
 
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback<AudioDeviceDescriptors>): void;
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<AudioDeviceDescriptors>;
+getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;;
 
 变更前：
 
@@ -276,23 +276,23 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<A
 
 AudioVolumeManager接口:
 
-on(type: 'volumeChange', callback: Callback<VolumeEvent>): void;
+on(type: 'volumeChange', callback: Callback&lt;VolumeEvent&gt;): void;
 
 AudioVolumeGroupManager接口:
 
-on(type: 'ringerModeChange', callback: Callback<AudioRingMode>): void;
+on(type: 'ringerModeChange', callback: Callback&lt;AudioRingMode&gt;): void;
 
-on(type: 'micStateChange', callback: Callback<MicStateChangeEvent>): void;
+on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void;
 
 AudioRoutingManager接口:
 
-on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction>): void;
+on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback&lt;DeviceChangeAction&gt;): void;
 
 AudioStreamManager接口:
 
-on(type: 'audioRendererChange', callback: Callback<AudioRendererChangeInfoArray>): void;
+on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void;
 
-on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void;
+on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void;
 
 变更前：
 
@@ -334,9 +334,9 @@ AudioRoutingManager接口:
 
 getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors;
 
-on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction>): void;
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback&lt;DeviceChangeAction&gt;): void;
 
-off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction>): void;
+off(type: 'availableDeviceChange', callback?: Callback&lt;DeviceChangeAction&gt;): void;
 
 变更前：
 
@@ -374,7 +374,7 @@ AudioHapticPlayer内包含震动功能，这部分功能生效依赖ohos.permiss
 
 AudioHapticManager接口:
 
-createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise<AudioHapticPlayer>;
+createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHapticPlayer&gt;;
 
 变更前：
 
@@ -383,7 +383,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise<AudioHapti
  * Create an audio haptic player. This method uses a promise to return the result.
  * @param { number } id - Source id.
  * @param { AudioHapticPlayerOptions } options - Options when creating audio haptic player.
- * @returns { Promise<AudioHapticPlayer> } Promise used to return the result.
+ * @returns { Promise&lt;AudioHapticPlayer&gt; } Promise used to return the result.
  * @throws { BusinessError } 401 - The parameter check failed.
  * @throws { BusinessError } 5400102 - Operation not allowed.
  * @throws { BusinessError } 5400103 - I/O error.
@@ -404,7 +404,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise<AudioHapti
  * @permission ohos.permission.VIBRATE
  * @param { number } id - Source id.
  * @param { AudioHapticPlayerOptions } options - Options when creating audio haptic player.
- * @returns { Promise<AudioHapticPlayer> } Promise used to return the result.
+ * @returns { Promise&lt;AudioHapticPlayer&gt; } Promise used to return the result.
  * @throws { BusinessError } 201 - Permission denied.
  * @throws { BusinessError } 401 - The parameter check failed.
  * @throws { BusinessError } 5400102 - Operation not allowed.
@@ -420,3 +420,51 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise<AudioHapti
 **适配指导**
 
 接口行为与修改前一致，如果应用需要使用震动能力，需要申请ohos.permission.VIBRATE权限
+
+## c1.multimedia.10 ohos.multimedia.audio AudioManager错误码实现错误修正
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+公开接口，返回的错误码类型声明为number，但历史实现错误为string，实现修复
+
+**变更影响**
+
+声明无变更，遵循接口定义的开发者无需适配
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+AudioManager接口:
+
+getVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+
+getVolume(volumeType: AudioVolumeType): Promise<number>;
+
+getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback<number>): void;
+
+getMaxVolume(volumeType: AudioVolumeType): Promise<number>;
+
+isMute(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;
+
+isMute(volumeType: AudioVolumeType): Promise<boolean>;
+
+变更前：
+
+接口通过异步返回的BusinessError.code值类型为string
+
+变更后：
+
+接口通过异步返回的BusinessError.code值类型为number
+
+**适配指导**
+
+声明无变更，错误码本来就声明的就是number类型。
+
+如开发者根据历史接口实际返回结果主动发现返回的错误码不符合定义，而直接使用字符串校验，需要根据原有API定义适配，使用AudioErrors数字错误码。
