@@ -1776,7 +1776,7 @@ function unregisterExpirationUpdated(mediaKeysystem: drm.MediaKeySystem): void {
 }
 ```
 
-### on('keyChange')
+### on('keysChange')
 
 on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
@@ -1788,7 +1788,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'keyChange'，MediaKeySystem实例创建成功可监听。密钥变化时触发该事件并返回。 |
+| type     | string               | 是   | 监听事件，固定为'keysChange'，MediaKeySystem实例创建成功可监听。密钥变化时触发该事件并返回。 |
 | callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
 
 **错误码：**
@@ -1805,14 +1805,14 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 ```ts
 import drm from '@ohos.multimedia.drm';
 
-function registerkeyChange(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.on('keyChange', (eventInfo: EventInfo) => {
-        console.log('keyChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+function registerkeysChange(mediaKeysystem: drm.MediaKeySystem): void {
+    mediaKeysystem.on('keysChange', (eventInfo: EventInfo) => {
+        console.log('keysChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
     });
 }
 ```
 
-### off('keyChange')
+### off('keysChange')
 
 off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
@@ -1824,7 +1824,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'keyChange'，MediaKeySystem实例创建成功可监听。 |
+| type     | string               | 是   | 监听事件，固定为'keysChange'，MediaKeySystem实例创建成功可监听。 |
 | callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
 
 **错误码：**
@@ -1842,7 +1842,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 import drm from '@ohos.multimedia.drm';
 
 function unregisterkeyChange(mediaKeysystem: drm.MediaKeySystem): void {
-    mediaKeysystem.off('keyChange');
+    mediaKeysystem.off('keysChange');
 }
 ```
 
