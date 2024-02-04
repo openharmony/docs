@@ -61,7 +61,7 @@
     - [特效绘制合并(系统接口)](ts-universal-attributes-use-effect-sys.md)
     - [图像效果(系统接口)](ts-universal-attributes-image-effect-sys.md)
     - [背景设置(系统接口)](ts-universal-attributes-background-sys.md)
-    - [件内容模糊(系统接口)](ts-universal-attributes-foreground-blur-style-sys.md)
+    - [组件内容模糊(系统接口)](ts-universal-attributes-foreground-blur-style-sys.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -125,10 +125,10 @@
   - [XComponent](ts-basic-components-xcomponent.md)
   - [Component3D(系统接口)](ts-basic-components-component3d-sys.md)
   - [FormComponent(系统接口)](ts-basic-components-formcomponent-sys.md)
+  - [Image(系统接口)](ts-basic-components-image-sys.md)
   - [PluginComponent(系统接口)](ts-basic-components-plugincomponent-sys.md)
   - [RemoteWindow(系统接口)](ts-basic-components-remotewindow-sys.md)
   - [TextInput(系统接口)](ts-basic-components-textinput-sys.md)
-  - [Image(系统接口)](ts-basic-components-image-sys.md)
 - 容器组件
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
@@ -160,8 +160,8 @@
   - [TabContent](ts-container-tabcontent.md)
   - [WaterFlow](ts-container-waterflow.md)
   - [EffectComponent(系统接口)](ts-container-effectcomponent-sys.md)
-  - [UIExtensionComponent(系统接口)](ts-container-ui-extension-component-sys.md)
   - [List(系统接口)](ts-container-list-sys.md)
+  - [UIExtensionComponent(系统接口)](ts-container-ui-extension-component-sys.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
 - 绘制组件
@@ -242,7 +242,7 @@
 - [枚举说明](ts-appendix-enums.md)
 - [类型定义](ts-types.md)
 - 已停止维护的组件
-  - [AbilityComponent(系统接口)](ts-container-ability-component.md)
+  - [AbilityComponent(系统接口)](ts-container-ability-component-sys.md)
   - [GridContainer](ts-container-gridcontainer.md)
 - 已停止维护的接口
   - [点击控制](ts-universal-attributes-click.md)
