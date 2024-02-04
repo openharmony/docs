@@ -808,7 +808,7 @@ Creates a **MulticastSocket** object.
 
 | Type                              | Description                   |
 | ----------------------------------- | ----------------------------- |
-| [MulticastSocket](#multicastsocket) | **MulticastSocket** object.|
+| [MulticastSocket](#multicastsocket11) | **MulticastSocket** object.|
 
 **Example**
 
@@ -818,7 +818,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 ```
 ## MulticastSocket<sup>11+</sup>
 
-Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance) to create a **MulticastSocket** object.
+Defines a **MulticastSocket** connection. Before calling MulticastSocket APIs, you need to call [socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance11) to create a **MulticastSocket** object.
 
 ### addMembership<sup>11+</sup>
 
@@ -3657,7 +3657,7 @@ Creates a **LocalSocket** object.
 
 | Type                              | Description                   |
   | :--------------------------------- | :---------------------- |
-| [LocalSocket](#localsocket) | **LocalSocket** object.|
+| [LocalSocket](#localsocket11) | **LocalSocket** object.|
 
 **Example**
 
@@ -5583,7 +5583,7 @@ tls.off('error', callback);
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result.
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5681,7 +5681,7 @@ tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
 
 connect(options: TLSConnectOptions): Promise\<void\>
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result.
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
 
 **System capability**: SystemCapability.Communication.NetStack
 

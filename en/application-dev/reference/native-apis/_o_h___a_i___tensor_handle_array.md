@@ -5,10 +5,11 @@
 
 Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.
 
-**Since:**
+**Since**
+
 9
 
-**Related Modules:**
+**Related module**
 
 [MindSpore](_mind_spore.md)
 
@@ -18,30 +19,34 @@ Defines the tensor array structure, which is used to store the tensor array poin
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description.|
 | -------- | -------- |
-| [handle_num](#handle_num) | Tensor array length  | 
-| [handle_list](#handle_list) | Tensor array pointer  | 
+| [handle_num](#handle_num) | Tensor array length.|
+| [handle_list](#handle_list) | Tensor array pointer.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### handle_list
 
-  
+
 ```
 OH_AI_TensorHandle* OH_AI_TensorHandleArray::handle_list
 ```
-**Description**<br>
-Tensor array pointer
+
+**Description**
+
+Tensor array pointer.
 
 
 ### handle_num
 
-  
+
 ```
 size_t OH_AI_TensorHandleArray::handle_num
 ```
-**Description**<br>
-Tensor array length
+
+**Description**
+
+Tensor array length.

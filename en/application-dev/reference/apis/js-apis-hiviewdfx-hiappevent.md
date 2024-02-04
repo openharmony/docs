@@ -475,6 +475,8 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 **Example**
 
 ```ts
+import hilog from '@ohos.hilog';
+
 // 1. If callback parameters are passed to the watcher, you can have subscription events processed in the callback that is automatically triggered.
 hiAppEvent.addWatcher({
   name: "watcher1",
