@@ -115,7 +115,7 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | param    | [RequestParameterForStage](js-apis-plugincomponent.md#requestcallbackparameters) | 是    | 组件模板的详细请求信息。                        |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是    | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](js-apis-plugincomponent.md#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是    | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
 
 **示例：**
 
