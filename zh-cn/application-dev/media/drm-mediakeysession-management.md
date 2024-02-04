@@ -18,7 +18,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: OptionalData[]): Promise<MediaKeyRequest> {
     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-    var uint8pssh = new Uint8Array([0x31, 0x64, 0x6E, 0x5A]);
+    var uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
     var optionalData = [
      {name : "optionalDataNameA", value : "optionalDataValueA"},
      {name : "optionalDataNameB", value : "optionalDataValueB"},
