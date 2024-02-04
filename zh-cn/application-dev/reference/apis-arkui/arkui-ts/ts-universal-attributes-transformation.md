@@ -66,7 +66,7 @@ transform(value: Matrix4Transit)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Matrix4Transit](../apis/js-apis-matrix4.md) | 是   | 设置当前组件的变换矩阵。 |
+| value  | [Matrix4Transit](../../apis/js-apis-matrix4.md) | 是   | 设置当前组件的变换矩阵。 |
 
 ## RotateOptions对象说明
 

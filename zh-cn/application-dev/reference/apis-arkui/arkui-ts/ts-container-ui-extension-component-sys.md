@@ -14,7 +14,7 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 本组件不支持预览。
 
-被拉起的Ability必须是带UI的Ability扩展，如何实现带UI的Ability扩展请参考[实现带UI的Ability扩展](../apis/js-apis-app-ability-uiExtensionAbility.md)。
+被拉起的Ability必须是带UI的Ability扩展，如何实现带UI的Ability扩展请参考[实现带UI的Ability扩展](../../apis/js-apis-app-ability-uiExtensionAbility.md)。
 
 必须显示设置组件宽高为非0有效值。
 
@@ -30,7 +30,7 @@ UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
 | 参数名                | 参数类型                                    | 必填 | 参数描述           |
 | ----                  | ----------------------------------------    | ---- | ---------------    |
-| want                  | [Want](../apis/js-apis-app-ability-want.md) | 是   | 要加载的Ability。  |
+| want                  | [Want](../../apis/js-apis-app-ability-want.md) | 是   | 要加载的Ability。  |
 | options<sup>11+</sup> | [UIExtensionOptions](#uiextensionoptions11) | 否   | 需要传递的构造项。 |
 
 ## UIExtensionOptions<sup>11+</sup>
@@ -70,7 +70,7 @@ send(data: { [key: string]: Object }): void
 
 ### onRemoteReady
 
-onRemoteReady(callback: [Callback](../apis/js-apis-base.md#callback)\<UIExtensionProxy>)
+onRemoteReady(callback: [Callback](../../apis/js-apis-base.md#callback)\<UIExtensionProxy>)
 
 UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的Ability发送数据。
 
@@ -82,7 +82,7 @@ UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的
 
 ### onReceive
 
-onReceive(callback: [Callback](../apis/js-apis-base.md#callback)\<{ [key: string]: Object }>)
+onReceive(callback: [Callback](../../apis/js-apis-base.md#callback)\<{ [key: string]: Object }>)
 
 收到被拉起的Ability发送的数据时触发的回调。
 
@@ -94,22 +94,22 @@ onReceive(callback: [Callback](../apis/js-apis-base.md#callback)\<{ [key: string
 
 ### onResult
 
-onResult(callback: [Callback](../apis/js-apis-base.md#callback)\<{code: number; want?: Want}>)
+onResult(callback: [Callback](../../apis/js-apis-base.md#callback)\<{code: number; want?: Want}>)
 
 被拉起的Ability扩展调用terminateSelfWithResult时会先触发本回调函数，再触发OnRelease。
 
-本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../apis/js-apis-inner-ability-abilityResult.md)。
+本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../../apis/js-apis-inner-ability-abilityResult.md)。
 
 **参数：**
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
 | code                        | number | 收到来自对端Ability的处理結果code。                          |
-| want                        | Want | 收到来自对端Ability的处理結果[Want](../apis/js-apis-app-ability-want.md)。 |
+| want                        | Want | 收到来自对端Ability的处理結果[Want](../../apis/js-apis-app-ability-want.md)。 |
 
 ### onRelease
 
-onRelease(callback: [Callback](../apis/js-apis-base.md#callback)\<number>)
+onRelease(callback: [Callback](../../apis/js-apis-base.md#callback)\<number>)
 
 用于处理被拉起的Ability销毁时的回调。
 
@@ -125,7 +125,7 @@ onRelease(callback: [Callback](../apis/js-apis-base.md#callback)\<number>)
 
 ### onError
 
-onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
+onError(callback:[ErrorCallback](../../apis/js-apis-base.md#errorcallback))
 
 被拉起的Ability扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
 
@@ -133,7 +133,7 @@ onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| err                        | [BusinessError](../apis/js-apis-base.md#businesserror) | 报错信息。    |
+| err                        | [BusinessError](../../apis/js-apis-base.md#businesserror) | 报错信息。    |
 
 ## 示例
 

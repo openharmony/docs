@@ -56,7 +56,7 @@ RemoteWindow(target: WindowAnimationTarget)
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
-RemoteWindow需要接收由[windowAnimationManager](../apis/js-apis-windowAnimationManager.md)设置的WindowAnimationController对象传入对应窗口WindowAnimationTarget对象，可以创建一个RemoteWindowExample.ets作为示例组件将RemoteWindow组件和传入的WindowAnimationTarget对象关联封装起来。
+RemoteWindow需要接收由[windowAnimationManager](../../apis/js-apis-windowAnimationManager.md)设置的WindowAnimationController对象传入对应窗口WindowAnimationTarget对象，可以创建一个RemoteWindowExample.ets作为示例组件将RemoteWindow组件和传入的WindowAnimationTarget对象关联封装起来。
 由于RemoteWindow只能用于系统应用程序Launcher中，可以将RemoteWindowExample组件放置于Launcher的EntryView.ets页面的build函数中，编译Launcher, 然后推送Launcher安装包到设备系统中运行。
 
 ```ts
