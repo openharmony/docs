@@ -2154,6 +2154,47 @@ static getTimePeriodName(hour:number, locale?: string): string
   }
   ```
 
+### getBestMatchLocale<sup>12+</sup>
+
+static getBestMatchLocale(locale: string, localeList: string[]): string
+
+在指定区域列表中获取与某个区域最佳匹配的区域。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| locale | string | 是    | 待匹配的区域id，如：zh-Hans-CN。 |
+| localeList | string[] | 是   | 指定区域id列表。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 与某个区域最佳匹配的区域id。当指定区域列表中没有匹配的区域时，返回空字串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let matchedLocaleId: string = I18n.I18NUtil.getBestMatchLocale("zh-Hans-CN", ["en-Latn-US", "en-GB", "zh-Hant-CN", "zh-Hans-MO"]);  // matchedLocaleId = "zh-Hans-MO"
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getBestMatchLocale failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## Normalizer<sup>10+</sup>
 
@@ -2516,7 +2557,7 @@ set24HourClock(option: boolean): boolean
 
 修改系统时间的24小时制设置。
 
-从API version 9开始不再维护，建议使用[System.set24HourClock](js-apis-i18n - sys.md#set24hourclock9)代替。
+从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -2547,7 +2588,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 在系统偏好语言列表中的指定位置添加偏好语言。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[System.addPreferredLanguage](js-apis-i18n - sys.md#addpreferredlanguage9)代替。
+从API version 8开始支持，从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -2581,7 +2622,7 @@ removePreferredLanguage(index: number): boolean
 
 删除系统偏好语言列表中指定位置的偏好语言。
 
-从API version 8开始支持，从API version 9开始不再维护，建议使用[System.removePreferredLanguage](js-apis-i18n - sys.md#removepreferredlanguage9)代替。
+从API version 8开始支持，从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 

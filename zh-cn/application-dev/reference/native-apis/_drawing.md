@@ -4747,7 +4747,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **描述**
 
-获取最长行，建议实际使用时将返回值向上取整。
+获取最长行的宽度，建议实际使用时将返回值向上取整。当文本内容为空时，返回float的最小值，即：-340282346638528859811704183484516925440.000000。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4761,7 +4761,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **返回：**
 
-返回最长行。
+返回最长行的宽度。
 
 
 ### OH_Drawing_TypographyGetMaxIntrinsicWidth()

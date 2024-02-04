@@ -38,6 +38,17 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
+ - 图形图像
+   - [@ohos.display (屏幕属性)](js-apis-display.md)
+   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
+   - [@ohos.window (窗口)](js-apis-window.md)
+   - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
+   - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+   - [@ohos.display (屏幕属性)(系统接口)](js-apis-display-sys.md)
+   - [@ohos.screen (屏幕)(系统接口)](js-apis-screen-sys.md)
+   - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
+   - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
+   - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
 - ArkTS组件 
 - C API
   - 模块
@@ -59,4 +70,6 @@
     - [页面路由错误码](errorcode-router.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
+  - [屏幕错误码](errorcode-display.md)
+  - [窗口错误码](errorcode-window.md)
 
