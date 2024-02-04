@@ -531,7 +531,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | autoStartApps | Array\<[Want](../apis/js-apis-app-ability-want.md)> | 是    | 开机自启动应用。 |
 
 **错误码**：
@@ -583,7 +583,7 @@ getAutoStartApps(admin: Want): Array\<Want>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
