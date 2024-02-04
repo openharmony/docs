@@ -18,7 +18,7 @@ This error code is reported if the value of the input parameter (for example, **
 
 The input parameter value is invalid.
 
-**Procedure**
+**Solution**
 
 Enter a valid parameter value.
 
@@ -38,7 +38,7 @@ This error code is reported if the attempt to connect to a service fails.
 
 Service startup or IPC connection has failed.
 
-**Procedure**
+**Solution**
 
 Operation error. Try again later.
 
@@ -58,7 +58,7 @@ This error code is reported if an internal system error occurs.
 
 The possible cause is that data read/write has failed because the network is abnormal.
 
-**Procedure**
+**Solution**
 
 Operation error. Try again later.
 
@@ -77,7 +77,7 @@ This error code is reported if no SIM card is detected.
 
 No SIM card is inserted or the SIM card is not properly inserted.
 
-**Procedure**
+**Solution**
 
 Insert the SIM card or remove and insert the SIM card again.
 
@@ -96,7 +96,7 @@ This error code is reported if an unknown error occurs.
 
 An unexpected error occurs in the system. The possible cause is that error codes of the bottom layer are not within the processing range.
 
-**Procedure**
+**Solution**
 
 Operation error. Try again later.
 
@@ -115,7 +115,7 @@ This error code is reported if the SIM card is not activated.
 
 The SIM card is not activated.
 
-**Procedure**
+**Solution**
 
 Activate the SIM card.
 
@@ -134,7 +134,7 @@ This error code is reported if the attempt to read or update SIM card data has f
 
 The SIM card does not support the operation, or the SIM card is damaged.
 
-**Procedure**
+**Solution**
 
 Contact the SIM card supplier, or replace the SIM card.
 
@@ -153,7 +153,7 @@ This error code is reported if the SIM card configuration is incorrect.
 
 The configuration file delivered with the SIM card is not properly preconfigured.
 
-**Procedure**
+**Solution**
 
 Check whether the correct SIM card is inserted.
 
@@ -171,6 +171,6 @@ This error code is reported if the UT is not connected.
 
 The current carrier does not support sending of UT requests over a Wi-Fi network, but the phone is actually connected to the Wi-Fi network.
 
-**Procedure**
+**Solution**
 
 Disconnect the Wi-Fi connection, and send a new UT request.

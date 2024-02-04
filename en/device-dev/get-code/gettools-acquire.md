@@ -201,7 +201,7 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
   hpm run docker solution={product}
   ```
 
-  **{product}** indicates the solution, for example, **\@ohos/hispark_taurus**, **\@ohos/hispark_aries**, and **\@ohos/hispark_pegasus**.
+  **{product}** indicates the solution, for example, **\@ohos/hispark_taurus**, **\@ohos/hispark_aries**, or **\@ohos/hispark_pegasus**.
 
   Method 2:
 

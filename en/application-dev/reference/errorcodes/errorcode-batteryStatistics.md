@@ -20,7 +20,7 @@ This error code is reported if a service connection failure occurs.
 
 2. The internal communication of system services is abnormal.
 
-**Procedure**
+**Solution**
 
 Check whether the system services are running properly.
 

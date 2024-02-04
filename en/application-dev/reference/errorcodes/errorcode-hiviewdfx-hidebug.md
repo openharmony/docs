@@ -17,6 +17,6 @@ This error code is reported if the specified service ID is incorrect.
 
 The specified service ID is incorrect.
 
-**Procedure**
+**Solution**
 
 Specify a correct system service ID.

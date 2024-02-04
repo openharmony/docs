@@ -20,7 +20,7 @@ This error code is reported if a service connection failure occurs.
 
 2. The internal communication of system services is abnormal.
 
-**Procedure**
+**Solution**
 
 Check whether the system services are running properly.
 
@@ -46,6 +46,6 @@ This error code is reported when an operation failed during system shutting down
 
 The system is shutting down.
 
-**Procedure**
+**Solution**
 
 Make sure that the operation is performed when the system is running properly.

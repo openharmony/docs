@@ -19,6 +19,6 @@ This error code is reported if the file with the specified name does not exist i
 1. The input file name is incorrect.
 2. The file with the input file name does not exist.
 
-**Procedure**
+**Solution**
 
 Check whether the input file name is correct.

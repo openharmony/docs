@@ -18,7 +18,7 @@ This error code is reported if the parameter value is invalid.
 
 The input parameter value is not within the valid value range.
 
-**Procedure**
+**Solution**
 
 Check whether the input parameter value is within the valid value range.
 
@@ -36,7 +36,7 @@ This error code is reported if a service connection failure occurs.
 
 The service is abnormal.
 
-**Procedure**
+**Solution**
 
 Check whether system services are running properly.
 
@@ -56,7 +56,7 @@ This error code is reported if an internal system error occurs.
 
 2. A null pointer is present.
 
-**Procedure**
+**Solution**
 
 1. Check whether the memory space is sufficient. If not, clear the memory and try again.
 
@@ -76,7 +76,7 @@ This error code is reported if the same callback already exists.
 
 The **callback** object has been registered for activating a network or listening to network status changes.
 
-**Procedure**
+**Solution**
 
 1. Check whether the **callback** object has been registered.
 2. If the **callback** object has been registered, use the registered **callback** object.
@@ -95,7 +95,7 @@ This error code is reported if a **callback** object to be unregistered does not
 
 The **callback** object has not been registered for activating a network or listening to network status changes.
 
-**Procedure**
+**Solution**
 
 Before unregistering a **callback** object, make sure that it has been registered for activating a network or listening to network status changes.
 
@@ -113,6 +113,6 @@ This error code is reported if the number of network requests exceeds the maximu
 
 The number of requests for activating a network or listening to network status changes has reached the maximum value.
 
-**Procedure**
+**Solution**
 
 Locate the fault based on the "Over the max request number" log record.
