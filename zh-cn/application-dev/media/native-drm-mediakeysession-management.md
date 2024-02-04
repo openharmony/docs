@@ -9,11 +9,10 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 1. 导入NDK接口，接口中提供了DRM相关的属性和方法，导入方法如下。
 
    ```c++
-    // 导入NDK接口头文件
-    #include "multimedia/drm_framework/common/native_drm_common.h"
-    #include "multimedia/drm_framework/common/native_drm_err.h"
-    #include "multimedia/drm_framework/native_mediakeysession.h"
-    #include "multimedia/drm_framework/native_mediakeysystem.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_common.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_err.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysession.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysystem.h"
    ```
 
 2. 在CMake脚本中链接Drm NDK动态库。
@@ -168,7 +167,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     uint8_t mediaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     int32_t mediaKeyIdLen = sizeof(mediaKeyId)/sizeof(uint8_t);
     ret = OH_MediaKeySession_GenerateOfflineReleaseRequest(keySession,
-        &mediaKeyId, mediaKeyIdLen, releaseRequest, &releaseRequestLen);
+        mediaKeyId, mediaKeyIdLen, releaseRequest, &releaseRequestLen);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GenerateOfflineReleaseRequest failed.");
         return ret;
@@ -178,7 +177,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     uint8_t offlineMediaKeyId[5] = {0};
     int32_t offlineMediaKeyIdLen = sizeof(offlineMediaKeyId)/sizeof(uint8_t);
     ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(keySession, offlineMediaKeyId, offlineMediaKeyIdLen
-        &keyReleaseResponse, keyReleaseResponseLen);
+        keyReleaseResponse, keyReleaseResponseLen);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ProcessOfflineReleaseResponse failed.");
         return ret;

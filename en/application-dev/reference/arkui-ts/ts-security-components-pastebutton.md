@@ -21,11 +21,17 @@ PasteButton()
 Creates a Paste button with an icon, text, and background.
 
 ### PasteButton
-PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?: ButtonType})
+PasteButton(option:PasteButtonOptions)
 
 Creates a Paste button that contains the specified elements.
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| option | PasteButtonOptions | No| Creates a Paste button that contains the specified elements.|
+
+## PasteButtonOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

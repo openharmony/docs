@@ -10,13 +10,26 @@ A shared element transition is a transition animation applied to a component tha
 ## Attributes
 
 
-| Name            | Parameter                                                        | Description                                                    |
-| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| sharedTransition | id: string,<br>{<br> duration?: number,<br> curve?: [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br> delay?: number,<br> motionPath?: <br>{<br> path: string,<br> form?: number,<br> to?: number,<br> rotatable?: boolean<br>},<br>zIndex?: number,<br>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br>} | Transition of the shared element. If the same **id** value is configured for a component on the two pages, this component is considered as a shared element of the pages. If the **id** value is an empty string, no transition will be applied to the component.<br>- **id**: component ID.<br>- **duration**: animation duration.<br>Default value: **1000**<br>Unit: ms<br>Value range: [0, +∞)<br>The value **0** indicates that no animation is applied. A value less than 0 evaluates to the default value **1000**.<br>- **curve**: animation curve. The default curve is **Curve.Linear**.<br>- **delay**: animation delay.<br>Default value: **0**<br>Unit: ms<br>Value range: [0, +∞)<br>A value less than 0 evaluates to the value **0**.<br>- **motionPath**: motion path information. For details, see [Motion Path Animation](ts-motion-path-animation.md).<br>{<br>- **path**: path.<br>- **from**: start value.<br>- **to**: end value.<br>- **rotatable**: whether to rotate.<br>Default value: **false**<br> }<br>- **zIndex**: z-axis.<br>Default value: **0**<br>- **type**: animation type.<br>Default value: **SharedTransitionEffectType.Exchange**|
+| Name            | Type         | Mandatory                                   | Description                                                    |
+| ---------------- | -----------------|------------------------------------------- | ------------------------------------------------------------ |
+|      id          |  string         | Yes                                        |    Transition of the shared element. If the same **id** value is configured for a component on the two pages, this component is considered as a shared element of the pages. If the **id** value is an empty string, no transition will be applied to the component.|
+|     options          |  [sharedTransitionOptions](#sharedtransitionoptions)       | No    |  Parameters of the shared element transition animation.|
 
 > **NOTE**
 >
 > **motionPath** is effective only when **type** is set to **SharedTransitionEffectType.Exchange**.
+
+## sharedTransitionOptions
+
+| Name             | Type     | Mandatory      | Description                                                     |
+| ----------------- | -------------|-------------- | --------------------------------------------------------------|
+| duration          |     number   |  No          | Animation duration.<br>Default value: **1000**<br>Unit: ms|
+| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>  | No| Animation curve.<br>Default value: **1000**<br>Unit: ms|
+| delay          |     number   |  No          | Delay of animation playback.<br>Default value: **0**<br>Unit: ms|
+| motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  No          | Motion path.|
+| zIndex          |     number   |  No             | Z-axis.|
+| type           |     [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)   |  No  | Animation type.<br>Default value: **SharedTransitionEffectType.Exchange**|
+
 
 ## Example
 

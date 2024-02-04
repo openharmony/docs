@@ -21,7 +21,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
 | icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, and pixelmap.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.|
-| controller  | SearchController                                     | No  | Controller of the **\<Search>** component.                                      |
+| controller  | [SearchController](#searchcontroller) | No  | Controller of the **\<Search>** component.                                      |
 
 ## Attributes
 
@@ -29,7 +29,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Type                                        | Description                                          |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton<sup>10+</sup> | value: string,<br>option?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.              |
+| searchButton | value: string,<br>option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.              |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.<br>Default value: **'#99182431'**  |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
 | textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
@@ -79,10 +79,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                | Description           |
 | ------------------ | ------------- |
-| Normal   | Normal input mode.<br>In this mode, the following are allowed: digits, letters, underscores (_), spaces, and special characters.|
-| Email    | Email address input mode. In this mode, the following are allowed: digits, letters, underscores (_), and at signs (@); only one at sign (@) can exist.|
-| Number   | Digit input mode.     |
-| PhoneNumber | Phone number input mode.<br>In this mode, the following are allowed: digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.|
+| NORMAL   | Normal input mode.<br>In this mode, the following are allowed: digits, letters, underscores (_), spaces, and special characters.|
+| EMAIL    | Email address input mode. In this mode, the following are allowed: digits, letters, underscores (_), and at signs (@); only one at sign (@) can exist.|
+| NUMBER   | Digit input mode.     |
+| PHONE_NUMBER | Phone number input mode.<br>In this mode, the following are allowed: digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.|
 
 ## Events
 

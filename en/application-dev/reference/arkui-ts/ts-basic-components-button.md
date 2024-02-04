@@ -16,33 +16,45 @@ This component can contain only one child component.
 
 ### Button
 
-Button(options?: {type?: ButtonType, stateEffect?: boolean, buttonStyle?: ButtonStyleMode, controlSize?: ControlSize})
+Button(options: ButtonOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Creates a button that can contain a single child component.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name        | Type      | Mandatory       | Description                             |
-| ----------- | ---------- | ------| --------------------------------- |
-| type        | [ButtonType](#buttontype) | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
-| stateEffect | boolean    | No   | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.|
-| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11)   | No   | Style and primacy of the button.<br>Default value: **ButtonStyleMode.EMPHASIZED**<br>**NOTE**<br>The button primacy is as follows: emphasized button (high emphasis) > normal button (medium emphasis) > text button (low emphasis).
-| controlSize<sup>11+</sup>  | [ControlSize](#controlsize11)   | No   | Size of the button.<br>Default value: **ControlSize.NORMAL**
+| Name | Type                                   | Mandatory| Description                |
+| ------- | --------------------------------------- | ---- | -------------------- |
+| options | [ButtonOptions](#buttonoptions) | Yes  | Button settings.|
 
 ### Button
 
-Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean, buttonStyle?: ButtonStyleMode, controlSize?: ControlSize})
+Button(label: ResourceStr, options?: ButtonOptions)
 
 Creates a button component based on text content. In this case, the component cannot contain child components.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name    | Type                               | Mandatory  | Description         |
-| ------- | ----------------------------------- | ---- | ------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr) | No   | Button text.|
-| options | { type?: ButtonType, stateEffect?: boolean, buttonStyle<sup>11+</sup>?: ButtonStyleMode, controlSize<sup>11+</sup>?: ControlSize }   | No   | For details, see [Button](#button-1).|
+| Name | Type                                   | Mandatory| Description                |
+| ------- | --------------------------------------- | ---- | -------------------- |
+| label   | [ResourceStr](ts-types.md#resourcestr)  | Yes  | Button text.      |
+| options | [ButtonOptions](#buttonoptions) | No  | Button settings.|
+
+## ButtonOptions
+
+| Name                     | Type                                         | Mandatory| Description                                                        |
+| ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type                      | [ButtonType](#buttontype)             | No  | Button type.<br>Default value: **ButtonType.Capsule**           |
+| stateEffect               | boolean                                       | No  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is applied based on the state style.|
+| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11) | No  | Style and primacy of the button.<br>Default value: **ButtonStyleMode.EMPHASIZED**<br>**NOTE**<br>The button primacy is as follows: emphasized button (high emphasis) > normal button (medium emphasis) > text button (low emphasis).|
+| controlSize<sup>11+</sup> | [ControlSize](#controlsize11)         | No  | Size of the button.<br>Default value: **ControlSize.NORMAL**             |
 
 ## Attributes
 
@@ -51,7 +63,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name         | Type          | Description                               |
 | ----------- | ----------- | --------------------------------- |
 | type        | [ButtonType](#buttontype) | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fontSize    | [Length](ts-types.md#length) | Font size of the button.<br>Default value: **'16sp'**|
+| fontSize    | [Length](ts-types.md#length) | Font size of the button.<br>Default value: **'16fp'**|
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor) | Font color of the button.<br>Default value: **'\#ffffff'**|
 | fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| FontWeight.Normal |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | Font style of the button.<br>Default value: **FontStyle.Normal**|
@@ -71,11 +83,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Normal  | Normal button (without rounded corners by default).     |
 
 >  **NOTE**
->  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API. Only a rounded corner whose parameter is [Length](ts-types.md#length) is supported.
+>  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md#borderradius), rather than by using the **border** API. Only a rounded corner whose parameter is [Length](ts-types.md#length) is supported.
 >  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and the radius of its rounded corner is always half of the button height or width, whichever is smaller.
 >  - For a button of the **Circle** type: (1) If both its width and height are set, **borderRadius** does not take effect, and the button radius is half of the width or height (whichever is smaller). (2) If either its width or height is set, **borderRadius** does not take effect, and the button radius is half of the set width or height. (3) If neither its width nor height is set, the button radius is as specified by **borderRadius**; if **borderRadius** is set to a negative value, the value **0** will be used.
->  - The button text is set using the [text style attributes](ts-universal-attributes-text-style.md).
->  - Before setting the [gradient color](ts-universal-attributes-gradient-color.md), you need to set [backgroundColor](ts-universal-attributes-background.md) to transparent.
+>  - The button text is set using the [text style attributes](ts-universal-attributes-text-style.md#attributes).
+>  - Before setting the [gradient color](ts-universal-attributes-gradient-color.md), you need to set [backgroundColor](ts-universal-attributes-background.md#backgroundcolor) to transparent.
 
 ## LabelStyle<sup>10+</sup>
 

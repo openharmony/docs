@@ -8,12 +8,7 @@ Create a more gorgeous look for a component by applying a gradient color effect 
 
 ## linearGradient
 
-linearGradient(value: {
-    angle?: number | string;
-    direction?: GradientDirection;
-    colors: Array<any>;
-    repeating?: boolean;
-  })
+linearGradient(value: {angle?: number | string; direction?: GradientDirection; colors: Array\<any>; repeating?: boolean;})
 
 Linear gradient.
 
@@ -29,14 +24,7 @@ Linear gradient.
 
 ## sweepGradient
 
-sweepGradient(value: {
-    center: Array<any>;
-    start?: number | string;
-    end?: number | string;
-    rotation?: number | string;
-    colors: Array<any>;
-    repeating?: boolean;
-  })
+sweepGradient(value: {center: Arra\<any>; start?: number | string; end?: number | string; rotation?: number | string; colors: Array\<any>; repeating?: boolean;})
 
 Sweep gradient.
 
@@ -52,7 +40,7 @@ Sweep gradient.
 
 ## radialGradient
 
-radialGradient(value: { center: Array<any>; radius: number | string; colors: Array<any>; repeating?: boolean })
+radialGradient(value: { center: Array\<any>; radius: number | string; colors: Array\<any>; repeating?: boolean })
 
 Radial gradient.
 

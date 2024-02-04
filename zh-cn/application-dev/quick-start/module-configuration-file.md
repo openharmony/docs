@@ -61,7 +61,8 @@
       }
     ],
     "targetModuleName": "feature",
-    "targetPriority": 50
+    "targetPriority": 50,
+    "routerMap": "$profile:router_map"
   }
 }
 ```
@@ -101,6 +102,7 @@ module.json5配置文件包含以下标签。
 | compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -584,7 +586,7 @@ metadata中指定shortcut信息，其中：
 - **配置规则：**  该标签支持配置四个属性，包括屏幕形状([screenShape](#screenshape标签))、窗口分辨率([screenWindow](#screenwindow标签))、屏幕像素密度([screenDensity](#screendensity标签) )、设备所在国家与地区([countryCode](#countrycode标签))，详见下表。
 
   在分发应用包时，通过deviceTypes与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
-  
+
   * 如果需要配置该标签，则至应当包含一个属性。
   * 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
   * screenShape和screenWindow属性仅用于轻量级智能穿戴设备。
@@ -811,5 +813,74 @@ proxyData标签示例：
       }
     ]
   }
+}
+```
+
+## routerMap标签
+
+此标签标识模块配置的路由表的路径。
+
+routerMap配置文件描述模块的路由表信息，routerMap标签值为数组类型。
+
+**表22** routerMap标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| name          | 标识跳转页面的名称。 | 字符串  | 该标签不可缺省。       |
+| pageModule    | 标识页面所在的模块名称。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| pageSourceFile| 标识页面在模块内的路径。 | 字符串 | 该标签不可缺省。  |
+| buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。 | 字符串  | 该标签不可缺省。   |
+| [data](#data标签)  | 标识自定义数据。 | 对象   | 该标签可缺省，缺省值为空。   |
+
+示例如下：
+
+1. 在开发视图的resources/base/profile下面定义配置文件，文件名可以自定义，例如：router_map.json。
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "DynamicPage1",
+      "pageModule": "library1",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myFunction"
+    },
+    {
+      "name": "DynamicPage2",
+      "pageModule": "library2",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myBuilder",
+      "data": {
+        "key1": "data1",
+        "key2": "data2"
+      }
+    }
+  ]
+}
+```
+
+2. 在module.json5配置文件的module标签中定义`routerMap`字段，指向定义的路由表配置文件，例如：`"routerMap": "$profile:router_map"`。
+
+### data标签
+
+此标签用于支持在路由表中配置自定义数据。
+data对象内部，可以填入字符串类型的自定义数据。
+
+data标签示例：
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "DynamicPage",
+      "pageModule": "library",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myBuilder",
+      "data": {
+        "key1": "data1",
+        "key2": "data2"
+      }
+    }
+  ]
 }
 ```
