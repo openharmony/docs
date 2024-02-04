@@ -4,7 +4,8 @@ AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -34,8 +35,8 @@ Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
-| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
+| START_ABILITY          | 1    | 通过[startAbility](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
+| CALL | 2    | 通过[startAbilityByCall](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 | SHARE<sup>10+</sup>           | 5    | 通过元服务分享启动ability。 |
@@ -114,51 +115,6 @@ class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
         return AbilityConstant.OnContinueResult.AGREE;
     }
-}
-```
-
-## AbilityConstant.WindowMode
-
-启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统接口**: 此接口为系统接口。
-
-| 名称                        | 值 | 说明                 |
-| ---                         | --- | ---                  |
-| WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
-| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。   |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。   |
-| WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let option: StartOptions = {
-  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
-};
-
-// 确保从上下文获取到context
-class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
-      console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
-    });
-  }
 }
 ```
 
@@ -246,7 +202,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.ContinueState<sup>10+</sup>
 
-流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
+流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](../apis/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
