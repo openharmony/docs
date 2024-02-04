@@ -1,6 +1,69 @@
-# Ability Kit API参考 
+# Ability Kit API参考
 
-- ArkTS API 
+- ArkTS API
+  - 通用能力的接口(推荐)
+    - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl.md)
+    - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
+    - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager-sys.md)(系统接口)
+    - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](js-apis-bundleMonitor.md)
+    - [@ohos.bundle.bundleResourceManager (bundleResourceManager模块)(系统接口)](js-apis-bundleResourceManager.md)
+    - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
+    - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager-sys.md)(系统接口)
+    - [@ohos.bundle.distributedBundleManager (distributedBundleManager模块)(系统接口)](js-apis-distributedBundleManager.md)
+    - [@ohos.bundle.freeInstall (freeInstall模块)(系统接口)](js-apis-freeInstall.md)
+    - [@ohos.bundle.installer (installer模块)(系统接口)](js-apis-installer.md)
+    - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)](js-apis-launcherBundleManager.md)
+    - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
+    - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay-sys.md)(系统接口)
+  - 接口依赖的元素及定义
+    - bundleManager
+      - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
+      - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
+      - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
+      - [elementName](js-apis-bundleManager-elementName.md)
+      - [extensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)
+      - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
+      - [metadata](js-apis-bundleManager-metadata.md)
+      - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
+      - [AppProvisionInfo (系统接口)](js-apis-bundleManager-AppProvisionInfo.md)
+      - [BundlePackInfo (系统接口)](js-apis-bundleManager-BundlePackInfo.md)
+      - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo.md)
+      - [dispatchInfo (系统接口)](js-apis-bundleManager-dispatchInfo.md)
+      - [launcherAbilityInfo (系统接口)](js-apis-bundleManager-launcherAbilityInfo.md)
+      - [LauncherAbilityResourceInfo (系统接口)](js-apis-bundleManager-LauncherAbilityResourceInfo.md)
+      - [permissionDef (系统接口)](js-apis-bundleManager-permissionDef.md)
+      - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo.md)
+      - [remoteAbilityInfo (系统接口)](js-apis-bundleManager-remoteAbilityInfo.md)
+      - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo.md)
+      - [SharedBundleInfo (系统接口)](js-apis-bundleManager-sharedBundleInfo.md)
+      - [shortcutInfo (系统接口)](js-apis-bundleManager-shortcutInfo.md)
+    - bundle
+      - [abilityInfo](js-apis-bundle-AbilityInfo.md)
+      - [applicationInfo](js-apis-bundle-ApplicationInfo.md)
+      - [bundleInfo](js-apis-bundle-BundleInfo.md)
+      - [customizeData](js-apis-bundle-CustomizeData.md)
+      - [elementName](js-apis-bundle-ElementName.md)
+      - [hapModuleInfo](js-apis-bundle-HapModuleInfo.md)
+      - [moduleInfo](js-apis-bundle-ModuleInfo.md)
+      - [bundleInstaller(系统接口)](js-apis-bundle-BundleInstaller.md)
+      - [bundleStatusCallback(系统接口)](js-apis-Bundle-BundleStatusCallback.md)
+      - [launcherAbilityInfo(系统接口)](js-apis-bundle-LauncherAbilityInfo.md)
+      - [PermissionDef(系统接口)](js-apis-bundle-PermissionDef.md)
+      - [remoteAbilityInfo(系统接口)](js-apis-bundle-remoteAbilityInfo.md)
+      - [shortcutInfo(系统接口)](js-apis-bundle-ShortcutInfo.md)
+    - 已停止维护的接口
+      - [@system.package (应用管理)](js-apis-system-package.md)
+      - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
+      - [@ohos.bundle (Bundle模块)](js-apis-Bundle-sys.md)(系统接口)
+      - [@ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)](js-apis-Bundle-InnerBundleManager.md)
+      - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle.md)
 - C API
+  - 模块
+    - [Bundle](_bundle.md)
+  - 头文件
+    - [native_interface_bundle.h](native__interface__bundle.md)
+  - 结构体
+    - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
 - 错误码
-
+  - [包管理子系统通用错误码](errorcode-bundle.md)
+  - [zlib子系统错误码](errorcode-zlib.md)
