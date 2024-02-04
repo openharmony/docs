@@ -22,7 +22,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 | 名称      | 类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)   | 是   | 否   | 上下文。      |
+| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | 是   | 否   | 上下文。      |
 
 ## WindowExtensionAbility.onConnect
 
@@ -36,7 +36,7 @@ onConnect(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -63,7 +63,7 @@ onDisconnect(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 
 **示例：**

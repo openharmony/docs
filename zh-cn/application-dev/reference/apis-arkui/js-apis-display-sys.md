@@ -144,7 +144,7 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| mode     | [FoldDisplayMode](#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
+| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
 
 **错误码：**
 
@@ -280,7 +280,7 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Rect](#rect9)&gt; | Promise对象。返回当前屏幕可用矩形区域。 |
+| Promise&lt;[Rect](js-apis-display.md#rect9)&gt; | Promise对象。返回当前屏幕可用矩形区域。 |
 
 **错误码：**
 
@@ -324,7 +324,7 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
+| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
 
 **错误码：**
 
@@ -367,7 +367,7 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+| callback | Callback&lt;[Rect](js-apis-display.md#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
 
 **错误码：**
 

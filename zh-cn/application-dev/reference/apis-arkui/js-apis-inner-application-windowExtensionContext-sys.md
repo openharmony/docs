@@ -1,8 +1,8 @@
 # WindowExtensionContext (系统接口)
 
-WindowExtensionContext模块是WindowExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
+WindowExtensionContext模块是WindowExtensionAbility的上下文环境，继承自[ExtensionContext](../apis/js-apis-inner-application-extensionContext.md)。
 
-WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-windowExtensionAbility.md)具有的能力，包括启动Ability。
+WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-windowExtensionAbility-sys.md)具有的能力，包括启动Ability。
 
 > **说明：**
 >
@@ -41,8 +41,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例：**
@@ -98,8 +98,8 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 

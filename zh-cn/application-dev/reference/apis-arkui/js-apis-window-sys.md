@@ -103,7 +103,7 @@ import window from '@ohos.window';
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type            | [WindowType](#windowtype7) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
 | isEnable        | boolean                   | 是   | 否   | 当前系统栏是否显示。true表示显示；false表示不显示。 |
-| region          | [Rect](#rect7)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
+| region          | [Rect](js-apis-window.md#rect7)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
 | backgroundColor | string                    | 是   | 否   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | contentColor    | string                    | 是   | 否   | 系统栏文字颜色。                                             |
 
@@ -740,7 +740,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
@@ -798,7 +798,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型                        | 必填  | 说明                 |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 
 **返回值：**
@@ -1206,7 +1206,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
 | deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -1290,7 +1290,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
 | deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
 
 **返回值：**
@@ -1380,7 +1380,7 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| requestInfo | [dialogRequest.RequestInfo](../apis/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
 | deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -1449,7 +1449,7 @@ bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| requestInfo | [dialogRequest.RequestInfo](../apis/js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
 | deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
 
 **返回值：**
@@ -2246,7 +2246,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](#getwindowproperties9)接口获取到[properties](#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**
@@ -2291,7 +2291,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](#getwindowproperties9)接口获取到[properties](#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
 
 **返回值：**
 
