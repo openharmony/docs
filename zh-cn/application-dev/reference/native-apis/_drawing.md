@@ -156,7 +156,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | 显示文本。                                                   |
 | [OH_Drawing_TypographyGetMaxWidth](#oh_drawing_typographygetmaxwidth) ([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取最大宽度。                                               |
 | [OH_Drawing_TypographyGetHeight](#oh_drawing_typographygetheight) ([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取高度。                                                   |
-| [OH_Drawing_TypographyGetLongestLine](#oh_drawing_typographygetlongestline) ([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取最长行。                                                 |
+| [OH_Drawing_TypographyGetLongestLine](#oh_drawing_typographygetlongestline) ([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取最长行的宽度，建议实际使用时将返回值向上取整。当文本内容为空时，返回float的最小值，即：-340282346638528859811704183484516925440.000000。                                                 |
 | [OH_Drawing_TypographyGetMinIntrinsicWidth](#oh_drawing_typographygetminintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取最小固有宽度。                                           |
 | [OH_Drawing_TypographyGetMaxIntrinsicWidth](#oh_drawing_typographygetmaxintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取最大固有宽度。                                           |
 | [OH_Drawing_TypographyGetAlphabeticBaseline](#oh_drawing_typographygetalphabeticbaseline)([OH_Drawing_Typography](#oh_drawing_typography) *) | 获取字母文字基线。                                           |
@@ -2450,7 +2450,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **描述:**
 
-获取最长行
+获取最长行的宽度，建议实际使用时将返回值向上取整。当文本内容为空时，返回float的最小值，即：-340282346638528859811704183484516925440.000000
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2462,7 +2462,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 **返回:**
 
-返回最长行
+返回最长行的宽度。
 
 **起始版本：**
 
