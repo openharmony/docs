@@ -1,0 +1,1878 @@
+# @ohos.wifiManager (WLAN)（系统接口）
+该模块主要提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
+
+> **说明：**
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
+
+## 导入模块
+
+```ts
+import wifiManager from '@ohos.wifiManager';
+```
+
+## wifiManager.enableWifi<sup>9+</sup>
+
+enableWifi(): void
+
+使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否打开成功。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION  仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501003  | Failed for wifi is closing.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.enableWifi();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.disableWifi<sup>9+</sup>
+
+disableWifi(): void
+
+去使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否关闭成功。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501004  | Failed for wifi is opening.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.disableWifi();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.setScanAlwaysAllowed<sup>10+</sup>
+
+setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
+
+设置是否始终允许扫描。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| isScanAlwaysAllowed | boolean | 是 | 是否始终允许扫描。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let isScanAlwaysAllowed = true;
+		wifiManager.setScanAlwaysAllowed(isScanAlwaysAllowed);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getScanAlwaysAllowed<sup>10+</sup>
+
+getScanAlwaysAllowed(): boolean
+
+获取是否始终允许扫描。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean| 是否始终允许扫描。 true 表示允许触发扫描，false表示在禁用wifi时不允许触发扫描|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let isScanAlwaysAllowed = wifiManager.getScanAlwaysAllowed();
+		console.info("isScanAlwaysAllowed:" + isScanAlwaysAllowed);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.addDeviceConfig<sup>9+</sup>
+
+addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
+
+添加网络配置，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise对象。返回添加的网络配置ID，如果值为-1表示添加失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.WifiDeviceConfig = {
+			ssid : "****",
+			preSharedKey : "****",
+			securityType : 0
+		}
+		wifiManager.addDeviceConfig(config).then(result => {
+			console.info("result:" + JSON.stringify(result));
+		}).catch((err:number) => {
+			console.error("failed:" + JSON.stringify(err));
+		});
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## WifiDeviceConfig<sup>9+</sup>
+
+WLAN配置信息。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| disableReason | number | 是 | 否 | 禁用原因。 <br /> **系统接口：** 此接口为系统接口。 |
+| netId | number | 是 | 否 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| randomMacType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址 <br /> **系统接口：** 此接口为系统接口。 |
+| randomMacAddr | string | 是 | 否 | MAC地址。<br /> **系统接口：** 此接口为系统接口。 |
+| ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
+| staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
+| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
+
+## IpType<sup>9+</sup>
+
+表示IP类型的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| STATIC | 0 | 静态IP。 |
+| DHCP | 1 | 通过DHCP获取。 |
+| UNKNOWN | 2 | 未指定。 |
+
+
+## IpConfig<sup>9+</sup>
+
+IP配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| ipAddress | number | 是 | 否 | IP地址。 |
+| gateway | number | 是 | 否 | 网关。 |
+| prefixLength | number | 是 | 否 | 掩码。 |
+| dnsServers | number[] | 是 | 否 | DNS服务器。 |
+| domains | Array&lt;string&gt; | 是 | 否 | 域信息。 |
+
+
+## WifiProxyConfig<sup>10+</sup>
+
+Wifi 代理配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| proxyMethod | ProxyMethod | 是 | 否 | 代理方法 |
+| pacWebAddress | string | 是 | 否 | 自动配置代理的PAC web 地址。 |
+| serverHostName | string | 是 | 否 | 手动配置代理的服务器主机名。 |
+| serverPort | string | 是 | 否 | 手动配置代理的服务器端口。 |
+| exclusionObjects | string | 是 | 否 | 手动配置代理的排除对象，对象用“,”分隔。|
+
+## ProxyMethod<sup>10+</sup>
+
+表示WiFi代理方法的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| METHOD_NONE  | 0 | 不使用代理。 |
+| METHOD_AUTO  | 1 | 使用自动配置的代理。 |
+| METHOD_MANUAL  | 2 | 使用手动配置的代理。 |
+
+## wifiManager.addDeviceConfig<sup>9+</sup>
+
+addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
+
+添加网络配置，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.WifiDeviceConfig = {
+			ssid : "****",
+			preSharedKey : "****",
+			securityType : 0
+		}
+		wifiManager.addDeviceConfig(config,(error,result) => {
+			console.info("result:" + JSON.stringify(result));
+		});	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+
+## wifiManager.connectToNetwork<sup>9+</sup>
+
+connectToNetwork(networkId: number): void
+
+连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | 是 | 待连接的网络配置ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let networkId = 0;
+		wifiManager.connectToNetwork(networkId);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}	
+```
+
+## wifiManager.connectToDevice<sup>9+</sup>
+
+connectToDevice(config: WifiDeviceConfig): void
+
+连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：**
+  SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.WifiDeviceConfig = {
+			ssid : "****",
+			preSharedKey : "****",
+			securityType : 3
+		}
+		wifiManager.connectToDevice(config);
+				
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.disconnect<sup>9+</sup>
+
+disconnect(): void
+
+断开连接的网络。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：**
+  SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.disconnect();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+
+## WifiLinkedInfo<sup>9+</sup>
+
+提供WLAN连接的相关信息。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
+| snr | number | 是 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
+| suppState | [SuppState](#suppstate9) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
+
+
+## ConnState<sup>9+</sup>
+
+表示WLAN连接状态的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| SCANNING | 0 | 设备正在搜索可用的AP。 |
+| CONNECTING | 1 | 正在建立WLAN连接。 |
+| AUTHENTICATING | 2 | WLAN连接正在认证中。 |
+| OBTAINING_IPADDR | 3 | 正在获取WLAN连接的IP地址。 |
+| CONNECTED | 4 | WLAN连接已建立。 |
+| DISCONNECTING | 5 | WLAN连接正在断开。 |
+| DISCONNECTED | 6 | WLAN连接已断开。 |
+| UNKNOWN | 7 | WLAN连接建立失败。 |
+
+
+## SuppState<sup>9+</sup>
+
+表示请求状态的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DISCONNECTED | 0 | 已断开。 |
+| INTERFACE_DISABLED | 1 | 接口禁用。 |
+| INACTIVE | 2 | 未激活。 |
+| SCANNING | 3 | 扫描中。 |
+| AUTHENTICATING | 4 | 认证中。 |
+| ASSOCIATING | 5 | 关联中。 |
+| ASSOCIATED | 6 | 已关联。 |
+| FOUR_WAY_HANDSHAKE | 7 | 四次握手。 |
+| GROUP_HANDSHAKE | 8 | 组握手。 |
+| COMPLETED | 9 | 所有认证已完成。 |
+| UNINITIALIZED | 10 | 连接建立失败。 |
+| INVALID | 11 | 无效值。 |
+
+
+## wifiManager.getSupportedFeatures<sup>9+</sup>
+
+getSupportedFeatures(): number
+
+查询设备支持的特性。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | number | 支持的特性值。 |
+
+**特性ID值枚举：**
+
+| 枚举值 | 说明 |
+| -------- | -------- |
+| 0x0001 | 基础结构模式特性。 |
+| 0x0002 | 5&nbsp;GHz带宽特性。 |
+| 0x0004 | GAS/ANQP特性。 |
+| 0x0008 | Wifi-Direct特性。 |
+| 0x0010 | Soft&nbsp;AP特性。 |
+| 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
+| 0x8000 | AP&nbsp;STA共存特性。 |
+| 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x20000000 | 增强开放特性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2401000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let ret = wifiManager.getSupportedFeatures();
+		console.info("supportedFeatures:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+
+## wifiManager.getDeviceMacAddress<sup>9+</sup>
+
+getDeviceMacAddress(): string[]
+
+获取设备的MAC地址。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_LOCAL_MAC 和 ohos.permission.GET_WIFI_INFO，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | string[] | MAC地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | wifi is closed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let ret = wifiManager.getDeviceMacAddress();
+		console.info("deviceMacAddress:" + JSON.stringify(ret));
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+## wifiManager.reassociate<sup>9+</sup>
+
+reassociate(): void
+
+重新关联网络。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.reassociate();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.reconnect<sup>9+</sup>
+
+reconnect(): void
+
+重新连接网络。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.reconnect();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getDeviceConfigs<sup>9+</sup>
+
+getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt;
+
+获取网络配置。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.GET_WIFI_CONFIG
+
+API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 网络配置信息的数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let configs = wifiManager.getDeviceConfigs();
+		console.info("configs:" + JSON.stringify(configs));
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.updateNetwork<sup>9+</sup>
+
+updateNetwork(config: WifiDeviceConfig): number
+
+更新网络配置。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。 |
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.WifiDeviceConfig = {
+			ssid : "****",
+			preSharedKey : "****",
+			securityType : 3
+		}
+		let ret = wifiManager.updateNetwork(config);
+		console.info("ret:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.disableNetwork<sup>9+</sup>
+
+disableNetwork(netId: number): void
+
+去使能网络配置。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | netId | number | 是 | 网络配置ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let netId = 0;
+		wifiManager.disableNetwork(netId);		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.removeAllNetwork<sup>9+</sup>
+
+removeAllNetwork(): void
+
+移除所有网络配置。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.removeAllNetwork();		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.removeDevice<sup>9+</sup>
+
+removeDevice(id: number): void
+
+移除指定的网络配置。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | id | number | 是 | 网络配置ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let id = 0;
+		wifiManager.removeDevice(id);		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.get5GChannelList<sup>10+</sup>
+
+get5GChannelList(): Array&lt;number&gt;
+
+获取当前设备支持的5G信道列表。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | &nbsp;Array&lt;number&gt; | 设备支持的5G信道列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let channelList = wifiManager.get5GChannelList();
+		console.info("channelList:" + JSON.stringify(channelList));		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+## wifiManager.getDisconnectedReason<sup>10+</sup>
+
+getDisconnectedReason(): DisconnectedReason
+
+获取最近一次断连原因。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| DisconnectedReason | 最近断开的原因 |
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let disconnectedReason = wifiManager.getDisconnectedReason();	
+        console.info("disconnectedReason:" + disconnectedReason);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## DisconnectedReason <sup>10+</sup>
+
+表示wifi断开原因的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DISC_REASON_DEFAULT  | 0 | 默认原因。 |
+| DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
+| DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
+
+## wifiManager.startPortalCertification<sup>11+</sup>
+
+startPortalCertification(): void
+
+**系统接口：** 此接口为系统接口。
+
+启动portal认证。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.startPortalCertification();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+
+## wifiManager.factoryReset<sup>11+</sup>
+
+factoryReset(): void
+
+**系统接口：** 此接口为系统接口。
+
+重置wifi相关配置。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.factoryReset();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+## wifiManager.enableHotspot<sup>9+</sup>
+
+enableHotspot(): void
+
+使能热点，异步接口，是否打开成功需要注册并监听hotspotStateChange的回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.enableHotspot();	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.disableHotspot<sup>9+</sup>
+
+disableHotspot(): void
+
+去使能热点 ，异步接口，是否关闭成功需要注册并监听hotspotStateChange的回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.disableHotspot();	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.isHotspotDualBandSupported<sup>9+</sup>
+
+isHotspotDualBandSupported(): boolean
+
+热点是否支持双频。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:支持，&nbsp;false:不支持.|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let ret = wifiManager.isHotspotDualBandSupported();
+		console.info("result:" + ret);		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.isHotspotActive<sup>9+</sup>
+
+isHotspotActive(): boolean
+
+热点是否已使能。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:已使能，&nbsp;false:未使能.|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let ret = wifiManager.isHotspotActive();
+		console.info("result:" + ret);		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.setHotspotConfig<sup>9+</sup>
+
+setHotspotConfig(config: HotspotConfig): void
+
+设置热点配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | config | [HotspotConfig](#hotspotconfig9) | 是 | 热点配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.HotspotConfig = {
+			ssid: "****",
+			securityType: 3,
+			band: 0,
+			channel: 0,
+			preSharedKey: "****",
+			maxConn: 0
+		}
+		let ret = wifiManager.setHotspotConfig(config);
+		console.info("result:" + ret);		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## HotspotConfig<sup>9+</sup>
+
+热点配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 是 | 加密类型。 |
+| band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
+| channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196，双模频段：暂不支持）。 |
+| preSharedKey | string | 是 | 是 | 热点的密钥。 |
+| maxConn | number | 是 | 是 | 最大设备连接数。 |
+
+## wifiManager.getHotspotConfig<sup>9+</sup>
+
+getHotspotConfig(): HotspotConfig
+
+获取热点配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | [HotspotConfig](#hotspotconfig9) | 热点的配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config = wifiManager.getHotspotConfig();
+		console.info("result:" + JSON.stringify(config));		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getStations<sup>9+</sup>
+
+getStations(): &nbsp;Array&lt;StationInfo&gt;
+
+获取连接的设备。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | 连接的设备数组。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的macAddress为真实设备地址，否则为随机设备地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let stations = wifiManager.getStations();
+		console.info("result:" + JSON.stringify(stations));		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## StationInfo<sup>9+</sup>
+
+接入的设备信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+| **名称** | **类型** | **可读** | **可写** | **说明** |
+| -------- | -------- | -------- | -------- | -------- |
+| name | string | 是 | 否 | 设备名称。 |
+| macAddress | string | 是 | 否 | MAC地址。 |
+| macAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | MAC地址类型。 |
+| ipAddress | string | 是 | 否 | IP地址。 |
+
+## wifiManager.addHotspotBlockList<sup>11+</sup>
+
+addHotspotBlockList(stationInfo: StationInfo)
+
+将设备添加到热点的阻止连接设备列表中，列表中的设备将不能访问热点。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| stationInfo | [StationInfo](#stationinfo9) | 是 | 将添加到热点的阻止列表中的设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.StationInfo = {
+			name : "testSsid",
+			macAddress : "11:22:33:44:55:66",
+			ipAddress : "192.168.1.111"
+		}
+		// 热点开启后，才能正常将设备添加到连接阻止列表中
+		wifiManager.addHotspotBlockList(config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.delHotspotBlockList<sup>11+</sup>
+
+delHotspotBlockList(stationInfo: StationInfo)
+
+将设备从热点的阻止列表中删除。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| stationInfo | [StationInfo](#stationinfo9) | 是 | 将从热点的阻止列表中删除的设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.StationInfo = {
+			name : "testSsid",
+			macAddress : "11:22:33:44:55:66",
+			ipAddress : "192.168.1.111"
+		}
+		wifiManager.delHotspotBlockList(config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getHotspotBlockList<sup>11+</sup>
+
+getHotspotBlockList(): Array&lt;StationInfo&gt;
+
+获取热点的阻止列表。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | 热点的阻止列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let data = wifiManager.getHotspotBlockList();
+		console.info("result:" + JSON.stringify(data));
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.deletePersistentGroup<sup>9+</sup>
+
+deletePersistentGroup(netId: number): void
+
+删除永久组。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+
+
+  | **参数名** | **类型** | 必填 | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | netId | number | 是 | 组的ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let netId = 0;
+		wifiManager.deletePersistentGroup(netId);	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getP2pGroups<sup>9+</sup>
+
+getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
+
+获取创建的所有P2P群组信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise对象。表示所有群组信息。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	wifiManager.getP2pGroups((err, data) => {
+    if (err) {
+        console.error("get P2P groups error");
+        return;
+    }
+		console.info("get P2P groups: " + JSON.stringify(data));
+	});
+
+	wifiManager.getP2pGroups().then(data => {
+		console.info("get P2P groups: " + JSON.stringify(data));
+	});
+	
+```
+
+
+## wifiManager.getP2pGroups<sup>9+</sup>
+
+getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
+
+获取创建的所有P2P群组信息，使用callback方式作为异步方法。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示所有群组信息。如果error为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
+## wifiManager.setDeviceName<sup>9+</sup>
+
+setDeviceName(devName: string): void
+
+设置设备名称。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | devName | string | 是 | 设备名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
+**示例：**
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let name = "****";
+		wifiManager.setDeviceName(name);	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+
+## wifiManager.on('streamChange')<sup>9+</sup>
+
+on(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+注册WIFI流变更事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"streamChange"字符串。 |
+| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.off('streamChange')<sup>9+</sup>
+
+off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+
+取消注册WIFI流变更事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"streamChange"字符串。 |
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvStreamChangeFunc = (result:number) => {
+    console.info("Receive stream change event: " + result);
+}
+
+// Register event
+wifi.on("streamChange", recvStreamChangeFunc);
+
+// Unregister event
+wifi.off("streamChange", recvStreamChangeFunc);
+
+```
+## wifiManager.on('deviceConfigChange')<sup>9+</sup>
+
+on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+
+注册WIFI设备配置更改事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"streamChange"字符串。 |
+| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置. |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifiManager.off('deviceConfigChange')<sup>9+</sup>
+
+off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
+
+取消注册WIFI设备配置更改事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"streamChange"字符串。 |
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+import wifi from '@ohos.wifiManager';
+
+let recvDeviceConfigChangeFunc = (result:number) => {
+    console.info("Receive device config change event: " + result);
+}
+
+// Register event
+wifi.on("deviceConfigChange", recvDeviceConfigChangeFunc);
+
+// Unregister event
+wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
+
+```
+
+## wifiManager.on('hotspotStaJoin')<sup>9+</sup>
+
+on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+注册wifi热点sta加入事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
+| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
+
+off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+
+取消注册wifi热点sta加入事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
+| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+import wifiManager from '@ohos.wifiManager';
+
+let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
+    console.info("Receive hotspot sta join event: " + result);
+}
+
+// Register event
+wifiManager.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+// Unregister event
+wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+```
+
+## wifiManager.on('hotspotStaLeave')<sup>9+</sup>
+
+on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+注册wifi热点sta离开事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
+
+off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+
+取消注册wifi热点sta离开事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
+| callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+```ts
+import wifiManager from '@ohos.wifiManager';
+
+let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
+    console.info("Receive hotspot sta leave event: " + result);
+}
+
+// Register event
+wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+// Unregister event
+wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+```
+
