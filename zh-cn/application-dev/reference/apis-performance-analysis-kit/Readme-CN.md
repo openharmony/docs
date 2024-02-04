@@ -1,6 +1,33 @@
-# Performance Analysis Kit API参考 
+# Performance Analysis Kit API参考
 
-- ArkTS API 
+- ArkTS API
+  - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
+  - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
+  - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
+  - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
+  - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
+  - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
+  - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](js-apis-hiviewdfx-hiappevent.md)
+  - [@ohos.hiSysEvent (系统事件打点)(系统接口)](js-apis-hisysevent-sys.md)
+  - [@ohos.logLibrary (维测日志获取)(系统接口)](js-apis-loglibrary.md)
+  - 已停止维护的接口
+    - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
+    - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
 - C API
+  - 模块
+    - [HiAppEvent](_hi_app_event.md)
+    - [HiLog](_hi_log.md)
+    - [Hitrace](_hitrace.md)
+  - 头文件
+    - [hiappevent.h](hiappevent_8h.md)
+    - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
+    - [hiappevent_event.h](hiappevent__event_8h.md)
+    - [hiappevent_param.h](hiappevent__param_8h.md)
+    - [log.h](log_8h.md)
+    - [trace.h](trace_8h.md)
 - 错误码
-
+  - [Faultlogger错误码](errorcode-faultlogger.md)
+  - [应用事件打点错误码](errorcode-hiappevent.md)
+  - [系统事件错误码](errorcode-hisysevent.md)
+  - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
+  - [维测日志错误码](errorcode-loglibrary.md)
