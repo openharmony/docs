@@ -36,7 +36,7 @@ A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for a
 
 For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
-You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 
 ## Modules to Import
