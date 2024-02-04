@@ -75,7 +75,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                             |
-| values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
+| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
@@ -138,7 +138,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table      | string                                                       | 是   | 指定的目标表名。                                             |
-| values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
+| values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 
 **返回值**：
@@ -474,9 +474,9 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 | 参数名         | 类型                             | 必填 | 说明                            |
 |-------------|--------------------------------| ---- |-------------------------------|
-| mode        | [SyncMode](#syncmode)          | 是   | 表示数据库的同步模式。                   |
-| predicates  | [RdbPredicates](#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
-| progress    | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
+| mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | 是   | 表示数据库的同步模式。                   |
+| predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.mddetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
 | callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
 **示例：**
@@ -512,9 +512,9 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 | 参数名        | 类型                              | 必填 | 说明                  |
 |------------|---------------------------------| ---- |---------------------|
-| mode       | [SyncMode](#syncmode)           | 是   | 表示数据库的同步模式。         |
-| predicates | [RdbPredicates](#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
-| progress   | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
+| mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | 是   | 表示数据库的同步模式。         |
+| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
+| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
 
 **返回值**：
 
@@ -555,7 +555,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。    |
+| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查询的谓词条件。    |
 | columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，返回的结果集中只包含共享资源标识字段。 |
 
 **返回值：**
@@ -610,7 +610,7 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
+| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
@@ -659,7 +659,7 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。           |
+| predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查询的谓词条件。           |
 | columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
 

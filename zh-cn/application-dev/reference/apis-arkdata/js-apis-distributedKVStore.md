@@ -2257,7 +2257,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2314,7 +2314,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2363,7 +2363,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2442,7 +2442,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2510,7 +2510,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2575,7 +2575,7 @@ delete(key: string): Promise&lt;void&gt;
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2631,7 +2631,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -2709,7 +2709,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -4038,7 +4038,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 | ------------ | ---------------------------------------- |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -4116,7 +4116,7 @@ startTransaction(): Promise&lt;void&gt;
 | ------------ | ---------------------------------------- |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |

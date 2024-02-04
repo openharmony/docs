@@ -56,7 +56,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -123,7 +123,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -183,7 +183,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -254,7 +254,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcodes/errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
 
 | **错误码ID** | **错误信息**                                 |
 | ------------ | -------------------------------------------- |
@@ -557,7 +557,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
-> deviceId具体获取方式请参考[sync接口示例](#sync)。
+> deviceId具体获取方式请参考[sync接口示例](js-apis-distributedKVStore.md#sync)。
 
 **模型约束：** 此接口仅可在Stage模型下使用
 
@@ -624,7 +624,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
-> deviceId具体获取方式请参考[sync接口示例](#sync)。
+> deviceId具体获取方式请参考[sync接口示例](js-apis-distributedKVStore.md#sync)。
 
 **模型约束：** 此接口仅可在Stage模型下使用
 

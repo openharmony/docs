@@ -624,7 +624,7 @@ KVStore常量。
 | MAX_QUERY_LENGTH  | 512000 | 最大查询长度，单位字节。 |
 | MAX_BATCH_SIZE  | 128 | 最大批处理操作数量。 |
 
-## Schema<sup>8+</sup> ##
+## Schema<sup>8+</sup>
 
 表示数据库模式，可以在创建或打开数据库时创建Schema对象并将它们放入[Options](#options)中。
 
@@ -645,7 +645,7 @@ constructor()
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-## FieldNode<sup>8+</sup> ##
+## FieldNode<sup>8+</sup>
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
@@ -714,7 +714,7 @@ try {
 ```
 
 
-## KvStoreResultSet<sup>8+</sup> ##
+## KvStoreResultSet<sup>8+</sup>
 
 提供获取KVStore数据库结果集的相关方法，包括查询和移动数据读取位置等。
 
@@ -1173,7 +1173,7 @@ try {
 ```
 
 
-## Query<sup>8+</sup> ##
+## Query<sup>8+</sup>
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 
@@ -4080,7 +4080,7 @@ try {
 ```
 
 
-## DeviceKVStore<sup>8+</sup> ##
+## DeviceKVStore<sup>8+</sup> 
 
 设备协同数据库，继承自KVStore，提供查询数据和同步数据的方法。
 
