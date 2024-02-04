@@ -402,7 +402,7 @@ Enables listening for screen hopping status change events.
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is **cooperateMessage**.  |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage)&gt; | Yes  | Callback used to return the result.|
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -435,7 +435,7 @@ Disables listening for screen hopping status change events.
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is **cooperate**.                               |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | No  | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 **Example**
 
@@ -929,7 +929,7 @@ Enables listening for screen hopping status change events.
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsg) }&gt; |  Yes | Callback used to return the result.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
 
 
 
