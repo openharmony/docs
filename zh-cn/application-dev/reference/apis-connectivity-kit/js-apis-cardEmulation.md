@@ -152,7 +152,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
 **返回值：**
@@ -173,7 +173,7 @@ let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation
 ```
 ## getPaymentServices<sup>11+</sup>
 
-getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
+getPaymentServices(): [AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md)[]
 
 获取所有支付类型的服务列表。如果应用程序声明支持HCE功能，并且声明了"payment-aid"，则会包含在列表里面，参考[HCE卡模拟和AID列表的声明定义](#hce卡模拟和aid列表的声明定义)。
 
@@ -187,7 +187,7 @@ getPaymentServices(): [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[]
 
 | **类型**  | **说明**                               |
 | ------- | ------------------------------------ |
-| [AbilityInfo](js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
+| [AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
 
 **示例：**
 ```js
@@ -231,7 +231,7 @@ startHCE(aidList: string[]): boolean
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。暂不支持使用，仅做接口声明。
 
@@ -243,7 +243,7 @@ start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementnam
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -279,7 +279,7 @@ stopHCE(): boolean
 
 ### stop<sup>9+</sup>
 
-stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname)): void
+stop(elementName: [ElementName](../apis/js-apis-bundleManager-elementName.md#elementname)): void
 
 停止HCE业务功能。包括取消APDU数据接收的订阅，退出当前应用前台优先，释放动态注册的AID列表。应用程序需要在HCE卡模拟页面的onDestroy函数里调用该接口。
 
@@ -291,7 +291,7 @@ stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 

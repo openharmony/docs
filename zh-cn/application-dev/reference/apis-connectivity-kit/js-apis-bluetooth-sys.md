@@ -15,7 +15,7 @@ cancelPairedDevice(deviceId: string): boolean
 删除配对的远程设备。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.cancelPairedDevice](js-apis-bluetoothManager.md#bluetoothmanagercancelpaireddevicedeprecated)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.cancelPairedDevice](js-apis-bluetoothManager-sys.md#bluetoothmanagercancelpaireddevicedeprecated)替代。
 
 **系统接口**：此接口为系统接口。
 

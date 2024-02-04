@@ -111,10 +111,10 @@ try {
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType<sup>11+</sup>           | [CodecType](#codectype)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
-| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
-| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
-| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecType<sup>11+</sup>           | [CodecType](#codectype11)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample11)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
+| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode11) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate11) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
 
 
 ## CodecType<sup>11+</sup>

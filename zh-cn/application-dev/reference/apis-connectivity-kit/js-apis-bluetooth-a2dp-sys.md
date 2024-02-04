@@ -494,7 +494,7 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [CodecInfo](#codecinfo11)| 当前编码器信息。 |
+| [CodecInfo](js-apis-bluetooth-a2dp#codecinfo11)| 当前编码器信息。 |
 
 **错误码**：
 
@@ -535,7 +535,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| codecInfo | [CodecInfo](#codecinfo11) | 是    | 编码器信息。 |
+| codecInfo | [CodecInfo](js-apis-bluetooth-a2dp.md#codecinfo11) | 是    | 编码器信息。 |
 
 **错误码**：
 

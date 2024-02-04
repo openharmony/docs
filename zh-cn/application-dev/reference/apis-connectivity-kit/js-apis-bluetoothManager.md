@@ -2404,9 +2404,9 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 | 参数名         | 类型                                    | 必填   | 说明             |
 | ----------- | ------------------------------------- | ---- | -------------- |
-| setting     | [AdvertiseSetting](#advertisesetting) | 是    | BLE广播的相关参数。    |
-| advData     | [AdvertiseData](#advertisedata)       | 是    | BLE广播包内容。      |
-| advResponse | [AdvertiseData](#advertisedata)       | 否    | BLE回复扫描请求回复响应。 |
+| setting     | [AdvertiseSetting](#advertisesettingdeprecated) | 是    | BLE广播的相关参数。    |
+| advData     | [AdvertiseData](#advertisedatadeprecated)       | 是    | BLE广播包内容。      |
+| advResponse | [AdvertiseData](#advertisedatadeprecated)       | 否    | BLE回复扫描请求回复响应。 |
 
 **错误码**：
 

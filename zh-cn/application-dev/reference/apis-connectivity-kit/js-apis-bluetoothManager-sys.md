@@ -1,11 +1,11 @@
-# @ohos.bluetoothManager (蓝牙)
+# @ohos.bluetoothManager (蓝牙)（系统接口）
 
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API Version 10 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md)等相关profile接口。
+> 从API Version 10 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble-sys.md)等相关profile接口。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetoothManager](js-apis-bluetoothManager.md)
 
 
@@ -24,7 +24,7 @@ cancelPairedDevice(deviceId: string): void
 删除配对的远程设备。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[connection.cancelPairedDevice](js-apis-bluetooth-connection.md#connectioncancelpaireddevice)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[connection.cancelPairedDevice](js-apis-bluetooth-connection-sys.md#connectioncancelpaireddevice)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -67,7 +67,7 @@ connect(device: string): void
 连接设备的HidHost服务。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[hid.HidHostProfile#connect](js-apis-bluetooth-hid.md#connect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[hid.HidHostProfile#connect](js-apis-bluetooth-hid-sys.md#connect)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -112,7 +112,7 @@ disconnect(device: string): void
 断开连接设备的HidHost服务。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[hid.HidHostProfile#disconnect](js-apis-bluetooth-hid.md#disconnect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[hid.HidHostProfile#disconnect](js-apis-bluetooth-hid-sys.md#disconnect)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -150,74 +150,6 @@ try {
 ```
 
 
-### on('connectionStateChange')<sup>(deprecated)</sup>
-
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
-
-订阅HidHost连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[baseProfile.on('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileonconnectionstatechange)替代。
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是    | 表示回调函数的入参。                               |
-
-**示例：**
-
-```js
-import { BusinessError } from '@ohos.base';
-function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
-    console.info('hidHost state = '+ JSON.stringify(data));
-}
-try {
-let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
-hidHost.on('connectionStateChange', onReceiveEvent);
-} catch (err) {
-    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
-}
-```
-
-
-### off('connectionStateChange')<sup>(deprecated)</sup>
-
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
-
-取消订阅HidHost连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[baseProfile.off('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileoffconnectionstatechange)替代。
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**参数：**
-
-| 参数名   | 类型                                                  | 必填 | 说明                                                      |
-| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否   | 表示回调函数的入参。                                      |
-
-**示例：**
-
-```js
-import { BusinessError } from '@ohos.base';
-function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
-    console.info('hidHost state = '+ JSON.stringify(data));
-}
-try {
-let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
-hidHost.on('connectionStateChange', onReceiveEvent);
-hidHost.off('connectionStateChange', onReceiveEvent);
-} catch (err) {
-    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
-}
-```
-
 
 ### disconnect<sup>(deprecated)</sup><a name="PanP-disconnect"></a>
 
@@ -226,7 +158,7 @@ disconnect(device: string): void
 断开连接设备的Pan服务。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.PanProfile#disconnect](js-apis-bluetooth-pan.md#disconnect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.PanProfile#disconnect](js-apis-bluetooth-pan-sys.md#disconnect)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -270,7 +202,7 @@ setTethering(enable: boolean): void
 设置网络共享状态。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.PanProfile#setTethering](js-apis-bluetooth-pan.md#setTethering)替代。
+> 从API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
 
 **系统接口**：此接口为系统接口。
 
@@ -315,7 +247,7 @@ isTetheringOn(): boolean
 获取网络共享状态。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.PanProfile#isTetheringOn](js-apis-bluetooth-pan.md#isTetheringOn)替代。
+> 从API version 9开始支持，从API version 10开始废弃。建议使用[pan.PanProfile#isTetheringOn](js-apis-bluetooth-pan-sys.md#isTetheringOn)替代。
 
 **系统接口**：此接口为系统接口。
 

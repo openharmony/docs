@@ -314,7 +314,7 @@ startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&l
 
 | 参数名               | 类型                                    | 必填  | 说明                             |
 | ------------------- | --------------------------------------- | ----- | ------------------------------- |
-| advertisingParams   | [AdvertisingParams](#advertisingparams) | 是    | 启动BLE广播的相关参数。           |
+| advertisingParams   | [AdvertisingParams](#advertisingparams11) | 是    | 启动BLE广播的相关参数。           |
 | callback            | AsyncCallback&lt;number&gt;             | 是    | 广播ID标识，通过注册回调函数获取。 |
 
 **错误码**：
@@ -406,7 +406,7 @@ startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
 | 参数名               | 类型                                   | 必填  | 说明                    |
 | ------------------- | -------------------------------------- | ----- | ----------------------- |
-| advertisingParams   | [AdvertisingParams](#advertisingparams) | 是    | 启动BLE广播的相关参数。  |
+| advertisingParams   | [AdvertisingParams](#advertisingparams11) | 是    | 启动BLE广播的相关参数。  |
 
 **返回值：**
 
@@ -499,7 +499,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 
 | 参数名                    | 类型                                                 | 必填  | 说明                             |
 | ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
-| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams) | 是    | 临时启动BLE广播的相关参数。        |
+| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams11) | 是    | 临时启动BLE广播的相关参数。        |
 | callback                  | AsyncCallback&lt;void&gt;                           | 是    | 回调函数。                        |
 
 **错误码**：
@@ -603,7 +603,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 
 | 参数名                    | 类型                                                 | 必填  | 说明                             |
 | ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
-| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams) | 是    | 临时启动BLE广播的相关参数。        |
+| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams11) | 是    | 临时启动BLE广播的相关参数。        |
 
 **返回值：**
 
@@ -711,7 +711,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 
 | 参数名                    | 类型                                                   | 必填  | 说明                             |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
-| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams) | 是    | 临时停止BLE广播的相关参数。        |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | 是    | 临时停止BLE广播的相关参数。        |
 | callback                  | AsyncCallback&lt;void&gt;                             | 是    | 回调函数。                        |
 
 **错误码**：
@@ -812,7 +812,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 
 | 参数名                    | 类型                                                   | 必填  | 说明                             |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
-| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams) | 是    | 临时停止BLE广播的相关参数。        |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | 是    | 临时停止BLE广播的相关参数。        |
 
 **返回值：**
 
@@ -1117,7 +1117,7 @@ on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeI
 | 参数名      | 类型                                                                    | 必填   | 说明                                                      |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | 是    | 表示回调函数的入参，广播状态。回调函数由用户创建通过该接口注册。 |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | 是    | 表示回调函数的入参，广播状态。回调函数由用户创建通过该接口注册。 |
 
 **错误码**：
 
@@ -1160,7 +1160,7 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 | 参数名      | 类型                                                                    | 必填   | 说明                                                      |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | 否    | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | 否    | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **错误码**：
 

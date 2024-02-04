@@ -197,7 +197,7 @@ getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-|   Promise&lt;[ConnectionStrategy](#connectionstrategy)&gt; | 返回promise对象。 |
+|   Promise&lt;[ConnectionStrategy](js-apis-bluetooth-baseProfile.md#connectionstrategy)&gt; | 返回promise对象。 |
 
 **错误码**：
 
