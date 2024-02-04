@@ -1,6 +1,6 @@
 # @ohos.bundle.overlay (overlay模块)(系统接口)
 
-本模块提供[overlay特征应用](#overlay特征应用介绍)的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
+本模块提供[overlay特征应用](js-apis-overlay.md#overlay特征应用介绍)的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
 
 > **说明：**
 >
@@ -449,11 +449,3 @@ try {
     console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
-
-## overlay特征应用介绍
-
-**概念**
-overlay特征应用指的是应用中包含有overlay特征的module。该特征module一般是为设备上存在的非overlay特征的module提供额外的资源文件，以便于目标module在运行阶段可以使用这些额外的资源文件来展示不同的颜色，标签，主题等等。overlay特征仅适用于stage模型。
-
-**如何识别overlay特征的module**
-在IDE中创建应用工程时, module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。

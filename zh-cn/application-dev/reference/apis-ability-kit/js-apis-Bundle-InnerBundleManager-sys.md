@@ -8,7 +8,7 @@
 >
 > 本模块从API version 9开始不再支持。建议使用[launcherBundleManager](js-apis-launcherBundleManager-sys.md)及[bundleMonitor](js-apis-bundleMonitor-sys.md)替代。
 >
-> 本模块接口为系统接口。
+> 本模块为系统接口。
 
 ## 导入模块
 

@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-应用程序信息，系统应用可以通过[bundleManager.getApplicationInfo](js-apis-bundleManager-sys.md#bundlemanagergetapplicationinfo)获取自身或其他应用的应用程序信息，其中入参[appFlags](js-apis-bundleManager-sys.md#applicationflag)指定返回的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)中所包含的信息。
+应用程序信息，系统应用可以通过[bundleManager.getApplicationInfo](js-apis-bundleManager-sys.md#bundlemanagergetapplicationinfo)获取自身或其他应用的应用程序信息，其中入参[appFlags](js-apis-bundleManager-sys.md#applicationflag)指定返回的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)中所包含的信息。三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身或其他应用的应用程序信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)指定返回的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)中所包含的信息。
 
 ## ApplicationInfo
 

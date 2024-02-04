@@ -11,18 +11,6 @@
 import bundleManager from '@ohos.bundle.bundleManager';
 ```
 
-## 权限列表
-
-| 权限                                       | 权限等级     | 描述            |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 允许查询应用的基本信息。   |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
-| ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
-|ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
-
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
-
 ## 枚举
 
 ### BundleFlag
@@ -43,6 +31,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
 | GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
+| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup>   | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
 
 ### ExtensionAbilityType
 
@@ -826,5 +815,50 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.canOpenLink<sup>12+</sup>
+
+canOpenLink(link: string): boolean
+
+查询给定的链接是否可以打开。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| link | string | 是   | 表示需要查询的链接。 |
+
+**返回值：**
+
+| 类型                                              | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| boolean | 返回true表示给定的链接可以打开，返回false表示给定的链接不能打开。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700055 | The specified link is invalid.                      |
+| 17700056 | The scheme of the specified link is not in the querySchemes.        |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+try {
+    let link = 'welink://';
+    let data = bundleManager.canOpenLink(link);
+    hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
 }
 ```

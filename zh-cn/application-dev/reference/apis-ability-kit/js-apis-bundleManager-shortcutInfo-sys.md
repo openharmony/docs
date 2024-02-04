@@ -8,7 +8,7 @@
 >
 > FA模型配置在[config.json文件中进行配置](../../quick-start/module-structure.md)，Stage模型配置参考[shortcuts对象内部结构](../../quick-start/module-configuration-file.md#shortcuts标签)。
 >
-> 本模块接口为系统接口。
+> 本模块为系统接口。
 
 ## ShortcutWant
 

@@ -21,7 +21,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | ohos.permission.GET_BUNDLE_INFO            | normal       | 允许查询应用的基本信息。   |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
-|ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
+| ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
 权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
@@ -88,84 +88,6 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | INTENT_PROFILE  | 1    | 意图框架配置文件。    |
 
 ## 接口
-
-### bundleManager.getBundleInfoForSelf
-
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
-
-以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                |
-| ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                  |
-| ----------------------------------------------------------- | ------------------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回当前应用的BundleInfo。|
-
-**示例：**
-
-```ts
-// 额外获取带有metadataArray信息的appInfo
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
-try {
-    bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
-}
-```
-
-### bundleManager.getBundleInfoForSelf
-
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
-
-以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                |
-| ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
-
-**示例：**
-
-```ts
-// 额外获取带有permissions信息的abilitiesInfo
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
-
-try {
-    bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully: %{public}s', JSON.stringify(data));
-        }
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
-}
-```
 
 ### bundleManager.getBundleInfo
 

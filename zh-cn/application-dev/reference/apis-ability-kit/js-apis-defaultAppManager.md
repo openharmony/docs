@@ -12,15 +12,6 @@
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 
-## 权限列表
-
-| 权限                                    | 权限等级    | 描述             |
-| --------------------------------------- | ----------- | ---------------- |
-| ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
-
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
-
-
 ## defaultAppMgr.ApplicationType
 
 默认应用的应用类型。

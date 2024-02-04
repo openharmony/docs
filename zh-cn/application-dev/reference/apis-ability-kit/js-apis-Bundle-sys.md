@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 从API Version 9开始，该模块不再维护，建议使用[`@ohos.bundle.bundleManager`](js-apis-bundleManager.md)替代。
+> 从API Version 9开始，该模块不再维护，系统接口建议使用[`@ohos.bundle.bundleManager`](js-apis-bundleManager-sys.md)替代。
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[`@ohos.bundle`](js-apis-Bundle.md)。
 

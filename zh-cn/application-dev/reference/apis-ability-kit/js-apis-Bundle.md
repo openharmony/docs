@@ -16,11 +16,8 @@ import bundle from '@ohos.bundle';
 
 | 权限                                         | 权限等级         | 描述            |
 |--------------------------------------------|--------------|---------------|
-| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | 设置禁用使能所需的权限。 |
 | ohos.permission.GET_BUNDLE_INFO | normal | 查询指定应用信息。 |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。     |
-| ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用。      |
-| ohos.permission.REMOVE_CACHE_FILES | system_basic | 清理应用缓存。 |
 
 权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
 

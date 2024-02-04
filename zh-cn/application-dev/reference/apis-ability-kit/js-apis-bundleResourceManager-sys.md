@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口为系统接口。
+> 本模块为系统接口。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 | 权限                                       | 权限等级     | 描述            |
 | ------------------------------------------ | ------------ | ------------------|
-|ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
+| ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
 权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
