@@ -49,7 +49,7 @@ list(logType: string): LogEntry[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary.md)。
+以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary-sys.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -96,7 +96,7 @@ copy(logType: string, logName: string, dest: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary.md)。
+以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary-sys.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------------------------- |
@@ -148,7 +148,7 @@ copy(logType: string, logName: string, dest: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary.md)。
+以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary-sys.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -201,7 +201,7 @@ move(logType: string, logName: string, dest: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary.md)。
+以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary-sys.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------------------------- |
@@ -253,7 +253,7 @@ move(logType: string, logName: string, dest: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary.md)。
+以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary-sys.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -299,7 +299,7 @@ remove(logType: string, logName: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary.md)。
+以下错误码的详细介绍请参见[维测日志错误码](errorcode-loglibrary-sys.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |

@@ -9,7 +9,7 @@
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](js-apis-hiviewdfx-hiappevent.md)
   - [@ohos.hiSysEvent (系统事件打点)(系统接口)](js-apis-hisysevent-sys.md)
-  - [@ohos.logLibrary (维测日志获取)(系统接口)](js-apis-loglibrary.md)
+  - [@ohos.logLibrary (维测日志获取)(系统接口)](js-apis-loglibrary-sys.md)
   - 已停止维护的接口
     - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
     - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
@@ -28,6 +28,6 @@
 - 错误码
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)
-  - [系统事件错误码](errorcode-hisysevent.md)
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
-  - [维测日志错误码](errorcode-loglibrary.md)
+  - [系统事件错误码](errorcode-hisysevent-sys.md)
+  - [维测日志错误码](errorcode-loglibrary-sys.md)

@@ -57,7 +57,7 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -121,7 +121,7 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------------------------------- |
@@ -223,7 +223,7 @@ addWatcher(watcher: Watcher): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------------- |
@@ -276,7 +276,7 @@ removeWatcher(watcher: Watcher): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | --------------------------- |
@@ -368,7 +368,7 @@ query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------------------- |
@@ -449,7 +449,7 @@ exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -535,7 +535,7 @@ subscribe(rules: QueryRule[]): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -604,7 +604,7 @@ unsubscribe(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent.md)。
+以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
