@@ -121,7 +121,7 @@
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // 将上述保存的数据从want.parameter中取出恢复
+         // 将上述保存的数据从want.parameters中取出恢复
          let continueInput = '';
          if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
@@ -135,7 +135,7 @@
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-          // 将上述保存的数据从want.parameter中取出恢复
+          // 将上述保存的数据从want.parameters中取出恢复
           let continueInput = '';
           if (want.parameters !== undefined) {
             continueInput = JSON.stringify(want.parameters.data);
@@ -379,7 +379,7 @@ export default class MigrationAbility extends UIAbility {
   // 对端恢复
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-      // 将上述的保存的数据取出恢复
+      // 将上述保存的数据取出恢复
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
