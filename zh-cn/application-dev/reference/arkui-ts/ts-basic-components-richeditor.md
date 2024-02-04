@@ -117,6 +117,18 @@ Span位置信息。
 
 ## RichEditorImageSpanResult
 
+后端返回的图片信息。
+
+| 名称               | 类型                                                                | 必填  | 描述               |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。          |
+| valuePixelMap    | [PixelMap](../apis/js-apis-image.md#pixelmap7)                    | 否   | 图片内容。            |
+| valueResourceStr | [ResourceStr](ts-types.md#resourcestr)                            | 否   | 图片资源id。          |
+| imageStyle       | [RichEditorImageSpanStyleResult](#richeditorimagespanstyleresult) | 是   | 图片样式。            |
+| offsetInSpan     | [number, number]                                                  | 是   | Span里图片的起始和结束位置。 |
+
+## RichEditorImageSpanStyleResult
+
 后端返回的图片样式信息。
 
 | 名称 | 类型 | 必填 | 描述                               |
@@ -124,7 +136,6 @@ Span位置信息。
 | size | [number, number] | 是 | 图片的宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是  | 图片垂直对齐方式。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 是 | 图片缩放类型。 |
-
 
 ## RichEditorOptions
 
