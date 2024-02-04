@@ -112,7 +112,7 @@ Provides attributes of the measured text.
 
 | Name          | Type                                                                                               | Mandatory| Description                     |
 | -------------- | -------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------- |
-| textContent | string                                                                                             | Yes  | Content of the measured text.                                 |
+| textContent | string \| [Resource](../arkui-ts/ts-types.md#resource)                                                                                             | Yes  | Content of the measured text.                                 |
 | constraintWidth<sup>10+</sup> | number \| string \| [Resource](../arkui-ts/ts-types.md#resource)   | No  | Layout width of the measured text.<br>**NOTE**<br>The default unit is vp. The value cannot be a percentage. If this parameter is not set, the value of **SizeOption** is the maximum width allowed for the single-line text.                            |
 | fontSize       | number \| string \| [Resource](../arkui-ts/ts-types.md#resource)               | No  | Font size of the measured text. If the value is of the number type, the unit fp is used.<br>Default value: **16fp**<br>**NOTE**<br>The value cannot be a percentage.   |
 | fontStyle      | number \| [FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle)                        | No  | Font style of the measured text.<br>Default value: **FontStyle.Normal**           |

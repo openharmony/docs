@@ -50,9 +50,9 @@ import font from '@ohos.font';
 struct FontExample {
   @State message: string = 'Hello World'
 
-  // iconFont example. Assume that **** is the Unicode of the specified icon.
-  @State unicode: string = '\u****'
-  @State codePoint: string = String.fromCharCode(0x****)
+  // iconFont example, where 0000 is the Unicode character of the specified icon. You need to obtain the Unicode character from the TTF file of the registered iconFont.
+  @State unicode: string = '\u0000'
+  @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
     // Both familyName and familySrc support the string type.
@@ -224,7 +224,7 @@ Obtains the UI font configuration of the system.
 | -------------- | ------- | ------------------------- | ------------------------- |
 | fontDir        | Array\<string>  | Yes| Path to the system font file.     |
 | generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | Yes| List of supported generic font families.|
-| fallbackGroups       | Array\<[UIFallbackGroupInfo](#uifallbackgroupinfo11)>  | Yes| List of alternate generic font families.          |
+| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | Yes| List of alternate generic font families.          |
 
 ## UIFontGenericInfo<sup>11+</sup>
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -234,7 +234,7 @@ Obtains the UI font configuration of the system.
 | alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | Yes| Alias list.|
 | adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | No| Weight of the font when displayed, which corresponds to the original weight.|
 
-## UIFallbackGroupInfo<sup>11+</sup>
+## UIFontFallbackGroupInfo<sup>11+</sup>
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -259,8 +259,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| language       | number  | Yes| Language supported by the font family. The language format is BCP 47.   |
-| family         | number  | Yes| Font family name, which is the value of **family** specified in the font file.|
+| language       | string  | Yes| Language supported by the font family. The language format is BCP 47.   |
+| family         | string  | Yes| Font family name, which is the value of **family** specified in the font file.|
 
 **Example**
 
