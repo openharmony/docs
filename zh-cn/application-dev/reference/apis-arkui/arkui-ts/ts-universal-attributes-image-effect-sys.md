@@ -17,7 +17,7 @@ sphericalEffect(value: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统API：** 此接口为系统接口
+**系统接口：** 此接口为系统接口
 
 **参数：** 
 
@@ -33,7 +33,7 @@ lightUpEffect(value: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统API：** 此接口为系统接口
+**系统接口：** 此接口为系统接口
 
 **参数：** 
 
@@ -49,7 +49,7 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统API：** 此接口为系统接口
+**系统接口：** 此接口为系统接口
 
 **参数：** 
 

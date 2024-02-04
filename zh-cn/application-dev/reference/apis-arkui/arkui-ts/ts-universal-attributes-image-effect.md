@@ -442,71 +442,8 @@ struct ImageEffectsExample {
 
 ![imageeffect](figures/imageeffect.png)
 
+
 ### 示例3
-
-设置组件的图像边缘像素扩展效果。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct PixelStretchExample {
-  build() {
-    Stack() {
-      Text('This is the text content with letterSpacing 0.')
-        .letterSpacing(0)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .clip(false)
-        .width('50%')
-        .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
-    }.alignContent(Alignment.Center).width("100%").height("100%")
-  }
-}
-
-```
-
-效果图如下：
-
-![textPixelStretch1](figures/textPixelStretch1.png)
-
-去掉pixelStretchEffect的设置，原图效果如下：
-
-![textPixelStretch2](figures/textPixelStretch2.png)
-
-### 示例4
-
-基于示例6，现在把边缘扩展距离改为非正值。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct PixelStretchExample {
-  build() {
-    Stack() {
-      Text('This is the text content with letterSpacing 0.')
-        .letterSpacing(0)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('50%')
-        .pixelStretchEffect({top:-10,left:-10,right:-10,bottom:-10 })
-    }.alignContent(Alignment.Center).width("100%").height("100%")
-  }
-}
-```
-
-效果图如下:
-
-![textPixelStretch3](figures/textPixelStretch3.png)
-
-跟原图对比发现，效果图分两步实现：<br>1、原图大小缩小，缩小后的大小为原图大小减去像素
-收缩的距离。例如，原图大小为`100*100`，设置了`pixelStretchEffect({top:-10,left:-10,
-right:-10,bottom:-10 })`，则缩小后的大小为`(100-10-10)*(100-10-10)`，即`80*80`。<br>2、使用边缘像素扩展，将图像扩展为原图大小。
-
-### 示例5
 
 设置组件的内容线性渐变模糊效果。
 
@@ -533,7 +470,7 @@ struct ImageExample1 {
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
 
-### 示例6
+### 示例4
 renderGroup示例
 ```ts
 // xxx.ets
@@ -582,7 +519,7 @@ struct RenderGroupExample {
 
 ![renderGroup](figures/renderGroup.png)
 
-### 示例7
+### 示例5
 单独使用blendMode
 ```ts
 // xxx.ets
@@ -624,7 +561,7 @@ struct Index {
 ![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode.png)
 <br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
-### 示例8
+### 示例6
 
 blendMode搭配backgroundEffect实现文字图形异形渐变效果。
 
@@ -706,7 +643,7 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
 
-### 示例9
+### 示例7
 通过 InvertOptions 实现反色。
 ```ts
 // xxx.ets
@@ -743,7 +680,7 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### 示例10
+### 示例8
 useShadowBatching搭配shadow实现同层阴影不重叠效果。
 ```ts
 // xxx.ets
