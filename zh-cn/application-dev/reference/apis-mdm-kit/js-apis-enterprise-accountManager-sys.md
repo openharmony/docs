@@ -81,7 +81,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | disallow    | boolean     | 是    | 是否禁止创建本地用户，true表示禁止创建，false表示允许创建。                  |
 
 **返回值：**
@@ -132,7 +132,7 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                        |
 | -------- | ----------------------------------- | ---- | ----------------------------------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | 是   | 设备管理应用。                                              |
+| admin    | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                              |
 | userId   | number                              | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                 |
 | disallow | boolean                             | 是   | 是否禁止用户添加账号，true表示禁止添加，false表示允许添加。 |
 
