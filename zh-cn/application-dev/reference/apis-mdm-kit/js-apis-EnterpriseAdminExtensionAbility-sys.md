@@ -173,7 +173,7 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
 | 参数名              | 类型                                                      | 必填  | 说明         |
 | ---------------- | ------------------------------------------------------- | --- | ---------- |
-| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager.md#systemupdateinfo11) | 是   | 系统更新的版本信息。 |
+| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager-sys.md#systemupdateinfo11) | 是   | 系统更新的版本信息。 |
 
 **示例：**
 
