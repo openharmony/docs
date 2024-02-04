@@ -121,13 +121,13 @@
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // 将上述的保存的数据取出恢复
+         // 将上述保存的数据从want.parameter中取出恢复
          let continueInput = '';
          if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
          }
-         // 将数据显示当前页面
+         // 触发页面恢复
          this.context.restoreWindowStage(this.storage);
        }
      }
@@ -135,12 +135,13 @@
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-          // get user data from want params
+          // 将上述保存的数据从want.parameter中取出恢复
           let continueInput = '';
           if (want.parameters !== undefined) {
             continueInput = JSON.stringify(want.parameters.data);
             hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
           }
+          // 触发页面恢复  
           this.context.restoreWindowStage(this.storage);
         }
       }
@@ -384,7 +385,7 @@ export default class MigrationAbility extends UIAbility {
         continueInput = JSON.stringify(want.parameters.data);
         hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
       }
-      // 将数据显示当前页面
+      // 触发页面恢复
       this.context.restoreWindowStage(this.storage);
     }
   }
@@ -396,7 +397,7 @@ export default class MigrationAbility extends UIAbility {
         continueInput = JSON.stringify(want.parameters.data);
         hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
-      // 将数据显示当前页面
+      // 触发页面恢复
       this.context.restoreWindowStage(this.storage);
     }
   }
@@ -405,6 +406,9 @@ export default class MigrationAbility extends UIAbility {
 ### 使用分布式对象迁移数据
 
 当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis/js-apis-data-distributedobject.md)进行数据迁移。
+
+1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
+2. 对端在`onCreate()/onNewWant`中进行数据恢复时，可以从want中读取该`sessionId`，通过分布式对象恢复数据。
 
 使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
 
