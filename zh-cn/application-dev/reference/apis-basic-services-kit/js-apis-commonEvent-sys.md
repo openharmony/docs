@@ -28,7 +28,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 以回调的形式向指定用户发布公共事件。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[commonEventManager.publishAsUser](js-apis-commonEventManager.md#commoneventmanagerpublishasuser)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[commonEventManager.publishAsUser](js-apis-commonEventManager-sys.md#commoneventmanagerpublishasuser)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
@@ -70,7 +70,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 以回调形式向指定用户发布公共事件并指定发布信息。
 
 > **说明：**
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[commonEventManager.publishAsUser](js-apis-commonEventManager.md#commoneventmanagerpublishasuser-1)替代。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[commonEventManager.publishAsUser](js-apis-commonEventManager-sys.md#commoneventmanagerpublishasuser-1)替代。
 
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
