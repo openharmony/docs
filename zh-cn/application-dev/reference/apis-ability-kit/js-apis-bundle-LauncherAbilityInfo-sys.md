@@ -6,11 +6,11 @@
 >
 > 本模块接口为系统接口。
 
-LauncherAbilityInfo信息，通过接口[innerBundleManager.getLauncherAbilityInfos](js-apis-Bundle-InnerBundleManager.md)获取。
+LauncherAbilityInfo信息，通过接口[innerBundleManager.getLauncherAbilityInfos](js-apis-Bundle-InnerBundleManager-sys.md)获取。
 
 ## LauncherAbilityInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager-LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)替代。
 
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
 

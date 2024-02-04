@@ -6,7 +6,7 @@
 >
 > 本模块接口为系统接口。
 
-配置文件中定义的权限详细信息，通过接口[bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef)获取。
+配置文件中定义的权限详细信息，通过接口[bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef)获取。
 
 ## **PermissionDef**
 

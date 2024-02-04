@@ -30,7 +30,7 @@ import bundle from '@ohos.bundle';
 
 ## bundle.getBundleInstaller<sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[installer.getBundleInstaller](js-apis-installer.md#bundleinstallergetbundleinstaller)替代。
+> 从API version 9开始不再维护，建议使用[installer.getBundleInstaller](js-apis-installer-sys.md#bundleinstallergetbundleinstaller)替代。
 
 getBundleInstaller(): Promise&lt;BundleInstaller&gt;
 
@@ -52,7 +52,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                                                         | 说明                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | Promise对象，返回安装接口对象。 |
+| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Promise对象，返回安装接口对象。 |
 
 **示例：**
 
@@ -69,7 +69,7 @@ bundle.getBundleInstaller().then((data) => {
 
 ## bundle.getBundleInstaller<sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[installer.getBundleInstaller](js-apis-installer.md#bundleinstallergetbundleinstaller)替代。
+> 从API version 9开始不再维护，建议使用[installer.getBundleInstaller](js-apis-installer-sys.md#bundleinstallergetbundleinstaller)替代。
 
 getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void
 
@@ -91,7 +91,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | 回调函数，返回安装接口对象。 |
+| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | 是   | 回调函数，返回安装接口对象。 |
 
 **示例：**
 
@@ -108,7 +108,7 @@ bundle.getBundleInstaller((err, data) => {
 ```
 ## bundle.cleanBundleCacheFiles<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager-sys.md#bundlemanagercleanbundlecachefiles)替代。
 
 cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -151,7 +151,7 @@ bundle.cleanBundleCacheFiles(bundleName, err => {
 
 ## bundle.cleanBundleCacheFiles<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager-sys.md#bundlemanagercleanbundlecachefiles)替代。
 
 cleanBundleCacheFiles(bundleName: string): Promise&lt;void&gt;
 
@@ -198,7 +198,7 @@ bundle.cleanBundleCacheFiles(bundleName).then(()=> {
 
 ## bundle.setApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager.md#bundlemanagersetapplicationenabled)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager-sys.md#bundlemanagersetapplicationenabled)替代。
 
 setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -242,7 +242,7 @@ bundle.setApplicationEnabled(bundleName, false, err => {
 
 ## bundle.setApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager.md#bundlemanagersetapplicationenabled)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager-sys.md#bundlemanagersetapplicationenabled)替代。
 
 setApplicationEnabled(bundleName: string, isEnable: boolean): Promise&lt;void&gt;
 
@@ -290,7 +290,7 @@ bundle.setApplicationEnabled(bundleName, false).then(()=> {
 
 ## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager.md#bundlemanagersetabilityenabled)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager-sys.md#bundlemanagersetabilityenabled)替代。
 
 setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -318,7 +318,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager.md#bundlemanagersetabilityenabled)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager-sys.md#bundlemanagersetabilityenabled)替代。
 
 setAbilityEnabled(info: AbilityInfo, isEnable: boolean): Promise&lt;void&gt;
 
@@ -372,7 +372,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 ```
 ## bundle.getPermissionDef<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef)替代。
 
 getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void
 
@@ -395,7 +395,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名         | 类型                                                         | 必填 | 说明                                             |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | permissionName | string                                                       | 是   | 需要查询的权限的名称。                                 |
-| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef.md)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
+| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ bundle.getPermissionDef(permission, (err, data) => {
 
 ## bundle.getPermissionDef<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef)替代。
 
 getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
 
@@ -442,7 +442,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                                                   | 说明                                                   |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef.md)> | Promise对象，获取成功时返回权限详细信息。 |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Promise对象，获取成功时返回权限详细信息。 |
 
 **示例：**
 

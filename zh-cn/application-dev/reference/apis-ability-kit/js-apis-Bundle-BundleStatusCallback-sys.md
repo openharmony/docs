@@ -6,11 +6,11 @@
 >
 > 本模块接口为系统接口。
 
-应用状态发生变化时回调的信息，通过接口[innerBundleManager.on](js-apis-Bundle-InnerBundleManager.md)获取。
+应用状态发生变化时回调的信息，通过接口[innerBundleManager.on](js-apis-Bundle-InnerBundleManager-sys.md)获取。
 
 
 ## BundleStatusCallback<sup>(deprecated)<sup>
-> 从API version 9开始不再支持。建议使用[bundleMonitor](js-apis-bundleMonitor.md)替代。
+> 从API version 9开始不再支持。建议使用[bundleMonitor](js-apis-bundleMonitor-sys.md)替代。
 
 **系统接口：** 此接口为系统接口。
 

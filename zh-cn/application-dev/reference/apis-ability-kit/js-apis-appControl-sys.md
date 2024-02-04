@@ -622,7 +622,7 @@ try {
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
+| want | [Want](../apis/js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
 | componentType | [ComponentType](#componenttype11)  | 是   | 是   | 拦截时将提升的能力的类型。 |
 | disposedType | [DisposedType](#disposedrule11) | 是 | 是 | 对应用的拦截规则。 |
 | controlType | [ControlType](#controltype11) | 是 | 是 | 拦截指定应用程序的不同策略。 |

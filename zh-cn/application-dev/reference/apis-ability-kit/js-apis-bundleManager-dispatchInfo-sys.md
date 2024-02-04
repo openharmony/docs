@@ -6,7 +6,7 @@
 >
 > 本模块接口为系统接口。
 
-免安装结构体和接口版本信息类，通过接口[freeInstall.getDispatchInfo](js-apis-freeInstall.md#getdispatchinfo)获取。
+免安装结构体和接口版本信息类，通过接口[freeInstall.getDispatchInfo](js-apis-freeInstall-sys.md#getdispatchinfo)获取。
 
 ## DispatchInfo
 

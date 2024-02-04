@@ -10,7 +10,7 @@
 
 ## ShortcutWant<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo.md)替代
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md)替代
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -23,7 +23,7 @@
 
 ## ShortcutInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)替代。
 
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
@@ -38,7 +38,7 @@
 | label                   | string                                     | 是   | 否   | 快捷方式的名称。               |
 | labelId<sup>8+</sup>    | number                                     | 是   | 否   | 快捷方式的名称Id。             |
 | disableMessage          | string                                     | 是   | 否   | 快捷方式的禁用消息。           |
-| wants                   | Array&lt;[ShortcutWant](#shortcutwant)&gt; | 是   | 否   | 快捷方式意图列表。         |
+| wants                   | Array&lt;[ShortcutWant](#shortcutwantdeprecated)&gt; | 是   | 否   | 快捷方式意图列表。         |
 | isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态。           |
 | isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式。 |
 | isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式。             |

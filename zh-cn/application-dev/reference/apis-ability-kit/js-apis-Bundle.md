@@ -979,7 +979,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名         | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-want.md)   | 是    | 包含要查询的应用Bundle名称的意图。                  |
+| want        | [Want](../apis/js-apis-application-want.md)   | 是    | 包含要查询的应用Bundle名称的意图。                  |
 | bundleFlags | number | 是    | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中Ability信息相关flag。 |
 | userId      | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。           |
 
@@ -1034,7 +1034,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want        | [Want](js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
+| want        | [Want](../apis/js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
 | bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中Ability信息相关flag。 |
 | userId      | number                                                       | 是   | 用户ID。取值范围：大于等于0。                                |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
@@ -1082,7 +1082,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want        | [Want](js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
+| want        | [Want](../apis/js-apis-application-want.md)                          | 是   | 指示包含要查询的应用Bundle名称的意图。                       |
 | bundleFlags | number                                                       | 是   | 用于指定返回abilityInfo信息。取值范围：参考[BundleFlag说明](#bundleflagdeprecated)中Ability信息相关flag。 |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回Ability信息。                |
 
@@ -1133,7 +1133,7 @@ SystemCapability.BundleManager.BundleFramework
 **返回值：**
 | 类型             | 说明                                     |
 | -------------- | -------------------------------------- |
-| Promise\<[Want](js-apis-application-want.md)> | 返回值为Promise对象，Promise中包含拉起指定应用的Want对象。 |
+| Promise\<[Want](../apis/js-apis-application-want.md)> | 返回值为Promise对象，Promise中包含拉起指定应用的Want对象。 |
 
 **示例：**
 
@@ -1171,7 +1171,7 @@ SystemCapability.BundleManager.BundleFramework
 | 参数名     | 类型                                                | 必填 | 说明                                                     |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------------------------------- |
 | bundleName | string                                              | 是   | 要查询的应用Bundle名称。                                 |
-| callback   | AsyncCallback\<[Want](js-apis-application-want.md)> | 是   | 程序启动作为入参的回调函数，返回拉起指定应用的want对象。 |
+| callback   | AsyncCallback\<[Want](../apis/js-apis-application-want.md)> | 是   | 程序启动作为入参的回调函数，返回拉起指定应用的want对象。 |
 
 **示例：**
 
@@ -1264,11 +1264,11 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
+> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](../apis/js-apis-resource-manager.md#getmediacontent9)替代。
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
-以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用Promise形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](../apis/js-apis-image.md)，使用Promise形式返回结果。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1290,7 +1290,7 @@ SystemCapability.BundleManager.BundleFramework
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | 返回值为[PixelMap](js-apis-image.md)。 |
+| Promise\<image.PixelMap> | 返回值为[PixelMap](../apis/js-apis-image.md)。 |
 
 **示例：**
 
@@ -1310,11 +1310,11 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
+> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](../apis/js-apis-resource-manager.md#getmediacontent9)替代。
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
-以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用callback形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](../apis/js-apis-image.md)，使用callback形式返回结果。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1333,7 +1333,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ---------------------------------------- | ---- |-------------------------------------------------|
 | bundleName  | string                                   | 是    | 要查询的应用Bundle名称。                                |
 | abilityName | string                                   | 是    | 要查询的Ability组件名。                                 |
-| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](js-apis-image.md)。 |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](../apis/js-apis-image.md)。 |
 
 **示例：**
 

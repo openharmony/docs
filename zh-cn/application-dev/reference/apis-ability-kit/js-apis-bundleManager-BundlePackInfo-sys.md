@@ -6,7 +6,7 @@
 >
 > 本模块接口为系统接口。
 
-应用包信息，通过接口[freeInstall.getBundlePackInfo](js-apis-freeInstall.md#getbundlepackinfo)获取。
+应用包信息，通过接口[freeInstall.getBundlePackInfo](js-apis-freeInstall-sys.md#getbundlepackinfo)获取。
 
 ## BundlePackInfo
 

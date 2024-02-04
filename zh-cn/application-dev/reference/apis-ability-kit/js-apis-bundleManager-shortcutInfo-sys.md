@@ -1,6 +1,6 @@
 # ShortcutInfo (系统接口)
 
-应用配置文件中定义的快捷方式信息，可以通过[getShortcutInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetshortcutinfo9)获取。
+应用配置文件中定义的快捷方式信息，可以通过[getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9)获取。
 
 > **说明：**
 >

@@ -6,7 +6,7 @@
 >
 > 本模块接口为系统接口。
 
-共享包信息，通过接口[bundleManager.getSharedBundleInfo](js-apis-bundleManager.md#bundlemanagergetsharedbundleinfo10)获取。
+共享包信息，通过接口[bundleManager.getSharedBundleInfo](js-apis-bundleManager-sys.md#bundlemanagergetsharedbundleinfo10)获取。
 
 ## SharedBundleInfo
 

@@ -1,6 +1,6 @@
 # BundleResourceInfo (系统接口)
 
-应用配置的图标和名称信息，可以通过[getBundleResourceInfo](js-apis-bundleResourceManager.md#bundleresourcemanagergetbundleresourceinfo)获取。
+应用配置的图标和名称信息，可以通过[getBundleResourceInfo](js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo)获取。
 
 > **说明：**
 >

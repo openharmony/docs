@@ -66,7 +66,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 
 | 参数名                       | 类型     | 必填 | 说明               |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| [BundleChangedEvent](js-apis-bundleMonitor.md#bundlechangedevent)| 是   | 注册监听的事件类型。 |
+| type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注册监听的事件类型。 |
 | callback | callback\<BundleChangedInfo>| 是   | 注册监听的回调函数。 |
 
 **示例：**
@@ -102,7 +102,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 
 | 参数名                       | 类型     | 必填 | 说明                                                       |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| type| [BundleChangedEvent](js-apis-bundleMonitor.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
+| type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
 | callback | callback\<BundleChangedInfo>| 否   | 注销监听的回调函数，默认值：注销当前事件的所有callback。 |
 
 **示例：**

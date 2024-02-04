@@ -6,7 +6,7 @@
 >
 > 本模块接口为系统接口。
 
-包含远程的ability信息，通过接口[distributedBundle.getRemoteAbilityInfo](js-apis-distributedBundleManager.md#distributedbundlegetremoteabilityinfo)获取。
+包含远程的ability信息，通过接口[distributedBundle.getRemoteAbilityInfo](js-apis-distributedBundleManager-sys.md#distributedbundlegetremoteabilityinfo)获取。
 
 ## RemoteAbilityInfo
 
