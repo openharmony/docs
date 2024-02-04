@@ -20,7 +20,7 @@ static getInfo(): AppResponse
 
 获取当前应用配置文件中声明的信息。
 
-从API Version9开始，推荐使用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)。
+从API Version9开始，推荐使用[bundleManager.getApplicationInfo](../apis/js-apis-bundleManager.md#bundlemanagergetapplicationinfo)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -48,7 +48,7 @@ static terminate(): void
 
 退出当前Ability。
 
-从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-ability-featureAbility.md)。
+从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](../apis/js-apis-ability-featureAbility.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 

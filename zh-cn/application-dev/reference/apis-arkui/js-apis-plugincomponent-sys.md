@@ -27,11 +27,11 @@ import Want from '@ohos.app.ability.Want';
 
 | 名称        | 类型                                  | 必填   | 说明                                       |
 | --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| owner     | [Want](js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
-| target    | [Want](js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| owner     | [Want](../apis/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
+| target    | [Want](../apis/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
 | name      | string                              | 是    | 组件名称。                                    |
-| data      | [KVObject](#kvobject)               | 是    | 组件数据值。                                   |
-| extraData | [KVObject](#kvobject)               | 是    | 附加数据值。                                   |
+| data      | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 组件数据值。                                   |
+| extraData | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 附加数据值。                                   |
 | jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameterForStage
@@ -46,10 +46,10 @@ import Want from '@ohos.app.ability.Want';
 
 | 名称       | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| owner    | [Want](js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
-| target   | [Want](js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
+| owner    | [Want](../apis/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| target   | [Want](../apis/js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
-| data     | [KVObject](#kvobject)               | 是    | 附加数据。                                    |
+| data     | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 附加数据。                                    |
 | jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
 
 ### push
@@ -114,7 +114,7 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| param    | [RequestParameterForStage](#requestparameterforstage) | 是    | 组件模板的详细请求信息。                        |
+| param    | [RequestParameterForStage](js-apis-plugincomponent.md#requestcallbackparameters) | 是    | 组件模板的详细请求信息。                        |
 | callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是    | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
 
 **示例：**

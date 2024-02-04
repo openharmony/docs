@@ -8,11 +8,11 @@
 >
 > 本模块从API version 9开始支持在ArkTS中使用。
 >
-> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
+> 该模块不支持在[UIAbility](../apis/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](./js-apis-arkui-UIContext.md#createanimator)来明确UI的执行上下文。
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)来明确UI的执行上下文。
 
 ## 导入模块
 

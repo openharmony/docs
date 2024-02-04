@@ -8,7 +8,7 @@
 >
 > 示例效果请以真机运行为准，当前IDE预览器不支持。
 >
-> 前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
 
 ## 导入模块
 
@@ -19,7 +19,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawa
 ## DrawableDescriptor.constructor
 constructor()
 
-创建DrawableDescriptor或LayeredDrawableDescriptor对象。对象构造需要使用全球化接口[getDrawableDescriptor](js-apis-resource-manager.md#getdrawabledescriptor)或[getDrawableDescriptorByName](js-apis-resource-manager.md#getdrawabledescriptorbyname)。
+创建DrawableDescriptor或LayeredDrawableDescriptor对象。对象构造需要使用全球化接口[getDrawableDescriptor](../apis/js-apis-resource-manager.md#getdrawabledescriptor)或[getDrawableDescriptorByName](../apis/js-apis-resource-manager.md#getdrawabledescriptorbyname)。
 
 **系统接口：** 此接口为系统接口。
 

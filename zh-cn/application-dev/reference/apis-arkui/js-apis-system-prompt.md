@@ -101,7 +101,7 @@ showActionMenu(options: ShowActionMenuOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明                   |
 | ------- | ---------------------------------------- | ---- | -------------------- |
-| options | [ShowActionMenuOptions](#showactionmenuoptions) | 是    | 定义ShowActionMenu的选项。 |
+| options | [ShowActionMenuOptions](#showactionmenuoptions6) | 是    | 定义ShowActionMenu的选项。 |
 
 
 **示例：**

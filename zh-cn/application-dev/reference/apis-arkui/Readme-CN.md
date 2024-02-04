@@ -21,9 +21,11 @@
     - [@ohos.router (页面路由)](js-apis-router.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
-    - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor.md)
-    - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance.md)
+    - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](js-apis-arkui-drawableDescriptor-sys.md)
+    - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor.md)  
     - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](js-apis-devicestatus-draginteraction.md)
+    - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
+    - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance.md)
     - arkui
         - [BuilderNode](js-apis-arkui-builderNode.md)
         - [FrameNode](js-apis-arkui-frameNode.md)
