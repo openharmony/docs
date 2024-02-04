@@ -1,6 +1,5 @@
-# Basic Services Kit API参考 
+# Basic Services Kit API参考
 
-- ArkTS API 
+- ArkTS API
 - C API
 - 错误码
-
