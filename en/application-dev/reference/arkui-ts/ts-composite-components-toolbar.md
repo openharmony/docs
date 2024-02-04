@@ -45,7 +45,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | content | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the toolbar option.| 
-| action | void | No| Click event of the toolbar option.| 
+| action | () =&gt; void | No| Click event of the toolbar option.| 
 | icon | [Resource](ts-types.md#resource) | No| Icon of the toolbar option.| 
 | state | [ItemState](#itemstate) | No| Status of the toolbar option.<br>Default value: **ENABLE**| 
 

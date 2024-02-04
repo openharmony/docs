@@ -21,11 +21,17 @@ LocationButton()
 Creates a Location button with an icon, text, and background.
 
 ### LocationButton
-LocationButton(option:{icon?: LocationIconStyle, text?: LocationDescription, buttonType?: ButtonType})
+LocationButton(option:LocationButtonOptions)
 
 Creates a Location button that contains the specified elements.
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| option | LocationButtonOptions | No| Creates a Location button that contains the specified elements.|
+
+## LocationButtonOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

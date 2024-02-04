@@ -36,7 +36,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 >  **NOTE**   
 >
->  During row layout, child components do not shrink if [flexShrink](ts-universal-attributes-flex-layout.md#attributes) is not set for them. In this case, the total size of the child components on the main axis can exceed the size of the container on the main axis.
+>  During row layout, child components do not shrink if [flexShrink](ts-universal-attributes-flex-layout.md#flexshrink) is not set for them. In this case, the total size of the child components on the main axis can exceed the size of the container on the main axis.
 
 ## Events
 

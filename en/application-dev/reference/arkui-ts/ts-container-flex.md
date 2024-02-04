@@ -16,7 +16,7 @@ Supported
 
 ## APIs
 
-Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
+Flex(value?: FlexOptions)
 
 Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../ui/arkts-layout-development-flex-layout.md).
 
@@ -24,6 +24,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
+| Name           | Type       | Mandatory  | Description                                    |
+| -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
+| value      | [FlexOptions](#flexoptions) | No   |  Parameters of the child components in the **\<Flex>** component.              |
+
+## FlexOptions
 | Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
 | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
 | direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
