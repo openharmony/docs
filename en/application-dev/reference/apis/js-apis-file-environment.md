@@ -1,10 +1,10 @@
 # @ohos.file.environment (Directory Environment Capability)
 
-The **Environment** module provides APIs for obtaining the root directories of the storage and user files.
+The **environment** module provides APIs for obtaining the root directories of the storage and user files.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -16,7 +16,7 @@ import environment from '@ohos.file.environment';
 
 getStorageDataDir():Promise&lt;string&gt;
 
-Obtains the root directory of the storage. This API uses a promise to return the result.
+Obtains the root directory of the memory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
@@ -26,7 +26,7 @@ Obtains the root directory of the storage. This API uses a promise to return the
 
 | Type                 | Description            |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | Promise used to return the root directory of the storage.|
+| Promise&lt;string&gt; | Promise used to return the root directory of the memory.|
 
 **Error codes**
 
@@ -52,7 +52,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 
-Obtains the root directory of the storage. This API uses an asynchronous callback to return the result.
+Obtains the root directory of the memory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
@@ -62,7 +62,7 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback invoked to return the root directory of the storage.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the root directory of the memory.|
 
 **Error codes**
 
@@ -136,7 +136,7 @@ Obtains the root directory of user files. This API uses an asynchronous callback
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of user files.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the root directory of user files.|
 
 **Error codes**
 
@@ -164,11 +164,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getUserDownloadDir(): string
 
-Obtains the sandbox path of the pre-authorized **Download** directory of the current user. This API is available only to specific devices.
+Obtains the sandbox path of the pre-authorized **Download** directory of the current user. This API is available only to certain devices.
 
 **Required permissions**: ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
-**System capability**: SystemCapability.FileManagement.File.Environment
+**System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **Return value**
 
@@ -204,11 +204,11 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user. This API is available only to specific devices.
+Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user. This API is available only to certain devices.
 
 **Required permissions**: ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
-**System capability**: SystemCapability.FileManagement.File.Environment
+**System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **Return value**
 
@@ -244,11 +244,11 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-Obtains the sandbox path of the pre-authorized **Documents** directory of the current user. This API is available only to specific devices.
+Obtains the sandbox path of the pre-authorized **Documents** directory of the current user. This API is available only to certain devices.
 
 **Required permissions**: ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
-**System capability**: SystemCapability.FileManagement.File.Environment
+**System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **Return value**
 
@@ -284,11 +284,11 @@ function getUserDocumentDirExample() {
 
 getExternalStorageDir(): string
 
-Obtains the sandbox path of the root directory of the external storage card. This API is available only to specific devices.
+Obtains the sandbox path of the root directory of the external storage card. This API is available only to certain devices.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-**System capability**: SystemCapability.FileManagement.File.Environment
+**System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **System API**: This is a system API.
 
@@ -327,11 +327,11 @@ function getExternalStorageDirExample() {
 
 getUserHomeDir(): string
 
-Obtains the sandbox path of the built-in card directory of the current user. This API is available only to specific devices.
+Obtains the sandbox path of the built-in card directory of the current user. This API is available only to certain devices.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-**System capability**: SystemCapability.FileManagement.File.Environment
+**System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
 **System API**: This is a system API.
 
