@@ -217,7 +217,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis/s-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
 | wantAgent | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
