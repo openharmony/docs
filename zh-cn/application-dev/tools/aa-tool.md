@@ -51,12 +51,10 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   
   ```bash
   # 显示启动Ability
-  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D] [--pi <key> <integer-value>] \
-    [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
+  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
   
   # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
-  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] \
-    [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
+  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
   ```
 
 - stop-service
