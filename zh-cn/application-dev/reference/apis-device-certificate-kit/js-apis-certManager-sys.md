@@ -43,7 +43,7 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -92,7 +92,7 @@ getAllAppPrivateCertificates() : Promise\<CMResult>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |

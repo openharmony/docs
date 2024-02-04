@@ -146,7 +146,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](/apis/-apis-bundleManager-applicationInfo.md)获得。           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](../apis/-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 

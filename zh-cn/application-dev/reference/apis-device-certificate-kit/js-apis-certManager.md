@@ -185,7 +185,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -241,7 +241,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -290,7 +290,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -344,7 +344,7 @@ getPrivateCertificate(keyUri: string) : Promise\<CMResult>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -392,7 +392,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -441,7 +441,7 @@ uninstallPrivateCertificate(keyUri: string) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -485,7 +485,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -540,7 +540,7 @@ init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -589,7 +589,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -644,7 +644,7 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -692,7 +692,7 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -744,7 +744,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -799,7 +799,7 @@ finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -861,7 +861,7 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -912,7 +912,7 @@ abort(handle: Uint8Array) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[证书管理错误码](../errorcodes/errorcode-certManager.md)。
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
