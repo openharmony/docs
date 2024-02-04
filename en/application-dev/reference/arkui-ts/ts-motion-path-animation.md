@@ -1,4 +1,4 @@
-# Motion Path Animation
+# Motion Path Animation (motionPath)
 
 The motion path animation is used to animate a component along a custom path.
 

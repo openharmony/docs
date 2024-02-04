@@ -31,6 +31,8 @@ Binds a sheet to the component, which can be displayed when the component is tou
 > To synchronize the value of **isShow** with the actual state of the sheet, it is recommended that you use the [$$](../../quick-start/arkts-two-way-sync.md) to set up two-way binding for **isShow**.
 ## SheetOptions
 
+Inherited from [BindOptions](#bindoptions).
+
 | Name             | Type                                      | Mandatory  | Description             |
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>When the sheet is presented as a bottom sheet in portrait mode, this attribute has no effect if **sheetDetents** is set.<br>When the sheet is presented as a bottom sheet in portrait mode, it is 8 vp away from the signal bar at its maximum height.<br>When the sheet is presented as a bottom sheet in landscape mode, this attribute has no effect, and the sheet is 8 vp away from the top of the screen at its maximum height.<br>When the sheet is presented as a center or popup sheet, the **SheetSize.LARGE** and **SheetSize.MEDIUM** values have no effect, and the default value 560 vp is used. The minimum height of the center and popup sheets is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** or the auto-determined height with **SheetSize.FIT_CONTENT** is greater than the maximum height, the maximum height is used instead. If the height is less than the minimum height, the minimum height is used instead.|
@@ -38,13 +40,10 @@ Binds a sheet to the component, which can be displayed when the component is tou
 | preferType<sup>11+</sup> | [SheetType.CENTER](#sheettype11) \|  [SheetType.POPUP](#sheettype11) | No| Type of the sheet.<br>**NOTE**<br>**preferType** cannot be set to **SheetType.BOTTOM.**|
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | No| Whether to display the close icon. By default, the icon is displayed.<br>**NOTE**<br>The value of **Resource** must be of the Boolean type.|
 | dragBar         | boolean                                  | No   | Whether to display the drag bar.<br>**NOTE**<br>By default, the drag bar is displayed only when the sheet's **dentents** attribute is set to multiple heights and the settings take effect.  |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the sheet.    |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur of the sheet. By default, there is no background blur.|
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | No| Mask color of the sheet.|
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | No| Title of the sheet.|
 | enableOutsideInteractive<sup>11+</sup> | boolean | No| Whether to allow users to interact with the page pertaining to the sheet.<br>**NOTE**<br>The value **true** means that interactions are allowed, in which case no mask is not displayed. The value **false** means that interactions are not allowed, in which case a mask is displayed. If this parameter is not set, interactions are allowed for the popup sheet, but not for bottom and center sheets. If this parameter is set to **true**, the setting of **maskColor** does not take effect.|
-| onAppear        | () => void                               | No   | Callback invoked when the sheet is displayed.   |
-| onDisappear     | () => void                               | No   | Callback invoked when the sheet is hidden.   |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | No| Callback invoked when the user attempts to dismiss the sheet.<br>**NOTE**<br>When the user attempts to dismiss the sheet by a pull-down gesture or clicking the back button, the mask, or the close icon, the sheet is not dismissed; instead, the callback is executed.|
 
 ## SheetSize
@@ -54,6 +53,14 @@ Binds a sheet to the component, which can be displayed when the component is tou
 | MEDIUM                    | The sheet height is half of the screen height.  |
 | LARGE                     | The sheet height is almost the screen height.  |
 | FIT_CONTENT<sup>11+</sup> | The sheet height automatically adapts to the content.|
+
+## BindOptions
+
+| Name           | Type                                      | Mandatory| Description                    |
+| --------------- | ------------------------------------------ | ---- | ------------------------ |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Background color of the sheet.  |
+| onAppear        | () => void                                 | No  | Callback invoked when the sheet is displayed.|
+| onDisappear     | () => void                                 | No  | Callback invoked when the sheet is hidden.|
 
 ## SheetType<sup>11+</sup>
 
@@ -65,16 +72,16 @@ Binds a sheet to the component, which can be displayed when the component is tou
 
 ## SheetDismiss<sup>11+</sup>
 
-| Name   | Type    | Mandatory| Description                                                        |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| dismiss | function | Yes  | Callback invoked when the sheet is dismissed. Call this API only when you need the sheet to exit.|
+| Name   | Type      | Mandatory| Description                                                        |
+| ------- | ---------- | ---- | ------------------------------------------------------------ |
+| dismiss | () => void | Yes  | Callback invoked when the sheet is dismissed. Call this API only when you need the sheet to exit.|
 
 ## SheetTitleOptions<sup>11+</sup>
 
-| Name    | Type       | Mandatory| Description                |
-| -------- | ----------- | ---- | -------------------- |
-| title    | ResourceStr | Yes  | Main title of the sheet.|
-| subtitle | ResourceStr | No  | Subtitle of the sheet.|
+| Name    | Type                                  | Mandatory| Description                |
+| -------- | -------------------------------------- | ---- | -------------------- |
+| title    | [ResourceStr](ts-types.md#resourcestr) | Yes  | Main title of the sheet.|
+| subtitle | [ResourceStr](ts-types.md#resourcestr) | No  | Subtitle of the sheet.|
 
 ## Example 1
 
