@@ -46,7 +46,7 @@
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 否  | 获取NotificationFlags。                                                  |
 | removalWantAgent<sup>9+<sup>  | [WantAgent](../apis/js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
-| representativeBundle<sup>12+<sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否 | 被代理的包信息 |
+| representativeBundle<sup>12+<sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否 | 被代理的包信息。<br>**系统接口**: 此接口为系统接口。 |
 
 ## DistributedOptions
 
