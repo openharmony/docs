@@ -1388,7 +1388,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                     |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
-| uri      | string                 | 是   | 要规范化的[URI](../apis/js-apis-uri.md#uri)。      |
+| uri      | string                 | 是   | 要规范化的[URI](../apis-arkts/js-apis-uri.md#uri)。      |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将给定的DataShare URI转换为规范化URI成功，err为undefined，data为获取到的规范化URI（如果支持URI规范化，则返回规范化URI，否则返回空）；否则为错误对象。 |
 
 **示例：**
@@ -1420,7 +1420,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ---- | ------ | ---- | ----------------------------------------- |
-| uri  | string | 是   | 要规范化的[URI](../apis/js-apis-uri.md#uri)。 |
+| uri  | string | 是   | 要规范化的[URI](../apis-arkts/js-apis-uri.md#uri)。 |
 
 **返回值：**
 
@@ -1455,7 +1455,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
-| uri      | string                 | 是   | 要反规范化的[URI](../apis/js-apis-uri.md#uri)。 |
+| uri      | string                 | 是   | 要反规范化的[URI](../apis-arkts/js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将指定的URI转换为非规范化URI，err为undefined，data为获取到的反规范化URI（如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空）；否则为错误对象。 |
 
 **示例：**
@@ -1487,7 +1487,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                        |
 | ---- | ------ | ---- | ------------------------------------------- |
-| uri  | string | 是   | 要反规范化的[URI](../apis/js-apis-uri.md#uri)。 |
+| uri  | string | 是   | 要反规范化的[URI](../apis-arkts/js-apis-uri.md#uri)。 |
 
 **返回值：**
 

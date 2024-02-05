@@ -267,7 +267,7 @@
 
    > **说明：**
    >
-   > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis-arkdata/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+   > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
    ```ts
    import deviceManager from '@ohos.distributedDeviceManager';

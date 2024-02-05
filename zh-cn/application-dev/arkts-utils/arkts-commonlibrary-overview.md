@@ -21,7 +21,7 @@ ArkTS语言基础类库是OpenHarmony系统上为应用开发者提供的常用�
   - XML被设计用来传输和存储数据，是一种可扩展标记语言。语言基础类库提供了[XML生成、解析与转换](xml-overview.md)的能力。
   - URL、URI构造和解析能力：其中[URI](../reference/apis-arkts/js-apis-uri.md)是统一资源标识符，可以唯一标识一个资源。[URL](../reference/apis-arkts/js-apis-url.md)为统一资源定位符，可以提供找到该资源的路径。
 
-- 提供常见的[字符串和二进制数据处理](../reference/apis-arkts/js-apis-util.md)的能力，以及[控制台打印](../reference/apis-arkts/js-apis-logs.md)的相关能力。
+- 提供常见的[字符串和二进制数据处理](../reference/apis-arkts/js-apis-util.md)的能力，以及[控制台打印](../reference/common/js-apis-logs.md)的相关能力。
   - 字符串编解码功能。
   - 基于Base64的字节编码和解码功能。
   - 提供常见的有理数操作支持，包括有理数的比较、获取分子分母等功能。

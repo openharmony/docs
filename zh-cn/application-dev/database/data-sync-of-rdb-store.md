@@ -157,7 +157,7 @@
 
    > **说明：**
    >
-   > deviceIds通过调用[deviceManager.getAvailableDeviceListSync](../reference/apis-arkdata/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+   > deviceIds通过调用[deviceManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
      
    ```ts

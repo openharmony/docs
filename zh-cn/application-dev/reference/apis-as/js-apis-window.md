@@ -145,7 +145,7 @@ findWindow(name: string): Window
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -184,7 +184,7 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -222,7 +222,7 @@ showWindow(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -258,7 +258,7 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -297,7 +297,7 @@ destroyWindow(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -338,7 +338,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -390,7 +390,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -444,7 +444,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -505,7 +505,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -547,7 +547,7 @@ getWindowProperties(): WindowProperties
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -586,7 +586,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -626,7 +626,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -669,7 +669,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -718,7 +718,7 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -763,7 +763,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -831,7 +831,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -890,7 +890,7 @@ getUIContext(): UIContext
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -950,7 +950,7 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -999,7 +999,7 @@ setUIContent(path: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1044,7 +1044,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1127,7 +1127,7 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1214,7 +1214,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1293,7 +1293,7 @@ isWindowShowing(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -1544,7 +1544,7 @@ setWindowBackgroundColor(color: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -1581,7 +1581,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1633,7 +1633,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1676,7 +1676,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1726,7 +1726,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -1794,7 +1794,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -1845,7 +1845,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -1894,7 +1894,7 @@ getMainWindowSync(): Window
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -1940,7 +1940,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2007,7 +2007,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2060,7 +2060,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2109,7 +2109,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2158,7 +2158,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2221,7 +2221,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2277,7 +2277,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2332,7 +2332,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -2411,7 +2411,7 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -2487,7 +2487,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -2564,7 +2564,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2614,7 +2614,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |

@@ -30,7 +30,7 @@
 | Window            | hide (callback: AsyncCallback\<void>): void                  | 隐藏当前窗口。此接口为系统接口。                             |
 | Window            | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | 销毁当前窗口。                                               |
 | Window            | getTransitionController(): TransitionController              | 获取窗口属性转换控制器。此接口为系统接口。                   |
-| TransitionContext | completeTransition(isCompleted: boolean): void               | 设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](../reference/arkui-ts/ts-explicit-animation.md)执行后设置。此接口为系统接口。 |
+| TransitionContext | completeTransition(isCompleted: boolean): void               | 设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)执行后设置。此接口为系统接口。 |
 | Window            | showWithAnimation(callback: AsyncCallback\<void>): void      | 显示当前窗口，过程中播放动画。此接口为系统接口。             |
 | Window            | hideWithAnimation(callback: AsyncCallback\<void>): void      | 隐藏当前窗口，过程中播放动画。此接口为系统接口。             |
 
@@ -43,7 +43,7 @@
 
 1. 创建系统窗口。
 
-   在[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)下，使用`window.createWindow`接口创建音量条系统窗口。
+   在[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext.md)下，使用`window.createWindow`接口创建音量条系统窗口。
 
 2. 操作或设置系统窗口的属性。
 
@@ -143,7 +143,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
 
 2. 配置窗口显示时的动画。
 
-   通过动画函数[animateTo()](../reference/arkui-ts/ts-explicit-animation.md)配置具体的属性动画。
+   通过动画函数[animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)配置具体的属性动画。
 
 3. 设置属性转换完成。
 

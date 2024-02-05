@@ -556,7 +556,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](js-apis-distributedKVStore.md#sync)。
 
 **模型约束：** 此接口仅可在Stage模型下使用
@@ -623,7 +623,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](js-apis-distributedKVStore.md#sync)。
 
 **模型约束：** 此接口仅可在Stage模型下使用

@@ -832,7 +832,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 > **说明：**
 >
-> 其中devices通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中devices通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 数据库同步时调用Sync接口，需要在入参谓词中调用inDevices接口选择设备。如果不调用inDevices接口即默认连接组网内所有的设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -2575,7 +2575,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2647,7 +2647,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3581,7 +3581,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3640,7 +3640,7 @@ if(store != undefined && deviceId != undefined) {
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+> 其中device通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
