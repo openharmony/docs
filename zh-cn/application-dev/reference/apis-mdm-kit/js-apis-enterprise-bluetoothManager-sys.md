@@ -82,7 +82,7 @@ try {
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备的蓝牙名称。 |
-| state |[access.BluetoothState](../apis/js-apis-bluetooth-access.md#bluetoothstate)  | 是   | 表示设备的蓝牙状态。 |
+| state |[access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate)  | 是   | 表示设备的蓝牙状态。 |
 | connectionState | [constant.ProfileConnectionState](../apis/js-apis-bluetooth-constant.md#profileconnectionstate)  | 是   | 表示设备的蓝牙连接状态。 |
 
 ## bluetoothManager.isBluetoothDisabled
