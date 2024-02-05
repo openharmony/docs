@@ -256,4 +256,4 @@
 |FUNC|vkGetNativeBufferPropertiesOHOS||
 |FUNC|vkGetMemoryNativeBufferOHOS||
 
-新增接口的详细介绍请见[Vulkan](../../native-apis/_vulkan.md)。
+新增接口的详细介绍请见[Vulkan](../native-apis/_vulkan.md)。
