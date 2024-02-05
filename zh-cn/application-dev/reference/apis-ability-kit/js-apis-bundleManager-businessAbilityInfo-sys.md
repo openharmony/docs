@@ -22,5 +22,5 @@
 | labelId                           | number                                                       | 是   | 否   | 模块标签的资源id。       |
 | descriptionId                     | number                                                       | 是   | 否   | 描述信息的资源id。       |
 | iconId                            | number                                                       | 是   | 否   | 描述ability信息的图标id。 |
-| businessType | [businessAbilityRouter.BusinessType](../apis/js-apis-businessAbilityRouter.md#businesstype) | 是 | 否 | 标识枚举业务类型。 |
+| businessType | [businessAbilityRouter.BusinessType](js-apis-businessAbilityRouter-sys.md#businesstype) | 是 | 否 | 标识枚举业务类型。 |
 | applicationInfo | Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是   | 否   | 应用程序的信息。  |
