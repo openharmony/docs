@@ -201,7 +201,7 @@
 
 ### 查询系统是否支持头动跟踪能力
 
-系统应用开发者可以通过[isHeadTrackingSupported](../reference/apis-audio-kit/js-apis-audio.md#isheadtrackingsupported11)接口查询当前系统是否具有头动跟踪的能力。
+系统应用开发者可以通过[isHeadTrackingSupported](../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupported11)接口查询当前系统是否具有头动跟踪的能力。
 
   ```ts
   import { BusinessError } from '@ohos.base';
