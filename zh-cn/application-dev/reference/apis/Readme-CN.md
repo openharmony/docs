@@ -490,7 +490,7 @@
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
-  - [@ohos.stationary (设备状态感知框架)](js-apis-stationary.md)
+  - [@ohos.stationary (设备状态感知框架)](../apis-multimodalawareness-kit/js-apis-stationary.md)
   - [@ohos.systemCapability (系统能力)](js-apis-system-capability.md)
   - [@ohos.systemParameterEnhance (系统参数)](js-apis-system-parameterEnhance.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
