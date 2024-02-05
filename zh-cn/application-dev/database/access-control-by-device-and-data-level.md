@@ -53,7 +53,7 @@
 
 键值型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S1的数据库为例。
 
-具体接口及功能，可见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
+具体接口及功能，可见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
 
 
   
@@ -103,7 +103,7 @@ try {
 
 关系型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S1的数据库为例。
 
-具体接口及功能，可见[关系型数据库](../reference/apis/js-apis-data-relationalStore.md)。
+具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
 
 
   

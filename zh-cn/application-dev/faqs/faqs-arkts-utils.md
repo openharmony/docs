@@ -106,7 +106,7 @@ for (let i: number = 0; i < allCount; i++) {
 
 **参考链接**
 
-1. [Priority](../reference/apis/js-apis-taskpool.md)
+1. [Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
 ## 如何将类Java语言的线程模型（内存共享）在各场景的实现方式，转换成在ArkTS的线程模型下（内存隔离）的实现方式？(API 11)
 
@@ -432,8 +432,8 @@ Worker支持通过PostMessage往父线程抛任务。TaskPool支持往父线程�
 
 **参考链接**
 
-1. [@ohos.taskpool（启动任务池）](../reference/apis/js-apis-taskpool.md)
-2. [@ohos.worker (启动一个Worker)](../reference/apis/js-apis-worker.md)
+1. [@ohos.taskpool（启动任务池）](../reference/apis-arkts/js-apis-taskpool.md)
+2. [@ohos.worker (启动一个Worker)](../reference/apis-arkts/js-apis-worker.md)
 
 ## ArkTS是否支持类似Java的共享内存模型进行多线程开发吗？(API 10)
 

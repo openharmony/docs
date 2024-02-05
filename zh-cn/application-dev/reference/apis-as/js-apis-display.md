@@ -28,7 +28,7 @@ getDefaultDisplaySync(): Display
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](../apis-arkui/errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |

@@ -12,9 +12,9 @@
 
 数据共享可分为数据的提供方和访问方两部分。
 
-- 数据提供方：[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)，可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。
+- 数据提供方：[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)，可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。
 
-- 数据访问方：由[createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类，便可以访问提供方提供的这些数据。
+- 数据访问方：由[createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类，便可以访问提供方提供的这些数据。
 
 **图1** 数据共享运作机制  
 ![dataShare](figures/dataShare.jpg)
@@ -33,7 +33,7 @@
 
 ### 数据提供方应用的开发（仅限系统应用）
 
-[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)提供以下API，根据需要重写对应回调方法。
+[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)提供以下API，根据需要重写对应回调方法。
 
 - **onCreate**：DataShare客户端连接DataShareExtensionAbility服务端时，服务端需要在此回调中实现初始化业务逻辑，该方法可以选择性重写。
 

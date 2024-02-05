@@ -126,7 +126,7 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -180,7 +180,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -233,7 +233,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -276,7 +276,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
@@ -327,7 +327,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
@@ -372,7 +372,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
@@ -427,7 +427,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
@@ -594,7 +594,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -649,7 +649,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -697,7 +697,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -1389,7 +1389,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../apis-arkdata/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
