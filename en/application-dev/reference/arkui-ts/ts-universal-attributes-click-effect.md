@@ -12,8 +12,6 @@ clickEffect(value: ClickEffect | null)
 
 Click effect of the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**

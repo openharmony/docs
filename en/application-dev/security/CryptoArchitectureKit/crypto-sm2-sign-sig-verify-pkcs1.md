@@ -16,7 +16,7 @@ For details about the algorithm specifications, see [SM2](crypto-sign-sig-verify
 3. Use [Sign.init](../../reference/apis/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
 
 4. Use [Sign.update](../../reference/apis/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
-   Currently, the data to be passed in by a single **update()** is not size-bound. You can determine how to pass in data based on the data volume.
+   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
 
 5. Use [Sign.sign](../../reference/apis/js-apis-cryptoFramework.md#sign-2) to generate a signature.
 
@@ -29,7 +29,7 @@ For details about the algorithm specifications, see [SM2](crypto-sign-sig-verify
 2. Use [Verify.init](../../reference/apis/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
 3. Use [Verify.update](../../reference/apis/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the data to be passed in by a single **update()** is not size-bound. You can determine how to pass in data based on the data volume.
+   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
 
 4. Use [Verify.verify](../../reference/apis/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
 

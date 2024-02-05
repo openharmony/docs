@@ -61,8 +61,8 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前网格布局列的数量或最小列宽值，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。<br/>columnsTemplate('repeat(auto-fill, track-size)')是设置固定列宽值为track-size，自动计算列数。<br/>其中repeat、auto-fit、auto-fill为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效列宽。<br/>**说明：** <br/>设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。 |
-| rowsTemplate | string | 设置当前网格布局行的数量或最小行高值，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。<br/>rowsTemplate('repeat(auto-fill, track-size)')是设置固定行高值为track-size，自动计算行数。<br/>其中repeat、auto-fit、auto-fill为关键字。track-size为行高，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效行高。<br/>**说明：** <br/>设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。 |
+| columnsTemplate | string | 设置当前网格布局列的数量或最小列宽值，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。<br/>columnsTemplate('repeat(auto-fill, track-size)')是设置固定列宽值为track-size，自动计算列数。<br/>其中repeat、auto-fit、auto-fill为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。<br/>**说明：** <br/>设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。 |
+| rowsTemplate | string | 设置当前网格布局行的数量或最小行高值，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。<br/>rowsTemplate('repeat(auto-fill, track-size)')是设置固定行高值为track-size，自动计算行数。<br/>其中repeat、auto-fit、auto-fill为关键字。track-size为行高，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效行高。<br/>**说明：** <br/>设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。 |
 | columnsGap | [Length](ts-types.md#length) | 设置列与列的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | rowsGap | [Length](ts-types.md#length) | 设置行与行的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
@@ -133,11 +133,11 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | onItemDragMove<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
 | onItemDragLeave<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
 | onItemDrop<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
-| onScrollBarUpdate<sup>10+</sup>(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
-| onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- scrollState: 当前滑动状态。 |
+| onScrollBarUpdate<sup>10+</sup>(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移，单位vp。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
+| onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。<br/>- scrollState: 当前滑动状态。 |
 | onReachStart<sup>10+</sup>(event: () => void)          | 网格到达起始位置时触发。<br/>**说明：** <br>Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Grid边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd<sup>10+</sup>(event: () => void)            | 网格到达末尾位置时触发。<br/>**说明：** <br/>Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain: number }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate枚举说明) => { offsetRemain: number }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
 | onScrollStart<sup>10+</sup>(event: () => void) | 网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
 | onScrollStop<sup>10+</sup>(event: () => void)          | 网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
 
@@ -145,15 +145,15 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |
-| x | number |  当前拖拽点的x坐标。    |
-| y   | number |  当前拖拽点的y坐标。    |
+| x | number |  当前拖拽点的x坐标，单位vp。    |
+| y   | number |  当前拖拽点的y坐标，单位vp。    |
 
 ## ComputedBarAttribute对象说明
 
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |
-| totalOffset | number |  Grid内容相对显示区域的总偏移。    |
-| totalLength   | number |  Grid内容总长度。    |
+| totalOffset | number |  Grid内容相对显示区域的总偏移，单位px。    |
+| totalLength   | number |  Grid内容总长度，单位px。    |
 
 ## 示例
 

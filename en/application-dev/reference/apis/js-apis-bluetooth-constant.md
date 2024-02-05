@@ -14,7 +14,7 @@ The **constant** module provides definitions of the constants used in Bluetooth.
 import constant from '@ohos.bluetooth.constant';
 ```
 
-## ProfileId<a name="ProfileId"></a>
+## ProfileId
 
 Enumerates profiles.
 
@@ -28,7 +28,7 @@ Enumerates profiles.
 | PROFILE_PAN_NETWORK | 7 | Bluetooth personal area network (PAN) profile. |
 
 
-## ProfileUuids<a name="ProfileUuids"></a>
+## ProfileUuids
 
 Enumerates profile UUIDs.
 
@@ -64,7 +64,7 @@ Enumerates the profile connection states.
 | STATE_DISCONNECTING | 3    | Disconnecting.|
 
 
-## MajorClass<a name="MajorClass"></a>
+## MajorClass
 
 Enumerates the major classes of Bluetooth devices.
 
@@ -85,7 +85,7 @@ Enumerates the major classes of Bluetooth devices.
 | MAJOR_UNCATEGORIZED | 0x1F00 | Unclassified device.  |
 
 
-## MajorMinorClass<a name="MajorMinorClass"></a>
+## MajorMinorClass
 
 Enumerates the major and minor classes of Bluetooth devices.
 
@@ -180,7 +180,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | Generic health management device.    |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
 
-## AccessAuthorization<sup>11+</sup><a name="AccessAuthorization"></a>
+## AccessAuthorization<sup>11+</sup>
 
 Enumerates the access permissions.
 

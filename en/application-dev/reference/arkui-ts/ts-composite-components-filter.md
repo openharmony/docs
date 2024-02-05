@@ -25,7 +25,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## Filter
 
-Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams, filterType: FilterType, onFilterChanged: (Array&lt;FilterResult&gt;) =&gt; void })
+Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams, filterType: FilterType, onFilterChanged: (Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
 
 **Decorator**: @Component
 
@@ -34,13 +34,13 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 **Parameters**
 
 
-| Name| Type| Mandatory| Decorator| Description| 
+| Name| Type| Mandatory | Decorator| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | Yes| \@Prop | List of filter criteria.| 
-| additionFilters | [FilterParams](#filterparams) | No| \@Prop | Additional quick filter.| 
-| filterType | [FilterType](#filtertype) | No| \@Prop | Filter type.| 
-| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;) =&gt; void | Yes| - | Callback invoked when the filter criteria is changed. The input parameter is the list of selected filter criteria.| 
-| container | ()=&gt;void | No| \@BuilderParam | Custom content of the filtering result display area, which is passed in a trailing closure.| 
+| multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | Yes  | \@Prop | List of filter criteria.| 
+| additionFilters | [FilterParams](#filterparams) | No  | \@Prop | Additional quick filter.| 
+| filterType | [FilterType](#filtertype) | No  | \@Prop | Filter type.| 
+| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;) =&gt; void | Yes  | - | Callback invoked when the filter criteria is changed. The input parameter is the list of selected filter criteria.| 
+| container | ()=&gt;void | Yes  | \@BuilderParam | Custom content of the filtering result display area, which is passed in a trailing closure.| 
 
 
 ## FilterParams

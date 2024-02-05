@@ -27,7 +27,7 @@ TextArea(value?: TextAreaOptions)
 | 参数名                     | 参数类型                                     | 必填   | 参数描述           |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>当组件设置[stateStyles](ts-universal-attributes-polymorphic-style.md)等刷新属性时，建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -334,6 +334,9 @@ struct TextAreaExample {
 		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
         //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
         //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+        .onChange((value: string) => {
+          this.text = value
+        })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }

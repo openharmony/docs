@@ -3807,7 +3807,7 @@ creator.release().then(() => {
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
-| format   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
+| format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../native-apis/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
 
 ### getComponent<sup>9+</sup>
 

@@ -63,7 +63,7 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
-setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
+setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Record<string, Object>): void
 
 设置从UIExtensionComponent控件接收数据带返回值的回调方法。使用callback异步回调。
 

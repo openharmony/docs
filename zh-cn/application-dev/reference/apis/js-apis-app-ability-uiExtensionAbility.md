@@ -29,6 +29,20 @@ UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onCreate() {
+      console.info(TAG, `onCreate`);
+    }
+  }
+  ```
+
 ## UIExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
@@ -44,6 +58,22 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 | want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIExtensionAbility的Want类型信息，包括ability名称、bundle名称等。 |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | 是 | UIExtensionAbility界面内容相关信息。 |
 
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+    }
+  }
+  ```
+
 ## UIExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
@@ -58,6 +88,21 @@ onSessionDestroy(session: UIExtensionContentSession): void
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md) | 是 | UIExtensionAbility界面内容相关信息。 |
 
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onSessionDestroy(session: UIExtensionContentSession) {
+      console.info(TAG, `onSessionDestroy`);
+    }
+  }
+  ```
+
 ## UIExtensionAbility.onForeground
 
 onForeground(): void
@@ -66,6 +111,20 @@ UIExtensionAbility生命周期回调，当UIExtensionAbility从后台转到前�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onForeground() {
+      console.info(TAG, `onForeground`);
+    }
+  }
+  ```
+
 ## UIExtensionAbility.onBackground
 
 onBackground(): void
@@ -73,6 +132,20 @@ onBackground(): void
 UIExtensionAbility生命周期回调，当UIExtensionAbility从前台转到后台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onBackground() {
+      console.info(TAG, `onBackground`);
+    }
+  }
+  ```
 
 ## UIExtensionAbility.onDestroy
 
@@ -88,3 +161,17 @@ UIExtensionAbility生命周期回调，在销毁时回调，执行资源清理�
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**示例：**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onDestroy() {
+      console.info(TAG, `onDestroy`);
+    }
+  }
+  ```

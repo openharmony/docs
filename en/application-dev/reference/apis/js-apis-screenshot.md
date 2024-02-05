@@ -37,10 +37,10 @@ Describes the region of the screen to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes  | Left boundary of the screen region to capture, in pixels. The value must be an integer.|
-| top    | number | Yes  | Top boundary of the screen region to capture, in pixels. The value must be an integer.|
-| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
-| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
+| left   | number | Yes  | Left boundary of the screen region to capture, in px. The value must be an integer.|
+| top    | number | Yes  | Top boundary of the screen region to capture, in px. The value must be an integer.|
+| width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer.|
 
 
 ## Size
@@ -51,8 +51,8 @@ Describes the size of the screen region to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
-| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
+| width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer.|
 
 ## screenshot.save
 
@@ -70,6 +70,14 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | -------------------------- |
+| 1400001 | Invalid display or screen. |
 
 **Example**
 

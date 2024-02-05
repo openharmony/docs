@@ -12,7 +12,7 @@ You can create a button that contains or does not contain child components.
 - Create a button that does not contain child components.
 
   ```ts
-  Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+  Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
   ```
 
   In this API, **label** indicates the button text, **type** indicates the button type, and **stateEffect** specifies whether to enable the pressed effect on the click of the button.

@@ -14,7 +14,7 @@ The **socket** module provides APIs for operating and managing Bluetooth sockets
 import socket from '@ohos.bluetooth.socket';
 ```
 
-## socket.sppListen<a name="sppListen"></a>
+## socket.sppListen
 
 sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -65,7 +65,7 @@ try {
 ```
 
 
-## socket.sppAccept<a name="sppAccept"></a>
+## socket.sppAccept
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -120,7 +120,7 @@ try {
 ```
 
 
-## socket.sppConnect<a name="sppConnect"></a>
+## socket.sppConnect
 
 sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -172,7 +172,7 @@ try {
 ```
 
 
-## socket.sppCloseServerSocket<a name="sppCloseServerSocket"></a>
+## socket.sppCloseServerSocket
 
 sppCloseServerSocket(socket: number): void
 
@@ -215,7 +215,7 @@ try {
 ```
 
 
-## socket.sppCloseClientSocket<a name="sppCloseClientSocket"></a>
+## socket.sppCloseClientSocket
 
 sppCloseClientSocket(socket: number): void
 
@@ -259,7 +259,7 @@ try {
 ```
 
 
-## socket.sppWrite<a name="sppWrite"></a>
+## socket.sppWrite
 
 sppWrite(clientSocket: number, data: ArrayBuffer): void
 
@@ -320,7 +320,7 @@ Subscribes to SPP read request events.
 | Name         | Type                         | Mandatory  | Description                        |
 | ------------ | --------------------------- | ---- | -------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event. |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.         |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.             |
 | callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback invoked to return the data read.         |
 
 **Error codes**
@@ -394,7 +394,7 @@ try {
 ```
 
 
-## SppOptions<a name="SppOptions"></a>
+## SppOptions
 
 Defines the SPP configuration.
 
@@ -404,10 +404,10 @@ Defines the SPP configuration.
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | Yes   | Yes   | UUID of the SPP.|
 | secure | boolean             | Yes   | Yes   | Whether it is a secure channel.   |
-| type   | [SppType](#SppType)            | Yes   | Yes   | Type of the SPP link.   |
+| type   | [SppType](#spptype)            | Yes   | Yes   | Type of the SPP link.   |
 
 
-## SppType<a name="SppType"></a>
+## SppType
 
 Enumerates the SPP link types.
 

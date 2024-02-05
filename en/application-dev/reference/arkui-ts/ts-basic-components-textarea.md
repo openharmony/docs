@@ -16,10 +16,14 @@ Not supported
 
 ## APIs
 
-TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
+TextArea(value?: TextAreaOptions)
 
 **Parameters**
+| Name|Type|Mandatory|Description|
+|-----|-----|----|----|
+| value | [TextAreaOptions](#textareaoptions) | No | Parameters of the **\<TextArea>** component.|
 
+## TextAreaOptions
 | Name                    | Type                                    | Mandatory  | Description          |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | No   | Text displayed when there is no input.  <br>When only the **placeholder** attribute is set, the text selection handle is still available; the caret stays at the beginning of the placeholder text when the handle is released.    |
@@ -51,7 +55,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | enterKeyType<sup>11+</sup>  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }  <br>Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md).
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }  <br>Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).
 
 ## Events
 
@@ -151,15 +155,6 @@ Obtains the number of lines of the edited text.
 | ----- | -------- |
 | number| Number of lines of the edited text.|
 
-## TextAreaType<sup>11+</sup>
-
-| Name                | Description           |
-| ------------------ | ------------- |
-| Normal   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
-| Email    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
-| Number   | Digit input mode.     |
-| PhoneNumber | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
-
 ### getCaretOffset<sup>11+</sup>
 
 getCaretOffset(): CaretOffset
@@ -175,6 +170,15 @@ Returns the position information of the caret.
 > **NOTE**
 >
 > - If this API is called when the caret position is updated in the current frame, it will not take effect.
+
+## TextAreaType<sup>11+</sup>
+
+| Name                | Description           |
+| ------------------ | ------------- |
+| NORMAL   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
+| EMAIL    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
+| NUMBER   | Digit input mode.     |
+| PHONE_NUMBER | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
 
 ## Example
 

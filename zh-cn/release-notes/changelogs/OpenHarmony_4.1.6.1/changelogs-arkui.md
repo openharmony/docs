@@ -14,7 +14,11 @@ OpenHarmony 4.1.6.1 版本相较于OpenHarmony 之前的版本，Navigation、Na
 
 变更前：Navigation、NavDestination组件的expandSafeArea属性默认为[SafeAreaExpandType.NONE, SafeAreaExpandEdges.NONE]。
 
+![stack](../../figures/navigation_unexpandSafeArea.jpg)
+
 变更后：Navigation、NavDestination组件的expandSafeArea属性默认为[SafeAreaExpandType.SYSTEM, SafeAreaExpandEdges.BOTTOM, SafeAreaEdge.TOP]，背景色延伸到顶部状态栏和底部导航栏。
+
+![stack](../../figures/navigation_expandSafeArea.jpg )
 
 **API Level**
 
@@ -124,3 +128,37 @@ OpenHarmony SDK 4.1.6.1
 **适配指导**
 
 默认行为变更，不涉及适配。如果开发者需要保留原来Image组件显示的效果，可以将autoResize的值设置为true， interpolation的值设置为None。
+
+## cl.arkui.4 Swiper组件单页场景新增边缘滑动效果
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Swiper组件在多页非循环场景下有边缘滑动效果，但在单页场景下无边缘滑动效果，行为未保持一致。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Swiper组件在单页场景下无边缘滑动效果。
+
+变更后，Swiper组件在单页场景下有边缘滑动效果，默认为EdgeEffect.Spring。
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.1 开始。
+
+**变更的接口/组件**
+
+受影响的组件有：Swiper。
+
+**适配指导**
+
+默认效果变更，无需适配。若希望Swiper组件在多页非循环和单页场景下无边缘滑动效果，可设置effectMode属性为EdgeEffect.None。

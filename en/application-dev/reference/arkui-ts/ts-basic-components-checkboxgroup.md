@@ -12,13 +12,21 @@ Not supported
 
 ## APIs
 
-CheckboxGroup(options?: { group?: string })
+CheckboxGroup(options?: CheckboxGroupOptions)
 
 Creates a check box group so that you can select or deselect all check boxes in the group at the same time. Check boxes and the check box group that share a group name belong to the same group.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
+| Name | Type                                                 | Mandatory| Description                |
+| ------- | ----------------------------------------------------- | ---- | -------------------- |
+| options | [CheckboxGroupOptions](#checkboxgroupoptions) | No  | Check box group parameters.|
+
+## CheckboxGroupOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

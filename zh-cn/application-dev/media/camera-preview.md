@@ -71,9 +71,31 @@
 4. 使能。通过[Session.start](../reference/apis/js-apis-camera.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
-   async function startPreviewOutput(input: camera.CameraInput, previewOutput: camera.PreviewOutput, session: camera.Session): Promise<void> {
+   async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
+     let cameraArray: Array<camera.CameraDevice> = [];
+     cameraArray = cameraManager.getSupportedCameras();
+     if (cameraArray.length == 0) {
+       console.error('no camera.');
+       return;
+     }
+     // 获取支持的模式类型
+     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+     if (!isSupportPhotoMode) {
+       console.error('photo mode not support');
+       return;
+     }
+     let cameraInput: camera.CameraInput | undefined = undefined;
+     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+     if (cameraInput === undefined) {
+       console.error('cameraInput is undefined');
+       return;
+     }
+     // 打开相机
+     await cameraInput.open();
+     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();
-     session.addInput(input);
+     session.addInput(cameraInput);
      session.addOutput(previewOutput);
      await session.commitConfig();
      await session.start();

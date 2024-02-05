@@ -2,11 +2,11 @@
 
 The ServiceExtensionContext module, inherited from **ExtensionContext**, provides context for the ServiceExtensionAbility.
 
-You can use the APIs of this module to start, terminate, connect, and disconnect an Ability.
+You can use the APIs of this module to start, terminate, connect, and disconnect an ability.
 
 > **NOTE**
 > 
->  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.S
 >  - The APIs of this module can be used only in the stage model.
 >  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 
@@ -2258,7 +2258,7 @@ Requests a modal window (expressed by a UIExtensionAbility). The information abo
 Observe the following when using this API:
 - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
 - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
- 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.

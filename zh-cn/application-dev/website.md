@@ -838,12 +838,14 @@
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
       - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
       - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
+      - [Web组件开发性能提升指导](performance/performance-web-import.md)
     - [减小应用包大小](performance/reduce-package-size.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
       - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
       - [常用trace使用指导](performance/common-trace-using-instructions.md)
+      - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具

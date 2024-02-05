@@ -29,7 +29,7 @@ Sets the safe area to be expanded to.
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
-setKeyboardAvoidMode(value: KeyboardAvoidMode)
+setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 Sets the avoidance mode for the virtual keyboard.
 
@@ -39,7 +39,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | No  | Sets the avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**<br>By default, offset is used to avoid the virtual keyboard.<br>**value**: avoidance mode for the virtual keyboard. This parameter is mandatory.|
+| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Yes  | Sets the avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**<br>By default, offset is used to avoid the virtual keyboard.<br>**value**: avoidance mode for the virtual keyboard. This parameter is mandatory.|
 
 ## getKeyboardAvoidMode
 
@@ -59,7 +59,7 @@ Obtains the avoidance mode for the virtual keyboard.
 
 ### Example 1
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -82,7 +82,8 @@ struct SafeAreaExample1 {
 
 ### Example 2
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SafeAreaExample {
@@ -118,6 +119,7 @@ struct SafeAreaExample {
 ### Example 3
 
 ```ts
+// EntryAbility.ts
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -135,6 +137,7 @@ import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
     });
   }
 
+// xxx.ets
 @Entry
 @Component
 struct KeyboardAvoidExample {
@@ -153,6 +156,7 @@ struct KeyboardAvoidExample {
 ### Example 4
 
 ```ts
+// EntryAbility.ts
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -170,6 +174,7 @@ import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
     });
   }
 
+// xxx.ets
 @Entry
 @Component
 struct KeyboardAvoidExample {

@@ -2305,7 +2305,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
 const svgBuffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
@@ -2346,7 +2346,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
 const svgBuffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};

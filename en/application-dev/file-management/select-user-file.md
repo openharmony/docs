@@ -7,7 +7,8 @@ The **FilePicker** provides the following interfaces by file type:
 - [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker): used to select and save images or videos. The **PhotoViewPicker** API triggers the **Gallery** application. The images or videos saved by **save()** are stored in a directory of the **FileManager** application, and cannot be viewed in **Gallery**. To enable the saved media assets to be viewed in **Gallery**, use [a security component to create the media asset](photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
   You are advised to use [PhotoViewPicker of PhotoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md#photoviewpicker) to select images or videos. 
-- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The **DocumentViewPicker** API triggers the **FilePicker** application. Documents are not distinguished by file name extensions. For example, the images and files downloaded from a browser are of the document type.
+
+- [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The **DocumentViewPicker** API triggers the **FilePicker** application. Documents are not distinguished by file name extensions. For example, the images and files downloaded from a browser are documents.
 
 - [AudioViewPicker](../reference/apis/js-apis-file-picker.md#audioviewpicker): used to select and save audio clips. The **AudioViewPicker** API triggers the **FilePicker** application. 
 
@@ -39,12 +40,16 @@ The **FilePicker** provides the following interfaces by file type:
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
 
-4. Create a **PhotoViewPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **Gallery** page for the user to select files. After the user selects files, a [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) object is returned.<br>The permission on the URIs returned by **select()** is read-only. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger the operation for opening the file.<br>If metadata needs to be obtained, you can use [@ohos.file.fs](../reference/apis/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis/js-apis-file-fileuri.md) APIs to obtain file attribute information, such as the file name, size, access time, modification time, and path, based on the URI.
+4. Create a **PhotoViewPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **Gallery** page for the user to select files. After the user selects files, a [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) object is returned.<br>
+
+   The permission on the URIs returned by **select()** is read-only. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger the operation for opening the file.<br>
+
+   If metadata needs to be obtained, you can use [@ohos.file.fs](../reference/apis/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis/js-apis-file-fileuri.md) APIs to obtain document attribute information, such as the document name, size, access time, modification time, and path, based on the URI.
 
    ```ts
-import picker from '@ohos.file.picker';
+   import picker from '@ohos.file.picker';
    import { BusinessError } from '@ohos.base';
-
+   
    let uris: Array<string> = [];
    const photoViewPicker = new picker.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
@@ -54,7 +59,7 @@ import picker from '@ohos.file.picker';
      console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-   
+
 5. After the application UI is returned from **Gallery**, use a button to trigger the application's API. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open each file based on the URI and obtain the file descriptor (FD). Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
 
    ```ts
@@ -200,6 +205,3 @@ import picker from '@ohos.file.picker';
    console.info('readSync data to file succeed and buffer size is:' + readLen);
    fs.closeSync(file);
    ```
-
-
-

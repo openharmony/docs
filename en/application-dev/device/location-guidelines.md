@@ -25,7 +25,11 @@ If your application needs to access the device location information, it must fir
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Successful| Location accurate to 5 kilometers.|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Successful| Location accurate to meters.|
 
-If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
+
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+
+For details about how to request for a continuous task, see [Continuous Task](../task-management/continuous-task.md).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md).
 
@@ -346,7 +350,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../re
 
 4. Call [getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) to create a **WantAgent** object.
 
-After obtaining the **WantAgent** object, call the geofencing API to add a geofence.
+call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
    ```ts
    // Create a WantAgent object.
@@ -366,5 +370,8 @@ After obtaining the **WantAgent** object, call the geofencing API to add a geofe
    });
    ```
 
-5. Have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
+## Samples
 
+The following sample is provided to help you better understand how to develop location services:
+
+- [`Location`: Location (ArkTS) (API9)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)

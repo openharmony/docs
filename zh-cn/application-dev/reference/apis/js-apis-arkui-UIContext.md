@@ -695,7 +695,7 @@ getDragPreview(): dragController.DragPreview
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragController#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **错误码：** 通用错误码请参考[通用错误码说明文档](../errorcodes/errorcode-universal.md)。
 
@@ -1057,7 +1057,7 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-跳转到应用内的指定页面。
+跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1160,7 +1160,7 @@ router.pushUrl({
 
 pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-跳转到应用内的指定页面。
+跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1275,7 +1275,7 @@ routerF.pushUrl({
 
 replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回的结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1370,7 +1370,7 @@ router.replaceUrl({
 
 replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1477,7 +1477,7 @@ routerF.replaceUrl({
 
 pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-跳转到指定的命名路由页面。
+跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1579,7 +1579,7 @@ router.pushNamedRoute({
 
 pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-跳转到指定的命名路由页面。
+跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1694,7 +1694,7 @@ routerF.pushNamedRoute({
 
 replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1789,7 +1789,7 @@ router.replaceNamedRoute({
 
 replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
-用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2171,7 +2171,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果。
+创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2345,7 +2345,7 @@ try {
 
 showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
-创建并显示操作菜单，菜单响应后同步返回结果。
+创建并显示操作菜单，通过Promise获取菜单响应结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2602,7 +2602,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
 | customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                 | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                | 是   | 拖拽信息。                       |
 
 **返回值：**
 

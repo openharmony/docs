@@ -30,7 +30,11 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, o
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Successful| Location accurate to 5 kilometers.|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Successful| Location accurate to meters.|
 
-If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
+
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+
+For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
@@ -571,9 +575,9 @@ Obtains the current location. This API uses a promise to return the result.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#locationdeprecated)&gt; |[Location](#locationdeprecated)|NA| Promise used to return the current location.|
+  | Type| Description|
+  | -------- | -------- |
+  |[Location](#locationdeprecated)| Promise used to return the current location.|
 
 
 **Example**
@@ -637,9 +641,9 @@ Obtains the previous location. This API uses a promise to return the result.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;[Location](#locationdeprecated)&gt; | [Location](#locationdeprecated)|NA|Promise used to return the previous location.|
+  | Type| Description|
+  | -------- | -------- |
+  |  [Location](#locationdeprecated)|Promise used to return the previous location.|
 
 
 **Example**
@@ -701,9 +705,9 @@ Checks whether the location service is enabled. This API uses a promise to retur
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; | boolean|NA|Promise used to return the location service status.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean|Promise used to return the location service status.|
 
 **Example**
 
@@ -764,9 +768,9 @@ Requests to enable the location service. This API uses a promise to return the r
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; | boolean|NA|Promise used to return the location service status.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean|Promise used to return the location service status.|
 
 **Example**
 
@@ -827,9 +831,9 @@ Checks whether the (reverse) geocoding service is available. This API uses a pro
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| Promise used to return the (reverse) geocoding service status.|
+  | Type| Description|
+  | -------- | -------- |
+  |boolean| Promise used to return the (reverse) geocoding service status.|
 
 **Example**
 
@@ -898,9 +902,9 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|Promise used to return the reverse geocoding result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|Promise used to return the reverse geocoding result.|
 
 **Example**
 
@@ -970,9 +974,9 @@ Converts geographic descriptions into coordinates through geocoding. This API us
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|Promise used to receive the geocoding result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|Callback used to receive the geocoding result.|
 
 **Example**
 
@@ -1036,9 +1040,9 @@ Obtains the number of cached GNSS locations.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;number&gt; | number|NA|Promise used to return the number of cached GNSS locations.|
+  | Type| Description|
+  | -------- | -------- |
+  | number|Promise used to return the number of cached GNSS locations.|
 
 **Example**
 
@@ -1101,9 +1105,9 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| Promise used to indicate whether the cached GNSS locations are cleared successfully.|
+  | Type| Description|
+  | -------- | -------- |
+  |boolean| Promise used to indicate whether the cached GNSS locations are cleared successfully.|
 
 **Example**
 
@@ -1174,9 +1178,9 @@ Sends an extended command to the location subsystem.
 
 **Return value**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | Promise&lt;boolean&gt; |boolean|NA| Callback used to return the operation result.|
+  | Type| Description|
+  | -------- | -------- |
+  |boolean| Callback used to return the operation result.|
 
 **Example**
 

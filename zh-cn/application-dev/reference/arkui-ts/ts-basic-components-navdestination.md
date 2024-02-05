@@ -49,9 +49,15 @@ NavDestination()
 | onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面显示时触发此回调。 |
 | onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面隐藏时触发此回调。 |
 | onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)<sup>10+</sup> | 当与Navigation绑定的页面栈中存在内容时，此回调生效。<br/>当点击返回键时，触发该回调。<br/>返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。<br/> |
+| onReady(callback:&nbsp;[Callback](../apis/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11类型说明)>)<sup>11+</sup> | 当NavDestination即将构建子组件之前会触发此回调。 |
+
+## NavDestinationContext<sup>11+</sup>类型说明
+
+| 名称   | 类型     | 描述     |
+| ---- | ------ | ------ |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 |
 
 ## 示例
 
-从API Version 9开始，详见[Navrouter组件示例](ts-basic-components-navrouter.md#示例)。
-
-从API Version 10开始，详见[NavPathStack示例](ts-basic-components-navigation.md#示例2)。
+NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。

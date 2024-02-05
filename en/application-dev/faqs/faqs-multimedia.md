@@ -182,3 +182,43 @@ Enumerates the camera statuses.
 **References**
 
 [CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
+
+## Does SoundPool support audio in WMV format? Which formats are supported? (API version 10)
+
+**Solution**
+
+Currently, WMV is not supported. The supported formats are AAC, MPEG (MP3), FLAC, and Vorbis.
+
+**References**
+
+The formats supported by **SoundPool** are the same as those supported by the bottom layer. For details about the supported formats, see [Audio Decoding](../media/audio-decoding.md).
+
+## How do I read the preview image of the camera? (API version 10)
+
+**Solution**
+
+You can call **ImageReceiver.readLatestImage** to obtain the preview image of the camera.
+
+**References**
+
+[readLatestImage](../reference/apis/js-apis-image.md#readlatestimage9)
+
+## How do I listen for recordings?(API 10)
+
+**Solution**
+
+Audio-related listening of the system is implemented in **AudioStreamManager**. You can call **on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void** to listen for audio capturer changes.
+
+**References**
+
+[onaudiocapturerchange](../reference/apis/js-apis-audio.md#onaudiocapturerchange9)
+
+## In which audio processing scenarios are 3A algorithms (AEC, ANC, and AGC) embedded? If they are embedded, is there any API related to audio 3A processing? How do I call them? Are independent switches provided for the 3A algorithms? Does the system support 3A in recording scenarios? If not, what is the solution? For example, how do I ensure the sound quality of audio recording when playing music? (API version 10)
+
+**Solution**
+
+The embedded 3A processing is automatically enabled for the audio stream with the **STREAM_USAGE_VOICE_COMMUNICATION** configuration. Currently, an independent switch is not provided. 3A is supported in recording scenarios. You need to configure **AudioScene** and **SourceType** to enable 3A processing in recording scenarios.
+
+**References**
+
+[AudioCapturer](../reference/apis/js-apis-audio.md#audiocapturer8)

@@ -8,16 +8,12 @@ The **\<Progress>** component is used to provide an indicator that shows the pro
 
 You can create a progress indicator by calling the following API:
 
-
-
 ```ts
 Progress(options: {value: number, total?: number, type?: ProgressType})
 ```
 
 
 In this API, **value** indicates the initial progress, **total** indicates the total progress, and **type** indicates the style of the progress indicator.
-
-
 
 ```ts
 Progress({ value: 24, total: 100, type: ProgressType.Linear }) // Create a linear progress indicator whose total progress is 100 and initial progress is 24.
@@ -106,7 +102,7 @@ Progress indicators come in five styles. When creating a progress indicator, you
 
 ## Example Scenario
 
-In this example, the progress of the **\<Progress>** component is updated by clicking the button. After the button is clicked, the value of **progressValue** is incremented and passed to the **\<Progress>** component, which is then updated accordingly.
+In this example, the progress of the **\<Progress>** component is updated by clicking the button. After the button is clicked, the value of **progressValue** is incremented and passed by the **value** attribute to the **\<Progress>** component, which is then updated accordingly.
 
 ```ts
 @Entry
