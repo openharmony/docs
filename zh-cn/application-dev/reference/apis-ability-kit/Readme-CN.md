@@ -73,7 +73,7 @@
       - [@ohos.bundle.installer (installer模块)(系统接口)](js-apis-installer-sys.md)
       - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)](js-apis-launcherBundleManager-sys.md)
       - [@ohos.bundle.overlay (overlay模块)(系统接口)](js-apis-overlay-sys.md)
-      - [@ohos.distributedMissionManager (分布式任务管理)](./js-apis-distributedMissionManager.md)
+      - [@ohos.distributedMissionManager (分布式任务管理)(系统接口)](./js-apis-distributedMissionManager-sys.md)
       - [@ohos.privacyManager (隐私管理)(系统接口)](./js-apis-privacyManager-sys.md)
   - 接口依赖的元素及定义
     - ability
@@ -205,6 +205,7 @@
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
 - 错误码
   - [元能力子系统错误码](errorcode-ability.md)
+  - [DistributedSchedule错误码](./errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [zlib子系统错误码](errorcode-zlib.md)
   - [访问控制错误码](./errorcode-access-token.md)

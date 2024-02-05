@@ -1,4 +1,4 @@
-# @ohos.distributedMissionManager (分布式任务管理)
+# @ohos.distributedMissionManager (分布式任务管理)(系统接口)
 
 分布式任务管理模块提供跨设备任务管理能力，包括注册和取消任务状态监听、开始和停止同步远端设备任务列表、通过任务ID和包名进行迁移任务等。
 
@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口为系统接口。
+> 本模块为系统接口。
 
 ## 导入模块
 
@@ -389,8 +389,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
-| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo-sys.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](js-apis-inner-application-continueCallback-sys.md) | 是    | 迁移任务完成回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，迁移任务完成时，err为undefined，否则返回错误对象。 |
 
 **错误码：**
