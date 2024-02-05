@@ -3,15 +3,17 @@
 - ArkTS API 
     - 公共事件
         - [@ohos.commonEventManager (公共事件模块)](./js-apis-commonEventManager.md)
-        - [系统公共事件定义](./commonEventManager-definitions.md)
+        - [@ohos.events.emitter (Emitter)](./js-apis-emitter.md)
         - [@ohos.commonEventManager (公共事件模块)(系统应用)](./js-apis-commonEventManager-sys.md)
-        - [系统公共事件定义 (系统应用)](./commonEventManager-definitions-sys.md)
+        - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](./js-apis-application-staticSubscriberExtensionAbility.md)
+        - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)](./js-apis-application-StaticSubscriberExtensionContext.md)
     - commonEvent
         - [CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)
         - [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md)
         - [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)
         - [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
 - 公共事件定义
+    - [系统公共事件定义](./commonEventManager-definitions.md)
     - [元能力子系统公共事件定义](./common_event/commonEvent-ability.md)
     - [包管理子系统公共事件定义](./common_event/commonEvent-bundleManager.md)
     - [通知服务公共事件定义](./common_event/commonEvent-ans.md)
@@ -28,7 +30,9 @@
     - [主题框架子系统-锁屏管理公共事件定义](./common_event/commonEvent-screenlock.md)
     - [时间时区子系统公共事件定义](./common_event/commonEvent-time.md)
     - [帐号子系统公共事件定义](./common_event/commonEvent-account.md)
-- 待停用
+    - [语言子系统公共事件定义](./common_event/commonEvent-locale.md)
+    - [系统公共事件定义 (系统应用)](./commonEventManager-definitions-sys.md)
+- 已停止维护的接口
     - [系统公共事件定义](./commonEvent-definitions.md)
     - [@ohos.commonEvent (公共事件模块)](./js-apis-commonEvent.md)
     - [@ohos.commonEvent (公共事件模块)(系统应用)](./js-apis-commonEvent-sys.md)
