@@ -75,12 +75,12 @@ on\(type: \'cellInfoChange\', options: ObserverOptions, callback: Callback\<Arra
 | 参数名 | 类型                                               | 必填 | 说明                                      |
 | ------ |--------------------------------------------------| ---- |--------------------------------------------|
 | type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。 |
-| options  | [ObserverOptions](#observeroptions11)            | 是   | 电话相关事件订阅参数可选项。                |
+| options  | [ObserverOptions](js-apis-observer.md#observeroptions11)            | 是   | 电话相关事件订阅参数可选项。                |
 | callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 是   | 以callback形式异步返回结果。       |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -129,7 +129,7 @@ off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |

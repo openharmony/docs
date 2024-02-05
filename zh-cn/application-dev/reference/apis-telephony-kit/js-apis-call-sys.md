@@ -4787,7 +4787,6 @@ call.removeMissedIncomingCallNotification().then(() => {
 
 |        名称              | 类型                               | 必填 | 说明                                                                                             |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
-| extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。   |
 | accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>。此接口为系统接口。                                   |
 | videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                                                                  |
 | dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                                                      |
@@ -4808,38 +4807,6 @@ call.removeMissedIncomingCallNotification().then(() => {
 | dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。                                   |
 | dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。                                   |
 
-## CallState
-
-通话状态码。
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-| 名称               | 值   | 说明                                                         |
-| ------------------ | ---- | ------------------------------------------------------------ |
-| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。                         |
-| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
-| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
-| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
-
-## EmergencyNumberOptions<sup>7+</sup>
-
-判断是否是紧急电话号码的可选参数。
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-|  名称  | 类型   | 必填 | 说明                                           |
-| ------ | ------ | ---- | ---------------------------------------------- |
-| slotId | number | 否   | 卡槽ID：<br/>- 卡槽1：`0`。<br/>- 卡槽2：`1`。 |
-
-## NumberFormatOptions<sup>7+</sup>
-
-格式化号码的可选参数。
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-|    名称     | 类型   | 必填 | 说明                                                       |
-| ----------- | ------ | ---- | ---------------------------------------------------------- |
-| countryCode | string | 否   | 国家码，支持所有国家的国家码，如：CN（中国）。默认为：CN。 |
 
 ## ImsCallMode<sup>8+</sup>
 
@@ -5018,7 +4985,7 @@ VoIP通话信息。
 | --------------- | ------------------- | ---- | -------------- |
 | voipCallId   | string    | 是   | VoIP通话唯一Id       |
 | userName  | string    | 是   | 用户昵称 |
-| userProfile       | [image.PixelMap](js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
+| userProfile       | [image.PixelMap](../apis/js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
 | extensionId      | string     | 是   |  三方应用进程Id  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
@@ -5489,7 +5456,7 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](js-apis-camera.md#getsupportedcameras)。|
+| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](../apis/js-apis-camera.md#getsupportedcameras)。|
 
 **返回值：**
 

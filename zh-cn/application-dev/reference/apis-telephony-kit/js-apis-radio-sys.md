@@ -2527,8 +2527,7 @@ radio.factoryReset(slotId).then(() => {
 | 名称              |                  类型                   | 必填 |                           说明                               |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |                           
 | isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。          |
-| timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |
-| signalInformation | [SignalInformation](#signalinformation) |  是  | 信号信息。                                                   |
+| timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |                              
 | data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息。  <br>**系统接口：** 此接口为系统接口。|
 
 ## CdmaCellInformation<sup>8+</sup>
@@ -2722,7 +2721,7 @@ NR的选择模式。
 | 名称               |                    类型                       | 必填 |                 说明                   |
 | ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
 | slotId             | number                                        |  是  | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) |  是  | 网络选择模式。                         |
+| selectMode         | [NetworkSelectionMode](js-apis-radio.md#networkselectionmode) |  是  | 网络选择模式。                         |
 | networkInformation | [NetworkInformation](#networkinformation)     |  是  | 网络信息。                             |
 | resumeSelection    | boolean                                       |  是  | 继续选择。                             |
 

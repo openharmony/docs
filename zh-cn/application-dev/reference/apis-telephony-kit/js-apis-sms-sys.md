@@ -31,7 +31,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-uiAbilityContext.md)。 |
 | mmsParams | [MmsParams](#mmsparams11) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 发送彩信的回调函数。 |
 
@@ -142,7 +142,7 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-uiAbilityContext.md)。 |
 | mmsParams | [MmsParams](#mmsparams11) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 
 **返回值：**
@@ -255,8 +255,8 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
-| mmsParams | [MmsParams](#mmsparams) | 是   | 下载彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-uiAbilityContext.md)。 |
+| mmsParams | [MmsParams](#mmsparams11) | 是   | 下载彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 下载彩信的回调函数。 |
 
 **错误码：**
@@ -371,8 +371,8 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
-| mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-uiAbilityContext.md)。 |
+| mmsParams | [MmsParams](#mmsparams11) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 
 **返回值：**
 
@@ -2346,7 +2346,7 @@ SIM卡短消息。
 
 |       名称       | 类型                                   | 必填 | 说明          |
 | ---------------- | -------------------------------------- | ---- | ------------- |
-| shortMessage     | [ShortMessage](#shortmessage)          | 是   | 短消息        |
+| shortMessage     | [ShortMessage](js-apis-sms.md#shortmessage)          | 是   | 短消息        |
 | simMessageStatus | [SimMessageStatus](#simmessagestatus7) | 是   | SIM卡消息状态 |
 | indexOnSim       | number                                 | 是   | SIM卡索引     |
 

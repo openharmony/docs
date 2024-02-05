@@ -1055,7 +1055,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo10)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
+| Promise\<[IccAccountInfo](#iccaccountinfo10)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
 
 **错误码：**
 
@@ -1102,7 +1102,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 参数名   | 类型                                                        | 必填 | 说明       |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
+| callback | AsyncCallback\<Array\<[IccAccountInfo](#iccaccountinfo10)\>\> | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
 
 **错误码：**
 
@@ -1147,7 +1147,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 以Promise形式返回激活卡槽SIM卡的帐户信息列表。 |
+| Promise\<Array\<[IccAccountInfo](#iccaccountinfo10)\>\> | 以Promise形式返回激活卡槽SIM卡的帐户信息列表。 |
 
 **错误码：**
 

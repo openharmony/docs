@@ -23,7 +23,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -55,7 +55,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9-1)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -90,7 +90,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9-2)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -748,3 +748,46 @@ call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
     console.error(`formatPhoneNumberToE164 fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+## DialOptions
+
+拨打电话的可选参数。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|        名称              | 类型                               | 必填 | 说明                                                                                             |
+| ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
+| extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。   | 
+
+## CallState
+
+通话状态码。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称               | 值   | 说明                                                         |
+| ------------------ | ---- | ------------------------------------------------------------ |
+| CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。                         |
+| CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
+| CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
+| CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
+
+## EmergencyNumberOptions<sup>7+</sup>
+
+判断是否是紧急电话号码的可选参数。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|  名称  | 类型   | 必填 | 说明                                           |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| slotId | number | 否   | 卡槽ID：<br/>- 卡槽1：`0`。<br/>- 卡槽2：`1`。 |
+
+## NumberFormatOptions<sup>7+</sup>
+
+格式化号码的可选参数。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|    名称     | 类型   | 必填 | 说明                                                       |
+| ----------- | ------ | ---- | ---------------------------------------------------------- |
+| countryCode | string | 否   | 国家码，支持所有国家的国家码，如：CN（中国）。默认为：CN。 |
