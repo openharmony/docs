@@ -1,4 +1,4 @@
-# FormComponent(系统接口)
+# FormComponent (系统接口)
 
 提供卡片组件，实现卡片的显示功能。
 

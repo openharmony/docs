@@ -1,4 +1,4 @@
-# 进度条（Progress）
+# 进度条 (Progress)
 
 
 Progress是进度条显示组件，显示内容通常为目标操作的当前进度。具体用法请参考[Progress](../reference/arkui-ts/ts-basic-components-progress.md)。

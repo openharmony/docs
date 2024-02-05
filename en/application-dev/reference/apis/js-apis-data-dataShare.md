@@ -56,7 +56,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(context, uri, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -109,7 +109,7 @@ let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -142,7 +142,7 @@ Observe the following when using this API:
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of the application.            |
 | uri     | string                                            | Yes  | URI of the server application to connect.|
-| options | [DataShareHelperOptions](#datasharehelperoptions10) | No| Configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode. |
+| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | No| Configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode.|
 
 **Return value**
 
@@ -181,6 +181,104 @@ try {
 };
 ```
 
+## dataShare.enableSilentProxy<sup>11+</sup>
+
+enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
+
+Enables silent access. This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - The data provider calls this API to enable silent access.
+ - Whether silent access is enabled is determined based on the return value of this API and the [isSilentProxyEnable](../../database/share-data-by-datashareextensionability.md) field in the **data_share_config.json** file together.
+ - If silent access is enabled for a URI using this API, silent access takes effect when the related **datashareHelper** API is called. Otherwise, the setting of **isSilentProxyEnable** in the **data_share_config.json** file is used to determine whether to enable silent access.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name | Type                                                   | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                          |
+| uri     | string                                                  | No  | Path of the data, for which silent access is to be enabled.<br>1. If **uri** is left blank, silent access is enabled for all URIs of the data provider by default. In addition, the previous setting for a specific URI will be cleared.<br>2. If **uri** is set, silent access is enabled for the specified URI.<br>When a **datashareHelper** API is called, the URI passed in will be preferentially verified to check whether silent access is enabled. If no match is found, the system checks whether **enableSilentProxy** with an empty **uri** has been called.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
+
+**Return value**
+
+| Type                                              | Description                                  |
+| -------------------------------------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 15700011 | The Uri is not exist. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+let context = getContext(UIAbility);
+dataShare.enableSilentProxy(context, uri).then(() => {
+  console.info("enableSilentProxy succeed");
+}). catch((err: BusinessError) => {
+  console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+});
+```
+
+## dataShare.disableSilentProxy<sup>11+</sup>
+
+disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
+
+Disables silent access. This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - The data provider calls this API to disable silent access.
+ - Whether silent access is disabled is determined based on the return value of this API and the [isSilentProxyEnable](../../database/share-data-by-datashareextensionability.md) field in the **data_share_config.json** file together.
+ - If silent access is disabled for a URI using this API, the setting takes effect when the related **datashareHelper** API is called. Otherwise, the setting of **isSilentProxyEnable** in the **data_share_config.json** file is used to determine whether to disable silent access.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name | Type                                                   | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                          |
+| uri     | string                                                  | No  | Path of the data, for which silent access is to be disabled.<br>1. If **uri** is left blank, silent access is disabled for all URIs of the data provider by default. In addition, the previous setting for a specific URI will be cleared.<br>2. If **uri** is set, silent access is disabled for the specified URI.<br>When a **datashareHelper** API is called, the URI passed in will be preferentially verified to check whether silent access is disabled. If no match is found, the system checks whether **disableSilentProxy** with an empty **uri** has been called.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
+
+**Return value**
+
+| Type                                              | Description                                  |
+| -------------------------------------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 15700011 | The Uri is not exist. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+let context = getContext(UIAbility);
+dataShare.disableSilentProxy(context, uri).then(() => {
+  console.info("disableSilentProxy succeed");
+}). catch((err: BusinessError) => {
+  console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+});
+```
+
 ## DataShareHelperOptions<sup>10+</sup>
 
 Defines whether [DataShareHelper](#datasharehelper) is in proxy mode.
@@ -189,7 +287,7 @@ Defines whether [DataShareHelper](#datasharehelper) is in proxy mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br/>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database. |
+| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br/>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper] (#datasharecreatedatasharehelper10) will start the data provider to create a database.|
 
 ## TemplateId<sup>10+</sup>
 
@@ -245,7 +343,7 @@ Defines the struct of the template used in a subscription.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | { [key: string]: string } | Yes| Predicates to use. When [**on**](#onrdbdatachange10) is called, the predicates are used to generate data. This parameter applies only to RDB data storage. |
+| predicates | Record<string, string> | Yes| Predicates to use. When [**on**](#onrdbdatachange10) is called, the predicates are used to generate data. This parameter applies only to RDB data storage. |
 | scheduler | string | Yes| Template scheduler SQL, which is embedded with a custom function. Currently, the **remindTimer** function is embedded. The **remindTimer** triggers a subscription-based update in specified scenarios.<br>The scheduler SQL statement is triggered when:<br>1. The subscribed data is modified.<br>2. The first subscription is added to the corresponding database.|
 
 ## OperationResult<sup>10+</sup>
@@ -331,7 +429,7 @@ Adds a data template with the specified subscriber.
 
 | Name    | Type                   | Mandatory| Description                    |
 | -------- | ------------------------ | ---- | -------------------------|
-| uri      | string                   | Yes  | URI of the data template to add. |
+| uri      | string                   | Yes  | URI of the data to add. |
 | subscriberId | string               | Yes  | Unique ID of the template subscriber.|
 | template    | [Template](#template10) | Yes  | Data template to add.       |
 
@@ -376,7 +474,7 @@ Deletes a data template based on the specified subscriber.
 
 | Name    | Type       | Mandatory| Description                      |
 | -------- | -------------| ---- | ------------------------- |
-| uri      | string       | Yes  | URI of the data template to delete.    |
+| uri      | string       | Yes  | URI of the data to delete.    |
 | subscriberId | string   | Yes  | Unique ID of the subscriber.         |
 
 **Error codes**
@@ -586,7 +684,7 @@ Publishes data to the database.
 | --------- | -------------------------------------------------| ---- | ------------------- |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.          |
-| version | number                                             | Yes  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.|
+| version | number                                             | Yes  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.|
 | callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback will not be triggered or **err** is an error object.   |
 
 **Error codes**
@@ -673,7 +771,7 @@ Publishes data to the database.
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | Yes  | Data to publish.|
 | bundleName | string                      | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data. |
-| version | number                         | No  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br>If the data version is not checked, leave this parameter unspecified.|
+| version | number                         | No  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br> If the data version is not checked, leave this parameter unspecified.|
 
 **Return value**
 
@@ -714,7 +812,7 @@ Obtains the published data of an application.
 | Name   | Type            | Mandatory| Description                          |
 | -------- | -----------------| ---- | ----------------------------- |
 | bundleName | string         | Yes  | Application to which the data belongs. |
-| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback invoked to return the published data obtained.|
 
 **Error codes**
 
@@ -753,9 +851,9 @@ Obtains the published data of an application.
 
 **Return value**
 
-| Type            | Description                                                        |
-| ---------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise used to return the data obtained.|
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise used to return the published data obtained.|
 
 **Error codes**
 
@@ -786,7 +884,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 | Name    | Type                                                     | Mandatory| Description                                                       |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | Yes  | URI of the data to insert.                                    |
-| value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is empty, a blank row will be inserted.          |
+| value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is left empty, a blank row will be inserted.          |
 | callback | AsyncCallback&lt;number&gt;                               | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the index of the inserted data record. Otherwise, **err** is an error object.<br>The data index is not returned if the APIs of the database in use, for example, the key-value database (KVDB), do not support the return of indexes.|
 
 **Example**
@@ -837,7 +935,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 | Name | Type                                                     | Mandatory| Description                                              |
 | ----- | --------------------------------------------------------- | ---- | -------------------------------------------------- |
 | uri   | string                                                    | Yes  | URI of the data to insert.                          |
-| value | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is empty, a blank row will be inserted.|
+| value | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is left empty, a blank row will be inserted.|
 
 **Return value**
 
@@ -891,7 +989,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
@@ -933,7 +1031,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
 
 **Return value**
 
@@ -978,8 +1076,8 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
-| columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is empty, all columns will be queried.              |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying the data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
+| columns    | Array&lt;string&gt;                                          | Yes  | Column to query. If this parameter is left empty, all columns will be queried.              |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1023,8 +1121,8 @@ Queries data in the database. This API uses a promise to return the result.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
-| columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is empty, all columns will be queried.              |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying the data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
+| columns    | Array&lt;string&gt;                                          | Yes  | Column to query. If this parameter is left empty, all columns will be queried.              |
 
 **Return value**
 
@@ -1071,7 +1169,7 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating the data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                 |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
@@ -1126,7 +1224,7 @@ Updates data in the database. This API uses a promise to return the result.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating the data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                  |
 
 **Return value**

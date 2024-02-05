@@ -13,10 +13,6 @@ The **DriverExtensionAbility** module provides the ExtensionAbility related to d
 import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
 ```
 
-## Required Permissions
-
-None.
-
 ## Attributes
 
 **System capability**: SystemCapability.Driver.ExternalDevice

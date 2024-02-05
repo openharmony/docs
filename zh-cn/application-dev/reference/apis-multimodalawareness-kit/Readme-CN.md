@@ -1,6 +1,5 @@
 # Multimodal Awareness Kit API参考 
 
 - ArkTS API 
-- C API
-- 错误码
+  - [@ohos.stationary (设备状态感知框架)](js-apis-stationary.md)
 
