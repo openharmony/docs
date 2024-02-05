@@ -794,7 +794,7 @@ Socket的连接信息。
 
 UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
 
 ## socket.constructMulticastSocketInstance<sup>11+</sup>
 
@@ -3643,7 +3643,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
 
 ## socket.constructLocalSocketInstance<sup>11+</sup>
 
@@ -5037,7 +5037,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 LocalSocket 错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 

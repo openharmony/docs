@@ -9,6 +9,8 @@
   - [@ohos.net.vpnExtension (VPN增强管理)](js-apis-net-vpnExtension.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
+  - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
+  - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
   - [@ohos.net.connection (网络连接管理)（系统接口）](js-apis-net-connection-sys.md)
   - [@ohos.net.ethernet (以太网连接管理)（系统接口）](js-apis-net-ethernet-sys.md)
   - [@ohos.net.http (数据请求)（系统接口）](js-apis-http-sys.md)
