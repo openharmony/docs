@@ -1957,12 +1957,10 @@ Defines a unique network ID.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-### Attributes
-
-| Name             | Type                         | Mandatory| Description                                                                                    |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
-| uid    | number                        | Yes  | Traffic alarm threshold. The default value is **DATA_USAGE_UNKNOWN**.|
-| rule      | [NetUidRule](#netuidrule10)                 | Yes  | Rule that specifies whether the application specified by a given UID is allowed to access a metered or non-metered network.                                                                    |
+| Name             | Type                          | Mandatory| Description                                     |
+| ----------------- | ----------------------------- | ---- | ----------------------------------------- |
+| uid               | number                        | Yes  | Traffic alarm threshold. The default value is **DATA_USAGE_UNKNOWN**.|
+| rule              | [NetUidRule](#netuidrule10)   | Yes  | Rule that specifies whether the application specified by a given UID is allowed to access a metered or non-metered network.    |
 
 ## NetUidPolicyInfo<sup>11+</sup>
 
@@ -1972,12 +1970,10 @@ Defines the network policy information for an application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-### Attributes
-
-| Name             | Type                         | Mandatory| Description                                                                                    |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
-| uid    | number                        | Yes  | Traffic alarm threshold. The default value is **DATA_USAGE_UNKNOWN**.|
-| policy      | [NetUidPolicy](#netuidpolicy10)                 | Yes  | Policy that specifies whether the application specified by a given UID is allowed to access the network when running in the background.                                   |
+| Name             | Type                           | Mandatory| Description                                   |
+| ----------------- | ------------------------------- | ---- | -------------------------------------- |
+| uid               | number                          | Yes  | Traffic alarm threshold. The default value is **DATA_USAGE_UNKNOWN**.|
+| policy            | [NetUidPolicy](#netuidpolicy10) | Yes  | Policy that specifies whether the application specified by a given UID is allowed to access the network when running in the background.   |
 
 ## RemindType<sup>10+</sup>
 

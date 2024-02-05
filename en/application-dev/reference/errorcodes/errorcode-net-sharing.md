@@ -18,7 +18,7 @@ This error code is reported if the parameter value is invalid.
 
 The input parameter value is not within the valid value range.
 
-**Procedure**
+**Solution**
 
 Check whether the input parameter value is within the valid value range.
 
@@ -36,7 +36,7 @@ This error code is reported if a service connection failure occurs.
 
 The service is abnormal.
 
-**Procedure**
+**Solution**
 
 Check whether system services are running properly.
 
@@ -56,7 +56,7 @@ This error code is reported if a system internal error occurs.
 
 2. A null pointer is present.
 
-**Procedure**
+**Solution**
 
 1. Check whether the memory space is sufficient. If not, clear the memory and try again.
 
@@ -76,7 +76,7 @@ This error code is reported if an Iface is used.
 
 The specified Iface does not exist or the Iface name is incorrect.
 
-**Procedure**
+**Solution**
 
 1. Check whether the shared Iface is available.
 
@@ -100,7 +100,7 @@ This error code is reported if Wi-Fi sharing fails.
 
 No connected network is available and therefore the attempt to obtain the default network fails.
 
-**Procedure**
+**Solution**
 
 Check whether the network connection is normal.
 
@@ -120,7 +120,7 @@ This error code is reported if Bluetooth sharing fails.
 
 2. No connected network is available and therefore the attempt to obtain the default network fails.
 
-**Procedure**
+**Solution**
 
 1. Touch the Bluetooth icon to turn on Bluetooth mode.
 
@@ -140,7 +140,7 @@ This error code is reported if an error occurs while enabling forwarding for net
 
 The Iptables rule setting fails and therefore an error occurs while combining Iptables commands fails.
 
-**Procedure**
+**Solution**
 
 Enable the debug log function, and check whether Iptables commands are correctly combined.
 
@@ -158,6 +158,6 @@ This error code is reported if an error occurs while obtaining the network shari
 
 The configuration file directory is incorrect.
 
-**Procedure**
+**Solution**
 
 Specify a correct configuration file directory.

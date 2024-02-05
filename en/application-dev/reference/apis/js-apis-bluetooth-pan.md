@@ -15,7 +15,7 @@ import pan from '@ohos.bluetooth.pan';
 ```
 
 
-## pan.createPanProfile<a name="createPanProfile"></a>
+## pan.createPanProfile
 
 createPanProfile(): PanProfile
 
@@ -47,7 +47,7 @@ try {
 Before using any API of **PanProfile**, you need to create an instance of this class by using **createPanProfile()**.
 
 
-### disconnect<a name="PanP-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -89,7 +89,7 @@ try {
 ```
 
 
-### setTethering<a name="setTethering"></a>
+### setTethering
 
 setTethering(enable: boolean): void
 
@@ -131,7 +131,7 @@ try {
 ```
 
 
-### isTetheringOn<a name="isTetheringOn"></a>
+### isTetheringOn
 
 isTetheringOn(): boolean
 

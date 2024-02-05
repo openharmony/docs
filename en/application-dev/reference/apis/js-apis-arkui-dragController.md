@@ -7,7 +7,7 @@ The **dragController** module provides APIs for initiating drag actions. When re
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 > Since API version 10, you can use the [getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11) API in **UIContext** to obtain the **DragController** object associated with the current UI context.
-> You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
+> You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## Modules to Import
 
@@ -233,7 +233,7 @@ Provides the data reported when the state changes during dragging.
 
 | Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| status       | DragStatus                                                 | Yes  | Current dragging state (started or ended).        |
+| status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
 | event        | [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent) | No  | Drag event corresponding to the current state.              |
 | extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
 
@@ -259,9 +259,29 @@ Starts the drag service. This API uses a promise to return the result.
 
 **Example**
 ```ts
-dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-  console.log("start drag Error:" + err.message);
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+    console.log("start drag Error:" + err.message);
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
+
 ```
 
 ### on('statusChange')<sup>11+</sup>
@@ -280,9 +300,28 @@ Subscribes to drag state changes.
 
 **Example**
 ```ts
-dragAction.on('statusChange', (dragAndDropInfo)=>{
-  console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo);
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+    console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
 ```
 
 ### off('statusChange')<sup>11+</sup>
@@ -301,9 +340,28 @@ Unsubscribes from drag state changes.
 
 **Example**
 ```ts
-dragAction.off('statusChange', (dragAndDropInfo)=>{
-  console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo)
-})
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+let text = new UDC.Text()
+let unifiedData = new UDC.UnifiedData(text)
+let dragInfo: dragController.DragInfo = {
+  pointerId: 0,
+  data: unifiedData,
+  extraParams: ''
+}
+try{
+  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+  if(!dragAction){
+    console.log("listener dragAction is null");
+    return
+  }
+  dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+    console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+  })
+}catch(err) {
+  console.log("create dragAction Error:" + err.message);
+}
 ```
 
 ## dragController.createDragAction<sup>11+</sup>
@@ -347,8 +405,8 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
-  private dragAction: dragController.DragAction|null = null;
+  @State pixmap: image.PixelMap | null = null
+  private dragAction: dragController.DragAction | null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
   @Builder DraggingBuilder() {
     Column() {
@@ -390,7 +448,7 @@ struct DragControllerPage {
               console.log("listener dragAction is null");
               return
             }
-            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
               if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
                 console.log("drag has start");
               } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
@@ -498,6 +556,7 @@ let localStorage: LocalStorage = new LocalStorage('uiContext');
 
 export default class EntryAbility extends UIAbility {
   storage: LocalStorage = localStorage;
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -515,8 +574,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-      windowStage.getMainWindow((err, data) =>
-      {
+      windowStage.getMainWindow((err, data) => {
         if (err.code) {
           hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
           return;
@@ -527,14 +585,14 @@ export default class EntryAbility extends UIAbility {
       })
     });
   }
+}
   ```
 2. In the **Index.ets** file, call **LocalStorage.getShared()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
   ```ts
 
 import UDC from '@ohos.data.unifiedDataChannel';
 import hilog from '@ohos.hilog';
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import dragController from "@ohos.arkui.dragController";
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';

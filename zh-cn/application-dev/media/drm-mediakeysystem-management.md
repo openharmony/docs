@@ -16,9 +16,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function setConfigurationString(configName: string, value: string): void {
-     let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
-     mediaKeysystem.setConfigurationString("configName", "configValue");
-     return;
+     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     try {
+       mediaKeysystem.setConfigurationString(configName, value);
+    } catch (err) {
+       let error = err as BusinessError;
+       console.error(`setConfigurationString ERROR: ${error}`);
+    }
+     return ;
    }
    ```
 
@@ -26,8 +31,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function getConfigurationString(configName: string): string {
-     let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
-     mediaKeysystem.getConfigurationString("configName");
+     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     try {
+       let configValue: string = mediaKeysystem.getConfigurationString(configName);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getConfigurationString ERROR: ${error}`);  
+     }
+     return configValue;
    }
    ```
 
@@ -35,8 +46,13 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function setConfigurationByteArray(configName: string, value: Uint8Array): void {
-     let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
-     mediaKeysystem.setConfigurationByteArray("configName", "configValue");
+     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     try {
+       mediaKeysystem.setConfigurationByteArray(configName, value);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`setConfigurationByteArray ERROR: ${error}`);  
+     }
      return;
    }
    ```
@@ -45,8 +61,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function getConfigurationByteArray(configName: string): Uint8Array {
-     let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
-     mediaKeysystem.getConfigurationByteArray("configName");
+     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     try {
+       let configValue: Uint8Array = mediaKeysystem.getConfigurationByteArray(configName);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getConfigurationByteArray ERROR: ${error}`);  
+     }
+     return configValue;
    }
    ```
 
@@ -54,8 +76,13 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function getStatistics(): StatisticKeyValue[] {
-     let metricKeyValue = getStatistics();
-     return metricKeyValue;
+     try {
+       let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getConfigurationByteArray ERROR: ${error}`);
+     }
+     return statisticKeyValue;
    }
    ```
 
@@ -64,10 +91,15 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySyste类中的getMaxContentProtectionLevel方法，获取设备支持的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-     function getMaxContentProtectionLevel(): ContentProtectionLevel {
-       let contentProtectionLevel = getMaxContentProtectionLevel();
-       return contentProtectionLevel;
+   function getMaxContentProtectionLevel(): ContentProtectionLevel {
+     try {
+       let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getConfigurationByteArray ERROR: ${error}`);
      }
+     return contentProtectionLevel;
+   }
      ```
 
 8. 生成设备证书请求。
@@ -75,10 +107,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySyste类中的generateKeySystemRequest方法，获取设备证书请求。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-     function generateKeySystemRequest(): Promise<ProvisionRequest> {
-       let provisionRequest = generateKeySystemRequest();
-       return provisionRequest;
-     }
+   function generateKeySystemRequest(): Promise<ProvisionRequest> {
+     generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
+       console.log("generateKeySystemRequest");
+     }).catch((err: BusinessError) => {
+       console.error(`generateKeySystemRequest: ERROR: ${err}`);
+     });
+     return provisionRequest;
+   }
      ```
 
 9. 处理设备证书响应。
@@ -86,88 +122,127 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySyste类中的processKeySystemResponse方法，处理设备证书响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-     function processKeySystemResponse(response: Uint8Array): Promise<void> {
-       processKeySystemResponse(response);
-       return;
-     }
+   function processKeySystemResponse(response: Uint8Array): Promise<void> {
+     processKeySystemResponse(response).then(() => {
+       console.log("processKeySystemResponse");
+     }).catch((err: BusinessError) => {
+       console.error(`processKeySystemResponse: ERROR: ${err}`);
+     });
+     return;
+   }
      ```
 
 10. 获取设备证书状态。
 
-    调用MediaKeySyste类中的getCertificateStatus方法，获取设备证书状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySyste类中的getCertificateStatus方法，获取设备证书状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function getCertificateStatus(): CertificateStatus {
-        let certificateStatus = getCertificateStatus();
-        return certificateStatus;
-      }
-      ```
+   ```ts
+   function getCertificateStatus(): CertificateStatus {
+     try {
+       let certificateStatus: drm.CertificateStatus = mediaKeysystem.getCertificateStatus();
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getCertificateStatus ERROR: ${error}`);
+     }
+     return certificateStatus;
+   }
+   ```
 
 11. 创建DRM会话。
 
-    调用MediaKeySyste类中的createMediaKeySession方法，按指定安全级别进行创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySyste类中的createMediaKeySession方法，按指定安全级别进行创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function createMediaKeySession(level: ContentProtectionLevel): MediaKeySession {
-        let mediaKeySession = createMediaKeySession(level);
-        return mediaKeySession;
-      }
-      ```
+   ```ts
+   function createMediaKeySession(level: ContentProtectionLevel): MediaKeySession {
+     try {
+       let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.level.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getCertificateStatus ERROR: ${error}`);
+     }
+     return mediaKeySession;
+   }
+   ```
 
 12. 创建DRM会话。
 
-    调用MediaKeySyste类中的createMediaKeySession方法，创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySyste类中的createMediaKeySession方法，创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function createMediaKeySession(): MediaKeySession {
-        let mediaKeySession = createMediaKeySession();
-        return mediaKeySession;
-      }
-      ```
+   ```ts
+   function createMediaKeySession(): MediaKeySession {
+     try {
+       let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getCertificateStatus ERROR: ${error}`);
+     }
+     return mediaKeySession;
+   }
+   ```
 
 13. 获取离线许可证Id。
 
-    调用MediaKeySyste类中的getOfflineMediaKeyIds方法，获取离线许可证Id。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySyste类中的getOfflineMediaKeyIds方法，获取离线许可证Id。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function getOfflineMediaKeyIds(): Uint8Array[] {
-        let offlineMediaKeyIds = getOfflineMediaKeyIds();
-        return offlineMediaKeyIds;
-      }
-      ```
+   ```ts
+   function getOfflineMediaKeyIds(): Uint8Array[] {
+     try {
+       let offlineMediaKeyIds: Uint8Array[] = mediaKeysystem.getOfflineMediaKeyIds();
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getOfflineMediaKeyIds ERROR: ${error}`);
+     }
+     return offlineMediaKeyIds;
+   }
+   ```
 
 14. 获取离线许可证状态。
 
     调用MediaKeySyste类中的getOfflineMediaKeyStatus方法，获取离线许可证状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function getOfflineMediaKeyStatus(mediakeyId: Uint8Array): OfflineMediaKeyStatus {
-        let offlineMediaKeyStatus = getOfflineMediaKeyStatus(mediakeyId);
-        return offlineMediaKeyStatus;
-      }
-      ```
+   ```ts
+   function getOfflineMediaKeyStatus(mediakeyId: Uint8Array): OfflineMediaKeyStatus {
+     try {
+       let offlineMediaKeyStatus: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediakeyId);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
+     }
+     return offlineMediaKeyStatus;
+   }
+   ```
 
 15. 移除离线许可证。
 
     调用MediaKeySyste类中的clearOfflineMediaKeys方法，创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function clearOfflineMediaKeys(mediakeyId: Uint8Array): void {
-        clearOfflineMediaKeys(mediakeyId);
-        return;
-      }
-      ```
+   ```ts
+   function clearOfflineMediaKeys(mediakeyId: Uint8Array): void {
+     try {
+       mediaKeysystem.clearOfflineMediaKeys(mediakeyId);
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`clearOfflineMediaKeys ERROR: ${error}`);
+     }
+     return;
+   }
+   ```
 
 16. 销毁MediaKeySystem实例。
 
     调用MediaKeySyste类中的destroy方法，销毁MediaKeySystem实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
 
-      ```ts
-      function destroy(mediaKeySyste: MediaKeySyste): void {
-        mediaKeySyste.destroy();
-        return;
-      }
-      ```
+   ```ts
+   function destroy(mediaKeySyste: MediaKeySyste): void {
+     try {
+       mediaKeysystem.destroy();
+     } catch (err) {
+       let error = err as BusinessError;
+       console.error(`mediaKeysystem destroy ERROR: ${error}`);
+     }
+     return;
+   }
+   ```
 
 17. 状态监听。
 
@@ -175,17 +250,17 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     - 通过注册固定的keySystemRequired回调函数获取监听设备证书请求，MediaKeySystem创建成功时即可监听，有该事件返回结果则认为设备证书请求开始，不需要监听的时候使用off进行注销监听。
 
-      ```ts
-      function onRegisterkeySystemRequired(mediaKeysystem: drm.MediaKeysystem): void {
-        mediaKeysystem.on('keySystemRequired', (eventInfo) => {
-          console.log('keySystemRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-        });
-      }
-      ```
+   ```ts
+   function onRegisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
+     mediaKeysystem.on('keySystemRequired', (eventInfo: EventInfo) => {
+       console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+     });
+   }
+   ```
 
-      ```ts
-      function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeysystem): void {
-        mediaKeysystem.off('keySystemRequired');
-      }
-      ```
+   ```ts
+   function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
+     mediaKeysystem.off('keySystemRequired');
+   }
+   ```
 

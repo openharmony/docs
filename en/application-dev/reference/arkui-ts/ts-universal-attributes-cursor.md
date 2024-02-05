@@ -33,7 +33,7 @@ Restores the cursor to its default style. This API is a global API.
 
 
 ```ts
-// cursorControlTest.ets
+// xxx.ets
 import pointer from '@ohos.multimodalInput.pointer';
 
 @Entry

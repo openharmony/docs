@@ -1065,7 +1065,6 @@ avSession.sendSystemControlCommand(avcommand).then(() => {
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 <br> **系统接口：** 该接口为系统接口。 |
 | TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式 <br> **系统接口：** 该接口为系统接口。 |
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
@@ -1378,6 +1377,8 @@ avSession.on('deviceOffline', (deviceId: string) => {
 off(type: 'deviceOffline', callback?: (deviceId: string) => void): void
 
 取消设备下线回调的监听。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -2003,12 +2004,12 @@ aVCastController.off('videoSizeChange');
 
 **系统接口：** 该接口为系统接口。
 
-| 名称          | 类型              | 说明  |
-| --------------| ---------------- |------|
-| sessionId    | string    | 会话ID      |
-| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 会话类型    |
-| sessionTag   | string             | 会话的自定义名称    |
-| elementName  | [ElementName](../apis/js-apis-bundle-ElementName.md)  | 会话所属应用的信息（包含bundleName、abilityName等） |
-| isActive     | boolean             | 会话是否被激活                                      |
-| isTopSession | boolean             | 会话是否为最新的会话                                |
-| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 分布式设备相关信息   |
+| 名称          | 类型              | 可读 | 可写 | 说明  |
+| --------------| ---------------- | ---------------- | ---------------- |------|
+| sessionId    | string    | 是 | 是  | 会话ID      |
+| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型    |
+| sessionTag   | string             | 是 | 是 | 会话的自定义名称    |
+| elementName  | [ElementName](../apis/js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等） |
+| isActive     | boolean             | 是 | 是 | 会话是否被激活                                      |
+| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话                                |
+| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息   |

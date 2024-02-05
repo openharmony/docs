@@ -56,7 +56,7 @@ Displays an image-attached confirmation dialog box. If necessary, the confirmati
 
 ## SelectDialog
 
-SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent?: Array&lt;SheetInfo&gt;})
+SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array&lt;SheetInfo&gt;})
 
 Displays a dialog box from which the user can select options presented in a list or grid.
 
@@ -73,7 +73,7 @@ Displays a dialog box from which the user can select options presented in a list
 | content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.| 
 | selectedIndex | number | No| Index of the selected option in the dialog box.<br>Default value: **-1**| 
 | confirm | [ButtonOptions](#buttonoptions) | No| Button at the bottom of the dialog box.| 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | No| List of subitems in the dialog box. You can set text and a select callback for each subitem.| 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | Yes| List of subitems in the dialog box. You can set text and a select callback for each subitem.| 
 
 
 ## ConfirmDialog
@@ -101,7 +101,7 @@ Displays an error dialog box that informs the user of an operational error (for 
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, content?: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 Displays an alert dialog box to prompt the user to confirm an action that is irreversible and may cause serious consequences, such as deletion, reset, editing cancellation, and stop.
 
@@ -134,7 +134,7 @@ Displays a loading dialog box to inform the user of the operation progress.
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.| 
-| content | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the dialog box.| 
+| content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.| 
 
 
 ## ButtonOptions
@@ -144,7 +144,7 @@ Displays a loading dialog box to inform the user of the operation progress.
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the button.| 
-| action | ()&nbsp;=&gt;&nbsp;void | No| Click event of the button.| 
+| action | () =&gt; void | No| Click event of the button.| 
 | background | [ResourceColor](ts-types.md#resourcecolor) | No| Background of the button.| 
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color of the button.| 
 

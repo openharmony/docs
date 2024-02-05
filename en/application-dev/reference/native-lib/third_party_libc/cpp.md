@@ -22,17 +22,19 @@ In the **{ndk_root}/build/cmake/ohos.toolchain.cmake** file of the NDK, the **OH
 * **c++_shared**: The native library dynamically links **libc++_shared.so**.
 * **c++_static**: The native library links the static library **libc++_static.a**.
 
-## Precautions
+## C++ Runtime Compatibility
 
-1. In an application project, the native library can be linked to the C++ runtime library in only one mode. The C++ runtime library has many global variables and states. Using the two modes in a project may cause coexistence of multiple states, which result in C++ runtime exceptions.
-
-2. Prevent the application binary interface (ABI) compatibility issues. In OpenHarmony, both the system library and application native library use the libc++. However, the two libc++ libraries are different. The libc++ of the system library is updated with the system image version, while the libc++ of the application native library is updated with the version of the SDK used for build. The two libc++ libraries may be different from multiple major versions, which causes ABI compatibility issues. To solve this problem, OpenHarmony differentiates the two libc++ libraries as follows:
+In OpenHarmony, both the system library and the application native library use libc++. However, the upgrade pace of the two libraries is different, and the dependent C++ runtime versions may be different. The libc++ of the system library is updated with the image version, while the libc++ of the application native library is updated with the version of the SDK used for compilation. The two libc++ libraries may be different from multiple major versions, which causes Application Binary Interface (ABI) compatibility issues. To solve this problem, OpenHarmony differentiates the two libc++ libraries as follows:
 
     * System library: uses **libc++.so**, which is released with the system image.
     * Application native library: uses **libc++_shared.so**, which is released with the application.
 
-   The two libc++ libraries use different namespaces. **libc++_shared.so** uses **__n1** as the namespace for C++ symbols, and **libc++.so** uses **__h** for C++ symbols.
+The two libc++ libraries use different namespaces. **libc++_shared.so** uses **__n1** as the namespace for C++ symbols, and **libc++.so** uses **__h** for C++ symbols.
 
-   > **CAUTION**
-   >
-   > The system library cannot use the libc++ of the application native library, and vice versa. Currently, the Native APIs must be C interfaces only, which isolates the two libc++ runtime environments.
+   > **NOTE**<br>The system library cannot use the libc++ of the application native library, and vice versa. Currently, the Native APIs must be C interfaces only. This also isolates the two libc runtime environments.
+
+## Precautions
+
+- The upgrade of the C++ runtime library toolchain to a major version does not ensure ABI compatibility. If an application package has multiple dynamic libraries, these dynamic libraries must be compiled using the Clang toolchain of the same major version and depend on the libc++_shared library of the same version. Otherwise, unpredictable errors may occur.
+
+- If there is only one shared library in your application project, you are advised to use **c++_static**, which simplifies the C++ runtime code run by the linker and reduces the package size. Dynamic linking of libc++ is recommended if there are multiple libraries in your project, the dependency is a HAR package of a dynamic library, or there are binary .so packages in the OHPM library. Static linking may cause multiple copies of a function or an object defined in an application, which violates the One Definition Rule of C++.

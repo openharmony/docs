@@ -116,7 +116,7 @@ Represents the length union type that does not support values in percentage.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Value                        | Description                                         |
+| Type                            | Description                                         |
 | -------------------------------- | --------------------------------------------- |
 | [PX](ts-types.md#px10)           | The **PX** type is used to represent a length in px. |
 | [VP](ts-types.md#vp10)           | The **VP** type is used to represent a length in vp. |

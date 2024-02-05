@@ -354,7 +354,7 @@ The method to be called is not callable or is an async method or a generator.
 
 **错误信息**
 
-The global call exceededs the timeout.
+The global call exceeds the timeout.
 
 **错误描述**
 

@@ -12,6 +12,21 @@ fileAccess模块是基于[extension](../../application-models/extensionability-o
 ```ts
 import fileAccess from '@ohos.file.fileAccess';
 ```
+
+## 常量
+
+表示用于监听设备上线和下线通知的URI，用作注册监听的URI。
+
+**模型约束**：仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService。
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
+| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
+| DEVICES_URI<sup>11+</sup>  | string | 是   | 否   | 监听设备上线，下线通知，作为注册监听的URI                    |
+
 ## fileAccess.getFileAccessAbilityInfo
 
 getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
@@ -2526,9 +2541,3 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 | destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |
 | errCode   | number | 是   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。 |
 | errMsg    | string | 是   | 否   | 错误信息。                                                   |
-
-## 常量
-
-| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
-| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | 是   | 否   | 监听设备上线，下线通知，作为注册监听的URI。<br/> **模型约束**：仅可在Stage模型下使用。<br/> **系统能力**：SystemCapability.FileManagement.UserFileService <br/> **需要权限**：ohos.permission.FILE_ACCESS_MANAGER |

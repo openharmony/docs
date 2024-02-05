@@ -34,7 +34,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 |-----------------|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | alignContent    | [Alignment](ts-appendix-enums.md#alignment) | Alignment of child components in the container.<br>Default value: **Alignment.Center**<br>**NOTE**<br>When both this attribute and the universal attribute [align](ts-universal-attributes-location.md) are set, whichever is set last takes effect.|
 | enableAnimation | boolean                                     | Whether to enable the default animation.<br>Default value: **true**                                                                                                    |
-| autoHalfFold    | boolean                                     | Whether to enable auto-rotate.<br>Default value: **true**                                                                                                           |
+| autoHalfFold    | boolean                                     | Whether to enable auto rotation. This attribute is effective only when auto rotation is disabled in device system settings.<br>Default value: **true**                                                                                                           |
 >  **NOTE**
 >
 >  Setting the **offset** and **margin** attributes may cause the upper and lower half screens to block the crease region. Therefore, avoid setting these attributes with this component.
@@ -45,7 +45,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                                               | Description                                          |
 |-------------------------------------------------------------------|------------------------------------------------|
-| onFolderStateChange (callback: (foldStatus: [FoldStatus](ts-appendix-enums.md#foldstatus11) => void) | Called when the folding status changes.<br>- **foldStatus**: folding status of the device.|
+| onFolderStateChange (callback: (event: { foldStatus: [FoldStatus](ts-appendix-enums.md#foldstatus11) }) => void) | Called when the folding state changes. This API takes effect only in landscape mode.<br>- **foldStatus**: folding status of the device.|
 
 ## Example
 

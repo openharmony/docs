@@ -1,6 +1,5 @@
 # Contacts Kit API参考 
 
 - ArkTS API 
-- C API
-- 错误码
+  - [@ohos.contact (联系人)](js-apis-contact.md)
 

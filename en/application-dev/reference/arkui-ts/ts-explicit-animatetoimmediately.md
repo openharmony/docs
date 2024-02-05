@@ -8,11 +8,11 @@ The **animateToImmediately** API implements immediate delivery for [explicit ani
 >
 >  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
-animateToImmediately(value: AnimateParam, event: () => void): void
+animateToImmediately(value: [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam), event: () => void): void
 
 | Parameter   | Type                               | Mandatory| Description                                   |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
+| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
 | event | () => void                        | Yes   | Closure function that displays the animation. The system automatically inserts a transition animation for state changes caused by the closure function.|
 
 ## Example

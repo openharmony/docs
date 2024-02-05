@@ -46,11 +46,14 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
    - To obtain the SMSC address, call the** getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
    Before requesting the permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
-2. Import the required modules.
+2. (Optional) Implement the function of jumping to the SMS message editing page. Generally, a third-party application cannot obtain the preceding permissions. If you need to implement the function of jumping to the SMS message editing page with the edited content and recipient number, call the **startAbility** API to specify the recipient number and jump to the SMS message sending page. For details, see sample code 2.
 
-3. Send an SMS message.
+3. Import the required modules.
+
+4. Send an SMS message.
 
 ```ts
+// Sample code 1
 import sms from '@ohos.telephony.sms';
 import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
@@ -70,5 +73,65 @@ let options: sms.SendMessageOptions = {slotId, content, destinationHost, service
 sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
+
+
+// Sample code 2
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+
+const MMS_BUNDLE_NAME = "com.ohos.mms";
+const MMS_ABILITY_NAME = "com.ohos.mms.MainAbility";
+const MMS_ENTITIES = "entity.system.home";
+
+export class Contact {
+    contactsName: string;
+    telephone: number;
+
+    constructor(contactsName: string, telephone: number) {
+        this.contactsName = contactsName;
+        this.telephone = telephone;
+    }
+}
+
+@Entry
+@Component
+struct JumpMessage {
+    private context = getContext(this) as common.UIAbilityContext;
+
+    startMMSAbilityExplicit() {
+        // Complete the contact and number. You can query the contact name based on the phone number. Therefore, the phone number is mainly used in this mode.
+        let params: Array<Object> = [new Contact ("Tom", 13344556677)];
+
+        let want: Want = {
+            bundleName: "com.ohos.mms",
+            abilityName: "com.ohos.mms.MainAbility",
+            parameters: {
+                contactObjects: JSON.stringify(params),
+                pageFlag: "conversation",
+                // Enter the SMS message content.
+                content: "SMS messge content"
+            }
+        };
+
+        this.context.startAbilityForResult(want).then((data) => {
+            console.log("Success" + JSON.stringify(data));
+        }).catch(() => {
+            console.log("error");
+        });
+    }
+
+    build() {
+        Row() {
+            Column() {
+                Button ('Send SMS')
+                  .onClick(() => {
+                      this.startMMSAbilityExplicit();
+                  })
+            }
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 

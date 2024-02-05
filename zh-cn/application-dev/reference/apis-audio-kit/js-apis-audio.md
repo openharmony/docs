@@ -7821,7 +7821,7 @@ audioCapturer.off('inputDeviceChange');
 
 on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
 
-订阅监听录音流配置变化，使用callback方式返回结果。
+订阅监听录音流配置变化，使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7830,7 +7830,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
-| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，返回监听的录音流配置变化。 |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，录音流配置或状态变化时返回监听的录音流当前配置和状态信息。 |
 
 **错误码：**
 
@@ -7863,7 +7863,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
-| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置变化。 |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置或状态变化。 |
 
 **错误码：**
 
