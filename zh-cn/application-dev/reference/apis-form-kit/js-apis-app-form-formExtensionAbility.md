@@ -19,7 +19,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis/js-apis-inner-application-extensionContext.md)。 |
 
 ## onAddForm
 
@@ -33,7 +33,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -246,7 +246,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](../apis/js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 
@@ -275,7 +275,7 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
+| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
 
 **示例：**
 

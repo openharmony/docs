@@ -1,4 +1,4 @@
-# FormExtensionContext (系统接口)
+# FormExtensionContext
 
 FormExtensionContext模块是[FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)的上下文环境，继承自[ExtensionContext](../apis/js-apis-inner-application-extensionContext.md)。
 
