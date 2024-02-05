@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-详细的API说明请参考[DRM API参考](../reference/apis/js-apis-drm.md)。
+详细的API说明请参考[DRM API参考](../reference/apis-drm-kit/js-apis-drm.md)。
 
 1. 导入drm接口，接口中提供了drm相关的属性和方法。
 

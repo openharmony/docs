@@ -38,7 +38,7 @@
 
    当前示例使用默认参数。具体请参[LocationButton控件](../../reference/arkui-ts/ts-security-components-locationbutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
 
-   在LocationButton的onClick()回调中通过调用[geoLocationManager](../../reference/apis/js-apis-geoLocationManager.md)模块提供的方法获取当前位置信息。
+   在LocationButton的onClick()回调中通过调用[geoLocationManager](../../reference/apis-location-kit/js-apis-geoLocationManager.md)模块提供的方法获取当前位置信息。
 
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';

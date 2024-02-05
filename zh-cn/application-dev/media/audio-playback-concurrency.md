@@ -22,7 +22,7 @@
 
 设置焦点模式的方法：
 
-- 若[使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)，则可以通过修改AVPlayer的[audioInterruptMode](../reference/apis/js-apis-media.md#avplayer9)属性进行设置。
+- 若[使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)，则可以通过修改AVPlayer的[audioInterruptMode](../reference/apis-media-kit/js-apis-media.md#avplayer9)属性进行设置。
 
 - 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[setInterruptMode](../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9)函数进行设置。
 
@@ -49,7 +49,7 @@
 
 监听音频打断事件的方法：
 
-- 若[使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)，则可以调用AVPlayer的[on('audioInterrupt')](../reference/apis/js-apis-media.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
+- 若[使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)，则可以调用AVPlayer的[on('audioInterrupt')](../reference/apis-media-kit/js-apis-media.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
 
 - 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
 

@@ -22,17 +22,17 @@
 
 1. 获取密钥别名、指定对应的属性参数HuksOptions。
 
-   应用在派生密钥时建议传入[OH_Huks_KeyStorageType](../../reference/native-apis/_huks_type_api.md#oh_huks_keystoragetype)中定义的类型：
+   应用在派生密钥时建议传入[OH_Huks_KeyStorageType](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype)中定义的类型：
 
    - HUKS_STORAGE_ONLY_USED_IN_HUKS：表示协商出的密钥仅在HUKS内使用。
    - HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示不在HUKS内存储，协商后直接导出。
    - 若不传入，则默认同时支持存储和导出，存在安全风险，不推荐业务使用。
 
-2. 调用[OH_Huks_InitSession](../../reference/native-apis/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
+2. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
-3. 调用[OH_Huks_UpdateSession](../../reference/native-apis/_huks_key_api.md#oh_huks_updatesession)更新密钥会话。
+3. 调用[OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession)更新密钥会话。
 
-4. 调用[OH_Huks_FinishSession](../../reference/native-apis/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，完成派生。
+4. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，完成派生。
 
 **删除密钥**
 

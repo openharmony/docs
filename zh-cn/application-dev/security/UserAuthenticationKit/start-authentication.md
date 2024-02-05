@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-具体参数、返回值、错误码等描述，请参考对应的[API文档](../../reference/apis/js-apis-useriam-userauth.md#getuserauthinstance10)。
+具体参数、返回值、错误码等描述，请参考对应的[API文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetuserauthinstance10)。
 
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
@@ -24,7 +24,7 @@
 
 - 统一固定的UI组件样式，便于用户识别。
 
-认证控件的样式如图所示，通过[WidgetParam](../../reference/apis/js-apis-useriam-userauth.md#widgetparam10)配置对应参数。
+认证控件的样式如图所示，通过[WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10)配置对应参数。
 
 ![zh-cn_image_0000001789150921](figures/zh-cn_image_0000001789150921.png)
 
@@ -61,12 +61,12 @@
 
 1. [申请权限](prerequisites.md#申请权限)：ohos.permission.ACCESS_BIOMETRIC。
 
-2. 指定用户认证相关参数[AuthParam](../../reference/apis/js-apis-useriam-userauth.md#authparam10)（包括挑战值、认证类型[UserAuthType](../../reference/apis/js-apis-useriam-userauth.md#userauthtype8)列表和认证等级[AuthTrustLevel](../../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)）、配置认证控件界面[WidgetParam](../../reference/apis/js-apis-useriam-userauth.md#widgetparam10)，调用[getUserAuthInstance](../../reference/apis/js-apis-useriam-userauth.md#getuserauthinstance10)获取认证对象。
+2. 指定用户认证相关参数[AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10)（包括挑战值、认证类型[UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)列表和认证等级[AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)）、配置认证控件界面[WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10)，调用[getUserAuthInstance](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetuserauthinstance10)获取认证对象。
 
-3. 调用[UserAuthInstance.on](../../reference/apis/js-apis-useriam-userauth.md#on10)接口订阅认证结果。
+3. 调用[UserAuthInstance.on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on10)接口订阅认证结果。
 
-4. 调用[UserAuthInstance.start](../../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[IAuthCallback](../../reference/apis/js-apis-useriam-userauth.md#iauthcallback10)回调返回认证结果[UserAuthResult](../../reference/apis/js-apis-useriam-userauth.md#userauthresult10)。
-   当认证成功时返回认证通过类型（[UserAuthType](../../reference/apis/js-apis-useriam-userauth.md#userauthtype8)）和令牌信息（AuthToken）。
+4. 调用[UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10)接口发起认证，通过[IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10)回调返回认证结果[UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10)。
+   当认证成功时返回认证通过类型（[UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)）和令牌信息（AuthToken）。
 
 示例代码为发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
 

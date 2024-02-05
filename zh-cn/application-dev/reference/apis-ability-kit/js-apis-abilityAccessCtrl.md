@@ -175,6 +175,8 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 用于UIAbility拉起弹框请求用户授权。使用callback异步回调。
 
+如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
+
 > **说明：**
 >
 > 非UIAbility不支持调用本函数。
@@ -225,6 +227,8 @@ try {
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;
 
 用于UIAbility拉起弹框请求用户授权。使用promise异步回调。
+
+如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
 
 > **说明：**
 >

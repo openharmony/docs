@@ -12,7 +12,7 @@
 **图1** 播放状态变化示意图  
 ![Playback status change](figures/playback-status-change-ndk.png)
 
-状态的详细说明请参考[AVPlayerState](../reference/native-apis/_a_v_player.md#avplayerstate-1)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
 ## 开发步骤及注意事项
 在 CMake 脚本中链接动态库
@@ -20,8 +20,8 @@
 target_link_libraries(sample PUBLIC libavplayer.so)
 ```
 
-开发者通过引入[avplayer.h](../reference/native-apis/avplayer__base_8h.md)、[avpalyer_base.h](../reference/native-apis/avplayer__base_8h.md)和[native_averrors.h](../reference/native-apis/native__averrors_8h.md)头文件，使用音频播放相关API。
-详细的API说明请参考[AVPlayer API](../reference/native-apis/_a_v_player.md)。
+开发者通过引入[avplayer.h](../reference/apis-media-kit/avplayer__base_8h.md)、[avpalyer_base.h](../reference/apis-media-kit/avplayer__base_8h.md)和[native_averrors.h](../reference/apis-media-kit/native__averrors_8h.md)头文件，使用音频播放相关API。
+详细的API说明请参考[AVPlayer API](../reference/apis-media-kit/_a_v_player.md)。
 
 1. 创建实例OH_AVPlayer_Create()，AVPlayer初始化idle状态。
 
