@@ -24,7 +24,7 @@ import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriber
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明     |
 | ------- | ------------------------------------------------------------ | ---- | ---- | -------- |
-| context<sup>10+</sup> | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | 是   | 否   | 上下文。 |
+| context<sup>10+</sup> | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext-sys.md) | 是   | 否   | 上下文。 |
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 
