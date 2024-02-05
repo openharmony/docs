@@ -48,7 +48,7 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 ```ts
 import { BusinessError } from '@ohos.base';
 
-const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100,
     (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
@@ -93,7 +93,7 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 ```ts
 import { BusinessError } from '@ohos.base';
 
-const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100).then((
     data: account_distributedAccount.DistributedInfo) => {
@@ -140,7 +140,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 ```ts
 import { BusinessError } from '@ohos.base';
 
-const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
 let accountInfo: account_distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
@@ -195,7 +195,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 ```ts
 import { BusinessError } from '@ohos.base';
 
-const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
 let accountInfo: account_distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {

@@ -218,11 +218,63 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
   }
   ```
 
-### checkOsAccountActivated<sup>9+</sup>
+### isOsAccountActivated<sup>11+</sup>
+
+isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
+
+Checks whether an OS account is activated. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                              |
+| ------- | ------ | ---- | --------------------------------- |
+| localId | number | Yes  | ID of the target OS account.|
+
+**Return value**
+
+| Type                  | Description                                                      |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**: Check whether OS account 100 is activated.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
+      console.log('isOsAccountActivated successfully, isActivated: ' + isActivated);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountActivated failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountActivated exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountActivated<sup>(deprecated)</sup>
 
 checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether an OS account is activated. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -262,11 +314,15 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
   }
   ```
 
-### checkOsAccountActivated<sup>9+</sup>
+### checkOsAccountActivated<sup>(deprecated)</sup>
 
 checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account is activated. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -309,11 +365,108 @@ Checks whether an OS account is activated. This API uses a promise to return the
   }
   ```
 
-### checkOsAccountConstraintEnabled<sup>9+</sup>
+### isOsAccountConstraintEnabled<sup>11+</sup>
+
+isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
+
+Checks whether a constraint is enabled for this OS account. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| constraint | string | Yes  | [Constraint](#constraints) to check.|
+
+**Return value**
+
+| Type                  | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let constraint: string = 'constraint.wifi';
+  try {
+    accountManager.isOsAccountConstraintEnabled(constraint).then((isEnabled: boolean) => {
+      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### isOsAccountConstraintEnabled<sup>11+</sup>
+
+isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
+
+Checks whether a constraint is enabled for an OS account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| localId    | number | Yes  | ID of the target OS account. |
+| constraint | string | Yes  | [Constraint](#constraints) to check.|
+
+**Return value**
+
+| Type                  | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  let constraint: string = 'constraint.wifi';
+  try {
+    accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountConstraintEnabled<sup>(deprecated)</sup>
 
 checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the specified constraint is enabled for an OS account. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -355,11 +508,15 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   }
   ```
 
-### checkOsAccountConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>(deprecated)</sup>
 
 checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
 Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -478,11 +635,99 @@ Checks whether this OS account is a test account. This API uses a promise to ret
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### isOsAccountUnlocked<sup>11+</sup>
+
+isOsAccountUnlocked(): Promise&lt;boolean&gt;
+
+Checks whether this OS account has been verified. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                  | Description                                                                     |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.isOsAccountUnlocked().then((isVerified: boolean) => {
+      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### isOsAccountUnlocked<sup>11+</sup>
+
+isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
+
+Checks whether an OS account has been verified. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                             |
+| ------- | ------ | ---- | --------------------------------------------------------------- |
+| localId | number | Yes  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+
+**Return value**
+
+| Type                  | Description                                                              |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
+      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this OS account has been verified. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. Use [isOsAccountUnlocked](#isosaccountunlocked11) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -516,11 +761,16 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 Checks whether this OS account has been verified. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. Use [isOsAccountUnlocked](#isosaccountunlocked11) instead.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -552,11 +802,15 @@ Checks whether this OS account has been verified. This API uses a promise to ret
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether an OS account has been verified. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -596,11 +850,15 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account has been verified. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -683,7 +941,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
 removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes an OS account. This API uses an asynchronous callback to return the result.
+Removes an OS account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -733,7 +991,7 @@ Deletes an OS account. This API uses an asynchronous callback to return the resu
 
 removeOsAccount(localId: number): Promise&lt;void&gt;
 
-Deletes an OS account. This API uses a promise to return the result.
+Removes an OS account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1353,7 +1611,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the maximum number of OS accounts that can be created. This API uses an asynchronous callback to return the result.
+Queries the maximum number of OS accounts that can be created. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1393,7 +1651,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses an 
 
 queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
-Obtains the maximum number of OS accounts that can be created. This API uses a promise to return the result.
+Queries the maximum number of OS accounts that can be created. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1427,11 +1685,63 @@ Obtains the maximum number of OS accounts that can be created. This API uses a p
   }
   ```
 
-### getOsAccountConstraints<sup>9+</sup>
+### getEnabledOsAccountConstraints<sup>11+</sup>
+
+getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains all the enabled constraints of an OS account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| localId | number | Yes  | ID of the target OS account.|
+
+**Return value**
+
+| Type                              | Description                                                      |
+| ---------------------------------- | ---------------------------------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise use to retun the enabled [constraints](#constraints) obtained.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**: Obtain all constraints of OS account 100.
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
+      console.log('getEnabledOsAccountConstraints, constraints: ' + constraints);
+    }).catch((err: BusinessError) => {
+      console.log('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getOsAccountConstraints<sup>(deprecated)</sup>
 
 getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains all constraints enabled for an OS account. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1471,11 +1781,15 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
   }
   ```
 
-### getOsAccountConstraints<sup>9+</sup>
+### getOsAccountConstraints<sup>(deprecated)</sup>
 
 getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains all constraints enabled for an OS account. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1522,7 +1836,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&gt;): void
 
-Obtains information about all the OS accounts created. This API uses an asynchronous callback to return the result.
+Queries information about all the OS accounts created. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1561,7 +1875,7 @@ Obtains information about all the OS accounts created. This API uses an asynchro
 
 queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
-Obtains information about all the OS accounts created. This API uses a promise to return the result.
+Queries information about all the OS accounts created. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1873,11 +2187,15 @@ Creates an OS account and associates it with the specified domain account. This 
   }
   ```
 
-### getCurrentOsAccount<sup>9+</sup>
+### getCurrentOsAccount<sup>(deprecated)</sup>
 
 getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 Obtains information about the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
@@ -1910,11 +2228,15 @@ Obtains information about the OS account to which the current process belongs. T
   }
   ```
 
-### getCurrentOsAccount<sup>9+</sup>
+### getCurrentOsAccount<sup>(deprecated)</sup>
 
 getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
@@ -1948,11 +2270,51 @@ Obtains information about the OS account to which the current process belongs. T
   }
   ```
 
+### queryOsAccount<sup>11+</sup>
+
+queryOsAccount(): Promise&lt;OsAccountInfo&gt;
+
+Queries information about the OS account to which the current process belongs. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.GET_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Return value**
+
+| Type                                          | Description                                      |
+| ---------------------------------------------- | ----------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+
+**Error codes**
+
+| ID| Error Message            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.queryOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+      console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
+    }).catch((err: BusinessError) => {
+      console.log('queryOsAccount err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('queryOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
 ### queryOsAccountById
 
 queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Obtains information about the OS account of the given ID. This API uses an asynchronous callback to return the result.
+Queries information about the OS account of the given ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1995,7 +2357,7 @@ Obtains information about the OS account of the given ID. This API uses an async
 
 queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about the OS account of the given ID. This API uses a promise to return the result.
+Queries information about the OS account of the given ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2115,7 +2477,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
+Queries the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2152,7 +2514,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Obtains the ID of this distributed virtual device. This API uses a promise to return the result.
+Queries the ID of this distributed virtual device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2853,7 +3215,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | localId     | number | Yes  |  ID of the target OS account.|
 | constraint     | string | Yes  |  Name of the [constraint](#constraints) to query.|
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](#constraints) source information obtained. Otherwise, **err** is an error object.                     |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](#constraints) source information obtained. Otherwise, **err** is an error object.                     |
 
 **Error codes**
 
@@ -2902,7 +3264,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise used to return the [constraint](#constraints) source information obtained.|
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise used to return the [constraint](#constraints) source information obtained.|
 
 **Error codes**
 
@@ -3000,7 +3362,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountActivated](#checkosaccountactivated9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3036,7 +3398,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountActivated](#checkosaccountactivated9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3075,7 +3437,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3113,7 +3475,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3309,7 +3671,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
+  accountManager.isOsAccountVerified().then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
     console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -3598,7 +3960,7 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountConstraints](#getosaccountconstraints9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3629,7 +3991,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountConstraints](#getosaccountconstraints9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 Obtains all constraints enabled for an OS account. This API uses a promise to return the result.
 
@@ -3666,7 +4028,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains information about all activated OS accounts. This API uses an asynchronous callback to return the result.
+Queries information about all activated OS accounts. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3702,7 +4064,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1).
 
-Obtains information about all activated OS accounts. This API uses a promise to return the result.
+Queries information about all activated OS accounts. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3728,11 +4090,11 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Obtains information about the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
+Queries information about the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCurrentOsAccount](#getcurrentosaccount9).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3759,11 +4121,11 @@ Obtains information about the OS account to which the current process belongs. T
 
 queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result.
+Queries information about the OS account to which the current process belongs. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getCurrentOsAccount](#getcurrentosaccount9-1).
+> This API is supported since API version 7 and deprecated since API version 9. The substitute API is available only to system applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -5290,7 +5652,7 @@ Authenticates this domain account in a pop-up window.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>;
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
 No permission is required since API version 11. Use the SDK of the latest version.
 
@@ -5339,7 +5701,7 @@ Authenticates a domain account in a pop-up window.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>;
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
 No permission is required since API version 11. Use the SDK of the latest version.
 
@@ -5685,7 +6047,7 @@ Obtains information about the specified domain account. This API uses a promise 
 
 ### getAccessToken<sup>11+</sup>
 
-getAccessToken(businessParams: { [key: string]: Object }, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the service access token of this domain account. This API uses an asynchronous callback to return the result.
 
@@ -5697,7 +6059,7 @@ Obtains the service access token of this domain account. This API uses an asynch
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| businessParams | { [key: string]: Object }  | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
+| businessParams | Record<string, Object>  | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
 | callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, an error object is returned.|
 
 **Error codes**
@@ -5734,7 +6096,7 @@ Obtains the service access token of this domain account. This API uses an asynch
 
 ### getAccessToken<sup>11+</sup>
 
-getAccessToken(businessParams: { [key: string]: Object }): Promise&lt;Uint8Array&gt;
+getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt;
 
 Obtains the service access token of this domain account. This API uses a promise to return the result.
 
@@ -5746,7 +6108,7 @@ Obtains the service access token of this domain account. This API uses a promise
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| businessParams | { [key: string]: Object } | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
+| businessParams | Record<string, Object> | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
 
 **Return value**
 
@@ -6404,7 +6766,7 @@ Called to return the result code and authentication result.
 
 ### onAcquireInfo?<sup>8+</sup>
 
-onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void;
 
 Called to acquire identity authentication information.
 
@@ -6418,7 +6780,7 @@ Called to acquire identity authentication information.
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | Yes  | Type of authentication executor.  |
 | acquire   | number  | Yes  | Tip code of the authentication executor.|
-| extraInfo | any     | Yes  | Reserved.                    |
+| extraInfo | Uint8Array     | Yes  | Reserved.                    |
 
 **Example**
   ```ts
@@ -6427,7 +6789,7 @@ Called to acquire identity authentication information.
       console.log('auth result = ' + result)
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
-    onAcquireInfo: (module: number, acquire: number, extraInfo: account_osAccount.RequestResult) => {
+    onAcquireInfo: (module: number, acquire: number, extraInfo: Uint8Array) => {
       console.log('auth module = ' + module);
       console.log('auth acquire = ' + acquire);
       console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -6470,7 +6832,7 @@ Called to return the result code and request result information.
 
 ### onAcquireInfo?<sup>8+</sup>
 
-onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void;
 
 Called to acquire IDM information.
 
@@ -6484,7 +6846,7 @@ Called to acquire IDM information.
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | Yes  | Type of authentication executor.  |
 | acquire   | number  | Yes  | Tip code of the authentication executor.|
-| extraInfo | any     | Yes  | Reserved.                    |
+| extraInfo | Uint8Array | Yes  | Reserved.                    |
 
 **Example**
   ```ts
@@ -6493,7 +6855,7 @@ Called to acquire IDM information.
       console.log('callback result = ' + result)
       console.log('callback onResult = ' + JSON.stringify(extraInfo));
     },
-    onAcquireInfo: (module: number, acquire: number, extraInfo: Object) => {
+    onAcquireInfo: (module: number, acquire: number, extraInfo: Uint8Array) => {
       console.log('callback module = ' + module);
       console.log('callback acquire = ' + acquire);
       console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
@@ -6765,14 +7127,16 @@ Defines the OS account information.
 | localName                      | string                                                       | Yes  | OS account name.                   |
 | type                           | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
 | constraints                    | Array&lt;string&gt;                                          | No  | OS account [Constraints](#constraints). By default, no value is passed.|
-| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether to verify the OS account.                     |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | Yes  | Whether to verify the OS account.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                    |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | Yes  | Whether the account is unlocked (whether the **el2** directory is decrypted).                     |
 | photo<sup>8+</sup>             | string                                                       | No  | OS account avatar. By default, no value is passed.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
 | lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account. By default, no value is passed.         |
 | serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the OS account.                     |
-| isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | Yes  | Whether the OS account is activated.<br>**NOTE**<br/>This parameter is supported since API version 7 and deprecated since API version 11.                 |
+| isActivated<sup>11+</sup>         | boolean                                                   | Yes  | Whether the OS account is activated.                 |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information. By default, no value is passed.                   |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | No  | Distributed account information. By default, no value is passed.                   |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information. By default, no value is passed.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
@@ -6786,7 +7150,7 @@ Defines the domain account information.
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
 | accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: It is a system API and is left blank by default.|
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: It is a system API. The default value is **false**. |
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: It is a system API. The default value is **false**.|
 
 ## Constraints
 
@@ -6867,7 +7231,7 @@ Defines the constraint source type.
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | Yes  | ID of the OS account.    |
-| type | [ConstraintSourceType](#constraintsourcetype) | Yes  | Type of the constrain source.|
+| type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source.|
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -6909,7 +7273,7 @@ Defines the options for obtaining a domain access token.
 | ----------- | ------ | ---- | ---------- |
 | domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.  |
 | domainAccountToken | Uint8Array | Yes  | Token of the domain account.|
-| businessParams | { [key: string]: object } | Yes  | Service parameters customized by the service party based on the request protocol.|
+| businessParams | Record<string, Object> | Yes  | Service parameters customized by the service party based on the request protocol.|
 | callerUid | number | Yes  | Unique identifier of the caller.|
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
