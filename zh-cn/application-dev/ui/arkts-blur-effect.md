@@ -8,10 +8,10 @@
 
 | 接口                                                         | 说明                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| [backdropBlur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | 为当前组件添加背景模糊效果，入参为模糊半径。 |
-| [blur](../reference/arkui-ts/ts-universal-attributes-image-effect.md#blur) | 为当前组件添加内容模糊效果，入参为模糊半径。 |
-| [backgroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | 为当前组件添加背景模糊效果，入参为模糊样式。 |
-| [foregroundBlurStyle](../reference/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | 为当前组件添加内容模糊效果，入参为模糊样式。 |
+| [backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | 为当前组件添加背景模糊效果，入参为模糊半径。 |
+| [blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur) | 为当前组件添加内容模糊效果，入参为模糊半径。 |
+| [backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | 为当前组件添加背景模糊效果，入参为模糊样式。 |
+| [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | 为当前组件添加内容模糊效果，入参为模糊样式。 |
 
 
 ## 使用backdropBlur为组件添加背景模糊

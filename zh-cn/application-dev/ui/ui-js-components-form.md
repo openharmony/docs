@@ -1,6 +1,6 @@
 # form开发指导
 
-form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-components-basic-input.md)组件内容的提交和重置。具体用法请参考[form API](../reference/arkui-js/js-components-container-form.md)。
+form是一个表单容器，支持容器内[Input](../reference/apis-arkui/arkui-jsjs-components-basic-input.md)组件内容的提交和重置。具体用法请参考[form API](../reference/apis-arkui/arkui-jsjs-components-container-form.md)。
 
 
 ## 创建form组件
@@ -32,7 +32,7 @@ form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-comp
 
 ## 实现表单缩放
 
-为form组件添加click-effect属性，实现点击表单后的缩放效果，click-effect枚举值请参考[通用属性](../reference/arkui-js/js-components-common-attributes.md)。
+为form组件添加click-effect属性，实现点击表单后的缩放效果，click-effect枚举值请参考[通用属性](../reference/apis-arkui/arkui-jsjs-components-common-attributes.md)。
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -139,7 +139,7 @@ export default{
 
 在本场景中，开发者可以选择相应选项并提交或重置数据。
 
-创建[Input](../reference/arkui-js/js-components-basic-input.md)组件，分别设置type属性为checkbox（多选框）和radio（单选框），再使用form组件的onsubmit和onreset事件实现表单数据的提交与重置。
+创建[Input](../reference/apis-arkui/arkui-jsjs-components-basic-input.md)组件，分别设置type属性为checkbox（多选框）和radio（单选框），再使用form组件的onsubmit和onreset事件实现表单数据的提交与重置。
 
 ```html
 <!-- xxx.hml -->

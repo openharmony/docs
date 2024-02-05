@@ -1,6 +1,6 @@
 # list开发指导
 
-list是用来显示列表的组件，包含一系列相同宽度的列表项，适合连续、多行地呈现同类数据。具体用法请参考[list API](../reference/arkui-js/js-components-container-list.md)。
+list是用来显示列表的组件，包含一系列相同宽度的列表项，适合连续、多行地呈现同类数据。具体用法请参考[list API](../reference/apis-arkui/arkui-jsjs-components-container-list.md)。
 
 
 ## 创建list组件

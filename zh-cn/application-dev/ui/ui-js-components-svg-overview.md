@@ -1,7 +1,7 @@
 # 基础知识
 
 
-Svg组件主要作为svg画布的根节点使用，也可以在svg中嵌套使用。具体用法请参考[Svg](../reference/arkui-js/js-components-svg.md)。
+Svg组件主要作为svg画布的根节点使用，也可以在svg中嵌套使用。具体用法请参考[Svg](../reference/apis-arkui/arkui-jsjs-components-svg.md)。
 
 
 > **说明：**

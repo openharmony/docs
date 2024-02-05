@@ -57,7 +57,7 @@
   >
   > - 删除组件、设置组件无法获焦后，会使用线性走焦规则，自动先往被删除/Unfocusable组件的前置兄弟组件上走焦，无法走焦的话，再向后置兄弟组件上走焦。
 
-- tabIndex走焦：给组件设置[tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md#tabindex9)通用属性，自定义组件的TAB键/SHIFT+TAB键的走焦顺序。
+- tabIndex走焦：给组件设置[tabIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)通用属性，自定义组件的TAB键/SHIFT+TAB键的走焦顺序。
 
 - 区域走焦：给容器组件设置tabIndex通用属性，再结合[groupDefaultFocus](#groupdefaultfocus)通用属性，自定义容器区域的TAB键/SHIFT+TAB键的走焦顺序和默认获焦组件。
 
@@ -196,7 +196,7 @@ focusable(value: boolean)
 
 
 >**说明：**
-> - focusable为false表示组件不可获焦，同样可以使组件变成不可获焦的还有通用属性[enabled](../reference/arkui-ts/ts-universal-attributes-enable.md)。
+> - focusable为false表示组件不可获焦，同样可以使组件变成不可获焦的还有通用属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)。
 >
 > - 当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规则](#走焦规则)将焦点转移给其他组件。
 >
@@ -207,93 +207,93 @@ focusable(value: boolean)
 
 | 基础组件                                     | 是否有获焦能力 | focusable默认值 | 走焦规则     |
 | ---------------------------------------- | ------- | ------------ | -------- |
-| [AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md) | 是       | true         | 线性走焦     |
-| [Blank](../reference/arkui-ts/ts-basic-components-blank.md) | 否       | false        | /        |
-| [Button](../reference/arkui-ts/ts-basic-components-button.md) | 是       | true         | /        |
-| [Checkbox](../reference/arkui-ts/ts-basic-components-checkbox.md) | 是       | true         | /        |
-| [CheckboxGroup](../reference/arkui-ts/ts-basic-components-checkboxgroup.md) | 是       | true         | /        |
-| [DataPanel](../reference/arkui-ts/ts-basic-components-datapanel.md) | 否       | false        | /        |
-| [DatePicker](../reference/arkui-ts/ts-basic-components-datepicker.md) | 是       | true         | 线性走焦     |
-| [Divider](../reference/arkui-ts/ts-basic-components-divider.md) | 否       | false        | /        |
-| [Formcomponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) | 否       | false        | /        |
-| [Gauge](../reference/arkui-ts/ts-basic-components-gauge.md) | 否       | false        | /        |
-| [Image](../reference/arkui-ts/ts-basic-components-image.md) | 是       | false        | /        |
-| [ImageAnimator](../reference/arkui-ts/ts-basic-components-imageanimator.md) | 是       | false        | /        |
-| [LoadingProgress](../reference/arkui-ts/ts-basic-components-loadingprogress.md) | 否       | false        | /        |
-| [Marquee](../reference/arkui-ts/ts-basic-components-marquee.md) | 否       | false        | /        |
-| [Menu](../reference/arkui-ts/ts-basic-components-menu.md) | 是       | true         | 线性走焦     |
-| [MenuItem](../reference/arkui-ts/ts-basic-components-menuitem.md) | 是       | true         | /        |
-| [MenuItemGroup](../reference/arkui-ts/ts-basic-components-menuitemgroup.md) | 是       | true         | 线性走焦     |
-| [Navigation](../reference/arkui-ts/ts-basic-components-navigation.md) | 否       | false        | 组件自定义    |
-| [NavRouter](../reference/arkui-ts/ts-basic-components-navrouter.md) | 否       | false        | 跟随子容器    |
-| [NavDestination](../reference/arkui-ts/ts-basic-components-navdestination.md) | 否       | false        | 线性走焦     |
-| [PatternLock](../reference/arkui-ts/ts-basic-components-patternlock.md) | 否       | false        | /        |
-| [PluginComponent](../reference/arkui-ts/ts-basic-components-plugincomponent.md) | 否       | false        | /        |
-| [Progress](../reference/arkui-ts/ts-basic-components-progress.md) | 否       | false        | /        |
-| [QRCode](../reference/arkui-ts/ts-basic-components-qrcode.md) | 否       | false        | /        |
-| [Radio](../reference/arkui-ts/ts-basic-components-radio.md) | 是       | true         | /        |
-| [Rating](../reference/arkui-ts/ts-basic-components-rating.md) | 是       | true         | /        |
-| [RemoteWindow](../reference/arkui-ts/ts-basic-components-remotewindow.md) | 否       | false        | /        |
-| [RichText](../reference/arkui-ts/ts-basic-components-richtext.md) | 否       | false        | /        |
-| [ScrollBar](../reference/arkui-ts/ts-basic-components-scrollbar.md) | 否       | false        | /        |
-| [Search](../reference/arkui-ts/ts-basic-components-search.md) | 是       | true         | /        |
-| [Select](../reference/arkui-ts/ts-basic-components-select.md) | 是       | true         | 线性走焦     |
-| [Slider](../reference/arkui-ts/ts-basic-components-slider.md) | 是       | true         | /        |
-| [Span](../reference/arkui-ts/ts-basic-components-span.md) | 否       | false        | /        |
-| [Stepper](../reference/arkui-ts/ts-basic-components-stepper.md) | 是       | true         | /        |
-| [StepperItem](../reference/arkui-ts/ts-basic-components-stepperitem.md) | 是       | true         | /        |
-| [Text](../reference/arkui-ts/ts-basic-components-text.md) | 是       | false        | /        |
-| [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md) | 是       | true         | /        |
-| [TextClock](../reference/arkui-ts/ts-basic-components-textclock.md) | 否       | false        | /        |
-| [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) | 是       | true         | /        |
-| [TextPicker](../reference/arkui-ts/ts-basic-components-textpicker.md) | 是       | true         | 线性走焦     |
-| [TextTimer](../reference/arkui-ts/ts-basic-components-texttimer.md) | 否       | false        | /        |
-| [TimePicker](../reference/arkui-ts/ts-basic-components-timepicker.md) | 是       | true         | 线性走焦     |
-| [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md) | 是       | true         | /        |
-| [Web](../reference/arkui-ts/ts-basic-components-web.md) | 是       | true         | Web组件自定义 |
-| [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md) | 否       | false        | /        |
+| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | 是       | true         | 线性走焦     |
+| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | 否       | false        | /        |
+| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | 是       | true         | /        |
+| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | 是       | true         | /        |
+| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | 是       | true         | /        |
+| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | 否       | false        | /        |
+| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | 是       | true         | 线性走焦     |
+| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | 否       | false        | /        |
+| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent.md) | 否       | false        | /        |
+| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | 否       | false        | /        |
+| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | 是       | false        | /        |
+| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | 是       | false        | /        |
+| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | 否       | false        | /        |
+| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | 否       | false        | /        |
+| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | 是       | true         | 线性走焦     |
+| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | 是       | true         | /        |
+| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | 是       | true         | 线性走焦     |
+| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | 否       | false        | 组件自定义    |
+| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | 否       | false        | 跟随子容器    |
+| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | 否       | false        | 线性走焦     |
+| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | 否       | false        | /        |
+| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent.md) | 否       | false        | /        |
+| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | 否       | false        | /        |
+| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | 否       | false        | /        |
+| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | 是       | true         | /        |
+| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | 是       | true         | /        |
+| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow.md) | 否       | false        | /        |
+| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | 否       | false        | /        |
+| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | 否       | false        | /        |
+| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | 是       | true         | /        |
+| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | 是       | true         | 线性走焦     |
+| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | 是       | true         | /        |
+| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | 否       | false        | /        |
+| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | 是       | true         | /        |
+| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | 是       | true         | /        |
+| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | 是       | false        | /        |
+| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | 是       | true         | /        |
+| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | 否       | false        | /        |
+| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | 是       | true         | /        |
+| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | 是       | true         | 线性走焦     |
+| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | 否       | false        | /        |
+| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | 是       | true         | 线性走焦     |
+| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | 是       | true         | /        |
+| [Web](../reference/apis-arkui/arkui-ts/ts-basic-components-web.md) | 是       | true         | Web组件自定义 |
+| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | 否       | false        | /        |
 
   **表2** 容器组件获焦能力
 
 | 容器组件                                     | 是否可获焦 | focusable默认值 | 走焦规则     |
 | ---------------------------------------- | ----- | ------------ | -------- |
-| [AbilityComponent](../reference/arkui-ts/ts-container-ability-component.md) | 否     | false        | /        |
-| [Badge](../reference/arkui-ts/ts-container-badge.md) | 否     | false        | /        |
-| [Column](../reference/arkui-ts/ts-container-column.md) | 是     | true         | 线性走焦     |
-| [ColumnSplit](../reference/arkui-ts/ts-container-columnsplit.md) | 是     | true         | /        |
-| [Counter](../reference/arkui-ts/ts-container-counter.md) | 是     | true         | 线性走焦     |
-| [Flex](../reference/arkui-ts/ts-container-flex.md) | 是     | true         | 线性走焦     |
-| [GridCol](../reference/arkui-ts/ts-container-gridcol.md) | 是     | true         | 容器组件自定义  |
-| [GridRow](../reference/arkui-ts/ts-container-gridrow.md) | 是     | true         | 容器组件自定义  |
-| [Grid](../reference/arkui-ts/ts-container-grid.md) | 是     | true         | 容器组件自定义  |
-| [GridItem](../reference/arkui-ts/ts-container-griditem.md) | 是     | true         | 跟随子组件    |
-| [List](../reference/arkui-ts/ts-container-list.md) | 是     | true         | 线性走焦     |
-| [ListItem](../reference/arkui-ts/ts-container-listitem.md) | 是     | true         | 跟随子组件    |
-| [ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md) | 是     | true         | 跟随List组件 |
-| [Navigator](../reference/arkui-ts/ts-container-navigator.md) | 否     | true         | 容器组件自定义  |
-| [Panel](../reference/arkui-ts/ts-container-panel.md) | 否     | true         | 跟随子组件    |
-| [Refresh](../reference/arkui-ts/ts-container-refresh.md) | 否     | false        | /        |
-| [RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md) | 否     | true         | 容器组件自定义  |
-| [Row](../reference/arkui-ts/ts-container-row.md) | 是     | true         | 线性走焦     |
-| [RowSplit](../reference/arkui-ts/ts-container-rowsplit.md) | 是     | true         | /        |
-| [Scroll](../reference/arkui-ts/ts-container-scroll.md) | 是     | true         | 线性走焦     |
-| [SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md) | 是     | true         | 线性走焦     |
-| [Stack](../reference/arkui-ts/ts-container-stack.md) | 是     | true         | 线性走焦     |
-| [Swiper](../reference/arkui-ts/ts-container-swiper.md) | 是     | true         | 容器组件自定义  |
-| [Tabs](../reference/arkui-ts/ts-container-tabs.md) | 是     | true         | 容器组件自定义  |
-| [TabContent](../reference/arkui-ts/ts-container-tabcontent.md) | 是     | true         | 跟随子组件    |
+| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component.md) | 否     | false        | /        |
+| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | 否     | false        | /        |
+| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | 是     | true         | 线性走焦     |
+| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | 是     | true         | /        |
+| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | 是     | true         | 线性走焦     |
+| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | 是     | true         | 线性走焦     |
+| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | 是     | true         | 容器组件自定义  |
+| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | 是     | true         | 容器组件自定义  |
+| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | 是     | true         | 容器组件自定义  |
+| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | 是     | true         | 跟随子组件    |
+| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | 是     | true         | 线性走焦     |
+| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | 是     | true         | 跟随子组件    |
+| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | 是     | true         | 跟随List组件 |
+| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | 否     | true         | 容器组件自定义  |
+| [Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md) | 否     | true         | 跟随子组件    |
+| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | 否     | false        | /        |
+| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | 否     | true         | 容器组件自定义  |
+| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | 是     | true         | 线性走焦     |
+| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | 是     | true         | /        |
+| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | 是     | true         | 线性走焦     |
+| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | 是     | true         | 线性走焦     |
+| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | 是     | true         | 线性走焦     |
+| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | 是     | true         | 容器组件自定义  |
+| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | 是     | true         | 容器组件自定义  |
+| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | 是     | true         | 跟随子组件    |
 
   **表3** 媒体组件获焦能力
 
 | 媒体组件                                     | 是否可获焦 | focusable默认值 | 走焦规则 |
 | ---------------------------------------- | ----- | ------------ | ---- |
-| [Video](../reference/arkui-ts/ts-media-components-video.md) | 是     | true         | /    |
+| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | 是     | true         | /    |
 
   **表4** 画布组件获焦能力
 
 | 画布组件                                     | 是否可获焦 | focusable默认值 | 走焦规则 |
 | ---------------------------------------- | ----- | ------------ | ---- |
-| [Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md) | 否     | false        | /    |
+| [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) | 否     | false        | /    |
 
 
 以下示例展示focusable接口的使用方法：
