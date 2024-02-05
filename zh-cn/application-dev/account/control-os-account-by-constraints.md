@@ -4,7 +4,7 @@
 
 ## 约束列表
 
-预定义的帐号约束条件，可以参考 ：[系统帐号约束列表](../reference/apis/js-apis-osAccount.md#系统帐号约束列表)
+预定义的帐号约束条件，可以参考 ：[系统帐号约束列表](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#系统帐号约束列表)
 
 ## 开发准备
 
@@ -35,7 +35,7 @@
    let constraint: string[] = [ 'constraint.wifi.set' ];
    ```
 
-2. 调用[setOsAccountConstraints](../reference/apis/js-apis-osAccount.md#setosaccountconstraints)接口，使能系统帐号100的约束。
+2. 调用[setOsAccountConstraints](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountconstraints)接口，使能系统帐号100的约束。
 
    ```ts
    try {
@@ -49,7 +49,7 @@
 ## 判断目标系统帐号的指定约束是否使能
 
 业务应用需要判断目标系统帐号的指定约束是否使能，以此来决策是否对目标系统帐号的行为做管控。
-开发者可以使用[isOsAccountConstraintEnabled](../reference/apis/js-apis-osAccount.md#isosaccountconstraintenabled11)接口完成此操作。
+开发者可以使用[isOsAccountConstraintEnabled](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口完成此操作。
 
 具体开发实例如下：
 
@@ -60,7 +60,7 @@
    let constraint: string = 'constraint.wifi.set';
    ```
 
-2. 调用[isOsAccountConstraintEnabled](../reference/apis/js-apis-osAccount.md#isosaccountconstraintenabled11)接口，判断指定约束是否使能。
+2. 调用[isOsAccountConstraintEnabled](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口，判断指定约束是否使能。
 
    ```ts
    let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);

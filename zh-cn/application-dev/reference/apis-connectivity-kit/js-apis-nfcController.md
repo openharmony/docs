@@ -74,7 +74,7 @@ enableNfc(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -111,7 +111,7 @@ disableNfc(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|

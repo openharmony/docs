@@ -124,7 +124,7 @@
 
 #### 限制
 
-preloads列表配置的moduleName对应的[moduleType(模块类型)](../reference/apis/js-apis-bundleManager.md#moduletype)不能为entry。
+preloads列表配置的moduleName对应的[moduleType(模块类型)](../reference/apis-ability-kit/js-apis-bundleManager.md#moduletype)不能为entry。
 
 ## 原子化服务中使用动态共享包
 

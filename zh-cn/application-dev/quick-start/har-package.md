@@ -284,7 +284,7 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 > **说明：**
 > 
 > 仅Stage模型的ArkTS工程支持混淆。  
-> HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
+> HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
 
 对于API 10及以上版本，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：

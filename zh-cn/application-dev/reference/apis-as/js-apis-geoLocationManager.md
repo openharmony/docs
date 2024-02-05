@@ -146,7 +146,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -191,7 +191,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -235,7 +235,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -283,7 +283,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -336,7 +336,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -381,7 +381,7 @@ getLastLocation(): Location
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -418,7 +418,7 @@ isLocationEnabled(): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+以下错误码的详细介绍请参见[位置服务子系统错误码](../apis-location-kit/errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
