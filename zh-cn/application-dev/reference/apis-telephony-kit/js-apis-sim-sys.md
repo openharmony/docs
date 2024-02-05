@@ -4860,21 +4860,7 @@ SIM卡状态。
 | lockType | [PersoLockType](#persolocktype8) |  是  | 定制锁的类型。|
 | password | string                           |  是  | 密码。        |
 
-## IccAccountInfo<sup>10+</sup>
 
-Icc帐户信息。
-
-**系统能力**：SystemCapability.Telephony.CoreService
-
-| 名称       | 类型    | 必填 | 说明             |
-| ---------- | ------- | ---- | ---------------- |
-| simId      | number  |  是  | SIM卡ID。          |
-| slotIndex  | number  |  是  | 卡槽ID。           |
-| isEsim     | boolean |  是  | 标记卡是否是eSim。 |
-| isActive   | boolean |  是  | 卡是否被激活。     |
-| iccId      | string  |  是  | ICCID号码。        |
-| showName   | string  |  是  | SIM卡显示名称。    |
-| showNumber | string  |  是  | SIM卡显示号码。    |
 
 ## OperatorConfig<sup>8+</sup>
 
