@@ -139,7 +139,7 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
@@ -170,7 +170,7 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
@@ -213,7 +213,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
@@ -296,7 +296,7 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
@@ -333,7 +333,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
@@ -368,7 +368,7 @@ release(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|

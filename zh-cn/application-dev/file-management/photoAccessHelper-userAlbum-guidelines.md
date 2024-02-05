@@ -100,7 +100,12 @@ async function example() {
 
 在重命名用户相册之前，需要先获取相册对象，可以通过[FetchResult](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的用户相册。
 
-重名名用户相册的相册名同样遵循[创建用户相册](#创建用户相册)的参数规格。
+重命名的相册名参数规格为：
+
+- 相册名字符串长度为1~255。
+- 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+- 相册名不允许重名。
 
 **前提条件**
 
@@ -321,7 +326,7 @@ async function example() {
 
 ## 删除用户相册（仅向系统应用开放）
 
-先[获取用户相册](#获取用户相册)对象，然后调用[PhotoAccessHelper.deleteAlbums](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deletealbums-1)删除用户相册。
+先[获取用户相册](#获取用户相册)对象，然后调用[PhotoAccessHelper.deleteAlbums](../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#deletealbumsdeprecated)删除用户相册。
 
 **前提条件**
 

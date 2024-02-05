@@ -77,7 +77,7 @@
 
 具体开发实例如下：
 
-1. 调用[getOsAccountLocalIdForDomain](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getosaccountlocalidfordomain)方法，根据域帐号信息获取系统帐号ID。
+1. 调用[getOsAccountLocalIdForDomain](../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9)方法，根据域帐号信息获取系统帐号ID。
 
    ```ts
    let domainInfo: account_osAccount.DomainAccountInfo = {

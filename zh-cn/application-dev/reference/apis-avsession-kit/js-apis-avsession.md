@@ -2942,7 +2942,7 @@ try {
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../apis/js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
+| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
 
 ## AVCastController<sup>10+</sup>
 
@@ -3989,7 +3989,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4028,7 +4028,7 @@ off(type: 'error'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4071,7 +4071,7 @@ aVCastController.off('error')
 | artist          | string                  | 否   | 艺术家。                                                                |
 | author          | string                  | 否   | 专辑作者。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | image.PixelMap[image.PixelMap](../apis/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
+| avQueueImage<sup>11+</sup>    | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
 | album           | string                  | 否   | 专辑名称。                                                               |
 | writer          | string                  | 否   | 词作者。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
@@ -4169,7 +4169,7 @@ aVCastController.off('error')
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
 | phoneNumber     | string                  | 否    | 来电电话号码            |                                                   
-| avatar          | image.PixelMap[image.PixelMap](../apis/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
+| avatar          | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
 
