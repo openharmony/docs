@@ -1,4 +1,4 @@
-# 创建网格（Grid/GridItem）
+# 创建网格 (Grid/GridItem)
 
 
 ## 概述

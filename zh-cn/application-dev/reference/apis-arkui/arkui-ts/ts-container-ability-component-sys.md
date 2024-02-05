@@ -1,4 +1,4 @@
-# AbilityComponent(系统接口)
+# AbilityComponent (系统接口)
 
 独立显示Ability的容器。
 

@@ -28,7 +28,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 **示例：**
   ```ts
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
 ## DistributedAccountAbility
@@ -61,7 +61,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
       (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
@@ -102,7 +102,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
@@ -137,7 +137,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
     (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
       if (err) {
@@ -172,7 +172,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -209,7 +209,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
@@ -259,7 +259,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
@@ -298,7 +298,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
@@ -338,7 +338,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   ```ts
   import { BusinessError } from '@ohos.base';
   
-  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo: account_distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {

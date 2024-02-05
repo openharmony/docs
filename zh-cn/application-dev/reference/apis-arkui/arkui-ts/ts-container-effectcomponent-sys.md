@@ -1,4 +1,4 @@
-# EffectComponent(系统接口)
+# EffectComponent (系统接口)
 
 特效合并容器组件，用于子节点特效绘制的合并，实现特效的绘制性能优化。
 

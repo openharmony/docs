@@ -11,7 +11,7 @@ Device-cloud sharing enables data sharing across accounts based on device-cloud 
 The **cloudData** module provides the following device-cloud synergy features:
 
 - [Config](#config): provides APIs for setting device-cloud synergy, including enabling and disabling device-cloud sync, clearing data, and notifying data changes.
-- [sharing<sup>11+</sup>](#sharing): provides APIs for device-cloud sharing, including sharing or unsharing data, exiting a share, changing the privilege on the shared data, querying participants, confirming an invitation, changing invitation confirmation state, and querying the shared resource.
+- [sharing<sup>11+</sup>](#sharing11): provides APIs for device-cloud sharing, including sharing or unsharing data, exiting a share, changing the privilege on the shared data, querying participants, confirming an invitation, changing invitation confirmation state, and querying the shared resource.
 
 > **NOTE**
 >
@@ -35,7 +35,7 @@ Enumerates the operations for clearing the downloaded cloud data locally.
 
 | Name     | Description                        |
 | --------- | ---------------------------- |
-| CLEAR_CLOUD_INFO | Clear the cloud identifier of the data downloaded from the cloud and retain the data locally. |
+| CLEAR_CLOUD_INFO | Clear the cloud identifier of the data downloaded from the cloud and retain the data locally.|
 | CLEAR_CLOUD_DATA_AND_INFO |Clear the data downloaded from the cloud, excluding the cloud data that has been modified locally.  |
 
 ## ExtraData<sup>11+</sup>
@@ -47,29 +47,22 @@ Represents the transparently transmitted data, which contains information requir
 | Name     | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | Yes  | Event ID. The value **cloud_data_change** indicates cloud data changes.             |
-| extraData | string | Yes  | Transparently transmitted data, where:<br/>- **header** contains information required for verifying the application in the cloud.<br/>- **data** contains information required for the change notification, including **accountId** (account ID), **bundleName** (application name), **containerName** (name of the cloud database), and **recordTypes** (database table names). **accountId** and **bundleName** cannot be empty. |
+| extraData | string | Yes  | Transparently transmitted data, where:<br/>- **header** contains information required for verifying the application in the cloud.<br/>- **data** contains information required for the change notification, including **accountId** (account ID), **bundleName** (application name), **containerName** (name of the cloud database), and **recordTypes** (database table names). **accountId** and **bundleName** cannot be empty.|
 
 **Example**
 
 ```ts
-let ExtraData = {
+// token: used to verify application information.
+// accountId: ID of the cloud account.
+// bundleName: application bundle name.
+// containerName: name of the cloud database.
+// containerName: name of the table in the cloud database.
+
+interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: {
-    "header": {
-      "token": "bbbbbb" // Used for application verification.
-    },
-    "data": {
-      "accountId": "aaa", // Cloud account ID.
-      "bundleName": "com.bbb.xxx", // Application name.
-      "containerName": "alias", // Cloud database name.
-      "recordTypes": [// Names of the cloud database tables.
-        "xxx",
-        "yyy",
-        "zzz",
-      ]
-    }
-  }
+  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
 }
+
 ```
 
 ## Config
@@ -78,7 +71,7 @@ Provides APIs for setting device-cloud synergy, including enabling and disabling
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, callback: AsyncCallback&lt;void&gt;): void
+static enableCloud(accountId: string, switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
 
 Enables device-cloud synergy. This API uses an asynchronous callback to return the result.
 
@@ -91,7 +84,7 @@ Enables device-cloud synergy. This API uses an asynchronous callback to return t
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | Yes  | ID of the cloud account.                                        |
-| switches  | {[bundleName: string]: boolean} | Yes  | Device-cloud synergy settings for applications. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
+| switches  | Record<string, boolean>         | Yes  | Device-cloud synergy settings for applications. The value **true** means to enable device-cloud synergy; the value **false** means the opposite.|
 | callback  | AsyncCallback&lt;void&gt;       | Yes  | Callback invoked to return the result.                                                  |
 
 **Example**
@@ -117,7 +110,7 @@ try {
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Promise&lt;void&gt;
+static enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;void&gt;
 
 Enables device-cloud synergy. This API uses a promise to return the result.
 
@@ -130,7 +123,7 @@ Enables device-cloud synergy. This API uses a promise to return the result.
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | Yes  | ID of the cloud account.                                        |
-| switches  | {[bundleName: string]: boolean} | Yes  | Device-cloud synergy settings for applications. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
+| switches  | Record<string, boolean>         | Yes  | Device-cloud synergy settings for applications. The value **true** means to enable device-cloud synergy; the value **false** means the opposite.|
 
 **Return value**
 
@@ -250,7 +243,7 @@ Changes the device-cloud synergy setting for an application. This API uses an as
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | Yes  | ID of the cloud account.|
 | bundleName| string                         | Yes  | Bundle name of the application.|
-| status    | boolean                        | Yes  | Device-cloud synergy setting for the application. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
+| status    | boolean                        | Yes  | Device-cloud synergy setting for the application. The value **true** means to enable device-cloud synergy; the value **false** means the opposite.|
 | callback  | AsyncCallback&lt;void&gt;       | Yes  | Callback invoked to return the result.                  |
 
 **Example**
@@ -290,7 +283,7 @@ Changes the device-cloud synergy setting for an application. This API uses a pro
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | Yes  | ID of the cloud account.|
 | bundleName| string                         | Yes  | Bundle name of the application.|
-| status    | boolean                        | Yes  | Device-cloud synergy setting for the application. The value **true** means to enable device-cloud synergy; the value **false** means the opposite. |
+| status    | boolean                        | Yes  | Device-cloud synergy setting for the application. The value **true** means to enable device-cloud synergy; the value **false** means the opposite.|
 
 **Return value**
 
@@ -402,7 +395,7 @@ try {
 
  **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
-Notifies the data changes in the cloud with the specified information, such as the database and table names. This API uses an asynchronous callback to return the result.
+Notifies the data changes in the cloud with the information, such as the database and table names, specified by the **extraData** field in **extInfo**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -442,7 +435,7 @@ try {
 
 static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallback&lt;void&gt;):void
 
-Notifies the data changes of a user in the cloud. This API uses an asynchronous callback to return the result. You can also specify the database and tables in the **extraDta** field in **extInfo**.
+Notifies the data changes of a user in the cloud. This API uses an asynchronous callback to return the result. You can also specify the database and tables in the **extraData** field in **extInfo**.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -482,7 +475,7 @@ try {
 
 **static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
-Notifies the data changes in the cloud. This API uses a promise to return the result. You can specify the database and tables with data changes in the **extraDta** field in **extInfo**, and specify the user ID.
+Notifies the data changes in the cloud. This API uses a promise to return the result. You can specify the database and tables with data changes in the **extraData** field in **extInfo**, and specify the user ID.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -525,7 +518,7 @@ try {
 
 ###  clear
 
-static clear(accountId: string, appActions: { [bundleName: string]: ClearAction },  callback: AsyncCallback&lt;void&gt;): void
+static clear(accountId: string, appActions: Record<string, ClearAction>,  callback: AsyncCallback&lt;void&gt;): void
 
 Clears the cloud data locally. This API uses an asynchronous callback to return the result.
 
@@ -538,7 +531,7 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 | Name    | Type                                               | Mandatory| Description                            |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
 | accountId  | string                                              | Yes  | ID of the cloud account.            |
-| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | Yes  | Information about the application whose data is to be cleared and the operation to perform.|
+| appActions | Record<string, [ClearAction](#clearaction)>         | Yes  | Information about the application whose data is to be cleared and the operation to perform.|
 | callback   | AsyncCallback&lt;void&gt;                           | Yes  | Callback invoked to return the result.                      |
 
 **Example**
@@ -568,7 +561,7 @@ try {
 
 ### clear
 
-static clear(accountId: string, appActions: { [bundleName: string]: ClearAction }): Promise&lt;void&gt;
+static clear(accountId: string, appActions: Record<string, ClearAction>): Promise&lt;void&gt;
 
 Clears the cloud data locally. This API uses a promise to return the result.
 
@@ -581,7 +574,7 @@ Clears the cloud data locally. This API uses a promise to return the result.
 | Name    | Type                                               | Mandatory| Description                            |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
 | accountId  | string                                              | Yes  | ID of the cloud account.            |
-| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | Yes  | Information about the application whose data is to be cleared and the operation to perform. |
+| appActions | Record<string, [ClearAction](#clearaction)>         | Yes  | Information about the application whose data is to be cleared and the operation to perform.|
 
 **Return value**
 
@@ -625,7 +618,7 @@ Enumerates the roles of the participants in a device-cloud share.
 | Name          | Value  | Description                              |
 | --------------| ---- | ---------------------------------- |
 | ROLE_INVITER  | 0    | Inviter, the one who shares data. Use the enum name rather than the enum value.|
-| ROLE_INVITEE  | 1    | Invitee, the one who can use the shared data. Use the enum name rather than the enum value. |
+| ROLE_INVITEE  | 1    | Invitee, the one who can use the shared data. Use the enum name rather than the enum value.|
 
 ### State<sup>11+</sup>
 
@@ -650,18 +643,18 @@ Enumerates the error codes for device-cloud sharing.
 | --------------| ---- | ---------------------------------- |
 | SUCCESS                 | 0    | Operation successful. Use the enum name rather than the enum value.  |
 | REPEATED_REQUEST        | 1    | Repeated invitation, which means the participant has been invited. Use the enum name rather than the enum value.|
-| NOT_INVITER             | 2    | The participant is not the inviter of this share. Use the enum name rather than the enum value. |
+| NOT_INVITER             | 2    | The participant is not the inviter of this share. Use the enum name rather than the enum value.|
 | NOT_INVITER_OR_INVITEE  | 3    | Invalid participant, which means the participant is neither the inviter nor the invitee. Use the enum name rather than the enum value.|
 | OVER_QUOTA              | 4    | The number of device-cloud sharing times has reached the limit for the current account. Use the enum name rather than the enum value.  |
 | TOO_MANY_PARTICIPANTS   | 5    | The number of device-cloud sharing participants has reached the limit. Use the enum name rather than the enum value.|
 | INVALID_ARGS            | 6    | Invalid parameter. Use the enum name rather than the enum value.|
-| NETWORK_ERROR           | 7    | Network error. Use the enum name rather than the enum value. |
-| CLOUD_DISABLED          | 8    | Cloud is disabled. Use the enum name rather than the enum value. |
-| SERVER_ERROR            | 9    | Server error. Use the enum name rather than the enum value. |
-| INNER_ERROR             | 10   | System internal error. Use the enum name rather than the enum value. |
+| NETWORK_ERROR           | 7    | Network error. Use the enum name rather than the enum value.|
+| CLOUD_DISABLED          | 8    | Cloud is disabled. Use the enum name rather than the enum value.  |
+| SERVER_ERROR            | 9    | Server error. Use the enum name rather than the enum value.|
+| INNER_ERROR             | 10   | System internal error. Use the enum name rather than the enum value.|
 | INVALID_INVITATION      | 11   | Invalid invitation, which means the current invitation has expired or does not exist. Use the enum name rather than the enum value.|
 | RATE_LIMIT              | 12   | The amount of data to be synchronized at a time has reached the limit. Use the enum name rather than the enum value.  |
-| CUSTOM_ERROR            | 1000 | Customized error. Error codes smaller than **1000** are used to define internal error codes, and error codes greater than **1000** are used to customize error codes. Use the enum name rather than the enum value. |
+| CUSTOM_ERROR            | 1000 | Customized error. Error codes smaller than **1000** are used to define internal error codes, and error codes greater than **1000** are used to customize error codes. Use the enum name rather than the enum value.|
 
 ### Result&lt;T&gt;<sup>11+</sup>
 
@@ -717,45 +710,44 @@ Allocates a shared resource ID based on the data that matches the specified pred
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | Yes  | Name of the RDB store.|
 | predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share.|
-| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
+| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
 | columns      | Array&lt;string&gt;           | No  | Columns in which the data is located. The default value is **undefined**, which means column names are not returned.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise used to return the result set of the data to share. |
+| Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise used to return the result set of the data to share.|
 
 **Example**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import relaitonalStore from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
-let predicates = new relaitonalStore.RdbPredicates('test_table');
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
   if (!resultSet.goToFirstRow()) {
-     console.error(`row error`);
-     return;
+    console.error(`row error`);
+    return;
   }
-  const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
+  const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
   console.info(`sharing resource: ${res}`);
   sharingResource = res;
 }).catch((err: BusinessError) => {
@@ -778,28 +770,27 @@ Allocates a shared resource ID based on the data that matches the specified pred
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | Yes  | Name of the RDB store.|
 | predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share.|
-| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
+| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
 | columns      | Array&lt;string&gt;           | Yes  | Columns in which the data is located.|
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes | Callback invoked to return the result set of data to share. |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes | Callback invoked to return the result set of data to share.|
 
 **Example**
 
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -835,27 +826,26 @@ Allocates a shared resource ID based on the data that matches the specified pred
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | Yes  | Name of the RDB store.|
 | predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Predicates for matching the data to share.|
-| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes  | Callback invoked to return the result set of data to share. |
+| participants | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | Yes  | Callback invoked to return the result set of data to share.|
 
 **Example**
 
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -890,7 +880,7 @@ Shares data based on the specified shared resource ID and participants. This API
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource   | string                                     | Yes  | Shared resource ID.|
-| participants      | Array&lt;[Participant](#participant11)&gt;   | Yes  | Participants of the share. |
+| participants      | Array&lt;[Participant](#participant11)&gt;   | Yes  | Participants of the share.|
 
 **Return value**
 
@@ -903,19 +893,18 @@ Shares data based on the specified shared resource ID and participants. This API
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants).then((result) => {
@@ -939,25 +928,24 @@ Shares data based on the specified shared resource ID and participants. This API
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                                     | Yes  | Shared resource ID.|
-| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
+| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback invoked to return the result.  |
 
 **Example**
 
 ```ts
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants, ((err, result) => {
@@ -983,7 +971,7 @@ Unshares data based on the specified shared resource ID and participants. This A
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource   | string                                     | Yes  | Shared resource ID.|
-| participants      | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
+| participants      | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
 
 **Return value**
 
@@ -996,19 +984,18 @@ Unshares data based on the specified shared resource ID and participants. This A
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants).then((result) => {
@@ -1032,25 +1019,24 @@ Unshares data based on the specified shared resource ID and participants. This A
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                                     | Yes  | Shared resource ID.|
-| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share. |
+| participants     | Array&lt;[Participant](#participant11)&gt; | Yes  | Participants of the share.|
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback invoked to return the result.  |
 
 **Example**
 
 ```ts
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants, ((err, result) => {
@@ -1150,19 +1136,18 @@ Changes the privilege on the shared data. This API uses a promise to return the 
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: false,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 
@@ -1193,19 +1178,18 @@ Changes the privilege on the shared data. This API uses an asynchronous callback
 **Example**
 
 ```ts
-let privilege = {
-  writable: false,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 
@@ -1292,7 +1276,7 @@ Queries the participants based on the sharing invitation code. This API uses a p
 
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode   | string                 | Yes  | Invitation code of the share. |
+| invitationCode   | string                 | Yes  | Invitation code of the share.|
 
 **Return value**
 
@@ -1353,7 +1337,7 @@ Confirms the invitation based on the sharing invitation code and obtains the sha
 
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode   | string                 | Yes  | Invitation code of the share. |
+| invitationCode   | string                 | Yes  | Invitation code of the share.|
 | state            | [State](#state11)        | Yes  | Confirmation state.|
 
 **Return value**
@@ -1389,14 +1373,13 @@ Confirms the invitation based on the sharing invitation code and obtains the sha
 
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode  | string                | Yes  | Invitation code of the share. |
+| invitationCode  | string                | Yes  | Invitation code of the share.|
 | state           | [State](#state11)       | Yes  | Confirmation state.|
 | callback        | AsyncCallback&lt;[Result](#resultt11)&lt;string&gt;&gt; | Yes  | Callback invoked to return the result.  |
 
 **Example**
 
 ```ts
-
 let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
   if (err) {
@@ -1472,4 +1455,4 @@ cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.
 
 ```
 
- <!--no_check--> 
+<!--no_check-->

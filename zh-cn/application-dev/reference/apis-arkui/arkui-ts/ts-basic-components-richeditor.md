@@ -55,6 +55,7 @@ RichEditor(value: RichEditorOptions)
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。 |
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。                           |
 | onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。 |
+| onSelectionChange<sup>12+</sup>(callback:&nbsp;(value:&nbsp;[RichEditorRange](#richeditorrange)) => void) | 文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。<br />- value：文本选择区域起始和终止位置。<br />**说明：**<br/>光标位置发生变化回调时，选择区域的起始位置等于终止位置。|
 
 ## RichEditorInsertValue
 
@@ -257,7 +258,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 >
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
 > - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
-> - 此占位Span不可获焦，不支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
+> - 此占位Span不可获焦，不支持拖拽（与可拖拽Span如文本或图片Span一起拖拽时，此Span对应的位置内容不会显示但会占相同大小的区域），支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
 > - 不支持通过[bindSelectionMenu](#属性)设置自定义菜单。
 > - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#事件)，[aboutToDelete](#事件)获取builderSpan信息。
 > - 不支持通过[updateSpanStyle](#updatespanstyle)，[updateParagraphStyle](#updateparagraphstyle11)等方式更新builder。
