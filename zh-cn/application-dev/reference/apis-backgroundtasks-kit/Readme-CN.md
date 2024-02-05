@@ -12,8 +12,8 @@
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
   - 已停止维护
-    - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-backgroundTaskManager-sys.md)
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
+    - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-backgroundTaskManager-sys.md)
     - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)        
 - 错误码
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md
