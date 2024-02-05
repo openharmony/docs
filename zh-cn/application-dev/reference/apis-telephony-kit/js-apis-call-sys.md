@@ -4985,7 +4985,7 @@ VoIP通话信息。
 | --------------- | ------------------- | ---- | -------------- |
 | voipCallId   | string    | 是   | VoIP通话唯一Id       |
 | userName  | string    | 是   | 用户昵称 |
-| userProfile       | [image.PixelMap](../apis/js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
+| userProfile       | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
 | extensionId      | string     | 是   |  三方应用进程Id  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
@@ -5456,7 +5456,7 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](../apis/js-apis-camera.md#getsupportedcameras)。|
+| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](../apis-camera-kit/js-apis-camera.md#getsupportedcameras)。|
 
 **返回值：**
 
@@ -5507,7 +5507,7 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
 
 **返回值：**
 
@@ -5558,7 +5558,7 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
 
 **返回值：**
 
