@@ -21,6 +21,5 @@
         - [@ohos.inputMethod.InputMethodController#stopInput (结束输入会话)](js-apis-inputmethod.md)
         - [@ohos.inputMethod.InputMethodProperty#packageName (输入法包名)](js-apis-inputmethod.md)
         - [@ohos.inputMethod.InputMethodProperty#methodId (输入法唯一标识)](js-apis-inputmethod.md)
-
 - 错误码
     - [输入法服务错误码](errorcode-inputmethod.md)
