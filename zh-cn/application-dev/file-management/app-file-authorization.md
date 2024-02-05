@@ -20,7 +20,7 @@
         "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY"
     ]
 
-2.应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）获取环境路径。
+2.应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit//js-apis-file-environment.md)）获取环境路径。
   ```ts
   import { BusinessError } from '@ohos.base';
   import environment from '@ohos.file.environment';
@@ -185,7 +185,7 @@
 
 ### 获取文件或文件夹当前所在路径的URI
 
-如果当前FileUri指向文件，将返回文件所在路径URI，如果当前FileUri指向目录，将返回当前路径URI。通过文件URI接口（[ohos.file.fileuri](../reference/apis/js-apis-file-fileuri.md)）获取文件或文件夹当前所在路径的URI。
+如果当前FileUri指向文件，将返回文件所在路径URI，如果当前FileUri指向目录，将返回当前路径URI。通过文件URI接口（[ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md)）获取文件或文件夹当前所在路径的URI。
 以下示例代码演示了获取文件父目录过程：
   ```ts
   import { BusinessError } from '@ohos.base';

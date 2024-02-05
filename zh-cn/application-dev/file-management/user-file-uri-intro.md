@@ -45,7 +45,7 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 
 ### 文档类uri的使用方式
 
-normal等级的应用使用此类uri的方式只能通过[fs模块](../reference/apis/js-apis-file-fs.md)进行进一步处理，其他模块使用此uri是会报没有权限的错误。示例代码参见picker中的[选择文档类文件](./select-user-file.md#选择文档类文件)和[保存文档类文件](./save-user-file.md#保存文档类文件)。
+normal等级的应用使用此类uri的方式只能通过[fs模块](../reference/apis-core-file-kit/js-apis-file-fs.md)进行进一步处理，其他模块使用此uri是会报没有权限的错误。示例代码参见picker中的[选择文档类文件](./select-user-file.md#选择文档类文件)和[保存文档类文件](./save-user-file.md#保存文档类文件)。
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过fs模块外还可以通过[fileAccess模块](../reference/apis/js-apis-fileAccess.md)进行进一步处理，使用此模块需要在配置文件module.json5中声明ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 权限，此权限为system_basic权限，仅供系统应用使用。其他模块使用此uri会报没有权限的错误。下面示例为使用fileAccess模块创建文件得到uri后对其进行重命名操作：
 
@@ -138,17 +138,17 @@ async function example() {
 
 1. 通过[PhotoViewPicker.select接口](../reference/apis/js-apis-file-picker.md#select)选择媒体文件，返回选择的媒体文件文件的uri。
 
-2. 通过[photoAccessHelper模块](../reference/apis/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。
+2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。
 
 3. 通过[userFileManager模块](../reference/apis/js-apis-userFileManager.md)中的[getPhotoAssets](../reference/apis/js-apis-userFileManager.md#getphotoassets)、[getAudioAssets](../reference/apis/js-apis-userFileManager.md#getaudioassets)、[createAudioAsset](../reference/apis/js-apis-userFileManager.md#createaudioasset10)或[createPhotoAsset](../reference/apis/js-apis-userFileManager.md#createphotoasset)接口获取媒体文件对应文件的uri。
 
 ### 媒体文件uri的使用方式
 
-normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](./photoAccessHelper-resource-guidelines.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'，在使用中需要注意应用是否有此权限。
+normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](./photoAccessHelper-resource-guidelines.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'，在使用中需要注意应用是否有此权限。
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过photoAccessHelper模块外还可以通过[userFileManager模块](../reference/apis/js-apis-userFileManager.md)进行进一步处理，接口详细使用方式见接口文档。
 
-若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoViewPicker.select接口](../reference/apis/js-apis-file-picker.md#select)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。这种方式获取的对象可以调用[getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail)获取缩略图和使用[get接口](../reference/apis/js-apis-photoAccessHelper.md#get)读取[PhotoKeys](../reference/apis/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
+若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoViewPicker.select接口](../reference/apis/js-apis-file-picker.md#select)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。这种方式获取的对象可以调用[getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail)获取缩略图和使用[get接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get)读取[PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
 
 以下为PhotoKeys中支持临时授权方式可以读取的信息：
 

@@ -13,7 +13,7 @@
 
 本例展示了从图库中选择一张图片，保存到文件管理器的示例代码。
 
-1. 导入[选择器](../reference/apis/js-apis-file-picker.md)、[文件管理](../reference/apis/js-apis-file-fs.md)、[相册管理](../reference/apis/js-apis-photoAccessHelper.md)、[数据共享谓词](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
+1. 导入[选择器](../reference/apis/js-apis-file-picker.md)、[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)、[相册管理](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)、[数据共享谓词](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -91,9 +91,9 @@
    }
    ```
 
-4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
 
-   然后，通过fd使用[fs.write](../reference/apis/js-apis-file-fs.md#fswrite)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+   然后，通过fd使用[fs.write](../reference/apis-core-file-kit/js-apis-file-fs.md#fswrite)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -146,7 +146,7 @@
    })
    ```
 
-4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
 
    ```ts
    import fs from '@ohos.file.fs';
@@ -156,7 +156,7 @@
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过fd使用[fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
    import fs from '@ohos.file.fs';
@@ -198,14 +198,14 @@
    })
    ```
 
-4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
 
    ```ts
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过fd使用[fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');

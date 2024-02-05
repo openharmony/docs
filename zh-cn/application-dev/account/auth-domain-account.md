@@ -12,7 +12,7 @@ import account_osAccount from '@ohos.account.osAccount';
 
 ## 使用密码认证域帐号
 
-用户可以使用密码认证域帐号。开发者可以使用[auth](../reference/apis/js-apis-osAccount.md#auth10)接口完成此操作。此外使用该接口，应用还需要申请ohos.permission.ACCESS_USER_AUTH_INTERNAL权限。
+用户可以使用密码认证域帐号。开发者可以使用[auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10)接口完成此操作。此外使用该接口，应用还需要申请ohos.permission.ACCESS_USER_AUTH_INTERNAL权限。
 
 具体开发实例如下：
 
@@ -39,7 +39,7 @@ import account_osAccount from '@ohos.account.osAccount';
    }
    ```
 
-4. 调用[auth](../reference/apis/js-apis-osAccount.md#auth10)接口进行密码认证。
+4. 调用[auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10)接口进行密码认证。
 
    ```ts
    try {
@@ -51,7 +51,7 @@ import account_osAccount from '@ohos.account.osAccount';
 
 ## 弹窗认证域帐号
 
-在无法获取用户密码的情况下，需要认证域帐号时，可以请求系统弹窗验证域帐号用户。开发者可以使用[authWithPopup](../reference/apis/js-apis-osAccount.md#authwithpopup10)完成此操作。
+在无法获取用户密码的情况下，需要认证域帐号时，可以请求系统弹窗验证域帐号用户。开发者可以使用[authWithPopup](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10)完成此操作。
 
 具体开发实例如下：
 
@@ -66,7 +66,7 @@ import account_osAccount from '@ohos.account.osAccount';
    }
    ```
 
-2. 调用[authWithPopup](../reference/apis/js-apis-osAccount.md#authwithpopup10)接口弹窗认证当前域帐号。
+2. 调用[authWithPopup](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10)接口弹窗认证当前域帐号。
 
    ```ts
    try {
