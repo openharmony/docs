@@ -39,7 +39,7 @@ initialize(): void
 **系统能力：** SystemCapability.Communication.ConnectedTag
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
@@ -72,7 +72,7 @@ uninitialize(): void
 **系统能力:** SystemCapability.Communication.ConnectedTag
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
@@ -124,7 +124,7 @@ read(): Promise&lt;number[]&gt;
 | Promise&lt;number[]&gt; | 返回读取有源标签内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
@@ -190,7 +190,7 @@ read(callback: AsyncCallback&lt;number[]&gt;): void
 | callback | AsyncCallback&lt;number[]&gt; | 是 | 读取有源标签内容回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
@@ -269,7 +269,7 @@ write(data: number[]): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 无返回值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
@@ -339,7 +339,7 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是 | 读取有源标签内容回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |

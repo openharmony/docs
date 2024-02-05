@@ -94,7 +94,7 @@ connect(): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -152,7 +152,7 @@ resetConnection(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -281,7 +281,7 @@ getMaxTransmitSize(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -351,7 +351,7 @@ getTimeout(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -429,7 +429,7 @@ setTimeout(timeout: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -572,7 +572,7 @@ transmit(data: number[]): Promise<number[]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -629,7 +629,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
