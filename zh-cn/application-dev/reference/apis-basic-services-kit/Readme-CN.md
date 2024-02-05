@@ -5,8 +5,9 @@
         - [@ohos.commonEventManager (公共事件模块)](./js-apis-commonEventManager.md)
         - [@ohos.events.emitter (Emitter)](./js-apis-emitter.md)
         - [@ohos.commonEventManager (公共事件模块)(系统接口)](./js-apis-commonEventManager-sys.md)
-        - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](./js-apis-application-staticSubscriberExtensionAbility.md)
-        - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)](./js-apis-application-StaticSubscriberExtensionContext.md)
+        - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)(系统接口)](./js-apis-application-staticSubscriberExtensionAbility-sys.md)
+        - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)(系统接口)](./js-apis-application-StaticSubscriberExtensionContext-sys.md)
+
     - commonEvent
         - [CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)
         - [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md)
