@@ -231,13 +231,13 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | 是   | 设备管理应用。                                               |
 | name   | string                                                       | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                  |
-| type   | [osAccount.OsAccountType](../apis/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
+| type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| [osAccount.OsAccountInfo](../apis/js-apis-osAccount.md#osaccountinfo) | 返回添加的账号信息。 |
+| [osAccount.OsAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 返回添加的账号信息。 |
 
 **错误码**：
 
