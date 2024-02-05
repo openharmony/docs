@@ -697,7 +697,7 @@ Preferences.flush()保存并刷新文件内容。
 5.设置数据项名称：使用[@ohos.settings.d.ts](reference/apis/js-apis-settings.md)
 实现获取获取数据项uri、开关飞行模式、检查应用是否能以悬浮窗形式显示功能。
 
-6.设备状态感知框架：使用[@ohos.stationary.d.ts](reference/apis/js-apis-stationary.md)
+6.设备状态感知框架：使用[@ohos.stationary.d.ts](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
 接口提供设备状态感知能力。
 
 7.热管理：使用[@ohos.thermal.d.ts](reference/apis/js-apis-thermal.md)
