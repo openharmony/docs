@@ -41,7 +41,7 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 | 名称                            |  值     | 说明                                         |
 | ------------------------------- | ------ | -------------------------------------------- |
 | AUDIO_LATENCY_MODE_NORMAL       | 0      | 普通时延模式。                                |
-| AUDIO_LATENCY_MODE_FAST         | 1      | 低时延模式。该模式适用于比较短的音频文件，音频文件过长时可能被截断，该特性与[SoundPool](../apis/js-apis-inner-multimedia-soundPool.md#soundpool)一致。 |
+| AUDIO_LATENCY_MODE_FAST         | 1      | 低时延模式。该模式适用于比较短的音频文件，音频文件过长时可能被截断，该特性与[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)一致。 |
 
 ## AudioHapticPlayerOptions
 
@@ -70,8 +70,8 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源支持可参考[media.AVPlayer](../apis/js-apis-media.md#avplayer9)；对低时延模式，音频资源支持可参考[SoundPool](../apis/js-apis-inner-multimedia-soundPool.md#soundpool)。           |
-| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源支持可参考[vibrator](../apis/js-apis-vibrator.md#hapticfiledescriptor10)。         |
+| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)；对低时延模式，音频资源支持可参考[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)。           |
+| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源支持可参考[vibrator](../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10)。         |
 
 **返回值：**
 

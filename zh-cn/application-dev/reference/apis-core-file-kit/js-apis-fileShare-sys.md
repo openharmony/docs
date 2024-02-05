@@ -31,7 +31,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| flag   | [wantConstant.Flags](../apis/js-apis-app-ability-wantConstant.md#wantconstantflags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
  | callback | AsyncCallback&lt;void&gt;  | 是    | 异步授权之后的回调                             |
 
 **错误码：**
@@ -85,7 +85,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| flag   | [wantConstant.Flags](../apis/js-apis-app-ability-wantConstant.md#wantconstantflags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
 
 **返回值：**
 
