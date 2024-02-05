@@ -116,7 +116,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -172,7 +172,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -221,7 +221,7 @@ start(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
@@ -333,7 +333,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
@@ -521,7 +521,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -586,7 +586,7 @@ off : (name : AuthEventKey) => void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -637,7 +637,7 @@ start : () => void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -688,7 +688,7 @@ cancel : () => void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -744,7 +744,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
@@ -789,7 +789,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |

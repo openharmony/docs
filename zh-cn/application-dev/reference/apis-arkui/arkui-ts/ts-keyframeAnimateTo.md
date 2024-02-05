@@ -1,12 +1,12 @@
-# 关键帧动画（keyframeAnimateTo）
+# 关键帧动画 (keyframeAnimateTo)
 
-在[UIContext](../apis/js-apis-arkui-UIContext.md#uicontext)中提供keyframeAnimateTo接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容、[linearGradient](ts-universal-attributes-gradient-color.md)等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
+在[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)中提供keyframeAnimateTo接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容、[linearGradient](ts-universal-attributes-gradient-color.md)等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
 >  **说明：**
 >
 >  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该接口为[UIContext](../apis/js-apis-arkui-UIContext.md#uicontext)类的成员函数，需要通过UIContext实例对象调用。
+>  该接口为[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)类的成员函数，需要通过UIContext实例对象调用。
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 
@@ -29,7 +29,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | 名称       | 参数类型                              | 是否必填 | 描述                                       |
 | ---------- | ------------------------------------ | ------- | ---------------------------------------- |
 | duration   | number                               | 是      | 该段关键帧动画的持续时间，单位为毫秒。<br/>取值范围：[0, +∞)<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
-| curve      | [Curve](ts-appendix-enums.md#curve)\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve) | 否  | 该关键帧使用的动画曲线。<br/>默认值：Curve.EaseInOut<br/>**说明：**<br/>由于[springMotion](../apis/js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../apis/js-apis-curve.md#curvesresponsivespringmotion9)、[interpolatingSpring](../apis/js-apis-curve.md#curvesinterpolatingspring10)曲线时长不生效，故不支持这三种曲线。 |
+| curve      | [Curve](ts-appendix-enums.md#curve)\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../../apis/js-apis-curve.md#icurve) | 否  | 该关键帧使用的动画曲线。<br/>默认值：Curve.EaseInOut<br/>**说明：**<br/>由于[springMotion](../../apis/js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../../apis/js-apis-curve.md#curvesresponsivespringmotion9)、[interpolatingSpring](../../apis/js-apis-curve.md#curvesinterpolatingspring10)曲线时长不生效，故不支持这三种曲线。 |
 | event      | () => void                           | 是      | 指定在该关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。 |
 
 ## 示例

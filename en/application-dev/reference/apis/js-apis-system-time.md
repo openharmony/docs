@@ -108,7 +108,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -150,7 +150,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -191,7 +191,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime
+## systemTime.getCurrentTime<sup>8+</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -236,7 +236,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime
+## systemTime.getRealActiveTime<sup>8+</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -278,7 +278,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime
+## systemTime.getRealActiveTime<sup>8+</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -319,7 +319,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime
+## systemTime.getRealActiveTime<sup>8+</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -364,7 +364,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime
+## systemTime.getRealTime<sup>8+</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -406,7 +406,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime
+## systemTime.getRealTime<sup>8+</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -447,7 +447,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime
+## systemTime.getRealTime<sup>8+</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -585,7 +585,7 @@ try {
 }
 ```
 
-## systemTime.getDate
+## systemTime.getDate<sup>8+</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -626,7 +626,7 @@ try {
 }
 ```
 
-## systemTime.getDate
+## systemTime.getDate<sup>8+</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -756,7 +756,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone
+## systemTime.getTimezone<sup>8+</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -797,7 +797,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone
+## systemTime.getTimezone<sup>8+</sup>
 
 getTimezone(): Promise&lt;string&gt;
 

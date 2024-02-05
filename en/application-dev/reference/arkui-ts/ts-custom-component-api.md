@@ -9,7 +9,7 @@ Custom component built-in APIs are APIs predefined on the base class of custom c
 
 ## getUIContext
 
-getUIContext?(): UIContext
+getUIContext(): UIContext
 
 Obtains the **UIContext** instance.
 
@@ -30,9 +30,7 @@ import { UIContext } from '@ohos.arkui.UIContext';
 @Component
 struct MyComponent {
   aboutToAppear() {
-    if (typeof this.getUIContext === 'function') {
-        let uiContext: UIContext = this.getUIContext();
-    }
+    let uiContext: UIContext = this.getUIContext();
   }
 
   build() {
@@ -43,7 +41,7 @@ struct MyComponent {
 
 ## queryNavDestinationInfo
 
-queryNavDestinationInfo?(): NavDestinationInfo | undefined;
+queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
 Obtains the **NavDestinationInfo** instance.
 
@@ -64,9 +62,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct MyComponent {
   aboutToAppear() {
-    if (typeof this.queryNavDestinationInfo === 'function') {
-        let info: observer.NavDestinationInfo | undefined = this.queryNavDestinationInfo();
-    }
+    let info: observer.NavDestinationInfo | undefined = this.queryNavDestinationInfo();
   }
 
   build() {

@@ -22,7 +22,7 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                                     | 是   | 是否显示全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| isShow  | boolean                                     | 是   | 是否显示全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。                                       |
 | options | [ContentCoverOptions](#contentcoveroptions) | 否   | 配置全屏模态页面的可选属性。                                 |
 

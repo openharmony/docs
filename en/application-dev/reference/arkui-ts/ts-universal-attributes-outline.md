@@ -88,12 +88,12 @@ Sets the rounded corner radius of the outline.
 
 ## OutlineOptions
 
-| Name  | Type                                                        | Description                                                        |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | Outline thickness. This parameter cannot be set in percentage.<br>Default value: **0**|
-| color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) | Outline color.<br>Default value: **Color.Black**                  |
-| radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | Rounded corner radius of the outline. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
-| style  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) | Outline style.<br>Default value: **OutlineStyle.SOLID**           |
+| Name  | Type                  |Mandatory                                     | Description                                                        |
+| ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
+| width  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | No| Outline thickness. This parameter cannot be set in percentage.<br>Default value: **0**|
+| color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) |No| Outline color.<br>Default value: **Color.Black**                  |
+| radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | No| Rounded corner radius of the outline. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
+| style  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) |No| Outline style.<br>Default value: **OutlineStyle.SOLID**           |
 
 ## EdgeOutlineWidths
 

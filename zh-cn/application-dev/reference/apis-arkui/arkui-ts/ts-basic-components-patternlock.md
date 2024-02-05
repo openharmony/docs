@@ -42,7 +42,7 @@ PatternLock(controller?: PatternLockController)
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onPatternComplete(callback: (input: Array\<number\>) => void) | 密码输入结束时触发该回调。<br />input: 与选中宫格圆点顺序一致的数字数组，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
-| onDotConnect(callback: [CallBack](../apis/js-apis-base.md#callback)\<number\>)<sup>11+</sup>     | 密码输入选中宫格圆点时触发该回调。<br />**说明：**<br />回调参数为选中宫格圆点顺序的数字，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
+| onDotConnect(callback: [CallBack](../../apis/js-apis-base.md#callback)\<number\>)<sup>11+</sup>     | 密码输入选中宫格圆点时触发该回调。<br />**说明：**<br />回调参数为选中宫格圆点顺序的数字，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
 
 ## PatternLockController
 

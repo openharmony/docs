@@ -14,11 +14,19 @@ Not supported
 
 ## APIs
 
-Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
+Slider(options?: SliderOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
+| Name | Type                                   | Mandatory| Description              |
+| ------- | --------------------------------------- | ---- | ------------------ |
+| options | [SliderOptions](#slideroptions) | No  | Parameters of the slider.|
+
+## SliderOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -50,16 +58,19 @@ All the [universal attributes](ts-universal-attributes-size.md) except **respons
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>Default value: **'#007dff'**|
 | showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | showTips | value: boolean,<br>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | **value**: whether to display a tooltip when the user drags the slider.<br>Default value: **false**<br>**content**: text content of the tooltip. The default value is the current percentage.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the tooltip is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the tooltip is displayed on the left of the slider.<br>The drawing area of the tooltip is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the tooltip will be clipped.|
-| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If the value is less than or equal to 0, the default value is used.|
-| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.<br>**NOTE**<br>Default value: **'#000000'**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderColor** sets the border color of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderColor** does not work as the slider has no border.<br>When **SliderBlockType.SHAPE** is used, **blockBorderColor** sets the border color of the slider in a custom shape.|
+| trackThickness<sup>8+</sup> | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If the value is less than or equal to 0, the default value is used.|
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.<br>**NOTE**<br>Default value: **'#00000000'**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderColor** sets the border color of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderColor** does not work as the slider has no border.<br>When **SliderBlockType.SHAPE** is used, **blockBorderColor** sets the border color of the slider in a custom shape.|
 | blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | Border width of the slider in the block direction.<br>**NOTE**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderWidth** sets the border width of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderWidth** does not work as the slider has no border.<br>WWhen **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border width of the slider in a custom shape.|
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Step color.<br>**NOTE**<br>Default value: **'#19182431'**|
 | trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | Radius of the rounded corner of the slider track.<br>**NOTE**<br>Default value: **'2vp'**|
 | blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | Size of the slider in the block direction.<br>**NOTE**<br>Default value:<br>**{width: 16, height: 16}** when **style** is set to [SliderStyle](#sliderstyle).OutSet<br>{width: 16, height: 16} when **style** is set to [SliderStyle](#sliderstyle).InSet<br>If the width and height of **bolckSize** are different, the smaller value is used. If one or both of the width and height are less than or equal to 0, the default value is used.|
 | blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | Style of the slider in the block direction.<br>**NOTE**<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
 | stepSize<sup>10+</sup> | [Length](ts-types.md#length) | Step size (diameter).<br>**NOTE**<br>Default value: **'4vp'**<br>If the value is 0, the step size is not displayed. If the value is less than 0, the default value is used.|
+| minLabel<sup>deprecated</sup> | string | Minimum value.<br>This API is deprecated since API version 9. You are advised to use **min** instead.|
+| maxLabel<sup>deprecated</sup> | string | Maximum value.<br>This API is deprecated since API version 9. You are advised to use **max** instead.|
 
 >  **NOTE**
+>
 >  - By default, the slider has no padding.
 >  - For a horizontal slider, the default height is 40 vp, the width equals that of the parent container, the slider track is displayed in the center, and the left and right margins are 10 vp and not covered by the paddings (if set).
 >  - For a vertical slider, the default width is 40 vp, the height equals that of the parent container, the slider track is displayed in the center, and the top and bottom margins are 6 vp and not covered by the paddings (if set).

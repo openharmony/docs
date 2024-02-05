@@ -22,11 +22,17 @@ SaveButton()
 Creates a Save button with an icon, text, and background.
 
 ### SaveButton
-SaveButton(option:{icon?: SaveIconStyle, text?: SaveDescription, buttonType?: ButtonType})
+SaveButton(option:SaveButtonOptions)
 
 Creates a Save button that contains the specified elements.
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| option | SaveButtonOptions | No| Creates a Save button that contains the specified elements.|
+
+## SaveButtonOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

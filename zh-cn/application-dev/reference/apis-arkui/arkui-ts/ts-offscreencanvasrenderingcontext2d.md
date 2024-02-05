@@ -2494,7 +2494,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 | 参数    | 类型                                       | 必填   | 默认值  | 描述                            |
 | ----- | ---------------------------------------- | ---- | ---- | ----------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
 | sx    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值，单位：vp。          |
 | sy    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值，单位：vp。          |
 | sw    | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度，单位：vp。                |
@@ -2576,7 +2576,7 @@ createImageData(imageData: ImageData): ImageData
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建[PixelMap](../apis/js-apis-image.md#pixelmap7)对象。
+以当前canvas指定区域内的像素创建[PixelMap](../../apis/js-apis-image.md#pixelmap7)对象。
 
  **参数：**
 
@@ -2591,7 +2591,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 类型                                       | 说明           |
 | ---------------------------------------- | ------------ |
-| [PixelMap](../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
+| [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
 
 **示例：**
 
@@ -2632,13 +2632,13 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 setPixelMap(value?: PixelMap): void
 
-将当前传入[PixelMap](../apis/js-apis-image.md#pixelmap7)对象绘制在画布上。setPixelMap示例同getPixelMap。
+将当前传入[PixelMap](../../apis/js-apis-image.md#pixelmap7)对象绘制在画布上。setPixelMap示例同getPixelMap。
 
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述              |
 | ---- | ------ | ---- | ---- | --------------- |
-|  value  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否    |  null   | 包含像素值的PixelMap对象 |
+|  value  | [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 否    |  null   | 包含像素值的PixelMap对象 |
 
 
 ### getImageData

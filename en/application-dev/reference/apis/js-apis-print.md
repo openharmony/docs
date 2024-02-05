@@ -598,11 +598,24 @@ Defines the print attributes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | No| Copy of the file list.|
-| pageRange | PrinterRange | No| Range of pages to print.|
+| pageRange | PrintPageRange | No| Range of pages to print.|
 | pageSize | PrintPageSize \| PrintPageType | No| Page size of the files to print.|
 | directionMode | PrintDirectionMode | No| Print direction mode.|
 | colorMode | PrintColorMode | No| Color mode of the files to print.|
 | duplexMode | PrintDuplexMode | No| Duplex mode of the files to print.|
+
+## PrintPageRange<sup>11+</sup>
+
+Defines the print range.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Attributes**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| startPage | number | No| Start page.|
+| endPage | number | No| End page.|
+| pages | Array&lt;number&gt; | No| Discrete pages.|
 
 ## PrintMargin
 
@@ -620,9 +633,11 @@ Defines the page margins for printing.
 | left | number | No| Left margin of the page.|
 | right | number | No| Right margin of the page.|
 
-## PrinterRange<sup>11+</sup>
+## PrinterRange
 
 Defines the print range.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Print.PrintFramework
 
@@ -2397,7 +2412,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-print.queryPrintJobById(jobId, (err: BusinessError, printJob : PrintJob) => {
+print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) => {
     if (err) {
         console.log('queryPrintJobById failed, because : ' + JSON.stringify(err));
     } else {
@@ -2435,7 +2450,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-print.queryPrintJobById(jobId).then((printJob : PrintJob) => {
+print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
     console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
 }).catch((error: BusinessError) => {
     console.log('queryPrintJobById error : ' + JSON.stringify(error));
@@ -2471,14 +2486,14 @@ import { BusinessError } from '@ohos.base';
 let jobId : string= '1';
 class MyPrintAttributes implements print.PrintAttributes {
     copyNumber?: number;
-    pageRange?: print.PrinterRange;
+    pageRange?: print.PrintPageRange;
     pageSize?: print.PrintPageSize | print.PrintPageType;
     directionMode?: print.PrintDirectionMode;
     colorMode?: print.PrintColorMode;
     duplexMode?: print.PrintDuplexMode;
 }
 
-class MyPrinterRange implements print.PrinterRange {
+class MyPrintPageRange implements print.PrintPageRange {
     startPage?: number;
     endPage?: number;
     pages?: Array<number>;
@@ -2493,7 +2508,7 @@ class MyPrintPageSize implements print.PrintPageSize {
 
 let printAttributes = new MyPrintAttributes();
 printAttributes.copyNumber = 2;
-printAttributes.pageRange = new MyPrinterRange();
+printAttributes.pageRange = new MyPrintPageRange();
 printAttributes.pageRange.startPage = 0;
 printAttributes.pageRange.endPage = 5;
 printAttributes.pageRange.pages = [1, 3];
@@ -2505,6 +2520,41 @@ printAttributes.duplexMode = print.PrintDuplexMode.DUPLEX_MODE_NONE;
 let fd : number = 1;
 print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileCreationState) => {
     console.log('onFileStateChanged success, data : ' + JSON.stringify(state));
+})
+```
+
+## notifyPrintService<sup>11+</sup>
+
+notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started', callback: AsyncCallback&lt;void&gt;): void
+
+Notifies the print service of the spooler shutdown information. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| jobId | string | Yes| ID of the print job.|
+| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | Yes| Spooler shutdown information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '1';
+print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessError, data : void) => {
+    if (err) {
+        console.log('notifyPrintService failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('notifyPrintService success, data : ' + JSON.stringify(data));
+    }
 })
 ```
 
@@ -2539,8 +2589,8 @@ import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
 print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
-    console.log('queryPrintJobById data : ' + JSON.stringify(data));
+    console.log('notifyPrintService data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('queryPrintJobById error : ' + JSON.stringify(error));
+    console.log('notifyPrintService error : ' + JSON.stringify(error));
 })
 ```

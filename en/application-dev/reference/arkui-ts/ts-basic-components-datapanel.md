@@ -16,20 +16,26 @@ Not supported
 
 ## APIs
 
-DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
+DataPanel(options: DataPanelOptions)
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [DataPanelOptions](#datapaneloptions)| Yes| Parameters of the data panel.|
+
+## DataPanelOptions
+
 | Name           | Type  | Mandatory | Description|
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | Yes   | Data value list. A maximum of nine values are supported. If more than nine values are set, only the first nine ones are used. A value less than 0 evaluates to the value **0**.|
 | max               | number     | No   |   - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion.<br>Default value: **100**|
-| type<sup>8+</sup> | [DataPanelType](#datapaneltype) | No| Type of the data panel (dynamic modification is not supported).<br>Default value: **DataPanelType.Circle**|
+| type<sup>8+</sup> | [DataPanelType](#datapaneltype8) | No| Type of the data panel (dynamic modification is not supported).<br>Default value: **DataPanelType.Circle**|
 
 
-## DataPanelType
+## DataPanelType<sup>8+</sup>
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -56,7 +62,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 ## DataPanelShadowOptions<sup>10+</sup>
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource)| No| Shadow blur radius.<br>Default value: **5**<br>Unit: vp<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| radius | number \| [Resource](ts-types.md#resource)| No| Shadow blur radius.<br>The default value varies by API version.<br>API version 10 and earlier versions: **5**<br>Since API version 11: **20**<br>Unit: vp<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | No| Array of shadow colors for data segments.<br>Default value: same as the value of **valueColors**<br>**NOTE**<br>If the number of the set shadow colors is less than that of the data segments, the number of the displayed shadow colors is the same as the former.<br>If the number of the set shadow colors is greater than that of the data segments, the number of the displayed shadow colors is the same as the latter.|
 | offsetX | number \| [Resource](ts-types.md#resource)| No| Offset on the x-axis.<br>Default value: **5**<br>Unit: vp|
 | offsetY | number \| [Resource](ts-types.md#resource)| No| Offset on the y-axis.<br>Default value: **5**<br>Unit: vp|

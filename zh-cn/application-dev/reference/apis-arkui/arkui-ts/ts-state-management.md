@@ -21,7 +21,7 @@
 ## AppStorage
 
 
-AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储)](../../quick-start/arkts-appstorage.md)
+AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储)](../../../quick-start/arkts-appstorage.md)
 
 
 ### link<sup>10+</sup>
@@ -759,7 +759,7 @@ let res: number = AppStorage.Size(); // 1
 ## LocalStorage<sup>9+</sup>
 
 
-LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../quick-start/arkts-localstorage.md)
+LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../../quick-start/arkts-localstorage.md)
 
 
 ### constructor<sup>9+</sup>
@@ -806,7 +806,7 @@ static getShared(): LocalStorage
 | [LocalStorage](#localstorage9) | 返回LocalStorage实例。 |
 
 **示例：**
-getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../quick-start/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个视图)
+getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../../quick-start/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个视图)
 
 
 ### has<sup>9+</sup>
@@ -1293,7 +1293,7 @@ link.aboutToBeDeleted();
 ## PersistentStorage
 
 
-PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../quick-start/arkts-persiststorage.md)
+PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../../quick-start/arkts-persiststorage.md)
 
 ### PersistPropsOptions
 
@@ -1336,7 +1336,7 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 **示例：**
 
 
-persistProp具体使用，见[从AppStorage中访问PersistentStorage初始化的属性](../../quick-start/arkts-persiststorage.md#从appstorage中访问persistentstorage初始化的属性)
+persistProp具体使用，见[从AppStorage中访问PersistentStorage初始化的属性](../../../quick-start/arkts-persiststorage.md#从appstorage中访问persistentstorage初始化的属性)
 
 
 ### deleteProp<sup>10+</sup>
@@ -1511,7 +1511,7 @@ let keys: Array<string> = PersistentStorage.Keys();
 ## Environment
 
 
-Environment具体使用说明，详见[Environment(设备环境查询)](../../quick-start/arkts-environment.md)
+Environment具体使用说明，详见[Environment(设备环境查询)](../../../quick-start/arkts-environment.md)
 
 ### EnvPropsOptions
 
@@ -1553,7 +1553,7 @@ static envProp&lt;S&gt;(key: string, value: S): boolean
 **示例：**
 
 
-envProp具体使用，见[从UI中访问Environment参数](../../quick-start/arkts-environment.md#从ui中访问environment参数)
+envProp具体使用，见[从UI中访问Environment参数](../../../quick-start/arkts-environment.md#从ui中访问environment参数)
 
 
 ### envProps<sup>10+</sup>

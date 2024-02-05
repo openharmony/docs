@@ -11,12 +11,16 @@ The **\<GridCol>** component must be used as a child component of the **[\<GridR
 This component can contain only one child component.
 ## APIs
 
-GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
+GridCol(option?: GridColOptions)
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
+| Name| Type                                                 | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| option   | [GridColOptions](#gridcoloptions) | No  | Child component options of the grid layout.|
 
+## GridColOptions
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of columns occupied by the component. If it is set to **0**, the component is not involved in layout calculation, that is, the component is not rendered.<br>Default value: **1**|
@@ -34,6 +38,7 @@ The default values vary by device width type.
 |order  |20 |20 |20 |3  |3  |3  |
 
 ## Attributes
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type                         | Mandatory| Description                                                        |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
@@ -49,12 +54,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the mininum-width device.   |
-| sm  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the small-width device.     |
-| md  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the medium-width device.   |
-| lg  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the large-width device.     |
-| xl  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the extra-large-width device.   |
-| xxl | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the extra-extra-large-width device.   |
+| xs  | number | No   | Number of grid columns on the device where the grid size is xs.   |
+| sm  | number | No   | Number of grid columns on the device where the grid size is sm.     |
+| md  | number | No   | Number of grid columns on the device where the grid size is md.   |
+| lg  | number | No   | Number of grid columns on the device where the grid size is lg.     |
+| xl  | number | No   | Number of grid columns on the device where the grid size is xl.   |
+| xxl | number | No   | Number of grid columns on the device where the grid size is xxl.   |
 
 ## Example
 See [GridRow](ts-container-gridrow.md#example).

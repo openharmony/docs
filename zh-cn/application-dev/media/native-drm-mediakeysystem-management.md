@@ -9,10 +9,10 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
 1. 导入NDK相关接口，导入方法如下。
 
    ```c++
-    #include "multimedia/drm_framework/common/native_drm_common.h"
-    #include "multimedia/drm_framework/common/native_drm_err.h"
-    #include "multimedia/drm_framework/native_mediakeysession.h"
-    #include "multimedia/drm_framework/native_mediakeysystem.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_common.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_err.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysession.h"
+    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysystem.h"
    ```
 
 2. 在CMake脚本中链接Drm NDK动态库。
@@ -70,7 +70,7 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
     }
     // 设置字符串类型的配置信息
-    ret = MediaKeySystem_SetConfigurationString(keySystem, "version", "2.0");
+    ret = OH_MediaKeySystem_SetConfigurationString(keySystem, "version", "2.0");
     if (ret == DRM_OK) {
         OH_LOG_INFO(LOG_APP, "MediaKeySystem_SetConfigurationString success ");
     } else {
@@ -118,7 +118,7 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
     }
-    OH_DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_UNKNOWN;
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_UNKNOWN;
     ret = OH_MediaKeySystem_GetMaxContentProtectionLevel(keySystem, &contentProtectionLevel);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetMaxContentProtectionLevel failed.");
@@ -133,12 +133,13 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
 7. 调用MediaKeySystem类中的OH_MediaKeySystem_SetMediaKeySystemCallback方法设置MediaKeySystem监听回调。
 
    ```c++
-   DRM_ErrCode TestSystemCallBack(OH_DRM_ListenerType eventType, OH_DRM_Uint8CharBufferPair *eventInfo)
-   {
-      OH_LOG_INFO(LOG_APP, "TestSystemCallBack");
-   }
-   DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallback()
-   {
+    DRM_ErrCode TestSystemCallBack(DRM_EventType eventType, uint8_t *info,
+        int32_t infoLen, char *extra)
+    {
+        OH_LOG_INFO(LOG_APP, "TestSystemCallBack");
+    }
+    DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallback()
+    {
     MediaKeySystem *keySystem = NULL;
     const char *name = "com.wiseplay.drm";
     ret = OH_MediaKeySystem_Create(name, &keySystem);
@@ -168,8 +169,8 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
     }
-    OH_DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    OH_MediaKeySession *keySession = NULL;
+    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
+    MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
     if (ret != DRM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
@@ -201,6 +202,7 @@ DRM系统管理（MediaKeySession）支持MediaKeySystem实例管理、设备证
        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
        return ret;
      }
+
      ret = OH_MediaKeySystem_GenerateKeySystemRequest(keySystem, &request,
       &requestLen, &defaultUrl, MAX_DEFAULT_URL_LEN);
      if (ret != DRM_OK) {

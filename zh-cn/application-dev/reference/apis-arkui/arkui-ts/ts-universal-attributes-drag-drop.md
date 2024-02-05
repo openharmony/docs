@@ -28,7 +28,7 @@ allowDrop(value: Array&lt;UniformDataType&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                            |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 是   | 设置该组件上允许落入的数据类型。<br/>默认值：空 |
+| value  | Array\<[UniformDataType](../../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 是   | 设置该组件上允许落入的数据类型。<br/>默认值：空 |
 
 ## draggable
 
@@ -56,7 +56,7 @@ dragPreview(value: CustomBuilder | DragItemInfo)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#属性)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#属性)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#事件)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#属性)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../apis/js-apis-image.md#pixelmap7)方式。<br/>默认值：空<br/> |
+| value  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#属性)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#属性)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#事件)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#属性)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../../apis/js-apis-image.md#pixelmap7)方式。<br/>默认值：空<br/> |
 
 ## dragPreviewOptions<sup>11+</sup>
 

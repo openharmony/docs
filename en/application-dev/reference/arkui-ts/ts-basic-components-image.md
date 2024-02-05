@@ -51,16 +51,16 @@ For details about how to use the attributes, see [Setting Attributes](../../ui/a
 | autoResize                       | boolean                                                 | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>As downsampling images results in some loss of information, it may reduce the image quality, causing issues such as aliasing. To retain the original image quality, set **autoResize** to **false**.|
 | syncLoad<sup>8+</sup>            | boolean                                                 | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When loading a small image, you are advised to set **syncLoad** to **true** so that the image loading can be quickly completed on the main thread.|
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | Whether the image can be copied.<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>SVG images cannot be copied.|
-| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.|
-| draggable<sup>9+</sup> | boolean                                                 | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**<br>**NOTE**<br>The default value is **false** in API version 9 and **true** in API version 10.|
+| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| draggable<sup>9+</sup> | boolean                                                 | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md#ondragstart) event.<br>Default value: **false**<br>**NOTE**<br>The default value is **false** in API version 9 and **true** in API version 10.|
 | enableAnalyzer<sup>11+</sup> | boolean                                                 | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect.<br>Default value: **false**<br>**NOTE**<br> This feature depends on device capabilities.<br> Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../apis/js-apis-image.md#pixelmap7) in [RGBA_8888](../apis/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example](#enabling-ai-analyzer-for-pixel-maps)<br> The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.<br> Analysis is performed based on the complete original image. If the **clip**, **margin**, **borderRadius**, **position**, or **objectFit** attribute is set, the image is not displayed completely. If **renderMode** is used to apply a mask, analysis is still performed based on the complete original image.<br> The **copyOption** attribute does not affect the AI analyzer.|
 | analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | Type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported.<br>**NOTE**<br> The type of the AI analyzer cannot be dynamically modified.<br>**System API**:<br> This is a system API.|
-| edgeAntialiasing<sup>11+</sup> | number                                                 | Edge antialiasing of the image. This attribute applies only to an SVG image.<br>Value range: $[0.333, 1.333]$. The value is valid up to three decimal places.<br>Default value: **$0$**<br>**System API**:<br> This is a system API.|
-|resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | Resizable image options.<br> **NOTE**<br> 1. Resizing is effective for drag previews and placeholder images.<br>2. When [ResizableOptions](#resizableoptions11) is set to a valid value, the **objectRepeat ** setting does not take effect.<br>3. When the sum of the values of **top** and **bottom** is greater than the original image height or the sum of the values of **left** and **right** is greater than the original image width, the ResizableOptions](#resizableoptions11) setting does not take effect.<br>|
+| edgeAntialiasing<sup>11+</sup> | number                                                 | Edge antialiasing of the image. This attribute applies only to an SVG image.<br>Value range: $[0.333, 1.333]$. The value is valid up to three decimal places.<br>Default value: **$0$**<br>**NOTE**<br>This attribute can be used to fix aliasing in SVG images on devices with PPI lower than 200, but it may compromise the performance. Exercise caution when using this attribute.<br>**System API**:<br> This is a system API.|
+|resizable<sup>11+</sup> | [ResizableOptions](#resizableoptions11) | Resizable image options.<br> **NOTE**<br> 1. Resizing is effective for drag previews and placeholder images.<br>2. When [ResizableOptions](#resizableoptions11) is set to a valid value, the **objectRepeat** setting does not take effect.<br>3. When the sum of the values of **top** and **bottom** is greater than the original image height or the sum of the values of **left** and **right** is greater than the original image width, the [ResizableOptions](#resizableoptions11) setting does not take effect.<br>|
 
 >  **NOTE**
 >
->  - To use shortcut keys to copy the **\<Image>** component, the component must be [in focus](../../ui/arkts-common-events-focus-event.md#setting-whether-a-component-is-focusable). By default, the **\<Image>** component is not focusable. To enable it to gain focus, set both the [focusable](ts-universal-attributes-focus.md) and [focusOnTouch](ts-universal-attributes-focus.md) attributes to **true**.
+>  - To use shortcut keys to copy the **\<Image>** component, the component must be [in focus](../../ui/arkts-common-events-focus-event.md#setting-whether-a-component-is-focusable). By default, the **\<Image>** component is not focusable. To enable it to gain focus, set both the [focusable](ts-universal-attributes-focus.md#focusable) and [focusable](ts-universal-attributes-focus.md#focusable) attributes to **true**.
 >  - For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, and **polygon**.
 
 ## ImageInterpolation
@@ -135,7 +135,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ### onError
 
-onError(callback: [ImageErrorCallback](#imageerrorcallback11))
+onError(callback: [ImageErrorCallback](#imageerrorcallback9))
 
 Triggered when an error occurs during image loading.
 
@@ -145,7 +145,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name              | Type  | Description                     |
 | -------------------- | ------ | ------------------------- |
-| callback       | [ImageErrorCallback](#imageerrorcallback11) | Triggered when an error occurs during image loading.|
+| callback       | [ImageErrorCallback](#imageerrorcallback9) | Triggered when an error occurs during image loading.|
 
 ### onFinish
 
@@ -157,17 +157,17 @@ Only SVG images are supported.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-## ImageErrorCallback<sup>11+</sup>
+## ImageErrorCallback<sup>9+</sup>
 
-type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
+type ImageErrorCallback = (error: [ImageError](#imageerror9)) => void
 
 Triggered when an error occurs during image loading.
 
 | Name              | Type  | Description                     |
 | -------------------- | ------ | ------------------------- |
-| error       | [ImageError](#imageerror11) | Return object that triggers the callback for when an error occurs during image loading.|
+| error       | [ImageError](#imageerror9) | Return object that triggers the callback for when an error occurs during image loading.|
 
-## ImageError<sup>11+</sup>
+## ImageError<sup>9+</sup>
 
 Describes the return object that triggers the callback for when an error occurs during image loading.
 

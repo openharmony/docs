@@ -55,7 +55,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | translate      | [TranslateResult](#translateresult) | Yes| Translation of the component.               |
 | scale          | [ScaleResult](#scaleresult) | Yes| Scaling of the component.               |
 | rotate         | [RotateResult](#rotateresult) | Yes| Rotation of the component.               |
-| transform      | [Matrix4Result](#matrix4result) | Yes| Affine matrix of the component, which is a 4x4 matrix object created based on the input parameter. |
+| transform      | [Matrix4Result](#matrix4result) | Yes| Affine matrix of the component, which is a 4 x 4 matrix object created based on the input parameter. |
 
 ### Size 
 

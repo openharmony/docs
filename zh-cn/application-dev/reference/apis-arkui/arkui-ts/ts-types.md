@@ -169,7 +169,7 @@
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0  |
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 \| FontWeight.Normal |
-| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../apis/js-apis-font.md)。 |
+| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../../apis/js-apis-font.md)。 |
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。<br>默认值：FontStyle.Normal                               |
 
 ## Area<sup>8+</sup>
@@ -239,7 +239,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../quick-start/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 

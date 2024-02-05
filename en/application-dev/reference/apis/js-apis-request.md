@@ -736,10 +736,11 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
+import { BusinessError } from '@ohos.base';
+
   try {
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-      downloadTask = data;
+       let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
     })
@@ -785,7 +786,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
+import { BusinessError } from '@ohos.base';
+
   try {
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
@@ -795,7 +797,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      downloadTask = data;
+      let downloadTask: request.DownloadTask = data;
     });
   } catch (err) {
     console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
@@ -919,11 +921,21 @@ Subscribes to download progress events. This API uses a callback to return the r
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let progressCallback = (receivedSize: number, totalSize: number) => {
-    console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-  };
-  downloadTask.on('progress', progressCallback);
+import { BusinessError } from '@ohos.base';
+
+  try {
+    request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let progressCallback = (receivedSize: number, totalSize: number) => {
+        console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+      };
+      downloadTask.on('progress', progressCallback);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -947,19 +959,29 @@ Unsubscribes from download progress events.
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let progressCallback1 = (receivedSize: number, totalSize: number) => {
-    console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-  };
-  let progressCallback2 = (receivedSize: number, totalSize: number) => {
-    console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-  };
-  downloadTask.on('progress', progressCallback1);
-  downloadTask.on('progress', progressCallback2);
-  // Unsubscribe from progressCallback1.
-  downloadTask.off('progress', progressCallback1);
-  // Unsubscribe from all callbacks of download progress events.
-  downloadTask.off('progress');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let progressCallback1 = (receivedSize: number, totalSize: number) => {
+      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+    };
+    let progressCallback2 = (receivedSize: number, totalSize: number) => {
+      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+    };
+    downloadTask.on('progress', progressCallback1);
+    downloadTask.on('progress', progressCallback2);
+    // Unsubscribe from progressCallback1.
+    downloadTask.off('progress', progressCallback1);
+    // Unsubscribe from all callbacks of download progress events.
+    downloadTask.off('progress');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -983,21 +1005,31 @@ Subscribes to download events. This API uses a callback to return the result asy
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let completeCallback = () => {
-    console.info('Download task completed.');
-  };
-  downloadTask.on('complete', completeCallback);
+import { BusinessError } from '@ohos.base';
 
-  let pauseCallback = () => {
-    console.info('Download task pause.');
-  };
-  downloadTask.on('pause', pauseCallback);
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let completeCallback = () => {
+      console.info('Download task completed.');
+    };
+    downloadTask.on('complete', completeCallback);
 
-  let removeCallback = () => {
-    console.info('Download task remove.');
-  };
-  downloadTask.on('remove', removeCallback);
+    let pauseCallback = () => {
+      console.info('Download task pause.');
+    };
+    downloadTask.on('pause', pauseCallback);
+
+    let removeCallback = () => {
+      console.info('Download task remove.');
+    };
+    downloadTask.on('remove', removeCallback);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1021,45 +1053,56 @@ Unsubscribes from download events.
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let completeCallback1 = () => {
-    console.info('Download delete complete notification.');
-  };
-  let completeCallback2 = () => {
-    console.info('Download delete complete notification.');
-  };
-  downloadTask.on('complete', completeCallback1);
-  downloadTask.on('complete', completeCallback2);
-  // Unsubscribe from completeCallback1.
-  downloadTask.off('complete', completeCallback1);
-  // Unsubscribe from all callbacks of the download completion events.
-  downloadTask.off('complete');
+import { BusinessError } from '@ohos.base';
 
-  let pauseCallback1 = () => {
-    console.info('Download delete pause notification.');
-  };
-  let pauseCallback2 = () => {
-    console.info('Download delete pause notification.');
-  };
-  downloadTask.on('pause', pauseCallback1);
-  downloadTask.on('pause', pauseCallback2);
-  // Unsubscribe from pauseCallback1.
-  downloadTask.off('pause', pauseCallback1);
-  // Unsubscribe from all callbacks of the download pause events.
-  downloadTask.off('pause');
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let completeCallback1 = () => {
+      console.info('Download delete complete notification.');
+    };
+    let completeCallback2 = () => {
+      console.info('Download delete complete notification.');
+    };
+    downloadTask.on('complete', completeCallback1);
+    downloadTask.on('complete', completeCallback2);
+    // Unsubscribe from completeCallback1.
+    downloadTask.off('complete', completeCallback1);
+    // Unsubscribe from all callbacks of the download completion events.
+    downloadTask.off('complete');
 
-  let removeCallback1 = () => {
-    console.info('Download delete remove notification.');
-  };
-  let removeCallback2 = () => {
-    console.info('Download delete remove notification.');
-  };
-  downloadTask.on('remove', removeCallback1);
-  downloadTask.on('remove', removeCallback2);
-  // Unsubscribe from removeCallback1.
-  downloadTask.off('remove', removeCallback1);
-  // Unsubscribe from all callbacks of the download removal events.
-  downloadTask.off('remove');
+    let pauseCallback1 = () => {
+      console.info('Download delete pause notification.');
+    };
+    let pauseCallback2 = () => {
+      console.info('Download delete pause notification.');
+    };
+    downloadTask.on('pause', pauseCallback1);
+    downloadTask.on('pause', pauseCallback2);
+    // Unsubscribe from pauseCallback1.
+    downloadTask.off('pause', pauseCallback1);
+    // Unsubscribe from all callbacks of the download pause events.
+    downloadTask.off('pause');
+
+    let removeCallback1 = () => {
+      console.info('Download delete remove notification.');
+    };
+    let removeCallback2 = () => {
+      console.info('Download delete remove notification.');
+    };
+    downloadTask.on('remove', removeCallback1);
+    downloadTask.on('remove', removeCallback2);
+    // Unsubscribe from removeCallback1.
+    downloadTask.off('remove', removeCallback1);
+    // Unsubscribe from all callbacks of the download removal events.
+    downloadTask.off('remove');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
+  
   ```
 
 
@@ -1089,11 +1132,21 @@ Subscribes to download failure events. This API uses a callback to return the re
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let failCallback = (err: number) => {
-    console.error(`Failed to download the task. Code: ${err}`);
-  };
-  downloadTask.on('fail', failCallback);
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let failCallback = (err: number) => {
+      console.error(`Failed to download the task. Code: ${err}`);
+    };
+    downloadTask.on('fail', failCallback);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1117,19 +1170,29 @@ Unsubscribes from download failure events.
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  let failCallback1 = (err: number) => {
-    console.error(`Failed to download the task. Code: ${err}`);
-  };
-  let failCallback2 = (err: number) => {
-    console.error(`Failed to download the task. Code: ${err}`);
-  };
-  downloadTask.on('fail', failCallback1);
-  downloadTask.on('fail', failCallback2);
-  // Unsubscribe from failCallback1.
-  downloadTask.off('fail', failCallback1);
-  // Unsubscribe from all callbacks of the download failure events.
-  downloadTask.off('fail');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    let failCallback1 = (err: number) => {
+      console.error(`Failed to download the task. Code: ${err}`);
+    };
+    let failCallback2 = (err: number) => {
+      console.error(`Failed to download the task. Code: ${err}`);
+    };
+    downloadTask.on('fail', failCallback1);
+    downloadTask.on('fail', failCallback2);
+    // Unsubscribe from failCallback1.
+    downloadTask.off('fail', failCallback1);
+    // Unsubscribe from all callbacks of the download failure events.
+    downloadTask.off('fail');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 ### delete<sup>9+</sup>
@@ -1151,12 +1214,22 @@ Deletes this download task. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.delete().then((result: boolean) => {
-    console.info('Succeeded in removing the download task.');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.delete().then((result: boolean) => {
+      console.info('Succeeded in removing the download task.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1179,14 +1252,24 @@ Deletes this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.delete((err: BusinessError, result: boolean) => {
-    if (err) {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in removing the download task.');
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.delete((err: BusinessError, result: boolean) => {
+      if (err) {
+        console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in removing the download task.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1209,12 +1292,22 @@ Obtains the information about this download task. This API uses a promise to ret
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
-    console.info('Succeeded in querying the download task')
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
+      console.info('Succeeded in querying the download task')
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+} 
   ```
 
 
@@ -1237,14 +1330,24 @@ Obtains the information about this download task. This API uses an asynchronous 
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
-    if (err) {
-      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('Succeeded in querying the download mimeType');
-    }
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+      if (err) {
+        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('Succeeded in querying the download mimeType');
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1267,12 +1370,22 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskMimeType().then((data: string) => {
-    console.info('Succeeded in querying the download MimeType');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskMimeType().then((data: string) => {
+      console.info('Succeeded in querying the download MimeType');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1295,14 +1408,24 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
-    if (err) {
-      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('Succeeded in querying the download mimeType');
-    }
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+      if (err) {
+        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('Succeeded in querying the download mimeType');
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1325,12 +1448,22 @@ Pauses this download task. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.suspend().then((result: boolean) => {
-    console.info('Succeeded in pausing the download task.');
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.suspend().then((result: boolean) => {
+      console.info('Succeeded in pausing the download task.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1353,14 +1486,24 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.suspend((err: BusinessError, result: boolean) => {
-    if (err) {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in pausing the download task.');
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.suspend((err: BusinessError, result: boolean) => {
+      if (err) {
+        console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in pausing the download task.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1383,12 +1526,22 @@ Resumes this download task. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.restore().then((result: boolean) => {
-    console.info('Succeeded in resuming the download task.')
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.restore().then((result: boolean) => {
+      console.info('Succeeded in resuming the download task.')
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-  });
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1411,14 +1564,24 @@ Resumes this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```ts
-  let downloadTask: request.DownloadTask;
-  downloadTask.restore((err: BusinessError, result: boolean) => {
-    if (err) {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in resuming the download task.');
-  });
+import { BusinessError } from '@ohos.base';
+
+try {
+  request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+    let downloadTask: request.DownloadTask = data;
+    downloadTask.restore((err: BusinessError, result: boolean) => {
+      if (err) {
+        console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in resuming the download task.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+}
   ```
 
 
@@ -1966,7 +2129,7 @@ Defines the data structure of the task information for query. The fields availab
 | tid | string | Yes| Task ID.|
 | title | string | Yes| Task title.|
 | description | string | Yes| Task description.|
-| action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**: upload task.<br>- **DOWNLOAD**: download task.|
+| action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
 | mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**: foreground task.<br>- **BACKGROUND**: background task.|
 | priority<sup>11+</sup> | number | No| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
 | mimeType | string | Yes| MIME type in the task configuration.|

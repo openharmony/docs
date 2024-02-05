@@ -78,6 +78,8 @@ Whether the component is focusable on touch.
 
 ## focusControl<sup>9+</sup>
 
+Implements focus control.
+
 ### requestFocus<sup>9+</sup>
 
 requestFocus(value: string): boolean
