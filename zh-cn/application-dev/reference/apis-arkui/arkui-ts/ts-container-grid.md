@@ -88,16 +88,16 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - Grid只展示固定行列数的元素，其余元素不展示，且Grid不可滚动。
 - 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
 - Grid的宽高没有设置时，默认适应父组件尺寸。
-- Gird网格列大小按照Gird自身内容区域大小减去所有行列Gap后按各个行列所占比重分配。
+- Grid网格列大小按照Grid自身内容区域大小减去所有行列Gap后按各个行列所占比重分配。
 - GridItem默认填满网格大小。
 
 2、rowsTemplate、columnsTemplate仅设置其中的一个：
 
 - 元素按照设置的方向进行排布，超出Grid显示区域后，Grid可通过滚动的方式展示。
-- 如果设置了columnsTemplate，Gird滚动方向为垂直方向，主轴方向为垂直方向，交叉轴方向为水平方向。
-- 如果设置了rowsTemplate，Gird滚动方向为水平方向，主轴方向为水平方向，交叉轴方向为垂直方向。
+- 如果设置了columnsTemplate，Grid滚动方向为垂直方向，主轴方向为垂直方向，交叉轴方向为水平方向。
+- 如果设置了rowsTemplate，Grid滚动方向为水平方向，主轴方向为水平方向，交叉轴方向为垂直方向。
 - 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
-- 网格交叉轴方向尺寸根据Gird自身内容区域交叉轴尺寸减去交叉轴方向所有Gap后按所占比重分配。
+- 网格交叉轴方向尺寸根据Grid自身内容区域交叉轴尺寸减去交叉轴方向所有Gap后按所占比重分配。
 - 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem高度最大值。
 
 3、rowsTemplate、columnsTemplate都不设置：
