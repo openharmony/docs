@@ -46,7 +46,6 @@ import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
-import calendarManager from '@ohos.calendarManager';
 import common from '@ohos.app.ability.common';
 import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
@@ -128,7 +127,6 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar: calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -176,7 +174,6 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -214,7 +211,6 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'DeleteMyCalendarByCallBack',
@@ -268,7 +264,6 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'DeleteMyCalendarByPromise',
@@ -312,7 +307,6 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -347,7 +341,6 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -396,7 +389,6 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
@@ -428,7 +420,6 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 calendarMgr?.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
@@ -464,7 +455,6 @@ getAllCalendars(): Promise\<Calendar[]>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded to get all calendars, data -> ${JSON.stringify(data)}`);
@@ -509,7 +499,6 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -558,7 +547,6 @@ addEvent(event: Event): Promise\<number>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -602,7 +590,6 @@ addEvents(events: Event[], callback: AsyncCallback\<void>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -660,7 +647,6 @@ addEvents(events: Event[]): Promise\<void>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -711,7 +697,6 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id: number = 0;
@@ -769,7 +754,6 @@ deleteEvent(id: number): Promise\<void>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id: number = 0;
@@ -820,7 +804,6 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -890,7 +873,6 @@ deleteEvents(ids: number[]): Promise\<void>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -953,7 +935,6 @@ updateEvent(event: Event, callback: AsyncCallback\<void>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -1013,7 +994,6 @@ updateEvent(event: Event): Promise\<void>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -1065,7 +1045,6 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -1106,7 +1085,6 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -1176,7 +1154,6 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const date = new Date();
@@ -1225,7 +1202,6 @@ getConfig(): CalendarConfig
 
 ```typescript
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1261,7 +1237,6 @@ setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const config: calendarManager.CalendarConfig = {
@@ -1310,7 +1285,6 @@ setConfig(config: CalendarConfig): Promise\<void>
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const config: calendarManager.CalendarConfig = {
@@ -1350,7 +1324,6 @@ getAccount(): CalendarAccount
 
 ```typescript
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 import { BusinessError } from '@ohos.base';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
@@ -1468,7 +1441,6 @@ static filterById(ids: number[]): EventFilter
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 let id1: number = 0;
@@ -1538,7 +1510,6 @@ static filterByTime(start: number, end: number): EventFilter
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const event1: calendarManager.Event = {
@@ -1602,7 +1573,6 @@ static filterByTitle(title: string): EventFilter
 ```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../entryability/EntryAbility';
-import calendarManager from '@ohos.calendarManager';
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const event: calendarManager.Event = {

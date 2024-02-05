@@ -3,7 +3,7 @@
 
 > **说明：**
 >
-> - 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](../apis/js-apis-bundleManager.md)。
+> - 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](js-apis-bundleManager.md)。
 >
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -17,7 +17,7 @@ import package from '@system.package';
 
 
 ## package.hasInstalled<sup>(deprecated)</sup>
-> 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](../apis/js-apis-bundleManager.md)。
+> 从API version 9开始不再维护，推荐使用该模块[@ohos.bundle.bundleManager](js-apis-bundleManager.md)。
 
 hasInstalled(options: CheckPackageHasInstalledOptions): void
 
@@ -29,7 +29,7 @@ hasInstalled(options: CheckPackageHasInstalledOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|options | [CheckPackageHasInstalledOptions](../apis/#checkpackagehasinstalledoptions) | 是 | 选项参数。 |
+|options | [CheckPackageHasInstalledOptions](#checkpackagehasinstalledoptions) | 是 | 选项参数。 |
 
 **示例：**
 

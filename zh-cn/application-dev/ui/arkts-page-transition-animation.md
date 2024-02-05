@@ -1,4 +1,4 @@
-# 页面转场动画（不推荐）
+# 页面转场动画 (不推荐)
 
 为了实现更好的转场效果，推荐使用[导航转场](arkts-navigation-transition.md)和[模态转场](arkts-modal-transition.md)。
 

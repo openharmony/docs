@@ -1,4 +1,4 @@
-# 粒子动画（Particle）
+# 粒子动画 (Particle)
 
 粒子动画是在一定范围内随机生成的大量粒子产生运动而组成的动画。动画元素是一个个粒子，这些粒子可以是圆点、图片。通过对粒子在颜色、透明度、大小、速度、加速度、自旋角度等维度变化做动画，来营造一种氛围感，比如下雪的动效，雪花飘舞就相当于一个个雪花粒子在做动画。
 
@@ -242,7 +242,7 @@ interface ParticlePropertyAnimation<T> {
 | to | T | 是 | 属性目标值。非法输入取对应属性的默认值。|
 |startMillis|number | 是 | 动画开始时间。|
 |endMillis|number | 是 | 动画结束时间。|
-|curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)| 否 | 设置动画曲线。<br>默认值：Curve.Linear|
+|curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../../apis/js-apis-curve.md#icurve)| 否 | 设置动画曲线。<br>默认值：Curve.Linear|
 
 
 ## ParticleType

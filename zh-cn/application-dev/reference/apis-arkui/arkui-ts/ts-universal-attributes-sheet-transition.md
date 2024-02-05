@@ -20,7 +20,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                                     | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| isShow  | boolean                                     | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
 | options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
 
@@ -28,7 +28,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 >
 > 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。
 >
-> 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
+> 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
 ## SheetOptions
 
 继承自[BindOptions](#bindoptions)。

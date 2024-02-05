@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SegmentButton（分段按钮）
+# @ohos.arkui.advanced.SegmentButton (分段按钮)
 
 分段按钮组件，包含页签类分段按钮、单选类分段按钮、多选类分段按钮。
 
@@ -29,7 +29,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | 名称            | 参数类型                                      | 必填 | 装饰器类型  | 说明                                                         |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | 是   | @ObjectLink | 分段按钮选项。                                               |
-| selectedIndexes | number[]                                      | 是   | @Link       | 分段按钮的选中项编号，第一项的编号为0，之后顺序增加。<br/>**说明：**<br/>`selectedIndexes`使用[@Link装饰器：父子双向同步](../../quick-start/arkts-link.md)，仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组`[]`。 |
+| selectedIndexes | number[]                                      | 是   | @Link       | 分段按钮的选中项编号，第一项的编号为0，之后顺序增加。<br/>**说明：**<br/>`selectedIndexes`使用[@Link装饰器：父子双向同步](../../../quick-start/arkts-link.md)，仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组`[]`。 |
 
 >**说明：**
 >

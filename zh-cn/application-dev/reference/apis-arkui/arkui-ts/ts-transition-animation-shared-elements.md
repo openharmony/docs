@@ -1,4 +1,4 @@
-# 共享元素转场（sharedTransition）
+# 共享元素转场 (sharedTransition)
 
 当路由进行切换时，可以通过设置组件的 sharedTransition 属性将该元素标记为共享元素并设置对应的共享元素转场动效。
 
@@ -24,7 +24,7 @@
 | 名称              | 参数类型      | 是否必填       | 参数描述                                                      |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
 | duration          |     number   |  否           | 描述共享元素转场动效播放时长。<br>默认值：1000。 <br>单位：毫秒。 |
-| curve             |      [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>  | 否 | 描述共享元素转场动效播放时长。<br>默认值：1000。 <br>单位：毫秒。|
+| curve             |      [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../../apis/js-apis-curve.md#icurve)<sup>10+</sup>  | 否 | 描述共享元素转场动效播放时长。<br>默认值：1000。 <br>单位：毫秒。|
 | delay          |     number   |  否           | 延迟播放时间。<br>默认值：0。 <br>单位：毫秒。 |
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  否           | 运动路径信息。 |
 | zIndex          |     number   |  否              | 设置Z轴。 |
