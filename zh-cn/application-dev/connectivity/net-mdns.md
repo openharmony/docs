@@ -95,7 +95,7 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 4. 订阅MDNS服务发现相关状态变化。
 5. 启动搜索局域网内的MDNS服务。
 6. 停止搜索局域网内的MDNS服务。
-7. 取消订阅的mdns服务。
+7. 取消订阅的MDNS服务。
 
 ```ts
 // 从@ohos.net.mdns中导入mdns命名空间
