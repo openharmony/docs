@@ -4,7 +4,7 @@
     - 公共事件
         - [@ohos.commonEventManager (公共事件模块)](./js-apis-commonEventManager.md)
         - [@ohos.events.emitter (Emitter)](./js-apis-emitter.md)
-        - [@ohos.commonEventManager (公共事件模块)(系统应用)](./js-apis-commonEventManager-sys.md)
+        - [@ohos.commonEventManager (公共事件模块)(系统接口)](./js-apis-commonEventManager-sys.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](./js-apis-application-staticSubscriberExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)](./js-apis-application-StaticSubscriberExtensionContext.md)
     - commonEvent
@@ -31,10 +31,10 @@
     - [时间时区子系统公共事件定义](./common_event/commonEvent-time.md)
     - [帐号子系统公共事件定义](./common_event/commonEvent-account.md)
     - [语言子系统公共事件定义](./common_event/commonEvent-locale.md)
-    - [系统公共事件定义 (系统应用)](./commonEventManager-definitions-sys.md)
+    - [系统公共事件定义 (系统接口)](./commonEventManager-definitions-sys.md)
 - 已停止维护的接口
     - [系统公共事件定义](./commonEvent-definitions.md)
     - [@ohos.commonEvent (公共事件模块)](./js-apis-commonEvent.md)
-    - [@ohos.commonEvent (公共事件模块)(系统应用)](./js-apis-commonEvent-sys.md)
+    - [@ohos.commonEvent (公共事件模块)(系统接口)](./js-apis-commonEvent-sys.md)
 - 错误码
     - [事件错误码](./errorcode-CommonEventService.md)
