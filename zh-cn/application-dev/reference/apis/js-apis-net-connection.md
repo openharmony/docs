@@ -1484,7 +1484,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| host     | string                                            | 是   | 需要解析的主机名。                                           |
+| host     | string                                            | 是   | 需要解析的域名。                                           |
 | callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是   | 回调函数。当使用默认网络解析主机名成功获取所有IP地址，error为undefined，data为获取到的所有IP地址；否则为错误对象。 |
 
 **错误码：**
@@ -1502,7 +1502,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 ```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
-connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
+connection.getAddressesByName("www.example.com", (error: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1522,7 +1522,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | 是   | 需要解析的主机名。 |
+| host   | string | 是   | 需要解析的域名。 |
 
 **返回值：**
 
@@ -1544,7 +1544,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 ```ts
 import connection from '@ohos.net.connection';
-connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
+connection.getAddressesByName("www.example.com").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data));
 });
 ```
@@ -2372,7 +2372,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| host     | string                                            | 是   | 需要解析的主机名。                                           |
+| host     | string                                            | 是   | 需要解析的域名。                                           |
 | callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | 是   | 回调函数。当使用对应网络解析主机名成功获取所有IP地址，error为undefined，data为获取到的所有IP地址；否则为错误对象。 |
 
 **错误码：**
@@ -2392,7 +2392,7 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -2414,7 +2414,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | 是   | 需要解析的主机名。 |
+| host   | string | 是   | 需要解析的域名。 |
 
 **返回值：**
 
@@ -2438,7 +2438,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.log(JSON.stringify(data));
   });
@@ -2459,7 +2459,7 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| host     | string                                    | 是   | 需要解析的主机名。                                           |
+| host     | string                                    | 是   | 需要解析的域名。                                           |
 | callback | AsyncCallback\<[NetAddress](#netaddress)> | 是   | 回调函数。当使用对应网络解析主机名获取第一个IP地址成功，error为undefined，data为获取的第一个IP地址；否则为错误对象。 |
 
 **错误码：**
@@ -2479,7 +2479,7 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -2491,7 +2491,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getAddressByName(host: string): Promise\<NetAddress>
 
-使用对应网络解析主机名以获取第一个IP地址，使用Promise方式作为异步方法。
+使用对应网络解析域名以获取第一个IP地址，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -2501,7 +2501,7 @@ getAddressByName(host: string): Promise\<NetAddress>
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| host   | string | 是   | 需要解析的主机名。 |
+| host   | string | 是   | 需要解析的域名。 |
 
 **返回值：**
 
@@ -2525,7 +2525,7 @@ getAddressByName(host: string): Promise\<NetAddress>
 import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let host = "xxxx";
+  let host = "www.example.com";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.log(JSON.stringify(data));
   });
