@@ -1107,7 +1107,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile)或[HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofiledeprecated)或[HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
 
 **示例：**
 
@@ -1133,7 +1133,7 @@ createGattServer(): GattServer
 
 | 类型                        | 说明                                   |
 | ------------------------- | ------------------------------------ |
-| [GattServer](#gattserver) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
+| [GattServer](#gattserverdeprecated) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
 
@@ -1163,7 +1163,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 | 类型                                    | 说明                                   |
 | ------------------------------------- | ------------------------------------ |
-| [GattClientDevice](#gattclientdevice) | client端类，使用client端方法之前需要创建该类的实例进行操作。 |
+| [GattClientDevice](#gattclientdevicedeprecated) | client端类，使用client端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
 
@@ -1215,8 +1215,8 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |
-| options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置，可选参数。                     |
+| filters | Array&lt;[ScanFilter](#scanfilterdeprecated)&gt; | 是    | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |
+| options | [ScanOptions](#scanoptionsdeprecated)            | 否    | 表示扫描的参数配置，可选参数。                     |
 
 **返回值：**
 
@@ -1288,7 +1288,7 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。   |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresultdeprecated)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -1322,7 +1322,7 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。        |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 否    | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresultdeprecated)&gt;&gt; | 否    | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -1393,7 +1393,7 @@ getDeviceState(device: string): ProfileConnectionState
 
 | 类型                                              | 说明                    |
 | ------------------------------------------------- | ----------------------- |
-| [ProfileConnectionState](#profileconnectionstate) | 返回profile的连接状态。 |
+| [ProfileConnectionState](#profileconnectionstatedeprecated) | 返回profile的连接状态。 |
 
 **示例：**
 
@@ -1475,7 +1475,7 @@ let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 
 ### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam8deprecateddeprecated)&gt;): void
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam8deprecated)&gt;): void
 
 订阅a2dp连接状态变化事件。
 
@@ -1489,7 +1489,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam8deprecateddeprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam8deprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1508,7 +1508,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam8deprecateddeprecated)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam8deprecated)&gt;): void
 
 取消订阅a2dp连接状态变化事件。
 
@@ -1561,7 +1561,7 @@ getPlayingState(device: string): PlayingState
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [PlayingState](#PlayingState) | 远端设备的播放状态。 |
+| [PlayingState](#PlayingStatedeprecated) | 远端设备的播放状态。 |
 
 **示例：**
 
@@ -1694,7 +1694,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam8deprecated8deprecated)&gt; | 否    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam8deprecated)&gt; | 否    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1833,7 +1833,7 @@ server端添加服务。
 
 | 参数名     | 类型                          | 必填   | 说明                       |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数 |
+| service | [GattService](#gattservicedeprecated) | 是    | 服务端的service数据。BLE广播的相关参数 |
 
 **返回值：**
 
@@ -1915,7 +1915,7 @@ server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 
 close(): void
 
-关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
+关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserverdeprecated)实例将不能再使用。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattServer.close](js-apis-bluetoothManager.md#closedeprecated)替代。
@@ -1950,7 +1950,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 | 参数名                  | 类型                                       | 必填   | 说明                                      |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
 | deviceId             | string                                   | 是    | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
-| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知的特征值数据。                               |
+| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristicdeprecated) | 是    | 通知的特征值数据。                               |
 
 **返回值：**
 
@@ -1997,7 +1997,7 @@ server端回复client端的读写请求。
 
 | 参数名            | 类型                                | 必填   | 说明              |
 | -------------- | --------------------------------- | ---- | --------------- |
-| serverResponse | [ServerResponse](#serverresponse) | 是    | server端回复的响应数据。 |
+| serverResponse | [ServerResponse](#serverresponsedeprecated) | 是    | server端回复的响应数据。 |
 
 **返回值：**
 
@@ -2048,7 +2048,7 @@ server端订阅特征值读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                    |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。            |
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreqdeprecated)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。            |
 
 **返回值：**
 
@@ -2100,7 +2100,7 @@ server端取消订阅特征值读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。    |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 否    | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreqdeprecated)&gt; | 否    | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2132,7 +2132,7 @@ server端订阅特征值写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereqdeprecated)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
 
 **返回值：**
 
@@ -2187,7 +2187,7 @@ server端取消订阅特征值写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。   |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 否    | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereqdeprecated)&gt; | 否    | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2219,7 +2219,7 @@ server端订阅描述符读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。        |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreqdeprecated)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。        |
 
 **返回值：**
 
@@ -2271,7 +2271,7 @@ server端取消订阅描述符读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。        |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 否    | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreqdeprecated)&gt; | 否    | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2303,7 +2303,7 @@ server端订阅描述符写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。         |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereqdeprecated)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。         |
 
 **返回值：**
 
@@ -2357,7 +2357,7 @@ server端取消订阅描述符写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。       |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 否    | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereqdeprecated)&gt; | 否    | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2389,7 +2389,7 @@ server端订阅BLE连接状态变化事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是    | 表示回调函数的入参，连接状态。                          |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | 是    | 表示回调函数的入参，连接状态。                          |
 
 **返回值：**
 
@@ -2426,7 +2426,7 @@ server端取消订阅BLE连接状态变化事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否    | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | 否    | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -2503,7 +2503,7 @@ let ret : boolean = device.disconnect();
 
 close(): boolean
 
-关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。
+关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevicedeprecated)实例将不能再使用。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#closedeprecated-1)替代。
@@ -2545,7 +2545,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2591,7 +2591,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
+| Promise&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
 
 **示例：**
 
@@ -2622,8 +2622,8 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 | 参数名            | 类型                                       | 必填   | 说明                      |
 | -------------- | ---------------------------------------- | ---- | ----------------------- |
-| characteristic | [BLECharacteristic](#blecharacteristic)  | 是    | 待读取的特征值。                |
-| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | client读取特征值，通过注册回调函数获取。 |
+| characteristic | [BLECharacteristic](#blecharacteristicdeprecated)  | 是    | 待读取的特征值。                |
+| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | 是    | client读取特征值，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2680,13 +2680,13 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 | 参数名            | 类型                                      | 必填   | 说明       |
 | -------------- | --------------------------------------- | ---- | -------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 待读取的特征值。 |
+| characteristic | [BLECharacteristic](#blecharacteristicdeprecated) | 是    | 待读取的特征值。 |
 
 **返回值：**
 
 | 类型                                       | 说明                         |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | client读取特征值，通过promise形式获取。 |
+| Promise&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | client读取特征值，通过promise形式获取。 |
 
 **示例：**
 
@@ -2729,8 +2729,8 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 | 参数名        | 类型                                       | 必填   | 说明                      |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
-| descriptor | [BLEDescriptor](#bledescriptor)          | 是    | 待读取的描述符。                |
-| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | client读取描述符，通过注册回调函数获取。 |
+| descriptor | [BLEDescriptor](#bledescriptordeprecated)          | 是    | 待读取的描述符。                |
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptordeprecated)&gt; | 是    | client读取描述符，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2777,13 +2777,13 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 | 参数名        | 类型                              | 必填   | 说明       |
 | ---------- | ------------------------------- | ---- | -------- |
-| descriptor | [BLEDescriptor](#bledescriptor) | 是    | 待读取的描述符。 |
+| descriptor | [BLEDescriptor](#bledescriptordeprecated) | 是    | 待读取的描述符。 |
 
 **返回值：**
 
 | 类型                                       | 说明                         |
 | ---------------------------------------- | -------------------------- |
-| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | client读取描述符，通过promise形式获取。 |
+| Promise&lt;[BLEDescriptor](#bledescriptordeprecated)&gt; | client读取描述符，通过promise形式获取。 |
 
 **示例：**
 
@@ -2816,7 +2816,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 
 | 参数名            | 类型                                      | 必填   | 说明                  |
 | -------------- | --------------------------------------- | ---- | ------------------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 蓝牙设备特征对应的二进制值及其它参数。 |
+| characteristic | [BLECharacteristic](#blecharacteristicdeprecated) | 是    | 蓝牙设备特征对应的二进制值及其它参数。 |
 
 **返回值：**
 
@@ -2869,7 +2869,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 
 | 参数名        | 类型                              | 必填   | 说明                 |
 | ---------- | ------------------------------- | ---- | ------------------ |
-| descriptor | [BLEDescriptor](#bledescriptor) | 是    | 蓝牙设备描述符的二进制值及其它参数。 |
+| descriptor | [BLEDescriptor](#bledescriptordeprecated) | 是    | 蓝牙设备描述符的二进制值及其它参数。 |
 
 **返回值：**
 
@@ -2900,7 +2900,7 @@ if (retWriteDesc) {
 
 setBLEMtuSize(mtu: number): boolean
 
-client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
+client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connectdeprecated)接口连接成功后才能使用。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.setBLEMtuSize](js-apis-bluetoothManager.md#setblemtusizedeprecated)替代。
@@ -2946,7 +2946,7 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 
 | 参数名            | 类型                                      | 必填   | 说明                            |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
-| characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 蓝牙低功耗特征。                      |
+| characteristic | [BLECharacteristic](#blecharacteristicdeprecated) | 是    | 蓝牙低功耗特征。                      |
 | enable         | boolean                                 | 是    | 启用接收notify设置为true，否则设置为false。 |
 
 **返回值：**
@@ -2993,7 +2993,7 @@ on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;)
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | 表示蓝牙低功耗设备的特征值变化事件的回调函数。                  |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | 是    | 表示蓝牙低功耗设备的特征值变化事件的回调函数。                  |
 
 **返回值：**
 
@@ -3030,7 +3030,7 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -3062,7 +3062,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是    | 表示连接状态，已连接或断开。                           |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | 是    | 表示连接状态，已连接或断开。                           |
 
 **返回值：**
 
@@ -3098,7 +3098,7 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -3182,7 +3182,7 @@ gattClient.getDeviceName().then((data) => {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connectdeprecated)接口连接成功后才能使用。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivaluedeprecated)替代。
@@ -3219,7 +3219,7 @@ gattClient.getRssiValue((err : BusinessError, data : number)=> {
 
 getRssiValue(): Promise&lt;number&gt;
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connectdeprecated)接口连接成功后才能使用。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivaluedeprecated-1)替代。
@@ -3291,7 +3291,7 @@ gattClient.getRssiValue().then((data : number) => {
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
 | secure | boolean             | 是    | 是    | 是否是安全通道。    |
-| type   | [SppType](#spptype) | 是    | 是    | Spp链路类型。    |
+| type   | [SppType](#spptypedeprecated) | 是    | 是    | Spp链路类型。    |
 
 
 ## SppType<sup>8+</sup><sup>(deprecated)</sup><a name="SppType"></a>
@@ -3321,8 +3321,8 @@ gattClient.getRssiValue().then((data : number) => {
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid     | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary       | boolean                                  | 是    | 是    | 如果是主服务设置为true，否则设置为false。                |
-| characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | 是    | 当前服务包含的特征列表。                             |
-| includeServices | Array&lt;[GattService](#gattservice)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
+| characteristics | Array&lt;[BLECharacteristic](#blecharacteristideprecated)&gt; | 是    | 是    | 当前服务包含的特征列表。                             |
+| includeServices | Array&lt;[GattService](#gattservicedeprecated)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
 
 
 ## BLECharacteristic<sup>(deprecated)</sup>
@@ -3339,7 +3339,7 @@ gattClient.getRssiValue().then((data : number) => {
 | serviceUuid         | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid  | string                                   | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer                              | 是    | 是    | 特征对应的二进制值。                               |
-| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                              |
+| descriptors         | Array&lt;[BLEDescriptor](#bledescriptordeprecated)&gt; | 是    | 是    | 特定特征的描述符列表。                              |
 
 
 ## BLEDescriptor<sup>(deprecated)</sup>
@@ -3484,7 +3484,7 @@ gattClient.getRssiValue().then((data : number) => {
 | 名称     | 类型                                          | 可读 | 可写 | 说明                                          |
 | -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
 | deviceId | string                                            | 是   | 否   | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 是   | 表示BLE连接状态的枚举。                       |
+| state    | [ProfileConnectionState](#profileconnectionstatedeprecated) | 是   | 是   | 表示BLE连接状态的枚举。                       |
 
 
 ## ProfileConnectionState<sup>(deprecated)</sup>
