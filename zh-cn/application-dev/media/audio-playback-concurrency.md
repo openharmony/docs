@@ -4,7 +4,7 @@
 
 多音频并发，即多个音频流同时播放。此场景下，如果系统不加管控，会造成多个音频流混音播放，容易让用户感到嘈杂，造成不好的用户体验。为了解决这个问题，系统预设了音频打断策略，对多音频播放的并发进行管控，只有持有音频焦点的音频流才可以正常播放，避免多个音频流无序并发播放的现象出现。
 
-当应用开始播放音频时，系统首先为相应的音频流申请音频焦点，获得焦点的音频流可以播放；若焦点申请被拒绝，则不能播放。在音频流播放的过程中，若被其他音频流打断，则会失去音频焦点。当音频流失去音频焦点时，只能暂停播放。在应用播放音频的过程中，这些动作均由系统自行完成，无需应用主动触发。但为了维持应用和系统的状态一致性，保证良好的用户体验，推荐应用[监听音频打断事件](#监听音频打断事件)，并在收到音频打断事件（[InterruptEvent](../reference/apis/js-apis-audio.md#interruptevent9)）时做出相应处理。
+当应用开始播放音频时，系统首先为相应的音频流申请音频焦点，获得焦点的音频流可以播放；若焦点申请被拒绝，则不能播放。在音频流播放的过程中，若被其他音频流打断，则会失去音频焦点。当音频流失去音频焦点时，只能暂停播放。在应用播放音频的过程中，这些动作均由系统自行完成，无需应用主动触发。但为了维持应用和系统的状态一致性，保证良好的用户体验，推荐应用[监听音频打断事件](#监听音频打断事件)，并在收到音频打断事件（[InterruptEvent](../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)）时做出相应处理。
 
 为满足应用对多音频并发策略的不同需求，音频打断策略预设了两种焦点模式，针对同一应用创建的多个音频流，应用可通过设置[焦点模式](#焦点模式)，选择由应用自主管控或由系统统一管控。
 
@@ -12,7 +12,7 @@
 
 ### 焦点模式
 
-音频打断策略预设了两种焦点模式（[InterruptMode](../reference/apis/js-apis-audio.md#interruptmode9)）：
+音频打断策略预设了两种焦点模式（[InterruptMode](../reference/apis-audio-kit/js-apis-audio.md#interruptmode9)）：
 
 - 共享焦点模式（SHARE_MODE）：由同一应用创建的多个音频流，共享一个音频焦点。这些音频流之间的并发规则由应用自主决定，音频打断策略不会介入。当其他应用创建的音频流与该应用的音频流并发播放时，才会触发音频打断策略的管控。
 
@@ -24,12 +24,12 @@
 
 - 若[使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)，则可以通过修改AVPlayer的[audioInterruptMode](../reference/apis/js-apis-media.md#avplayer9)属性进行设置。
 
-- 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[setInterruptMode](../reference/apis/js-apis-audio.md#setinterruptmode9)函数进行设置。
+- 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[setInterruptMode](../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9)函数进行设置。
 
 
 ### 打断类型
 
-音频打断策略（包括两种焦点模式）决定了应该对各个音频流采取何种操作，如暂停播放、继续播放、降低音量播放、恢复音量播放等。而针对这些操作的执行过程，根据执行者的不同，可以分为两种打断类型（[InterruptForceType](../reference/apis/js-apis-audio.md#interruptforcetype9)）：
+音频打断策略（包括两种焦点模式）决定了应该对各个音频流采取何种操作，如暂停播放、继续播放、降低音量播放、恢复音量播放等。而针对这些操作的执行过程，根据执行者的不同，可以分为两种打断类型（[InterruptForceType](../reference/apis-audio-kit/js-apis-audio.md#interruptforcetype9)）：
 
 - 强制打断类型（INTERRUPT_FORCE）：由系统进行操作，强制打断音频播放。
 
@@ -51,7 +51,7 @@
 
 - 若[使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)，则可以调用AVPlayer的[on('audioInterrupt')](../reference/apis/js-apis-media.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
 
-- 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../reference/apis/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
+- 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
 
 为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
   
