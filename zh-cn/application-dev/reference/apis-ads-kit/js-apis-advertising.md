@@ -29,7 +29,7 @@ constructor(context: common.Context);
 
 | **参数名** | **类型** | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | common.[Context](../apis/js-apis-inner-application-context.md) | 是 | ability或application的上下文环境。 |
+| context | common.[Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | ability或application的上下文环境。 |
 
 **示例：**
 
@@ -65,7 +65,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告服务框架错误码参考](../errorcodes/errorcode-ads.md)。
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
@@ -134,7 +134,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告服务框架错误码参考](../errorcodes/errorcode-ads.md)。
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
@@ -208,13 +208,13 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 | -------- | -------- | -------- | -------- |
 | ad | [Advertisement](#advertisement) | 是 | 广告对象。 | 
 | options | [AdDisplayOptions](#addisplayoptions) | 是 | 广告展示参数。 | 
-| context | common.[UIAbilityContext](../apis/js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境。 | 
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境。 | 
 
 
 **错误码：**
 
 
-以下错误码的详细介绍请参见[广告服务框架错误码参考](../errorcodes/errorcode-ads.md)。
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
 
 
 | 错误码ID | 错误信息 | 

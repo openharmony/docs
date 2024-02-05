@@ -14,8 +14,9 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 | #define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS\_\_)) | ERROR级别写日志，宏封装接口 | 
 | #define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS\_\_)) | FATAL级别写日志，宏封装接口 | 
 | bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level) | 功能：检查指定业务领域、TAG、级别的日志是否可以打印。<br/>输入参数：见参数解析。<br/>输出参数：无<br/>返回值：如果指定domain、tag、level日志可以打印则返回true；否则返回false。 |
-## 参数解析
+| void OH_LOG_SetCallback(LogCallback callback) | 功能：注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志<br/>输入参数：回调函数。<br/>输出参数：无。<br/>返回值：无 |
 
+## 参数解析
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | enum   | 是   | 日志打印类型枚举，应用日志默认为LOG_APP。 |
@@ -34,6 +35,13 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 | LOG_WARN  | 5      | 用于记录较为严重的非预期情况，但是对用户影响不大，应用可以自动恢复或通过简单的操作就可以恢复的问题。 |
 | LOG_ERROR | 6      | 应用发生了错误，该错误会影响功能的正常运行或用户的正常使用，可以恢复但恢复代价较高，如重置数据等。 |
 | LOG_FATAL | 7      | 重大致命异常，表明应用即将崩溃，故障无法恢复。 
+## LogCallback
+描述：函数指针，开发者自定义回调函数内容，在回调函数中，可自行对hilog日志进行处理，如重定向、根据日志级别、tag进行过滤等操作。<br/>
+参数：参考上方参数解析，msg：经过hilog格式化之后的日志内容
+```
+typedef void (*LogCallback)(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
+```
+
 ## 开发示例
 1.在CMakeLists.txt中新增libhilog_ndk.z.so链接：
 ```
@@ -57,4 +65,24 @@ OH_LOG_ERROR(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, er
 4.输出结果：
 ```
 12-11 12:21:47.579  2695 2695 E A03200/MY_TAG: Failed to visit <private>, reason:11.
+```
+## 日志回调接口使用示例
+```
+#include "hilog/log.h"
+static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
+
+// 回调函数，开发者自定义的日志处理函数
+void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
+{
+    // user-defined to handle your log, such as redirect/filter
+}
+
+static void Test(void)
+{
+   // 1、注册回调接口
+    OH_LOG_SetCallback(MyHiLog);
+    
+   // 2、调用hilog接口打印日志，日志内容会输出到hilog，同时通过回调返回给MyHiLog，开发者可以在MyHiLog中自行处理日志
+   HiLog::Info(LABEL, "hello world");
+}
 ```

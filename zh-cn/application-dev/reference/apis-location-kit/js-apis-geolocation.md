@@ -402,7 +402,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“fenceStatusChange”，表示订阅围栏事件上报。 |
   | request |  [GeofenceRequest](#geofencerequestdeprecated) | 是 | 围栏的配置参数。 |
-  | want | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **示例**
 
@@ -450,7 +450,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“fenceStatusChange”，表示订阅围栏事件上报。 |
   | request | [GeofenceRequest](#geofencerequestdeprecated) | 是 | 围栏的配置参数。 |
-  | want | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **示例**
 
@@ -1492,7 +1492,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 位置服务中的错误码信息。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)替代。
+> 从API version 9开始废弃，建议使用[位置服务子系统错误码](errorcode-geoLocationManager.md)替代。
 
 **需要权限**：ohos.permission.LOCATION
 

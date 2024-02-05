@@ -63,6 +63,7 @@
   - [@ohos.power (系统电源管理)(系统接口)](js-apis-power-sys.md)
 - C API
 - 错误码
+  - [系统参数错误码](errorcode-system-parameterV9.md)
   - [帐号管理错误码](errorcode-account.md)
   - [USB服务错误码](errorcode-usb.md)
   - [耗电统计错误码](errorcode-batteryStatistics.md)
