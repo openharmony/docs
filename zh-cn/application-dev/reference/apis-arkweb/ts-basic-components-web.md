@@ -3963,7 +3963,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述                      |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
 
 **示例：**
 
