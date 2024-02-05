@@ -14,12 +14,12 @@
 | NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>           | 6  | 普通实况窗类型通知。|
 ## 接口说明
 
-通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定。可以包括通知内容、通知ID、通知的通道类型和通知发送时间等信息。
+通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定。可以包括通知内容、通知ID、通知的通道类型和通知发送时间等信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| [publish](../reference/apis/js-apis-notificationManager.md#notificationmanagerpublish)(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
-| [cancel](../reference/apis/js-apis-notificationManager.md#notificationmanagercancel)(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。      |
+| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
+| [cancel](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagercancel)(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。      |
 
 
 ## 开发步骤
@@ -35,7 +35,7 @@
 
 3. 发布通知 。
 
-   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
+   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
       ```ts
       import image from '@ohos.multimedia.image';
@@ -133,7 +133,7 @@
       }
       ```
 
-   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，该类型的具体字段描述参考[NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
+   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，该类型的具体字段描述参考[NotificationLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11)。
 
       ```ts
       import Want from '@ohos.app.ability.Want';

@@ -59,7 +59,7 @@ Core File Kit常见的使用场景：
 
 ### 应用文件访问框架
 
-应用文件访问框架是通过基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现。开发者无需了解内部实现，基础文件操作接口功能详情请参考[接口说明](app-file-access.md#接口说明)。
+应用文件访问框架是通过基础文件操作接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）实现。开发者无需了解内部实现，基础文件操作接口功能详情请参考[接口说明](app-file-access.md#接口说明)。
 
 ### 用户文件访问框架
 

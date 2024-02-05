@@ -170,7 +170,7 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -221,7 +221,7 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -272,7 +272,7 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -323,7 +323,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -351,7 +351,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -379,7 +379,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -407,7 +407,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -434,7 +434,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -456,7 +456,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -606,7 +606,7 @@ on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementN
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -636,7 +636,7 @@ off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-element
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |

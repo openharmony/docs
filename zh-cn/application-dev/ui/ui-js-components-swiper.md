@@ -1,7 +1,7 @@
 # swiper开发指导
 
 
-swiper为滑动容器，提供切换显示子组件的能力。具体用法请参考[swiper](../reference/arkui-js/js-components-container-swiper.md)。
+swiper为滑动容器，提供切换显示子组件的能力。具体用法请参考[swiper](../reference/apis-arkui/arkui-js/js-components-container-swiper.md)。
 
 
 ## 创建swiper组件

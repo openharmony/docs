@@ -310,7 +310,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -362,7 +362,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -524,7 +524,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -576,7 +576,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -630,7 +630,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -687,7 +687,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -745,7 +745,7 @@ canSetReadOnly(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -773,7 +773,7 @@ setReadOnly(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -825,7 +825,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -926,7 +926,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -983,7 +983,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1044,7 +1044,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1098,7 +1098,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1154,7 +1154,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1211,7 +1211,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1269,7 +1269,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1325,7 +1325,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1382,7 +1382,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1438,7 +1438,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1494,7 +1494,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1548,7 +1548,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1603,7 +1603,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1657,7 +1657,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1939,7 +1939,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -1994,7 +1994,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2050,7 +2050,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2106,7 +2106,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2194,7 +2194,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2256,7 +2256,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2314,7 +2314,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
@@ -2376,7 +2376,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|

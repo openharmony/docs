@@ -70,7 +70,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|---------------------------------------- |
@@ -125,7 +125,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -173,7 +173,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -226,7 +226,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -273,7 +273,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -324,7 +324,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|

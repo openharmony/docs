@@ -27,7 +27,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)         | 是   | 联系人信息。                                                 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回添加的联系人id。                               |
 
@@ -108,7 +108,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| context | Context             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/../apis/js-apis-inner-application-context.md)。 |
+| context | Context             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact | [Contact](#contact) | 是   | 联系人信息。                                                 |
 
 **返回值：**
@@ -197,7 +197,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                    | 是   | 联系人key值，一个联系人对应一个key。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步删除联系人之后的回调。                             |
 
@@ -272,7 +272,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key     | string  | 是   | 联系人的key值，一个联系人对应一个key。                       |
 
 **返回值：**
@@ -355,7 +355,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)       | 是   | 联系人信息。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步更新联系人之后的回调。                         |
 
@@ -438,7 +438,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 异步更新联系人之后的回调。                         |
@@ -527,7 +527,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
@@ -623,7 +623,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
 
@@ -697,7 +697,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id      | number  | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
 
 **返回值：**
@@ -779,7 +779,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                       | 是   | 联系人对象的id属性。                                         |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
 
@@ -854,7 +854,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id      | number  | 是   | 联系人对象的id属性。                                         |
 
 **返回值：**
@@ -936,7 +936,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
 
 **错误码：**
@@ -1008,7 +1008,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。                               |
 
@@ -1086,7 +1086,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
 **返回值：**
@@ -1372,7 +1372,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
 
@@ -1447,7 +1447,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
@@ -1531,7 +1531,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回查询的联系人对象。                             |
@@ -1611,7 +1611,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 | 参数名   | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。                                           |
@@ -1702,7 +1702,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key     | string                                  | 是   | 联系人的key值，一个联系人对应一个key。                       |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
@@ -1798,7 +1798,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
 **错误码：**
@@ -1870,7 +1870,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -1952,7 +1952,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -2030,7 +2030,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2118,7 +2118,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
@@ -2213,7 +2213,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -2288,7 +2288,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2372,7 +2372,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2452,7 +2452,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 | 参数名      | 类型                                                  | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context     | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs       | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
@@ -2542,7 +2542,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 | 参数名      | 类型                                    | 必填 | 说明                                                         |
 | ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context     | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。                                           |
 | holder      | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
@@ -2640,7 +2640,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
 
@@ -2714,7 +2714,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。                       |
@@ -2798,7 +2798,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到联系人对象数组。                         |
@@ -2878,7 +2878,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                               | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email    | string                                                | 是   | 联系人的邮箱地址。                                           |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                                       |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                                           |
@@ -2968,7 +2968,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | email   | string                                  | 是   | 联系人的邮箱地址。                                           |
 | holder  | [Holder](#holder)                       | 否   | 创建联系人的应用信息。                                       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
@@ -3066,7 +3066,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
 
 **错误码：**
@@ -3138,7 +3138,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder   | [Holder](#holder)                                 | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。                         |
 
@@ -3220,7 +3220,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
 | 参数名  | 类型              | 必填 | 说明                                                         |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
-| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
 
 **返回值：**
@@ -3310,7 +3310,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                                             | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。         |
 
 **错误码：**
@@ -3382,7 +3382,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 
 **返回值：**
 
@@ -3457,7 +3457,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                      | 是   | 联系人对象的id属性。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
 
@@ -3531,7 +3531,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id       | number                      | 是   | 联系人对象的id属性。                                         |
 | holder   | [Holder](#holder)           | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回查询到的联系人对应的key。                      |
@@ -3615,7 +3615,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
 | 参数名  | 类型              | 必填 | 说明                                                         |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
-| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis/js-apis-inner-application-context.md)。 |
+| context | Context           | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | id      | number            | 是   | 联系人对象的id属性。                                         |
 | holder  | [Holder](#holder) | 否   | 创建联系人的应用信息。                                       |
 

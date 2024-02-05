@@ -1,7 +1,7 @@
 # Canvas对象
 
 
-Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[CanvasRenderingContext2D对象](../reference/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)。
+Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[CanvasRenderingContext2D对象](../reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)。
 
 
 ## 创建Canvas组件

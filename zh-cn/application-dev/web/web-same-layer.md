@@ -2,7 +2,7 @@
 
 Web组件支持同层渲染绘制Video和Button组件。
 
-开发者可通过[enableNativeEmbedMode()](../reference/arkui-ts/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。
+开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。
 
 
 同层渲染的标签背景是白色的，只支持Web组件嵌套一层Web组件。

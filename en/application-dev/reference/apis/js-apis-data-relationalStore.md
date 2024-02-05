@@ -2,7 +2,7 @@
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
-ArkTS supports the following basic data types: number, string, binary data, and Boolean. 
+ArkTS supports the following basic data types: number, string, binary data, and boolean. 
 
 To ensure successful read and write of data, the data size cannot exceed 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
@@ -502,9 +502,9 @@ Defines the RDB store configuration.
 
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | Yes  | Database file name.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| name          | string        | Yes  | Database file name, which is the unique identifier of the database.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core  |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
@@ -578,7 +578,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | ------- | -------------------- |
 | null<sup>10+</sup>    | Null.  |
 | number  | Number.  |
-| string  | String.  |
+| string  | String. |
 | boolean | Boolean.|
 | Uint8Array<sup>10+</sup>           | Uint8 array.           |
 | Asset<sup>10+</sup>  | [Asset](#asset10).    |
@@ -727,7 +727,7 @@ Represents the reference between tables by field. If table **b** references tabl
 | ---------- | ------ | ---- | ---------------------------------------- |
 | sourceTable | string | Yes  | Source table.  |
 | targetTable | string | Yes  | Target table.  |
-| refFields   | {[src: string]: string} | Yes  | Fields referenced. In a KV pair, the key indicates the field in the source table, and the value indicates the field in the target table.      |
+| refFields   | Record<string, string> | Yes  | Fields referenced. In a KV pair, the key indicates the field in the source table, and the value indicates the field in the target table.      |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -817,7 +817,7 @@ Represents the statistics of the overall device-cloud synchronization (upload an
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | schedule | [Progress](#progress10)                           | Yes  | Device-cloud synchronization process.                                          |
 | code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud synchronization state.                                    |
-| details  | [table: string] : [TableDetails](#tabledetails10) | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud synchronization statistics of the table.|
+| details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud synchronization statistics of the table.|
 
 ## RdbPredicates
 
@@ -890,13 +890,6 @@ try {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
-
-if(store != undefined) {
-  // Set the RDB store version.
-  (store as relationalStore.RdbStore).version = 3;
-  // Obtain the RDB store version.
-  console.info(`RdbStore version is ${(store as relationalStore.RdbStore).version}`);
-}
 ```
 
 ### inAllDevices
@@ -1641,7 +1634,7 @@ Sets an **RdbPredicates** object to specify the index column.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.indexedBy("SALARY_INDEX");
+predicates.indexedBy("SALARY");
 ```
 
 ### in
@@ -3446,7 +3439,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 ```ts
 let PRIKey = [1, 4, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
     if (err) {
       console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -3493,7 +3486,7 @@ import { BusinessError } from "@ohos.base";
 
 let PRIKey = [1, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey)
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey)
     .then((modifyTime: relationalStore.ModifyTime) => {
       let size = modifyTime.size;
     })
@@ -3527,8 +3520,6 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3537,25 +3528,16 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### commit
@@ -3572,8 +3554,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3582,25 +3562,16 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### rollBack
@@ -3617,8 +3588,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3627,32 +3596,23 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
-};
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  try {
-    store.beginTransaction()
-    const valueBucket: ValuesBucket = {
-      key1: value1,
-      key2: value2,
-      key3: value3,
-      key4: value4,
-    };
-    await store.insert("test", valueBucket);
-    store.commit();
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Transaction failed, code is ${code},message is ${message}`);
-    store.rollBack();
-  }
-})
+
+try {
+  store.beginTransaction()
+  const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
+    key4: value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Transaction failed, code is ${code},message is ${message}`);
+  store.rollBack();
+}
 ```
 
 ### backup
@@ -4442,8 +4402,6 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 Manually performs device-cloud synchronization based on specified conditions. This API uses an asynchronous callback to return the result. The cloud synchronization function must be implemented. Otherwise, this API cannot be used.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **System API**: This is a system API.
@@ -4481,8 +4439,6 @@ if(store != undefined) {
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
 Manually performs device-cloud synchronization based on specified conditions. This API uses a promise to return the result. The cloud synchronization function must be implemented. Otherwise, this API cannot be used.
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4575,7 +4531,7 @@ Registers a data change event listener for the RDB store. When the data in the R
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
 
 **Example**
 
@@ -4614,7 +4570,7 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the event to observe.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -4766,7 +4722,7 @@ Unregisters the data change event listener.
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the event.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
 | observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered. |
 
 **Error codes**
@@ -4951,7 +4907,7 @@ Clears the dirty data with the cursor smaller than the specified cursor from the
 **Return value**
 | Name   | Description                                              |
 | -------- | ------------------------------------------------- |
-| Promise<void> | Promise that returns no value.       |
+| Promise\<void> | Promise that returns no value.       |
 
 **Error codes**
 
@@ -5654,6 +5610,35 @@ if(resultSet != undefined) {
 }
 ```
 
+### getRow<sup>11+</sup>
+
+getRow(): ValuesBucket
+
+Obtains the data in the current row.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Return value**
+
+| Type             | Description                          |
+| ---------------- | ---------------------------- |
+| [ValuesBucket](#valuesbucket) | Data obtained.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**Example**
+
+```ts
+if(resultSet != undefined) {
+  const row = (resultSet as relationalStore.ResultSet).getRow();
+}
+```
 
 ### isColumnNull
 

@@ -1,7 +1,7 @@
 # 文本输入 (TextInput/TextArea)
 
 
-TextInput、TextArea是输入框组件，通常用于响应用户的输入操作，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法请参考[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/arkui-ts/ts-basic-components-textarea.md)。
+TextInput、TextArea是输入框组件，通常用于响应用户的输入操作，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法请参考[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)。
 
 
 ## 创建输入框
@@ -97,7 +97,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 
   ![zh-cn_image_0000001511740444](figures/zh-cn_image_0000001511740444.png)
 
-  更丰富的样式可以结合[通用属性](../reference/arkui-ts/ts-universal-attributes-size.md)实现。
+  更丰富的样式可以结合[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)实现。
 
 
 ## 添加事件
