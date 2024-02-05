@@ -237,6 +237,19 @@ ViewA中的事件句柄：
 
 
 ```ts
+let NextID: number = 1;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
 @Component
 struct ViewA {
   // 子组件ViewA的@ObjectLink的类型是ClassA
