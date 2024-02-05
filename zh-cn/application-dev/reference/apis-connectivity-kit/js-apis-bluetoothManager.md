@@ -4795,4 +4795,4 @@ try {
 | PROFILE_HID_HOST | 6 | 表示HID profile。  |
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
 
-<!--no-check-->
+<!--no_check-->

@@ -3879,4 +3879,4 @@ gattClient.getRssiValue().then((data : number) => {
 | PROFILE_A2DP_SOURCE              | 1 | 表示A2DP profile。 |
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
 
-<!--no-check-->
+<!--no_check-->
