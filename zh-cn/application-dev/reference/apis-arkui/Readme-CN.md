@@ -33,13 +33,6 @@
         - [NodeController](js-apis-arkui-nodeController.md)
         - [RenderNode](js-apis-arkui-renderNode.md)
         - [XComponentNode](js-apis-arkui-xcomponentNode.md)
-    - 已停止维护的接口
-    - [@ohos.prompt (弹窗)](js-apis-prompt.md)
-    - [@system.app (应用上下文)](js-apis-system-app.md)
-    - [@system.configuration (应用配置)](js-apis-system-configuration.md)
-    - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
-    - [@system.prompt (弹窗)](js-apis-system-prompt.md)
-    - [@system.router (页面路由)](js-apis-system-router.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -51,6 +44,13 @@
     - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
     - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+  - 已停止维护的接口
+    - [@ohos.prompt (弹窗)](js-apis-prompt.md)
+    - [@system.app (应用上下文)](js-apis-system-app.md)
+    - [@system.configuration (应用配置)](js-apis-system-configuration.md)
+    - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
+    - [@system.prompt (弹窗)](js-apis-system-prompt.md)
+    - [@system.router (页面路由)](js-apis-system-router.md)
 - ArkTS组件
   - 基于ArkTS的声明式开发范式
     - [组件导读](arkui-ts/ts-components-summary.md)
