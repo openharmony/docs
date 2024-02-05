@@ -45,7 +45,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 **示例：**
 
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -70,7 +70,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
           console.log('onWindowStageCreate');
       }
@@ -89,7 +89,7 @@ onWindowStageDestroy(): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
       }
@@ -114,7 +114,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onWindowStageRestore(windowStage) {
           console.log('onWindowStageRestore');
       }
@@ -133,7 +133,7 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onDestroy() {
           console.log('onDestroy');
       }
@@ -152,7 +152,7 @@ Ability生命周期回调，当应用从后台转到前台时触发。
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onForeground() {
           console.log('onForeground');
       }
@@ -171,7 +171,7 @@ Ability生命周期回调，当应用从前台转到后台时触发。
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onBackground() {
           console.log('onBackground');
       }
@@ -256,7 +256,7 @@ onDump(params: Array\<string>): Array\<string>;
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class MyUIAbility extends UIAbility {
       onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ['params'];
