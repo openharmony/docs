@@ -1,6 +1,6 @@
 # ArkTS语言基础类库
 
-- [ArkTS语言基础类库概述](arkts-commonlibrary-overview.md)
+- [ArkTS简介](arkts-commonlibrary-overview.md)
 - 并发
   - [并发概述](concurrency-overview.md)
   - 使用异步并发能力进行开发
