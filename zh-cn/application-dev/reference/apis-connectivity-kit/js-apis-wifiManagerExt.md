@@ -24,7 +24,7 @@ enableHotspot(): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
@@ -54,7 +54,7 @@ disableHotspot(): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
@@ -90,7 +90,7 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
@@ -127,7 +127,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
@@ -171,7 +171,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
@@ -208,7 +208,7 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
@@ -252,7 +252,7 @@ setPowerMode(mode: PowerMode) : void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |

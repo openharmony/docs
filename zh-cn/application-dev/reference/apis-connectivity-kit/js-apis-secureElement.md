@@ -325,7 +325,7 @@ isSecureElementPresent(): boolean
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -388,7 +388,7 @@ try {
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -445,7 +445,7 @@ try {
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -560,7 +560,7 @@ getATR(): number[]
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -629,7 +629,7 @@ close(): void
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -692,7 +692,7 @@ isClosed(): boolean
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 **示例：**
 
@@ -747,7 +747,7 @@ closeChannels(): void
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -816,7 +816,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -887,7 +887,7 @@ try {
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -964,7 +964,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1037,7 +1037,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1116,7 +1116,7 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1187,7 +1187,7 @@ try {
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1264,7 +1264,7 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1337,7 +1337,7 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1656,7 +1656,7 @@ getSelectResponse():number[]
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 **示例：**
 
@@ -1737,7 +1737,7 @@ transmit(command: number[]): Promise\<number[]>
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -1814,7 +1814,7 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
 **错误码：**
 
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
