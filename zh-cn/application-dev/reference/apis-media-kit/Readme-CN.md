@@ -30,4 +30,4 @@
     - [OH_VideoEncInfo](_o_h___video_enc_info.md)
     - [OH_VideoInfo](_o_h___video_info.md)
 - 错误码
-  -[Media错误码](errorcode-media.md)
+  - [Media错误码](errorcode-media.md)

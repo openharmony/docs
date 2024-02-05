@@ -48,7 +48,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
 | isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> **true**: The item is enabled.<br> **false**: The item is disabled.| 
-| action | ()&nbsp;=&gt;&nbsp;void | No| Action to perform. This parameter is not available for the item attribute.| 
+| action | () =&gt; void | No| Action to perform. This parameter is not available for the item attribute.| 
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.
@@ -59,26 +59,36 @@ The [universal events](ts-universal-events-click.md) are not supported.
 import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
 import promptAction from '@ohos.promptAction'
 
-class menuItem {
+interface menuItem {
   value: Resource;
-  isEnabled: boolean;
-  action: () => void
-
-  constructor(value: Resource,isEnabled: boolean,action: () => void) {
-    this.value = value
-    this.isEnabled = isEnabled
-    this.action = action
-  }
+  isEnabled?: boolean;
+  action?: () => void
 }
 
 @Entry
 @Component
 struct Index {
-  private  menuItems:Array<menuItem> =[
-    new menuItem($r('app.media.ic_public_save'),true,() => promptAction.showToast({ message: "show toast index 1" })),
-    new menuItem($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 2" })),
-    new menuItem($r('app.media.ic_public_edit'),true,() => promptAction.showToast({ message: "show toast index 3" })),
-    new menuItem($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 4" }))
+  private menuItems: Array<menuItem> = [
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('app.media.ic_public_save'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
   ]
 
   build() {

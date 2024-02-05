@@ -1,6 +1,51 @@
-# Basic Services Kit API参考 
+# Basic Services Kit API参考
 
 - ArkTS API 
+    - 公共事件
+        - [@ohos.commonEventManager (公共事件模块)](./js-apis-commonEventManager.md)
+        - [@ohos.events.emitter (Emitter)](./js-apis-emitter.md)
+        - [@ohos.commonEventManager (公共事件模块)(系统接口)](./js-apis-commonEventManager-sys.md)
+        - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)(系统接口)](./js-apis-application-staticSubscriberExtensionAbility-sys.md)
+        - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)(系统接口)](./js-apis-application-StaticSubscriberExtensionContext-sys.md)
+
+    - commonEvent
+        - [CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)
+        - [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md)
+        - [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)
+        - [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+    - 公共事件定义
+        - [系统公共事件定义](./commonEventManager-definitions.md)
+        - [元能力子系统公共事件定义](./common_event/commonEvent-ability.md)
+        - [包管理子系统公共事件定义](./common_event/commonEvent-bundleManager.md)
+        - [通知服务公共事件定义](./common_event/commonEvent-ans.md)
+        - [资源调度子系统公共事件定义](./common_event/commonEvent-resourceschedule.md)
+        - [窗口管理子系统公共事件定义](./common_event/commonEvent-window.md)
+        - [网络管理子系统公共事件定义](./common_event/commonEvent-netmanager.md)
+        - [短信应用公共事件定义](./common_event/commonEvent-mms.md)
+        - [电话服务子系统公共事件定义](./common_event/commonEvent-telephony.md)
+        - [电源管理子系统公共事件定义](./common_event/commonEvent-powermgr.md)
+        - [NFC子系统公共事件定义](./common_event/commonEvent-nfc.md)
+        - [Wifi子系统公共事件定义](./common_event/commonEvent-wifi.md)
+        - [USB子系统公共事件定义](./common_event/commonEvent-usb.md)
+        - [文件管理子系统公共事件定义](./common_event/commonEvent-filemanagement.md)
+        - [主题框架子系统-锁屏管理公共事件定义](./common_event/commonEvent-screenlock.md)
+        - [时间时区子系统公共事件定义](./common_event/commonEvent-time.md)
+        - [帐号子系统公共事件定义](./common_event/commonEvent-account.md)
+        - [语言子系统公共事件定义](./common_event/commonEvent-locale.md)
+        - [系统公共事件定义 (系统接口)](./commonEventManager-definitions-sys.md)
+- 已停止维护的接口
+    - [系统公共事件定义](./commonEvent-definitions.md)
+    - [@ohos.commonEvent (公共事件模块)](./js-apis-commonEvent.md)
+    - [@ohos.commonEvent (公共事件模块)(系统接口)](./js-apis-commonEvent-sys.md)
+- 错误码
+    - [事件错误码](./errorcode-CommonEventService.md)
+- ArkTS API
+  - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
+  - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
+  - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
+  - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
+  - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
+  - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
 - C API
 - 错误码
-
+  - [帐号管理错误码](errorcode-account.md)

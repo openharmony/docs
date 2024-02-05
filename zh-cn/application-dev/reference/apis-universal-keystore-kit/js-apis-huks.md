@@ -79,7 +79,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -159,7 +159,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -241,7 +241,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -292,7 +292,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -376,7 +376,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -470,7 +470,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -568,7 +568,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -715,7 +715,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -860,7 +860,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1006,7 +1006,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1136,7 +1136,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1368,7 +1368,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1426,7 +1426,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1487,7 +1487,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1544,7 +1544,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1605,7 +1605,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1662,7 +1662,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1724,7 +1724,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1781,7 +1781,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1848,7 +1848,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1912,7 +1912,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1952,7 +1952,7 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1987,7 +1987,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2025,7 +2025,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2068,7 +2068,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2105,7 +2105,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2143,7 +2143,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2186,7 +2186,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2223,7 +2223,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果 。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2335,7 +2335,7 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -2497,7 +2497,7 @@ async function testAbort() {
 
 表示错误码的枚举以及对应的错误信息， 错误码表示错误类型，错误信息展示错误详情。
 
-关于错误码的具体信息，可在[错误码参考文档](../errorcodes/errorcode-huks.md)中查看。
+关于错误码的具体信息，可在[错误码参考文档](errorcode-huks.md)中查看。
 
 **系统能力**：SystemCapability.Security.Huks.Core
 
@@ -3869,7 +3869,7 @@ huks Handle结构体。
 > **说明：**
 >
 > - 从API version 9开始废弃，建议使用[HuksReturnResult<sup>9+</sup>](#huksreturnresult9)替代。
-> - errorCode的具体信息，请参考[错误码文档](../errorcodes/errorcode-huks.md)。
+> - errorCode的具体信息，请参考[错误码文档](errorcode-huks.md)。
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |

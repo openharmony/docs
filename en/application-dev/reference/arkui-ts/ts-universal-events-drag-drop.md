@@ -32,7 +32,7 @@ Triggered when the component bound to the event is dragged for the first time. A
 
 | Name     | Type                           | Mandatory| Description              |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event       | [DragEvent](#dragevent)     | No  | Information about the drag event.    |
+| event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event.    |
 | extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.|
 
 **Return value**
@@ -53,7 +53,7 @@ Triggered when the dragged item enters a valid drop target. This event is valid 
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
 | extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
 
 ## onDragMove
@@ -68,7 +68,7 @@ Triggered when the dragged item moves in a valid drop target. This event is vali
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
 | extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
 
 ## onDragLeave
@@ -83,7 +83,7 @@ Triggered when the dragged item leaves a valid drop target. This event is valid 
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
 | extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
 
 ## onDrop
@@ -98,7 +98,7 @@ Triggered when the dragged item is dropped on a valid drop target. If **event.se
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
 | extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
 
 ## onDragEnd
@@ -113,7 +113,7 @@ Triggered when the dragging of the component bound to the event ends.
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent)     | No  | Information about the drag event, including the coordinates of the item that is being dragged.|
+| event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
 | extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
 
 ## DragItemInfo
@@ -121,7 +121,7 @@ Triggered when the dragging of the component bound to the event ends.
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.                    |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this attribute is ignored.<br>**NOTE**<br> Global builder definition is not supported.|
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this attribute is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](../arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](../arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
 
@@ -138,10 +138,18 @@ Triggered when the dragging of the component bound to the event ends.
 
 ## DragEvent
 
+### Attributes
+
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the custom drop animation when the dragging ends.<br>If this parameter is set to **true**, the default drop animation is disabled, and the custom one is used.<br>If this parameter is set to **false** or is not set, the default drop animation is enabled. In this case, to avoid conflicts, the application should not implement any custom drop animation.|
-| setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | Sets drag-related data in the drag event.|
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Copy or paste mode.|
+
+### Methods
+
+| Name    | Return Value Type                           | Description                          |
+| ----------- | ------------------------------- | ------------------------------ |
+| setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | Sets drag-related data in the drag event.|
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.|
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.|
 | setResult(dragRect: [DragResult](#dragresult10))<sup>10+</sup> | void | Sets the drag and drop result in the drag event.|
@@ -156,7 +164,7 @@ Triggered when the dragging of the component bound to the event ends.
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
-|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Copy or paste mode.|
+
 
 **Error codes**
 
@@ -190,6 +198,7 @@ Provides the drag behavior. This API takes effect only when [DragResult](#dragre
 ## Example
 
 ```ts
+// xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
@@ -206,6 +215,7 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+
   @Builder
   pixelMapBuilder() {
     Column() {
@@ -216,10 +226,9 @@ struct Index {
     }
   }
 
-  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
     try {
-      let data:UnifiedData = event.getData();
+      let data: UnifiedData = event.getData();
       if (!data) {
         return false;
       }
@@ -235,12 +244,11 @@ struct Index {
     }
   }
 
-  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
-    if(this.getDataFromUdmfRetry(event, callback)) {
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
+    if (this.getDataFromUdmfRetry(event, callback)) {
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
@@ -258,36 +266,36 @@ struct Index {
           .width(100)
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .visibility(this.imgState)
-          .onDragEnd((event)=>{
+          .onDragEnd((event) => {
             // The result value obtained from onDragEnd is set in onDrop of the drop target.
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({duration: 100, message: 'Drag Success'});
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({duration: 100, message: 'Drag failed'});
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
             }
           })
         Text('test drag event')
           .width('100%')
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .copyOption(CopyOptions.InApp)
-        TextArea({placeholder: 'please input words'})
+        TextArea({ placeholder: 'please input words' })
           .copyOption(CopyOptions.InApp)
           .width('100%')
           .height(50)
           .draggable(true)
-        Search({placeholder: 'please input you word'})
+        Search({ placeholder: 'please input you word' })
           .searchButton('Search')
           .width('100%')
           .height(80)
-          .textFont({size: 20})
+          .textFont({ size: 20 })
         Column() {
           Text('change video source')
         }.draggable(true)
-        .onDragStart((event)=>{
+        .onDragStart((event) => {
           let video: UDC.Video = new UDC.Video();
           video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
@@ -296,14 +304,15 @@ struct Index {
             this.pixelMapBuilder()
           }, extraInfo: 'extra info' };
         })
+
         Column() {
           Text('this is abstract')
             .fontSize(20)
             .width('100%')
-        }.margin({left: 40, top: 20})
+        }.margin({ left: 40, top: 20 })
         .width('100%')
         .height(100)
-        .onDragStart((event)=>{
+        .onDragStart((event) => {
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
@@ -311,6 +320,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
+
       Column() {
         Text('Drag Target Area')
           .fontSize(20)
@@ -322,18 +332,18 @@ struct Index {
           .width(this.imageWidth)
           .height(this.imageHeight)
           .draggable(true)
-          .margin({left: 15})
-          .border({color: Color.Black, width: 1})
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent?: DragEvent)=> {
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({duration: 1000}, ()=>{
+              animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
@@ -346,18 +356,18 @@ struct Index {
         Text(this.targetText)
           .width('100%')
           .height(100)
-          .border({color: Color.Black, width: 1})
+          .border({ color: Color.Black, width: 1 })
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent?: DragEvent)=>{
-            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
-              let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+          .onDrop((dragEvent?: DragEvent) => {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+              let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
               this.targetText = plainText.textContent;
             })
           })
 
-        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
           .width('100%')
           .height(200)
           .controls(true)
@@ -366,10 +376,14 @@ struct Index {
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
-        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        }
+        .width('100%')
+        .height(100)
+        .margin(20)
+        .border({ color: Color.Black, width: 1 })
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent?: DragEvent)=>{
-          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
+        .onDrop((dragEvent?: DragEvent) => {
+          this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
             let plainText: UDC.PlainText = records[0] as UDC.PlainText;
             this.abstractContent = plainText.abstract as string;
@@ -378,7 +392,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }

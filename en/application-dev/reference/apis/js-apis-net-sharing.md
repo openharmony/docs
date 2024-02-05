@@ -1153,13 +1153,11 @@ Wakes up the listener for network sharing state changes of an NIC.
 
 **System capability**: SystemCapability.Communication.NetManager.NetSharing
 
-### Attributes
-
-| Name  | Type                     | Mandatory| Description                            |
-| -------- | ------------------------- | ---- | -------------------------------- |
-| type     | [SharingIfaceType](#sharingifacetype)                    | Yes  | Enumerates the network sharing types of an NIC.                      |
-| iface | string               | Yes  | NIC name.|
-| state | [SharingIfaceState](#sharingifacestate)          | Yes  | Network sharing state of the NIC.|
+| Name    | Type                                             | Mandatory| Description                |
+| -------- | ------------------------------------------------- | ---- | ------------------- |
+| type     | [SharingIfaceType](#sharingifacetype)             | Yes  | Enumerates the network sharing types of an NIC.      |
+| iface    | string                                            | Yes  | NIC name.|
+| state    | [SharingIfaceState](#sharingifacestate)           | Yes  | Network sharing state of the NIC.      |
 
 ## SharingIfaceState
 

@@ -150,8 +150,8 @@ The **ColoringStrategy** type is used to describe the foreground and shadow colo
 | Name    | Description             |
 | ------ | --------------- |
 | INVERT | The foreground colors are the inverse of the component background colors.|
-| AVERAGE| The shadow colors of the component are the average color obtained from the component background shadow area.|
-| PRIMARY| The shadow colors of the component are the primary color obtained from the component background shadow area.|
+| AVERAGE<sup>11+</sup> | The shadow colors of the component are the average color obtained from the component background shadow area.|
+| PRIMARY<sup>11+</sup> | The shadow colors of the component are the primary color obtained from the component background shadow area.|
 
 ## LengthConstrain
 
@@ -329,21 +329,21 @@ The **Degree** type is used to represent a length in deg.
 
 Describes the animation information of the \<Swiper> component.
 
-| Name           | Type                  | Description                                      |
-| ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
-| targetOffset | number | Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
-| velocity | number | Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
+| Name           | Type      | Mandatory           | Description                                      |
+| ------------- | ---------------------- | ---------|------------------------------- |
+| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Yes| Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| velocity | number | Yes| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
 
 ## TabsAnimationEvent<sup>11+</sup>
 
 The **TabsAnimationEvent** type is used to describe the animation information of the **\<Tabs>** component.
 
-| Name           | Type                  | Description                                      |
-| ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
-| targetOffset | number | Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
-| velocity | number | Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
+| Name           | Type     |  Mandatory            | Description                                      |
+| ------------- | ---------------------- | ----------------|------------------------ |
+| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Yes| Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
+| velocity | number | Yes| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -388,17 +388,17 @@ The **TouchPoint** type is used to define the coordinates of the touch point.
 
 The **TabContentAnimatedTransition** type is used to define the custom tab switching animation.
 
-| Name           | Type                  | Description                                      |
-| ------------- | ---------------------- | ---------------------------------------- |
-| timeout | number | Timeout for the custom tab switching animation. If the set timeout period expires before the **finishTransition** API of [TabContentTransitionProxy](#tabcontenttransitionproxy11) is called, the **\<Tabs>** component considers that the custom animation has ended and performs subsequent operations. Unit:ms<br>Default value: **1000**|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Content of the custom tab switching animation.|
+| Name           | Type        | Mandatory         | Description                                      |
+| ------------- | ---------------------- | ------------------|---------------------- |
+| timeout | number | No| Timeout for the custom tab switching animation. If the set timeout period expires before the **finishTransition** API of [TabContentTransitionProxy](#tabcontenttransitionproxy11) is called, the **\<Tabs>** component considers that the custom animation has ended and performs subsequent operations. Unit:ms<br>Default value: **1000**|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Yes| Content of the custom tab switching animation.|
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
 Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **\<Tabs>**component of the ending of the custom animation.
 
-| Name           | Type                  | Description                                      |
-| ------------- | ---------------------- | ---------------------------------------- |
-| from | number | Index of the currently displayed tab before the animation starts.|
-| to | number | Index of the target tab to switch to.|
-| finishTransition() | void | Called to notify the **\<Tabs>** component that the custom animation ends.|
+| Name           | Type    |  Mandatory             | Description                                      |
+| ------------- | ---------------------- | ----------------------|------------------ |
+| from | number | Yes| Index of the currently displayed tab before the animation starts.|
+| to | number | Yes| Index of the target tab to switch to.|
+| finishTransition() | void | Yes| Called to notify the **\<Tabs>** component that the custom animation ends.|

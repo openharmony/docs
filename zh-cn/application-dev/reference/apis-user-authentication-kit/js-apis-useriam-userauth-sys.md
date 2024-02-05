@@ -63,7 +63,7 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -127,7 +127,7 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -173,7 +173,7 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -229,7 +229,7 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |

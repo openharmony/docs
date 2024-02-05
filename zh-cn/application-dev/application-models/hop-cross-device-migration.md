@@ -84,7 +84,7 @@
        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
    
        // 获取源端版本号
-       let versionSrc: number = 0; // 请填充具体获取版本号的代码
+       let versionSrc: number = -1; // 请填充具体获取版本号的代码
    
        // 兼容性校验
        if (version !== versionSrc) {
@@ -94,7 +94,7 @@
    
        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
        const continueInput = '迁移的数据';
-       wantParam.data = continueInput;
+       wantParam['data'] = continueInput;
    
        return AbilityConstant.OnContinueResult.AGREE;
      }
@@ -121,13 +121,13 @@
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // 将上述的保存的数据取出恢复
+         // 将上述保存的数据从want.parameters中取出恢复
          let continueInput = '';
          if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
          }
-         // 将数据显示当前页面
+         // 触发页面恢复
          this.context.restoreWindowStage(this.storage);
        }
      }
@@ -135,12 +135,13 @@
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-          // get user data from want params
+          // 将上述保存的数据从want.parameters中取出恢复
           let continueInput = '';
           if (want.parameters !== undefined) {
             continueInput = JSON.stringify(want.parameters.data);
             hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
           }
+          // 触发页面恢复  
           this.context.restoreWindowStage(this.storage);
         }
       }
@@ -260,9 +261,11 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
-    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
-    });
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+        hilog.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+      });
+    }
   }
   
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -357,11 +360,9 @@ export default class MigrationAbility extends UIAbility {
 在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import distributedObject from '@ohos.data.distributedDataObject';
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -371,30 +372,33 @@ export default class MigrationAbility extends UIAbility {
   onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
     const continueInput = '迁移的数据';
-    wantParam.data = continueInput;
+    wantParam['data'] = continueInput;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
   // 对端恢复
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-      // 将上述的保存的数据取出恢复
+      // 将上述保存的数据取出恢复
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
         hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
       }
+      // 触发页面恢复
+      this.context.restoreWindowStage(this.storage);
     }
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-      // get user data from want params
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
         hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
+      // 触发页面恢复
+      this.context.restoreWindowStage(this.storage);
     }
   }
 }
@@ -403,137 +407,10 @@ export default class MigrationAbility extends UIAbility {
 
 当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis/js-apis-data-distributedobject.md)进行数据迁移。
 
-首先，在源端`onContinue()`接口中，创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中。
+1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
+2. 对端在`onCreate()/onNewWant`中进行数据恢复时，可以从want中读取该`sessionId`，通过分布式对象恢复数据。
 
-接着调用[`genSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。
-
-最后调用[`save()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-
-const TAG: string = '[MigrationAbility]';
-const DOMAIN_NUMBER: number = 0xFF00;
-
-// 示例数据结构
-class SourceObject {
-  notesTitle?: string;
-
-  constructor(notesTitle: string) {
-    this.notesTitle = notesTitle;
-  }
-}
-
-export default class EntryAbility extends UIAbility {
-  d_object?: distributedObject.DataObject;
-  // ...
-
-  // 源端保存
-  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
-    if (this.d_object) {
-      this.d_object = undefined;
-    }
-    // 创建并向分布式数据对象中写入数据，据实际业务传递数据，这里是示例
-    if (!this.d_object) {
-      let source: SourceObject = new SourceObject('');
-      this.d_object = distributedObject.create(this.context, source);
-      this.d_object['notesTitle'] = 'This is a sample title';
-
-      // 生成sessionId
-      let sessionId: string = distributedObject.genSessionId();
-
-      // 使用该sessionId开启数据同步
-      this.d_object.setSessionId(sessionId, ()=>{
-        hilog.info(DOMAIN_NUMBER, TAG, `join session`);
-      });
-
-      // 将sessionId传递到对端
-      wantParam['session'] = sessionId;
-
-      // 向分布式数据对象中写入数据，并保存
-      this.d_object.save(wantParam.targetDevice as string, (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
-        if (err) {
-          hilog.error(DOMAIN_NUMBER, TAG, `save failed. Cause: %{public}s`, JSON.stringify(err) ?? '');
-          return;
-        }
-        hilog.info(DOMAIN_NUMBER, TAG, `save callback`);
-        hilog.info(DOMAIN_NUMBER, TAG, `save sessionId:  + ${result.sessionId}`);
-        hilog.info(DOMAIN_NUMBER, TAG, `save version:  + ${result.version}`);
-        hilog.info(DOMAIN_NUMBER, TAG, `save deviceId:  + ${result.deviceId}`);
-      });
-    }
-    return AbilityConstant.OnContinueResult.AGREE;
-  }
-}
-```
-
-对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
-
-const TAG: string = '[MigrationAbility]';
-const DOMAIN_NUMBER: number = 0xFF00;
-
-// 示例数据结构
-class SourceObject {
-  notesTitle?: string;
-
-  constructor(notesTitle: string) {
-    this.notesTitle = notesTitle;
-  }
-}
-
-export default class EntryAbility extends UIAbility {
-  d_object?: distributedObject.DataObject;
-  // ...
-
-  // 迁移场景下数据处理
-  handleContinueParam(want: Want) {
-    if (this.d_object) {
-      this.d_object = undefined;
-    }
-    // 创建分布式对象并清空内容
-    if (!this.d_object) {
-      let source: SourceObject = new SourceObject('');
-      this.d_object = distributedObject.create(this.context, source);
-      this.d_object['notesTitle'] = undefined;
-
-      // 获取源端传入的sessionId
-      let sessionId: string = want?.parameters?.session as string;
-
-      // 加入数据传输session
-      this.d_object.setSessionId(sessionId, ()=>{
-        hilog.info(DOMAIN_NUMBER, TAG, `join session`);
-      });
-
-      // 获取分布式数据
-      let newTitle: string = this.d_object['notesTitle'];
-    }
-  }
-  // 冷启动场景下数据处理
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-      this.handleContinueParam(want);
-    }
-  }
-  // 热启动场景下的数据处理
-  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-      this.handleContinueParam(want);
-    }
-  }
-}
-```
+使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
 
 ### 使用分布式文件迁移数据
 当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。

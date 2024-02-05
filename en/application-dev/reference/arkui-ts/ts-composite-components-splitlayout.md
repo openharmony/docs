@@ -26,7 +26,7 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 
 ## SplitLayout
 
-SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string})
+SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string, container: () =&gt; void })
 
 **Decorator**: @Component
 
