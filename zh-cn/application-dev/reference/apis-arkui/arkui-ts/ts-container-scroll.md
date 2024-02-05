@@ -247,13 +247,13 @@ getItemRect(index: number): RectResult
 | END  | 尾部对齐。指定item尾部与List尾部对齐。 |
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
-## NestedScrollOptions<sup>10+ </sup>对象说明
+## NestedScrollOptions<sup>10+</sup>对象说明
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
 | scrollForward | NestedScrollMode | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
 | scrollBackward | NestedScrollMode | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
-## NestedScrollMode<sup>10+ </sup>枚举说明
+## NestedScrollMode<sup>10+</sup>枚举说明
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
 | SELF_ONLY   | 只自身滚动，不与父组件联动。  |
@@ -261,7 +261,7 @@ getItemRect(index: number): RectResult
 | PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
 | PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
-## EdgeEffectOptions<sup>11+ </sup>对象说明
+## EdgeEffectOptions<sup>11+</sup>对象说明
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
