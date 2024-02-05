@@ -14,97 +14,6 @@ import sensor from '@ohos.sensor';
 ```
 ## sensor.on
 
-### COLOR<sup>10+</sup>
-
-on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Options): void
-
-订阅颜色传感器数据。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**系统API**：此接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                                              | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                      |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
-| options  | [Options](#options)                               | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
-
-**示例：**
-
-```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
-
-try{
-  sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
-    console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
-    console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
-  }, { interval: 100000000 });
-  setTimeout(() => {
-        sensor.off(sensor.SensorId.COLOR);
-  }, 500);
-} catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
-  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-### SAR<sup>10+</sup>
-
-on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options): void
-
-订阅吸收比率传感器数据。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**系统API**：此接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                                          | 必填 | 说明                                                        |
-| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                        |
-| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
-
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
-
-**示例：**
-
-```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
-
-try {
-  sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
-    console.info('Succeeded in getting specific absorption rate : ' + data.absorptionRatio);
-  }, { interval: 100000000 });
-  setTimeout(() => {
-    sensor.off(sensor.SensorId.SAR);
-  }, 500);
-} catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
-  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
 ### ACCELEROMETER<sup>9+</sup>
 
 on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;, options?: Options): void
@@ -575,8 +484,6 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
-
-
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1857,93 +1764,9 @@ try {
 
 ## sensor.off
 
-### COLOR<sup>10+</sup>
-
-off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
-
-取消订阅颜色传感器数据。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**系统API**：此接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                                              | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
-
-```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
-
-function callback1(data: object) {
-  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
-}
-
-function callback2(data: object) {
-  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
-}
-
-try {
-  sensor.on(sensor.SensorId.COLOR, callback1);
-  sensor.on(sensor.SensorId.COLOR, callback2);
-  // 仅取消callback1的注册
-  sensor.off(sensor.SensorId.COLOR, callback1);
-  // 取消注册SensorId.COLOR的所有回调
-  sensor.off(sensor.SensorId.COLOR);
-} catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
-  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-### SAR<sup>10+</sup>
-
-off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
-
-取消订阅吸收比率传感器数据。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**系统API**：此接口为系统接口
-
-**参数：**
-
-| 参数名   | 类型                                          | 必填 | 说明                                                         |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
-| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
-
-```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
-
-function callback1(data: object) {
-  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
-}
-
-function callback2(data: object) {
-  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
-}
-
-try {
-  sensor.on(sensor.SensorId.SAR, callback1);
-  sensor.on(sensor.SensorId.SAR, callback2);
-  // 仅取消callback1的注册
-  sensor.off(sensor.SensorId.SAR, callback1);
-  // 取消注册SensorId.SAR的所有回调
-  sensor.off(sensor.SensorId.SAR);
-} catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
-  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
-}
-```
-
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, callback?: CallbackAccelerometerResponse&gt;): void
 
 取消订阅加速度传感器数据。
 
@@ -3620,9 +3443,9 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 14500101 | Service exception |
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3875,8 +3698,6 @@ try {
 | HALL                        | 10   | 霍尔传感器。           |
 | PROXIMITY                   | 12   | 接近光传感器。         |
 | HUMIDITY                    | 13   | 湿度传感器。           |
-| COLOR<sup>10+</sup>         | 14   | 颜色传感器。<br>系统API：此接口为系统接口     |
-| SAR<sup>10+</sup>           | 15   | 吸收比率传感器。<br>系统API：此接口为系统接口 |
 | ORIENTATION                 | 256  | 方向传感器。           |
 | GRAVITY                     | 257  | 重力传感器。           |
 | LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。     |
@@ -3964,33 +3785,6 @@ try {
 | maxSamplePeriod | number   | 是  | 否  | 允许的最大采样周期。   |
 | precision       | number   | 是  | 否  | 传感器精度。           |
 | power           | number   | 是  | 否  | 传感器功率的估计值，单位：mA。  |
-
-## ColorResponse<sup>10+</sup>
-
-颜色传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-**系统API**：此接口为系统接口
-
-
-| 名称             | 类型   | 可读 | 可写 | 说明                          |
-| ---------------- | ------ | ---- | ---- | ----------------------------- |
-| lightIntensity   | number | 是   | 是   | 表示光的强度，单位 : 勒克斯。 |
-| colorTemperature | number | 是   | 是   | 表示色温，单位 : 开尔文。     |
-
-## SarResponse<sup>10+</sup>
-
-吸收比率传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-**系统API**：此接口为系统接口
-
-
-| 名称            | 类型   | 可读 | 可写 | 说明                            |
-| --------------- | ------ | ---- | ---- | ------------------------------- |
-| absorptionRatio | number | 是   | 是   | 表示具体的吸收率，单位 : W/kg。 |
 
 ## AccelerometerResponse
 
@@ -5694,8 +5488,6 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_LIGHT | 是   | 要取消订阅的环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。 |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
-
- 
 
 ```ts
 import sensor from '@ohos.sensor';
