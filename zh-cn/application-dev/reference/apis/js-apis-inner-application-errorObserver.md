@@ -40,7 +40,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (error) {
-    console.error('registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}');
+    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
 }
 ```
 
@@ -79,6 +79,6 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (error) {
-    console.error('registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}');
+    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
 }
 ```

@@ -23,4 +23,3 @@ import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 | COLOR_MODE_NOT_SET | -1 | 未设置颜色模式。 | 
 | COLOR_MODE_DARK | 0 | 深色模式。 | 
 | COLOR_MODE_LIGHT | 1 | 浅色模式。 | 
-

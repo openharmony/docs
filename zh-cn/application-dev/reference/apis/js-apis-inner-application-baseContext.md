@@ -32,7 +32,7 @@ import Want from '@ohos.app.ability.Want';
 class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         // EntryAbility onCreate, isStageMode: true
-        console.log('EntryAbility onCreate, isStageMode: ${this.context.stageMode}');
+        console.log(`EntryAbility onCreate, isStageMode: ${this.context.stageMode}`);
     }
 }
 ```

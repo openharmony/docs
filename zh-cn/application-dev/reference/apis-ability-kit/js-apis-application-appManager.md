@@ -240,4 +240,3 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
       }
   });
   ```
-
