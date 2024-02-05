@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-以查看公历对应的农历日期为例，说明[Calendar](../reference/apis/js-apis-i18n.md#calendar8)类接口使用方法。
+以查看公历对应的农历日期为例，说明[Calendar](../reference/apis-localization-kit/js-apis-i18n.md#calendar8)类接口使用方法。
 
 1. 导入模块。
 

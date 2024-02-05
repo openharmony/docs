@@ -12,7 +12,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 ## 接口说明
 
-事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputEventClient文档](../reference/apis/js-apis-inputeventclient.md)。
+事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputEventClient文档](../reference/apis-input-kit/js-apis-inputeventclient.md)。
 
 | 接口名称  | 描述 |
 | -------------------------------------------- | -------------------------- |
@@ -22,7 +22,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 ## 开发步骤
 
-应用调用Home键返回桌面，测试是可以调用[injectEvent](../reference/apis/js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
+应用调用Home键返回桌面，测试是可以调用[injectEvent](../reference/apis-input-kit/js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
 
 ```js
 try {
