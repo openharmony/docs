@@ -395,7 +395,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -463,7 +463,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -517,12 +517,12 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | 是    | 迁移信息。 |
+| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo-sys.md) | 是    | 迁移信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，通过指定包名迁移任务完成时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -573,7 +573,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | 是    | 迁移信息。 |
+| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo-sys.md) | 是    | 迁移信息。 |
 
 **返回值：**
 
@@ -583,7 +583,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](../errorcodes/errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
@@ -704,7 +704,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 
 | 名称          | 类型    | 可读   | 可写   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
-| deviceId    | string  | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)     |
+| deviceId    | string  | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)     |
 | fixConflict | boolean | 是    | 是    | 表示是否存在版本冲突。 |
 | tag         | number  | 是    | 是    | 表示特定的标签。    |
 
@@ -718,7 +718,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| deviceId | string | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync) |
+| deviceId | string | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync) |
 
 ## ContinueState<sup>10+</sup>
 
@@ -740,4 +740,4 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 | 名称       | 类型    | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | state | [ContinueState](#continuestate10)   | 是    | 否    |   表示当前任务的流转状态。 |
-| info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo.md) | 是    | 否    |   表示当前任务的流转信息。 |
+| info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo-sys.md) | 是    | 否    |   表示当前任务的流转信息。 |
