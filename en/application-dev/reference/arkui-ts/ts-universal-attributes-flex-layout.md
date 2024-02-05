@@ -3,7 +3,7 @@
 >  **NOTE**
 >  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - The flex layout is valid only when the parent container is a **\<Flex>**, **\<Column>**, **\<Row>**, or **\<GridRow>** (only for **alignSelf**) component.
+>  - The flex layout is valid only when the parent container is a [\<Flex>](ts-container-flex.md), [\<Column>](ts-container-column.md), [\<Row>](ts-container-row.md), or [\<GridRow>](ts-container-gridrow.md) (only for **alignSelf**) component.
 
 ## flexBasis
 
@@ -51,7 +51,7 @@ Sets the percentage of the parent container's shrink size that is allocated to t
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>When the parent container is **\<Row>** or **\<Column>**, the default value is **0**.<br> When the parent container is **\<Flex>**, the default value is **1**.|
+| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [\<Column>](ts-container-column.md) or [\<Row>](ts-container-row.md), the default value is **0**.<br> If the parent container is [\<Flex>](ts-container-flex.md), the default value is **1**.|
 
 ## alignSelf
 
@@ -67,7 +67,7 @@ Sets the alignment mode of the child components along the cross axis of the pare
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container (**\<Flex>**, **\<Column>**, **\<Row>**, or **\<GridRow>**).<br>**\<GridCol>** can have the **alignsSelf** attribute bound to change its own layout along the cross axis.<br>Default value: **ItemAlign.Auto**|
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container ([\<Flex>](ts-container-flex.md), \<Column>](ts-container-column.md), \<Row>](ts-container-row.md), or [\<GridRow>](ts-container-gridrow.md)).<br>[\<GridCol>](ts-container-gridcol.md) can have the **alignsSelf** attribute bound to change its own layout along the cross axis.<br>Default value: **ItemAlign.Auto**|
 
 
 ## Example

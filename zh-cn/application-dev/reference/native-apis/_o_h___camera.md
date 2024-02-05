@@ -58,64 +58,64 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [Camera_Manager](#camera_manager) [Camera_Manager](#camera_manager) | 相机管理器对象。 | 
-| typedef enum [Camera_ErrorCode](#camera_errorcode) [Camera_ErrorCode](#camera_errorcode) | 相机错误代码的枚举。 | 
-| typedef enum [Camera_Status](#camera_status) [Camera_Status](#camera_status) | 相机状态的枚举。 | 
-| typedef enum [Camera_Position](#camera_position) [Camera_Position](#camera_position) | 相机位置的枚举。 | 
-| typedef enum [Camera_Type](#camera_type) [Camera_Type](#camera_type) | 相机类型的枚举。 | 
-| typedef enum [Camera_Connection](#camera_connection) [Camera_Connection](#camera_connection) | 相机连接类型的枚举。 | 
-| typedef enum [Camera_Format](#camera_format) [Camera_Format](#camera_format) | 相机格式类型的枚举。 | 
-| typedef enum [Camera_FlashMode](#camera_flashmode) [Camera_FlashMode](#camera_flashmode) | 闪光模式的枚举。 | 
-| typedef enum [Camera_ExposureMode](#camera_exposuremode) [Camera_ExposureMode](#camera_exposuremode) | 曝光模式的枚举。 | 
-| typedef enum [Camera_FocusMode](#camera_focusmode) [Camera_FocusMode](#camera_focusmode) | 聚焦模式的枚举。 | 
-| typedef enum [Camera_FocusState](#camera_focusstate) [Camera_FocusState](#camera_focusstate) | 焦点状态的枚举。 | 
-| typedef enum [Camera_VideoStabilizationMode](#camera_videostabilizationmode) [Camera_VideoStabilizationMode](#camera_videostabilizationmode) | 录像防抖模式的枚举。 | 
-| typedef enum [Camera_ImageRotation](#camera_imagerotation) [Camera_ImageRotation](#camera_imagerotation) | 图像旋转角度的枚举。 | 
-| typedef enum [Camera_QualityLevel](#camera_qualitylevel) [Camera_QualityLevel](#camera_qualitylevel) | 图像质量等级的枚举。 | 
-| typedef enum [Camera_MetadataObjectType](#camera_metadataobjecttype) [Camera_MetadataObjectType](#camera_metadataobjecttype) | 元数据对象类型的枚举。 | 
-| typedef struct [Camera_Size](_camera___size.md) [Camera_Size](#camera_size) | 大小参数。 | 
-| typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](#camera_profile) | 相机流的配置文件。 | 
-| typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](#camera_frameraterange) | 帧速率范围。 | 
-| typedef struct [Camera_VideoProfile](_camera___video_profile.md) [Camera_VideoProfile](#camera_videoprofile) | 录像配置文件。 | 
-| typedef struct [Camera_OutputCapability](_camera___output_capability.md) [Camera_OutputCapability](#camera_outputcapability) | 相机输出能力。 | 
-| typedef struct [Camera_Device](_camera___device.md) [Camera_Device](#camera_device) | 相机设备对象。 | 
-| typedef struct [Camera_StatusInfo](_camera___status_info.md) [Camera_StatusInfo](#camera_statusinfo) | 相机状态信息。 | 
-| typedef struct [Camera_Point](_camera___point.md) [Camera_Point](#camera_point) | 点参数。 | 
-| typedef struct [Camera_Location](_camera___location.md) [Camera_Location](#camera_location) | 拍照位置。 | 
-| typedef struct [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) [Camera_PhotoCaptureSetting](#camera_photocapturesetting) | 要设置的拍照捕获选项。 | 
-| typedef struct [Camera_FrameShutterInfo](_camera___frame_shutter_info.md) [Camera_FrameShutterInfo](#camera_frameshutterinfo) | 帧快门回调信息。 | 
-| typedef struct [Camera_CaptureEndInfo](_camera___capture_end_info.md) [Camera_CaptureEndInfo](#camera_captureendinfo) | 捕获结束信息。 | 
-| typedef struct [Camera_Rect](_camera___rect.md) [Camera_Rect](#camera_rect) | 矩形定义。 | 
-| typedef struct [Camera_MetadataObject](_camera___metadata_object.md) [Camera_MetadataObject](#camera_metadataobject) | 元数据对象基础。 | 
-| typedef struct [Camera_Input](#camera_input) [Camera_Input](#camera_input) | 相机输入对象。 | 
+| typedef struct [Camera_Manager](#camera_manager)[Camera_Manager](#camera_manager) | 相机管理器对象。 | 
+| typedef enum [Camera_ErrorCode](#camera_errorcode)[Camera_ErrorCode](#camera_errorcode) | 相机错误代码的枚举。 | 
+| typedef enum [Camera_Status](#camera_status)[Camera_Status](#camera_status) | 相机状态的枚举。 | 
+| typedef enum [Camera_Position](#camera_position)[Camera_Position](#camera_position) | 相机位置的枚举。 | 
+| typedef enum [Camera_Type](#camera_type)[Camera_Type](#camera_type) | 相机类型的枚举。 | 
+| typedef enum [Camera_Connection](#camera_connection)[Camera_Connection](#camera_connection) | 相机连接类型的枚举。 | 
+| typedef enum [Camera_Format](#camera_format)[Camera_Format](#camera_format) | 相机格式类型的枚举。 | 
+| typedef enum [Camera_FlashMode](#camera_flashmode)[Camera_FlashMode](#camera_flashmode) | 闪光模式的枚举。 | 
+| typedef enum [Camera_ExposureMode](#camera_exposuremode)[Camera_ExposureMode](#camera_exposuremode) | 曝光模式的枚举。 | 
+| typedef enum [Camera_FocusMode](#camera_focusmode)[Camera_FocusMode](#camera_focusmode) | 聚焦模式的枚举。 | 
+| typedef enum [Camera_FocusState](#camera_focusstate)[Camera_FocusState](#camera_focusstate) | 焦点状态的枚举。 | 
+| typedef enum [Camera_VideoStabilizationMode](#camera_videostabilizationmode)[Camera_VideoStabilizationMode](#camera_videostabilizationmode) | 录像防抖模式的枚举。 | 
+| typedef enum [Camera_ImageRotation](#camera_imagerotation)[Camera_ImageRotation](#camera_imagerotation) | 图像旋转角度的枚举。 | 
+| typedef enum [Camera_QualityLevel](#camera_qualitylevel)[Camera_QualityLevel](#camera_qualitylevel) | 图像质量等级的枚举。 | 
+| typedef enum [Camera_MetadataObjectType](#camera_metadataobjecttype)[Camera_MetadataObjectType](#camera_metadataobjecttype) | 元数据对象类型的枚举。 | 
+| typedef struct [Camera_Size](_camera___size.md)[Camera_Size](#camera_size) | 大小参数。 | 
+| typedef struct [Camera_Profile](_camera___profile.md)[Camera_Profile](#camera_profile) | 相机流的配置文件。 | 
+| typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md)[Camera_FrameRateRange](#camera_frameraterange) | 帧速率范围。 | 
+| typedef struct [Camera_VideoProfile](_camera___video_profile.md)[Camera_VideoProfile](#camera_videoprofile) | 录像配置文件。 | 
+| typedef struct [Camera_OutputCapability](_camera___output_capability.md)[Camera_OutputCapability](#camera_outputcapability) | 相机输出能力。 | 
+| typedef struct [Camera_Device](_camera___device.md)[Camera_Device](#camera_device) | 相机设备对象。 | 
+| typedef struct [Camera_StatusInfo](_camera___status_info.md)[Camera_StatusInfo](#camera_statusinfo) | 相机状态信息。 | 
+| typedef struct [Camera_Point](_camera___point.md)[Camera_Point](#camera_point) | 点参数。 | 
+| typedef struct [Camera_Location](_camera___location.md)[Camera_Location](#camera_location) | 拍照位置。 | 
+| typedef struct [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md)[Camera_PhotoCaptureSetting](#camera_photocapturesetting) | 要设置的拍照捕获选项。 | 
+| typedef struct [Camera_FrameShutterInfo](_camera___frame_shutter_info.md)[Camera_FrameShutterInfo](#camera_frameshutterinfo) | 帧快门回调信息。 | 
+| typedef struct [Camera_CaptureEndInfo](_camera___capture_end_info.md)[Camera_CaptureEndInfo](#camera_captureendinfo) | 捕获结束信息。 | 
+| typedef struct [Camera_Rect](_camera___rect.md)[Camera_Rect](#camera_rect) | 矩形定义。 | 
+| typedef struct [Camera_MetadataObject](_camera___metadata_object.md)[Camera_MetadataObject](#camera_metadataobject) | 元数据对象基础。 | 
+| typedef struct [Camera_Input](#camera_input)[Camera_Input](#camera_input) | 相机输入对象。 | 
 | typedef void(\* [OH_CameraInput_OnError](#oh_camerainput_onerror)) (const [Camera_Input](#camera_input) \*cameraInput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[CameraInput_Callbacks](_camera_input___callbacks.md)中被调用的相机输入错误回调。 | 
-| typedef struct [CameraInput_Callbacks](_camera_input___callbacks.md) [CameraInput_Callbacks](#camerainput_callbacks) | 相机输入错误事件的回调。 | 
+| typedef struct [CameraInput_Callbacks](_camera_input___callbacks.md)[CameraInput_Callbacks](#camerainput_callbacks) | 相机输入错误事件的回调。 | 
 | typedef void(\* [OH_CameraManager_StatusCallback](#oh_cameramanager_statuscallback)) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_StatusInfo](_camera___status_info.md) \*status) | 在[CameraManager_Callbacks](_camera_manager___callbacks.md)中被调用的相机管理器状态回调。 | 
-| typedef struct [CameraManager_Callbacks](_camera_manager___callbacks.md) [CameraManager_Callbacks](#cameramanager_callbacks) | 相机设备状态的回调。 | 
-| typedef struct [Camera_CaptureSession](#camera_capturesession) [Camera_CaptureSession](#camera_capturesession) | 捕获会话对象 | 
+| typedef struct [CameraManager_Callbacks](_camera_manager___callbacks.md)[CameraManager_Callbacks](#cameramanager_callbacks) | 相机设备状态的回调。 | 
+| typedef struct [Camera_CaptureSession](#camera_capturesession)[Camera_CaptureSession](#camera_capturesession) | 捕获会话对象 | 
 | typedef void(\* [OH_CaptureSession_OnFocusStateChange](#oh_capturesession_onfocusstatechange)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusState](#camera_focusstate) focusState) | 在[CaptureSession_Callbacks](_capture_session___callbacks.md)中被调用的捕获会话焦点状态回调。 | 
 | typedef void(\* [OH_CaptureSession_OnError](#oh_capturesession_onerror)) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[CaptureSession_Callbacks](_capture_session___callbacks.md)中被调用的捕获会话错误回调。 | 
-| typedef struct [CaptureSession_Callbacks](_capture_session___callbacks.md) [CaptureSession_Callbacks](#capturesession_callbacks) | 捕获会话的回调。 | 
-| typedef struct [Camera_MetadataOutput](#camera_metadataoutput) [Camera_MetadataOutput](#camera_metadataoutput) | 元数据输出对象 | 
+| typedef struct [CaptureSession_Callbacks](_capture_session___callbacks.md)[CaptureSession_Callbacks](#capturesession_callbacks) | 捕获会话的回调。 | 
+| typedef struct [Camera_MetadataOutput](#camera_metadataoutput)[Camera_MetadataOutput](#camera_metadataoutput) | 元数据输出对象 | 
 | typedef void(\* [OH_MetadataOutput_OnMetadataObjectAvailable](#oh_metadataoutput_onmetadataobjectavailable)) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [Camera_MetadataObject](_camera___metadata_object.md) \*metadataObject, uint32_t size) | 在[MetadataOutput_Callbacks](_metadata_output___callbacks.md)中被调用的元数据输出元数据对象可用回调。 | 
 | typedef void(\* [OH_MetadataOutput_OnError](#oh_metadataoutput_onerror)) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[MetadataOutput_Callbacks](_metadata_output___callbacks.md)中被调用的元数据输出错误回调。 | 
-| typedef struct [MetadataOutput_Callbacks](_metadata_output___callbacks.md) [MetadataOutput_Callbacks](#metadataoutput_callbacks) | 元数据输出的回调。 | 
-| typedef struct [Camera_PhotoOutput](#camera_photooutput) [Camera_PhotoOutput](#camera_photooutput) | 拍照输出对象 | 
+| typedef struct [MetadataOutput_Callbacks](_metadata_output___callbacks.md)[MetadataOutput_Callbacks](#metadataoutput_callbacks) | 元数据输出的回调。 | 
+| typedef struct [Camera_PhotoOutput](#camera_photooutput)[Camera_PhotoOutput](#camera_photooutput) | 拍照输出对象 | 
 | typedef void(\* [OH_PhotoOutput_OnFrameStart](#oh_photooutput_onframestart)) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 在[PhotoOutput_Callbacks](_photo_output___callbacks.md)中被调用的拍照输出帧启动回调。 | 
 | typedef void(\* [OH_PhotoOutput_OnFrameShutter](#oh_photooutput_onframeshutter)) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_FrameShutterInfo](_camera___frame_shutter_info.md) \*info) | 在[PhotoOutput_Callbacks](_photo_output___callbacks.md)中被调用的拍照输出帧快门回调。 | 
 | typedef void(\* [OH_PhotoOutput_OnFrameEnd](#oh_photooutput_onframeend)) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, int32_t frameCount) | 在[PhotoOutput_Callbacks](_photo_output___callbacks.md)中被调用的拍照输出帧结束回调。 | 
 | typedef void(\* [OH_PhotoOutput_OnError](#oh_photooutput_onerror)) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[PhotoOutput_Callbacks](_photo_output___callbacks.md)中被调用的拍照输出错误回调。 | 
-| typedef struct [PhotoOutput_Callbacks](_photo_output___callbacks.md) [PhotoOutput_Callbacks](#photooutput_callbacks) | 拍照输出的回调。 | 
-| typedef struct [Camera_PreviewOutput](#camera_previewoutput) [Camera_PreviewOutput](#camera_previewoutput) | 预览输出对象 | 
+| typedef struct [PhotoOutput_Callbacks](_photo_output___callbacks.md)[PhotoOutput_Callbacks](#photooutput_callbacks) | 拍照输出的回调。 | 
+| typedef struct [Camera_PreviewOutput](#camera_previewoutput)[Camera_PreviewOutput](#camera_previewoutput) | 预览输出对象 | 
 | typedef void(\* [OH_PreviewOutput_OnFrameStart](#oh_previewoutput_onframestart)) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 在[PreviewOutput_Callbacks](_preview_output___callbacks.md)中被调用的预览输出帧开始回调。 | 
 | typedef void(\* [OH_PreviewOutput_OnFrameEnd](#oh_previewoutput_onframeend)) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int32_t frameCount) | 在[PreviewOutput_Callbacks](_preview_output___callbacks.md)中被调用的预览输出帧结束回调。 | 
 | typedef void(\* [OH_PreviewOutput_OnError](#oh_previewoutput_onerror)) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[PreviewOutput_Callbacks](_preview_output___callbacks.md)中被调用的预览输出帧错误回调。 | 
-| typedef struct [PreviewOutput_Callbacks](_preview_output___callbacks.md) [PreviewOutput_Callbacks](#previewoutput_callbacks) | 用于预览输出的回调。 | 
-| typedef struct [Camera_VideoOutput](#camera_videooutput) [Camera_VideoOutput](#camera_videooutput) | 录像输出对象 | 
+| typedef struct [PreviewOutput_Callbacks](_preview_output___callbacks.md)[PreviewOutput_Callbacks](#previewoutput_callbacks) | 用于预览输出的回调。 | 
+| typedef struct [Camera_VideoOutput](#camera_videooutput)[Camera_VideoOutput](#camera_videooutput) | 录像输出对象 | 
 | typedef void(\* [OH_VideoOutput_OnFrameStart](#oh_videooutput_onframestart)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出帧开始回调。 | 
 | typedef void(\* [OH_VideoOutput_OnFrameEnd](#oh_videooutput_onframeend)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t frameCount) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出帧结束回调。 | 
 | typedef void(\* [OH_VideoOutput_OnError](#oh_videooutput_onerror)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | 在[VideoOutput_Callbacks](_video_output___callbacks.md)中被调用的录像输出错误回调。 | 
-| typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](#videooutput_callbacks) | 用于录像输出的回调。 | 
+| typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md)[VideoOutput_Callbacks](#videooutput_callbacks) | 用于录像输出的回调。 | 
 
 
 ### 枚举
@@ -142,88 +142,88 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Camera_ErrorCode](#camera_errorcode) [OH_Camera_GetCameraManager](#oh_camera_getcameramanager) ([Camera_Manager](#camera_manager) \*\*cameraManager) | 创建CameraManager实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_Camera_DeleteCameraManager](#oh_camera_deletecameramanager) ([Camera_Manager](#camera_manager) \*cameraManager) | 删除CameraManager实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_RegisterCallback](#oh_camerainput_registercallback) ([Camera_Input](#camera_input) \*cameraInput, [CameraInput_Callbacks](_camera_input___callbacks.md) \*callback) | 注册相机输入更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_UnregisterCallback](#oh_camerainput_unregistercallback) ([Camera_Input](#camera_input) \*cameraInput, [CameraInput_Callbacks](_camera_input___callbacks.md) \*callback) | 注销相机输入更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_Open](#oh_camerainput_open) ([Camera_Input](#camera_input) \*cameraInput) | 打开相机。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_Close](#oh_camerainput_close) ([Camera_Input](#camera_input) \*cameraInput) | 关闭相机。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_Release](#oh_camerainput_release) ([Camera_Input](#camera_input) \*cameraInput) | 释放相机输入实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_RegisterCallback](#oh_cameramanager_registercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | 注册相机状态更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterCallback](#oh_cameramanager_unregistercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | 注销摄像机状态更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | 获取支持相机的描述。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_DeleteSupportedCameras](#oh_cameramanager_deletesupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*cameras, uint32_t size) | 删除支持的相机。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapability](#oh_cameramanager_getsupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | 获取特定相机和特定模式支持的输出功能。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_DeleteSupportedCameraOutputCapability](#oh_cameramanager_deletesupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_OutputCapability](_camera___output_capability.md) \*cameraOutputCapability) | 删除支持的输出功能。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsCameraMuted](#oh_cameramanager_iscameramuted) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isCameraMuted) | 确定相机是否静音。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCaptureSession](#oh_cameramanager_createcapturesession) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_CaptureSession](#camera_capturesession) \*\*captureSession) | 创建捕获会话实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput](#oh_cameramanager_createcamerainput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_Input](#camera_input) \*\*cameraInput) | 创建相机输入实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateCameraInput_WithPositionAndType](#oh_cameramanager_createcamerainput_withpositionandtype) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Input](#camera_input) \*\*cameraInput) | 创建具有位置和类型的相机输入实例 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePreviewOutput](#oh_cameramanager_createpreviewoutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PreviewOutput](#camera_previewoutput) \*\*previewOutput) | 创建预览输出实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreatePhotoOutput](#oh_cameramanager_createphotooutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PhotoOutput](#camera_photooutput) \*\*photoOutput) | 创建一个拍照输出实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateVideoOutput](#oh_cameramanager_createvideooutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_VideoProfile](_camera___video_profile.md) \*profile, const char \*surfaceId, [Camera_VideoOutput](#camera_videooutput) \*\*videoOutput) | 创建一个录像输出实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_CreateMetadataOutput](#oh_cameramanager_createmetadataoutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_MetadataObjectType](#camera_metadataobjecttype) \*profile, [Camera_MetadataOutput](#camera_metadataoutput) \*\*metadataOutput) | 创建元数据输出实例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterCallback](#oh_capturesession_registercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注册捕获会话事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_UnregisterCallback](#oh_capturesession_unregistercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注销捕获会话事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_BeginConfig](#oh_capturesession_beginconfig) ([Camera_CaptureSession](#camera_capturesession) \*session) | 开始捕获会话配置。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_CommitConfig](#oh_capturesession_commitconfig) ([Camera_CaptureSession](#camera_capturesession) \*session) | 提交捕获会话配置。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_AddInput](#oh_capturesession_addinput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Input](#camera_input) \*cameraInput) | 添加相机输入。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RemoveInput](#oh_capturesession_removeinput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Input](#camera_input) \*cameraInput) | 删除相机输入。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_AddPreviewOutput](#oh_capturesession_addpreviewoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 添加预览输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RemovePreviewOutput](#oh_capturesession_removepreviewoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 删除预览输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_AddPhotoOutput](#oh_capturesession_addphotooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 添加拍照输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RemovePhotoOutput](#oh_capturesession_removephotooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 删除拍照输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_AddVideoOutput](#oh_capturesession_addvideooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 添加录像输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RemoveVideoOutput](#oh_capturesession_removevideooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 删除录像输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_AddMetadataOutput](#oh_capturesession_addmetadataoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 添加元数据输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RemoveMetadataOutput](#oh_capturesession_removemetadataoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 删除元数据输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_Start](#oh_capturesession_start) ([Camera_CaptureSession](#camera_capturesession) \*session) | 启动捕获会话。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_Stop](#oh_capturesession_stop) ([Camera_CaptureSession](#camera_capturesession) \*session) | 停止捕获会话。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_Release](#oh_capturesession_release) ([Camera_CaptureSession](#camera_capturesession) \*session) | 释放捕获会话。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_HasFlash](#oh_capturesession_hasflash) ([Camera_CaptureSession](#camera_capturesession) \*session, bool \*hasFlash) | 检查设备是否有闪光灯。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_IsFlashModeSupported](#oh_capturesession_isflashmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FlashMode](#camera_flashmode) flashMode, bool \*isSupported) | 检查是否支持指定的闪光灯模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetFlashMode](#oh_capturesession_getflashmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FlashMode](#camera_flashmode) \*flashMode) | 获取当前闪光灯模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetFlashMode](#oh_capturesession_setflashmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FlashMode](#camera_flashmode) flashMode) | 设置闪光灯模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_IsExposureModeSupported](#oh_capturesession_isexposuremodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ExposureMode](#camera_exposuremode) exposureMode, bool \*isSupported) | 检查是否支持指定的曝光模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetExposureMode](#oh_capturesession_getexposuremode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ExposureMode](#camera_exposuremode) \*exposureMode) | 获取当前曝光模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetExposureMode](#oh_capturesession_setexposuremode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ExposureMode](#camera_exposuremode) exposureMode) | 设置曝光模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetMeteringPoint](#oh_capturesession_getmeteringpoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) \*point) | 获取当前测量点。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetMeteringPoint](#oh_capturesession_setmeteringpoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) point) | 设置计量区域的中心点。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetExposureBiasRange](#oh_capturesession_getexposurebiasrange) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*minExposureBias, float \*maxExposureBias, float \*step) | 查询曝光补偿范围。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetExposureBias](#oh_capturesession_setexposurebias) ([Camera_CaptureSession](#camera_capturesession) \*session, float exposureBias) | 设置曝光补偿。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetExposureBias](#oh_capturesession_getexposurebias) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*exposureBias) | 获取当前曝光补偿。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_IsFocusModeSupported](#oh_capturesession_isfocusmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusMode](#camera_focusmode) focusMode, bool \*isSupported) | 检查是否支持指定的聚焦模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetFocusMode](#oh_capturesession_getfocusmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusMode](#camera_focusmode) \*focusMode) | 获取当前聚焦模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetFocusMode](#oh_capturesession_setfocusmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusMode](#camera_focusmode) focusMode) | 设置聚焦模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetFocusPoint](#oh_capturesession_getfocuspoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) \*focusPoint) | 获取当前焦点。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetFocusPoint](#oh_capturesession_setfocuspoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) focusPoint) | 设置焦点。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetZoomRatioRange](#oh_capturesession_getzoomratiorange) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*minZoom, float \*maxZoom) | 获取所有支持的缩放比例范围。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetZoomRatio](#oh_capturesession_getzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*zoom) | 获取当前缩放比例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetZoomRatio](#oh_capturesession_setzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float zoom) | 设置缩放比例。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_IsVideoStabilizationModeSupported](#oh_capturesession_isvideostabilizationmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) mode, bool \*isSupported) | 检查是否支持指定的录像防抖模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_GetVideoStabilizationMode](#oh_capturesession_getvideostabilizationmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) \*mode) | 获取当前录像防抖模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetVideoStabilizationMode](#oh_capturesession_setvideostabilizationmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) mode) | 设置录像防抖模式。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_RegisterCallback](#oh_metadataoutput_registercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | 注册元数据输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_UnregisterCallback](#oh_metadataoutput_unregistercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | 注销元数据输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_Start](#oh_metadataoutput_start) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 启动元数据输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_Stop](#oh_metadataoutput_stop) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 停止元数据输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_MetadataOutput_Release](#oh_metadataoutput_release) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 释放元数据输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_RegisterCallback](#oh_photooutput_registercallback) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [PhotoOutput_Callbacks](_photo_output___callbacks.md) \*callback) | 注册拍照输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_UnregisterCallback](#oh_photooutput_unregistercallback) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [PhotoOutput_Callbacks](_photo_output___callbacks.md) \*callback) | 注销拍照输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture](#oh_photooutput_capture) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 拍摄照片。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | 使用捕获设置捕获拍照。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 释放拍照输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持镜像拍照。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_RegisterCallback](#oh_previewoutput_registercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注册预览输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_UnregisterCallback](#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注销预览输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_Start](#oh_previewoutput_start) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 开始预览输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_Stop](#oh_previewoutput_stop) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 停止预览输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_Release](#oh_previewoutput_release) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 释放预览输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_RegisterCallback](#oh_videooutput_registercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注册录像输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_UnregisterCallback](#oh_videooutput_unregistercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注销录像输出更改事件回调。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_Start](#oh_videooutput_start) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 开始录像输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_Stop](#oh_videooutput_stop) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 停止录像输出。 | 
-| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_Release](#oh_videooutput_release) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 释放录像输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_Camera_GetCameraManager](#oh_camera_getcameramanager) ([Camera_Manager](#camera_manager) \*\*cameraManager) | 创建CameraManager实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_Camera_DeleteCameraManager](#oh_camera_deletecameramanager) ([Camera_Manager](#camera_manager) \*cameraManager) | 删除CameraManager实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraInput_RegisterCallback](#oh_camerainput_registercallback) ([Camera_Input](#camera_input) \*cameraInput, [CameraInput_Callbacks](_camera_input___callbacks.md) \*callback) | 注册相机输入更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraInput_UnregisterCallback](#oh_camerainput_unregistercallback) ([Camera_Input](#camera_input) \*cameraInput, [CameraInput_Callbacks](_camera_input___callbacks.md) \*callback) | 注销相机输入更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraInput_Open](#oh_camerainput_open) ([Camera_Input](#camera_input) \*cameraInput) | 打开相机。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraInput_Close](#oh_camerainput_close) ([Camera_Input](#camera_input) \*cameraInput) | 关闭相机。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraInput_Release](#oh_camerainput_release) ([Camera_Input](#camera_input) \*cameraInput) | 释放相机输入实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_RegisterCallback](#oh_cameramanager_registercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | 注册相机状态更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_UnregisterCallback](#oh_cameramanager_unregistercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | 注销摄像机状态更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | 获取支持相机的描述。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_DeleteSupportedCameras](#oh_cameramanager_deletesupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*cameras, uint32_t size) | 删除支持的相机。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_GetSupportedCameraOutputCapability](#oh_cameramanager_getsupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | 获取特定相机和特定模式支持的输出功能。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_DeleteSupportedCameraOutputCapability](#oh_cameramanager_deletesupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_OutputCapability](_camera___output_capability.md) \*cameraOutputCapability) | 删除支持的输出功能。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_IsCameraMuted](#oh_cameramanager_iscameramuted) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isCameraMuted) | 确定相机是否静音。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreateCaptureSession](#oh_cameramanager_createcapturesession) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_CaptureSession](#camera_capturesession) \*\*captureSession) | 创建捕获会话实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreateCameraInput](#oh_cameramanager_createcamerainput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_Input](#camera_input) \*\*cameraInput) | 创建相机输入实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreateCameraInput_WithPositionAndType](#oh_cameramanager_createcamerainput_withpositionandtype) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Input](#camera_input) \*\*cameraInput) | 创建具有位置和类型的相机输入实例 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreatePreviewOutput](#oh_cameramanager_createpreviewoutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PreviewOutput](#camera_previewoutput) \*\*previewOutput) | 创建预览输出实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreatePhotoOutput](#oh_cameramanager_createphotooutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Profile](_camera___profile.md) \*profile, const char \*surfaceId, [Camera_PhotoOutput](#camera_photooutput) \*\*photoOutput) | 创建一个拍照输出实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreateVideoOutput](#oh_cameramanager_createvideooutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_VideoProfile](_camera___video_profile.md) \*profile, const char \*surfaceId, [Camera_VideoOutput](#camera_videooutput) \*\*videoOutput) | 创建一个录像输出实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraManager_CreateMetadataOutput](#oh_cameramanager_createmetadataoutput) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_MetadataObjectType](#camera_metadataobjecttype) \*profile, [Camera_MetadataOutput](#camera_metadataoutput) \*\*metadataOutput) | 创建元数据输出实例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_RegisterCallback](#oh_capturesession_registercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注册捕获会话事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_UnregisterCallback](#oh_capturesession_unregistercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | 注销捕获会话事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_BeginConfig](#oh_capturesession_beginconfig) ([Camera_CaptureSession](#camera_capturesession) \*session) | 开始捕获会话配置。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_CommitConfig](#oh_capturesession_commitconfig) ([Camera_CaptureSession](#camera_capturesession) \*session) | 提交捕获会话配置。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_AddInput](#oh_capturesession_addinput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Input](#camera_input) \*cameraInput) | 添加相机输入。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_RemoveInput](#oh_capturesession_removeinput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Input](#camera_input) \*cameraInput) | 删除相机输入。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_AddPreviewOutput](#oh_capturesession_addpreviewoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 添加预览输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_RemovePreviewOutput](#oh_capturesession_removepreviewoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 删除预览输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_AddPhotoOutput](#oh_capturesession_addphotooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 添加拍照输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_RemovePhotoOutput](#oh_capturesession_removephotooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 删除拍照输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_AddVideoOutput](#oh_capturesession_addvideooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 添加录像输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_RemoveVideoOutput](#oh_capturesession_removevideooutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 删除录像输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_AddMetadataOutput](#oh_capturesession_addmetadataoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 添加元数据输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_RemoveMetadataOutput](#oh_capturesession_removemetadataoutput) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 删除元数据输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_Start](#oh_capturesession_start) ([Camera_CaptureSession](#camera_capturesession) \*session) | 启动捕获会话。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_Stop](#oh_capturesession_stop) ([Camera_CaptureSession](#camera_capturesession) \*session) | 停止捕获会话。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_Release](#oh_capturesession_release) ([Camera_CaptureSession](#camera_capturesession) \*session) | 释放捕获会话。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_HasFlash](#oh_capturesession_hasflash) ([Camera_CaptureSession](#camera_capturesession) \*session, bool \*hasFlash) | 检查设备是否有闪光灯。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_IsFlashModeSupported](#oh_capturesession_isflashmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FlashMode](#camera_flashmode) flashMode, bool \*isSupported) | 检查是否支持指定的闪光灯模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetFlashMode](#oh_capturesession_getflashmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FlashMode](#camera_flashmode) \*flashMode) | 获取当前闪光灯模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetFlashMode](#oh_capturesession_setflashmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FlashMode](#camera_flashmode) flashMode) | 设置闪光灯模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_IsExposureModeSupported](#oh_capturesession_isexposuremodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ExposureMode](#camera_exposuremode) exposureMode, bool \*isSupported) | 检查是否支持指定的曝光模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetExposureMode](#oh_capturesession_getexposuremode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ExposureMode](#camera_exposuremode) \*exposureMode) | 获取当前曝光模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetExposureMode](#oh_capturesession_setexposuremode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_ExposureMode](#camera_exposuremode) exposureMode) | 设置曝光模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetMeteringPoint](#oh_capturesession_getmeteringpoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) \*point) | 获取当前测量点。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetMeteringPoint](#oh_capturesession_setmeteringpoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) point) | 设置计量区域的中心点。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetExposureBiasRange](#oh_capturesession_getexposurebiasrange) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*minExposureBias, float \*maxExposureBias, float \*step) | 查询曝光补偿范围。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetExposureBias](#oh_capturesession_setexposurebias) ([Camera_CaptureSession](#camera_capturesession) \*session, float exposureBias) | 设置曝光补偿。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetExposureBias](#oh_capturesession_getexposurebias) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*exposureBias) | 获取当前曝光补偿。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_IsFocusModeSupported](#oh_capturesession_isfocusmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusMode](#camera_focusmode) focusMode, bool \*isSupported) | 检查是否支持指定的聚焦模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetFocusMode](#oh_capturesession_getfocusmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusMode](#camera_focusmode) \*focusMode) | 获取当前聚焦模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetFocusMode](#oh_capturesession_setfocusmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_FocusMode](#camera_focusmode) focusMode) | 设置聚焦模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetFocusPoint](#oh_capturesession_getfocuspoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) \*focusPoint) | 获取当前焦点。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetFocusPoint](#oh_capturesession_setfocuspoint) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_Point](_camera___point.md) focusPoint) | 设置焦点。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetZoomRatioRange](#oh_capturesession_getzoomratiorange) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*minZoom, float \*maxZoom) | 获取所有支持的缩放比例范围。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetZoomRatio](#oh_capturesession_getzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float \*zoom) | 获取当前缩放比例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetZoomRatio](#oh_capturesession_setzoomratio) ([Camera_CaptureSession](#camera_capturesession) \*session, float zoom) | 设置缩放比例。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_IsVideoStabilizationModeSupported](#oh_capturesession_isvideostabilizationmodesupported) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) mode, bool \*isSupported) | 检查是否支持指定的录像防抖模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_GetVideoStabilizationMode](#oh_capturesession_getvideostabilizationmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) \*mode) | 获取当前录像防抖模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CaptureSession_SetVideoStabilizationMode](#oh_capturesession_setvideostabilizationmode) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_VideoStabilizationMode](#camera_videostabilizationmode) mode) | 设置录像防抖模式。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_MetadataOutput_RegisterCallback](#oh_metadataoutput_registercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | 注册元数据输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_MetadataOutput_UnregisterCallback](#oh_metadataoutput_unregistercallback) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput, [MetadataOutput_Callbacks](_metadata_output___callbacks.md) \*callback) | 注销元数据输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_MetadataOutput_Start](#oh_metadataoutput_start) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 启动元数据输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_MetadataOutput_Stop](#oh_metadataoutput_stop) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 停止元数据输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_MetadataOutput_Release](#oh_metadataoutput_release) ([Camera_MetadataOutput](#camera_metadataoutput) \*metadataOutput) | 释放元数据输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PhotoOutput_RegisterCallback](#oh_photooutput_registercallback) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [PhotoOutput_Callbacks](_photo_output___callbacks.md) \*callback) | 注册拍照输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PhotoOutput_UnregisterCallback](#oh_photooutput_unregistercallback) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [PhotoOutput_Callbacks](_photo_output___callbacks.md) \*callback) | 注销拍照输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PhotoOutput_Capture](#oh_photooutput_capture) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 拍摄照片。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | 使用捕获设置捕获拍照。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 释放拍照输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持镜像拍照。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PreviewOutput_RegisterCallback](#oh_previewoutput_registercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注册预览输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PreviewOutput_UnregisterCallback](#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注销预览输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PreviewOutput_Start](#oh_previewoutput_start) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 开始预览输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PreviewOutput_Stop](#oh_previewoutput_stop) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 停止预览输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_PreviewOutput_Release](#oh_previewoutput_release) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | 释放预览输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_VideoOutput_RegisterCallback](#oh_videooutput_registercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注册录像输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_VideoOutput_UnregisterCallback](#oh_videooutput_unregistercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注销录像输出更改事件回调。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_VideoOutput_Start](#oh_videooutput_start) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 开始录像输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_VideoOutput_Stop](#oh_videooutput_stop) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 停止录像输出。 | 
+| [Camera_ErrorCode](#camera_errorcode)[OH_VideoOutput_Release](#oh_videooutput_release) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | 释放录像输出。 | 
 
 
 ## 类型定义说明
@@ -232,7 +232,7 @@
 ### Camera_CaptureEndInfo
 
 ```
-typedef struct Camera_CaptureEndInfo Camera_CaptureEndInfo
+typedef struct Camera_CaptureEndInfoCamera_CaptureEndInfo
 ```
 
 **描述**
@@ -245,7 +245,7 @@ typedef struct Camera_CaptureEndInfo Camera_CaptureEndInfo
 ### Camera_CaptureSession
 
 ```
-typedef struct Camera_CaptureSession Camera_CaptureSession
+typedef struct Camera_CaptureSessionCamera_CaptureSession
 ```
 
 **描述**
@@ -260,7 +260,7 @@ typedef struct Camera_CaptureSession Camera_CaptureSession
 ### Camera_Connection
 
 ```
-typedef enum Camera_Connection Camera_Connection
+typedef enum Camera_ConnectionCamera_Connection
 ```
 
 **描述**
@@ -273,7 +273,7 @@ typedef enum Camera_Connection Camera_Connection
 ### Camera_Device
 
 ```
-typedef struct Camera_Device Camera_Device
+typedef struct Camera_DeviceCamera_Device
 ```
 
 **描述**
@@ -286,7 +286,7 @@ typedef struct Camera_Device Camera_Device
 ### Camera_ErrorCode
 
 ```
-typedef enum Camera_ErrorCode Camera_ErrorCode
+typedef enum Camera_ErrorCodeCamera_ErrorCode
 ```
 
 **描述**
@@ -299,7 +299,7 @@ typedef enum Camera_ErrorCode Camera_ErrorCode
 ### Camera_ExposureMode
 
 ```
-typedef enum Camera_ExposureMode Camera_ExposureMode
+typedef enum Camera_ExposureModeCamera_ExposureMode
 ```
 
 **描述**
@@ -312,7 +312,7 @@ typedef enum Camera_ExposureMode Camera_ExposureMode
 ### Camera_FlashMode
 
 ```
-typedef enum Camera_FlashMode Camera_FlashMode
+typedef enum Camera_FlashModeCamera_FlashMode
 ```
 
 **描述**
@@ -325,7 +325,7 @@ typedef enum Camera_FlashMode Camera_FlashMode
 ### Camera_FocusMode
 
 ```
-typedef enum Camera_FocusMode Camera_FocusMode
+typedef enum Camera_FocusModeCamera_FocusMode
 ```
 
 **描述**
@@ -338,7 +338,7 @@ typedef enum Camera_FocusMode Camera_FocusMode
 ### Camera_FocusState
 
 ```
-typedef enum Camera_FocusState Camera_FocusState
+typedef enum Camera_FocusStateCamera_FocusState
 ```
 
 **描述**
@@ -351,7 +351,7 @@ typedef enum Camera_FocusState Camera_FocusState
 ### Camera_Format
 
 ```
-typedef enum Camera_Format Camera_Format
+typedef enum Camera_FormatCamera_Format
 ```
 
 **描述**
@@ -364,7 +364,7 @@ typedef enum Camera_Format Camera_Format
 ### Camera_FrameRateRange
 
 ```
-typedef struct Camera_FrameRateRange Camera_FrameRateRange
+typedef struct Camera_FrameRateRangeCamera_FrameRateRange
 ```
 
 **描述**
@@ -377,7 +377,7 @@ typedef struct Camera_FrameRateRange Camera_FrameRateRange
 ### Camera_FrameShutterInfo
 
 ```
-typedef struct Camera_FrameShutterInfo Camera_FrameShutterInfo
+typedef struct Camera_FrameShutterInfoCamera_FrameShutterInfo
 ```
 
 **描述**
@@ -390,7 +390,7 @@ typedef struct Camera_FrameShutterInfo Camera_FrameShutterInfo
 ### Camera_ImageRotation
 
 ```
-typedef enum Camera_ImageRotation Camera_ImageRotation
+typedef enum Camera_ImageRotationCamera_ImageRotation
 ```
 
 **描述**
@@ -403,7 +403,7 @@ typedef enum Camera_ImageRotation Camera_ImageRotation
 ### Camera_Input
 
 ```
-typedef struct Camera_Input Camera_Input
+typedef struct Camera_InputCamera_Input
 ```
 
 **描述**
@@ -418,7 +418,7 @@ typedef struct Camera_Input Camera_Input
 ### Camera_Location
 
 ```
-typedef struct Camera_Location Camera_Location
+typedef struct Camera_LocationCamera_Location
 ```
 
 **描述**
@@ -431,7 +431,7 @@ typedef struct Camera_Location Camera_Location
 ### Camera_Manager
 
 ```
-typedef struct Camera_Manager Camera_Manager
+typedef struct Camera_ManagerCamera_Manager
 ```
 
 **描述**
@@ -446,7 +446,7 @@ typedef struct Camera_Manager Camera_Manager
 ### Camera_MetadataObject
 
 ```
-typedef struct Camera_MetadataObject Camera_MetadataObject
+typedef struct Camera_MetadataObjectCamera_MetadataObject
 ```
 
 **描述**
@@ -459,7 +459,7 @@ typedef struct Camera_MetadataObject Camera_MetadataObject
 ### Camera_MetadataObjectType
 
 ```
-typedef enum Camera_MetadataObjectType Camera_MetadataObjectType
+typedef enum Camera_MetadataObjectTypeCamera_MetadataObjectType
 ```
 
 **描述**
@@ -472,7 +472,7 @@ typedef enum Camera_MetadataObjectType Camera_MetadataObjectType
 ### Camera_MetadataOutput
 
 ```
-typedef struct Camera_MetadataOutput Camera_MetadataOutput
+typedef struct Camera_MetadataOutputCamera_MetadataOutput
 ```
 
 **描述**
@@ -487,7 +487,7 @@ typedef struct Camera_MetadataOutput Camera_MetadataOutput
 ### Camera_OutputCapability
 
 ```
-typedef struct Camera_OutputCapability Camera_OutputCapability
+typedef struct Camera_OutputCapabilityCamera_OutputCapability
 ```
 
 **描述**
@@ -500,7 +500,7 @@ typedef struct Camera_OutputCapability Camera_OutputCapability
 ### Camera_PhotoCaptureSetting
 
 ```
-typedef struct Camera_PhotoCaptureSetting Camera_PhotoCaptureSetting
+typedef struct Camera_PhotoCaptureSettingCamera_PhotoCaptureSetting
 ```
 
 **描述**
@@ -513,7 +513,7 @@ typedef struct Camera_PhotoCaptureSetting Camera_PhotoCaptureSetting
 ### Camera_PhotoOutput
 
 ```
-typedef struct Camera_PhotoOutput Camera_PhotoOutput
+typedef struct Camera_PhotoOutputCamera_PhotoOutput
 ```
 
 **描述**
@@ -528,7 +528,7 @@ typedef struct Camera_PhotoOutput Camera_PhotoOutput
 ### Camera_Point
 
 ```
-typedef struct Camera_Point Camera_Point
+typedef struct Camera_PointCamera_Point
 ```
 
 **描述**
@@ -541,7 +541,7 @@ typedef struct Camera_Point Camera_Point
 ### Camera_Position
 
 ```
-typedef enum Camera_Position Camera_Position
+typedef enum Camera_PositionCamera_Position
 ```
 
 **描述**
@@ -554,7 +554,7 @@ typedef enum Camera_Position Camera_Position
 ### Camera_PreviewOutput
 
 ```
-typedef struct Camera_PreviewOutput Camera_PreviewOutput
+typedef struct Camera_PreviewOutputCamera_PreviewOutput
 ```
 
 **描述**
@@ -569,7 +569,7 @@ typedef struct Camera_PreviewOutput Camera_PreviewOutput
 ### Camera_Profile
 
 ```
-typedef struct Camera_Profile Camera_Profile
+typedef struct Camera_ProfileCamera_Profile
 ```
 
 **描述**
@@ -582,7 +582,7 @@ typedef struct Camera_Profile Camera_Profile
 ### Camera_QualityLevel
 
 ```
-typedef enum Camera_QualityLevel Camera_QualityLevel
+typedef enum Camera_QualityLevelCamera_QualityLevel
 ```
 
 **描述**
@@ -595,7 +595,7 @@ typedef enum Camera_QualityLevel Camera_QualityLevel
 ### Camera_Rect
 
 ```
-typedef struct Camera_Rect Camera_Rect
+typedef struct Camera_RectCamera_Rect
 ```
 
 **描述**
@@ -608,7 +608,7 @@ typedef struct Camera_Rect Camera_Rect
 ### Camera_Size
 
 ```
-typedef struct Camera_Size Camera_Size
+typedef struct Camera_SizeCamera_Size
 ```
 
 **描述**
@@ -621,7 +621,7 @@ typedef struct Camera_Size Camera_Size
 ### Camera_Status
 
 ```
-typedef enum Camera_Status Camera_Status
+typedef enum Camera_StatusCamera_Status
 ```
 
 **描述**
@@ -634,7 +634,7 @@ typedef enum Camera_Status Camera_Status
 ### Camera_StatusInfo
 
 ```
-typedef struct Camera_StatusInfo Camera_StatusInfo
+typedef struct Camera_StatusInfoCamera_StatusInfo
 ```
 
 **描述**
@@ -647,7 +647,7 @@ typedef struct Camera_StatusInfo Camera_StatusInfo
 ### Camera_Type
 
 ```
-typedef enum Camera_Type Camera_Type
+typedef enum Camera_TypeCamera_Type
 ```
 
 **描述**
@@ -660,7 +660,7 @@ typedef enum Camera_Type Camera_Type
 ### Camera_VideoOutput
 
 ```
-typedef struct Camera_VideoOutput Camera_VideoOutput
+typedef struct Camera_VideoOutputCamera_VideoOutput
 ```
 
 **描述**
@@ -675,7 +675,7 @@ typedef struct Camera_VideoOutput Camera_VideoOutput
 ### Camera_VideoProfile
 
 ```
-typedef struct Camera_VideoProfile Camera_VideoProfile
+typedef struct Camera_VideoProfileCamera_VideoProfile
 ```
 
 **描述**
@@ -688,7 +688,7 @@ typedef struct Camera_VideoProfile Camera_VideoProfile
 ### Camera_VideoStabilizationMode
 
 ```
-typedef enum Camera_VideoStabilizationMode Camera_VideoStabilizationMode
+typedef enum Camera_VideoStabilizationModeCamera_VideoStabilizationMode
 ```
 
 **描述**
@@ -701,7 +701,7 @@ typedef enum Camera_VideoStabilizationMode Camera_VideoStabilizationMode
 ### CameraInput_Callbacks
 
 ```
-typedef struct CameraInput_Callbacks CameraInput_Callbacks
+typedef struct CameraInput_CallbacksCameraInput_Callbacks
 ```
 
 **描述**
@@ -718,7 +718,7 @@ typedef struct CameraInput_Callbacks CameraInput_Callbacks
 ### CameraManager_Callbacks
 
 ```
-typedef struct CameraManager_Callbacks CameraManager_Callbacks
+typedef struct CameraManager_CallbacksCameraManager_Callbacks
 ```
 
 **描述**
@@ -735,7 +735,7 @@ typedef struct CameraManager_Callbacks CameraManager_Callbacks
 ### CaptureSession_Callbacks
 
 ```
-typedef struct CaptureSession_Callbacks CaptureSession_Callbacks
+typedef struct CaptureSession_CallbacksCaptureSession_Callbacks
 ```
 
 **描述**
@@ -752,7 +752,7 @@ typedef struct CaptureSession_Callbacks CaptureSession_Callbacks
 ### MetadataOutput_Callbacks
 
 ```
-typedef struct MetadataOutput_Callbacks MetadataOutput_Callbacks
+typedef struct MetadataOutput_CallbacksMetadataOutput_Callbacks
 ```
 
 **描述**
@@ -786,8 +786,6 @@ typedef void(* OH_CameraInput_OnError) (const Camera_Input *cameraInput, Camera_
 | errorCode | 相机输入的[Camera_ErrorCode](#camera_errorcode)。 | 
 
 **参见：**
-
-[Camera_ErrorCode](#camera_errorcode)中的：
 
 CAMERA_CONFLICT_CAMERA
 
@@ -839,7 +837,7 @@ typedef void(* OH_CaptureSession_OnError) (Camera_CaptureSession *session, Camer
 
 **参见：**
 
-[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
+CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_CaptureSession_OnFocusStateChange
@@ -883,7 +881,7 @@ typedef void(* OH_MetadataOutput_OnError) (Camera_MetadataOutput *metadataOutput
 
 **参见：**
 
-[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
+CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_MetadataOutput_OnMetadataObjectAvailable
@@ -928,7 +926,7 @@ typedef void(* OH_PhotoOutput_OnError) (Camera_PhotoOutput *photoOutput, Camera_
 
 **参见：**
 
-[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
+CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_PhotoOutput_OnFrameEnd
@@ -1011,7 +1009,7 @@ typedef void(* OH_PreviewOutput_OnError) (Camera_PreviewOutput *previewOutput, C
 
 **参见：**
 
-[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
+CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_PreviewOutput_OnFrameEnd
@@ -1074,7 +1072,7 @@ typedef void(* OH_VideoOutput_OnError) (Camera_VideoOutput *videoOutput, Camera_
 
 **参见：**
 
-[Camera_ErrorCode](#camera_errorcode)中的CAMERA_SERVICE_FATAL_ERROR
+CAMERA_SERVICE_FATAL_ERROR
 
 
 ### OH_VideoOutput_OnFrameEnd
@@ -3425,3 +3423,4 @@ Camera_ErrorCode OH_VideoOutput_UnregisterCallback (Camera_VideoOutput * videoOu
 **返回：**
 
 如果方法调用成功返回CAMERA_OK；如果参数丢失或参数类型不正确返回INVALID_ARGUMENT。具体参考[Camera_ErrorCode](#camera_errorcode)。
+

@@ -45,6 +45,7 @@
           - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
         - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
+        - [wrapBuilder: Encapsulating a Global @Builder](quick-start/arkts-wrapBuilder.md)
         - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
         - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
         - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
@@ -378,7 +379,7 @@
           - [Defining Animations with the transform Attribute](ui/ui-js-animate-transform.md)
           - [Defining Animations with the background-position Attribute](ui/ui-js-animate-background-position-style.md)
           - [Defining Animations for SVG Components](ui/ui-js-animate-svg.md)
-        - JS Animation
+        - JavaScript Animation
           - [Component Animation](ui/ui-js-animate-component.md)
           - Interpolator Animation
             - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
@@ -2097,7 +2098,8 @@
   - [Startup Development](faqs/faqs-startup.md)
   - [Distributed Device Development](faqs/faqs-distributed-device-profile.md)
   - [SDK Usage](faqs/faqs-sdk.md)
+  - [NDK Usage](faqs/faqs-ndk.md)
   - [Compiler and Runtime Development](faqs/faqs-compiler-runtime.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
 
- <!--no_check--> 
+<!--no_check-->

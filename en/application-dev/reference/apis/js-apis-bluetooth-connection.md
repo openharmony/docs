@@ -15,7 +15,7 @@ import connection from '@ohos.bluetooth.connection';
 ```
 
 
-## connection.pairDevice<a name="pairDevice"></a>
+## connection.pairDevice
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -55,7 +55,7 @@ try {
 ```
 
 
-## connection.pairDevice<a name="pairDevice"></a>
+## connection.pairDevice
 
 pairDevice(deviceId: string): Promise&lt;void&gt;
 
@@ -200,7 +200,7 @@ try {
 ```
 
 
-## connection.cancelPairedDevice<a name="cancelPairedDevice"></a>
+## connection.cancelPairedDevice
 
 cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -241,7 +241,7 @@ try {
 ```
 
 
-## connection.cancelPairedDevice<a name="cancelPairedDevice"></a>
+## connection.cancelPairedDevice
 
 cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 
@@ -287,7 +287,7 @@ try {
 ```
 
 
-## connection.cancelPairingDevice<a name="cancelPairingDevice"></a>
+## connection.cancelPairingDevice
 
 cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -328,7 +328,7 @@ try {
 ```
 
 
-## connection.cancelPairingDevice<a name="cancelPairingDevice"></a>
+## connection.cancelPairingDevice
 
 cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 
@@ -374,7 +374,7 @@ try {
 ```
 
 
-## connection.getRemoteDeviceName<a name="getRemoteDeviceName"></a>
+## connection.getRemoteDeviceName
 
 getRemoteDeviceName(deviceId: string): string
 
@@ -418,7 +418,7 @@ try {
 ```
 
 
-## connection.getRemoteDeviceClass<a name="getRemoteDeviceClass"></a>
+## connection.getRemoteDeviceClass
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
@@ -462,7 +462,7 @@ try {
 ```
 
 
-## connection.getLocalName<a name="getLocalName"></a>
+## connection.getLocalName
 
 getLocalName(): string
 
@@ -499,7 +499,7 @@ try {
 ```
 
 
-## connection.getPairedDevices<a name="getPairedDevices"></a>
+## connection.getPairedDevices
 
 getPairedDevices(): Array&lt;string&gt;
 
@@ -537,7 +537,7 @@ try {
 ```
 
 
-## connection.getPairState<sup>11+</sup><a name="getPairState"></a>
+## connection.getPairState<sup>11+</sup>
 
 getPairState(deviceId: string): BondState
 
@@ -582,7 +582,7 @@ try {
 ```
 
 
-## connection.getProfileConnectionState<a name="getProfileConnectionState"></a>
+## connection.getProfileConnectionState
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
@@ -628,7 +628,7 @@ try {
 ```
 
 
-## connection.setDevicePairingConfirmation<a name="setDevicePairingConfirmation"></a>
+## connection.setDevicePairingConfirmation
 
 setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
@@ -672,7 +672,7 @@ try {
 ```
 
 
-## connection.setDevicePinCode<a name="setDevicePinCode"></a>
+## connection.setDevicePinCode
 
 setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -715,7 +715,7 @@ try {
 ```
 
 
-## connection.setDevicePinCode<a name="setDevicePinCode-1"></a>
+## connection.setDevicePinCode
 
 setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
@@ -766,7 +766,7 @@ try {
 ```
 
 
-## connection.setLocalName<a name="setLocalName"></a>
+## connection.setLocalName
 
 setLocalName(name: string): void
 
@@ -804,7 +804,7 @@ try {
 ```
 
 
-## connection.setBluetoothScanMode<a name="setBluetoothScanMode"></a>
+## connection.setBluetoothScanMode
 
 setBluetoothScanMode(mode: ScanMode, duration: number): void
 
@@ -844,7 +844,7 @@ try {
 ```
 
 
-## connection.getBluetoothScanMode<a name="getBluetoothScanMode"></a>
+## connection.getBluetoothScanMode
 
 getBluetoothScanMode(): ScanMode
 
@@ -882,7 +882,7 @@ try {
 ```
 
 
-## connection.startBluetoothDiscovery<a name="startBluetoothDiscovery"></a>
+## connection.startBluetoothDiscovery
 
 startBluetoothDiscovery(): void
 
@@ -918,7 +918,7 @@ try {
 ```
 
 
-## connection.stopBluetoothDiscovery<a name="stopBluetoothDiscovery"></a>
+## connection.stopBluetoothDiscovery
 
 stopBluetoothDiscovery(): void
 
@@ -950,7 +950,7 @@ try {
 ```
 
 
-## connection.isBluetoothDiscovering<sup>11+</sup><a name="isBluetoothDiscovering"></a>
+## connection.isBluetoothDiscovering<sup>11+</sup>
 
 isBluetoothDiscovering(): boolean
 
@@ -989,7 +989,7 @@ try {
 ```
 
 
-## connection.getLocalProfileUuids<a name="getLocalProfileUuids"></a>
+## connection.getLocalProfileUuids
 
 getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
@@ -1031,7 +1031,7 @@ try {
 ```
 
 
-## connection.getLocalProfileUuids<a name="getLocalProfileUuids"></a>
+## connection.getLocalProfileUuids
 
 getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
@@ -1075,7 +1075,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids<a name="getRemoteProfileUuids"></a>
+## connection.getRemoteProfileUuids
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
@@ -1119,7 +1119,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids<a name="getRemoteProfileUuids"></a>
+## connection.getRemoteProfileUuids
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
@@ -1379,7 +1379,7 @@ try {
 ```
 
 
-## connection.getRemoteProductId<sup>11+</sup><a name="getRemoteProductId"></a>
+## connection.getRemoteProductId<sup>11+</sup>
 
 getRemoteProductId(deviceId: string): string
 
@@ -1520,7 +1520,7 @@ Subscribes to Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | Yes   | Event type. The value is **bondStateChange**, which indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
 
 **Error codes**
 
@@ -1560,7 +1560,7 @@ Unsubscribes from Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **bondStateChange**, which indicates a Bluetooth pairing state change event.    |
-| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | No   | Callback for the change of the Bluetooth pairing state. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | No   | Callback for the change of the Bluetooth pairing state. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Error codes**
 
@@ -1667,7 +1667,7 @@ try {
 ```
 
 
-## BondStateParam<a name="BondStateParam"></a>
+## BondStateParam
 
 Represents the pairing state parameters.
 
@@ -1679,7 +1679,7 @@ Represents the pairing state parameters.
 | state    | BondState   | Yes   | No   | State of the device.|
 
 
-## PinRequiredParam<a name="PinRequiredParam"></a>
+## PinRequiredParam
 
 Represents the pairing request parameters.
 
@@ -1692,7 +1692,7 @@ Represents the pairing request parameters.
 | pinType | [PinType](#pintype) | Yes   | No   | Type of the device to pair.<br>This is a system API.  |
 
 
-## DeviceClass<a name="DeviceClass"></a>
+## DeviceClass
 
 Represents the class of a Bluetooth device.
 
@@ -1705,7 +1705,7 @@ Represents the class of a Bluetooth device.
 | classOfDevice   | number                              | Yes   | No   | Class of the device.         |
 
 
-## BluetoothTransport<a name="BluetoothTransport"></a>
+## BluetoothTransport
 
 Enumerates the device types. The default device type is **TRANSPORT_BR_EDR**.
 
@@ -1717,7 +1717,7 @@ Enumerates the device types. The default device type is **TRANSPORT_BR_EDR**.
 | TRANSPORT_LE  | 1 | BLE device. |
 
 
-## ScanMode<a name="ScanMode"></a>
+## ScanMode
 
 Enumerates the scan modes.
 
@@ -1733,7 +1733,7 @@ Enumerates the scan modes.
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | Limited connectable and discoverable mode.|
 
 
-## BondState<a name="BondState"></a>
+## BondState
 
 Enumerates the pairing states.
 
@@ -1746,7 +1746,7 @@ Enumerates the pairing states.
 | BOND_STATE_BONDED  | 2    | Paired.  |
 
 
-## PinType<a name="PinType"></a>
+## PinType
 
 Enumerates the Bluetooth pairing types.
 

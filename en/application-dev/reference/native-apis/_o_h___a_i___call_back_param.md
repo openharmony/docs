@@ -5,10 +5,11 @@
 
 Defines the operator information passed in a callback.
 
-**Since:**
+**Since**
+
 9
 
-**Related Modules:**
+**Related module**
 
 [MindSpore](_mind_spore.md)
 
@@ -18,30 +19,34 @@ Defines the operator information passed in a callback.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description.|
 | -------- | -------- |
-| [node_name](#node_name) |Operator name  | 
-| [node_type](#node_type) |Operator type  | 
+| [node_name](#node_name) | Operator name.|
+| [node_type](#node_type) | Operator type.|
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### node_name
 
-  
+
 ```
 char* OH_AI_CallBackParam::node_name
 ```
-**Description**<br>
-Operator name
+
+**Description**
+
+Operator name.
 
 
 ### node_type
 
-  
+
 ```
 char* OH_AI_CallBackParam::node_type
 ```
-**Description**<br>
-Operator type
+
+**Description**
+
+Operator type.

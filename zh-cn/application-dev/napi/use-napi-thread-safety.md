@@ -16,7 +16,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
 ## 使用示例
 
 1. 在Native入口定义线程安全函数。
-   ```
+   ```c++
    struct CallbackData {
        napi_threadsafe_function tsfn;
        napi_async_work work;
@@ -46,7 +46,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    ```
 
 2. 在工作线程中调用ExecuteWork，并执行线程安全函数。
-   ```
+   ```c++
    static void ExecuteWork(napi_env env, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -63,7 +63,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    ```
 
 3. 在JS线程执行异步回调函数。
-   ```
+   ```c++
    static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
    {
        void *data = nullptr;
@@ -115,7 +115,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    ```
 
 4. 任务执行完成后，进行资源清理回收。
-   ```
+   ```c++
    static void WorkComplete(napi_env env, napi_status status, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -139,6 +139,8 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    }
    
    // ArkTS侧调用接口
+   import nativeModule from 'libentry.so'; // 通过import的方式，引入Native能力
+
    let callback = (): Promise<string> => {
      return new Promise((resolve) => {
        setTimeout(() => {

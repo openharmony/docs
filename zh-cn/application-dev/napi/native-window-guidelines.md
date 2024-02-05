@@ -159,3 +159,9 @@ libnative_window.so
         // munmap failed
     }
     ```
+
+## 相关实例
+
+针对NativeWindow的开发，有以下相关实例可供参考：
+
+- [NativeWindow（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)

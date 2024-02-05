@@ -15,6 +15,16 @@ Not supported
 
 CalendarPicker(options?: CalendarOptions)
 
+Creates a calendar picker.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                       | Mandatory| Description                      |
+| ------- | ------------------------------------------- | ---- | -------------------------- |
+| options | [CalendarOptions](#calendaroptions) | No  | Parameters of the calendar picker.|
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -33,10 +43,10 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ##  CalendarOptions
 
-| Name     | Type      | Mandatory       | Description                             |
+| Name     | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | No   | Style of the background of the selected state.<br>Default value: The background is a circle.<br>**NOTE**<br>If the value is **0**, the background is a rectangle with square corners. If the value is in the 0–16 range, the background is a rectangle with rounded corners. If the value is equal to or greater than 16, the background is a circle.|
-| selected | Date | No   | Date of the selected item.<br>Default value: current system date<br>|
+| selected | Date | No   | Date of the selected item. If the value is not set or does not comply with the date format specifications, the default value will be used.<br>Default value: current system date|
 
 ## CalendarAlign
 

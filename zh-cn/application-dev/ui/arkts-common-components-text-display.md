@@ -1,4 +1,4 @@
-# 文本显示（Text/Span）
+# 文本显示 (Text/Span)
 
 
 Text是文本组件，通常用于展示用户视图，如显示文章的文字。具体用法请参考[Text](../reference/arkui-ts/ts-basic-components-text.md)。

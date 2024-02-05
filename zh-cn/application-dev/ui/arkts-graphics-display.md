@@ -1,4 +1,4 @@
-# 显示图片（Image）
+# 显示图片 (Image)
 
 
 开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
@@ -37,6 +37,8 @@ Image支持加载存档图、多媒体像素图两种类型。
 - 网络资源
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
+
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount、setImageRawDataCacheSize、setImageFileCacheSize](../reference/apis/js-apis-system-app.md#setimagecachecount7)。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址

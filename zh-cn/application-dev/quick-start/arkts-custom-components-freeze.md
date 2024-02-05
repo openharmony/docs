@@ -2,7 +2,6 @@
 
 自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyforEach。
 
-对于滑动类组件，比如List、Grid等，在首次渲染时是否可以冻结依赖后端组件的具体实现，详情可见[当前支持的场景](#当前支持的场景)。
 
 > **说明：**
 >
@@ -24,21 +23,22 @@ import router from '@ohos.router';
 @Entry
 @Component({ freezeWhenInactive: true })
 struct FirstTest {
-  @StorageLink('PropA')@Watch("first") storLink: number = 47;
-  first(){
-    console.info("first page "+ `${this.storLink}`)
+  @StorageLink('PropA') @Watch("first") storageLink: number = 47;
+
+  first() {
+    console.info("first page " + `${this.storageLink}`)
   }
 
   build() {
     Column() {
-      Text(`From fist Page ${this.storLink}`).fontSize(50)
-      Button('first page storLink + 1').fontSize(30)
+      Text(`From fist Page ${this.storageLink}`).fontSize(50)
+      Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
-          this.storLink += 1
+          this.storageLink += 1
         })
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({url: 'pages/second'})
+          router.pushUrl({ url: 'pages/second' })
         })
     }
   }
@@ -49,27 +49,28 @@ struct FirstTest {
 
 ```ts
 import router from '@ohos.router';
+
 @Entry
 @Component({ freezeWhenInactive: true })
-struct SeconedTest {
-  @StorageLink('PropA') @Watch("seconed") storLink2: number = 1;
+struct SecondTest {
+  @StorageLink('PropA') @Watch("second") storageLink2: number = 1;
 
-  seconed() {
-    console.info("seconed page: " + `${this.storLink2}`)
+  second() {
+    console.info("second page: " + `${this.storageLink2}`)
   }
 
   build() {
     Column() {
 
-      Text(`seconed Page ${this.storLink2}`).fontSize(50)
+      Text(`second Page ${this.storageLink2}`).fontSize(50)
       Button('Change Divider.strokeWidth')
         .onClick(() => {
           router.back()
         })
 
-      Button('second page storLink2 + 2').fontSize(30)
+      Button('second page storageLink2 + 2').fontSize(30)
         .onClick(() => {
-          this.storLink2 += 2
+          this.storageLink2 += 2
         })
 
     }
@@ -99,6 +100,7 @@ struct SeconedTest {
 @Component
 struct TabContentTest {
   @State @Watch("onMessageUpdated") message: number = 0;
+
   onMessageUpdated() {
     console.info(`TabContent message callback func ${this.message}`)
   }
@@ -112,10 +114,11 @@ struct TabContentTest {
 
         Tabs() {
           TabContent() {
-            FreezeChild({message: this.message})
+            FreezeChild({ message: this.message })
           }
+
           TabContent() {
-            FreezeChild({message: this.message})
+            FreezeChild({ message: this.message })
           }
         }
       }
@@ -124,13 +127,16 @@ struct TabContentTest {
     .height('100%')
   }
 }
+
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
   @Link @Watch("onMessageUpdated") message: number
   private index: number = 0
+
   onMessageUpdated() {
     console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`)
   }
+
   build() {
     Text("message" + `${this.message}, index: ${this.index}`)
       .fontSize(50)
@@ -245,6 +251,7 @@ struct LforEachTest {
   onMessageUpdated() {
     console.info(`LazyforEach message callback func ${this.message}`)
   }
+
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
       this.data.pushData(`Hello ${i}`)
@@ -259,7 +266,8 @@ struct LforEachTest {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            FreezeChild({message: this.message, index: item})
+            FreezeChild({ message: this.message,
+              index: item })
           }
         }, (item: string) => item)
       }.cachedCount(5).height(500)
@@ -280,6 +288,7 @@ struct FreezeChild {
   onMessageUpdated() {
     console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`)
   }
+
   build() {
     Text("message" + `${this.message}, index: ${this.index}`)
       .width('90%')

@@ -1,0 +1,927 @@
+# 元能力子系统错误码
+
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcodes/errorcode-universal.md)。
+
+## 16000001 指定的Ability名称不存在
+
+**错误信息**
+
+The specified ability does not exist.
+
+**错误描述**
+
+当指定的Ability名称不存在时，方法将返回该错误码。
+
+**可能原因**
+
+所查询的Ability不存在。
+
+**处理步骤**
+
+1. 检查want中的bundleName、moduleName和abilityName是否正确。
+2. 检查传入want中bundleName对应的应用是否安装。可使用如下命令查询已安装的应用列表，若bundleName不在查询结果中，说明应用未安装成功。
+    ```
+    hdc shell bm dump -a
+    ```
+3. 多hap应用需确认ability所属的hap是否已被安装。可使用如下命令查询应用的包信息，若安装的应用中没有对应的hap和ability，说明ability所属的hap未被安装。
+    ```
+    hdc shell bm dump -n 包名
+    ```
+
+## 16000002 接口调用Ability类型错误
+
+**错误信息**
+
+Incorrect Ability type.
+
+**错误描述**
+
+当接口调用Ability类型错误时，方法将返回该错误码。
+
+**可能原因**
+
+接口调用所在的Ability类型不支持该接口调用。
+
+**处理步骤**
+
+1. 检查want中的bundleName、moduleName和abilityName是否正确。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+
+## 16000003 指定的ID不存在
+
+**错误信息**
+
+Id does not exist.
+
+**错误描述**
+
+当指定的ID不存在时，方法将返回该错误码。
+
+**可能原因**
+
+操作的目标ID不存在。
+
+**处理步骤**
+
+确认操作的ID是否存在。
+
+## 16000004 可见性校验失败
+
+**错误信息**
+
+Can not start invisible component.
+
+**错误描述**
+
+当可见性校验失败时，方法将返回该错误码。
+
+**可能原因**
+
+应用可见性校验失败。
+
+**处理步骤**
+
+1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
+2. 若应用需要拉起exported为false的ability，请申请[ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability)权限。
+
+## 16000006 不允许跨用户操作
+
+**错误信息**
+
+Cross-user operations are not allowed.
+
+**错误描述**
+
+当应用跨用户操作时，方法将返回该错误码。
+
+**可能原因**
+
+应用进行了跨用户操作。
+
+**处理步骤**
+
+确认是否进行了跨用户操作。
+
+## 16000007 服务繁忙
+
+**错误信息**
+
+Service busy, there are concurrent tasks, waiting for retry.
+
+**错误描述**
+
+当服务繁忙时，方法将返回该错误码。
+
+**可能原因**
+
+服务繁忙。
+
+**处理步骤**
+
+服务繁忙，请稍后重试。
+
+## 16000008 众测应用到期
+
+**错误信息**
+
+The crowdtesting application expires.
+
+**错误描述**
+
+当众测应用到期时，方法将返回该错误码。
+
+**可能原因**
+
+众测应用到期，无法打开。
+
+**处理步骤**
+
+请检查应用是否众测到期，已过有效期的众测应用无法启动。
+
+## 16000009 wukong模式，不允许启动/停止ability
+
+**错误信息**
+
+An ability cannot be started or stopped in Wukong mode.
+
+**错误描述**
+
+当wukong模式下，启动/停止ability时，方法将返回该错误码。
+
+**可能原因**
+
+wukong模式，不允许启动/停止ability。
+
+**处理步骤**
+
+退出wukong模式后，再尝试启动/停止ability。请勿在wukong模式下启动/停止Ability。
+
+## 16000010 不允许带迁移flag
+
+**错误信息**
+
+The call with the continuation flag is forbidden.
+
+**错误描述**
+
+当调用携带迁移flag时，方法将返回该错误码。
+
+**可能原因**
+
+当前调用不允许携带迁移flag。
+
+**处理步骤**
+
+请检查是否携带迁移flag。
+
+## 16000011 上下文对象不存在
+
+**错误信息**
+
+The context does not exist.
+
+**错误描述**
+
+当上下文对象不存在时，方法将返回该错误码。
+
+**可能原因**
+
+当前上下文对象不存在。
+
+**处理步骤**
+
+请检查上下文对象是否可用。
+
+## 16000012 应用被管控
+
+**错误信息**
+
+The application is controlled.
+
+**错误描述**
+
+当应用受到应用市场管控时，方法将返回该错误码。
+
+**可能原因**
+
+应用疑似存在恶意行为，受到应用市场管控不允许启动。
+
+**处理步骤**
+
+建议卸载该应用。
+
+## 16000013 应用被EDM管控
+
+**错误信息**
+
+The application is controlled by EDM.
+
+**错误描述**
+
+当应用受到企业设备管理[Enterprise Device Manager](../apis/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+
+**可能原因**
+
+应用受企业设备管理管控。
+
+**处理步骤**
+
+请联系企业设备管理相关人员。
+
+## 16000015 服务超时
+
+**错误信息**
+
+Service timeout.
+
+**错误描述**
+
+当服务超时时，方法将返回该错误码。
+
+**可能原因**
+
+服务超时。
+
+**处理步骤**
+
+服务超时，请稍后重试。
+
+## 16000017 上一个Ability未启动完成，先缓存在队列中等待后续启动。
+
+**错误信息**
+
+The previous ability is starting, wait start later.
+
+**错误描述**
+
+需要启动的Ability过多，由于系统处理能力有限，会先将请求缓存在队列中，按照顺序依次处理。
+
+**可能原因**
+
+系统并发大。
+
+**处理步骤**
+
+无需处理，等待启动即可。
+
+## 16000050 内部错误
+
+**错误信息**
+
+Internal error.
+
+**错误描述**
+
+当内存申请、多线程处理异常等内部处理错误时，方法将返回该错误码。
+
+**可能原因**
+
+内存申请、多线程处理等内核通用错误。具体原因可能包括：内部对象为空、处理超时、包管理获取应用信息失败、系统服务获取失败、启动的ability实例已达到上限等等。
+
+**处理步骤**
+
+1. 确认系统内存是否足够，设备使用的系统版本是否存在异常。
+2. 检查是否启动了过多的ability。
+3. 尝试重启设备。
+
+## 16000051 网络异常
+
+**错误信息**
+
+Network error.
+
+**错误描述**
+
+当网络异常时，方法将返回该错误码。
+
+**可能原因**
+
+网络不可用。
+
+**处理步骤**
+
+网络异常，请稍后重试，或者重连网络尝试。
+
+## 16000052 不支持免安装
+
+**错误信息**
+
+Installation-free is not supported.
+
+**错误描述**
+
+当前应用不支持免安装时，方法将返回该错误码。
+
+**可能原因**
+
+应用包不满足免安装要求，如包大小超过限制等。
+
+**处理步骤**
+
+请检查应用是否支持免安装。
+
+## 16000053 非顶层应用
+
+**错误信息**
+
+The ability is not on the top of the UI.
+
+**错误描述**
+
+当前应用未显示在界面顶层时，方法将返回该错误码。
+
+**可能原因**
+
+用户执行免安装启动时需要确保应用在前台，但应用未显示在界面顶层。
+
+**处理步骤**
+
+请检查当前应用是否显示在界面顶层。
+
+## 16000054 免安装服务繁忙
+
+**错误信息**
+
+Installation-free service is busy, please wait and try again later.
+
+**错误描述**
+
+当免安装服务繁忙时，方法将返回该错误码。
+
+**可能原因**
+
+已有相同免安装任务在执行。
+
+**处理步骤**
+
+免安装服务繁忙，请稍后重试。
+
+## 16000055 免安装超时
+
+**错误信息**
+
+Installation-free timed out.
+
+**错误描述**
+
+当免安装超时时，方法将返回该错误码。
+
+**可能原因**
+
+免安装超时。
+
+**处理步骤**
+
+免安装超时，请稍后重试。
+
+## 16000056 不允许免安装其他应用
+
+**错误信息**
+
+Installation-free is not allowed for other applications.
+
+**错误描述**
+
+当免安装其他应用时，方法将返回该错误码。
+
+**可能原因**
+
+不允许免安装其他应用。
+
+**处理步骤**
+
+确认免安装的是正确的应用。
+
+## 16000057 不支持跨设备免安装
+
+**错误信息**
+
+Cross-device installation-free is not supported.
+
+**错误描述**
+
+当持跨设备免安装时，方法将返回该错误码。
+
+**可能原因**
+
+不支持跨设备免安装。
+
+**处理步骤**
+
+确认为非跨设备免安装应用。
+
+## 16000058 指定的URI flag无效
+
+**错误信息**
+
+Invalid URI flag.
+
+**错误描述**
+
+指定的URI flag无效。
+
+**可能原因**
+
+传入的参数有误。
+
+**处理步骤**
+
+确认传入的参数属于Uri flag。
+
+## 16000059 指定的URI类型无效。
+
+**错误信息**
+
+Invalid URI type.
+
+**错误描述**
+
+指定的URI类型无效。
+
+**可能原因**
+
+传入的参数有误，目前URI授权管理仅支持file类型URI。
+
+**处理步骤**
+
+确认传入的参数属于支持的URI类型。
+
+## 16000060 不支持沙箱应用授权URI
+
+**错误信息**
+
+Sandbox application can not grant URI permission.
+
+**错误描述**
+
+当沙箱应用授权URI时，方法将返回该错误码。
+
+**可能原因**
+
+不支持沙箱应用授权URI
+
+**处理步骤**
+
+确认为非沙箱应用。
+
+## 16000061 不支持的操作
+
+**错误信息**
+
+Operation not supported.
+
+**错误描述**
+
+当操作在当前系统上不支持时，返回该错误码。
+
+**可能原因**
+
+操作在当前系统上不支持。
+
+**处理步骤**
+
+确认操作在当前系统上是否支持。
+
+## 16000062 子进程数量超出上限
+
+**错误信息**
+
+The number of child process exceeds upper bound.
+
+**错误描述**
+
+当申请创建子进程时，创建的子进程数量已经达到上限，返回该错误码。
+
+**可能原因**
+
+创建的子进程数量已经达到上限。
+
+**处理步骤**
+
+确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
+
+## 16000101 执行shell命令失败
+
+**错误信息**
+
+Failed to run the shell command.
+
+**错误描述**
+
+当命令不是有效的shell命令时，方法将返回该错误码。
+
+**可能原因**
+
+命令不是有效的shell命令。
+
+**处理步骤**
+
+检查命令是否为有效的shell命令。
+
+## 16000151 无效wantAgent对象
+
+**错误信息**
+
+Invalid wantAgent object.
+
+**错误描述**
+
+当传入接口的wantAgent对象无效时，方法将返回该错误码。
+
+**可能原因**
+
+传入接口的wantAgent对象无效。
+
+**处理步骤**
+
+检查传入接口的wantAgent对象。
+
+## 16000152 未找到wantAgent对象
+
+**错误信息**
+
+the wantAgent object does not exist.
+
+**错误描述**
+
+当传入接口的wantAgent对象不存在时，方法将返回该错误码。
+
+**可能原因**
+
+传入接口的wantAgent对象不存在。
+
+**处理步骤**
+
+检查传入接口的wantAgent对象是否合法。
+
+## 16000153 wangAgent对象已取消
+
+**错误信息**
+
+wangAgent object has been canceled.
+
+**错误描述**
+
+当传入接口的wangAgent对象已取消时，方法将返回该错误码。
+
+**可能原因**
+
+传入接口的触发的wantAgent已取消。
+
+**处理步骤**
+
+检查触发的wantAgent对象是否已取消。
+
+## 16100001 指定Uri的Ability不存在
+
+**错误信息**
+
+The ability with the specified URI does not exist.
+
+**错误描述**
+
+当指定Uri的Ability不存在时，方法将返回该错误码。
+
+**可能原因**
+
+所查询的Ability不存在。
+
+**处理步骤**
+
+确认查询的Ability是否存在。
+
+## 16100002 接口调用Ability类型错误
+
+**错误信息**
+
+Incorrect ability type.
+
+**错误描述**
+
+当接口调用Ability类型错误时，方法将返回该错误码。
+
+**可能原因**
+
+接口调用所在的Ability类型不支持该接口调用。
+
+**处理步骤**
+
+1. 检查包名对应的Ability是否正确。
+2. 根据Ability类型调用不同接口。
+
+## 16200001 通用组件客户端(Caller)已回收
+
+**错误信息**
+
+The caller has been released.
+
+**错误描述**
+
+当通用组件客户端(Caller)已回收时，方法将返回该错误码。
+
+**可能原因**
+
+通用组件客户端(Caller)已回收。
+
+**处理步骤**
+
+1. 请重新注册有效通用组件客户端调用接口。
+2. 检查调用context.startAbility时，context对应的ability是否还在运行。若该ability已被析构，会抛出该错误码。
+3. 若存在连续调用startAbility和terminateSelf的情况，请确认收到startAbility成功或失败的回调后，再调用terminateSelf。
+
+## 16200002 通用组件服务端(Callee)无效
+
+**错误信息**
+
+Callee invalid. The callee does not exist.
+
+**错误描述**
+
+当通用组件服务端(Callee)无效时，方法将返回该错误码。
+
+**可能原因**
+
+通用组件服务端(Callee)不存在。
+
+**处理步骤**
+
+请检查通用组件服务端是否存在。
+
+## 16200003 回收失败
+
+**错误信息**
+
+Release error. The caller does not call any callee.
+
+**错误描述**
+
+当回收失败时，方法将返回该错误码。
+
+**可能原因**
+
+通用组件客户端(Caller)对象未注册通用组件服务端(Callee)。
+
+**处理步骤**
+
+请检查是否已注册通用组件服务端。
+
+## 16200004 方法已注册
+
+**错误信息**
+
+Method registered. The method has registered.
+
+**错误描述**
+
+当方法已注册时，方法将返回该错误码。
+
+**可能原因**
+
+方法已在通用组件服务端注册过。
+
+**处理步骤**
+
+请检查是否已注册该方法。
+
+## 16200005 方法未注册
+
+**错误信息**
+
+Method not registered. The method has not registered.
+
+**错误描述**
+
+当方法未注册时，方法将返回该错误码。
+
+**可能原因**
+
+方法未在通用组件服务端注册。
+
+**处理步骤**
+
+请检查是否未注册该方法。
+
+## 16300001 指定的任务不存在
+
+**错误信息**
+
+Mission not found.
+
+**错误描述**
+
+当指定的任务不存在时，方法将返回该错误码。
+
+**可能原因**
+
+操作的目标任务不存在。
+
+**处理步骤**
+
+确认操作的任务是否存在。
+
+## 16300002 指定的任务监听器不存在
+
+**错误信息**
+
+Input error. The specified mission listener does not exist.
+
+**错误描述**
+
+当指定的任务监听器不存在时，方法将返回该错误码。
+
+**可能原因**
+
+操作的目标任务监听器不存在。
+
+**处理步骤**
+
+确认操作的任务监听器是否存在。
+
+## 16300003 目标应用程序不是自身应用程序
+
+**错误信息**
+
+The target application is not self application.
+
+**错误描述**
+
+当被拉起的应用程序不是自身应用程序时，方法将返回该错误码。
+
+**可能原因**
+
+被拉起的应用和发起调用的应用不是同一个应用程序。
+
+**处理步骤**
+
+确认被拉起的应用程序是否为自身应用程序。
+
+## 18500001 指定的包名无效
+
+**错误信息**
+
+The bundle is not exist or no patch has applied.
+
+**错误描述**
+
+当指定的包名无效时，方法将返回该错误码。
+
+**可能原因**
+
+待查询的bundle不存在或未安装。
+
+**处理步骤**
+
+确认查询的应用是否已安装。
+
+## 18500002 指定的补丁包无效
+
+**错误信息**
+
+Invalid patch package.
+
+**错误描述**
+
+当指定的补丁包无效，补丁包不存在或不可访问时，方法将返回该错误码。
+
+**可能原因**
+
+待安装的补丁包文件不存在或不可以访问。
+
+**处理步骤**
+
+1. 请检查传递的补丁包文件路径是否有效。
+2. 请检查是否有权限访问此补丁包文件。
+
+## 18500003 补丁包部署失败
+
+**错误信息**
+
+Failed to deploy the patch.
+
+**错误描述**
+
+当补丁包部署失败时，方法将返回该错误码。
+
+**可能原因**
+
+1. patch.json中type只能为patch或者hotreload，否则部署失败。
+2. 若对应bundleName的hap包未安装，部署失败。
+3. bundleName、versionCode必须和已安装的hap应用相同，如果为patch类型，还需确保versionName相同，否则部署失败。
+4. 如果已经部署过补丁包，新部署的补丁包的versionCode必须大于之前补丁包的versionCode，否则部署失败。
+5. 对于patch类型的补丁会校验签名信息，使用的签名证书需要和应用相同，签名不一致，部署失败。
+6. 在部署patch类型的补丁包时，如果是debug版本，先判断是否有在使用的补丁包，如果在使用的补丁包为hotreload类型，则部署失败。
+7. 在部署hotreload类型的补丁包时，如果是debug版本，先判断是否有在使用的补丁包，如果在使用的补丁包为patch类型，则部署失败；如果是release版本，则部署失败。
+
+**处理步骤**
+
+请检查补丁包是否符合规则。
+
+## 18500004 补丁包使能失败
+
+**错误信息**
+
+Failed to enable the patch package.
+
+**错误描述**
+
+当补丁包使能失败时，方法将返回该错误码。
+
+**可能原因**
+
+使能补丁时补丁包状态不正确。
+
+**处理步骤**
+
+请检查补丁包状态。
+
+## 18500005 补丁包删除失败
+
+**错误信息**
+
+Failed to enable the patch package.
+
+**错误描述**
+
+当补丁包删除失败时，方法将返回该错误码。
+
+**可能原因**
+
+删除旧补丁时补丁包状态不正确。
+
+**处理步骤**
+
+请检查补丁包状态。
+
+## 18500006 加载补丁失败
+
+**错误信息**
+
+Failed to load the patch.
+
+**错误描述**
+
+当加载补丁失败时，方法将返回该错误码。
+
+**可能原因**
+
+方舟引擎加载补丁失败。
+
+**处理步骤**
+
+请检查补丁包是否正确。
+
+## 18500007 卸载旧补丁失败
+
+**错误信息**
+
+Failed to unload the patch.
+
+**错误描述**
+
+当方舟引擎卸载旧补丁失败时，方法将返回该错误码。
+
+**可能原因**
+
+方舟引擎卸载补丁失败。
+
+**处理步骤**
+
+请检查补丁包是否正确。
+
+## 18500008 快速修复内部错误
+
+**错误信息**
+
+Internal error.
+
+**错误描述**
+
+当内存申请、多线程处理异常等内部处理错误时，方法将返回该错误码。
+
+**可能原因**
+
+内存申请、多线程处理等内核通用错误。
+
+**处理步骤**
+
+确认系统内存是否足够。
+
+## 18500009 该应用当前有正在处理的快速修复任务
+
+**错误信息**
+
+The application has a apply quick fix task that is being processed.
+
+**错误描述**
+
+该应用当前有正在处理的快速修复任务时，方法将返回该错误码。
+
+**可能原因**
+
+指定要撤销快速修复的应用，有正在处理的快速修复任务。
+
+**处理步骤**
+
+等待快速修复任务处理完成。

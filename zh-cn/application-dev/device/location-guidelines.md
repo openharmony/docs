@@ -33,7 +33,7 @@
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
-Location Kit每个接口需要申请哪些权限可以参见如下文档：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+Location Kit每个接口需要申请哪些权限可以参见如下文档：[Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
 ### 开发步骤
 
@@ -50,7 +50,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 ### 接口说明
 
-获取设备的位置信息所使用的接口如下，详细说明参见：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+获取设备的位置信息所使用的接口如下，详细说明参见：[Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
 **表2** 获取设备的位置信息接口介绍
 
@@ -193,7 +193,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 ### 接口说明
 
-进行坐标和地理编码信息的相互转化，所使用的接口说明如下，详细信息参见：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+进行坐标和地理编码信息的相互转化，所使用的接口说明如下，详细信息参见：[Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
 **表3** （逆）地理编码转化接口介绍
 
@@ -247,7 +247,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
       }
       ```
 
-      参考接口API说明[Location Kit](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
+      参考接口API说明[Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
    - 调用getAddressesFromLocationName位置描述转化坐标。
      
       ```ts
@@ -265,7 +265,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
       }
       ```
 
-      参考接口API说明[Location Kit](../reference/apis/js-apis-geoLocationManager.md)，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
+      参考接口API说明[Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md)，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
 
       如果需要查询的位置描述可能出现多地重名的请求，可以设置GeoCodeRequest，通过设置一个经纬度范围，以高效地获取期望的准确结果。
 
@@ -282,7 +282,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 ### 接口说明
 
-地理围栏所使用的接口如下，详细说明参见：[Location Kit](../reference/apis/js-apis-geoLocationManager.md)。
+地理围栏所使用的接口如下，详细说明参见：[Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
 **表4** 地理围栏接口介绍
 
@@ -295,7 +295,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 1. 使用地理围栏功能，需要有权限ohos.permission.APPROXIMATELY_LOCATION，位置权限申请的方法和步骤见[申请位置权限开发指导](#申请位置权限开发指导)。
 
-2. 导入[geoLocationManager](../reference/apis/js-apis-geoLocationManager.md)模块、[wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)模块和[BusinessError](../reference/apis/js-apis-base.md)模块。
+2. 导入geoLocationManager模块、wantAgent模块和BusinessError模块。
    
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
@@ -303,7 +303,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
    import BusinessError from "@ohos.base";
    ```
 
-3. 创建[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
+3. 创建WantAgentInfo信息。
 
    场景一：创建拉起Ability的WantAgentInfo信息。
 
@@ -329,7 +329,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
    };
    ```
 
-   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgentInfo信息。
+   场景二：创建发布公共事件的WantAgentInfo信息。
 
    ```ts
    let wantAgentObj:_wantAgent|null = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
@@ -348,7 +348,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
    }
    ```
 
-4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
+4. 调用getWantAgent()方法进行创建WantAgent。
 
 并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 

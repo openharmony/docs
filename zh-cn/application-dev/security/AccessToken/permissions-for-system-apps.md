@@ -2317,6 +2317,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_PROTOCOL_DFX_DATA
+
+允许系统应用读取通讯故障及系统统计信息等数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。

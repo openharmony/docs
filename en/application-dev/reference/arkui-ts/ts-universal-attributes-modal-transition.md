@@ -27,12 +27,10 @@ Binds a modal to the component, which can be displayed when the component is tou
 | options | [ContentCoverOptions](#contentcoveroptions) | No  | Optional attributes of the modal.                                |
 
 ## ContentCoverOptions
+Inherited from [BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions).
 | Name             | Type                                      | Mandatory  | Description           |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | modalTransition | [ModalTransition](ts-types.md#modaltransition10) | No   | Transition mode of the modal. |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the modal. |
-| onAppear        | () => void                               | No   | Callback invoked when the modal appears.|
-| onDisappear     | () => void                               | No   | Callback invoked when the modal disappears.|
 
 ## Example
 

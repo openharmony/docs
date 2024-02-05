@@ -755,6 +755,8 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
     if (err) {
         console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -789,6 +791,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.get('startup', 'default');
 promise.then((data: dataPreferences.ValueType) => {
     console.info("Succeeded in getting value of 'startup'. Data: " + data);
@@ -841,6 +845,8 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
 function getObjKeys(obj: Object): string[] {
@@ -877,6 +883,8 @@ getAll(): Promise&lt;Object&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
 function getObjKeys(obj: Object): string[] {
@@ -943,6 +951,8 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.put('startup', 'auto', (err: BusinessError) => {
     if (err) {
         console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -977,6 +987,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.put('startup', 'auto');
 promise.then(() => {
     console.info("Succeeded in putting value of 'startup'.");
@@ -1026,6 +1038,8 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.has('startup', (err: BusinessError, val: boolean) => {
     if (err) {
         console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1063,6 +1077,8 @@ has(key: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.has('startup');
 promise.then((val: boolean) => {
     if (val) {
@@ -1126,6 +1142,8 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.delete('startup', (err: BusinessError) => {
     if (err) {
         console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1159,6 +1177,8 @@ delete(key: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.delete('startup');
 promise.then(() => {
     console.info("Succeeded in deleting the key 'startup'.");
@@ -1206,6 +1226,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.flush((err: BusinessError) => {
     if (err) {
         console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
@@ -1233,6 +1255,8 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.flush();
 promise.then(() => {
     console.info("Succeeded in flushing.");
@@ -1259,6 +1283,8 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 preferences.clear((err: BusinessError) =>{
     if (err) {
         console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
@@ -1286,6 +1312,8 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let promise = preferences.clear();
 promise.then(() => {
     console.info("Succeeded in clearing.");
@@ -1328,30 +1356,19 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences.");
-        return;
-    }
-    preferences.on('change', observer);
-    preferences.put('startup', 'manual', (err: BusinessError) => {
-        if (err) {
-        console.error("Failed to put the value of 'startup'. Cause: " + err);
-        return;
-        }
-        console.info("Succeeded in putting the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-        preferences.flush((err: BusinessError) => {
-        if (err) {
-            console.error("Failed to flush. Cause: " + err);
-            return;
-        }
-        console.info("Succeeded in flushing.");
-        })
-    })
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
+}
+preferences.on('change', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
 })
 ```
 
@@ -1360,8 +1377,6 @@ dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, pre
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
-
-此方法可以配合[removePreferencesFromCache](#datapreferencesremovepreferencesfromcache)使用，当监听到有进程更新了文件时，在回调方法中更新当前的Preferences实例，如下示例2。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1380,84 +1395,22 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 | -------- | -------------------------------------- |
 | 15500019 | Failed to obtain subscription service. |
 
-**示例1：**
+**示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
+
 let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
+  console.info("The key " + key + " changed.");
 }
-let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences.");
-        return;
-    }
-    preferences.on('multiProcessChange', observer);
-    preferences.put('startup', 'manual', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-        }
-        console.info("Succeeded in putting the value of 'startup'.");
-        preferences.flush((err: BusinessError) => {
-            if (err) {
-                console.error("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in flushing.");
-        })
-    })
-})
-```
-
-**示例2：**
-
-```ts
-let options: dataPreferences.Options = { name: 'myStore' };
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-    dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        preferences = null;
-        console.info("Succeeded in removing preferences.");
-    })
-
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-        if (err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-            return;
-        }
-        preferences = val;
-        console.info("Succeeded in getting preferences.");
-    })
-}
-dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences.");
-        return;
-    }
-    preferences = val;
-    preferences.on('multiProcessChange', observer);
-    preferences.put('startup', 'manual', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-        }
-        console.info("Succeeded in putting the value of 'startup'.");
-
-        if (preferences != null) {
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Succeeded in flushing.");
-            })
-        }
-    })
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'manual');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
 })
 ```
 
@@ -1479,32 +1432,21 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences.");
-        return;
-    }
-    preferences.on('change', observer);
-    preferences.put('startup', 'auto', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-        }
-        console.info("Succeeded in putting the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-        preferences.flush((err: BusinessError) =>{
-            if (err) {
-                console.error("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in flushing.");
-        })
-        preferences.off('change', observer);
-    })
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
+}
+preferences.on('change', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
 })
+preferences.off('change', observer);
 ```
 
 ### off('multiProcessChange')<sup>10+</sup>
@@ -1525,33 +1467,21 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let observer = (key: string) => {
-    console.info("The key " + key + " changed.");
-}
-let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
-dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences.");
-        return;
-    }
-    preferences.on('multiProcessChange', observer);
-    preferences.put('startup', 'auto', (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-        }
-        console.info("Succeeded in putting the value of 'startup'.");
+import {BusinessError} from '@ohos.base';
 
-        preferences.flush((err: BusinessError) => {
-            if (err) {
-                console.error("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in flushing.");
-        })
-        preferences.off('multiProcessChange', observer);
-    })
+let observer = (key: string) => {
+  console.info("The key " + key + " changed.");
+}
+preferences.on('multiProcessChange', observer);
+preferences.putSync('startup', 'auto');
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
 })
+preferences.off('multiProcessChange', observer);
 ```
 ## ValueType
 
