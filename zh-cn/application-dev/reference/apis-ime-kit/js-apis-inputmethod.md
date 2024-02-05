@@ -113,7 +113,7 @@ getSystemInputMethodConfigAbility(): ElementName
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [ElementName](./js-apis-bundleManager-elementName.md) | 系统输入法设置界面Ability的ElementName。 |
+| [ElementName](../apis/js-apis-bundleManager-elementName.md) | 系统输入法设置界面Ability的ElementName。 |
 
 **错误码：**
 

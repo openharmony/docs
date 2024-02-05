@@ -75,7 +75,7 @@ try {
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API均需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例后，通过实例调用。
+下列API均需使用[getSetting](./js-apis-inputmethod.md/#inputmethodgetsetting9)获取到InputMethodSetting实例后，通过实例调用。
 
 ### on('imeShow')<sup>10+</sup>
 
