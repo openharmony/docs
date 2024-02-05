@@ -1853,7 +1853,7 @@ connect(device: string): void
 发起设备的A2dp服务连接请求。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[a2dp.A2dpSourceProfile#connect](js-apis-bluetooth-a2dp.md#connect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1896,7 +1896,7 @@ disconnect(device: string): void
 断开设备的a2dp服务连接。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[a2dp.A2dpSourceProfile#disconnect](js-apis-bluetooth-a2dp.md#disconnect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -2071,7 +2071,7 @@ connect(device: string): void
 连接设备的HFP服务。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[hfp.HandsFreeAudioGatewayProfile#connect](js-apis-bluetooth-hfp.md#connect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -2114,7 +2114,7 @@ disconnect(device: string): void
 断开连接设备的HFP服务。
 
 > **说明：**<br/>
-> 从API version 9开始支持，从API version 10开始废弃。建议使用[hfp.HandsFreeAudioGatewayProfile#disconnect](js-apis-bluetooth-hfp.md#disconnect)替代。
+> 从API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -4794,3 +4794,5 @@ try {
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
 | PROFILE_HID_HOST | 6 | 表示HID profile。  |
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
+
+<!--no-check-->

@@ -5,7 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API Version 10 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble-sys.md)等相关profile接口。
+> 从API Version 10 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md)等相关profile接口。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetoothManager](js-apis-bluetoothManager.md)
 
 

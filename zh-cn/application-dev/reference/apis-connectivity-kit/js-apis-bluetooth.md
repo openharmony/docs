@@ -297,7 +297,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 类型                          | 说明       |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclassdeprecated) | 远程设备的类别。 |
+| [DeviceClass](#deviceclass8deprecated) | 远程设备的类别。 |
 
 **示例：**
 
@@ -782,7 +782,7 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 | 参数名      | 类型                          | 必填   | 说明                      |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | 是    | 服务的名称。                  |
-| option   | [SppOption](#sppoptiondeprecated)     | 是    | spp监听配置参数。              |
+| option   | [SppOption](#sppoption8deprecated)     | 是    | spp监听配置参数。              |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，服务端Socket的id。 |
 
 **示例：**
@@ -864,7 +864,7 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | device   | string                      | 是    | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| option   | [SppOption](#sppoptiondeprecated)     | 是    | spp客户端连接配置参数。                  |
+| option   | [SppOption](#sppoption8deprecated)     | 是    | spp客户端连接配置参数。                  |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。        |
 
 **示例：**
@@ -3244,7 +3244,7 @@ gattClient.getRssiValue().then((data : number) => {
 })
 ```
 
-## ScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="ScanMode"></a>
+## ScanMode<sup>8+</sup><sup>(deprecated)</sup>
 
 枚举，扫描模式。
 
@@ -3665,7 +3665,7 @@ gattClient.getRssiValue().then((data : number) => {
 | serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
 
 
-## PinRequiredParam<sup>8+</sup><sup>(deprecated)</sup><a name="PinRequiredParam"></a>
+## PinRequiredParam<sup>8+</sup><sup>(deprecated)</sup>
 
 描述配对请求参数。
 
@@ -3680,7 +3680,7 @@ gattClient.getRssiValue().then((data : number) => {
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
 
 
-## BondStateParam<sup>8+</sup><sup>(deprecated)</sup><a name="BondStateParam"></a>
+## BondStateParam<sup>8+</sup><sup>(deprecated)</sup>
 
 描述配对状态参数。
 
@@ -3700,7 +3700,7 @@ gattClient.getRssiValue().then((data : number) => {
 描述profile状态改变参数。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#StateChangeParam8deprecateddeprecated)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#StateChangeParam8deprecated)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3878,3 +3878,5 @@ gattClient.getRssiValue().then((data : number) => {
 | -------------------------------- | ------ | --------------- |
 | PROFILE_A2DP_SOURCE              | 1 | 表示A2DP profile。 |
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
+
+<!--no-check-->
