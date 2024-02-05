@@ -27,7 +27,6 @@
         - [NativeImage开发指导](native-image-guidelines.md)
         - [NativeVsync开发指导](native-vsync-guidelines.md)
         - [NativeWindow开发指导](native-window-guidelines.md)
-        - [Vulkan开发指导](vulkan-guidelines.md)
     - 资源管理
         - [Rawfile开发指导](rawfile-guidelines.md)
     - 资源调度
