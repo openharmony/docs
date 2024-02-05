@@ -255,7 +255,7 @@ formObserver.on('notifyVisible', callback);
 
 订阅通知卡片可见的事件。使用callback异步回调。
 
-​触发通知卡片可见场景为：调用[notifyVisibleForms](js-apis-app-form-formHost.md#notifyvisibleforms)接口通知对应卡片可见性变更为可见状态。
+​触发通知卡片可见场景为：调用[notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms)接口通知对应卡片可见性变更为可见状态。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -635,7 +635,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formproviderfilter10) | 是   | 卡片提供方应用信息。 |
+| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo-sys.md#formproviderfilter10) | 是   | 卡片提供方应用信息。 |
 
 **返回值：**
 
