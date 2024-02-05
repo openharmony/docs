@@ -165,6 +165,8 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+
 async function example() {
     // 创建文件获取选项，此处参数为获取image类型的文件资源
     let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
@@ -196,11 +198,11 @@ async function example() {
             }
             // 释放FetchFileResult实例并使其失效。无法调用其他方法
             fetchFileResult.close();
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             // 调用getFirstObject接口失败
             console.error('get first object failed with error: ' + error);
         });
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         // 调用getFileAssets接口失败
         console.error('get file assets failed with error: ' + error);
     });
