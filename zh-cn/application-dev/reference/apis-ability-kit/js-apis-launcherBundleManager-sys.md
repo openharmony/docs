@@ -37,7 +37,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -93,7 +93,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -147,7 +147,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -191,7 +191,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
@@ -244,7 +244,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
@@ -291,7 +291,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
@@ -345,7 +345,7 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
@@ -397,7 +397,7 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
