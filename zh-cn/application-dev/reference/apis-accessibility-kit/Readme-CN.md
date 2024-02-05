@@ -7,6 +7,6 @@
   - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](js-apis-application-accessibilityExtensionAbility.md)
   - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
   - [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](js-apis-accessibility-config-sys.md)
-- C API
 - 错误码
+  - [无障碍子系统错误码](errorcode-accessibility.md)
 
