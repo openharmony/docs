@@ -1,6 +1,6 @@
 # AbilityStateData (系统接口)
 
-定义Ability状态信息，可以通过[registerApplicationStateObserver](../apis/js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，通过[ApplicationStateObserver](../apis/js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 

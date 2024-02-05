@@ -2,7 +2,7 @@
 
 UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
 
-- [Caller](#caller)：由[startAbilityByCall](../apis/../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
+- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
 
 > **说明：**
@@ -23,9 +23,9 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](../apis/js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。 |
-| launchWant | [Want](../apis/js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。 |
-| lastRequestWant | [Want](../apis/js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。|
 | callee | [Callee](#callee) | 否 | 是 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
@@ -40,7 +40,7 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
 | launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
 
 **示例：**
@@ -70,7 +70,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
 
@@ -119,7 +119,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowStage | [window.WindowStage](../apis/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
 
@@ -265,7 +265,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
 | launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
@@ -321,7 +321,7 @@ onDump(params: Array\<string>): Array\<string>
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-该API配合[appRecovery](../apis/js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
+该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -385,7 +385,7 @@ class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
+UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -474,7 +474,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](../apis/../apis/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
+| data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
@@ -490,7 +490,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -561,13 +561,13 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
+| data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)&gt; | Promise对象，返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise对象，返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -577,7 +577,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -652,7 +652,7 @@ release(): void
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -703,7 +703,7 @@ release(): void
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -756,7 +756,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -811,7 +811,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -956,7 +956,7 @@ on(method: string, callback: CalleeCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 与客户端约定的通知消息字符串。 |
-| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
+| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**
 
@@ -965,7 +965,7 @@ on(method: string, callback: CalleeCallback): void
 | 16200004 | Method registered. The method has registered. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1036,7 +1036,7 @@ off(method: string): void
 | 16200005 | Method not registered. The method has not registered. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 
 **示例：**
@@ -1101,10 +1101,10 @@ off(method: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
-| indata | [rpc.MessageSequence](../apis/js-apis-rpc.md#messagesequence9) | 是 | 发送需传递的数据。 |
+| indata | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | 是 | 发送需传递的数据。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ------------ | ------------------------------------- |
-| [rpc.Parcelable](../apis/js-apis-rpc.md#parcelable9) | 返回的数据对象。 |
+| [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | 返回的数据对象。 |
