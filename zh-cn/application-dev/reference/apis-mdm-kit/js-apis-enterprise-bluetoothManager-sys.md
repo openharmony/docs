@@ -34,7 +34,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo;
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 
 **返回值：**
 
@@ -101,7 +101,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -152,7 +152,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 | 参数名     | 类型                                | 必填 | 说明                                      |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
 | disabled   | boolean                             | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
 
 **错误码：**
