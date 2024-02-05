@@ -59,7 +59,7 @@
 
 ## 接口说明
 
-以下是静默数据访问的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[数据共享](../reference/apis-arkdata/js-apis-data-dataShare.md)。
+以下是静默数据访问的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[数据共享](../reference/apis-arkdata/js-apis-data-dataShare-sys.md)。
 
 ### 通用接口
 

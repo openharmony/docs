@@ -43,7 +43,7 @@
 
 1. 创建系统窗口。
 
-   在[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext.md)下，使用`window.createWindow`接口创建音量条系统窗口。
+   在[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)下，使用`window.createWindow`接口创建音量条系统窗口。
 
 2. 操作或设置系统窗口的属性。
 
