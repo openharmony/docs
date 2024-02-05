@@ -571,7 +571,7 @@ OH_NativeBuffer* OH_AVBuffer_GetNativeBuffer (OH_AVBuffer *buffer)
 
 **描述**
 
-获取OH_NativeBuffer实例的指针。 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要调用者手动释放，请参阅[OH_NativeBuffer_Unreference](../native-apis/_o_h___native_buffer.md#oh_nativebuffer_unreference)。
+获取OH_NativeBuffer实例的指针。 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要调用者手动释放，请参阅[OH_NativeBuffer_Unreference](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_unreference)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 

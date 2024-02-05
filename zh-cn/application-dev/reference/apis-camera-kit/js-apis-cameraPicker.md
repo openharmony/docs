@@ -24,7 +24,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 参数名          | 类型                                              | 必填 | 说明                           |
 | -------------- |-------------------------------------------------| ---- | ---------------------------- |
-| context        | [Context](../apis/js-apis-inner-application-context.md) | 是   | 应用上下文。                   |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 应用上下文。                   |
 | mediaTypes     | Array\<[PickerMediaType](#pickermediatype)\>    | 是   | 媒体类型。                    |
 | pickerProfile  | [PickerProfile](#pickerprofile)                 | 是   | pickerProfile对象。            |
 

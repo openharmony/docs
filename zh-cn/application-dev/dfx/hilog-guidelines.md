@@ -2,7 +2,7 @@
 ## 概述
 HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用打印日志，记录用户操作、系统运行状态等。
 > **说明：**
-> 仅当开发者使用Native API开发应用时，可参考本开发指导。API文档请参考[HiLog Native API参考](../reference/native-apis/_hi_log.md)
+> 仅当开发者使用Native API开发应用时，可参考本开发指导。API文档请参考[HiLog Native API参考](../reference/apis-performance-analysis-kit/_hi_log.md)
 
 ## 接口说明
 | 方法/宏 | 接口描述 | 

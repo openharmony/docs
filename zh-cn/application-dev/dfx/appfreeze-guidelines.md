@@ -31,7 +31,7 @@ DevEco Studio会将包名和故障和时间都分类好显示
 
 ### 通过faultlogger接口获取
 
-faultlogger对外提供了故障查询接口，可以查询各种故障信息，详见[@ohos.faultLogger (故障日志获取)](../reference/apis/js-apis-faultLogger.md)
+faultlogger对外提供了故障查询接口，可以查询各种故障信息，详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
 
 
 ## 应用无响应检测能力点
