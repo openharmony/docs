@@ -1,4 +1,4 @@
-# ArkData API参考 
+# Ads Kit API参考 
 
 - ArkTS API
     - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)
