@@ -402,7 +402,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
-当蓝牙配对类型[PinType](#pintype)为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
+当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -445,7 +445,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
-当蓝牙配对类型[PinType](#pintype)为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
+当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

@@ -16,7 +16,7 @@ import bluetoothManager from '@ohos.bluetoothManager';
 ```
 
 
-## bluetoothManager.enableBluetooth<sup>(deprecated)</sup><a name="enableBluetooth"></a>
+## bluetoothManager.enableBluetooth<sup>(deprecated)</sup>
 
 enableBluetooth(): void
 
@@ -50,7 +50,7 @@ try {
 ```
 
 
-## bluetoothManager.disableBluetooth<sup>(deprecated)</sup><a name="disableBluetooth"></a>
+## bluetoothManager.disableBluetooth<sup>(deprecated)</sup>
 
 disableBluetooth(): void
 
@@ -84,7 +84,7 @@ try {
 ```
 
 
-## bluetoothManager.getLocalName<sup>(deprecated)</sup><a name="getLocalName"></a>
+## bluetoothManager.getLocalName<sup>(deprecated)</sup>
 
 getLocalName(): string
 
@@ -205,7 +205,7 @@ try {
 ```
 
 
-## bluetoothManager.setLocalName<sup>(deprecated)</sup><a name="setLocalName"></a>
+## bluetoothManager.setLocalName<sup>(deprecated)</sup>
 
 setLocalName(name: string): void
 
@@ -288,7 +288,7 @@ try {
 ```
 
 
-## bluetoothManager.getProfileConnectionState<sup>(deprecated)</sup><a name="getProfileConnectionState"></a>
+## bluetoothManager.getProfileConnectionState<sup>(deprecated)</sup>
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 
@@ -337,7 +337,7 @@ try {
 
 
 
-## bluetoothManager.getRemoteDeviceName<sup>(deprecated)</sup><a name="getRemoteDeviceName"></a>
+## bluetoothManager.getRemoteDeviceName<sup>(deprecated)</sup>
 
 getRemoteDeviceName(deviceId: string): string
 
@@ -384,7 +384,7 @@ try {
 ```
 
 
-## bluetoothManager.getRemoteDeviceClass<sup>(deprecated)</sup><a name="getRemoteDeviceClass"></a>
+## bluetoothManager.getRemoteDeviceClass<sup>(deprecated)</sup>
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
@@ -431,7 +431,7 @@ try {
 ```
 
 
-## bluetoothManager.getPairedDevices<sup>(deprecated)</sup><a name="getPairedDevices"></a>
+## bluetoothManager.getPairedDevices<sup>(deprecated)</sup>
 
 getPairedDevices(): Array&lt;string&gt;
 
@@ -472,7 +472,7 @@ try {
 ```
 
 
-## bluetoothManager.setBluetoothScanMode<sup>(deprecated)</sup><a name="setBluetoothScanMode"></a>
+## bluetoothManager.setBluetoothScanMode<sup>(deprecated)</sup>
 
 setBluetoothScanMode(mode: ScanMode, duration: number): void
 
@@ -515,7 +515,7 @@ try {
 ```
 
 
-## bluetoothManager.getBluetoothScanMode<sup>(deprecated)</sup><a name="getBluetoothScanMode"></a>
+## bluetoothManager.getBluetoothScanMode<sup>(deprecated)</sup>
 
 getBluetoothScanMode(): ScanMode
 
@@ -556,7 +556,7 @@ try {
 ```
 
 
-## bluetoothManager.startBluetoothDiscovery<sup>(deprecated)</sup><a name="startBluetoothDiscovery"></a>
+## bluetoothManager.startBluetoothDiscovery<sup>(deprecated)</sup>
 
 startBluetoothDiscovery(): void
 
@@ -596,7 +596,7 @@ try {
 ```
 
 
-## bluetoothManager.stopBluetoothDiscovery<sup>(deprecated)</sup><a name="stopBluetoothDiscovery"></a>
+## bluetoothManager.stopBluetoothDiscovery<sup>(deprecated)</sup>
 
 stopBluetoothDiscovery(): void
 
@@ -631,7 +631,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePairingConfirmation<sup>(deprecated)</sup><a name="setDevicePairingConfirmation"></a>
+## bluetoothManager.setDevicePairingConfirmation<sup>(deprecated)</sup>
 
 setDevicePairingConfirmation(device: string, accept: boolean): void
 
@@ -1026,7 +1026,7 @@ try {
 ```
 
 
-## bluetoothManager.sppListen<sup>(deprecated)</sup><a name="sppListen"></a>
+## bluetoothManager.sppListen<sup>(deprecated)</sup>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -1080,7 +1080,7 @@ try {
 ```
 
 
-## bluetoothManager.sppAccept<sup>(deprecated)</sup><a name="sppAccept"></a>
+## bluetoothManager.sppAccept<sup>(deprecated)</sup>
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -1138,7 +1138,7 @@ try {
 ```
 
 
-## bluetoothManager.sppConnect<sup>(deprecated)</sup><a name="sppConnect"></a>
+## bluetoothManager.sppConnect<sup>(deprecated)</sup>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -1193,7 +1193,7 @@ try {
 ```
 
 
-## bluetoothManager.sppCloseServerSocket<sup>(deprecated)</sup><a name="sppCloseServerSocket"></a>
+## bluetoothManager.sppCloseServerSocket<sup>(deprecated)</sup>
 
 sppCloseServerSocket(socket: number): void
 
@@ -1239,7 +1239,7 @@ try {
 ```
 
 
-## bluetoothManager.sppCloseClientSocket<sup>(deprecated)</sup><a name="sppCloseClientSocket"></a>
+## bluetoothManager.sppCloseClientSocket<sup>(deprecated)</sup>
 
 sppCloseClientSocket(socket: number): void
 
@@ -1287,7 +1287,7 @@ try {
 ```
 
 
-## bluetoothManager.sppWrite<sup>(deprecated)</sup><a name="sppWrite"></a>
+## bluetoothManager.sppWrite<sup>(deprecated)</sup>
 
 sppWrite(clientSocket: number, data: ArrayBuffer): void
 
@@ -1430,7 +1430,7 @@ try {
 }
 ```
 
-## bluetoothManager.getProfileInstance<sup>(deprecated)</sup><a name="getProfileInstance"></a>
+## bluetoothManager.getProfileInstance<sup>(deprecated)</sup>
 
 getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
@@ -1747,7 +1747,7 @@ try {
 profile基类。
 
 
-### getConnectionDevices<sup>(deprecated)</sup><a name="getConnectionDevices"></a>
+### getConnectionDevices<sup>(deprecated)</sup>
 
 getConnectionDevices(): Array&lt;string&gt;
 
@@ -1789,7 +1789,7 @@ try {
 }
 ```
 
-### getDeviceState<sup>(deprecated)</sup><a name="getDeviceState"></a>
+### getDeviceState<sup>(deprecated)</sup>
 
 getDeviceState(device: string): ProfileConnectionState
 
@@ -1846,7 +1846,7 @@ try {
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[a2dp.A2dpSourceProfile](js-apis-bluetooth-a2dp.md#a2dpsourceprofile)替代。
 
 
-### connect<sup>(deprecated)</sup><a name="a2dp-connect"></a>
+### connect<sup>(deprecated)</sup>
 
 connect(device: string): void
 
@@ -1889,7 +1889,7 @@ try {
 ```
 
 
-### disconnect<sup>(deprecated)</sup><a name="a2dp-disconnect"></a>
+### disconnect<sup>(deprecated)</sup>
 
 disconnect(device: string): void
 
@@ -2064,7 +2064,7 @@ try {
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[hfp.HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#HandsFreeAudioGatewayProfile)替代。
 
 
-### connect<a name="hfp-connect"></a>
+### connect
 
 connect(device: string): void
 
@@ -2107,7 +2107,7 @@ try {
 ```
 
 
-### disconnect<sup>(deprecated)</sup><a name="hfp-disconnect"></a>
+### disconnect<sup>(deprecated)</sup>
 
 disconnect(device: string): void
 
@@ -3736,7 +3736,7 @@ try {
 
 setBLEMtuSize(mtu: number): void
 
-client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connectdeprecated)接口连接成功后才能使用。
+client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
 
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setBLEMtuSize)替代。
@@ -4068,7 +4068,7 @@ try {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connectdeprecated)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattClientDevice#getRssiValue](js-apis-bluetooth-ble.md#getrssivalue)替代。
@@ -4113,7 +4113,7 @@ try {
 
 getRssiValue(): Promise&lt;number&gt;
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connectdeprecated)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattClientDevice#getRssiValue](js-apis-bluetooth-ble.md#getrssivalue-1)替代。
@@ -4151,7 +4151,7 @@ try {
 }
 ```
 
-## ScanMode<sup>(deprecated)</sup><a name="ScanMode"></a>
+## ScanMode<sup>(deprecated)</sup>
 
 枚举，扫描模式。
 
@@ -4169,7 +4169,7 @@ try {
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | 可连接general发现模式。 |
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接limited发现模式。 |
 
-## BondState<sup>(deprecated)</sup><a name="BondState"></a>
+## BondState<sup>(deprecated)</sup>
 
 枚举，配对状态。
 
@@ -4185,7 +4185,7 @@ try {
 | BOND_STATE_BONDED  | 2    | 已配对。   |
 
 
-## SppOption<sup>(deprecated)</sup><a name="SppOption"></a>
+## SppOption<sup>(deprecated)</sup>
 
 描述spp的配置参数。
 
@@ -4201,7 +4201,7 @@ try {
 | type   | [SppType](#spptypedeprecated) | 是    | 是    | Spp链路类型。    |
 
 
-## SppType<sup>(deprecated)</sup><a name="SppType"></a>
+## SppType<sup>(deprecated)</sup>
 
 枚举，Spp链路类型。
 
@@ -4580,7 +4580,7 @@ try {
 | serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
 
 
-## PinRequiredParam<sup>(deprecated)</sup><a name="PinRequiredParam"></a>
+## PinRequiredParam<sup>(deprecated)</sup>
 
 描述配对请求参数。
 
@@ -4595,7 +4595,7 @@ try {
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
 
 
-## BondStateParam<sup>(deprecated)</sup><a name="BondStateParam"></a>
+## BondStateParam<sup>(deprecated)</sup>
 
 描述配对状态参数。
 
@@ -4610,7 +4610,7 @@ try {
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
-## StateChangeParam<sup>(deprecated)</sup><a name="StateChangeParam"></a>
+## StateChangeParam<sup>(deprecated)</sup>
 
 描述profile状态改变参数。
 
@@ -4625,7 +4625,7 @@ try {
 | state    | [ProfileConnectionState](#profileconnectionstatedeprecated) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
-## DeviceClass<sup>(deprecated)</sup><a name="DeviceClass"></a>
+## DeviceClass<sup>(deprecated)</sup>
 
 描述蓝牙设备的类别。
 
@@ -4641,7 +4641,7 @@ try {
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
 
 
-## MajorClass<sup>(deprecated)</sup><a name="MajorClass"></a>
+## MajorClass<sup>(deprecated)</sup>
 
 枚举，蓝牙设备主要类别。
 
@@ -4665,7 +4665,7 @@ try {
 | MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。   |
 
 
-## MajorMinorClass<sup>(deprecated)</sup><a name="MajorMinorClass"></a>
+## MajorMinorClass<sup>(deprecated)</sup>
 
 枚举，主要次要蓝牙设备类别。
 
@@ -4764,7 +4764,7 @@ try {
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
 
 
-## PlayingState<sup>(deprecated)</sup><a name="PlayingState"></a>
+## PlayingState<sup>(deprecated)</sup>
 
 枚举，蓝牙A2DP 播放状态。
 
@@ -4779,7 +4779,7 @@ try {
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
-## ProfileId<sup>(deprecated)</sup><a name="ProfileId"></a>
+## ProfileId<sup>(deprecated)</sup>
 
 蓝牙profile枚举，API9新增PROFILE_HID_HOST，PROFILE_PAN_NETWORK。
 

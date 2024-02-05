@@ -349,7 +349,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
-| mode     | [ScanMode](#scanmodedeprecated) | 是    | 蓝牙扫描模式。                      |
+| mode     | [ScanMode](#scanmode8deprecated) | 是    | 蓝牙扫描模式。                      |
 | duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
 **返回值：**
@@ -384,7 +384,7 @@ getBluetoothScanMode(): ScanMode
 
 | 类型                    | 说明      |
 | --------------------- | ------- |
-| [ScanMode](#scanmodedeprecated) | 蓝牙扫描模式。 |
+| [ScanMode](#scanmode8deprecated) | 蓝牙扫描模式。 |
 
 **示例：**
 
@@ -575,7 +575,7 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。     |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | 是    | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam8deprecated)&gt; | 是    | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -609,7 +609,7 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。             |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | 否    | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam8deprecated)&gt; | 否    | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -644,7 +644,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#BondStateParamdeprecated)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;[BondStateParam](#BondStateParam8deprecated)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
 
 **返回值：**
 
@@ -678,7 +678,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
-| callback | Callback&lt;[BondStateParam](#BondStateParamdeprecated)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BondStateParam](#BondStateParam8deprecated)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -1133,7 +1133,7 @@ createGattServer(): GattServer
 
 | 类型                        | 说明                                   |
 | ------------------------- | ------------------------------------ |
-| [GattServer](#gattserverdeprecated) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
+| [GattServer](#gattserver) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
 
@@ -1833,7 +1833,7 @@ server端添加服务。
 
 | 参数名     | 类型                          | 必填   | 说明                       |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservicedeprecated) | 是    | 服务端的service数据。BLE广播的相关参数 |
+| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数 |
 
 **返回值：**
 
@@ -1915,7 +1915,7 @@ server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 
 close(): void
 
-关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserverdeprecated)实例将不能再使用。
+关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
 
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattServer.close](js-apis-bluetoothManager.md#closedeprecated)替代。
@@ -2545,7 +2545,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
 
 **返回值：**
 
@@ -2591,7 +2591,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| Promise&lt;Array&lt;[GattService](#gattservicedeprecated)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
+| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
 
 **示例：**
 
@@ -3313,7 +3313,7 @@ gattClient.getRssiValue().then((data : number) => {
 描述service的接口参数定义。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservicedeprecated)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservice)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3322,7 +3322,7 @@ gattClient.getRssiValue().then((data : number) => {
 | serviceUuid     | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary       | boolean                                  | 是    | 是    | 如果是主服务设置为true，否则设置为false。                |
 | characteristics | Array&lt;[BLECharacteristic](#blecharacteristideprecated)&gt; | 是    | 是    | 当前服务包含的特征列表。                             |
-| includeServices | Array&lt;[GattService](#gattservicedeprecated)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
+| includeServices | Array&lt;[GattService](#gattservice)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
 
 
 ## BLECharacteristic<sup>(deprecated)</sup>
