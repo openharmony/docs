@@ -1,5 +1,5 @@
 # 主题框架子系统-锁屏管理公共事件定义
-主题框架子系统-锁屏管理面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../apis/js-apis-commonEventManager.md)。
+主题框架子系统-锁屏管理面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../js-apis-commonEventManager.md)。
 
 ## COMMON_EVENT_SCREEN_LOCKED
 表示屏幕锁定的公共事件。
