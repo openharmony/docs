@@ -4175,7 +4175,58 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
+## notificationManager.cancelAsBundle<sup>12+</sup>
 
+cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): Promise\<void\>;
+
+代理取消通知。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名               | 类型   | 必填 | 说明               |
+| -------------------- | ------ | ---- | ------------------ |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
+|       id             | number | 是   | 通知ID。 |
+|      label           | string | 否   | 通知标签。 |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName"
+};
+let id: number = 1;
+notificationManager.cancelAsBundle(bundle, id).then(() => {
+  console.info("cancelAsBundle success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+});
+```
 ## notificationManager.setNotificationEnableSlot 
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
