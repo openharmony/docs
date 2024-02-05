@@ -6,7 +6,7 @@
 
 当同一时间待执行的任务数量大于任务池工作线程数量，任务池会根据负载均衡机制进行扩容，增加工作线程数量，减少整体等待时长。同样，当执行的任务数量减少，工作线程数量大于执行任务数量，部分工作线程处于空闲状态，任务池会根据负载均衡机制进行缩容，减少工作线程数量。
 
-任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
 
@@ -41,7 +41,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
@@ -86,7 +86,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
@@ -132,7 +132,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
@@ -191,7 +191,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID   | 错误信息                         |
 | --------- | -------------------------------- |
@@ -235,7 +235,7 @@ cancel(task: Task): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
@@ -311,7 +311,7 @@ cancel(group: TaskGroup): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                 |
 | -------- | ------------------------------------------------------- |
@@ -437,7 +437,7 @@ Task的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -473,7 +473,7 @@ Task的构造函数，可以指定任务名称。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
@@ -577,7 +577,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
@@ -632,7 +632,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
@@ -777,7 +777,7 @@ static sendData(...args: Object[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -857,7 +857,7 @@ addDependency(...tasks: Task[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -923,7 +923,7 @@ removeDependency(...tasks: Task[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -1036,7 +1036,7 @@ addTask(func: Function, ...args: Object[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -1071,7 +1071,7 @@ addTask(task: Task): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
@@ -1150,7 +1150,7 @@ execute(task: Task): Promise\<Object>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |

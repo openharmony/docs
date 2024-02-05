@@ -1206,7 +1206,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| token       | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
 | deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -1290,7 +1290,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 
 | 参数名       | 类型                      | 必填 | 说明                  |
 | ----------- | ------------------------- | ---- | -------------------- |
-| token       | [rpc.RemoteObject](../apis/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| token       | [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
 | deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
 
 **返回值：**

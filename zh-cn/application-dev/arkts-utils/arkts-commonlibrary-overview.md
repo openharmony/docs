@@ -19,9 +19,9 @@ ArkTS语言基础类库是OpenHarmony系统上为应用开发者提供的常用�
 
 - 提供XML、URL、URI构造和解析的能力。
   - XML被设计用来传输和存储数据，是一种可扩展标记语言。语言基础类库提供了[XML生成、解析与转换](xml-overview.md)的能力。
-  - URL、URI构造和解析能力：其中[URI](../reference/apis/js-apis-uri.md)是统一资源标识符，可以唯一标识一个资源。[URL](../reference/apis/js-apis-url.md)为统一资源定位符，可以提供找到该资源的路径。
+  - URL、URI构造和解析能力：其中[URI](../reference/apis-arkts/js-apis-uri.md)是统一资源标识符，可以唯一标识一个资源。[URL](../reference/apis-arkts/js-apis-url.md)为统一资源定位符，可以提供找到该资源的路径。
 
-- 提供常见的[字符串和二进制数据处理](../reference/apis/js-apis-util.md)的能力，以及[控制台打印](../reference/apis/js-apis-logs.md)的相关能力。
+- 提供常见的[字符串和二进制数据处理](../reference/apis-arkts/js-apis-util.md)的能力，以及[控制台打印](../reference/apis-arkts/js-apis-logs.md)的相关能力。
   - 字符串编解码功能。
   - 基于Base64的字节编码和解码功能。
   - 提供常见的有理数操作支持，包括有理数的比较、获取分子分母等功能。
@@ -29,7 +29,7 @@ ArkTS语言基础类库是OpenHarmony系统上为应用开发者提供的常用�
   - 提供二进制数据处理的能力，常见于TCP流或文件系统操作等场景中用于处理二进制数据流。
   - Console提供控制台打印的能力。
 
-- 提供[获取进程信息和操作进程](../reference/apis/js-apis-process.md)的能力。
+- 提供[获取进程信息和操作进程](../reference/apis-arkts/js-apis-process.md)的能力。
 
 
 ## 相关实例

@@ -114,7 +114,7 @@ constructor是URI的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](../apis-arkts/errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

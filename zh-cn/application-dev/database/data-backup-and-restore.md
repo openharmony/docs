@@ -15,7 +15,7 @@
 
 ## 键值型数据库备份、恢复与删除
 
-键值型数据库，通过backup接口实现数据库备份，通过restore接口实现数据库恢复，通过deletebackup接口删除数据库备份。具体接口及功能，可见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
+键值型数据库，通过backup接口实现数据库备份，通过restore接口实现数据库恢复，通过deletebackup接口删除数据库备份。具体接口及功能，可见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
 
 1. 创建数据库。
 
@@ -164,7 +164,7 @@
 
 ## 关系型数据库备份与恢复
 
-关系型数据库，通过backup接口实现数据库备份，通过restore接口实现数据库恢复。具体接口及功能，可见[关系型数据库](../reference/apis/js-apis-data-relationalStore.md)。
+关系型数据库，通过backup接口实现数据库备份，通过restore接口实现数据库恢复。具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
 
 1. 使用getRdbStore()方法创建关系型数据库。
      

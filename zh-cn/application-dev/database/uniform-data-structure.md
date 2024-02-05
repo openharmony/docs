@@ -5,7 +5,7 @@
 
 针对一些UTD标准化数据类型，为了方便业务使用，我们提供了标准化数据结构，例如OpenHarmony系统定义的桌面卡片类型（对应的标准化数据类型标识为为'openharmony.form'），我们明确定义了该数据结构对应的相关描述信息。
 
-某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[拖拽事件](../reference/arkui-ts/ts-universal-events-drag-drop.md#dragevent说明)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
+某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent说明)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
 
 ## 当前支持的标准化数据结构
 
@@ -34,7 +34,7 @@ UDMF支持批量数据记录的分组管理，每个分组整体大小不超过2
 
 UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录UnifiedRecord。数据记录UnifiedRecord则是对UDMF支持的数据内容的抽象定义，例如一条文本记录、一条图片记录等。数据记录中的数据内容类型对应为各数据类型UniformDataType。
 
-以下是标准化数据结构的常用接口说明，更多接口和具体说明，请见[标准化数据通路](../reference/apis/js-apis-data-unifiedDataChannel.md)和[标准化数据定义与描述](../reference/apis/js-apis-data-uniformTypeDescriptor.md)。
+以下是标准化数据结构的常用接口说明，更多接口和具体说明，请见[标准化数据通路](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)和[标准化数据定义与描述](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)。
 
 | 类名称        | 接口名称                               | 描述                                                         |
 | ------------- | -------------------------------------- | ------------------------------------------------------------ |

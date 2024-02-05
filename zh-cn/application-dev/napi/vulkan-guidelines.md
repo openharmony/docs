@@ -12,7 +12,7 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
 | ------------------------------------------------------------ | ---------------------- |
 | vkCreateSurfaceOHOS (VkInstance instance, const VkSurfaceCreateInfoOHOS\* pCreateInfo, const VkAllocationCallbacks\* pAllocator, VkSurfaceKHR\* pSurface) | 创建VkSurfaceKHR对象。 |
 
-更多的接口说明请参考[Vulkan](../reference/native-lib/third_party_vulkan/vulkan-symbol.md)。
+更多的接口说明请参考[Vulkan](../reference/native-lib/vulkan-symbol.md)。
 
 ## 开发步骤
 
