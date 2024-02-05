@@ -295,7 +295,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
 
 1. 使用地理围栏功能，需要有权限ohos.permission.APPROXIMATELY_LOCATION，位置权限申请的方法和步骤见[申请位置权限开发指导](#申请位置权限开发指导)。
 
-2. 导入[geoLocationManager](../reference/apis-location-kit/js-apis-geoLocationManager.md)模块、[wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)模块和[BusinessError](../reference/apis/js-apis-base.md)模块。
+2. 导入geoLocationManager模块、wantAgent模块和BusinessError模块。
    
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
@@ -303,7 +303,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
    import BusinessError from "@ohos.base";
    ```
 
-3. 创建[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
+3. 创建WantAgentInfo信息。
 
    场景一：创建拉起Ability的WantAgentInfo信息。
 
@@ -329,7 +329,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
    };
    ```
 
-   场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgentInfo信息。
+   场景二：创建发布公共事件的WantAgentInfo信息。
 
    ```ts
    let wantAgentObj:_wantAgent|null = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
@@ -348,7 +348,7 @@ Location Kit每个接口需要申请哪些权限可以参见如下文档：[Loca
    }
    ```
 
-4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
+4. 调用getWantAgent()方法进行创建WantAgent。
 
 并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 
