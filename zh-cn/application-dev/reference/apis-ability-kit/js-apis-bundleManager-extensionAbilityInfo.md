@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-ExtensionAbility信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)获取自身或其他应用的ExtensionAbility信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的ExtensionAbility信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)需要使用 GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY。
+ExtensionAbility信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的ExtensionAbility信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY。
 
 ## ExtensionAbilityInfo
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
@@ -19,8 +19,8 @@ ExtensionAbility信息，系统应用可以通过[bundleManager.getBundleInfo](j
 | exported            | boolean                                                      | 是   | 否   | 判断ExtensionAbility是否可以被其他应用调用。         |
 | extensionAbilityType | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 否   | ExtensionAbility类型。                               |
 | permissions          | Array\<string>                                               | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合。 |
-| applicationInfo      | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)  | 是   | 否   | 应用程序的配置信息。                                 |
-| metadata             | Array\<[Metadata](js-apis-bundleManager-metadata.md)>        | 是   | 否   | ExtensionAbility的元信息。                           |
+| applicationInfo      | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)  | 是   | 否   | 应用程序的配置信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY和GET_BUNDLE_INFO_WITH_APPLICATION获取。 |
+| metadata             | Array\<[Metadata](js-apis-bundleManager-metadata.md)>        | 是   | 否   | ExtensionAbility的元信息。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY和GET_BUNDLE_INFO_WITH_METADATA获取。 |
 | enabled              | boolean                                                      | 是   | 否   | ExtensionAbility是否可用。                           |
 | readPermission       | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限。                 |
 | writePermission      | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限。                 |
