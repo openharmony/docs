@@ -3480,17 +3480,28 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import image from '@ohos.multimedia.image';
+
+let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-//获取专辑封面
-avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap) => {
-  if (error) {
-    console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
-    return;
-  }
-  pixel_map = pixelMap;
+// 获取专辑封面
+media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if(extractor != null){
+    avMetadataExtractor = extractor;
+    console.error(`createAVMetadataExtractor success`);
+    avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
+      if (error) {
+        console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
+        return;
+      }
+      pixel_map = pixelMap;
+    });
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+  };
 });
 ```
 
