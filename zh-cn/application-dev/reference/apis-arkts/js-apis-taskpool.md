@@ -1501,7 +1501,11 @@ async function taskpoolGroupCancelTest(): Promise<void> {
     console.error("taskpool execute error is:" + e);
   });
 
-  taskpool.cancel(taskGroup2);
+  try {
+    taskpool.cancel(taskGroup2);
+  } catch (e) {
+    console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+  }
 }
 
 taskpoolGroupCancelTest()
