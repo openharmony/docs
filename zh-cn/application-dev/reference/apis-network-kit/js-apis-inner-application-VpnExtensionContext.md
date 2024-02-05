@@ -1,6 +1,6 @@
 # VpnExtensionContext
 
-VpnExtensionContext是VpnExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
+VpnExtensionContext是VpnExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
 VpnExtensionContext可直接作为VpnExtension的上下文环境，提供允许访问特定于VpnExtensionAbility的资源的能力。
 
@@ -63,7 +63,7 @@ onCreate(want: Want): void
 
 | 参数名 | 类型                                | 必填 | 说明        |
 | ------ | ----------------------------------- | ---- |-----------|
-| want   | [Want](js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
 
 ### onDestroy
 
@@ -79,7 +79,7 @@ onDestroy(): void
 
 | 参数名 | 类型                                | 必填 | 说明        |
 | ------ | ----------------------------------- | ---- |-----------|
-| want   | [Want](js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
 
 
 
