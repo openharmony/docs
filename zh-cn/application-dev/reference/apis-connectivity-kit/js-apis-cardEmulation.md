@@ -279,7 +279,7 @@ stopHCE(): boolean
 
 ### stop<sup>9+</sup>
 
-stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#Elementname)): void 
+stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname)): void 
 
 停止HCE业务功能。包括取消APDU数据接收的订阅，退出当前应用前台优先，释放动态注册的AID列表。应用程序需要在HCE卡模拟页面的onDestroy函数里调用该接口。
 
