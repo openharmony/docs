@@ -21,7 +21,7 @@
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'。
-- 导入[dataSharePredicates](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
+- 导入[dataSharePredicates](../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
 ### 指定媒体文件名获取图片或视频资源
 
@@ -122,7 +122,7 @@ async function example() {
 
 - 获取相册管理模块photoAccessHelper实例。
 - 申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'。
-- 导入[dataSharePredicates](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
+- 导入[dataSharePredicates](../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
 ### 获取某张图片的缩略图
 
@@ -137,7 +137,7 @@ async function example() {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取图片资源。
 3. 调用[FetchResult.getFirstObject](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
-4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)。
+4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';

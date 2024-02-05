@@ -20,7 +20,7 @@
         "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY"
     ]
 
-2.应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit//js-apis-file-environment.md)）获取环境路径。
+2.应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
   ```ts
   import { BusinessError } from '@ohos.base';
   import environment from '@ohos.file.environment';
@@ -42,7 +42,7 @@
 
 ### 通过FilePicker设置永久授权
 
-通过FilePicker选择文件或文件夹后设置永久授权，以及应用重启后的激活权限过程如下所示，通过文件分享接口（[ohos.fileshare](../reference/apis/js-apis-fileShare.md)）实现文件授权能力。
+通过FilePicker选择文件或文件夹后设置永久授权，以及应用重启后的激活权限过程如下所示，通过文件分享接口（[ohos.fileshare](../reference/apis-core-file-kit/js-apis-fileShare.md)）实现文件授权能力。
 
 1.应用调用picker的select接口，通过FilePicker选择和保存路径URI，此时应用获得该路径的临时访问权限。以下示例代码演示了获取文件夹URI的过程：
 
@@ -205,7 +205,7 @@
 
 ### 获取公共目录、外卡目录、内卡目录
 
-应用可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）获取环境路径。
+应用可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
 以下示例代码演示了文件管理器通过接口获取公共目录、外卡目录：
   ```ts
   import { BusinessError } from '@ohos.base';

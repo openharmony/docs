@@ -13,7 +13,7 @@
 
 本例展示了从图库中选择一张图片，保存到文件管理器的示例代码。
 
-1. 导入[选择器](../reference/apis/js-apis-file-picker.md)、[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)、[相册管理](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)、[数据共享谓词](../reference/apis/js-apis-data-dataSharePredicates.md)模块。
+1. 导入[选择器](../reference/apis-core-file-kit/js-apis-file-picker.md)、[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)、[相册管理](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)、[数据共享谓词](../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -60,7 +60,7 @@
    }
    ```
 
-3. 创建图库选择器实例，调用[save()](../reference/apis/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存图片的uri。
+3. 创建图库选择器实例，调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存图片的uri。
    
    save返回的uri权限是读写权限，可以根据结果集里面的uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
@@ -129,7 +129,7 @@
    documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; // 保存文件类型（可选）
    ```
 
-3. 创建文档选择器实例。调用[save()](../reference/apis/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
+3. 创建文档选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
    
    </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
@@ -183,7 +183,7 @@
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; // 保存文件名（可选）
    ```
 
-3. 创建音频选择器实例。调用[save()](../reference/apis/js-apis-file-picker.md#save-6)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
+3. 创建音频选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
    
    </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
    
