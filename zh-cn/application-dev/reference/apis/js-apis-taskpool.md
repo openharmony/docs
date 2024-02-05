@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。 该任务不可以是任务组任务和串行队列任务。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
