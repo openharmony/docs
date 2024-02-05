@@ -152,7 +152,7 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 参数名   | 类型                                            | 必填  | 说明         |
 | -------- | ----------------------------------------------- | ----- | ------------ |
 | iface    | string                                          | 是    | 指定网络接口 |
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration)> | 是    | 回调函数，返回指定网络接口信息   |
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | 是    | 回调函数，返回指定网络接口信息   |
 
 **错误码：**
 
@@ -208,7 +208,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 | 类型                              | 说明                               |
 | --------------------------------- | ---------------------------------- |
-| Promise\<[InterfaceConfiguration](#interfaceconfiguration)>   | 以Promise形式返回接口信息。        |
+| Promise\<[InterfaceConfiguration](#interfaceconfiguration9)>   | 以Promise形式返回接口信息。        |
 
 **错误码：**
 
@@ -505,7 +505,7 @@ ethernet.off('interfaceStateChange');
 
 | 名称          | 类型                    | 必填 | 说明                                                         |
 | ------------ | ----------------------- | ---|------------------------------------------------------------ |
-| mode         | [IPSetMode](#ipsetmode) | 是 | 以太网连接配置模式。 |
+| mode         | [IPSetMode](#ipsetmode9) | 是 | 以太网连接配置模式。 |
 | ipAddr       | string                  | 是 | 以太网连接静态配置ip信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | route        | string                  | 是 | 以太网连接静态配置路由信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | gateway      | string                  | 是 | 以太网连接配置网关信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
