@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ExceptionPrompt（异常提示）
+# @ohos.arkui.advanced.ExceptionPrompt (异常提示)
 
 
 异常提示，适用于有异常需要提示异常内容的情况。

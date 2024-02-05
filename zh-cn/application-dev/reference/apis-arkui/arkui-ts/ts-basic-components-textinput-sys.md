@@ -1,4 +1,4 @@
-# TextInput(系统接口)
+# TextInput (系统接口)
 
 单行文本输入框组件。
 
