@@ -1,7 +1,7 @@
 # 单选框 (Radio)
 
 
-Radio是单选框组件，通常用于提供相应的用户交互选择项，同一组的Radio中只有一个可以被选中。具体用法请参考[Radio](../reference/arkui-ts/ts-basic-components-radio.md)。
+Radio是单选框组件，通常用于提供相应的用户交互选择项，同一组的Radio中只有一个可以被选中。具体用法请参考[Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md)。
 
 
 ## 创建单选框
@@ -30,7 +30,7 @@ Radio({ value: 'Radio2', group: 'radioGroup' })
 
 ## 添加事件
 
-除支持[通用事件](../reference/arkui-ts/ts-universal-events-click.md)外，Radio还用于选中后触发某些操作，可以绑定onChange事件来响应选中操作后的自定义行为。
+除支持[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)外，Radio还用于选中后触发某些操作，可以绑定onChange事件来响应选中操作后的自定义行为。
 
 ```ts
   Radio({ value: 'Radio1', group: 'radioGroup' })

@@ -69,7 +69,7 @@ struct IfElseTransition {
 ![zh-cn_image_0000001562820825](figures/zh-cn_image_0000001562820825.png)
 
 
-拖拽事件提供以下[接口](../reference/arkui-ts/ts-universal-events-drag-drop.md)：
+拖拽事件提供以下[接口](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)：
 
 
 | 接口名称                                     | 描述                                       |

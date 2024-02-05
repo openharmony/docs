@@ -1,6 +1,6 @@
 # text开发指导
 
-text是文本组件，用于呈现一段文本信息。具体用法请参考[text API](../reference/arkui-js/js-components-basic-text.md)。
+text是文本组件，用于呈现一段文本信息。具体用法请参考[text API](../reference/apis-arkui/arkui-js/js-components-basic-text.md)。
 
 
 ## 创建text组件
@@ -191,7 +191,7 @@ text是文本组件，用于呈现一段文本信息。具体用法请参考[tex
 
   ​    ![zh-cn_image_0000001209033195](figures/zh-cn_image_0000001209033195.png)
 
-- text组件支持[Span](../reference/arkui-js/js-components-basic-span.md)子组件
+- text组件支持[Span](../reference/apis-arkui/arkui-js/js-components-basic-span.md)子组件
 
   ```html
   <!-- xxx.hml -->

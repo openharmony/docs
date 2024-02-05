@@ -1,7 +1,7 @@
 # 按钮 (Button)
 
 
-Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮。Button做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/arkui-ts/ts-basic-components-button.md)。
+Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮。Button做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)。
 
 
 ## 创建按钮
@@ -34,7 +34,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  只支持包含一个子组件，子组件可以是[基础组件](../reference/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/arkui-ts/ts-container-ability-component.md)。
+  只支持包含一个子组件，子组件可以是[基础组件](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/apis-arkui/arkui-ts/ts-container-badge.md)。
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
