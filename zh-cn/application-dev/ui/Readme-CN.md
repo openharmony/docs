@@ -1,42 +1,42 @@
-ArkUI（方舟UI框架）
+ArkUI (方舟UI框架)
 - [ArkUI简介](arkui-overview.md)
-- UI开发（ArkTS声明式开发范式）
-  - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
+- UI开发 (ArkTS声明式开发范式)
+  - [UI开发 (ArkTS声明式开发范式)概述](arkts-ui-development-overview.md)
   - 开发布局
     - [布局概述](arkts-layout-development-overview.md)
     - 构建布局
-      - [线性布局（Row/Column）](arkts-layout-development-linear.md)
-      - [层叠布局（Stack）](arkts-layout-development-stack-layout.md)
-      - [弹性布局（Flex）](arkts-layout-development-flex-layout.md)
-      - [相对布局（RelativeContainer）](arkts-layout-development-relative-layout.md)
-      - [栅格布局（GridRow/GridCol）](arkts-layout-development-grid-layout.md)
-      - [媒体查询（@ohos.mediaquery）](arkts-layout-development-media-query.md)
-      - [创建列表（List）](arkts-layout-development-create-list.md)
-      - [创建网格（Grid/GridItem）](arkts-layout-development-create-grid.md)
-      - [创建轮播（Swiper）](arkts-layout-development-create-looping.md)
+      - [线性布局 (Row/Column)](arkts-layout-development-linear.md)
+      - [层叠布局 (Stack)](arkts-layout-development-stack-layout.md)
+      - [弹性布局 (Flex)](arkts-layout-development-flex-layout.md)
+      - [相对布局 (RelativeContainer)](arkts-layout-development-relative-layout.md)
+      - [栅格布局 (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
+      - [媒体查询 (@ohos.mediaquery)](arkts-layout-development-media-query.md)
+      - [创建列表 (List)](arkts-layout-development-create-list.md)
+      - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
+      - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
   - 添加组件
     - 添加常用组件
-      - [按钮（Button）](arkts-common-components-button.md)
-      - [单选框（Radio）](arkts-common-components-radio-button.md)
-      - [切换按钮（Toggle）](arkts-common-components-switch.md)
-      - [进度条（Progress）](arkts-common-components-progress-indicator.md)
-      - [文本显示（Text/Span）](arkts-common-components-text-display.md)
-      - [文本输入（TextInput/TextArea）](arkts-common-components-text-input.md)
-      - [显示图片（Image）](arkts-graphics-display.md)
-      - [自定义弹窗（CustomDialog）](arkts-common-components-custom-dialog.md)
-      - [视频播放（Video）](arkts-common-components-video-player.md)
+      - [按钮 (Button)](arkts-common-components-button.md)
+      - [单选框 (Radio)](arkts-common-components-radio-button.md)
+      - [切换按钮 (Toggle)](arkts-common-components-switch.md)
+      - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
+      - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
+      - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
+      - [显示图片 (Image)](arkts-graphics-display.md)
+      - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
+      - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [XComponent](arkts-common-components-xcomponent.md)
     - 添加气泡和菜单
-      - [气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)
-      - [菜单（Menu）](arkts-popup-and-menu-components-menu.md)
+      - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+      - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
   - 设置页面路由和组件导航
     - 组件导航
       - [Navigation](arkts-navigation-navigation.md)
       - [Tabs](arkts-navigation-tabs.md)
-    - [页面路由（@ohos.router）](arkts-routing.md)
+    - [页面路由 (@ohos.router)](arkts-routing.md)
   - 显示图形
-    - [绘制几何图形（Shape）](arkts-geometric-shape-drawing.md)
-    - [使用画布绘制自定义图形（Canvas）](arkts-drawing-customization-on-canvas.md)
+    - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
+    - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用动画
     - [动画概述](arkts-animation.md)
     - 属性动画
@@ -49,7 +49,7 @@ ArkUI（方舟UI框架）
       - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场](arkts-shared-element-transition.md)
-      - [页面转场动画（不推荐）](arkts-page-transition-animation.md)
+      - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
     - [组件动画](arkts-component-animation.md)
     - 动画曲线
       - [动画曲线概述](arkts-curve-overview.md)
@@ -71,8 +71,8 @@ ArkUI（方舟UI框架）
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
-- UI开发（兼容JS的类Web开发范式）
-  - [UI开发（兼容JS的类Web开发范式）概述](ui-js-overview.md)
+- UI开发 (兼容JS的类Web开发范式)
+  - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明
     - [文件组织](js-framework-file.md)
     - [js标签配置](js-framework-js-tag.md)
