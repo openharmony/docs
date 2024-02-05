@@ -1,7 +1,7 @@
 # menu开发指导
 
 
-提供菜单组件，作为临时性弹出窗口，用于展示用户可执行的操作，具体用法请参考[menu](../reference/apis-arkui/arkui-jsjs-components-basic-menu.md)。
+提供菜单组件，作为临时性弹出窗口，用于展示用户可执行的操作，具体用法请参考[menu](../reference/apis-arkui/arkui-js/js-components-basic-menu.md)。
 
 
 ## 创建menu组件
@@ -41,7 +41,7 @@
 ![zh-cn_image_0000001226815299](figures/zh-cn_image_0000001226815299.gif)
 
 > **说明：**
-> - menu仅支持[option](../reference/apis-arkui/arkui-jsjs-components-basic-option.md)子组件。
+> - menu仅支持[option](../reference/apis-arkui/arkui-js/js-components-basic-option.md)子组件。
 >
 > - menu组件不支持focusable、disabled属性。
 

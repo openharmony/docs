@@ -1,7 +1,7 @@
 # toolbar开发指导
 
 
-toolbar为页面工具栏组件，用于展示针对当前界面的操作选项，可作为页面的一级导航。具体用法请参考[toolbar](../reference/apis-arkui/arkui-jsjs-components-basic-toolbar.md)。
+toolbar为页面工具栏组件，用于展示针对当前界面的操作选项，可作为页面的一级导航。具体用法请参考[toolbar](../reference/apis-arkui/arkui-js/js-components-basic-toolbar.md)。
 
 
 ## 创建toolbar组件

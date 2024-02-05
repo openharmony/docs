@@ -1,6 +1,6 @@
 # input开发指导
 
-input是交互式组件，用于接收用户数据。其类型可设置为日期、多选框和按钮等。具体用法请参考[input API](../reference/apis-arkui/arkui-jsjs-components-basic-input.md)。
+input是交互式组件，用于接收用户数据。其类型可设置为日期、多选框和按钮等。具体用法请参考[input API](../reference/apis-arkui/arkui-js/js-components-basic-input.md)。
 
 
 ## 创建input组件

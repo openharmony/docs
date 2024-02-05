@@ -1,6 +1,6 @@
 # button开发指导
 
-button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[button API](../reference/apis-arkui/arkui-jsjs-components-basic-button.md)。
+button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[button API](../reference/apis-arkui/arkui-js/js-components-basic-button.md)。
 
 
 ## 创建button组件

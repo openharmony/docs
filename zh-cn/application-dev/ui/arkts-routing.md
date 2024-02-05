@@ -348,7 +348,7 @@ message：string类型，表示询问框的内容。
 
 ### 自定义询问框
 
-自定义询问框的方式，可以使用[弹窗](../reference/apis/js-apis-promptAction.md#promptactionshowdialog)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
+自定义询问框的方式，可以使用[弹窗](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
 
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
@@ -357,7 +357,7 @@ message：string类型，表示询问框的内容。
 import router from '@ohos.router';
 ```
 
-在事件回调中，调用弹窗的[promptAction.showDialog()](../reference/apis/js-apis-promptAction.md#promptactionshowdialog)方法：
+在事件回调中，调用弹窗的[promptAction.showDialog()](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)方法：
 
 
 ```ts

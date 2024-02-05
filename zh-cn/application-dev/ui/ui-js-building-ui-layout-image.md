@@ -1,6 +1,6 @@
 # 添加图片区域
 
-添加图片区域通常用[image](../reference/apis-arkui/arkui-jsjs-components-basic-image.md)组件来实现，使用的方法和text组件类似。
+添加图片区域通常用[image](../reference/apis-arkui/arkui-js/js-components-basic-image.md)组件来实现，使用的方法和text组件类似。
 
 
 

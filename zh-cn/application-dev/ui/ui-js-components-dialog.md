@@ -1,6 +1,6 @@
 # dialog开发指导
 
-dialog组件用于创建自定义弹窗，通常用来展示用户当前需要或用户必须关注的信息或操作。具体用法请参考[dialog API](../reference/apis-arkui/arkui-jsjs-components-container-dialog.md)。
+dialog组件用于创建自定义弹窗，通常用来展示用户当前需要或用户必须关注的信息或操作。具体用法请参考[dialog API](../reference/apis-arkui/arkui-js/js-components-container-dialog.md)。
 
 
 ## 创建dialog组件
@@ -156,7 +156,7 @@ export default {
 ## 场景示例
 
 
-在本场景中，开发者可以通过dialog组件实现一个日程表。弹窗在打开状态下，利用[Textarea组件](../reference/apis-arkui/arkui-jsjs-components-basic-textarea.md)输入当前日程，点击确认按钮后获取当前时间并保存输入文本。最后以列表形式将各日程进行展示。
+在本场景中，开发者可以通过dialog组件实现一个日程表。弹窗在打开状态下，利用[Textarea组件](../reference/apis-arkui/arkui-js/js-components-basic-textarea.md)输入当前日程，点击确认按钮后获取当前时间并保存输入文本。最后以列表形式将各日程进行展示。
 
 
 ```html
