@@ -171,7 +171,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| mode     | [DevicePowerMode](#devicepowermode9) | 是   | 电源模式。                                                   |
+| mode     | DevicePowerMode | 是   | 电源模式。                                                   |
 | callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。当设置电源模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -210,7 +210,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 参数名 | 类型                                 | 必填 | 说明       |
 | ------ | ------------------------------------ | ---- | ---------- |
-| mode   | [DevicePowerMode](#devicepowermode9) | 是   | 电源模式。 |
+| mode   | DevicePowerMode | 是   | 电源模式。 |
 
 **返回值：**
 
