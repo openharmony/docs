@@ -51,7 +51,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | formId  | string               | 是    | 否     | 卡片标识。                   |
 | bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
 | hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
-| visibilityType  | [VisibilityType](#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
+| visibilityType  | [VisibilityType](js-apis-app-form-formInfo.md#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
 | moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
 | abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
