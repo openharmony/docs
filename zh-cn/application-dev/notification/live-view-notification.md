@@ -133,7 +133,7 @@
       }
       ```
 
-   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，该类型的具体字段描述参考[NotificationLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
+   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，该类型的具体字段描述参考[NotificationLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11)。
 
       ```ts
       import Want from '@ohos.app.ability.Want';
