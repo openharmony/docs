@@ -27,7 +27,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
@@ -41,7 +41,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -91,7 +91,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis/js-apis-app-ability-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
 **错误码：**
@@ -104,7 +104,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -148,7 +148,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](../apis/js-apis-app-ability-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want            | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据，默认为空，不提供创建卡片数据。                                      |
 
 **返回值：**
@@ -167,7 +167,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -220,7 +220,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -286,7 +286,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
