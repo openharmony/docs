@@ -447,17 +447,16 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   ```
   # SP_daemon -profilerfps 10
   set num:10 success
-  fps:0|1705307993492
-  fps:0|1705307994328
-  fps:0|1705307995338
-  fps:0|1705307996331
-  fps:72|1705307997444
-  fps:69|1705307998490
-  fps:67|1705307999479
-  fps:72|1705308000509
-  fps:70|1705308001510
-  fps:0|1705308002411
-
+  fps:82|1707125314494
+  fps:81|1707125534494
+  fps:114|1707125535494
+  fps:114|1707125536494
+  fps:115|1707125537494
+  fps:117|1707125538494
+  fps:112|1707125539494
+  fps:114|1707125540494
+  fps:111|1707125541494
+  fps:114|1707125542494
   SP_daemon exec finished!
   #
   ```
@@ -468,19 +467,20 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   5.15 fps分时间段采集
 
   ```
-  # SP_daemon -profilerfps 100 -section 10
+  # SP_daemon -profilerfps 100 -sectrions 10
   set num:10 success
-  fps:36|1705308148957
-  sectionsFps:0|1705308148957
-  sectionsFps:0|1705308149057
-  sectionsFps:0|1705308149157
-  sectionsFps:0|1705308149257
-  sectionsFps:10|1705308149372
-  sectionsFps:0|1705308149472
-  sectionsFps:0|1705308149572
-  sectionsFps:110|1705308149671
-  sectionsFps:120|1705308149763
-  sectionsFps:120|1705308149862
+  fps:73|1707125301494
+  sectionsFps:0|1707125301494
+  sectionsFps:0|1707125301594
+  sectionsFps:0|1707125301694
+  sectionsFps:40|1707125301794
+  sectionsFps:120|1707125301894
+  sectionsFps:110|1707125301994
+  sectionsFps:110|1707125302094
+  sectionsFps:110|1707125302194
+  sectionsFps:120|1707125302294
+  sectionsFps:120|1707125302394
+  fps:117|1707125302494
   ...
 
   SP_daemon exec finished!
