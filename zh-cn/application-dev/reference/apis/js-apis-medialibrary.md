@@ -95,12 +95,10 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
     };
     // 获取文件资源，使用callback方式返回异步结果
     media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
@@ -168,12 +166,10 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
     };
     // 获取文件资源，使用Promise方式返回结果
     media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {
