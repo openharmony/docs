@@ -514,7 +514,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
-| httpProxy    | [connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
+| httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -568,7 +568,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| httpProxy    | [connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
+| httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
 
 **返回值：**
 
@@ -626,7 +626,7 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
-| callback | AsyncCallback&lt;[connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
+| callback | AsyncCallback&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
 
@@ -676,7 +676,7 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;[connection.HttpProxy](../apis/js-apis-net-connection.md#httpproxy10)&gt; | Promise对象，返回网络全局Http代理配置信息。  |
+| Promise&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt; | Promise对象，返回网络全局Http代理配置信息。  |
 
 **错误码**：
 
