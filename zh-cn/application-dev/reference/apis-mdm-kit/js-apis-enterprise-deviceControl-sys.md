@@ -1,10 +1,10 @@
-# @ohos.enterprise.deviceControl（设备控制管理）(系统接口)
+# @ohos.enterprise.deviceInfo（设备信息管理）(系统接口)
 
-本模块提供设备控制能力。
+本模块提供企业设备信息管理能力，包括获取设备序列号等。
 
-> **说明**：
-> 
-> 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+>
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
@@ -15,66 +15,62 @@
 ## 导入模块
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
+import deviceInfo from '@ohos.enterprise.deviceInfo';
 ```
 
-## deviceControl.resetFactory
+## deviceInfo.getDeviceSerial
 
-resetFactory(admin: Want, callback: AsyncCallback\<void>): void
+getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用使设备恢复出厂设置。使用callback异步回调。
+指定设备管理应用获取设备序列号，使用callback异步回调。
 
-**需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
+**需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备序列号，否则err为错误对象。       |
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 
-| 错误码ID | 错误信息                                                                      |
+| 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
+| 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
 
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
-
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-deviceControl.resetFactory(wantTemp, (err) => {
+deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
   if (err) {
-    console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.log('Succeeded in resetting factory');
-})
+  console.info(`Succeeded in getting device serial, result : ${result}`);
+});
 ```
 
-## deviceControl.resetFactory
+## deviceInfo.getDeviceSerial
 
-resetFactory(admin: Want): Promise\<void>
+getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
-指定设备管理应用使设备恢复出厂设置。使用Promise异步回调。
+指定设备管理应用获取设备序列号，使用Promise异步回调。
 
-**需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
+**需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
 
 **参数：**
 
@@ -84,15 +80,15 @@ resetFactory(admin: Want): Promise\<void>
 
 **返回值：**
 
-| 类型   | 说明                                  |
-| ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当恢复出厂设置失败时抛出错误对象。|
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise对象，返回设备序列号。  |
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 
-| 错误码ID | 错误信息                                                                      |
+| 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -100,43 +96,42 @@ resetFactory(admin: Want): Promise\<void>
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
-
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-deviceControl.resetFactory(wantTemp).then(() => {
+deviceInfo.getDeviceSerial(wantTemp).then((result) => {
+  console.info(`Succeeded in getting device serial, result : ${result}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
-})
+  console.error(`Failed to get device serial. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
-## deviceControl.shutdown<sup>11+</sup>
+## deviceInfo.getDisplayVersion
 
-shutdown(admin: Want): void
+getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用使设备关机。
+指定设备管理应用获取设备版本号，使用callback异步回调。
 
-**需要权限：** ohos.permission.ENTERPRISE_REBOOT
+**需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备版本号，否则err为错误对象。       |
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 
-| 错误码ID | 错误信息                                                                      |
+| 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -144,31 +139,30 @@ shutdown(admin: Want): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
-
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-try {
-  deviceControl.shutdown(wantTemp);
-} catch (err) {
-  console.error(`Failed to shutdown device. Code is ${err.code}, message is ${err.message}`);
-}
+deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting display version, result : ${result}`);
+});
 ```
 
-## deviceControl.reboot<sup>11+</sup>
+## deviceInfo.getDisplayVersion
 
-reboot(admin: Want): void
+getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
-指定设备管理应用使设备重启。
+指定设备管理应用获取设备版本号，使用Promise异步回调。
 
-**需要权限：** ohos.permission.ENTERPRISE_REBOOT
+**需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
 
 **参数：**
 
@@ -176,11 +170,17 @@ reboot(admin: Want): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
-**错误码：**
+**返回值：**
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise对象，返回设备版本号。 |
 
-| 错误码ID | 错误信息                                                                      |
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -188,31 +188,73 @@ reboot(admin: Want): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
-
+import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-try {
-  deviceControl.reboot(wantTemp);
-} catch (err) {
-  console.error(`Failed to reboot device. Code is ${err.code}, message is ${err.message}`);
-}
+deviceInfo.getDisplayVersion(wantTemp).then((result) => {
+  console.info(`Succeeded in getting display version, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get display version. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
-## deviceControl.lockScreen<sup>11+</sup>
+## deviceInfo.getDeviceName
 
-lockScreen(admin: Want): void
+getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用使设备屏幕锁定。
+指定设备管理应用获取设备名称，使用callback异步回调。
 
-**需要权限：** ohos.permission.ENTERPRISE_LOCK_DEVICE
+**需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| callback | AsyncCallback&lt;string&gt;              | 是    | 回调函数。当接口调用成功，err为null，data为设备名称，否则err为错误对象。       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+deviceInfo.getDeviceName(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting device name, result : ${result}`);
+});
+```
+
+## deviceInfo.getDeviceName
+
+getDeviceName(admin: Want): Promise&lt;string&gt;
+
+指定设备管理应用获取设备名称，使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
 
@@ -220,11 +262,17 @@ lockScreen(admin: Want): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
-**错误码：**
+**返回值：**
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)。
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise结果，返回设备名称。 |
 
-| 错误码ID | 错误信息                                                                      |
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -232,17 +280,16 @@ lockScreen(admin: Want): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
-
+import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-try {
-  deviceControl.lockScreen(wantTemp);
-} catch (err) {
-  console.error(`Failed to lock screen. Code is ${err.code}, message is ${err.message}`);
-}
+deviceInfo.getDeviceName(wantTemp).then((result) => {
+  console.info(`Succeeded in getting device name, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get device name. Code: ${err.code}, message: ${err.message}`);
+});
 ```
