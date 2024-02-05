@@ -218,7 +218,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -256,7 +256,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -297,7 +297,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -344,7 +344,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -382,7 +382,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -423,7 +423,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -470,7 +470,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -505,7 +505,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -543,7 +543,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -593,7 +593,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -641,7 +641,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -683,7 +683,7 @@ injectGestureSync(gesturePath: GesturePath): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
@@ -790,7 +790,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -831,7 +831,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -932,7 +932,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -970,7 +970,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -1011,7 +1011,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |

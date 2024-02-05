@@ -66,7 +66,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -110,7 +110,7 @@ enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-a
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -160,7 +160,7 @@ disableAbility(name: string): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -201,7 +201,7 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
