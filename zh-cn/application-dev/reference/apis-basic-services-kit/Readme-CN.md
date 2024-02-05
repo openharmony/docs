@@ -50,6 +50,7 @@
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
+  - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
   - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
   - [@ohos.usbManager (USB管理)(系统接口)](js-apis-usbManager-sys.md)
@@ -70,4 +71,5 @@
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [热管理错误码](errorcode-thermal.md)
   - [电量信息错误码](errorcode-battery-info.md)
+  - [剪贴板错误码](errorcode-pasteboard.md)
 
