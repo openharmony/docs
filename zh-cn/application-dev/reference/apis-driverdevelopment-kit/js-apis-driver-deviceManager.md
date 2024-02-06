@@ -77,7 +77,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
 | deviceId     | number                                                                                               | 是   | 设备ID，通过queryDevices获得           |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | 是   | 绑定设备断开的回调                     |
-| callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis/js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象 |
+| callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象 |
 
 **错误码：**
 
@@ -188,7 +188,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 | 类型                                                                                           | 说明                                         |
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Promise&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis/js-apis-rpc.md#iremoteobject)}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
+| Promise&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
 
 **错误码：**
 
@@ -401,4 +401,4 @@ USB设备信息。
 | 名称      | 类型   | 必填 | 说明                |
 | --------- | ------ | ---- | ------------------- |
 | deviceId<sup>11+</sup>  | number | 是   | 设备ID。  |
-| remote<sup>11+</sup> | [rpc.IRemoteObject](../apis/js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
+| remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
