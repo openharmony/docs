@@ -245,5 +245,5 @@ export struct HomePage{
 ```
 
 ## 参考
-- [GridRow组件的使用](../application-dev/reference/arkui-ts/ts-container-gridrow.md)
-- [GridCol组件的使用](../application-dev/reference/arkui-ts/ts-container-gridcol.md)
+- [GridRow组件的使用](../application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md)
+- [GridCol组件的使用](../application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md)
