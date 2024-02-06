@@ -41,7 +41,7 @@
 
   [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
 
-  [@ohos.backgroundTaskManager (后台任务管理)](../reference/aapis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
+  [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
 
   [@ohos.multimedia.camera (相机管理)](../reference/apis-camera-kit/js-apis-camera.md)
 
