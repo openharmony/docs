@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode+1) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | 视频编码器的比特率模式。 | 
+| typedef enum [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode) | 视频编码器的比特率模式。 | 
 
 
 ### 枚举
