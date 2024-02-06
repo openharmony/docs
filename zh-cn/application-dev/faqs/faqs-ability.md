@@ -184,7 +184,7 @@ try {
 
 **参考链接**
 
-[系统时间、时区](../reference/apis/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
+[系统时间、时区](../reference/apis-basic-services-kit/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
 
 
 ## 如何获取当前应用程序缓存目录(API 9)
@@ -206,7 +206,7 @@ try {
 
 参考链接
 
-[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)
+[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
 
 
 ## 使用ServiceExtensionAbility和DataShareExtensionAbility的相关接口后DevEco Studio无法编译(API 9)

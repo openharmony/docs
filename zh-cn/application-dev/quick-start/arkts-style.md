@@ -14,7 +14,7 @@
 
 ## 装饰器使用说明
 
-- 当前\@Styles仅支持[通用属性](../reference/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/arkui-ts/ts-universal-events-click.md)。
+- 当前\@Styles仅支持[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
 
 - \@Styles方法不支持参数，反例如下。
 

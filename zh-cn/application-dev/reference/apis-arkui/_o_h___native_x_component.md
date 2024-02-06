@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[XComponent开发指导](../../napi/xcomponent-guidelines.md)。
+描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[Native XComponent](../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >

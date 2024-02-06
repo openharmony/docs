@@ -1,6 +1,6 @@
-# Background Tasks Kit API参考 
+# Background Tasks Kit API参考
 
-- ArkTS API 
+- ArkTS API
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](js-apis-reminderAgentManager-sys.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
@@ -14,10 +14,9 @@
   - 已停止维护
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
     - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-backgroundTaskManager-sys.md)
-    - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)        
+    - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
 - 错误码
-  - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md
+  - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)
-

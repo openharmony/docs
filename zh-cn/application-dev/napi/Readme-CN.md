@@ -20,8 +20,6 @@
             - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
             - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
         - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
-    - 图形图像
-        - [XComponent开发指导](xcomponent-guidelines.md)
     - 资源管理
         - [Rawfile开发指导](rawfile-guidelines.md)
     - 资源调度
