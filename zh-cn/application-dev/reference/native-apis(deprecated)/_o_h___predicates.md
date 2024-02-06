@@ -21,7 +21,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [id](_r_d_b.md#id-14) | OH_Predicates结构体的唯一标识符。 |
+| [id](_r_d_b.md) | OH_Predicates结构体的唯一标识符。 |
 | [equalTo](_r_d_b.md#equalto) | 函数指针，配置谓词以匹配数据字段等于指定值的字段。 |
 | [notEqualTo](_r_d_b.md#notequalto) | 函数指针，配置谓词以匹配数据字段不等于指定值的字段。 |
 | [beginWrap](_r_d_b.md#beginwrap) | 函数指针，向谓词添加左括号。 |
