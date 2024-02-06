@@ -51,4 +51,4 @@ let calendarMgr: calendarManager.CalendarManager = calendarManager.getCalendarMa
 
 ### Calendar Kit API文档参考
 
-- [API文档参考](../reference/apis/js-apis-calendarManager.md)
+- [API文档参考](../reference/apis-calendar-kit/js-apis-calendarManager.md)

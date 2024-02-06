@@ -33,7 +33,7 @@
    
    保存控件是一种类似于按钮的安全控件，由图标、文本和背景组成。其中，图标和文本至少需要有一个，背景是可选的。图标和文本不能自定义，只能从已有的选项中选择。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮，传参则根据参数创建，不包含未配置的元素。
 
-   当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
+   当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
    ```ts
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
