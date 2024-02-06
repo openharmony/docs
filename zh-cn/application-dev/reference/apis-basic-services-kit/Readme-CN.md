@@ -73,15 +73,22 @@
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
 
 - 错误码
-  - [系统参数错误码](errorcode-system-parameterV9.md)
-  - [帐号管理错误码](errorcode-account.md)
   - [USB服务错误码](errorcode-usb.md)
-  - [耗电统计错误码](errorcode-batteryStatistics.md)
-  - [屏幕亮度错误码](errorcode-brightness.md)
-  - [系统电源管理错误码](errorcode-power.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
-  - [热管理错误码](errorcode-thermal.md)
-  - [电量信息错误码](errorcode-battery-info.md)
-  - [剪贴板错误码](errorcode-pasteboard.md)
-  - [事件错误码](./errorcode-CommonEventService.md)
+  - [zlib子系统错误码](./errorcode-zlib.md)
+  - [电量信息错误码](errorcode-battery-info.md)
+  - [耗电统计错误码](errorcode-batteryStatistics.md)
+  - [剪贴板错误码](errorcode-pasteboard.md)
+  - [屏幕亮度错误码](errorcode-brightness.md)
+  - [热管理错误码](errorcode-thermal.md)
+  - [上传下载错误码](./errorcode-request.md)
+  - [事件错误码](./errorcode-CommonEventService.md)
+  - [系统参数错误码](errorcode-system-parameterV9.md)
+  - [系统电源管理错误码](errorcode-power.md)
+  - [帐号管理错误码](errorcode-account.md)
+
+
+
+
+
 
