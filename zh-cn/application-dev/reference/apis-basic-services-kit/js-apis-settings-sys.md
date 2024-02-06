@@ -20,7 +20,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue10)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](js-apis-settings.md#settingssetvalue10)。
 
 **系统接口**：此接口为系统接口。
 
@@ -32,7 +32,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 
 | 参数名            | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
 | callback          | AsyncCallback\<boolean>                                      | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
@@ -46,7 +46,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue10-1)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](js-apis-settings.md#settingssetvalue10-1)。
 
 **系统接口**：此接口为系统接口。
 
@@ -58,7 +58,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 
 | 参数名            | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
 

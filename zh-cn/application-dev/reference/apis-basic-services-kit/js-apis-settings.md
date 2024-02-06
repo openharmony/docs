@@ -215,7 +215,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                 | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                 | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                  | 是   | 数据项值。取值范围随业务变动。                               |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
@@ -248,7 +248,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value   | string  | 是   | 数据项值。取值范围随业务变动。                               |
 
@@ -284,7 +284,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
@@ -321,7 +321,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | callback | AsyncCallback\<string> | 是   | 使用callback方式获取数据项的值。                             |
 
@@ -353,7 +353,7 @@ getValue(context: Context, name: string): Promise\<string>
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 
 **返回值**：
@@ -386,7 +386,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
@@ -423,7 +423,7 @@ getValueSync(context: Context, name: string, defValue: string): string;
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| context  | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | defValue | string  | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
 
@@ -457,7 +457,7 @@ getValueSync(context: Context, name: string, defvalue: string, domainName: strin
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
@@ -497,7 +497,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value   | string  | 是   | 数据项的具体数值。取值范围随业务变动。                       |
 
@@ -535,7 +535,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
@@ -570,7 +570,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
@@ -609,7 +609,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
@@ -845,7 +845,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 | 参数名            | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | callback          | AsyncCallback\<object>                                       | 是   | 使用callback方式获取数据项的值。                             |
 
@@ -883,7 +883,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 | 参数名            | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 
 **返回值**：
@@ -922,7 +922,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 | 参数名            | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | defValue          | string                                                       | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
 
@@ -965,7 +965,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 | 参数名            | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| dataAbilityHelper | [DataAbilityHelper](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                                       | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value             | string                                                       | 是   | 数据项的具体数值。取值范围随业务变动。                       |
 

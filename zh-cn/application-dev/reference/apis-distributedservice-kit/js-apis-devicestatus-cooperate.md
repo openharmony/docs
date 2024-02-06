@@ -164,7 +164,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -214,7 +214,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -402,7 +402,7 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                | 是   | 监听类型，取值为'cooperateMessage'   |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage)&gt; | 是   | 回调函数，异步返回键鼠穿越状态消息。 |
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | 是   | 回调函数，异步返回键鼠穿越状态消息。 |
 
 **示例**：
 
@@ -435,7 +435,7 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听类型，取值为'cooperate'。                                |
-| callback | Callback&lt;[CooperateMessage](#cooperatemessage)&gt; | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+| callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 **示例**：
 
@@ -513,7 +513,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate)替代
+> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -548,7 +548,7 @@ prepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate-1)替代
+> 从API version 10开始不在维护。建议使用[cooperate.prepareCooperate](#cooperatepreparecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -585,7 +585,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate)替代
+> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -618,7 +618,7 @@ unprepare(): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate-1)替代
+> 从API version 10开始不在维护。建议使用[cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -653,7 +653,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate)替代
+> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -700,7 +700,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate-1)替代
+> 从API version 10开始不在维护。建议使用[cooperate.activateCooperate](#cooperateactivatecooperate11-1)替代
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -754,7 +754,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate)替代
+> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -837,7 +837,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate)替代
+> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -874,7 +874,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate-1)替代
+> 从API version 10开始不在维护。建议使用[cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -920,7 +920,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[on('cooperateMessage')](#oncooperatemessage)替代
+> 从API version 10开始不在维护。建议使用[on('cooperateMessage')](#oncooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -929,7 +929,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 | 参数名                | 类型                                                             | 必填 | 说明                            |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  是  | 监听类型，取值为'cooperate' |
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsg) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息。 |
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](##cooperatemsgdeprecated) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息。 |
 
 
 
@@ -957,7 +957,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[off('cooperateMessage')](#offcooperatemessage)替代
+> 从API version 10开始不在维护。建议使用[off('cooperateMessage')](#offcooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1011,7 +1011,7 @@ try {
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[CooperateMessage](#cooperatemessage)替代
+> 从API version 10开始不在维护。建议使用[CooperateMessage](#cooperatemessage11)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
