@@ -439,7 +439,7 @@ export struct MyComponent {
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
+import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {
