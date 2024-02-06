@@ -9,7 +9,7 @@
 
 **参考链接**
 
-[关系型数据库](../reference/apis/js-apis-data-relationalStore.md#storeconfig)
+[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)
 
 
 ## 关系型数据库rdb中使用TRUNCATE TABLE语句无法清空表数据(API 9)

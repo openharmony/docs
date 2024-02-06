@@ -2013,7 +2013,7 @@ deviceId(deviceId:string):Query
 添加设备ID作为key的前缀。
 > **说明：** 
 >
-> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](../apis/js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core

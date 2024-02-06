@@ -6,4 +6,4 @@
 - [NativeImage开发指导 (C/C++)](../napi/native-image-guidelines.md)
 - [NativeVsync开发指导 (C/C++)](../napi/native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](../napi/native-window-guidelines.md)
-- [Vulkan开发指导 (C/C++)](../napi/vulkan-guidelines.md)
+- [Vulkan开发指导 (C/C++)](../reference/native-lib/vulkan-guidelines.md)
