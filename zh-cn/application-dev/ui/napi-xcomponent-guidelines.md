@@ -103,7 +103,7 @@ function myComponent() {
     }
     ```
 
-2. **Napi模块注册**，具体使用请参考[Native API在应用工程中的使用指导](napi-guidelines.md)。
+2. **Napi模块注册**，具体使用请参考[Native API在应用工程中的使用指导](../napi/napi-guidelines.md)。
 
     ```c++
     // 在napi_init.cpp文件中，Init方法注册接口函数，从而将封装的C++方法传递出来，供JS侧调用

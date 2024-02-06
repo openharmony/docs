@@ -7,7 +7,7 @@
 其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。
 
 
-对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../napi/native-window-guidelines.md)”来渲染画面。
+对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../graphics/native-window-guidelines.md)”来渲染画面。
 
 
 对于“component”类型，主要用于实现动态加载显示内容的目的。
