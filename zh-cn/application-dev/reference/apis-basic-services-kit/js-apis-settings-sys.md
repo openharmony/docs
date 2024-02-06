@@ -22,7 +22,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue10)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](js-apis-settings.md#settingssetvalue10)。
 
 **系统接口**：此接口为系统接口。
 
@@ -48,7 +48,7 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](#settingssetvalue10-1)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setValue()](js-apis-settings.md#settingssetvalue10-1)。
 
 **系统接口**：此接口为系统接口。
 

@@ -1,11 +1,11 @@
 # DataAbilityHelper
 
-可以通过[acquireDataAbilityHelper](../apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7)接口获取DataAbilityHelper对象。
+可以通过[acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7)接口获取DataAbilityHelper对象。
 
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 除了[PacMap](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](../apis-arkdata/js-apis-data-ability.md)和[dataShare模块](../apis-arkdata/js-apis-data-dataShare-sys.md)。
+> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](../apis-arkdata/js-apis-data-ability.md)和[dataShare模块](../apis-arkdata/js-apis-data-dataShare-sys.md)。
 
 ## 导入模块
 
@@ -1155,8 +1155,8 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | uri        | string                 | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
 | method    | string                  | 是   | 表示被调用的方法名。   |
 | arg      | string                   | 是   | 表示需传入的参数。      |
-| extras   | [PacMap](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
-| callback | AsyncCallback\<[PacMap](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 表示数据操作的回调方法，返回操作结果。     |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 表示数据操作的回调方法，返回操作结果。     |
 
 **示例：**
 
@@ -1194,13 +1194,13 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 | uri        | string                 | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
 | method    | string                  | 是   | 表示被调用的方法名。   |
 | arg      | string                   | 是   | 表示需传入的参数。      |
-| extras   | [PacMap](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
 
 **返回值：**
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<[PacMap](../apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 返回操作结果。 |
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 返回操作结果。 |
 
 **示例：**
 
@@ -1235,8 +1235,8 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 | 参数名        | 类型                          | 必填 | 说明                                             |
 | ----------| ---------------------------------| ---- | ------------------------------------------------ |
 | uri       | string                           | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
-| operations    |  Array\<[DataAbilityOperation](../apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)>        | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
-| callback      |  AsyncCallback\<Array\<[DataAbilityResult](../apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 表示批量操作的回调方法，在DataAbilityResult数组中返回每个操作的结果。      |
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 表示批量操作的回调方法，在DataAbilityResult数组中返回每个操作的结果。      |
 
 **示例：**
 
@@ -1273,13 +1273,13 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 | 参数名          | 类型                            | 必填 | 说明                                             |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
 | uri           | string                         | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
-| operations    |  Array\<[DataAbilityOperation](../apis-ability-kit/js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
 
 **返回值：**
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<Array\<[DataAbilityResult](../apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)>> | 在DataAbilityResult数组中返回每个操作的结果。 |
+|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | 在DataAbilityResult数组中返回每个操作的结果。 |
 
 **示例：**
 
