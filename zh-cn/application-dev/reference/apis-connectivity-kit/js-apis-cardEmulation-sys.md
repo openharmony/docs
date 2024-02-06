@@ -10,7 +10,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 
 ## getPaymentServices<sup>11+</sup>
 
-getPaymentServices(): [AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md)[]
+getPaymentServices(): [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[]
 
 获取所有支付类型的服务列表。如果应用程序声明支持HCE功能，并且声明了"payment-aid"，则会包含在列表里面，参考[HCE卡模拟和AID列表的声明定义](js-apis-cardEmulation.md#hce卡模拟和aid列表的声明定义)。
 
@@ -24,7 +24,7 @@ getPaymentServices(): [AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md
 
 | **类型**  | **说明**                               |
 | ------- | ------------------------------------ |
-| [AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
+| [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
 
 **示例：**
 ```js
