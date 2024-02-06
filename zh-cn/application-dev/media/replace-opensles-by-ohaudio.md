@@ -1,8 +1,12 @@
 # 从OpenSL ES切换到OHAudio(C/C++)
 
-本文主要通过功能和接口对比的方式，介绍如何将一个使用OpenSL ES接口开发音频业务，切换为使用OHAudio接口。
+由于OpenSL ES无法满足音频系统的能力拓展，建议开发者使用OHAudio替代OpenSL ES开发音频业务。本文将介绍如何从使用OpenSL ES接口开发音频业务，切换为使用OHAudio接口。
 
-## 功能范围
+## 支持的功能差异
+
+两者支持的功能范围略有差异，OHAudio增加支持低时延播放/录制、监听业务变化等功能。
+
+具体差异如下表所示。
 
 | | OpenSL ES| OHAudio |
 | --- | --- | --- |
@@ -19,9 +23,11 @@
 | 监听流异常事件 | × | √ |
 | 监听播放设备变化事件 | × | √ |
 
-## 开发模式
+## 开发模式差异
 
-将音频业务根据使用步骤分类对比介绍，代码展示以音频播放场景为例，音频录制实现类似，不再赘述。
+此小节将结合开发步骤，对比介绍OHAudio和OpenSL ES在开发模式上的差异。
+
+音频播放和录制的实现类似，此处以音频播放为例说明。
 
 ### 构造实例
 
@@ -110,7 +116,7 @@ OH_AudioRenderer_Stop(audioRenderer);
 
 OpenSL ES:
 
-基于扩展的OHBufferQueue接口，
+基于扩展的OHBufferQueue接口，通过注册自定义的Callback函数，根据数据请求时机，将待播放数据填入系统内提供的缓冲区中。
 
 ```c++
 static void MyBufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
