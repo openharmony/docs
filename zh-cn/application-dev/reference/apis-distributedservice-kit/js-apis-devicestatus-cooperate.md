@@ -667,7 +667,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](../errorcodes/errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -721,7 +721,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](../errorcodes/errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -792,7 +792,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 > **说明：**
 >
-> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate-1)替代
+> 从API version 10开始不在维护。建议使用[cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1)替代
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 

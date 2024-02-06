@@ -37,7 +37,7 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 
 **错误码**：
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -83,7 +83,7 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 
 **错误码**：
 
-以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
