@@ -68,7 +68,6 @@
           - [@ohos.time (time)(系统接口)](js-apis-system-time.md)
           - [@ohos.time (time)(系统接口)](js-apis-nonsys-time.md)
           - [@ohos.time (timer)(系统接口)](js-apis-system-timer.md)
-        - [@ohos.base (公共回调信息)](js-apis-base.md)
         - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
