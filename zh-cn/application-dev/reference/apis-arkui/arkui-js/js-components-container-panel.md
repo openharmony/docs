@@ -13,7 +13,7 @@
 
 ## 属性
 
-除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称         | 类型             | 默认值      | 必填   | 描述                                       |
 | ---------- | -------------- | -------- | ---- | ---------------------------------------- |
@@ -52,7 +52,7 @@
 | border-[left\|top\|right\|bottom]-color  | &lt;color&gt;                            | black        | 否    | 分别设置左、上、右、下四个边框的颜色。                      |
 | border-radius                            | &lt;length&gt;                           | -            | 否    | border-radius属性是设置元素的外边框圆角半径。设置border-radius时不能单独设置某一个方向的border-[left\|top\|right\|bottom]-width，border-[left\|top\|right\|bottom]-color&nbsp;，如果要设置color和width，需要将四个方向一起设置（border-width、border-color）。 |
 | border-[top\|bottom]-[left\|right]-radius | &lt;length&gt;                           | -            | 否    | 分别设置左上，右上，右下和左下四个角的圆角半径。                 |
-| background                               | &lt;linear-gradient&gt;                  | -            | 否    | 仅支持设置[渐变样式](../arkui-js/js-components-common-gradient.md)，与background-color、background-image不兼容。 |
+| background                               | &lt;linear-gradient&gt;                  | -            | 否    | 仅支持设置[渐变样式](js-components-common-gradient.md)，与background-color、background-image不兼容。 |
 | background-color                         | &lt;color&gt;                            | -            | 否    | 设置背景颜色。                                  |
 | background-image                         | string                                   | -            | 否    | 设置背景图片。与background-color、background不兼容；支持本地图片资源地址。 |
 | background-size                          | -&nbsp;string<br/>-&nbsp;&lt;length&gt;&nbsp;&lt;length&gt;<br/>-&nbsp;&lt;percentage&gt;&nbsp;&lt;percentage&gt; | auto         | 否    | 设置背景图片的大小。<br/>-&nbsp;string可选值：<br/>&nbsp;&nbsp;-&nbsp;contain：把图像扩展至最大尺寸，以使其高度和宽度完全适用内容区域。<br/>&nbsp;&nbsp;-&nbsp;cover：把背景图像扩展至足够大，以使背景图像完全覆盖背景区域；背景图像的某些部分也许无法显示在背景定位区域中。<br/>&nbsp;&nbsp;-&nbsp;auto：保持原图的比例不变。<br/>-&nbsp;length值参数方式：<br/>&nbsp;&nbsp;设置背景图像的高度和宽度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为&nbsp;"auto"。<br/>-&nbsp;百分比参数方式：<br/>&nbsp;&nbsp;以父元素的百分比来设置背景图像的宽度和高度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为&nbsp;"auto"。 |

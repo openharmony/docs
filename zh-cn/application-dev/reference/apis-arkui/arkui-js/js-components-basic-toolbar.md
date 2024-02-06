@@ -21,12 +21,12 @@
 
 ## 属性
 
-支持[通用属性](../arkui-js/js-components-common-attributes.md)。
+支持[通用属性](js-components-common-attributes.md)。
 
 
 ## 样式
 
-支持[通用样式](../arkui-js/js-components-common-styles.md)。
+支持[通用样式](js-components-common-styles.md)。
 
 >  **说明：**
 > 不支持height样式，高度固定为56px。
@@ -44,4 +44,4 @@
 
 ## 示例
 
-详见[toolbar-item示例](../arkui-js/js-components-basic-toolbar-item.md)。
+详见[toolbar-item示例](js-components-basic-toolbar-item.md)。
