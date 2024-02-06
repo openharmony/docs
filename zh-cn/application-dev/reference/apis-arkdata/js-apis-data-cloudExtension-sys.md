@@ -892,7 +892,7 @@ subscribe(subInfo: Record&lt;string, Array&lt;Database&gt;&gt;, expirationTime: 
 
 **示例：**
 
-```
+```ts
 let test_time = 10;
 export default class MyCloudService implements cloudExtension.CloudService {
   constructor() {
