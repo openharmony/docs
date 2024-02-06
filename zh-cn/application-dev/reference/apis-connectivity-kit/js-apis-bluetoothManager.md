@@ -870,7 +870,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#BondStateParamdeprecated)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
 
 **错误码**：
 
@@ -913,7 +913,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
-| callback | Callback&lt;[BondStateParam](#BondStateParamdeprecated)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **错误码**：
 
@@ -1442,13 +1442,13 @@ getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGate
 
 | 参数名       | 类型        | 必填   | 说明                                    |
 | --------- | --------- | ---- | ------------------------------------- |
-| profileId | [ProfileId](#ProfileIddeprecated) | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| profileId | [ProfileId](#profileiddeprecated) | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofiledeprecated)或 [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated)或[HidHostProfile](#hidhostprofiledeprecated)或[PanProfile](#panprofiledeprecated) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile)或 [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated)或[HidHostProfile](#hidhostprofiledeprecated)或[PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
 
 **示例：**
 
@@ -1479,7 +1479,7 @@ createGattServer(): GattServer
 
 | 类型                        | 说明                                   |
 | ------------------------- | ------------------------------------ |
-| [GattServer](#gattserverdeprecated) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
+| [GattServer](#gattserver) | server端类，使用server端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
 
@@ -1509,7 +1509,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 | 类型                                    | 说明                                   |
 | ------------------------------------- | ------------------------------------ |
-| [GattClientDevice](#gattclientdevicedeprecated) | client端类，使用client端方法之前需要创建该类的实例进行操作。 |
+| [GattClientDevice](#gattclientdevice) | client端类，使用client端方法之前需要创建该类的实例进行操作。 |
 
 **示例：**
 
@@ -1934,7 +1934,7 @@ try {
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 订阅a2dp连接状态变化事件。
 
@@ -1948,7 +1948,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1972,7 +1972,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 取消订阅a2dp连接状态变化事件。
 
@@ -1986,7 +1986,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -2030,7 +2030,7 @@ getPlayingState(device: string): PlayingState
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [PlayingState](#PlayingStatedeprecated) | 远端设备的播放状态。 |
+| [PlayingState](#playingstatedeprecated) | 远端设备的播放状态。 |
 
 **错误码**：
 
@@ -2152,7 +2152,7 @@ try {
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 订阅HFP连接状态变化事件。
 
@@ -2166,7 +2166,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **示例：**
 
@@ -2187,7 +2187,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 取消订阅HFP连接状态变化事件。
 
@@ -2201,7 +2201,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
 
 **示例：**
 
@@ -2233,7 +2233,7 @@ hfpAg.off('connectionStateChange', onReceiveEvent);
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 订阅HidHost连接状态变化事件。
 
@@ -2247,7 +2247,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **示例：**
 
@@ -2267,7 +2267,7 @@ hidHost.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 取消订阅HidHost连接状态变化事件。
 
@@ -2281,7 +2281,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 | 参数名   | 类型                                                  | 必填 | 说明                                                      |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 否   | 表示回调函数的入参。                                      |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否   | 表示回调函数的入参。                                      |
 
 **示例：**
 
@@ -2312,7 +2312,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 订阅Pan连接状态变化事件。
 
@@ -2326,7 +2326,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **示例：**
 
@@ -2346,7 +2346,7 @@ panProfile.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 取消订阅Pan连接状态变化事件。
 
@@ -2360,7 +2360,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 | 参数名   | 类型                                                  | 必填 | 说明                                                      |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParamdeprecated)&gt; | 否   | 表示回调函数的入参。                                      |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否   | 表示回调函数的入参。                                      |
 
 **示例：**
 
@@ -2616,7 +2616,7 @@ try {
 
 close(): void
 
-关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserverdeprecated)实例将不能再使用。
+关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
 
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattServer#close](js-apis-bluetooth-ble.md#close)替代。
@@ -3239,7 +3239,7 @@ try {
 
 close(): void
 
-关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevicedeprecated)实例将不能再使用。
+关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。
 
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.GattClientDevice#close](js-apis-bluetooth-ble.md#close)替代。
@@ -4794,5 +4794,3 @@ try {
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
 | PROFILE_HID_HOST | 6 | 表示HID profile。  |
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
-
-<!--no_check-->
