@@ -1,4 +1,4 @@
-# XComponent
+# 自定义绘制 (XComponent)
 
 
 [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种绘制组件，通常用于满足开发者较为复杂的自定义绘制需求，例如相机预览流的显示和游戏画面的绘制。
