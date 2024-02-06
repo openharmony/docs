@@ -34,7 +34,7 @@
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
 - [数据管理](database/data-mgmt-overview.md)
-- [文件管理](file-management/file-management-overview.md)
+- [文件管理](file-management/core-file-kit-intro.md)
 - [后台任务（Background Task）管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
