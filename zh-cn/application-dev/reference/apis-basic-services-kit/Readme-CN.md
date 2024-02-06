@@ -62,6 +62,8 @@
             - [系统公共事件定义 (系统接口)](./commonEventManager-definitions-sys.md)
     - 其他
         - [@ohos.base (公共回调信息)](./js-apis-base.md)
+        - [@ohos.settings (设置数据项名称)](./js-apis-settings.md)
+        - [@ohos.settings (设置数据项名称)(系统接口)](./js-apis-settings-sys.md)
         - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
     - 已停止维护的接口
         - [系统公共事件定义](./commonEvent-definitions.md)

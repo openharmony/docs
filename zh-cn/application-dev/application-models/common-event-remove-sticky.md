@@ -27,7 +27,7 @@
    const TAG: string = 'ProcessModel';
    ```
 
-3. 调用[`removeStickyCommonEvent()`](../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
+3. 调用[`removeStickyCommonEvent()`](../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
 
    > **说明：**
    >
