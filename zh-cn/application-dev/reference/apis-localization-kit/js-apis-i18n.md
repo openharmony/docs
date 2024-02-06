@@ -2177,7 +2177,7 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
