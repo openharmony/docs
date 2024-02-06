@@ -61,7 +61,7 @@
             - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
             - [系统公共事件定义 (系统接口)](commonEventManager-definitions-sys.md)
     - 其他
-        - [@ohos.base (公共回调信息)](./js-apis-base.md)
+        - [@ohos.base (公共回调信息)](js-apis-base.md)
         - 时间时区系统接口
           - [@ohos.time (datetime)(系统接口)](js-apis-system-date-time.md)
           - [@ohos.time (datetime)(非系统接口)](js-apis-nonsys-date-time.md)
