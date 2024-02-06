@@ -24,17 +24,17 @@ import vibrator from '@system.vibrator';
 
 触发设备振动。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
+**系统能力：** SystemCapability.Sensors.MiscDevice.Lite
 
-**参数：**
+**参数：** 
 
 | 参数名  | 类型                              | 必填 | 说明       |
 | ------- | --------------------------------- | ---- | ---------- |
 | options | [VibrateOptions](#vibrateoptions) | 否   | 振动模式。 |
 
-**示例：**
+**示例：** 
 
 ```ts
 import vibrator from '@system.vibrator';
@@ -59,9 +59,9 @@ vibrator.vibrate(vibrateOptions);
 
 振动模式。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice.Lite
+**系统能力：** SystemCapability.Sensors.MiscDevice.Lite
 
 | 名称     | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
