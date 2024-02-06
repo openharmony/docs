@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->对于使用[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)的场景，例如：Video或者相机流媒体展示类组件，不建议使用组件截图相关接口，建议从[surface](../apis/js-apis-image.md#imagecreatepixelmapfromsurface11)直接获取图片。
+>对于使用[XComponent](arkui-ts/ts-basic-components-xcomponent.md)的场景，例如：Video或者相机流媒体展示类组件，不建议使用组件截图相关接口，建议从[surface](../apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)直接获取图片。
 >
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
 
@@ -21,7 +21,7 @@ import componentSnapshot from "@ohos.arkui.componentSnapshot";
 
 get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
-获取已加载的组件的截图，传入组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
 > **说明：** 
 >
@@ -33,8 +33,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | [AsyncCallback](../apis/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
+| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 
@@ -86,7 +86,7 @@ struct SnapshotExample {
 
 get(id: string): Promise<image.PixelMap>
 
-获取已加载的组件的截图，传入组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
 > **说明：**
 >
@@ -98,13 +98,13 @@ get(id: string): Promise<image.PixelMap>
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 
 **返回值：**
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.[PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
@@ -161,7 +161,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](../arkui-ts/ts-basic-components-image.md)组件、[Web](../arkui-ts/ts-basic-components-web.md)组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -170,8 +170,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
-| callback | [AsyncCallback](../apis/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis/js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
 
@@ -248,7 +248,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](../arkui-ts/ts-basic-components-image.md)组件、[Web](../arkui-ts/ts-basic-components-web.md)组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -256,13 +256,13 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 | 参数名     | 类型                                       | 必填   | 说明         |
 | ------- | ---------------------------------------- | ---- | ---------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 
 **返回值：**
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise&lt;image.[PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 

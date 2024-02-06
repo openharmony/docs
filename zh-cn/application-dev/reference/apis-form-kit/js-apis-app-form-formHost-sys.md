@@ -43,7 +43,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -100,7 +100,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **参数：**
 
@@ -149,7 +149,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -199,7 +199,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -254,7 +254,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -303,7 +303,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -357,7 +357,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -407,7 +407,7 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | 16501002 | The number of forms exceeds upper bound. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -461,7 +461,7 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 | 16501002 | The number of forms exceeds upper bound. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -508,7 +508,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -560,7 +560,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -607,7 +607,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -659,7 +659,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -707,7 +707,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -760,7 +760,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -809,7 +809,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -863,7 +863,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -903,7 +903,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 | 202 | The application is not a system application.   |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -941,7 +941,7 @@ isSystemReady(): Promise&lt;void&gt;
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -986,7 +986,7 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 
 **示例：**
@@ -1034,7 +1034,7 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1082,7 +1082,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1133,7 +1133,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1189,7 +1189,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1236,7 +1236,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1290,7 +1290,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1323,7 +1323,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，error为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
 **错误码：**
@@ -1338,7 +1338,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1384,7 +1384,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 
 **返回值：**
 
@@ -1404,7 +1404,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1460,7 +1460,7 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 | 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1496,7 +1496,7 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 | 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1536,7 +1536,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1590,7 +1590,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1639,7 +1639,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1693,7 +1693,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1741,7 +1741,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1796,7 +1796,7 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1845,7 +1845,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -1898,7 +1898,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 ```ts
 import Base from '@ohos.base';
@@ -1945,7 +1945,7 @@ acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2001,7 +2001,7 @@ acquireFormData(formId: string): Promise\<Record\<string, Object>>
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 ```ts
 import Base from '@ohos.base';
@@ -2029,7 +2029,7 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callba
 > **说明：**
 >
 >- 一般情况下，对于桌面添加的卡片，当卡片触发router跳转时，卡片框架会检测其跳转目的地是否合理，是否有跳转权限，然后进行应用跳转。如果卡片使用方添加了卡片，并设置了卡片跳转代理，那么卡片触发router跳转时，卡片框架不会再为其进行跳转操作，会把包含跳转目的地的want参数返回给卡片使用方。因此如果卡片使用方希望使用该want信息进行应用跳转，需要确保自身拥有应用跳转的权限，参考
-[UIAbilityContext.startAbility()](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口。
+[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口。
 >
 >- 一个formId最多只能设置一个跳转代理，多次设置后，最后设置的proxy生效。
 
@@ -2057,7 +2057,7 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callba
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form can not be operated by the current application.     |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2122,7 +2122,7 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promi
 
 > **说明：**
 >
->- 一般情况下，对于桌面添加的卡片，当卡片触发router跳转时，卡片框架会检测其跳转目的地是否合理，是否有跳转权限，然后进行应用跳转。如果卡片使用方添加了卡片，并设置了卡片跳转代理，那么卡片触发router跳转时，卡片框架不会再为其进行跳转操作，会把包含跳转目的地的want参数返回给卡片使用方。因此如果卡片使用方希望使用该want信息进行应用跳转，需要确保自身拥有应用跳转的权限，参考[UIAbilityContext.startAbility()](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口。
+>- 一般情况下，对于桌面添加的卡片，当卡片触发router跳转时，卡片框架会检测其跳转目的地是否合理，是否有跳转权限，然后进行应用跳转。如果卡片使用方添加了卡片，并设置了卡片跳转代理，那么卡片触发router跳转时，卡片框架不会再为其进行跳转操作，会把包含跳转目的地的want参数返回给卡片使用方。因此如果卡片使用方希望使用该want信息进行应用跳转，需要确保自身拥有应用跳转的权限，参考[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口。
 >
 >- 一个formId最多只能设置一个跳转代理，多次设置后，最后设置的proxy生效。
 
@@ -2157,7 +2157,7 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promi
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form can not be operated by the current application.     |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2245,7 +2245,7 @@ clearRouterProxy(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form can not be operated by the current application.     |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2300,7 +2300,7 @@ clearRouterProxy(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 | 16501000 | An internal functional error occurred.                       |
 | 16501003 | The form can not be operated by the current application.     |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2347,7 +2347,7 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2400,7 +2400,7 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2447,7 +2447,7 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -2498,7 +2498,7 @@ recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
 
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **参数：**
 

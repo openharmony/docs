@@ -28,7 +28,7 @@
         - [Wifi子系统公共事件定义](./common_event/commonEvent-wifi.md)
         - [USB子系统公共事件定义](./common_event/commonEvent-usb.md)
         - [文件管理子系统公共事件定义](./common_event/commonEvent-filemanagement.md)
-        - [主题框架子系统-锁屏管理公共事件定义](./common_event/commonEvent-screenlock.md)
+        - [主题框架子系统-锁屏管理公共事件定义](./commonEvent-screenlock.md)
         - [时间时区子系统公共事件定义](./common_event/commonEvent-time.md)
         - [帐号子系统公共事件定义](./common_event/commonEvent-account.md)
         - [语言子系统公共事件定义](./common_event/commonEvent-locale.md)
@@ -36,6 +36,8 @@
 - 已停止维护的接口
     - [系统公共事件定义](./commonEvent-definitions.md)
     - [@ohos.commonEvent (公共事件模块)](./js-apis-commonEvent.md)
+    - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
+    - [@system.battery (电量信息)](js-apis-system-battery.md)
     - [@ohos.commonEvent (公共事件模块)(系统接口)](./js-apis-commonEvent-sys.md)
 - 错误码
     - [事件错误码](./errorcode-CommonEventService.md)
@@ -72,5 +74,6 @@
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [热管理错误码](errorcode-thermal.md)
   - [电量信息错误码](errorcode-battery-info.md)
+  - [系统电源错误码](errorcode-power.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
 

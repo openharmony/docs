@@ -19,7 +19,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawa
 ## DrawableDescriptor.constructor
 constructor()
 
-创建DrawableDescriptor或LayeredDrawableDescriptor对象。对象构造需要使用全球化接口[getDrawableDescriptor](../apis/js-apis-resource-manager.md#getdrawabledescriptor)或[getDrawableDescriptorByName](../apis/js-apis-resource-manager.md#getdrawabledescriptorbyname)。
+创建DrawableDescriptor或LayeredDrawableDescriptor对象。对象构造需要使用全球化接口[getDrawableDescriptor](../apis-localization-kit/js-apis-resource-manager.md#getdrawabledescriptor)或[getDrawableDescriptorByName](../apis-localization-kit/js-apis-resource-manager.md#getdrawabledescriptorbyname)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -78,7 +78,7 @@ getPixelMap(): image.PixelMap;
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
   ```ts
@@ -100,7 +100,7 @@ getPixelMap(): image.PixelMap;
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
   ```ts
