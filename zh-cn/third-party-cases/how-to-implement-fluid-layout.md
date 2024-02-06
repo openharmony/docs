@@ -127,6 +127,6 @@
 上述开发步骤的具体示例代码即为本场景的全部代码
 
 ## 参考
-[Flex](../application-dev/reference/arkui-ts/ts-container-flex.md)
+[Flex](../application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md)
 
-[TextInput](../application-dev/reference/arkui-ts/ts-basic-components-textinput.md)
+[TextInput](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)

@@ -1,4 +1,4 @@
-# ArkUI API参考 
+# ArkUI API参考
 
 - ArkTS API
   - UI界面
@@ -28,12 +28,12 @@
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost(系统接口)](js-apis-uiExtensionHost-sys.md)
     - arkui
-        - [BuilderNode](js-apis-arkui-builderNode.md)
-        - [FrameNode](js-apis-arkui-frameNode.md)
-        - [Graphics](js-apis-arkui-graphics.md)
-        - [NodeController](js-apis-arkui-nodeController.md)
-        - [RenderNode](js-apis-arkui-renderNode.md)
-        - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+      - [BuilderNode](js-apis-arkui-builderNode.md)
+      - [FrameNode](js-apis-arkui-frameNode.md)
+      - [Graphics](js-apis-arkui-graphics.md)
+      - [NodeController](js-apis-arkui-nodeController.md)
+      - [RenderNode](js-apis-arkui-renderNode.md)
+      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -316,6 +316,5 @@
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
   - 图形图像
-   - [屏幕错误码](errorcode-display.md)
-   - [窗口错误码](errorcode-window.md)
-
+    - [屏幕错误码](errorcode-display.md)
+    - [窗口错误码](errorcode-window.md)
