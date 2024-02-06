@@ -1,6 +1,6 @@
-# MDM Kit API参考 
+# MDM Kit API参考
 
-- ArkTS API 
+- ArkTS API
   - [企业设备管理概述 (仅对系统应用开放)](enterpriseDeviceManagement-overview.md)
   - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](js-apis-enterprise-accountManager-sys.md)
   - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](js-apis-enterprise-adminManager-sys.md)
@@ -22,4 +22,3 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）(系统接口)](js-apis-EnterpriseAdminExtensionAbility-sys.md)
 - 错误码
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
-

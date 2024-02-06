@@ -26,7 +26,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 **参考链接**
 
-[http常见响应码](../reference/apis/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+[http常见响应码](../reference/apis-network-kit/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 
 ## http请求中response错误码返回6是什么意思(API 9)
@@ -41,7 +41,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 **参考链接**
 
-更多错误码参考[http常见响应码](../reference/apis/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+更多错误码参考[http常见响应码](../reference/apis-network-kit/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 ## \@ohos/axios三方件post请求queryParams参数场景下如何传参(API 9)
 
@@ -130,7 +130,7 @@ this.options = {
 
 **参考链接**
 
-[上传下载](../reference/apis/js-apis-request.md)
+[上传下载](../reference/apis-basic-services-kit/js-apis-request.md)
 
 
 ## 设备网络正常，调用connection.hasDefaultNet()接口失败(API 9)
@@ -178,14 +178,14 @@ netId的值如0、100分别代表什么含义？
 
 **解决措施**
 
-网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis/js-apis-http.md)
+网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis-network-kit/js-apis-http.md)
 
 
 ## 基于JS开发智能手表应用，如何编写网络请求(API 9)
 
 **解决措施**
 
-网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis/js-apis-http.md)
+网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis-network-kit/js-apis-http.md)
 
 
 ## 应用增加权限"ohos.permission.NOTIFICATION_CONTROLLER"，编译后无法启动(API 9)

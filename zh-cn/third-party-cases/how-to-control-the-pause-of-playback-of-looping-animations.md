@@ -121,7 +121,7 @@ struct AnimateToStop {
 ![](figures/play-stop2.gif)
 
 ## 参考
-[显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)
+[显示动画](../application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
 
-[定时器](../application-dev/reference/apis/js-apis-system-timer.md)
+[定时器](../application-dev/reference/common/js-apis-timer.md)
 
