@@ -1,6 +1,6 @@
 # \@Concurrent装饰器：声明并校验并发函数
 
-在使用[TaskPool](../reference/apis/js-apis-taskpool.md)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。
+在使用[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。
 
 
 > **说明：**

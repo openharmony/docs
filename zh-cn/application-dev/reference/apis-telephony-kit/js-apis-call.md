@@ -141,7 +141,7 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -188,7 +188,7 @@ makeCall\(phoneNumber: string\): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -399,7 +399,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<boolean\>\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -442,7 +442,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -491,7 +491,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -533,7 +533,7 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<string\>\): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -577,7 +577,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -630,7 +630,7 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -675,7 +675,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -727,7 +727,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise\<st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |

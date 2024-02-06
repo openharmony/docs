@@ -25,7 +25,7 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 | 参数名 | 类型                                | 必填 | 说明               |
 | ------ | ----------------------------------- | ---- | ------------------ |
-| want   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
 
 **返回值：**
 
@@ -96,7 +96,7 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 
 | 参数名 | 类型                                | 必填 | 说明             |
 | ------ | ----------------------------------- | ---- | ---------------- |
-| want   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 指示要启动的信息 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息 |
 
 **返回值：**
 
@@ -172,7 +172,7 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 | 参数名  | 类型                                                         | 必填 | 说明           |
 | ------- | ------------------------------------------------------------ | ---- | -------------- |
-| context | [VpnExtensionContext](../apis/js-apis-inner-application-VpnExtensionContext.md) | 是   | 指定 context。 |
+| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | 是   | 指定 context。 |
 
 **返回值：**
 
@@ -324,7 +324,7 @@ protect(socketFd: number): Promise\<void\>
 
 | 参数名   | 类型   | 必填 | 说明                                                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------------------------------------- |
-| socketFd | number | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](../apis/js-apis-socket.md#getsocketfd10-1)获取。 |
+| socketFd | number | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。 |
 
 **返回值：**
 
@@ -427,8 +427,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 | 名称                | 类型                                                           | 必填 | 说明                                |
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](../apis/js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
-| routes              | Array\<[RouteInfo](../apis/js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息。            |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息。            |
 | dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
 | mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |

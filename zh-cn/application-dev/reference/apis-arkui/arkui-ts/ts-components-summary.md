@@ -186,7 +186,7 @@
 - [Video](ts-media-components-video.md)
 
     用于播放视频文件并控制其播放状态的组件。
-- [PluginComponent](ts-basic-components-plugincomponent.md)
+- [PluginComponent](ts-basic-components-plugincomponent-sys.md)
 
     提供外部应用组件嵌入式显示功能，即外部应用提供的UI可在本应用内显示。
 - [XComponent](ts-basic-components-xcomponent.md)
@@ -265,7 +265,7 @@
 
 ## 网络
 
-- [Web](ts-basic-components-web.md)
+- [Web](../../apis-arkweb/ts-basic-components-web.md)
 
     提供具有网页显示能力的Web组件。
 
@@ -292,15 +292,15 @@
 
     可以进行页面下拉操作并显示刷新动效的容器组件。
 
-- [AbilityComponent](ts-container-ability-component.md)
+- [AbilityComponent](ts-container-ability-component-sys.md)
 
     独立显示Ability的容器组件。
 
-- [RemoteWindow](ts-basic-components-remotewindow.md)
+- [RemoteWindow](ts-basic-components-remotewindow-sys.md)
 
     远程控制窗口组件，可以通过此组件控制应用窗口，提供启动退出过程中控件动画和应用窗口联动动画的能力。
 
-- [FormComponent](ts-basic-components-formcomponent.md)
+- [FormComponent](ts-basic-components-formcomponent-sys.md)
 
     提供卡片组件，实现卡片的显示功能。
 
@@ -324,7 +324,7 @@
 
     用来展示菜单MenuItem的分组。
 
-- [UIExtensionComponent](ts-container-ui-extension-component.md)
+- [UIExtensionComponent](ts-container-ui-extension-component-sys.md)
 
     在页面中嵌入显示带UI界面的Ability扩展的容器组件。
 

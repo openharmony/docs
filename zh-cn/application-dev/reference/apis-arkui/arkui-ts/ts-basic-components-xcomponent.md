@@ -103,8 +103,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
-
+获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **返回值:**
 

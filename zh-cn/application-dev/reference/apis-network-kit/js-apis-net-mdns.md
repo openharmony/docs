@@ -23,7 +23,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功添加error为undefined，data为添加到本地的mdns服务信息。      |
 
@@ -39,7 +39,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
+> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -80,7 +80,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -101,7 +101,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
+> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -141,7 +141,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为移除本地的mdns服务信息。      |
 
@@ -157,7 +157,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
+> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -198,7 +198,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -219,7 +219,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
+> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -258,7 +258,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|---------|-----------| ------------------------------------------------------------ |
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceType | string  | 是       | 需要发现的mDNS服务类型。|
 
 **返回值：**
@@ -300,7 +300,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的mdns服务信息。      |
 
@@ -316,7 +316,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 2204010 | Send packet failed.                          |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
+> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -357,7 +357,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis/js-apis-app-ability-uiAbility.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -378,7 +378,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 2204010 | Send packet failed.                          |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
+> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -754,7 +754,7 @@ mDNS服务信息
 | serviceType   | string                             |  是 |  mDNS服务的类型。格式_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。  |
 | serviceName | string                             |  是 |  mDNS服务的名字。   |
 | port            | number           |  否 |  mDNS服务的端口号。           |
-| host           |  [NetAddress](../apis/js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
+| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
 | serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
 
 ## ServiceAttribute

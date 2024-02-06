@@ -41,7 +41,7 @@ import window from '@ohos.window';
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | 是 | 窗口名字。                                                                       |
 | windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                                                                       |
-| ctx        | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
+| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 
@@ -381,7 +381,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
+| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前应用内最后显示的窗口对象。 |
 
 **错误码：**
@@ -434,7 +434,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
+| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：**
 
@@ -624,7 +624,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 | 参数名   | 类型                                                    | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
-| ctx      | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
+| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
 | id       | string                                                  | 是   | 窗口id。                             |
 | type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
@@ -663,7 +663,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
+| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 | id     | string                    | 是   | 窗口id。                                                     |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
@@ -851,7 +851,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | [BaseContext](../apis/js-apis-inner-application-baseContext.md)                            | 是   | 当前应用上下文信息。 |
+| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | 是   | 当前应用上下文信息。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前应用内最后显示的窗口对象。                 |
 
 **示例：**
@@ -896,7 +896,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
+| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：**
 
@@ -1828,7 +1828,7 @@ getUIContext(): UIContext
 
 | 类型       | 说明                   |
 | ---------- | ---------------------- |
-| [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
+| [UIContext](js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
 
 **错误码：**
 
@@ -2494,7 +2494,7 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis/js-apis-inputmethodengine.md#changeflag10)。
+开启固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2522,7 +2522,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -6162,7 +6162,7 @@ WindowStage生命周期。
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
 
-下列API示例中都需在[onWindowStageCreate()](../apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
+下列API示例中都需在[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
 ### getMainWindow<sup>9+</sup>
 

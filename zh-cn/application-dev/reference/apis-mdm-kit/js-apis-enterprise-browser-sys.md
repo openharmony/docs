@@ -33,7 +33,7 @@ setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallbac
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | policies    | string              | 是    | 浏览器策略，当参数policies为空字符串时，表示取消指定浏览器的策略。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
@@ -81,7 +81,7 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | policies    | string                | 是    | 浏览器策略，当参数policies为空字符串时，表示取消指定浏览器的策略。                  |
 
@@ -131,7 +131,7 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 | callback | AsyncCallback&lt;string&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
@@ -174,7 +174,7 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | appId    | string              | 是    | 应用ID，用于指定浏览器。                  |
 
 **返回值：**

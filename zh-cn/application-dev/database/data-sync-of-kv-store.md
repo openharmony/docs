@@ -32,7 +32,7 @@
 数据管理服务提供了两种同步方式：手动同步和自动同步。键值型数据库可选择其中一种方式实现同应用跨设备数据同步。
 
 
-- **手动同步**：由应用程序调用sync接口来触发，需要指定同步的设备列表和同步模式。同步模式分为PULL_ONLY（将远端数据拉取到本端）、PUSH_ONLY（将本端数据推送到远端）和PUSH_PULL（将本端数据推送到远端同时也将远端数据拉取到本端）。[带有Query参数的同步接口](../reference/apis/js-apis-distributedKVStore.md#sync-1)，支持按条件过滤的方法进行同步，将符合条件的数据同步到远端。
+- **手动同步**：由应用程序调用sync接口来触发，需要指定同步的设备列表和同步模式。同步模式分为PULL_ONLY（将远端数据拉取到本端）、PUSH_ONLY（将本端数据推送到远端）和PUSH_PULL（将本端数据推送到远端同时也将远端数据拉取到本端）。[带有Query参数的同步接口](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1)，支持按条件过滤的方法进行同步，将符合条件的数据同步到远端。
 
 - **自动同步**：由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，同步时机包括设备上线、应用程序更新数据等，应用不需要主动调用sync接口。
 
@@ -75,7 +75,7 @@
 
 ## 接口说明
 
-以下是单版本键值型分布式数据库跨设备数据同步功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
+以下是单版本键值型分布式数据库跨设备数据同步功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
@@ -194,7 +194,7 @@
    }
    ```
 
-5. 订阅分布式数据变化，如需关闭订阅分布式数据变化，调用[off('dataChange')](../reference/apis/js-apis-distributedKVStore.md#offdatachange)关闭。
+5. 订阅分布式数据变化，如需关闭订阅分布式数据变化，调用[off('dataChange')](../reference/apis-arkdata/js-apis-distributedKVStore.md#offdatachange)关闭。
      
    ```ts
    try {
@@ -267,7 +267,7 @@
 
    > **说明：**
    >
-   > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
+   > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
    ```ts
    import deviceManager from '@ohos.distributedDeviceManager';
