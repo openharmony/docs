@@ -1351,8 +1351,8 @@ confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;st
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let shareResource: string;
-cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result) => {
+let shareResource: string | undefined;
+cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result: cloudData.Result<string>) => {
   console.info(`confirm invitation succeeded, result: ${result}`);
   shareResource = result.value;
 }).catch((err: BusinessError) => {
