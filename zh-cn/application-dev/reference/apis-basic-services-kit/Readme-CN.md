@@ -64,6 +64,7 @@
   - [@ohos.brightness (屏幕亮度)(系统接口)](js-apis-brightness-sys.md)
   - [@ohos.charger (充电类型)(系统接口)](js-apis-charger-sys.md)
   - [@ohos.power (系统电源管理)(系统接口)](js-apis-power-sys.md)
+  - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
   - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
 - C API
 - 错误码
@@ -78,5 +79,6 @@
   - [电量信息错误码](errorcode-battery-info.md)
   - [系统电源错误码](errorcode-power.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
+  - [时间时区错误码](errorcode-time.md)
   - [上传下载错误码](errorcode-request.md)
 
