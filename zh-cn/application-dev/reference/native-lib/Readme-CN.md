@@ -11,12 +11,12 @@
 - Vulkan
   - [Vulkan支持能力](vulkan.md)
   - [Vulkan开发指导](vulkan-guidelines.md)
-  - [Vulkan扩展能力](_vulkan.md)
 - 附录
   - [libc中没有导出的符号列表](musl-peculiar-symbol.md)
   - [libc中由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
   - [Native api中导出的EGL符号列表](egl-symbol.md)
   - [Native api中导出的OpenGL ES 3.2符号列表](openglesv3-symbol.md)
+  - [Vulkan扩展能力列表](_vulkan.md)
   - [vulkan_ohos.h](vulkan__ohos_8h.md)
   - [VkExternalFormatOHOS](_vk_external_format_o_h_o_s.md)
   - [VkImportNativeBufferInfoOHOS](_vk_import_native_buffer_info_o_h_o_s.md)
