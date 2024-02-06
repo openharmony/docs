@@ -29,7 +29,7 @@
 
 **表1** 主要接口
 
-以下是短时任务开发使用的主要接口，更多接口及使用方式请见[后台任务管理](../reference/ apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)。
+以下是短时任务开发使用的主要接口，更多接口及使用方式请见[后台任务管理](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
