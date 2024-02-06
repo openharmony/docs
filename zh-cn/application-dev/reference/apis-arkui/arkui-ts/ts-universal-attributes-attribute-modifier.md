@@ -63,7 +63,7 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
+不支持入参为[CustomBuilder](/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
 
 ## 示例
 

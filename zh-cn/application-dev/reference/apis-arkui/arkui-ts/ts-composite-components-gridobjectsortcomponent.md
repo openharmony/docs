@@ -75,7 +75,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ##  事件
 
-不支持[通用事件](https://gitee.com/epro123/docs/blob/e9117a947a1c1649cb8fbd77e99eb3c0944f40f4/zh-cn/application-dev/reference/arkui-ts/ts-universal-events-click.md)。
+不支持[通用事件](https://gitee.com/epro123/docs/blob/e9117a947a1c1649cb8fbd77e99eb3c0944f40f4/zh-cn/application-dev/reference//ts-universal-events-click.md)。
 
 ## 示例
 
