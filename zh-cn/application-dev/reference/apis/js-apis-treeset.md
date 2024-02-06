@@ -36,7 +36,7 @@ import TreeSet from '@ohos.util.TreeSet';
 
 constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
-TreeSet的构造函数。
+TreeSet的构造函数，支持通过比较函数对元素进行升序或降序排序。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -44,7 +44,7 @@ TreeSet的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。|
 
 **错误码：**
 
@@ -58,6 +58,16 @@ TreeSet的构造函数。
 
 ```ts
 let treeSet = new TreeSet();
+//使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
+let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue < secondValue});
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+let numbers = Array.from(treeSet.values())
+for (let item of numbers) {
+  console.log("TreeSet:" + item);
+}
 ```
 
 
