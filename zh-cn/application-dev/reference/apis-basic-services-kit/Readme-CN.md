@@ -65,6 +65,9 @@
         - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
         - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
+        - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+        - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
+        - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
     - 已停止维护的接口
         - [系统公共事件定义](commonEvent-definitions.md)
         - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -88,6 +91,7 @@
     - [系统参数错误码](errorcode-system-parameterV9.md)
     - [系统电源管理错误码](errorcode-power.md)
     - [帐号管理错误码](errorcode-account.md)
+    - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 
 
 

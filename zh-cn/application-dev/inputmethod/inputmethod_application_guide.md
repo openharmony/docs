@@ -1,6 +1,6 @@
 # 实现一个输入法应用
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
 - **onCreate()**
 
@@ -352,7 +352,7 @@
 > **说明：**
 >
 > - 若导入被限制的模块，在编译时不报错，在运行时会返回错误的值，即undefined，导致不生效。
-> - 当前未禁止对音频管理模块[@ohos.multimedia.audio (音频管理)](../reference/apis/js-apis-audio.md)的访问，但要求开发者应遵循以下约定：
+> - 当前未禁止对音频管理模块[@ohos.multimedia.audio (音频管理)](../reference/apis-audio-kit/js-apis-audio.md)的访问，但要求开发者应遵循以下约定：
 >   - 不得因用户未授予录音权限而禁止用户使用输入法应用的非语音输入法功能；
 >   - 仅允许InputMethodExtensionAbility处于前台时开展与录音相关的业务。如仅允许软键盘在前台且用户主动操作语音输入法时，才进行录音；应用切换到后台时，应主动停止录音；
 >   - 系统会逐步增加对违反以上约定的行为进行管控和识别，因此未遵守此约定可能会造成业务功能异常。

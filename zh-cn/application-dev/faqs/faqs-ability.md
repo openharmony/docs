@@ -182,11 +182,6 @@ try {
 }
 ```
 
-**参考链接**
-
-[系统时间、时区](../reference/apis-basic-services-kit/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
-
-
 ## 如何获取当前应用程序缓存目录(API 9)
 
 **解决措施**

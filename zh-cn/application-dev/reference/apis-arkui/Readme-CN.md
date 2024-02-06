@@ -26,6 +26,7 @@
     - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
+    - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [FrameNode](js-apis-arkui-frameNode.md)

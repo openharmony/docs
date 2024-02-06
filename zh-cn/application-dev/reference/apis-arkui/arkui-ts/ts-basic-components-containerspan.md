@@ -20,7 +20,7 @@ ContainerSpan()
 
 | 名称                                       | 参数类型                                 | 描述                                                                                                                                                |
 | ------------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| textBackgroundStyle | [TextBackgroundStyle](#textbackgroundstyle) | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**说明：**<br/>子组件在不设置该属性时，将继承此属性值。 |
+| textBackgroundStyle | [TextBackgroundStyle](#textbackgroundstyle对象说明) | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**说明：**<br/>子组件在不设置该属性时，将继承此属性值。 |
 
 ## TextBackgroundStyle对象说明
 
