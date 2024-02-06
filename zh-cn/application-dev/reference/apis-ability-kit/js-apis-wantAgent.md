@@ -24,7 +24,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](../apis/js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | WantAgent信息。           |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **示例：**
@@ -82,7 +82,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 参数名 | 类型          | 必填 | 说明          |
 | ---- | ------------- | ---- | ------------- |
-| info | [WantAgentInfo](../apis/js-apis-inner-wantAgent-wantAgentInfo.md) | 是   | WantAgent信息。 |
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | 是   | WantAgent信息。 |
 
 **返回值：**
 
@@ -549,7 +549,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | [TriggerInfo](../apis/js-apis-inner-wantAgent-triggerInfo.md)                     | 是   | TriggerInfo对象。                 |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | 是   | TriggerInfo对象。                 |
 | callback    | Callback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **示例：**

@@ -24,7 +24,7 @@ import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriber
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明     |
 | ------- | ------------------------------------------------------------ | ---- | ---- | -------- |
-| context<sup>10+</sup> | [StaticSubscriberExtensionContext](../apis/js-apis-application-StaticSubscriberExtensionContext.md) | 是   | 否   | 上下文。 |
+| context<sup>10+</sup> | [StaticSubscriberExtensionContext](../apis-basic-services-kit/js-apis-application-StaticSubscriberExtensionContext-sys.md) | 是   | 否   | 上下文。 |
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 
@@ -40,7 +40,7 @@ onReceiveEvent(event: CommonEventData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| event | [CommonEventData](../apis/js-apis-commonEventManager.md#commoneventdata) | 是 | 静态订阅者通用事件回调。 |
+| event | [CommonEventData](../apis-basic-services-kit/js-apis-commonEventManager.md#commoneventdata) | 是 | 静态订阅者通用事件回调。 |
 
 **示例：**
   ```ts

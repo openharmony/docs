@@ -22,7 +22,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 | 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [ExtensionContext](../apis/js-apis-inner-application-extensionContext.md)  | 是 | 否 |表示数据共享扩展能力上下文。 |
+| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | 是 | 否 |表示数据共享扩展能力上下文。 |
 
 ## onCreate
 
@@ -36,7 +36,7 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| want | [Want](../apis/js-apis-app-ability-want.md#want) | 是  | Want类型信息，包括Ability名称、Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md#want) | 是  | Want类型信息，包括Ability名称、Bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。无返回值。 |
 
 **示例：**
@@ -84,7 +84,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri |string | 是  | 指示要插入的数据的路径。 |
-| valueBucket |[ValuesBucket](../apis/js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要插入的数据。 |
+| valueBucket |[ValuesBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要插入的数据。 |
 | callback |AsyncCallback&lt;number&gt; | 是 | 回调函数。返回插入数据记录的索引。 |
 
 **示例：**
@@ -125,8 +125,8 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要更新的数据的路径。 |
-| predicates | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
-| valueBucket | [ValuesBucket](../apis/js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
+| predicates | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| valueBucket | [ValuesBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回更新的数据记录数。 |
 
 **示例：**
@@ -166,7 +166,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 参数名       | 类型                                                     | 必填 | 说明                               |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。           |
-| predicates | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
+| predicates | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。 |
 
 **示例：**
@@ -205,7 +205,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
-| predicates | [dataSharePredicates.DataSharePredicates](../apis/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | columns | Array&lt;string&gt; | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
 | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回查询到的结果集。 |
 
@@ -248,7 +248,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 | 参数名        | 类型                                                     | 必填 | 说明                             |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | uri          | string                                                       | 是   | 指示要批量插入的数据的路径。     |
-| valueBuckets | Array&lt;[ValuesBucket](../apis/js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 指示要批量插入的数据。           |
+| valueBuckets | Array&lt;[ValuesBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 指示要批量插入的数据。           |
 | callback     | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回插入的数据记录数。 |
 
 **示例：**
@@ -287,7 +287,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名     | 类型                  | 必填 | 说明                    |
 | -------- | --------------------- | ---- | ----------------------- |
-| uri      | string                | 是   | 指示用户传入的[URI](../apis/js-apis-uri.md#uri)。 |
+| uri      | string                | 是   | 指示用户传入的[URI](../apis-arkts/js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果支持URI规范化，则返回规范化URI，否则返回空。 |
 
 **示例：**
@@ -322,7 +322,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名     | 类型                  | 必填 | 说明                    |
 | -------- | --------------------- | ---- | ----------------------- |
-| uri      | string                | 是   | 指示服务端使用的[URI](../apis/js-apis-uri.md#uri)。 |
+| uri      | string                | 是   | 指示服务端使用的[URI](../apis-arkts/js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空。 |
 
 **示例：**

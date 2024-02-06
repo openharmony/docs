@@ -24,7 +24,7 @@ on(type: 'error', observer: ErrorObserver): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'error'，表示错误观察器。 |
-| observer | [ErrorObserver](../apis/js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
+| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
 
 **返回值：**
 
@@ -38,7 +38,7 @@ on(type: 'error', observer: ErrorObserver): number
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -90,7 +90,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -141,7 +141,7 @@ off(type: 'error', observerId: number): Promise\<void>
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
