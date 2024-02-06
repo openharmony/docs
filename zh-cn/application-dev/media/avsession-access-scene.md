@@ -25,7 +25,7 @@ AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说�
 
 ## 创建不同类型的会话
 
-AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../reference/apis/js-apis-avsession.md#avsessiontype10) 定义，不同的类型代表了不同场景的控制能力，对于播控中心来说，会展示不同的控制模版。
+AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../reference/apis-avsession-kit/js-apis-avsession.md#avsessiontype10) 定义，不同的类型代表了不同场景的控制能力，对于播控中心来说，会展示不同的控制模版。
 
 - audio类型，播控中心的控制样式为：收藏，上一首，播放/暂停，下一首，循环模式。
 
@@ -55,7 +55,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
 
-对媒体类播放来说，需要申请[AUDIO_PLAYBACK BackgroundMode](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)的长时任务。
+对媒体类播放来说，需要申请[AUDIO_PLAYBACK BackgroundMode](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)的长时任务。
 
 
 ## 设置元数据
@@ -163,7 +163,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 ### 通用播放状态
 
-应用可以通过[setAVPlaybackState](../reference/apis/js-apis-avsession.md#setavplaybackstate10)。把当前的播放状态设置给系统，以在播控中心界面进行展示。
+应用可以通过[setAVPlaybackState](../reference/apis-avsession-kit/js-apis-avsession.md#setavplaybackstate10)。把当前的播放状态设置给系统，以在播控中心界面进行展示。
 播放状态一般是在资源播放后会进行变化的内容，包括：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等。
 
 ```ts
@@ -252,7 +252,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 ## 注册控制命令
 
 应用接入AVSession，可以通过注册不同的控制命令来实现播控中心界面上的控制操作，即通过on接口注册不同的控制命令参数，即可实现对应的功能。
-具体的接口参考[接口注册](../reference/apis/js-apis-avsession.md#onplay10)。
+具体的接口参考[接口注册](../reference/apis-avsession-kit/js-apis-avsession.md#onplay10)。
 > **说明：**
 >
 > 创建AVSession后，请先注册应用支持的控制命令，再激活 Session 
@@ -344,7 +344,7 @@ async function unregisterSessionListener() {
 
 ### 收藏
 
-音乐类应用实现收藏功能，那么需要注册收藏的控制响应[on('toggleFavorite')](../reference/apis/js-apis-avsession.md#ontogglefavorite10)。
+音乐类应用实现收藏功能，那么需要注册收藏的控制响应[on('toggleFavorite')](../reference/apis-avsession-kit/js-apis-avsession.md#ontogglefavorite10)。
 
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
@@ -374,7 +374,7 @@ async function unregisterSessionListener() {
 
 ### 循环模式
 
-针对音乐类应用，系统的播控中心界面会默认展示循环模式的控制操作，目前系统支持四种固定的循环模式控制，参考: [LoopMode](../reference/apis/js-apis-avsession.md#loopmode10)。
+针对音乐类应用，系统的播控中心界面会默认展示循环模式的控制操作，目前系统支持四种固定的循环模式控制，参考: [LoopMode](../reference/apis-avsession-kit/js-apis-avsession.md#loopmode10)。
 
 播控中心支持固定的四种循环模式的切换，即： 随机播放、顺序播放、单曲循环、列表循环。播控中心会按照固定的切换顺序通知应用，应用收到对应的循环模式命令后进行响应。
 

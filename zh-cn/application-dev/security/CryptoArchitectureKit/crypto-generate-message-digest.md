@@ -38,13 +38,13 @@
 
 ### 摘要算法（一次性传入）
 
-1. 调用[cryptoFramework.createMd](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要操作实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要操作实例（Md）。
 
-2. 调用[Md.update](../../reference/apis/js-apis-cryptoFramework.md#update-6)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
+2. 调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
 
-3. 调用[Md.digest](../../reference/apis/js-apis-cryptoFramework.md#digest)，获取摘要计算结果。
+3. 调用[Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest)，获取摘要计算结果。
 
-4. 调用[Md.getMdLength](../../reference/apis/js-apis-cryptoFramework.md#getmdlength)，获取摘要计算长度，单位为字节。
+4. 调用[Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength)，获取摘要计算长度，单位为字节。
 
 以使用await方式单次传入数据，获取摘要计算结果为例：
 
@@ -66,13 +66,13 @@ async function doMd() {
 
 ### 分段摘要算法
 
-1. 调用[cryptoFramework.createMd](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要操作实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要操作实例（Md）。
 
-2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[Md.update](../../reference/apis/js-apis-cryptoFramework.md#update-7)，进行摘要更新计算。
+2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7)，进行摘要更新计算。
 
-3. 调用[Md.digest](../../reference/apis/js-apis-cryptoFramework.md#digest-1)，获取摘要计算结果。
+3. 调用[Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest-1)，获取摘要计算结果。
 
-4. 调用[Md.getMdLength](../../reference/apis/js-apis-cryptoFramework.md#getmdlength)，获取摘要计算长度，单位为字节。
+4. 调用[Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength)，获取摘要计算长度，单位为字节。
 
 以使用await方式分段传入数据，获取摘要计算结果为例：
 

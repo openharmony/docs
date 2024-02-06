@@ -68,7 +68,7 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 
 图2中，数字标注表示需要数据与外部模块的传递。
 
-1. 应用从XComponent组件获取窗口SurfaceID，获取方式参考[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+1. 应用从XComponent组件获取窗口SurfaceID，获取方式参考[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 2. 应用把媒体资源、SurfaceID传递给AVPlayer接口。
 

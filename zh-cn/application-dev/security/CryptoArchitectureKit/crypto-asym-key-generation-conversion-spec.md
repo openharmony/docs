@@ -146,9 +146,9 @@ Fp域下的ECC密钥参数，包括：
 | sk | - | - | √ | √ | 
 
 > **说明：**
-> - 当前ECC只支持Fp域，因此fieldType固定为"Fp"。fieldType和p构成了属性field，当前field只支持[ECFieldFp](../../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10)。
+> - 当前ECC只支持Fp域，因此fieldType固定为"Fp"。fieldType和p构成了属性field，当前field只支持[ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10)。
 > 
-> - g和pk为ECC曲线上的点，属于[Point](../../reference/apis/js-apis-cryptoFramework.md#point10)类型，需要指定具体X，Y坐标。
+> - g和pk为ECC曲线上的点，属于[Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10)类型，需要指定具体X，Y坐标。
 
 
 ### 使用曲线名生成密钥参数
@@ -269,9 +269,9 @@ Fp域下的SM2密钥参数，包括：
 | sk | - | - | √ | √ | 
 
 > **说明：**
-> - 当前SM2只支持Fp域，因此fieldType固定为"Fp"。fieldType和p构成了属性field，当前field只支持[ECFieldFp](../../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10)。
+> - 当前SM2只支持Fp域，因此fieldType固定为"Fp"。fieldType和p构成了属性field，当前field只支持[ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10)。
 > 
-> - g和pk为SM2曲线上的点，属于[Point](../../reference/apis/js-apis-cryptoFramework.md#point10)类型，需要指定具体X，Y坐标。
+> - g和pk为SM2曲线上的点，属于[Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10)类型，需要指定具体X，Y坐标。
 
 
 ### 使用曲线名生成密钥参数

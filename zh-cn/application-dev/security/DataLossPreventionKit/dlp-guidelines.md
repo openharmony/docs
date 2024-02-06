@@ -48,7 +48,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 ## 开发步骤
 
-1. 引入[dlpPermission](../../reference/apis/js-apis-dlppermission.md)模块。
+1. 引入[dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)模块。
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';

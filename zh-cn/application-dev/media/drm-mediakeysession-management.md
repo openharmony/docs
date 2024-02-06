@@ -4,7 +4,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 ## 开发步骤
 
-详细的API说明请参考[DRM API参考](../reference/apis/js-apis-drm.md)。
+详细的API说明请参考[DRM API参考](../reference/apis-drm-kit/js-apis-drm.md)。
 
 1. 导入相关接口，导入方法如下。
 
@@ -12,7 +12,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    import drm from '@ohos.multimedia.drm';
    ```
 
-2. 调用MediaKeySession类中的generateMediaKeyRequest方法，生成许可证请求。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+2. 调用MediaKeySession类中的generateMediaKeyRequest方法，生成许可证请求。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: OptionalData[]): Promise<MediaKeyRequest> {
@@ -32,7 +32,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-3. 调用MediaKeySession类中的processMediaKeyResponse方法，处理许可证响应报文。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+3. 调用MediaKeySession类中的processMediaKeyResponse方法，处理许可证响应报文。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array> {
@@ -47,7 +47,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-4. 调用MediaKeySession类中的checkMediaKeyStatus方法，检查当前会话的许可证状态。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+4. 调用MediaKeySession类中的checkMediaKeyStatus方法，检查当前会话的许可证状态。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function checkMediaKeyStatus(): MediaKeyStatus[] {
@@ -63,7 +63,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-5. 调用MediaKeySession类中的clearMediaKeys方法，删除当前会话的许可证。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+5. 调用MediaKeySession类中的clearMediaKeys方法，删除当前会话的许可证。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function clearMediaKeys(): void {
@@ -78,7 +78,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    }
    ```
 
-6. 调用MediaKeySession类中的generateOfflineReleaseRequest方法，生成离线许可证释放请求。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+6. 调用MediaKeySession类中的generateOfflineReleaseRequest方法，生成离线许可证释放请求。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function generateOfflineReleaseRequest(mediakeyId: Uint8Array): Promise<Uint8Array> {
@@ -101,7 +101,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 7. 处理离线许可证释放响应。
 
-   调用MediaKeySession类中的processOfflineReleaseResponse方法，处理离线许可证释放响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySession类中的processOfflineReleaseResponse方法，处理离线许可证释放响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function processOfflineReleaseResponse(response: Uint8Array): Promise<void> {
@@ -123,7 +123,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 8. 恢复离线许可证。
 
-   调用MediaKeySession类中的restoreOfflineMediaKeys方法，恢复离线许可证。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySession类中的restoreOfflineMediaKeys方法，恢复离线许可证。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function restoreOfflineMediaKeys(mediakeyId: Uint8Array): Promise<void> {
@@ -145,7 +145,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 9. 处理设备证书响应。
 
-   调用MediaKeySession类中的getContentProtectionLevel方法，获取当前会话的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySession类中的getContentProtectionLevel方法，获取当前会话的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function getContentProtectionLevel(): ContentProtectionLevel {
@@ -163,7 +163,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 10. 获取设备证书状态。
 
-   调用MediaKeySession类中的requireSecureDecoderModule方法，查询安全解码模块状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySession类中的requireSecureDecoderModule方法，查询安全解码模块状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function requireSecureDecoderModule(mimeType: string): boolean {
@@ -181,7 +181,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 11. 销毁MediaKeySystem实例。
 
-   调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis/js-apis-drm.md#drmerrorcode)。
+   调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
    function destroy(mediaKeySession: MediaKeySession): void {

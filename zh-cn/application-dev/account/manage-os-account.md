@@ -16,7 +16,7 @@
 
 ### 帐号完整信息
 
-系统帐号的完整信息请参考[OsAccountInfo](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#osaccountinfo)定义。
+系统帐号的完整信息请参考[OsAccountInfo](../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)定义。
 
 ## 开发准备
 

@@ -10,10 +10,10 @@
    - 密钥别名的最大长度为64字节。
    - 对于不同业务间生成的密钥，HUKS将基于业务身份信息进行存储路径隔离，不会因为和其他业务密钥同名导致冲突。
 
-2. 初始化密钥属性集。通过[OH_Huks_InitParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset)构造密钥属性集paramSet。
-   密钥属性集中必须包含[OH_Huks_KeyAlg](../../reference/native-apis/_huks_type_api.md#oh_huks_keyalg)、[OH_Huks_KeySize](../../reference/native-apis/_huks_type_api.md#oh_huks_keysize)、[OH_Huks_KeyPurpose](../../reference/native-apis/_huks_type_api.md#oh_huks_keypurpose)属性。
+2. 初始化密钥属性集。通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造密钥属性集paramSet。
+   密钥属性集中必须包含[OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg)、[OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize)、[OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose)属性。
 
-3. 调用[OH_Huks_GenerateKeyItem](../../reference/native-apis/_huks_key_api.md#oh_huks_generatekeyitem)，传入密钥别名和密钥属性集，生成密钥。
+3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem)，传入密钥别名和密钥属性集，生成密钥。
 
 > **说明：**
 > 如果业务再次使用相同别名调用HUKS生成密钥，HUKS将生成新密钥并直接覆盖历史的密钥文件。
