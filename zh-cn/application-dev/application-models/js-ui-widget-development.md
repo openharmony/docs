@@ -44,7 +44,7 @@
 
 ## 接口说明
 
-FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formExtensionAbility.md)。
+FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)。
 
 | 接口名                                                                                              | 描述 |
 | -------- | -------- |
@@ -57,7 +57,7 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | 当系统配置更新时调用。 |
 | onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | 卡片提供方接收卡片分享的通知接口。 |
 
-formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
+formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -66,7 +66,7 @@ formProvider类有如下API接口，具体的API介绍详见[接口文档](../re
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 更新指定的卡片。 |
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData):&nbsp;Promise&lt;void&gt; | 更新指定的卡片，以promise方式返回。 |
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formBindingData.md)。
+formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
