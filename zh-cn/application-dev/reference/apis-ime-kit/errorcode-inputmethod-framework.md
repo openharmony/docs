@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 12800001 包管理服务异常
 
@@ -142,7 +142,7 @@ Input method manager service error.
 
 **可能原因**
 
-当调用[输入法框架](../apis/js-apis-inputmethod.md)中的任何接口都有可能由于依赖输入法管理服务，而服务找不到时发生此异常。
+当调用[输入法框架](js-apis-inputmethod.md)中的任何接口都有可能由于依赖输入法管理服务，而服务找不到时发生此异常。
 
 **处理步骤**
 
