@@ -251,7 +251,7 @@
 ## 参考
 
 - [权限列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiondistributed_datasync)
-- [@ohos.multimedia.camera](../application-dev/reference/apis/js-apis-camera.md)
+- [@ohos.multimedia.camera](../application-dev/reference/apis-camera-kit/js-apis-camera.md)
 
 
 
