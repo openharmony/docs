@@ -20,7 +20,7 @@ overlay(value: string | CustomBuilder, options?: { align?: Alignment; offset?: {
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)<sup>10+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
+| value   | string&nbsp;\|&nbsp;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)<sup>10+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
 | options | &nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} | 否   | 浮层的定位。<br/>-&nbsp;align：设置浮层相对于组件的方位。<br/>-&nbsp;offset：设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。<br/>**说明：**<br/>两者都设置时效果重叠，浮层相对于组件方位定位后再基于当前位置的左上角进行偏移。 |
 
 ## 示例

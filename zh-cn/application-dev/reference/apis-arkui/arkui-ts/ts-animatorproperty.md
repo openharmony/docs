@@ -15,7 +15,7 @@ animation(value:AnimateParam)
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
+| value | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 
 ## ExpectedFrameRateRange<sup>11+</sup>
 | 名称  | 类型     | 说明      |

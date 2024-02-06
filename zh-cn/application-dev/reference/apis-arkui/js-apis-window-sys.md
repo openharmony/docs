@@ -2932,7 +2932,7 @@ export default class EntryAbility extends UIAbility {
 
 completeTransition(isCompleted: boolean): void
 
-设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](../arkui-ts/ts-explicit-animation.md)执行后设置。
+设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](arkui-ts/ts-explicit-animation.md)执行后设置。
 
 **系统接口：** 此接口为系统接口。
 

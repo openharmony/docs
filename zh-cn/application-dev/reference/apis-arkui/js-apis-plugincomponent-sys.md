@@ -1,6 +1,6 @@
 # @ohos.pluginComponent (PluginComponentManager)(系统接口)
 
-用于给插件组件的使用者请求组件与数据，使用者发送组件模板和数据。如需实现插件模板的显示，请参考[PluginComponent](../arkui-ts/ts-basic-components-plugincomponent.md)。
+用于给插件组件的使用者请求组件与数据，使用者发送组件模板和数据。如需实现插件模板的显示，请参考[PluginComponent](arkui-ts/ts-basic-components-plugincomponent.md)。
 
 >  **说明：**
 >
@@ -27,8 +27,8 @@ import Want from '@ohos.app.ability.Want';
 
 | 名称        | 类型                                  | 必填   | 说明                                       |
 | --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| owner     | [Want](../apis/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
-| target    | [Want](../apis/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| owner     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
+| target    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
 | name      | string                              | 是    | 组件名称。                                    |
 | data      | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 组件数据值。                                   |
 | extraData | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 附加数据值。                                   |
@@ -46,8 +46,8 @@ import Want from '@ohos.app.ability.Want';
 
 | 名称       | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| owner    | [Want](../apis/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
-| target   | [Want](../apis/js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
+| owner    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| target   | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
 | data     | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 附加数据。                                    |
 | jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |

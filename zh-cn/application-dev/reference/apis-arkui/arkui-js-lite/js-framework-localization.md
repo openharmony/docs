@@ -86,4 +86,4 @@ en-US.json
 
 ## 获取语言
 
-获取语言功能请参考[应用配置](../apis/js-apis-system-configuration.md)。
+获取语言功能请参考[应用配置](../js-apis-system-configuration.md)。

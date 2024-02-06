@@ -36,8 +36,8 @@ registerFont(options: FontOptions): void
 
 | 名称         | 类型     | 必填   | 说明           |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册的字体名称。   |
-| familySrc  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册字体文件的路径。 |
+| familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册的字体名称。   |
+| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | 是    | 设置注册字体文件的路径。 |
 
 **示例：**
 
