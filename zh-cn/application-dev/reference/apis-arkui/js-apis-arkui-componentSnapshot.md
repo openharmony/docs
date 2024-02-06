@@ -34,7 +34,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | [AsyncCallback](../apis/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 

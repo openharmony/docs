@@ -37,9 +37,9 @@
 
 **实现方案**
 
-不同断点下，页签在页面中的位置及尺寸都有差异，可以结合响应式布局能力，设置不同断点下[Tab组件](../../reference/arkui-ts/ts-container-tabs.md)的barPosition、vertical、barWidth和barHeight属性实现目标效果。
+不同断点下，页签在页面中的位置及尺寸都有差异，可以结合响应式布局能力，设置不同断点下[Tab组件](../../reference/apis-arkui/arkui-ts/ts-container-tabs.md)的barPosition、vertical、barWidth和barHeight属性实现目标效果。
 
-另外，页签栏中的文字和图片的相对位置不同，同样可以通过设置不同断点下[tabBar](../../reference/arkui-ts/ts-container-tabcontent.md#属性)对应的CustomBuilder中的布局方向，实现目标效果。
+另外，页签栏中的文字和图片的相对位置不同，同样可以通过设置不同断点下[tabBar](../../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#属性)对应的CustomBuilder中的布局方向，实现目标效果。
 
 
 **参考代码**
@@ -146,7 +146,7 @@ struct Home {
 
 **实现方案**
 
-运营横幅通常使用[Swiper组件](../../reference/arkui-ts/ts-container-swiper.md)实现。不同断点下，运营横幅中展示的图片数量不同。只需要结合响应式布局，配置不同断点下Swiper组件的displayCount属性，即可实现目标效果。
+运营横幅通常使用[Swiper组件](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)实现。不同断点下，运营横幅中展示的图片数量不同。只需要结合响应式布局，配置不同断点下Swiper组件的displayCount属性，即可实现目标效果。
 
 **参考代码**
 
@@ -204,9 +204,9 @@ export default struct Banner {
 
 **实现方案**
 
-不同断点下，页面中图片的排布不同，此场景可以通过响应式布局能力结合[Grid组件](../../reference/arkui-ts/ts-container-grid.md)实现，通过调整不同断点下的Grid组件的columnsTemplate属性即可实现目标效果。
+不同断点下，页面中图片的排布不同，此场景可以通过响应式布局能力结合[Grid组件](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)实现，通过调整不同断点下的Grid组件的columnsTemplate属性即可实现目标效果。
 
-另外，由于本例中各列的宽度相同，也可以通过响应式布局能力结合[List组件](../../reference/arkui-ts/ts-container-list.md)实现，通过调整不同断点下的List组件的lanes属性也可实现目标效果。
+另外，由于本例中各列的宽度相同，也可以通过响应式布局能力结合[List组件](../../reference/apis-arkui/arkui-ts/ts-container-list.md)实现，通过调整不同断点下的List组件的lanes属性也可实现目标效果。
 
 
 **参考代码**
@@ -343,7 +343,7 @@ struct MultiLaneList {
 
 **实现方案**
 
-侧边栏通常通过[SideBarContainer组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)实现，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、showControlButton等属性配置不同的值，即可实现目标效果。
+侧边栏通常通过[SideBarContainer组件](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)实现，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的sideBarWidth、showControlButton等属性配置不同的值，即可实现目标效果。
 
 **参考代码**
 
@@ -445,7 +445,7 @@ struct SideBarSample {
 
 **实现方案**
 
-单/双栏场景可以使用[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，Navigation组件可以根据窗口宽度自动切换单/双栏显示，减少开发工作量。
+单/双栏场景可以使用[Navigation组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)实现，Navigation组件可以根据窗口宽度自动切换单/双栏显示，减少开发工作量。
 
 **参考代码**
 
@@ -531,7 +531,7 @@ struct NavigationSample {
 
 **实现方案**
 
-三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的minContentWidth属性配置不同的值，即可实现目标效果。设置minContentWidth属性的值可以通过[断点](../multi-device-app-dev/responsive-layout.md#断点)监听窗口尺寸变化的同时设置不同的值并储存成一个全局对象。
+三分栏场景可以组合使用[SideBarContainer](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的minContentWidth属性配置不同的值，即可实现目标效果。设置minContentWidth属性的值可以通过[断点](../multi-device-app-dev/responsive-layout.md#断点)监听窗口尺寸变化的同时设置不同的值并储存成一个全局对象。
 
 **参考代码**
 
@@ -714,7 +714,7 @@ struct TripleColumnSample {
 
 **实现方案**
 
-自定义弹窗通常通过[CustomDialogController](../../reference/arkui-ts/ts-methods-custom-dialog-box.md)实现，有两种方式实现本场景的目标效果：
+自定义弹窗通常通过[CustomDialogController](../../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)实现，有两种方式实现本场景的目标效果：
 
 * 通过gridCount属性配置自定义弹窗的宽度。
 
@@ -722,7 +722,7 @@ struct TripleColumnSample {
 
 * 将customStyle设置为true，即弹窗的样式完全由开发者自定义。
 
-  开发者自定义弹窗样式时，开发者可以根据需要配置弹窗的宽高和背景色（非弹窗区域保持默认的半透明色）。自定义弹窗样式配合[栅格组件](../../reference/arkui-ts/ts-container-gridrow.md)同样可以实现目标效果。
+  开发者自定义弹窗样式时，开发者可以根据需要配置弹窗的宽高和背景色（非弹窗区域保持默认的半透明色）。自定义弹窗样式配合[栅格组件](../../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)同样可以实现目标效果。
 
 **参考代码**
 
@@ -877,7 +877,7 @@ struct CustomDialogB {
 
 **实现方案**
 
-图片通常使用[Image组件](../../reference/arkui-ts/ts-basic-components-image.md)展示，Image组件的objectFit属性默认为ImageFit.Cover，即保持宽高比进行缩小或者放大以使得图片两边都大于或等于显示边界。在大图浏览场景下，因屏幕与图片的宽高比可能有差异，常常会发生图片被截断的问题。此时只需将Image组件的objectFit属性设置为ImageFit.Contain，即保持宽高比进行缩小或者放大并使得图片完全显示在显示边界内，即可解决该问题。
+图片通常使用[Image组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)展示，Image组件的objectFit属性默认为ImageFit.Cover，即保持宽高比进行缩小或者放大以使得图片两边都大于或等于显示边界。在大图浏览场景下，因屏幕与图片的宽高比可能有差异，常常会发生图片被截断的问题。此时只需将Image组件的objectFit属性设置为ImageFit.Contain，即保持宽高比进行缩小或者放大并使得图片完全显示在显示边界内，即可解决该问题。
 
 
 **参考代码**
@@ -1052,7 +1052,7 @@ export default struct Header {
 
 **实现方案**
 
-借助[栅格组件](../../reference/arkui-ts/ts-container-gridrow.md)，控制待显示内容在不同的断点下占据不同的列数，即可实现不同设备上的缩进效果。另外还可以调整不同断点下栅格组件与两侧的间距，获得更好的显示效果。
+借助[栅格组件](../../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)，控制待显示内容在不同的断点下占据不同的列数，即可实现不同设备上的缩进效果。另外还可以调整不同断点下栅格组件与两侧的间距，获得更好的显示效果。
 
 
 **参考代码**
