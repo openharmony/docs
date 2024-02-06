@@ -34,7 +34,7 @@ export default class EntryAbility extends UIAbility {
 
 > **说明**：
 >
-> [Want](../reference/apis/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的详细介绍请参见[信息传递载体Want](want-overview.md)。
+> [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的详细介绍请参见[信息传递载体Want](want-overview.md)。
 
 ### WindowStageCreate和WindowStageDestroy状态
 
@@ -43,7 +43,7 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 **图2** WindowStageCreate和WindowStageDestroy状态  
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
+在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis-arkui/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
 ```ts
 import Logger from '../utils/Logger';
