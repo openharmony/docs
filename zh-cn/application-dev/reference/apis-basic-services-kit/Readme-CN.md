@@ -62,6 +62,12 @@
             - [系统公共事件定义 (系统接口)](commonEventManager-definitions-sys.md)
     - 其他
         - [@ohos.base (公共回调信息)](js-apis-base.md)
+        - 时间时区系统接口
+          - [@ohos.time (datetime)(系统接口)](js-apis-system-date-time.md)
+          - [@ohos.time (datetime)(非系统接口)](js-apis-nonsys-date-time.md)
+          - [@ohos.time (time)(系统接口)](js-apis-system-time.md)
+          - [@ohos.time (time)(系统接口)](js-apis-nonsys-time.md)
+          - [@ohos.time (timer)(系统接口)](js-apis-system-timer.md)
         - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
         - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
@@ -101,7 +107,6 @@
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [系统电源管理错误码](errorcode-power.md)
   - [帐号管理错误码](errorcode-account.md)
-
 
 
 
