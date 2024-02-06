@@ -23,7 +23,7 @@ Refresh(value: RefreshOptions)
 | -------- | -------- | -------- | -------- |
 | value |  [RefreshOptions](#refreshoptions对象说明)| 是 | 刷新组件参数。 |
 
-## RefreshOptions对象说明：
+## RefreshOptions对象说明
 
 
 | 参数         | 参数名                                      | 必填   | 参数描述                                     |

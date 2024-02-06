@@ -115,7 +115,7 @@ scrollEdge(value: Edge): void
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
 
-###  scrollPage9+
+###  scrollPage<sup>9+</sup>
 
 scrollPage(value: { next: boolean }): void
 
@@ -232,7 +232,7 @@ getItemRect(index: number): RectResult
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
 
-## OffsetResult11+
+## OffsetResult<sup>11+</sup>
 
 | 名称    | 类型   | 描述                            |
 | ------- | ------ | ------------------------------- |
