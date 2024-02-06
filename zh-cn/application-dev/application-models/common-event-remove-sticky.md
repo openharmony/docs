@@ -7,7 +7,7 @@
 
 ## 接口说明
 
-参考[接口文档](../reference/apis/js-apis-commonEventManager.md)。
+参考[接口文档](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
@@ -27,7 +27,7 @@
    const TAG: string = 'ProcessModel';
    ```
 
-3. 调用[`removeStickyCommonEvent()`](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
+3. 调用[`removeStickyCommonEvent()`](../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
 
    > **说明：**
    >
