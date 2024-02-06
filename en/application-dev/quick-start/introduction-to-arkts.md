@@ -342,10 +342,6 @@ switch (expression) {
 }
 ```
 
-The `switch` expression type must be of `number`, `enum` or `string` types.
-
-Each label must be either a constant expression or the name of an enum constant.
-
 If the value of a `switch` expression equals the value of some label, then the corresponding statements are executed.
 
 If there is no match, and the `switch` has the default clause, then the default statements are executed.
@@ -364,7 +360,7 @@ A conditional expression looks as follows:
 condition ? expression1 : expression2
 ```
 
-The condition must be a logical expression. If that logical expression is `true`, then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
+If that logical expression is truthy(a value that is considered `true`), then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
 
 Example:
 
@@ -388,7 +384,7 @@ for ([init]; [condition]; [update]) {
 When a `for` statement is executed, the following process takes place:
 
 1. An `init` expression is executed, if any. This expression usually initializes one or more loop counters.
-2. The condition is evaluated. If the value of condition is `true`, or if the conditional expression is omitted, then the statements in the `for` body are to be executed. If the value of condition is `false`, then the `for` loop terminates.
+2. The condition is evaluated. If the value of condition is truthy(a value that is considered `true`), or if the conditional expression is omitted, then the statements in the `for` body are to be executed. If the value of condition is falsy(a value that is considered `false`), then the `for` loop terminates.
 3. The statements of the `for` body are executed.
 4. If there is an `update` expression, then the `update` expression is executed.
 5. Go back to step 2.
@@ -434,8 +430,6 @@ while (condition) {
 }
 ```
 
-The condition must be a logical expression.
-
 Example:
 
 ```typescript
@@ -449,7 +443,7 @@ while (n < 3) {
 
 #### `Do-while` Statements
 
-`do-while` statements are executed repetitively until a specified condition evaluates to false.
+`do-while` statements are executed repetitively until a specified condition evaluates to `false`.
 
 A `do-while` statement looks as follows:
 
@@ -458,8 +452,6 @@ do {
   statements
 } while (condition)
 ```
-
-The condition must be a logical expression.
 
 Example:
 
@@ -743,14 +735,13 @@ In the sample above, the arrow function closure captures the `count` variable.
 A function can be specified to be called in different ways by writing overload signatures. To do so, several functions' headers that have the same name but different signatures are written and immediately followed by the single implementation function.
 
 ```typescript
-function foo(): void;      /* 1st signature */
-function foo(x: string): void;   /* 2nd signature */
-function foo(x?: string): void { /* Implementation signature */
-  console.log(x);
+function foo(x: number): void;            /* 1st signature */
+function foo(x: string): void;            /* 2nd signature */
+function foo(x: number | string): void {  /* Implementation signature */
 }
 
-foo();   // ok, 1st signature is used
-foo('aa'); // ok, 2nd signature is used
+foo(123);   // ok, 1st signature is used
+foo('aa');  // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have identical parameter lists.
@@ -991,7 +982,6 @@ square.calculateArea(); // output: 100
 
 The keyword `static` is used to declare a method as static. Static methods belong to the class itself and have access to static fields only.
 A static method defines a common behavior of the class as a whole.
-All instances have access to static methods.
 
 The class name is used to call a static method:
 
@@ -1117,15 +1107,14 @@ A method can be specified to be called in different ways by writing overload sig
 
 ```typescript
 class C {
-  foo(): void;            /* 1st signature */
-  foo(x: string): void;   /* 2nd signature */
-  foo(x?: string): void { /* implementation signature */
-    console.log(x);
+  foo(x: number): void;            /* 1st signature */
+  foo(x: string): void;            /* 2nd signature */
+  foo(x: number | string): void {  /* implementation signature */
   }
 }
 let c = new C();
-c.foo();     // ok, 1st signature is used
-c.foo('aa'); // ok, 2nd signature is used
+c.foo(123);   // ok, 1st signature is used
+c.foo('aa');  // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1171,22 +1160,19 @@ class Square extends RectangleSize {
 }
 ```
 
-If a constructor body does not begin with such an explicit call of a superclass constructor, then the constructor body implicitly begins with a superclass constructor call `super()`.
-
 #### Constructor Overload Signatures
 
 A constructor can be specified to be called in different ways by writing overload signatures. To do so, several constructor headers that have the same name but different signatures are written and immediately followed by the single implementation constructor.
 
 ```typescript
 class C {
-  constructor()             /* 1st signature */
-  constructor(x: string)    /* 2nd signature */
-  constructor(x?: string) { /* Implementation signature */
-    console.log(x);
+  constructor(x: number)             /* 1st signature */
+  constructor(x: string)             /* 2nd signature */
+  constructor(x: number | string) {  /* Implementation signature */
   }
 }
-let c1 = new C();      // ok, 1st signature is used
-let c2 = new C('abc'); // ok, 2nd signature is used
+let c1 = new C(123);    // ok, 1st signature is used
+let c2 = new C('abc');  // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1551,10 +1537,14 @@ A postfix operator `!` can be used to assert that its operand is non-null.
 If applied to a null value, the operator throws an error. Otherwise, the type of the value is changed from `T | null` to `T`:
 
 ```typescript
-let x: number | null = 1
-let y: number
-y = x + 1  // compile time error: cannot add to a nullable value
-y = x! + 1 // ok
+class C {
+  value: number | null = 1;
+}
+
+let c = new C();
+let y: number;
+y = c.value + 1;  // compile time error: cannot add to a nullable value
+y = c.value! + 1; // ok，2
 ```
 
 ### Null-Coalescing Operator
@@ -1620,7 +1610,7 @@ class Person {
 }
 
 let p: Person = new Person('Alice')
-console.log(p.spouse?.nick) // print: undefined
+p.spouse?.nick // undefined
 ```
 
 ## Modules
@@ -1718,4 +1708,4 @@ This section demonstrates mechanisms that ArkTS provides for creating graphical 
 
 The [Example](arkts-mvvm.md#example) provides a complete ArkUI-based application as an illustration of GUI programming capabilities.
 
-For more details of the ArkUI features, refer to the ArkUI [tutorial](arkts-get-started.md).
+For more details of the ArkUI features, refer to the ArkUI [Basic Syntax](arkts-basic-syntax-overview.md).
