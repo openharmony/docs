@@ -74,5 +74,6 @@
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [热管理错误码](errorcode-thermal.md)
   - [电量信息错误码](errorcode-battery-info.md)
+  - [系统电源错误码](errorcode-power.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
 
