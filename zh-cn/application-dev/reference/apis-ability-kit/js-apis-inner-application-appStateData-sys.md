@@ -1,6 +1,6 @@
  # AppStateData (系统接口)
 
-定义应用状态信息，可以通过[getForegroundApplications](../apis/js-apis-app-ability-appManager.md#appmanagergetforegroundapplications)获取当前应用的相关信息。
+定义应用状态信息，可以通过[getForegroundApplications](js-apis-app-ability-appManager-sys.md#appmanagergetforegroundapplications)获取当前应用的相关信息。
 
 > **说明：**
 > 

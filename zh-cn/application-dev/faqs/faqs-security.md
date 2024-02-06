@@ -68,4 +68,4 @@ digest接口返回的Md计算结果DataBlob是Uint8Array类型，需要转成十
 
 [安全控件概述](../security/AccessToken/security-component-overview.md)
 
-[SaveButton](../reference/arkui-ts/ts-security-components-savebutton.md)
+[SaveButton](../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)

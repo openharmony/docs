@@ -15,7 +15,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 ## AbilityState
 
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](../apis/js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)返回Ability的状态。
 
 **系统接口**: 该接口为系统接口。
 
@@ -55,7 +55,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -119,7 +119,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -167,7 +167,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](../apis/js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
@@ -175,7 +175,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -214,7 +214,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](../apis/js-apis-inner-application-abilityRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -222,7 +222,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -260,7 +260,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | 是 | 获取消息数量的最大限制，最大为2<sup>31</sup>-1。 |
-| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](../apis/js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo-sys.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
@@ -268,7 +268,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -315,7 +315,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](../apis/js-apis-inner-application-extensionRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo-sys.md)>> | 以Promise方式返回接口运行结果及运行中的extension信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -323,7 +323,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -360,7 +360,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<[ElementName](../apis/js-apis-bundleManager-elementName.md)>  | 是    | 以回调方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 以回调方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
@@ -368,7 +368,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -399,7 +399,7 @@ getTopAbility(): Promise\<ElementName>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[ElementName](../apis/js-apis-bundleManager-elementName.md)>| 以Promise方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 以Promise方式返回接口运行结果及应用名，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -407,7 +407,7 @@ getTopAbility(): Promise\<ElementName>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -445,7 +445,7 @@ acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Obj
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -497,7 +497,7 @@ acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -522,7 +522,7 @@ try {
 
 notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-该接口仅供[DLP](../apis/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+该接口仅供[DLP](../apis-data-loss-prevention-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -534,7 +534,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](../apis/js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
 | callback  | AsyncCallback<void\>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
 
@@ -544,7 +544,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -583,7 +583,7 @@ try {
 
 notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-该接口仅供[DLP](../apis/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+该接口仅供[DLP](../apis-data-loss-prevention-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -595,7 +595,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](../apis/js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
 
 **返回值：**
@@ -610,7 +610,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -660,7 +660,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](../apis/js-apis-inner-application-abilityForegroundStateObserver.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
 
 **错误码**：
 
@@ -668,7 +668,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -707,7 +707,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](../apis/js-apis-inner-application-abilityForegroundStateObserver.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
 
 **错误码**：
 
@@ -715,7 +715,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -764,7 +764,7 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[AbilityStateData](../apis/js-apis-inner-application-abilityStateData.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -772,7 +772,7 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -805,7 +805,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AbilityStateData](../apis/js-apis-inner-application-abilityStateData.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
 
 **错误码**：
 
@@ -813,7 +813,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
