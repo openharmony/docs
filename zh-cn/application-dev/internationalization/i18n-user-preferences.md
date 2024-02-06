@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-接口具体使用方法和说明请参考[setUsingLocalDigit](../reference/apis-localization-kit/js-apis-i18n-sys.md.md#setusinglocaldigit9)和[set24HourClock](../reference/apis-localization-kit/js-apis-i18n-sys.md.md#set24hourclock9)的API文档。
+接口具体使用方法和说明请参考[setUsingLocalDigit](../reference/apis-localization-kit/js-apis-i18n-sys.md#setusinglocaldigit9)和[set24HourClock](../reference/apis-localization-kit/js-apis-i18n-sys.md#set24hourclock9)的API文档。
 
 
 1. 导入模块。
