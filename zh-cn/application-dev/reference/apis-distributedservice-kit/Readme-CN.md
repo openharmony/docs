@@ -9,5 +9,5 @@
   - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](js-apis-device-manager-sys.md)
 - 错误码
   - [设备管理错误码](errorcode-device-manager.md)
-  - [设备管理错误码](errorcode-devicestatus.md)
+  - [键鼠穿越管理错误码](errorcode-devicestatus.md)
 
