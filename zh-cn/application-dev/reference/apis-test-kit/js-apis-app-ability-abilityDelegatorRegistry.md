@@ -39,7 +39,7 @@ getAbilityDelegator(): AbilityDelegator
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md#AbilityDelegator) | [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md#AbilityDelegator)对象。可以用来调度测试框架相关功能。 |
+| [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md) | [AbilityDelegator](../apis-ability-kit/js-apis-inner-application-abilityDelegator.md)对象。可以用来调度测试框架相关功能。 |
 
 **示例：**
 
@@ -66,7 +66,7 @@ abilityDelegator.startAbility(want, (err) => {
 
 getArguments(): AbilityDelegatorArgs
 
-获取单元测试参数[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。
+获取单元测试参数[AbilityDelegatorArgs](../apis-ability-kit/js-apis-inner-application-abilityDelegatorArgs.md)对象。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
