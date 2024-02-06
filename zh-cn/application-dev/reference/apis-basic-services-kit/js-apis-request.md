@@ -2107,7 +2107,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundle | string | 否 | 指定应用程序的包名，仅对系统应用开放。<br/>**系统接口**：此接口为系统接口。 |
 | before | number | 否 | 结束的Unix时间戳（毫秒），默认为调用时刻。 |
 | after | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
 | state | [State](#state10) | 否 | 指定任务的状态。 |
@@ -2121,8 +2120,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uid | string | 否 | 应用程序的UID，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| bundle | string | 否 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
 | saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。|
 | url | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
@@ -4101,86 +4098,4 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
   ```
 
 
-## request.agent.query<sup>10+</sup>
 
-query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
-
-根据任务id查询任务的详细信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
-
-**示例：**
-
-  ```ts
-  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
-    if (err) {
-      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
-  });
-  ```
-
-
-## request.agent.query<sup>10+</sup>
-
-query(id: string): Promise&lt;TaskInfo&gt;
-
-根据任务id查询任务的详细信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-
-**返回值：** 
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
-
-**示例：**
-
-  ```ts
-  request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
-  });
-  ```
-
-<!--no_check-->
