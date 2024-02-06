@@ -2684,6 +2684,7 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
     console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
+
 ## notificationManager.cancelAsBundle<sup>12+</sup>
 
 cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): Promise\<void\>;
@@ -2691,8 +2692,6 @@ cancelAsBundle(representativeBundle: BundleOption, id: number, label?: string): 
 代理取消通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**: 此接口为系统接口。
 
@@ -2736,6 +2735,7 @@ notificationManager.cancelAsBundle(bundle, id).then(() => {
   console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
+
 ## notificationManager.setNotificationEnableSlot 
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void

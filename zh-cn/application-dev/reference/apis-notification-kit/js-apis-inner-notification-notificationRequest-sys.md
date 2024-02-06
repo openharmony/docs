@@ -19,6 +19,7 @@
 | isRemoveAllowed<sup>8+<sup>   | boolean                                                  |   否  | 否  | 通知是否能被移除（点击通知下方删除按钮无法删除，左滑不出现删除按钮）。<br>**系统接口**: 此接口为系统接口。<br>**需要权限**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION |
 | source<sup>8+<sup>            | number                                                   |   是  | 否  | 通知源。<br>**系统接口**: 此接口为系统接口。                                |
 | deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。                       |
+| representativeBundle<sup>12+<sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否 | 被代理的包信息。<br>**系统接口**: 此接口为系统接口。 |
 
 ## DistributedOptions
 
