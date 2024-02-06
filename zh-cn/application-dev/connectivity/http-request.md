@@ -12,7 +12,7 @@ HTTP数据请求功能主要由http模块提供。
 
 权限申请请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
-涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis/js-apis-http.md)。
+涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis-network-kit/js-apis-http.md)。
 
 | 接口名                                    | 描述                                |
 | ----------------------------------------- | ----------------------------------- |
