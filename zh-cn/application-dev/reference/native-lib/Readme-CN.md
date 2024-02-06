@@ -25,4 +25,3 @@
   - [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md)
   - [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md)
   - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)
-
