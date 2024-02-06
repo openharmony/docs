@@ -1,16 +1,18 @@
-# @ohos.settings （设置数据项名称）（系统接口）
+# @ohos.settings (设置数据项名称)(系统接口)
 
 本模块提供访问设置数据项的能力。
 
 > **说明：**
 >
-> 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.settings (设置数据项名称)](./js-apis-settings.md)。
 
 ## 导入模块
 
 ```js
 import settings from '@ohos.settings';
 ```
+
 
 ## settings.setValue<sup>(deprecated)</sup>
 
@@ -67,3 +69,4 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 | 类型              | 说明                                               |
 | ----------------- | -------------------------------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示操作成功，否则返回false。 |
+

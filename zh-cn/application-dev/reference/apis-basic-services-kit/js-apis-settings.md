@@ -827,6 +827,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => 
 ```
 
 
+
 ## setting.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
