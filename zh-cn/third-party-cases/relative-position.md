@@ -120,4 +120,4 @@ Row() {
 ![offset-sample](figures/offset-sample.PNG)
 
 ## 参考
-- [position/markAnchor/offset属性使用指导](../application-dev/reference/arkui-ts/ts-universal-attributes-location.md)
+- [position/markAnchor/offset属性使用指导](../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
