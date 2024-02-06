@@ -5,8 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
-> 从API version 11开始，可以通过使用UIContext中的[getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 从API version 11开始，可以通过使用UIContext中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
 
 ## 导入模块
@@ -29,7 +29,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
-| callback | [AsyncCallback](../apis/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+| callback | [AsyncCallback](.apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
 
@@ -209,7 +209,7 @@ struct DragControllerPage {
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
-| data        | [unifiedDataChannel.UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
+| data        | [unifiedDataChannel.UnifiedData](.apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
@@ -481,7 +481,7 @@ struct DragControllerPage {
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | 否   | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。|
-| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
+| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
 
 ## dragController.getDragPreview<sup>11+</sup>
 

@@ -138,7 +138,7 @@
 
 
 > **说明：**
-> 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis-arkui/js-apis-mediaquery.md)和[css媒体查询](../../reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
+> 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis-arkui/js-apis-mediaquery.md)和[css媒体查询](../../reference/apis-arkui/arkui-js/js-components-common-mediaquery.md)了解详细用法。
 
 
 **示例：**

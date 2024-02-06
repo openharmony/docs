@@ -37,7 +37,7 @@
 > **说明：**
 > - 开发者期望将父容器的剩余空间全部分配给某空白区域时，也可以通过[Blank组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)实现。注意仅当父组件为Row\Column\Flex组件时，Blank组件才会生效。
 > 
-> - 类Web开发范式也是通过flex-grow和flex-shrink实现拉伸能力，同时也支持配置flex-basis，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)。
+> - 类Web开发范式也是通过flex-grow和flex-shrink实现拉伸能力，同时也支持配置flex-basis，详见[通用样式](../../reference/apis-arkui/arkui-js/js-components-common-styles.md)。
 > 
 > - 类Web开发范式没有提供blank组件，但可以通过div组件模拟blank组件的行为，如“&lt;div style='flex-grow: 1; flex-shrink: 0; flex-basis: 0'&gt;&lt;/div&gt;”。
 
@@ -183,7 +183,7 @@ struct FlexibleCapabilitySample2 {
 > **说明：**
 > - 均分能力还可以通过其它方式实现，如使用[Grid网格组件](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)或在每个组件间添加Blank组件等。
 > 
-> - 类Web开发范式中，通过将[div组件](../../reference/arkui-js/js-components-container-div.md)的justify-content属性设置为space-evenly来实现均分布局。
+> - 类Web开发范式中，通过将[div组件](../../reference/apis-arkui/arkui-js/js-components-container-div.md)的justify-content属性设置为space-evenly来实现均分布局。
 
 
 **示例：**
@@ -301,9 +301,9 @@ layoutWeight存在使用限制，所以实际使用过程中大多通过将子�
 > **说明：**
 > - 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统）中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不做展开介绍。
 > 
-> - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](../../reference/arkui-js/js-appendix-types.md#长度类型)。
+> - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](../../reference/apis-arkui/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](../../reference/apis-arkui/arkui-js/js-appendix-types.md#长度类型)。
 > 
-> - 与声明式开发范式中的layoutWeight属性类似，类Web开发范式提供了[flex-weight样式](../../reference/arkui-js/js-components-common-atomic-layout.md#占比能力)用于配置互为兄弟关系的组件在父容器主轴方向的布局权重。
+> - 与声明式开发范式中的layoutWeight属性类似，类Web开发范式提供了[flex-weight样式](../../reference/apis-arkui/arkui-js/js-components-common-atomic-layout.md#占比能力)用于配置互为兄弟关系的组件在父容器主轴方向的布局权重。
 
 
 **示例：**
@@ -404,7 +404,7 @@ struct ProportionCapabilitySample {
 
 
 > **说明：**
-> 类Web开发范式同样提供了[aspect-ratio样式](../../reference/arkui-js/js-components-common-atomic-layout.md#固定比例)，用于固定组件的宽高比。
+> 类Web开发范式同样提供了[aspect-ratio样式](../../reference/apis-arkui/arkui-js/js-components-common-atomic-layout.md#固定比例)，用于固定组件的宽高比。
 
 
 **示例：**
@@ -488,9 +488,9 @@ struct ScaleCapabilitySample {
 > **说明：**
 > - List、Row或Column组件中子节点的在页面显示时就已经全部完成了布局计算及渲染，只不过受限于父容器尺寸，用户只能看到一部分。随着父容器尺寸增大，用户可以看到的子节点数目也相应的增加。用户还可以通过手指滑动触发列表滑动，查看被隐藏的子节点。
 > 
-> - 类Web开发范式同样可以使用[list组件](../../reference/arkui-js/js-components-container-list.md)实现延伸能力。
+> - 类Web开发范式同样可以使用[list组件](../../reference/apis-arkui/arkui-js/js-components-container-list.md)实现延伸能力。
 > 
-> - 类Web开发范式没有提供scroll组件，但可以将[div组件](../../reference/arkui-js/js-components-container-div.md)的overflow样式设置为scroll（即div组件主轴方向上子元素的尺寸超过div组件本身的尺寸时进行滚动显示）来模拟scroll组件的行为。
+> - 类Web开发范式没有提供scroll组件，但可以将[div组件](../../reference/apis-arkui/arkui-js/js-components-container-div.md)的overflow样式设置为scroll（即div组件主轴方向上子元素的尺寸超过div组件本身的尺寸时进行滚动显示）来模拟scroll组件的行为。
 
 
 **示例：**
@@ -643,7 +643,7 @@ struct ExtensionCapabilitySample2 {
 可以访问[布局约束](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
 
 > **说明：**
-> 类Web开发范式同样支持[display-index样式](../../reference/arkui-js/js-components-common-atomic-layout.md#隐藏能力)，用于设置布局优先级。
+> 类Web开发范式同样支持[display-index样式](../../reference/apis-arkui/arkui-js/js-components-common-atomic-layout.md#隐藏能力)，用于设置布局优先级。
 
 **示例：**
 
@@ -736,7 +736,7 @@ struct HiddenCapabilitySample {
 可以访问[Flex组件](../../reference/apis-arkui/arkui-ts/ts-container-flex.md)，了解Flex组件的详细用法。
 
 > **说明：**
-> 类Web开发范式通过将[div组件](../../reference/arkui-js/js-components-container-div.md)的flex-warp样式设置为wrap来使用折行能力。
+> 类Web开发范式通过将[div组件](../../reference/apis-arkui/arkui-js/js-components-container-div.md)的flex-warp样式设置为wrap来使用折行能力。
 
 **示例：**
 

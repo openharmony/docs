@@ -48,7 +48,7 @@ static terminate(): void
 
 退出当前Ability。
 
-从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](../apis/js-apis-ability-featureAbility.md)。
+从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](../apis-ability-kit/js-apis-ability-featureAbility.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 

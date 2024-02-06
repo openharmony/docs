@@ -1,8 +1,8 @@
 # @ohos.arkui.UIContext (UIContext)
 
-在Stage模型中，WindowStage/Window可以通过[loadContent](./js-apis-window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
+在Stage模型中，WindowStage/Window可以通过[loadContent](js-apis-window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
-@ohos.window在API version 10 新增[getUIContext](./js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
+@ohos.window在API version 10 新增[getUIContext](js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
 
 > **说明：**
 >
@@ -12,7 +12,7 @@
 
 ## UIContext
 
-以下API需先使用ohos.window中的[getUIContext()](./js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
+以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
 ### getFont
 
@@ -498,13 +498,13 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](./js-apis-animator.md#animatoroptions) | 是    | 定义动画选项。 |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) | 是    | 定义动画选项。 |
 
 **返回值：**
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [AnimatorResult](./js-apis-animator.md#animatorresult) | Animator结果接口。 |
+| [AnimatorResult](js-apis-animator.md#animatorresult) | Animator结果接口。 |
 
 **示例：**
 
@@ -571,7 +571,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+| value | [KeyboardAvoidMode](#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
 **示例：**
 
@@ -605,7 +605,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 类型         | 说明   |
 | ---------- | ---- |
-| [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
+| [KeyboardAvoidMode](#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
 
@@ -697,7 +697,7 @@ getDragPreview(): dragController.DragPreview
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
-**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+**错误码：** 通用错误码请参考[通用错误码说明文档](.errorcode-universal.md)。
 
 **示例：**
 
@@ -1033,7 +1033,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
+| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](..ui/arkts-layout-development-media-query.md#语法规则)。 |
 
 **返回值：**
 
@@ -1075,7 +1075,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1123,7 +1123,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1179,7 +1179,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1233,7 +1233,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1293,7 +1293,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1337,7 +1337,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1389,7 +1389,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1439,7 +1439,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1495,7 +1495,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1543,7 +1543,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1598,7 +1598,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1652,7 +1652,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -1712,7 +1712,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1756,7 +1756,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1809,7 +1809,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1859,7 +1859,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -1999,7 +1999,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -2082,7 +2082,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -2123,7 +2123,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -2189,7 +2189,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -2246,7 +2246,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
@@ -2306,7 +2306,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -2363,7 +2363,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](../errorcodes/errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
@@ -2402,7 +2402,7 @@ try {
 };
 ```
 ## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](./js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
 ### executeDrag
 
@@ -2418,7 +2418,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
-| callback | [AsyncCallback](../apis/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
 

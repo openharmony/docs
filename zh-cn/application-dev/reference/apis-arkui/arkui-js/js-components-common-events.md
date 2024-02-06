@@ -39,7 +39,7 @@
 
 
 >  **说明：**
->  除上述事件外，其他事件均为非冒泡事件，如[input的change事件](../arkui-js/js-components-basic-input.md#事件)，详见各个组件。
+>  除上述事件外，其他事件均为非冒泡事件，如[input的change事件](js-components-basic-input.md#事件)，详见各个组件。
 
 **表1** BaseEvent对象属性列表
 
@@ -101,7 +101,7 @@
 
 | 属性                   | 类型     | 说明                                       |
 | -------------------- | ------ | ---------------------------------------- |
-| dataSet<sup>6+</sup> | Object | 组件上通过通用属性设置的[data-*](../arkui-js/js-components-common-attributes.md)的自定义属性组成的集合。 |
+| dataSet<sup>6+</sup> | Object | 组件上通过通用属性设置的[data-*](js-components-common-attributes.md)的自定义属性组成的集合。 |
 
 **示例：**
 
@@ -228,7 +228,7 @@ setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 
 | 参数名      | 参数类型     | 必填   | 描述                                       |
 | -------- | -------- | ---- | ---------------------------------------- |
-| pixelmap | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 前端传入的图片资源。 |
+| pixelmap | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 前端传入的图片资源。 |
 | offsetX  | number   | 是    | 相对于图片的横向偏移量。                             |
 | offsetY  | number   | 是    | 相对于图片的纵向偏移量。                            |
 

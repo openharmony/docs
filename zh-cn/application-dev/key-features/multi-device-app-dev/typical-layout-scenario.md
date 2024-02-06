@@ -10,7 +10,7 @@
 | [运营横幅（Banner）](#运营横幅banner) | Swiper组件&nbsp;+&nbsp;响应式布局 |
 | [网格](#网格) | Grid组件&nbsp;/&nbsp;List组件&nbsp;+&nbsp;响应式布局 |
 | [侧边栏](#侧边栏) | SiderBar组件&nbsp;+&nbsp;响应式布局 |
-| [单/双栏](#单/双栏) | Navigation组件&nbsp;+&nbsp;响应式布局 |
+| [单/双栏](#单双栏) | Navigation组件&nbsp;+&nbsp;响应式布局 |
 | [三分栏](#三分栏) | SiderBar组件&nbsp;+&nbsp;Navigation组件&nbsp;+&nbsp;响应式布局 |
 | [自定义弹窗](#自定义弹窗) | CustomDialogController组件&nbsp;+&nbsp;响应式布局 |
 | [大图浏览](#大图浏览) | Image组件 |
