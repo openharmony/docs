@@ -1,8 +1,8 @@
 # AbilityResult
 
 定义Ability被拉起并退出后返回的结果码和数据。
-Stage模型下，可以通过[startAbilityForResult](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)获取被拉起Ability退出后返回的AbilityResult对象，被startAbilityForResult拉起的Ability对象可以通过[terminateSelfWithResult](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)返回AbilityResult对象。
-FA模型下，可以通过[startAbilityForResult](../apis/js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7)获取被拉起Ability退出后返回的AbilityResult对象，被startAbilityForResult拉起的Ability对象可以通过[terminateSelfWithResult](../apis/js-apis-ability-featureAbility.md#featureabilityterminateselfwithresult7)返回AbilityResult对象。
+Stage模型下，可以通过[startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)获取被拉起Ability退出后返回的AbilityResult对象，被startAbilityForResult拉起的Ability对象可以通过[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)返回AbilityResult对象。
+FA模型下，可以通过[startAbilityForResult](js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7)获取被拉起Ability退出后返回的AbilityResult对象，被startAbilityForResult拉起的Ability对象可以通过[terminateSelfWithResult](js-apis-ability-featureAbility.md#featureabilityterminateselfwithresult7)返回AbilityResult对象。
 
 > **说明：**
 >
@@ -27,5 +27,5 @@ import ability from '@ohos.ability.ability';
 | 名称        |  类型                 | 只读 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
 | resultCode  | number               | 否   | 是   | 表示Ability被拉起并退出后返回的结果码。                                |
-| want  | [Want](../apis/./js-apis-app-ability-want.md)               | 否   | 否   | 表示Ability被拉起并退出后返回的数据。 |
+| want  | [Want](js-apis-app-ability-want.md)               | 否   | 否   | 表示Ability被拉起并退出后返回的数据。 |
 

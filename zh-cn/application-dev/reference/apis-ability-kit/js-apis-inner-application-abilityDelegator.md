@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-AbilityDelegator提供添加用于监视指定ability的生命周期状态更改的[AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待ability到达OnCreate生命周期、设置等待时间等、获取指定ability的生命周期状态、获取当前应用顶部ability、启动指定ability等。
+AbilityDelegator提供添加用于监视指定ability的生命周期状态更改的[AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待ability到达OnCreate生命周期、设置等待时间等、获取指定ability的生命周期状态、获取当前应用顶部ability、启动指定ability等。
 
 > **说明：**
 > 
@@ -14,7 +14,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## 使用说明
 
-通过AbilityDelegatorRegistry中[getAbilityDelegator](../apis/js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。此接口只能在测试环境下使用。
+通过AbilityDelegatorRegistry中getAbilityDelegator方法获取。此接口只能在测试环境下使用。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
@@ -33,7 +33,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是       | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是       | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
 
 **错误码**：
@@ -42,7 +42,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | AddAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -79,7 +79,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 
 **返回值：**
 
@@ -93,7 +93,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | AddAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -129,7 +129,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 
 **错误码**：
 
@@ -137,7 +137,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 | ------- | -------- |
 | 16000100 | AddAbilityMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -171,7 +171,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | callback | AsyncCallback\<void>                                         | 是   | 表示指定的回调方法。                                           |
 
 **错误码**：
@@ -180,7 +180,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -218,7 +218,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 
 **返回值：**
 
@@ -232,7 +232,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 - 示例
 
@@ -269,7 +269,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 
 **错误码**：
 
@@ -277,7 +277,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -312,8 +312,8 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
-| callback | AsyncCallback\<[UIAbility](../apis/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
 
 **错误码**：
 
@@ -321,7 +321,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -363,9 +363,9 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）。                                 |
-| callback | AsyncCallback\<[UIAbility](../apis/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
+| callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
 
 **错误码**：
 
@@ -373,7 +373,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -418,14 +418,14 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
 | timeout | number                                                       | 否   | 最大等待时间，单位毫秒（ms）。                                 |
 
 **返回值：**
 
 | 类型                                                        | 说明                       |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](../apis/js-apis-app-ability-uiAbility.md)> | 以Promise形式返回Ability。 |
+| Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 以Promise形式返回Ability。 |
 
 **错误码**：
 
@@ -433,7 +433,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -470,7 +470,7 @@ getAppContext(): Context
 
 | 类型                                  | 说明                                        |
 | ------------------------------------- | ------------------------------------------- |
-| [Context](../apis/js-apis-inner-application-context.md) | 应用[Context](../apis/js-apis-inner-application-context.md)。 |
+| [Context](js-apis-inner-application-context.md) | 应用[Context](js-apis-inner-application-context.md)。 |
 
 **示例：**
 
@@ -495,13 +495,13 @@ getAbilityState(ability: UIAbility): number
 
 | 参数名  | 类型                                              | 必填 | 说明            |
 | ------- | ------------------------------------------------- | ---- | --------------- |
-| ability | [UIAbility](../apis/js-apis-app-ability-uiAbility.md) | 是   | 指定Ability对象。 |
+| ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是   | 指定Ability对象。 |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](../apis/js-apis-application-abilityDelegatorRegistry.md#abilitylifecyclestate)。 |
+| number | 指定ability的生命周期状态。状态枚举值使用AbilityLifecycleState。 |
 
 **示例：**
 
@@ -534,7 +534,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](../apis/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。 |
+| callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。 |
 
 **错误码**：
 
@@ -542,7 +542,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 | ------- | -------- |
 | 16000100 | GetCurrentTopAbility failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -573,7 +573,7 @@ getCurrentTopAbility(): Promise\<UIAbility>
 
 | 类型                                                        | 说明                                   |
 | ----------------------------------------------------------- | -------------------------------------- |
-| Promise\<[UIAbility](../apis/js-apis-app-ability-uiAbility.md)> | 以Promise形式返回当前应用顶部ability。 |
+| Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 以Promise形式返回当前应用顶部ability。 |
 
 **错误码**：
 
@@ -581,7 +581,7 @@ getCurrentTopAbility(): Promise\<UIAbility>
 | ------- | -------- |
 | 16000100 | GetCurrentTopAbility failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -611,7 +611,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](../apis/js-apis-app-ability-want.md) | 是   | 启动Ability参数。    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数。    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法。 |
 
 **错误码**：
@@ -634,7 +634,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -667,7 +667,7 @@ startAbility(want: Want): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明            |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](../apis/js-apis-app-ability-want.md) | 是   | 启动Ability参数。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数。 |
 
 **返回值：**
 
@@ -695,7 +695,7 @@ startAbility(want: Want): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -737,7 +737,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | DoAbilityForeground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -785,7 +785,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>
 | ------- | -------- |
 | 16000100 | DoAbilityForeground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -828,7 +828,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | DoAbilityBackground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -876,7 +876,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 | ------- | -------- |
 | 16000100 | DoAbilityBackground failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1003,7 +1003,7 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | 是   | shell命令字符串。    |
-| callback | AsyncCallback\<[ShellCmdResult](../apis/js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 表示指定的回调方法 |
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 表示指定的回调方法 |
 
 **示例：**
 
@@ -1036,7 +1036,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串。               |
 | timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s）。 |
-| callback    | AsyncCallback\<[ShellCmdResult](../apis/js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 表示指定的回调方法。            |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 表示指定的回调方法。            |
 
 **示例：**
 
@@ -1075,7 +1075,7 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[ShellCmdResult](../apis/js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](../apis/js-apis-inner-application-shellCmdResult.md#shellcmdresult)对象。 |
+| Promise\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)对象。 |
 
 **示例：**
 
@@ -1114,7 +1114,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000100 | FinishTest failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1158,7 +1158,7 @@ finishTest(msg: string, code: number): Promise\<void>
 | ------- | -------- |
 | 16000100 | FinishTest failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1186,7 +1186,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
 
 **错误码**：
@@ -1195,7 +1195,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1226,7 +1226,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 
 **返回值：**
 
@@ -1240,7 +1240,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1270,7 +1270,7 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 
 **错误码**：
 
@@ -1278,7 +1278,7 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1306,7 +1306,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
 
 **错误码**：
@@ -1315,7 +1315,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 | ------- | -------- |
 | 16000100 | RemoveAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1346,7 +1346,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 
 **返回值：**
 
@@ -1360,7 +1360,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | ------- | -------- |
 | 16000100 | RemoveAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1390,7 +1390,7 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 
 **错误码**：
 
@@ -1398,7 +1398,7 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | ------- | -------- |
 | 16000100 | removeAbilityStageMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1426,7 +1426,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。             |
 
 **错误码**：
@@ -1435,7 +1435,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1467,7 +1467,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
 
 **返回值：**
@@ -1482,7 +1482,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1513,7 +1513,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](../apis/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
+| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | timeout | number | 是   | 超时最大等待时间，以毫秒为单位。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。                     |
 
@@ -1523,7 +1523,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1564,7 +1564,7 @@ setMockList(mockList: Record\<string, string>): void
 | -------- | --------------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

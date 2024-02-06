@@ -1,6 +1,6 @@
 # MissionListener (系统接口)
 
-定义系统任务状态监听，可以通过[on](../apis/js-apis-app-ability-missionManager.md#missionmanageron)注册。
+定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager-sys.md#missionmanageron)注册。
 
 > **说明：**
 > 
