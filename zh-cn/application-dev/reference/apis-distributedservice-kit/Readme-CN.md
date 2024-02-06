@@ -3,6 +3,8 @@
 - ArkTS API 
   - [@ohos.deviceAttest (设备证明)(系统接口)](js-apis-deviceAttest-sys.md)
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
+  - [@ohos.cooperate (键鼠穿越)（系统接口）](js-apis-devicestatus-cooperate)
+
   - 已停止维护的接口
   - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](js-apis-device-manager-sys.md)
 - 错误码
