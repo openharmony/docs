@@ -16,9 +16,8 @@
 
    ```ts
    import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
    ```
-
+   
 2. 创建图库选择选项实例。
 
    ```ts
@@ -48,21 +47,31 @@
    })
    ```
 
-5. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
+5. 待界面从图库返回后，可再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd，通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
-   ```ts
-   let file = fs.openSync(URI, fs.OpenMode.READ_ONLY);
-   console.info('file fd: ' + file.fd);
    ```
-
-6. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
-
-   ```ts
+   import fs from '@ohos.file.fs';
+   
+   let uri: string = '';
+   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
    fs.closeSync(file);
    ```
+   
+6. 从图库获取URI后，也可使用[Image](../ui/arkts-graphics-display.md)组件，通过URI显示图片。
+
+   ```
+   ForEach(URI, item => {
+       GridItem() {
+           Image(item)
+               .width(200)
+       }
+   }, item => JSON.stringify(item))
+   ```
+
 
 ## 选择文档类文件
 
