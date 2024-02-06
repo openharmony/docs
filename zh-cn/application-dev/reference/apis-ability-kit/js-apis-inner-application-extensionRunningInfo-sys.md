@@ -1,6 +1,6 @@
 # ExtensionRunningInfo (系统接口)
 
-ExtensionRunningInfo模块封装了Extension运行的相关信息，可以通过[getExtensionRunningInfos接口](../apis/js-apis-app-ability-abilityManager.md#getextensionrunninginfos)获取。
+ExtensionRunningInfo模块封装了Extension运行的相关信息，可以通过[getExtensionRunningInfos接口](js-apis-app-ability-abilityManager-sys.md#getextensionrunninginfos)获取。
 
 > **说明：**
 > 
@@ -25,13 +25,13 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| extension | [ElementName](../apis/js-apis-bundleManager-elementName.md) | 是 | 否 | Extension信息。 |
+| extension | [ElementName](js-apis-bundleManager-elementName.md) | 是 | 否 | Extension信息。 |
 | pid | number | 是 | 否 | 进程ID。 |
 | uid | number | 是 | 否 | 应用程序的uid。 |
 | processName | string | 是 | 否 | 进程名称。 |
 | startTime | number | 是 | 否 | Extension被启动时的时间戳。 |
 | clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。 |
-| type | [ExtensionAbilityType](../apis/js-apis-bundleManager.md#extensionabilitytype) | 是 | 否 | Extension类型。 |
+| type | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是 | 否 | Extension类型。 |
 
 **示例：**
 ```ts

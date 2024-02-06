@@ -28,7 +28,7 @@ onConfigurationUpdated(config: Configuration): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](../apis/js-apis-app-ability-configuration.md) | 是 | 变化后的Configuration对象。 |
+  | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 变化后的Configuration对象。 |
 
 **示例：**
 

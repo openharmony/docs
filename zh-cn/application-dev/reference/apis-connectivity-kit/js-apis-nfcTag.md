@@ -140,7 +140,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| tagInfo | [TagInfo](#tagInfo) | 是   | 包含Tag技术类型和相关参数，从[tag.getTagInfo(want: Want)](#taggettaginfo9)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从[tag.getTagInfo(want: Want)](#taggettaginfo9)获取。 |
 
 **返回值：**
 
@@ -464,7 +464,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 从Want中获取TagInfo，Want是被NFC服务初始化，包含了TagInfo所需的属性值。
 
@@ -474,7 +474,7 @@ getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 | 参数名 | 类型                                     | 必填 | 说明                                                |
 | ------ | ---------------------------------------- | ---- | --------------------------------------------------- |
-| want   | [Want](js-apis-app-ability-want.md#Want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
 
 **返回值：**
 
@@ -484,7 +484,7 @@ getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 ## tag.registerForegroundDispatch<sup>10+</sup>
 
-registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
 注册对NFC Tag读卡事件的监听，实现前台应用优先分发的目的。通过discTech设置支持的读卡技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
 
@@ -496,7 +496,7 @@ registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elem
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
+| elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
 | discTech         |  number[]   | 是   | 前台应用指定的NFC读卡技术类型，不可以为空，至少指定一种读卡技术类型。每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（仅包含[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义)中的一种或多种）。 |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 前台读卡监听回调函数，返回读到的Tag信息，不可以为空。 |
 
@@ -506,7 +506,7 @@ registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elem
 
 ## tag.unregisterForegroundDispatch<sup>10+</sup>
 
-unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void
+unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)): void
 
 取消注册对NFC Tag读卡事件的监听，退出前台应用优先分发。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
 
@@ -518,7 +518,7 @@ unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-el
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。           |
+| elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。           |
 
 **示例：**
 
@@ -587,7 +587,7 @@ export default class MainAbility extends UIAbility {
 
 ## tag.on<sup>11+</sup>
 
-on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+on(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
 订阅NFC Tag读卡事件，实现前台应用优先分发。设备会进入读卡器模式，同时关闭卡模拟。通过discTech设置支持的读卡技术类型，通过Callback方式获取到Tag的[TagInfo](#taginfo)信息。需要与取消读卡器模式的[tag.off](#tagoff11)成对使用，如果已通过on进行设置，需要在页面退出前台或页面销毁时调用[tag.off](#tagoff11)。
 
@@ -600,7 +600,7 @@ on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementN
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | type    | string  | 是   | 要注册的回调类型，固定填"readerMode"字符串。 |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
+| elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
 | discTech         |  number[]   | 是   | 前台应用指定的NFC读卡技术类型，不可以为空，至少指定一种读卡技术类型。每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（仅包含[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义)中的一种或多种）。 |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 读卡器模式监听回调函数，返回读到的Tag信息，不可以为空。 |
 
@@ -618,7 +618,7 @@ on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementN
 
 ## tag.off<sup>11+</sup>
 
-off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), callback?: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), callback?: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
 取消订阅NFC Tag读卡事件。设备退出读卡模式，并恢复卡模拟。如果已通过[tag.on](#tagon11)设置NFC的读卡器模式，需要在页面退出前台或页面销毁时调用off进行取消。
 
@@ -631,7 +631,7 @@ off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-element
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | type    | string  | 是   | 要注销的回调类型，固定填"readerMode"字符串。|
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
+| elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 否   | 前台读卡监听回调函数，返回读到的Tag信息。 |
 
 **错误码：**

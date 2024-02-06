@@ -50,6 +50,7 @@
   - [@ohos.usb (USB管理)(已停止维护)](js-apis-usb-deprecated.md)
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
+  - [@ohos.request (上传下载)](js-apis-request.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
@@ -64,6 +65,7 @@
   - [@ohos.charger (充电类型)(系统接口)](js-apis-charger-sys.md)
   - [@ohos.power (系统电源管理)(系统接口)](js-apis-power-sys.md)
   - [@ohos.time (时间时区)(系统接口)](js-apis-system-date-time.md)
+  - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
 - C API
 - 错误码
   - [系统参数错误码](errorcode-system-parameterV9.md)
@@ -78,4 +80,5 @@
   - [系统电源错误码](errorcode-power.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
   - [时间时区错误码](errorcode-time.md)
+  - [上传下载错误码](errorcode-request.md)
 
