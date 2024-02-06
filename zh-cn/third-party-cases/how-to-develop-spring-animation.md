@@ -278,4 +278,4 @@ struct ImageComponent {
 ```
 ## 参考
 - [显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)
-- [插值计算](../application-dev/reference/apis/js-apis-curve.md)
+- [插值计算](../application-dev/reference/apis-as/js-apis-curve.md)
