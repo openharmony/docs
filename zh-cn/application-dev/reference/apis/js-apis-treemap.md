@@ -40,7 +40,7 @@ import TreeMap from '@ohos.util.TreeMap';
 
 constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
-TreeMap的构造函数。
+TreeMap的构造函数，支持通过比较函数对元素进行升序或降序排序。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -48,7 +48,7 @@ TreeMap的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数，默认值为hole（一个空白占位符），表示没有提供比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。 |
 
 **错误码：**
 
@@ -62,6 +62,16 @@ TreeMap的构造函数。
 
 ```ts
 let treeMap : TreeMap<number, number> = new TreeMap();
+//使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
+let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
+treeMap.set("aa","3");
+treeMap.set("dd","1");
+treeMap.set("cc","2");
+treeMap.set("bb","4");
+let numbers = Array.from(treeMap.keys())
+for (let item of numbers) {
+  console.log("treeMap:" + item);
+}
 ```
 
 
