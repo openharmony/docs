@@ -26,7 +26,7 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | move | [TransitionEdge](ts-appendix-enums.md#transitionedge10) | 是 | 指定组件转场时从屏幕边缘滑入和滑出的效果，本质为平移效果，为插入时起点和删除时终点的值。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | asymmetric | appear: [TransitionEffect](#transitioneffect10对象说明),<br/>disappear: [TransitionEffect](#transitioneffect10对象说明)<br/> | 是 | 指定非对称的转场效果。<br/>第一个参数指定出现的转场效果，第二个参数指定消失的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | combine | [TransitionEffect](#transitioneffect10对象说明) | 否 | 对TransitionEffect进行链式组合，以形成包含多种转场效果的TransitionEffect。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| animation | [AnimateParam](/ts-explicit-animation.md#animateparam对象说明) | 否 | 指定该TransitionEffect的动画参数。</br>该参数只用来指定动画参数，其入参AnimateParam的onFinish回调不生效。</br>如果通过combine进行TransitionEffect的组合，前一TransitionEffect的动画参数也可用于后一TransitionEffect。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| animation | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否 | 指定该TransitionEffect的动画参数。</br>该参数只用来指定动画参数，其入参AnimateParam的onFinish回调不生效。</br>如果通过combine进行TransitionEffect的组合，前一TransitionEffect的动画参数也可用于后一TransitionEffect。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 上表提供的静态函数用于构造TransitionEffect对象，而非静态函数作用于构造好的TransitionEffect对象，以指定多种转场效果的组合效果和动画参数。
 此外TransitionEffect提供了一些转场效果的静态成员变量：
