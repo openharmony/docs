@@ -26,7 +26,7 @@ onKeyEvent(event: (event: KeyEvent) => void)
 | 名称                                    | 类型                                       | 描述                         |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。                     |
-| [keyCode](../../apis/js-apis-keycode.md#keycode) | number                                   | 按键的键码。                     |
+| [keyCode](../../apis-input-kit/js-apis-keycode.md#keycode) | number                                   | 按键的键码。                     |
 | keyText                               | string                                   | 按键的键值。                     |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
 | deviceId                              | number                                   | 触发当前按键的输入设备ID。             |

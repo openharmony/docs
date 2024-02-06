@@ -19,7 +19,7 @@ getUIContext(): UIContext
 
 | 类型                                                      | 说明                    |
 | --------------------------------------------------------- | ----------------------- |
-| [UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
+| [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
 
 **示例：**
 
